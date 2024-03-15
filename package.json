@@ -39,7 +39,7 @@
     "clean": "turbo run clean && rimraf node_modules",
     "changeset": "npx -y @changesets/cli",
     "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm changeset publish",
-    "release:github": "pnpm ts-node .github/workflows/scripts/manual-github-release.ts"
+    "release:github": "pnpm node .github/workflows/scripts/manual-github-release.ts"
   },
   "devDependencies": {
     "@itwin/itwinui-css": "workspace:*",
@@ -52,7 +52,6 @@
     "prettier": "~3.1.0",
     "rimraf": "^5.0.5",
     "serve": "^14.2.1",
-    "ts-node": "^10.9.2",
     "turbo": "~1.12.3",
     "configs": "workspace:*",
     "a11y": "workspace:*",
