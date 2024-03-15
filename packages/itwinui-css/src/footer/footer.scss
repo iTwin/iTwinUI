@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../anchor/mixins' as anchor;
 @use '../mixins';
 
 .iui-legal-footer {
@@ -39,6 +38,19 @@
 
     &:not(:hover) {
       text-decoration: none;
+    }
+
+    @media (prefers-contrast: more) {
+      &:not(:hover) {
+        text-decoration: underline;
+      }
+    }
+
+    &[data-iui-underline='true'],
+    :is([data-iui-contrast='high'] &) {
+      &:not(:hover) {
+        text-decoration: underline;
+      }
     }
   }
 }

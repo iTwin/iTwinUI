@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../anchor/mixins' as anchor;
 @use '../mixins';
 
 /// category must be one of: informational, positive, warning, negative
@@ -27,7 +26,16 @@
   }
 
   > .iui-toast-anchor {
-    @include anchor.iui-anchor-status($category);
+    @include mixins.iui-focus($color: var(--iui-color-text-#{$category}), $offset: 1px);
+    color: var(--iui-color-text-#{$category});
+    -webkit-tap-highlight-color: hsl(var(--iui-color-#{$category}-hsl) / var(--iui-opacity-6));
+    @if $category != accent {
+      @include mixins.iui-text-selection($category);
+    }
+
+    &:hover {
+      color: var(--iui-color-text-#{$category}-hover);
+    }
   }
 
   > button {
@@ -164,7 +172,11 @@
       background: transparent;
       padding: 0;
     }
-    @include anchor.iui-anchor-underline('on-initial');
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
     border-radius: var(--iui-border-radius-1);
     cursor: pointer;
     font-size: var(--iui-font-size-0);

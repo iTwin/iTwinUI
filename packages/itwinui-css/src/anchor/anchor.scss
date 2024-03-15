@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use './mixins' as *;
+@use '../mixins';
 
 .iui-anchor {
   &:where(button) {
@@ -10,19 +10,37 @@
     padding: 0;
   }
 
-  @include iui-anchor-status('accent');
+  @include mixins.iui-focus($color: var(--iui-color-text-accent), $offset: 1px);
+  color: var(--iui-color-text-accent);
+  -webkit-tap-highlight-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
+
+  &:hover {
+    color: var(--iui-color-text-accent-hover);
+  }
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
 
-  @include iui-anchor-underline('on-hover');
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   @media (prefers-contrast: more) {
-    @include iui-anchor-underline('on-initial');
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &[data-iui-underline='true'],
   :is([data-iui-contrast='high'] &) {
-    @include iui-anchor-underline('on-initial');
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &-external {
