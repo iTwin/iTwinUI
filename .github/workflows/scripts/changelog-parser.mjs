@@ -4,7 +4,6 @@
  * @returns {string}
  */
 export const getLatestVersionChangelog = (pkg, version) => {
-  // TODO: Use version arg
   const changelog = fs.readFileSync(
     `./packages/${pkg.substring('@itwin/'.length)}/CHANGELOG.md`,
     'utf8',
@@ -13,11 +12,15 @@ export const getLatestVersionChangelog = (pkg, version) => {
 
   /**
    * @param {string[]} lines
+   * @param {string | undefined} version (E.g. "3.6.0")
    * @returns {number}
    */
-  const h2Index = (lines) => lines.findIndex((line) => line.startsWith('## '));
+  const h2Index = (lines, version) =>
+    lines.findIndex((line) =>
+      version != null ? line === `## ${version}` : line.startsWith('## '),
+    );
 
-  const firstH2Index = h2Index(lines);
+  const firstH2Index = h2Index(lines, version);
   const secondH2Index = (() => {
     const newLines = lines.slice(firstH2Index + 1);
 

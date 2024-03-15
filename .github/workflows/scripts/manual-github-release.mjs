@@ -13,7 +13,7 @@ import { parseChangelog } from './changelog-parser.mjs';
 /**
  * Releases to npm and GitHub.
  * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
- * @param {string} version
+ * @param {string} version (E.g. "3.6.0")
  */
 const createRelease = async (pkg, version) => {
   // Release to npm
