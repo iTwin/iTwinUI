@@ -2,62 +2,35 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import fs from 'node:fs';
 import { Octokit } from 'octokit';
-
-const publishablePackages = [
-  '@itwin/itwinui-react',
-  '@itwin/itwinui-variables',
-];
-
-/**
- * Parses the changeset file and returns the latest version
- * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
- * @returns {{ version: string; content: string; }}
- */
-const parseChangelog = (pkg) => {
-  const changelog = fs.readFileSync(
-    `./packages/${pkg.substring('@itwin/'.length)}/CHANGELOG.md`,
-    'utf8',
-  );
-  const lines = changelog.split('\n');
-
-  /**
-   * @param {string[]} lines
-   * @returns {number}
-   */
-  const h2Index = (lines) => lines.findIndex((line) => line.startsWith('## '));
-
-  const firstH2Index = h2Index(lines);
-  const secondH2Index = (() => {
-    const newLines = lines.slice(firstH2Index + 1);
-
-    let index = h2Index(newLines);
-    // If this is the only version, return where the next version would have started, if it existed
-    if (index === -1) {
-      index = newLines.length;
-    }
-
-    return index + firstH2Index + 1; // Add the offset to account for the slice
-  })();
-
-  const version = lines[firstH2Index].replace('## ', '');
-  const content = lines.slice(firstH2Index + 2, secondH2Index - 1).join('\n');
-  return {
-    version,
-    content,
-  };
-};
+import { $ } from 'execa';
+import {
+  getPackagesToPublish,
+  shouldPublishToNpm,
+} from './publish-packages-helper.mjs';
+import { parseChangelog } from './changelog-parser.mjs';
 
 /**
+ * Releases to npm and GitHub.
  * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
+ * @param {string} version
  */
-const createGitHubRelease = async (pkg) => {
-  const { version, content } = parseChangelog(pkg);
+const createRelease = async (pkg, version) => {
+  // Release to npm
+  if (shouldPublishToNpm(pkg, version)) {
+    await $`pnpm release`;
+    console.log(`Released ${pkg}@${version} to npm`);
+  } else {
+    console.log(
+      `Current ${pkg} version is not ahead of npm version. So, skipping npm and GitHub releases`,
+    );
+    return;
+  }
 
+  // Release to GitHub
   const tagName = `${pkg}@${version}`;
   const releaseName = tagName;
-  const releaseBody = content;
+  const releaseBody = parseChangelog(pkg, version);
 
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
@@ -71,7 +44,9 @@ const createGitHubRelease = async (pkg) => {
     });
 
     // If release exists, return
-    console.log(`Release for ${pkg}@${version} already exists`);
+    console.log(
+      `Release for ${pkg}@${version} already exists on GitHub. So, skipping GitHub release`,
+    );
     return;
   } catch (error) {
     // If release does not exist, continue
@@ -87,6 +62,6 @@ const createGitHubRelease = async (pkg) => {
   });
 };
 
-publishablePackages.forEach((pkg) => {
-  createGitHubRelease(pkg);
+getPackagesToPublish().then((packages) => {
+  Object.entries(packages).forEach(createRelease);
 });
