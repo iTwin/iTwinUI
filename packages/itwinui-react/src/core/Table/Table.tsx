@@ -71,6 +71,11 @@ const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
+const COLUMN_MIN_WIDTHS = {
+  default: 72,
+  withExpander: 108,
+};
+
 const logWarningInDev = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
@@ -422,7 +427,7 @@ export const Table = <
 
   const defaultColumn = React.useMemo(
     () => ({
-      minWidth: 72,
+      minWidth: COLUMN_MIN_WIDTHS.default,
       width: 0,
     }),
     [],
@@ -958,8 +963,11 @@ export const Table = <
                         );
 
                     // expander column should be wider to accommodate the expander icon
-                    if (columnHasExpanders && column.minWidth === 72) {
-                      column.minWidth = 108;
+                    if (
+                      columnHasExpanders &&
+                      column.minWidth === COLUMN_MIN_WIDTHS.default
+                    ) {
+                      column.minWidth = COLUMN_MIN_WIDTHS.withExpander;
                     }
 
                     const columnProps = column.getHeaderProps({
