@@ -18,7 +18,7 @@ import { parseChangelog } from './changelog-parser.mjs';
 const createRelease = async (pkg, version) => {
   // Release to npm
   if (shouldPublishToNpm(pkg, version)) {
-    await $`pnpm release`;
+    await $`pnpm changeset publish`;
     console.log(`Released ${pkg}@${version} to npm`);
   } else {
     console.log(
@@ -56,7 +56,7 @@ const createRelease = async (pkg, version) => {
     owner: 'iTwin',
     repo: 'iTwinUI',
     draft: true,
-    tag_name: tagName,
+    tag_name: `@itwin/itwinui-react@3.6.1`, // TODO: Replace with tagName
     name: releaseName,
     body: releaseBody,
   });
