@@ -10,7 +10,6 @@ import { FooterItem } from './FooterItem.js';
 import { FooterSeparator } from './FooterSeparator.js';
 import { FooterList } from './FooterList.js';
 import styles from '../../styles.js';
-import { Anchor } from '../Typography/Anchor.js';
 
 export type TitleTranslations = {
   termsOfService: string;
@@ -134,54 +133,10 @@ export const Footer = Object.assign(
           : [...translatedElements, ...customElements];
     }
 
-    const customFooterItems = React.isValidElement(children)
-      ? (children.props as React.HTMLProps<HTMLElement>).children
-      : undefined;
-
     return (
       <Box as='footer' className={cx('iui-legal-footer', className)} {...rest}>
         {children ? (
-          customFooterItems ? (
-            //Replaces <a> elements inside of Custom Content Footers with the Anchor component.
-            <FooterList>
-              {React.Children.map(customFooterItems, (item) => {
-                if (React.isValidElement(item) && item.props) {
-                  const childArray: React.ReactElement[] = [];
-                  React.Children.forEach(
-                    (item.props as React.HTMLProps<HTMLElement>).children,
-                    (child, index) => {
-                      if (React.isValidElement(child)) {
-                        if (
-                          child.props.children &&
-                          child.props.children.type === 'a'
-                        ) {
-                          childArray.push(
-                            React.cloneElement(
-                              child,
-                              { key: index },
-                              React.cloneElement(<Anchor />, {
-                                ...child.props.children.props,
-                              }),
-                            ),
-                          );
-                        } else {
-                          childArray.push(
-                            React.cloneElement(child, { key: index }),
-                          );
-                        }
-                      } else {
-                        childArray.push(child as React.ReactElement);
-                      }
-                    },
-                  );
-                  return React.cloneElement(item, {}, childArray);
-                }
-                return item;
-              })}
-            </FooterList>
-          ) : (
-            children
-          )
+          children
         ) : (
           <FooterList>
             {elements.map((element, index) => {
