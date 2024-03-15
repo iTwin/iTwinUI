@@ -20,6 +20,8 @@ const createRelease = async (pkg, version) => {
   if (shouldPublishToNpm(pkg, version)) {
     await $`pnpm changeset publish`;
     console.log(`Released ${pkg}@${version} to npm`);
+
+    // TODO: Confirm if we need to push git tags here
   } else {
     console.log(
       `Current ${pkg} version is not ahead of npm version. So, skipping npm and GitHub releases`,
@@ -60,8 +62,11 @@ const createRelease = async (pkg, version) => {
     name: releaseName,
     body: releaseBody,
   });
+  console.log(`Created release for ${pkg}@${version} on GitHub`);
 };
 
 getPackagesToPublish().then((packages) => {
-  Object.entries(packages).forEach(createRelease);
+  Object.entries(packages).forEach(([pkg, version]) =>
+    createRelease(pkg, version),
+  );
 });
