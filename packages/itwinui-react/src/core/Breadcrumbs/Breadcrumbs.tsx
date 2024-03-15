@@ -13,6 +13,7 @@ import {
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Button } from '../Buttons/Button.js';
+import { Anchor } from '../Typography/Anchor.js';
 
 const logWarningInDev = createWarningLogger();
 
@@ -233,12 +234,19 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const defaultAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
   const children =
     defaultAs === 'button' ? <span>{childrenProp}</span> : childrenProp;
-  const anchorClassName = defaultAs === 'a' ? 'iui-anchor' : '';
 
-  return (
+  return defaultAs === 'a' ? (
+    <Anchor
+      className={cx('iui-breadcrumbs-content', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      {children}
+    </Anchor>
+  ) : (
     <Box
       as={defaultAs as 'a'}
-      className={cx(anchorClassName, 'iui-breadcrumbs-content', className)}
+      className={cx('iui-breadcrumbs-content', className)}
       ref={forwardedRef}
       {...rest}
     >
