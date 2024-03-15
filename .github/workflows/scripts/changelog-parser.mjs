@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 /**
  * Parses the changelog file and returns the contents for the specified version.
  * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
