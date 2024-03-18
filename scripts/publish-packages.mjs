@@ -14,13 +14,10 @@ if (packages.length === 0) {
   process.exit(0);
 }
 
-try {
-  await createNpmReleases();
-} catch {
-  console.log('Failed to release to npm');
-  process.exit(1);
-}
+// Publish to npm
+await createNpmReleases();
 
+// Release to GitHub (only if npm release was successful)
 Object.entries(packages).forEach(async ([pkg, version]) => {
   try {
     await createGithubRelease(pkg, version);

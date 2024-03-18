@@ -34,6 +34,7 @@ export const createNpmReleases = async () => {
   try {
     await $`pnpm changeset publish`;
   } catch (error) {
+    console.log('Failed to release to npm');
     throw error;
   }
 };
