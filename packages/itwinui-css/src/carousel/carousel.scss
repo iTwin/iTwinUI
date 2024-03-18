@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
-@use '../button/base';
 
 @mixin hide-scrollbar {
   overflow-x: auto;
@@ -75,12 +74,11 @@
   }
 
   &-dot {
-    @include base.iui-button-size($size: small);
     background-color: transparent;
     border: none;
     cursor: pointer;
-    block-size: var(--_iui-button-height);
-    padding-inline: var(--_iui-button-padding-inline);
+    block-size: var(--iui-component-height-small);
+    padding-inline: var(--iui-size-xs);
 
     &:hover::after {
       background-color: var(--iui-color-icon-muted-hover);
