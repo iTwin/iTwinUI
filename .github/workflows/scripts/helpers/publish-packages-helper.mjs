@@ -1,45 +1,7 @@
 import { $ } from 'execa';
 import fs from 'fs';
 import { parseChangelog } from './changelog-parser.mjs';
-
-/**
- * Gets the current version of the package from package.json
- * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
- * @returns {Promise<string>}
- */
-const getCurrentPackageVersion = async (pkg) => {
-  const packageJson = JSON.parse(
-    fs.readFileSync(
-      `./packages/${pkg.substring('@itwin/'.length)}/package.json`,
-      'utf8',
-    ),
-  );
-  return packageJson.version;
-};
-/**
- * Gets the latest version of the package from npm
- * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
- */
-const getNpmPackageVersion = async (pkg) => {
-  return await $`npm view ${pkg} version`;
-};
-
-/**
- * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
- * @param {string} version (E.g. "3.6.0")
- * @returns {Promise<boolean>}
- */
-const shouldPublishToNpm = async (pkg, version) => {
-  try {
-    await getNpmPackageVersion(`${pkg}@${version}`);
-
-    // If no error, package version already exists on npm
-    return false;
-  } catch (error) {
-    // If error, package version does not exist on npm
-    return true;
-  }
-};
+import { Octokit } from 'octokit';
 
 /**
  * Returns all publishable packages that need to be published to npm/GitHub
