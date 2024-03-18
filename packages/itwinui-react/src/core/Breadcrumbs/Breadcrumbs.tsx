@@ -231,19 +231,11 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const { children: childrenProp, className, ...rest } = props;
 
-  const defaultAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
+  const defaultAs = !!props.href ? Anchor : !!props.onClick ? 'button' : 'span';
   const children =
     defaultAs === 'button' ? <span>{childrenProp}</span> : childrenProp;
 
-  return defaultAs === 'a' ? (
-    <Anchor
-      className={cx('iui-breadcrumbs-content', className)}
-      ref={forwardedRef}
-      {...rest}
-    >
-      {children}
-    </Anchor>
-  ) : (
+  return (
     <Box
       as={defaultAs as 'a'}
       className={cx('iui-breadcrumbs-content', className)}
