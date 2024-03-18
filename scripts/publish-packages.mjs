@@ -14,7 +14,12 @@ if (packages.length === 0) {
   process.exit(0);
 }
 
-await createNpmReleases();
+try {
+  await createNpmReleases();
+} catch {
+  console.log('Failed to release to npm');
+  process.exit(1);
+}
 
 Object.entries(packages).forEach(async ([pkg, version]) => {
   try {
