@@ -9,10 +9,6 @@ test.describe('Table sorting', () => {
 
     await page.keyboard.press('Tab');
 
-    // ascending
-    await page.keyboard.press('Enter');
-    expect(firstColumnCells).toHaveText(['1', '2', '3']);
-
     // descending
     await page.keyboard.press('Enter');
     expect(firstColumnCells).toHaveText(['3', '2', '1']);
@@ -20,6 +16,10 @@ test.describe('Table sorting', () => {
     // ascending again
     await page.keyboard.press('Enter');
     expect(firstColumnCells).toHaveText(['1', '2', '3']);
+
+    // descending
+    await page.keyboard.press('Enter');
+    expect(firstColumnCells).toHaveText(['3', '2', '1']);
   });
 });
 
