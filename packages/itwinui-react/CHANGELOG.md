@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.6.3
+
+### Patch Changes
+
+- [#1916](https://github.com/iTwin/iTwinUI/pull/1916): Fixed the hover background for default tabs.
+
+## 3.6.2
+
+### Patch Changes
+
+- [#1921](https://github.com/iTwin/iTwinUI/pull/1921): Fixed `Carousel.Dot`'s incorrect height.
+
 ## 3.6.1
 
 ### Patch Changes

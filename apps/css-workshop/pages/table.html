@@ -5386,16 +5386,13 @@
     </script>
 
     <script>
-      // Syncs body scroll with the header scroll
+      // Sticky columns' shadow management
       ['#demo-extras-scrollable-table', '#demo-extras-scrollable-table-few-rows'].forEach((tableSelector) => {
-        const scrollableBody = document.querySelector(`${tableSelector} .iui-table-body`);
-        const scrollableHeader = document.querySelector(`${tableSelector} .iui-table-header-wrapper`);
-
-        scrollableBody.addEventListener('scroll', function (e) {
-          scrollableHeader.scrollLeft = this.scrollLeft;
-          // If table body is scrolled to the right, then add shadow to the first columns
+        const scrollableTable = document.querySelector(`${tableSelector}`);
+        scrollableTable.addEventListener('scroll', function (e) {
+          // If table is scrolled to the right, then add shadow to the first columns
           if (this.scrollLeft) {
-            scrollableHeader.querySelectorAll('.iui-table-cell-sticky:nth-of-type(2)').forEach((sticky) => {
+            scrollableTable.querySelectorAll('.iui-table-cell-sticky:nth-of-type(2)').forEach((sticky) => {
               if (sticky.querySelector('.iui-table-cell-shadow-right')) {
                 return;
               }
@@ -5403,23 +5400,9 @@
               shadow.classList.add('iui-table-cell-shadow-right');
               sticky.appendChild(shadow);
             });
-            scrollableBody.querySelectorAll('.iui-table-cell-sticky:nth-of-type(2)').forEach((sticky) => {
-              if (sticky.querySelector('.iui-table-cell-shadow-right')) {
-                return;
-              }
-              const shadow = document.createElement('div');
-              shadow.classList.add('iui-table-cell-shadow-right');
-              sticky.appendChild(shadow);
-            });
-            // If table body is scrolled to the very left, then remove shadows from the first columns
+            // If table is scrolled to the very left, then remove shadows from the first columns
           } else {
-            scrollableHeader.querySelectorAll('.iui-table-cell-sticky').forEach((sticky) => {
-              const shadow = sticky.querySelector('.iui-table-cell-shadow-right');
-              if (shadow) {
-                sticky.removeChild(shadow);
-              }
-            });
-            scrollableBody.querySelectorAll('.iui-table-cell-sticky').forEach((sticky) => {
+            scrollableTable.querySelectorAll('.iui-table-cell-sticky').forEach((sticky) => {
               const shadow = sticky.querySelector('.iui-table-cell-shadow-right');
               if (shadow) {
                 sticky.removeChild(shadow);
@@ -5427,9 +5410,9 @@
             });
           }
 
-          // If table body is scrolled to the left, then add shadows to the last columns
+          // If table is scrolled to the left, then add shadows to the last columns
           if (this.scrollWidth - this.scrollLeft - this.offsetWidth > 0) {
-            scrollableHeader.querySelectorAll('.iui-table-cell-sticky:last-of-type').forEach((sticky) => {
+            scrollableTable.querySelectorAll('.iui-table-cell-sticky:last-of-type').forEach((sticky) => {
               if (sticky.querySelector('.iui-table-cell-shadow-left')) {
                 return;
               }
@@ -5437,23 +5420,9 @@
               shadow.classList.add('iui-table-cell-shadow-left');
               sticky.appendChild(shadow);
             });
-            scrollableBody.querySelectorAll('.iui-table-cell-sticky:last-of-type').forEach((sticky) => {
-              if (sticky.querySelector('.iui-table-cell-shadow-left')) {
-                return;
-              }
-              const shadow = document.createElement('div');
-              shadow.classList.add('iui-table-cell-shadow-left');
-              sticky.appendChild(shadow);
-            });
-            // If table body is scrolled to the very right, then remove shadows from the last columns
+            // If table is scrolled to the very right, then remove shadows from the last columns
           } else {
-            scrollableHeader.querySelectorAll('.iui-table-cell-sticky').forEach((sticky) => {
-              const shadow = sticky.querySelector('.iui-table-cell-shadow-left');
-              if (shadow) {
-                sticky.removeChild(shadow);
-              }
-            });
-            scrollableBody.querySelectorAll('.iui-table-cell-sticky').forEach((sticky) => {
+            scrollableTable.querySelectorAll('.iui-table-cell-sticky').forEach((sticky) => {
               const shadow = sticky.querySelector('.iui-table-cell-shadow-left');
               if (shadow) {
                 sticky.removeChild(shadow);

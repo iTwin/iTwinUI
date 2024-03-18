@@ -41,7 +41,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   tableHasSubRows: boolean;
   tableInstance: TableInstance<T>;
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
-  bodyRef: HTMLDivElement | null;
+  scrollContainerRef: HTMLDivElement | null;
   tableRowRef?: React.Ref<HTMLDivElement>;
   density?: 'default' | 'condensed' | 'extra-condensed';
 }) => {
@@ -58,7 +58,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     tableHasSubRows,
     tableInstance,
     expanderCell,
-    bodyRef,
+    scrollContainerRef,
     tableRowRef,
     density,
   } = props;
@@ -69,16 +69,17 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   }, [isLast, onBottomReached, onRowInViewport, row.original]);
 
   const intersectionRoot = React.useMemo(() => {
-    const isTableBodyScrollable =
-      (bodyRef?.scrollHeight ?? 0) > (bodyRef?.offsetHeight ?? 0);
+    const isTableScrollable =
+      (scrollContainerRef?.scrollHeight ?? 0) >
+      (scrollContainerRef?.offsetHeight ?? 0);
     // If table body is scrollable, make it the intersection root
-    if (isTableBodyScrollable) {
-      return bodyRef;
+    if (isTableScrollable) {
+      return scrollContainerRef;
     }
 
     // Otherwise, make the viewport the intersection root
     return undefined;
-  }, [bodyRef]);
+  }, [scrollContainerRef]);
 
   const intersectionRef = useIntersection(onIntersect, {
     rootMargin: `${intersectionMargin}px`,
@@ -190,7 +191,7 @@ export const TableRowMemoized = React.memo(
     prevProp.rowProps === nextProp.rowProps &&
     prevProp.expanderCell === nextProp.expanderCell &&
     prevProp.tableHasSubRows === nextProp.tableHasSubRows &&
-    prevProp.bodyRef === nextProp.bodyRef &&
+    prevProp.scrollContainerRef === nextProp.scrollContainerRef &&
     prevProp.state.columnOrder === nextProp.state.columnOrder &&
     !nextProp.state.columnResizing.isResizingColumn &&
     prevProp.state.isTableResizing === nextProp.state.isTableResizing &&

@@ -24,7 +24,8 @@
     min-block-size: var(--_iui-table-header-size);
   }
 
-  .iui-table-body .iui-table-cell {
+  .iui-table-body .iui-table-cell,
+  .iui-table-body-extra {
     min-block-size: var(--_iui-table-row-size);
   }
 }
