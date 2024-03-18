@@ -7,6 +7,7 @@ import {
   createGithubRelease,
   createNpmReleases,
 } from './publish-packages-helper.mjs';
+import { $ } from 'execa';
 
 const packages = await getPackagesToPublish();
 if (Object.keys(packages).length === 0) {
