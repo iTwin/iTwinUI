@@ -35,9 +35,7 @@ const assertFooterItems = (
     }
 
     const dataIndex = Math.floor(i / 2);
-    expect(element.textContent?.replace(' (opens in new tab)', '')).toBe(
-      data[dataIndex].title,
-    );
+    expect(element).toHaveTextContent(data[dataIndex].title);
     if (data[dataIndex].url) {
       expect((element.firstChild as HTMLAnchorElement).href).toBe(
         data[dataIndex].url,
