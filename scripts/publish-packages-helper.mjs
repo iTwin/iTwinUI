@@ -44,8 +44,8 @@ export const createNpmRelease = async () => {
  * @param {string} version (E.g. "3.6.0")
  */
 export const createGithubRelease = async (pkg, version) => {
-  // Push tags created by changeset
-  await $`git push origin --tags`;
+  // // Push tags created by changeset
+  // await $`git push origin --tags`;
 
   // Release to GitHub
   const tagName = `${pkg}@${version}`;
@@ -57,7 +57,7 @@ export const createGithubRelease = async (pkg, version) => {
     owner: 'iTwin',
     repo: 'iTwinUI',
     draft: true,
-    tag_name: tagName,
+    tag_name: '@itwin/itwinui-react@3.6.1',
     name: tagName,
     body: releaseBody,
   });
