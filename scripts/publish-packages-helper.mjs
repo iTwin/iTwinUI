@@ -45,9 +45,6 @@ export const createNpmReleases = async () => {
  * @param {string} version (E.g. "3.6.0")
  */
 export const createGithubRelease = async (pkg, version) => {
-  // Push tags created by changeset
-  await $`git push origin --tags`;
-
   // Release to GitHub
   const tagName = `${pkg}@${version}`;
   const releaseBody = parseChangelog(pkg, version);

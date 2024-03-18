@@ -17,6 +17,9 @@ if (packages.length === 0) {
 // Publish to npm
 await createNpmReleases();
 
+// Push tags created by changeset
+await $`git push origin --tags`;
+
 // Release to GitHub (only if npm release was successful)
 Object.entries(packages).forEach(async ([pkg, version]) => {
   try {
