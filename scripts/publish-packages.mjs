@@ -25,6 +25,6 @@ Object.entries(packages).forEach(async ([pkg, version]) => {
   try {
     await createGithubRelease(pkg, version);
   } catch {
-    console.log(`Failed to release ${pkg}@${version}`);
+    console.log(`Failed to release ${pkg}@${version} to GitHub`);
   }
 });
