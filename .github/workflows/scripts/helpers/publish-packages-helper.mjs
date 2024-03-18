@@ -1,6 +1,6 @@
 import { $ } from 'execa';
 import fs from 'fs';
-import { parseChangelog } from './helpers/changelog-parser.mjs';
+import { parseChangelog } from './changelog-parser.mjs';
 
 /**
  * Gets the current version of the package from package.json
