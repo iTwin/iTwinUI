@@ -31,7 +31,6 @@ import {
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
-import * as UseResizeObserver from '../utils/hooks/useResizeObserver.js';
 import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,
