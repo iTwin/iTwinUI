@@ -5,6 +5,7 @@
 const { spawn } = require('node:child_process');
 const fs = require('fs');
 const path = require('path');
+const concurrently = require('concurrently');
 
 /**
  * Find all files inside a dir, recursively.
@@ -30,7 +31,7 @@ try {
 
   if (componentNames.includes(argument)) {
     spawn(
-      `conc -g -r "pnpm --filter=css-workshop run test --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm --filter "./testing/a11y" run test  --env componentName=${argument}" "pnpm --filter=react-workshop run test --spec="**/${argument}.*""`,
+      `conc -g -r --kill-others "pnpm --filter=css-workshop run test --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm --filter "./testing/a11y" run test  --env componentName=${argument}" "pnpm --filter=react-workshop run test --spec="**/${argument}.*""`,
       {
         stdio: 'inherit',
         shell: true,
