@@ -137,7 +137,7 @@ const AlertAction = React.forwardRef((props, ref) => {
   return (
     <Anchor
       as={(!!props.href ? 'a' : 'button') as 'a'}
-      className={cx('iui-button-base iui-alert-link', className)}
+      className={cx('iui-button-base', 'iui-alert-link', className)}
       underline
       data-iui-status={type}
       ref={ref}
