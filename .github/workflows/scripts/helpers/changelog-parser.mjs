@@ -2,7 +2,7 @@ import fs from 'fs';
 
 /**
  * Parses the changelog file and returns the contents for the specified version.
- * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
+ * @param {string} pkg
  * @returns {string}
  */
 export const parseChangelog = (pkg, version) => {

@@ -4,11 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import {
   getPackagesToPublish,
-  createRelease,
+  createGithubRelease,
+  createNpmRelease,
 } from './helpers/publish-packages-helper.mjs';
 
-getPackagesToPublish().then((packages) => {
-  Object.entries(packages).forEach(([pkg, version]) =>
-    createRelease(pkg, version),
-  );
+const packages = await getPackagesToPublish();
+
+Object.entries(packages).forEach(async ([pkg, version]) => {
+  try {
+    await createNpmRelease(pkg, version);
+    await createGithubRelease(pkg, version);
+  } catch {
+    console.log(`Failed to release ${pkg}@${version}`);
+  }
 });
