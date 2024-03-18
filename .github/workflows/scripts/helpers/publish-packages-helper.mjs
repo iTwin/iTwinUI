@@ -29,10 +29,8 @@ export const getPackagesToPublish = async () => {
 
 /**
  * Releases to npm using changeset publish.
- * @param {string} pkg
- * @param {string} version (E.g. "3.6.0")
  */
-export const createNpmRelease = async (pkg, version) => {
+export const createNpmRelease = async () => {
   try {
     await $`pnpm changeset publish`;
   } catch (error) {
