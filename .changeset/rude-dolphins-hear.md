@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Fixed carousel dot button's incorrect height.
+Fixed `Carousel.Dot`'s incorrect height.
