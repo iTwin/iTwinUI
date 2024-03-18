@@ -25,38 +25,20 @@ const getNpmPackageVersion = async (pkg) => {
 };
 
 /**
- * Returns 0 if a === b, 1 if a > b, -1 if a < b
- *
- * @example
- * semverCompare('1.0.0', '1.0.0') // 0
- * semverCompare('1.0.0', '1.0.1') // -1
- * semverCompare('1.0.1', '1.0.0') // 1
- *
- * @param {string} packageVersionA
- * @param {string} packageVersionB
- */
-const semverCompare = (packageVersionA, packageVersionB) => {
-  const a = packageVersionA.split('.').map(Number);
-  const b = packageVersionB.split('.').map(Number);
-
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] > b[i]) return 1;
-    if (a[i] < b[i]) return -1;
-  }
-
-  return 0;
-};
-
-/**
  * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
  * @param {string} version (E.g. "3.6.0")
  * @returns {Promise<boolean>}
  */
 const shouldPublishToNpm = async (pkg, version) => {
-  const { stdout: npmLatestVersion } = await getNpmPackageVersion(pkg);
+  try {
+    await getNpmPackageVersion(`${pkg}@${version}`);
 
-  // If current version is ahead of npm, publish
-  return semverCompare(version, npmLatestVersion) === 1;
+    // If no error, package version already exists on npm
+    return false;
+  } catch (error) {
+    // If error, package version does not exist on npm
+    return true;
+  }
 };
 
 /**
@@ -97,7 +79,7 @@ export const createRelease = async (pkg, version) => {
     await $`git push origin --tags`;
   } else {
     console.log(
-      `Current ${pkg} version is not ahead of npm version. So, skipping npm and GitHub releases`,
+      `${pkg}${version} already exists on npm. So, skipping npm and GitHub releases`,
     );
     return;
   }
@@ -120,7 +102,7 @@ export const createRelease = async (pkg, version) => {
 
     // If release exists, return
     console.log(
-      `Release for ${pkg}@${version} already exists on GitHub. So, skipping GitHub release`,
+      `${pkg}@${version} already exists on GitHub. So, skipping GitHub release`,
     );
     return;
   } catch (error) {
