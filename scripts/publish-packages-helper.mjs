@@ -28,9 +28,9 @@ export const getPackagesToPublish = async () => {
 };
 
 /**
- * Releases to npm using changeset publish.
+ * Releases all unpublished packages to npm.
  */
-export const createNpmRelease = async () => {
+export const createNpmReleases = async () => {
   try {
     await $`pnpm changeset publish`;
   } catch (error) {

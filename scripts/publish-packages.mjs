@@ -5,14 +5,19 @@
 import {
   getPackagesToPublish,
   createGithubRelease,
-  createNpmRelease,
+  createNpmReleases,
 } from './publish-packages-helper.mjs';
 
 const packages = await getPackagesToPublish();
+if (packages.length === 0) {
+  console.log('No packages to publish');
+  process.exit(0);
+}
+
+await createNpmReleases();
 
 Object.entries(packages).forEach(async ([pkg, version]) => {
   try {
-    await createNpmRelease(pkg, version);
     await createGithubRelease(pkg, version);
   } catch {
     console.log(`Failed to release ${pkg}@${version}`);
