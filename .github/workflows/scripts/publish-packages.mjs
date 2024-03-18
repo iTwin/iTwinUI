@@ -12,7 +12,7 @@ const packages = await getPackagesToPublish();
 
 Object.entries(packages).forEach(async ([pkg, version]) => {
   try {
-    // await createNpmRelease(pkg, version);
+    await createNpmRelease(pkg, version);
     await createGithubRelease(pkg, version);
   } catch {
     console.log(`Failed to release ${pkg}@${version}`);

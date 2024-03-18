@@ -1,19 +1,5 @@
 # Changelog
 
-## 3.6.2
-
-### Patch Changes
-
-- [#1](https://github.com/iTwin/iTwinUI/pull/1): Sample changelog content 1.
-- [#2](https://github.com/iTwin/iTwinUI/pull/2): Sample changelog content 2.
-- [#3](https://github.com/iTwin/iTwinUI/pull/3): Sample changelog content 3.
-
-### Minor Changes
-
-- [#4](https://github.com/iTwin/iTwinUI/pull/4): Sample changelog content 4.
-- [#5](https://github.com/iTwin/iTwinUI/pull/5): Sample changelog content 5.
-- [#6](https://github.com/iTwin/iTwinUI/pull/6): Sample changelog content 6.
-  
 ## 3.6.1
 
 ### Patch Changes
