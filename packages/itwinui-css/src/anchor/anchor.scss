@@ -3,6 +3,14 @@
 @use '../mixins';
 
 .iui-anchor {
+  @include mixins.iui-focus($color: var(--iui-color-text-accent), $offset: 1px);
+  color: var(--iui-color-text-accent);
+  -webkit-tap-highlight-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
+  border-radius: var(--iui-border-radius-1);
+  cursor: pointer;
+
+  text-decoration: none;
+
   &:where(button) {
     font: inherit;
     border: none;
@@ -10,33 +18,8 @@
     padding: 0;
   }
 
-  @include mixins.iui-focus($color: var(--iui-color-text-accent), $offset: 1px);
-  color: var(--iui-color-text-accent);
-  -webkit-tap-highlight-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
-
   &:hover {
     color: var(--iui-color-text-accent-hover);
-  }
-
-  @each $statusColor in informational, positive, warning, negative {
-    &:where([data-iui-status='#{$statusColor}']) {
-      @include mixins.iui-focus($color: var(--iui-color-text-#{$statusColor}), $offset: 1px);
-      color: var(--iui-color-text-#{$statusColor});
-      -webkit-tap-highlight-color: hsl(var(--iui-color-#{$statusColor}-hsl) / var(--iui-opacity-6));
-      @include mixins.iui-text-selection(#{$statusColor});
-
-      &:hover {
-        color: var(--iui-color-text-#{$statusColor}-hover);
-      }
-    }
-  }
-
-  border-radius: var(--iui-border-radius-1);
-  cursor: pointer;
-
-  text-decoration: none;
-
-  &:hover {
     text-decoration: underline;
   }
 
@@ -71,6 +54,19 @@
       mask: var(--_iui-anchor-external-svg);
       @media (forced-colors: active) {
         background-color: LinkText;
+      }
+    }
+  }
+
+  @each $statusColor in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$statusColor}']) {
+      @include mixins.iui-focus($color: var(--iui-color-text-#{$statusColor}), $offset: 1px);
+      color: var(--iui-color-text-#{$statusColor});
+      -webkit-tap-highlight-color: hsl(var(--iui-color-#{$statusColor}-hsl) / var(--iui-opacity-6));
+      @include mixins.iui-text-selection(#{$statusColor});
+
+      &:hover {
+        color: var(--iui-color-text-#{$statusColor}-hover);
       }
     }
   }
