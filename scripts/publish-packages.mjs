@@ -6,7 +6,7 @@ import {
   getPackagesToPublish,
   createGithubRelease,
   createNpmRelease,
-} from '../../../scripts/publish-packages-helper.mjs';
+} from './publish-packages-helper.mjs';
 
 const packages = await getPackagesToPublish();
 
