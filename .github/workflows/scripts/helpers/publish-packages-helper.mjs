@@ -94,7 +94,7 @@ export const createRelease = async (pkg, version) => {
     await $`pnpm changeset publish`;
     console.log(`Released ${pkg}@${version} to npm`);
 
-    // TODO: Confirm if we need to push git tags here
+    await $`git push origin --tags`;
   } else {
     console.log(
       `Current ${pkg} version is not ahead of npm version. So, skipping npm and GitHub releases`,
@@ -131,7 +131,7 @@ export const createRelease = async (pkg, version) => {
     owner: 'iTwin',
     repo: 'iTwinUI',
     draft: true,
-    tag_name: `@itwin/itwinui-react@3.6.1`, // TODO: Replace with tagName
+    tag_name: tagName,
     name: releaseName,
     body: releaseBody,
   });
