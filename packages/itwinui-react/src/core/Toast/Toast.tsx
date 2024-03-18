@@ -286,8 +286,8 @@ export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
       </Box>
       {link && (
         <ButtonBase
-          className='iui-anchor iui-toast-anchor'
           {...link}
+          className={cx('iui-anchor', 'iui-toast-anchor', link.className)}
           title={undefined}
           data-iui-status={category}
           data-iui-underline
