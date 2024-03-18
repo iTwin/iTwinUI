@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.6.3
+
+### Patch Changes
+
+- [#1916](https://github.com/iTwin/iTwinUI/pull/1916): Fixed the hover background for default tabs.
+
 ## 3.6.2
 
 ### Patch Changes
