@@ -68,11 +68,10 @@ jobs:
           GIT_COMMITTER_NAME: github-actions[bot]
           GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
 
-      - name: Publish to npm (if not already published)
+      - name: Publish to npm & GitHub (if not already published)
         if: steps.changesets_files.outputs.exists != 'true'
         run: |
           pnpm release
-          git push origin --tags
         env:
           GITHUB_TOKEN: ${{ secrets.IMJS_ADMIN_GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}

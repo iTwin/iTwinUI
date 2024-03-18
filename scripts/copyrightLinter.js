@@ -27,6 +27,7 @@ const filePaths = fg.sync(pattern, {
     '**/build/**/*',
     '**/playgrounds/**/*',
     '**/minimal-sandbox/**/*',
+    '**/testing/**/*',
   ],
 });
 

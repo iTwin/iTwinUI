@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.6.2
+
+### Patch Changes
+
+- [#1921](https://github.com/iTwin/iTwinUI/pull/1921): Fixed `Carousel.Dot`'s incorrect height.
+
 ## 3.6.1
 
 ### Patch Changes
