@@ -2596,9 +2596,6 @@ it('should render number of rows selected for paginator', async () => {
 });
 
 it('should not show resizer when there are no next resizable columns', () => {
-  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
-    width: 100,
-  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
