@@ -54,7 +54,6 @@ export const createGithubRelease = async (pkg, version) => {
   octokit.rest.repos.createRelease({
     owner: 'iTwin',
     repo: 'iTwinUI',
-    draft: true,
     tag_name: tagName,
     name: tagName,
     body: releaseBody,
