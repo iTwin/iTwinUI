@@ -42,7 +42,7 @@ To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](h
 
 `pnpm dev`
 
-### To run all unit tests and visual tests
+### To run all tests
 
 `pnpm test`
 
@@ -387,6 +387,15 @@ In the terminal, a table will be produced for each violating component with the 
 In Cypress, if the component violates a Axe rule, its rule ID and the number of offending nodes will be output in a line in the testing window. You can click on the line to highlight the offending nodes in the test browser and to output more information in the browser console.  
 
 For more information on the Axe rule IDs and their meanings, visit [Deque University's list of Axe rules.](https://dequeuniversity.com/rules/axe/4.4/)
+
+### E2E testing
+
+The `testing/e2e` workspace facilitates testing of complex scenarios in a real browser. This is achieved by running [Playwright](https://playwright.dev/) tests against a [Remix](https://remix.run/) app.
+
+- **To run tests**, use this command: `pnpm run test --filter=e2e`.
+- **To write tests**, add a new [Remix route](https://remix.run/docs/en/main/discussion/routes#conventional-route-folders) and a `.spec.ts` next to it.
+
+For more details on how to write a test, see [Playwright docs](https://playwright.dev/docs/writing-tests).
 
 ## Pull Requests
 

@@ -11,12 +11,20 @@
       "outputs": ["css/**"]
     },
     "@itwin/itwinui-react#build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "@itwin/itwinui-css#build"],
       "outputs": ["esm/**", "cjs/**"]
+    },
+    "css-workshop#build": {
+      "dependsOn": ["@itwin/itwinui-css#build"],
+      "outputs": ["dist/**", "build/**"]
     },
     "react-workshop#build": {
       "dependsOn": ["^build"],
       "outputs": ["build/**"]
+    },
+    "portal#build": {
+      "dependsOn": ["@itwin/itwinui-css#build"],
+      "outputs": ["dist/**"]
     },
     "test": {},
     "react-workshop#test": {
@@ -24,12 +32,14 @@
       "outputs": ["dist/**", "build/**"]
     },
     "css-workshop#test": {
-      "dependsOn": ["build"],
-      "outputs": ["dist/**", "build/**"]
+      "dependsOn": ["build"]
     },
     "a11y#test": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "build/**"]
+    },
+    "e2e#test": {
+      "dependsOn": ["build"]
     },
     "lint": {},
     "dev": {

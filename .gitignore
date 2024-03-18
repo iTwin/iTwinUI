@@ -3,6 +3,7 @@ node_modules
 .turbo
 dist
 build
+.cache
 
 # debug
 *.log
@@ -20,3 +21,8 @@ features/search
 
 # pnpm
 .pnpm-store
+
+# tests
+test-results
+playwright-report
+blob-report
