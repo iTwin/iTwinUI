@@ -17,6 +17,20 @@
   &:hover {
     color: var(--iui-color-text-accent-hover);
   }
+
+  @each $statusColor in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$statusColor}']) {
+      @include mixins.iui-focus($color: var(--iui-color-text-#{$statusColor}), $offset: 1px);
+      color: var(--iui-color-text-#{$statusColor});
+      -webkit-tap-highlight-color: hsl(var(--iui-color-#{$statusColor}-hsl) / var(--iui-opacity-6));
+      @include mixins.iui-text-selection(#{$statusColor});
+
+      &:hover {
+        color: var(--iui-color-text-#{$statusColor}-hover);
+      }
+    }
+  }
+
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
 

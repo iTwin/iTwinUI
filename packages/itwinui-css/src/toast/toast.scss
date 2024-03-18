@@ -25,19 +25,6 @@
     }
   }
 
-  > .iui-toast-anchor {
-    @include mixins.iui-focus($color: var(--iui-color-text-#{$category}), $offset: 1px);
-    color: var(--iui-color-text-#{$category});
-    -webkit-tap-highlight-color: hsl(var(--iui-color-#{$category}-hsl) / var(--iui-opacity-6));
-    @if $category != accent {
-      @include mixins.iui-text-selection($category);
-    }
-
-    &:hover {
-      color: var(--iui-color-text-#{$category}-hover);
-    }
-  }
-
   > button {
     outline-color: var(--iui-color-text-#{$category});
   }
@@ -171,11 +158,6 @@
       border: none;
       background: transparent;
       padding: 0;
-    }
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
     }
     border-radius: var(--iui-border-radius-1);
     cursor: pointer;

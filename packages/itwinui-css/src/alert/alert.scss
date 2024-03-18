@@ -26,17 +26,6 @@
 
       @include mixins.iui-text-selection($statusColor);
 
-      .iui-alert-link {
-        @include mixins.iui-focus($color: var(--iui-color-text-#{$statusColor}), $offset: 1px);
-        color: var(--iui-color-text-#{$statusColor});
-        -webkit-tap-highlight-color: hsl(var(--iui-color-#{$statusColor}-hsl) / var(--iui-opacity-6));
-        @include mixins.iui-text-selection($statusColor);
-
-        &:hover {
-          color: var(--iui-color-text-#{$statusColor}-hover);
-        }
-      }
-
       .iui-button:focus {
         outline-color: var(--iui-color-text-#{$statusColor});
       }
@@ -65,12 +54,4 @@
   margin-inline-start: var(--iui-size-xs);
   user-select: none;
   white-space: nowrap;
-}
-
-.iui-anchor.iui-alert-link {
-  text-decoration: underline;
-
-  &:hover {
-    text-decoration: none;
-  }
 }
