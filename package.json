@@ -40,6 +40,7 @@
     "changeset": "npx -y @changesets/cli",
     "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm node ./scripts/publish-packages.mjs"
   },
+  "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-css": "workspace:*",
     "@itwin/itwinui-variables": "workspace:*",
