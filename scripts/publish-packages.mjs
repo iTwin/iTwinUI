@@ -9,7 +9,7 @@ import {
 } from './publish-packages-helper.mjs';
 
 const packages = await getPackagesToPublish();
-if (packages.length === 0) {
+if (Object.keys(packages).length === 0) {
   console.log('No packages to publish');
   process.exit(0);
 }
