@@ -269,6 +269,21 @@ it('should show spinner when loading', () => {
   expect(rows.length).toBe(0);
 });
 
+it('should show table-body-extra with spinner when loading with pre-existing data', () => {
+  const { container } = renderComponent({
+    data: mockedData(),
+    isLoading: true,
+  });
+
+  expect(
+    container.querySelector(
+      '.iui-table-body-extra[data-iui-loading="true"] .iui-progress-indicator-radial',
+    ),
+  ).toBeTruthy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+});
+
 it('should show empty message when there is no data', () => {
   const { container } = renderComponent({ data: [] });
 
@@ -3426,153 +3441,6 @@ it('should render zebra striped table', () => {
   ).toBeTruthy();
 });
 
-it('should sync body horizontal scroll with header scroll', () => {
-  const { container } = renderComponent();
-
-  const header = container.querySelector(
-    '.iui-table-header-wrapper',
-  ) as HTMLDivElement;
-  const body = container.querySelector('.iui-table-body') as HTMLDivElement;
-
-  expect(header.scrollLeft).toBe(0);
-  expect(body.scrollLeft).toBe(0);
-
-  // When body scrolls, header should scroll
-  fireEvent.scroll(body, {
-    target: { scrollLeft: 100 },
-  });
-  expect(header.scrollLeft).toBe(100);
-  expect(body.scrollLeft).toBe(100);
-
-  // When header scrolls, body should scroll
-  fireEvent.scroll(header, {
-    target: { scrollLeft: 0 },
-  });
-  expect(header.scrollLeft).toBe(0);
-  expect(body.scrollLeft).toBe(0);
-});
-
-it('should have a shadow tree in table-body that has a dummy div only when needed', () => {
-  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
-
-  const columnWidths = [400, 600, 200];
-  const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
-
-  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
-  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
-    (onResize) => {
-      triggerResize = onResize;
-      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
-    },
-  );
-
-  const { container } = renderComponent({
-    columns: [
-      {
-        Header: 'Name',
-        accessor: 'name',
-        id: 'name',
-        width: columnWidths[0],
-      },
-      {
-        Header: 'Description',
-        accessor: 'description',
-        id: 'description',
-        width: columnWidths[1],
-      },
-      {
-        Header: 'View',
-        Cell: () => <>View</>,
-        id: 'view',
-        width: columnWidths[2],
-      },
-    ],
-    data: [],
-    isResizable: true,
-    columnResizeMode: 'expand',
-  });
-  act(() => vi.runAllTicks());
-
-  // Initial render
-  triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
-
-  // body serves as the shadow host
-  let host = container.querySelector('.iui-table-body') as HTMLDivElement;
-  expect(host).toBeTruthy();
-
-  const slot = host?.shadowRoot?.querySelector('slot');
-  expect(slot).toBeTruthy();
-
-  // When clientWidth >= scrollWidth, the dummy div should not be rendered
-  const htmlScrollWidthMock = vi
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(columnWidthsSum);
-  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(
-    columnWidthsSum,
-  );
-
-  let dummyDiv = host?.shadowRoot?.querySelector('div');
-  expect(dummyDiv).not.toBeTruthy();
-
-  const resizer = container.querySelector(
-    '.iui-table-resizer',
-  ) as HTMLDivElement;
-  expect(resizer).toBeTruthy();
-
-  // When clientWidth < scrollWidth, the dummy div should be added
-  // E.g. case: make first column 200px wider than the initial width
-  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] });
-  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 200 });
-  fireEvent.mouseUp(resizer);
-
-  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 200);
-
-  act(() => {
-    triggerResize({ width: columnWidthsSum + 200 } as DOMRectReadOnly);
-  });
-
-  host = container.querySelector('.iui-table-body') as HTMLDivElement;
-  dummyDiv = host?.shadowRoot?.querySelector('div');
-
-  expect(dummyDiv).toBeTruthy();
-  expect(dummyDiv?.textContent).toBe('');
-  expect(dummyDiv?.style.height).toBe('0.1px');
-
-  // The dummy div should have the same width as the table header
-  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 200}px`);
-
-  // When table/column resizes, the dummy div should also resize
-  // E.g. case: make first column 400px wider than the initial width
-  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] + 200 });
-  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 400 });
-  fireEvent.mouseUp(resizer);
-
-  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 400);
-
-  act(() => {
-    triggerResize({ width: columnWidthsSum + 400 } as DOMRectReadOnly);
-  });
-
-  dummyDiv = host?.shadowRoot?.querySelector('div');
-  expect(dummyDiv).toBeTruthy();
-  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 400}px`);
-
-  // When clientWidth >= scrollWidth, the dummy div should be removed
-  // E.g. case: make first column back to initial width
-  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] + 400 });
-  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] });
-  fireEvent.mouseUp(resizer);
-
-  htmlScrollWidthMock.mockReturnValue(columnWidthsSum);
-
-  act(() => {
-    triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
-  });
-
-  dummyDiv = host?.shadowRoot?.querySelector('div');
-  expect(dummyDiv).not.toBeTruthy();
-});
-
 it.each([
   {
     testCase: 'dragging Name to View',
@@ -4255,8 +4123,8 @@ it('should render sticky columns correctly', () => {
   });
 
   // Scroll a bit to the right
-  const body = container.querySelector('.iui-table-body') as HTMLDivElement;
-  fireEvent.scroll(body, {
+  const table = container.querySelector('.iui-table') as HTMLDivElement;
+  fireEvent.scroll(table, {
     target: { scrollLeft: 100 },
   });
 
@@ -4273,7 +4141,7 @@ it('should render sticky columns correctly', () => {
   });
 
   // Scroll to the very right
-  fireEvent.scroll(body, {
+  fireEvent.scroll(table, {
     target: { scrollLeft: 400 },
   });
 
