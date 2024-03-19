@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'base';
+@use 'borderless';
 @use 'active';
 @use 'variant';
 @use 'idea';
@@ -19,6 +20,7 @@
   }
 
   &[data-iui-variant='borderless'] {
+    @include borderless.iui-button-borderless;
     @include base.iui-button-size(medium, borderless);
 
     &[data-iui-size='small'] {

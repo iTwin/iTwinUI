@@ -36,6 +36,8 @@
   .iui-input-grid[data-iui-status='#{$status}'] :where(.iui-input, .iui-select-button),
   :is(.iui-input, .iui-input-with-icon > .iui-select-button):where([data-iui-status='#{$status}']) {
     @include iui-text-selection($status);
+    --_iui-field-color-focus-outline: var(--iui-color-text-#{$status});
+    --_iui-field-color-border-hover: var(--iui-color-border-#{$status});
 
     // #region Bottom padding to vertically center text when the status stripe is present.
     // The bottom border is 2px and the top border is 1px, so we need to subtract 1px from the bottom padding
@@ -52,13 +54,7 @@
 
     border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
 
-    &:focus {
-      outline: 2px solid var(--iui-color-text-#{$status});
-      outline-offset: -2px;
-    }
-
     &:hover {
-      --_iui-input-border-color: var(--iui-color-border-#{$status});
       --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
     }
   }
@@ -174,6 +170,7 @@
 
   input,
   textarea {
+    // TODO: These are not using `iui-`, unsure what to do
     box-sizing: border-box;
     background: transparent;
     border: none;
@@ -228,26 +225,21 @@
 
   &[data-iui-size='small'] {
     --_iui-input-padding-block: 0;
-    --_iui-input-min-height: var(--iui-component-height-small);
   }
 
   &[data-iui-size='large'] {
     --_iui-input-padding-block: var(--iui-size-xs);
-    --_iui-input-min-height: var(--iui-component-height-large);
     font-size: var(--iui-font-size-2);
   }
 
   @each $status in positive, warning, negative {
     &[data-iui-status='#{$status}'] {
       --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
+      --_iui-field-color-border-hover: var(--iui-color-border-#{$status}); // TODO: Not working?
 
       &::before {
         border-block-end-width: var(--iui-size-3xs);
         border-block-end-color: var(--_iui-input-accent-border-color);
-      }
-
-      &:hover {
-        --_iui-input-border-color: var(--iui-color-border-#{$status});
       }
 
       input {

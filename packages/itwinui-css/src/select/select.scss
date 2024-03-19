@@ -38,7 +38,8 @@
 
   &:where([disabled], :disabled, [aria-disabled='true'], .iui-disabled) {
     --_iui-field-color-text-placeholder: transparent;
-    // --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled); // TODO: What is this?
+    --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
+    // --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     opacity: 1;
     cursor: not-allowed;
   }
@@ -130,8 +131,6 @@
 }
 
 @mixin iui-select-tag-button-icon {
-  flex-shrink: 0;
-
   .iui-select-button[data-iui-size='small'] & svg {
     @include mixins.iui-icon-style('s');
   }

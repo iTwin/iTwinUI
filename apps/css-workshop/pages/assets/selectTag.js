@@ -28,7 +28,7 @@ class SelectTag extends HTMLElement {
       ${
         dismissible
           ? `<button class="iui-button iui-field iui-select-tag-button" data-iui-variant="borderless" aria-label="Delete ${value} tag" type="button">
-            <svg-close-small class="iui-select-tag-button-icon" aria-hidden="true"></svg-close-small>
+            <svg-close-small class="iui-button-icon iui-select-tag-button-icon" aria-hidden="true"></svg-close-small>
           </button>`
           : ''
       }
