@@ -1,0 +1,585 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Progress indicator | iTwinUI</title>
+
+    <script>
+      import "../components/theme.js";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+      import "@itwin/itwinui-icons-elements/pause";
+      import "@itwin/itwinui-icons-elements/checkmark-small";
+      import "@itwin/itwinui-icons-elements/important-small";
+    </script>
+    <style is:global>
+      @import url("/assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      section[id^='demo'] {
+        display: flex;
+        flex-direction: column;
+        gap: var(--iui-size-l);
+        width: auto;
+      }
+
+      #demo-radial-determinate > *,
+      #demo-radial-indeterminate > * {
+        display: flex;
+        gap: var(--iui-size-m);
+      }
+
+      .demo-overlay-wrapper {
+        border: 1px solid var(--iui-color-border);
+        position: relative;
+      }
+
+      .demo-overlay-content {
+        padding: var(--iui-size-s);
+      }
+    </style>
+  </head>
+  <body
+    class="iui-root"
+    data-iui-theme
+  >
+    <theme-button></theme-button>
+    <h1>Progress indicator</h1>
+    <hr />
+
+    <h2>Linear</h2>
+
+    <h3>Determinate</h3>
+    <p class="iui-text-small iui-text-muted">
+      For determinate variants, percentage is set by&nbsp;
+      <code>--iui-progress-percentage</code>.
+    </p>
+    <section id="demo-linear-determinate">
+      <div
+        class="iui-progress-indicator-linear"
+        style="--iui-progress-percentage: 25%;"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        style="--iui-progress-percentage: 50%;"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        style="--iui-progress-percentage: 75%;"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Loading iModel</span>
+          <span>75%</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="positive"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="positive"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload successful!</span>
+          <svg-status-success
+            class="iui-svg-icon"
+            aria-hidden="true"
+            data-iui-icon-color="positive"
+          ></svg-status-success>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="warning"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="warning"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload successful with warnings!</span>
+          <svg-status-warning
+            class="iui-svg-icon"
+            aria-hidden="true"
+            data-iui-icon-color="warning"
+          ></svg-status-warning>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="negative"
+        style="--iui-progress-percentage: 50%;"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="negative"
+        style="--iui-progress-percentage: 50%;"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload failed!</span>
+          <svg-status-error
+            class="iui-svg-icon"
+            aria-hidden="true"
+            data-iui-icon-color="negative"
+          ></svg-status-error>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <h3>Indeterminate</h3>
+    <section id="demo-linear-indeterminate">
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Loading iModel</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="positive"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="positive"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload successful!</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="warning"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="warning"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload successful with warnings!</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="negative"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="negative"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload failed!</span>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <h2>Radial</h2>
+
+    <h3>Determinate</h3>
+    <p class="iui-text-small iui-text-muted">
+      For determinate variants, percentage is set by&nbsp;
+      <code>--iui-progress-percentage</code>.
+    </p>
+    <section
+      id="demo-radial-determinate"
+      style="width: fit-content;"
+    >
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          style="--iui-progress-percentage: 60%;"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          style="--iui-progress-percentage: 60%;"
+        >
+          60
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          data-iui-status="warning"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          style="--iui-progress-percentage: 60%;"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          style="--iui-progress-percentage: 60%;"
+        >
+          60
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-status="warning"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          style="--iui-progress-percentage: 60%;"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          60
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          data-iui-status="warning"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          style="--iui-progress-percentage: 60%;"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <span>60</span>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          data-iui-status="warning"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <h3>Indeterminate</h3>
+    <section id="demo-radial-indeterminate">
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+        >
+          &hellip;
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-status="warning"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+          data-iui-status="warning"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <h2>Overlay</h2>
+    <section id="demo-overlay">
+
+      <div class="demo-overlay-wrapper">
+        <div
+          class="demo-overlay-content"
+          inert
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div class="iui-overlay">
+          <!-- Linear indeterminate with label -->
+          <div
+            class="iui-progress-indicator-linear"
+            data-iui-indeterminate="true"
+          >
+            <div class="iui-progress-indicator-linear-label">
+              <span>Loading content</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-overlay-wrapper">
+        <div
+          class="demo-overlay-content"
+          inert
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+
+        <div class="iui-overlay">
+          <!-- Radial indeterminate -->
+          <div
+            class="iui-progress-indicator-radial"
+            data-iui-indeterminate="true"
+          >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script is:inline>
+      (async () => {
+        if (!HTMLElement.prototype.hasOwnProperty('inert')) {
+          await import('https://unpkg.com/wicg-inert@3.1.2/dist/inert.min.js');
+        }
+      })();
+    </script>
+  </body>
+</html>

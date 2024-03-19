@@ -174,10 +174,10 @@ const demoHtmlFactory = (directory, componentName) => {
     <title>${componentName} | iTwinUI</title>
     
     <script type="module">
-      import "./assets/theme.js";
+      import "../components/theme.js";
     </script>
     <style>
-      @import url("./assets/demo.css") layer(demo);
+      @import url("/assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
@@ -195,7 +195,7 @@ const demoHtmlFactory = (directory, componentName) => {
 `;
 
   return {
-    path: `${directory}/${componentName}.html`,
+    path: `${directory}/${componentName}.astro`,
     template: template,
   };
 };
