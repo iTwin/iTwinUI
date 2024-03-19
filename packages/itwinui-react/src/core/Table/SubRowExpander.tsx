@@ -13,12 +13,13 @@ export type SubRowExpanderProps<T extends Record<string, unknown>> = {
   isDisabled: boolean;
   cellProps: CellProps<T>;
   density?: 'default' | 'condensed' | 'extra-condensed';
+  [k: string]: unknown;
 };
 
 export const SubRowExpander = <T extends Record<string, unknown>>(
   props: SubRowExpanderProps<T>,
 ) => {
-  const { cell, isDisabled, cellProps, expanderCell, density } = props;
+  const { cell, isDisabled, cellProps, expanderCell, density, ...rest } = props;
 
   return (
     <>
@@ -40,6 +41,7 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
             cell.row.toggleRowExpanded();
           }}
           disabled={isDisabled}
+          {...rest}
         >
           {
             <SvgChevronRight

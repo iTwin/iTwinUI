@@ -63,6 +63,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
               // Prevents from triggering sort
               e.stopPropagation();
             }}
+            data-iui-shift='left'
             {...rest}
           >
             {isColumnFiltered ? <SvgFilter /> : <SvgFilterHollow />}
