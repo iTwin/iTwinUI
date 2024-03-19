@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.7.0
+
+### Minor Changes
+
+- [#1863](https://github.com/iTwin/iTwinUI/pull/1863): The filter button inside a Table will now always be visible, instead of only being shown on hover/focus.
+- [#1891](https://github.com/iTwin/iTwinUI/pull/1891): The entire `Table` is now scrollable instead of just the `Table`'s body. This leads to a better scroll experience (e.g. the `Table`'s header now scrolls horizontally when hovering a dragged column near the header's left or right edges).
+- [#1863](https://github.com/iTwin/iTwinUI/pull/1863): The responsive behavior of Table columns has been improved in a few different ways:
+  - All columns now have a non-zero default min-width. While we still recommend passing a custom min-width based on your data, this default will help prevent resizable columns from becoming too small.
+  - The filter and sort icons in a column header will now wrap to the next line, before the text starts wrapping.
+  - For cells that have a string value, the value will be automatically truncated after three lines.
+
 ## 3.6.3
 
 ### Patch Changes
