@@ -428,9 +428,9 @@ export const Table = <
 
   const defaultColumn = React.useMemo(
     () => ({
-      maxWidth: undefined,
+      maxWidth: 0,
       minWidth: COLUMN_MIN_WIDTHS.default,
-      width: undefined,
+      width: 0,
     }),
     [],
   );
