@@ -3,8 +3,6 @@
 @use '../avatar/mixins' as avatar;
 @use '../surface/base' as surface;
 @use '../mixins';
-@use '../button/base' as *;
-@use '../button/borderless';
 
 $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
@@ -347,8 +345,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 /// @arg $variant Can be either: type-indicator, quick-action
 @mixin iui-tile-thumbnail-button($variant) {
-  // @include borderless.iui-button-borderless;
-  @include iui-button-size(small, borderless);
   z-index: 2;
   border-radius: 50%;
   margin-block-start: calc(var(--iui-size-s) * 0.5);

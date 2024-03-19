@@ -49,13 +49,6 @@
           class="iui-button iui-field"
           data-iui-variant="accent"
         >
-          <span>Accent button</span>
-        </button>
-
-        <button
-          class="iui-button iui-field"
-          data-iui-variant="accent"
-        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -77,13 +70,6 @@
       </div>
 
       <div>
-        <button
-          class="iui-button iui-field"
-          data-iui-variant="informational"
-        >
-          <span>Informational button</span>
-        </button>
-
         <button
           class="iui-button iui-field"
           data-iui-variant="informational"
@@ -113,13 +99,6 @@
           class="iui-button iui-field"
           data-iui-variant="positive"
         >
-          <span>Positive button</span>
-        </button>
-
-        <button
-          class="iui-button iui-field"
-          data-iui-variant="positive"
-        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -141,13 +120,6 @@
       </div>
 
       <div>
-        <button
-          class="iui-button iui-field"
-          data-iui-variant="warning"
-        >
-          <span>Warning button</span>
-        </button>
-
         <button
           class="iui-button iui-field"
           data-iui-variant="warning"
@@ -177,13 +149,6 @@
           class="iui-button iui-field"
           data-iui-variant="negative"
         >
-          <span>Negative button</span>
-        </button>
-
-        <button
-          class="iui-button iui-field"
-          data-iui-variant="negative"
-        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -206,10 +171,6 @@
 
       <div>
         <button class="iui-button iui-field">
-          <span>Default button</span>
-        </button>
-
-        <button class="iui-button iui-field">
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -230,13 +191,6 @@
       </div>
 
       <div>
-        <button
-          class="iui-button iui-field"
-          data-iui-variant="borderless"
-        >
-          <span>Borderless button</span>
-        </button>
-
         <button
           class="iui-button iui-field"
           data-iui-variant="borderless"
@@ -277,6 +231,17 @@
 
       <input
         class="iui-input iui-field"
+        placeholder="Default input placeholder"
+      />
+
+      <input
+        class="iui-input iui-field"
+        placeholder="Default input placeholder disabled"
+        disabled
+      />
+
+      <input
+        class="iui-input iui-field"
         data-iui-variant="borderless"
         value="Borderless input"
       />
@@ -285,6 +250,19 @@
         class="iui-input iui-field"
         data-iui-variant="borderless"
         value="Borderless input disabled"
+        disabled
+      />
+
+      <input
+        class="iui-input iui-field"
+        data-iui-variant="borderless"
+        placeholder="Borderless input placeholder"
+      />
+
+      <input
+        class="iui-input iui-field"
+        data-iui-variant="borderless"
+        placeholder="Borderless input placeholder disabled"
         disabled
       />
     </section>
@@ -309,15 +287,43 @@
       </div>
 
       <div class="iui-input-with-icon">
-        <div
-          tabindex="0"
-          class="iui-select-button iui-field iui-disabled"
-        >
+        <div class="iui-select-button iui-field iui-disabled">
           <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
           ></svg-placeholder>
           <span class="iui-content">Default select disabled</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-field iui-placeholder"
+        >
+          <svg-placeholder
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+          <span class="iui-content">Default select placeholder</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div class="iui-select-button iui-field iui-placeholder iui-disabled">
+          <svg-placeholder
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+          <span class="iui-content">Default select placeholder disabled</span>
         </div>
         <svg-caret-down-small
           class="iui-svg-icon iui-end-icon"
@@ -345,7 +351,6 @@
 
       <div class="iui-input-with-icon">
         <div
-          tabindex="0"
           class="iui-select-button iui-field iui-disabled"
           data-iui-variant="borderless"
         >
@@ -354,6 +359,41 @@
             aria-hidden="true"
           ></svg-placeholder>
           <span class="iui-content">Borderless select disabled</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-field iui-placeholder"
+          data-iui-variant="borderless"
+        >
+          <svg-placeholder
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+          <span class="iui-content">Borderless select placeholder</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          class="iui-select-button iui-field iui-placeholder iui-disabled"
+          data-iui-variant="borderless"
+        >
+          <svg-placeholder
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+          <span class="iui-content">Borderless select placeholder disabled</span>
         </div>
         <svg-caret-down-small
           class="iui-svg-icon iui-end-icon"

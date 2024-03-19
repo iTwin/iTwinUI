@@ -74,12 +74,17 @@
   --_iui-field-color-border-disabled: var(--iui-color-border-disabled);
   --_iui-field-color-focus-outline: var(--iui-color-border-accent);
   --_iui-field-height: var(--iui-component-height);
+  --_iui-field-focus-outline-offset: -2px;
+  --_iui-field-focus-outline-width: 2px;
+  --_iui-field-font-size: var(--iui-font-size-1);
 
   background-color: var(--_iui-field-color-background);
   border: 1px solid var(--_iui-field-color-border);
   border-radius: var(--iui-border-radius-1);
   color: var(--_iui-field-color-text);
   font-family: inherit;
+  font-size: var(--_iui-field-font-size);
+  font-weight: var(--iui-font-weight-normal);
   min-block-size: var(--_iui-field-height);
   min-inline-size: var(--_iui-field-height);
   -webkit-tap-highlight-color: var(--_iui-field-color-background-hover);
@@ -87,8 +92,6 @@
     background-color var(--iui-duration-1) ease-out,
     border-color var(--iui-duration-1) ease-out,
     color var(--iui-duration-1) ease-out;
-
-  // outline: 4px solid red;
 
   @media (hover: hover) {
     &:where(:hover) {
@@ -105,8 +108,8 @@
   }
 
   &:where(:focus-visible) {
-    outline: 2px solid var(--_iui-field-color-focus-outline);
-    outline-offset: 2px;
+    outline: var(--_iui-field-focus-outline-width) solid var(--_iui-field-color-focus-outline);
+    outline-offset: var(--_iui-field-focus-outline-offset);
   }
 
   &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true'], .iui-disabled) {
@@ -116,7 +119,6 @@
     cursor: not-allowed;
   }
 
-  // #region Color variants
   &:where([data-iui-variant='borderless']) {
     --_iui-field-color-background: transparent;
     --_iui-field-color-background-hover: var(--iui-color-background-transparent-hover);
@@ -124,24 +126,16 @@
     --_iui-field-color-border: transparent;
     --_iui-field-color-border-hover: transparent;
     --_iui-field-color-border-disabled: transparent;
+    --_iui-field-focus-outline-offset: -1px;
+    --_iui-field-focus-outline-width: 1px;
   }
-
-  @each $fieldColor in accent, informational, positive, warning, negative {
-    &:where([data-iui-variant='#{$fieldColor}']) {
-      --_iui-field-color-text: var(--iui-color-white);
-      --_iui-field-color-text-hover: var(--iui-color-white);
-      --_iui-field-color-background: var(--iui-color-background-#{$fieldColor});
-      --_iui-field-color-background-hover: var(--iui-color-background-#{$fieldColor}-hover);
-      --_iui-field-color-border: var(--iui-color-background-#{$fieldColor});
-      --_iui-field-color-border-hover: var(--iui-color-background-#{$fieldColor}-hover);
-      --_iui-field-color-focus-outline: var(--iui-color-border-#{$fieldColor});
-    }
-  }
-  // #endregion Color variants
 
   @each $fieldSize in small, large {
     &:where([data-iui-size='#{$fieldSize}']) {
       --_iui-field-height: var(--iui-component-height-#{$fieldSize});
+      @if $fieldSize == large {
+        --_iui-field-font-size: var(--iui-font-size-2);
+      }
     }
   }
 }

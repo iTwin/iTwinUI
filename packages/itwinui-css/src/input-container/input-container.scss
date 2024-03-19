@@ -106,6 +106,7 @@
 // ----------------------------------------------------------------------------
 
 .iui-input-flex-container {
+  // TODO: This isn't done yet
   --_iui-input-background-color: var(--iui-color-background);
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-accent-border-color: var(--iui-color-border-accent);
@@ -126,6 +127,10 @@
   block-size: fit-content;
   line-height: var(--iui-size-l);
   padding-inline: 1px; // To account for the left and right edges of the 1px border
+  transition:
+    background-color var(--iui-duration-1) ease-out,
+    border-color var(--iui-duration-1) ease-out,
+    color var(--iui-duration-1) ease-out;
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {
@@ -137,8 +142,11 @@
     transition: border-color var(--iui-duration-1) ease-out;
   }
 
-  &:hover {
-    --_iui-input-border-color: var(--iui-color-border-foreground-hover);
+  @media (hover: hover) {
+    &:where(:hover) {
+      --_iui-input-background-color: var(--iui-color-background-hover);
+      --_iui-input-border-color: var(--iui-color-border-foreground-hover);
+    }
   }
 
   &:has(input:focus-visible),
@@ -191,6 +199,12 @@
       opacity: 1;
     }
 
+    &:where([disabled], :disabled, [aria-disabled='true']) {
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
     &:focus {
       outline: none;
     }
@@ -238,6 +252,10 @@
 
       input {
         @include iui-text-selection($status);
+      }
+
+      .iui-button {
+        --_iui-field-color-focus-outline: var(--iui-color-border-#{$status});
       }
     }
   }

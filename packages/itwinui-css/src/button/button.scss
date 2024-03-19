@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'base';
 @use 'active';
+@use 'variant';
 @use 'idea';
 @use 'button-group';
 @use 'split-button';
@@ -32,7 +33,13 @@
   &[data-iui-active='true'] {
     @include active.iui-button-active;
     @include active.iui-button-default-active;
+
+    &:is([data-iui-variant='borderless']) {
+      @include active.iui-button-borderless-active;
+    }
   }
+
+  @include variant.iui-button-variant;
 
   &.iui-button-idea {
     @include idea.iui-button-idea;

@@ -10,8 +10,6 @@
   justify-content: center;
   position: relative;
   line-height: 1.2;
-  font-size: var(--iui-font-size-1);
-  font-weight: var(--iui-font-weight-normal);
   user-select: none;
   cursor: pointer;
   white-space: nowrap;
@@ -20,6 +18,10 @@
   padding-inline: var(--_iui-button-padding-inline);
   text-decoration: none;
   @include iui-button-size;
+
+  &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true'], .iui-disabled) {
+    cursor: not-allowed;
+  }
 }
 
 @mixin iui-button-icon {
@@ -28,7 +30,19 @@
   svg {
     @include mixins.iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
-    fill: var(--_iui-button-icon-fill, currentColor);
+    fill: var(--_iui-button-icon-fill, var(--iui-color-icon));
+
+    @media (hover: hover) {
+      button:hover & {
+        fill: var(--_iui-button-icon-fill-hover, var(--iui-color-icon-hover));
+      }
+    }
+
+    button[disabled] &,
+    button:disabled &,
+    button[aria-disabled='true'] {
+      fill: var(--iui-color-icon-disabled);
+    }
   }
 }
 
@@ -51,6 +65,7 @@
   &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
     --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
     --_iui-button-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-button-icon-fill-hover: var(--iui-color-icon-disabled);
   }
 }
 
@@ -93,8 +108,6 @@
   }
 
   @if $size == large {
-    font-size: var(--iui-font-size-2);
-
     --_iui-button-gap: var(--iui-size-s);
     --_iui-button-padding-block: var(--iui-size-xs);
     --_iui-button-padding-inline: var(--iui-size-l);

@@ -3,20 +3,14 @@
 @use '../menu/mixins' as menu;
 @use '../mixins';
 @use '../tag/base' as tag;
-@use '../button/base';
 
 @mixin iui-select-button {
-  @include mixins.iui-focus($offset: -2px, $thickness: 2px);
-  font: inherit;
+  --_iui-field-color-text-placeholder: var(--iui-color-text-placeholder);
+
   inline-size: 100%;
-  border-radius: var(--iui-border-radius-1);
-  min-block-size: var(--_iui-select-min-height);
   padding-block: var(--_iui-select-padding-block);
   padding-inline: var(--iui-size-s);
-  transition: border-color var(--iui-duration-1) ease-out;
   user-select: none;
-  position: relative;
-  overflow: hidden;
   line-height: var(--iui-size-l);
   cursor: pointer;
   @include iui-select-size;
@@ -42,10 +36,9 @@
     overflow: hidden;
   }
 
-  &:is(.iui-disabled, :disabled, [aria-disabled='true']) {
-    --_iui-input-background-color: var(--iui-color-background-disabled);
-    --_iui-input-border-color: var(--iui-color-border-disabled);
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+  &:where([disabled], :disabled, [aria-disabled='true'], .iui-disabled) {
+    --_iui-field-color-text-placeholder: transparent;
+    // --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled); // TODO: What is this?
     opacity: 1;
     cursor: not-allowed;
   }
@@ -64,31 +57,8 @@
 
   &.iui-placeholder,
   &:has(option[value='']:checked) {
-    color: var(--iui-color-text-placeholder);
+    color: var(--_iui-field-color-text-placeholder);
     font-weight: var(--iui-font-weight-light);
-  }
-}
-
-@mixin iui-select-button-borderless {
-  --_iui-input-background-color: transparent;
-  --_iui-input-border-color: transparent;
-  transition: background-color var(--iui-duration-1) ease-out;
-
-  &:where(:hover, :active) {
-    --_iui-input-background-color: var(--iui-color-background-transparent-hover);
-    --_iui-input-border-color: transparent;
-    --_iui-input-with-icon-hover-border-color: transparent;
-  }
-
-  &:focus-visible {
-    outline-offset: -1px;
-    outline-width: 1px;
-  }
-
-  &:is(.iui-disabled, :disabled, [aria-disabled='true']) {
-    --_iui-input-background-color: transparent;
-    --_iui-input-border-color: transparent;
-    --_iui-input-text-color: var(--iui-color-text-disabled);
   }
 }
 
@@ -97,18 +67,14 @@
 @mixin iui-select-size($size: medium) {
   @if $size == small {
     --_iui-select-padding-block: 0;
-    --_iui-select-min-height: var(--iui-component-height-small);
   }
 
   @if $size == medium {
     --_iui-select-padding-block: var(--iui-size-2xs);
-    --_iui-select-min-height: var(--iui-component-height);
   }
 
   @if $size == large {
     --_iui-select-padding-block: var(--iui-size-xs);
-    --_iui-select-min-height: var(--iui-component-height-large);
-    font-size: var(--iui-font-size-2);
   }
 }
 
@@ -164,7 +130,6 @@
 }
 
 @mixin iui-select-tag-button-icon {
-  @include base.iui-button-icon;
   flex-shrink: 0;
 
   .iui-select-button[data-iui-size='small'] & svg {
@@ -176,10 +141,6 @@
 
 .iui-select-button {
   @include iui-select-button;
-
-  &[data-iui-variant='borderless'] {
-    @include iui-select-button-borderless;
-  }
 
   &[data-iui-size='small'] {
     @include iui-select-size(small);

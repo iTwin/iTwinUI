@@ -2,10 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 @use '../text/muted';
-@use '../button/base';
-@use '../button/active';
-@use '../button/borderless';
-@use '../button/default';
 
 @mixin iui-table-paginator {
   @include mixins.iui-reset;
