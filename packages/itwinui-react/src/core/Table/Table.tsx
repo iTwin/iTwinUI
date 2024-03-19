@@ -428,8 +428,9 @@ export const Table = <
 
   const defaultColumn = React.useMemo(
     () => ({
+      maxWidth: undefined,
       minWidth: COLUMN_MIN_WIDTHS.default,
-      width: 0,
+      width: undefined,
     }),
     [],
   );
@@ -948,6 +949,11 @@ export const Table = <
                         headerGroup.headers.findIndex(
                           (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
                         );
+
+                    // override "undefined" min-width with default value
+                    if (column.minWidth === undefined) {
+                      column.minWidth = COLUMN_MIN_WIDTHS.default;
+                    }
 
                     // expander column should be wider to accommodate the expander icon
                     if (
