@@ -1,6 +1,4 @@
-import * as React from 'react';
 import { Table } from '@itwin/itwinui-react';
-import type { Column } from '@itwin/itwinui-react/react-table';
 import { useSearchParams } from '@remix-run/react';
 
 export default function Resizing() {
@@ -44,7 +42,7 @@ export default function Resizing() {
         emptyTableContent='No data.'
         isResizable
         isSortable
-        columnResizeMode={columnResizeMode}
+        columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
       />
     </>
   );
