@@ -74,7 +74,7 @@ const tableResizeEndAction = 'tableResizeEnd';
 
 const COLUMN_MIN_WIDTHS = {
   default: 72,
-  withExpander: 108,
+  withExpander: 108, // expander column should be wider to accommodate the expander icon
 };
 
 const logWarningInDev = createWarningLogger();
@@ -429,7 +429,7 @@ export const Table = <
   const defaultColumn = React.useMemo(
     () => ({
       maxWidth: 0,
-      minWidth: COLUMN_MIN_WIDTHS.default,
+      minWidth: 0,
       width: 0,
     }),
     [],
@@ -950,17 +950,11 @@ export const Table = <
                           (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
                         );
 
-                    // override "undefined" min-width with default value
-                    if (column.minWidth === undefined) {
-                      column.minWidth = COLUMN_MIN_WIDTHS.default;
-                    }
-
-                    // expander column should be wider to accommodate the expander icon
-                    if (
-                      columnHasExpanders &&
-                      column.minWidth === COLUMN_MIN_WIDTHS.default
-                    ) {
-                      column.minWidth = COLUMN_MIN_WIDTHS.withExpander;
+                    // override "undefined" or zero min-width with default value
+                    if ([undefined, 0].includes(column.minWidth)) {
+                      column.minWidth = columnHasExpanders
+                        ? COLUMN_MIN_WIDTHS.withExpander
+                        : COLUMN_MIN_WIDTHS.default;
                     }
 
                     const columnProps = column.getHeaderProps({
