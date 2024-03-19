@@ -40,7 +40,11 @@ class Avatar extends HTMLElement {
         ${status ? 'data-iui-status=' + status : ''}
       >
         ${person.abbr}
-        ${showPlaceholder ? `<img src="/user-placeholder.png" alt="" />` : ''}
+        ${
+          showPlaceholder
+            ? `<img src="/assets/user-placeholder.png" alt="" />`
+            : ''
+        }
       </span>`;
     this.insertAdjacentHTML('afterend', innerHtml);
     this.remove();
