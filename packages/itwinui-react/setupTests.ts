@@ -22,6 +22,26 @@ vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
   };
 });
 
+vi.mock('@testing-library/react', async () => {
+  const originalRtl = await vi.importActual<
+    typeof import('@testing-library/react')
+  >('@testing-library/react');
+
+  return {
+    ...originalRtl,
+    /**
+     * Wrapper over `@testing-library/react`'s `render()` that also waits for all
+     * microtasks to be flushed. This is necessary for ShadowRoot to be tested properly.
+     */
+    render: (...args: Parameters<typeof originalRtl.render>) => {
+      vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+      const result = originalRtl.render(...args);
+      originalRtl.act(() => vi.runAllTicks());
+      return result;
+    },
+  };
+});
+
 afterEach(() => {
   vi.useRealTimers();
 });
