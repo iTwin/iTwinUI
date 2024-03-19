@@ -24,7 +24,7 @@
 
 - [#1879](https://github.com/iTwin/iTwinUI/pull/1879): Added a new `native` prop to `Select` and `LabeledSelect`. When true, a native `<select>` element will be rendered.
 - [#1886](https://github.com/iTwin/iTwinUI/pull/1886): Native `Select` (`<Select native>`) offers a new `styleType` prop that accepts the values: `default` (pre-existing) and `borderless` (new).
-- [#1877](https://github.com/iTwin/iTwinUI/pull/1877): Fixed a bug in `LabeledSelect` where nested `<StatusMessage>`s were rendered when using `message={<StatusMessage>}`. As a result, non-string `message` values are no longer automatically wrapped in `<StatusMessage>`.
+- [#1877](https://github.com/iTwin/iTwinUI/pull/1877): Fixed a bug in `InputGroup` where nested `<StatusMessage>`s were rendered when using `message={<StatusMessage>}`. As a result, non-string `message` values are no longer automatically wrapped in `<StatusMessage>`.
   - If you were passing a custom `ReactNode`, you might need to wrap it with `<StatusMessage>` for proper styling of `message`.
 - [#1881](https://github.com/iTwin/iTwinUI/pull/1881): Added a new subcomponent `InputWithDecorations.Icon` to replace direct usage of `Icon` inside `InputWithDecorations`.
 - Visual changes:
