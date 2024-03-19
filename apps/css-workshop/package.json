@@ -21,5 +21,6 @@
     "approve": "backstop --config=./backstop/backstop.cjs approve",
     "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
-  }
+  },
+  "prettier": "configs/prettier-astro-config.js"
 }
