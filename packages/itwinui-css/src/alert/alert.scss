@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../anchor/mixins' as anchor;
 @use '../mixins';
 @use '../button/base';
 @use '../button/borderless';
@@ -27,10 +26,6 @@
 
       @include mixins.iui-text-selection($statusColor);
 
-      .iui-alert-link {
-        @include anchor.iui-anchor-status($statusColor);
-      }
-
       .iui-button:focus {
         outline-color: var(--iui-color-text-#{$statusColor});
       }
@@ -54,8 +49,6 @@
 }
 
 .iui-alert-link {
-  @include anchor.iui-anchor;
-  @include anchor.iui-anchor-underline('on-initial');
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
   margin-inline-start: var(--iui-size-xs);

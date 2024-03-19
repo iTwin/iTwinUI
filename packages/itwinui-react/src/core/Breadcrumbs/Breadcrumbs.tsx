@@ -13,6 +13,7 @@ import {
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Button } from '../Buttons/Button.js';
+import { Anchor } from '../Typography/Anchor.js';
 
 const logWarningInDev = createWarningLogger();
 
@@ -230,7 +231,7 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const { children: childrenProp, className, ...rest } = props;
 
-  const defaultAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
+  const defaultAs = !!props.href ? Anchor : !!props.onClick ? 'button' : 'span';
   const children =
     defaultAs === 'button' ? <span>{childrenProp}</span> : childrenProp;
 

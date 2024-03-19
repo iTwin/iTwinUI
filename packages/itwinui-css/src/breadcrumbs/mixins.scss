@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../anchor/mixins' as anchor;
 @use '../button/borderless';
 @use '../mixins';
 @use '../button/base';
@@ -41,8 +40,6 @@
   line-height: var(--iui-component-height);
 
   &:where(a) {
-    @include anchor.iui-anchor;
-
     &:focus {
       outline-offset: -1px;
     }
