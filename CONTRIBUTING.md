@@ -297,22 +297,22 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 - Write the test cases in `backstop/tests/[component-name].js` and ensure it exports scenarios list (see `backstop/tests/alert.js` for example).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
-    const { scenario } = require('./~scenarioHelper');
+    const { scenario } = require('./~scenarioHelper.cjs');
     module.exports = [scenario('basic')];
     ```
   - For actions like click, hover use according functions from `scenarioHelper.js` and pass them as scenario options `actions` property.
     ```js
-    const { scenario, hover } = require('./~scenarioHelper');
+    const { scenario, hover } = require('./~scenarioHelper.cjs');
     module.exports = [scenario('hover', { actions: [hover('.element-selector')] })];
     ```
   - If you want to select only specific part of the test elements, pass `selectors` property to the options.
     ```js
-    const { scenario } = require('./~scenarioHelper');
+    const { scenario } = require('./~scenarioHelper.cjs');
     module.exports = [scenario('selected part', { selectors: ['.selected-part-selector'] })];
     ```
   - If you want to hide some elements because they might be moving e.g. spinner, pass `hideSelectors` property to the options.
     ```js
-    const { scenario } = require('./~scenarioHelper');
+    const { scenario } = require('./~scenarioHelper.cjs');
     module.exports = [scenario('hide part', { hideSelectors: ['.hide-selector'] })];
     ```
   - More information about options can be found in [BackstopJS GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).

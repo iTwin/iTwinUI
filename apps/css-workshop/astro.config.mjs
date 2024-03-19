@@ -9,6 +9,7 @@ export default defineConfig({
   devToolbar: { enabled: false },
   scopedStyleStrategy: 'where',
   server: {
+    host: true,
     port: 3050,
   },
 });

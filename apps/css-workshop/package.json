@@ -18,8 +18,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "clean": "rimraf dist && rimraf node_modules && rimraf .turbo",
-    "approve": "backstop --config=./backstop/backstop.js approve",
-    "test:only": "backstop --config=./backstop/backstop.js test --docker",
+    "approve": "backstop --config=./backstop/backstop.cjs approve",
+    "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
   }
 }
