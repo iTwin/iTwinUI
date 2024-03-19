@@ -19,10 +19,6 @@
   @include iui-tag-button;
 }
 
-a.iui-tag-basic {
-  @include mixins.iui-focus($offset: 1px);
-}
-
 .iui-tag-container {
   @include iui-tag-container;
 }
