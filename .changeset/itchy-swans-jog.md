@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Fixed the Table column `filter`'s type to include `"includesSome"`, which is a default filter function that we already supported.
+Fixed the types for `Table` column `filter` to allow `"includesSome"`, which is an already-supported filter function.
