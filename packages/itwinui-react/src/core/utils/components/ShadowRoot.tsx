@@ -20,9 +20,11 @@ const supportsAdoptedStylesheets =
 export const ShadowRoot = ({
   children,
   css,
+  test = false,
 }: {
   children: React.ReactNode;
   css?: string;
+  test?: boolean;
 }) => {
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
   const isFirstRender = useIsFirstRender();
@@ -34,12 +36,17 @@ export const ShadowRoot = ({
       if (!template || !parent) {
         return;
       }
+
       if (parent.shadowRoot) {
         parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
       }
       queueMicrotask(() => {
         const shadow =
           parent.shadowRoot || parent.attachShadow({ mode: 'open' });
+
+        if (test) {
+          return;
+        }
 
         if (css && supportsAdoptedStylesheets) {
           styleSheet.current ||= new CSSStyleSheet();
@@ -62,15 +69,21 @@ export const ShadowRoot = ({
     );
   }
 
-  // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
-  // To pass hydration, the first client render needs to emulate this browser behavior and return null.
-  if (supportsDSD && isFirstRender) {
-    return null;
-  }
+  // // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
+  // // To pass hydration, the first client render needs to emulate this browser behavior and return null.
+  // if (supportsDSD && isFirstRender) {
+  //   return null;
+  // }
+
+  // if (test) {
+  //   return null;
+  // }
 
   return (
     <>
-      {shadowRoot ? (
+      {test ? (
+        <template ref={attachShadowRef} />
+      ) : shadowRoot ? (
         ReactDOM.createPortal(children, shadowRoot)
       ) : (
         <template ref={attachShadowRef} />
