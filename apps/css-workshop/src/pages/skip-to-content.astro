@@ -1,34 +1,27 @@
 <!--
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
--->
-<!DOCTYPE html>
-<html
-  lang="en-US"
-  id="theme"
->
+--><!doctype html>
+<html lang='en-US' id='theme'>
   <head>
-    <meta charset="UTF-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    >
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <title>Skip to content link | iTwinUI</title>
 
     <script>
-      import "../components/theme.js";
-      import "../components/avatar.js";
-      import "@itwin/itwinui-icons-elements/imodel-hollow";
-      import "@itwin/itwinui-icons-elements/caret-down-small";
-      import "@itwin/itwinui-icons-elements/chevron-right";
-      import "@itwin/itwinui-icons-elements/notification";
-      import "@itwin/itwinui-icons-elements/help-circular-hollow";
-      import "@itwin/itwinui-icons-elements/more-vertical";
+      import '../components/theme.js';
+      import '../components/avatar.js';
+      import '@itwin/itwinui-icons-elements/imodel-hollow';
+      import '@itwin/itwinui-icons-elements/caret-down-small';
+      import '@itwin/itwinui-icons-elements/chevron-right';
+      import '@itwin/itwinui-icons-elements/notification';
+      import '@itwin/itwinui-icons-elements/help-circular-hollow';
+      import '@itwin/itwinui-icons-elements/more-vertical';
     </script>
     <style is:global>
-      @import url("/assets/demo.css") layer(demo);
+      @import url('/assets/demo.css') layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
-      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
     </style>
     <style is:global>
       section {
@@ -42,33 +35,20 @@
       }
     </style>
   </head>
-  <body
-    class="iui-root"
-    data-iui-theme
-  >
-    <a
-      href="#demo-skip-to-here"
-      class="iui-skip-to-content-link"
-      id="test-1"
-    >Skip to main content</a>
+  <body class='iui-root' data-iui-theme>
+    <a href='#demo-skip-to-here' class='iui-skip-to-content-link' id='test-1'
+      >Skip to main content</a
+    >
     <theme-button></theme-button>
     <h1>Skip to content link</h1>
     <hr />
 
-    <section id="demo-other-content">
-      <header class="iui-page-header">
-        <div class="iui-page-header-left">
+    <section id='demo-other-content'>
+      <header class='iui-page-header'>
+        <div class='iui-page-header-left'>
           <!-- Application Button, will be skipped over when skip-to-content link is pressed. -->
-          <div
-            class="iui-header-brand"
-            role="button"
-            aria-label="App name"
-            tabindex="0"
-          >
-            <svg-imodel-hollow
-              class="iui-header-brand-icon"
-              aria-hidden="true"
-            ></svg-imodel-hollow>
+          <div class='iui-header-brand' role='button' aria-label='App name' tabindex='0'>
+            <svg-imodel-hollow class='iui-header-brand-icon' aria-hidden='true'></svg-imodel-hollow>
           </div>
         </div>
 
@@ -77,31 +57,22 @@
       <br />
       <div>
         <p>
-          This is not the main content. Press&nbsp;<kbd class="iui-keyboard">tab</kbd>&nbsp;to see skip-to-content-link
-          component. You might need to click on the top of the page or the URL first. Press&nbsp;
-          <kbd
-            class="iui-keyboard"
-            title="Return"
-          >
-            &crarr;
-          </kbd>
-          &nbsp;after focusing on skip-to-content-link to skip to the main content below.
+          This is not the main content. Press&nbsp;<kbd class='iui-keyboard'>tab</kbd>&nbsp;to see
+          skip-to-content-link component. You might need to click on the top of the page or the URL
+          first. Press&nbsp;
+          <kbd class='iui-keyboard' title='Return'> &crarr;</kbd>
+           &nbsp;after focusing on skip-to-content-link to skip to the main content below.
         </p>
       </div>
     </section>
 
     <br />
 
-    <section id="demo-skip-to-here">
+    <section id='demo-skip-to-here'>
       <p>
         This is the main content.&nbsp;
-        <a
-          href="#"
-          class="iui-anchor"
-        >
-          This is a link that directs to this page.
-        </a>
-        &nbsp;Tab again to focus on the preceding link.
+        <a href='#' class='iui-anchor'> This is a link that directs to this page.</a>
+         &nbsp;Tab again to focus on the preceding link.
       </p>
     </section>
   </body>

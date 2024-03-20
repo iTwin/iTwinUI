@@ -1,70 +1,51 @@
 <!--
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
--->
-<!DOCTYPE html>
-<html
-  lang="en-US"
-  id="theme"
->
+--><!doctype html>
+<html lang='en-US' id='theme'>
   <head>
-    <meta charset="UTF-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    >
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <title>Column filter | iTwinUI</title>
 
     <script>
-      import "../components/theme.js";
-      import "@itwin/itwinui-icons-elements/calendar";
-      import "@itwin/itwinui-icons-elements/caret-down-small";
+      import '../components/theme.js';
+      import '@itwin/itwinui-icons-elements/calendar';
+      import '@itwin/itwinui-icons-elements/caret-down-small';
     </script>
     <style is:global>
-      @import url("/assets/demo.css") layer(demo);
+      @import url('/assets/demo.css') layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
-      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
       section {
         padding: 16px;
       }
     </style>
   </head>
-  <body
-    class="iui-root"
-    data-iui-theme
-  >
+  <body class='iui-root' data-iui-theme>
     <theme-button></theme-button>
     <h1>Column filter</h1>
     <hr />
-    <h2 id="default">Text filter</h2>
+    <h2 id='default'>Text filter</h2>
 
-    <section id="demo-text">
-      <div class="iui-table-column-filter iui-popover-surface">
-        <label class="iui-input-grid">
-          <div class="iui-input-label">Show items with value that</div>
-          <div class="iui-input-with-icon">
-            <div
-              tabindex="0"
-              id="test-select-1"
-              class="iui-select-button"
-            >
-              <span class="iui-content">Starts with</span>
+    <section id='demo-text'>
+      <div class='iui-table-column-filter iui-popover-surface'>
+        <label class='iui-input-grid'>
+          <div class='iui-input-label'>Show items with value that</div>
+          <div class='iui-input-with-icon'>
+            <div tabindex='0' id='test-select-1' class='iui-select-button'>
+              <span class='iui-content'>Starts with</span>
             </div>
-            <svg-caret-down-small
-              class="iui-end-icon iui-svg-icon"
-              aria-hidden="true"
+            <svg-caret-down-small class='iui-end-icon iui-svg-icon' aria-hidden='true'
             ></svg-caret-down-small>
           </div>
         </label>
-        <input class="iui-input" />
-        <div class="iui-button-bar">
-          <button
-            class="iui-button"
-            data-iui-variant="high-visibility"
-          >
+        <input class='iui-input' />
+        <div class='iui-button-bar'>
+          <button class='iui-button' data-iui-variant='high-visibility'>
             <span>Filter</span>
           </button>
-          <button class="iui-button">
+          <button class='iui-button'>
             <span>Clear</span>
           </button>
         </div>
@@ -74,64 +55,44 @@
     <br />
 
     <h2>Date filter</h2>
-    <section id="demo-date">
-      <div class="iui-table-column-filter iui-popover-surface">
-        <label
-          class="iui-input-grid"
-          data-iui-label-placement="inline"
-        >
-          <div class="iui-input-label">From</div>
-          <div class="iui-input-flex-container">
-            <input value="Feb 6, 2020" />
+    <section id='demo-date'>
+      <div class='iui-table-column-filter iui-popover-surface'>
+        <label class='iui-input-grid' data-iui-label-placement='inline'>
+          <div class='iui-input-label'>From</div>
+          <div class='iui-input-flex-container'>
+            <input value='Feb 6, 2020' />
             <button
-              class="iui-button iui-input-flex-container-icon"
-              data-iui-variant="borderless"
-              aria-label="Choose date"
+              class='iui-button iui-input-flex-container-icon'
+              data-iui-variant='borderless'
+              aria-label='Choose date'
             >
-              <svg-calendar
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-calendar>
+              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
             </button>
           </div>
         </label>
-        <label
-          class="iui-input-grid"
-          data-iui-label-placement="inline"
-        >
-          <div class="iui-input-label">To</div>
-          <div class="iui-input-flex-container">
-            <input value="Feb 6, 2020" />
+        <label class='iui-input-grid' data-iui-label-placement='inline'>
+          <div class='iui-input-label'>To</div>
+          <div class='iui-input-flex-container'>
+            <input value='Feb 6, 2020' />
             <button
-              class="iui-button iui-input-flex-container-icon"
-              data-iui-variant="borderless"
-              aria-label="Choose date"
+              class='iui-button iui-input-flex-container-icon'
+              data-iui-variant='borderless'
+              aria-label='Choose date'
             >
-              <svg-calendar
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-calendar>
+              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
             </button>
           </div>
         </label>
 
-        <div class="iui-button-bar">
-          <label class="iui-toggle-switch-wrapper iui-label-on-right">
-            <input
-              class="iui-toggle-switch"
-              type="checkbox"
-              role="switch"
-              checked
-            />
-            <span class="iui-toggle-switch-label">All day</span>
+        <div class='iui-button-bar'>
+          <label class='iui-toggle-switch-wrapper iui-label-on-right'>
+            <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
+            <span class='iui-toggle-switch-label'>All day</span>
           </label>
-          <button
-            class="iui-button"
-            data-iui-variant="high-visibility"
-          >
+          <button class='iui-button' data-iui-variant='high-visibility'>
             <span>Filter</span>
           </button>
-          <button class="iui-button">
+          <button class='iui-button'>
             <span>Clear</span>
           </button>
         </div>
@@ -139,67 +100,47 @@
 
       <br /><br />
 
-      <div class="iui-table-column-filter iui-popover-surface">
-        <label
-          class="iui-input-grid"
-          data-iui-label-placement="inline"
-        >
-          <div class="iui-input-label">From</div>
-          <div class="iui-input-flex-container">
-            <input value="Feb 6, 2020 9:00 AM" />
+      <div class='iui-table-column-filter iui-popover-surface'>
+        <label class='iui-input-grid' data-iui-label-placement='inline'>
+          <div class='iui-input-label'>From</div>
+          <div class='iui-input-flex-container'>
+            <input value='Feb 6, 2020 9:00 AM' />
             <button
-              class="iui-button iui-input-flex-container-icon"
-              data-iui-variant="borderless"
-              aria-label="Choose date"
+              class='iui-button iui-input-flex-container-icon'
+              data-iui-variant='borderless'
+              aria-label='Choose date'
             >
-              <svg-calendar
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-calendar>
+              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
             </button>
           </div>
         </label>
-        <label
-          class="iui-input-grid"
-          data-iui-label-placement="inline"
-        >
-          <div class="iui-input-label">To</div>
-          <div class="iui-input-flex-container">
-            <input value="Feb 6, 2020 12:00 PM" />
+        <label class='iui-input-grid' data-iui-label-placement='inline'>
+          <div class='iui-input-label'>To</div>
+          <div class='iui-input-flex-container'>
+            <input value='Feb 6, 2020 12:00 PM' />
             <button
-              class="iui-button iui-input-flex-container-icon"
-              data-iui-variant="borderless"
-              aria-label="Choose date"
+              class='iui-button iui-input-flex-container-icon'
+              data-iui-variant='borderless'
+              aria-label='Choose date'
             >
-              <svg-calendar
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-calendar>
+              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
             </button>
           </div>
         </label>
 
-        <div class="iui-button-bar">
-          <label class="iui-toggle-switch-wrapper iui-label-on-right">
-            <input
-              class="iui-toggle-switch"
-              type="checkbox"
-              role="switch"
-            />
-            <span class="iui-toggle-switch-label">All day</span>
+        <div class='iui-button-bar'>
+          <label class='iui-toggle-switch-wrapper iui-label-on-right'>
+            <input class='iui-toggle-switch' type='checkbox' role='switch' />
+            <span class='iui-toggle-switch-label'>All day</span>
           </label>
-          <button
-            class="iui-button"
-            data-iui-variant="high-visibility"
-          >
+          <button class='iui-button' data-iui-variant='high-visibility'>
             <span>Filter</span>
           </button>
-          <button class="iui-button">
+          <button class='iui-button'>
             <span>Clear</span>
           </button>
         </div>
       </div>
     </section>
-
   </body>
 </html>

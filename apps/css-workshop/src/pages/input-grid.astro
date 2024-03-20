@@ -1,34 +1,27 @@
 <!--
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
--->
-<!DOCTYPE html>
-<html
-  lang="en-US"
-  id="theme"
->
+--><!doctype html>
+<html lang='en-US' id='theme'>
   <head>
-    <meta charset="UTF-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    >
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <script>
-      import "../components/theme.js";
-      import "@itwin/itwinui-icons-elements/status-success";
-      import "@itwin/itwinui-icons-elements/status-warning";
-      import "@itwin/itwinui-icons-elements/status-error";
-      import "@itwin/itwinui-icons-elements/close-small";
-      import "@itwin/itwinui-icons-elements/info-circular";
-      import "@itwin/itwinui-icons-elements/chevron-up";
-      import "@itwin/itwinui-icons-elements/chevron-down";
-      import "@itwin/itwinui-icons-elements/search";
+      import '../components/theme.js';
+      import '@itwin/itwinui-icons-elements/status-success';
+      import '@itwin/itwinui-icons-elements/status-warning';
+      import '@itwin/itwinui-icons-elements/status-error';
+      import '@itwin/itwinui-icons-elements/close-small';
+      import '@itwin/itwinui-icons-elements/info-circular';
+      import '@itwin/itwinui-icons-elements/chevron-up';
+      import '@itwin/itwinui-icons-elements/chevron-down';
+      import '@itwin/itwinui-icons-elements/search';
     </script>
     <title>Input grid | iTwinUI</title>
     <style is:global>
-      @import url("/assets/demo.css") layer(demo);
+      @import url('/assets/demo.css') layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
-      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
       section[id^='demo'] {
         width: auto;
         display: flex;
@@ -52,327 +45,191 @@
       }
     </style>
   </head>
-  <body
-    class="iui-root"
-    data-iui-theme
-  >
+  <body class='iui-root' data-iui-theme>
     <theme-button></theme-button>
     <h1>Input grid</h1>
     <hr />
 
     <h2>Default</h2>
-    <section id="demo-default">
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          for="input-01"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-01"
-          placeholder="Input..."
-        />
-        <div class="iui-status-message">
+    <section id='demo-default'>
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' for='input-01'>This is label</label>
+        <input class='iui-input' id='input-01' placeholder='Input...' />
+        <div class='iui-status-message'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          for="input-02"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-02"
-          placeholder="Input..."
-          value="With value"
-        />
-        <div class="iui-status-message">
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' for='input-02'>This is label</label>
+        <input class='iui-input' id='input-02' placeholder='Input...' value='With value' />
+        <div class='iui-status-message'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          data-iui-disabled="true"
-          for="input-03"
-        >This is label</label>
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' data-iui-disabled='true' for='input-03'>This is label</label>
+        <input class='iui-input' disabled id='input-03' placeholder='Disabled input...' />
+        <div class='iui-status-message'>
+          <div>This is message</div>
+        </div>
+      </div>
+
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' data-iui-disabled='true' for='input-04'>This is label</label>
         <input
-          class="iui-input"
+          class='iui-input'
           disabled
-          id="input-03"
-          placeholder="Disabled input..."
+          id='input-04'
+          placeholder='Input...'
+          value='Disabled value'
         />
-        <div class="iui-status-message">
+        <div class='iui-status-message'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          data-iui-disabled="true"
-          for="input-04"
-        >This is label</label>
+      <div class='iui-input-grid'>
+        <label class='iui-input-label iui-required' for='input-05'>This is label</label>
+        <input class='iui-input' required id='input-05' placeholder='Required input...' />
+        <div class='iui-status-message'>
+          <div>This is message</div>
+        </div>
+      </div>
+
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' for='input-06'>This is label</label>
         <input
-          class="iui-input"
-          disabled
-          id="input-04"
-          placeholder="Input..."
-          value="Disabled value"
+          class='iui-input'
+          id='input-06'
+          placeholder='Positive input...'
+          data-iui-status='positive'
         />
-        <div class="iui-status-message">
+        <div class='iui-status-message' data-iui-status='positive'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label iui-required"
-          for="input-05"
-        >This is label</label>
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' for='input-07'>This is label</label>
         <input
-          class="iui-input"
-          required
-          id="input-05"
-          placeholder="Required input..."
+          class='iui-input'
+          id='input-07'
+          placeholder='Warning input...'
+          data-iui-status='warning'
         />
-        <div class="iui-status-message">
+        <div class='iui-status-message' data-iui-status='warning'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          for="input-06"
-        >This is label</label>
+      <div class='iui-input-grid'>
+        <label class='iui-input-label' for='input-08'>This is label</label>
         <input
-          class="iui-input"
-          id="input-06"
-          placeholder="Positive input..."
-          data-iui-status="positive"
+          class='iui-input'
+          id='input-08'
+          placeholder='Negative input...'
+          data-iui-status='negative'
         />
-        <div
-          class="iui-status-message"
-          data-iui-status="positive"
-        >
+        <div class='iui-status-message' data-iui-status='negative'>
           <div>This is message</div>
         </div>
       </div>
-
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          for="input-07"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-07"
-          placeholder="Warning input..."
-          data-iui-status="warning"
-        />
-        <div
-          class="iui-status-message"
-          data-iui-status="warning"
-        >
-          <div>This is message</div>
-        </div>
-      </div>
-
-      <div class="iui-input-grid">
-        <label
-          class="iui-input-label"
-          for="input-08"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-08"
-          placeholder="Negative input..."
-          data-iui-status="negative"
-        />
-        <div
-          class="iui-status-message"
-          data-iui-status="negative"
-        >
-          <div>This is message</div>
-        </div>
-      </div>
-
-
     </section>
 
     <br />
 
     <h2>Inline</h2>
-    <section id="demo-inline">
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          for="input-inline-01"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-inline-01"
-          placeholder="Input..."
-        />
-        <div class="iui-status-message">
+    <section id='demo-inline'>
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' for='input-inline-01'>This is label</label>
+        <input class='iui-input' id='input-inline-01' placeholder='Input...' />
+        <div class='iui-status-message'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          for="input-inline-02"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-inline-02"
-          placeholder="Input..."
-          value="With value"
-        />
-        <div class="iui-status-message">
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' for='input-inline-02'>This is label</label>
+        <input class='iui-input' id='input-inline-02' placeholder='Input...' value='With value' />
+        <div class='iui-status-message'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          data-iui-disabled="true"
-          for="input-inline-03"
-        >This is label</label>
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' data-iui-disabled='true' for='input-inline-03'
+          >This is label</label
+        >
+        <input class='iui-input' disabled id='input-inline-03' placeholder='Disabled input...' />
+        <div class='iui-status-message'>
+          <div>This is message</div>
+        </div>
+      </div>
+
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' data-iui-disabled='true' for='input-inline-04'
+          >This is label</label
+        >
         <input
-          class="iui-input"
+          class='iui-input'
           disabled
-          id="input-inline-03"
-          placeholder="Disabled input..."
+          id='input-inline-04'
+          placeholder='Input...'
+          value='Disabled value'
         />
-        <div class="iui-status-message">
+        <div class='iui-status-message'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          data-iui-disabled="true"
-          for="input-inline-04"
-        >This is label</label>
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label iui-required' for='input-inline-05'>This is label</label>
+        <input class='iui-input' required id='input-inline-05' placeholder='Required input...' />
+        <div class='iui-status-message'>
+          <div>This is message</div>
+        </div>
+      </div>
+
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' for='input-inline-06'>This is label</label>
         <input
-          class="iui-input"
-          disabled
-          id="input-inline-04"
-          placeholder="Input..."
-          value="Disabled value"
+          class='iui-input'
+          id='input-inline-06'
+          placeholder='Positive input...'
+          data-iui-status='positive'
         />
-        <div class="iui-status-message">
+        <div class='iui-status-message' data-iui-status='positive'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label iui-required"
-          for="input-inline-05"
-        >This is label</label>
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' for='input-inline-07'>This is label</label>
         <input
-          class="iui-input"
-          required
-          id="input-inline-05"
-          placeholder="Required input..."
+          class='iui-input'
+          id='input-inline-07'
+          placeholder='Warning input...'
+          data-iui-status='warning'
         />
-        <div class="iui-status-message">
+        <div class='iui-status-message' data-iui-status='warning'>
           <div>This is message</div>
         </div>
       </div>
 
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          for="input-inline-06"
-        >This is label</label>
+      <div class='iui-input-grid' data-iui-label-placement='inline'>
+        <label class='iui-input-label' for='input-inline-08'>This is label</label>
         <input
-          class="iui-input"
-          id="input-inline-06"
-          placeholder="Positive input..."
-          data-iui-status="positive"
+          class='iui-input'
+          id='input-inline-08'
+          placeholder='Negative input...'
+          data-iui-status='negative'
         />
-        <div
-          class="iui-status-message"
-          data-iui-status="positive"
-        >
+        <div class='iui-status-message' data-iui-status='negative'>
           <div>This is message</div>
         </div>
       </div>
-
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          for="input-inline-07"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-inline-07"
-          placeholder="Warning input..."
-          data-iui-status="warning"
-        />
-        <div
-          class="iui-status-message"
-          data-iui-status="warning"
-        >
-          <div>This is message</div>
-        </div>
-      </div>
-
-      <div
-        class="iui-input-grid"
-        data-iui-label-placement="inline"
-      >
-        <label
-          class="iui-input-label"
-          for="input-inline-08"
-        >This is label</label>
-        <input
-          class="iui-input"
-          id="input-inline-08"
-          placeholder="Negative input..."
-          data-iui-status="negative"
-        />
-        <div
-          class="iui-status-message"
-          data-iui-status="negative"
-        >
-          <div>This is message</div>
-        </div>
-      </div>
-
-
     </section>
-
   </body>
 </html>

@@ -1,34 +1,27 @@
 <!--
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
--->
-<!DOCTYPE html>
-<html
-  lang="en-US"
-  id="theme"
->
+--><!doctype html>
+<html lang='en-US' id='theme'>
   <head>
-    <meta charset="UTF-8">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    >
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <title>Radio | iTwinUI</title>
 
     <script>
-      import "../components/theme.js";
-      import "@itwin/itwinui-icons-elements/status-success";
-      import "@itwin/itwinui-icons-elements/status-warning";
-      import "@itwin/itwinui-icons-elements/status-error";
-      import "@itwin/itwinui-icons-elements/smiley-happy-very";
-      import "@itwin/itwinui-icons-elements/smiley-happy";
-      import "@itwin/itwinui-icons-elements/smiley-sad";
-      import "@itwin/itwinui-icons-elements/smiley-sad-very";
+      import '../components/theme.js';
+      import '@itwin/itwinui-icons-elements/status-success';
+      import '@itwin/itwinui-icons-elements/status-warning';
+      import '@itwin/itwinui-icons-elements/status-error';
+      import '@itwin/itwinui-icons-elements/smiley-happy-very';
+      import '@itwin/itwinui-icons-elements/smiley-happy';
+      import '@itwin/itwinui-icons-elements/smiley-sad';
+      import '@itwin/itwinui-icons-elements/smiley-sad-very';
     </script>
     <style is:global>
-      @import url("/assets/demo.css") layer(demo);
+      @import url('/assets/demo.css') layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
-      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
       section[id^='demo'] {
         display: flex;
         flex-direction: column;
@@ -37,345 +30,186 @@
     </style>
   </head>
 
-  <body
-    class="iui-root"
-    data-iui-theme
-  >
+  <body class='iui-root' data-iui-theme>
     <theme-button></theme-button>
     <h1>Radio</h1>
     <hr />
 
     <h2>Default</h2>
-    <section id="demo-default">
-      <div class="iui-input-grid">
-        <div class="iui-input-label iui-required">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-1"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
+    <section id='demo-default'>
+      <div class='iui-input-grid'>
+        <div class='iui-input-label iui-required'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-1' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-1"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-1' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-1"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-1' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-1"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-1' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
-        <div class="iui-status-message">
+        <div class='iui-status-message'>
           <div>Help message.</div>
         </div>
       </div>
 
-      <div class="iui-input-grid iui-disabled">
-        <div
-          class="iui-input-label"
-          data-iui-disabled="true"
-        >Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper iui-disabled">
+      <div class='iui-input-grid iui-disabled'>
+        <div class='iui-input-label' data-iui-disabled='true'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper iui-disabled'>
             <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-2"
-              value="option-1"
+              class='iui-radio'
+              type='radio'
+              name='radio-demo-2'
+              value='option-1'
               checked
               disabled
             />
-            <span class="iui-radio-label">Option 1</span>
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-2"
-              value="option-2"
-              disabled
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-2' value='option-2' disabled />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-2"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-2' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-2"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-2' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
-        <div class="iui-status-message">
+        <div class='iui-status-message'>
           <div>Help message.</div>
         </div>
       </div>
 
-      <div class="iui-input-grid iui-positive">
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-3"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
+      <div class='iui-input-grid iui-positive'>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-3' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-3"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-3' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-3"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-3' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-3"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-3' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
 
-        <div
-          class="iui-status-message"
-          data-iui-status="positive"
-        >
-          <div class="iui-svg-icon"><svg-status-success
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-status-success></div>
-          <div>
-            Positive message.
+        <div class='iui-status-message' data-iui-status='positive'>
+          <div class='iui-svg-icon'>
+            <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
           </div>
-
+          <div>Positive message.</div>
         </div>
       </div>
 
-      <div class="iui-input-grid iui-warning">
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-4"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
+      <div class='iui-input-grid iui-warning'>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-4' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-4"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-4' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-4"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-4' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-4"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-4' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
 
-        <div
-          class="iui-status-message"
-          data-iui-status="warning"
-        >
-          <div class="iui-svg-icon"> <svg-status-warning
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-status-warning></div>
-          <div>
-            Warning message.</div>
-
-        </div>
-      </div>
-
-      <div class="iui-input-grid iui-negative">
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-5"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
-          </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-5"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
-          </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-5"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
-          </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-5"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
-          </label>
-        </div>
-
-        <div
-          class="iui-status-message"
-          data-iui-status="negative"
-        >
-          <div class="iui-svg-icon"> <svg-status-error
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-status-error></div>
-          <div>
-            Negative message.
+        <div class='iui-status-message' data-iui-status='warning'>
+          <div class='iui-svg-icon'>
+            <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
           </div>
-
+          <div>Warning message.</div>
         </div>
       </div>
 
-      <div class="iui-input-grid">
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-14"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">
-              <svg-smiley-happy-very aria-hidden="true"></svg-smiley-happy-very>
+      <div class='iui-input-grid iui-negative'>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-5' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
+          </label>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-5' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
+          </label>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-5' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
+          </label>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-5' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
+          </label>
+        </div>
+
+        <div class='iui-status-message' data-iui-status='negative'>
+          <div class='iui-svg-icon'>
+            <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
+          </div>
+          <div>Negative message.</div>
+        </div>
+      </div>
+
+      <div class='iui-input-grid'>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-14' value='option-1' checked />
+            <span class='iui-radio-label'>
+              <svg-smiley-happy-very aria-hidden='true'></svg-smiley-happy-very>
             </span>
           </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-14"
-              value="option-2"
-            />
-            <span class="iui-radio-label">
-              <svg-smiley-happy aria-hidden="true"></svg-smiley-happy>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-14' value='option-2' />
+            <span class='iui-radio-label'>
+              <svg-smiley-happy aria-hidden='true'></svg-smiley-happy>
             </span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-14"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">
-              <svg-smiley-sad aria-hidden="true"></svg-smiley-sad>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-14' value='option-3' disabled />
+            <span class='iui-radio-label'>
+              <svg-smiley-sad aria-hidden='true'></svg-smiley-sad>
             </span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-14"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">
-              <svg-smiley-sad-very aria-hidden="true"></svg-smiley-sad-very>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-14' value='option-4' disabled />
+            <span class='iui-radio-label'>
+              <svg-smiley-sad-very aria-hidden='true'></svg-smiley-sad-very>
             </span>
           </label>
         </div>
-        <div class="iui-status-message">
+        <div class='iui-status-message'>
           <div>Help message.</div>
         </div>
       </div>
@@ -384,276 +218,139 @@
     <br />
 
     <h2>Inline</h2>
-    <section id="demo-inline">
-      <div
-        class="iui-input-grid iui-inline-label"
-        data-iui-label-placement="inline"
-      >
-        <div class="iui-input-label iui-required">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
+    <section id='demo-inline'>
+      <div class='iui-input-grid iui-inline-label' data-iui-label-placement='inline'>
+        <div class='iui-input-label iui-required'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-6' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
+          </label>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-6' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
+          </label>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-6' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
+          </label>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-6' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
+          </label>
+        </div>
+      </div>
+
+      <div class='iui-input-grid iui-inline-label' data-iui-label-placement='inline'>
+        <div class='iui-input-label' data-iui-disabled='true'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper iui-disabled'>
             <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-6"
-              value="option-1"
+              class='iui-radio'
+              type='radio'
+              name='radio-demo-7'
+              value='option-1'
               checked
-            />
-            <span class="iui-radio-label">Option 1</span>
-          </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-6"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
-          </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-6"
-              value="option-3"
               disabled
             />
-            <span class="iui-radio-label">Option 3</span>
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-6"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-7' value='option-2' disabled />
+            <span class='iui-radio-label'>Option 2</span>
+          </label>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-7' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
+          </label>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-7' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
       </div>
 
       <div
-        class="iui-input-grid iui-inline-label"
-        data-iui-label-placement="inline"
+        class='iui-input-grid iui-input-group-wrapper iui-positive'
+        data-iui-label-placement='inline'
       >
-        <div
-          class="iui-input-label"
-          data-iui-disabled="true"
-        >Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-7"
-              value="option-1"
-              checked
-              disabled
-            />
-            <span class="iui-radio-label">Option 1</span>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-8' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-7"
-              value="option-2"
-              disabled
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-8' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-7"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-8' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-7"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-8' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
+        </div>
+        <div class='iui-status-message' data-iui-status='positive'>
+          <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
         </div>
       </div>
 
       <div
-        class="iui-input-grid iui-input-group-wrapper iui-positive"
-        data-iui-label-placement="inline"
+        class='iui-input-grid iui-input-group-wrapper iui-warning'
+        data-iui-label-placement='inline'
       >
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-8"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-9' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-8"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-9' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-8"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-9' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-8"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-9' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
-        <div
-          class="iui-status-message"
-          data-iui-status="positive"
-        >
-          <svg-status-success
-            class="iui-svg-icon"
-            aria-hidden="true"
-          ></svg-status-success>
+        <div class='iui-status-message' data-iui-status='warning'>
+          <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
         </div>
       </div>
 
       <div
-        class="iui-input-grid iui-input-group-wrapper iui-warning"
-        data-iui-label-placement="inline"
+        class='iui-input-grid iui-input-group-wrapper iui-negative'
+        data-iui-label-placement='inline'
       >
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-9"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
+        <div class='iui-input-label'>Radio group label</div>
+        <div class='iui-input-group'>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-10' value='option-1' checked />
+            <span class='iui-radio-label'>Option 1</span>
           </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-9"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
+          <label class='iui-radio-wrapper'>
+            <input class='iui-radio' type='radio' name='radio-demo-10' value='option-2' />
+            <span class='iui-radio-label'>Option 2</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-9"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-10' value='option-3' disabled />
+            <span class='iui-radio-label'>Option 3</span>
           </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-9"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
+          <label class='iui-radio-wrapper iui-disabled'>
+            <input class='iui-radio' type='radio' name='radio-demo-10' value='option-4' disabled />
+            <span class='iui-radio-label'>Option 4</span>
           </label>
         </div>
-        <div
-          class="iui-status-message"
-          data-iui-status="warning"
-        >
-          <svg-status-warning
-            class="iui-svg-icon"
-            aria-hidden="true"
-          ></svg-status-warning>
-        </div>
-      </div>
-
-      <div
-        class="iui-input-grid iui-input-group-wrapper iui-negative"
-        data-iui-label-placement="inline"
-      >
-        <div class="iui-input-label">Radio group label</div>
-        <div class="iui-input-group">
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-10"
-              value="option-1"
-              checked
-            />
-            <span class="iui-radio-label">Option 1</span>
-          </label>
-          <label class="iui-radio-wrapper">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-10"
-              value="option-2"
-            />
-            <span class="iui-radio-label">Option 2</span>
-          </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-10"
-              value="option-3"
-              disabled
-            />
-            <span class="iui-radio-label">Option 3</span>
-          </label>
-          <label class="iui-radio-wrapper iui-disabled">
-            <input
-              class="iui-radio"
-              type="radio"
-              name="radio-demo-10"
-              value="option-4"
-              disabled
-            />
-            <span class="iui-radio-label">Option 4</span>
-          </label>
-        </div>
-        <div
-          class="iui-status-message"
-          data-iui-status="negative"
-        >
-          <svg-status-error
-            class="iui-svg-icon"
-            aria-hidden="true"
-          ></svg-status-error>
+        <div class='iui-status-message' data-iui-status='negative'>
+          <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
         </div>
       </div>
     </section>
@@ -661,148 +358,93 @@
     <br />
 
     <h2>Without group label</h2>
-    <section id="demo-label">
+    <section id='demo-label'>
       <h3>Radio on left</h3>
-      <div style="
+      <div
+        style='
           width: fit-content;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;">
-        <label class="iui-radio-wrapper">
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-11"
-            value="option-1"
-            checked
-          />
-          <span class="iui-radio-label">Option 1</span>
+          align-items: flex-start;'
+      >
+        <label class='iui-radio-wrapper'>
+          <input class='iui-radio' type='radio' name='radio-demo-11' value='option-1' checked />
+          <span class='iui-radio-label'>Option 1</span>
         </label>
 
-        <label class="iui-radio-wrapper">
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-11"
-            value="option-2"
-          />
-          <span class="iui-radio-label">Option 2</span>
+        <label class='iui-radio-wrapper'>
+          <input class='iui-radio' type='radio' name='radio-demo-11' value='option-2' />
+          <span class='iui-radio-label'>Option 2</span>
         </label>
 
-        <label class="iui-radio-wrapper iui-positive">
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-11"
-            value="option-3"
-          />
-          <span class="iui-radio-label">Option 3</span>
+        <label class='iui-radio-wrapper iui-positive'>
+          <input class='iui-radio' type='radio' name='radio-demo-11' value='option-3' />
+          <span class='iui-radio-label'>Option 3</span>
         </label>
 
-        <label class="iui-radio-wrapper iui-warning">
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-11"
-            value="option-4"
-          />
-          <span class="iui-radio-label">Option 4</span>
+        <label class='iui-radio-wrapper iui-warning'>
+          <input class='iui-radio' type='radio' name='radio-demo-11' value='option-4' />
+          <span class='iui-radio-label'>Option 4</span>
         </label>
 
-        <label class="iui-radio-wrapper iui-negative">
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-11"
-            value="option-5"
-          />
-          <span class="iui-radio-label">Option 5</span>
+        <label class='iui-radio-wrapper iui-negative'>
+          <input class='iui-radio' type='radio' name='radio-demo-11' value='option-5' />
+          <span class='iui-radio-label'>Option 5</span>
         </label>
       </div>
 
       <h3>Radio on right</h3>
-      <div style="
+      <div
+        style='
           width: fit-content;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;">
-        <label class="iui-radio-wrapper">
-          <span class="iui-radio-label">Option 1</span>
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-12"
-            value="option-1"
-            checked
-          />
+          align-items: flex-end;'
+      >
+        <label class='iui-radio-wrapper'>
+          <span class='iui-radio-label'>Option 1</span>
+          <input class='iui-radio' type='radio' name='radio-demo-12' value='option-1' checked />
         </label>
 
-        <label class="iui-radio-wrapper">
-          <span class="iui-radio-label">Option 2</span>
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-12"
-            value="option-2"
-          />
+        <label class='iui-radio-wrapper'>
+          <span class='iui-radio-label'>Option 2</span>
+          <input class='iui-radio' type='radio' name='radio-demo-12' value='option-2' />
         </label>
 
-        <label class="iui-radio-wrapper iui-positive">
-          <span class="iui-radio-label">Option 3</span>
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-12"
-            value="option-3"
-          />
+        <label class='iui-radio-wrapper iui-positive'>
+          <span class='iui-radio-label'>Option 3</span>
+          <input class='iui-radio' type='radio' name='radio-demo-12' value='option-3' />
         </label>
 
-        <label class="iui-radio-wrapper iui-warning">
-          <span class="iui-radio-label">Option 4</span>
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-12"
-            value="option-4"
-          />
+        <label class='iui-radio-wrapper iui-warning'>
+          <span class='iui-radio-label'>Option 4</span>
+          <input class='iui-radio' type='radio' name='radio-demo-12' value='option-4' />
         </label>
 
-        <label class="iui-radio-wrapper iui-negative">
-          <span class="iui-radio-label">Option 5</span>
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-12"
-            value="option-5"
-          />
+        <label class='iui-radio-wrapper iui-negative'>
+          <span class='iui-radio-label'>Option 5</span>
+          <input class='iui-radio' type='radio' name='radio-demo-12' value='option-5' />
         </label>
       </div>
 
       <div>
-        <label class="iui-radio-wrapper iui-disabled">
-          <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-13"
-            value="option-1"
-            disabled
-          />
-          <span class="iui-radio-label">Disabled option 1</span>
+        <label class='iui-radio-wrapper iui-disabled'>
+          <input class='iui-radio' type='radio' name='radio-demo-13' value='option-1' disabled />
+          <span class='iui-radio-label'>Disabled option 1</span>
         </label>
 
-        <label class="iui-radio-wrapper iui-disabled">
+        <label class='iui-radio-wrapper iui-disabled'>
           <input
-            class="iui-radio"
-            type="radio"
-            name="radio-demo-13"
-            value="option-2"
+            class='iui-radio'
+            type='radio'
+            name='radio-demo-13'
+            value='option-2'
             checked
             disabled
           />
-          <span class="iui-radio-label">Disabled option 2</span>
+          <span class='iui-radio-label'>Disabled option 2</span>
         </label>
       </div>
     </section>
-
   </body>
 </html>
