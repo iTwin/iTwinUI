@@ -195,7 +195,7 @@ export interface ColumnInterface<D extends Record<string, unknown> = {}>
   Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
   /**
    * String value or custom function to use for filtering.
-   * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
+   * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `includesSome`, `exact`, `equals`, `between`.
    * More info about these filters: https://github.com/TanStack/table/blob/v7/src/filterTypes.js
    */
   filter?: FilterType<D> | DefaultFilterTypes | string;
