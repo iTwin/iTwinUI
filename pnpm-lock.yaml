@@ -80,7 +80,7 @@ importers:
         version: 0.20.0
       astro:
         specifier: ^4
-        version: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+        version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       backstopjs:
         specifier: ~6.2.1
         version: 6.2.2
@@ -92,7 +92,7 @@ importers:
     dependencies:
       astro:
         specifier: '4'
-        version: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+        version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
 
   apps/react-workshop:
     devDependencies:
@@ -155,7 +155,7 @@ importers:
         version: 2.2.0(astro@4.5.6)
       '@astrojs/react':
         specifier: '3'
-        version: 3.1.0(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.0.12)
+        version: 3.1.0(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.2)
       '@astrojs/sitemap':
         specifier: '3'
         version: 3.1.1
@@ -188,7 +188,7 @@ importers:
         version: 18.2.14
       astro:
         specifier: ^4
-        version: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+        version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       astro-auto-import:
         specifier: ^0.4.2
         version: 0.4.2(astro@4.5.6)
@@ -203,7 +203,7 @@ importers:
         version: 3.1.1
       lightningcss:
         specifier: ^1.22.1
-        version: 1.22.1
+        version: 1.24.1
       nanoid:
         specifier: '*'
         version: 5.0.6
@@ -302,7 +302,7 @@ importers:
         version: 3.5.3
       lightningcss:
         specifier: ^1.21.5
-        version: 1.22.1
+        version: 1.24.1
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -405,13 +405,13 @@ importers:
     dependencies:
       '@astrojs/react':
         specifier: '3'
-        version: 3.0.8(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.0.12)
+        version: 3.0.8(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.2)
       '@itwin/itwinui-react':
         specifier: '*'
         version: link:../../packages/itwinui-react
       astro:
         specifier: '4'
-        version: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+        version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -472,7 +472,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.8.0
-        version: 2.8.0(@remix-run/serve@2.8.0)(typescript@5.1.6)(vite@5.0.12)
+        version: 2.8.0(@remix-run/serve@2.8.0)(@types/node@18.17.19)(typescript@5.1.6)(vite@5.0.12)
       '@types/react':
         specifier: 18.2.14
         version: 18.2.14
@@ -484,7 +484,7 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^5
-        version: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
+        version: 5.0.12(@types/node@18.17.19)
       vite-tsconfig-paths:
         specifier: ^4.2.1
         version: 4.2.1(typescript@5.1.6)(vite@5.0.12)
@@ -518,7 +518,7 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^5
-        version: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
+        version: 5.0.12(@types/node@18.17.19)
 
   testing/a11y:
     dependencies:
@@ -791,7 +791,7 @@ packages:
       '@astrojs/markdown-remark': 4.3.0
       '@mdx-js/mdx': 3.0.1
       acorn: 8.11.3
-      astro: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+      astro: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       es-module-lexer: 1.4.2
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -814,7 +814,7 @@ packages:
     dependencies:
       prismjs: 1.29.0
 
-  /@astrojs/react@3.0.8(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.0.12):
+  /@astrojs/react@3.0.8(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.2):
     resolution: {integrity: sha512-EiIWgiRmw4rAxl2+AUK9VBdKvQrOgG/33dTeP+CX3iPzvlx51deaaHwlJIqEQCIIc6qgaIrXEhsJh8NyG9mxJQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -825,7 +825,7 @@ packages:
     dependencies:
       '@types/react': 18.2.14
       '@types/react-dom': 18.2.18
-      '@vitejs/plugin-react': 4.2.1(vite@5.0.12)
+      '@vitejs/plugin-react': 4.2.1(vite@5.2.2)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       ultrahtml: 1.5.2
@@ -834,7 +834,7 @@ packages:
       - vite
     dev: false
 
-  /@astrojs/react@3.1.0(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.0.12):
+  /@astrojs/react@3.1.0(@types/react-dom@18.2.18)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(vite@5.2.2):
     resolution: {integrity: sha512-KZhZyV+sUDZEjlrmPWNiPGeYowG9uq6/aMbCgVaeKEBlWT4Kg32TNwBOhZk6AcE4LY1l3mIwt3orUGE2JV96/g==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -845,7 +845,7 @@ packages:
     dependencies:
       '@types/react': 18.2.14
       '@types/react-dom': 18.2.18
-      '@vitejs/plugin-react': 4.2.1(vite@5.0.12)
+      '@vitejs/plugin-react': 4.2.1(vite@5.2.2)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       ultrahtml: 1.5.3
@@ -3752,96 +3752,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@remix-run/dev@2.8.0(@remix-run/serve@2.8.0)(typescript@5.1.6)(vite@5.0.12):
-    resolution: {integrity: sha512-kZtmK/7vKk7QV8CGCyC9Or3wP7EwL4rOJS9vObmTRAPv8mLyznR8bJxeNVWA7ICnCGejF8s2X3abVJrkEMiFlg==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-    peerDependencies:
-      '@remix-run/serve': ^2.8.0
-      typescript: ~5.1.6
-      vite: ^5.1.0
-      wrangler: ^3.28.2
-    peerDependenciesMeta:
-      '@remix-run/serve':
-        optional: true
-      typescript:
-        optional: true
-      vite:
-        optional: true
-      wrangler:
-        optional: true
-    dependencies:
-      '@babel/core': 7.24.0
-      '@babel/generator': 7.23.6
-      '@babel/parser': 7.24.0
-      '@babel/plugin-syntax-decorators': 7.24.0(@babel/core@7.24.0)
-      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.24.0)
-      '@babel/preset-typescript': 7.23.3(@babel/core@7.24.0)
-      '@babel/traverse': 7.24.0
-      '@babel/types': 7.24.0
-      '@mdx-js/mdx': 2.3.0
-      '@npmcli/package-json': 4.0.1
-      '@remix-run/node': 2.8.0(typescript@5.1.6)
-      '@remix-run/router': 1.15.2
-      '@remix-run/serve': 2.8.0(typescript@5.1.6)
-      '@remix-run/server-runtime': 2.8.0(typescript@5.1.6)
-      '@types/mdx': 2.0.11
-      '@vanilla-extract/integration': 6.5.0
-      arg: 5.0.2
-      cacache: 17.1.4
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      cross-spawn: 7.0.3
-      dotenv: 16.4.5
-      es-module-lexer: 1.4.1
-      esbuild: 0.17.6
-      esbuild-plugins-node-modules-polyfill: 1.6.3(esbuild@0.17.6)
-      execa: 5.1.1
-      exit-hook: 2.2.1
-      express: 4.18.2
-      fs-extra: 10.1.0
-      get-port: 5.1.1
-      gunzip-maybe: 1.4.2
-      jsesc: 3.0.2
-      json5: 2.2.3
-      lodash: 4.17.21
-      lodash.debounce: 4.0.8
-      minimatch: 9.0.3
-      ora: 5.4.1
-      picocolors: 1.0.0
-      picomatch: 2.3.1
-      pidtree: 0.6.0
-      postcss: 8.4.34
-      postcss-discard-duplicates: 5.1.0(postcss@8.4.34)
-      postcss-load-config: 4.0.2(postcss@8.4.34)
-      postcss-modules: 6.0.0(postcss@8.4.34)
-      prettier: 3.1.1
-      pretty-ms: 7.0.1
-      react-refresh: 0.14.0
-      remark-frontmatter: 4.0.1
-      remark-mdx-frontmatter: 1.1.1
-      semver: 7.5.4
-      set-cookie-parser: 2.6.0
-      tar-fs: 2.1.1
-      tsconfig-paths: 4.2.0
-      typescript: 5.1.6
-      vite: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
-      ws: 7.5.9
-    transitivePeerDependencies:
-      - '@types/node'
-      - bluebird
-      - bufferutil
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
-      - utf-8-validate
-    dev: true
-
   /@remix-run/express@2.8.0(express@4.18.2)(typescript@5.1.6):
     resolution: {integrity: sha512-15qnPt+vrvv66pvdcRiodNF5I5Rot07HoKjVlrXYSO4KbSg9WTE0jCPX0rFStD4QNTa2hIl8YftPlmZXjFxQoQ==}
     engines: {node: '>=18.0.0'}
@@ -4721,33 +4631,6 @@ packages:
       outdent: 0.8.0
     dev: true
 
-  /@vanilla-extract/integration@6.5.0:
-    resolution: {integrity: sha512-E2YcfO8vA+vs+ua+gpvy1HRqvgWbI+MTlUpxA8FvatOvybuNcWAY0CKwQ/Gpj7rswYKtC6C7+xw33emM6/ImdQ==}
-    dependencies:
-      '@babel/core': 7.24.1
-      '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.24.1)
-      '@vanilla-extract/babel-plugin-debug-ids': 1.0.5
-      '@vanilla-extract/css': 1.14.1
-      esbuild: 0.19.10
-      eval: 0.1.8
-      find-up: 5.0.0
-      javascript-stringify: 2.1.0
-      lodash: 4.17.21
-      mlly: 1.5.0
-      outdent: 0.8.0
-      vite: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
-      vite-node: 1.2.1
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-    dev: true
-
   /@vanilla-extract/integration@6.5.0(@types/node@18.17.19):
     resolution: {integrity: sha512-E2YcfO8vA+vs+ua+gpvy1HRqvgWbI+MTlUpxA8FvatOvybuNcWAY0CKwQ/Gpj7rswYKtC6C7+xw33emM6/ImdQ==}
     dependencies:
@@ -4801,9 +4684,26 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.23.6)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
+      vite: 5.0.12(@types/node@18.17.19)
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@vitejs/plugin-react@4.2.1(vite@5.2.2):
+    resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^4.2.0 || ^5.0.0
+    dependencies:
+      '@babel/core': 7.23.6
+      '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.23.6)
+      '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.23.6)
+      '@types/babel__core': 7.20.5
+      react-refresh: 0.14.0
+      vite: 5.2.2(lightningcss@1.24.1)(sass@1.72.0)
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /@vitest/coverage-v8@1.2.1(vitest@1.2.1):
     resolution: {integrity: sha512-fJEhKaDwGMZtJUX7BRcGxooGwg1Hl0qt53mVup/ZJeznhvL5EodteVnb/mcByhEcvVWbK83ZF31c7nPEDi4LOQ==}
@@ -5171,7 +5071,7 @@ packages:
     dependencies:
       '@types/node': 18.19.26
       acorn: 8.11.3
-      astro: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+      astro: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
     dev: false
 
   /astro-expressive-code@0.33.5(astro@4.5.6):
@@ -5179,12 +5079,12 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^3.3.0
     dependencies:
-      astro: 4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6)
+      astro: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       hast-util-to-html: 8.0.4
       remark-expressive-code: 0.33.5
     dev: false
 
-  /astro@4.5.6(lightningcss@1.22.1)(sass@1.72.0)(typescript@5.1.6):
+  /astro@4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6):
     resolution: {integrity: sha512-/pXr+tDvgps1x3w+9i48XzfNPDr4NrT89EJPeCTL57IjaTpitSQ8Oy10Fv6zAqXNLIUJ5j3P1c+fJx+taKIg0g==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
@@ -5245,7 +5145,7 @@ packages:
       tsconfck: 3.0.3(typescript@5.1.6)
       unist-util-visit: 5.0.0
       vfile: 6.0.1
-      vite: 5.2.2(lightningcss@1.22.1)(sass@1.72.0)
+      vite: 5.2.2(lightningcss@1.24.1)(sass@1.72.0)
       vitefu: 0.2.5(vite@5.2.2)
       which-pm: 2.1.1
       yargs-parser: 21.1.1
@@ -9623,93 +9523,93 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  /lightningcss-darwin-arm64@1.22.1:
-    resolution: {integrity: sha512-ldvElu+R0QimNTjsKpaZkUv3zf+uefzLy/R1R19jtgOfSRM+zjUCUgDhfEDRmVqJtMwYsdhMI2aJtJChPC6Osg==}
+  /lightningcss-darwin-arm64@1.24.1:
+    resolution: {integrity: sha512-1jQ12jBy+AE/73uGQWGSafK5GoWgmSiIQOGhSEXiFJSZxzV+OXIx+a9h2EYHxdJfX864M+2TAxWPWb0Vv+8y4w==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     optional: true
 
-  /lightningcss-darwin-x64@1.22.1:
-    resolution: {integrity: sha512-5p2rnlVTv6Gpw4PlTLq925nTVh+HFh4MpegX8dPDYJae+NFVjQ67gY7O6iHIzQjLipDiYejFF0yHrhjU3XgLBQ==}
+  /lightningcss-darwin-x64@1.24.1:
+    resolution: {integrity: sha512-R4R1d7VVdq2mG4igMU+Di8GPf0b64ZLnYVkubYnGG0Qxq1KaXQtAzcLI43EkpnoWvB/kUg8JKCWH4S13NfiLcQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     optional: true
 
-  /lightningcss-freebsd-x64@1.22.1:
-    resolution: {integrity: sha512-1FaBtcFrZqB2hkFbAxY//Pnp8koThvyB6AhjbdVqKD4/pu13Rl91fKt2N9qyeQPUt3xy7ORUvSO+dPk3J6EjXg==}
+  /lightningcss-freebsd-x64@1.24.1:
+    resolution: {integrity: sha512-z6NberUUw5ALES6Ixn2shmjRRrM1cmEn1ZQPiM5IrZ6xHHL5a1lPin9pRv+w6eWfcrEo+qGG6R9XfJrpuY3e4g==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
     optional: true
 
-  /lightningcss-linux-arm-gnueabihf@1.22.1:
-    resolution: {integrity: sha512-6rub98tYGfE5I5j0BP8t/2d4BZyu1S7Iz9vUkm0H26snAFHYxLfj3RbQn0xHHIePSetjLnhcg3QlfwUAkD/FYg==}
+  /lightningcss-linux-arm-gnueabihf@1.24.1:
+    resolution: {integrity: sha512-NLQLnBQW/0sSg74qLNI8F8QKQXkNg4/ukSTa+XhtkO7v3BnK19TS1MfCbDHt+TTdSgNEBv0tubRuapcKho2EWw==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /lightningcss-linux-arm64-gnu@1.22.1:
-    resolution: {integrity: sha512-nYO5qGtb/1kkTZu3FeTiM+2B2TAb7m2DkLCTgQIs2bk2o9aEs7I96fwySKcoHWQAiQDGR9sMux9vkV4KQXqPaQ==}
+  /lightningcss-linux-arm64-gnu@1.24.1:
+    resolution: {integrity: sha512-AQxWU8c9E9JAjAi4Qw9CvX2tDIPjgzCTrZCSXKELfs4mCwzxRkHh2RCxX8sFK19RyJoJAjA/Kw8+LMNRHS5qEg==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /lightningcss-linux-arm64-musl@1.22.1:
-    resolution: {integrity: sha512-MCV6RuRpzXbunvzwY644iz8cw4oQxvW7oer9xPkdadYqlEyiJJ6wl7FyJOH7Q6ZYH4yjGAUCvxDBxPbnDu9ZVg==}
+  /lightningcss-linux-arm64-musl@1.24.1:
+    resolution: {integrity: sha512-JCgH/SrNrhqsguUA0uJUM1PvN5+dVuzPIlXcoWDHSv2OU/BWlj2dUYr3XNzEw748SmNZPfl2NjQrAdzaPOn1lA==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /lightningcss-linux-x64-gnu@1.22.1:
-    resolution: {integrity: sha512-RjNgpdM20VUXgV7us/VmlO3Vn2ZRiDnc3/bUxCVvySZWPiVPprpqW/QDWuzkGa+NCUf6saAM5CLsZLSxncXJwg==}
+  /lightningcss-linux-x64-gnu@1.24.1:
+    resolution: {integrity: sha512-TYdEsC63bHV0h47aNRGN3RiK7aIeco3/keN4NkoSQ5T8xk09KHuBdySltWAvKLgT8JvR+ayzq8ZHnL1wKWY0rw==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /lightningcss-linux-x64-musl@1.22.1:
-    resolution: {integrity: sha512-ZgO4C7Rd6Hv/5MnyY2KxOYmIlzk4rplVolDt3NbkNR8DndnyX0Q5IR4acJWNTBICQ21j3zySzKbcJaiJpk/4YA==}
+  /lightningcss-linux-x64-musl@1.24.1:
+    resolution: {integrity: sha512-HLfzVik3RToot6pQ2Rgc3JhfZkGi01hFetHt40HrUMoeKitLoqUUT5owM6yTZPTytTUW9ukLBJ1pc3XNMSvlLw==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /lightningcss-win32-x64-msvc@1.22.1:
-    resolution: {integrity: sha512-4pozV4eyD0MDET41ZLHAeBo+H04Nm2UEYIk5w/ts40231dRFV7E0cjwbnZvSoc1DXFgecAhiC0L16ruv/ZDCpg==}
+  /lightningcss-win32-x64-msvc@1.24.1:
+    resolution: {integrity: sha512-joEupPjYJ7PjZtDsS5lzALtlAudAbgIBMGJPNeFe5HfdmJXFd13ECmEM+5rXNxYVMRHua2w8132R6ab5Z6K9Ow==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     optional: true
 
-  /lightningcss@1.22.1:
-    resolution: {integrity: sha512-Fy45PhibiNXkm0cK5FJCbfO8Y6jUpD/YcHf/BtuI+jvYYqSXKF4muk61jjE8YxCR9y+hDYIWSzHTc+bwhDE6rQ==}
+  /lightningcss@1.24.1:
+    resolution: {integrity: sha512-kUpHOLiH5GB0ERSv4pxqlL0RYKnOXtgGtVe7shDGfhS0AZ4D1ouKFYAcLcZhql8aMspDNzaUCumGHZ78tb2fTg==}
     engines: {node: '>= 12.0.0'}
     dependencies:
       detect-libc: 1.0.3
     optionalDependencies:
-      lightningcss-darwin-arm64: 1.22.1
-      lightningcss-darwin-x64: 1.22.1
-      lightningcss-freebsd-x64: 1.22.1
-      lightningcss-linux-arm-gnueabihf: 1.22.1
-      lightningcss-linux-arm64-gnu: 1.22.1
-      lightningcss-linux-arm64-musl: 1.22.1
-      lightningcss-linux-x64-gnu: 1.22.1
-      lightningcss-linux-x64-musl: 1.22.1
-      lightningcss-win32-x64-msvc: 1.22.1
+      lightningcss-darwin-arm64: 1.24.1
+      lightningcss-darwin-x64: 1.24.1
+      lightningcss-freebsd-x64: 1.24.1
+      lightningcss-linux-arm-gnueabihf: 1.24.1
+      lightningcss-linux-arm64-gnu: 1.24.1
+      lightningcss-linux-arm64-musl: 1.24.1
+      lightningcss-linux-x64-gnu: 1.24.1
+      lightningcss-linux-x64-musl: 1.24.1
+      lightningcss-win32-x64-msvc: 1.24.1
 
   /lilconfig@3.0.0:
     resolution: {integrity: sha512-K2U4W2Ff5ibV7j7ydLr+zLAkIg5JJ4lPn1Ltsdt+Tz/IjQ8buJ55pZAxoP34lqIiwtF9iAvtLv3JGv7CAyAg+g==}
@@ -15266,26 +15166,6 @@ packages:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  /vite-node@1.2.1:
-    resolution: {integrity: sha512-fNzHmQUSOY+y30naohBvSW7pPn/xn3Ib/uqm+5wAJQJiqQsU0NBR78XdRJb04l4bOFKjpTWld0XAfkKlrDbySg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    dependencies:
-      cac: 6.7.14
-      debug: 4.3.4(supports-color@8.1.1)
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      vite: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-    dev: true
-
   /vite-node@1.2.1(@types/node@18.17.19):
     resolution: {integrity: sha512-fNzHmQUSOY+y30naohBvSW7pPn/xn3Ib/uqm+5wAJQJiqQsU0NBR78XdRJb04l4bOFKjpTWld0XAfkKlrDbySg==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -15317,7 +15197,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globrex: 0.1.2
       tsconfck: 2.1.2(typescript@5.1.6)
-      vite: 5.0.12(lightningcss@1.22.1)(sass@1.72.0)
+      vite: 5.0.12(@types/node@18.17.19)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -15359,43 +15239,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vite@5.0.12(lightningcss@1.22.1)(sass@1.72.0):
-    resolution: {integrity: sha512-4hsnEkG3q0N4Tzf1+t6NdN9dg/L3BM+q8SWgbSPnJvrgH2kgdyzfVJwbR1ic69/4uMJJ/3dqDZZE5/WwqW8U1w==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.19.12
-      lightningcss: 1.22.1
-      postcss: 8.4.37
-      rollup: 4.13.0
-      sass: 1.72.0
-    optionalDependencies:
-      fsevents: 2.3.3
-
-  /vite@5.2.2(lightningcss@1.22.1)(sass@1.72.0):
+  /vite@5.2.2(lightningcss@1.24.1)(sass@1.72.0):
     resolution: {integrity: sha512-FWZbz0oSdLq5snUI0b6sULbz58iXFXdvkZfZWR/F0ZJuKTSPO7v72QPXt6KqYeMFb0yytNp6kZosxJ96Nr/wDQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -15424,7 +15268,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.20.2
-      lightningcss: 1.22.1
+      lightningcss: 1.24.1
       postcss: 8.4.37
       rollup: 4.13.0
       sass: 1.72.0
@@ -15439,7 +15283,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 5.2.2(lightningcss@1.22.1)(sass@1.72.0)
+      vite: 5.2.2(lightningcss@1.24.1)(sass@1.72.0)
 
   /vitest@1.2.1(@types/node@18.17.19)(jsdom@24.0.0):
     resolution: {integrity: sha512-TRph8N8rnSDa5M2wKWJCMnztCZS9cDcgVTQ6tsTFTG/odHJ4l5yNVqvbeDJYJRZ6is3uxaEpFs8LL6QM+YFSdA==}
