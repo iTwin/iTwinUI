@@ -4,12 +4,8 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 
-console.log(process);
-if (true) {
-  console.log('test');
-}
 export default defineConfig({
-  testMatch: process.env.COMP === 'Alert' ? 'app/**/*spec.ts' : 'test', // Look for test files anywhere in the app
+  testMatch: 'app/**/*spec.ts', // Look for test files anywhere in the app
   fullyParallel: true, // Run tests in files in parallel
   forbidOnly: !!process.env.CI, // Fail CI if you accidentally left test.only
   retries: process.env.CI ? 2 : 0, // Retry on CI only
