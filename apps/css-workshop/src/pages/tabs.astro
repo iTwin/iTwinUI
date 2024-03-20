@@ -1332,7 +1332,7 @@ import Layout from './_layout.astro';
     </div>
   </section>
 
-  <script is:inline>
+  <script type='module'>
     document.querySelectorAll('.iui-tabs').forEach((tabs) => {
       const wrapper = tabs.parentElement;
       const isVertical = wrapper.classList.contains('iui-vertical');
