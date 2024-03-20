@@ -437,8 +437,11 @@ import Layout from './_layout.astro';
           <div class='iui-information-header-actions'>
             <button class='iui-button' data-iui-variant='borderless'>
               <svg-edit class='iui-button-icon' aria-hidden='true'></svg-edit>
-            </button>
-            <button class='iui-button' data-iui-variant='borderless' onclick='openInfoPanel()'>
+            </button><button
+              class='iui-button'
+              data-iui-variant='borderless'
+              onclick='openInfoPanel()'
+            >
               <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
             </button>
           </div>
@@ -786,8 +789,7 @@ import Layout from './_layout.astro';
           <div class='iui-information-header-actions'>
             <button class='iui-button' data-iui-variant='borderless' data-iui-active='true'>
               <svg-edit class='iui-button-icon' aria-hidden='true'></svg-edit>
-            </button>
-            <button class='iui-button' data-iui-variant='borderless'>
+            </button><button class='iui-button' data-iui-variant='borderless'>
               <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
             </button>
           </div>
@@ -912,8 +914,7 @@ import Layout from './_layout.astro';
                   <path d='m0 2v12h16v-12zm15 7h-14v-6h14z'></path>
                 </svg>
               </span>
-            </button>
-            <button class='iui-button' data-iui-variant='borderless'>
+            </button><button class='iui-button' data-iui-variant='borderless'>
               <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
             </button>
           </div>
@@ -1038,7 +1039,7 @@ import Layout from './_layout.astro';
   </script>
 
   <!-- Tabs -->
-  <script is:inline>
+  <script type='module'>
     document.querySelectorAll('.iui-tabs').forEach((tabs) => {
       const wrapper = tabs.parentElement;
       const activeTab = tabs.querySelector('.iui-active');
