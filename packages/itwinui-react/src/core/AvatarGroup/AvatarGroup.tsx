@@ -111,10 +111,10 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
             {...countIconProps}
             className={cx(
               'iui-avatar',
-              { [`iui-${iconSize}`]: iconSize !== 'medium' },
               'iui-avatar-count',
               countIconProps?.className,
             )}
+            data-iui-size={iconSize}
           >
             {childrenLength <= maxLength
               ? `${childrenLength - maxIcons}`

@@ -51,8 +51,9 @@ it('should render in its most basic state', () => {
   expect(avatarGroup.classList).not.toContain(`iui-animated`);
 
   expect(
-    container.querySelectorAll(`.iui-avatar-list > .iui-avatar.iui-small`)
-      .length,
+    container.querySelectorAll(
+      `.iui-avatar-list > .iui-avatar[data-iui-size="small"]`,
+    ).length,
   ).toBe(6);
 
   const avatarGroupCount = container.querySelectorAll(
@@ -158,9 +159,7 @@ it.each(['small', 'medium', 'large', 'x-large'] as Array<
 
   expect(
     container.querySelectorAll(
-      `.iui-avatar-list > .iui-avatar${
-        size !== 'medium' ? `.iui-${size}` : ''
-      }`,
+      `.iui-avatar-list > .iui-avatar[data-iui-size="${size}"]`,
     ).length,
   ).toBe(6);
 });
