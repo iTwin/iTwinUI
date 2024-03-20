@@ -322,191 +322,191 @@ import Layout from './_layout.astro';
         </div>
       </div>
     </div>
+  </section>
 
-    <br />
+  <br />
 
-    <h2>Without group label</h2>
-    <section id='demo-no-label'>
-      <h3>Checkbox on left</h3>
-      <div
-        id='left'
-        style='
+  <h2>Without group label</h2>
+  <section id='demo-no-label'>
+    <h3>Checkbox on left</h3>
+    <div
+      id='left'
+      style='
           width: fit-content;
           display: flex;
           flex-direction: column;
           align-items: flex-start;'
-      >
-        <label class='iui-checkbox-wrapper'>
-          <input class='iui-checkbox' type='checkbox' name='indeterminate' />
-          <span class='iui-checkbox-label'>Half checkbox</span>
-        </label>
+    >
+      <label class='iui-checkbox-wrapper'>
+        <input class='iui-checkbox' type='checkbox' name='indeterminate' />
+        <span class='iui-checkbox-label'>Half checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper'>
-          <input class='iui-checkbox' type='checkbox' checked />
-          <span class='iui-checkbox-label'>Checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper'>
+        <input class='iui-checkbox' type='checkbox' checked />
+        <span class='iui-checkbox-label'>Checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-loading'>
-          <input class='iui-checkbox iui-loading' type='checkbox' disabled tabindex='-1' />
-          <div
-            class='iui-progress-indicator-radial'
-            data-iui-indeterminate='true'
-            data-iui-size='x-small'
-          >
-          </div>
-          <span class='iui-checkbox-label'>Loading checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper iui-loading'>
+        <input class='iui-checkbox iui-loading' type='checkbox' disabled tabindex='-1' />
+        <div
+          class='iui-progress-indicator-radial'
+          data-iui-indeterminate='true'
+          data-iui-size='x-small'
+        >
+        </div>
+        <span class='iui-checkbox-label'>Loading checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-disabled'>
-          <input class='iui-checkbox' type='checkbox' disabled />
-          <span class='iui-checkbox-label'>Checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper iui-disabled'>
+        <input class='iui-checkbox' type='checkbox' disabled />
+        <span class='iui-checkbox-label'>Checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-disabled'>
-          <input class='iui-checkbox' type='checkbox' name='indeterminate' disabled />
-          <span class='iui-checkbox-label'>Half checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper iui-disabled'>
+        <input class='iui-checkbox' type='checkbox' name='indeterminate' disabled />
+        <span class='iui-checkbox-label'>Half checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-disabled'>
-          <input class='iui-checkbox' type='checkbox' checked disabled />
-          <span class='iui-checkbox-label'>Checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper iui-disabled'>
+        <input class='iui-checkbox' type='checkbox' checked disabled />
+        <span class='iui-checkbox-label'>Checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-positive'>
-          <input class='iui-checkbox' type='checkbox' />
-          <span class='iui-checkbox-label'>Checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper iui-positive'>
+        <input class='iui-checkbox' type='checkbox' />
+        <span class='iui-checkbox-label'>Checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-negative'>
-          <input class='iui-checkbox' type='checkbox' />
-          <span class='iui-checkbox-label'>Checkbox</span>
-        </label>
+      <label class='iui-checkbox-wrapper iui-negative'>
+        <input class='iui-checkbox' type='checkbox' />
+        <span class='iui-checkbox-label'>Checkbox</span>
+      </label>
 
-        <label class='iui-checkbox-wrapper iui-warning'>
-          <input class='iui-checkbox' type='checkbox' />
-          <span class='iui-checkbox-label'>Checkbox</span>
-        </label>
-      </div>
+      <label class='iui-checkbox-wrapper iui-warning'>
+        <input class='iui-checkbox' type='checkbox' />
+        <span class='iui-checkbox-label'>Checkbox</span>
+      </label>
+    </div>
 
-      <h3>Checkbox on right</h3>
-      <div
-        id='right'
-        style='
+    <h3>Checkbox on right</h3>
+    <div
+      id='right'
+      style='
           width: fit-content;
           display: flex;
           flex-direction: column;
           align-items: flex-end;'
-      >
-        <label class='iui-checkbox-wrapper'>
-          <span class='iui-checkbox-label'>Half checkbox</span>
-          <input class='iui-checkbox' type='checkbox' name='indeterminate' />
-        </label>
-
-        <label class='iui-checkbox-wrapper'>
-          <span class='iui-checkbox-label'>Checkbox</span>
-          <input class='iui-checkbox' type='checkbox' checked />
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-loading'>
-          <span class='iui-checkbox-label'>Loading checkbox</span>
-          <input class='iui-checkbox iui-loading' type='checkbox' disabled tabindex='-1' />
-          <div
-            class='iui-progress-indicator-radial'
-            data-iui-indeterminate='true'
-            data-iui-size='x-small'
-          >
-          </div>
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-disabled'>
-          <span class='iui-checkbox-label'>Checkbox</span>
-          <input class='iui-checkbox' type='checkbox' disabled />
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-disabled'>
-          <span class='iui-checkbox-label'>Half checkbox</span>
-          <input class='iui-checkbox' type='checkbox' name='indeterminate' disabled />
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-disabled'>
-          <span class='iui-checkbox-label'>Checkbox</span>
-          <input class='iui-checkbox' type='checkbox' checked disabled />
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-positive'>
-          <span class='iui-checkbox-label'>Checkbox</span>
-          <input class='iui-checkbox' type='checkbox' />
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-negative'>
-          <span class='iui-checkbox-label'>Checkbox</span>
-          <input class='iui-checkbox' type='checkbox' />
-        </label>
-
-        <label class='iui-checkbox-wrapper iui-warning'>
-          <span class='iui-checkbox-label'>Checkbox</span>
-          <input class='iui-checkbox' type='checkbox' />
-        </label>
-      </div>
-
-      <h3>Empty label</h3>
-      <input class='iui-checkbox' type='checkbox' checked />
-
-      <input class='iui-checkbox' type='checkbox' name='indeterminate' />
-
-      <input class='iui-checkbox' type='checkbox' disabled />
-
-      <input class='iui-checkbox' type='checkbox' checked disabled />
-
-      <input class='iui-checkbox' type='checkbox' name='indeterminate' disabled />
-    </section>
-
-    <br />
-    <h2>Specialty styling</h2>
-    <section id='demo-special'>
+    >
       <label class='iui-checkbox-wrapper'>
-        <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' checked />
+        <span class='iui-checkbox-label'>Half checkbox</span>
+        <input class='iui-checkbox' type='checkbox' name='indeterminate' />
       </label>
 
       <label class='iui-checkbox-wrapper'>
-        <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' name='indeterminate' />
+        <span class='iui-checkbox-label'>Checkbox</span>
+        <input class='iui-checkbox' type='checkbox' checked />
       </label>
 
-      <label class='iui-checkbox-wrapper'>
-        <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' />
-      </label>
-
-      <label class='iui-checkbox-wrapper iui-disabled'>
-        <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' checked disabled />
-      </label>
-
-      <label class='iui-checkbox-wrapper iui-disabled'>
-        <input
-          class='iui-checkbox iui-checkbox-visibility'
-          type='checkbox'
-          name='indeterminate'
-          disabled
-        />
+      <label class='iui-checkbox-wrapper iui-loading'>
+        <span class='iui-checkbox-label'>Loading checkbox</span>
+        <input class='iui-checkbox iui-loading' type='checkbox' disabled tabindex='-1' />
+        <div
+          class='iui-progress-indicator-radial'
+          data-iui-indeterminate='true'
+          data-iui-size='x-small'
+        >
+        </div>
       </label>
 
       <label class='iui-checkbox-wrapper iui-disabled'>
-        <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' disabled />
+        <span class='iui-checkbox-label'>Checkbox</span>
+        <input class='iui-checkbox' type='checkbox' disabled />
       </label>
-    </section>
 
-    <script is:inline>
-      // Need to base it on something as checked value resets indeterminate
-      // https://www.w3.org/TR/2014/WD-html51-20140617/forms.html#checkbox-state-(type=checkbox)
-      const indeterminateInputs = Array.from(document.getElementsByName('indeterminate'));
-      const clickedCountMap = Object.fromEntries(indeterminateInputs.map((_, index) => [index, 0]));
-      indeterminateInputs.forEach((el, index) => {
-        el.indeterminate = true;
-        el.addEventListener('click', (e) => {
-          ++clickedCountMap[index];
-          e.target.indeterminate = clickedCountMap[index] % 2 === 0;
-          e.target.checked = false;
-        });
-      });
-    </script>
+      <label class='iui-checkbox-wrapper iui-disabled'>
+        <span class='iui-checkbox-label'>Half checkbox</span>
+        <input class='iui-checkbox' type='checkbox' name='indeterminate' disabled />
+      </label>
+
+      <label class='iui-checkbox-wrapper iui-disabled'>
+        <span class='iui-checkbox-label'>Checkbox</span>
+        <input class='iui-checkbox' type='checkbox' checked disabled />
+      </label>
+
+      <label class='iui-checkbox-wrapper iui-positive'>
+        <span class='iui-checkbox-label'>Checkbox</span>
+        <input class='iui-checkbox' type='checkbox' />
+      </label>
+
+      <label class='iui-checkbox-wrapper iui-negative'>
+        <span class='iui-checkbox-label'>Checkbox</span>
+        <input class='iui-checkbox' type='checkbox' />
+      </label>
+
+      <label class='iui-checkbox-wrapper iui-warning'>
+        <span class='iui-checkbox-label'>Checkbox</span>
+        <input class='iui-checkbox' type='checkbox' />
+      </label>
+    </div>
+
+    <h3>Empty label</h3>
+    <input class='iui-checkbox' type='checkbox' checked />
+
+    <input class='iui-checkbox' type='checkbox' name='indeterminate' />
+
+    <input class='iui-checkbox' type='checkbox' disabled />
+
+    <input class='iui-checkbox' type='checkbox' checked disabled />
+
+    <input class='iui-checkbox' type='checkbox' name='indeterminate' disabled />
   </section>
+
+  <br />
+  <h2>Specialty styling</h2>
+  <section id='demo-special'>
+    <label class='iui-checkbox-wrapper'>
+      <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' checked />
+    </label>
+
+    <label class='iui-checkbox-wrapper'>
+      <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' name='indeterminate' />
+    </label>
+
+    <label class='iui-checkbox-wrapper'>
+      <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' />
+    </label>
+
+    <label class='iui-checkbox-wrapper iui-disabled'>
+      <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' checked disabled />
+    </label>
+
+    <label class='iui-checkbox-wrapper iui-disabled'>
+      <input
+        class='iui-checkbox iui-checkbox-visibility'
+        type='checkbox'
+        name='indeterminate'
+        disabled
+      />
+    </label>
+
+    <label class='iui-checkbox-wrapper iui-disabled'>
+      <input class='iui-checkbox iui-checkbox-visibility' type='checkbox' disabled />
+    </label>
+  </section>
+
+  <script is:inline>
+    // Need to base it on something as checked value resets indeterminate
+    // https://www.w3.org/TR/2014/WD-html51-20140617/forms.html#checkbox-state-(type=checkbox)
+    const indeterminateInputs = Array.from(document.getElementsByName('indeterminate'));
+    const clickedCountMap = Object.fromEntries(indeterminateInputs.map((_, index) => [index, 0]));
+    indeterminateInputs.forEach((el, index) => {
+      el.indeterminate = true;
+      el.addEventListener('click', (e) => {
+        ++clickedCountMap[index];
+        e.target.indeterminate = clickedCountMap[index] % 2 === 0;
+        e.target.checked = false;
+      });
+    });
+  </script>
 </Layout>
