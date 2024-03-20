@@ -43,8 +43,8 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
     <>
       <ShadowRoot css={css}>
         <slot />
+        {childrenProp}
       </ShadowRoot>
-      {childrenProp}
     </>
   );
 
