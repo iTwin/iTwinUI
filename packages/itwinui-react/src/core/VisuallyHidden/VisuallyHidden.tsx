@@ -47,7 +47,7 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
         <slot />
       </ShadowRoot>
 
-      {/* Prevent rendering childrenProp before the slot has been attached to the shadow host */}
+      {/* Render childrenProp only after ShadowRoot attaches the shadow DOM (i.e. only after the first frame) */}
       {/* See: https://github.com/iTwin/iTwinUI/issues/1930 */}
       {isMounted && childrenProp}
     </>
