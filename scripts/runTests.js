@@ -31,7 +31,7 @@ try {
 
   if (componentNames.includes(argument)) {
     spawn(
-      `conc -g -n "CSS-Workshop,Unit,A11y,React-Workshop" -c blue,#a56ec7,#4a9866,#bfc702 "pnpm --filter=css-workshop run test --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm --filter "./testing/a11y" run test  --env componentName=${argument}" "pnpm --filter=react-workshop run test --spec="**/${argument}.*""`,
+      `conc -g -n "CSS-Workshop,Unit,A11y,React-Workshop,E2E" -c #8BCC2F,#D8598C,#539AD0,#D1B52A,white "pnpm --filter=css-workshop run test --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm --filter "./testing/a11y" run test  --env componentName=${argument}" "pnpm --filter=react-workshop run test --spec="**/${argument}.*"" "pnpm run test --filter=e2e"`,
       {
         stdio: 'inherit',
         shell: true,
