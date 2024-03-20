@@ -196,7 +196,7 @@ export interface ColumnInterface<D extends Record<string, unknown> = {}>
   /**
    * String value or custom function to use for filtering.
    * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
-   * More info about these filters: https://github.com/tannerlinsley/react-table/blob/master/src/filterTypes.js
+   * More info about these filters: https://github.com/TanStack/table/blob/v7/src/filterTypes.js
    */
   filter?: FilterType<D> | DefaultFilterTypes | string;
   /**
@@ -750,6 +750,7 @@ export type DefaultFilterTypes =
   | 'exactTextCase'
   | 'includes'
   | 'includesAll'
+  | 'includesSome'
   | 'exact'
   | 'equals'
   | 'between';
