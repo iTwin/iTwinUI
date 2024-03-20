@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   build: {
     inlineStylesheets: 'never',
+    format: 'file',
   },
   compressHTML: true,
   devToolbar: { enabled: false },

@@ -1,3 +1,13 @@
+---
+import fs from 'node:fs';
+
+const components = await fs.promises.readdir('./src/pages').then((files) => {
+  return files
+    .filter((file) => file.endsWith('.astro') && !file.startsWith('_') && file !== 'index.astro')
+    .map((file) => file.replace('.astro', ''));
+});
+---
+
 <!--
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
@@ -48,6 +58,20 @@
       >.
     </p>
     <hr />
-    <main>%PUT_CONTENT_HERE%</main>
+    <main>
+      <ul>
+        {
+          components.map((component) => {
+            return (
+              <li>
+                <a class='iui-anchor' href={component}>
+                  {component}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </main>
   </body>
 </html>
