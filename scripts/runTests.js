@@ -5,7 +5,6 @@
 const { spawn } = require('node:child_process');
 const fs = require('fs');
 const path = require('path');
-const concurrently = require('concurrently');
 
 /**
  * Find all files inside a dir, recursively.
