@@ -1014,7 +1014,8 @@ it('should update live region when selection changes', async () => {
     />,
   );
 
-  const liveRegion = container.querySelector('[aria-live="polite"]');
+  const liveRegion = container.querySelector('[aria-live="polite"]')
+    ?.shadowRoot;
   expect(liveRegion).toHaveTextContent('');
 
   await userEvent.tab();

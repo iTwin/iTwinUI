@@ -564,7 +564,8 @@ it('should update live region when selection changes', async () => {
   };
   const { container } = render(<MultiSelectTest />);
 
-  const liveRegion = container.querySelector('[aria-live="polite"]');
+  const liveRegion = container.querySelector('[aria-live="polite"]')
+    ?.shadowRoot;
   expect(liveRegion).toHaveTextContent('');
   const options = document.querySelectorAll('[role="option"]');
 
