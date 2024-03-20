@@ -1,78 +1,55 @@
-<!--
-  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-  See LICENSE.md in the project root for license terms and full copyright notice.
---><!doctype html>
-<html lang='en-US' id='theme'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <title>Badge | iTwinUI</title>
+---
+import Layout from './_layout.astro';
+---
 
-    <script>
-      import '../components/theme.js';
-    </script>
-    <style is:global>
-      @import url('/assets/demo.css') layer(demo);
-      @import url('@itwin/itwinui-variables') layer(variables);
-      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
+<Layout title='Badge'>
+  <style is:global>
+    section[id^='demo'] {
+      padding: 0 var(--iui-size-xs);
+      display: flex;
+      gap: var(--iui-size-2xs);
+    }
+  </style>
 
-      section[id^='demo'] {
-        padding: 0 var(--iui-size-xs);
-        display: flex;
-        gap: var(--iui-size-2xs);
-      }
-    </style>
-  </head>
-  <body class='iui-root' data-iui-theme>
-    <theme-button></theme-button>
-    <h1>Badge</h1>
-    <hr />
+  <h1>Badge</h1>
+  <hr />
 
-    <h2>Soft backgrounds</h2>
-    <section id='demo-soft-backgrounds'>
-      <span class='iui-badge'> Default</span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(197, 71%, 83%);'>
-        Skyblue
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(72, 51%, 66%);'>
-        Celery
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(2, 90%, 80%);'> Froly</span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(207, 44%, 73%);'>
-        Steelblue
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(42, 100%, 70%);'>
-        Sunglow
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(29, 92%, 71%);'>
-        Seabuckthorn
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(176, 43%, 72%);'>
-        Montecarlo
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(211, 44%, 77%);'>
-        Poloblue
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(305, 19%, 75%);'>
-        Boquet
-      </span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(42, 15%, 85%);'> Ash</span>
-      <span class='iui-badge' style='--iui-badge-background-color: hsl(27, 32%, 72%);'> Oak</span>
-      <span
-        class='iui-badge'
-        style='--iui-badge-background-color: hsl(197, 71%, 83%);'
-        title='A long label that becomes truncated'
-      >
-        A long label that becomes truncated
-      </span>
-    </section>
+  <h2>Soft backgrounds</h2>
+  <section id='demo-soft-backgrounds'>
+    <span class='iui-badge'> Default</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(197, 71%, 83%);'>Skyblue</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(72, 51%, 66%);'>Celery</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(2, 90%, 80%);'>Froly</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(207, 44%, 73%);'
+      >Steelblue</span
+    >
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(42, 100%, 70%);'>Sunglow</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(29, 92%, 71%);'
+      >Seabuckthorn
+    </span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(176, 43%, 72%);'
+      >Montecarlo</span
+    >
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(211, 44%, 77%);'
+      >Poloblue
+    </span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(305, 19%, 75%);'>Boquet</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(42, 15%, 85%);'>Ash</span>
+    <span class='iui-badge' style='--iui-badge-background-color: hsl(27, 32%, 72%);'>Oak</span>
+    <span
+      class='iui-badge'
+      style='--iui-badge-background-color: hsl(197, 71%, 83%);'
+      title='A long label that becomes truncated'>A long label that becomes truncated</span
+    >
+  </section>
 
-    <h2>Statuses</h2>
-    <section id='demo-statuses'>
-      <span class='iui-badge' data-iui-status='informational'> Informational</span>
-      <span class='iui-badge' data-iui-status='positive'> Positive</span>
-      <span class='iui-badge' data-iui-status='negative'> Negative</span>
-      <span class='iui-badge' data-iui-status='warning'> Warning</span>
-    </section>
-  </body>
-</html>
+  <hr />
+
+  <h2>Statuses</h2>
+  <section id='demo-statuses'>
+    <span class='iui-badge' data-iui-status='informational'>Informational</span>
+    <span class='iui-badge' data-iui-status='positive'>Positive</span>
+    <span class='iui-badge' data-iui-status='negative'>Negative</span>
+    <span class='iui-badge' data-iui-status='warning'>Warning</span>
+  </section>
+</Layout>

@@ -1,56 +1,42 @@
-<!--
-  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-  See LICENSE.md in the project root for license terms and full copyright notice.
---><!doctype html>
-<html lang='en-US' id='theme'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <title>Anchor | iTwinUI</title>
+---
+import Layout from './_layout.astro';
+---
 
-    <script>
-      import '../components/theme.js';
-    </script>
-    <style is:global>
-      @import url('/assets/demo.css') layer(demo);
-      @import url('@itwin/itwinui-variables') layer(variables);
-      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
-      section[id^='demo'] {
-        margin: 0 -4px;
-        padding: 4px;
-      }
-    </style>
-  </head>
-  <body class='iui-root' data-iui-theme>
-    <theme-button></theme-button>
-    <h1>Anchor</h1>
-    <hr />
+<Layout title='Anchor'>
+  <style is:global>
+    section[id^='demo'] {
+      margin: 0 -4px;
+      padding: 4px;
+    }
+  </style>
 
-    <section id='demo-default'>
-      <p>
-        <a href='https://itwin.github.io/iTwinUI/' class='iui-anchor' id='test-1'>
-          iTwinUI components list
-        </a>
-         - A basic anchor link.
-      </p>
+  <h1>Anchor</h1>
+  <hr />
 
-      <p>
-        <a
-          href='https://www.bentley.com/en'
-          class='iui-anchor iui-anchor-external'
-          referrerpolicy='no-referrer'
-          target='_blank'
-          id='test-2'
-        >
-          Bentley Systems
-        </a>
-         - An anchor link that opens in a new tab / window.
-      </p>
+  <section id='demo-default'>
+    <p>
+      <a href='https://itwin.github.io/iTwinUI/' class='iui-anchor' id='test-1'>
+        iTwinUI components list
+      </a>
+       - A basic anchor link.
+    </p>
 
-      <p>
-        <a href='#' class='iui-anchor' data-iui-underline='true'>This one</a>
-         is underlined by default.
-      </p>
-    </section>
-  </body>
-</html>
+    <p>
+      <a
+        href='https://www.bentley.com/en'
+        class='iui-anchor iui-anchor-external'
+        referrerpolicy='no-referrer'
+        target='_blank'
+        id='test-2'
+      >
+        Bentley Systems
+      </a>
+       - An anchor link that opens in a new tab / window.
+    </p>
+
+    <p>
+      <a href='#' class='iui-anchor' data-iui-underline='true'>This one</a>
+       is underlined by default.
+    </p>
+  </section>
+</Layout>

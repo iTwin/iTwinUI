@@ -1,422 +1,409 @@
-<!--
-  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-  See LICENSE.md in the project root for license terms and full copyright notice.
---><!doctype html>
-<html lang='en-US' id='theme'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <title>Color | iTwinUI</title>
+---
+import Layout from './_layout.astro';
+---
 
-    <script>
-      import '../components/theme.js';
-      import '@itwin/itwinui-icons-elements/add-circular';
-      import '@itwin/itwinui-icons-elements/bentley-systems';
-      import '@itwin/itwinui-icons-elements/info-circular';
-      import '@itwin/itwinui-icons-elements/status-success';
-      import '@itwin/itwinui-icons-elements/status-warning';
-      import '@itwin/itwinui-icons-elements/status-error';
-      import '@itwin/itwinui-icons-elements/status-rejected';
-    </script>
-    <style is:global>
-      @import url('/assets/demo.css') layer(demo);
-      @import url('@itwin/itwinui-variables') layer(variables);
-      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
+<Layout title='Color'>
+  <script>
+    import '@itwin/itwinui-icons-elements/add-circular';
+    import '@itwin/itwinui-icons-elements/bentley-systems';
+    import '@itwin/itwinui-icons-elements/info-circular';
+    import '@itwin/itwinui-icons-elements/status-success';
+    import '@itwin/itwinui-icons-elements/status-warning';
+    import '@itwin/itwinui-icons-elements/status-error';
+    import '@itwin/itwinui-icons-elements/status-rejected';
+  </script>
+  <style is:global>
+    section[id^='demo'] {
+      margin: 0 -24px -24px -24px;
+      width: auto;
+    }
+    section[id^='demo'] > * {
+      padding: var(--iui-size-s) var(--iui-size-l);
+    }
 
-      section[id^='demo'] {
-        margin: 0 -24px -24px -24px;
-        width: auto;
-      }
-      section[id^='demo'] > * {
-        padding: var(--iui-size-s) var(--iui-size-l);
-      }
+    .demo-background {
+      background-color: var(--iui-color-background);
+    }
+    .demo-background-hover {
+      background-color: var(--iui-color-background-hover);
+    }
+    .demo-background-backdrop {
+      background-color: var(--iui-color-background-backdrop);
+    }
+    .demo-background-backdrop-hover {
+      background-color: var(--iui-color-background-backdrop-hover);
+    }
+    .demo-background-transparent-hover {
+      background-color: var(--iui-color-background-transparent-hover);
+    }
+    .demo-background-disabled {
+      background-color: var(--iui-color-background-disabled);
+    }
+    .demo-border-subtle {
+      background-color: var(--iui-color-border-subtle);
+    }
+    .demo-border {
+      background-color: var(--iui-color-border);
+    }
+    .demo-background-informational-muted {
+      background-color: var(--iui-color-background-informational-muted);
+    }
+    .demo-background-accent-muted {
+      background-color: var(--iui-color-background-accent-muted);
+    }
+    .demo-background-positive-muted {
+      background-color: var(--iui-color-background-positive-muted);
+    }
+    .demo-background-warning-muted {
+      background-color: var(--iui-color-background-warning-muted);
+    }
+    .demo-background-negative-muted {
+      background-color: var(--iui-color-background-negative-muted);
+    }
+    .demo-background-informational {
+      background-color: var(--iui-color-background-informational);
+    }
+    .demo-background-accent {
+      background-color: var(--iui-color-background-accent);
+    }
+    .demo-background-positive {
+      background-color: var(--iui-color-background-positive);
+    }
+    .demo-background-warning {
+      background-color: var(--iui-color-background-warning);
+    }
+    .demo-background-negative {
+      background-color: var(--iui-color-background-negative);
+    }
+    .demo-background-informational-hover {
+      background-color: var(--iui-color-background-informational-hover);
+    }
+    .demo-background-accent-hover {
+      background-color: var(--iui-color-background-accent-hover);
+    }
+    .demo-background-positive-hover {
+      background-color: var(--iui-color-background-positive-hover);
+    }
+    .demo-background-warning-hover {
+      background-color: var(--iui-color-background-warning-hover);
+    }
+    .demo-background-negative-hover {
+      background-color: var(--iui-color-background-negative-hover);
+    }
+    .demo-hover-backgrounds {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex: 1;
+    }
+    .demo-background-accent,
+    .demo-background-informational,
+    .demo-background-positive,
+    .demo-background-warning,
+    .demo-background-negative {
+      color: var(--iui-color-white);
+    }
+    .demo-background-hover,
+    .demo-background-backdrop-hover,
+    .demo-background-transparent-hover,
+    .demo-background-informational-hover,
+    .demo-background-accent-hover,
+    .demo-background-positive-hover,
+    .demo-background-warning-hover,
+    .demo-background-negative-hover {
+      flex: 1;
+      text-align: center;
+    }
+    .demo-text-placeholder {
+      color: var(--iui-color-text-placeholder);
+      font-weight: var(--iui-font-weight-light);
+    }
+    .demo-text-informational {
+      color: var(--iui-color-text-informational);
+    }
+    .demo-text-informational:hover {
+      color: var(--iui-color-text-informational-hover);
+    }
+    .demo-text-informational::selection {
+      background-color: hsl(var(--iui-color-informational-hsl) / var(--iui-opacity-5));
+    }
+    .demo-text-positive {
+      color: var(--iui-color-text-positive);
+    }
+    .demo-text-positive:hover {
+      color: var(--iui-color-text-positive-hover);
+    }
+    .demo-text-positive::selection {
+      background-color: hsl(var(--iui-color-positive-hsl) / var(--iui-opacity-5));
+    }
+    .demo-text-warning {
+      color: var(--iui-color-text-warning);
+    }
+    .demo-text-warning:hover {
+      color: var(--iui-color-text-warning-hover);
+    }
+    .demo-text-warning::selection {
+      background-color: hsl(var(--iui-color-warning-hsl) / var(--iui-opacity-5));
+    }
+    .demo-text-negative {
+      color: var(--iui-color-text-negative);
+    }
+    .demo-text-negative:hover {
+      color: var(--iui-color-text-negative-hover);
+    }
+    .demo-text-negative::selection {
+      background-color: hsl(var(--iui-color-negative-hsl) / var(--iui-opacity-5));
+    }
+    .demo-text-disabled {
+      color: var(--iui-color-text-disabled);
+    }
+    .demo-text-informational,
+    .demo-text-positive,
+    .demo-text-warning,
+    .demo-text-negative {
+      cursor: pointer;
+    }
 
-      .demo-background {
-        background-color: var(--iui-color-background);
-      }
-      .demo-background-hover {
-        background-color: var(--iui-color-background-hover);
-      }
-      .demo-background-backdrop {
-        background-color: var(--iui-color-background-backdrop);
-      }
-      .demo-background-backdrop-hover {
-        background-color: var(--iui-color-background-backdrop-hover);
-      }
-      .demo-background-transparent-hover {
-        background-color: var(--iui-color-background-transparent-hover);
-      }
-      .demo-background-disabled {
-        background-color: var(--iui-color-background-disabled);
-      }
-      .demo-border-subtle {
-        background-color: var(--iui-color-border-subtle);
-      }
-      .demo-border {
-        background-color: var(--iui-color-border);
-      }
-      .demo-background-informational-muted {
-        background-color: var(--iui-color-background-informational-muted);
-      }
-      .demo-background-accent-muted {
-        background-color: var(--iui-color-background-accent-muted);
-      }
-      .demo-background-positive-muted {
-        background-color: var(--iui-color-background-positive-muted);
-      }
-      .demo-background-warning-muted {
-        background-color: var(--iui-color-background-warning-muted);
-      }
-      .demo-background-negative-muted {
-        background-color: var(--iui-color-background-negative-muted);
-      }
-      .demo-background-informational {
-        background-color: var(--iui-color-background-informational);
-      }
-      .demo-background-accent {
-        background-color: var(--iui-color-background-accent);
-      }
-      .demo-background-positive {
-        background-color: var(--iui-color-background-positive);
-      }
-      .demo-background-warning {
-        background-color: var(--iui-color-background-warning);
-      }
-      .demo-background-negative {
-        background-color: var(--iui-color-background-negative);
-      }
-      .demo-background-informational-hover {
-        background-color: var(--iui-color-background-informational-hover);
-      }
-      .demo-background-accent-hover {
-        background-color: var(--iui-color-background-accent-hover);
-      }
-      .demo-background-positive-hover {
-        background-color: var(--iui-color-background-positive-hover);
-      }
-      .demo-background-warning-hover {
-        background-color: var(--iui-color-background-warning-hover);
-      }
-      .demo-background-negative-hover {
-        background-color: var(--iui-color-background-negative-hover);
-      }
-      .demo-hover-backgrounds {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex: 1;
-      }
-      .demo-background-accent,
-      .demo-background-informational,
-      .demo-background-positive,
-      .demo-background-warning,
-      .demo-background-negative {
-        color: var(--iui-color-white);
-      }
-      .demo-background-hover,
-      .demo-background-backdrop-hover,
-      .demo-background-transparent-hover,
-      .demo-background-informational-hover,
-      .demo-background-accent-hover,
-      .demo-background-positive-hover,
-      .demo-background-warning-hover,
-      .demo-background-negative-hover {
-        flex: 1;
-        text-align: center;
-      }
-      .demo-text-placeholder {
-        color: var(--iui-color-text-placeholder);
-        font-weight: var(--iui-font-weight-light);
-      }
-      .demo-text-informational {
-        color: var(--iui-color-text-informational);
-      }
-      .demo-text-informational:hover {
-        color: var(--iui-color-text-informational-hover);
-      }
-      .demo-text-informational::selection {
-        background-color: hsl(var(--iui-color-informational-hsl) / var(--iui-opacity-5));
-      }
-      .demo-text-positive {
-        color: var(--iui-color-text-positive);
-      }
-      .demo-text-positive:hover {
-        color: var(--iui-color-text-positive-hover);
-      }
-      .demo-text-positive::selection {
-        background-color: hsl(var(--iui-color-positive-hsl) / var(--iui-opacity-5));
-      }
-      .demo-text-warning {
-        color: var(--iui-color-text-warning);
-      }
-      .demo-text-warning:hover {
-        color: var(--iui-color-text-warning-hover);
-      }
-      .demo-text-warning::selection {
-        background-color: hsl(var(--iui-color-warning-hsl) / var(--iui-opacity-5));
-      }
-      .demo-text-negative {
-        color: var(--iui-color-text-negative);
-      }
-      .demo-text-negative:hover {
-        color: var(--iui-color-text-negative-hover);
-      }
-      .demo-text-negative::selection {
-        background-color: hsl(var(--iui-color-negative-hsl) / var(--iui-opacity-5));
-      }
-      .demo-text-disabled {
-        color: var(--iui-color-text-disabled);
-      }
-      .demo-text-informational,
-      .demo-text-positive,
-      .demo-text-warning,
-      .demo-text-negative {
-        cursor: pointer;
-      }
+    .demo-icon {
+      color: var(--iui-color-icon);
+    }
+    .demo-icon-muted {
+      color: var(--iui-color-icon-muted);
+    }
+    .demo-icon-informational {
+      color: var(--iui-color-icon-informational);
+    }
+    .demo-icon-positive {
+      color: var(--iui-color-icon-positive);
+    }
+    .demo-icon-warning {
+      color: var(--iui-color-icon-warning);
+    }
+    .demo-icon-negative {
+      color: var(--iui-color-icon-negative);
+    }
+    .demo-icon-disabled {
+      color: var(--iui-color-icon-disabled);
+    }
+    [class^='demo-icon'] {
+      user-select: none;
+    }
+    [class^='demo-icon'] svg {
+      width: 1rem;
+      height: 1rem;
+      display: inline-flex;
+      fill: currentColor;
+    }
+  </style>
 
-      .demo-icon {
-        color: var(--iui-color-icon);
-      }
-      .demo-icon-muted {
-        color: var(--iui-color-icon-muted);
-      }
-      .demo-icon-informational {
-        color: var(--iui-color-icon-informational);
-      }
-      .demo-icon-positive {
-        color: var(--iui-color-icon-positive);
-      }
-      .demo-icon-warning {
-        color: var(--iui-color-icon-warning);
-      }
-      .demo-icon-negative {
-        color: var(--iui-color-icon-negative);
-      }
-      .demo-icon-disabled {
-        color: var(--iui-color-icon-disabled);
-      }
-      [class^='demo-icon'] {
-        user-select: none;
-      }
-      [class^='demo-icon'] svg {
-        width: 1rem;
-        height: 1rem;
-        display: inline-flex;
-        fill: currentColor;
-      }
-    </style>
-  </head>
-  <body class='iui-root' data-iui-theme>
-    <theme-button></theme-button>
-    <h1>Color</h1>
+  <h1>Color</h1>
 
-    <section id='demo-all'>
-      <div class='demo-background'>
-        <h2 class='iui-text-title iui-text-spacing'>Background</h2>
+  <section id='demo-all'>
+    <div class='demo-background'>
+      <h2 class='iui-text-title iui-text-spacing'>Background</h2>
+      <ul>
+        <li><strong>Text:</strong> 4.5 in base themes / 7.1 in high contrast themes</li>
         <ul>
-          <li><strong>Text:</strong> 4.5 in base themes / 7.1 in high contrast themes</li>
-          <ul>
-            <li class='iui-text-block'>Normal text</li>
-            <li class='iui-text-block iui-text-muted'>Muted text</li>
-            <li class='demo-text-placeholder'>Placeholder text</li>
-            <li class='demo-text-informational'>Informational text</li>
-            <li class='demo-text-positive'>Positive text</li>
-            <li class='demo-text-warning'>Warning text</li>
-            <li class='demo-text-negative'>Negative text</li>
-            <li class='iui-text-block demo-text-disabled'>Disabled text</li>
-          </ul>
-          <li><strong>Icon:</strong> 3.1 in base themes / 5.1 in high contrast themes</li>
-          <ul>
-            <li class='demo-icon'>
-              <svg-add-circular aria-hidden='true'></svg-add-circular>
-              <span>Actionable icon</span>
-            </li>
-            <li class='demo-icon-muted'>
-              <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
-              <span>Muted icon</span>
-            </li>
-            <li class='demo-icon-informational'>
-              <svg-info-circular aria-hidden='true'></svg-info-circular>
-              <span>Informational icon</span>
-            </li>
-            <li class='demo-icon-positive'>
-              <svg-status-success aria-hidden='true'></svg-status-success>
-              <span>Positive icon</span>
-            </li>
-            <li class='demo-icon-warning'>
-              <svg-status-warning aria-hidden='true'></svg-status-warning>
-              <span>Warning icon</span>
-            </li>
-            <li class='demo-icon-negative'>
-              <svg-status-error aria-hidden='true'></svg-status-error>
-              <span>Negative icon</span>
-            </li>
-            <li class='demo-icon-disabled'>
-              <svg-status-rejected aria-hidden='true'></svg-status-rejected>
-              <span>Disabled icon</span>
-            </li>
-          </ul>
+          <li class='iui-text-block'>Normal text</li>
+          <li class='iui-text-block iui-text-muted'>Muted text</li>
+          <li class='demo-text-placeholder'>Placeholder text</li>
+          <li class='demo-text-informational'>Informational text</li>
+          <li class='demo-text-positive'>Positive text</li>
+          <li class='demo-text-warning'>Warning text</li>
+          <li class='demo-text-negative'>Negative text</li>
+          <li class='iui-text-block demo-text-disabled'>Disabled text</li>
         </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-hover'>Background hover</li>
-          <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
-          <li class='demo-background-transparent-hover'>Background transparent hover</li>
-        </ul>
-      </div>
-      <div class='demo-background-backdrop'>
-        <h2 class='iui-text-title iui-text-spacing'>Background backdrop</h2>
+        <li><strong>Icon:</strong> 3.1 in base themes / 5.1 in high contrast themes</li>
         <ul>
-          <li><strong>Text:</strong> 4.5 in base themes / 7.1 in high contrast themes</li>
-          <ul>
-            <li class='iui-text-block'>Normal text</li>
-            <li class='iui-text-block iui-text-muted'>Muted text</li>
-            <li class='demo-text-informational'>Informational text</li>
-            <li class='demo-text-positive'>Positive text</li>
-            <li class='demo-text-warning'>Warning text</li>
-            <li class='demo-text-negative'>Negative text</li>
-            <li class='iui-text-block demo-text-disabled'>Disabled text</li>
-          </ul>
-          <li><strong>Icon:</strong> 3.1 in base themes / 5.1 in high contrast themes</li>
-          <ul>
-            <li class='demo-icon'>
-              <svg-add-circular aria-hidden='true'></svg-add-circular>
-              <span>Actionable icon</span>
-            </li>
-            <li class='demo-icon-muted'>
-              <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
-              <span>Muted icon</span>
-            </li>
-            <li class='demo-icon-informational'>
-              <svg-info-circular aria-hidden='true'></svg-info-circular>
-              <span>Informational icon</span>
-            </li>
-            <li class='demo-icon-positive'>
-              <svg-status-success aria-hidden='true'></svg-status-success>
-              <span>Positive icon</span>
-            </li>
-            <li class='demo-icon-warning'>
-              <svg-status-warning aria-hidden='true'></svg-status-warning>
-              <span>Warning icon</span>
-            </li>
-            <li class='demo-icon-negative'>
-              <svg-status-error aria-hidden='true'></svg-status-error>
-              <span>Negative icon</span>
-            </li>
-            <li class='demo-icon-disabled'>
-              <svg-status-rejected aria-hidden='true'></svg-status-rejected>
-              <span>Disabled icon</span>
-            </li>
-          </ul>
+          <li class='demo-icon'>
+            <svg-add-circular aria-hidden='true'></svg-add-circular>
+            <span>Actionable icon</span>
+          </li>
+          <li class='demo-icon-muted'>
+            <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+            <span>Muted icon</span>
+          </li>
+          <li class='demo-icon-informational'>
+            <svg-info-circular aria-hidden='true'></svg-info-circular>
+            <span>Informational icon</span>
+          </li>
+          <li class='demo-icon-positive'>
+            <svg-status-success aria-hidden='true'></svg-status-success>
+            <span>Positive icon</span>
+          </li>
+          <li class='demo-icon-warning'>
+            <svg-status-warning aria-hidden='true'></svg-status-warning>
+            <span>Warning icon</span>
+          </li>
+          <li class='demo-icon-negative'>
+            <svg-status-error aria-hidden='true'></svg-status-error>
+            <span>Negative icon</span>
+          </li>
+          <li class='demo-icon-disabled'>
+            <svg-status-rejected aria-hidden='true'></svg-status-rejected>
+            <span>Disabled icon</span>
+          </li>
         </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-hover'>Background hover</li>
-          <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
-          <li class='demo-background-transparent-hover'>Background transparent hover</li>
-        </ul>
-      </div>
-      <div class='demo-background-disabled'>
-        <h2 class='iui-text-title iui-text-spacing'>Background disabled</h2>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-hover'>Background hover</li>
+        <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
+        <li class='demo-background-transparent-hover'>Background transparent hover</li>
+      </ul>
+    </div>
+    <div class='demo-background-backdrop'>
+      <h2 class='iui-text-title iui-text-spacing'>Background backdrop</h2>
+      <ul>
+        <li><strong>Text:</strong> 4.5 in base themes / 7.1 in high contrast themes</li>
         <ul>
-          <li class='iui-text-block'>Text</li>
-          <li class='iui-text-block demo-text-disabled'>Disabled</li>
+          <li class='iui-text-block'>Normal text</li>
+          <li class='iui-text-block iui-text-muted'>Muted text</li>
+          <li class='demo-text-informational'>Informational text</li>
+          <li class='demo-text-positive'>Positive text</li>
+          <li class='demo-text-warning'>Warning text</li>
+          <li class='demo-text-negative'>Negative text</li>
+          <li class='iui-text-block demo-text-disabled'>Disabled text</li>
         </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-hover'>Background hover</li>
-          <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
-          <li class='demo-background-transparent-hover'>Background transparent hover</li>
+        <li><strong>Icon:</strong> 3.1 in base themes / 5.1 in high contrast themes</li>
+        <ul>
+          <li class='demo-icon'>
+            <svg-add-circular aria-hidden='true'></svg-add-circular>
+            <span>Actionable icon</span>
+          </li>
+          <li class='demo-icon-muted'>
+            <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+            <span>Muted icon</span>
+          </li>
+          <li class='demo-icon-informational'>
+            <svg-info-circular aria-hidden='true'></svg-info-circular>
+            <span>Informational icon</span>
+          </li>
+          <li class='demo-icon-positive'>
+            <svg-status-success aria-hidden='true'></svg-status-success>
+            <span>Positive icon</span>
+          </li>
+          <li class='demo-icon-warning'>
+            <svg-status-warning aria-hidden='true'></svg-status-warning>
+            <span>Warning icon</span>
+          </li>
+          <li class='demo-icon-negative'>
+            <svg-status-error aria-hidden='true'></svg-status-error>
+            <span>Negative icon</span>
+          </li>
+          <li class='demo-icon-disabled'>
+            <svg-status-rejected aria-hidden='true'></svg-status-rejected>
+            <span>Disabled icon</span>
+          </li>
         </ul>
-      </div>
-      <div class='demo-border-subtle'>
-        <h2 class='iui-text-title iui-text-spacing'>Border subtle</h2>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-hover'>Background hover</li>
-          <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
-          <li class='demo-background-transparent-hover'>Background transparent hover</li>
-        </ul>
-      </div>
-      <div class='demo-border'>
-        <h2 class='iui-text-title iui-text-spacing'>Border</h2>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-hover'>Background hover</li>
-          <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
-          <li class='demo-background-transparent-hover'>Background transparent hover</li>
-        </ul>
-      </div>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-hover'>Background hover</li>
+        <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
+        <li class='demo-background-transparent-hover'>Background transparent hover</li>
+      </ul>
+    </div>
+    <div class='demo-background-disabled'>
+      <h2 class='iui-text-title iui-text-spacing'>Background disabled</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+        <li class='iui-text-block demo-text-disabled'>Disabled</li>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-hover'>Background hover</li>
+        <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
+        <li class='demo-background-transparent-hover'>Background transparent hover</li>
+      </ul>
+    </div>
+    <div class='demo-border-subtle'>
+      <h2 class='iui-text-title iui-text-spacing'>Border subtle</h2>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-hover'>Background hover</li>
+        <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
+        <li class='demo-background-transparent-hover'>Background transparent hover</li>
+      </ul>
+    </div>
+    <div class='demo-border'>
+      <h2 class='iui-text-title iui-text-spacing'>Border</h2>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-hover'>Background hover</li>
+        <li class='demo-background-backdrop-hover'>Background backdrop hover</li>
+        <li class='demo-background-transparent-hover'>Background transparent hover</li>
+      </ul>
+    </div>
 
-      <div class='demo-background-accent'>
-        <h2 class='iui-text-title iui-text-spacing'>Background accent</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-        </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-accent-hover'>Background accent hover</li>
-        </ul>
-      </div>
-      <div class='demo-background-informational'>
-        <h2 class='iui-text-title iui-text-spacing'>Background informational</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-        </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-informational-hover'>Background informational hover</li>
-        </ul>
-      </div>
-      <div class='demo-background-positive'>
-        <h2 class='iui-text-title iui-text-spacing'>Background positive</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-        </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-positive-hover'>Background positive hover</li>
-        </ul>
-      </div>
-      <div class='demo-background-warning'>
-        <h2 class='iui-text-title iui-text-spacing'>Background warning</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-        </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-warning-hover'>Background warning hover</li>
-        </ul>
-      </div>
-      <div class='demo-background-negative'>
-        <h2 class='iui-text-title iui-text-spacing'>Background negative</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-        </ul>
-        <ul class='demo-hover-backgrounds'>
-          <li class='demo-background-negative-hover'>Background negative hover</li>
-        </ul>
-      </div>
+    <div class='demo-background-accent'>
+      <h2 class='iui-text-title iui-text-spacing'>Background accent</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-accent-hover'>Background accent hover</li>
+      </ul>
+    </div>
+    <div class='demo-background-informational'>
+      <h2 class='iui-text-title iui-text-spacing'>Background informational</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-informational-hover'>Background informational hover</li>
+      </ul>
+    </div>
+    <div class='demo-background-positive'>
+      <h2 class='iui-text-title iui-text-spacing'>Background positive</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-positive-hover'>Background positive hover</li>
+      </ul>
+    </div>
+    <div class='demo-background-warning'>
+      <h2 class='iui-text-title iui-text-spacing'>Background warning</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-warning-hover'>Background warning hover</li>
+      </ul>
+    </div>
+    <div class='demo-background-negative'>
+      <h2 class='iui-text-title iui-text-spacing'>Background negative</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+      </ul>
+      <ul class='demo-hover-backgrounds'>
+        <li class='demo-background-negative-hover'>Background negative hover</li>
+      </ul>
+    </div>
 
-      <div class='demo-background-informational-muted'>
-        <h2 class='iui-text-title iui-text-spacing'>Background informational muted</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-          <li class='demo-text-informational'>Informational</li>
-        </ul>
-      </div>
-      <div class='demo-background-positive-muted'>
-        <h2 class='iui-text-title iui-text-spacing'>Background positive muted</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-          <li class='demo-text-positive'>Positive</li>
-        </ul>
-      </div>
-      <div class='demo-background-warning-muted'>
-        <h2 class='iui-text-title iui-text-spacing'>Background warning muted</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-          <li class='demo-text-warning'>Warning</li>
-        </ul>
-      </div>
-      <div class='demo-background-negative-muted'>
-        <h2 class='iui-text-title iui-text-spacing'>Background negative muted</h2>
-        <ul>
-          <li class='iui-text-block'>Text</li>
-          <li class='demo-text-negative'>Negative</li>
-        </ul>
-      </div>
-    </section>
-  </body>
-</html>
+    <div class='demo-background-informational-muted'>
+      <h2 class='iui-text-title iui-text-spacing'>Background informational muted</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+        <li class='demo-text-informational'>Informational</li>
+      </ul>
+    </div>
+    <div class='demo-background-positive-muted'>
+      <h2 class='iui-text-title iui-text-spacing'>Background positive muted</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+        <li class='demo-text-positive'>Positive</li>
+      </ul>
+    </div>
+    <div class='demo-background-warning-muted'>
+      <h2 class='iui-text-title iui-text-spacing'>Background warning muted</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+        <li class='demo-text-warning'>Warning</li>
+      </ul>
+    </div>
+    <div class='demo-background-negative-muted'>
+      <h2 class='iui-text-title iui-text-spacing'>Background negative muted</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+        <li class='demo-text-negative'>Negative</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

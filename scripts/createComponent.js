@@ -165,33 +165,19 @@ const cssComponentFactory = (directory, componentName) => {
 
 /** Creates a component .html with theme button */
 const demoHtmlFactory = (directory, componentName) => {
-  const template = `${copyrightBannerHtml}
-<!DOCTYPE html>
-<html lang="en-US" id="theme">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${componentName} | iTwinUI</title>
-    
-    <script type="module">
-      import "../components/theme.js";
-    </script>
-    <style>
-      @import url("/assets/demo.css") layer(demo);
-      @import url('@itwin/itwinui-variables') layer(variables);
-      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
-    </style>
-  </head>
-  <body class="iui-root" data-iui-theme>
-    <theme-button></theme-button>
-    <h1>${componentName}</h1>
-    <hr />
+  const template = `\
+---
+import Layout from './_layout.astro';
+---
 
-    <section id="demo-default">
-      <div class="iui-${componentName}"></div>
-    </section>
-  </body>
-</html>
+<Layout title=${componentName}>
+  <h1>${componentName}</h1>
+  <hr />
+
+  <section id="demo-default">
+    <div class="iui-${componentName}"></div>
+  </section>
+</Layout>
 `;
 
   return {
