@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.7.1
+
+### Patch Changes
+
+- [#1934](https://github.com/iTwin/iTwinUI/pull/1934): Fixed the types for `Table` column `filter` to allow `"includesSome"`, which is an already-supported filter function. Also improved the types for the `filter` prop to improve TS autocompletion.
+- [#1936](https://github.com/iTwin/iTwinUI/pull/1936): Fixed an issue in `ProgressRadial` where the visually hidden "Loading." text was sometimes incorrectly displayed for a short while in the beginning.
+
 ## 3.7.0
 
 ### Minor Changes
