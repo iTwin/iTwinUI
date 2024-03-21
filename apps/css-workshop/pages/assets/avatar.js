@@ -38,8 +38,8 @@ class Avatar extends HTMLElement {
         class="iui-avatar"
         title="${person.title}"
         style="background-color: ${person.color};"
-        ${size ? 'data-iui-size=' + size : ''}
-        ${status ? 'data-iui-status=' + status : ''}
+        ${size ? `data-iui-size="${size}"` : ''}
+        ${status ? `data-iui-status="${status}"` : ''}
       >
         ${person.abbr}
         ${showPlaceholder ? `<img src=${userPlaceholder} alt="" />` : ''}
