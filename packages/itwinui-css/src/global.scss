@@ -93,12 +93,10 @@
     border-color var(--iui-duration-1) ease-out,
     color var(--iui-duration-1) ease-out;
 
-  @media (hover: hover) {
-    &:where(:hover) {
-      background-color: var(--_iui-field-color-background-hover);
-      border-color: var(--_iui-field-color-border-hover);
-      color: var(--_iui-field-color-text-hover);
-    }
+  &:where(:hover) {
+    background-color: var(--_iui-field-color-background-hover);
+    border-color: var(--_iui-field-color-border-hover);
+    color: var(--_iui-field-color-text-hover);
   }
 
   &:where(:active) {

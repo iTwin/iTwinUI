@@ -138,11 +138,9 @@
     transition: border-color var(--iui-duration-1) ease-out;
   }
 
-  @media (hover: hover) {
-    &:where(:hover) {
-      --_iui-input-background-color: var(--iui-color-background-hover);
-      --_iui-input-border-color: var(--iui-color-border-foreground-hover);
-    }
+  &:where(:hover) {
+    --_iui-input-background-color: var(--iui-color-background-hover);
+    --_iui-input-border-color: var(--iui-color-border-foreground-hover);
   }
 
   &:has(input:focus-visible),
@@ -225,10 +223,12 @@
 
   &[data-iui-size='small'] {
     --_iui-input-padding-block: 0;
+    --_iui-input-min-height: var(--iui-component-height-small);
   }
 
   &[data-iui-size='large'] {
     --_iui-input-padding-block: var(--iui-size-xs);
+    --_iui-input-min-height: var(--iui-component-height-large);
     font-size: var(--iui-font-size-2);
   }
 

@@ -32,10 +32,8 @@
     transition: fill var(--iui-duration-1) ease-out;
     fill: var(--_iui-button-icon-fill, var(--iui-color-icon));
 
-    @media (hover: hover) {
-      button:hover & {
-        fill: var(--_iui-button-icon-fill-hover, var(--iui-color-icon-hover));
-      }
+    button:hover & {
+      fill: var(--_iui-button-icon-fill-hover, var(--iui-color-icon-hover));
     }
 
     button[disabled] &,
