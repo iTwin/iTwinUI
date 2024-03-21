@@ -19,6 +19,12 @@ import type {
   ReactNode,
 } from 'react';
 
+/**
+ * This allows custom strings and keeps intellisense for string unions.
+ * See https://github.com/Microsoft/TypeScript/issues/29729
+ */
+type AnyString = string & {}; // eslint-disable-line @typescript-eslint/ban-types
+
 //-------------------------------------------------------------------------------
 // Custom Additions (parts from the old file called react-table-config.ts)
 
@@ -195,10 +201,10 @@ export interface ColumnInterface<D extends Record<string, unknown> = {}>
   Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
   /**
    * String value or custom function to use for filtering.
-   * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
-   * More info about these filters: https://github.com/tannerlinsley/react-table/blob/master/src/filterTypes.js
+   * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `includesSome`, `exact`, `equals`, `between`.
+   * More info about these filters: https://github.com/TanStack/table/blob/v7/src/filterTypes.js
    */
-  filter?: FilterType<D> | DefaultFilterTypes | string;
+  filter?: FilterType<D> | DefaultFilterTypes | AnyString;
   /**
    * Function that should return whole cell element not only the content.
    * Must be memoized.
@@ -701,7 +707,7 @@ export type UseFiltersColumnOptions<D extends Record<string, unknown>> =
     Filter: Renderer<FilterProps<D>>;
     disableFilters: boolean;
     defaultCanFilter: boolean;
-    filter: FilterType<D> | DefaultFilterTypes | string;
+    filter: FilterType<D> | DefaultFilterTypes | AnyString;
   }>;
 
 export interface UseFiltersInstanceProps<D extends Record<string, unknown>> {
@@ -750,6 +756,7 @@ export type DefaultFilterTypes =
   | 'exactTextCase'
   | 'includes'
   | 'includesAll'
+  | 'includesSome'
   | 'exact'
   | 'equals'
   | 'between';

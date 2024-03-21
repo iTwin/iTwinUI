@@ -37,31 +37,25 @@ If you're looking for React components, check out [`@itwin/itwinui-react`](https
 Install both packages:
 
 ```
-npm install @itwin/itwinui-css @itwin/itwinui-variables
-```
-
-or if using yarn:
-
-```
-yarn add @itwin/itwinui-css @itwin/itwinui-variables
+npm add @itwin/itwinui-css @itwin/itwinui-variables
 ```
 
 ---
 
 ## Usage
 
-Import the global styles and variables (only needs to be done once per page):
+Import both packages (only needs to be done once per page):
 
 ```css
 @import '@itwin/itwinui-variables';
-@import '@itwin/itwinui-css/global';
+@import '@itwin/itwinui-css';
 ```
 
 > **Note**: If your project doesn't support export maps, then you might need to import the css from the real paths:
 >
 > ```css
 > @import '@itwin/itwinui-variables/index.css';
-> @import '@itwin/itwinui-css/css/global.css';
+> @import '@itwin/itwinui-css/css/all.css';
 > ```
 
 Apply the `iui-root` class at the root of your app, and use `data-iui-theme` to specify theme (`light` or `dark`). See [`@itwin/itwinui-variables/README.md`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/README.md) for more details on theming.
@@ -73,10 +67,6 @@ Apply the `iui-root` class at the root of your app, and use `data-iui-theme` to 
 ```
 
 Now you can start using our components:
-
-```css
-@import '@itwin/itwinui-css/css/button.css';
-```
 
 ```html
 <button class="iui-button" data-iui-variant="default">

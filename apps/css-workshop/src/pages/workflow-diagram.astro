@@ -1,0 +1,38 @@
+---
+import Layout from './_layout.astro';
+---
+
+<Layout title='Workflow Diagram'>
+  <style is:global>
+    section[id^='demo'] {
+      width: 100%;
+    }
+  </style>
+
+  <h1>Workflow diagram</h1>
+  <hr />
+
+  <section id='demo-workflow'>
+    <ol class='iui-workflow-diagram'>
+      <li class='iui-workflow-diagram-step'>
+        <span class='iui-workflow-diagram-content'>Start</span>
+      </li>
+
+      <li class='iui-workflow-diagram-step'>
+        <span class='iui-workflow-diagram-content'>Set parameters</span>
+      </li>
+
+      <li class='iui-workflow-diagram-step'>
+        <span class='iui-workflow-diagram-content'>Invite collaborators</span>
+      </li>
+
+      <li class='iui-workflow-diagram-step'>
+        <span class='iui-workflow-diagram-content'>Review & approve</span>
+      </li>
+
+      <li class='iui-workflow-diagram-step'>
+        <span class='iui-workflow-diagram-content'>Complete</span>
+      </li>
+    </ol>
+  </section>
+</Layout>
