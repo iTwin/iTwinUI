@@ -34,10 +34,11 @@ class Avatar extends HTMLElement {
 
     const innerHtml = `
       <span
-        class="iui-avatar iui-${size}"
+        class="iui-avatar"
         title="${person.title}"
         style="background-color: ${person.color};"
-        ${status ? 'data-iui-status=' + status : ''}
+        ${size ? `data-iui-size="${size}"` : ''}
+        ${status ? `data-iui-status="${status}"` : ''}
       >
         ${person.abbr}
         ${showPlaceholder ? `<img src="/assets/user-placeholder.png" alt="" />` : ''}
