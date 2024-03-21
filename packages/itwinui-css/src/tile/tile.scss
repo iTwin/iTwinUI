@@ -355,14 +355,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     justify-self: end;
   }
 
-  &[data-iui-active='true'] {
-    --_iui-button-text-color: var(--iui-color-text-accent);
-    --_iui-button-background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
-  }
-
   .iui-tile-thumbnail-picture ~ & {
     @include mixins.iui-blur($opacity: 5);
     --_iui-button-icon-fill: var(--iui-color-white);
+    --_iui-button-icon-fill-hover: var(--iui-color-white);
 
     > .iui-button-icon {
       filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
