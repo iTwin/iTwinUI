@@ -9,6 +9,7 @@ import type { CommonProps } from '../utils/index.js';
 import { FooterItem } from './FooterItem.js';
 import { FooterSeparator } from './FooterSeparator.js';
 import { FooterList } from './FooterList.js';
+import { Anchor } from '../Typography/Anchor.js';
 
 export type TitleTranslations = {
   termsOfService: string;
@@ -146,9 +147,13 @@ export const Footer = Object.assign(
                   {index > 0 && <FooterSeparator />}
                   <FooterItem>
                     {element.url ? (
-                      <a href={element.url} target='_blank' rel='noreferrer'>
+                      <Anchor
+                        href={element.url}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
                         {element.title}
-                      </a>
+                      </Anchor>
                     ) : (
                       element.title
                     )}

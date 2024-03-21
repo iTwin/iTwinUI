@@ -1,3 +1,4 @@
 # Test Reference Files
 backstop/results/*
 !backstop/results/bitmaps_reference
+env.d.ts

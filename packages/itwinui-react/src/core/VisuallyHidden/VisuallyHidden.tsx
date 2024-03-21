@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../utils/props.js';
-import { Box, ShadowRoot } from '../utils/index.js';
+import { Box, ShadowRoot, useIsClient } from '../utils/index.js';
 
 type VisuallyHiddenOwnProps = {
   /**
@@ -36,6 +36,8 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const isMounted = useIsClient();
+
   // ShadowRoot is not supported on all elements, so we only use it for few common ones.
   const children = !['div', 'span', 'p'].includes(asProp) ? (
     childrenProp
@@ -44,7 +46,10 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
       <ShadowRoot css={css}>
         <slot />
       </ShadowRoot>
-      {childrenProp}
+
+      {/* Render childrenProp only after ShadowRoot attaches the shadow DOM (i.e. only after the first frame) */}
+      {/* See: https://github.com/iTwin/iTwinUI/issues/1930 */}
+      {isMounted && childrenProp}
     </>
   );
 

@@ -10,11 +10,11 @@ import {
   StatusIconMap,
   SvgCloseSmall,
   Box,
-  ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Icon } from '../Icon/Icon.js';
+import { Anchor } from '../Typography/Anchor.js';
 
 const AlertContext = React.createContext<
   | {
@@ -132,16 +132,19 @@ AlertMessage.displayName = 'Alert.Message';
 
 const AlertAction = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
+  const { type } = useSafeContext(AlertContext);
 
   return (
-    <ButtonBase
+    <Anchor
       as={(!!props.href ? 'a' : 'button') as 'a'}
-      className={cx('iui-alert-link', className)}
+      className={cx('iui-button-base', 'iui-alert-link', className)}
+      underline
+      data-iui-status={type}
       ref={ref}
       {...rest}
     >
       {children}
-    </ButtonBase>
+    </Anchor>
   );
 }) as PolymorphicForwardRefComponent<'a'>;
 AlertAction.displayName = 'Alert.Action';

@@ -1,9 +1,44 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use './mixins' as *;
+@use '../mixins';
 
 .iui-anchor {
-  @include iui-anchor;
+  @include mixins.iui-focus($color: var(--iui-color-text-accent), $offset: 1px);
+  color: var(--iui-color-text-accent);
+  -webkit-tap-highlight-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
+  border-radius: var(--iui-border-radius-1);
+  cursor: pointer;
+
+  text-decoration: none;
+
+  &:where(button) {
+    font: inherit;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  &:hover {
+    color: var(--iui-color-text-accent-hover);
+    text-decoration: underline;
+  }
+
+  @media (prefers-contrast: more) {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &[data-iui-underline='true'],
+  :is([data-iui-contrast='high'] &) {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 
   &-external {
     --_iui-anchor-external-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m16 0v5.4l-1.9-2-8.4 8.4-1.5-1.5 8.3-8.4-1.9-1.9m5.4 16v-9h-1v8h-14v-14h8v-1h-9v16z' /></svg>");
@@ -19,6 +54,19 @@
       mask: var(--_iui-anchor-external-svg);
       @media (forced-colors: active) {
         background-color: LinkText;
+      }
+    }
+  }
+
+  @each $statusColor in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$statusColor}']) {
+      @include mixins.iui-focus($color: var(--iui-color-text-#{$statusColor}), $offset: 1px);
+      color: var(--iui-color-text-#{$statusColor});
+      -webkit-tap-highlight-color: hsl(var(--iui-color-#{$statusColor}-hsl) / var(--iui-opacity-6));
+      @include mixins.iui-text-selection(#{$statusColor});
+
+      &:hover {
+        color: var(--iui-color-text-#{$statusColor}-hover);
       }
     }
   }
