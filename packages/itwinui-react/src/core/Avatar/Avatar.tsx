@@ -100,7 +100,7 @@ export const Avatar = React.forwardRef((props, ref) => {
     <Box
       as='span'
       className={cx('iui-avatar', className)}
-      data-iui-size={size}
+      data-iui-size={size !== 'medium' ? size : undefined}
       data-iui-status={status}
       title={title}
       style={{ backgroundColor: getBackground(backgroundColor), ...style }}

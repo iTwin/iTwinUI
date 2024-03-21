@@ -15,7 +15,11 @@ function assertBaseElements({
 } = {}) {
   const avatar = screen.getByText(abbreviation);
   expect(avatar).toHaveAttribute('title', 'Terry Rivers');
-  expect(avatar).toHaveAttribute('data-iui-size', size);
+  if (size !== 'medium') {
+    expect(avatar).toHaveAttribute('data-iui-size', size);
+  } else {
+    expect(avatar).not.toHaveAttribute('data-iui-size');
+  }
   expect(avatar).toHaveClass(`iui-avatar`);
 
   if (backgroundColor) {
