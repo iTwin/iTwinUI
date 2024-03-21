@@ -12,18 +12,12 @@ import * as lightningCss from 'lightningcss';
 import { targets } from './lightningCssSettings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const srcDir = path.join(__dirname, '..', 'src');
 const outDir = path.join(__dirname, '..', 'css');
-
-const components = (await fs.promises.readdir(srcDir, { withFileTypes: true }))
-  .filter((f) => f.isDirectory())
-  .map((f) => f.name);
 
 // array of tuples where [0] is the .scss source and [1] is the .css output
 const inputsAndOutputsList = [
   ['src/all.scss', 'css/all.css'],
   ['src/global.scss', 'css/global.css'],
-  ...components.map((name) => [`src/${name}/${name}.scss`, `css/${name}.css`]),
 ];
 
 // sass cli expects this format (https://sass-lang.com/documentation/cli/dart-sass)
