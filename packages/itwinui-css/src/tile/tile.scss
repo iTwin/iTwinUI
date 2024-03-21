@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../avatar/mixins' as avatar;
 @use '../surface/base' as surface;
 @use '../mixins';
 @use '../button/base' as *;
@@ -304,7 +303,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-avatar {
-    @include avatar.iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
     place-self: center;
   }
 
