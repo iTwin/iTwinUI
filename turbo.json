@@ -45,12 +45,7 @@
     "dev": {
       "dependsOn": [],
       "dotEnv": [".env.development", ".env.local"],
-      "cache": false
-    },
-    "vite-playground#dev": {
-      "persistent": true
-    },
-    "css-workshop#dev": {
+      "cache": false,
       "persistent": true
     },
     "format": {},
