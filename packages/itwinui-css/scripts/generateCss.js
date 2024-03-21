@@ -38,24 +38,8 @@ const compileScss = async (path, outFile) => {
 };
 
 const run = async () => {
-  const files = await fs.promises.readdir(inDir, { withFileTypes: true });
-  const directories = files.filter((f) => f.isDirectory()).map((f) => f.name);
-
-  let allCss = ''; // we'll append all outputs to all.css
-
-  const globalCss = await compileScss(`${inDir}/global.scss`, 'global');
-  allCss += globalCss;
-
-  for (const component of directories) {
-    if (!ignorePaths.includes(component) && fs.existsSync(path.join(inDir, component, `${component}.scss`))) {
-      const outCss = await compileScss(`${inDir}/${component}/${component}.scss`, component);
-      allCss += outCss;
-    }
-  }
-
-  fs.writeFileSync(`${outDir}/all.css`, allCss);
-  console.log(` Wrote -> all.css`);
-
+  await compileScss(`${inDir}/global.scss`, 'global');
+  await compileScss(`${inDir}/all.scss`, 'all');
   console.log(green(`Converted all SCSS files to CSS.`));
 };
 
