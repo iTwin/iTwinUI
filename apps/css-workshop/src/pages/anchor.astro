@@ -1,0 +1,38 @@
+---
+import Layout from './_layout.astro';
+---
+
+<Layout title='Anchor'>
+  <style is:global>
+    section[id^='demo'] {
+      margin: 0 -4px;
+      padding: 4px;
+    }
+  </style>
+
+  <h1>Anchor</h1>
+  <hr />
+
+  <section id='demo-default'>
+    <p>
+      <a href='https://itwin.github.io/iTwinUI/' class='iui-anchor' id='test-1'
+        >iTwinUI components list</a
+      > - A basic anchor link.
+    </p>
+
+    <p>
+      <a
+        href='https://www.bentley.com/en'
+        class='iui-anchor iui-anchor-external'
+        referrerpolicy='no-referrer'
+        target='_blank'
+        id='test-2'>Bentley Systems<span class='iui-visually-hidden'>(opens in new tab)</span></a
+      > - An anchor link that opens in a new tab / window.
+    </p>
+
+    <p>
+      <a href='#' class='iui-anchor' data-iui-underline='true'>This one</a> is underlined by
+      default.
+    </p>
+  </section>
+</Layout>
