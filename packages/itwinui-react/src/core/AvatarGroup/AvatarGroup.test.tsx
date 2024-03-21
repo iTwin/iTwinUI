@@ -157,17 +157,13 @@ it.each(['small', 'medium', 'large', 'x-large'] as Array<
     </AvatarGroup>,
   );
 
-  if (size !== 'medium') {
-    expect(
-      container.querySelectorAll(
-        `.iui-avatar-list > .iui-avatar[data-iui-size="${size}"]`,
-      ).length,
-    ).toBe(6);
-  } else {
-    expect(
-      container.querySelectorAll(`.iui-avatar-list > .iui-avatar`).length,
-    ).toBe(6);
-  }
+  expect(
+    container.querySelectorAll(
+      size !== 'medium'
+        ? `.iui-avatar-list > .iui-avatar[data-iui-size="${size}"]`
+        : '.iui-avatar-list > .iui-avatar',
+    ).length,
+  ).toBe(6);
 });
 
 it('should render custom classname', () => {
