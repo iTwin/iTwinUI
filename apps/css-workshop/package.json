@@ -16,7 +16,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --host",
     "clean": "rimraf dist && rimraf node_modules && rimraf .turbo",
     "approve": "backstop --config=./backstop/backstop.cjs approve",
     "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
