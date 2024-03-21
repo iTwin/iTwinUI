@@ -6,7 +6,7 @@ The default size for an `iui-avatar` element that appears inside of an `iui-tile
 
 ```diff
 <div class="iui-tile-thumbnail-icon">
--<span class="iui-avatar"></span>
-+<span class="iui-avatar" data-iui-size="x-large"></span>
+- <span class="iui-avatar"></span>
++ <span class="iui-avatar" data-iui-size="x-large"></span>
 </div>
 ```
