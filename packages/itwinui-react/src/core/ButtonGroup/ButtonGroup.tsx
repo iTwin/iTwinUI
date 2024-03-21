@@ -93,7 +93,7 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
     !overflowButton,
     orientation,
   );
-  const refs = useMergedRefs(overflowRef, ref);
+  const refs = useMergedRefs(!!overflowButton ? overflowRef : null, ref);
 
   return (
     <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
@@ -114,6 +114,10 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
           {...rest}
         >
           {(() => {
+            if (!overflowButton) {
+              return children;
+            }
+
             if (!(visibleCount < items.length)) {
               return items;
             }
