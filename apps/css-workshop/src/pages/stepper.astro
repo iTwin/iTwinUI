@@ -1,0 +1,193 @@
+---
+import Layout from './_layout.astro';
+---
+
+<Layout title='Stepper'>
+  <style is:global>
+    section[id^='demo'] {
+      width: 100%;
+    }
+  </style>
+
+  <h1>Stepper</h1>
+  <hr />
+
+  <h2>Default</h2>
+  <section id='demo-default'>
+    <div class='iui-stepper'>
+      <ol aria-label='Progress'>
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>1</span>
+          </div>
+          <div class='iui-stepper-step-name'>First step</div>
+        </li>
+
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>2</span>
+          </div>
+          <div class='iui-stepper-step-name'>Completed step</div>
+        </li>
+
+        <li class='iui-stepper-step iui-current' aria-current='step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>3</span>
+          </div>
+          <div class='iui-stepper-step-name'>Current step</div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>4</span>
+          </div>
+          <div class='iui-stepper-step-name'>Next step</div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>5</span>
+          </div>
+          <div class='iui-stepper-step-name'>Last step</div>
+        </li>
+      </ol>
+    </div>
+
+    <br />
+
+    <div class='iui-stepper'>
+      <ol aria-label='Progress'>
+        <li class='iui-stepper-step iui-current' aria-current='step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>1</span>
+          </div>
+          <div class='iui-stepper-step-name'>First step</div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>2</span>
+          </div>
+          <div class='iui-stepper-step-name'>Completed step</div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>3</span>
+          </div>
+          <div class='iui-stepper-step-name'>Current step</div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>4</span>
+          </div>
+          <div class='iui-stepper-step-name'>Next step</div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>5</span>
+          </div>
+          <div class='iui-stepper-step-name'>Last step</div>
+        </li>
+      </ol>
+    </div>
+
+    <br />
+
+    <div class='iui-stepper'>
+      <ol aria-label='Progress'>
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>1</span>
+          </div>
+          <div class='iui-stepper-step-name'>First step</div>
+        </li>
+
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>2</span>
+          </div>
+          <div class='iui-stepper-step-name'>Completed step</div>
+        </li>
+
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>3</span>
+          </div>
+          <div class='iui-stepper-step-name'>Current step</div>
+        </li>
+
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>4</span>
+          </div>
+          <div class='iui-stepper-step-name'>Next step</div>
+        </li>
+
+        <li class='iui-stepper-step iui-current' aria-current='step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>5</span>
+          </div>
+          <div class='iui-stepper-step-name'>Last step</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <hr />
+
+  <h2>Long</h2>
+  <section id='demo-long'>
+    <div class='iui-stepper'>
+      <ol aria-label='Progress'>
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>1</span>
+          </div>
+        </li>
+
+        <li class='iui-stepper-step iui-clickable' tabindex='0'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>2</span>
+          </div>
+        </li>
+
+        <li class='iui-stepper-step iui-current' aria-current='step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>3</span>
+          </div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>4</span>
+          </div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>5</span>
+          </div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>6</span>
+          </div>
+        </li>
+
+        <li class='iui-stepper-step'>
+          <div class='iui-stepper-track-content'>
+            <span class='iui-stepper-circle'>7</span>
+          </div>
+        </li>
+      </ol>
+
+      <div class='iui-stepper-steps-label'>
+        <span class='iui-stepper-steps-label-count'>Step 3 of 7:</span>Name of current step
+      </div>
+    </div>
+  </section>
+</Layout>

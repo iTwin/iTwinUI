@@ -19,7 +19,7 @@
       "label": "portal",
       "onAutoForward": "ignore"
     },
-    "5173": {
+    "3050": {
       "label": "css-workshop"
     },
     "6006": {
@@ -38,5 +38,5 @@
       "label": "astro playground"
     }
   },
-  "onCreateCommand": "pnpm install"  
+  "onCreateCommand": "pnpm install"
 }
