@@ -46,22 +46,22 @@
   &[data-iui-type='feedback'] {
     @include idea.iui-button-idea;
   }
+
+  &[data-iui-type='dropdown'] {
+    @include base.iui-button-dropdown;
+
+    &[data-iui-size='small'] {
+      @include base.iui-button-dropdown(small);
+    }
+
+    &[data-iui-size='large'] {
+      @include base.iui-button-dropdown(large);
+    }
+  }
 }
 
 .iui-button-icon {
   @include base.iui-button-icon;
-}
-
-.iui-button-dropdown {
-  @include base.iui-button-dropdown;
-
-  &[data-iui-size='small'] {
-    @include base.iui-button-dropdown(small);
-  }
-
-  &[data-iui-size='large'] {
-    @include base.iui-button-dropdown(large);
-  }
 }
 
 .iui-button-split {
