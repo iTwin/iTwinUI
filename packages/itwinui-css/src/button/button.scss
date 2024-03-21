@@ -43,7 +43,7 @@
 
   @include variant.iui-button-variant;
 
-  &.iui-button-idea {
+  &[data-iui-type='feedback'] {
     @include idea.iui-button-idea;
   }
 }
