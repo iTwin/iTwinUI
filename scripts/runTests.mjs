@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 try {
   const argument = process.argv[2];
 
-  if (argument.includes('filter')) {
+  if (argument?.includes('filter')) {
     spawn(`turbo run test ${argument}`, {
       stdio: 'inherit',
       shell: true,
