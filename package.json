@@ -68,16 +68,12 @@
     "semver": "^7.5.4",
     "typescript": "~5.1.6",
     "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.18"
+    "@types/react-dom": "18.2.18",
+    "astro": "~4.5.6"
   },
   "engines": {
     "node": ">=18.14.1"
   },
   "packageManager": "pnpm@8.15.3",
-  "prettier": "configs/prettier-config",
-  "pnpm": {
-    "patchedDependencies": {
-      "astro-relative-links@0.3.7": "patches/astro-relative-links@0.3.7.patch"
-    }
-  }
+  "prettier": "configs/prettier-config"
 }
