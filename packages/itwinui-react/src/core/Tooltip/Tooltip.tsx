@@ -175,7 +175,9 @@ const useTooltip = (options: TooltipOptions = {}) => {
       handleClose: safePolygon({ buffer: -Infinity }),
     }),
     useFocus(floating.context),
-    useClick(floating.context),
+    useClick(floating.context, {
+      ignoreMouse: true,
+    }),
     useDismiss(floating.context),
   ]);
 
