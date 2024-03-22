@@ -17,7 +17,6 @@ import type {
 } from '../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
-// import { FloatingTree } from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -100,10 +99,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     visible,
-    onVisibleChange: (open) => {
-      // console.log('onVisibleChange called', open);
-      open ? setVisible(true) : close();
-    },
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
     matchWidth,
   });
@@ -134,9 +130,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
             })}
             ref={popoverRef}
           >
-            {/* <FloatingTree> */}
             {menuContent}
-            {/* </FloatingTree> */}
           </Menu>
         </Portal>
       )}

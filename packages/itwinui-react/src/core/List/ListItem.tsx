@@ -30,9 +30,6 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       data-iui-focused={focused ? 'true' : undefined}
       ref={ref}
       {...rest}
-      // style={{
-      //   width: '200px',
-      // }}
     />
   );
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
