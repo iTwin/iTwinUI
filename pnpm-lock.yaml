@@ -16,6 +16,7 @@ overrides:
   typescript: ~5.1.6
   '@types/react': 18.2.14
   '@types/react-dom': 18.2.18
+  astro: ~4.5.6
 
 importers:
 
@@ -79,8 +80,11 @@ importers:
         specifier: 0.20.0
         version: 0.20.0
       astro:
-        specifier: ^4
+        specifier: ~4.5.6
         version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
+      astro-relative-links:
+        specifier: ^0.3.7
+        version: 0.3.7
       backstopjs:
         specifier: ~6.2.1
         version: 6.2.2
@@ -91,7 +95,7 @@ importers:
   apps/portal:
     dependencies:
       astro:
-        specifier: '4'
+        specifier: ~4.5.6
         version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
 
   apps/react-workshop:
@@ -187,7 +191,7 @@ importers:
         specifier: 18.2.14
         version: 18.2.14
       astro:
-        specifier: ^4
+        specifier: ~4.5.6
         version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       astro-auto-import:
         specifier: ^0.4.2
@@ -410,7 +414,7 @@ importers:
         specifier: '*'
         version: link:../../packages/itwinui-react
       astro:
-        specifier: '4'
+        specifier: ~4.5.6
         version: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       react:
         specifier: ^18.2.0
@@ -786,7 +790,7 @@ packages:
     resolution: {integrity: sha512-EkcCniYdGwsh9k5LknqRrz/UyOnMNXdRk7fgDAw/zUDKnm7zgQAG8hIx0FxG1L2IINxLfu7IcjgZb3f5TFpxKw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
-      astro: ^4.0.0
+      astro: ~4.5.6
     dependencies:
       '@astrojs/markdown-remark': 4.3.0
       '@mdx-js/mdx': 3.0.1
@@ -5067,7 +5071,7 @@ packages:
     resolution: {integrity: sha512-ZgWZQ58+EhbEym1+aoUnNyECOy0wsG5uRUs+rVp/7BzHtj1V76J2qkhjaTWLplgNb+8WrzhvTQNxytmXRCW+Ow==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta
+      astro: ~4.5.6
     dependencies:
       '@types/node': 18.19.26
       acorn: 8.11.3
@@ -5077,12 +5081,29 @@ packages:
   /astro-expressive-code@0.33.5(astro@4.5.6):
     resolution: {integrity: sha512-9JAyllueMUN8JTl/h/yTdbKinNmfalEWcV11s3lSf/UJQbAZfWJuy+IlGcArZDI/CmD21GXhFHLqYthpdY33ug==}
     peerDependencies:
-      astro: ^4.0.0-beta || ^3.3.0
+      astro: ~4.5.6
     dependencies:
       astro: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
       hast-util-to-html: 8.0.4
       remark-expressive-code: 0.33.5
     dev: false
+
+  /astro-relative-links@0.3.7:
+    resolution: {integrity: sha512-r0OxCHyBnaQYy0BdeiSkTk10PEfiQdi7ZD4ksk/QDIig3Nh9XCQU5uSm2G8j3n4cvI5lF1olps7RmEia1riHeQ==}
+    dependencies:
+      astro: 4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6)
+      glob: 10.3.10
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - typescript
+    dev: true
 
   /astro@4.5.6(lightningcss@1.24.1)(sass@1.72.0)(typescript@5.1.6):
     resolution: {integrity: sha512-/pXr+tDvgps1x3w+9i48XzfNPDr4NrT89EJPeCTL57IjaTpitSQ8Oy10Fv6zAqXNLIUJ5j3P1c+fJx+taKIg0g==}
@@ -5530,7 +5551,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.0
     dev: true
 
   /bundle-name@3.0.0:
@@ -8031,6 +8052,7 @@ packages:
   /glob@10.3.10:
     resolution: {integrity: sha512-fa46+tv1Ak0UPK1TOy/pZrIybNNt4HCv7SDzwyfiOZkvZLEbjsZkJBPtDHVshZjbecAoAGSC20MjLDG/qr679g==}
     engines: {node: '>=16 || 14 >=14.17'}
+    hasBin: true
     dependencies:
       foreground-child: 3.1.1
       jackspeak: 2.3.6
@@ -12946,7 +12968,7 @@ packages:
   /rehype-parse@9.0.0:
     resolution: {integrity: sha512-WG7nfvmWWkCR++KEkZevZb/uw41E8TsH4DsY9UxsTbIXCVGbAs4S+r8FrQ+OtH5EEQAs+5UxKC42VinkmpA1Yw==}
     dependencies:
-      '@types/hast': 3.0.2
+      '@types/hast': 3.0.4
       hast-util-from-html: 2.0.1
       unified: 11.0.4
 

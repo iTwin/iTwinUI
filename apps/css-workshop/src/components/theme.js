@@ -132,9 +132,7 @@ class ThemeButton extends HTMLElement {
     this.button = this.shadowRoot.querySelector('[aria-label="Page settings"]');
 
     // set default state
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const prefersHC = window.matchMedia('(prefers-contrast: more)').matches;
     this.shadowRoot.querySelector(
       `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
@@ -169,11 +167,9 @@ class ThemeButton extends HTMLElement {
       radio.addEventListener('change', this.changeTheme);
     });
 
-    this.shadowRoot
-      .querySelectorAll('input[name="background"]')
-      .forEach((radio) => {
-        radio.addEventListener('change', this.changeBackground);
-      });
+    this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
+      radio.addEventListener('change', this.changeBackground);
+    });
   }
 
   disconnectedCallback() {
@@ -181,11 +177,9 @@ class ThemeButton extends HTMLElement {
       radio.removeEventListener('change', this.changeTheme);
     });
 
-    this.shadowRoot
-      .querySelectorAll('input[name="background"]')
-      .forEach((radio) => {
-        radio.removeEventListener('change', this.changeBackground);
-      });
+    this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
+      radio.removeEventListener('change', this.changeBackground);
+    });
   }
 }
 customElements.define('theme-button', ThemeButton);
