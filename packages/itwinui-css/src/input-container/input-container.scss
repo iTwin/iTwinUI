@@ -102,7 +102,6 @@
 // ----------------------------------------------------------------------------
 
 .iui-input-flex-container {
-  // TODO: This isn't done yet
   --_iui-input-background-color: var(--iui-color-background);
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-accent-border-color: var(--iui-color-border-accent);
@@ -168,7 +167,6 @@
 
   input,
   textarea {
-    // TODO: These are not using `iui-`, unsure what to do
     box-sizing: border-box;
     background: transparent;
     border: none;
@@ -232,14 +230,19 @@
     font-size: var(--iui-font-size-2);
   }
 
+  &[data-iui-status='positive']::before,
+  &[data-iui-status='warning']::before,
+  &[data-iui-status='negative']::before {
+    border-block-end-width: var(--iui-size-3xs);
+    border-block-end-color: var(--_iui-input-accent-border-color);
+  }
+
   @each $status in positive, warning, negative {
     &[data-iui-status='#{$status}'] {
       --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
-      --_iui-field-color-border-hover: var(--iui-color-border-#{$status}); // TODO: Not working?
 
-      &::before {
-        border-block-end-width: var(--iui-size-3xs);
-        border-block-end-color: var(--_iui-input-accent-border-color);
+      &:hover {
+        --_iui-input-border-color: var(--iui-color-border-#{$status});
       }
 
       input {
