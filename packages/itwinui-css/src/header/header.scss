@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../breadcrumbs/mixins' as breadcrumbs;
 @use 'header-buttons';
 @use '../mixins';
 
@@ -73,7 +72,7 @@
 }
 
 .iui-header-breadcrumbs {
-  @include breadcrumbs.iui-breadcrumbs($breadcrumbs-height: 100%);
+  --_iui-breadcrumbs-height: 100%;
 }
 
 .iui-header-brand {
@@ -86,10 +85,6 @@
 
 .iui-header-brand-label {
   @include header-buttons.iui-header-brand-label;
-}
-
-.iui-header-breadcrumbs-list {
-  @include breadcrumbs.iui-breadcrumbs-list;
 }
 
 .iui-page-header-left,
