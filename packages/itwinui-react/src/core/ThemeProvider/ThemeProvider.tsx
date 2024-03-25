@@ -9,6 +9,8 @@ import {
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
+  useIsomorphicLayoutEffect,
+  useLatestRef,
 } from '../utils/index.js';
 import type {
   PolymorphicComponentProps,
@@ -129,19 +131,16 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const mergedRefs = useMergedRefs(rootRef, ref);
 
   const hasChildren = React.Children.count(children) > 0;
-  const parentContext = React.useContext(ThemeContext);
+  const parent = useParentThemeAndContext(rootRef);
 
-  const theme =
-    themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
+  const theme = themeProp === 'inherit' ? parent.theme ?? 'light' : themeProp;
 
   // default inherit highContrast option from parent if also inheriting base theme
   themeOptions.highContrast ??=
-    themeProp === 'inherit'
-      ? parentContext?.themeOptions?.highContrast
-      : undefined;
+    themeProp === 'inherit' ? parent.highContrast : undefined;
 
   const newStylesLoaded = React.useRef(false);
-  const stylesLoaded = parentContext?.stylesLoaded ?? newStylesLoaded;
+  const stylesLoaded = parent.context?.stylesLoaded ?? newStylesLoaded;
 
   const contextValue = React.useMemo(
     () => ({
@@ -166,7 +165,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     return (
       <ThemeLogicWrapper
         theme={theme}
-        themeOptions={themeOptions ?? parentContext?.themeOptions}
+        themeOptions={themeOptions ?? parent.context?.themeOptions}
       />
     );
   }
@@ -267,4 +266,68 @@ const Styles = (props: {
   const { includeCss, document } = props;
   useStyles({ includeCss, document });
   return null;
+};
+
+/**
+ * Returns theme information from either parent ThemeContext or by reading the closest
+ * data-iui-theme attribute if context is not found.
+ *
+ * Also returns the ThemeContext itself (if found).
+ */
+const useParentThemeAndContext = (
+  rootRef: React.RefObject<HTMLElement | null>,
+) => {
+  const parentContext = React.useContext(ThemeContext);
+  const [parentThemeState, setParentTheme] = React.useState(
+    parentContext?.theme,
+  );
+  const [parentHighContrastState, setParentHighContrastState] = React.useState(
+    parentContext?.themeOptions?.highContrast,
+  );
+
+  const parentThemeRef = useLatestRef(parentContext?.theme);
+
+  useIsomorphicLayoutEffect(() => {
+    // bail if we already have theme from context
+    if (parentThemeRef.current) {
+      return;
+    }
+
+    // find parent theme from closest data-iui-theme attribute
+    const closestRoot =
+      rootRef.current?.parentElement?.closest('[data-iui-theme]');
+
+    if (!closestRoot) {
+      return;
+    }
+
+    // helper function that updates state to match data attributes from closest root
+    const synchronizeTheme = () => {
+      setParentTheme(closestRoot?.getAttribute('data-iui-theme') as ThemeType);
+      setParentHighContrastState(
+        closestRoot?.getAttribute('data-iui-contrast') === 'high',
+      );
+    };
+
+    // set theme for initial mount
+    synchronizeTheme();
+
+    // use mutation observers to listen to future updates to data attributes
+    const observer = new MutationObserver(() => synchronizeTheme());
+    observer.observe(closestRoot, {
+      attributes: true,
+      attributeFilter: ['data-iui-theme', 'data-iui-contrast'],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [parentThemeRef]);
+
+  return {
+    theme: parentContext?.theme ?? parentThemeState,
+    highContrast:
+      parentContext?.themeOptions?.highContrast ?? parentHighContrastState,
+    context: parentContext,
+  } as const;
 };
