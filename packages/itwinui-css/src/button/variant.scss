@@ -2,13 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 @mixin iui-button-variant {
-  &:where(
-      [data-iui-variant='accent'],
-      [data-iui-variant='informational'],
-      [data-iui-variant='positive'],
-      [data-iui-variant='warning'],
-      [data-iui-variant='negative']
-    ) {
+  &:where([data-iui-variant='informational'], [data-iui-variant='positive']) {
     --_iui-field-color-text: var(--iui-color-white);
     --_iui-field-color-text-hover: var(--iui-color-white);
     --_iui-field-color-focus-outline: var(--iui-color-white);
@@ -18,7 +12,7 @@
     --_iui-button-icon-fill-hover: var(--iui-color-white);
   }
 
-  @each $fieldColor in accent, informational, positive, warning, negative {
+  @each $fieldColor in informational, positive {
     &:where([data-iui-variant='#{$fieldColor}']) {
       --_iui-field-color-background: var(--iui-color-background-#{$fieldColor});
       --_iui-field-color-background-hover: var(--iui-color-background-#{$fieldColor}-hover);
