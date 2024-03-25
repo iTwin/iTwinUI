@@ -16,7 +16,7 @@ try {
     });
   } else if (argument) {
     spawn(
-      `conc -g -n ${prefixes} -c ${colors} "pnpm --filter=css-workshop run test --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm --filter "./testing/a11y" run test  --env componentName=${argument}" "pnpm --filter=react-workshop run test --spec="**/${argument}.*"" "cd testing/e2e && pnpm playwright test -- ${argument} && cd ../.."`,
+      `conc -g -n ${prefixes} -c ${colors} "pnpm --filter=css-workshop run test --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm --filter "./testing/a11y" run test  --env componentName=${argument}" "pnpm --filter=react-workshop run test --spec="**/${argument}.*"" "pnpm --filter=e2e -- ${argument}"`,
       {
         stdio: 'inherit',
         shell: true,
