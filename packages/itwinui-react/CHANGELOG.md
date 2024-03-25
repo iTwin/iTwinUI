@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.26
+
+### Patch Changes
+
+- [#1949](https://github.com/iTwin/iTwinUI/pull/1949): ThemeProvider will now correctly inherit theme changes from a v3 ancestor.
+
 ## 2.12.25
 
 ### Patch Changes
