@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.7.2
+
+### Patch Changes
+
+- [#1939](https://github.com/iTwin/iTwinUI/pull/1939): Fixed an issue in `ButtonGroup` where the overflow logic was running even when `overflowButton` prop was not passed.
+
 ## 3.7.1
 
 ### Patch Changes

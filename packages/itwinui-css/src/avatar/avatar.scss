@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
-@use './mixins' as *;
 
 // similar technique as badge, meets AAA contrast ratio against soft backgrounds
 $avatar-text-color: hsl(0 0% 0% / 0.77);
@@ -112,18 +111,26 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
     }
   }
 
-  @include iui-avatar-size;
+  --_iui-avatar-size: var(--iui-size-xl);
+  --_iui-avatar-font-size: var(--iui-font-size-2);
+  --_iui-avatar-status-size: calc(var(--iui-size-2xs) * 1.5);
 
-  &:where(.iui-small) {
-    @include iui-avatar-size($size: l, $font-size: var(--iui-font-size-0));
+  &[data-iui-size='small'] {
+    --_iui-avatar-size: calc(1.5 * var(--iui-size-m));
+    --_iui-avatar-font-size: var(--iui-font-size-0);
+    --_iui-avatar-status-size: var(--iui-size-2xs);
   }
 
-  &:where(.iui-large) {
-    @include iui-avatar-size($size: 2xl, $font-size: var(--iui-font-size-3));
+  &[data-iui-size='large'] {
+    --_iui-avatar-size: calc(3 * var(--iui-size-m));
+    --_iui-avatar-font-size: var(--iui-font-size-3);
+    --_iui-avatar-status-size: var(--iui-size-xs);
   }
 
-  &:where(.iui-x-large) {
-    @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
+  &[data-iui-size='x-large'] {
+    --_iui-avatar-size: var(--iui-size-2xl);
+    --_iui-avatar-font-size: var(--iui-font-size-4);
+    --_iui-avatar-status-size: var(--iui-size-s);
   }
 }
 
@@ -133,15 +140,15 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
   .iui-avatar:not(:first-child) {
     margin-inline-start: var(--iui-size-2xs);
 
-    &.iui-small {
+    &[data-iui-size='small'] {
       margin-inline-start: var(--iui-size-3xs);
     }
 
-    &.iui-large {
+    &[data-iui-size='large'] {
       margin-inline-start: var(--iui-size-xs);
     }
 
-    &.iui-x-large {
+    &[data-iui-size='x-large'] {
       margin-inline-start: var(--iui-size-s);
     }
   }
@@ -158,16 +165,16 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
       margin-inline-start: calc(0px - var(--iui-size-2xs));
       box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
 
-      &.iui-small {
+      &[data-iui-size='small'] {
         margin-inline-start: calc(0px - var(--iui-size-3xs));
         box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
       }
 
-      &.iui-large {
+      &[data-iui-size='large'] {
         margin-inline-start: calc(0px - var(--iui-size-xs));
       }
 
-      &.iui-x-large {
+      &[data-iui-size='x-large'] {
         margin-inline-start: calc(0px - var(--iui-size-s));
       }
     }

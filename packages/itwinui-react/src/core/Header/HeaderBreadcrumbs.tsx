@@ -37,11 +37,14 @@ export const HeaderBreadcrumbs = React.forwardRef((props, forwardedRef) => {
     <Box
       as='nav'
       aria-label='breadcrumbs'
-      className={cx('iui-header-breadcrumbs', className)}
+      className={cx('iui-breadcrumbs', 'iui-header-breadcrumbs', className)}
       ref={forwardedRef}
       {...rest}
     >
-      <Box as='ol' className='iui-header-breadcrumbs-list'>
+      <Box
+        as='ol'
+        className={cx('iui-breadcrumbs-list', 'iui-header-breadcrumbs-list')}
+      >
         {items.reduce(
           (previous: React.ReactNode[], current, index) => [
             ...previous,
