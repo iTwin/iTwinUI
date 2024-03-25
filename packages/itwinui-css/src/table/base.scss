@@ -17,14 +17,14 @@
     position: sticky;
     inset-block-end: 0;
     inset-inline-start: 0;
-    z-index: 2; // Above the table body and sticky columns/cells
+    z-index: 3; // Above the table body and sticky columns/cells
   }
 }
 
 @mixin iui-table-header-wrapper {
   position: sticky;
   inset-block-start: 0;
-  z-index: 2; // Above the table body and sticky columns/cells
+  z-index: 3; // Above the table body and sticky columns/cells
 
   display: flex;
   flex-shrink: 0;
