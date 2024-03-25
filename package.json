@@ -28,8 +28,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency=15",
-    "test": "turbo run test",
-    "test:all": "node scripts/testAll.js",
+    "test": "node scripts/runTests.mjs",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install && playwright install",
