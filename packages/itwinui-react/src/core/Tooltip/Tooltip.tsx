@@ -173,12 +173,15 @@ const useTooltip = (options: TooltipOptions = {}) => {
     useHover(floating.context, {
       delay: delay ?? { open: 50, close: 250 },
       handleClose: safePolygon({ buffer: -Infinity }),
+      move: false,
     }),
     useFocus(floating.context),
     useClick(floating.context, {
       ignoreMouse: true,
     }),
-    useDismiss(floating.context),
+    useDismiss(floating.context, {
+      referencePress: true,
+    }),
   ]);
 
   // Manually add attributes and event handlers to external reference element,
