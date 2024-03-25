@@ -27,6 +27,10 @@ The goal of this package is to provide React components that make it easier to u
 
 ---
 
+🆕 **iTwinUI v3** is now available! To upgrade from an older version, check out the [v3 migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide).
+
+---
+
 ## Installation
 
 ```
