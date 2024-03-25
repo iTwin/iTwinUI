@@ -36,6 +36,8 @@ import {
   Box,
   createWarningLogger,
   ShadowRoot,
+  LineClamp,
+  useMergedRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -69,6 +71,11 @@ const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
+
+const COLUMN_MIN_WIDTHS = {
+  default: 72,
+  withExpander: 108, // expander column should be wider to accommodate the expander icon
+};
 
 const logWarningInDev = createWarningLogger();
 
@@ -751,18 +758,13 @@ export const Table = <
     ],
   );
 
-  const headerRef = React.useRef<HTMLDivElement>(null);
-  const bodyRef = React.useRef<HTMLDivElement>(null);
+  const tableRef = React.useRef<HTMLDivElement>(null);
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
-      // Handle header properties, regardless of whether the table is resizable
-      setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
-      setHeaderClientWidth(headerRef.current?.clientWidth ?? 0);
-
       // Handle table properties, but only when table is resizable
       if (!isResizable) {
         return;
@@ -799,9 +801,6 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
-  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(0);
-  const [headerClientWidth, setHeaderClientWidth] = React.useState(0);
-
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useLayoutEffect(() => {
     if (state.isTableResizing) {
@@ -836,7 +835,7 @@ export const Table = <
           tableHasSubRows={hasAnySubRows}
           tableInstance={instance}
           expanderCell={expanderCell}
-          bodyRef={bodyRef.current}
+          scrollContainerRef={tableRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
           density={density}
         />
@@ -866,11 +865,11 @@ export const Table = <
   );
 
   const updateStickyState = () => {
-    if (!bodyRef.current || flatHeaders.every((header) => !header.sticky)) {
+    if (!tableRef.current || flatHeaders.every((header) => !header.sticky)) {
       return;
     }
 
-    if (bodyRef.current.scrollLeft !== 0) {
+    if (tableRef.current.scrollLeft !== 0) {
       dispatch({ type: TableActions.setScrolledRight, value: true });
     } else {
       dispatch({ type: TableActions.setScrolledRight, value: false });
@@ -878,8 +877,8 @@ export const Table = <
 
     // If scrolled a bit to the left looking from the right side
     if (
-      bodyRef.current.scrollLeft !==
-      bodyRef.current.scrollWidth - bodyRef.current.clientWidth
+      tableRef.current.scrollLeft !==
+      tableRef.current.scrollWidth - tableRef.current.clientWidth
     ) {
       dispatch({ type: TableActions.setScrolledLeft, value: true });
     } else {
@@ -898,10 +897,10 @@ export const Table = <
   return (
     <>
       <Box
-        ref={(element) => {
+        ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
           resizeRef(element);
-        }}
+        })}
         id={id}
         {...getTableProps({
           className: cx('iui-table', className),
@@ -910,6 +909,7 @@ export const Table = <
             ...style,
           },
         })}
+        onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
       >
@@ -926,13 +926,6 @@ export const Table = <
           return (
             <Box
               as='div'
-              ref={headerRef}
-              onScroll={() => {
-                if (headerRef.current && bodyRef.current) {
-                  bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
-                  updateStickyState();
-                }
-              }}
               key={headerGroupProps.key}
               {...headerWrapperProps}
               className={cx(
@@ -957,6 +950,13 @@ export const Table = <
                           (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
                         );
 
+                    // override "undefined" or zero min-width with default value
+                    if ([undefined, 0].includes(column.minWidth)) {
+                      column.minWidth = columnHasExpanders
+                        ? COLUMN_MIN_WIDTHS.withExpander
+                        : COLUMN_MIN_WIDTHS.default;
+                    }
+
                     const columnProps = column.getHeaderProps({
                       ...restSortProps,
                       className: cx(
@@ -972,9 +972,11 @@ export const Table = <
                         ...getCellStyle(column, !!state.isTableResizing),
                         ...(columnHasExpanders && getSubRowStyle({ density })),
                         ...getStickyStyle(column, visibleColumns),
-                        flexWrap: 'unset',
+                        flexWrap: 'wrap',
+                        columnGap: 'var(--iui-size-xs)',
                       },
                     });
+
                     return (
                       <Box
                         {...columnProps}
@@ -1005,12 +1007,26 @@ export const Table = <
                           }
                         }}
                       >
+                        <ShadowRoot>
+                          {typeof column.Header === 'string' ? (
+                            <LineClamp>
+                              <slot />
+                            </LineClamp>
+                          ) : (
+                            <slot />
+                          )}
+                          <slot name='actions' />
+                          <slot name='resizers' />
+                          <slot name='shadows' />
+                        </ShadowRoot>
+
                         {column.render('Header')}
                         {(showFilterButton(column) ||
                           showSortButton(column)) && (
                           <Box
                             className='iui-table-header-actions-container'
                             onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                            slot='actions'
                           >
                             {showFilterButton(column) && (
                               <FilterToggle column={column} />
@@ -1040,21 +1056,31 @@ export const Table = <
                             <Box
                               {...column.getResizerProps()}
                               className='iui-table-resizer'
+                              slot='resizers'
                             >
                               <Box className='iui-table-resizer-bar' />
                             </Box>
                           )}
                         {enableColumnReordering &&
                           !column.disableReordering && (
-                            <Box className='iui-table-reorder-bar' />
+                            <Box
+                              className='iui-table-reorder-bar'
+                              slot='resizers'
+                            />
                           )}
                         {column.sticky === 'left' &&
                           state.sticky.isScrolledToRight && (
-                            <Box className='iui-table-cell-shadow-right' />
+                            <Box
+                              className='iui-table-cell-shadow-right'
+                              slot='shadows'
+                            />
                           )}
                         {column.sticky === 'right' &&
                           state.sticky.isScrolledToLeft && (
-                            <Box className='iui-table-cell-shadow-left' />
+                            <Box
+                              className='iui-table-cell-shadow-left'
+                              slot='shadows'
+                            />
                           )}
                       </Box>
                     );
@@ -1065,6 +1091,7 @@ export const Table = <
           );
         })}
         <Box
+          as='div'
           {...bodyProps}
           {...getTableBodyProps({
             className: cx(
@@ -1076,32 +1103,11 @@ export const Table = <
             ),
             style: { outline: 0 },
           })}
-          ref={bodyRef}
-          onScroll={() => {
-            if (headerRef.current && bodyRef.current) {
-              headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
-              updateStickyState();
-            }
-          }}
           tabIndex={-1}
           aria-multiselectable={
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot>
-            <slot />
-            {rows.length === 0 && headerScrollWidth > headerClientWidth && (
-              <div
-                aria-hidden
-                style={{
-                  // This ensures that the table-body is always the same width as the table-header,
-                  // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                  width: headerScrollWidth,
-                  height: 0.1,
-                }}
-              />
-            )}
-          </ShadowRoot>
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
@@ -1125,13 +1131,6 @@ export const Table = <
               )}
             >
               <ProgressRadial indeterminate={true} />
-            </Box>
-          )}
-          {isLoading && data.length !== 0 && (
-            <Box className='iui-table-row' data-iui-loading='true'>
-              <Box className='iui-table-cell'>
-                <ProgressRadial indeterminate size='small' />
-              </Box>
             </Box>
           )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
@@ -1161,6 +1160,11 @@ export const Table = <
               </Box>
             )}
         </Box>
+        {isLoading && data.length !== 0 && (
+          <Box className='iui-table-body-extra' data-iui-loading='true'>
+            <ProgressRadial indeterminate size='small' />
+          </Box>
+        )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
     </>

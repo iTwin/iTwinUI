@@ -30,6 +30,10 @@
   @include base.iui-table-body;
 }
 
+.iui-table-body-extra {
+  @include base.iui-table-body-extra;
+}
+
 .iui-table-cell {
   @include base.iui-table-cell;
 }

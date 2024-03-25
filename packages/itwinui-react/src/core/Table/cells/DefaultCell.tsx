@@ -5,7 +5,7 @@
 import * as React from 'react';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
-import { Box } from '../../utils/index.js';
+import { Box, LineClamp, ShadowRoot } from '../../utils/index.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
@@ -20,6 +20,12 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
    * Status of the cell.
    */
   status?: 'positive' | 'negative' | 'warning';
+  /**
+   * Should the contents of the cell be clamped after a certain number of lines?
+   *
+   * Will be enabled by default if the cell content is a string.
+   */
+  clamp?: boolean;
 } & CellRendererProps<T> &
   React.ComponentPropsWithoutRef<'div'>;
 
@@ -37,8 +43,6 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
-  // Omitting `cellProps`
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {
     cellElementProps: {
       className: cellElementClassName,
@@ -53,6 +57,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
+    clamp = typeof cellProps.value === 'string',
     ...rest
   } = props;
 
@@ -65,11 +70,30 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
+      <ShadowRoot>
+        <slot name='start' />
+        {clamp ? (
+          <LineClamp>
+            <slot />
+          </LineClamp>
+        ) : (
+          <slot />
+        )}
+        <slot name='end' />
+        <slot name='shadows' />
+      </ShadowRoot>
+
       {startIcon && (
-        <Box className='iui-table-cell-start-icon'>{startIcon}</Box>
+        <Box className='iui-table-cell-start-icon' slot='start'>
+          {startIcon}
+        </Box>
       )}
       {children}
-      {endIcon && <Box className='iui-table-cell-end-icon'>{endIcon}</Box>}
+      {endIcon && (
+        <Box className='iui-table-cell-end-icon' slot='end'>
+          {endIcon}
+        </Box>
+      )}
     </Box>
   );
 };

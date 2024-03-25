@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './base' as *;
 @use '../mixins';
-@use '../anchor/mixins' as anchor;
 
 .iui-tag {
   @include iui-tag;
@@ -18,11 +17,6 @@
 
 .iui-tag-button {
   @include iui-tag-button;
-}
-
-a.iui-tag-basic {
-  @include anchor.iui-anchor;
-  @include mixins.iui-focus($offset: 1px);
 }
 
 .iui-tag-container {

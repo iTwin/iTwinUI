@@ -7,25 +7,25 @@
   display: flex;
   flex-direction: column;
   isolation: isolate;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  background-color: var(--iui-color-background);
 
   @include iui-table-cell-icon;
-}
 
-/// Preserves empty scrollbar space using scrollbar-gutter, with
-/// `overflow-y: scroll` (instead of `auto` or `overlay`) as Safari fallback.
-/// Must be included in both table-header-wrapper and table-body
-/// to make sure they are always aligned, even when body is not
-/// scrollable and even when it has sticky columns.
-@mixin table-scrollbar {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
+  > .iui-table-paginator {
+    position: sticky;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    z-index: 2; // Above the table body and sticky columns/cells
+  }
 }
 
 @mixin iui-table-header-wrapper {
-  @include table-scrollbar;
-  scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
-  overflow-x: hidden;
-  background-color: var(--iui-color-background);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2; // Above the table body and sticky columns/cells
+
   display: flex;
   flex-shrink: 0;
   border-start-start-radius: var(--iui-border-radius-1);
@@ -55,10 +55,6 @@
 
     &.iui-grabbing {
       cursor: grabbing;
-    }
-
-    .iui-table-filter-button:not([data-iui-active='true']) {
-      opacity: 0;
     }
 
     > .iui-table-resizer {
@@ -93,21 +89,12 @@
       opacity: 1;
     }
 
-    &:is(:hover, :focus-visible, :has(:focus-visible)) {
+    &:is(:hover, :focus-visible),
+    &:has(:focus-visible) {
       background-color: var(--iui-color-background-hover);
 
-      :is(.iui-table-sort, .iui-table-filter-button) {
+      .iui-table-sort {
         opacity: 1;
-      }
-    }
-
-    @supports not selector(:has(+ *)) {
-      &:focus-within {
-        background-color: var(--iui-color-background-hover);
-
-        :is(.iui-table-sort, .iui-table-filter-button) {
-          opacity: 1;
-        }
       }
     }
   }
@@ -162,18 +149,6 @@
 
   &:last-of-type {
     border-radius: inherit;
-  }
-
-  // To center the row even when scrolling horizontally
-  // (when `isLoading && data.length !== 0`)
-  &[data-iui-loading='true'] {
-    position: sticky;
-    inset-inline-start: 0;
-
-    // Center the progress radial within the cell/row
-    .iui-table-cell {
-      justify-content: center;
-    }
   }
 
   .iui-table-header & {
@@ -329,31 +304,47 @@
   }
 }
 
+// For content placed after the table body and before the paginator
+@mixin iui-table-body-extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // To center the table-body-extra even when scrolling horizontally
+  // (when `isLoading && data.length !== 0`)
+  &[data-iui-loading='true'] {
+    position: sticky;
+    inset-inline-start: 0;
+  }
+}
+
 @mixin iui-table-header-actions-container {
   display: flex;
   flex-grow: 1;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-end;
   margin-inline-end: var(--iui-size-s);
 
   .iui-table-cell-end-icon {
-    // Hardcoded size of the borderless button so that the icons are centered
-    inline-size: 28px;
-    block-size: 28px;
-    margin-inline-end: initial;
+    inline-size: unset;
+    block-size: unset;
+    margin: 0;
     margin-inline-start: auto;
   }
 }
 
 @mixin iui-table-body {
-  @include table-scrollbar;
-  overflow-x: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
+
+  // Table body should be sticky only when no rows exist
+  &:has(> .iui-table-empty) {
+    position: sticky;
+    inset-inline-start: 0;
+  }
 
   &.iui-scroll-snapping {
     scroll-snap-type: y mandatory;
@@ -362,7 +353,6 @@
       scroll-snap-align: start none;
     }
   }
-  background-color: var(--iui-color-background);
 
   &:last-child {
     border-end-start-radius: var(--iui-border-radius-1);

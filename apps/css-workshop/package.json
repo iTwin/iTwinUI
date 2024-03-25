@@ -1,24 +1,27 @@
 {
   "name": "css-workshop",
+  "type": "module",
   "private": true,
   "version": "0.1.0",
   "description": "Workshop environment containing HTML pages demonstrating itwinui-css",
-  "dependencies": {},
   "devDependencies": {
+    "@fontsource/noto-sans": "5",
+    "@fontsource/noto-sans-mono": "5",
     "@itwin/itwinui-icons-elements": "0.20.0",
-    "autoprefixer": "^10",
+    "astro": "^4",
+    "astro-relative-links": "^0.3.7",
     "backstopjs": "~6.2.1",
-    "html-minifier": "^4.0.0",
-    "npm-run-all": "^4.1.5",
-    "vite": "^5"
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "build": "vite build",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host",
     "clean": "rimraf dist && rimraf node_modules && rimraf .turbo",
-    "dev": "vite",
-    "preview": "npx -y serve dist -p 3050 -L",
-    "approve": "backstop --config=./backstop/backstop.js approve",
-    "test:only": "backstop --config=./backstop/backstop.js test --docker",
+    "approve": "backstop --config=./backstop/backstop.cjs approve",
+    "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
-  }
+  },
+  "prettier": "configs/prettier-astro-config.js"
 }

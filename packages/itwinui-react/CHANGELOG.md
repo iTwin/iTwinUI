@@ -1,5 +1,41 @@
 # Changelog
 
+## 3.7.2
+
+### Patch Changes
+
+- [#1939](https://github.com/iTwin/iTwinUI/pull/1939): Fixed an issue in `ButtonGroup` where the overflow logic was running even when `overflowButton` prop was not passed.
+
+## 3.7.1
+
+### Patch Changes
+
+- [#1934](https://github.com/iTwin/iTwinUI/pull/1934): Fixed the types for `Table` column `filter` to allow `"includesSome"`, which is an already-supported filter function. Also improved the types for the `filter` prop to improve TS autocompletion.
+- [#1936](https://github.com/iTwin/iTwinUI/pull/1936): Fixed an issue in `ProgressRadial` where the visually hidden "Loading." text was sometimes incorrectly displayed for a short while in the beginning.
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1863](https://github.com/iTwin/iTwinUI/pull/1863): The filter button inside a `Table` will now always be visible, instead of only being shown on hover/focus.
+- [#1891](https://github.com/iTwin/iTwinUI/pull/1891): The entire `Table` is now scrollable instead of just the `Table`'s body. This leads to a better scroll experience (e.g. the `Table`'s header now scrolls horizontally when hovering a dragged column near the header's left or right edges).
+- [#1863](https://github.com/iTwin/iTwinUI/pull/1863): The responsive behavior of `Table` columns has been improved in a few different ways:
+  - All columns now have a non-zero default min-width. While we still recommend passing a custom min-width based on your data, this default will help prevent resizable columns from becoming too small.
+  - The filter and sort icons in a column header will now wrap to the next line, before the text starts wrapping.
+  - For cells that have a string value, the value will be automatically truncated after three lines.
+
+## 3.6.3
+
+### Patch Changes
+
+- [#1916](https://github.com/iTwin/iTwinUI/pull/1916): Fixed the hover background for default tabs.
+
+## 3.6.2
+
+### Patch Changes
+
+- [#1921](https://github.com/iTwin/iTwinUI/pull/1921): Fixed `Carousel.Dot`'s incorrect height.
+
 ## 3.6.1
 
 ### Patch Changes
@@ -12,7 +48,7 @@
 
 - [#1879](https://github.com/iTwin/iTwinUI/pull/1879): Added a new `native` prop to `Select` and `LabeledSelect`. When true, a native `<select>` element will be rendered.
 - [#1886](https://github.com/iTwin/iTwinUI/pull/1886): Native `Select` (`<Select native>`) offers a new `styleType` prop that accepts the values: `default` (pre-existing) and `borderless` (new).
-- [#1877](https://github.com/iTwin/iTwinUI/pull/1877): Fixed a bug in `LabeledSelect` where nested `<StatusMessage>`s were rendered when using `message={<StatusMessage>}`. As a result, non-string `message` values are no longer automatically wrapped in `<StatusMessage>`.
+- [#1877](https://github.com/iTwin/iTwinUI/pull/1877): Fixed a bug in `InputGroup` where nested `<StatusMessage>`s were rendered when using `message={<StatusMessage>}`. As a result, non-string `message` values are no longer automatically wrapped in `<StatusMessage>`.
   - If you were passing a custom `ReactNode`, you might need to wrap it with `<StatusMessage>` for proper styling of `message`.
 - [#1881](https://github.com/iTwin/iTwinUI/pull/1881): Added a new subcomponent `InputWithDecorations.Icon` to replace direct usage of `Icon` inside `InputWithDecorations`.
 - Visual changes:
