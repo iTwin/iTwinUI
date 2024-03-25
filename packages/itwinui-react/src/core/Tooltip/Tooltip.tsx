@@ -10,7 +10,6 @@ import {
   offset,
   flip,
   shift,
-  useClick,
   useHover,
   useFocus,
   useDismiss,
@@ -176,11 +175,9 @@ const useTooltip = (options: TooltipOptions = {}) => {
       move: false,
     }),
     useFocus(floating.context),
-    useClick(floating.context, {
-      ignoreMouse: true,
-    }),
     useDismiss(floating.context, {
       referencePress: true,
+      referencePressEvent: 'click',
     }),
   ]);
 
