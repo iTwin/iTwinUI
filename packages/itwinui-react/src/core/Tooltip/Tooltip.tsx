@@ -10,6 +10,7 @@ import {
   offset,
   flip,
   shift,
+  useClick,
   useHover,
   useFocus,
   useDismiss,
@@ -174,6 +175,9 @@ const useTooltip = (options: TooltipOptions = {}) => {
       handleClose: safePolygon({ buffer: -Infinity }),
     }),
     useFocus(floating.context),
+    useClick(floating.context, {
+      ignoreMouse: true,
+    }),
     useDismiss(floating.context),
   ]);
 
