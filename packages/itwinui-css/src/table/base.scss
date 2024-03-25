@@ -66,6 +66,7 @@
       transform: translateX(50%);
       touch-action: none;
       cursor: ew-resize;
+      z-index: 1;
       opacity: 0;
 
       > .iui-table-resizer-bar {
@@ -417,7 +418,7 @@
 
   &.iui-table-cell-sticky {
     position: sticky;
-    z-index: 1;
+    z-index: 2;
     inset-inline-start: var(--iui-table-sticky-left, initial);
     inset-inline-end: var(--iui-table-sticky-right, initial);
   }
