@@ -93,8 +93,8 @@ function useShadowRoot(
 
     if (supportsAdoptedStylesheets) {
       // create an empty stylesheet and add it to the shadowRoot
-      const _global = shadow.ownerDocument.defaultView || globalThis;
-      styleSheet.current = new _global.CSSStyleSheet();
+      const currentWindow = shadow.ownerDocument.defaultView || globalThis;
+      styleSheet.current = new currentWindow.CSSStyleSheet();
       shadow.adoptedStyleSheets = [styleSheet.current];
 
       // add the CSS immediately to avoid FOUC (one-time)
@@ -104,13 +104,14 @@ function useShadowRoot(
     }
 
     queueMicrotask(() => {
+      // Flush the state immediately to prevent flash of unslotted light DOM content
       ReactDOM.flushSync(() => setShadowRoot(shadow));
     });
 
     return () => void setShadowRoot(null);
   }, [templateRef, latestCss]);
 
-  // Synchronize the CSS contents of existing stylesheet
+  // Synchronize `css` with contents of the existing stylesheet
   useLayoutEffect(() => {
     if (css && supportsAdoptedStylesheets) {
       styleSheet.current?.replaceSync(css);
