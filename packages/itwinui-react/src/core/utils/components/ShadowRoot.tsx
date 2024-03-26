@@ -104,7 +104,7 @@ function useShadowRoot(
     }
 
     queueMicrotask(() => {
-      // Flush the state immediately to prevent flash of unslotted light DOM content
+      // Flush the state immediately to ensure layout measurements in parent component are correct
       ReactDOM.flushSync(() => setShadowRoot(shadow));
     });
 
