@@ -53,10 +53,6 @@
     // #endregion
 
     border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-
-    &:hover {
-      --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
-    }
   }
 }
 
@@ -215,7 +211,6 @@
   &[data-iui-disabled='true'] {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     cursor: not-allowed;
   }
 

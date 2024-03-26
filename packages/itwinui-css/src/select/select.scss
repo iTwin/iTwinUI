@@ -39,7 +39,6 @@
   &:where([disabled], :disabled, [aria-disabled='true'], .iui-disabled) {
     --_iui-field-color-text-placeholder: transparent;
     --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
-    // --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     opacity: 1;
     cursor: not-allowed;
   }
