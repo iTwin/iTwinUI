@@ -57,14 +57,14 @@ const ClientShadowRoot = ({
   const templateRef = React.useRef<HTMLTemplateElement>(null);
   const shadowRoot = useShadowRoot(templateRef, { css });
 
+  // fallback to <style> tag if adoptedStyleSheets is not supported
+  const fallbackCss =
+    !supportsAdoptedStylesheets && css ? <style>{css}</style> : null;
+
   return shadowRoot ? (
     ReactDOM.createPortal(
       <>
-        {
-          /* fallback to <style> tag if adoptedStyleSheets is not supported */
-          !supportsAdoptedStylesheets && css ? <style>{css}</style> : null
-        }
-
+        {fallbackCss}
         {children}
       </>,
       shadowRoot,
