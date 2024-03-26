@@ -95,7 +95,7 @@ function useShadowRoot(
       // create an empty stylesheet and add it to the shadowRoot
       const _global = shadow.ownerDocument.defaultView || globalThis;
       styleSheet.current = new _global.CSSStyleSheet();
-      shadow.adoptedStyleSheets.push(styleSheet.current);
+      shadow.adoptedStyleSheets = [styleSheet.current];
 
       // add the CSS immediately to avoid FOUC (one-time)
       if (latestCss.current) {
