@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { useLatestRef, useLayoutEffect } from '../hooks/index.js';
 
 const isBrowser = typeof document !== 'undefined';
 const supportsDSD =
@@ -24,34 +25,7 @@ export const ShadowRoot = ({
   children: React.ReactNode;
   css?: string;
 }) => {
-  const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
   const isFirstRender = useIsFirstRender();
-  const styleSheet = React.useRef<CSSStyleSheet>();
-
-  const attachShadowRef = React.useCallback(
-    (template: HTMLTemplateElement | null) => {
-      const parent = template?.parentElement;
-      if (!template || !parent) {
-        return;
-      }
-      if (parent.shadowRoot) {
-        parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
-      }
-      queueMicrotask(() => {
-        const shadow =
-          parent.shadowRoot || parent.attachShadow({ mode: 'open' });
-
-        if (css && supportsAdoptedStylesheets) {
-          styleSheet.current ||= new CSSStyleSheet();
-          styleSheet.current.replaceSync(css);
-          shadow.adoptedStyleSheets = [styleSheet.current];
-        }
-
-        ReactDOM.flushSync(() => setShadowRoot(shadow));
-      });
-    },
-    [css],
-  );
 
   if (!isBrowser) {
     return (
@@ -68,16 +42,93 @@ export const ShadowRoot = ({
     return null;
   }
 
-  return (
-    <>
-      {shadowRoot ? (
-        ReactDOM.createPortal(children, shadowRoot)
-      ) : (
-        <template ref={attachShadowRef} />
-      )}
-    </>
+  return <ClientShadowRoot css={css}>{children}</ClientShadowRoot>;
+};
+
+// ----------------------------------------------------------------------------
+
+const ClientShadowRoot = ({
+  children,
+  css,
+}: {
+  children: React.ReactNode;
+  css?: string;
+}) => {
+  const templateRef = React.useRef<HTMLTemplateElement>(null);
+  const shadowRoot = useShadowRoot(templateRef, { css });
+
+  return shadowRoot ? (
+    ReactDOM.createPortal(
+      <>
+        {
+          /* fallback to <style> tag if adoptedStyleSheets is not supported */
+          !supportsAdoptedStylesheets && css ? <style>{css}</style> : null
+        }
+
+        {children}
+      </>,
+      shadowRoot,
+    )
+  ) : (
+    <template ref={templateRef} />
   );
 };
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Given a ref, this hook will return a shadowRoot attached to its parent element.
+ *
+ * The css will be added to the shadowRoot using `adoptedStyleSheets` (if supported).
+ */
+function useShadowRoot(
+  templateRef: React.RefObject<HTMLElement>,
+  { css = '' },
+) {
+  const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot | null>(null);
+  const styleSheet = React.useRef<CSSStyleSheet>();
+  const latestCss = useLatestRef(css);
+
+  useLayoutEffect(() => {
+    const parent = templateRef.current?.parentElement;
+    if (!parent) {
+      return;
+    }
+
+    if (parent.shadowRoot) {
+      parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
+    }
+
+    const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
+
+    if (supportsAdoptedStylesheets) {
+      // create an empty stylesheet and add it to the shadowRoot
+      const _global = shadow.ownerDocument.defaultView || globalThis;
+      styleSheet.current = new _global.CSSStyleSheet();
+      shadow.adoptedStyleSheets.push(styleSheet.current);
+
+      // add the CSS immediately to avoid FOUC (one-time)
+      if (latestCss.current) {
+        styleSheet.current.replaceSync(latestCss.current);
+      }
+    }
+
+    queueMicrotask(() => {
+      ReactDOM.flushSync(() => setShadowRoot(shadow));
+    });
+
+    return () => void setShadowRoot(null);
+  }, [templateRef, latestCss]);
+
+  // Synchronize the CSS contents of existing stylesheet
+  useLayoutEffect(() => {
+    if (css && supportsAdoptedStylesheets) {
+      styleSheet.current?.replaceSync(css);
+    }
+  }, [css]);
+
+  return shadowRoot;
+}
 
 // ----------------------------------------------------------------------------
 
