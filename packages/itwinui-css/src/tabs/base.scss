@@ -130,6 +130,7 @@ $borderless-horizontal-tab-min-height: calc(
   grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr;
   contain: inline-size;
+  inline-size: 100%;
 
   .iui-tabs {
     display: flex;
