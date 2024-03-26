@@ -8,7 +8,7 @@ import { getWindow } from '../functions/dom.js';
 
 export const useMediaQuery = (queryString: string) => {
   const [getSnapshot, subscribe] = React.useMemo(() => {
-    const mediaQueryList = getWindow()?.matchMedia(queryString);
+    const mediaQueryList = getWindow()?.matchMedia?.(queryString);
 
     return [
       () => mediaQueryList?.matches,
