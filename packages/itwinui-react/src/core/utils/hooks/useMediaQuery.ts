@@ -6,11 +6,11 @@ import * as React from 'react';
 import { useSyncExternalStore } from './useSyncExternalStore.js';
 
 export const useMediaQuery = (queryString: string) => {
-  const getSnapshot = () => {
+  const getSnapshot = React.useCallback(() => {
     return typeof window !== 'undefined'
       ? window.matchMedia?.(queryString).matches
       : undefined;
-  };
+  }, [queryString]);
 
   const subscribe = React.useCallback(
     (onChange: () => void) => {
