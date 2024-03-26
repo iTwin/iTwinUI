@@ -4,17 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useSyncExternalStore } from './useSyncExternalStore.js';
+import { getWindow } from '../functions/dom.js';
 
 export const useMediaQuery = (queryString: string) => {
   const [getSnapshot, subscribe] = React.useMemo(() => {
-    const mediaQueryList = window.matchMedia(queryString);
+    const mediaQueryList = getWindow()?.matchMedia(queryString);
 
     return [
-      () => mediaQueryList.matches,
+      () => mediaQueryList?.matches,
       (onChange: () => void) => {
-        mediaQueryList.addEventListener?.('change', onChange);
+        mediaQueryList?.addEventListener?.('change', onChange);
         return () => {
-          mediaQueryList.removeEventListener?.('change', onChange);
+          mediaQueryList?.removeEventListener?.('change', onChange);
         };
       },
     ];
@@ -22,9 +23,7 @@ export const useMediaQuery = (queryString: string) => {
 
   return useSyncExternalStore(
     subscribe,
-    isClient ? getSnapshot : () => undefined,
+    typeof document !== 'undefined' ? getSnapshot : () => undefined,
     () => undefined,
   );
 };
-
-const isClient = typeof document !== 'undefined';
