@@ -24,34 +24,32 @@ export const useSyncExternalStore =
 // The shim below is adapted from the React source code to make it ESM-compatible.
 // MIT License: https://github.com/facebook/react/blob/main/LICENSE
 
-/** @see https://github.com/facebook/react/blob/1a6d36b1a3ec43cb5700e28d7315b3aa2822365d/packages/use-sync-external-store/src/useSyncExternalStoreShimServer.js */
 function useSESServerShim<T>(_: () => () => void, getSnapshot: () => T): T {
   return getSnapshot();
 }
 
-/** @see https://github.com/facebook/react/blob/1a6d36b1a3ec43cb5700e28d7315b3aa2822365d/packages/use-sync-external-store/src/useSyncExternalStoreShimClient.js */
 function useSESClientShim<T>(
   subscribe: (onSubscribe: () => void) => () => void,
   getSnapshot: () => T,
 ): T {
   const value = getSnapshot();
-  const [{ inst }, forceUpdate] = React.useState({
-    inst: { value, getSnapshot },
+  const [{ instance }, forceUpdate] = React.useState({
+    instance: { value, getSnapshot },
   });
 
   React.useLayoutEffect(() => {
-    inst.value = value;
-    inst.getSnapshot = getSnapshot;
+    instance.value = value;
+    instance.getSnapshot = getSnapshot;
 
-    if (checkIfSnapshotChanged(inst)) {
-      forceUpdate({ inst });
+    if (!Object.is(value, getSnapshot())) {
+      forceUpdate({ instance });
     }
   }, [subscribe, value, getSnapshot]); // eslint-disable-line
 
   React.useEffect(() => {
     const synchronize = () => {
-      if (checkIfSnapshotChanged(inst)) {
-        forceUpdate({ inst });
+      if (!Object.is(instance.value, instance.getSnapshot())) {
+        forceUpdate({ instance });
       }
     };
     synchronize();
@@ -59,15 +57,4 @@ function useSESClientShim<T>(
   }, [subscribe]); // eslint-disable-line
 
   return value;
-}
-
-function checkIfSnapshotChanged<T>(inst: { value: T; getSnapshot: () => T }) {
-  const latestGetSnapshot = inst.getSnapshot;
-  const prevValue = inst.value;
-  try {
-    const nextValue = latestGetSnapshot();
-    return !Object.is(prevValue, nextValue);
-  } catch (error) {
-    return true;
-  }
 }
