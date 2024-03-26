@@ -12,19 +12,15 @@ const supportsDSD =
 const supportsAdoptedStylesheets =
   isBrowser && 'adoptedStyleSheets' in Document.prototype;
 
+type ShadowRootProps = { children: React.ReactNode; css?: string };
+
 /**
  * Wrapper around `<template>` element that attaches shadow root to its parent
  * and moves its children into the shadow root.
  *
  * @private
  */
-export const ShadowRoot = ({
-  children,
-  css,
-}: {
-  children: React.ReactNode;
-  css?: string;
-}) => {
+export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
   const isFirstRender = useIsFirstRender();
 
   if (!isBrowser) {
@@ -47,13 +43,7 @@ export const ShadowRoot = ({
 
 // ----------------------------------------------------------------------------
 
-const ClientShadowRoot = ({
-  children,
-  css,
-}: {
-  children: React.ReactNode;
-  css?: string;
-}) => {
+const ClientShadowRoot = ({ children, css }: ShadowRootProps) => {
   const templateRef = React.useRef<HTMLTemplateElement>(null);
   const shadowRoot = useShadowRoot(templateRef, { css });
 
