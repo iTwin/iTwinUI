@@ -22,7 +22,9 @@ export const useMediaQuery = (queryString: string) => {
 
   return useSyncExternalStore(
     subscribe,
-    typeof window !== 'undefined' ? getSnapshot : () => undefined,
+    isClient ? getSnapshot : () => undefined,
     () => undefined,
   );
 };
+
+const isClient = typeof document !== 'undefined';
