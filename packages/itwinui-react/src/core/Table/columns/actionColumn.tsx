@@ -86,7 +86,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
               // and table is scrolled to the very left which means our visibility dropdown menu is not visible.
               // So for better UX we need to scroll to that dropdown menu.
               queueMicrotask(() => {
-                buttonRef.current?.scrollIntoView();
+                buttonRef.current?.scrollIntoView({ block: 'nearest' });
               });
             };
             return (

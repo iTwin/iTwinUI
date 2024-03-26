@@ -1,0 +1,32 @@
+---
+type Props = {
+  backgroundColor?:
+    | 'skyblue'
+    | 'celery'
+    | 'froly'
+    | 'steelblue'
+    | 'sunglow'
+    | 'seabuckthorn'
+    | 'montecarlo'
+    | 'poloblue'
+    | 'bouquet'
+    | 'ash'
+    | 'oak';
+  status?: 'informational' | 'positive' | 'warning' | 'negative';
+} & astroHTML.JSX.HTMLAttributes;
+
+const { class: className, backgroundColor, status, ...props } = Astro.props;
+---
+
+<span
+  class:list={['iui-badge', className]}
+  style={{
+    '--iui-badge-background-color': backgroundColor
+      ? `var(--iui-color-background-${backgroundColor})`
+      : undefined,
+  }}
+  data-iui-status={status}
+  {...props}
+>
+  <slot />
+</span>
