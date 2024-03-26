@@ -2,4 +2,6 @@
 "@itwin/itwinui-react": patch
 ---
 
-`Tooltip`s no longer displayed upon hovering out of the reference element after clicking it. Components that use `Tooltip` internally are also affected. (E.g.`IconButton`, `SideNavigation`, etc.)
+Fixed an issue where `Tooltip` would stay open after clicking on the trigger element. The tooltip will now be correctly dismissed upon click.
+
+Also affects other components that use tooltips internally: `IconButton`, `SideNavigation`, etc.
