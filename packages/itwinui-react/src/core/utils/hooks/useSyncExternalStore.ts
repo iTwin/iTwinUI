@@ -46,7 +46,7 @@ function useSESClientShim<T>(
     if (checkIfSnapshotChanged(inst)) {
       forceUpdate({ inst });
     }
-  }, [subscribe, value, getSnapshot]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [subscribe, value, getSnapshot]); // eslint-disable-line
 
   React.useEffect(() => {
     const synchronize = () => {
@@ -56,7 +56,7 @@ function useSESClientShim<T>(
     };
     synchronize();
     return subscribe(synchronize);
-  }, [subscribe]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [subscribe]); // eslint-disable-line
 
   return value;
 }
