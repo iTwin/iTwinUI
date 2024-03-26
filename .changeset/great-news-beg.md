@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Adds `inline-size` to `Tabs.Wrapper` to counteract visual change to the width of horizontal tabs wrappers.
+Fixed a regression in `Tabs` where the panel content was not occupying the full width of the container.

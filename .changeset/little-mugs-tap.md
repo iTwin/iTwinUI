@@ -2,4 +2,4 @@
 "@itwin/itwinui-css": patch
 ---
 
-Adds `inline-size` to `iui-tabs-horizontal` to counteract visual change to the width of horizontal tabs wrappers.
+Fixed a regression in `iui-tabs` where the panel content was not occupying the full width of the container.
