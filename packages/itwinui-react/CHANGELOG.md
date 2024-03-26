@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.7.3
+
+### Patch Changes
+
+- [#1946](https://github.com/iTwin/iTwinUI/pull/1946): Fixed a bug in `Table` where resizing the columns and then toggling the column visibility in the column manager would trigger an unnecessary auto-scroll in the vertical direction.
+- [#1943](https://github.com/iTwin/iTwinUI/pull/1943): Fixed a z-index issue in `Table` where the table resizer appeared above the sticky header cells.
+
 ## 3.7.2
 
 ### Patch Changes
