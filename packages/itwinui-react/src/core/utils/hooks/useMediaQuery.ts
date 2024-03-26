@@ -4,26 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useSyncExternalStore } from './useSyncExternalStore.js';
-import { getWindow } from '../functions/dom.js';
 
 export const useMediaQuery = (queryString: string) => {
-  const [getSnapshot, subscribe] = React.useMemo(() => {
-    const mediaQueryList = getWindow()?.matchMedia?.(queryString);
+  const getSnapshot = () => {
+    return typeof window !== 'undefined'
+      ? window.matchMedia?.(queryString).matches
+      : undefined;
+  };
 
-    return [
-      () => mediaQueryList?.matches,
-      (onChange: () => void) => {
-        mediaQueryList?.addEventListener?.('change', onChange);
-        return () => {
-          mediaQueryList?.removeEventListener?.('change', onChange);
-        };
-      },
-    ];
-  }, [queryString]);
-
-  return useSyncExternalStore(
-    subscribe,
-    typeof document !== 'undefined' ? getSnapshot : () => undefined,
-    () => undefined,
+  const subscribe = React.useCallback(
+    (onChange: () => void) => {
+      const mediaQueryList = window.matchMedia?.(queryString);
+      mediaQueryList?.addEventListener?.('change', onChange);
+      return () => mediaQueryList?.removeEventListener?.('change', onChange);
+    },
+    [queryString],
   );
+
+  return useSyncExternalStore(subscribe, getSnapshot, () => undefined);
 };
