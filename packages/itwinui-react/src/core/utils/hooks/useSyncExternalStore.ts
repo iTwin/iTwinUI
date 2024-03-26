@@ -5,30 +5,23 @@
 import * as React from 'react';
 const _React = React; // prevent bundlers from stripping the namespace import
 
-const useSyncExternalStoreShim =
-  typeof document === 'undefined' ? useSESServerShim : useSESClientShim;
-
 /**
  * Wrapper around `React.useSyncExternalStore` that uses a shim for React 17.
- *
- * Note: The shim does not use `getServerSnapshot` at all, because there is
- * apparently no way to check "hydrating" state in pre-18.
- *
- * @see https://github.com/facebook/react/tree/main/packages/use-sync-external-store
  */
 export const useSyncExternalStore =
   _React.useSyncExternalStore || useSyncExternalStoreShim;
 
 // ----------------------------------------------------------------------------
 
-// The shim below is adapted from the React source code to make it ESM-compatible.
-// MIT License: https://github.com/facebook/react/blob/main/LICENSE
-
-function useSESServerShim<T>(_: () => () => void, getSnapshot: () => T): T {
-  return getSnapshot();
-}
-
-function useSESClientShim<T>(
+/**
+ * The shim below is adapted from React's source to make it ESM-compatible.
+ *
+ * Note: This does not use `getServerSnapshot` at all, because there is
+ * apparently no way to check "hydrating" state in pre-18.
+ *
+ * @see https://github.com/facebook/react/tree/main/packages/use-sync-external-store
+ */
+function useSyncExternalStoreShim<T>(
   subscribe: (onSubscribe: () => void) => () => void,
   getSnapshot: () => T,
 ): T {
