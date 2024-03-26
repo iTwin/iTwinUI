@@ -10,7 +10,6 @@ import {
   offset,
   flip,
   shift,
-  useClick,
   useHover,
   useFocus,
   useDismiss,
@@ -173,10 +172,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
     useHover(floating.context, {
       delay: delay ?? { open: 50, close: 250 },
       handleClose: safePolygon({ buffer: -Infinity }),
+      move: false,
     }),
     useFocus(floating.context),
-    useClick(floating.context),
-    useDismiss(floating.context),
+    useDismiss(floating.context, {
+      referencePress: true,
+      referencePressEvent: 'click',
+    }),
   ]);
 
   // Manually add attributes and event handlers to external reference element,
