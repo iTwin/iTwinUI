@@ -19,9 +19,9 @@ import {
   inline,
   hide,
   FloatingFocusManager,
-  // useHover,
+  useHover,
   useFocus,
-  // safePolygon,
+  safePolygon,
   useRole,
   FloatingPortal,
 } from '@floating-ui/react';
@@ -108,7 +108,6 @@ type PopoverInternalProps = {
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-  isMenuItem?: boolean;
 };
 
 // ----------------------------------------------------------------------------
@@ -123,7 +122,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
     role,
-    isMenuItem = false,
   } = options;
 
   const middleware = { flip: true, shift: true, ...options.middleware };
@@ -157,24 +155,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
   const interactions = useInteractions([
     useClick(floating.context, { enabled: !!trigger.click }),
-    useDismiss(floating.context, {
-      outsidePress: closeOnOutsideClick,
-      escapeKey: !isMenuItem,
+    useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
+    useHover(floating.context, {
+      enabled: !!trigger.hover,
+      delay: 100,
+      handleClose: safePolygon({ buffer: 1 }),
     }),
-    // useHover(floating.context, {
-    //   enabled: !!trigger.hover,
-    //   delay: 100,
-    //   // mouseOnly: true,
-    //   // restMs: 100,
-    //   // move: false,
-    //   handleClose: safePolygon({ buffer: 1 }),
-    //   mouseOnly: true,
-    //   move: false,
-    // }),
-    useFocus(floating.context, {
-      enabled: !!trigger.focus,
-      visibleOnly: false,
-    }),
+    useFocus(floating.context, { enabled: !!trigger.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
   ]);
 

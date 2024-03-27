@@ -160,7 +160,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
-    isMenuItem: true,
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -225,12 +224,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         forwardedRef,
         subMenuItems.length > 0 ? popover.refs.setReference : null,
       )}
-      onMouseEnter={() => menuItemRef.current?.focus()}
-      onMouseLeave={() => {
-        // Lose focus after a short delay
-        // setTimeout(() => menuItemRef.current?.blur(), 250);
-        setIsSubmenuVisible(false);
-      }}
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
