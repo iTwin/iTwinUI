@@ -180,7 +180,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.repos.createCheckRun({
+            github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head_sha: '${{ github.event.pull_request.head.sha }}',
