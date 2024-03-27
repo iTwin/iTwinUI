@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Badge_ from '../components/Badge.astro';
 ---
 
 <Layout title='Badge'>
@@ -16,40 +17,28 @@ import Layout from './_layout.astro';
 
   <h2>Soft backgrounds</h2>
   <section id='demo-soft-backgrounds'>
-    <span class='iui-badge'> Default</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(197, 71%, 83%);'>Skyblue</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(72, 51%, 66%);'>Celery</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(2, 90%, 80%);'>Froly</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(207, 44%, 73%);'
-      >Steelblue</span
-    >
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(42, 100%, 70%);'>Sunglow</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(29, 92%, 71%);'
-      >Seabuckthorn
-    </span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(176, 43%, 72%);'
-      >Montecarlo</span
-    >
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(211, 44%, 77%);'
-      >Poloblue
-    </span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(305, 19%, 75%);'>Boquet</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(42, 15%, 85%);'>Ash</span>
-    <span class='iui-badge' style='--iui-badge-background-color: hsl(27, 32%, 72%);'>Oak</span>
-    <span
-      class='iui-badge'
-      style='--iui-badge-background-color: hsl(197, 71%, 83%);'
-      title='A long label that becomes truncated'>A long label that becomes truncated</span
-    >
+    <Badge_>Default</Badge_>
+    <Badge_ backgroundColor='skyblue'>Skyblue</Badge_>
+    <Badge_ backgroundColor='celery'>Celery</Badge_>
+    <Badge_ backgroundColor='froly'>Froly</Badge_>
+    <Badge_ backgroundColor='steelblue'>Steelblue</Badge_>
+    <Badge_ backgroundColor='sunglow'>Sunglow</Badge_>
+    <Badge_ backgroundColor='seabuckthorn'>Seabuckthorn</Badge_>
+    <Badge_ backgroundColor='montecarlo'>Montecarlo</Badge_>
+    <Badge_ backgroundColor='poloblue'>Poloblue</Badge_>
+    <Badge_ backgroundColor='bouquet'>Boquet</Badge_>
+    <Badge_ backgroundColor='ash'>Ash</Badge_>
+    <Badge_ backgroundColor='oak'>Oak</Badge_>
+    <Badge_ backgroundColor='skyblue'>A long label that becomes truncated</Badge_>
   </section>
 
   <hr />
 
   <h2>Statuses</h2>
   <section id='demo-statuses'>
-    <span class='iui-badge' data-iui-status='informational'>Informational</span>
-    <span class='iui-badge' data-iui-status='positive'>Positive</span>
-    <span class='iui-badge' data-iui-status='negative'>Negative</span>
-    <span class='iui-badge' data-iui-status='warning'>Warning</span>
+    <Badge_ status='informational'>Informational</Badge_>
+    <Badge_ status='positive'>Positive</Badge_>
+    <Badge_ status='negative'>Negative</Badge_>
+    <Badge_ status='warning'>Warning</Badge_>
   </section>
 </Layout>
