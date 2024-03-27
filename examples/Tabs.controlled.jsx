@@ -13,7 +13,6 @@ export default () => {
       value={currentTabValue}
       onValueChange={(value) => setCurrentTabValue(value)}
       defaultValue='pear'
-      className='demo-container'
     >
       <Tabs.TabList>
         <Tabs.Tab value='apple' label='Apple' key='apple' />

@@ -7,7 +7,7 @@ import { Tabs } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Tabs.Wrapper type='borderless' className='demo-container'>
+    <Tabs.Wrapper type='borderless'>
       <Tabs.TabList>
         <Tabs.Tab value='apple' label='Apple' key='apple' />
         <Tabs.Tab value='orange' label='Orange' key='orange' />
