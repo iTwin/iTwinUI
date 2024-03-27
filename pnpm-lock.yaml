@@ -323,8 +323,8 @@ importers:
   packages/itwinui-react:
     dependencies:
       '@floating-ui/react':
-        specifier: ^0.26.3
-        version: 0.26.9(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.26.3
+        version: 0.26.3(react-dom@18.2.0)(react@18.2.0)
       '@itwin/itwinui-illustrations-react':
         specifier: ^2.1.0
         version: 2.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -2863,14 +2863,14 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@floating-ui/react@0.26.9(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-p86wynZJVEkEq2BBjY/8p2g3biQ6TlgT4o/3KgFKyTWoJLU1GZ8wpctwRqtkEl2tseYA+kw7dBAIDFcednfI5w==}
+  /@floating-ui/react@0.26.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-iKH8WRR0L/nLiM6qavFZxkyegIZRMxGnM9aKEc71M4wRlUNkgTamjPsOQXy11oZbDOH37MiTbk/nAPn9M2+shA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
-      '@floating-ui/utils': 0.2.1
+      '@floating-ui/utils': 0.1.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tabbable: 6.2.0
