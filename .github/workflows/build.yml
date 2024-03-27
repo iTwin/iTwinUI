@@ -186,6 +186,13 @@ jobs:
               head_sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: 'neutral',
               name: 'Deploy preview',
+              output: {
+                title: 'Deploy preview',
+                summary: 'Live preview of the current branch',
+                text: '[Portal](https://itwin.github.io/iTwinUI/${{ github.event.number }})
+                [css](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
+                [react](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)'
+              }
             })
 
   unit-test:
