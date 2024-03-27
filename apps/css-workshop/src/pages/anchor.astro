@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Anchor_ from '../components/Anchor.astro';
 ---
 
 <Layout title='Anchor'>
@@ -15,24 +16,42 @@ import Layout from './_layout.astro';
 
   <section id='demo-default'>
     <p>
-      <a href='https://itwin.github.io/iTwinUI/' class='iui-anchor' id='test-1'
-        >iTwinUI components list</a
-      > - A basic anchor link.
+      <Anchor_ href='https://itwin.github.io/iTwinUI/' id='test-1'>iTwinUI components list</Anchor_>
+       - A basic anchor link.
     </p>
 
     <p>
-      <a
+      <Anchor_
+        external='true'
         href='https://www.bentley.com/en'
-        class='iui-anchor iui-anchor-external'
         referrerpolicy='no-referrer'
         target='_blank'
-        id='test-2'>Bentley Systems<span class='iui-visually-hidden'>(opens in new tab)</span></a
-      > - An anchor link that opens in a new tab / window.
+      >
+        Bentley Systems<span class='iui-visually-hidden'>(opens in new tab)</span>
+      </Anchor_>
+       - An anchor link that opens in a new tab / window.
     </p>
 
     <p>
-      <a href='#' class='iui-anchor' data-iui-underline='true'>This one</a> is underlined by
-      default.
+      <Anchor_ underline='true' href='#' id='test-2'>This one</Anchor_> is underlined by default.
+    </p>
+  </section>
+
+  <section id='demo-status'>
+    <p>
+      <Anchor_ href='#'>Accent</Anchor_>
+    </p>
+    <p>
+      <Anchor_ href='#' status='informational'>Informational</Anchor_>
+    </p>
+    <p>
+      <Anchor_ href='#' status='positive'>Positive</Anchor_>
+    </p>
+    <p>
+      <Anchor_ href='#' status='warning'>Warning</Anchor_>
+    </p>
+    <p>
+      <Anchor_ href='#' status='negative'>Negative</Anchor_>
     </p>
   </section>
 </Layout>
