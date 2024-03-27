@@ -180,14 +180,12 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.repos.createCommitStatus({
+            github.rest.repos.createCheckRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              sha: '${{ github.event.pull_request.head.sha }}',
-              state: 'success',
-              context: 'Deploy preview',
-              description: 'Live preview of the current branch',
-              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
+              head_sha: '${{ github.event.pull_request.head.sha }}',
+              conclusion: 'neutral',
+              name: 'Deploy preview',
             })
 
   unit-test:
