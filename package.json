@@ -69,7 +69,10 @@
     "typescript": "~5.1.6",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.18",
-    "astro": "~4.5.6"
+    "astro": "~4.5.6",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "next": "12.3.0"
   },
   "engines": {
     "node": ">=18.14.1"
