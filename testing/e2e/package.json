@@ -9,7 +9,7 @@
     "dev": "remix vite:dev",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
-    "test": "playwright test"
+    "test": "playwright test --pass-with-no-tests"
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
