@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.8.0
+
+### Minor Changes
+
+- [#1957](https://github.com/iTwin/iTwinUI/pull/1957): Bumped the minimum required version of `@floating-ui/react` from `^0.26.3` to `^0.26.10`. (Make sure to also update transitive deps!)
+
 ## 3.7.4
 
 ### Patch Changes
