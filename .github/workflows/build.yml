@@ -189,7 +189,7 @@ jobs:
               output: {
                 title: 'Deploy preview',
                 summary: 'Live preview of the current branch',
-                text: '[Portal](https://itwin.github.io/iTwinUI/${{ github.event.number }})\n[css](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)\n[react](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)'
+                text: '[Portal](https://itwin.github.io/iTwinUI/${{ github.event.number }})\n[CSS](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)\n[React](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)'
               }
             })
 
