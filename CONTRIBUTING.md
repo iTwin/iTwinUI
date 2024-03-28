@@ -329,7 +329,7 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
 2. From the monorepo root, run `pnpm run test --filter=react-workshop` or `pnpm test:react`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm:react --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm test:react --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
 3. Once the tests finish running, you can approve any failing test images using `pnpm approve:react`.
 
 #### Writing visual tests
@@ -396,6 +396,8 @@ The `testing/e2e` workspace facilitates testing of complex scenarios in a real b
 - **To write tests**, add a new [Remix route](https://remix.run/docs/en/main/discussion/routes#conventional-route-folders) and a `.spec.ts` next to it.
 
 For more details on how to write a test, see [Playwright docs](https://playwright.dev/docs/writing-tests).
+
+---
 
 ## Pull Requests
 
