@@ -40,7 +40,7 @@
     button[disabled] &,
     button:disabled &,
     button[aria-disabled='true'] & {
-      --_iui-button-icon-fill-hover: var(--iui-color-icon-disabled);
+      fill: var(--iui-color-icon-disabled);
     }
   }
 }
