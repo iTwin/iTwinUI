@@ -120,7 +120,6 @@
   padding-inline: 1px; // To account for the left and right edges of the 1px border
   transition:
     background-color var(--iui-duration-1) ease-out,
-    border-color var(--iui-duration-1) ease-out,
     color var(--iui-duration-1) ease-out;
 
   // Adding before pseudo-element to make inner elements more centered
