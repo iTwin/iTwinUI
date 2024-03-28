@@ -24,28 +24,22 @@ type ShadowRootProps = { children: React.ReactNode; css?: string };
 export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
   const isHydrating = useHydration() === 'hydrating';
 
-  return (
-    <React.Suspense>
-      {(() => {
-        if (!isBrowser) {
-          return (
-            <template {...{ shadowrootmode: 'open' }}>
-              {css && <style>{css}</style>}
-              {children}
-            </template>
-          );
-        }
+  if (!isBrowser) {
+    return (
+      <template {...{ shadowrootmode: 'open' }}>
+        {css && <style>{css}</style>}
+        {children}
+      </template>
+    );
+  }
 
-        // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
-        // To pass hydration, the first client render needs to emulate this browser behavior and return null.
-        if (supportsDSD && isHydrating) {
-          return null;
-        }
+  // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
+  // To pass hydration, the first client render needs to emulate this browser behavior and return null.
+  if (supportsDSD && isHydrating) {
+    return null;
+  }
 
-        return <ClientShadowRoot css={css}>{children}</ClientShadowRoot>;
-      })()}
-    </React.Suspense>
-  );
+  return <ClientShadowRoot css={css}>{children}</ClientShadowRoot>;
 };
 
 // ----------------------------------------------------------------------------
