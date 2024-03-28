@@ -104,8 +104,6 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
-    permissions:
-      checks: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
@@ -187,7 +185,7 @@ jobs:
               repo: context.repo.repo,
               head_sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: 'neutral',
-              name: 'Deploy preview',
+              name: 'deploy-preview',
               output: {
                 title: 'Deploy preview',
                 summary: 'Live preview of the current branch',
