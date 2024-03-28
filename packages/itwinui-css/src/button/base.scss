@@ -39,7 +39,7 @@
 
     button[disabled] &,
     button:disabled &,
-    button[aria-disabled='true'] {
+    button[aria-disabled='true'] & {
       fill: var(--iui-color-icon-disabled);
     }
   }
