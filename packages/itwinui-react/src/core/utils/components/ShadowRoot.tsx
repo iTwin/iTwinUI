@@ -86,27 +86,34 @@ function useShadowRoot(
       return;
     }
 
-    if (parent.shadowRoot) {
-      parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
-    }
-
-    const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
-
-    if (supportsAdoptedStylesheets) {
-      // create an empty stylesheet and add it to the shadowRoot
-      const currentWindow = shadow.ownerDocument.defaultView || globalThis;
-      styleSheet.current = new currentWindow.CSSStyleSheet();
-      shadow.adoptedStyleSheets = [styleSheet.current];
-
-      // add the CSS immediately to avoid FOUC (one-time)
-      if (latestCss.current) {
-        styleSheet.current.replaceSync(latestCss.current);
+    const setupShadowRoot = () => {
+      if (parent.shadowRoot) {
+        parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
       }
-    }
+
+      const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
+
+      if (supportsAdoptedStylesheets) {
+        // create an empty stylesheet and add it to the shadowRoot
+        const currentWindow = shadow.ownerDocument.defaultView || globalThis;
+        styleSheet.current = new currentWindow.CSSStyleSheet();
+        shadow.adoptedStyleSheets = [styleSheet.current];
+
+        // add the CSS immediately to avoid FOUC (one-time)
+        if (latestCss.current) {
+          styleSheet.current.replaceSync(latestCss.current);
+        }
+      }
+
+      // Flush the state immediately after shadow-root is attached, to ensure that layout
+      // measurements in parent component are correct.
+      // Without this, the parent component may end up measuring the layout when the shadow-root
+      // is attached in the DOM but React hasn't rendered any slots or content into it yet.
+      ReactDOM.flushSync(() => setShadowRoot(shadow));
+    };
 
     queueMicrotask(() => {
-      // Flush the state immediately to ensure layout measurements in parent component are correct
-      ReactDOM.flushSync(() => setShadowRoot(shadow));
+      setupShadowRoot();
     });
 
     return () => void setShadowRoot(null);
