@@ -14,7 +14,7 @@ try {
     });
   } else if (argument) {
     spawn(
-      `conc -g -n "CSS-workshop,Unit,A11y,React-workshop,e2e" -c "#8BCC2F,#D8598C,#539AD0,#D1B52A,white" "pnpm run test:css --filter=${argument.toLowerCase()}" "pnpm --filter=@itwin/itwinui-react run test:unit ${argument}" "pnpm run test:a11y --env componentName=${argument}" "pnpm run test:react --spec="**/${argument}.*"" "pnpm run test:e2e -- ${argument}"`,
+      `conc -g -n "CSS-workshop,Unit,A11y,React-workshop,e2e" -c "#8BCC2F,#D8598C,#539AD0,#D1B52A,white" "pnpm test:css --filter=${argument.toLowerCase()}" "pnpm test:unit ${argument}" "pnpm test:a11y --env componentName=${argument}" "pnpm test:react --spec="**/${argument}.*"" "pnpm run test:e2e -- ${argument}"`,
       {
         stdio: 'inherit',
         shell: true,

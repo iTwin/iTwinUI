@@ -33,6 +33,7 @@
     "test:react": "pnpm run build --filter=react-workshop && pnpm --filter=react-workshop run test ",
     "test:a11y": "pnpm run build --filter=a11y && pnpm --filter './testing/a11y' run test",
     "test:e2e": "pnpm run build --filter=e2e && pnpm --filter=e2e run test",
+    "test:unit": "pnpm --filter=@itwin/itwinui-react run test:unit",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install && playwright install",
