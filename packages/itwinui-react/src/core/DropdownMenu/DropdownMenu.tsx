@@ -84,6 +84,8 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   const triggerRef = React.useRef<HTMLElement>(null);
 
   const close = React.useCallback(() => {
+    console.log('close() called');
+
     setVisible(false);
     triggerRef.current?.focus({ preventScroll: true });
   }, [setVisible]);

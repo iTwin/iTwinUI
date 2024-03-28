@@ -21,8 +21,15 @@ import { usePopover } from '../Popover/Popover.js';
  */
 const MenuItemContext = React.createContext<{
   ref: React.RefObject<HTMLElement> | undefined;
+  isNestedSubmenuVisible: boolean | undefined;
   setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}>({ ref: undefined, setIsNestedSubmenuVisible: () => {} });
+  value: string | undefined;
+}>({
+  ref: undefined,
+  isNestedSubmenuVisible: undefined,
+  setIsNestedSubmenuVisible: () => {},
+  value: undefined,
+});
 
 export type MenuItemProps = {
   /**
@@ -116,15 +123,40 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parent = React.useContext(MenuItemContext);
 
   const onVisibleChange = (open: boolean) => {
-    setIsSubmenuVisible(open);
+    // if (!open) {
+    //   console.log(
+    //     `${children}, onVisibleChange`,
+    //     open,
+    //     isNestedSubmenuVisible,
+    //     // parent.value,
+    //     // parent.isNestedSubmenuVisible,
+    //   );
+    // }
+
+    setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
     // we don't want parent to close when mouse goes into a nested submenu,
     // so we need to let the parent know whether the submenu is still open.
     parent.setIsNestedSubmenuVisible(open);
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
+  // if (["Item #10", "Item #11"].includes(children as string)) {
+  //   console.log(children, open, isNestedSubmenuVisible);
+
+  //   let currentNode = parent;
+  //   while (currentNode != null) {
+  //     console.log(currentNode.value, currentNode.isNestedSubmenuVisible);
+  //     currentNode = currentNode.parent;
+  //   }
+  // }
+
   const popover = usePopover({
+    // nodeId,
+    // visible: isSubmenuVisible,
     visible: isSubmenuVisible || isNestedSubmenuVisible,
+    // || children === 'Item #3',
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
@@ -226,7 +258,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {subMenuItems.length > 0 && popover.open && (
         <Portal>
           <MenuItemContext.Provider
-            value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
+            value={{
+              ref: menuItemRef,
+              isNestedSubmenuVisible,
+              setIsNestedSubmenuVisible,
+              value: `${children}`,
+            }}
           >
             <Menu
               setFocus={focusOnSubmenu}
