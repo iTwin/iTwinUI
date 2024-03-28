@@ -103,6 +103,17 @@ export const InformationPanel = React.forwardRef((props, ref) => {
     [orientation],
   );
 
+  React.useEffect(() => {
+    if (!infoPanelRef.current) {
+      return;
+    }
+    if (orientation === 'vertical') {
+      infoPanelRef.current.style.height = '';
+    } else {
+      infoPanelRef.current.style.width = '';
+    }
+  }, [orientation]);
+
   return (
     <Box
       className={cx(
