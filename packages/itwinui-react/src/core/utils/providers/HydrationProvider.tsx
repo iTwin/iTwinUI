@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useSyncExternalStore } from '../hooks/index.js';
+import { useSyncExternalStore, useIsClient } from '../hooks/index.js';
 
 const HydrationContext = React.createContext(false);
 const noopSubscribe = () => () => {};
@@ -30,8 +30,9 @@ export const useHydration = () => {
 
   // Returns true after hydration is complete (in all React versions).
   const hydrated = React.useContext(HydrationContext);
+  const hydratedFallback = useIsClient();
 
-  if (hydrated) {
+  if (hydrated || hydratedFallback) {
     return 'hydrated';
   } else if (hydrating) {
     return 'hydrating';

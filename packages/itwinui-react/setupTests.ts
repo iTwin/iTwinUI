@@ -22,14 +22,6 @@ vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
   };
 });
 
-vi.mock('./src/core/utils/providers/HydrationProvider.js', () => {
-  return {
-    // noop because we don't use or care about context or hydration in tests
-    useHydration: () => 'hydrated',
-    HydrationProvider: ({ children = '' }) => children,
-  };
-});
-
 vi.mock('@testing-library/react', async () => {
   const originalRtl = await vi.importActual<
     typeof import('@testing-library/react')
