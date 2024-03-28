@@ -36,7 +36,7 @@
     @include active.iui-button-active;
     @include active.iui-button-default-active;
 
-    &:is([data-iui-variant='borderless']) {
+    &[data-iui-variant='borderless'] {
       @include active.iui-button-borderless-active;
     }
   }
