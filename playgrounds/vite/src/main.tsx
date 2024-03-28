@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import App from './App.tsx';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
@@ -31,11 +31,8 @@ const Shell = () => {
   );
 };
 
-const root = document.getElementById('root')!;
-
-ReactDOM.render(
+createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Shell />
   </React.StrictMode>,
-  root,
 );
