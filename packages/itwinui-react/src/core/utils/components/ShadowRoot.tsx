@@ -5,6 +5,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useLatestRef, useLayoutEffect } from '../hooks/index.js';
+import { useHydration } from '../providers/index.js';
 
 const isBrowser = typeof document !== 'undefined';
 const supportsDSD =
@@ -21,24 +22,30 @@ type ShadowRootProps = { children: React.ReactNode; css?: string };
  * @private
  */
 export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
-  const isFirstRender = useIsFirstRender();
+  const isHydrating = useHydration() === 'hydrating';
 
-  if (!isBrowser) {
-    return (
-      <template {...{ shadowrootmode: 'open' }}>
-        {css && <style>{css}</style>}
-        {children}
-      </template>
-    );
-  }
+  return (
+    <React.Suspense>
+      {(() => {
+        if (!isBrowser) {
+          return (
+            <template {...{ shadowrootmode: 'open' }}>
+              {css && <style>{css}</style>}
+              {children}
+            </template>
+          );
+        }
 
-  // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
-  // To pass hydration, the first client render needs to emulate this browser behavior and return null.
-  if (supportsDSD && isFirstRender) {
-    return null;
-  }
+        // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
+        // To pass hydration, the first client render needs to emulate this browser behavior and return null.
+        if (supportsDSD && isHydrating) {
+          return null;
+        }
 
-  return <ClientShadowRoot css={css}>{children}</ClientShadowRoot>;
+        return <ClientShadowRoot css={css}>{children}</ClientShadowRoot>;
+      })()}
+    </React.Suspense>
+  );
 };
 
 // ----------------------------------------------------------------------------
@@ -119,12 +126,4 @@ function useShadowRoot(
   }, [css]);
 
   return shadowRoot;
-}
-
-// ----------------------------------------------------------------------------
-
-function useIsFirstRender() {
-  const [isFirstRender, setIsFirstRender] = React.useState(true);
-  React.useEffect(() => setIsFirstRender(false), []);
-  return isFirstRender;
 }
