@@ -185,10 +185,9 @@ jobs:
               repo: context.repo.repo,
               head_sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: 'neutral',
-              name: 'deploy-preview',
+              name: 'Deploy preview',
               output: {
-                title: 'Deploy preview',
-                summary: 'Live preview of the current branch',
+                title: 'Live preview of the current branch',
                 text: `\
             - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
             - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
