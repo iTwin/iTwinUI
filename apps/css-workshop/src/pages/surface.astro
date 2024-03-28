@@ -79,7 +79,7 @@ import Layout from './_layout.astro';
       <div class='iui-surface-header'>
         <div class='demo-flex-component'>
           <h2 class='iui-text-subheading'>Default surface</h2>
-          <button class='iui-button' data-iui-variant='borderless'>
+          <button class='iui-button iui-field' data-iui-variant='borderless' data-iui-shift='right'>
             <svg-settings class='iui-button-icon' aria-hidden='true'></svg-settings>
           </button>
         </div>
@@ -116,7 +116,11 @@ import Layout from './_layout.astro';
         </p>
       </div>
       <hr class='iui-divider' />
-      <button class='iui-button' data-iui-variant='borderless' style='align-self: stretch;'>
+      <button
+        class='iui-button iui-field'
+        data-iui-variant='borderless'
+        style='align-self: stretch;'
+      >
         <span>View all</span>
       </button>
     </div>

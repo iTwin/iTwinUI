@@ -125,39 +125,39 @@ import Layout from './_layout.astro';
 
   <section id='demo-default'>
     <div class='demo-button-bar'>
-      <button class='iui-button' data-iui-variant='high-visibility'>
+      <button class='iui-button iui-field' data-iui-variant='high-visibility'>
         <svg-add class='iui-button-icon' aria-hidden='true'></svg-add>
         <span>New</span>
       </button>
 
       <span class='iui-button-group' style='margin-right: auto;'>
-        <button title='Download' class='iui-button'>
+        <button title='Download' class='iui-button iui-field'>
           <svg-download class='iui-button-icon' aria-hidden='true'></svg-download>
         </button>
-        <button title='Move' class='iui-button'>
+        <button title='Move' class='iui-button iui-field'>
           <svg-arrow-right class='iui-button-icon' aria-hidden='true'></svg-arrow-right>
         </button>
-        <button title='Delete' class='iui-button' disabled>
+        <button title='Delete' class='iui-button iui-field' disabled>
           <svg-delete class='iui-button-icon' aria-hidden='true'></svg-delete>
         </button>
-        <button title='Rename' class='iui-button'>
+        <button title='Rename' class='iui-button iui-field'>
           <svg-rename class='iui-button-icon' aria-hidden='true'></svg-rename>
         </button>
-        <button title='More options…' class='iui-button'>
+        <button title='More options…' class='iui-button iui-field'>
           <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
         </button>
       </span>
 
       <span class='iui-button-group'>
-        <button title='List view' class='iui-button' data-iui-active='true'>
+        <button title='List view' class='iui-button iui-field' data-iui-active='true'>
           <svg-list class='iui-button-icon' aria-hidden='true'></svg-list>
         </button>
-        <button title='Tile view' class='iui-button'>
+        <button title='Tile view' class='iui-button iui-field'>
           <svg-thumbnails class='iui-button-icon' aria-hidden='true'></svg-thumbnails>
         </button>
       </span>
 
-      <button title='View info' class='iui-button' onclick='openInfoPanel(this)'>
+      <button title='View info' class='iui-button iui-field' onclick='openInfoPanel(this)'>
         <svg-info class='iui-button-icon' aria-hidden='true'></svg-info>
       </button>
     </div>
@@ -174,7 +174,7 @@ import Layout from './_layout.astro';
                 Name
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Apply filter'
@@ -196,7 +196,7 @@ import Layout from './_layout.astro';
                 Modified
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Apply filter'
@@ -218,7 +218,7 @@ import Layout from './_layout.astro';
                 Modified by
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Modify filter'
@@ -240,7 +240,7 @@ import Layout from './_layout.astro';
                 Size
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Apply filter'
@@ -257,7 +257,7 @@ import Layout from './_layout.astro';
               </div>
               <div class='iui-table-cell iui-slot'>
                 <button
-                  class='iui-button'
+                  class='iui-button iui-field'
                   data-iui-variant='borderless'
                   aria-label='Modify columns'
                   type='button'
@@ -291,7 +291,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>20 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -321,7 +321,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>10 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -351,7 +351,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>10 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -381,7 +381,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>963 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -411,7 +411,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>64 KB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -435,10 +435,10 @@ import Layout from './_layout.astro';
           </span>
 
           <div class='iui-information-header-actions'>
-            <button class='iui-button' data-iui-variant='borderless'>
+            <button class='iui-button iui-field' data-iui-variant='borderless'>
               <svg-edit class='iui-button-icon' aria-hidden='true'></svg-edit>
             </button><button
-              class='iui-button'
+              class='iui-button iui-field'
               data-iui-variant='borderless'
               onclick='openInfoPanel()'
             >
@@ -526,7 +526,7 @@ import Layout from './_layout.astro';
                 Name
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Apply filter'
@@ -548,7 +548,7 @@ import Layout from './_layout.astro';
                 Modified
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Apply filter'
@@ -570,7 +570,7 @@ import Layout from './_layout.astro';
                 Modified by
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Modify filter'
@@ -592,7 +592,7 @@ import Layout from './_layout.astro';
                 Size
                 <div class='iui-table-header-actions-container'>
                   <button
-                    class='iui-button iui-table-filter-button'
+                    class='iui-button iui-field iui-table-filter-button'
                     data-iui-variant='borderless'
                     data-iui-size='small'
                     aria-label='Apply filter'
@@ -609,7 +609,7 @@ import Layout from './_layout.astro';
               </div>
               <div class='iui-table-cell iui-slot'>
                 <button
-                  class='iui-button'
+                  class='iui-button iui-field'
                   data-iui-variant='borderless'
                   aria-label='Modify columns'
                   type='button'
@@ -643,7 +643,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>20 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -673,7 +673,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>10 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -703,7 +703,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>10 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -733,7 +733,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>963 MB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -763,7 +763,7 @@ import Layout from './_layout.astro';
             <div class='iui-table-cell demo-right-align'>64 KB</div>
             <div class='iui-table-cell iui-slot'>
               <button
-                class='iui-button iui-table-more-options'
+                class='iui-button iui-field iui-table-more-options'
                 data-iui-variant='borderless'
                 aria-label='More options'
                 type='button'
@@ -787,9 +787,13 @@ import Layout from './_layout.astro';
           </span>
 
           <div class='iui-information-header-actions'>
-            <button class='iui-button' data-iui-variant='borderless' data-iui-active='true'>
+            <button
+              class='iui-button iui-field'
+              data-iui-variant='borderless'
+              data-iui-active='true'
+            >
               <svg-edit class='iui-button-icon' aria-hidden='true'></svg-edit>
-            </button><button class='iui-button' data-iui-variant='borderless'>
+            </button><button class='iui-button iui-field' data-iui-variant='borderless'>
               <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
             </button>
           </div>
@@ -833,27 +837,32 @@ import Layout from './_layout.astro';
             <label class='iui-input-label' for='title-2'> Title</label>
             <input
               value='Beta (Gold Master)'
-              class='iui-input'
+              class='iui-input iui-field'
               data-iui-size='small'
               id='title-2'
             />
 
             <label class='iui-input-label'> Duration</label>
-            <input readonly value='03:36' class='iui-input' data-iui-size='small' />
+            <input readonly value='03:36' class='iui-input iui-field' data-iui-size='small' />
 
             <label class='iui-input-label' for='authors-2'> Authors</label>
-            <input value='DJ Terry' class='iui-input' data-iui-size='small' id='authors-2' />
+            <input
+              value='DJ Terry'
+              class='iui-input iui-field'
+              data-iui-size='small'
+              id='authors-2'
+            />
 
             <label class='iui-input-label'> Audio channels</label>
-            <input readonly value='Stereo' class='iui-input' data-iui-size='small' />
+            <input readonly value='Stereo' class='iui-input iui-field' data-iui-size='small' />
 
             <label class='iui-input-label'> Sample rate</label>
-            <input readonly value='44.1 kHz' class='iui-input' data-iui-size='small' />
+            <input readonly value='44.1 kHz' class='iui-input iui-field' data-iui-size='small' />
 
             <label class='iui-input-label' for='album-2'> Album</label>
             <input
               value="DJ Terry's Super Fire Mixtape"
-              class='iui-input'
+              class='iui-input iui-field'
               data-iui-size='small'
               id='album-2'
             />
@@ -861,7 +870,7 @@ import Layout from './_layout.astro';
             <label class='iui-input-label' for='musical-genre-2'> Musical genre</label>
             <div class='iui-input-with-icon'>
               <input
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
                 id='musical-genre-2'
                 role='combobox'
@@ -878,7 +887,12 @@ import Layout from './_layout.astro';
             </div>
 
             <label class='iui-input-label' for='year-recorded-2'> Year recorded</label>
-            <input value='2021' class='iui-input' data-iui-size='small' id='year-recorded-2' />
+            <input
+              value='2021'
+              class='iui-input iui-field'
+              data-iui-size='small'
+              id='year-recorded-2'
+            />
           </div>
         </div>
       </div>
@@ -904,7 +918,7 @@ import Layout from './_layout.astro';
 
           <div class='iui-information-header-actions'>
             <button
-              class='iui-button'
+              class='iui-button iui-field'
               data-iui-variant='borderless'
               onclick='switchInfoPanelOrientation(this);'
             >
@@ -914,7 +928,7 @@ import Layout from './_layout.astro';
                   <path d='m0 2v12h16v-12zm15 7h-14v-6h14z'></path>
                 </svg>
               </span>
-            </button><button class='iui-button' data-iui-variant='borderless'>
+            </button><button class='iui-button iui-field' data-iui-variant='borderless'>
               <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
             </button>
           </div>
