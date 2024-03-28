@@ -59,6 +59,7 @@ export const HydrationProvider = ({
   );
 };
 
+/** This is extracted into a child component to ensure it runs first. */
 const HydrationCheck = ({ onHydrate }: { onHydrate: () => void }) => {
   React.useEffect(() => void onHydrate(), [onHydrate]);
   return null;
