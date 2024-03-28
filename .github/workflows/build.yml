@@ -188,6 +188,7 @@ jobs:
               name: 'Deploy preview',
               output: {
                 title: 'Live preview of the current branch',
+                summary: '',
                 text: `\
             - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
             - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
