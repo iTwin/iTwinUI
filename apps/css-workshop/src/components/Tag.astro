@@ -1,5 +1,41 @@
 ---
-const { ...props } = Astro.props;
+const { title, className, id, style, button = true, variant, href, ...props } = Astro.props;
 ---
 
-<span {...props}> </span>
+<>
+  {
+    variant === 'basic' && !href && (
+      <span class='iui-tag-basic' id={id}>
+        {title}
+      </span>
+    )
+  }
+  {
+    href && (
+      <a href={href} class='iui-anchor iui-tag-basic' id={id}>
+        {title}
+      </a>
+    )
+  }
+
+  {
+    variant !== 'basic' && (
+      <span className='iui-tag' id={id} style={style} {...props}>
+        <span class='iui-tag-label' title={title}>
+          {title}
+        </span>
+        {button && (
+          <button
+            class='iui-button iui-tag-button'
+            data-iui-variant='borderless'
+            data-iui-size='small'
+            aria-label={`Delete ${title.toLowerCase()}`}
+            type='button'
+          >
+            <svg-close-small class='iui-button-icon' aria-hidden='true' />
+          </button>
+        )}
+      </span>
+    )
+  }
+</>
