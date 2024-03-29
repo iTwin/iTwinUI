@@ -50,7 +50,9 @@ _Before running this command, make sure Docker is running. See [Visual testing](
 
 ### To run all tests for a specific component
 
-`pnpm test [component-name]` e.g. `pnpm test Alert` (Please note this command is case sensitive. e.g. `Alert`, not `alert`)
+`pnpm test [component-name]` e.g. `pnpm test Alert` 
+
+_Please note this command is case sensitive. e.g. `Alert`, not `alert`._
 
 ### To lint and fix autofixable errors
 
