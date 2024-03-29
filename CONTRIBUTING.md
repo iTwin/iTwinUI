@@ -50,7 +50,7 @@ _Before running this command, make sure Docker is running. See [Visual testing](
 
 ### To run all tests for a specific component
 
-`pnpm test [component-name]` e.g. `pnpm test Alert`
+`pnpm test [component-name]` e.g. `pnpm test Alert` (Please note this command is case sensitive. e.g. `Alert`, not `alert`)
 
 ### To lint and fix autofixable errors
 
@@ -329,7 +329,7 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
 2. From the monorepo root, run `pnpm run test --filter=react-workshop` or `pnpm test:react`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm test:react --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm test:react --spec="**/Alert.*"`.
 3. Once the tests finish running, you can approve any failing test images using `pnpm approve:react`.
 
 #### Writing visual tests
