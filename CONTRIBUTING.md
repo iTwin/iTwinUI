@@ -48,6 +48,12 @@ To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](h
 
 _Before running this command, make sure Docker is running. See [Visual testing](#visual-testing-css) (CSS and React) sections below for more details._
 
+### To run all tests for a specific component
+
+`pnpm test [component-name]` e.g. `pnpm test Alert` 
+
+_Please note this command is case sensitive. e.g. `Alert`, not `alert`._
+
 ### To lint and fix autofixable errors
 
 `pnpm lint`
@@ -324,8 +330,8 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 #### Running visual tests
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
-2. From the monorepo root, run `pnpm run test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm --filter=react-workshop run test --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
+2. From the monorepo root, run `pnpm run test --filter=react-workshop` or `pnpm test:react`. This will build react-workshop and run all cypress tests in docker.
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm test:react --spec="**/Alert.*"`.
 3. Once the tests finish running, you can approve any failing test images using `pnpm approve:react`.
 
 #### Writing visual tests
@@ -368,7 +374,7 @@ We use an automated script to evaluate each component example for accessibility 
 
 In the terminal: 
 
-- Run the command `pnpm run test --filter=a11y` to run automated accessibility tests for all examples.
+- Run `pnpm run test --filter=a11y` or `pnpm test:a11y` to run automated accessibility tests for all examples.
 
 In the Cypress GUI:
 
@@ -388,7 +394,7 @@ For more information on the Axe rule IDs and their meanings, visit [Deque Univer
 
 The `testing/e2e` workspace facilitates testing of complex scenarios in a real browser. This is achieved by running [Playwright](https://playwright.dev/) tests against a [Remix](https://remix.run/) app.
 
-- **To run tests**, use this command: `pnpm run test --filter=e2e`.
+- **To run tests**, use `pnpm run test --filter=e2e` or `pnpm test:e2e`.
 - **To write tests**, add a new [Remix route](https://remix.run/docs/en/main/discussion/routes#conventional-route-folders) and a `.spec.ts` next to it.
 
 For more details on how to write a test, see [Playwright docs](https://playwright.dev/docs/writing-tests).
