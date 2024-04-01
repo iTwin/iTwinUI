@@ -6,6 +6,7 @@ import * as React from 'react';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
 import { Box, LineClamp, ShadowRoot } from '../../utils/index.js';
+import { TableColumnsContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
@@ -43,6 +44,8 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
+  const columnsProp = React.useContext(TableColumnsContext);
+
   const {
     cellElementProps: {
       className: cellElementClassName,
@@ -57,7 +60,11 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof children === 'string',
+    // Enable line clamp by default only if the cell content is a string and the column doesn't specify a custom Cell component
+    clamp = typeof cellProps.value === 'string' &&
+      !columnsProp
+        .find((col) => col.id === cellProps.column.id)
+        ?.hasOwnProperty('Cell'),
     ...rest
   } = props;
 
