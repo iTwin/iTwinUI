@@ -56,12 +56,36 @@ export const InformationPanel = React.forwardRef((props, ref) => {
     isOpen = false,
     orientation = 'vertical',
     resizable = true,
-    children,
     ...rest
   } = props;
 
+  return (
+    <InformationPanelInternal
+      className={cx(
+        'iui-information-panel',
+        {
+          'iui-right': orientation === 'vertical',
+          'iui-bottom': orientation === 'horizontal',
+          'iui-visible': isOpen,
+        },
+        className,
+      )}
+      ref={ref}
+      key={orientation}
+      orientation={orientation}
+      resizable={resizable}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', InformationPanelProps>;
+
+const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
+  const { orientation, resizable, children, ...rest } = props;
+
+  const [infoPanelWidth, setInfoPanelWidth] = React.useState<string>('');
+  const [infoPanelHeight, setInfoPanelHeight] = React.useState<string>('');
   const infoPanelRef = React.useRef<HTMLDivElement>(null);
-  const refs = useMergedRefs(ref, infoPanelRef);
+  const refs = useMergedRefs(forwardedRef, infoPanelRef);
 
   const startResize = (e: React.PointerEvent) => {
     if (!infoPanelRef.current) {
@@ -95,37 +119,18 @@ export const InformationPanel = React.forwardRef((props, ref) => {
       }
       const { right, bottom } = infoPanelRef.current.getBoundingClientRect();
       if (orientation === 'vertical') {
-        infoPanelRef.current.style.width = `${right - e.clientX}px`;
+        setInfoPanelWidth(`${right - e.clientX}px`);
       } else {
-        infoPanelRef.current.style.height = `${bottom - e.clientY}px`;
+        setInfoPanelHeight(`${bottom - e.clientY}px`);
       }
     },
     [orientation],
   );
 
-  React.useEffect(() => {
-    if (!infoPanelRef.current) {
-      return;
-    }
-    if (orientation === 'vertical') {
-      infoPanelRef.current.style.height = '';
-    } else {
-      infoPanelRef.current.style.width = '';
-    }
-  }, [orientation]);
-
   return (
     <Box
-      className={cx(
-        'iui-information-panel',
-        {
-          'iui-right': orientation === 'vertical',
-          'iui-bottom': orientation === 'horizontal',
-          'iui-visible': isOpen,
-        },
-        className,
-      )}
       ref={refs}
+      style={{ width: infoPanelWidth, height: infoPanelHeight }}
       {...rest}
     >
       {resizable && (
