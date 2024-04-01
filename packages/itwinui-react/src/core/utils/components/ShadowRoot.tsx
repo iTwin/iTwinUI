@@ -79,6 +79,7 @@ function useShadowRoot(
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot | null>(null);
   const styleSheet = React.useRef<CSSStyleSheet>();
   const latestCss = useLatestRef(css);
+  const latestShadowRoot = useLatestRef(shadowRoot);
 
   useLayoutEffect(() => {
     const parent = templateRef.current?.parentElement;
@@ -86,8 +87,8 @@ function useShadowRoot(
       return;
     }
 
-    const setupShadowRoot = () => {
-      if (parent.shadowRoot) {
+    const setupOrReuseShadowRoot = () => {
+      if (parent.shadowRoot && latestShadowRoot.current === null) {
         parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
       }
 
@@ -113,11 +114,11 @@ function useShadowRoot(
     };
 
     queueMicrotask(() => {
-      setupShadowRoot();
+      setupOrReuseShadowRoot();
     });
 
     return () => void setShadowRoot(null);
-  }, [templateRef, latestCss]);
+  }, [templateRef, latestCss, latestShadowRoot]);
 
   // Synchronize `css` with contents of the existing stylesheet
   useLayoutEffect(() => {
