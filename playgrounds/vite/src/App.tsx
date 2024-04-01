@@ -78,6 +78,17 @@ const App = () => {
       >
         <Button>Menu</Button>
       </DropdownMenu>
+
+      <DropdownMenu
+        menuItems={(close) => [
+          // <MenuItem onClick={close}>Item 1_2</MenuItem>,
+          <MenuItem key='Item 1_1'>Item 1_1</MenuItem>,
+          <MenuItem key='Item 1_2'>Item 1_2</MenuItem>,
+          <MenuItem key='Item 1_3'>Item 1_3</MenuItem>,
+        ]}
+      >
+        <Button>Menu</Button>
+      </DropdownMenu>
     </>
   );
 };

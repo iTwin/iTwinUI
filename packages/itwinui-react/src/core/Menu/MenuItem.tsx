@@ -24,11 +24,13 @@ const MenuItemContext = React.createContext<{
   isNestedSubmenuVisible: boolean | undefined;
   setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   value: string | undefined;
+  popover: ReturnType<typeof usePopover> | undefined;
 }>({
   ref: undefined,
   isNestedSubmenuVisible: undefined,
   setIsNestedSubmenuVisible: () => {},
   value: undefined,
+  popover: undefined,
 });
 
 export type MenuItemProps = {
@@ -212,6 +214,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onKeyDown,
   };
 
+  // console.log('getItemProps', popover.getItemProps());
+
   return (
     <ListItem
       as='div'
@@ -234,6 +238,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {...(subMenuItems.length === 0
         ? { ...handlers, ...rest }
         : popover.getReferenceProps({ ...handlers, ...rest }))}
+      {...popover.getItemProps()}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -263,6 +268,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               isNestedSubmenuVisible,
               setIsNestedSubmenuVisible,
               value: `${children}`,
+              popover,
             }}
           >
             <Menu

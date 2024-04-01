@@ -17,6 +17,11 @@ import type {
 } from '../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
+import {
+  useClick,
+  useInteractions,
+  useListNavigation,
+} from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -97,11 +102,41 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const listRef = React.useRef<any[]>([]);
+
+  const interactions = React.useRef<ReturnType<typeof useInteractions> | null>(
+    null,
+  );
+
   const popover = usePopover({
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
     matchWidth,
+    interactions: (context) => {
+      const interactionsValue = useInteractions([
+        useClick(context),
+        useListNavigation(context, {
+          listRef,
+          activeIndex,
+          onNavigate: setActiveIndex,
+        }),
+      ]);
+
+      interactions.current = interactionsValue;
+
+      // console.log('interactions', interactions);
+
+      console.log(
+        'interactions',
+        interactions.current.getFloatingProps(),
+        interactions.current.getItemProps(),
+        interactions.current.getReferenceProps(),
+      );
+
+      return interactions.current;
+    },
   });
 
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
@@ -130,7 +165,23 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
             })}
             ref={popoverRef}
           >
-            {menuContent}
+            {/* {menuContent} */}
+            {(menuContent as JSX.Element[]).map((item, index) =>
+              React.cloneElement(item, {
+                ref: (el: any) => {
+                  console.log('HERE');
+                  listRef.current[index] = el;
+                },
+                // Make these elements focusable using a roving tabIndex.
+                tabIndex: activeIndex === index ? 0 : -1,
+                'data-testing': 'testing-123',
+                ...(interactions.current != null
+                  ? interactions.current.getItemProps({
+                      'data-testing-1': 'testing-123',
+                    })
+                  : {}),
+              }),
+            )}
           </Menu>
         </Portal>
       )}
