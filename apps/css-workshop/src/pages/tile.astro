@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Badge from '../components/Badge.astro';
+import Tag_ from '../components/Tag.astro';
 ---
 
 <Layout title='Tile'>
@@ -142,19 +143,23 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-metadata'>
           <svg-placeholder class='iui-tile-metadata-icon' aria-hidden='true'></svg-placeholder>
           <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            >
+            <Tag_ button={false} variant='basic' title='tags' /><Tag_
+              button={false}
+              variant='basic'
+              title='go'
+            /><Tag_ button={false} variant='basic' title='here' /><Tag_
+              button={false}
+              variant='basic'
+              title='tags'
+            /><Tag_ button={false} variant='basic' title='go' /><Tag_
+              button={false}
+              variant='basic'
+              title='here'
+            /><Tag_ button={false} variant='basic' title='tags' /><Tag_
+              button={false}
+              variant='basic'
+              title='go'
+            /><Tag_ button={false} variant='basic' title='here' />
           </div>
         </div>
 
@@ -322,9 +327,11 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-metadata'>
           <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
           <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            >
+            <Tag_ button={false} variant='basic' title='tags' /><Tag_
+              button={false}
+              variant='basic'
+              title='go'
+            /><Tag_ button={false} variant='basic' title='here' />
           </div>
         </div>
 
@@ -372,9 +379,11 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-metadata'>
           <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
           <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            >
+            <Tag_ button={false} variant='basic' title='tags' /><Tag_
+              button={false}
+              variant='basic'
+              title='go'
+            /><Tag_ button={false} variant='basic' title='here' />
           </div>
         </div>
 
@@ -426,9 +435,11 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-metadata'>
           <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
           <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            >
+            <Tag_ button={false} variant='basic' title='tags' /><Tag_
+              button={false}
+              variant='basic'
+              title='go'
+            /><Tag_ button={false} variant='basic' title='here' />
           </div>
         </div>
 
@@ -475,9 +486,11 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-metadata'>
           <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
           <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            >
+            <Tag_ button={false} variant='basic' title='tags' /><Tag_
+              button={false}
+              variant='basic'
+              title='go'
+            /><Tag_ button={false} variant='basic' title='here' />
           </div>
         </div>
 
@@ -592,7 +605,7 @@ import Badge from '../components/Badge.astro';
           <div class='iui-tile-description'>685 Stockton Drive, Exton, PA 19341</div>
         </div>
         <div class='iui-tile-metadata'>
-          ID: <span class='iui-tag-basic'>10001</span>
+          ID: <Tag_ button={false} variant='basic' title='10001' />
         </div>
 
         <div class='iui-tile-more-options'>
@@ -644,703 +657,728 @@ import Badge from '../components/Badge.astro';
           <div class='iui-tile-description'>685 Stockton Drive, Exton, PA 19341</div>
         </div>
         <div class='iui-tile-metadata'>
-          ID: <span class='iui-tag-basic'>10001</span>
-        </div>
+          ID: <Tag_ variant='basic' title='10001' />
 
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-      <div class='iui-tile-buttons'>
-        <button class='iui-button'> Manage</button>
-        <button class='iui-button'> Projects</button>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-
-  <h2>Video</h2>
-  <section id='demo-video'>
-    <!-- No thumbnail -->
-    <div class='iui-tile iui-actionable'>
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Video name</button></span>
-      </div>
-
-      <div class='iui-tile-thumbnail'>
-        <button
-          aria-label='Favorite'
-          type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
-        >
-          <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
-        <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Are you ready to be inspired by some of the world’s most impressive infrastructure
-          projects? We have highlighted a few of the most impressive projects that were made
-          possible with Bentley.
-        </div>
-        <div class='iui-tile-metadata'>
-          <svg-clock class='iui-tile-metadata-icon' aria-hidden='true'></svg-clock>
-          <time datetime='2020-12-31 14:00'>Dec 31, 2020 @ 2:00pm</time>
-        </div>
-
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- With thumbnail -->
-    <div class='iui-tile iui-actionable'>
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Video name</button></span>
-      </div>
-
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
-          aria-label='Favorite'
-          type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
-        >
-          <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
-        <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Are you ready to be inspired by some of the world’s most impressive infrastructure
-          projects? We have highlighted a few of the most impressive projects that were made
-          possible with Bentley.
-        </div>
-        <div class='iui-tile-metadata'>
-          <svg-clock class='iui-tile-metadata-icon' aria-hidden='true'></svg-clock>
-          <time datetime='2020-12-31 14:00'>Dec 31, 2020 @ 2:00pm</time>
-        </div>
-
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- With thumbnail -->
-    <div class='iui-tile iui-actionable iui-selected' id='test-tile-3'>
-      <div class='iui-tile-name'>
-        <svg-checkmark class='iui-tile-status-icon' aria-hidden='true'></svg-checkmark>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Video name</button></span>
-      </div>
-
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
-          aria-label='Favorite'
-          type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
-        >
-          <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
-        <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Are you ready to be inspired by some of the world’s most impressive infrastructure
-          projects? We have highlighted a few of the most impressive projects that were made
-          possible with Bentley.
-        </div>
-        <div class='iui-tile-metadata'>
-          <svg-clock class='iui-tile-metadata-icon' aria-hidden='true'></svg-clock>
-          <time datetime='2020-12-31 14:00'>Dec 31, 2020 @ 2:00pm</time>
-        </div>
-
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-
-  <h2>Folder</h2>
-  <section id='demo-folder'>
-    <!-- No thumbnail & new -->
-    <div class='iui-tile iui-folder iui-actionable iui-new'>
-      <div class='iui-tile-thumbnail'>
-        <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
-      </div>
-
-      <div class='iui-tile-name'>
-        <svg-new class='iui-tile-status-icon' aria-hidden='true'></svg-new>
-
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- No thumbnail -->
-    <div class='iui-tile iui-folder iui-actionable'>
-      <div class='iui-tile-thumbnail'>
-        <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
-      </div>
-
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- With thumbnail -->
-    <div class='iui-tile iui-folder iui-actionable'>
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-tile-thumbnail-picture demo-photo'></div>
-      </div>
-
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- With thumbnail -->
-    <div class='iui-tile iui-folder iui-actionable iui-selected'>
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-tile-thumbnail-picture demo-photo'></div>
-      </div>
-
-      <div class='iui-tile-name'>
-        <svg-checkmark class='iui-tile-status-icon' aria-hidden='true'></svg-checkmark>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr />
-
-  <h2>Action States</h2>
-
-  <section id='demo-action-states'>
-    <div class='iui-tile iui-actionable iui-positive'>
-      <div class='iui-tile-name'>
-        <svg-status-success class='iui-tile-status-icon' aria-hidden='true'></svg-status-success>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>charlie.pdf</button></span
-        >
-      </div>
-
-      <div class='iui-tile-thumbnail'>
-        <svg-filetype-pdf class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-pdf>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Bentley Systems, Incorporated, is an American-based software development company that
-          develops, manufactures, licenses, sells and supports computer software and services for
-          the design, construction, and operation of infrastructure.
-        </div>
-
-        <div class='iui-tile-metadata'>
-          <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
-          <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
             >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
           </div>
         </div>
-
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+        <div class='iui-tile-buttons'>
+          <button class='iui-button'> Manage</button>
+          <button class='iui-button'> Projects</button>
         </div>
       </div>
     </div>
 
-    <div class='iui-tile iui-actionable iui-warning'>
-      <div class='iui-tile-name'>
-        <svg-filetype-image aria-hidden='true'></svg-filetype-image>
-        <svg-status-warning class='iui-tile-status-icon' aria-hidden='true'></svg-status-warning>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>delta.jpg</button></span>
-      </div>
+    <hr />
 
-      <div class='iui-tile-thumbnail'>
-        <svg-filetype-image class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-image>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Bentley Systems, Incorporated, is an American-based software development company that
-          develops, manufactures, licenses, sells and supports computer software and services for
-          the design, construction, and operation of infrastructure.
+    <h2>Video</h2>
+    <section id='demo-video'>
+      <!-- No thumbnail -->
+      <div class='iui-tile iui-actionable'>
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Video name</button></span
+          >
         </div>
 
-        <div class='iui-tile-metadata'>
-          <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
-          <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
+        <div class='iui-tile-thumbnail'>
+          <button
+            aria-label='Favorite'
+            type='button'
+            class='iui-button iui-tile-thumbnail-quick-action'
+            data-iui-variant='borderless'
+            data-iui-size='small'
+          >
+            <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
+          </button>
+          <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Are you ready to be inspired by some of the world’s most impressive infrastructure
+            projects? We have highlighted a few of the most impressive projects that were made
+            possible with Bentley.
+          </div>
+          <div class='iui-tile-metadata'>
+            <svg-clock class='iui-tile-metadata-icon' aria-hidden='true'></svg-clock>
+            <time datetime='2020-12-31 14:00'>Dec 31, 2020 @ 2:00pm</time>
+          </div>
+
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
             >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
           </div>
         </div>
+      </div>
 
-        <div class='iui-tile-more-options'>
+      <!-- With thumbnail -->
+      <div class='iui-tile iui-actionable'>
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Video name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-tile-thumbnail-picture demo-photo'></div>
           <button
-            aria-label='More options'
+            aria-label='Favorite'
             type='button'
-            class='iui-button'
+            class='iui-button iui-tile-thumbnail-quick-action'
             data-iui-variant='borderless'
             data-iui-size='small'
           >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
           </button>
+          <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
         </div>
-      </div>
-    </div>
 
-    <div class='iui-tile iui-actionable iui-negative'>
-      <div class='iui-tile-name'>
-        <svg-status-error class='iui-tile-status-icon' aria-hidden='true'></svg-status-error>
-        <span class='iui-tile-name-label'
-          ><button class='iui-link-action'
-            >MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg</button
-          ></span
-        >
-      </div>
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Are you ready to be inspired by some of the world’s most impressive infrastructure
+            projects? We have highlighted a few of the most impressive projects that were made
+            possible with Bentley.
+          </div>
+          <div class='iui-tile-metadata'>
+            <svg-clock class='iui-tile-metadata-icon' aria-hidden='true'></svg-clock>
+            <time datetime='2020-12-31 14:00'>Dec 31, 2020 @ 2:00pm</time>
+          </div>
 
-      <div class='iui-tile-thumbnail'>
-        <svg-filetype-vector class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-vector>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Bentley Systems, Incorporated, is an American-based software development company that
-          develops, manufactures, licenses, sells and supports computer software and services for
-          the design, construction, and operation of infrastructure.
-        </div>
-        <div class='iui-tile-metadata'>
-          <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
-          <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
             >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
           </div>
         </div>
-        <div class='iui-tile-more-options'>
+      </div>
+
+      <!-- With thumbnail -->
+      <div class='iui-tile iui-actionable iui-selected' id='test-tile-3'>
+        <div class='iui-tile-name'>
+          <svg-checkmark class='iui-tile-status-icon' aria-hidden='true'></svg-checkmark>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Video name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-tile-thumbnail-picture demo-photo'></div>
           <button
-            aria-label='More options'
+            aria-label='Favorite'
             type='button'
-            class='iui-button'
+            class='iui-button iui-tile-thumbnail-quick-action'
             data-iui-variant='borderless'
             data-iui-size='small'
           >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
           </button>
+          <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
         </div>
-      </div>
-    </div>
 
-    <div class='iui-tile iui-loading'>
-      <div class='iui-tile-name'>
-        <div
-          class='iui-progress-indicator-radial iui-tile-status-icon'
-          data-iui-indeterminate='true'
-          data-iui-size='x-small'
-        >
-        </div>
-        <span class='iui-tile-name-label'>alpha.dgn</span>
-      </div>
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Are you ready to be inspired by some of the world’s most impressive infrastructure
+            projects? We have highlighted a few of the most impressive projects that were made
+            possible with Bentley.
+          </div>
+          <div class='iui-tile-metadata'>
+            <svg-clock class='iui-tile-metadata-icon' aria-hidden='true'></svg-clock>
+            <time datetime='2020-12-31 14:00'>Dec 31, 2020 @ 2:00pm</time>
+          </div>
 
-      <div class='iui-tile-thumbnail'>
-        <svg-filetype-imodel class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-imodel>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class='iui-tile' aria-disabled='true'>
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'>Disabled</span>
-      </div>
-
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-thumbnail-icon'>
-          <svg-filetype-video class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-video>
-        </div>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Bentley Systems, Incorporated, is an American-based software development company that
-          develops, manufactures, licenses, sells and supports computer software and services for
-          the design, construction, and operation of infrastructure.
-        </div>
-        <div class='iui-tile-metadata'>
-          <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
-          <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
             >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
           </div>
         </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
       </div>
-    </div>
+    </section>
 
-    <div class='iui-tile' aria-disabled='true'>
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'>Disabled</span>
-      </div>
+    <hr />
 
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-tile-thumbnail-picture demo-photo'></div>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          Bentley Systems, Incorporated, is an American-based software development company that
-          develops, manufactures, licenses, sells and supports computer software and services for
-          the design, construction, and operation of infrastructure.
-        </div>
-        <div class='iui-tile-metadata'>
-          <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
-          <div class='iui-tag-container'>
-            <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-              class='iui-tag-basic'>here</span
-            >
-          </div>
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id='demo-action-states-folders'>
-    <div class='iui-tile iui-folder iui-actionable iui-positive'>
-      <div class='iui-tile-thumbnail'>
-        <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
-      </div>
-
-      <div class='iui-tile-name'>
-        <svg-status-success class='iui-tile-status-icon' aria-hidden='true'></svg-status-success>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class='iui-tile iui-folder iui-actionable iui-warning'>
-      <div class='iui-tile-thumbnail'>
-        <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
-      </div>
-
-      <div class='iui-tile-name'>
-        <svg-filetype-image aria-hidden='true'></svg-filetype-image>
-        <svg-status-warning class='iui-tile-status-icon' aria-hidden='true'></svg-status-warning>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class='iui-tile iui-folder iui-actionable iui-negative'>
-      <div class='iui-tile-thumbnail'>
-        <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
-      </div>
-
-      <div class='iui-tile-name'>
-        <svg-status-error class='iui-tile-status-icon' aria-hidden='true'></svg-status-error>
-        <span class='iui-tile-name-label'><button class='iui-link-action'>Folder name</button></span
-        >
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class='iui-tile iui-folder iui-loading'>
-      <div class='iui-tile-thumbnail'>
-        <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
-      </div>
-
-      <div class='iui-tile-name'>
-        <div
-          class='iui-progress-indicator-radial iui-tile-status-icon'
-          data-iui-indeterminate='true'
-          data-iui-size='x-small'
-        >
-        </div>
-        <span class='iui-tile-name-label'>Folder name</span>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class='iui-tile iui-folder' aria-disabled='true'>
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-thumbnail-icon'>
+    <h2>Folder</h2>
+    <section id='demo-folder'>
+      <!-- No thumbnail & new -->
+      <div class='iui-tile iui-folder iui-actionable iui-new'>
+        <div class='iui-tile-thumbnail'>
           <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
         </div>
-      </div>
 
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'>Folder name</span>
-      </div>
+        <div class='iui-tile-name'>
+          <svg-new class='iui-tile-status-icon' aria-hidden='true'></svg-new>
 
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
-        </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
           >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class='iui-tile iui-folder' aria-disabled='true'>
-      <div class='iui-tile-thumbnail'>
-        <div class='iui-tile-thumbnail-picture demo-photo'></div>
-      </div>
-
-      <div class='iui-tile-name'>
-        <span class='iui-tile-name-label'>Folder name</span>
-      </div>
-
-      <div class='iui-tile-content'>
-        <div class='iui-tile-description'>
-          A collection of all Bentley Systems 2D and 3D marketing assets.
+      <!-- No thumbnail -->
+      <div class='iui-tile iui-folder iui-actionable'>
+        <div class='iui-tile-thumbnail'>
+          <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
         </div>
-        <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
           >
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- With thumbnail -->
+      <div class='iui-tile iui-folder iui-actionable'>
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-tile-thumbnail-picture demo-photo'></div>
+        </div>
+
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- With thumbnail -->
+      <div class='iui-tile iui-folder iui-actionable iui-selected'>
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-tile-thumbnail-picture demo-photo'></div>
+        </div>
+
+        <div class='iui-tile-name'>
+          <svg-checkmark class='iui-tile-status-icon' aria-hidden='true'></svg-checkmark>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <h2>Action States</h2>
+
+    <section id='demo-action-states'>
+      <div class='iui-tile iui-actionable iui-positive'>
+        <div class='iui-tile-name'>
+          <svg-status-success class='iui-tile-status-icon' aria-hidden='true'></svg-status-success>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>charlie.pdf</button></span
+          >
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <svg-filetype-pdf class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-pdf>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Bentley Systems, Incorporated, is an American-based software development company that
+            develops, manufactures, licenses, sells and supports computer software and services for
+            the design, construction, and operation of infrastructure.
+          </div>
+
+          <div class='iui-tile-metadata'>
+            <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
+            <div class='iui-tag-container'>
+              <Tag_ button={false} variant='basic' title='tags' /><Tag_
+                button={false}
+                variant='basic'
+                title='go'
+              /><Tag_ button={false} variant='basic' title='here' />
+            </div>
+          </div>
+
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-actionable iui-warning'>
+        <div class='iui-tile-name'>
+          <svg-filetype-image aria-hidden='true'></svg-filetype-image>
+          <svg-status-warning class='iui-tile-status-icon' aria-hidden='true'></svg-status-warning>
+          <span class='iui-tile-name-label'><button class='iui-link-action'>delta.jpg</button></span
+          >
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <svg-filetype-image class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-image>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Bentley Systems, Incorporated, is an American-based software development company that
+            develops, manufactures, licenses, sells and supports computer software and services for
+            the design, construction, and operation of infrastructure.
+          </div>
+
+          <div class='iui-tile-metadata'>
+            <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
+            <div class='iui-tag-container'>
+              <Tag_ button={false} variant='basic' title='tags' /><Tag_
+                button={false}
+                variant='basic'
+                title='go'
+              /><Tag_ button={false} variant='basic' title='here' />
+            </div>
+          </div>
+
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-actionable iui-negative'>
+        <div class='iui-tile-name'>
+          <svg-status-error class='iui-tile-status-icon' aria-hidden='true'></svg-status-error>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'
+              >MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg</button
+            ></span
+          >
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <svg-filetype-vector class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-vector>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Bentley Systems, Incorporated, is an American-based software development company that
+            develops, manufactures, licenses, sells and supports computer software and services for
+            the design, construction, and operation of infrastructure.
+          </div>
+          <div class='iui-tile-metadata'>
+            <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
+            <div class='iui-tag-container'>
+              <Tag_ button={false} variant='basic' title='tags' /><Tag_
+                button={false}
+                variant='basic'
+                title='go'
+              /><Tag_ button={false} variant='basic' title='here' />
+            </div>
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-loading'>
+        <div class='iui-tile-name'>
+          <div
+            class='iui-progress-indicator-radial iui-tile-status-icon'
+            data-iui-indeterminate='true'
+            data-iui-size='x-small'
+          >
+          </div>
+          <span class='iui-tile-name-label'>alpha.dgn</span>
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <svg-filetype-imodel class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-imodel>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile' aria-disabled='true'>
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'>Disabled</span>
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-thumbnail-icon'>
+            <svg-filetype-video class='iui-thumbnail-icon' aria-hidden='true'></svg-filetype-video>
+          </div>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Bentley Systems, Incorporated, is an American-based software development company that
+            develops, manufactures, licenses, sells and supports computer software and services for
+            the design, construction, and operation of infrastructure.
+          </div>
+          <div class='iui-tile-metadata'>
+            <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
+            <div class='iui-tag-container'>
+              <Tag_ button={false} variant='basic' title='tags' /><Tag_
+                button={false}
+                variant='basic'
+                title='go'
+              /><Tag_ button={false} variant='basic' title='here' />
+            </div>
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile' aria-disabled='true'>
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'>Disabled</span>
+        </div>
+
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-tile-thumbnail-picture demo-photo'></div>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            Bentley Systems, Incorporated, is an American-based software development company that
+            develops, manufactures, licenses, sells and supports computer software and services for
+            the design, construction, and operation of infrastructure.
+          </div>
+          <div class='iui-tile-metadata'>
+            <svg-tag class='iui-tile-metadata-icon' aria-hidden='true'></svg-tag>
+            <div class='iui-tag-container'>
+              <Tag_ button={false} variant='basic' title='tags' /><Tag_
+                button={false}
+                variant='basic'
+                title='go'
+              /><Tag_ button={false} variant='basic' title='here' />
+            </div>
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id='demo-action-states-folders'>
+      <div class='iui-tile iui-folder iui-actionable iui-positive'>
+        <div class='iui-tile-thumbnail'>
+          <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
+        </div>
+
+        <div class='iui-tile-name'>
+          <svg-status-success class='iui-tile-status-icon' aria-hidden='true'></svg-status-success>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-folder iui-actionable iui-warning'>
+        <div class='iui-tile-thumbnail'>
+          <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
+        </div>
+
+        <div class='iui-tile-name'>
+          <svg-filetype-image aria-hidden='true'></svg-filetype-image>
+          <svg-status-warning class='iui-tile-status-icon' aria-hidden='true'></svg-status-warning>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-folder iui-actionable iui-negative'>
+        <div class='iui-tile-thumbnail'>
+          <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
+        </div>
+
+        <div class='iui-tile-name'>
+          <svg-status-error class='iui-tile-status-icon' aria-hidden='true'></svg-status-error>
+          <span class='iui-tile-name-label'
+            ><button class='iui-link-action'>Folder name</button></span
+          >
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-folder iui-loading'>
+        <div class='iui-tile-thumbnail'>
+          <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
+        </div>
+
+        <div class='iui-tile-name'>
+          <div
+            class='iui-progress-indicator-radial iui-tile-status-icon'
+            data-iui-indeterminate='true'
+            data-iui-size='x-small'
+          >
+          </div>
+          <span class='iui-tile-name-label'>Folder name</span>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-folder' aria-disabled='true'>
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-thumbnail-icon'>
+            <svg-folder class='iui-thumbnail-icon' aria-hidden='true'></svg-folder>
+          </div>
+        </div>
+
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'>Folder name</span>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='iui-tile iui-folder' aria-disabled='true'>
+        <div class='iui-tile-thumbnail'>
+          <div class='iui-tile-thumbnail-picture demo-photo'></div>
+        </div>
+
+        <div class='iui-tile-name'>
+          <span class='iui-tile-name-label'>Folder name</span>
+        </div>
+
+        <div class='iui-tile-content'>
+          <div class='iui-tile-description'>
+            A collection of all Bentley Systems 2D and 3D marketing assets.
+          </div>
+          <div class='iui-tile-more-options'>
+            <button
+              aria-label='More options'
+              type='button'
+              class='iui-button'
+              data-iui-variant='borderless'
+              data-iui-size='small'
+            >
+              <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </section>
 </Layout>
