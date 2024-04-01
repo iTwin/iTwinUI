@@ -24,7 +24,8 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Should the contents of the cell be clamped after a certain number of lines?
    *
-   * Will be enabled by default if the cell content is a string.
+   * Will be enabled by default if the cell content is a string and a custom `Cell`
+   * is not specified in the column object.
    */
   clamp?: boolean;
 } & CellRendererProps<T> &
