@@ -15,6 +15,12 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
+import {
+  useClick,
+  useDismiss,
+  useInteractions,
+  useListNavigation,
+} from '@floating-ui/react';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -154,6 +160,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   //   }
   // }
 
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const listRef = React.useRef<any[]>([]);
+
+  const interactions = React.useRef<ReturnType<typeof useInteractions> | null>(
+    null,
+  );
+
   const popover = usePopover({
     // nodeId,
     // visible: isSubmenuVisible,
@@ -162,6 +175,30 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
+    interactions: (context) => {
+      const interactionsValue = useInteractions([
+        useClick(context),
+        useListNavigation(context, {
+          listRef,
+          activeIndex,
+          onNavigate: setActiveIndex,
+        }),
+        useDismiss(context, { outsidePress: true }),
+      ]);
+
+      interactions.current = interactionsValue;
+
+      // console.log('interactions', interactions);
+
+      console.log(
+        'interactions',
+        interactions.current.getFloatingProps(),
+        interactions.current.getItemProps(),
+        interactions.current.getReferenceProps(),
+      );
+
+      return interactions.current;
+    },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -238,7 +275,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {...(subMenuItems.length === 0
         ? { ...handlers, ...rest }
         : popover.getReferenceProps({ ...handlers, ...rest }))}
-      {...popover.getItemProps()}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -276,14 +312,30 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               ref={popover.refs.setFloating}
               {...popover.getFloatingProps({
                 id: submenuId,
-                onPointerMove: () => {
-                  // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                  // so we need to flip it back to true when pointer re-enters this submenu.
-                  setIsSubmenuVisible(true);
-                },
+                // onPointerMove: () => {
+                //   // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                //   // so we need to flip it back to true when pointer re-enters this submenu.
+                //   setIsSubmenuVisible(true);
+                // },
               })}
             >
-              {subMenuItems}
+              {/* {subMenuItems} */}
+              {(subMenuItems as JSX.Element[]).map((item, index) =>
+                React.cloneElement(item, {
+                  ref: (el: any) => {
+                    console.log('HERE');
+                    listRef.current[index] = el;
+                  },
+                  // Make these elements focusable using a roving tabIndex.
+                  tabIndex: activeIndex === index ? 0 : -1,
+                  'data-testing': 'testing-123',
+                  ...(interactions.current != null
+                    ? interactions.current.getItemProps({
+                        'data-testing-1': 'testing-123',
+                      })
+                    : {}),
+                }),
+              )}
             </Menu>
           </MenuItemContext.Provider>
         </Portal>
