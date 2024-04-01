@@ -2,7 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type { ColumnInstance } from '../../react-table/react-table.js';
+import * as React from 'react';
+import type { ColumnInstance, Column } from '../../react-table/react-table.js';
 
 export const getCellStyle = <T extends Record<string, unknown>>(
   column: ColumnInstance<T>,
@@ -80,3 +81,5 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
     paddingInlineStart: cellPadding + depth * multiplier,
   } satisfies React.CSSProperties;
 };
+
+export const TableColumnsContext = React.createContext<Column[]>([]);
