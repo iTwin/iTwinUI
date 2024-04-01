@@ -16,11 +16,14 @@ import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
 import {
+  FloatingList,
   useClick,
   useDismiss,
+  useHover,
   // useHover,
   useInteractions,
   useListItem,
+  useListNavigation,
   // useListNavigation,
 } from '@floating-ui/react';
 import {
@@ -189,12 +192,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       const interactionsValue = useInteractions([
         useClick(context),
         // useHover(context),
-        // useListNavigation(context, {
-        //   listRef,
-        //   activeIndex,
-        //   nested: true,
-        //   onNavigate: setActiveIndex,
-        // }),
+        useListNavigation(context, {
+          listRef,
+          activeIndex,
+          nested: true,
+          onNavigate: setActiveIndex,
+        }),
         useDismiss(context, { outsidePress: true }),
       ]);
 
@@ -270,12 +273,23 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   // const dropdownMenuContext = React.useContext(DropdownMenuContext);
   // const { activeIndex: parentActiveIndex } = dropdownMenuContext || {};
 
-  const selectContext = React.useContext(SelectContext);
-  const { activeIndex: parentActiveIndex, getItemProps } = selectContext || {};
+  const parentSelectContext = React.useContext(SelectContext);
+  const { activeIndex: parentActiveIndex, getItemProps: parentGetItemProps } =
+    parentSelectContext || {};
 
   console.log('parent', parentActiveIndex);
 
   const isActive = parentActiveIndex === index;
+
+  // const selectContext = React.useMemo(
+  //   () => ({
+  //     activeIndex,
+  //     // selectedIndex,
+  //     getItemProps,
+  //     // handleSelect,
+  //   }),
+  //   [activeIndex, getItemProps],
+  // );
 
   return (
     <ListItem
@@ -301,7 +315,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {...(subMenuItems.length === 0
         ? { ...handlers, ...rest }
         : popover.getReferenceProps({ ...handlers, ...rest }))}
-      {...(!!getItemProps ? getItemProps() : {})}
+      {...(!!parentGetItemProps ? parentGetItemProps() : {})}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -346,8 +360,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 // },
               })}
             >
+              {/* <SelectContext.Provider  */}
+              <FloatingList elementsRef={listRef}>{subMenuItems}</FloatingList>
               {/* {subMenuItems} */}
-              {(subMenuItems as JSX.Element[]).map((item, index) =>
+              {/* {(subMenuItems as JSX.Element[]).map((item, index) =>
                 React.cloneElement(item, {
                   ref: (el: any) => {
                     console.log('HERE');
@@ -362,7 +378,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                       })
                     : {}),
                 }),
-              )}
+              )} */}
             </Menu>
           </MenuItemContext.Provider>
         </Portal>
