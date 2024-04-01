@@ -40,7 +40,12 @@ import {
   useMergedRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
+import {
+  TableColumnsContext,
+  getCellStyle,
+  getStickyStyle,
+  getSubRowStyle,
+} from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
@@ -895,7 +900,7 @@ export const Table = <
   const isHeaderDirectClick = React.useRef(false);
 
   return (
-    <>
+    <TableColumnsContext.Provider value={columns}>
       <Box
         ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
@@ -1167,6 +1172,6 @@ export const Table = <
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
-    </>
+    </TableColumnsContext.Provider>
   );
 };
