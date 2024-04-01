@@ -45,6 +45,13 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
   const columnsProp = React.useContext(TableColumnsContext);
+  const isCustomCell = React.useMemo(
+    () =>
+      columnsProp
+        .find(({ id }) => props.cellProps.column.id === id)
+        ?.hasOwnProperty('Cell'),
+    [props.cellProps.column.id, columnsProp],
+  );
 
   const {
     cellElementProps: {
@@ -60,11 +67,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    // Enable line clamp by default only if the cell content is a string and the column doesn't specify a custom Cell component
-    clamp = typeof cellProps.value === 'string' &&
-      !columnsProp
-        .find((col) => col.id === cellProps.column.id)
-        ?.hasOwnProperty('Cell'),
+    clamp = typeof cellProps.value === 'string' && !isCustomCell,
     ...rest
   } = props;
 
