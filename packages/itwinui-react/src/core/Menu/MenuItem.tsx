@@ -18,9 +18,15 @@ import { usePopover } from '../Popover/Popover.js';
 import {
   useClick,
   useDismiss,
+  // useHover,
   useInteractions,
-  useListNavigation,
+  useListItem,
+  // useListNavigation,
 } from '@floating-ui/react';
+import {
+  // DropdownMenuContext,
+  SelectContext,
+} from '../DropdownMenu/DropdownMenu.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -31,12 +37,14 @@ const MenuItemContext = React.createContext<{
   setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   value: string | undefined;
   popover: ReturnType<typeof usePopover> | undefined;
+  // setHasFocusInside: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   ref: undefined,
   isNestedSubmenuVisible: undefined,
   setIsNestedSubmenuVisible: () => {},
   value: undefined,
   popover: undefined,
+  // setHasFocusInside: () => {},
 });
 
 export type MenuItemProps = {
@@ -167,6 +175,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     null,
   );
 
+  // const [hasFocusInside, setHasFocusInside] = React.useState(false);
+
   const popover = usePopover({
     // nodeId,
     // visible: isSubmenuVisible,
@@ -178,11 +188,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     interactions: (context) => {
       const interactionsValue = useInteractions([
         useClick(context),
-        useListNavigation(context, {
-          listRef,
-          activeIndex,
-          onNavigate: setActiveIndex,
-        }),
+        // useHover(context),
+        // useListNavigation(context, {
+        //   listRef,
+        //   activeIndex,
+        //   nested: true,
+        //   onNavigate: setActiveIndex,
+        // }),
         useDismiss(context, { outsidePress: true }),
       ]);
 
@@ -253,6 +265,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   // console.log('getItemProps', popover.getItemProps());
 
+  const { ref: listItemRef, index } = useListItem();
+
+  // const dropdownMenuContext = React.useContext(DropdownMenuContext);
+  // const { activeIndex: parentActiveIndex } = dropdownMenuContext || {};
+
+  const selectContext = React.useContext(SelectContext);
+  const { activeIndex: parentActiveIndex, getItemProps } = selectContext || {};
+
+  console.log('parent', parentActiveIndex);
+
+  const isActive = parentActiveIndex === index;
+
   return (
     <ListItem
       as='div'
@@ -262,11 +286,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       disabled={disabled}
       ref={useMergedRefs(
         menuItemRef,
+        listItemRef,
         forwardedRef,
         subMenuItems.length > 0 ? popover.refs.setReference : null,
       )}
+      tabIndex={isActive ? 0 : -1}
       role={role}
-      tabIndex={disabled || role === 'presentation' ? undefined : -1}
+      // tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
       aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
@@ -275,6 +301,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {...(subMenuItems.length === 0
         ? { ...handlers, ...rest }
         : popover.getReferenceProps({ ...handlers, ...rest }))}
+      {...(!!getItemProps ? getItemProps() : {})}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>

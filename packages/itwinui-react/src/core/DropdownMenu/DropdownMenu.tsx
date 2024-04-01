@@ -18,6 +18,7 @@ import type {
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 import {
+  FloatingList,
   useClick,
   useInteractions,
   useListNavigation,
@@ -103,11 +104,14 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   }, [menuItems, close]);
 
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+
   const listRef = React.useRef<any[]>([]);
+  console.log('activeIndex', activeIndex, listRef.current);
 
   const interactions = React.useRef<ReturnType<typeof useInteractions> | null>(
     null,
   );
+  const getItemProps = interactions.current?.getItemProps;
 
   const popover = usePopover({
     visible,
@@ -141,6 +145,16 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
+  const selectContext = React.useMemo(
+    () => ({
+      activeIndex,
+      // selectedIndex,
+      getItemProps,
+      // handleSelect,
+    }),
+    [activeIndex, getItemProps],
+  );
+
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
@@ -150,23 +164,37 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
       }))}
       {popover.open && (
         <Portal portal={portal}>
-          <Menu
-            {...popover.getFloatingProps({
-              role,
-              ...rest,
-              onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                if (e.defaultPrevented) {
-                  return;
-                }
-                if (e.key === 'Tab') {
-                  close();
-                }
-              }),
-            })}
-            ref={popoverRef}
-          >
-            {/* {menuContent} */}
-            {(menuContent as JSX.Element[]).map((item, index) =>
+          <SelectContext.Provider value={selectContext}>
+            <Menu
+              {...popover.getFloatingProps({
+                role,
+                ...rest,
+                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                  if (e.defaultPrevented) {
+                    return;
+                  }
+                  if (e.key === 'Tab') {
+                    close();
+                  }
+                }),
+              })}
+              ref={popoverRef}
+            >
+              {/* {menuContent} */}
+              <FloatingList elementsRef={listRef}>{menuContent}</FloatingList>
+              {/* <FloatingList elementsRef={listRef}>{menuContent}</FloatingList> */}
+              {/* <FloatingList elementsRef={listRef}>
+              {(menuContent as JSX.Element[]).map((item, index) =>
+                React.cloneElement(item, {
+                  ...(interactions.current != null
+                    ? interactions.current.getItemProps({
+                        'data-testing-1': 'testing-123',
+                      })
+                    : {}),
+                }),
+              )}
+            </FloatingList> */}
+              {/* {(menuContent as JSX.Element[]).map((item, index) =>
               React.cloneElement(item, {
                 ref: (el: any) => {
                   console.log('HERE');
@@ -181,10 +209,29 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
                     })
                   : {}),
               }),
-            )}
-          </Menu>
+            )} */}
+            </Menu>
+          </SelectContext.Provider>
         </Portal>
       )}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
+
+export const DropdownMenuContext = React.createContext<
+  | {
+      activeIndex: number | null;
+    }
+  | undefined
+>(undefined);
+
+interface SelectContextValue {
+  activeIndex: number | null;
+  // selectedIndex: number | null;
+  getItemProps: ReturnType<typeof useInteractions>['getItemProps'] | undefined;
+  // handleSelect: (index: number | null) => void;
+}
+
+export const SelectContext = React.createContext<SelectContextValue>(
+  {} as SelectContextValue,
+);
