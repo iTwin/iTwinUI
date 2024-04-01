@@ -57,7 +57,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string',
+    clamp = typeof children === 'string',
     ...rest
   } = props;
 
