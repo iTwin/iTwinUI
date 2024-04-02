@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.8.0
+
+### Minor Changes
+
+- [#1957](https://github.com/iTwin/iTwinUI/pull/1957): Bumped the minimum required version of `@floating-ui/react` from `^0.26.3` to `^0.26.10`. (Make sure to also update transitive deps!)
+
+### Patch Changes
+
+- [#1962](https://github.com/iTwin/iTwinUI/pull/1962): Hydration checks have been added in some components to facilitate showing pure client-rendered content more eagerly.
+- [#1968](https://github.com/iTwin/iTwinUI/pull/1968): Fixed a regression in `Table` where the layout of a custom `Cell` unexpectedly changed from horizontal to vertical.
+
 ## 3.7.4
 
 ### Patch Changes
