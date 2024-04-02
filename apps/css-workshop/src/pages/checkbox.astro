@@ -102,10 +102,18 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-input-grid iui-input-group-wrapper'>
         <div class='iui-input-label'>Checkbox group label</div>
         <div class='iui-input-group'>
-          <Checkbox_ variant='smile' checked />
-          <Checkbox_ variant='smile' />
-          <Checkbox_ variant='frown' checked disabled />
-          <Checkbox_ variant='big frown' disabled />
+          <Checkbox_ checked>
+            <svg-smiley-happy aria-hidden='true' style='display: flex;'></svg-smiley-happy>
+          </Checkbox_>
+          <Checkbox_>
+            <svg-smiley-happy aria-hidden='true' style='display: flex;'></svg-smiley-happy>
+          </Checkbox_>
+          <Checkbox_ checked disabled>
+            <svg-smiley-sad aria-hidden='true' style='display: flex;'></svg-smiley-sad>
+          </Checkbox_>
+          <Checkbox_ disabled>
+            <svg-smiley-sad-very aria-hidden='true' style='display: flex;'></svg-smiley-sad-very>
+          </Checkbox_>
         </div>
         <div class='iui-status-message'>
           <div>Help message.</div>

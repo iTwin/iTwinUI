@@ -7,7 +7,7 @@ type Props = {
   indeterminate?: boolean;
   checked?: boolean;
   disabled?: boolean;
-  variant?: 'eyeball' | 'smile' | 'frown' | 'big frown';
+  variant?: 'eyeball';
   content?: React.ReactNode;
   status?: 'negative' | 'positive' | 'warning' | 'negative';
 } & astroHTML.JSX.HTMLAttributes;
@@ -47,8 +47,6 @@ const { status, isLoading, label, indeterminate, checked, disabled, variant, ...
   }
   <span class='iui-checkbox-label'>
     {label && label}
-    {variant === 'smile' && <svg-smiley-happy aria-hidden='true' style='display: flex;' />}
-    {variant === 'frown' && <svg-smiley-sad aria-hidden='true' style='display: flex;' />}
-    {variant === 'big frown' && <svg-smiley-sad-very aria-hidden='true' style='display: flex;' />}
+    <slot />
   </span>
 </label>
