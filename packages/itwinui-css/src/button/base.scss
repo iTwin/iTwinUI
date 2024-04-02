@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
+$disabledButtonSelectors: '[disabled], :disabled, [aria-disabled=' true '], [data-iui-disabled=' true '], .iui-disabled';
+
 @mixin iui-button {
   display: inline-flex;
   flex-shrink: 0;
@@ -19,7 +21,7 @@
   text-decoration: none;
   @include iui-button-size;
 
-  &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true'], .iui-disabled) {
+  &:where(#{$disabledButtonSelectors}) {
     cursor: not-allowed;
   }
 }
@@ -37,9 +39,7 @@
       fill: var(--_iui-button-icon-fill-hover, var(--iui-color-icon-hover));
     }
 
-    button[disabled] &,
-    button:disabled &,
-    button[aria-disabled='true'] & {
+    button:is(#{$disabledButtonSelectors}) & {
       fill: var(--iui-color-icon-disabled);
     }
   }
@@ -61,7 +61,7 @@
     background: var(--_iui-button-active-stripe-background);
   }
 
-  &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
+  &:is(#{$disabledButtonSelectors}) {
     --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
     --_iui-button-icon-fill: var(--iui-color-icon-disabled);
     --_iui-button-icon-fill-hover: var(--iui-color-icon-disabled);
