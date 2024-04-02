@@ -226,15 +226,20 @@ import Checkbox_ from '../components/Checkbox.astro';
           flex-direction: column;
           align-items: flex-end;'
     >
-      <Checkbox_ indeterminate label='Half checkbox' labelPosition='right' />
-      <Checkbox_ label='Checkbox' labelPosition='right' />
-      <Checkbox_ label='Loading checkbox' isLoading labelPosition='right' />
-      <Checkbox_ label='Checkbox' disabled labelPosition='right' />
-      <Checkbox_ indeterminate label='Half checkbox' disabled labelPosition='right' />
-      <Checkbox_ label='Checkbox' checked disabled labelPosition='right' />
-      <Checkbox_ label='Checkbox' status='positive' labelPosition='right' />
-      <Checkbox_ label='Checkbox' status='negative' labelPosition='right' />
-      <Checkbox_ label='Checkbox' status='warning' labelPosition='right' />
+      <Checkbox_ indeterminate label='Half checkbox' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Loading checkbox' isLoading style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' disabled style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_
+        indeterminate
+        label='Half checkbox'
+        disabled
+        style={{ flexDirection: 'row-reverse' }}
+      />
+      <Checkbox_ label='Checkbox' checked disabled style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='positive' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='negative' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='warning' style={{ flexDirection: 'row-reverse' }} />
     </div>
 
     <h3>Empty label</h3>

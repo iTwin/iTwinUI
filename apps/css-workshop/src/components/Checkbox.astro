@@ -1,6 +1,4 @@
 ---
-import cx from 'classnames';
-
 type Props = {
   isLoading?: boolean;
   label?: React.ReactNode;
@@ -8,38 +6,33 @@ type Props = {
   checked?: boolean;
   disabled?: boolean;
   variant?: 'eyeball';
-  labelPosition?: 'left' | 'right';
-  status?: 'negative' | 'positive' | 'warning' | 'negative';
+  status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.HTMLAttributes;
 
-const {
-  status,
-  isLoading,
-  labelPosition = 'left',
-  label,
-  indeterminate,
-  disabled,
-  variant,
-  ...props
-} = Astro.props;
+const { status, isLoading, label, indeterminate, disabled, variant, ...props } = Astro.props;
 ---
 
 <label
-  class={cx('iui-checkbox-wrapper', {
-    'iui-disabled': disabled,
-    'iui-loading': isLoading,
-    'iui-positive': status === 'positive',
-    'iui-warning': status === 'warning',
-    'iui-negative': status === 'negative',
-  })}
-  style={labelPosition === 'right' ? { flexDirection: 'row-reverse' } : {}}
+  class:list={[
+    'iui-checkbox-wrapper',
+    {
+      'iui-disabled': disabled,
+      'iui-loading': isLoading,
+      'iui-positive': status === 'positive',
+      'iui-warning': status === 'warning',
+      'iui-negative': status === 'negative',
+    },
+  ]}
   {...props}
 >
   <input
-    class={cx('iui-checkbox', {
-      'iui-loading': isLoading,
-      'iui-checkbox-visibility': variant === 'eyeball',
-    })}
+    class:list={[
+      'iui-checkbox',
+      {
+        'iui-loading': isLoading,
+        'iui-checkbox-visibility': variant === 'eyeball',
+      },
+    ]}
     type='checkbox'
     name={indeterminate ? 'indeterminate' : undefined}
     disabled={disabled}
