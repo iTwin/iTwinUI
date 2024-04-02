@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'base';
 @use 'borderless';
-@use 'active';
 @use 'variant';
 @use 'idea';
 @use 'button-group';
@@ -33,11 +32,10 @@
   }
 
   &[data-iui-active='true'] {
-    @include active.iui-button-active;
-    @include active.iui-button-default-active;
+    @include base.iui-button-active;
 
     &[data-iui-variant='borderless'] {
-      @include active.iui-button-borderless-active;
+      @include borderless.iui-button-borderless-active;
     }
   }
 

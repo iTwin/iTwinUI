@@ -46,19 +46,20 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled=' true '], [dat
 }
 
 @mixin iui-button-active {
-  --_iui-button-active-stripe-inset-block: initial;
-  --_iui-button-active-stripe-inset-inline: initial;
-  --_iui-button-active-stripe-background: var(--iui-color-border-accent);
-  --_iui-button-text-color: var(--iui-color-text-accent);
   --_iui-button-icon-fill: var(--iui-color-icon-accent);
+  --_iui-button-icon-fill-hover: var(--iui-color-icon-accent);
+  --_iui-field-color-background: var(--iui-color-background-accent-muted);
+  --_iui-field-color-background-hover: var(--iui-color-background-accent-muted);
+  --_iui-field-color-background-disabled: var(--iui-color-background-disabled);
+  --_iui-field-color-text: var(--iui-color-text-accent);
 
   // Shows active stripe only if --_iui-button-active-stripe-inset- properties are set (from outside)
   &::after {
     content: '';
     position: absolute;
-    inset-block: var(--_iui-button-active-stripe-inset-block);
-    inset-inline: var(--_iui-button-active-stripe-inset-inline);
-    background: var(--_iui-button-active-stripe-background);
+    inset-block: var(--_iui-button-active-stripe-inset-block, initial);
+    inset-inline: var(--_iui-button-active-stripe-inset-inline, initial);
+    background: var(--_iui-button-active-stripe-background, var(--iui-color-border-accent));
   }
 
   &:is(#{$disabledButtonSelectors}) {
