@@ -51,36 +51,20 @@ type InformationPanelProps = {
  * </InformationPanelWrapper>
  */
 export const InformationPanel = React.forwardRef((props, ref) => {
-  const {
-    className,
-    isOpen = false,
-    orientation = 'vertical',
-    resizable = true,
-    ...rest
-  } = props;
-
   return (
-    <InformationPanelInternal
-      className={cx(
-        'iui-information-panel',
-        {
-          'iui-right': orientation === 'vertical',
-          'iui-bottom': orientation === 'horizontal',
-          'iui-visible': isOpen,
-        },
-        className,
-      )}
-      ref={ref}
-      key={orientation}
-      orientation={orientation}
-      resizable={resizable}
-      {...rest}
-    />
+    <InformationPanelInternal ref={ref} key={props.orientation} {...props} />
   );
 }) as PolymorphicForwardRefComponent<'div', InformationPanelProps>;
 
 const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
-  const { orientation, resizable, children, ...rest } = props;
+  const {
+    orientation = 'vertical',
+    resizable = true,
+    children,
+    isOpen = false,
+    className,
+    ...rest
+  } = props;
 
   const [infoPanelWidth, setInfoPanelWidth] = React.useState<string>('');
   const [infoPanelHeight, setInfoPanelHeight] = React.useState<string>('');
@@ -129,6 +113,15 @@ const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
+      className={cx(
+        'iui-information-panel',
+        {
+          'iui-right': orientation === 'vertical',
+          'iui-bottom': orientation === 'horizontal',
+          'iui-visible': isOpen,
+        },
+        className,
+      )}
       ref={refs}
       style={{ width: infoPanelWidth, height: infoPanelHeight }}
       {...rest}
