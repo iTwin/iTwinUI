@@ -26,17 +26,17 @@ test.describe('Information Panel Resizing', () => {
   });
 
   async function resizeInformationPanel(page: Page) {
-    const resizer = page.locator('._iui3-resizer');
-    const resizerBox = await resizer.boundingBox();
+    const infoPanel = page.locator('#InformationPanel');
+    const infoPanelBox = await infoPanel.boundingBox();
 
-    if (resizerBox) {
-      await resizer.hover({
-        position: { x: resizerBox.width / 2, y: resizerBox.height / 2 },
+    if (infoPanelBox) {
+      await infoPanel.hover({
+        position: { x: 0, y: infoPanelBox.height / 2 },
       });
       await page.mouse.down();
       await page.mouse.move(
-        Math.max(1, resizerBox.x + 100 + resizerBox.width / 2),
-        resizerBox.y + resizerBox.height / 2,
+        Math.max(1, infoPanelBox.x + 100),
+        infoPanelBox.y + infoPanelBox.height / 2,
         { steps: 5 },
       );
       await page.mouse.up();
