@@ -20,11 +20,12 @@ import Tag_ from '../components/Tag.astro';
 
   <h2>Default</h2>
   <section id='demo-default'>
-    <Tag_ title='Tag' id='test-tag-1' />
+    <Tag_ id='test-tag-1'>Tag</Tag_>
     <br />
-    <Tag_ title='Overflowing tag' style='max-width: 125px;' />
+
+    <Tag_ style='max-width: 125px;'>Overflowing tag</Tag_>
     <br />
-    <Tag_ button={false} title='No Button' />
+    <Tag_ closeButton={false}>No Button</Tag_>
   </section>
 
   <hr />
@@ -32,44 +33,44 @@ import Tag_ from '../components/Tag.astro';
   <h2>Default tag containers</h2>
   <section id='demo-default-container'>
     <div class='iui-tag-container iui-visible' aria-label='My tags'>
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
     </div>
 
     <br />
 
     <div class='iui-tag-container iui-visible iui-truncate' aria-label='My tags'>
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
     </div>
 
     <br />
 
     <div class='iui-tag-container iui-visible iui-scroll' aria-label='My tags'>
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
-      <Tag_ title='Tag' />
-      <Tag_ title='Long tag' />
-      <Tag_ title='Very long tag' />
-      <Tag_ title='Very very long tag' />
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
+      <Tag_>Tag</Tag_>
+      <Tag_>Long tag</Tag_>
+      <Tag_>Very long tag</Tag_>
+      <Tag_>Very very long tag</Tag_>
     </div>
   </section>
 
@@ -78,120 +79,117 @@ import Tag_ from '../components/Tag.astro';
   <h2>Basic tag containers</h2>
   <section id='demo-basic'>
     <div class='iui-tag-container'>
-      <Tag_ variant='basic' title='tags' button={false} /><Tag_
+      <Tag_ variant='basic' title='tags' closeButton={false} /><Tag_
         variant='basic'
         title='go'
-        button={false}
-      /><Tag_ variant='basic' title='here' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='here' closeButton={false} /><Tag_
         variant='basic'
         title='tags'
-        button={false}
-      /><Tag_ variant='basic' title='go' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='go' closeButton={false} /><Tag_
         variant='basic'
         title='here'
-        button={false}
+        closeButton={false}
       />
     </div>
 
     <div class='iui-tag-container'>
-      <Tag_ variant='basic' title='tags' button={false} href='#' id='test-tag-2' /><Tag_
-        variant='basic'
-        title='go'
-        button={false}
-        href='#'
-      /><Tag_ variant='basic' title='here' button={false} href='#' /><Tag_
-        variant='basic'
-        title='tags'
-        button={false}
-        href='#'
-      /><Tag_ variant='basic' title='go' button={false} href='#' /><Tag_
+      <Tag_ as='a' class='iui-tag-basic iui-anchor' href='#the-url' closeButton={false}>
+        Tags
+      </Tag_><Tag_ variant='basic' title='go' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='here'
-        button={false}
+        closeButton={false}
         href='#'
-      />
+      /><Tag_ variant='basic' title='tags' closeButton={false} href='#' /><Tag_
+        variant='basic'
+        title='go'
+        closeButton={false}
+        href='#'
+      /><Tag_ variant='basic' title='here' closeButton={false} href='#' />
     </div>
   </section>
 
   <h2>Truncate basic tag containers</h2>
   <section id='demo-truncate'>
     <div class='iui-tag-container iui-truncate'>
-      <Tag_ variant='basic' title='tags' button={false} /><Tag_
+      <Tag_ variant='basic' title='tags' closeButton={false} /><Tag_
         variant='basic'
         title='go'
-        button={false}
-      /><Tag_ variant='basic' title='here' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='here' closeButton={false} /><Tag_
         variant='basic'
         title='tags'
-        button={false}
-      /><Tag_ variant='basic' title='go' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='go' closeButton={false} /><Tag_
         variant='basic'
         title='here'
-        button={false}
-      /><Tag_ variant='basic' title='tags' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='tags' closeButton={false} /><Tag_
         variant='basic'
         title='go'
-        button={false}
-      /><Tag_ variant='basic' title='here' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='here' closeButton={false} /><Tag_
         variant='basic'
         title='tags'
-        button={false}
-      /><Tag_ variant='basic' title='go' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='go' closeButton={false} /><Tag_
         variant='basic'
         title='here'
-        button={false}
-      /><Tag_ variant='basic' title='tags' button={false} /><Tag_
+        closeButton={false}
+      /><Tag_ variant='basic' title='tags' closeButton={false} /><Tag_
         variant='basic'
         title='go'
-        button={false}
-      /><Tag_ variant='basic' title='here' button={false} />
+        closeButton={false}
+      /><Tag_ variant='basic' title='here' closeButton={false} />
     </div>
 
     <div class='iui-tag-container iui-truncate'>
-      <Tag_ variant='basic' title='tags' button={false} href='#' id='test-tag-3' /><Tag_
+      <Tag_ variant='basic' title='tags' closeButton={false} href='#' id='test-tag-3' /><Tag_
         variant='basic'
         title='go'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='here' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='here' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='tags'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='go' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='go' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='here'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='tags' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='tags' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='go'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='here' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='here' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='tags'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='go' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='go' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='here'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='tags' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='tags' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='go'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='here' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='here' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='tags'
-        button={false}
+        closeButton={false}
         href='#'
-      /><Tag_ variant='basic' title='go' button={false} href='#' /><Tag_
+      /><Tag_ variant='basic' title='go' closeButton={false} href='#' /><Tag_
         variant='basic'
         title='here'
-        button={false}
+        closeButton={false}
         href='#'
       />
     </div>

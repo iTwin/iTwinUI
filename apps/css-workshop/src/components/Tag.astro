@@ -1,9 +1,9 @@
 ---
-const { title, className, id, style, button = true, variant, href, ...props } = Astro.props;
+const { closeButton = true, variant, href, className, ...props } = Astro.props;
 ---
 
 <>
-  {
+  <!-- {
     variant === 'basic' && !href && (
       <span class='iui-tag-basic' id={id}>
         {title}
@@ -16,20 +16,19 @@ const { title, className, id, style, button = true, variant, href, ...props } = 
         {title}
       </a>
     )
-  }
+  } -->
 
   {
     variant !== 'basic' && (
-      <span className='iui-tag' id={id} style={style} {...props}>
-        <span class='iui-tag-label' title={title}>
-          {title}
+      <span class:list={['iui-tag', className]} {...props}>
+        <span class='iui-tag-label'>
+          <slot />
         </span>
-        {button && (
+        {closeButton && (
           <button
             class='iui-button iui-tag-button'
             data-iui-variant='borderless'
             data-iui-size='small'
-            aria-label={`Delete ${title.toLowerCase()}`}
             type='button'
           >
             <svg-close-small class='iui-button-icon' aria-hidden='true' />
