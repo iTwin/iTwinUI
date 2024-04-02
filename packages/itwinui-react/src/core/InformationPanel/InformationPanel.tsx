@@ -50,26 +50,21 @@ type InformationPanelProps = {
  *   </InformationPanel>
  * </InformationPanelWrapper>
  */
-export const InformationPanel = React.forwardRef((props, ref) => {
-  return (
-    <InformationPanelInternal ref={ref} key={props.orientation} {...props} />
-  );
-}) as PolymorphicForwardRefComponent<'div', InformationPanelProps>;
-
-// ----------------------------------------------------------------------------
-
-const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
+export const InformationPanel = React.forwardRef((props, forwardedRef) => {
   const {
+    className,
+    isOpen = false,
     orientation = 'vertical',
     resizable = true,
     children,
-    isOpen = false,
-    className,
     ...rest
   } = props;
 
-  const [infoPanelWidth, setInfoPanelWidth] = React.useState<string>('');
-  const [infoPanelHeight, setInfoPanelHeight] = React.useState<string>('');
+  const [infoPanelSize, setInfoPanelSize] = React.useState<{
+    width: number | undefined;
+    height: number | undefined;
+  }>({ width: undefined, height: undefined });
+
   const infoPanelRef = React.useRef<HTMLDivElement>(null);
   const refs = useMergedRefs(forwardedRef, infoPanelRef);
 
@@ -105,9 +100,9 @@ const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
       }
       const { right, bottom } = infoPanelRef.current.getBoundingClientRect();
       if (orientation === 'vertical') {
-        setInfoPanelWidth(`${right - e.clientX}px`);
+        setInfoPanelSize({ width: right - e.clientX, height: undefined });
       } else {
-        setInfoPanelHeight(`${bottom - e.clientY}px`);
+        setInfoPanelSize({ height: bottom - e.clientY, width: undefined });
       }
     },
     [orientation],
@@ -125,8 +120,12 @@ const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
         className,
       )}
       ref={refs}
-      style={{ width: infoPanelWidth, height: infoPanelHeight }}
       {...rest}
+      style={{
+        width: orientation === 'vertical' ? infoPanelSize.width : undefined,
+        height: orientation === 'horizontal' ? infoPanelSize.height : undefined,
+        ...props.style,
+      }}
     >
       {resizable && (
         <Box className='iui-resizer' onPointerDown={startResize}>
