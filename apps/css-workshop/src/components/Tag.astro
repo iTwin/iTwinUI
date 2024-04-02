@@ -2,39 +2,36 @@
 const { closeButton = true, variant, href, className, ...props } = Astro.props;
 ---
 
-<>
-  <!-- {
-    variant === 'basic' && !href && (
-      <span class='iui-tag-basic' id={id}>
-        {title}
+<span
+  class:list={[
+    {
+      'iui-tag': variant !== 'basic',
+      'iui-tag-basic': variant === 'basic',
+    },
+    className,
+  ]}
+  {...props}
+>
+  {
+    variant === 'basic' ? (
+      <slot />
+    ) : (
+      <span class='iui-tag-label'>
+        <slot />
       </span>
     )
   }
-  {
-    href && (
-      <a href={href} class='iui-anchor iui-tag-basic' id={id}>
-        {title}
-      </a>
-    )
-  } -->
 
   {
-    variant !== 'basic' && (
-      <span class:list={['iui-tag', className]} {...props}>
-        <span class='iui-tag-label'>
-          <slot />
-        </span>
-        {closeButton && (
-          <button
-            class='iui-button iui-tag-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-            type='button'
-          >
-            <svg-close-small class='iui-button-icon' aria-hidden='true' />
-          </button>
-        )}
-      </span>
+    closeButton && (
+      <button
+        class='iui-button iui-tag-button'
+        data-iui-variant='borderless'
+        data-iui-size='small'
+        type='button'
+      >
+        <svg-close-small class='iui-button-icon' aria-hidden='true' />
+      </button>
     )
   }
-</>
+</span>

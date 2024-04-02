@@ -79,19 +79,24 @@ import Tag_ from '../components/Tag.astro';
   <h2>Basic tag containers</h2>
   <section id='demo-basic'>
     <div class='iui-tag-container'>
-      <Tag_ variant='basic' title='tags' closeButton={false} /><Tag_
+      <Tag_ variant='basic' closeButton={false}>tags</Tag_><Tag_
         variant='basic'
-        title='go'
         closeButton={false}
-      /><Tag_ variant='basic' title='here' closeButton={false} /><Tag_
+      >
+        go
+      </Tag_><Tag_ variant='basic' closeButton={false}>here</Tag_>
+      <Tag_ variant='basic' closeButton={false}>tags</Tag_><Tag_
         variant='basic'
-        title='tags'
         closeButton={false}
-      /><Tag_ variant='basic' title='go' closeButton={false} /><Tag_
+      >
+        go
+      </Tag_><Tag_ variant='basic' closeButton={false}>here</Tag_>
+      <Tag_ variant='basic' closeButton={false}>tags</Tag_><Tag_
         variant='basic'
-        title='here'
         closeButton={false}
-      />
+      >
+        go
+      </Tag_><Tag_ variant='basic' closeButton={false}>here</Tag_>
     </div>
 
     <div class='iui-tag-container'>
