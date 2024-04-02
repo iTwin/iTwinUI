@@ -1,7 +1,6 @@
 ---
 type Props = {
   isLoading?: boolean;
-  label?: React.ReactNode;
   indeterminate?: boolean;
   checked?: boolean;
   disabled?: boolean;
@@ -9,7 +8,7 @@ type Props = {
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.HTMLAttributes;
 
-const { status, isLoading, label, indeterminate, disabled, variant, ...props } = Astro.props;
+const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.props;
 ---
 
 <label
@@ -46,7 +45,6 @@ const { status, isLoading, label, indeterminate, disabled, variant, ...props } =
     )
   }
   <span class='iui-checkbox-label'>
-    {label}
     <slot />
   </span>
 </label>
