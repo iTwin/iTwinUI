@@ -106,7 +106,8 @@ import Checkbox_ from '../components/Checkbox.astro';
             <svg-smiley-happy aria-hidden='true' style='display: flex;'></svg-smiley-happy>
           </Checkbox_>
           <Checkbox_>
-            <svg-smiley-happy aria-hidden='true' style='display: flex;'></svg-smiley-happy>
+            <svg-smiley-happy-very aria-hidden='true' style='display: flex;'
+            ></svg-smiley-happy-very>
           </Checkbox_>
           <Checkbox_ checked disabled>
             <svg-smiley-sad aria-hidden='true' style='display: flex;'></svg-smiley-sad>
@@ -190,93 +191,89 @@ import Checkbox_ from '../components/Checkbox.astro';
         </div>
       </div>
     </section>
+  </section>
 
-    <br />
+  <br />
 
-    <h2>Without group label</h2>
-    <section id='demo-no-label'>
-      <h3>Checkbox on left</h3>
-      <div
-        id='left'
-        style='
+  <h2>Without group label</h2>
+  <section id='demo-no-label'>
+    <h3>Checkbox on left</h3>
+    <div
+      id='left'
+      style='
           width: fit-content;
           display: flex;
           flex-direction: column;
           align-items: flex-start;'
-      >
-        <Checkbox_ indeterminate label='Half checkbox' />
-        <Checkbox_ label='Checkbox' />
-        <Checkbox_ label='Loading checkbox' isLoading={true} />
-        <Checkbox_ label='Checkbox' disabled />
-        <Checkbox_ indeterminate label='Half checkbox' disabled />
-        <Checkbox_ label='Checkbox' checked disabled />
-        <Checkbox_ label='Checkbox' status='positive' />
-        <Checkbox_ label='Checkbox' status='negative' />
-        <Checkbox_ label='Checkbox' status='warning' />
-      </div>
+    >
+      <Checkbox_ indeterminate label='Half checkbox' />
+      <Checkbox_ label='Checkbox' />
+      <Checkbox_ label='Loading checkbox' isLoading />
+      <Checkbox_ label='Checkbox' disabled />
+      <Checkbox_ indeterminate label='Half checkbox' disabled />
+      <Checkbox_ label='Checkbox' checked disabled />
+      <Checkbox_ label='Checkbox' status='positive' />
+      <Checkbox_ label='Checkbox' status='negative' />
+      <Checkbox_ label='Checkbox' status='warning' />
+    </div>
 
-      <h3>Checkbox on right</h3>
-      <div
-        id='right'
-        style='
+    <h3>Checkbox on right</h3>
+    <div
+      id='right'
+      style='
           width: fit-content;
           display: flex;
           flex-direction: column;
           align-items: flex-end;'
-      >
-        <Checkbox_ indeterminate label='Half checkbox' style={{ flexDirection: 'row-reverse' }} />
-        <Checkbox_ label='Checkbox' style={{ flexDirection: 'row-reverse' }} />
-        <Checkbox_
-          label='Loading checkbox'
-          isLoading={true}
-          style={{ flexDirection: 'row-reverse' }}
-        />
-        <Checkbox_ label='Checkbox' disabled style={{ flexDirection: 'row-reverse' }} />
-        <Checkbox_
-          indeterminate
-          label='Half checkbox'
-          disabled
-          style={{ flexDirection: 'row-reverse' }}
-        />
-        <Checkbox_ label='Checkbox' checked disabled style={{ flexDirection: 'row-reverse' }} />
-        <Checkbox_ label='Checkbox' status='positive' style={{ flexDirection: 'row-reverse' }} />
-        <Checkbox_ label='Checkbox' status='negative' style={{ flexDirection: 'row-reverse' }} />
-        <Checkbox_ label='Checkbox' status='warning' style={{ flexDirection: 'row-reverse' }} />
-      </div>
+    >
+      <Checkbox_ indeterminate label='Half checkbox' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Loading checkbox' isLoading style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' disabled style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_
+        indeterminate
+        label='Half checkbox'
+        disabled
+        style={{ flexDirection: 'row-reverse' }}
+      />
+      <Checkbox_ label='Checkbox' checked disabled style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='positive' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='negative' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='warning' style={{ flexDirection: 'row-reverse' }} />
+    </div>
 
-      <h3>Empty label</h3>
-      <Checkbox_ checked />
-      <Checkbox_ />
-      <Checkbox_ indeterminate />
-      <Checkbox_ checked disabled />
-      <Checkbox_ disabled />
-      <Checkbox_ indeterminate disabled />
-    </section>
-
-    <br />
-    <h2>Specialty styling</h2>
-    <section id='demo-special'>
-      <Checkbox_ variant='eyeball' checked />
-      <Checkbox_ variant='eyeball' indeterminate />
-      <Checkbox_ variant='eyeball' />
-      <Checkbox_ variant='eyeball' checked disabled />
-      <Checkbox_ variant='eyeball' indeterminate disabled />
-      <Checkbox_ variant='eyeball' disabled />
-    </section>
-
-    <script is:inline>
-      // Need to base it on something as checked value resets indeterminate
-      // https://www.w3.org/TR/2014/WD-html51-20140617/forms.html#checkbox-state-(type=checkbox)
-      const indeterminateInputs = Array.from(document.getElementsByName('indeterminate'));
-      const clickedCountMap = Object.fromEntries(indeterminateInputs.map((_, index) => [index, 0]));
-      indeterminateInputs.forEach((el, index) => {
-        el.indeterminate = true;
-        el.addEventListener('click', (e) => {
-          ++clickedCountMap[index];
-          e.target.indeterminate = clickedCountMap[index] % 2 === 0;
-          e.target.checked = false;
-        });
-      });
-    </script>
+    <h3>Empty label</h3>
+    <Checkbox_ checked />
+    <Checkbox_ />
+    <Checkbox_ indeterminate />
+    <Checkbox_ checked disabled />
+    <Checkbox_ disabled />
+    <Checkbox_ indeterminate disabled />
   </section>
+
+  <br />
+  <h2>Specialty styling</h2>
+  <section id='demo-special'>
+    <Checkbox_ variant='eyeball' checked />
+    <Checkbox_ variant='eyeball' indeterminate />
+    <Checkbox_ variant='eyeball' />
+    <Checkbox_ variant='eyeball' checked disabled />
+    <Checkbox_ variant='eyeball' indeterminate disabled />
+    <Checkbox_ variant='eyeball' disabled />
+  </section>
+
+  <script is:inline>
+    // Need to base it on something as checked value resets indeterminate
+    // https://www.w3.org/TR/2014/WD-html51-20140617/forms.html#checkbox-state-(type=checkbox)
+    const indeterminateInputs = Array.from(document.getElementsByName('indeterminate'));
+    const clickedCountMap = Object.fromEntries(indeterminateInputs.map((_, index) => [index, 0]));
+    indeterminateInputs.forEach((el, index) => {
+      el.indeterminate = true;
+      el.addEventListener('click', (e) => {
+        ++clickedCountMap[index];
+        e.target.indeterminate = clickedCountMap[index] % 2 === 0;
+        e.target.checked = false;
+      });
+    });
+  </script>
 </Layout>

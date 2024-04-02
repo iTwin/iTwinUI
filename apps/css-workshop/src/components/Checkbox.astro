@@ -9,11 +9,21 @@ type Props = {
   disabled?: boolean;
   variant?: 'eyeball';
   content?: React.ReactNode;
+  labelPosition?: 'left' | 'right';
   status?: 'negative' | 'positive' | 'warning' | 'negative';
 } & astroHTML.JSX.HTMLAttributes;
 
-const { status, isLoading, label, indeterminate, checked, disabled, variant, ...props } =
-  Astro.props;
+const {
+  status,
+  isLoading,
+  labelPosition = 'right',
+  label,
+  indeterminate,
+  checked,
+  disabled,
+  variant,
+  ...props
+} = Astro.props;
 ---
 
 <label
@@ -34,7 +44,7 @@ const { status, isLoading, label, indeterminate, checked, disabled, variant, ...
     type='checkbox'
     disabled={disabled}
     checked={checked}
-    name={indeterminate ? 'indeterminate' : ''}
+    name={indeterminate ? 'indeterminate' : undefined}
   />
   {
     isLoading && (
