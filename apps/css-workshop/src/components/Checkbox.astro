@@ -5,6 +5,7 @@ type Props = {
   isLoading?: boolean;
   label?: React.ReactNode;
   indeterminate?: boolean;
+  checked?: boolean;
   disabled?: boolean;
   variant?: 'eyeball';
   labelPosition?: 'left' | 'right';
@@ -14,7 +15,7 @@ type Props = {
 const {
   status,
   isLoading,
-  labelPosition = 'right',
+  labelPosition = 'left',
   label,
   indeterminate,
   disabled,
@@ -31,6 +32,7 @@ const {
     'iui-warning': status === 'warning',
     'iui-negative': status === 'negative',
   })}
+  style={labelPosition === 'right' ? { flexDirection: 'row-reverse' } : {}}
   {...props}
 >
   <input
