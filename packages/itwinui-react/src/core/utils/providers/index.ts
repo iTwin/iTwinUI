@@ -2,14 +2,4 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-
-@layer itwinui-v1, itwinui.v1, itwinui.v2, itwinui.v3;
-
-@import '@itwin/itwinui-variables' layer(itwinui.v3);
-@import '@itwin/itwinui-css';
-
-@layer itwinui.v3 {
-  .iui-root {
-    --_iui-v3-loaded: yes;
-  }
-}
+export * from './HydrationProvider.js';
