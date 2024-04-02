@@ -1,0 +1,54 @@
+---
+import cx from 'classnames';
+
+type Props = {
+  isLoading?: boolean;
+  label?: React.ReactNode;
+  indeterminate?: boolean;
+  checked?: boolean;
+  disabled?: boolean;
+  variant?: 'eyeball' | 'smile' | 'frown' | 'big frown';
+  content?: React.ReactNode;
+  status?: 'negative' | 'positive' | 'warning' | 'negative';
+} & astroHTML.JSX.HTMLAttributes;
+
+const { status, isLoading, label, indeterminate, checked, disabled, variant, ...props } =
+  Astro.props;
+---
+
+<label
+  class={cx('iui-checkbox-wrapper', {
+    'iui-disabled': disabled,
+    'iui-loading': isLoading,
+    'iui-positive': status === 'positive',
+    'iui-warning': status === 'warning',
+    'iui-negative': status === 'negative',
+  })}
+  {...props}
+>
+  <input
+    class={cx('iui-checkbox', {
+      'iui-loading': isLoading,
+      'iui-checkbox-visibility': variant === 'eyeball',
+    })}
+    type='checkbox'
+    disabled={disabled}
+    checked={checked}
+    name={indeterminate ? 'indeterminate' : ''}
+  />
+  {
+    isLoading && (
+      <div
+        class='iui-progress-indicator-radial'
+        data-iui-indeterminate='true'
+        data-iui-size='x-small'
+      />
+    )
+  }
+  <span class='iui-checkbox-label'>
+    {label && label}
+    {variant === 'smile' && <svg-smiley-happy aria-hidden='true' style='display: flex;' />}
+    {variant === 'frown' && <svg-smiley-sad aria-hidden='true' style='display: flex;' />}
+    {variant === 'big frown' && <svg-smiley-sad-very aria-hidden='true' style='display: flex;' />}
+  </span>
+</label>
