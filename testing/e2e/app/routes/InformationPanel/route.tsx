@@ -13,7 +13,10 @@ const Resizing = () => {
 
   return (
     <>
-      <InformationPanelWrapper style={{ height: '100%' }}>
+      <InformationPanelWrapper
+        style={{ height: '100%' }}
+        id={'InformationPanelWrapper'}
+      >
         <InformationPanel
           isOpen={true}
           orientation={isVertical ? 'vertical' : 'horizontal'}
@@ -25,13 +28,8 @@ const Resizing = () => {
                 label={isVertical ? 'Pin to bottom' : 'Pin to right'}
                 styleType='borderless'
                 onClick={() => setIsVertical((cur) => !cur)}
-                id={'OrientationButton'}
               >
-                {isVertical ? (
-                  <SvgDockBottom data-testid='toggle-dock' />
-                ) : (
-                  <SvgDockRight data-testid='toggle-dock' />
-                )}
+                {isVertical ? <SvgDockBottom /> : <SvgDockRight />}
               </IconButton>,
             ]}
           />
