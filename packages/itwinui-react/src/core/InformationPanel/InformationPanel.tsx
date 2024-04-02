@@ -56,6 +56,8 @@ export const InformationPanel = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'div', InformationPanelProps>;
 
+// ----------------------------------------------------------------------------
+
 const InformationPanelInternal = React.forwardRef((props, forwardedRef) => {
   const {
     orientation = 'vertical',
