@@ -5,10 +5,8 @@ type Props = {
   isLoading?: boolean;
   label?: React.ReactNode;
   indeterminate?: boolean;
-  checked?: boolean;
   disabled?: boolean;
   variant?: 'eyeball';
-  content?: React.ReactNode;
   labelPosition?: 'left' | 'right';
   status?: 'negative' | 'positive' | 'warning' | 'negative';
 } & astroHTML.JSX.HTMLAttributes;
@@ -19,7 +17,6 @@ const {
   labelPosition = 'right',
   label,
   indeterminate,
-  checked,
   disabled,
   variant,
   ...props
@@ -42,9 +39,9 @@ const {
       'iui-checkbox-visibility': variant === 'eyeball',
     })}
     type='checkbox'
-    disabled={disabled}
-    checked={checked}
     name={indeterminate ? 'indeterminate' : undefined}
+    disabled
+    {...props}
   />
   {
     isLoading && (
@@ -56,7 +53,7 @@ const {
     )
   }
   <span class='iui-checkbox-label'>
-    {label && label}
+    {label}
     <slot />
   </span>
 </label>
