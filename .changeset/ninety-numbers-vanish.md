@@ -15,9 +15,9 @@ Introduce `<button data-iui-type>` with values of `feedback` or `dropdown`.
   "
 + data-iui-type="dropdown"
 >
- ```
+```
 
- ```diff
+```diff
 <button
   class="
     iui-button
@@ -27,4 +27,4 @@ Introduce `<button data-iui-type>` with values of `feedback` or `dropdown`.
 + data-iui-variant="high-visibility"
 + data-iui-type="feedback"
 >
- ```
+```
