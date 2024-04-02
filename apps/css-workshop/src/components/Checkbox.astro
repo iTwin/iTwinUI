@@ -18,9 +18,7 @@ const { status, isLoading, label, indeterminate, disabled, variant, ...props } =
     {
       'iui-disabled': disabled,
       'iui-loading': isLoading,
-      'iui-positive': status === 'positive',
-      'iui-warning': status === 'warning',
-      'iui-negative': status === 'negative',
+      [`iui-${status}`]: !!status,
     },
   ]}
   {...props}
