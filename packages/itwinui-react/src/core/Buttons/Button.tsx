@@ -40,9 +40,9 @@ export type ButtonProps = {
    */
   endIconProps?: React.ComponentProps<'span'>;
   /**
-   * Whether the button should fill the width of the container.
+   * Whether the button should stretch to fill the width of the container.
    */
-  fullWidth?: boolean;
+  stretch?: boolean;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
@@ -65,7 +65,7 @@ export const Button = React.forwardRef((props, ref) => {
     labelProps,
     startIconProps,
     endIconProps,
-    fullWidth,
+    stretch,
     ...rest
   } = props;
 
@@ -78,7 +78,7 @@ export const Button = React.forwardRef((props, ref) => {
       {...rest}
       style={
         {
-          '--_iui-width': fullWidth ? '100%' : undefined,
+          '--_iui-width': stretch ? '100%' : undefined,
           ...props.style,
         } as React.CSSProperties
       }
