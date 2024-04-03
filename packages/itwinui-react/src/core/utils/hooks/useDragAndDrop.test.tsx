@@ -8,22 +8,18 @@ import { useDragAndDrop } from './useDragAndDrop.js';
 import * as DomFunctions from '../functions/dom.js';
 
 const DOMMatrixMock = vi.fn();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
 const getBoundingClientRectMock = vi
   .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
   .mockReturnValue({ top: 100, right: 200, bottom: 200, left: 100 } as DOMRect);
 
-vi.spyOn(DomFunctions, 'getWindow')
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  .mockReturnValue({
-    innerWidth: 300,
-    innerHeight: 300,
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-  } as any);
-/* eslint-enable @typescript-eslint/no-explicit-any */
+vi.spyOn(DomFunctions, 'getWindow').mockReturnValue({
+  innerWidth: 300,
+  innerHeight: 300,
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
+} as any);
 
 const TestComponent = (props: {
   isVisible?: boolean;
@@ -53,7 +49,6 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).DOMMatrix = undefined;
   vi.clearAllMocks();
 });

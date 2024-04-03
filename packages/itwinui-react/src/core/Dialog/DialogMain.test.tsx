@@ -8,11 +8,9 @@ import { DialogMain } from './DialogMain.js';
 import { DialogTitleBar } from './DialogTitleBar.js';
 
 const DOMMatrixMock = vi.fn(() => ({ m41: 0, m42: 0 }));
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
 afterAll(() => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).DOMMatrix = undefined;
 });
 
