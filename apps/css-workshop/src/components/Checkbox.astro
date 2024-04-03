@@ -4,11 +4,12 @@ type Props = {
   indeterminate?: boolean;
   checked?: boolean;
   disabled?: boolean;
+  label?: string;
   variant?: 'eyeball';
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.HTMLAttributes;
 
-const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.props;
+const { status, isLoading, indeterminate, disabled, variant, label, ...props } = Astro.props;
 ---
 
 <label
@@ -44,7 +45,6 @@ const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.
       />
     )
   }
-  <span class='iui-checkbox-label'>
-    <slot />
-  </span>
+  {label && <span class='iui-checkbox-label'>{label}</span>}
+  <slot />
 </label>

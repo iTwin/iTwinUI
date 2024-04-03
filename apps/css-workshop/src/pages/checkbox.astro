@@ -29,10 +29,10 @@ import Checkbox_ from '../components/Checkbox.astro';
     <div class='iui-input-grid iui-input-group-wrapper'>
       <div class='iui-input-label iui-required'>Checkbox group label</div>
       <div class='iui-input-group'>
-        <Checkbox_ checked>Option 1</Checkbox_>
-        <Checkbox_>Option 2</Checkbox_>
-        <Checkbox_ disabled checked>Option 3</Checkbox_>
-        <Checkbox_ disabled>Option 4</Checkbox_>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -42,10 +42,10 @@ import Checkbox_ from '../components/Checkbox.astro';
     <div class='iui-input-grid iui-input-group-wrapper'>
       <div class='iui-input-label' data-iui-disabled='true'>Checkbox group label</div>
       <div class='iui-input-group'>
-        <Checkbox_ disabled checked>Option 1</Checkbox_>
-        <Checkbox_ disabled>Option 2</Checkbox_>
-        <Checkbox_ disabled checked>Option 3</Checkbox_>
-        <Checkbox_ disabled>Option 4</Checkbox_>
+        <Checkbox_ label='Option 1' disabled checked />
+        <Checkbox_ label='Option 2' disabled />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -55,142 +55,142 @@ import Checkbox_ from '../components/Checkbox.astro';
     <div class='iui-input-grid iui-input-group-wrapper'>
       <div class='iui-input-label'>Checkbox group label</div>
       <div class='iui-input-group'>
-        <Checkbox_ checked>Option 1</Checkbox_>
-        <Checkbox_>Option 2</Checkbox_>
-        <Checkbox_ disabled checked>Option 3</Checkbox_>
-        <Checkbox_ disabled>Option 4</Checkbox_>
-        <div class='iui-status-message' data-iui-status='positive'>
-          <div class='iui-svg-icon'>
-            <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
-          </div>
-          <div>Positive message.</div>
-        </div>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
       </div>
-
-      <div class='iui-input-grid iui-input-group-wrapper'>
-        <div class='iui-input-label'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>Option 1</Checkbox_>
-          <Checkbox_>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
+      <div class='iui-status-message' data-iui-status='positive'>
+        <div class='iui-svg-icon'>
+          <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
         </div>
-        <div class='iui-status-message' data-iui-status='warning'>
-          <div class='iui-svg-icon'>
-            <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
-          </div>
-          <div>Warning message.</div>
-        </div>
+        <div>Positive message.</div>
       </div>
+    </div>
 
-      <div class='iui-input-grid iui-input-group-wrapper'>
-        <div class='iui-input-label'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>Option 1</Checkbox_>
-          <Checkbox_>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
-        </div>
-        <div class='iui-status-message' data-iui-status='negative'>
-          <div class='iui-svg-icon'>
-            <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
-          </div>
-          <div>Negative message.</div>
-        </div>
+    <div class='iui-input-grid iui-input-group-wrapper'>
+      <div class='iui-input-label'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
       </div>
-
-      <div class='iui-input-grid iui-input-group-wrapper'>
-        <div class='iui-input-label'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>
-            <svg-smiley-happy-very aria-hidden='true' style='display: flex;'
-            ></svg-smiley-happy-very>
-          </Checkbox_>
-          <Checkbox_>
-            <svg-smiley-happy aria-hidden='true' style='display: flex;'></svg-smiley-happy>
-          </Checkbox_>
-          <Checkbox_ checked disabled>
-            <svg-smiley-sad aria-hidden='true' style='display: flex;'></svg-smiley-sad>
-          </Checkbox_>
-          <Checkbox_ disabled>
-            <svg-smiley-sad-very aria-hidden='true' style='display: flex;'></svg-smiley-sad-very>
-          </Checkbox_>
+      <div class='iui-status-message' data-iui-status='warning'>
+        <div class='iui-svg-icon'>
+          <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
         </div>
-        <div class='iui-status-message'>
-          <div>Help message.</div>
+        <div>Warning message.</div>
+      </div>
+    </div>
+
+    <div class='iui-input-grid iui-input-group-wrapper'>
+      <div class='iui-input-label'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
+      </div>
+      <div class='iui-status-message' data-iui-status='negative'>
+        <div class='iui-svg-icon'>
+          <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
+        </div>
+        <div>Negative message.</div>
+      </div>
+    </div>
+
+    <div class='iui-input-grid iui-input-group-wrapper'>
+      <div class='iui-input-label'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ checked>
+          <svg-smiley-happy-very aria-hidden='true' style='display: flex;'></svg-smiley-happy-very>
+        </Checkbox_>
+        <Checkbox_>
+          <svg-smiley-happy aria-hidden='true' style='display: flex;'></svg-smiley-happy>
+        </Checkbox_>
+        <Checkbox_ checked disabled>
+          <svg-smiley-sad aria-hidden='true' style='display: flex;'></svg-smiley-sad>
+        </Checkbox_>
+        <Checkbox_ disabled>
+          <svg-smiley-sad-very aria-hidden='true' style='display: flex;'></svg-smiley-sad-very>
+        </Checkbox_>
+      </div>
+      <div class='iui-status-message'>
+        <div>Help message.</div>
+      </div>
+    </div>
+  </section>
+
+  <br />
+
+  <h2>Inline</h2>
+  <section id='demo-inline'>
+    <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
+      <div class='iui-input-label iui-required'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
+      </div>
+    </div>
+
+    <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
+      <div class='iui-input-label' data-iui-disabled='true'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' disabled checked />
+        <Checkbox_ label='Option 2' disabled />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
+      </div>
+    </div>
+
+    <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
+      <div class='iui-input-label'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
+      </div>
+      <div class='iui-status-message' data-iui-status='positive'>
+        <div class='iui-svg-icon'>
+          <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
         </div>
       </div>
     </div>
 
-    <br />
-
-    <h2>Inline</h2>
-    <section id='demo-inline'>
-      <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
-        <div class='iui-input-label iui-required'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>Option 1</Checkbox_>
-          <Checkbox_>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
-        </div>
+    <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
+      <div class='iui-input-label'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
       </div>
 
-      <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
-        <div class='iui-input-label' data-iui-disabled='true'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ disabled checked>Option 1</Checkbox_>
-          <Checkbox_ disabled>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
+      <div class='iui-status-message' data-iui-status='warning'>
+        <div class='iui-svg-icon'>
+          <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
         </div>
       </div>
+    </div>
 
-      <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
-        <div class='iui-input-label'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>Option 1</Checkbox_>
-          <Checkbox_>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
-        </div>
-        <div class='iui-status-message' data-iui-status='positive'>
-          <div class='iui-svg-icon'>
-            <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
-          </div>
+    <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
+      <div class='iui-input-label'>Checkbox group label</div>
+      <div class='iui-input-group'>
+        <Checkbox_ label='Option 1' checked />
+        <Checkbox_ label='Option 2' />
+        <Checkbox_ label='Option 3' disabled checked />
+        <Checkbox_ label='Option 4' disabled />
+      </div>
+      <div class='iui-status-message' data-iui-status='negative'>
+        <div class='iui-svg-icon'>
+          <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
         </div>
       </div>
-
-      <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
-        <div class='iui-input-label'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>Option 1</Checkbox_>
-          <Checkbox_>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
-        </div>
-        <div class='iui-status-message' data-iui-status='warning'>
-          <div class='iui-svg-icon'>
-            <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
-          </div>
-        </div>
-      </div>
-
-      <div class='iui-input-grid iui-input-group-wrapper' data-iui-label-placement='inline'>
-        <div class='iui-input-label'>Checkbox group label</div>
-        <div class='iui-input-group'>
-          <Checkbox_ checked>Option 1</Checkbox_>
-          <Checkbox_>Option 2</Checkbox_>
-          <Checkbox_ disabled checked>Option 3</Checkbox_>
-          <Checkbox_ disabled>Option 4</Checkbox_>
-        </div>
-        <div class='iui-status-message' data-iui-status='negative'>
-          <div class='iui-svg-icon'>
-            <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
   </section>
 
   <br />
@@ -206,15 +206,15 @@ import Checkbox_ from '../components/Checkbox.astro';
           flex-direction: column;
           align-items: flex-start;'
     >
-      <Checkbox_ indeterminate>Half checkbox</Checkbox_>
-      <Checkbox_>Checkbox</Checkbox_>
-      <Checkbox_ isLoading>Loading checkbox</Checkbox_>
-      <Checkbox_ disabled>Checkbox</Checkbox_>
-      <Checkbox_ indeterminate>Half checkbox</Checkbox_>
-      <Checkbox_ checked disabled>Checkbox</Checkbox_>
-      <Checkbox_ status='positive'>Checkbox</Checkbox_>
-      <Checkbox_ status='negative'>Checkbox</Checkbox_>
-      <Checkbox_ status='warning'>Checkbox</Checkbox_>
+      <Checkbox_ indeterminate label='Half checkbox' />
+      <Checkbox_ label='Checkbox' />
+      <Checkbox_ label='Loading checkbox' isLoading />
+      <Checkbox_ label='Checkbox' disabled />
+      <Checkbox_ indeterminate label='Half checkbox' disabled />
+      <Checkbox_ label='Checkbox' checked disabled />
+      <Checkbox_ label='Checkbox' status='positive' />
+      <Checkbox_ label='Checkbox' status='negative' />
+      <Checkbox_ label='Checkbox' status='warning' />
     </div>
 
     <h3>Checkbox on right</h3>
@@ -226,15 +226,20 @@ import Checkbox_ from '../components/Checkbox.astro';
           flex-direction: column;
           align-items: flex-end;'
     >
-      <Checkbox_ indeterminate style={{ flexDirection: 'row-reverse' }}>Half checkbox</Checkbox_>
-      <Checkbox_ style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ isLoading style={{ flexDirection: 'row-reverse' }}>Loading checkbox</Checkbox_>
-      <Checkbox_ disabled style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ indeterminate style={{ flexDirection: 'row-reverse' }}>Half checkbox</Checkbox_>
-      <Checkbox_ checked disabled style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ status='positive' style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ status='negative' style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ status='warning' style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
+      <Checkbox_ indeterminate label='Half checkbox' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Loading checkbox' isLoading style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' disabled style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_
+        indeterminate
+        label='Half checkbox'
+        disabled
+        style={{ flexDirection: 'row-reverse' }}
+      />
+      <Checkbox_ label='Checkbox' checked disabled style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='positive' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='negative' style={{ flexDirection: 'row-reverse' }} />
+      <Checkbox_ label='Checkbox' status='warning' style={{ flexDirection: 'row-reverse' }} />
     </div>
 
     <h3>Empty label</h3>
