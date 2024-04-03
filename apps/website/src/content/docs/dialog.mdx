@@ -15,7 +15,7 @@ A dialog informs users about a task and can contain critical information, requir
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-## Dialog VS Modal
+## Dialog vs Modal
 
 The terms dialog and modal are often used interchangeably. Within iTwinUI we differentiate the two terms like so:
 
@@ -26,7 +26,31 @@ The terms dialog and modal are often used interchangeably. Within iTwinUI we dif
   <AllExamples.DialogModalExample client:load />
 </LiveExample>
 
-## Variants
+## Usage
+
+The dialog can be opened and closed in two ways:
+
+1. By using the `show()` and `close()` methods from its ref.
+
+   ```tsx
+   const dialogRef = React.useRef<typeof Dialog.Ref>(null);
+
+   <Button onClick={() => dialogRef.current?.show()}>Open dialog</Button>
+   <Dialog ref={dialogRef}>
+     <Button onClick={() => dialogRef.current?.close()}>Close dialog</Button>
+   </Dialog>
+   ```
+
+2. By using the `isOpen` prop, often paired with `onClose` and a state variable.
+
+   ```tsx
+   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
+   <Button onClick={() => setIsDialogOpen(true)}>Open dialog</Button>
+   <Dialog onClose={() => setIsDialogOpen(false)}>
+     <Button onClick={() => setIsDialogOpen(false)}>Close dialog</Button>
+   </Dialog>
+   ```
 
 ### Dismissible
 
