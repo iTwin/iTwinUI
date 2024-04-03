@@ -5,46 +5,68 @@ type Props = {
   checked?: boolean;
   disabled?: boolean;
   label?: string;
-  variant?: 'eyeball';
+  variant?: 'eyeball' | 'basic';
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.HTMLAttributes;
 
 const { status, isLoading, indeterminate, disabled, variant, label, ...props } = Astro.props;
 ---
 
-<label
-  class:list={[
-    'iui-checkbox-wrapper',
-    {
-      'iui-disabled': disabled,
-      'iui-loading': isLoading,
-      [`iui-${status}`]: !!status,
-    },
-  ]}
-  {...props}
->
-  <input
-    class:list={[
-      'iui-checkbox',
-      {
-        'iui-loading': isLoading,
-        'iui-checkbox-visibility': variant === 'eyeball',
-      },
-    ]}
-    type='checkbox'
-    name={indeterminate ? 'indeterminate' : undefined}
-    disabled={disabled}
-    {...props}
-  />
-  {
-    isLoading && (
-      <div
-        class='iui-progress-indicator-radial'
-        data-iui-indeterminate='true'
-        data-iui-size='x-small'
+{
+  variant === 'basic' && (
+    <input
+      class:list={[
+        'iui-checkbox',
+        {
+          'iui-loading': isLoading,
+          'iui-checkbox-visibility': variant === 'eyeball',
+        },
+      ]}
+      type='checkbox'
+      name={indeterminate ? 'indeterminate' : undefined}
+      disabled={disabled}
+      {...props}
+    />
+  )
+}
+{
+  variant !== 'basic' && (
+    <label
+      class:list={[
+        'iui-checkbox-wrapper',
+        {
+          'iui-disabled': disabled,
+          'iui-loading': isLoading,
+          [`iui-${status}`]: !!status,
+        },
+      ]}
+      {...props}
+    >
+      <input
+        class:list={[
+          'iui-checkbox',
+          {
+            'iui-loading': isLoading,
+            'iui-checkbox-visibility': variant === 'eyeball',
+          },
+        ]}
+        type='checkbox'
+        name={indeterminate ? 'indeterminate' : undefined}
+        disabled={disabled}
+        {...props}
       />
-    )
-  }
-  {label && <span class='iui-checkbox-label'>{label}</span>}
-  <slot />
-</label>
+      {isLoading && (
+        <div
+          class='iui-progress-indicator-radial'
+          data-iui-indeterminate='true'
+          data-iui-size='x-small'
+        />
+      )}
+
+      <span class='iui-checkbox-label'>
+        <slot />
+        {label}
+      </span>
+    </label>
+  )
+}
