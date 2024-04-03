@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render, act } from '@testing-library/react';
+import { render, act, screen, fireEvent } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
@@ -187,4 +187,32 @@ it('should not stay in the DOM when isOpen=false', () => {
 
   dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
   expect(dialogWrapper).toBeFalsy();
+});
+
+it.only('should expose show() and close() methods', () => {
+  vi.useFakeTimers();
+  const dialogRef = React.createRef<typeof Dialog.Ref>();
+
+  render(
+    <Dialog ref={dialogRef}>
+      <Dialog.Main>Hello</Dialog.Main>
+    </Dialog>,
+  );
+
+  act(() => dialogRef.current?.show());
+  const dialogElement = screen.getByRole('dialog');
+  expect(dialogElement).toBeVisible();
+
+  act(() => dialogRef.current?.close());
+  act(() => vi.runAllTimers());
+  expect(dialogElement).not.toBeVisible();
+
+  act(() => dialogRef.current?.show());
+
+  // Built-in close should still work
+  act(() => {
+    fireEvent.keyDown(dialogElement, { key: 'Escape' });
+  });
+
+  expect(dialogElement).not.toBeVisible();
 });
