@@ -54,7 +54,13 @@ export const Modal = () => {
       >
         Open Dialog
       </Button>
-      <Dialog closeOnExternalClick preventDocumentScroll trapFocus setFocus>
+      <Dialog
+        ref={dialogRef}
+        closeOnExternalClick
+        preventDocumentScroll
+        trapFocus
+        setFocus
+      >
         <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
