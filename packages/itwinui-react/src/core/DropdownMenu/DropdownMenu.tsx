@@ -22,6 +22,7 @@ import {
   FloatingNode,
   FloatingTree,
   useClick,
+  useDismiss,
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
@@ -131,6 +132,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
           activeIndex,
           onNavigate: setActiveIndex,
         }),
+        useDismiss(context),
       ]);
 
       interactions.current = interactionsValue;
