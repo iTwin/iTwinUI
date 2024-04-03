@@ -123,6 +123,4 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
       </Dialog.Main>
     </Dialog>
   );
-}) as PolymorphicForwardRefComponent<'div', ModalProps> & {
-  Ref: typeof Dialog.Ref;
-};
+}) as PolymorphicForwardRefComponent<'div', ModalProps>;
