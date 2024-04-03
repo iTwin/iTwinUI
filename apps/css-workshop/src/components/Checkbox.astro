@@ -9,7 +9,7 @@ type Props = {
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.HTMLAttributes;
 
-const { status, isLoading, indeterminate, disabled, variant, label, ...props } = Astro.props;
+const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.props;
 ---
 
 {
@@ -65,7 +65,6 @@ const { status, isLoading, indeterminate, disabled, variant, label, ...props } =
 
       <span class='iui-checkbox-label'>
         <slot />
-        {label}
       </span>
     </label>
   )
