@@ -19,9 +19,6 @@
   *::before,
   *::after {
     --_iui-width: initial;
-    --_iui-height: initial;
-
     inline-size: var(--_iui-width, revert-layer);
-    block-size: var(--_iui-height, revert-layer);
   }
 }
