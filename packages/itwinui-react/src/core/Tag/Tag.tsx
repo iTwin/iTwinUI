@@ -86,7 +86,6 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
         },
         className,
       )}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ref's type doesn't matter internally
       ref={forwardedRef as any}
       onClick={!shouldUseLinkAction ? onClick : undefined}
       {...rest}

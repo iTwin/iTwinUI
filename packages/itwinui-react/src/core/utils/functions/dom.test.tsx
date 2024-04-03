@@ -9,7 +9,6 @@ import { getDocument, getWindow, mergeEventHandlers } from './dom.js';
 describe('getDocument', () => {
   it('should get document when it is defined', () => {
     expect(getDocument()).toBeTruthy();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(global as any, 'document', 'get').mockReturnValue(undefined);
     expect(getDocument()).toBeFalsy();
     vi.restoreAllMocks();
@@ -19,7 +18,6 @@ describe('getDocument', () => {
 describe('getWindow', () => {
   it('should get window when it is defined', () => {
     expect(getWindow()).toBeTruthy();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
     expect(getWindow()).toBeFalsy();
     vi.restoreAllMocks();

@@ -79,7 +79,7 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     name: htmlName,
     ...(!!menuItems && { menuItems }),
     ...rest,
-  } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  } as any;
 
   const headerButton =
     !!props.menuItems && !!props.onClick ? (
