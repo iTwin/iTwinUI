@@ -11,7 +11,12 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import { Box, Portal, useControlledState } from '../utils/index.js';
+import {
+  Box,
+  Portal,
+  useControlledState,
+  useMergedRefs,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Transition } from 'react-transition-group';
 
@@ -42,17 +47,22 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const [isOpen, setIsOpen] = useControlledState(false, isOpenProp);
-
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
+  const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
 
   React.useImperativeHandle(
     forwardedRef,
-    () => ({
-      ...(dialogRootRef.current as HTMLDivElement),
-      show: () => setIsOpen(true),
-      close: () => setIsOpen(false),
-    }),
-    [dialogRootRef, setIsOpen],
+    () => {
+      const _dialog = (dialog as any) || {};
+
+      Object.assign(_dialog, {
+        show: () => setIsOpen(true),
+        close: () => setIsOpen(false),
+      });
+
+      return _dialog;
+    },
+    [dialog, setIsOpen],
   );
 
   return (
@@ -79,7 +89,7 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
           <Box
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
-            ref={dialogRootRef}
+            ref={useMergedRefs(dialogRootRef, setDialog)}
             {...rest}
           />
         </Portal>
