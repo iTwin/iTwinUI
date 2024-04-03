@@ -11,7 +11,12 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import { useMergedRefs, Box, Portal } from '../utils/index.js';
+import {
+  useMergedRefs,
+  Box,
+  Portal,
+  useControlledState,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Transition } from 'react-transition-group';
 
@@ -22,12 +27,12 @@ type DialogProps = {
   children: React.ReactNode;
 } & Omit<DialogContextProps, 'dialogRootRef'>;
 
-const DialogComponent = React.forwardRef((props, ref) => {
+const DialogComponent = React.forwardRef((props, forwardedRef) => {
   const {
     trapFocus = false,
     setFocus = false,
     preventDocumentScroll = false,
-    isOpen = false,
+    isOpen: isOpenProp = false,
     isDismissible = true,
     closeOnEsc = true,
     closeOnExternalClick = false,
@@ -41,7 +46,19 @@ const DialogComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const dialogRootRef = React.useRef<HTMLDivElement>(null);
+  const dialogRootRef = React.useRef<HTMLElement>(null);
+
+  const [isOpen, setIsOpen] = useControlledState(false, isOpenProp);
+
+  React.useImperativeHandle(
+    forwardedRef,
+    () => ({
+      ...(dialogRootRef.current as HTMLDialogElement),
+      show: () => setIsOpen(true),
+      close: () => setIsOpen(false),
+    }),
+    [dialogRootRef, setIsOpen],
+  );
 
   return (
     <Transition in={isOpen} timeout={{ exit: 600 }} mountOnEnter unmountOnExit>
@@ -64,16 +81,17 @@ const DialogComponent = React.forwardRef((props, ref) => {
       >
         <Portal portal={portal}>
           <Box
+            as={'div' as any}
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
-            ref={useMergedRefs(ref, dialogRootRef)}
+            ref={useMergedRefs(forwardedRef, dialogRootRef)}
             {...rest}
           />
         </Portal>
       </DialogContext.Provider>
     </Transition>
   );
-}) as PolymorphicForwardRefComponent<'div', DialogProps>;
+}) as PolymorphicForwardRefComponent<'dialog', DialogProps>;
 
 /**
  * Dialog component.
