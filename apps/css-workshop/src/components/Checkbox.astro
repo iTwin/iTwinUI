@@ -13,13 +13,13 @@ const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.
 ---
 
 {
-  variant === 'basic' && (
+  variant?.includes('basic') && (
     <input
       class:list={[
         'iui-checkbox',
         {
           'iui-loading': isLoading,
-          'iui-checkbox-visibility': variant === 'eyeball',
+          'iui-checkbox-visibility': variant?.includes('eyeball'),
         },
       ]}
       type='checkbox'
@@ -30,7 +30,7 @@ const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.
   )
 }
 {
-  variant !== 'basic' && (
+  !variant?.includes('basic') && (
     <label
       class:list={[
         'iui-checkbox-wrapper',
@@ -47,7 +47,7 @@ const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.
           'iui-checkbox',
           {
             'iui-loading': isLoading,
-            'iui-checkbox-visibility': variant === 'eyeball',
+            'iui-checkbox-visibility': variant?.includes('eyeball'),
           },
         ]}
         type='checkbox'
