@@ -13,7 +13,6 @@ test.describe('Information Panel Resizing', () => {
   });
   test('should reset styles on orientation change', async ({ page }) => {
     // When orientation changes, the style of the panel should be reset so that the width, if it is being made horizontal, or height, if it is becoming vertical, becomes the same as the wrapper's value.
-    // Note that state itself is not reset on change, it is simply applied to the other style value. For example, when orientation changes to horizontal, the size value will be applied to the height of the panel, instead of it's width.
     await page.goto('/InformationPanel');
     const infoPanel = page.locator('#InformationPanel');
     const infoPanelWrapper = page.locator('#InformationPanelWrapper');
