@@ -20,7 +20,7 @@ type DialogProps = {
    * Dialog content.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'dialogRootRef'>;
+} & Omit<DialogContextProps, 'dialogRootRef' | 'setIsOpen'>;
 
 const DialogComponent = React.forwardRef((props, forwardedRef) => {
   const {
@@ -60,6 +60,7 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
       <DialogContext.Provider
         value={{
           isOpen,
+          setIsOpen,
           onClose,
           closeOnEsc,
           closeOnExternalClick,

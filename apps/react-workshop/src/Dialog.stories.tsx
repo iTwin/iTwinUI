@@ -22,7 +22,7 @@ export const Basic = () => {
       >
         Open Dialog
       </Button>
-      <Dialog ref={dialogRef} onClose={() => dialogRef.current?.close()}>
+      <Dialog ref={dialogRef}>
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
           <Dialog.Content>{lorem}</Dialog.Content>
@@ -54,15 +54,7 @@ export const Modal = () => {
       >
         Open Dialog
       </Button>
-      <Dialog
-        onClose={() => dialogRef.current?.close()}
-        closeOnEsc
-        closeOnExternalClick
-        preventDocumentScroll
-        trapFocus
-        setFocus
-        isDismissible
-      >
+      <Dialog closeOnExternalClick preventDocumentScroll trapFocus setFocus>
         <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />

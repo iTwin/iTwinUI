@@ -74,7 +74,10 @@ export const DialogTitleBar = Object.assign(
               <IconButton
                 size='small'
                 styleType='borderless'
-                onClick={onClose}
+                onClick={(event) => {
+                  dialogContext.setIsOpen?.(false);
+                  onClose?.(event);
+                }}
                 aria-label='Close'
                 data-iui-shift='right'
               >

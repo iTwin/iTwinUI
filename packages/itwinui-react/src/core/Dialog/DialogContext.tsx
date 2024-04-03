@@ -15,6 +15,8 @@ export type DialogContextProps = {
    * @default false
    */
   isOpen?: boolean;
+  /** @private */
+  setIsOpen?: (isOpen: boolean) => void;
   /**
    * Handler that is called when dialog is closed.
    */
