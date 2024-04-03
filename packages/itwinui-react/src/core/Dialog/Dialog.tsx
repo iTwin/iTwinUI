@@ -91,7 +91,12 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 type DialogComponentType = typeof DialogComponent & {
-  Ref: HTMLDivElement & { show: () => void; close: () => void };
+  Ref: HTMLDivElement & {
+    /** Call this function to show (open) the dialog. */
+    show: () => void;
+    /** Call this function to close the dialog. */
+    close: () => void;
+  };
 };
 
 // ----------------------------------------------------------------------------

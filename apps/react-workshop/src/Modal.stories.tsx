@@ -15,38 +15,17 @@ export default {
 };
 
 export const Basic = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const onClose = () => {
-    console.log('onClose');
-    closeModal();
-  };
-
-  const primaryButtonHandle = () => {
-    console.log('Primary button');
-    closeModal();
-  };
-
-  const secondaryButtonHandle = () => {
-    console.log('Secondary button');
-    closeModal();
-  };
+  const modalRef = React.useRef<typeof Modal.Ref>(null);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
+      <Button
+        styleType='high-visibility'
+        onClick={() => modalRef.current?.show()}
+      >
         Open Modal
       </Button>
-      <Modal
-        isOpen={isModalOpen}
-        title='This is the title'
-        onClose={onClose}
-        onKeyDown={() => console.log('onKeyDown')}
-      >
+      <Modal title='This is the title'>
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -57,10 +36,13 @@ export const Basic = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </ModalContent>
         <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={primaryButtonHandle}>
+          <Button
+            styleType='high-visibility'
+            onClick={() => modalRef.current?.close()}
+          >
             Primary
           </Button>
-          <Button onClick={secondaryButtonHandle}>Secondary</Button>
+          <Button onClick={() => modalRef.current?.close()}>Secondary</Button>
         </ModalButtonBar>
       </Modal>
     </>
