@@ -191,7 +191,6 @@ const useTooltip = (options: TooltipOptions = {}) => {
     /** e.g. onPointerDown --> pointerdown */
     const domEventName = (e: string) => e.toLowerCase().substring(2);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cleanupValues: Record<string, any> = {};
 
     Object.entries({

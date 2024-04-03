@@ -193,7 +193,6 @@ const ListItem = ({
   item: React.ReactNode;
   isActive: boolean;
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let children = item as any;
 
   if (
