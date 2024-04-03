@@ -13,3 +13,15 @@
     --_iui-v3-loaded: yes;
   }
 }
+
+@layer itwinui {
+  *,
+  *::before,
+  *::after {
+    --_iui-width: revert-layer;
+    --_iui-height: revert-layer;
+
+    inline-size: var(--_iui-width);
+    block-size: var(--_iui-height);
+  }
+}
