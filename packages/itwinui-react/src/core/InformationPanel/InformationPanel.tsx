@@ -60,10 +60,9 @@ export const InformationPanel = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [infoPanelSize, setInfoPanelSize] = React.useState<{
-    width: number | undefined;
-    height: number | undefined;
-  }>({ width: undefined, height: undefined });
+  const [infoPanelSize, setInfoPanelSize] = React.useState<number | undefined>(
+    undefined,
+  );
 
   const infoPanelRef = React.useRef<HTMLDivElement>(null);
   const refs = useMergedRefs(forwardedRef, infoPanelRef);
@@ -100,9 +99,9 @@ export const InformationPanel = React.forwardRef((props, forwardedRef) => {
       }
       const { right, bottom } = infoPanelRef.current.getBoundingClientRect();
       if (orientation === 'vertical') {
-        setInfoPanelSize({ width: right - e.clientX, height: undefined });
+        setInfoPanelSize(right - e.clientX);
       } else {
-        setInfoPanelSize({ height: bottom - e.clientY, width: undefined });
+        setInfoPanelSize(bottom - e.clientY);
       }
     },
     [orientation],
@@ -122,8 +121,8 @@ export const InformationPanel = React.forwardRef((props, forwardedRef) => {
       ref={refs}
       {...rest}
       style={{
-        width: orientation === 'vertical' ? infoPanelSize.width : undefined,
-        height: orientation === 'horizontal' ? infoPanelSize.height : undefined,
+        width: orientation === 'vertical' ? infoPanelSize : undefined,
+        height: orientation === 'horizontal' ? infoPanelSize : undefined,
         ...props.style,
       }}
     >

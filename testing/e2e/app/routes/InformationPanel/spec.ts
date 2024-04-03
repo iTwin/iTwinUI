@@ -37,7 +37,7 @@ test.describe('Information Panel Resizing', () => {
       const initialHeight = (await infoPanel.boundingBox())!.height;
       await resizeInformationPanel(page, { orientation: 'horizontal' });
       const newHeight = (await infoPanel.boundingBox())!.height;
-      expect(newHeight).toBe(initialHeight - 100);
+      expect(newHeight).toBe(initialHeight + 100);
     }
 
     {
@@ -74,7 +74,7 @@ test.describe('Information Panel Resizing', () => {
       } else {
         await page.mouse.move(
           infoPanelBox.x + infoPanelBox.width / 2,
-          Math.max(1, infoPanelBox.y + 100),
+          Math.max(1, infoPanelBox.y - 100),
           { steps: 5 },
         );
       }
