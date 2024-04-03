@@ -11,17 +11,20 @@ import {
 } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const modalRef = React.useRef(null);
 
   return (
     <>
       <div className='demo-container'>
-        <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+        <Button
+          styleType='high-visibility'
+          onClick={() => modalRef.current?.show()}
+        >
           Open modal dialog
         </Button>
       </div>
 
-      <Modal isOpen={isOpen} title={'Modal'} onClose={() => setIsOpen(false)}>
+      <Modal ref={modalRef} title={'Modal'}>
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -29,10 +32,13 @@ export default () => {
           aliquip ex ea commodo consequat.
         </ModalContent>
         <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={() => setIsOpen(false)}>
+          <Button
+            styleType='high-visibility'
+            onClick={() => modalRef.current?.close()}
+          >
             Primary
           </Button>
-          <Button onClick={() => setIsOpen(false)}>Secondary</Button>
+          <Button onClick={() => modalRef.current?.close()}>Secondary</Button>
         </ModalButtonBar>
       </Modal>
     </>

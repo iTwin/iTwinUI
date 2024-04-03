@@ -3,24 +3,20 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const dialogRef = React.useRef(null);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button
+        styleType='high-visibility'
+        onClick={() => dialogRef.current?.show()}
+      >
         Open non-dismissible dialog
       </Button>
-      <Dialog
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        setFocus={false}
-        isDismissible={false}
-        portal
-      >
+      <Dialog ref={dialogRef} setFocus={false} isDismissible={false} portal>
         <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Empty trash' />
@@ -31,11 +27,11 @@ export default () => {
           <Dialog.ButtonBar>
             <Button
               styleType='high-visibility'
-              onClick={() => setIsOpen(false)}
+              onClick={() => dialogRef.current?.close()}
             >
               Empty trash
             </Button>
-            <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+            <Button onClick={() => dialogRef.current?.close()}>Cancel</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

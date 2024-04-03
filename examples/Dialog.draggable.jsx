@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import {
   Dialog,
   Button,
@@ -12,24 +11,18 @@ import {
 } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const dialogRef = React.useRef(null);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button
+        styleType='high-visibility'
+        onClick={() => dialogRef.current?.show()}
+      >
         Open draggable dialog
       </Button>
 
-      <Dialog
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        setFocus={false}
-        closeOnEsc
-        isDismissible
-        isDraggable
-        isResizable
-        portal
-      >
+      <Dialog ref={dialogRef} isDraggable isResizable portal>
         <Dialog.Main>
           <Dialog.TitleBar titleText='New message' />
           <Dialog.Content>
@@ -39,11 +32,13 @@ export default () => {
           <Dialog.ButtonBar>
             <Button
               styleType='high-visibility'
-              onClick={() => setIsOpen(false)}
+              onClick={() => dialogRef.current?.close()}
             >
               Submit
             </Button>
-            <Button onClick={() => setIsOpen(false)}>Save draft</Button>
+            <Button onClick={() => dialogRef.current?.close()}>
+              Save draft
+            </Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

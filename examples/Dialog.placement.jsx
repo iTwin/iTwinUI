@@ -3,26 +3,25 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const dialogRef = React.useRef(null);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button
+        styleType='high-visibility'
+        onClick={() => dialogRef.current?.show()}
+      >
         Open dialog
       </Button>
       <Dialog
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        closeOnEsc
+        ref={dialogRef}
         closeOnExternalClick
         preventDocumentScroll
         trapFocus
         setFocus
-        isDismissible
         portal
         placement='top-left'
       >
@@ -33,11 +32,13 @@ export default () => {
           <Dialog.ButtonBar>
             <Button
               styleType='high-visibility'
-              onClick={() => setIsOpen(false)}
+              onClick={() => dialogRef.current?.close()}
             >
               Primary
             </Button>
-            <Button onClick={() => setIsOpen(false)}>Secondary</Button>
+            <Button onClick={() => dialogRef.current?.close()}>
+              Secondary
+            </Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

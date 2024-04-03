@@ -13,28 +13,29 @@ import {
 } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const modalRef = React.useRef(null);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button
+        styleType='high-visibility'
+        onClick={() => modalRef.current?.show()}
+      >
         Open full page dialog
       </Button>
-      <Modal
-        isOpen={isOpen}
-        title={'New message'}
-        styleType='fullPage'
-        onClose={() => setIsOpen(false)}
-      >
+      <Modal ref={modalRef} title={'New message'} styleType='fullPage'>
         <ModalContent>
           <LabeledInput label='Subject' />
           <LabeledTextarea label='Message' />
         </ModalContent>
         <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={() => setIsOpen(false)}>
+          <Button
+            styleType='high-visibility'
+            onClick={() => modalRef.current?.close()}
+          >
             Submit
           </Button>
-          <Button onClick={() => setIsOpen(false)}>Save draft</Button>
+          <Button onClick={() => modalRef.current?.close()}>Save draft</Button>
         </ModalButtonBar>
       </Modal>
     </>
