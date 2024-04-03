@@ -53,13 +53,11 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
   React.useImperativeHandle(
     forwardedRef,
     () => {
+      const show = () => setIsOpen(true);
+      const close = () => setIsOpen(false);
       const _dialog = (dialog as any) || {};
 
-      Object.assign(_dialog, {
-        show: () => setIsOpen(true),
-        close: () => setIsOpen(false),
-      });
-
+      Object.assign(_dialog, { show, close });
       return _dialog;
     },
     [dialog, setIsOpen],
