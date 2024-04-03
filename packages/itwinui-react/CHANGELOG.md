@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.8.1
+
+### Patch Changes
+
+- [#1964](https://github.com/iTwin/iTwinUI/pull/1964): Fixed a bug with `InformationPanel` where changing orientation after resizing the panel would cause the panel to maintain it's resized width/height.
+
 ## 3.8.0
 
 ### Minor Changes
