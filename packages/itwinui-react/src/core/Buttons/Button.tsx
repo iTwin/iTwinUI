@@ -41,6 +41,8 @@ export type ButtonProps = {
   endIconProps?: React.ComponentProps<'span'>;
   /**
    * Whether the button should stretch to fill the width of the container.
+   *
+   * This is useful on narrow containers and mobile views.
    */
   stretch?: boolean;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
