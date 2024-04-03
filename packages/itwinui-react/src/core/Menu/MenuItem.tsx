@@ -8,6 +8,7 @@ import {
   Portal,
   useMergedRefs,
   useId,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from './Menu.js';
@@ -17,8 +18,13 @@ import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingList,
+  FloatingNode,
+  safePolygon,
   useClick,
   useDismiss,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useFloatingTree,
   useHover,
   // useHover,
   useInteractions,
@@ -191,7 +197,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     interactions: (context) => {
       const interactionsValue = useInteractions([
         useClick(context),
-        // useHover(context),
+        useHover(context, {
+          handleClose: safePolygon({
+            blockPointerEvents: true,
+          }),
+        }),
         useListNavigation(context, {
           listRef,
           activeIndex,
@@ -262,6 +272,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const handlers = {
+    // onClick: mergeEventHandlers(() => !disabled && onClick?.(value)),
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
   };
@@ -291,79 +302,139 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   //   [activeIndex, getItemProps],
   // );
 
-  return (
-    <ListItem
-      as='div'
-      actionable
-      size={size}
-      active={isSelected}
-      disabled={disabled}
-      ref={useMergedRefs(
-        menuItemRef,
-        listItemRef,
-        forwardedRef,
-        subMenuItems.length > 0 ? popover.refs.setReference : null,
-      )}
-      tabIndex={isActive ? 0 : -1}
-      role={role}
-      // tabIndex={disabled || role === 'presentation' ? undefined : -1}
-      aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
-      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-      aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
-      aria-disabled={disabled}
-      {...(subMenuItems.length === 0
-        ? { ...handlers, ...rest }
-        : popover.getReferenceProps({ ...handlers, ...rest }))}
-      {...(!!parentGetItemProps ? parentGetItemProps() : {})}
-    >
-      {startIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {startIcon}
-        </ListItem.Icon>
-      )}
-      <ListItem.Content>
-        <div>{children}</div>
-        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
-      </ListItem.Content>
-      {!endIcon && subMenuItems.length > 0 && (
-        <ListItem.Icon as='span' aria-hidden>
-          <SvgCaretRightSmall />
-        </ListItem.Icon>
-      )}
-      {endIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {endIcon}
-        </ListItem.Icon>
-      )}
+  // Subscribe this component to the <FloatingTree> wrapper:
+  const nodeId = useFloatingNodeId();
+  const tree = useFloatingTree();
+  const parentId = useFloatingParentNodeId();
 
-      {subMenuItems.length > 0 && popover.open && (
-        <Portal>
-          <MenuItemContext.Provider
-            value={{
-              ref: menuItemRef,
-              isNestedSubmenuVisible,
-              setIsNestedSubmenuVisible,
-              value: `${children}`,
-              popover,
-            }}
-          >
-            <Menu
-              setFocus={focusOnSubmenu}
-              ref={popover.refs.setFloating}
-              {...popover.getFloatingProps({
-                id: submenuId,
-                // onPointerMove: () => {
-                //   // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                //   // so we need to flip it back to true when pointer re-enters this submenu.
-                //   setIsSubmenuVisible(true);
-                // },
-              })}
+  // Event emitter allows you to communicate across tree components.
+  // This effect closes all menus when an item gets clicked anywhere
+  // in the tree.
+  React.useEffect(() => {
+    if (!tree) return;
+
+    function handleTreeClick() {
+      setIsSubmenuVisible(false);
+    }
+
+    function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
+      if (event.nodeId !== nodeId && event.parentId === parentId) {
+        setIsSubmenuVisible(false);
+      }
+    }
+
+    tree.events.on('click', handleTreeClick);
+    tree.events.on('menuopen', onSubMenuOpen);
+
+    return () => {
+      tree.events.off('click', handleTreeClick);
+      tree.events.off('menuopen', onSubMenuOpen);
+    };
+  }, [tree, nodeId, parentId]);
+
+  React.useEffect(() => {
+    if (isSubmenuVisible && tree) {
+      tree.events.emit('menuopen', { parentId, nodeId });
+    }
+  }, [tree, isSubmenuVisible, nodeId, parentId]);
+
+  const parentItemProps = !!parentGetItemProps
+    ? parentGetItemProps({
+        onClick(event: React.MouseEvent<HTMLButtonElement>) {
+          handlers.onClick?.();
+          tree?.events.emit('click');
+        },
+      })
+    : {};
+
+  return (
+    <FloatingNode id={nodeId}>
+      <ListItem
+        as='div'
+        actionable
+        size={size}
+        active={isSelected}
+        disabled={disabled}
+        ref={useMergedRefs(
+          menuItemRef,
+          listItemRef,
+          forwardedRef,
+          subMenuItems.length > 0 ? popover.refs.setReference : null,
+        )}
+        tabIndex={isActive ? 0 : -1}
+        role={role}
+        // tabIndex={disabled || role === 'presentation' ? undefined : -1}
+        aria-selected={isSelected}
+        aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
+        aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+        aria-disabled={disabled}
+        {...(subMenuItems.length === 0
+          ? { ...handlers, ...parentItemProps, ...rest }
+          : popover.getReferenceProps({
+              ...handlers,
+              ...parentItemProps,
+              ...rest,
+            }))}
+        // // TODO: Need to make sure handlers don't collide. e.g. parentGetItemProps's onClick shouldn't override popover.getReferenceProps's onClick
+        // {...(!!parentGetItemProps
+        //   ? parentGetItemProps({
+        //       onClick(event: React.MouseEvent<HTMLButtonElement>) {
+        //         handlers.onClick?.();
+        //         tree?.events.emit('click');
+        //       },
+        //     })
+        //   : {})}
+      >
+        {startIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {startIcon}
+          </ListItem.Icon>
+        )}
+        <ListItem.Content>
+          <div>{children}</div>
+          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+        </ListItem.Content>
+        {!endIcon && subMenuItems.length > 0 && (
+          <ListItem.Icon as='span' aria-hidden>
+            <SvgCaretRightSmall />
+          </ListItem.Icon>
+        )}
+        {endIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {endIcon}
+          </ListItem.Icon>
+        )}
+
+        {subMenuItems.length > 0 && popover.open && (
+          <Portal>
+            <MenuItemContext.Provider
+              value={{
+                ref: menuItemRef,
+                isNestedSubmenuVisible,
+                setIsNestedSubmenuVisible,
+                value: `${children}`,
+                popover,
+              }}
             >
-              {/* <SelectContext.Provider  */}
-              <FloatingList elementsRef={listRef}>{subMenuItems}</FloatingList>
-              {/* {subMenuItems} */}
-              {/* {(subMenuItems as JSX.Element[]).map((item, index) =>
+              <Menu
+                setFocus={focusOnSubmenu}
+                ref={popover.refs.setFloating}
+                {...popover.getFloatingProps({
+                  id: submenuId,
+                  // onPointerMove: () => {
+                  //   // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                  //   // so we need to flip it back to true when pointer re-enters this submenu.
+                  //   setIsSubmenuVisible(true);
+                  // },
+                })}
+              >
+                {/* <SelectContext.Provider  */}
+                <FloatingList elementsRef={listRef}>
+                  {subMenuItems}
+                </FloatingList>
+                {/* {subMenuItems} */}
+                {/* {(subMenuItems as JSX.Element[]).map((item, index) =>
                 React.cloneElement(item, {
                   ref: (el: any) => {
                     console.log('HERE');
@@ -379,10 +450,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                     : {}),
                 }),
               )} */}
-            </Menu>
-          </MenuItemContext.Provider>
-        </Portal>
-      )}
-    </ListItem>
+              </Menu>
+            </MenuItemContext.Provider>
+          </Portal>
+        )}
+      </ListItem>
+    </FloatingNode>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

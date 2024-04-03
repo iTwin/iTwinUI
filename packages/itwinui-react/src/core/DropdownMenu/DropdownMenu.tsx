@@ -19,7 +19,12 @@ import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingList,
+  FloatingNode,
+  FloatingTree,
   useClick,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useFloatingTree,
   useInteractions,
   useListNavigation,
 } from '@floating-ui/react';
@@ -155,8 +160,44 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     [activeIndex, getItemProps],
   );
 
+  // Subscribe this component to the <FloatingTree> wrapper:
+  const nodeId = useFloatingNodeId();
+  const tree = useFloatingTree();
+  const parentId = useFloatingParentNodeId();
+
+  // Event emitter allows you to communicate across tree components.
+  // This effect closes all menus when an item gets clicked anywhere
+  // in the tree.
+  React.useEffect(() => {
+    if (!tree) return;
+
+    function handleTreeClick() {
+      setVisible(false);
+    }
+
+    function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
+      if (event.nodeId !== nodeId && event.parentId === parentId) {
+        setVisible(false);
+      }
+    }
+
+    tree.events.on('click', handleTreeClick);
+    tree.events.on('menuopen', onSubMenuOpen);
+
+    return () => {
+      tree.events.off('click', handleTreeClick);
+      tree.events.off('menuopen', onSubMenuOpen);
+    };
+  }, [tree, nodeId, parentId]);
+
+  React.useEffect(() => {
+    if (visible && tree) {
+      tree.events.emit('menuopen', { parentId, nodeId });
+    }
+  }, [tree, visible, nodeId, parentId]);
+
   return (
-    <>
+    <FloatingTreeWrapper>
       {cloneElementWithRef(children, (children) => ({
         ...popover.getReferenceProps(children.props),
         'aria-expanded': popover.open,
@@ -165,36 +206,37 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
       {popover.open && (
         <Portal portal={portal}>
           <SelectContext.Provider value={selectContext}>
-            <Menu
-              {...popover.getFloatingProps({
-                role,
-                ...rest,
-                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                  if (e.defaultPrevented) {
-                    return;
-                  }
-                  if (e.key === 'Tab') {
-                    close();
-                  }
-                }),
-              })}
-              ref={popoverRef}
-            >
-              {/* {menuContent} */}
-              <FloatingList elementsRef={listRef}>{menuContent}</FloatingList>
-              {/* <FloatingList elementsRef={listRef}>{menuContent}</FloatingList> */}
-              {/* <FloatingList elementsRef={listRef}>
+            <FloatingNode id={nodeId}>
+              <Menu
+                {...popover.getFloatingProps({
+                  role,
+                  ...rest,
+                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    if (e.defaultPrevented) {
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      close();
+                    }
+                  }),
+                })}
+                ref={popoverRef}
+              >
+                {/* {menuContent} */}
+                <FloatingList elementsRef={listRef}>{menuContent}</FloatingList>
+                {/* <FloatingList elementsRef={listRef}>{menuContent}</FloatingList> */}
+                {/* <FloatingList elementsRef={listRef}>
               {(menuContent as JSX.Element[]).map((item, index) =>
                 React.cloneElement(item, {
                   ...(interactions.current != null
                     ? interactions.current.getItemProps({
-                        'data-testing-1': 'testing-123',
-                      })
+                      'data-testing-1': 'testing-123',
+                    })
                     : {}),
-                }),
-              )}
-            </FloatingList> */}
-              {/* {(menuContent as JSX.Element[]).map((item, index) =>
+                  }),
+                  )}
+                </FloatingList> */}
+                {/* {(menuContent as JSX.Element[]).map((item, index) =>
               React.cloneElement(item, {
                 ref: (el: any) => {
                   console.log('HERE');
@@ -205,16 +247,17 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
                 'data-testing': 'testing-123',
                 ...(interactions.current != null
                   ? interactions.current.getItemProps({
-                      'data-testing-1': 'testing-123',
-                    })
+                    'data-testing-1': 'testing-123',
+                  })
                   : {}),
-              }),
-            )} */}
-            </Menu>
+                }),
+              )} */}
+              </Menu>
+            </FloatingNode>
           </SelectContext.Provider>
         </Portal>
       )}
-    </>
+    </FloatingTreeWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
 
@@ -235,3 +278,7 @@ interface SelectContextValue {
 export const SelectContext = React.createContext<SelectContextValue>(
   {} as SelectContextValue,
 );
+
+const FloatingTreeWrapper = (props: { children: React.ReactNode }) => {
+  return <FloatingTree>{props.children}</FloatingTree>;
+};
