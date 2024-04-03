@@ -11,12 +11,7 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import {
-  useMergedRefs,
-  Box,
-  Portal,
-  useControlledState,
-} from '../utils/index.js';
+import { Box, Portal, useControlledState } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Transition } from 'react-transition-group';
 
@@ -32,7 +27,7 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
     trapFocus = false,
     setFocus = false,
     preventDocumentScroll = false,
-    isOpen: isOpenProp = false,
+    isOpen: isOpenProp,
     isDismissible = true,
     closeOnEsc = true,
     closeOnExternalClick = false,
@@ -46,14 +41,14 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const dialogRootRef = React.useRef<HTMLElement>(null);
-
   const [isOpen, setIsOpen] = useControlledState(false, isOpenProp);
+
+  const dialogRootRef = React.useRef<HTMLDivElement>(null);
 
   React.useImperativeHandle(
     forwardedRef,
     () => ({
-      ...(dialogRootRef.current as HTMLDialogElement),
+      ...(dialogRootRef.current as HTMLDivElement),
       show: () => setIsOpen(true),
       close: () => setIsOpen(false),
     }),
@@ -81,17 +76,24 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
       >
         <Portal portal={portal}>
           <Box
-            as={'div' as any}
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
-            ref={useMergedRefs(forwardedRef, dialogRootRef)}
+            ref={dialogRootRef}
             {...rest}
           />
         </Portal>
       </DialogContext.Provider>
     </Transition>
   );
-}) as PolymorphicForwardRefComponent<'dialog', DialogProps>;
+}) as PolymorphicForwardRefComponent<'div', DialogProps>;
+
+// ----------------------------------------------------------------------------
+
+type DialogComponentType = typeof DialogComponent & {
+  Ref: HTMLDivElement & { show: () => void; close: () => void };
+};
+
+// ----------------------------------------------------------------------------
 
 /**
  * Dialog component.
@@ -115,7 +117,7 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
  *   </Dialog.Main>
  * </Dialog>
  */
-export const Dialog = Object.assign(DialogComponent, {
+export const Dialog = Object.assign(DialogComponent as DialogComponentType, {
   Backdrop: DialogBackdrop,
   Main: DialogMain,
   TitleBar: DialogTitleBar,
