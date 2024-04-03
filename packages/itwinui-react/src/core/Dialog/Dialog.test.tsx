@@ -189,7 +189,7 @@ it('should not stay in the DOM when isOpen=false', () => {
   expect(dialogWrapper).toBeFalsy();
 });
 
-it.only('should expose show() and close() methods', () => {
+it('should expose show() and close() methods', () => {
   vi.useFakeTimers();
   const dialogRef = React.createRef<typeof Dialog.Ref>();
 
