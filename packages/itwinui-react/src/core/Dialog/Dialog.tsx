@@ -48,12 +48,20 @@ const synchronizeInstance = (
 
 // ----------------------------------------------------------------------------
 
+type DialogInstance = {
+  show: () => void;
+  close: () => void;
+};
+
 type DialogProps = {
   /**
    * Dialog content.
    */
   children: React.ReactNode;
-  instance?: Instance;
+  /**
+   * Pass an instance created by `useInstance` to control the dialog programmatically.
+   */
+  instance?: DialogInstance;
 } & Omit<DialogContextProps, 'dialogRootRef' | 'setIsOpen'>;
 
 const DialogComponent = React.forwardRef((props, forwardedRef) => {
@@ -147,5 +155,5 @@ export const Dialog = Object.assign(DialogComponent, {
   TitleBar: DialogTitleBar,
   Content: DialogContent,
   ButtonBar: DialogButtonBar,
-  useInstance,
+  useInstance: useInstance as unknown as () => DialogInstance,
 });
