@@ -232,9 +232,9 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     }
   }
 
-  function getPrimaryButton(): JSX.Element | null {
+  function getPrimaryButton(): JSX.Element | undefined {
     if (!primaryButtonHandle || !primaryButtonLabel) {
-      return null;
+      return undefined;
     }
     return (
       <Button styleType='high-visibility' onClick={primaryButtonHandle}>
@@ -243,9 +243,9 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getSecondaryButton(): JSX.Element | null {
+  function getSecondaryButton(): JSX.Element | undefined {
     if (!secondaryButtonHandle || !secondaryButtonLabel) {
-      return null;
+      return undefined;
     }
     return (
       <Button styleType='default' onClick={secondaryButtonHandle}>
@@ -254,12 +254,12 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getActions(): JSX.Element | null {
+  function getActions(): JSX.Element | undefined {
     const primaryButton = getPrimaryButton();
     const secondaryButton = getSecondaryButton();
 
     if (!primaryButton && !secondaryButton) {
-      return null;
+      return undefined;
     }
 
     return (
