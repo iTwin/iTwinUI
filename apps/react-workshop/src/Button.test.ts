@@ -13,6 +13,7 @@ describe('Button', () => {
     'With Icon',
     'Call To Action',
     'As Link',
+    'Stretch',
   ];
 
   tests.forEach((testName) => {
