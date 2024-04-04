@@ -6,18 +6,15 @@ import * as React from 'react';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const dialogRef = React.useRef(null);
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button
-        styleType='high-visibility'
-        onClick={() => dialogRef.current?.show()}
-      >
+      <Button styleType='high-visibility' onClick={dialog.show}>
         Open dialog
       </Button>
       <Dialog
-        ref={dialogRef}
+        instance={dialog}
         closeOnExternalClick
         preventDocumentScroll
         trapFocus
@@ -30,15 +27,10 @@ export default () => {
           <Dialog.TitleBar titleText='Dialog' />
           <Dialog.Content></Dialog.Content>
           <Dialog.ButtonBar>
-            <Button
-              styleType='high-visibility'
-              onClick={() => dialogRef.current?.close()}
-            >
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Primary
             </Button>
-            <Button onClick={() => dialogRef.current?.close()}>
-              Secondary
-            </Button>
+            <Button onClick={() => dialog.close()}>Secondary</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

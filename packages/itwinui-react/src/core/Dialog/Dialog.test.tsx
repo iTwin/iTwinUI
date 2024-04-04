@@ -191,23 +191,23 @@ it('should not stay in the DOM when isOpen=false', () => {
 
 it('should expose show() and close() methods', () => {
   vi.useFakeTimers();
-  const dialogRef = React.createRef<typeof Dialog.Ref>();
+  const dialog = Dialog.useInstance();
 
   render(
-    <Dialog ref={dialogRef}>
+    <Dialog instance={dialog}>
       <Dialog.Main>Hello</Dialog.Main>
     </Dialog>,
   );
 
-  act(() => dialogRef.current?.show());
+  act(() => dialog.show());
   const dialogElement = screen.getByRole('dialog');
   expect(dialogElement).toBeVisible();
 
-  act(() => dialogRef.current?.close());
+  act(() => dialog.close());
   act(() => vi.runAllTimers());
   expect(dialogElement).not.toBeVisible();
 
-  act(() => dialogRef.current?.show());
+  act(() => dialog.show());
 
   // Built-in close should still work
   act(() => {

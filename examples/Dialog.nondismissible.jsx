@@ -6,17 +6,14 @@ import * as React from 'react';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const dialogRef = React.useRef(null);
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button
-        styleType='high-visibility'
-        onClick={() => dialogRef.current?.show()}
-      >
+      <Button styleType='high-visibility' onClick={dialog.show}>
         Open non-dismissible dialog
       </Button>
-      <Dialog ref={dialogRef} setFocus={false} isDismissible={false} portal>
+      <Dialog instance={dialog} setFocus={false} isDismissible={false} portal>
         <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Empty trash' />
@@ -25,13 +22,10 @@ export default () => {
             You can't undo this action.
           </Dialog.Content>
           <Dialog.ButtonBar>
-            <Button
-              styleType='high-visibility'
-              onClick={() => dialogRef.current?.close()}
-            >
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Empty trash
             </Button>
-            <Button onClick={() => dialogRef.current?.close()}>Cancel</Button>
+            <Button onClick={() => dialog.close()}>Cancel</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

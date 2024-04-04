@@ -11,18 +11,15 @@ import {
 } from '@itwin/itwinui-react';
 
 export default () => {
-  const dialogRef = React.useRef(null);
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button
-        styleType='high-visibility'
-        onClick={() => dialogRef.current?.show()}
-      >
+      <Button styleType='high-visibility' onClick={dialog.show}>
         Open draggable dialog
       </Button>
 
-      <Dialog ref={dialogRef} isDraggable isResizable portal>
+      <Dialog instance={dialog} isDraggable isResizable portal>
         <Dialog.Main>
           <Dialog.TitleBar titleText='New message' />
           <Dialog.Content>
@@ -30,15 +27,10 @@ export default () => {
             <LabeledTextarea label='Message' />
           </Dialog.Content>
           <Dialog.ButtonBar>
-            <Button
-              styleType='high-visibility'
-              onClick={() => dialogRef.current?.close()}
-            >
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Submit
             </Button>
-            <Button onClick={() => dialogRef.current?.close()}>
-              Save draft
-            </Button>
+            <Button onClick={() => dialog.close()}>Save draft</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

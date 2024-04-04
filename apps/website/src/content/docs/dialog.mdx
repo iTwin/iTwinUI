@@ -30,14 +30,14 @@ The terms dialog and modal are often used interchangeably. Within iTwinUI we dif
 
 The dialog can be opened and closed in two ways:
 
-1. By using the `show()` and `close()` methods from its ref.
+1. By using the `show()` and `close()` methods from its instance.
 
    ```tsx
-   const dialogRef = React.useRef<typeof Dialog.Ref>(null);
+   const dialog = Dialog.useInstance();
 
-   <Button onClick={() => dialogRef.current?.show()}>Open dialog</Button>
-   <Dialog ref={dialogRef}>
-     <Button onClick={() => dialogRef.current?.close()}>Close dialog</Button>
+   <Button onClick={dialog.show}>Open dialog</Button>
+   <Dialog instance={dialog}>
+     <Button onClick={() => dialog.close()}>Close dialog</Button>
    </Dialog>
    ```
 

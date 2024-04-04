@@ -20,11 +20,50 @@ import {
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Transition } from 'react-transition-group';
 
+// ----------------------------------------------------------------------------
+
+const internals = Symbol('_');
+
+class Instance {
+  [internals] = new Map();
+  show() {
+    this[internals].get('setIsOpen')(true);
+  }
+  close() {
+    this[internals].get('setIsOpen')(false);
+  }
+}
+
+const useInstance = () => {
+  return React.useMemo(() => new Instance(), []);
+};
+
+const setupInstance = (instance: any, properties: Record<string, unknown>) => {
+  if (instance?.[internals]?.created) {
+    return instance;
+  }
+
+  instance ||= new Instance();
+
+  // Copy all properties into instance internals.
+  // This needs to be done here rather than inside the constructor or an instance method,
+  // in order to maintain referential stability.
+  for (const [key, value] of Object.entries(properties)) {
+    instance[internals].set(key, value);
+  }
+  instance[internals].set('created', true);
+
+  return instance;
+};
+
+// ----------------------------------------------------------------------------
+
 type DialogProps = {
   /**
    * Dialog content.
    */
   children: React.ReactNode;
+  instance?: Instance;
 } & Omit<DialogContextProps, 'dialogRootRef' | 'setIsOpen'>;
 
 const DialogComponent = React.forwardRef((props, forwardedRef) => {
@@ -43,25 +82,14 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
     placement,
     className,
     portal = false,
+    instance: instanceProp,
     ...rest
   } = props;
 
   const [isOpen, setIsOpen] = useControlledState(false, isOpenProp);
+  setupInstance(instanceProp, { setIsOpen });
+
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
-  const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
-
-  React.useImperativeHandle(
-    forwardedRef,
-    () => {
-      const show = () => setIsOpen(true);
-      const close = () => setIsOpen(false);
-      const _dialog = (dialog as any) || {};
-
-      Object.assign(_dialog, { show, close });
-      return _dialog;
-    },
-    [dialog, setIsOpen],
-  );
 
   return (
     <Transition in={isOpen} timeout={{ exit: 600 }} mountOnEnter unmountOnExit>
@@ -87,7 +115,7 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
           <Box
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
-            ref={useMergedRefs(dialogRootRef, setDialog)}
+            ref={useMergedRefs(dialogRootRef, forwardedRef)}
             {...rest}
           />
         </Portal>
@@ -95,17 +123,6 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
     </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogProps>;
-
-// ----------------------------------------------------------------------------
-
-type DialogComponentType = typeof DialogComponent & {
-  Ref: HTMLDivElement & {
-    /** Call this function to show (open) the dialog. */
-    show: () => void;
-    /** Call this function to close the dialog. */
-    close: () => void;
-  };
-};
 
 // ----------------------------------------------------------------------------
 
@@ -131,10 +148,11 @@ type DialogComponentType = typeof DialogComponent & {
  *   </Dialog.Main>
  * </Dialog>
  */
-export const Dialog = Object.assign(DialogComponent as DialogComponentType, {
+export const Dialog = Object.assign(DialogComponent, {
   Backdrop: DialogBackdrop,
   Main: DialogMain,
   TitleBar: DialogTitleBar,
   Content: DialogContent,
   ButtonBar: DialogButtonBar,
+  useInstance,
 });
