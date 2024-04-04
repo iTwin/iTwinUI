@@ -382,6 +382,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               onClick: mergeEventHandlers(handlers.onClick, () => {
                 tree?.events.emit('click');
               }),
+              onFocus: (e) => {
+                setIsSubmenuVisible(true);
+              },
               ...rest,
             })
           : // ? { ...handlers, ...parentItemProps, ...rest }
@@ -392,6 +395,31 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 onClick: mergeEventHandlers(handlers.onClick, () => {
                   tree?.events.emit('click');
                 }),
+                onFocus: (event) => {
+                  // setIsSubmenuVisible(true);
+
+                  const target = getTarget(event.nativeEvent);
+
+                  if (isElement(target)) {
+                    try {
+                      // Mac Safari unreliably matches `:focus-visible` on the reference
+                      // if focus was outside the page initially - use the fallback
+                      // instead.
+                      if (isSafari() && isMac()) throw Error();
+                      if (!target.matches(':focus-visible')) return;
+                    } catch (e) {
+                      // Old browsers will throw an error when using `:focus-visible`.
+                      // if (
+                      //   !keyboardModalityRef.current &&
+                      //   !isTypeableElement(target)
+                      // ) {
+                      //   return;
+                      // }
+                    }
+                  }
+
+                  setIsSubmenuVisible(true);
+                },
                 ...rest,
               }),
             ))}
@@ -437,8 +465,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               }}
             >
               <Menu
-                // setFocus={focusOnSubmenu}
-                setFocus={true}
+                setFocus={focusOnSubmenu}
+                // setFocus={true}
                 ref={popover.refs.setFloating}
                 {...popover.getFloatingProps({
                   id: submenuId,
@@ -478,3 +506,53 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     </FloatingNode>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
+
+// ----------------------------------------------------------------------------
+
+export function getTarget(event: Event) {
+  if ('composedPath' in event) {
+    return event.composedPath()[0];
+  }
+
+  // TS thinks `event` is of type never as it assumes all browsers support
+  // `composedPath()`, but browsers without shadow DOM don't.
+  return (event as Event).target;
+}
+
+export function getWindow(node: any): typeof window {
+  return node?.ownerDocument?.defaultView || window;
+}
+
+export function isElement(value: unknown): value is Element {
+  return value instanceof Element || value instanceof getWindow(value).Element;
+}
+
+interface NavigatorUAData {
+  brands: Array<{ brand: string; version: string }>;
+  mobile: boolean;
+  platform: string;
+}
+
+// Avoid Chrome DevTools blue warning.
+export function getPlatform(): string {
+  const uaData = (navigator as any).userAgentData as
+    | NavigatorUAData
+    | undefined;
+
+  if (uaData?.platform) {
+    return uaData.platform;
+  }
+
+  return navigator.platform;
+}
+
+export function isSafari() {
+  // Chrome DevTools does not complain about navigator.vendor
+  return /apple/i.test(navigator.vendor);
+}
+
+export function isMac() {
+  return (
+    getPlatform().toLowerCase().startsWith('mac') && !navigator.maxTouchPoints
+  );
+}
