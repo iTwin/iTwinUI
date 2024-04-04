@@ -4,16 +4,16 @@ type Props = {
   indeterminate?: boolean;
   checked?: boolean;
   disabled?: boolean;
-  label?: string;
-  variant?: 'eyeball' | 'basic';
+  variant?: 'eyeball';
+  basic?: boolean;
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.HTMLAttributes;
 
-const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.props;
+const { status, isLoading, indeterminate, disabled, variant, basic, ...props } = Astro.props;
 ---
 
 {
-  variant?.includes('basic') && (
+  basic && (
     <input
       class:list={[
         'iui-checkbox',
@@ -30,7 +30,7 @@ const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.
   )
 }
 {
-  !variant?.includes('basic') && (
+  !basic && (
     <label
       class:list={[
         'iui-checkbox-wrapper',
