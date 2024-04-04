@@ -26,7 +26,6 @@ export const cloneElementWithRef = (
   const props = getProps(children);
   const ref = mergeRefs(
     ...[
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       'ref' in children ? (children as any).ref : null,
       'ref' in props ? props.ref : null,
     ].filter(Boolean),
