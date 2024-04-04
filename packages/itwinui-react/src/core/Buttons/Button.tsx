@@ -39,6 +39,12 @@ export type ButtonProps = {
    * Passes props to the end icon.
    */
   endIconProps?: React.ComponentProps<'span'>;
+  /**
+   * Whether the button should stretch to fill the width of the container.
+   *
+   * This is useful on narrow containers and mobile views.
+   */
+  stretch?: boolean;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
@@ -61,6 +67,7 @@ export const Button = React.forwardRef((props, ref) => {
     labelProps,
     startIconProps,
     endIconProps,
+    stretch,
     ...rest
   } = props;
 
@@ -71,6 +78,12 @@ export const Button = React.forwardRef((props, ref) => {
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
       {...rest}
+      style={
+        {
+          '--_iui-width': stretch ? '100%' : undefined,
+          ...props.style,
+        } as React.CSSProperties
+      }
     >
       {startIcon && (
         <Box

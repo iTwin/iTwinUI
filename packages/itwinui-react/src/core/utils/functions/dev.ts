@@ -2,9 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
-const isJest = typeof (globalThis as any).jest !== 'undefined';
+// @ts-expect-error -- jest is not used in iTwinUI but may be used in consuming apps
+const isJest = typeof jest !== 'undefined';
+
 const isMocha =
   typeof (globalThis as any).beforeEach !== 'undefined' &&
   `${(globalThis as any).beforeEach}`.replace(/\s/g, '') ===
