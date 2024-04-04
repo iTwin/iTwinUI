@@ -26,6 +26,7 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
+  useFocus,
   useInteractions,
   useListNavigation,
 } from '@floating-ui/react';
@@ -112,7 +113,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const listRef = React.useRef<any[]>([]);
-  console.log('activeIndex', activeIndex, listRef.current);
+  // console.log('activeIndex', activeIndex, listRef.current);
 
   const interactions = React.useRef<ReturnType<typeof useInteractions> | null>(
     null,
@@ -132,6 +133,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
           activeIndex,
           onNavigate: setActiveIndex,
         }),
+        // useFocus(context, { enabled: true }),
         useDismiss(context),
       ]);
 
@@ -139,12 +141,12 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
       // console.log('interactions', interactions);
 
-      console.log(
-        'interactions',
-        interactions.current.getFloatingProps(),
-        interactions.current.getItemProps(),
-        interactions.current.getReferenceProps(),
-      );
+      // console.log(
+      //   'interactions',
+      //   interactions.current.getFloatingProps(),
+      //   interactions.current.getItemProps(),
+      //   interactions.current.getReferenceProps(),
+      // );
 
       return interactions.current;
     },
@@ -214,6 +216,8 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
                   role,
                   ...rest,
                   onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    console.log('Menu1 keydown', e);
+
                     if (e.defaultPrevented) {
                       return;
                     }
@@ -224,8 +228,8 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
                 })}
                 ref={popoverRef}
               >
-                {/* {menuContent} */}
-                <FloatingList elementsRef={listRef}>{menuContent}</FloatingList>
+                {menuContent}
+                {/* <FloatingList elementsRef={listRef}>{menuContent}</FloatingList> */}
                 {/* <FloatingList elementsRef={listRef}>{menuContent}</FloatingList> */}
                 {/* <FloatingList elementsRef={listRef}>
               {(menuContent as JSX.Element[]).map((item, index) =>

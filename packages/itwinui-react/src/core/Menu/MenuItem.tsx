@@ -25,6 +25,7 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
+  useFocus,
   useHover,
   // useHover,
   useInteractions,
@@ -194,39 +195,43 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
-    interactions: (context) => {
-      const interactionsValue = useInteractions([
-        useClick(context),
-        useHover(context, {
-          handleClose: safePolygon({
-            blockPointerEvents: true,
-          }),
-        }),
-        useListNavigation(context, {
-          listRef,
-          activeIndex,
-          nested: true,
-          onNavigate: setActiveIndex,
-        }),
-        useDismiss(context, { outsidePress: true }),
-      ]);
+    // interactions: (context) => {
+    //   const interactionsValue = useInteractions([
+    //     useClick(context),
+    //     useHover(context, {
+    //       handleClose: safePolygon({
+    //         blockPointerEvents: true,
+    //       }),
+    //     }),
+    //     // useListNavigation(context, {
+    //     //   listRef,
+    //     //   activeIndex,
+    //     //   nested: true,
+    //     //   onNavigate: setActiveIndex,
+    //     // }),
+    //     // useFocus(context, { enabled: true }),
+    //     useDismiss(context, { outsidePress: true }),
+    //   ]);
 
-      interactions.current = interactionsValue;
+    //   interactions.current = interactionsValue;
 
-      // console.log('interactions', interactions);
+    //   // console.log('interactions', interactions);
 
-      console.log(
-        'interactions',
-        interactions.current.getFloatingProps(),
-        interactions.current.getItemProps(),
-        interactions.current.getReferenceProps(),
-      );
+    //   // console.log(
+    //   //   'interactions',
+    //   //   interactions.current.getFloatingProps(),
+    //   //   interactions.current.getItemProps(),
+    //   //   interactions.current.getReferenceProps(),
+    //   // );
 
-      return interactions.current;
-    },
+    //   return interactions.current;
+    // },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    console.log('MenuItem keydown', event);
+    // return;
+
     if (event.altKey) {
       return;
     }
@@ -288,7 +293,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const { activeIndex: parentActiveIndex, getItemProps: parentGetItemProps } =
     parentSelectContext || {};
 
-  console.log('parent', parentActiveIndex);
+  // console.log('parent', parentActiveIndex);
 
   const isActive = parentActiveIndex === index;
 
@@ -307,36 +312,36 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  // Event emitter allows you to communicate across tree components.
-  // This effect closes all menus when an item gets clicked anywhere
-  // in the tree.
-  React.useEffect(() => {
-    if (!tree) return;
+  // // Event emitter allows you to communicate across tree components.
+  // // This effect closes all menus when an item gets clicked anywhere
+  // // in the tree.
+  // React.useEffect(() => {
+  //   if (!tree) return;
 
-    function handleTreeClick() {
-      setIsSubmenuVisible(false);
-    }
+  //   function handleTreeClick() {
+  //     setIsSubmenuVisible(false);
+  //   }
 
-    function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
-      if (event.nodeId !== nodeId && event.parentId === parentId) {
-        setIsSubmenuVisible(false);
-      }
-    }
+  //   function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
+  //     if (event.nodeId !== nodeId && event.parentId === parentId) {
+  //       setIsSubmenuVisible(false);
+  //     }
+  //   }
 
-    tree.events.on('click', handleTreeClick);
-    tree.events.on('menuopen', onSubMenuOpen);
+  //   tree.events.on('click', handleTreeClick);
+  //   tree.events.on('menuopen', onSubMenuOpen);
 
-    return () => {
-      tree.events.off('click', handleTreeClick);
-      tree.events.off('menuopen', onSubMenuOpen);
-    };
-  }, [tree, nodeId, parentId]);
+  //   return () => {
+  //     tree.events.off('click', handleTreeClick);
+  //     tree.events.off('menuopen', onSubMenuOpen);
+  //   };
+  // }, [tree, nodeId, parentId]);
 
-  React.useEffect(() => {
-    if (isSubmenuVisible && tree) {
-      tree.events.emit('menuopen', { parentId, nodeId });
-    }
-  }, [tree, isSubmenuVisible, nodeId, parentId]);
+  // React.useEffect(() => {
+  //   if (isSubmenuVisible && tree) {
+  //     tree.events.emit('menuopen', { parentId, nodeId });
+  //   }
+  // }, [tree, isSubmenuVisible, nodeId, parentId]);
 
   const parentItemProps = !!parentGetItemProps
     ? parentGetItemProps({
@@ -361,19 +366,19 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           forwardedRef,
           subMenuItems.length > 0 ? popover.refs.setReference : null,
         )}
-        tabIndex={isActive ? 0 : -1}
+        // tabIndex={isActive ? 0 : -1}
         role={role}
-        // tabIndex={disabled || role === 'presentation' ? undefined : -1}
+        tabIndex={disabled || role === 'presentation' ? undefined : -1}
         aria-selected={isSelected}
         aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
         aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
         aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
         aria-disabled={disabled}
         {...(subMenuItems.length === 0
-          ? { ...handlers, ...parentItemProps, ...rest }
+          ? { ...handlers, ...rest }
           : popover.getReferenceProps({
+              // ...parentItemProps,
               ...handlers,
-              ...parentItemProps,
               ...rest,
             }))}
         // // TODO: Need to make sure handlers don't collide. e.g. parentGetItemProps's onClick shouldn't override popover.getReferenceProps's onClick
@@ -430,9 +435,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 })}
               >
                 {/* <SelectContext.Provider  */}
-                <FloatingList elementsRef={listRef}>
-                  {subMenuItems}
-                </FloatingList>
+                {/* <FloatingList elementsRef={listRef}> */}
+                {subMenuItems}
+                {/* </FloatingList> */}
                 {/* {subMenuItems} */}
                 {/* {(subMenuItems as JSX.Element[]).map((item, index) =>
                 React.cloneElement(item, {

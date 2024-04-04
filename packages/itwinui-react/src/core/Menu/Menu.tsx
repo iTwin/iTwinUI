@@ -61,6 +61,9 @@ export const Menu = React.forwardRef((props, ref) => {
   }, [setFocus, focusedIndex, getFocusableNodes]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    console.log('Menu keydown', event);
+    // return;
+
     if (event.altKey) {
       return;
     }
@@ -71,6 +74,7 @@ export const Menu = React.forwardRef((props, ref) => {
     }
 
     const currentIndex = focusedIndex ?? 0;
+
     switch (event.key) {
       case 'ArrowDown': {
         setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
@@ -96,7 +100,9 @@ export const Menu = React.forwardRef((props, ref) => {
       role='menu'
       ref={refs}
       {...rest}
-      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
+      // onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
+      onKeyDown={mergeEventHandlers(onKeyDown, props.onKeyDown)}
+      // onKeyDown={onKeyDown}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
