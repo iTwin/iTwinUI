@@ -116,7 +116,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parent = React.useContext(MenuItemContext);
 
   const onVisibleChange = (open: boolean) => {
-    setIsSubmenuVisible(open);
+    setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
     // we don't want parent to close when mouse goes into a nested submenu,
     // so we need to let the parent know whether the submenu is still open.
