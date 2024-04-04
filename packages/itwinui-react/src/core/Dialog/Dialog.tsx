@@ -25,12 +25,11 @@ import { Transition } from 'react-transition-group';
 const internals = Symbol('internals');
 
 class Instance {
-  [internals] = {} as any;
-  constructor() {
-    this[internals].initialize = (properties = {}) => {
+  [internals] = {
+    initialize: (properties = {}) => {
       Object.assign(this, properties);
-    };
-  }
+    },
+  };
 }
 
 const useInstance = () => {
