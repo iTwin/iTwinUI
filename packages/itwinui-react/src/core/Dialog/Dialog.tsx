@@ -22,15 +22,14 @@ import { Transition } from 'react-transition-group';
 
 // ----------------------------------------------------------------------------
 
-const internals = Symbol('_');
+const internals = Symbol('internals');
 
 class Instance {
-  [internals] = new Map();
-  show() {
-    this[internals].get('setIsOpen')(true);
-  }
-  close() {
-    this[internals].get('setIsOpen')(false);
+  [internals] = {} as any;
+  constructor() {
+    this[internals].initialize = (properties = {}) => {
+      Object.assign(this, properties);
+    };
   }
 }
 
@@ -38,21 +37,12 @@ const useInstance = () => {
   return React.useMemo(() => new Instance(), []);
 };
 
-const setupInstance = (instance: any, properties: Record<string, unknown>) => {
-  if (instance?.[internals]?.created) {
-    return instance;
-  }
-
+const synchronizeInstance = (
+  instance: any,
+  properties: Record<string, unknown>,
+) => {
   instance ||= new Instance();
-
-  // Copy all properties into instance internals.
-  // This needs to be done here rather than inside the constructor or an instance method,
-  // in order to maintain referential stability.
-  for (const [key, value] of Object.entries(properties)) {
-    instance[internals].set(key, value);
-  }
-  instance[internals].set('created', true);
-
+  instance[internals].initialize(properties);
   return instance;
 };
 
@@ -87,7 +77,10 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const [isOpen, setIsOpen] = useControlledState(false, isOpenProp);
-  setupInstance(instanceProp, { setIsOpen });
+  synchronizeInstance(instanceProp, {
+    show: React.useCallback(() => setIsOpen(true), [setIsOpen]),
+    close: React.useCallback(() => setIsOpen(false), [setIsOpen]),
+  });
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
 
