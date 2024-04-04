@@ -191,13 +191,19 @@ it('should not stay in the DOM when isOpen=false', () => {
 
 it('should expose show() and close() methods', () => {
   vi.useFakeTimers();
-  const dialog = Dialog.useInstance();
 
-  render(
-    <Dialog instance={dialog}>
-      <Dialog.Main>Hello</Dialog.Main>
-    </Dialog>,
-  );
+  let dialog: ReturnType<typeof Dialog.useInstance>;
+
+  const DialogTest = () => {
+    dialog = Dialog.useInstance();
+    return (
+      <Dialog instance={dialog}>
+        <Dialog.Main>Hello</Dialog.Main>
+      </Dialog>
+    );
+  };
+
+  render(<DialogTest />);
 
   act(() => dialog.show());
   const dialogElement = screen.getByRole('dialog');
