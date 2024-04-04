@@ -159,6 +159,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     //   );
     // }
 
+    // setIsSubmenuVisible(open);
+
     setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
     // we don't want parent to close when mouse goes into a nested submenu,
@@ -194,7 +196,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     // || children === 'Item #3',
     onVisibleChange,
     placement: 'right-start',
-    trigger: { hover: true, focus: true },
+    trigger: { hover: true, focus: false },
     // interactions: (context) => {
     //   const interactionsValue = useInteractions([
     //     useClick(context),
@@ -312,36 +314,36 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  // // Event emitter allows you to communicate across tree components.
-  // // This effect closes all menus when an item gets clicked anywhere
-  // // in the tree.
-  // React.useEffect(() => {
-  //   if (!tree) return;
+  // Event emitter allows you to communicate across tree components.
+  // This effect closes all menus when an item gets clicked anywhere
+  // in the tree.
+  React.useEffect(() => {
+    if (!tree) return;
 
-  //   function handleTreeClick() {
-  //     setIsSubmenuVisible(false);
-  //   }
+    function handleTreeClick() {
+      setIsSubmenuVisible(false);
+    }
 
-  //   function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
-  //     if (event.nodeId !== nodeId && event.parentId === parentId) {
-  //       setIsSubmenuVisible(false);
-  //     }
-  //   }
+    function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
+      if (event.nodeId !== nodeId && event.parentId === parentId) {
+        setIsSubmenuVisible(false);
+      }
+    }
 
-  //   tree.events.on('click', handleTreeClick);
-  //   tree.events.on('menuopen', onSubMenuOpen);
+    tree.events.on('click', handleTreeClick);
+    tree.events.on('menuopen', onSubMenuOpen);
 
-  //   return () => {
-  //     tree.events.off('click', handleTreeClick);
-  //     tree.events.off('menuopen', onSubMenuOpen);
-  //   };
-  // }, [tree, nodeId, parentId]);
+    return () => {
+      tree.events.off('click', handleTreeClick);
+      tree.events.off('menuopen', onSubMenuOpen);
+    };
+  }, [tree, nodeId, parentId]);
 
-  // React.useEffect(() => {
-  //   if (isSubmenuVisible && tree) {
-  //     tree.events.emit('menuopen', { parentId, nodeId });
-  //   }
-  // }, [tree, isSubmenuVisible, nodeId, parentId]);
+  React.useEffect(() => {
+    if (isSubmenuVisible && tree) {
+      tree.events.emit('menuopen', { parentId, nodeId });
+    }
+  }, [tree, isSubmenuVisible, nodeId, parentId]);
 
   const parentItemProps = !!parentGetItemProps
     ? parentGetItemProps({
@@ -375,12 +377,24 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
         aria-disabled={disabled}
         {...(subMenuItems.length === 0
-          ? { ...handlers, ...rest }
-          : popover.getReferenceProps({
-              // ...parentItemProps,
+          ? parentGetItemProps!({
               ...handlers,
+              onClick: mergeEventHandlers(handlers.onClick, () => {
+                tree?.events.emit('click');
+              }),
               ...rest,
-            }))}
+            })
+          : // ? { ...handlers, ...parentItemProps, ...rest }
+            popover.getReferenceProps(
+              parentGetItemProps!({
+                // ...parentItemProps,
+                ...handlers,
+                onClick: mergeEventHandlers(handlers.onClick, () => {
+                  tree?.events.emit('click');
+                }),
+                ...rest,
+              }),
+            ))}
         // // TODO: Need to make sure handlers don't collide. e.g. parentGetItemProps's onClick shouldn't override popover.getReferenceProps's onClick
         // {...(!!parentGetItemProps
         //   ? parentGetItemProps({
@@ -423,7 +437,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               }}
             >
               <Menu
-                setFocus={focusOnSubmenu}
+                // setFocus={focusOnSubmenu}
+                setFocus={true}
                 ref={popover.refs.setFloating}
                 {...popover.getFloatingProps({
                   id: submenuId,
