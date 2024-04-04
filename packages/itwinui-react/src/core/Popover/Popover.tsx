@@ -24,7 +24,6 @@ import {
   safePolygon,
   useRole,
   FloatingPortal,
-  // useListNavigation,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
@@ -109,9 +108,6 @@ type PopoverInternalProps = {
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-  interactions?: (
-    context: ReturnType<typeof useFloating>['context'],
-  ) => ReturnType<typeof useInteractions>;
 };
 
 // ----------------------------------------------------------------------------
@@ -126,7 +122,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
     role,
-    interactions: interactionsProp,
   } = options;
 
   const middleware = { flip: true, shift: true, ...options.middleware };
@@ -158,31 +153,17 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ].filter(Boolean),
   });
 
-  const interactions =
-    interactionsProp != null
-      ? interactionsProp(floating.context)
-      : useInteractions([
-          useClick(floating.context, { enabled: !!trigger.click }),
-          useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
-          useHover(floating.context, {
-            enabled: !!trigger.hover,
-            delay: 100,
-            handleClose: safePolygon({ buffer: 1, blockPointerEvents: true }),
-          }),
-          useFocus(floating.context, { enabled: !!trigger.focus }),
-          useRole(floating.context, { role: 'dialog', enabled: !!role }),
-          // useListNavigation(floating.context, {
-          //   listRef: ,
-          //   activeIndex: null,
-          // }),
-        ]);
-
-  // console.log(
-  //   'interactions',
-  //   interactions.getFloatingProps(),
-  //   interactions.getItemProps(),
-  //   interactions.getReferenceProps(),
-  // );
+  const interactions = useInteractions([
+    useClick(floating.context, { enabled: !!trigger.click }),
+    useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
+    useHover(floating.context, {
+      enabled: !!trigger.hover,
+      delay: 100,
+      handleClose: safePolygon({ buffer: 1 }),
+    }),
+    useFocus(floating.context, { enabled: !!trigger.focus }),
+    useRole(floating.context, { role: 'dialog', enabled: !!role }),
+  ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
 
