@@ -159,7 +159,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useHover(floating.context, {
       enabled: !!trigger.hover,
       delay: 100,
-      handleClose: safePolygon({ buffer: 1 }),
+      handleClose: safePolygon({ buffer: 1, requireIntent: false }),
     }),
     useFocus(floating.context, { enabled: !!trigger.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
