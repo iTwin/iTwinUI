@@ -15,40 +15,19 @@ import {
   Box,
   Portal,
   useControlledState,
+  useInstance,
   useMergedRefs,
+  useSynchronizeInstance,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Transition } from 'react-transition-group';
 
 // ----------------------------------------------------------------------------
 
-const internals = Symbol('internals');
-
-class Instance {
-  [internals] = {
-    initialize: (properties = {}) => {
-      Object.assign(this, properties);
-    },
-  };
-}
-
-const useInstance = () => {
-  return React.useMemo(() => new Instance(), []);
-};
-
-const synchronizeInstance = (
-  instance: any,
-  properties: Record<string, unknown>,
-) => {
-  instance ||= new Instance();
-  instance[internals].initialize(properties);
-  return instance;
-};
-
-// ----------------------------------------------------------------------------
-
 type DialogInstance = {
+  /** Call this function to show (open) the dialog. */
   show: () => void;
+  /** Call this function to hide (close) the dialog. */
   close: () => void;
 };
 
@@ -62,6 +41,8 @@ type DialogProps = {
    */
   instance?: DialogInstance;
 } & Omit<DialogContextProps, 'dialogRootRef' | 'setIsOpen'>;
+
+// ----------------------------------------------------------------------------
 
 const DialogComponent = React.forwardRef((props, forwardedRef) => {
   const {
@@ -84,10 +65,16 @@ const DialogComponent = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const [isOpen, setIsOpen] = useControlledState(false, isOpenProp);
-  synchronizeInstance(instanceProp, {
-    show: React.useCallback(() => setIsOpen(true), [setIsOpen]),
-    close: React.useCallback(() => setIsOpen(false), [setIsOpen]),
-  });
+  useSynchronizeInstance(
+    instanceProp,
+    React.useMemo(
+      () => ({
+        show: () => setIsOpen(true),
+        close: () => setIsOpen(false),
+      }),
+      [setIsOpen],
+    ),
+  );
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
 
