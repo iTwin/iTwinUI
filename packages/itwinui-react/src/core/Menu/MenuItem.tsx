@@ -27,8 +27,13 @@ import {
  */
 const MenuItemContext = React.createContext<{
   ref: React.RefObject<HTMLElement> | undefined;
+  setIsSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}>({ ref: undefined, setIsNestedSubmenuVisible: () => {} });
+}>({
+  ref: undefined,
+  setIsSubmenuVisible: () => {},
+  setIsNestedSubmenuVisible: () => {},
+});
 
 export type MenuItemProps = {
   /**
@@ -167,7 +172,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     trigger: { hover: true, focus: true },
   });
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyDown = async (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -182,11 +187,22 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          setIsSubmenuVisible(true);
+          const wasSubmenuVisible = isSubmenuVisible;
+
+          // setFocusOnSubmenu(true);
 
           // flush and reset state so we are ready to focus again next time
-          flushSync(() => setFocusOnSubmenu(true));
-          setFocusOnSubmenu(false);
+          flushSync(() => {
+            setFocusOnSubmenu(true);
+          });
+          // await new Promise((resolve) => setTimeout(resolve, 1000));
+          flushSync(() => {
+            setIsSubmenuVisible(true);
+          });
+
+          if (wasSubmenuVisible) {
+            setFocusOnSubmenu(false);
+          }
 
           event.preventDefault();
           event.stopPropagation();
@@ -197,6 +213,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         if (parent.ref) {
           parent.ref.current?.focus();
           parent.setIsNestedSubmenuVisible(false);
+          parent.setIsSubmenuVisible(false);
+
+          setFocusOnSubmenu(true);
         }
         event.stopPropagation();
         event.preventDefault();
@@ -264,7 +283,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         <FloatingNode id={nodeId}>
           <Portal>
             <MenuItemContext.Provider
-              value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
+              value={{
+                ref: menuItemRef,
+                setIsSubmenuVisible,
+                setIsNestedSubmenuVisible,
+              }}
             >
               <Menu
                 setFocus={focusOnSubmenu}
