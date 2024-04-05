@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { useSyncExternalStore } from './useSyncExternalStore.js';
 
-export class Instance {}
+class Instance {}
 
 export const useInstance = () => React.useMemo(() => new Instance(), []);
 
