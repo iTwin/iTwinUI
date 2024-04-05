@@ -15,8 +15,7 @@ export const useInstance = () => React.useMemo(() => new Instance(), []);
  * @param instance Instance created by `useInstance`.
  * @param properties Memoized object containing properties to be synchronized.
  *
- * @usage
- * ```tsx
+ * @example
  * const instance = useInstance();
  *
  * const properties = React.useMemo(() => ({
@@ -24,7 +23,6 @@ export const useInstance = () => React.useMemo(() => new Instance(), []);
  * }), []);
  *
  * useSynchronizeInstance(instance, properties);
- * ```
  */
 export const useSynchronizeInstance = <T>(instance: T, properties: T) => {
   const synchronize = React.useCallback(() => {
