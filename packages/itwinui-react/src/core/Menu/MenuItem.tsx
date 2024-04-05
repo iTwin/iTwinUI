@@ -124,6 +124,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
+  // console.log(tree?.nodesRef.current);
+
   const onVisibleChange = (open: boolean) => {
     if (open) {
       tree?.events.emit('submenuOpened', {
@@ -135,6 +137,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       setFocusOnSubmenu(false);
     }
 
+    // if (children === 'Item 2_3' && !open) {
+    //   console.log('submenu closed', nodeId, parentId);
+    // }
+
     setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
     // we don't want parent to close when mouse goes into a nested submenu,
@@ -144,11 +150,22 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   React.useEffect(() => {
     const handleSubmenuOpened = (event: TreeEvent) => {
+      // if (nodeId === event.nodeId) {
+      //   const
+      // }
+      // if (children === 'Item 2_3') {
+      //   console.log('submenu opened', event, nodeId, parentId);
+      // }
+
       // If a sibling's submenu is opened, close this submenu
       // i.e. only one submenu in each meny can be open at a time
       if (event.parentId === parentId && event.nodeId !== nodeId) {
         setIsSubmenuVisible(false);
+        setIsNestedSubmenuVisible(false);
       }
+
+      // If this is a sibling of the event.nodeId, close this submenu
+      // If
     };
 
     const handleLeftArrowPressed = (event: TreeEvent) => {
