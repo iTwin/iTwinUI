@@ -2,12 +2,10 @@
 type Props = {
   isLoading?: boolean;
   indeterminate?: boolean;
-  checked?: boolean;
-  disabled?: boolean;
   variant?: 'eyeball';
   basic?: boolean;
   status?: 'negative' | 'positive' | 'warning';
-} & astroHTML.JSX.HTMLAttributes;
+} & astroHTML.JSX.InputHTMLAttributes;
 
 const { status, isLoading, indeterminate, disabled, variant, basic, ...props } = Astro.props;
 ---
@@ -24,7 +22,6 @@ const { status, isLoading, indeterminate, disabled, variant, basic, ...props } =
       ]}
       type='checkbox'
       name={indeterminate ? 'indeterminate' : undefined}
-      disabled={disabled}
       {...props}
     />
   )
