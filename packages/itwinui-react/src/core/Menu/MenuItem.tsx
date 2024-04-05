@@ -131,6 +131,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         parentId,
       } satisfies TreeEvent);
 
+      // Once the menu is opened, reset focusOnSubmenu
       setFocusOnSubmenu(false);
     }
 
