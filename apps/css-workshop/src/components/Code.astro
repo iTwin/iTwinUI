@@ -1,0 +1,7 @@
+---
+type Props = astroHTML.JSX.HTMLAttributes;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<code class:list={['iui-code', className]} {...props}><slot /></code>
