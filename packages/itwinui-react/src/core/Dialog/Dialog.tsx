@@ -37,7 +37,11 @@ type DialogProps = {
    */
   children: React.ReactNode;
   /**
-   * Pass an instance created by `useInstance` to control the dialog programmatically.
+   * Pass an instance created by `useInstance` to control the dialog imperatively.
+   *
+   * @example
+   * const dialog = Dialog.useInstance();
+   * <Dialog instance={dialog} />
    */
   instance?: DialogInstance;
 } & Omit<DialogContextProps, 'dialogRootRef' | 'setIsOpen'>;
