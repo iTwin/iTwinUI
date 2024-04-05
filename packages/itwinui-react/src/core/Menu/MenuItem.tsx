@@ -15,6 +15,7 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
+import { FloatingNode, useFloatingNodeId } from '@floating-ui/react';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -115,6 +116,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     React.useState(false);
   const parent = React.useContext(MenuItemContext);
 
+  // Subscribe this component to the <FloatingTree> wrapper:
+  const nodeId = useFloatingNodeId();
+
   const onVisibleChange = (open: boolean) => {
     setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
@@ -124,6 +128,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const popover = usePopover({
+    nodeId,
     visible: isSubmenuVisible || isNestedSubmenuVisible,
     onVisibleChange,
     placement: 'right-start',
@@ -223,28 +228,30 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         </ListItem.Icon>
       )}
 
-      {subMenuItems.length > 0 && popover.open && (
-        <Portal>
-          <MenuItemContext.Provider
-            value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
-          >
-            <Menu
-              setFocus={focusOnSubmenu}
-              ref={popover.refs.setFloating}
-              {...popover.getFloatingProps({
-                id: submenuId,
-                onPointerMove: () => {
-                  // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                  // so we need to flip it back to true when pointer re-enters this submenu.
-                  setIsSubmenuVisible(true);
-                },
-              })}
+      <FloatingNode id={nodeId}>
+        {subMenuItems.length > 0 && popover.open && (
+          <Portal>
+            <MenuItemContext.Provider
+              value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
             >
-              {subMenuItems}
-            </Menu>
-          </MenuItemContext.Provider>
-        </Portal>
-      )}
+              <Menu
+                setFocus={focusOnSubmenu}
+                ref={popover.refs.setFloating}
+                {...popover.getFloatingProps({
+                  id: submenuId,
+                  onPointerMove: () => {
+                    // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                    // so we need to flip it back to true when pointer re-enters this submenu.
+                    setIsSubmenuVisible(true);
+                  },
+                })}
+              >
+                {subMenuItems}
+              </Menu>
+            </MenuItemContext.Provider>
+          </Portal>
+        )}
+      </FloatingNode>
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

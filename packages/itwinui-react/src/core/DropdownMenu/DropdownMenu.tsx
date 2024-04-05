@@ -17,6 +17,7 @@ import type {
 } from '../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
+import { FloatingTree } from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -106,32 +107,38 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {cloneElementWithRef(children, (children) => ({
-        ...popover.getReferenceProps(children.props),
-        'aria-expanded': popover.open,
-        ref: mergeRefs(triggerRef, popover.refs.setReference),
-      }))}
-      {popover.open && (
-        <Portal portal={portal}>
-          <Menu
-            {...popover.getFloatingProps({
-              role,
-              ...rest,
-              onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                if (e.defaultPrevented) {
-                  return;
-                }
-                if (e.key === 'Tab') {
-                  close();
-                }
-              }),
-            })}
-            ref={popoverRef}
-          >
-            {menuContent}
-          </Menu>
-        </Portal>
-      )}
+      <FloatingTreeWrapper>
+        {cloneElementWithRef(children, (children) => ({
+          ...popover.getReferenceProps(children.props),
+          'aria-expanded': popover.open,
+          ref: mergeRefs(triggerRef, popover.refs.setReference),
+        }))}
+        {popover.open && (
+          <Portal portal={portal}>
+            <Menu
+              {...popover.getFloatingProps({
+                role,
+                ...rest,
+                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                  if (e.defaultPrevented) {
+                    return;
+                  }
+                  if (e.key === 'Tab') {
+                    close();
+                  }
+                }),
+              })}
+              ref={popoverRef}
+            >
+              {menuContent}
+            </Menu>
+          </Portal>
+        )}
+      </FloatingTreeWrapper>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
+
+const FloatingTreeWrapper = (props: { children: React.ReactNode }) => {
+  return <FloatingTree>{props.children}</FloatingTree>;
+};
