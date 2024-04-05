@@ -125,8 +125,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  // console.log(tree?.nodesRef.current);
-
   const onVisibleChange = (open: boolean) => {
     if (open) {
       tree?.events.emit('submenuOpened', {
@@ -160,59 +158,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
-    // const handleRightArrowPressed = (event: TreeEvent) => {
-    //   // if right arrow is pressed from a parent menu item,
-    //   // the submenu should open
-    //   // if (event.nodeId === parentId) {
-    //   //   setIsSubmenuVisible(true);
-    //   //   menuItemRef.current?.focus();
-    //   // }
-    //   if (event.nodeId === nodeId) {
-    //     // TODO: Maybe need to flushSync, confirm
-    //     setIsSubmenuVisible(true);
-
-    //     const firstSubmenuNode = tree?.nodesRef.current.find(
-    //       (node) => node.parentId === nodeId,
-    //     );
-    //     tree?.events.emit('attemptFocus', {
-    //       nodeId: firstSubmenuNode!.id,
-    //       parentId: nodeId,
-    //     } satisfies TreeEvent);
-    //     // menuItemRef.current?.focus();
-    //   }
-
-    //   // console.log(tree?.nodesRef.current);
-    // };
-
-    // const handleRightArrowPressed = (event: TreeEvent) => {
-    //   const firstSubmenuNode = tree?.nodesRef.current.find(
-    //     (node) => node.parentId === event.nodeId,
-    //   );
-    //   const isCurrentNodeTheFirstSubmenuNode = nodeId === firstSubmenuNode?.id;
-
-    //   // console.log('isFirstSubmenuNode', firstSubmenuNode, event);
-
-    //   if (event.nodeId === parentId && isCurrentNodeTheFirstSubmenuNode) {
-    //     menuItemRef.current?.focus();
-    //   }
-    // };
-
-    // const handleAttemptFocus = (event: TreeEvent) => {
-    //   if (event.nodeId === nodeId) {
-    //     menuItemRef.current?.focus();
-    //   }
-    // };
-
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('leftArrowPressed', handleLeftArrowPressed);
-    // tree?.events.on('rightArrowPressed', handleRightArrowPressed);
-    // tree?.events.on('attemptFocus', handleAttemptFocus);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('leftArrowPressed', handleLeftArrowPressed);
-      // tree?.events.off('rightArrowPressed', handleRightArrowPressed);
-      // tree?.events.off('attemptFocus', handleAttemptFocus);
     };
   }, [nodeId, parentId, tree?.events]);
 
@@ -224,7 +175,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     trigger: { hover: true, focus: true },
   });
 
-  const onKeyDown = async (event: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -241,44 +192,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         if (subMenuItems.length > 0) {
           setIsSubmenuVisible(true);
 
-          // // flush and reset state so we are ready to focus again next time
-          // flushSync(() => setFocusOnSubmenu(true));
-          // setFocusOnSubmenu(false);
-
-          // tree?.events.emit('rightArrowPressed', {
-          //   nodeId,
-          //   parentId,
-          // } satisfies TreeEvent);
-
+          // flush and reset state so we are ready to focus again next time
           flushSync(() => setFocusOnSubmenu(true));
           setFocusOnSubmenu(false);
-          // flushSync(() => setIsSubmenuVisible(true));
-          // setIsSubmenuVisible(true);
-          // flushSync(() => setFocusOnSubmenu(false));
-
-          // await new Promise((resolve) => setTimeout(resolve, 1000));
-
-          // const firstSubmenuNode = tree?.nodesRef.current.find(
-          //   (node) => node.parentId === nodeId,
-          // );
-
-          // console.log('firstSubmenuNode', firstSubmenuNode);
-
-          // // flush and reset state so we are ready to focus again next time
-          // flushSync(() => setFocusOnSubmenu(true));
-          // setFocusOnSubmenu(false);
-
-          // tree?.events.emit('rightArrowPressed', {
-          //   nodeId,
-          //   parentId,
-          // } satisfies TreeEvent);
-
-          // if (firstSubmenuNode) {
-          //   tree?.events.emit('attemptFocus', {
-          //     nodeId: firstSubmenuNode.id,
-          //     parentId: nodeId,
-          //   } satisfies TreeEvent);
-          // }
 
           event.preventDefault();
           event.stopPropagation();
@@ -309,14 +225,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
     }
   };
-
-  // React.useEffect(() => {
-  //   if (popover.open && focusOnSubmenu) {
-  //     console.log('reset focus on submenu', children, nodeId);
-  //     // menuItemRef.current?.focus();
-  //     setFocusOnSubmenu(false);
-  //   }
-  // }, [popover.open, focusOnSubmenu]);
 
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
@@ -368,8 +276,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         </ListItem.Icon>
       )}
 
-      <FloatingNode id={nodeId}>
-        {subMenuItems.length > 0 && popover.open && (
+      {subMenuItems.length > 0 && popover.open && (
+        <FloatingNode id={nodeId}>
           <Portal>
             <MenuItemContext.Provider
               value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
@@ -390,8 +298,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               </Menu>
             </MenuItemContext.Provider>
           </Portal>
-        )}
-      </FloatingNode>
+        </FloatingNode>
+      )}
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
