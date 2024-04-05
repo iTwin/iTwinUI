@@ -228,8 +228,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         </ListItem.Icon>
       )}
 
-      <FloatingNode id={nodeId}>
-        {subMenuItems.length > 0 && popover.open && (
+      {subMenuItems.length > 0 && popover.open && (
+        <FloatingNode id={nodeId}>
           <Portal>
             <MenuItemContext.Provider
               value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
@@ -250,8 +250,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               </Menu>
             </MenuItemContext.Provider>
           </Portal>
-        )}
-      </FloatingNode>
+        </FloatingNode>
+      )}
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
