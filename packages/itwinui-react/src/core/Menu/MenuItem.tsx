@@ -15,7 +15,12 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
-import { FloatingNode, useFloatingNodeId } from '@floating-ui/react';
+import {
+  FloatingNode,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useFloatingTree,
+} from '@floating-ui/react';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -117,14 +122,42 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parent = React.useContext(MenuItemContext);
 
   const nodeId = useFloatingNodeId();
+  const tree = useFloatingTree();
+  const parentId = useFloatingParentNodeId();
 
   const onVisibleChange = (open: boolean) => {
+    tree?.events.emit('visibleChange', {
+      nodeId,
+      parentId,
+      open,
+    } satisfies TreeEvent);
+
     setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
     // we don't want parent to close when mouse goes into a nested submenu,
     // so we need to let the parent know whether the submenu is still open.
     parent.setIsNestedSubmenuVisible(open);
   };
+
+  React.useEffect(() => {
+    const handleVisibleChange = (event: TreeEvent) => {
+      // If a sibling's submenu is opened, close this submenu
+      // i.e. only one submenu in each meny can be open at a time
+      if (
+        event.parentId === parentId &&
+        event.nodeId !== nodeId &&
+        event.open
+      ) {
+        setIsSubmenuVisible(false);
+      }
+    };
+
+    tree?.events.on('visibleChange', handleVisibleChange);
+
+    return () => {
+      tree?.events.off('visibleChange', handleVisibleChange);
+    };
+  }, [nodeId, parentId, tree?.events]);
 
   const popover = usePopover({
     nodeId,
@@ -254,3 +287,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
+
+// ----------------------------------------------------------------------------
+
+type TreeEvent = {
+  nodeId: string;
+  parentId: string | null;
+  open: boolean;
+};
