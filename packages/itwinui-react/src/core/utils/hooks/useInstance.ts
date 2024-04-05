@@ -33,7 +33,11 @@ export const useSynchronizeInstance = <T>(instance: T, properties: T) => {
     }
 
     Object.assign(instance, properties);
-    return () => Object.assign(instance, {});
+    return () => {
+      for (const key in properties) {
+        delete instance[key];
+      }
+    };
   }, [instance, properties]);
 
   return useSyncExternalStore(
