@@ -8,7 +8,6 @@ import type { HeaderGroup } from '../../../../react-table/react-table.js';
 import { NumberRangeFilter } from './NumberRangeFilter.js';
 import type { NumberRangeFilterProps } from './NumberRangeFilter.js';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (
   initialProps?: Partial<NumberRangeFilterProps<any>>,
 ) => {
@@ -21,7 +20,6 @@ const renderComponent = (
   } as NumberRangeFilterProps<any>;
   return render(<NumberRangeFilter {...props} />);
 };
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 it('should render correctly', () => {
   const { container } = renderComponent();
@@ -44,7 +42,6 @@ it('should render correctly with set filter value', () => {
   const { container } = renderComponent({
     column: {
       filterValue: [1, 3],
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as HeaderGroup<any>,
   });
 

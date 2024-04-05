@@ -170,5 +170,5 @@ const BottomMessage = (
     );
   }
 
-  return undefined;
+  return null;
 };

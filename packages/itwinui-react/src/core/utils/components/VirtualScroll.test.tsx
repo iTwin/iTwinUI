@@ -30,7 +30,6 @@ afterAll(() => {
 });
 
 it('should render only few elements out of big list', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heightsMock.mockImplementation(function (this: Record<string, any>) {
     if (Object.values(this)[0].memoizedProps.id === 'scroller') {
       return { height: 400 } as DOMRect;
@@ -96,7 +95,6 @@ it('should render only few elements out of big list', () => {
 });
 
 it('should not crash with empty list items', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heightsMock.mockImplementation(function (this: Record<string, any>) {
     if (Object.values(this)[0].memoizedProps.id === 'scroller') {
       return { height: 400 } as DOMRect;
@@ -118,7 +116,6 @@ it('should not crash with empty list items', () => {
 });
 
 it('should render 1 item', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heightsMock.mockImplementation(function (this: Record<string, any>) {
     if (Object.values(this)[0].memoizedProps.id === 'scroller') {
       return { height: 40 } as DOMRect;
@@ -144,7 +141,6 @@ it('should render 1 item', () => {
 });
 
 it('should show provided index on first render', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heightsMock.mockImplementation(function (this: Record<string, any>) {
     if (Object.values(this)[0].memoizedProps.id === 'scroller') {
       return { height: 400 } as DOMRect;
@@ -186,7 +182,6 @@ it('should show provided index on first render', () => {
 });
 
 it('should render parent as ul', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heightsMock.mockImplementation(function (this: Record<string, any>) {
     if (Object.values(this)[0].memoizedProps.id === 'scroller') {
       return { height: 400 } as DOMRect;

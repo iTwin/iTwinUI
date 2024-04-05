@@ -5,6 +5,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useLatestRef, useLayoutEffect } from '../hooks/index.js';
+import { useHydration } from '../providers/index.js';
 
 const isBrowser = typeof document !== 'undefined';
 const supportsDSD =
@@ -21,7 +22,7 @@ type ShadowRootProps = { children: React.ReactNode; css?: string };
  * @private
  */
 export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
-  const isFirstRender = useIsFirstRender();
+  const isHydrating = useHydration() === 'hydrating';
 
   if (!isBrowser) {
     return (
@@ -34,7 +35,7 @@ export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
 
   // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.
   // To pass hydration, the first client render needs to emulate this browser behavior and return null.
-  if (supportsDSD && isFirstRender) {
+  if (supportsDSD && isHydrating) {
     return null;
   }
 
@@ -78,6 +79,7 @@ function useShadowRoot(
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot | null>(null);
   const styleSheet = React.useRef<CSSStyleSheet>();
   const latestCss = useLatestRef(css);
+  const latestShadowRoot = useLatestRef(shadowRoot);
 
   useLayoutEffect(() => {
     const parent = templateRef.current?.parentElement;
@@ -85,31 +87,38 @@ function useShadowRoot(
       return;
     }
 
-    if (parent.shadowRoot) {
-      parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
-    }
-
-    const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
-
-    if (supportsAdoptedStylesheets) {
-      // create an empty stylesheet and add it to the shadowRoot
-      const currentWindow = shadow.ownerDocument.defaultView || globalThis;
-      styleSheet.current = new currentWindow.CSSStyleSheet();
-      shadow.adoptedStyleSheets = [styleSheet.current];
-
-      // add the CSS immediately to avoid FOUC (one-time)
-      if (latestCss.current) {
-        styleSheet.current.replaceSync(latestCss.current);
+    const setupOrReuseShadowRoot = () => {
+      if (parent.shadowRoot && latestShadowRoot.current === null) {
+        parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
       }
-    }
+
+      const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
+
+      if (supportsAdoptedStylesheets) {
+        // create an empty stylesheet and add it to the shadowRoot
+        const currentWindow = shadow.ownerDocument.defaultView || globalThis;
+        styleSheet.current = new currentWindow.CSSStyleSheet();
+        shadow.adoptedStyleSheets = [styleSheet.current];
+
+        // add the CSS immediately to avoid FOUC (one-time)
+        if (latestCss.current) {
+          styleSheet.current.replaceSync(latestCss.current);
+        }
+      }
+
+      // Flush the state immediately after shadow-root is attached, to ensure that layout
+      // measurements in parent component are correct.
+      // Without this, the parent component may end up measuring the layout when the shadow-root
+      // is attached in the DOM but React hasn't rendered any slots or content into it yet.
+      ReactDOM.flushSync(() => setShadowRoot(shadow));
+    };
 
     queueMicrotask(() => {
-      // Flush the state immediately to ensure layout measurements in parent component are correct
-      ReactDOM.flushSync(() => setShadowRoot(shadow));
+      setupOrReuseShadowRoot();
     });
 
     return () => void setShadowRoot(null);
-  }, [templateRef, latestCss]);
+  }, [templateRef, latestCss, latestShadowRoot]);
 
   // Synchronize `css` with contents of the existing stylesheet
   useLayoutEffect(() => {
@@ -119,12 +128,4 @@ function useShadowRoot(
   }, [css]);
 
   return shadowRoot;
-}
-
-// ----------------------------------------------------------------------------
-
-function useIsFirstRender() {
-  const [isFirstRender, setIsFirstRender] = React.useState(true);
-  React.useEffect(() => setIsFirstRender(false), []);
-  return isFirstRender;
 }
