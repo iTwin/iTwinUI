@@ -13,7 +13,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
@@ -160,30 +159,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
-    const handleRightArrowPressed = (event: TreeEvent) => {
-      // Open submenu if not open
-      if (nodeId === event.nodeId) {
-        setIsSubmenuVisible(true);
-      } else {
-        // Focus first submenu item
-        const firstSubMenuItem = tree?.nodesRef.current.find(
-          (n) => n.parentId === event.nodeId,
-        );
-        console.log(firstSubMenuItem?.id, nodeId);
-        if (nodeId === firstSubMenuItem?.id) {
-          menuItemRef.current?.focus();
-        }
-      }
-    };
-
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('leftArrowPressed', handleLeftArrowPressed);
-    tree?.events.on('rightArrowPressed', handleRightArrowPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('leftArrowPressed', handleLeftArrowPressed);
-      tree?.events.off('rightArrowPressed', handleRightArrowPressed);
     };
   }, [nodeId, parentId, tree?.events, tree?.nodesRef]);
 
@@ -210,16 +191,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
+          setFocusOnSubmenu(true);
           setIsSubmenuVisible(true);
-
-          // flush and reset state so we are ready to focus again next time
-          flushSync(() => setFocusOnSubmenu(true));
-          // setFocusOnSubmenu(false);
-
-          // tree?.events.emit('rightArrowPressed', {
-          //   nodeId,
-          //   parentId,
-          // } satisfies TreeEvent);
 
           event.preventDefault();
           event.stopPropagation();
@@ -227,11 +200,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'ArrowLeft': {
-        // if (parent.ref) {
-        //   parent.ref.current?.focus();
-        //   parent.setIsNestedSubmenuVisible(false);
-        // }
-
         tree?.events.emit('leftArrowPressed', {
           nodeId,
           parentId,
@@ -309,7 +277,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             >
               <Menu
                 setFocus={focusOnSubmenu}
-                // setFocus={false}
                 ref={popover.refs.setFloating}
                 {...popover.getFloatingProps({
                   id: submenuId,
