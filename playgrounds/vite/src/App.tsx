@@ -62,6 +62,9 @@ const App = () => {
                       >
                         Item 4_2
                       </MenuItem>,
+                      // <MenuItem key='Item 4_3' onClick={close}>
+                      //   Item 4_3
+                      // </MenuItem>,
                     ]}
                   >
                     Item 3_3
@@ -70,6 +73,38 @@ const App = () => {
               >
                 Item 2_3
               </MenuItem>,
+              // <MenuItem
+              //   key='Item 4_4'
+              //   onClick={close}
+              //   subMenuItems={[
+              //     <MenuItem key='Item 5_1' onClick={close}>
+              //       Item 5_1
+              //     </MenuItem>,
+              //     <MenuItem key='Item 5_2' onClick={close}>
+              //       Item 5_2
+              //     </MenuItem>,
+              //     <MenuItem
+              //       key='Item 5_3'
+              //       // onClick={() => {
+              //       //   console.log('Item 5_3 clicked');
+              //       //   close();
+              //       // }}
+              //       subMenuItems={[
+              //         <MenuItem key='Item 6_1' onClick={close}>
+              //           Item 6_1
+              //         </MenuItem>,
+              //         <MenuItem key='Item 6_2' onClick={close}>
+              //           Item 6_2
+              //         </MenuItem>,
+              //         <MenuItem key='Item 6_3'>Item 6_3</MenuItem>,
+              //       ]}
+              //     >
+              //       Item 5_3
+              //     </MenuItem>,
+              //   ]}
+              // >
+              //   Item 4_4
+              // </MenuItem>,
             ]}
           >
             Item 1_3
