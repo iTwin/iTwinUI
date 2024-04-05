@@ -23,6 +23,8 @@ export const useInstance = () => React.useMemo(() => new Instance(), []);
  * }), []);
  *
  * useSynchronizeInstance(instance, properties);
+ *
+ * instance.show(); // logs 'show'
  */
 export const useSynchronizeInstance = <T>(instance: T, properties: T) => {
   const synchronize = React.useCallback(() => {
