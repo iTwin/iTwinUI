@@ -68,6 +68,16 @@ export type DropdownMenuProps = {
  * </DropdownMenu>
  */
 export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
+  return (
+    <FloatingTree>
+      <DropdownMenuContent ref={forwardedRef} {...props} />
+    </FloatingTree>
+  );
+}) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
+
+// ----------------------------------------------------------------------------
+
+const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   const {
     menuItems,
     children,
@@ -115,40 +125,34 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      <FloatingTreeWrapper>
-        {cloneElementWithRef(children, (children) => ({
-          ...popover.getReferenceProps(children.props),
-          'aria-expanded': popover.open,
-          ref: mergeRefs(triggerRef, popover.refs.setReference),
-        }))}
-        <FloatingNode id={nodeId}>
-          {popover.open && (
-            <Portal portal={portal}>
-              <Menu
-                {...popover.getFloatingProps({
-                  role,
-                  ...rest,
-                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                    if (e.defaultPrevented) {
-                      return;
-                    }
-                    if (e.key === 'Tab') {
-                      close();
-                    }
-                  }),
-                })}
-                ref={popoverRef}
-              >
-                {menuContent}
-              </Menu>
-            </Portal>
-          )}
-        </FloatingNode>
-      </FloatingTreeWrapper>
+      {cloneElementWithRef(children, (children) => ({
+        ...popover.getReferenceProps(children.props),
+        'aria-expanded': popover.open,
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
+      }))}
+      <FloatingNode id={nodeId}>
+        {popover.open && (
+          <Portal portal={portal}>
+            <Menu
+              {...popover.getFloatingProps({
+                role,
+                ...rest,
+                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                  if (e.defaultPrevented) {
+                    return;
+                  }
+                  if (e.key === 'Tab') {
+                    close();
+                  }
+                }),
+              })}
+              ref={popoverRef}
+            >
+              {menuContent}
+            </Menu>
+          </Portal>
+        )}
+      </FloatingNode>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
-
-const FloatingTreeWrapper = (props: { children: React.ReactNode }) => {
-  return <FloatingTree>{props.children}</FloatingTree>;
-};
