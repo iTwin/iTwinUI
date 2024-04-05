@@ -17,7 +17,11 @@ import type {
 } from '../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
-import { FloatingTree } from '@floating-ui/react';
+import {
+  FloatingNode,
+  FloatingTree,
+  useFloatingNodeId,
+} from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -96,7 +100,11 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
+  // Subscribe this component to the <FloatingTree> wrapper:
+  const nodeId = useFloatingNodeId();
+
   const popover = usePopover({
+    nodeId,
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
@@ -113,27 +121,29 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
           'aria-expanded': popover.open,
           ref: mergeRefs(triggerRef, popover.refs.setReference),
         }))}
-        {popover.open && (
-          <Portal portal={portal}>
-            <Menu
-              {...popover.getFloatingProps({
-                role,
-                ...rest,
-                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                  if (e.defaultPrevented) {
-                    return;
-                  }
-                  if (e.key === 'Tab') {
-                    close();
-                  }
-                }),
-              })}
-              ref={popoverRef}
-            >
-              {menuContent}
-            </Menu>
-          </Portal>
-        )}
+        <FloatingNode id={nodeId}>
+          {popover.open && (
+            <Portal portal={portal}>
+              <Menu
+                {...popover.getFloatingProps({
+                  role,
+                  ...rest,
+                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    if (e.defaultPrevented) {
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      close();
+                    }
+                  }),
+                })}
+                ref={popoverRef}
+              >
+                {menuContent}
+              </Menu>
+            </Portal>
+          )}
+        </FloatingNode>
       </FloatingTreeWrapper>
     </>
   );
