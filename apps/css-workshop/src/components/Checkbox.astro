@@ -1,0 +1,71 @@
+---
+type Props = {
+  isLoading?: boolean;
+  indeterminate?: boolean;
+  checked?: boolean;
+  disabled?: boolean;
+  variant?: 'eyeball';
+  basic?: boolean;
+  status?: 'negative' | 'positive' | 'warning';
+} & astroHTML.JSX.HTMLAttributes;
+
+const { status, isLoading, indeterminate, disabled, variant, basic, ...props } = Astro.props;
+---
+
+{
+  basic && (
+    <input
+      class:list={[
+        'iui-checkbox',
+        {
+          'iui-loading': isLoading,
+          'iui-checkbox-visibility': variant?.includes('eyeball'),
+        },
+      ]}
+      type='checkbox'
+      name={indeterminate ? 'indeterminate' : undefined}
+      disabled={disabled}
+      {...props}
+    />
+  )
+}
+{
+  !basic && (
+    <label
+      class:list={[
+        'iui-checkbox-wrapper',
+        {
+          'iui-disabled': disabled,
+          'iui-loading': isLoading,
+          [`iui-${status}`]: !!status,
+        },
+      ]}
+      {...props}
+    >
+      <input
+        class:list={[
+          'iui-checkbox',
+          {
+            'iui-loading': isLoading,
+            'iui-checkbox-visibility': variant?.includes('eyeball'),
+          },
+        ]}
+        type='checkbox'
+        name={indeterminate ? 'indeterminate' : undefined}
+        disabled={disabled}
+        {...props}
+      />
+      {isLoading && (
+        <div
+          class='iui-progress-indicator-radial'
+          data-iui-indeterminate='true'
+          data-iui-size='x-small'
+        />
+      )}
+
+      <span class='iui-checkbox-label'>
+        <slot />
+      </span>
+    </label>
+  )
+}

@@ -13,3 +13,11 @@
     --_iui-v3-loaded: yes;
   }
 }
+
+@layer itwinui {
+  .iui-root * {
+    /* When --_iui-width is set, inline-size will use it, otherwise it will be automatically reverted. */
+    --_iui-width: initial;
+    inline-size: var(--_iui-width, revert-layer);
+  }
+}
