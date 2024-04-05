@@ -28,10 +28,12 @@ export const useInstance = () => React.useMemo(() => new Instance(), []);
  */
 export const useSynchronizeInstance = <T>(instance: T, properties: T) => {
   const synchronize = React.useCallback(() => {
-    if (instance instanceof Instance) {
-      Object.assign(instance, properties);
+    if (!(instance instanceof Instance)) {
+      return () => {};
     }
-    return () => {};
+
+    Object.assign(instance, properties);
+    return () => Object.assign(instance, {});
   }, [instance, properties]);
 
   return useSyncExternalStore(
