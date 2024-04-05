@@ -116,7 +116,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     React.useState(false);
   const parent = React.useContext(MenuItemContext);
 
-  // Subscribe this component to the <FloatingTree> wrapper:
   const nodeId = useFloatingNodeId();
 
   const onVisibleChange = (open: boolean) => {

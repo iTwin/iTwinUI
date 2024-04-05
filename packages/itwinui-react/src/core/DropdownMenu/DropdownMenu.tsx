@@ -110,7 +110,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  // Subscribe this component to the <FloatingTree> wrapper:
   const nodeId = useFloatingNodeId();
 
   const popover = usePopover({
