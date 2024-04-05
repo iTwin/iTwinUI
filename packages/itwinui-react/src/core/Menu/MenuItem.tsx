@@ -119,6 +119,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const nodeId = useFloatingNodeId();
 
   const onVisibleChange = (open: boolean) => {
+    console.log('onVisbleChange', open, children);
+
     setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
     // we don't want parent to close when mouse goes into a nested submenu,
@@ -181,6 +183,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
+    onMouseEnter: () => {
+      // console.log('onMouseEnter', children);
+      // if (children !== 'Item 4_2') {
+      //   menuItemRef.current?.focus();
+      // }
+    },
     onKeyDown,
   };
 
