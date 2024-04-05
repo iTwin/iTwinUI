@@ -26,8 +26,13 @@ import {
  */
 const MenuItemContext = React.createContext<{
   ref: React.RefObject<HTMLElement> | undefined;
+  setIsSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}>({ ref: undefined, setIsNestedSubmenuVisible: () => {} });
+}>({
+  ref: undefined,
+  setIsSubmenuVisible: () => {},
+  setIsNestedSubmenuVisible: () => {},
+});
 
 export type MenuItemProps = {
   /**
@@ -161,12 +166,25 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
+    // const handleEscPressed = (event: TreeEvent) => {
+    //   if (event.nodeId === nodeId) {
+    //     // menuItemRef.current?.focus();
+    //     parent.ref?.current?.focus();
+    //     parent.setIsNestedSubmenuVisible(false);
+
+    //     setIsSubmenuVisible(false);
+    //     setIsNestedSubmenuVisible(false);
+    //   }
+    // };
+
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('leftArrowPressed', handleLeftArrowPressed);
+    // tree?.events.on('escPressed', handleEscPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('leftArrowPressed', handleLeftArrowPressed);
+      // tree?.events.off('escPressed', handleEscPressed);
     };
   }, [nodeId, parentId, tree?.events, tree?.nodesRef]);
 
@@ -212,8 +230,34 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'Escape': {
-        // focus might get lost if submenu closes so move it back to parent
-        parent.ref?.current?.focus();
+        // If submenu/nested submenu is open and esc key is pressed, close the submenu/nested submenu
+        if (isSubmenuVisible || isNestedSubmenuVisible) {
+          setIsSubmenuVisible(false);
+          setIsNestedSubmenuVisible(false);
+        }
+        // Else, close the menu on the current level and move focus one level up
+        else {
+          parent.ref?.current?.focus();
+          parent.setIsSubmenuVisible(false);
+          parent.setIsNestedSubmenuVisible(false);
+        }
+
+        // setIsSubmenuVisible(false);
+        // setIsNestedSubmenuVisible(false);
+
+        // parent.setIsSubmenuVisible(false);
+        // parent.setIsNestedSubmenuVisible(false);
+
+        // // focus might get lost if submenu closes so move it back to parent
+        // parent.ref?.current?.focus();
+
+        // tree?.events.emit('escapePressed', {
+        //   nodeId,
+        //   parentId,
+        // } satisfies TreeEvent);
+
+        event.stopPropagation();
+        event.preventDefault();
         break;
       }
       default:
@@ -275,7 +319,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         <FloatingNode id={nodeId}>
           <Portal>
             <MenuItemContext.Provider
-              value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
+              value={{
+                ref: menuItemRef,
+                setIsSubmenuVisible,
+                setIsNestedSubmenuVisible,
+              }}
             >
               <Menu
                 setFocus={focusOnSubmenu}
