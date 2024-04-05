@@ -132,7 +132,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ basic id='select-all-checkboxes' indeterminate />
+              <Checkbox_ id='select-all-checkboxes' indeterminate />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted'
@@ -265,20 +265,20 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='active-row' />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            A Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
+             A Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
           </div>
           <div class='iui-table-cell' title='Jul 16, 2020 9:50am'>Last week</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>252 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -295,20 +295,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic checked id='active-row' />
+            <Checkbox_ checked id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            Folder name 2
+             Folder name 2
           </div>
           <div class='iui-table-cell' title='Jul 23, 2020 10:21am'>Yesterday</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>1.2 GB</div>
           <div class='iui-table-cell iui-slot'>
@@ -325,20 +325,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic checked id='active-row' />
+            <Checkbox_ checked id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            Folder name 3
+             Folder name 3
           </div>
           <div class='iui-table-cell' title='Jul 19, 2020 4:20pm'>5 days ago</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>36 GB</div>
           <div class='iui-table-cell iui-slot'>
@@ -355,13 +355,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic disabled id='active-row' />
+            <Checkbox_ disabled id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-imodel aria-hidden='true'></svg-filetype-imodel>
             </div>
-            alpha.dgn
+             alpha.dgn
             <div class='iui-table-cell-end-icon'>
               <div
                 class='iui-progress-indicator-radial'
@@ -376,7 +376,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>Calculating&mldr;</div>
           <div class='iui-table-cell iui-slot'>
@@ -393,20 +393,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-new'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='active-row' />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-audio aria-hidden='true'></svg-filetype-audio>
             </div>
-            beta.mp3
+             beta.mp3
           </div>
           <div class='iui-table-cell' title='Jul 24, 2020 2:12pm'>Just now</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>15 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -423,13 +423,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='active-row' />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-pdf aria-hidden='true'></svg-filetype-pdf>
             </div>
-            charlie.pdf
+             charlie.pdf
             <div class='iui-table-cell-end-icon'>
               <svg-status-success aria-hidden='true'></svg-status-success>
             </div>
@@ -441,7 +441,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>9 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -464,7 +464,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-image aria-hidden='true'></svg-filetype-image>
             </div>
-            delta.jpg
+             delta.jpg
             <div class='iui-table-cell-end-icon'>
               <svg-status-warning aria-hidden='true'></svg-status-warning>
             </div>
@@ -476,7 +476,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>963 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -493,13 +493,14 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+             MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+
 
             <div class='iui-table-cell-end-icon'>
               <svg-status-error aria-hidden='true'></svg-status-error>
@@ -512,7 +513,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>64 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -529,20 +530,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-video aria-hidden='true'></svg-filetype-video>
             </div>
-            unavailable.mov
+             unavailable.mov
           </div>
           <div class='iui-table-cell' aria-disabled='true'>A few minutes ago</div>
           <div class='iui-table-cell' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -566,7 +567,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ id='select-all-checkboxes' basic />
+              <Checkbox_ id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
@@ -664,20 +665,20 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            A Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
+             A Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
           </div>
           <div class='iui-table-cell' title='Jul 16, 2020 9:50am'>Last week</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>252 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -695,20 +696,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ checked id='active-row' basic />
+            <Checkbox_ checked id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            Folder name 2
+             Folder name 2
           </div>
           <div class='iui-table-cell' title='Jul 23, 2020 10:21am'>Yesterday</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>1.2 GB</div>
           <div class='iui-table-cell iui-slot'>
@@ -726,20 +727,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ checked id='active-row' basic />
+            <Checkbox_ checked id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            Folder name 3
+             Folder name 3
           </div>
           <div class='iui-table-cell' title='Jul 19, 2020 4:20pm'>5 days ago</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>36 GB</div>
           <div class='iui-table-cell iui-slot'>
@@ -757,13 +758,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ disabled id='active-row' basic />
+            <Checkbox_ disabled id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-imodel aria-hidden='true'></svg-filetype-imodel>
             </div>
-            alpha.dgn
+             alpha.dgn
             <div class='iui-table-cell-end-icon'>
               <div
                 class='iui-progress-indicator-radial'
@@ -778,7 +779,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>Calculating&mldr;</div>
           <div class='iui-table-cell iui-slot'>
@@ -796,20 +797,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-new'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-audio aria-hidden='true'></svg-filetype-audio>
             </div>
-            beta.mp3
+             beta.mp3
           </div>
           <div class='iui-table-cell' title='Jul 24, 2020 2:12pm'>Just now</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>15 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -827,13 +828,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-pdf aria-hidden='true'></svg-filetype-pdf>
             </div>
-            charlie.pdf
+             charlie.pdf
             <div class='iui-table-cell-end-icon'>
               <svg-status-success aria-hidden='true'></svg-status-success>
             </div>
@@ -845,7 +846,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>9 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -863,13 +864,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-image aria-hidden='true'></svg-filetype-image>
             </div>
-            delta.jpg
+             delta.jpg
             <div class='iui-table-cell-end-icon'>
               <svg-status-warning aria-hidden='true'></svg-status-warning>
             </div>
@@ -881,7 +882,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>963 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -899,13 +900,14 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+             MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+
 
             <div class='iui-table-cell-end-icon'>
               <svg-status-error aria-hidden='true'></svg-status-error>
@@ -918,7 +920,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>64 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -936,20 +938,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-video aria-hidden='true'></svg-filetype-video>
             </div>
-            unavailable.mov
+             unavailable.mov
           </div>
           <div class='iui-table-cell' aria-disabled='true'>A few minutes ago</div>
           <div class='iui-table-cell' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -974,7 +976,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ id='select-all-checkboxes' basic />
+              <Checkbox_ id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
@@ -1072,20 +1074,20 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            A Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
+             A Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
           </div>
           <div class='iui-table-cell' title='Jul 16, 2020 9:50am'>Last week</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>252 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1103,20 +1105,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic checked />
+            <Checkbox_ id='active-row' checked />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            Folder name 2
+             Folder name 2
           </div>
           <div class='iui-table-cell' title='Jul 23, 2020 10:21am'>Yesterday</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>1.2 GB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1134,20 +1136,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic checked />
+            <Checkbox_ id='active-row' checked />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-folder aria-hidden='true'></svg-folder>
             </div>
-            Folder name 3
+             Folder name 3
           </div>
           <div class='iui-table-cell' title='Jul 19, 2020 4:20pm'>5 days ago</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>36 GB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1165,13 +1167,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-imodel aria-hidden='true'></svg-filetype-imodel>
             </div>
-            alpha.dgn
+             alpha.dgn
             <div class='iui-table-cell-end-icon'>
               <div
                 class='iui-progress-indicator-radial'
@@ -1186,7 +1188,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>Calculating&mldr;</div>
           <div class='iui-table-cell iui-slot'>
@@ -1204,20 +1206,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-new'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-audio aria-hidden='true'></svg-filetype-audio>
             </div>
-            beta.mp3
+             beta.mp3
           </div>
           <div class='iui-table-cell' title='Jul 24, 2020 2:12pm'>Just now</div>
           <div class='iui-table-cell'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='1'></x-avatar>
             </div>
-            Robin Mercer
+             Robin Mercer
           </div>
           <div class='iui-table-cell demo-right-align'>15 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1235,13 +1237,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-pdf aria-hidden='true'></svg-filetype-pdf>
             </div>
-            charlie.pdf
+             charlie.pdf
             <div class='iui-table-cell-end-icon'>
               <svg-status-success aria-hidden='true'></svg-status-success>
             </div>
@@ -1253,7 +1255,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>9 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1271,13 +1273,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-image aria-hidden='true'></svg-filetype-image>
             </div>
-            delta.jpg
+             delta.jpg
             <div class='iui-table-cell-end-icon'>
               <svg-status-warning aria-hidden='true'></svg-status-warning>
             </div>
@@ -1289,7 +1291,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>963 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1307,13 +1309,14 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+             MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+
 
             <div class='iui-table-cell-end-icon'>
               <svg-status-error aria-hidden='true'></svg-status-error>
@@ -1326,7 +1329,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>64 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1344,20 +1347,20 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-video aria-hidden='true'></svg-filetype-video>
             </div>
-            unavailable.mov
+             unavailable.mov
           </div>
           <div class='iui-table-cell' aria-disabled='true'>A few minutes ago</div>
           <div class='iui-table-cell' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -1385,7 +1388,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ id='select-all-checkboxes' basic />
+              <Checkbox_ id='select-all-checkboxes' />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted'
@@ -1518,13 +1521,13 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' disabled basic />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-imodel aria-hidden='true'></svg-filetype-imodel>
             </div>
-            alpha.dgn
+             alpha.dgn
             <div class='iui-table-cell-end-icon'>
               <div
                 class='iui-progress-indicator-radial'
@@ -1539,7 +1542,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>Calculating&mldr;</div>
           <div class='iui-table-cell iui-slot'>
@@ -1556,13 +1559,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-pdf aria-hidden='true'></svg-filetype-pdf>
             </div>
-            charlie.pdf
+             charlie.pdf
             <div class='iui-table-cell-end-icon'>
               <svg-status-success aria-hidden='true'></svg-status-success>
             </div>
@@ -1574,7 +1577,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>9 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1591,13 +1594,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-image aria-hidden='true'></svg-filetype-image>
             </div>
-            delta.jpg
+             delta.jpg
             <div class='iui-table-cell-end-icon'>
               <svg-status-warning aria-hidden='true'></svg-status-warning>
             </div>
@@ -1609,7 +1612,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>963 MB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1626,13 +1629,14 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+             MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+
 
             <div class='iui-table-cell-end-icon'>
               <svg-status-error aria-hidden='true'></svg-status-error>
@@ -1645,7 +1649,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align'>64 KB</div>
           <div class='iui-table-cell iui-slot'>
@@ -1662,13 +1666,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='positive' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            disabled-positive-row.svg
+             disabled-positive-row.svg
             <div class='iui-table-cell-end-icon'>
               <svg-status-success aria-hidden='true'></svg-status-success>
             </div>
@@ -1680,7 +1684,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -1697,13 +1701,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='warning' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            disabled-warning-row.svg
+             disabled-warning-row.svg
             <div class='iui-table-cell-end-icon'>
               <svg-status-warning aria-hidden='true'></svg-status-warning>
             </div>
@@ -1715,7 +1719,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -1732,13 +1736,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' data-iui-status='negative' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-vector aria-hidden='true'></svg-filetype-vector>
             </div>
-            disabled-negative-row.svg
+             disabled-negative-row.svg
             <div class='iui-table-cell-end-icon'>
               <svg-status-error aria-hidden='true'></svg-status-error>
             </div>
@@ -1750,7 +1754,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -1767,13 +1771,13 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ id='active-row' basic disabled />
+            <Checkbox_ id='active-row' disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
               <svg-filetype-video aria-hidden='true'></svg-filetype-video>
             </div>
-            unavailable.mov
+             unavailable.mov
             <div class='iui-table-cell-end-icon'>
               <svg-camera aria-hidden='true'></svg-camera>
             </div>
@@ -1783,7 +1787,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-table-cell-start-icon'>
               <x-avatar size='small' type='2'></x-avatar>
             </div>
-            Terry Rivers
+             Terry Rivers
           </div>
           <div class='iui-table-cell demo-right-align' aria-disabled='true'>1.9 GB</div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
@@ -1817,7 +1821,7 @@ import Checkbox_ from '../components/Checkbox.astro';
               class='iui-table-cell iui-slot iui-table-cell-sticky'
               style='--iui-table-sticky-left: 0;'
             >
-              <Checkbox_ id='active-row' basic />
+              <Checkbox_ id='active-row' />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted iui-table-cell-sticky'
@@ -1937,7 +1941,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -1971,7 +1975,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ id='active-row' basic />
+            <Checkbox_ id='active-row' />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2005,7 +2009,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ id='active-row' basic checked />
+            <Checkbox_ id='active-row' checked />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2039,7 +2043,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2073,7 +2077,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2107,7 +2111,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2141,7 +2145,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2175,7 +2179,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2209,7 +2213,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2243,7 +2247,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2358,7 +2362,7 @@ import Checkbox_ from '../components/Checkbox.astro';
               class='iui-table-cell iui-slot iui-table-cell-sticky'
               style='--iui-table-sticky-left: 0;'
             >
-              <Checkbox_ basic />
+              <Checkbox_ />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted iui-table-cell-sticky'
@@ -2475,7 +2479,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2509,7 +2513,7 @@ import Checkbox_ from '../components/Checkbox.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <Checkbox_ basic />
+            <Checkbox_ />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -3038,7 +3042,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ basic id='select-all-checkboxes' />
+              <Checkbox_ id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-slot'></div>
             <div class='iui-table-cell iui-actionable iui-sorted'>
@@ -3095,7 +3099,7 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' />
+            <Checkbox_ id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3123,7 +3127,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' />
+            <Checkbox_ id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3154,7 +3158,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' checked />
+            <Checkbox_ id='select-all-checkboxes' checked />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3185,7 +3189,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ disabled basic id='select-all-checkboxes' />
+            <Checkbox_ disabled id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3226,7 +3230,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-new iui-table-row-expanded'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' />
+            <Checkbox_ id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3257,7 +3261,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' />
+            <Checkbox_ id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3297,7 +3301,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' />
+            <Checkbox_ id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3337,7 +3341,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <Checkbox_ basic id='select-all-checkboxes' />
+            <Checkbox_ id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3375,7 +3379,7 @@ import Checkbox_ from '../components/Checkbox.astro';
 
         <div class='iui-table-row iui-table-row-expanded' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <Checkbox_ basic id='select-all-checkboxes' disabled />
+            <Checkbox_ id='select-all-checkboxes' disabled />
           </div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
             <button
@@ -3416,7 +3420,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ basic id='select-all-checkboxes' />
+              <Checkbox_ id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
@@ -3525,7 +3529,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <Checkbox_ basic id='select-all-checkboxes' />
+              <Checkbox_ id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
