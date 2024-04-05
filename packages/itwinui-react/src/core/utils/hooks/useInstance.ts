@@ -5,15 +5,7 @@
 import * as React from 'react';
 import { useSyncExternalStore } from './useSyncExternalStore.js';
 
-const internals = Symbol();
-
-class Instance {
-  [internals] = {
-    initialize: (properties = {}) => {
-      Object.assign(this, properties);
-    },
-  };
-}
+export class Instance {}
 
 export const useInstance = () => React.useMemo(() => new Instance(), []);
 
@@ -36,7 +28,9 @@ export const useInstance = () => React.useMemo(() => new Instance(), []);
  */
 export const useSynchronizeInstance = <T>(instance: T, properties: T) => {
   const synchronize = React.useCallback(() => {
-    (instance as any)?.[internals]?.initialize?.(properties);
+    if (instance instanceof Instance) {
+      Object.assign(instance, properties);
+    }
     return () => {};
   }, [instance, properties]);
 

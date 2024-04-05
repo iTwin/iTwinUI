@@ -141,5 +141,5 @@ export const Dialog = Object.assign(DialogComponent, {
   TitleBar: DialogTitleBar,
   Content: DialogContent,
   ButtonBar: DialogButtonBar,
-  useInstance: useInstance as unknown as () => DialogInstance,
+  useInstance: useInstance as () => DialogInstance,
 });
