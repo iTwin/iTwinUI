@@ -131,6 +131,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         nodeId,
         parentId,
       } satisfies TreeEvent);
+
+      setFocusOnSubmenu(false);
     }
 
     setIsSubmenuVisible(open || isNestedSubmenuVisible);
@@ -158,14 +160,32 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
+    const handleRightArrowPressed = (event: TreeEvent) => {
+      // Open submenu if not open
+      if (nodeId === event.nodeId) {
+        setIsSubmenuVisible(true);
+      } else {
+        // Focus first submenu item
+        const firstSubMenuItem = tree?.nodesRef.current.find(
+          (n) => n.parentId === event.nodeId,
+        );
+        console.log(firstSubMenuItem?.id, nodeId);
+        if (nodeId === firstSubMenuItem?.id) {
+          menuItemRef.current?.focus();
+        }
+      }
+    };
+
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('leftArrowPressed', handleLeftArrowPressed);
+    tree?.events.on('rightArrowPressed', handleRightArrowPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('leftArrowPressed', handleLeftArrowPressed);
+      tree?.events.off('rightArrowPressed', handleRightArrowPressed);
     };
-  }, [nodeId, parentId, tree?.events]);
+  }, [nodeId, parentId, tree?.events, tree?.nodesRef]);
 
   const popover = usePopover({
     nodeId,
@@ -194,7 +214,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
           // flush and reset state so we are ready to focus again next time
           flushSync(() => setFocusOnSubmenu(true));
-          setFocusOnSubmenu(false);
+          // setFocusOnSubmenu(false);
+
+          // tree?.events.emit('rightArrowPressed', {
+          //   nodeId,
+          //   parentId,
+          // } satisfies TreeEvent);
 
           event.preventDefault();
           event.stopPropagation();
@@ -284,6 +309,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             >
               <Menu
                 setFocus={focusOnSubmenu}
+                // setFocus={false}
                 ref={popover.refs.setFloating}
                 {...popover.getFloatingProps({
                   id: submenuId,
