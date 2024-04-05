@@ -166,25 +166,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
-    // const handleEscPressed = (event: TreeEvent) => {
-    //   if (event.nodeId === nodeId) {
-    //     // menuItemRef.current?.focus();
-    //     parent.ref?.current?.focus();
-    //     parent.setIsNestedSubmenuVisible(false);
-
-    //     setIsSubmenuVisible(false);
-    //     setIsNestedSubmenuVisible(false);
-    //   }
-    // };
-
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('leftArrowPressed', handleLeftArrowPressed);
-    // tree?.events.on('escPressed', handleEscPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('leftArrowPressed', handleLeftArrowPressed);
-      // tree?.events.off('escPressed', handleEscPressed);
     };
   }, [nodeId, parentId, tree?.events, tree?.nodesRef]);
 
@@ -241,23 +228,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           parent.setIsSubmenuVisible(false);
           parent.setIsNestedSubmenuVisible(false);
         }
-
-        // setIsSubmenuVisible(false);
-        // setIsNestedSubmenuVisible(false);
-
-        // parent.setIsSubmenuVisible(false);
-        // parent.setIsNestedSubmenuVisible(false);
-
-        // // focus might get lost if submenu closes so move it back to parent
-        // parent.ref?.current?.focus();
-
-        // tree?.events.emit('escapePressed', {
-        //   nodeId,
-        //   parentId,
-        // } satisfies TreeEvent);
-
-        event.stopPropagation();
-        event.preventDefault();
         break;
       }
       default:
