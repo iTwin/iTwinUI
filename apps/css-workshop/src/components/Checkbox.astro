@@ -7,7 +7,9 @@ type Props = {
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.InputHTMLAttributes;
 
-const { status, isLoading, indeterminate, disabled, variant, basic, ...props } = Astro.props;
+const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.props;
+
+const basic = !Astro.slots.has('default');
 ---
 
 {
