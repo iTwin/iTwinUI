@@ -1,9 +1,9 @@
 ---
 type Props = {
+  basic?: boolean;
   isLoading?: boolean;
   indeterminate?: boolean;
   variant?: 'eyeball';
-  basic?: boolean;
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.InputHTMLAttributes;
 
@@ -37,7 +37,6 @@ const { status, isLoading, indeterminate, disabled, variant, basic, ...props } =
           [`iui-${status}`]: !!status,
         },
       ]}
-      {...props}
     >
       <input
         class:list={[
