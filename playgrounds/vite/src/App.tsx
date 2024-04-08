@@ -362,6 +362,22 @@ const App = () => {
       >
         <Button>Menu</Button>
       </DropdownMenu>
+      <MenuItem
+        value='test_value'
+        data-testid='parent'
+        subMenuItems={[
+          <MenuItem
+            key={1}
+            // onClick={mockedSubOnClick}
+            value='test_value_sub'
+            data-testid='sub'
+          >
+            Test sub
+          </MenuItem>,
+        ]}
+      >
+        Test item
+      </MenuItem>
     </>
   );
 };

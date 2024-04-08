@@ -160,21 +160,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
-    const handleLeftArrowPressed = (event: TreeEvent) => {
-      // if left arrow is pressed from a submenu,
-      // the submenu should close and focus should move back to parent
-      if (event.parentId === nodeId) {
-        menuItemRef.current?.focus();
-        setIsSubmenuVisible(false);
-      }
-    };
-
     tree?.events.on('submenuOpened', handleSubmenuOpened);
-    tree?.events.on('leftArrowPressed', handleLeftArrowPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
-      tree?.events.off('leftArrowPressed', handleLeftArrowPressed);
     };
   }, [nodeId, parentId, tree?.events, tree?.nodesRef]);
 
@@ -213,10 +202,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'ArrowLeft': {
-        tree?.events.emit('leftArrowPressed', {
-          nodeId,
-          parentId,
-        } satisfies TreeEvent);
+        if (parent.ref) {
+          parent.ref.current?.focus();
+          parent.setIsSubmenuVisible(false);
+          parent.setIsNestedSubmenuVisible(false);
+        }
 
         event.stopPropagation();
         event.preventDefault();
