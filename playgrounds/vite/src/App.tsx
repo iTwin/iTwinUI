@@ -365,12 +365,23 @@ const App = () => {
       <MenuItem
         value='test_value'
         data-testid='parent'
+        ref={(el) => {
+          el?.focus();
+        }}
         subMenuItems={[
           <MenuItem
             key={1}
             // onClick={mockedSubOnClick}
             value='test_value_sub'
             data-testid='sub'
+            subMenuItems={[
+              <MenuItem key={7} onClick={() => {}}>
+                Item #7
+              </MenuItem>,
+              <MenuItem key={8} onClick={() => {}}>
+                Item #8
+              </MenuItem>,
+            ]}
           >
             Test sub
           </MenuItem>,

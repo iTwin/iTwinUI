@@ -265,20 +265,19 @@ it('should handle key press with sub menus', async () => {
   await userEvent.keyboard('{ArrowRight}');
   expect(subMenuItem).toHaveFocus();
 
-  // go left to move focus
+  // going left should close that submenu and move the focus back to the parent menu item.
   await userEvent.keyboard('{ArrowLeft}');
+  expect(subMenuItem).not.toBeVisible();
   expect(menuItem).toHaveFocus();
 
   // escape to close
   await userEvent.keyboard('{Escape}');
   expect(screen.queryByTestId('sub')).toBeFalsy();
 
-  // go right to open sub menu
+  // going right to should re-open the sub menu and move the focus to the first item in the submenu.
   await userEvent.keyboard('{ArrowRight}');
   expect(screen.queryByTestId('sub')).toBeTruthy();
-
-  // go right again to move focus into sub menu
-  await userEvent.keyboard('{ArrowRight}');
+  expect(screen.getByTestId('sub')).toHaveFocus();
 
   // click
   await userEvent.keyboard('{Enter}');
