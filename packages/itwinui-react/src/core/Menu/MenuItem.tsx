@@ -209,7 +209,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           parent.setIsSubmenuVisible(false);
           parent.setIsNestedSubmenuVisible(false);
         }
-
         event.stopPropagation();
         event.preventDefault();
         break;
