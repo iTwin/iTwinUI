@@ -162,7 +162,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
                     return;
                   }
                   if (e.key === 'Tab' || e.key === 'Escape') {
-                    console.log('HERE');
                     close();
                   }
                 }),
