@@ -135,7 +135,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onVisibleChange = (open: boolean) => {
     if (open) {
-      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when right arrow is pressed)
+      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
       setFocusOnSubmenu(false);
 
       tree?.events.emit('submenuOpened', {
@@ -153,8 +153,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   React.useEffect(() => {
     const handleSubmenuOpened = (event: TreeEvent) => {
-      // If a sibling's submenu is opened, close this submenu
-      // i.e. only one submenu in each menu can be open at a time
+      // Only one submenu in each menu can be open at a time
+      // So, if a sibling's submenu is opened, close this submenu
       if (event.parentId === parentId && event.nodeId !== nodeId) {
         setIsSubmenuVisible(false);
         setIsNestedSubmenuVisible(false);
@@ -173,6 +173,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     visible:
       isSubmenuVisible ||
       isNestedSubmenuVisible ||
+      // to keep the submenu open when mouse enters it and then hovers out
       dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     placement: 'right-start',
