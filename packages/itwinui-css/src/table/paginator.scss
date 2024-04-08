@@ -62,7 +62,7 @@
 
 @mixin iui-table-paginator-page-button {
   &[data-iui-active='true'] {
-    // Adds stripe above active button
+    // Adds stripe below active button
     --_iui-button-active-stripe-inset-block: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)};
     --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
   }
