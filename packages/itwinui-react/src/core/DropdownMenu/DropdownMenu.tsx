@@ -17,24 +17,6 @@ import type {
 } from '../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
-import {
-  FloatingNode,
-  FloatingTree,
-  useFloatingNodeId,
-} from '@floating-ui/react';
-import type { TreeEvent } from '../Menu/MenuItem.js';
-
-export const DropdownMenuContext = React.createContext<{
-  close: () => void;
-  lastHoveredNode: TreeEvent | undefined;
-  setLastHoveredNode: React.Dispatch<
-    React.SetStateAction<TreeEvent | undefined>
-  >;
-}>({
-  close: () => {},
-  lastHoveredNode: undefined,
-  setLastHoveredNode: () => {},
-});
 
 export type DropdownMenuProps = {
   /**
@@ -81,16 +63,6 @@ export type DropdownMenuProps = {
  * </DropdownMenu>
  */
 export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
-  return (
-    <FloatingTree>
-      <DropdownMenuContent ref={forwardedRef} {...props} />
-    </FloatingTree>
-  );
-}) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
-
-// ----------------------------------------------------------------------------
-
-const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   const {
     menuItems,
     children,
@@ -111,8 +83,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
 
   const triggerRef = React.useRef<HTMLElement>(null);
 
-  const [lastHoveredNode, setLastHoveredNode] = React.useState<TreeEvent>();
-
   const close = React.useCallback(() => {
     setVisible(false);
     triggerRef.current?.focus({ preventScroll: true });
@@ -125,10 +95,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const nodeId = useFloatingNodeId();
-
   const popover = usePopover({
-    nodeId,
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
@@ -138,41 +105,33 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
   return (
-    <DropdownMenuContext.Provider
-      value={{
-        close,
-        lastHoveredNode,
-        setLastHoveredNode,
-      }}
-    >
+    <>
       {cloneElementWithRef(children, (children) => ({
         ...popover.getReferenceProps(children.props),
         'aria-expanded': popover.open,
         ref: mergeRefs(triggerRef, popover.refs.setReference),
       }))}
-      <FloatingNode id={nodeId}>
-        {popover.open && (
-          <Portal portal={portal}>
-            <Menu
-              {...popover.getFloatingProps({
-                role,
-                ...rest,
-                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                  if (e.defaultPrevented) {
-                    return;
-                  }
-                  if (e.key === 'Tab') {
-                    close();
-                  }
-                }),
-              })}
-              ref={popoverRef}
-            >
-              {menuContent}
-            </Menu>
-          </Portal>
-        )}
-      </FloatingNode>
-    </DropdownMenuContext.Provider>
+      {popover.open && (
+        <Portal portal={portal}>
+          <Menu
+            {...popover.getFloatingProps({
+              role,
+              ...rest,
+              onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                if (e.defaultPrevented) {
+                  return;
+                }
+                if (e.key === 'Tab') {
+                  close();
+                }
+              }),
+            })}
+            ref={popoverRef}
+          >
+            {menuContent}
+          </Menu>
+        </Portal>
+      )}
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;

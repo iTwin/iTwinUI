@@ -108,7 +108,7 @@ type PopoverInternalProps = {
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-} & Record<string, any>;
+};
 
 // ----------------------------------------------------------------------------
 
@@ -122,7 +122,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
     role,
-    ...rest
   } = options;
 
   const middleware = { flip: true, shift: true, ...options.middleware };
@@ -138,7 +137,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     open,
     onOpenChange,
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    ...rest,
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
@@ -161,7 +159,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useHover(floating.context, {
       enabled: !!trigger.hover,
       delay: 100,
-      handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+      handleClose: safePolygon({ buffer: 1 }),
     }),
     useFocus(floating.context, { enabled: !!trigger.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
