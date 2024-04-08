@@ -20,6 +20,7 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
+import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -125,6 +126,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     React.useState(false);
   const parent = React.useContext(MenuItemContext);
 
+  const dropdownMenuContext = React.useContext(DropdownMenuContext);
+
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
@@ -177,7 +180,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     nodeId,
-    visible: isSubmenuVisible || isNestedSubmenuVisible,
+    visible:
+      isSubmenuVisible ||
+      isNestedSubmenuVisible ||
+      dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
@@ -235,9 +241,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
+  const onMouseEnter = () => {
+    dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+  };
+
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
+    onMouseEnter,
   };
 
   return (
@@ -319,7 +330,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
 // ----------------------------------------------------------------------------
 
-type TreeEvent = {
+export type TreeEvent = {
   nodeId: string;
   parentId: string | null;
 };
