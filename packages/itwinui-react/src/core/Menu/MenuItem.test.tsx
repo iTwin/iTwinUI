@@ -287,3 +287,52 @@ it('should handle key press with sub menus', async () => {
   await userEvent.keyboard('{Spacebar}');
   expect(mockedSubOnClick).toHaveBeenNthCalledWith(3, 'test_value_sub');
 });
+
+it('should have only one active submenu at a time', async () => {
+  render(
+    <MenuItem
+      key={0}
+      data-testid='parent'
+      subMenuItems={[
+        <MenuItem
+          key={1}
+          data-testid='sub-1'
+          subMenuItems={[
+            <MenuItem key={2} data-testid='sub-2'>
+              Test sub sub
+            </MenuItem>,
+          ]}
+        >
+          Test sub
+        </MenuItem>,
+        <MenuItem
+          key={3}
+          data-testid='sub-3'
+          subMenuItems={[
+            <MenuItem key={4} data-testid='sub-4'>
+              Test sub sub
+            </MenuItem>,
+          ]}
+        >
+          Test sub
+        </MenuItem>,
+      ]}
+    >
+      Test item
+    </MenuItem>,
+  );
+
+  const menuItem = screen.getByTestId('parent');
+
+  // focus to open sub menu
+  act(() => menuItem.focus());
+
+  // go right to move focus to the first submenu item. The first submenu's submenu should open.
+  await userEvent.keyboard('{ArrowRight}');
+  expect(screen.getByTestId('sub-1')).toHaveFocus();
+  expect(screen.getByTestId('sub-2')).toBeVisible();
+
+  // hover over the second submenu item. The first submenu's submenu should close.
+  fireEvent.mouseEnter(screen.getByTestId('sub-3'));
+  expect(screen.queryByTestId('sub-4')).toBeFalsy();
+});

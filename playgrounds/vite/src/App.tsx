@@ -21,7 +21,36 @@ const App = () => {
                   <MenuItem key='Item 3_1' onClick={close}>
                     Item 3_1
                   </MenuItem>,
-                  <MenuItem key='Item 3_2' onClick={close}>
+                  <MenuItem
+                    key='Item 3_2'
+                    onClick={close}
+                    subMenuItems={[
+                      <MenuItem key='Item 5_1' onClick={close}>
+                        Item 5_1
+                      </MenuItem>,
+                      <MenuItem key='Item 5_2' onClick={close}>
+                        Item 5_2
+                      </MenuItem>,
+                      <MenuItem
+                        key='Item 5_3'
+                        // onClick={() => {
+                        //   console.log('Item 5_3 clicked');
+                        //   close();
+                        // }}
+                        subMenuItems={[
+                          <MenuItem key='Item 6_1' onClick={close}>
+                            Item 6_1
+                          </MenuItem>,
+                          <MenuItem key='Item 6_2' onClick={close}>
+                            Item 6_2
+                          </MenuItem>,
+                          <MenuItem key='Item 6_3'>Item 6_3</MenuItem>,
+                        ]}
+                      >
+                        Item 5_3
+                      </MenuItem>,
+                    ]}
+                  >
                     Item 3_2
                   </MenuItem>,
                   <MenuItem
@@ -113,7 +142,6 @@ const App = () => {
       >
         <Button>Menu</Button>
       </DropdownMenu>
-
       <DropdownMenu
         menuItems={(close) => [
           <MenuItem key='Item 1_1' onClick={close}>
@@ -194,7 +222,6 @@ const App = () => {
       >
         <Button>Menu</Button>
       </DropdownMenu>
-
       <DropdownMenu
         menuItems={(close) => [
           // <MenuItem onClick={close}>Item 1_2</MenuItem>,
@@ -270,7 +297,6 @@ const App = () => {
       >
         <Button>Menu</Button>
       </DropdownMenu>
-
       <DropdownMenu
         menuItems={(close) => [
           <MenuItem key='Item 1_1' onClick={close}>
@@ -351,7 +377,6 @@ const App = () => {
       >
         <Button>Menu</Button>
       </DropdownMenu>
-
       <DropdownMenu
         menuItems={(close) => [
           // <MenuItem onClick={close}>Item 1_2</MenuItem>,
@@ -365,9 +390,9 @@ const App = () => {
       <MenuItem
         value='test_value'
         data-testid='parent'
-        ref={(el) => {
-          el?.focus();
-        }}
+        // ref={(el) => {
+        //   el?.focus();
+        // }}
         subMenuItems={[
           <MenuItem
             key={1}
@@ -380,6 +405,95 @@ const App = () => {
               </MenuItem>,
               <MenuItem key={8} onClick={() => {}}>
                 Item #8
+              </MenuItem>,
+            ]}
+          >
+            Test sub 1
+          </MenuItem>,
+          <MenuItem
+            key={2}
+            // onClick={mockedSubOnClick}
+            value='test_value_sub'
+            data-testid='sub'
+            subMenuItems={[
+              <MenuItem key={7} onClick={() => {}}>
+                Item #7
+              </MenuItem>,
+              <MenuItem key={8} onClick={() => {}}>
+                Item #8
+              </MenuItem>,
+            ]}
+          >
+            Test sub 2
+          </MenuItem>,
+          <MenuItem
+            value='test_value'
+            data-testid='parent'
+            subMenuItems={[
+              <MenuItem
+                key={1}
+                value='test_value_sub'
+                data-testid='sub'
+                subMenuItems={[
+                  <MenuItem
+                    key={2}
+                    data-testid='sub-sub'
+                    value='test_value_sub_sub'
+                  >
+                    Test sub sub
+                  </MenuItem>,
+                ]}
+              >
+                Test sub
+              </MenuItem>,
+              <MenuItem
+                key={3}
+                value='test_value_sub'
+                data-testid='sub'
+                subMenuItems={[
+                  <MenuItem
+                    key={3}
+                    data-testid='sub-sub'
+                    value='test_value_sub_sub'
+                  >
+                    Test sub sub
+                  </MenuItem>,
+                ]}
+              >
+                Test sub
+              </MenuItem>,
+            ]}
+          >
+            Test item
+          </MenuItem>,
+        ]}
+      >
+        Test item
+      </MenuItem>
+      <MenuItem
+        key={0}
+        data-testid='parent'
+        ref={(el) => {
+          el?.focus();
+        }}
+        subMenuItems={[
+          <MenuItem
+            key={1}
+            data-testid='sub-1'
+            subMenuItems={[
+              <MenuItem key={2} data-testid='sub-2'>
+                Test sub sub
+              </MenuItem>,
+            ]}
+          >
+            Test sub
+          </MenuItem>,
+          <MenuItem
+            key={3}
+            data-testid='sub-3'
+            subMenuItems={[
+              <MenuItem key={4} data-testid='sub-4'>
+                Test sub sub
               </MenuItem>,
             ]}
           >
