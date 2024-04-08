@@ -47,7 +47,7 @@ The dialog can be opened and closed in two ways:
    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
    <Button onClick={() => setIsDialogOpen(true)}>Open dialog</Button>
-   <Dialog onClose={() => setIsDialogOpen(false)}>
+   <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
      <Button onClick={() => setIsDialogOpen(false)}>Close dialog</Button>
    </Dialog>
    ```
