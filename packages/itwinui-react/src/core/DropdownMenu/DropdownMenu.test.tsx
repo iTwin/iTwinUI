@@ -114,14 +114,31 @@ it('should focus target after hide', async () => {
   expect(document.activeElement).toEqual(button);
 });
 
-it('should close menu on pressing escape or tab key', async () => {
-  const { container } = renderComponent();
+it('should close entire menu on pressing escape or tab key', async () => {
+  const { container } = renderComponent({
+    menuItems: [
+      <MenuItem
+        key={0}
+        subMenuItems={[
+          <MenuItem key={2} subMenuItems={[<MenuItem key={3}>Test3</MenuItem>]}>
+            Test2
+          </MenuItem>,
+        ]}
+      >
+        Test0
+      </MenuItem>,
+      <MenuItem key={1}>Test1</MenuItem>,
+    ],
+  });
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   await userEvent.click(button);
 
   let menu = document.querySelector('.iui-menu') as HTMLElement;
-  assertBaseElement(menu);
+
+  // Navigate to a nested submenu
+  await userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
 
   expect(menu).toBeVisible();
   await userEvent.keyboard('{Escape}');
