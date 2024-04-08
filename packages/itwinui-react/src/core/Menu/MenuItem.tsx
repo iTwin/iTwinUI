@@ -226,7 +226,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = () => {
-    console.log('onMouseEnter', children);
     dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
   };
 
