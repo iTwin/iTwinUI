@@ -200,14 +200,14 @@ export const Submenu = () => {
       subMenuItems={[
         <MenuItem
           key={4}
-          // subMenuItems={[
-          //   <MenuItem key={7} onClick={onClick(7, close)}>
-          //     Item #7
-          //   </MenuItem>,
-          //   <MenuItem key={8} onClick={onClick(8, close)}>
-          //     Item #8
-          //   </MenuItem>,
-          // ]}
+          subMenuItems={[
+            <MenuItem key={7} onClick={onClick(7, close)}>
+              Item #7
+            </MenuItem>,
+            <MenuItem key={8} onClick={onClick(8, close)}>
+              Item #8
+            </MenuItem>,
+          ]}
         >
           Item #4
         </MenuItem>,
@@ -217,42 +217,10 @@ export const Submenu = () => {
         <MenuItem
           key={6}
           subMenuItems={[
-            <MenuItem
-              key={9}
-              onClick={onClick(9, close)}
-              // subMenuItems={[
-              //   <MenuItem
-              //     key={10}
-              //     onClick={onClick(10, close)}
-              //     subMenuItems={[
-              //       <MenuItem key={12} onClick={onClick(12, close)}>
-              //         Item #12
-              //       </MenuItem>,
-              //     ]}
-              //   >
-              //     Item #11
-              //   </MenuItem>,
-              // ]}
-            >
+            <MenuItem key={9} onClick={onClick(9, close)}>
               Item #9
             </MenuItem>,
-            <MenuItem
-              key={10}
-              onClick={onClick(10, close)}
-              subMenuItems={[
-                <MenuItem
-                  key={10}
-                  onClick={onClick(10, close)}
-                  subMenuItems={[
-                    <MenuItem key={12} onClick={onClick(12, close)}>
-                      Item #12
-                    </MenuItem>,
-                  ]}
-                >
-                  Item #11
-                </MenuItem>,
-              ]}
-            >
+            <MenuItem key={10} onClick={onClick(10, close)}>
               Item #10
             </MenuItem>,
           ]}
