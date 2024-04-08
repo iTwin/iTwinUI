@@ -25,11 +25,13 @@ import {
 import type { TreeEvent } from '../Menu/MenuItem.js';
 
 export const DropdownMenuContext = React.createContext<{
+  close: () => void;
   lastHoveredNode: TreeEvent | undefined;
   setLastHoveredNode: React.Dispatch<
     React.SetStateAction<TreeEvent | undefined>
   >;
 }>({
+  close: () => {},
   lastHoveredNode: undefined,
   setLastHoveredNode: () => {},
 });
@@ -138,6 +140,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   return (
     <DropdownMenuContext.Provider
       value={{
+        close,
         lastHoveredNode,
         setLastHoveredNode,
       }}
@@ -158,7 +161,8 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
                   if (e.defaultPrevented) {
                     return;
                   }
-                  if (e.key === 'Tab') {
+                  if (e.key === 'Tab' || e.key === 'Escape') {
+                    console.log('HERE');
                     close();
                   }
                 }),

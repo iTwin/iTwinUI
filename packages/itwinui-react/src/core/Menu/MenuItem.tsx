@@ -223,17 +223,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'Escape': {
-        // If submenu/nested submenu is open and esc key is pressed, close the submenu/nested submenu
-        if (isSubmenuVisible || isNestedSubmenuVisible) {
-          setIsSubmenuVisible(false);
-          setIsNestedSubmenuVisible(false);
-        }
-        // Else, close the menu on the current level and move focus one level up
-        else {
-          parent.ref?.current?.focus();
-          parent.setIsSubmenuVisible(false);
-          parent.setIsNestedSubmenuVisible(false);
-        }
+        dropdownMenuContext.close();
         break;
       }
       default:
