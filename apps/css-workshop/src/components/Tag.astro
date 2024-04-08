@@ -1,5 +1,5 @@
 ---
-const { closeButton = true, variant, href, className, ...props } = Astro.props;
+const { closeButton = true, variant, className, ...props } = Astro.props;
 ---
 
 <span
@@ -11,8 +11,7 @@ const { closeButton = true, variant, href, className, ...props } = Astro.props;
     className,
   ]}
   {...props}
->
-  {
+  >{
     variant === 'basic' ? (
       <slot />
     ) : (
@@ -20,9 +19,7 @@ const { closeButton = true, variant, href, className, ...props } = Astro.props;
         <slot />
       </span>
     )
-  }
-
-  {
+  }{
     closeButton && (
       <button
         class='iui-button iui-tag-button'
@@ -33,5 +30,5 @@ const { closeButton = true, variant, href, className, ...props } = Astro.props;
         <svg-close-small class='iui-button-icon' aria-hidden='true' />
       </button>
     )
-  }
-</span>
+  }</span
+>
