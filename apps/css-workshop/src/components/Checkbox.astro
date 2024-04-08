@@ -23,7 +23,6 @@ const basic = !Astro.slots.has('default');
         },
       ]}
       type='checkbox'
-      name={indeterminate ? 'indeterminate' : undefined}
       {...props}
     />
   )
@@ -49,8 +48,8 @@ const basic = !Astro.slots.has('default');
           },
         ]}
         type='checkbox'
-        name={indeterminate ? 'indeterminate' : undefined}
         disabled={disabled}
+        indeterminate
         {...props}
       />
       {isLoading && (
