@@ -16,6 +16,7 @@ import type { ListItemOwnProps } from '../List/ListItem.js';
 import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
+  FloatingTree,
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
@@ -232,77 +233,79 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   return (
-    <ListItem
-      as='div'
-      actionable
-      size={size}
-      active={isSelected}
-      disabled={disabled}
-      ref={useMergedRefs(
-        menuItemRef,
-        forwardedRef,
-        subMenuItems.length > 0 ? popover.refs.setReference : null,
-      )}
-      role={role}
-      tabIndex={disabled || role === 'presentation' ? undefined : -1}
-      aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
-      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-      aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
-      aria-disabled={disabled}
-      {...(subMenuItems.length === 0
-        ? { ...handlers, ...rest }
-        : popover.getReferenceProps({ ...handlers, ...rest }))}
-    >
-      {startIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {startIcon}
-        </ListItem.Icon>
-      )}
-      <ListItem.Content>
-        <div>{children}</div>
-        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
-      </ListItem.Content>
-      {!endIcon && subMenuItems.length > 0 && (
-        <ListItem.Icon as='span' aria-hidden>
-          <SvgCaretRightSmall />
-        </ListItem.Icon>
-      )}
-      {endIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {endIcon}
-        </ListItem.Icon>
-      )}
+    <ConditionalFloatingTreeWrapper>
+      <ListItem
+        as='div'
+        actionable
+        size={size}
+        active={isSelected}
+        disabled={disabled}
+        ref={useMergedRefs(
+          menuItemRef,
+          forwardedRef,
+          subMenuItems.length > 0 ? popover.refs.setReference : null,
+        )}
+        role={role}
+        tabIndex={disabled || role === 'presentation' ? undefined : -1}
+        aria-selected={isSelected}
+        aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
+        aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+        aria-disabled={disabled}
+        {...(subMenuItems.length === 0
+          ? { ...handlers, ...rest }
+          : popover.getReferenceProps({ ...handlers, ...rest }))}
+      >
+        {startIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {startIcon}
+          </ListItem.Icon>
+        )}
+        <ListItem.Content>
+          <div>{children}</div>
+          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+        </ListItem.Content>
+        {!endIcon && subMenuItems.length > 0 && (
+          <ListItem.Icon as='span' aria-hidden>
+            <SvgCaretRightSmall />
+          </ListItem.Icon>
+        )}
+        {endIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {endIcon}
+          </ListItem.Icon>
+        )}
 
-      {subMenuItems.length > 0 && popover.open && (
-        <FloatingNode id={nodeId}>
-          <Portal>
-            <MenuItemContext.Provider
-              value={{
-                ref: menuItemRef,
-                setIsSubmenuVisible,
-                setIsNestedSubmenuVisible,
-              }}
-            >
-              <Menu
-                setFocus={focusOnSubmenu}
-                ref={popover.refs.setFloating}
-                {...popover.getFloatingProps({
-                  id: submenuId,
-                  onPointerMove: () => {
-                    // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                    // so we need to flip it back to true when pointer re-enters this submenu.
-                    setIsSubmenuVisible(true);
-                  },
-                })}
+        {subMenuItems.length > 0 && popover.open && (
+          <FloatingNode id={nodeId}>
+            <Portal>
+              <MenuItemContext.Provider
+                value={{
+                  ref: menuItemRef,
+                  setIsSubmenuVisible,
+                  setIsNestedSubmenuVisible,
+                }}
               >
-                {subMenuItems}
-              </Menu>
-            </MenuItemContext.Provider>
-          </Portal>
-        </FloatingNode>
-      )}
-    </ListItem>
+                <Menu
+                  setFocus={focusOnSubmenu}
+                  ref={popover.refs.setFloating}
+                  {...popover.getFloatingProps({
+                    id: submenuId,
+                    onPointerMove: () => {
+                      // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                      // so we need to flip it back to true when pointer re-enters this submenu.
+                      setIsSubmenuVisible(true);
+                    },
+                  })}
+                >
+                  {subMenuItems}
+                </Menu>
+              </MenuItemContext.Provider>
+            </Portal>
+          </FloatingNode>
+        )}
+      </ListItem>
+    </ConditionalFloatingTreeWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 
@@ -311,4 +314,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 export type TreeEvent = {
   nodeId: string;
   parentId: string | null;
+};
+
+/**
+ * Wraps `children` with `<FloatingTree>` if a `FloatingTree` context is not found.
+ *
+ * This is useful when `MenuItem`s are used outside of a `DropdownMenu`.
+ */
+const ConditionalFloatingTreeWrapper = (props: {
+  children: React.ReactNode;
+}) => {
+  const { children } = props;
+  const tree = useFloatingTree();
+
+  return !tree ? <FloatingTree>{children}</FloatingTree> : children;
 };
