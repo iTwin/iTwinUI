@@ -161,7 +161,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
                   if (e.defaultPrevented) {
                     return;
                   }
-                  if (e.key === 'Tab' || e.key === 'Escape') {
+                  if (e.key === 'Tab') {
                     close();
                   }
                 }),
