@@ -10,7 +10,7 @@ export default () => {
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={dialog.show}>
+      <Button styleType='high-visibility' onClick={() => dialog.show()}>
         Open non-dismissible dialog
       </Button>
       <Dialog instance={dialog} setFocus={false} isDismissible={false} portal>

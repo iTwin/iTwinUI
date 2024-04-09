@@ -10,7 +10,7 @@ export default () => {
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={dialog.show}>
+      <Button styleType='high-visibility' onClick={() => dialog.show()}>
         Open dialog
       </Button>
       <Dialog
