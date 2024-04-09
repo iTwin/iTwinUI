@@ -274,7 +274,7 @@ it('should handle key press with sub menus', async () => {
   await userEvent.keyboard('{Escape}');
   expect(screen.queryByTestId('sub')).toBeFalsy();
 
-  // going right to should re-open the sub menu and move the focus to the first item in the submenu.
+  // going right should re-open the sub menu and move the focus to the first item in the submenu.
   await userEvent.keyboard('{ArrowRight}');
   expect(screen.queryByTestId('sub')).toBeTruthy();
   expect(screen.getByTestId('sub')).toHaveFocus();
