@@ -213,13 +213,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         event.preventDefault();
         break;
       }
-      case 'Escape': {
-        dropdownMenuContext.close();
-
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      }
       default:
         break;
     }

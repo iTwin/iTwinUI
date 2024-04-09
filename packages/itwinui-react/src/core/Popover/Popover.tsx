@@ -157,7 +157,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
   const interactions = useInteractions([
     useClick(floating.context, { enabled: !!trigger.click }),
-    useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
+    useDismiss(floating.context, {
+      outsidePress: closeOnOutsideClick,
+      bubbles: true,
+    }),
     useHover(floating.context, {
       enabled: !!trigger.hover,
       delay: 100,
