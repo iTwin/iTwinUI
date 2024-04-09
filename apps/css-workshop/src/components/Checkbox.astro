@@ -69,7 +69,7 @@ const basic = !Astro.slots.has('default');
 }
 
 <script>
-  const indeterminateInputs = [...document.querySelectorAll('[data-iui-indeterminate]')];
+  const indeterminateInputs = [...document.querySelectorAll('input[data-iui-indeterminate]')];
 
   indeterminateInputs.forEach((input) => (input.indeterminate = true));
 </script>
