@@ -177,7 +177,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     placement: 'right-start',
-    trigger: { hover: true, focus: true },
+    trigger: { focus: true },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -227,6 +227,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onMouseEnter = () => {
     dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+    menuItemRef.current?.focus();
   };
 
   const handlers = {
