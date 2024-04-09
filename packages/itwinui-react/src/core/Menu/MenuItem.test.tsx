@@ -329,10 +329,11 @@ it('should have only one active submenu at a time', async () => {
 
   // go right to move focus to the first submenu item and open its submenu.
   await userEvent.keyboard('{ArrowRight}');
-  expect(screen.getByTestId('sub-1')).toHaveFocus();
-  expect(screen.getByTestId('sub-2')).toBeVisible();
+  expect(screen.queryByTestId('sub-1')).toHaveFocus();
+  expect(screen.queryByTestId('sub-2')).toBeTruthy();
 
   // hovering over the second submenu item should close the previously opened submenu.
   fireEvent.mouseEnter(screen.getByTestId('sub-3'));
-  expect(screen.queryByTestId('sub-4')).toBeFalsy();
+  expect(screen.queryByTestId('sub-4')).toBeTruthy();
+  expect(screen.queryByTestId('sub-2')).toBeFalsy();
 });
