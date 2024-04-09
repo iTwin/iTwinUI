@@ -24,16 +24,9 @@ import {
   safePolygon,
   useRole,
   FloatingPortal,
+  useFloatingTree,
 } from '@floating-ui/react';
-import type {
-  SizeOptions,
-  Placement,
-  ReferenceType,
-  UseClickProps,
-  UseFocusProps,
-  UseHoverProps,
-  UseDismissProps,
-} from '@floating-ui/react';
+import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
   Box,
   cloneElementWithRef,
@@ -111,12 +104,6 @@ type PopoverInternalProps = {
    * `hover` and `focus` can be manually specified as triggers.
    */
   trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
-  triggerProps?: {
-    hover?: UseHoverProps<ReferenceType>;
-    click?: UseClickProps;
-    focus?: UseFocusProps;
-    dismiss?: UseDismissProps;
-  };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
    * Whether the popover should match the width of the trigger.
@@ -135,10 +122,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     autoUpdateOptions,
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
-    triggerProps,
     role,
     ...rest
   } = options;
+
+  const tree = useFloatingTree();
 
   const middleware = { flip: true, shift: true, ...options.middleware };
 
@@ -171,24 +159,17 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   });
 
   const interactions = useInteractions([
-    useClick(floating.context, {
-      enabled: !!trigger.click,
-      ...triggerProps?.click,
-    }),
+    useClick(floating.context, { enabled: !!trigger.click }),
     useDismiss(floating.context, {
       outsidePress: closeOnOutsideClick,
-      ...triggerProps?.dismiss,
+      bubbles: tree != null, // Only bubble when inside a FloatingTree
     }),
     useHover(floating.context, {
       enabled: !!trigger.hover,
       delay: 100,
       handleClose: safePolygon({ buffer: 1, requireIntent: false }),
-      ...triggerProps?.hover,
     }),
-    useFocus(floating.context, {
-      enabled: !!trigger.focus,
-      ...triggerProps?.focus,
-    }),
+    useFocus(floating.context, { enabled: !!trigger.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
   ]);
 

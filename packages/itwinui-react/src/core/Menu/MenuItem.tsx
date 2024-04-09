@@ -178,14 +178,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     placement: 'right-start',
     trigger: { focus: true },
-    triggerProps: {
-      focus: {
-        visibleOnly: false,
-      },
-      dismiss: {
-        bubbles: true,
-      },
-    },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
