@@ -1,0 +1,21 @@
+---
+type Props = {
+  variant?: 'high-visibility' | 'borderless' | 'cta' | 'idea';
+  size?: 'small' | 'large';
+  active?: 'true';
+  shift?: 'left' | 'right';
+} & astroHTML.JSX.ButtonHTMLAttributes;
+
+const { class: className, variant, size, active, shift, ...props } = Astro.props;
+---
+
+<button
+  class:list={['iui-button', className]}
+  data-iui-variant={variant}
+  data-iui-size={size}
+  data-iui-active={active}
+  data-iui-shift={shift}
+  {...props}
+>
+  <slot />
+</button>

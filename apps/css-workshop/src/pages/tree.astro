@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 import Checkbox_ from '../components/Checkbox.astro';
 ---
 
@@ -24,16 +25,11 @@ import Checkbox_ from '../components/Checkbox.astro';
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Node 1</div>
             </span>
@@ -54,16 +50,11 @@ import Checkbox_ from '../components/Checkbox.astro';
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Node 2</div>
             </span>
@@ -73,16 +64,11 @@ import Checkbox_ from '../components/Checkbox.astro';
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
             <div class='iui-tree-node' style='--level: 1;'>
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Node 2.1</div>
                 </span>
@@ -92,16 +78,11 @@ import Checkbox_ from '../components/Checkbox.astro';
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
             <div class='iui-tree-node' style='--level: 1;'>
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Node 2.2</div>
                 </span>
@@ -111,16 +92,11 @@ import Checkbox_ from '../components/Checkbox.astro';
               <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
                 <div class='iui-tree-node' style='--level: 2;'>
                   <div class='iui-tree-node-content'>
-                    <button
-                      class='iui-button'
-                      data-iui-variant='borderless'
-                      data-iui-size='small'
-                      type='button'
-                    >
+                    <Button_ variant='borderless' size='small' type='button'>
                       <svg-chevron-right
                         class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                         aria-hidden='true'></svg-chevron-right>
-                    </button>
+                    </Button_>
                     <span class='iui-tree-node-content-label'>
                       <div class='iui-tree-node-content-title'>Node 2.2.1</div>
                     </span>
@@ -145,16 +121,11 @@ import Checkbox_ from '../components/Checkbox.astro';
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
         <div class='iui-tree-node'>
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Node 3</div>
             </span>
@@ -172,16 +143,11 @@ import Checkbox_ from '../components/Checkbox.astro';
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true' id='test-node'>
         <div class='iui-tree-node'>
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
             ></svg-placeholder>
             <span class='iui-tree-node-content-label'>
@@ -208,16 +174,11 @@ import Checkbox_ from '../components/Checkbox.astro';
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
             <div class='iui-tree-node' style='--level: 1;'>
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -234,16 +195,11 @@ import Checkbox_ from '../components/Checkbox.astro';
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
             <div class='iui-tree-node' style='--level: 1;'>
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                 ></svg-placeholder>
                 <span class='iui-tree-node-content-label'>
@@ -282,16 +238,11 @@ import Checkbox_ from '../components/Checkbox.astro';
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -316,16 +267,11 @@ import Checkbox_ from '../components/Checkbox.astro';
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
             <div class='iui-tree-node' style='--level: 1;'>
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                 ></svg-placeholder>
                 <span class='iui-tree-node-content-label'>
@@ -346,16 +292,11 @@ import Checkbox_ from '../components/Checkbox.astro';
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
         <div class='iui-tree-node'>
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -388,16 +329,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Category 1</div>
               <div class='iui-tree-node-content-caption'>A basic description.</div>
@@ -421,16 +357,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Category 2</div>
               <div class='iui-tree-node-content-caption'>A basic description.</div>
@@ -442,16 +373,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node' style='--level: 1;'>
               <Checkbox_ checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Subcategory</div>
                 </span>
@@ -464,16 +390,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Category 3</div>
               <div class='iui-tree-node-content-caption'>A basic description.</div>
@@ -492,16 +413,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <span class='iui-tree-node-content-label'>
               <div class='iui-tree-node-content-title'>Category 1</div>
               <div class='iui-tree-node-content-caption'>A basic description.</div>
@@ -523,16 +439,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node'>
               <Checkbox_ checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Category 2</div>
                   <div class='iui-tree-node-content-caption'>A basic description.</div>
@@ -544,17 +455,11 @@ import Checkbox_ from '../components/Checkbox.astro';
                 <div class='iui-tree-node iui-disabled' style='--level: 1;'>
                   <Checkbox_ disabled checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
-                    <button
-                      class='iui-button'
-                      data-iui-variant='borderless'
-                      data-iui-size='small'
-                      type='button'
-                      disabled
-                    >
+                    <Button_ variant='borderless' size='small' type='button' disabled>
                       <svg-chevron-right
                         class='iui-button-icon iui-tree-node-content-expander-icon'
                         aria-hidden='true'></svg-chevron-right>
-                    </button>
+                    </Button_>
                     <span class='iui-tree-node-content-label'>
                       <div class='iui-tree-node-content-title'>Subcategory</div>
                     </span>
@@ -567,17 +472,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node iui-disabled'>
               <Checkbox_ disabled checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                  disabled
-                >
+                <Button_ variant='borderless' size='small' type='button' disabled>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Category 3</div>
                   <div class='iui-tree-node-content-caption'>A basic description.</div>
@@ -598,16 +497,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
             ></svg-placeholder>
             <span class='iui-tree-node-content-label'>
@@ -620,16 +514,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node' style='--level: 1;'>
               <Checkbox_ checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                 ></svg-placeholder>
                 <span class='iui-tree-node-content-label'>
@@ -670,16 +559,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right>
-            </button>
+            </Button_>
             <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
             ></svg-placeholder>
             <span class='iui-tree-node-content-label'>
@@ -693,16 +577,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node' style='--level: 1;'>
               <Checkbox_ checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right
                     class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                     aria-hidden='true'></svg-chevron-right>
-                </button>
+                </Button_>
                 <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                 ></svg-placeholder>
                 <span class='iui-tree-node-content-label'>
@@ -715,16 +594,11 @@ import Checkbox_ from '../components/Checkbox.astro';
                 <div class='iui-tree-node' style='--level: 2;'>
                   <Checkbox_ checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
-                    <button
-                      class='iui-button'
-                      data-iui-variant='borderless'
-                      data-iui-size='small'
-                      type='button'
-                    >
+                    <Button_ variant='borderless' size='small' type='button'>
                       <svg-chevron-right
                         class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                         aria-hidden='true'></svg-chevron-right>
-                    </button>
+                    </Button_>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
                     <span class='iui-tree-node-content-label'>
@@ -751,16 +625,11 @@ import Checkbox_ from '../components/Checkbox.astro';
                 <div class='iui-tree-node' style='--level: 2;'>
                   <Checkbox_ checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
-                    <button
-                      class='iui-button'
-                      data-iui-variant='borderless'
-                      data-iui-size='small'
-                      type='button'
-                    >
+                    <Button_ variant='borderless' size='small' type='button'>
                       <svg-chevron-right
                         class='iui-button-icon iui-tree-node-content-expander-icon'
                         aria-hidden='true'></svg-chevron-right>
-                    </button>
+                    </Button_>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
                     <span class='iui-tree-node-content-label'>
@@ -784,16 +653,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right-small
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right-small>
-            </button>
+            </Button_>
             <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
             ></svg-placeholder>
             <span class='iui-tree-node-content-label'>
@@ -806,16 +670,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node' style='--level: 1;'>
               <Checkbox_ checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right-small
                     class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                     aria-hidden='true'></svg-chevron-right-small>
-                </button>
+                </Button_>
                 <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                 ></svg-placeholder>
                 <span class='iui-tree-node-content-label'>
@@ -856,16 +715,11 @@ import Checkbox_ from '../components/Checkbox.astro';
         <div class='iui-tree-node'>
           <Checkbox_ variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
-            <button
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
-              type='button'
-            >
+            <Button_ variant='borderless' size='small' type='button'>
               <svg-chevron-right-small
                 class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                 aria-hidden='true'></svg-chevron-right-small>
-            </button>
+            </Button_>
             <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
             ></svg-placeholder>
             <span class='iui-tree-node-content-label'>
@@ -879,16 +733,11 @@ import Checkbox_ from '../components/Checkbox.astro';
             <div class='iui-tree-node' style='--level: 1;'>
               <Checkbox_ checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
-                <button
-                  class='iui-button'
-                  data-iui-variant='borderless'
-                  data-iui-size='small'
-                  type='button'
-                >
+                <Button_ variant='borderless' size='small' type='button'>
                   <svg-chevron-right-small
                     class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                     aria-hidden='true'></svg-chevron-right-small>
-                </button>
+                </Button_>
                 <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                 ></svg-placeholder>
                 <span class='iui-tree-node-content-label'>
@@ -901,16 +750,11 @@ import Checkbox_ from '../components/Checkbox.astro';
                 <div class='iui-tree-node' style='--level: 2;'>
                   <Checkbox_ checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
-                    <button
-                      class='iui-button'
-                      data-iui-variant='borderless'
-                      data-iui-size='small'
-                      type='button'
-                    >
+                    <Button_ variant='borderless' size='small' type='button'>
                       <svg-chevron-right-small
                         class='iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded'
                         aria-hidden='true'></svg-chevron-right-small>
-                    </button>
+                    </Button_>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
                     <span class='iui-tree-node-content-label'>
@@ -937,16 +781,11 @@ import Checkbox_ from '../components/Checkbox.astro';
                 <div class='iui-tree-node' style='--level: 2;'>
                   <Checkbox_ checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
-                    <button
-                      class='iui-button'
-                      data-iui-variant='borderless'
-                      data-iui-size='small'
-                      type='button'
-                    >
+                    <Button_ variant='borderless' size='small' type='button'>
                       <svg-chevron-right-small
                         class='iui-button-icon iui-tree-node-content-expander-icon'
                         aria-hidden='true'></svg-chevron-right-small>
-                    </button>
+                    </Button_>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
                     <span class='iui-tree-node-content-label'>
