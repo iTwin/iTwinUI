@@ -22,7 +22,8 @@ const basic = !Astro.slots.has('default');
           'iui-checkbox-visibility': variant === 'eyeball',
         },
       ]}
-      data-indeterminate={indeterminate ? true : false}
+      name={indeterminate ? 'indeterminate' : ''}
+      data-iui-indeterminate={indeterminate ? true : false}
       type='checkbox'
       {...props}
     />
@@ -50,7 +51,7 @@ const basic = !Astro.slots.has('default');
         ]}
         type='checkbox'
         disabled={disabled}
-        data-indeterminate={indeterminate ? true : false}
+        data-iui-indeterminate={indeterminate ? true : false}
         {...props}
       />
       {isLoading && (
