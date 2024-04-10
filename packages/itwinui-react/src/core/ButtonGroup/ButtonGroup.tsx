@@ -131,7 +131,11 @@ export const ButtonGroup = React.forwardRef((props, forwardedRef) => {
   return (
     <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
       <ButtonGroupContext.Provider value={orientation}>
-        <Composite orientation={orientation} render={node} />
+        {props.role === 'toolbar' ? (
+          <Composite orientation={orientation} render={node} />
+        ) : (
+          node
+        )}
       </ButtonGroupContext.Provider>
     </FloatingDelayGroup>
   );
@@ -149,7 +153,6 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
         orientation === 'vertical' ? orientation : undefined
       }
       ref={forwardedRef}
-      aria-orientation={props.role === 'toolbar' ? orientation : undefined}
       {...rest}
     />
   );
