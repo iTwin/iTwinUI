@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgMore as SvgPlaceholder } from '../utils/index.js';
+import { SvgMore as SvgPlaceholder } from '../../utils/index.js';
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch.js';

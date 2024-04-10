@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { ColorValue, Box, ButtonBase } from '../utils/index.js';
+import { ColorValue, Box, ButtonBase } from '../../utils/index.js';
 import type {
   ColorType,
   PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { getColorValue } from './ColorPicker.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 

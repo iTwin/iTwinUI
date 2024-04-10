@@ -38,8 +38,8 @@ import {
   ShadowRoot,
   LineClamp,
   useMergedRefs,
-} from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import {
   TableColumnsContext,
   getCellStyle,
@@ -69,7 +69,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import { VirtualScroll } from '../utils/components/VirtualScroll.js';
+import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';

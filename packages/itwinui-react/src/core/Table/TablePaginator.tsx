@@ -18,8 +18,8 @@ import {
   SvgChevronRight,
   Box,
   ButtonBase,
-} from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
 
 const defaultLocalization = {

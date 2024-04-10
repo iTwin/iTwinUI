@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 
 import { DropdownButton } from './DropdownButton.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import { SvgCaretDownSmall, SvgCaretUpSmall } from '../utils/index.js';
+import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
 
 function renderComponent(

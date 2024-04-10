@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { render, screen } from '@testing-library/react';
-import * as UseMediaQuery from '../utils/hooks/useMediaQuery.js';
+import * as UseMediaQuery from '../../utils/hooks/useMediaQuery.js';
 
 import { ThemeProvider } from './ThemeProvider.js';
 import { ThemeContext } from './ThemeContext.js';

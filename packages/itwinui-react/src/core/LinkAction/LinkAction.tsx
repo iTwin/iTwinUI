@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { polymorphic } from '../utils/functions/polymorphic.js';
-import type { PolymorphicForwardRefComponent } from '../utils/props.js';
-import { Box } from '../utils/components/index.js';
+import { polymorphic } from '../../utils/functions/polymorphic.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/props.js';
+import { Box } from '../../utils/components/index.js';
 
 /**
  * Polymorphic link action component.

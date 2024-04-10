@@ -10,11 +10,11 @@ import {
   useControlledState,
   mergeRefs,
   mergeEventHandlers,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 
