@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { spawn } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 
 const argument = process.argv[2];
 
@@ -17,13 +17,11 @@ if (argument?.includes('filter')) {
 }
 
 function startProcess(command) {
-  const subprocess = spawn(command, {
+  const subprocess = spawnSync(command, {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('exit', (code) => {
-    if (code && code !== 0) {
-      process.exit(1);
-    }
-  });
+  if (subprocess.status !== 0) {
+    process.exit(1);
+  }
 }
