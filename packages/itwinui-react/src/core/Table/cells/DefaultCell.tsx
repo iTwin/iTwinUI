@@ -6,7 +6,7 @@ import * as React from 'react';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
 import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
-import { TableColumnsContext } from '../../utils.js';
+import { TableColumnsContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
