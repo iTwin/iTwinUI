@@ -18,11 +18,11 @@ import {
   useLatestRef,
   InputWithIcon,
   mergeEventHandlers,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   CommonProps,
   PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';

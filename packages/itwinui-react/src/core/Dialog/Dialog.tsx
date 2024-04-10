@@ -18,8 +18,8 @@ import {
   useInstance,
   useMergedRefs,
   useSynchronizeInstance,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Transition } from 'react-transition-group';
 
 // ----------------------------------------------------------------------------

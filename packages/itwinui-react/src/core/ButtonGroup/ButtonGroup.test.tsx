@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgMore, SvgClose as SvgPlaceholder } from '../utils/index.js';
+import { SvgMore, SvgClose as SvgPlaceholder } from '../../utils/index.js';
 import { fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
-import * as UseOverflow from '../utils/hooks/useOverflow.js';
+import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 
 import { ButtonGroup } from './ButtonGroup.js';
 import { Button } from '../Buttons/Button.js';
