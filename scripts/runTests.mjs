@@ -5,14 +5,18 @@
 import { spawn } from 'node:child_process';
 
 const argument = process.argv[2];
+process.on('message', (message) => {
+  console.error(message);
+  process.exit(1);
+});
 
 if (argument?.includes('filter')) {
   const subprocess = spawn(`turbo run test ${argument}`, {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('error', () => {
-    process.exit(1);
+  subprocess.on('error', (error) => {
+    subprocess.send(error);
   });
 } else if (argument) {
   const subprocess = spawn(
@@ -22,15 +26,15 @@ if (argument?.includes('filter')) {
       shell: true,
     },
   );
-  subprocess.on('error', () => {
-    process.exit(1);
+  subprocess.on('error', (error) => {
+    subprocess.send(error);
   });
 } else {
   const subprocess = spawn(`turbo run test`, {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('error', () => {
-    process.exit(1);
+  subprocess.on('error', (error) => {
+    subprocess.send(error);
   });
 }
