@@ -5,28 +5,16 @@
 import { spawn } from 'node:child_process';
 
 const argument = process.argv[2];
-process.on('message', (message) => {
-  console.error(message);
-  process.exit(1);
-});
 
 if (argument?.includes('filter')) {
   const subprocess = spawn(`turbo run test ${argument}`, {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('error', (error) => {
-    console.log('this is an error event.');
-    subprocess.send(error);
-  });
-  subprocess.on('uncaughtException', (error) => {
-    console.log('this is an uncaughtException event.');
-    subprocess.send(error);
-  });
   subprocess.on('exit', (code) => {
     console.log('this is an exit event.');
     if (code && code !== 0) {
-      subprocess.send('failed tests.');
+      process.exit(1);
     }
   });
 } else if (argument) {
@@ -37,18 +25,10 @@ if (argument?.includes('filter')) {
       shell: true,
     },
   );
-  subprocess.on('error', (error) => {
-    console.log('this is an error event.');
-    subprocess.send(error);
-  });
-  subprocess.on('uncaughtException', (error) => {
-    console.log('this is an uncaughtException event.');
-    subprocess.send(error);
-  });
   subprocess.on('exit', (code) => {
     console.log('this is an exit event.');
     if (code && code !== 0) {
-      subprocess.send('failed tests.');
+      process.exit(1);
     }
   });
 } else {
@@ -56,18 +36,10 @@ if (argument?.includes('filter')) {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('error', (error) => {
-    console.log('this is an error event.');
-    subprocess.send(error);
-  });
-  subprocess.on('uncaughtException', (error) => {
-    console.log('this is an uncaughtException event.');
-    subprocess.send(error);
-  });
   subprocess.on('exit', (code) => {
     console.log('this is an exit event.');
     if (code && code !== 0) {
-      subprocess.send('failed tests.');
+      process.exit(1);
     }
   });
 }
