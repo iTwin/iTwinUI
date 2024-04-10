@@ -247,7 +247,13 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run test --filter=css-workshop
+      - name: pnpm run test --filter=css-workshop
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 15
+          max_attempts: 2
+          retry_on: timeout
+          command: pnpm run test --filter=css-workshop
 
       - name: Publish test results artifact
         if: failure()
