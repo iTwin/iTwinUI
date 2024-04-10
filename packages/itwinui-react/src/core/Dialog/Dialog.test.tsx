@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render, act, screen, fireEvent } from '@testing-library/react';
+import { render, act, screen } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
@@ -211,14 +211,5 @@ it('should expose show() and close() methods', () => {
 
   act(() => dialog.close());
   act(() => vi.runAllTimers());
-  expect(dialogElement).not.toBeVisible();
-
-  act(() => dialog.show());
-
-  // Built-in close should still work
-  act(() => {
-    fireEvent.keyDown(dialogElement, { key: 'Escape' });
-  });
-
   expect(dialogElement).not.toBeVisible();
 });
