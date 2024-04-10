@@ -5,6 +5,9 @@
 import { spawn } from 'node:child_process';
 
 const argument = process.argv[2];
+process.on('message', (message) => {
+  Console.error(message);
+});
 
 if (argument?.includes('filter')) {
   const subprocess = spawn(`turbo run test ${argument}`, {
@@ -12,7 +15,7 @@ if (argument?.includes('filter')) {
     shell: true,
   });
   subprocess.on('uncaughtException', (error) => {
-    throw error;
+    subprocess.send({ error });
   });
 } else if (argument) {
   const subprocess = spawn(
@@ -23,7 +26,7 @@ if (argument?.includes('filter')) {
     },
   );
   subprocess.on('uncaughtException', (error) => {
-    throw error;
+    subprocess.send({ error });
   });
 } else {
   const subprocess = spawn(`turbo run test`, {
@@ -31,6 +34,6 @@ if (argument?.includes('filter')) {
     shell: true,
   });
   subprocess.on('uncaughtException', (error) => {
-    throw error;
+    subprocess.send({ error });
   });
 }
