@@ -23,6 +23,12 @@ if (argument?.includes('filter')) {
     console.log('this is an uncaughtException event.');
     subprocess.send(error);
   });
+  subprocess.on('exit', (code) => {
+    console.log('this is an exit event.');
+    if (code && code !== 0) {
+      subprocess.send('failed tests.');
+    }
+  });
 } else if (argument) {
   const subprocess = spawn(
     `conc -g -n "CSS-workshop,Unit,A11y,React-workshop,e2e" -c "#8BCC2F,#D8598C,#539AD0,#D1B52A,white" "pnpm test:css --filter=${argument.toLowerCase()}" "pnpm test:unit ${argument}" "pnpm test:a11y --env componentName=${argument}" "pnpm test:react --spec="**/${argument}.*"" "pnpm run test:e2e -- ${argument}"`,
@@ -39,6 +45,12 @@ if (argument?.includes('filter')) {
     console.log('this is an uncaughtException event.');
     subprocess.send(error);
   });
+  subprocess.on('exit', (code) => {
+    console.log('this is an exit event.');
+    if (code && code !== 0) {
+      subprocess.send('failed tests.');
+    }
+  });
 } else {
   const subprocess = spawn(`turbo run test`, {
     stdio: 'inherit',
@@ -51,5 +63,11 @@ if (argument?.includes('filter')) {
   subprocess.on('uncaughtException', (error) => {
     console.log('this is an uncaughtException event.');
     subprocess.send(error);
+  });
+  subprocess.on('exit', (code) => {
+    console.log('this is an exit event.');
+    if (code && code !== 0) {
+      subprocess.send('failed tests.');
+    }
   });
 }
