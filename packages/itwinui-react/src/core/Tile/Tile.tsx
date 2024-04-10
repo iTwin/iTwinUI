@@ -13,8 +13,8 @@ import {
   supportsHas,
   polymorphic,
   Box,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';

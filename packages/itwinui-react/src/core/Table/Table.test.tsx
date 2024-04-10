@@ -11,7 +11,7 @@ import {
 } from '@testing-library/react';
 import * as React from 'react';
 import { Table, type TableProps } from './Table.js';
-import * as IntersectionHooks from '../utils/hooks/useIntersection.js';
+import * as IntersectionHooks from '../../utils/hooks/useIntersection.js';
 import {
   BaseFilter,
   FilterButtonBar,
@@ -27,10 +27,10 @@ import {
   SvgClose,
   SvgSortUp,
   SvgSortDown,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
-import * as UseOverflow from '../utils/hooks/useOverflow.js';
+import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,

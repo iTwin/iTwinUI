@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 import { ColorPalette } from './ColorPalette.js';
 import { ColorPicker } from './ColorPicker.js';
 import { IconButton } from '../Buttons/IconButton.js';
-import { SvgMore } from '../utils/index.js';
+import { SvgMore } from '../../utils/index.js';
 
 it('should render in its most basic state', () => {
   const colors = [

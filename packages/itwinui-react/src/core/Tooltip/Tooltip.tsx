@@ -30,11 +30,11 @@ import {
   useControlledState,
   useId,
   useMergedRefs,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 
 type TooltipOptions = {
   /**

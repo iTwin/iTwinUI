@@ -14,9 +14,9 @@ import {
   useLayoutEffect,
   AutoclearingHiddenLiveRegion,
   useId,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
-import type { InputContainerProps, CommonProps } from '../utils/index.js';
+import type { InputContainerProps, CommonProps } from '../../utils/index.js';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
