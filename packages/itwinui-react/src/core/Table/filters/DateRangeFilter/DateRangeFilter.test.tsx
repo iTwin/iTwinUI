@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import type { HeaderGroup } from '../../../../react-table/react-table.js';
 import {
@@ -248,4 +248,14 @@ it('should render with localized DatePicker', async () => {
   getByText('January-custom');
   getByText('Su-custom');
   getByTitle('Sunday-custom');
+});
+
+it('should support showYearSelection prop', () => {
+  const { getByRole, container } = renderComponent({
+    showYearSelection: true,
+  });
+  act(() => container.querySelector('button')?.click());
+
+  expect(getByRole('button', { name: 'Previous year' })).toBeTruthy();
+  expect(getByRole('button', { name: 'Next year' })).toBeTruthy();
 });
