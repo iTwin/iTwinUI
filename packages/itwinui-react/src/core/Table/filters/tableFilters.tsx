@@ -33,7 +33,7 @@ export type DateRangeFilterOptions = {
    * Translated filter labels.
    */
   translatedLabels?: DateRangeTranslation & FilterButtonBarTranslation;
-};
+} & Pick<React.ComponentProps<typeof DateRangeFilter>, 'showYearSelection'>;
 
 export const tableFilters = {
   /**
