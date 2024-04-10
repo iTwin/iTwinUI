@@ -8,7 +8,7 @@
     "description": "Creates a separator comment"
   },
   "importForwardRef": {
-    "scoope": "javascriptreact,typescriptreact",
+    "scope": "javascriptreact,typescriptreact",
     "prefix": "impforwardRef",
     "body": [
       "import * as React from 'react';",
