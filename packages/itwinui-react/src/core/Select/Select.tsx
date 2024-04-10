@@ -290,6 +290,8 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     triggerProps,
     status,
     popoverProps,
+    // @ts-expect-error -- this prop is disallowed by types but should still be handled at runtime
+    styleType,
     ...rest
   } = props;
 
@@ -423,6 +425,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
+          styleType={styleType}
           {...triggerProps}
           ref={useMergedRefs(
             selectRef,
