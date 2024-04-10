@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box } from '../utils/components/Box.js';
-import type { PolymorphicForwardRefComponent } from '../utils/props.js';
+import { Box } from '../../utils/components/Box.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/props.js';
 
 type DividerProps = {
   /**

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Tooltip } from '../Tooltip/Tooltip.js';
-import { Box, useMergedRefs } from '../utils/index.js';
+import { Box, useMergedRefs } from '../../utils/index.js';
 
 type ThumbProps = {
   /**

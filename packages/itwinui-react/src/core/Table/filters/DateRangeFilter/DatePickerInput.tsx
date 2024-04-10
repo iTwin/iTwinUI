@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SvgCalendar, isBefore, useId } from '../../../utils/index.js';
+import { SvgCalendar, isBefore, useId } from '../../../../utils/index.js';
 import type { LabeledInput } from '../../../LabeledInput/LabeledInput.js';
-import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../../../utils/index.js';
 import { DatePicker } from '../../../DatePicker/DatePicker.js';
 import { InputGrid } from '../../../InputGrid/InputGrid.js';
 import { Label } from '../../../Label/Label.js';

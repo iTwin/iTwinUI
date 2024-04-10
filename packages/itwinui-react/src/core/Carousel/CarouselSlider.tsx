@@ -10,8 +10,8 @@ import {
   useMergedRefs,
   useLayoutEffect,
   Box,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 /**
  * `CarouselSlider` is the scrollable list that should consist of `CarouselSlide` components.

@@ -9,8 +9,8 @@ import {
   mergeRefs,
   Box,
   polymorphic,
-} from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
 

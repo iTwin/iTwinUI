@@ -17,9 +17,9 @@ import {
   useControlledState,
   useId,
   useLatestRef,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 // ----------------------------------------------------------------------------
 // TabsWrapper

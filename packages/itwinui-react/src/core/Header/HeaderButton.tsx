@@ -6,8 +6,8 @@
 import * as React from 'react';
 import type { ButtonProps } from '../Buttons/Button.js';
 
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { HeaderSplitButton } from './HeaderSplitButton.js';
 import { HeaderDropdownButton } from './HeaderDropdownButton.js';
 import type { DropdownButtonProps } from '../Buttons/DropdownButton.js';

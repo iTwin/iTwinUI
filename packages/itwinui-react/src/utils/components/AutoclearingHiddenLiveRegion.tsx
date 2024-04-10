@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
+import { VisuallyHidden } from '../../core/VisuallyHidden/VisuallyHidden.js';
 import { getWindow } from '../functions/index.js';
 
 /**
