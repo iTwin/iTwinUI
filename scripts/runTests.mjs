@@ -16,6 +16,11 @@ if (argument?.includes('filter')) {
     shell: true,
   });
   subprocess.on('error', (error) => {
+    console.log('this is an error event.');
+    subprocess.send(error);
+  });
+  subprocess.on('uncaughtException', (error) => {
+    console.log('this is an uncaughtException event.');
     subprocess.send(error);
   });
 } else if (argument) {
@@ -27,6 +32,11 @@ if (argument?.includes('filter')) {
     },
   );
   subprocess.on('error', (error) => {
+    console.log('this is an error event.');
+    subprocess.send(error);
+  });
+  subprocess.on('uncaughtException', (error) => {
+    console.log('this is an uncaughtException event.');
     subprocess.send(error);
   });
 } else {
@@ -35,6 +45,11 @@ if (argument?.includes('filter')) {
     shell: true,
   });
   subprocess.on('error', (error) => {
+    console.log('this is an error event.');
+    subprocess.send(error);
+  });
+  subprocess.on('uncaughtException', (error) => {
+    console.log('this is an uncaughtException event.');
     subprocess.send(error);
   });
 }
