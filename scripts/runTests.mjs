@@ -6,7 +6,7 @@ import { spawn } from 'node:child_process';
 
 const argument = process.argv[2];
 process.on('message', (message) => {
-  Console.error(message);
+  console.error(message);
 });
 
 if (argument?.includes('filter')) {
