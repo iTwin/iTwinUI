@@ -1,17 +1,18 @@
 ---
 type Props = {
-  variant?: 'high-visibility' | 'borderless' | 'cta' | 'idea';
+  variant?: 'high-visibility' | 'borderless' | 'cta';
   size?: 'small' | 'large';
   active?: 'true';
   shift?: 'left' | 'right';
+  iuiType?: 'feedback' | 'dropdown';
 } & astroHTML.JSX.ButtonHTMLAttributes;
 
-const { class: className, variant, size, active, shift, ...props } = Astro.props;
+const { class: className, variant, size, active, shift, iuiType, ...props } = Astro.props;
 ---
 
 <button
-  class:list={['iui-button', className]}
-  data-iui-variant={variant}
+  class:list={['iui-button', { 'iui-button-dropdown': iuiType === 'dropdown' }, className]}
+  data-iui-variant={iuiType === 'feedback' ? 'idea' : variant}
   data-iui-size={size}
   data-iui-active={active}
   data-iui-shift={shift}
