@@ -11,7 +11,7 @@ if (argument?.includes('filter')) {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('uncaughtException', (error) => {
+  subprocess.on('error', () => {
     process.exit(1);
   });
 } else if (argument) {
@@ -22,7 +22,7 @@ if (argument?.includes('filter')) {
       shell: true,
     },
   );
-  subprocess.on('uncaughtException', (error) => {
+  subprocess.on('error', () => {
     process.exit(1);
   });
 } else {
@@ -30,7 +30,7 @@ if (argument?.includes('filter')) {
     stdio: 'inherit',
     shell: true,
   });
-  subprocess.on('uncaughtException', (error) => {
+  subprocess.on('error', () => {
     process.exit(1);
   });
 }
