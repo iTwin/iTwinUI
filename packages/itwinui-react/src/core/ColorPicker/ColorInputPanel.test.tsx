@@ -6,7 +6,7 @@ import * as React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { ColorPicker } from './ColorPicker.js';
 import { ColorInputPanel } from './ColorInputPanel.js';
-import { ColorValue } from '../utils/index.js';
+import { ColorValue } from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
 
 it('should render ColorInputPanel with input fields', async () => {

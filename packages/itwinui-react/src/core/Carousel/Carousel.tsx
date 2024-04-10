@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useMergedRefs, Box, useLatestRef, useId } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { useMergedRefs, Box, useLatestRef, useId } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 import { CarouselSlider } from './CarouselSlider.js';
 import { CarouselSlide } from './CarouselSlide.js';

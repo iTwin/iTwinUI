@@ -12,8 +12,8 @@ import {
   mergeEventHandlers,
   polymorphic,
   Box,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
 import { Anchor } from '../Typography/Anchor.js';

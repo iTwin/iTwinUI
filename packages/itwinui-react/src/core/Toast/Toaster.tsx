@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useSafeContext } from '../utils/index.js';
+import { Box, useSafeContext } from '../../utils/index.js';
 import { Toast } from './Toast.js';
 import type { ToastCategory, ToastProps } from './Toast.js';
 

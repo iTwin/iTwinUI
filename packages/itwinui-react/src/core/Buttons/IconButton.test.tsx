@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import { SvgMore } from '../utils/index.js';
+import { SvgMore } from '../../utils/index.js';
 
 import { IconButton } from './IconButton.js';
 

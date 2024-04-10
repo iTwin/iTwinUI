@@ -9,7 +9,7 @@ import {
   type ComboboxMultipleTypeProps,
   type ComboBoxProps,
 } from './ComboBox.js';
-import { SvgCaretDownSmall } from '../utils/index.js';
+import { SvgCaretDownSmall } from '../../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { userEvent } from '@testing-library/user-event';

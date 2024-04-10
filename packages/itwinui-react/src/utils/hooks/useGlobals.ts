@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
+import { ThemeContext } from '../../core/ThemeProvider/ThemeContext.js';
 import { isDev } from '../functions/dev.js';
 
 const didLogWarning = {
