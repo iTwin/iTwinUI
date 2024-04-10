@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, ShadowRoot, getBoundedValue } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box, ShadowRoot, getBoundedValue } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 type ProgressLinearProps = {

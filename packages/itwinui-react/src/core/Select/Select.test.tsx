@@ -9,7 +9,7 @@ import {
   type CustomSelectProps,
   type SelectMultipleTypeProps,
 } from './Select.js';
-import { SvgSmileyHappy } from '../utils/index.js';
+import { SvgSmileyHappy } from '../../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { userEvent } from '@testing-library/user-event';
 

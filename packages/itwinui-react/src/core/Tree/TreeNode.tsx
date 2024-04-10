@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getFocusableElements, Box } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { getFocusableElements, Box } from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeNodeExpander } from './TreeNodeExpander.js';
 import { useTreeContext } from './TreeContext.js';
