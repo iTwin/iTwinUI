@@ -389,6 +389,7 @@ export const Filters = () => {
         },
         Filter: tableFilters.DateRangeFilter({
           translatedLabels,
+          showYearSelection: true,
         }),
         filter: 'betweenDate',
       },
@@ -402,6 +403,7 @@ export const Filters = () => {
         },
         Filter: tableFilters.DateRangeFilter({
           translatedLabels,
+          showYearSelection: true,
         }),
         filter: 'betweenDate',
       },
