@@ -33,7 +33,8 @@ export type DatePickerInputProps = {
 } & Omit<
   React.ComponentProps<typeof LabeledInput>,
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
->;
+> &
+  Pick<React.ComponentProps<typeof DatePicker>, 'showYearSelection'>;
 
 export const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   const uid = useId();
@@ -52,6 +53,7 @@ export const DatePickerInput = React.forwardRef((props, forwardedRef) => {
     inputWrapperProps,
     id = uid,
     localizedNames,
+    showYearSelection,
     ...rest
   } = props;
 
@@ -130,6 +132,8 @@ export const DatePickerInput = React.forwardRef((props, forwardedRef) => {
               isDateDisabled={isDateDisabled}
               localizedNames={localizedNames}
               applyBackground={false}
+              showDatesOutsideMonth={false}
+              showYearSelection={showYearSelection}
             />
           }
           placement='bottom-end'
