@@ -136,29 +136,34 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   // To emit the arrowRightPressed event only after the FloatingTree has been updated
   const wasRightArrowPressed = React.useRef(false);
-  React.useEffect(() => {
-    if (
-      wasRightArrowPressed.current &&
-      subMenuItems.length > 0 &&
-      tree?.nodesRef.current.find((node) => node.parentId === nodeId) // The tree ref has been updated
-    ) {
-      console.log('wasRightArrowPressed', tree?.nodesRef.current);
+  React.useEffect(
+    () => {
+      if (
+        wasRightArrowPressed.current &&
+        subMenuItems.length > 0 &&
+        tree?.nodesRef.current.find((node) => node.parentId === nodeId) // The tree ref has been updated
+      ) {
+        console.log('wasRightArrowPressed', tree?.nodesRef.current);
 
-      tree?.events.emit('arrowRightPressed', {
-        nodeId,
-        parentId,
-      } satisfies TreeEvent);
+        tree?.events.emit('arrowRightPressed', {
+          nodeId,
+          parentId,
+        } satisfies TreeEvent);
 
-      wasRightArrowPressed.current = false;
-    }
-  }, [
-    wasRightArrowPressed,
-    nodeId,
-    parentId,
-    subMenuItems.length,
-    tree?.events,
-    tree?.nodesRef,
-  ]);
+        wasRightArrowPressed.current = false;
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      wasRightArrowPressed,
+      nodeId,
+      parentId,
+      subMenuItems.length,
+      tree?.events,
+      tree?.nodesRef,
+      tree?.nodesRef.current,
+    ],
+  );
 
   const onVisibleChange = (open: boolean) => {
     if (open) {
