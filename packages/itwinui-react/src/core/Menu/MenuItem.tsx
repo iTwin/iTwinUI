@@ -135,11 +135,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 
   // To emit the arrowRightPressed event only after the FloatingTree has been updated
-  const wasRightArrowPressed = React.useRef(false);
+  const [wasRightArrowPressed, setWasRightArrowPressed] = React.useState(false);
   React.useEffect(
     () => {
       if (
-        wasRightArrowPressed.current &&
+        wasRightArrowPressed &&
         subMenuItems.length > 0 &&
         tree?.nodesRef.current.find((node) => node.parentId === nodeId) // The tree ref has been updated
       ) {
@@ -150,7 +150,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           parentId,
         } satisfies TreeEvent);
 
-        wasRightArrowPressed.current = false;
+        setWasRightArrowPressed(false);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -254,9 +254,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           // setFocusOnSubmenu(true);
           flushSync(() => setIsSubmenuVisible(true));
 
-          wasRightArrowPressed.current = true;
+          setWasRightArrowPressed(true);
 
-          console.log('tree', tree?.nodesRef.current);
+          // console.log('tree', tree?.nodesRef.current);
 
           // await new Promise((resolve) => setTimeout(resolve, 1));
 
