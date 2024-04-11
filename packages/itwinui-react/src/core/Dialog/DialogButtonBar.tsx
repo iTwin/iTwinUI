@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { polymorphic } from '../utils/index.js';
+import { polymorphic } from '../../utils/index.js';
 
 /**
  * Container for Buttons in `Dialog`. Recommended to be used as a child of `Dialog`.

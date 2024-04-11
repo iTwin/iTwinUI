@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useGlobals } from '../../../utils/index.js';
+import { useGlobals } from '../../../../utils/index.js';
 import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
@@ -45,7 +45,7 @@ export type DateRangeFilterProps<T extends Record<string, unknown>> =
     parseInput?: (text: string) => Date;
     placeholder?: string;
     translatedLabels?: DateRangeTranslation & FilterButtonBarTranslation;
-  };
+  } & Pick<React.ComponentProps<typeof DatePickerInput>, 'showYearSelection'>;
 
 export const DateRangeFilter = <T extends Record<string, unknown>>(
   props: DateRangeFilterProps<T>,
@@ -58,6 +58,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
     formatDate = defaultFormatDate,
     parseInput = defaultParseInput,
     placeholder = 'MMM dd, yyyy',
+    showYearSelection,
   } = props;
 
   useGlobals();
@@ -137,6 +138,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         selectedDate={to}
         isFromOrTo='from'
         localizedNames={translatedStrings.datePicker}
+        showYearSelection={showYearSelection}
       />
       <DatePickerInput
         label={translatedStrings.to}
@@ -149,6 +151,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         selectedDate={from}
         isFromOrTo='to'
         localizedNames={translatedStrings.datePicker}
+        showYearSelection={showYearSelection}
       />
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}

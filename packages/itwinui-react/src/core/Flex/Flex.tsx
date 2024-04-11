@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import type { AnyString } from '../utils/types.js';
-import type { PolymorphicForwardRefComponent } from '../utils/props.js';
-import { Box } from '../utils/components/Box.js';
+import type { AnyString } from '../../utils/types.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/props.js';
+import { Box } from '../../utils/components/Box.js';
 
 const sizeTokens = [
   '3xs',
