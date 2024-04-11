@@ -230,7 +230,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
     menuItemRef.current?.focus();
 
@@ -240,7 +240,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
-    onMouseMove,
+    onMouseEnter,
   };
 
   return (
