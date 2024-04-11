@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import type { HeaderGroup } from '../../../../react-table/react-table.js';
 import {
@@ -11,7 +11,6 @@ import {
 } from './DateRangeFilter.js';
 import { userEvent } from '@testing-library/user-event';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {
   const props = {
     column: {} as HeaderGroup,
@@ -22,7 +21,6 @@ const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {
   } as DateRangeFilterProps<any>;
   return render(<DateRangeFilter {...props} />);
 };
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 it('should render correctly', () => {
   const { container } = renderComponent();
@@ -45,7 +43,6 @@ it('should render correctly with set filter value', () => {
   const { container } = renderComponent({
     column: {
       filterValue: [new Date(2021, 4, 1), new Date(2021, 4, 3)],
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as HeaderGroup<any>,
   });
 
@@ -180,7 +177,6 @@ it('should set filter and keep time from existing dates', () => {
         new Date(2021, 4, 1, 10, 20, 30, 400),
         new Date(2021, 4, 3, 20, 30, 40, 500),
       ],
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as HeaderGroup<any>,
   });
 
@@ -236,7 +232,6 @@ it('should render with localized DatePicker', async () => {
   const { container, getByText, getByTitle } = renderComponent({
     column: {
       filterValue: [new Date(2021, 0, 1)],
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as HeaderGroup<any>,
 
     translatedLabels: {
@@ -253,4 +248,14 @@ it('should render with localized DatePicker', async () => {
   getByText('January-custom');
   getByText('Su-custom');
   getByTitle('Sunday-custom');
+});
+
+it('should support showYearSelection prop', () => {
+  const { getByRole, container } = renderComponent({
+    showYearSelection: true,
+  });
+  act(() => container.querySelector('button')?.click());
+
+  expect(getByRole('button', { name: 'Previous year' })).toBeTruthy();
+  expect(getByRole('button', { name: 'Next year' })).toBeTruthy();
 });

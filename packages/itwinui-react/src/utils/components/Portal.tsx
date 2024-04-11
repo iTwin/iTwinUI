@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
+import { ThemeContext } from '../../core/ThemeProvider/ThemeContext.js';
 import { getDocument } from '../functions/dom.js';
 import { useIsClient } from '../hooks/useIsClient.js';
 

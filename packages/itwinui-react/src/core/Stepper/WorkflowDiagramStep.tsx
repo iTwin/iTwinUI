@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { Tooltip } from '../Tooltip/Tooltip.js';
-import { Box, type CommonProps } from '../utils/index.js';
+import { Box, type CommonProps } from '../../utils/index.js';
 import type { StepperStepProps } from './StepperStep.js';
 
 export type WorkflowDiagramStepProps = {

@@ -8,8 +8,8 @@ import { Button } from './Button.js';
 import type { ButtonProps } from './Button.js';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
 import type { DropdownMenuProps } from '../DropdownMenu/DropdownMenu.js';
-import { SvgCaretDownSmall, SvgCaretUpSmall } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 export type DropdownButtonProps = {
   /**

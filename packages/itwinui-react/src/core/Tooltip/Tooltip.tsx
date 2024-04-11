@@ -30,11 +30,11 @@ import {
   useControlledState,
   useId,
   useMergedRefs,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 
 type TooltipOptions = {
   /**
@@ -191,7 +191,6 @@ const useTooltip = (options: TooltipOptions = {}) => {
     /** e.g. onPointerDown --> pointerdown */
     const domEventName = (e: string) => e.toLowerCase().substring(2);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cleanupValues: Record<string, any> = {};
 
     Object.entries({

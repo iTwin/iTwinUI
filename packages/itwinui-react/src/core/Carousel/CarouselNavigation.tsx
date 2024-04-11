@@ -7,8 +7,8 @@ import cx from 'classnames';
 import { CarouselContext } from './CarouselContext.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { CarouselDotsList } from './CarouselDotsList.js';
-import { Box, SvgChevronLeft, SvgChevronRight } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box, SvgChevronLeft, SvgChevronRight } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 const CarouselNavigationComponent = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;

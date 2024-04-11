@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { Label } from '../Label/Label.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
@@ -170,5 +170,5 @@ const BottomMessage = (
     );
   }
 
-  return undefined;
+  return null;
 };

@@ -10,7 +10,7 @@ import {
   SvgStatusError,
   SvgStatusSuccess,
   SvgStatusWarning,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
 import { ToastProvider } from './Toaster.js';
 

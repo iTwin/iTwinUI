@@ -6,8 +6,8 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Input } from '../Input/Input.js';
-import { ColorValue, SvgSwap, Box, useId } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { ColorValue, SvgSwap, Box, useId } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
 type ColorInputPanelProps = {

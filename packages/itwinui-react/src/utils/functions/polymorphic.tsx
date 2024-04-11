@@ -2,12 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
-import styles from '../../../styles.js';
+import styles from '../../styles.js';
 
 const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
