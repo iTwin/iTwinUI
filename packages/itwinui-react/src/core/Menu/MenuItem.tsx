@@ -123,9 +123,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
-    React.useState(false);
-  const parent = React.useContext(MenuItemContext);
+  // const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
+  //   React.useState(false);
+  // const parent = React.useContext(MenuItemContext);
 
   const dropdownMenuContext = React.useContext(DropdownMenuContext);
 
@@ -133,23 +133,23 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  const onVisibleChange = (open: boolean) => {
-    if (open) {
-      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
-      setFocusOnSubmenu(false);
+  // const onVisibleChange = (open: boolean) => {
+  //   if (open) {
+  //     // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
+  //     setFocusOnSubmenu(false);
 
-      tree?.events.emit('submenuOpened', {
-        nodeId,
-        parentId,
-      } satisfies TreeEvent);
-    }
+  //     tree?.events.emit('submenuOpened', {
+  //       nodeId,
+  //       parentId,
+  //     } satisfies TreeEvent);
+  //   }
 
-    setIsSubmenuVisible(open || isNestedSubmenuVisible);
+  //   setIsSubmenuVisible(open || isNestedSubmenuVisible);
 
-    // we don't want parent to close when mouse goes into a nested submenu,
-    // so we need to let the parent know whether the submenu is still open.
-    parent.setIsNestedSubmenuVisible(open);
-  };
+  //   // we don't want parent to close when mouse goes into a nested submenu,
+  //   // so we need to let the parent know whether the submenu is still open.
+  //   parent.setIsNestedSubmenuVisible(open);
+  // };
 
   React.useEffect(() => {
     const handleSubmenuOpened = (event: TreeEvent) => {
@@ -158,7 +158,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       if (event.parentId === parentId && event.nodeId !== nodeId) {
         dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
-        setIsNestedSubmenuVisible(false);
+        // setIsNestedSubmenuVisible(false);
       }
     };
 
@@ -166,7 +166,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       if (event.parentId === nodeId) {
         dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
-        setIsNestedSubmenuVisible(false);
+        // setIsNestedSubmenuVisible(false);
         menuItemRef.current?.focus();
       }
     };
@@ -184,10 +184,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     nodeId,
     visible:
       isSubmenuVisible ||
-      isNestedSubmenuVisible ||
+      // isNestedSubmenuVisible ||
       // to keep the submenu open when mouse enters it and then hovers out
       dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
-    onVisibleChange,
+    onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
   });
@@ -294,7 +294,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 value={{
                   ref: menuItemRef,
                   setIsSubmenuVisible,
-                  setIsNestedSubmenuVisible,
+                  setIsNestedSubmenuVisible: () => {},
                 }}
               >
                 <Menu
