@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { ButtonBase } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { ButtonBase } from '../../utils/index.js';
 
 type CarouselDotProps = {
   /** Is this dot currently active? */

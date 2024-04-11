@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
-import { Box, getRandomValue } from '../../utils/index.js';
+import { Box, getRandomValue } from '../../../utils/index.js';
 
 export type EditableCellProps<T extends Record<string, unknown>> =
   CellRendererProps<T> & {
