@@ -7,27 +7,25 @@ type Props = {
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.InputHTMLAttributes;
 
-const { status, isLoading, indeterminate, disabled, variant, ...props } = Astro.props;
+const { status, isLoading, indeterminate, disabled, variant, ...rest } = Astro.props;
 
 const basic = !Astro.slots.has('default');
+
+const inputProps = {
+  ['class:list']: [
+    'iui-checkbox',
+    {
+      'iui-loading': isLoading,
+      'iui-checkbox-visibility': variant === 'eyeball',
+    },
+  ],
+  indeterminate: indeterminate,
+  type: 'checkbox',
+  ...rest,
+};
 ---
 
-{
-  basic && (
-    <input
-      class:list={[
-        'iui-checkbox',
-        {
-          'iui-loading': isLoading,
-          'iui-checkbox-visibility': variant === 'eyeball',
-        },
-      ]}
-      data-iui-indeterminate={indeterminate}
-      type='checkbox'
-      {...props}
-    />
-  )
-}
+{basic && <input {...inputProps} />}
 {
   !basic && (
     <label
@@ -40,19 +38,7 @@ const basic = !Astro.slots.has('default');
         },
       ]}
     >
-      <input
-        class:list={[
-          'iui-checkbox',
-          {
-            'iui-loading': isLoading,
-            'iui-checkbox-visibility': variant === 'eyeball',
-          },
-        ]}
-        type='checkbox'
-        disabled={disabled}
-        data-iui-indeterminate={indeterminate}
-        {...props}
-      />
+      <input {...inputProps} />
       {isLoading && (
         <div
           class='iui-progress-indicator-radial'
@@ -69,7 +55,7 @@ const basic = !Astro.slots.has('default');
 }
 
 <script>
-  const indeterminateInputs = [...document.querySelectorAll('input[data-iui-indeterminate]')];
+  const indeterminateInputs = [...document.querySelectorAll('input[indeterminate]')];
 
   indeterminateInputs.forEach((input) => (input.indeterminate = true));
 </script>
