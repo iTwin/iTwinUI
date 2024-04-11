@@ -15,7 +15,6 @@
     "@astrojs/react": "3",
     "@itwin/itwinui-react": "*",
     "astro": "4",
-    "astro-relative-links": "^0.3.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
