@@ -137,6 +137,9 @@ jobs:
       - name: Build vite-playground
         run: pnpm run build --filter=vite-playground
 
+      - name: Build remix-playground
+        run: pnpm run build --filter=remix-playground
+
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
         uses: actions/github-script@v4
@@ -187,6 +190,15 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
+      - name: Host remix-playground under /remix
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/playgrounds/remix/build/server
+          target-folder: ${{ env.base_folder }}/remix
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
       - name: Post deploy preview link under Checks
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
         uses: actions/github-script@v6
@@ -205,7 +217,8 @@ jobs:
             - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
             - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
             - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
-            - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)`
+            - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)
+            - [remix-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/remix)`
               }
             })
 
