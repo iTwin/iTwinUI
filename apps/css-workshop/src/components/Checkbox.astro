@@ -14,7 +14,6 @@ const {
   indeterminate,
   disabled,
   variant,
-  basic,
   ...props
 } = Astro.props;
 
@@ -31,7 +30,7 @@ const inputProps = {
   ],
   indeterminate: indeterminate,
   type: 'checkbox',
-  ...rest,
+  ...props,
 };
 ---
 
