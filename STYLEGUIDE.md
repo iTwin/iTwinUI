@@ -8,7 +8,7 @@ import * as React from 'react';
 ```
 
 ```jsx
-// Bad: named import 
+// Bad: named import
 import { useState } from 'react';
 ```
 
@@ -172,7 +172,7 @@ document.createElement('div');
 
 ```jsx
 // Good
-import { useLayoutEffect } from '../utils/index.js';
+import { useLayoutEffect } from '../../utils/index.js';
 
 useLayoutEffect(() => {});
 ```

@@ -8,9 +8,9 @@ import {
   InputWithIcon,
   cloneElementWithRef,
   useId,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import cx from 'classnames';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Label } from '../Label/Label.js';
 import { Input } from '../Input/Input.js';
 import { Textarea } from '../Textarea/Textarea.js';

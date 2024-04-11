@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import { SvgClose as SvgPlaceholder } from '../utils/index.js';
+import { SvgClose as SvgPlaceholder } from '../../utils/index.js';
 import { Button } from './Button.js';
 
 it('renders default button correctly', () => {
