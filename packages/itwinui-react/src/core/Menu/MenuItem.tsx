@@ -122,9 +122,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
-  // Needed to stop submenus from closing unexpectedly on hover
-  const [isHovered, setIsHovered] = React.useState(false);
-
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
   const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
     React.useState(false);
@@ -177,11 +174,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       isSubmenuVisible ||
       isNestedSubmenuVisible ||
       // to keep the submenu open when mouse enters it and then hovers out
-      dropdownMenuContext.lastHoveredNode?.parentId === nodeId ||
-      isHovered,
+      dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     placement: 'right-start',
-    trigger: { hover: true, focus: true },
+    trigger: { hover: true },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -225,18 +221,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const onMouseEnter = () => {
     dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
     menuItemRef.current?.focus();
-    setIsHovered(true);
-  };
-
-  const onMouseLeave = () => {
-    setIsHovered(false);
   };
 
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
     onMouseEnter,
-    onMouseLeave,
   };
 
   return (
