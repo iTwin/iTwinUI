@@ -1,5 +1,5 @@
 ---
-title: Button group
+title: ButtonGroup
 description: A button group is a set of buttons with similar functionality.
 propsPath: '@itwin/itwinui-react/esm/core/ButtonGroup/ButtonGroup.d.ts'
 thumbnail: ButtonGroup
@@ -21,7 +21,7 @@ Buttons in a button group can be active, disabled and both.
 
 ## Usage
 
-The `ButtonGroup` should alsmost always be used with `IconButton` components. Make sure to also use the `label` prop to each `IconButton`; this text will be used to label the button and will be displayed in a tooltip.
+The `ButtonGroup` should almost always be used with [`IconButton`](button#iconbutton) components. Make sure to also use the `label` prop to each `IconButton`; this text will be used to label the button and will be displayed in a tooltip.
 
 ```jsx
 <ButtonGroup>
@@ -70,6 +70,7 @@ You can combine [inputs](input) with buttons in a button group. Use this pattern
 ## Usage guidelines
 
 - The button group should only consist of [default buttons](button#default) or [borderless buttons](button#borderless).
+- Make sure to label IconButtons with the `label` prop.
 - You should not mix different styled buttons in the same group.
 - You can put buttons and button groups in close proximity. In such cases, see if there is a main action and give it emphasis with a [high visibility](button#high-visibility) button.
 
