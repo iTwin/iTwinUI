@@ -156,17 +156,29 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // Only one submenu in each menu can be open at a time
       // So, if a sibling's submenu is opened, close this submenu
       if (event.parentId === parentId && event.nodeId !== nodeId) {
+        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         setIsNestedSubmenuVisible(false);
       }
     };
 
+    const handleArrowLeftPressed = (event: TreeEvent) => {
+      if (event.parentId === nodeId) {
+        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        setIsSubmenuVisible(false);
+        setIsNestedSubmenuVisible(false);
+        menuItemRef.current?.focus();
+      }
+    };
+
     tree?.events.on('submenuOpened', handleSubmenuOpened);
+    tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
+      tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
     };
-  }, [nodeId, parentId, tree?.events, tree?.nodesRef]);
+  }, [nodeId, parentId, tree?.events, tree?.nodesRef, dropdownMenuContext]);
 
   const popover = usePopover({
     nodeId,
@@ -204,11 +216,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'ArrowLeft': {
-        if (parent.ref) {
-          parent.ref.current?.focus();
-          parent.setIsSubmenuVisible(false);
-          parent.setIsNestedSubmenuVisible(false);
-        }
+        tree?.events.emit('arrowLeftPressed', {
+          nodeId,
+          parentId,
+        } satisfies TreeEvent);
+
         event.stopPropagation();
         event.preventDefault();
         break;
