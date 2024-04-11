@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     port: 1701,
   },
-  base: '/vite/',
+  base: '/iTwinUI/1995/vite/',
 });
