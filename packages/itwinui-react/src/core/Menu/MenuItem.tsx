@@ -218,15 +218,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const onMouseEnter = () => {
+  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
     menuItemRef.current?.focus();
+
+    e.stopPropagation();
   };
 
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
-    onMouseEnter,
+    onMouseMove,
   };
 
   return (
