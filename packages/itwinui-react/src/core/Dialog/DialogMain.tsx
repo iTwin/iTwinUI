@@ -140,14 +140,11 @@ export const DialogMain = React.forwardRef((props, ref) => {
     if (!isDraggable || !isOpen) {
       return;
     }
-    const rect = dialogRef.current?.getBoundingClientRect();
     const [translateX, translateY] = getTranslateValuesFromElement(
       dialogRef.current,
     );
     setStyle((oldStyle) => ({
       ...oldStyle,
-      inlineSize: rect?.width,
-      blockSize: rect?.height,
       insetInlineStart: dialogRef.current?.offsetLeft,
       insetBlockStart: dialogRef.current?.offsetTop,
       transform: `translate(${translateX}px,${translateY}px)`,
