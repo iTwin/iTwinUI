@@ -133,6 +133,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
+  console.log(tree?.nodesRef.current);
+
   // const onVisibleChange = (open: boolean) => {
   //   if (open) {
   //     // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
@@ -150,6 +152,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   //   // so we need to let the parent know whether the submenu is still open.
   //   parent.setIsNestedSubmenuVisible(open);
   // };
+
+  const onVisibleChange = (open: boolean) => {
+    setIsSubmenuVisible(open);
+
+    if (open) {
+      tree?.events.emit('submenuOpened', {
+        nodeId,
+        parentId,
+      } satisfies TreeEvent);
+    }
+  };
 
   React.useEffect(() => {
     const handleSubmenuOpened = (event: TreeEvent) => {
@@ -182,12 +195,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     nodeId,
-    visible:
-      isSubmenuVisible ||
-      // isNestedSubmenuVisible ||
-      // to keep the submenu open when mouse enters it and then hovers out
-      dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
-    onVisibleChange: setIsSubmenuVisible,
+    visible: isSubmenuVisible,
+    // isNestedSubmenuVisible ||
+    // to keep the submenu open when mouse enters it and then hovers out
+    // dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
+    onVisibleChange,
+    // onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
   });
@@ -273,7 +286,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </ListItem.Icon>
         )}
         <ListItem.Content>
-          <div>{children}</div>
+          {/* <div>{children}</div> */}
+          <div>
+            {children}, {nodeId}
+          </div>
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
