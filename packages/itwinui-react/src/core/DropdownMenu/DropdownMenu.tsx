@@ -135,6 +135,8 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     matchWidth,
   });
 
+  console.log('lastHoveredNode', lastHoveredNode);
+
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
   return (

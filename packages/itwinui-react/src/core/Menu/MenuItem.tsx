@@ -123,9 +123,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
-    React.useState(false);
-  const parent = React.useContext(MenuItemContext);
+  // const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
+  //   React.useState(false);
+  // const parent = React.useContext(MenuItemContext);
 
   const dropdownMenuContext = React.useContext(DropdownMenuContext);
 
@@ -134,21 +134,23 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 
   const onVisibleChange = (open: boolean) => {
-    if (open) {
-      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
-      setFocusOnSubmenu(false);
+    setIsSubmenuVisible(open);
 
-      tree?.events.emit('submenuOpened', {
-        nodeId,
-        parentId,
-      } satisfies TreeEvent);
-    }
+    // if (open) {
+    //   // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
+    //   setFocusOnSubmenu(false);
 
-    setIsSubmenuVisible(open || isNestedSubmenuVisible);
+    //   tree?.events.emit('submenuOpened', {
+    //     nodeId,
+    //     parentId,
+    //   } satisfies TreeEvent);
+    // }
 
-    // we don't want parent to close when mouse goes into a nested submenu,
-    // so we need to let the parent know whether the submenu is still open.
-    parent.setIsNestedSubmenuVisible(open);
+    // setIsSubmenuVisible(open || isNestedSubmenuVisible);
+
+    // // we don't want parent to close when mouse goes into a nested submenu,
+    // // so we need to let the parent know whether the submenu is still open.
+    // parent.setIsNestedSubmenuVisible(open);
   };
 
   React.useEffect(() => {
@@ -156,7 +158,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // Only one submenu in each menu can be open at a time
       // So, if a sibling's submenu is opened, close this submenu
       if (event.parentId === parentId && event.nodeId !== nodeId) {
-        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         setIsNestedSubmenuVisible(false);
       }
@@ -164,7 +166,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
-        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         setIsNestedSubmenuVisible(false);
         menuItemRef.current?.focus();
@@ -182,11 +184,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     nodeId,
-    visible:
-      isSubmenuVisible ||
-      isNestedSubmenuVisible ||
-      // to keep the submenu open when mouse enters it and then hovers out
-      dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
+    visible: isSubmenuVisible,
+    // isNestedSubmenuVisible ||
+    // // to keep the submenu open when mouse enters it and then hovers out
+    // dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true },
@@ -231,11 +232,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    console.log('onMouseEnter', children, nodeId, parentId);
+
     dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
     menuItemRef.current?.focus();
 
     e.stopPropagation();
+    e.preventDefault();
   };
+
+  // console.log(JSON.stringify(tree?.nodesRef.current));
+  // console.log(tree?.nodesRef.current);
 
   const handlers = {
     onClick: () => !disabled && onClick?.(value),
@@ -273,7 +280,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </ListItem.Icon>
         )}
         <ListItem.Content>
-          <div>{children}</div>
+          <div>
+            {children},{nodeId}
+            {/* {children} */}
+          </div>
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
@@ -340,3 +350,82 @@ const ConditionalFloatingTreeWrapper = (props: {
 
   return !tree ? <FloatingTree>{children}</FloatingTree> : children;
 };
+
+// ----------------------------------------------------------------------------
+
+// /**
+//  * Returns `true` if `node` is an ancestor of `referenceNode` in the tree.
+//  */
+// const isAncestor = ({
+//   tree,
+//   referenceNode,
+//   node,
+// }: {
+//   tree: ReturnType<typeof useFloatingTree>;
+//   referenceNode: string;
+//   node: string;
+// }) => {
+//   const ancestorTree = getAncestorTree({ tree });
+
+//   return ancestorTree[referenceNode].includes(node);
+// };
+
+// /**
+//  * @example
+//  * <caption>Input (tree?.nodesRef.current):</caption>
+//  * ```tsx
+//  * [
+//  *   { id: "1", "parentId": null },
+//  *   { id: "2", "parentId": "1" },
+//  *   { id: "3", "parentId": "2" },
+//  *   { id: "4", "parentId": "2" },
+//  *   { id: "5", "parentId": "2" },
+//  *   { id: "6", "parentId": "2" },
+//  *   { id: "7", "parentId": "6" },
+//  *   { id: "8", "parentId": "6" },
+//  * ]
+//  * ```
+//  *
+//  * <caption>Output:</caption>
+//  * ```tsx
+//  * {
+//  *   "1": ["2", "3", "4", "5", "6", "7", "8"],
+//  *   "2": ["3", "4", "5", "6", "7", "8"],
+//  *   "3": [],
+//  *   "4": [],
+//  *   "5": [],
+//  *   "6": ["7", "8"],
+//  *   "7": [],
+//  *   "8": [],
+//  * }
+//  * ```
+//  */
+// const getAncestorTree = ({
+//   tree,
+// }: {
+//   tree: ReturnType<typeof useFloatingTree>;
+// }) => {
+//   const result: Record<string, string[]> = {};
+
+//   if (!tree) {
+//     return result;
+//   }
+
+//   const nodes = tree.nodesRef.current;
+//   if (!nodes) {
+//     return result;
+//   }
+
+//   const nodeIds = nodes.map((node) => node.id).reverse();
+
+//   for (const nodeId of nodeIds) {
+//     const directChildren = nodes
+//       .filter((node) => node.parentId === nodeId)
+//       .map((node) => node.id);
+//     const indirectChildren = directChildren.flatMap((child) => result[child]);
+
+//     result[nodeId] = [...directChildren, ...indirectChildren];
+//   }
+
+//   return result;
+// };
