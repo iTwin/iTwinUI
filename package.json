@@ -28,7 +28,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency=15",
-    "test": "turbo run test",
+    "test": "node scripts/runTests.mjs",
     "test:css": "pnpm run build --filter=css-workshop && pnpm --filter=css-workshop run test",
     "test:react": "pnpm run build --filter=react-workshop && pnpm --filter=react-workshop run test",
     "test:a11y": "pnpm run build --filter=a11y && pnpm --filter=/a11y run test",
