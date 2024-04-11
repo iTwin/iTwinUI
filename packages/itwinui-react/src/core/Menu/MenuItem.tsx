@@ -22,6 +22,7 @@ import {
   useFloatingTree,
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
+import { flushSync } from 'react-dom';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -119,7 +120,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
+
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
@@ -133,11 +134,34 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
+  // To emit the arrowRightPressed event only after the FloatingTree has been updated
+  const wasRightArrowPressed = React.useRef(false);
+  React.useEffect(() => {
+    if (
+      wasRightArrowPressed.current &&
+      subMenuItems.length > 0 &&
+      tree?.nodesRef.current.find((node) => node.parentId === nodeId) // The tree ref has been updated
+    ) {
+      console.log('wasRightArrowPressed', tree?.nodesRef.current);
+
+      tree?.events.emit('arrowRightPressed', {
+        nodeId,
+        parentId,
+      } satisfies TreeEvent);
+
+      wasRightArrowPressed.current = false;
+    }
+  }, [
+    wasRightArrowPressed,
+    nodeId,
+    parentId,
+    subMenuItems.length,
+    tree?.events,
+    tree?.nodesRef,
+  ]);
+
   const onVisibleChange = (open: boolean) => {
     if (open) {
-      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
-      setFocusOnSubmenu(false);
-
       tree?.events.emit('submenuOpened', {
         nodeId,
         parentId,
@@ -171,12 +195,25 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
+    /** Need to ensure that the FloatingTree has been updated with the new submenu items before calling this function. */
+    const handleArrowRightPressed = (event: TreeEvent) => {
+      // If this node is the first item where event.nodeId === parentId (i.e. first child), focus itself
+      if (
+        tree?.nodesRef.current.find((node) => node.parentId === event.nodeId)
+          ?.id === nodeId
+      ) {
+        menuItemRef.current?.focus();
+      }
+    };
+
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
+    tree?.events.on('arrowRightPressed', handleArrowRightPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
+      tree?.events.off('arrowRightPressed', handleArrowRightPressed);
     };
   }, [nodeId, parentId, tree?.events, tree?.nodesRef, dropdownMenuContext]);
 
@@ -192,7 +229,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     trigger: { hover: true },
   });
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  // const menuRef = useMergedRefs(popover.refs.setFloating, subMenuRef);
+
+  const onKeyDown = async (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -207,8 +246,27 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          setFocusOnSubmenu(true);
-          setIsSubmenuVisible(true);
+          // setFocusOnSubmenu(true);
+          flushSync(() => setIsSubmenuVisible(true));
+
+          wasRightArrowPressed.current = true;
+
+          console.log('tree', tree?.nodesRef.current);
+
+          // await new Promise((resolve) => setTimeout(resolve, 1));
+
+          // Run in next frame
+          // requestAnimationFrame(() => {
+          // Focus on the first item in the submenu
+          // console.log(popover.refs.reference.current);
+          // });
+
+          // tree?.events.emit('arrowRightPressed', {
+          //   nodeId,
+          //   parentId,
+          // } satisfies TreeEvent);
+
+          // console.log(menuRef .current?.querySelectorAll('*'));
 
           event.preventDefault();
           event.stopPropagation();
@@ -254,6 +312,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         ref={useMergedRefs(
           menuItemRef,
           forwardedRef,
+          // () => {
+          //   console.log('hasRun', children);
+          // },
           subMenuItems.length > 0 ? popover.refs.setReference : null,
         )}
         role={role}
@@ -273,7 +334,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </ListItem.Icon>
         )}
         <ListItem.Content>
-          <div>{children}</div>
+          <div>
+            {children},{nodeId}
+          </div>
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
@@ -298,8 +361,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 }}
               >
                 <Menu
-                  setFocus={focusOnSubmenu}
+                  // setFocus={focusOnSubmenu}
+                  setFocus={false}
                   ref={popover.refs.setFloating}
+                  // ref={menuRef}
                   {...popover.getFloatingProps({
                     id: submenuId,
                     onPointerMove: () => {
@@ -310,6 +375,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                   })}
                 >
                   {subMenuItems}
+                  {/* {React.cloneElement(subMenuItems[0], {
+                    ref: (element: HTMLElement | null) => {
+                      console.log('cloneElement has run', children, element);
+                      element?.focus(); // Focus on the first item in the submenu
+                    },
+                  })}
+                  {subMenuItems.slice(1)} */}
                 </Menu>
               </MenuItemContext.Provider>
             </Portal>
