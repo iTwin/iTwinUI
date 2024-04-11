@@ -19,7 +19,29 @@ Use a button group if you want to put similar functionality in one place. It hel
 
 Buttons in a button group can be active, disabled and both.
 
-## Appearance
+## Usage
+
+The `ButtonGroup` should alsmost always be used with `IconButton` components. Make sure to also use the `label` prop to each `IconButton`; this text will be used to label the button and will be displayed in a tooltip.
+
+```jsx
+<ButtonGroup>
+  <IconButton label="Add">
+    <SvgAdd>
+  </IconButton>
+  <IconButton label="Edit">
+    <SvgEdit>
+  </IconButton>
+</ButtonGroup>
+```
+### Toolbar
+
+By default, the buttons are each considered to be separate tab stops. If you want to group them together in a single tab stop, you can enable the [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/) by specifying [`role="toolbar"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/roles/toolbar_role). This will add all required behaviors for the toolbar pattern, including arrow-key navigation and focus management.
+
+<LiveExample src='ButtonGroup.toolbar.jsx'>
+  <AllExamples.ButtonGroupToolbarExample client:load />
+</LiveExample>
+
+**Note**: `role="toolbar"` should only be used when the ButtonGroup contains buttons. Do not use it with inputs and other non-button elements.
 
 ### Overflow
 
@@ -39,13 +61,13 @@ Use the <code>orientation</code> prop to switch the button group to vertical.
 
 ### With input
 
-You can combine [inputs](input) with buttons in a button group.
+You can combine [inputs](input) with buttons in a button group. Use this pattern sparingly.
 
 <LiveExample src='ButtonGroup.input.jsx'>
   <AllExamples.ButtonGroupInputExample client:load />
 </LiveExample>
 
-## Usage
+## Usage guidelines
 
 - The button group should only consist of [default buttons](button#default) or [borderless buttons](button#borderless).
 - You should not mix different styled buttons in the same group.

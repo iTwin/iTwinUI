@@ -201,6 +201,12 @@ import { default as ButtonGroupMainExampleRaw } from './ButtonGroup.main';
 const ButtonGroupMainExample = withThemeProvider(ButtonGroupMainExampleRaw);
 export { ButtonGroupMainExample };
 
+import { default as ButtonGroupToolbarExampleRaw } from './ButtonGroup.toolbar';
+const ButtonGroupToolbarExample = withThemeProvider(
+  ButtonGroupToolbarExampleRaw,
+);
+export { ButtonGroupToolbarExample };
+
 import { default as ButtonGroupVerticalExampleRaw } from './ButtonGroup.vertical';
 const ButtonGroupVerticalExample = withThemeProvider(
   ButtonGroupVerticalExampleRaw,
