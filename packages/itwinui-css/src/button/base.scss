@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$disabledButtonSelectors: '[disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true'], .iui-disabled';
+$disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-iui-disabled="true"], .iui-disabled';
 
 @mixin iui-button {
   display: inline-flex;
