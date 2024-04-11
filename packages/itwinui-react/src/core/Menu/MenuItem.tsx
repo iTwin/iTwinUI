@@ -133,7 +133,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  console.log(tree?.nodesRef.current);
+  // console.log(tree?.nodesRef.current);
 
   // const onVisibleChange = (open: boolean) => {
   //   if (open) {
@@ -244,10 +244,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
-    menuItemRef.current?.focus();
+    if (e.target === e.currentTarget) {
+      dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+      menuItemRef.current?.focus();
 
-    e.stopPropagation();
+      e.stopPropagation();
+    }
   };
 
   const handlers = {
