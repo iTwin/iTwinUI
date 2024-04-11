@@ -1,6 +1,6 @@
 ---
-const { closeButton = true, variant, className, as, ...props } = Astro.props;
-const Element = as ? as : 'span';
+const { closeButton = true, variant, className, href, ...props } = Astro.props;
+const Element = href ? 'a' : 'span';
 ---
 
 <Element
