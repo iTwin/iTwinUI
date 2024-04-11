@@ -7,7 +7,16 @@ type Props = {
   status?: 'negative' | 'positive' | 'warning';
 } & astroHTML.JSX.InputHTMLAttributes;
 
-const { status, isLoading, indeterminate, disabled, variant, ...rest } = Astro.props;
+const {
+  class: className,
+  status,
+  isLoading,
+  indeterminate,
+  disabled,
+  variant,
+  basic,
+  ...props
+} = Astro.props;
 
 const basic = !Astro.slots.has('default');
 
@@ -18,6 +27,7 @@ const inputProps = {
       'iui-loading': isLoading,
       'iui-checkbox-visibility': variant === 'eyeball',
     },
+    className,
   ],
   indeterminate: indeterminate,
   type: 'checkbox',

@@ -10,8 +10,8 @@ import {
   Box,
   getBoundedValue,
   ShadowRoot,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 type ProgressRadialProps = {

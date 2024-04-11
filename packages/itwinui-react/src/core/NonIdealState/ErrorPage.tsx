@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Button } from '../Buttons/Button.js';
 import { NonIdealState } from './NonIdealState.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 const Svg401 = React.lazy(
   () => import('@itwin/itwinui-illustrations-react/Svg401'),

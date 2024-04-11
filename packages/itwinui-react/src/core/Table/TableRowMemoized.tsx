@@ -15,7 +15,7 @@ import {
   useIntersection,
   useMergedRefs,
   WithCSSTransition,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { TableCell } from './TableCell.js';
 
 /**
