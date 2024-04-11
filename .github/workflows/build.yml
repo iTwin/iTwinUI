@@ -194,7 +194,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/playgrounds/remix/build/server
+          folder: ${{ github.workspace }}/playgrounds/remix/build
           target-folder: ${{ env.base_folder }}/remix
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
