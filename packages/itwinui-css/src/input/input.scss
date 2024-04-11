@@ -19,12 +19,6 @@
     user-select: none;
   }
 
-  &:where([disabled], :disabled, [aria-disabled='true']) {
-    &::placeholder {
-      --_iui-field-color-text-placeholder: transparent;
-    }
-  }
-
   &:autofill {
     background-color: var(--iui-color-background-accent-muted);
     border-color: var(--iui-color-border-accent);
