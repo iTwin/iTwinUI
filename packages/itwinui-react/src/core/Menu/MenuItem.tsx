@@ -134,6 +134,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 
   const onVisibleChange = (open: boolean) => {
+    if (children === 'Item 1_3') {
+      console.log('open', open);
+    }
+
     if (open) {
       // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
       setFocusOnSubmenu(false);
@@ -177,7 +181,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     placement: 'right-start',
-    trigger: { hover: true },
+    trigger: { click: true, hover: true },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
