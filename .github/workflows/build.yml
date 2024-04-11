@@ -137,8 +137,8 @@ jobs:
       - name: Build vite-playground
         run: pnpm run build --filter=vite-playground
 
-      - name: Build remix-playground
-        run: pnpm run build --filter=remix-playground
+      - name: Build astro-playground
+        run: pnpm run build --filter=astro-playground
 
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
@@ -190,12 +190,12 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
-      - name: Host remix-playground under /remix
+      - name: Host astro-playground under /astro
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/playgrounds/remix/build
-          target-folder: ${{ env.base_folder }}/remix
+          folder: ${{ github.workspace }}/playgrounds/astro/dist
+          target-folder: ${{ env.base_folder }}/astro
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -218,7 +218,7 @@ jobs:
             - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
             - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
             - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)
-            - [remix-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/remix)`
+            - [astro-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/astro)`
               }
             })
 
