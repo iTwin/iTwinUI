@@ -8,6 +8,7 @@ Paginator buttons now use the `.iui-field` data attribute for sizing rather than
 `.iui-breadcrumbs-content` now requires `.iui-button .iui-field`.
 `.iui-sidenav-button .iui-expand` now requires `.iui-button .iui-field` and `data-iui-size="small"`.
 Introduce `data-iui-type` with values of `feedback` or `dropdown` to `.iui-button`.
+Feedback button type now requires `data-iui-variant`.
 
 ```diff
 <button
