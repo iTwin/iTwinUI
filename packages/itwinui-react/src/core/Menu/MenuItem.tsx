@@ -22,6 +22,7 @@ import {
   useFloatingTree,
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
+import { flushSync } from 'react-dom';
 // import { flushSync } from 'react-dom';
 
 /**
@@ -120,7 +121,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
+  // const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
@@ -158,8 +159,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     setIsSubmenuVisible(open);
 
     if (open) {
-      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
-      setFocusOnSubmenu(false);
+      // // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
+      // setFocusOnSubmenu(false);
 
       tree?.events.emit('submenuOpened', {
         nodeId,
@@ -190,14 +191,90 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
+    /**
+     * The `FloatingTree` needs to be updated with the nodes from the new submenu before calling this function.
+     */
+    const handleArrowRightPressed = (event: TreeEvent) => {
+      // if (event.parentId === nodeId) {
+      // }
+
+      // const tree = useFloatingTree();
+      // console.log('TREE', tree?.nodesRef.current);
+
+      console.log(
+        'TREE',
+        tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
+          nodeId,
+        children,
+      );
+
+      if (
+        tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
+        nodeId
+      ) {
+        menuItemRef.current?.focus();
+      }
+    };
+
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
+    tree?.events.on('arrowRightPressed', handleArrowRightPressed);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
+      tree?.events.off('arrowRightPressed', handleArrowRightPressed);
     };
-  }, [nodeId, parentId, tree?.events, tree?.nodesRef, dropdownMenuContext]);
+  }, [
+    nodeId,
+    parentId,
+    tree?.events,
+    tree?.nodesRef,
+    dropdownMenuContext,
+    children,
+  ]);
+
+  const [rightArrowPressed, setRightArrowPressed] = React.useState(false);
+
+  React.useEffect(
+    () => {
+      if (children === 'Item 1_3') {
+        console.log(
+          'useEffect',
+          rightArrowPressed,
+          subMenuItems.length,
+          tree?.nodesRef.current,
+        );
+      }
+
+      if (
+        rightArrowPressed &&
+        subMenuItems.length > 0 &&
+        !!tree?.nodesRef.current.find((n) => n.parentId === nodeId) // Tree has been updated with the new submenu
+      ) {
+        tree.events.emit('arrowRightPressed', {
+          nodeId,
+          parentId,
+        } satisfies TreeEvent);
+
+        setRightArrowPressed(false);
+      }
+    },
+    // TODO: Try to not require this eslint disable
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      rightArrowPressed, // Run this whenever rightArrowPressed changes
+      nodeId,
+      parentId,
+      subMenuItems.length,
+      tree?.events,
+      // TODO: How to handle this warning?
+      // warning  React Hook React.useEffect has an unnecessary dependency: 'tree?.nodesRef.current'. Either exclude it or remove the dependency array. Mutable values like 'tree.nodesRef.current' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
+      tree?.nodesRef.current,
+      children,
+      tree?.nodesRef,
+    ],
+  );
 
   const popover = usePopover({
     nodeId,
@@ -233,8 +310,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          setFocusOnSubmenu(true);
-          setIsSubmenuVisible(true);
+          // setFocusOnSubmenu(true);
+          flushSync(() => setIsSubmenuVisible(true));
+
+          setRightArrowPressed(true);
 
           event.preventDefault();
           event.stopPropagation();
@@ -329,7 +408,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 }}
               >
                 <Menu
-                  setFocus={focusOnSubmenu}
+                  // setFocus={focusOnSubmenu}
+                  setFocus={false}
                   ref={popover.refs.setFloating}
                   {...popover.getFloatingProps({
                     id: submenuId,
@@ -388,7 +468,7 @@ const isAncestor = ({
 }) => {
   const ancestorTree = getAncestorTree({ tree });
 
-  console.log(tree?.nodesRef.current, ancestorTree);
+  // console.log(tree?.nodesRef.current, ancestorTree);
 
   return ancestorTree[referenceNode]?.includes(node);
 };
