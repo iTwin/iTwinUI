@@ -157,6 +157,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     setIsSubmenuVisible(open);
 
     if (open) {
+      // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
+      setFocusOnSubmenu(false);
+
       tree?.events.emit('submenuOpened', {
         nodeId,
         parentId,
