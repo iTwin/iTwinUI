@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @forward 'global';
+@forward 'field';
 @forward 'alert/alert';
 @forward 'anchor/anchor';
 @forward 'avatar/avatar';
@@ -49,6 +50,5 @@
 @forward 'tooltip/tooltip';
 @forward 'transfer-list/transfer-list';
 @forward 'tree/tree';
-@forward 'utils/field';
 @forward 'utils/utils';
 @forward 'workflow-diagram/workflow-diagram';
