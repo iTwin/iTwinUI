@@ -173,7 +173,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // Only one submenu in each menu can be open at a time
       // So, if a sibling's submenu is opened, close this submenu
       if (event.parentId === parentId && event.nodeId !== nodeId) {
-        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        // TODO: Temporary. Might need to uncomment this line or replace with a proper solution
+        // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
       }
@@ -181,7 +182,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
-        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        // TODO: Temporary. Might need to uncomment this line or replace with a proper solution
+        // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
         menuItemRef.current?.focus();
