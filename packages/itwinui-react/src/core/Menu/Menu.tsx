@@ -48,6 +48,7 @@ export const Menu = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     const items = getFocusableNodes();
     if (focusedIndex != null) {
+      console.log('Focused', focusedIndex);
       (items?.[focusedIndex] as HTMLElement)?.focus();
       return;
     }

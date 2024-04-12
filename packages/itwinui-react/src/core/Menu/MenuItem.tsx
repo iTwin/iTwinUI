@@ -22,6 +22,7 @@ import {
   useFloatingTree,
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
+import { flushSync } from 'react-dom';
 // import { flushSync } from 'react-dom';
 
 /**
@@ -233,8 +234,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          setFocusOnSubmenu(true);
+          // flushSync(() => setFocusOnSubmenu(true));
+          // setIsSubmenuVisible(true);
+
           setIsSubmenuVisible(true);
+
+          // flush and reset state so we are ready to focus again next time
+          flushSync(() => setFocusOnSubmenu(true));
+          setFocusOnSubmenu(false);
 
           event.preventDefault();
           event.stopPropagation();
@@ -256,10 +263,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
+  // console.log('lastHoceredNode', dropdownMenuContext.lastHoveredNode);
+
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
+      // console.log('Focusing', children);
+
       dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
       menuItemRef.current?.focus();
+
+      // if (isSubmenuVisible) {
+      //   flushSync(() => setIsSubmenuVisible(false));
+      // }
 
       e.stopPropagation();
     }
@@ -388,7 +403,7 @@ const isAncestor = ({
 }) => {
   const ancestorTree = getAncestorTree({ tree });
 
-  console.log(tree?.nodesRef.current, ancestorTree);
+  // console.log(tree?.nodesRef.current, ancestorTree);
 
   return ancestorTree[referenceNode]?.includes(node);
 };
