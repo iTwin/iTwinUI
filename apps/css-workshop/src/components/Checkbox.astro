@@ -36,7 +36,10 @@ const inputProps = {
 };
 ---
 
-{basic && <input {...inputProps} />}
+{
+  /* 
+// @ts-ignore */
+}{basic && <input {...inputProps} />}
 {
   !basic && (
     <label
@@ -50,6 +53,8 @@ const inputProps = {
       ]}
       style={wrapperStyle}
     >
+      {/* 
+// @ts-ignore */}
       <input {...inputProps} />
       {isLoading && (
         <div
@@ -58,7 +63,6 @@ const inputProps = {
           data-iui-size='x-small'
         />
       )}
-
       <span class='iui-checkbox-label'>
         <slot />
       </span>
@@ -68,6 +72,6 @@ const inputProps = {
 
 <script>
   const indeterminateInputs = [...document.querySelectorAll('input[indeterminate]')];
-
+  //@ts-ignore
   indeterminateInputs.forEach((input) => (input.indeterminate = true));
 </script>
