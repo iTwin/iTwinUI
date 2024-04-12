@@ -198,10 +198,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     nodeId,
-    visible: isSubmenuVisible,
-    // isNestedSubmenuVisible ||
-    // to keep the submenu open when mouse enters it and then hovers out
-    // dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
+    visible:
+      isSubmenuVisible ||
+      // isNestedSubmenuVisible ||
+      // to keep the submenu open when mouse enters it and then hovers out
+      dropdownMenuContext.lastHoveredNode?.parentId === nodeId,
     onVisibleChange,
     // onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
