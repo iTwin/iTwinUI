@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type TextProps = {
   /**
@@ -33,6 +33,8 @@ type TextProps = {
   isSkeleton?: boolean;
 };
 
+// ----------------------------------------------------------------------------
+
 /**
  * Polymorphic typography component to render any kind of text as any kind of element.
  * Users should decide which element to render based on the context of their app. Link to heading levels docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#accessibility_concerns
@@ -55,18 +57,24 @@ export const Text = React.forwardRef((props, ref) => {
   } = props;
 
   return (
-    <Box
-      className={cx(
-        {
-          [`iui-text-${variant}`]: variant !== 'body',
-          'iui-text-block': variant === 'body',
-          'iui-text-muted': isMuted,
-          'iui-skeleton': isSkeleton,
-        },
-        className,
-      )}
-      ref={ref}
-      {...rest}
-    />
+    <TextContext.Provider value={true}>
+      <Box
+        className={cx(
+          {
+            [`iui-text-${variant}`]: variant !== 'body',
+            'iui-text-block': variant === 'body',
+            'iui-text-muted': isMuted,
+            'iui-skeleton': isSkeleton,
+          },
+          className,
+        )}
+        ref={ref}
+        {...rest}
+      />
+    </TextContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TextProps>;
+
+// ----------------------------------------------------------------------------
+
+export const TextContext = React.createContext(false);

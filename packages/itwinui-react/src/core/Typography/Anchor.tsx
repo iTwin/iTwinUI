@@ -5,9 +5,10 @@
 
 import * as React from 'react';
 import cx from 'classnames';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
+import { TextContext } from './Text.js';
 
 type AnchorProps = {
   /**
@@ -43,7 +44,8 @@ type AnchorProps = {
  * <Anchor as='button' onClick={() => {}}>click me</Anchor>
  */
 export const Anchor = React.forwardRef((props, forwardedRef) => {
-  const { isExternal, underline, children, ...rest } = props;
+  const isInsideText = React.useContext(TextContext);
+  const { isExternal, underline = isInsideText, children, ...rest } = props;
 
   return (
     <Box

@@ -14,8 +14,9 @@ import {
   useLatestRef,
   importCss,
   isUnitTest,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+  HydrationProvider,
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 
@@ -170,30 +171,35 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <ThemeContext.Provider value={contextValue}>
-      {includeCss && rootElement ? <FallbackStyles root={rootElement} /> : null}
+    <HydrationProvider>
+      <ThemeContext.Provider value={contextValue}>
+        {includeCss && rootElement ? (
+          <FallbackStyles root={rootElement} />
+        ) : null}
 
-      <Root
-        theme={theme}
-        themeOptions={themeOptions}
-        ref={useMergedRefs(forwardedRef, setRootElement)}
-        {...rest}
-      >
-        <ToastProvider>
-          {children}
+        <Root
+          theme={theme}
+          themeOptions={themeOptions}
+          ref={useMergedRefs(forwardedRef, setRootElement)}
+          {...rest}
+        >
+          <ToastProvider>
+            {children}
 
-          {portaledPortalContainer ? (
-            ReactDOM.createPortal(<Toaster />, portaledPortalContainer)
-          ) : (
-            <div ref={setPortalContainer} style={{ display: 'contents' }}>
-              <Toaster />
-            </div>
-          )}
-        </ToastProvider>
-      </Root>
-    </ThemeContext.Provider>
+            {portaledPortalContainer ? (
+              ReactDOM.createPortal(<Toaster />, portaledPortalContainer)
+            ) : (
+              <div ref={setPortalContainer} style={{ display: 'contents' }}>
+                <Toaster />
+              </div>
+            )}
+          </ToastProvider>
+        </Root>
+      </ThemeContext.Provider>
+    </HydrationProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
+
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {

@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { SvgCloseSmall, Box, ButtonBase } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { SvgCloseSmall, Box, ButtonBase } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { LinkAction, LinkBox } from '../LinkAction/LinkAction.js';
 
@@ -86,7 +86,6 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
         },
         className,
       )}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ref's type doesn't matter internally
       ref={forwardedRef as any}
       onClick={!shouldUseLinkAction ? onClick : undefined}
       {...rest}

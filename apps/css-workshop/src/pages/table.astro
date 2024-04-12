@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Checkbox_ from '../components/Checkbox.astro';
 ---
 
 <Layout title='Table'>
@@ -131,7 +132,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ basic id='select-all-checkboxes' indeterminate />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted'
@@ -264,7 +265,7 @@ import Layout from './_layout.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ basic id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -294,7 +295,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' checked />
+            <Checkbox_ basic checked id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -324,7 +325,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' checked />
+            <Checkbox_ basic checked id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -354,7 +355,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ basic disabled id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
@@ -392,7 +393,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-new'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ basic id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -422,7 +423,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ basic id='active-row' />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -457,7 +458,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -492,7 +493,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -529,7 +530,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -566,7 +567,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ id='select-all-checkboxes' basic />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
@@ -664,7 +665,7 @@ import Layout from './_layout.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -695,7 +696,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' checked />
+            <Checkbox_ checked id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -726,7 +727,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' checked />
+            <Checkbox_ checked id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -757,7 +758,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ disabled id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
@@ -796,7 +797,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-new'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -827,7 +828,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -863,7 +864,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -899,7 +900,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -937,7 +938,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -975,7 +976,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ id='select-all-checkboxes' basic />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
@@ -1073,7 +1074,7 @@ import Layout from './_layout.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1104,7 +1105,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' checked />
+            <Checkbox_ id='active-row' basic checked />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1135,7 +1136,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' checked />
+            <Checkbox_ id='active-row' basic checked />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1166,7 +1167,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
@@ -1205,7 +1206,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-new'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1236,7 +1237,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1272,7 +1273,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1308,7 +1309,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1346,7 +1347,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -1387,7 +1388,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ id='select-all-checkboxes' basic />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted'
@@ -1520,7 +1521,7 @@ import Layout from './_layout.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' disabled basic />
           </div>
           <div class='iui-table-cell iui-main-column'>
             <div class='iui-table-cell-start-icon'>
@@ -1558,7 +1559,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1593,7 +1594,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1628,7 +1629,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div class='iui-table-cell iui-main-column' contenteditable>
             <div class='iui-table-cell-start-icon'>
@@ -1665,7 +1666,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='positive' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -1700,7 +1701,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='warning' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -1735,7 +1736,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' data-iui-status='negative' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -1770,7 +1771,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='active-row' disabled />
+            <Checkbox_ id='active-row' basic disabled />
           </div>
           <div class='iui-table-cell iui-main-column' aria-disabled='true'>
             <div class='iui-table-cell-start-icon'>
@@ -1820,7 +1821,7 @@ import Layout from './_layout.astro';
               class='iui-table-cell iui-slot iui-table-cell-sticky'
               style='--iui-table-sticky-left: 0;'
             >
-              <input class='iui-checkbox' type='checkbox' />
+              <Checkbox_ id='active-row' basic />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted iui-table-cell-sticky'
@@ -1940,7 +1941,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' id='active-row' />
+            <Checkbox_ id='active-row' basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -1974,7 +1975,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' checked />
+            <Checkbox_ id='active-row' basic checked />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2008,7 +2009,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' checked />
+            <Checkbox_ id='active-row' basic checked />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2042,7 +2043,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2076,7 +2077,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2110,7 +2111,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2144,7 +2145,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2178,7 +2179,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2212,7 +2213,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2246,7 +2247,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2401,7 +2402,7 @@ import Layout from './_layout.astro';
               class='iui-table-cell iui-slot iui-table-cell-sticky'
               style='--iui-table-sticky-left: 0;'
             >
-              <input class='iui-checkbox' type='checkbox' />
+              <Checkbox_ basic />
             </div>
             <div
               class='iui-table-cell iui-actionable iui-sorted iui-table-cell-sticky'
@@ -2518,7 +2519,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -2552,7 +2553,7 @@ import Layout from './_layout.astro';
             class='iui-table-cell iui-slot iui-table-cell-sticky'
             style='--iui-table-sticky-left: 0;'
           >
-            <input class='iui-checkbox' type='checkbox' />
+            <Checkbox_ basic />
           </div>
           <div
             class='iui-table-cell iui-main-column iui-table-cell-sticky'
@@ -3151,7 +3152,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ basic id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-slot'></div>
             <div class='iui-table-cell iui-actionable iui-sorted'>
@@ -3208,7 +3209,7 @@ import Layout from './_layout.astro';
       <div class='iui-table-body' aria-multiselectable='true'>
         <div class='iui-table-row'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+            <Checkbox_ basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3236,7 +3237,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+            <Checkbox_ basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3267,7 +3268,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded' aria-selected='true'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' checked />
+            <Checkbox_ basic id='select-all-checkboxes' checked />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3298,7 +3299,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded iui-loading'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' disabled />
+            <Checkbox_ disabled basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3339,7 +3340,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-new iui-table-row-expanded'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+            <Checkbox_ basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3370,7 +3371,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded' data-iui-status='positive'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+            <Checkbox_ basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3410,7 +3411,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded' data-iui-status='warning'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+            <Checkbox_ basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3450,7 +3451,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded' data-iui-status='negative'>
           <div class='iui-table-cell iui-slot'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+            <Checkbox_ basic id='select-all-checkboxes' />
           </div>
           <div class='iui-table-cell iui-slot'>
             <button
@@ -3488,7 +3489,7 @@ import Layout from './_layout.astro';
 
         <div class='iui-table-row iui-table-row-expanded' aria-disabled='true'>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
-            <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' disabled />
+            <Checkbox_ basic id='select-all-checkboxes' disabled />
           </div>
           <div class='iui-table-cell iui-slot' aria-disabled='true'>
             <button
@@ -3529,7 +3530,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ basic id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name
@@ -3638,7 +3639,7 @@ import Layout from './_layout.astro';
         <div class='iui-table-header'>
           <div class='iui-table-row'>
             <div class='iui-table-cell iui-slot'>
-              <input class='iui-checkbox' type='checkbox' id='select-all-checkboxes' />
+              <Checkbox_ basic id='select-all-checkboxes' />
             </div>
             <div class='iui-table-cell iui-actionable iui-sorted' tabindex='0'>
               Name

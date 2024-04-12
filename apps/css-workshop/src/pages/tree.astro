@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Checkbox_ from '../components/Checkbox.astro';
 ---
 
 <Layout title='Tree'>
@@ -385,11 +386,7 @@ import Layout from './_layout.astro';
     <ul class='iui-tree' role='tree'>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -410,11 +407,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem' tabindex='0'>
             <div class='iui-tree-node' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Subcategory</div>
@@ -426,11 +419,7 @@ import Layout from './_layout.astro';
       </li>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -451,11 +440,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
             <div class='iui-tree-node' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -477,11 +462,7 @@ import Layout from './_layout.astro';
       </li>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -509,11 +490,7 @@ import Layout from './_layout.astro';
     <ul class='iui-tree' role='tree'>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -534,12 +511,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem'>
             <div class='iui-tree-node iui-disabled' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox iui-disabled'
-                type='checkbox'
-                checked
-                disabled
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' disabled checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <span class='iui-tree-node-content-label'>
                   <div class='iui-tree-node-content-title'>Subcategory</div>
@@ -549,11 +521,7 @@ import Layout from './_layout.astro';
           </li>
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
             <div class='iui-tree-node'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -574,11 +542,12 @@ import Layout from './_layout.astro';
             <ul class='iui-sub-tree' role='group'>
               <li class='iui-tree-item' role='treeitem' aria-expanded='false'>
                 <div class='iui-tree-node iui-disabled' style='--level: 1;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox iui-disabled'
-                    type='checkbox'
-                    checked
+                  <Checkbox_
+                    class='iui-tree-node-checkbox'
                     disabled
+                    checked
+                    variant='eyeball'
+                    basic
                   />
                   <div class='iui-tree-node-content'>
                     <button
@@ -602,12 +571,7 @@ import Layout from './_layout.astro';
           </li>
           <li class='iui-tree-item' role='treeitem' aria-expanded='false'>
             <div class='iui-tree-node iui-disabled'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox iui-disabled'
-                type='checkbox'
-                checked
-                disabled
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' disabled checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -638,11 +602,7 @@ import Layout from './_layout.astro';
     <ul class='iui-tree' role='tree'>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -664,11 +624,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
             <div class='iui-tree-node' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -690,11 +646,7 @@ import Layout from './_layout.astro';
             <ul class='iui-sub-tree' role='group'>
               <li class='iui-tree-item' role='treeitem' tabindex='0'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
@@ -706,11 +658,7 @@ import Layout from './_layout.astro';
               </li>
               <li class='iui-tree-item' role='treeitem' tabindex='0'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
@@ -726,11 +674,7 @@ import Layout from './_layout.astro';
       </li>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -753,11 +697,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
             <div class='iui-tree-node' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -779,11 +719,7 @@ import Layout from './_layout.astro';
             <ul class='iui-sub-tree' role='group'>
               <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <button
                       class='iui-button iui-field'
@@ -805,11 +741,7 @@ import Layout from './_layout.astro';
                 <ul class='iui-sub-tree' role='group'>
                   <li class='iui-tree-item' role='treeitem' tabindex='0'>
                     <div class='iui-tree-node' style='--level: 3;'>
-                      <input
-                        class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                        type='checkbox'
-                        checked
-                      />
+                      <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                       <div class='iui-tree-node-content'>
                         <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                         ></svg-placeholder>
@@ -823,11 +755,7 @@ import Layout from './_layout.astro';
               </li>
               <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <button
                       class='iui-button iui-field'
@@ -860,11 +788,7 @@ import Layout from './_layout.astro';
     <ul class='iui-tree' role='tree' data-iui-size='small'>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -886,11 +810,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
             <div class='iui-tree-node' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -912,11 +832,7 @@ import Layout from './_layout.astro';
             <ul class='iui-sub-tree' role='group'>
               <li class='iui-tree-item' role='treeitem' tabindex='0'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
@@ -928,11 +844,7 @@ import Layout from './_layout.astro';
               </li>
               <li class='iui-tree-item' role='treeitem' tabindex='0'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                     ></svg-placeholder>
@@ -948,11 +860,7 @@ import Layout from './_layout.astro';
       </li>
       <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
         <div class='iui-tree-node'>
-          <input
-            class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-            type='checkbox'
-            checked
-          />
+          <Checkbox_ class='iui-tree-node-checkbox' variant='eyeball' basic checked />
           <div class='iui-tree-node-content'>
             <button
               class='iui-button iui-field'
@@ -975,11 +883,7 @@ import Layout from './_layout.astro';
         <ul class='iui-sub-tree' role='group'>
           <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
             <div class='iui-tree-node' style='--level: 1;'>
-              <input
-                class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                type='checkbox'
-                checked
-              />
+              <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
               <div class='iui-tree-node-content'>
                 <button
                   class='iui-button iui-field'
@@ -1001,11 +905,7 @@ import Layout from './_layout.astro';
             <ul class='iui-sub-tree' role='group'>
               <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='true'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <button
                       class='iui-button iui-field'
@@ -1027,11 +927,7 @@ import Layout from './_layout.astro';
                 <ul class='iui-sub-tree' role='group'>
                   <li class='iui-tree-item' role='treeitem' tabindex='0'>
                     <div class='iui-tree-node' style='--level: 3;'>
-                      <input
-                        class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                        type='checkbox'
-                        checked
-                      />
+                      <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                       <div class='iui-tree-node-content'>
                         <svg-placeholder class='iui-tree-node-content-icon' aria-hidden='true'
                         ></svg-placeholder>
@@ -1045,11 +941,7 @@ import Layout from './_layout.astro';
               </li>
               <li class='iui-tree-item' role='treeitem' tabindex='0' aria-expanded='false'>
                 <div class='iui-tree-node' style='--level: 2;'>
-                  <input
-                    class='iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox'
-                    type='checkbox'
-                    checked
-                  />
+                  <Checkbox_ class='iui-tree-node-checkbox' checked variant='eyeball' basic />
                   <div class='iui-tree-node-content'>
                     <button
                       class='iui-button iui-field'

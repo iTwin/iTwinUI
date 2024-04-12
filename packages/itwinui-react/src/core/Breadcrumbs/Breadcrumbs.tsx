@@ -10,8 +10,8 @@ import {
   SvgChevronRight,
   Box,
   createWarningLogger,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
 
@@ -193,7 +193,6 @@ const ListItem = ({
   item: React.ReactNode;
   isActive: boolean;
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let children = item as any;
 
   if (

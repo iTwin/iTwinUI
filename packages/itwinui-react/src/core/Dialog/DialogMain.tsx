@@ -12,13 +12,13 @@ import {
   useLayoutEffect,
   Box,
   ShadowRoot,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { Transition } from 'react-transition-group';
 import { DialogDragContext } from './DialogDragContext.js';
-import { useDragAndDrop } from '../utils/hooks/useDragAndDrop.js';
+import { useDragAndDrop } from '../../utils/hooks/useDragAndDrop.js';
 
 export type DialogMainProps = {
   /**
@@ -140,14 +140,11 @@ export const DialogMain = React.forwardRef((props, ref) => {
     if (!isDraggable || !isOpen) {
       return;
     }
-    const rect = dialogRef.current?.getBoundingClientRect();
     const [translateX, translateY] = getTranslateValuesFromElement(
       dialogRef.current,
     );
     setStyle((oldStyle) => ({
       ...oldStyle,
-      inlineSize: rect?.width,
-      blockSize: rect?.height,
       insetInlineStart: dialogRef.current?.offsetLeft,
       insetBlockStart: dialogRef.current?.offsetTop,
       transform: `translate(${translateX}px,${translateY}px)`,

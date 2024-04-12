@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { InputWithIcon, StatusIconMap } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { InputWithIcon, StatusIconMap } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { Label } from '../Label/Label.js';

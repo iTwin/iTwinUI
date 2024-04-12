@@ -1,5 +1,40 @@
 # Changelog
 
+## 3.8.1
+
+### Patch Changes
+
+- [#1964](https://github.com/iTwin/iTwinUI/pull/1964): Fixed a bug with `InformationPanel` where changing orientation after resizing the panel would cause the panel to maintain it's resized width/height.
+
+## 3.8.0
+
+### Minor Changes
+
+- [#1957](https://github.com/iTwin/iTwinUI/pull/1957): Bumped the minimum required version of `@floating-ui/react` from `^0.26.3` to `^0.26.10`. (Make sure to also update transitive deps!)
+
+### Patch Changes
+
+- [#1962](https://github.com/iTwin/iTwinUI/pull/1962): Hydration checks have been added in some components to facilitate showing pure client-rendered content more eagerly.
+- [#1968](https://github.com/iTwin/iTwinUI/pull/1968): Fixed a regression in `Table` where the layout of a custom `Cell` unexpectedly changed from horizontal to vertical.
+
+## 3.7.4
+
+### Patch Changes
+
+- [#1944](https://github.com/iTwin/iTwinUI/pull/1944): Fixed an issue where `Tooltip` would stay open after clicking on the trigger element. The tooltip will now be correctly dismissed upon click.
+
+  Also affects other components that use tooltips internally: `IconButton`, `SideNavigation`, etc.
+
+- [#1955](https://github.com/iTwin/iTwinUI/pull/1955): Fixed a regression in `Tabs` where the panel content was not occupying the full width of the container.
+- [#1954](https://github.com/iTwin/iTwinUI/pull/1954): Fixed an issue in older Safari versions where visually-hidden styles inside `ProgressRadial` were not being applied.
+
+## 3.7.3
+
+### Patch Changes
+
+- [#1946](https://github.com/iTwin/iTwinUI/pull/1946): Fixed a bug in `Table` where resizing the columns and then toggling the column visibility in the column manager would trigger an unnecessary auto-scroll in the vertical direction.
+- [#1943](https://github.com/iTwin/iTwinUI/pull/1943): Fixed a z-index issue in `Table` where the table resizer appeared above the sticky header cells.
+
 ## 3.7.2
 
 ### Patch Changes

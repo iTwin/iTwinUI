@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Badge from '../components/Badge.astro';
 ---
 
 <Layout title='Tile'>
@@ -261,13 +262,9 @@ import Layout from './_layout.astro';
           <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
         </button>
         <div class='iui-tile-thumbnail-badge-container'>
-          <div class='iui-badge' style='--iui-badge-background-color: hsl(197, 71%, 83%);'>
-            Badge
-          </div>
-          <div class='iui-badge' style='--iui-badge-background-color: hsl(72, 51%, 66%);'>
-            Badge
-          </div>
-          <div class='iui-badge' style='--iui-badge-background-color: hsl(2, 90%, 83%);'>Badge</div>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
+          <Badge backgroundColor='celery'>Badge</Badge>
+          <Badge backgroundColor='froly'>Badge</Badge>
         </div>
         <svg-placeholder class='iui-thumbnail-icon' aria-hidden='true'></svg-placeholder>
       </div>
@@ -416,7 +413,7 @@ import Layout from './_layout.astro';
           <svg-info class='iui-button-icon' aria-hidden='true'></svg-info>
         </button>
         <div class='iui-tile-thumbnail-badge-container'>
-          <div class='iui-badge' style='--iui-badge-background-color: hsl(2, 90%, 83%);'>Link</div>
+          <Badge backgroundColor='froly'>Link</Badge>
         </div>
       </div>
 

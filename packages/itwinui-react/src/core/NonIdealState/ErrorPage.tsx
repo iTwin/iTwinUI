@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Button } from '../Buttons/Button.js';
 import { NonIdealState } from './NonIdealState.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 const Svg401 = React.lazy(
   () => import('@itwin/itwinui-illustrations-react/Svg401'),
@@ -232,9 +232,9 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     }
   }
 
-  function getPrimaryButton(): JSX.Element | undefined {
+  function getPrimaryButton(): JSX.Element | null {
     if (!primaryButtonHandle || !primaryButtonLabel) {
-      return undefined;
+      return null;
     }
     return (
       <Button styleType='high-visibility' onClick={primaryButtonHandle}>
@@ -243,9 +243,9 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getSecondaryButton(): JSX.Element | undefined {
+  function getSecondaryButton(): JSX.Element | null {
     if (!secondaryButtonHandle || !secondaryButtonLabel) {
-      return undefined;
+      return null;
     }
     return (
       <Button styleType='default' onClick={secondaryButtonHandle}>
@@ -254,12 +254,12 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getActions(): JSX.Element | undefined {
+  function getActions(): JSX.Element | null {
     const primaryButton = getPrimaryButton();
     const secondaryButton = getSecondaryButton();
 
     if (!primaryButton && !secondaryButton) {
-      return undefined;
+      return null;
     }
 
     return (

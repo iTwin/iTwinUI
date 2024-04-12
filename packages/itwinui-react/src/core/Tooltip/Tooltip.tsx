@@ -10,7 +10,6 @@ import {
   offset,
   flip,
   shift,
-  useClick,
   useHover,
   useFocus,
   useDismiss,
@@ -31,11 +30,11 @@ import {
   useControlledState,
   useId,
   useMergedRefs,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 
 type TooltipOptions = {
   /**
@@ -173,10 +172,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
     useHover(floating.context, {
       delay: delay ?? { open: 50, close: 250 },
       handleClose: safePolygon({ buffer: -Infinity }),
+      move: false,
     }),
     useFocus(floating.context),
-    useClick(floating.context),
-    useDismiss(floating.context),
+    useDismiss(floating.context, {
+      referencePress: true,
+      referencePressEvent: 'click',
+    }),
   ]);
 
   // Manually add attributes and event handlers to external reference element,
@@ -189,7 +191,6 @@ const useTooltip = (options: TooltipOptions = {}) => {
     /** e.g. onPointerDown --> pointerdown */
     const domEventName = (e: string) => e.toLowerCase().substring(2);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cleanupValues: Record<string, any> = {};
 
     Object.entries({

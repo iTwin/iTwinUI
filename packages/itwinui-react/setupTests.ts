@@ -15,7 +15,7 @@ if (window.PointerEvent) {
   window.PointerEvent = window.MouseEvent;
 }
 
-vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
+vi.mock('./src/utils/hooks/useGlobals.js', () => {
   return {
     // noop because we don't want to spam the terminal with warnings during tests
     useGlobals: () => {},

@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Checkbox_ from '../components/Checkbox.astro';
 ---
 
 <Layout title='Non ideal state'>
@@ -179,7 +180,7 @@ import Layout from './_layout.astro';
       <div class='iui-non-ideal-state-description'>
         You do not have permission to access this server.
         <br />
-         Unable to fulfill request.
+        Unable to fulfill request.
       </div>
       <div class='iui-non-ideal-state-actions'>
         <button class='iui-button iui-field' data-iui-variant='high-visibility'>
@@ -345,7 +346,7 @@ import Layout from './_layout.astro';
       <div class='iui-non-ideal-state-description'>
         You do not have permission to access this server.
         <br />
-         Unable to fulfill request.
+        Unable to fulfill request.
       </div>
       <div class='iui-non-ideal-state-actions'>
         <button class='iui-button iui-field' data-iui-variant='high-visibility'>
@@ -530,7 +531,7 @@ import Layout from './_layout.astro';
       <div class='iui-non-ideal-state-description'>
         We can't find the iModel that you are looking for or it does not exist.
         <br />
-         Visit the iModel HUB or contact our support team.
+        Visit the iModel HUB or contact our support team.
       </div>
       <div class='iui-non-ideal-state-actions'>
         <button class='iui-button iui-field' data-iui-variant='high-visibility'>
@@ -1268,11 +1269,7 @@ import Layout from './_layout.astro';
           <span>ProjectWise Explorer</span>
         </button>
       </div>
-
-      <label class='iui-checkbox-wrapper'>
-        <span class='iui-checkbox-label'>Remember my choice</span>
-        <input class='iui-checkbox' type='checkbox' checked />
-      </label>
+      <Checkbox_ checked style={{ flexDirection: 'row-reverse' }}>Remember my choice</Checkbox_>
     </div>
   </div>
 
@@ -1327,10 +1324,7 @@ import Layout from './_layout.astro';
           <span>Open</span>
         </button>
       </div>
-      <label class='iui-checkbox-wrapper'>
-        <span class='iui-checkbox-label'>Remember my choice</span>
-        <input class='iui-checkbox' type='checkbox' checked />
-      </label>
+      <Checkbox_ checked style={{ flexDirection: 'row-reverse' }}>Remember my choice</Checkbox_>
     </div>
   </div>
 

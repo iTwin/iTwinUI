@@ -1,5 +1,7 @@
 ---
 import Layout from './_layout.astro';
+import Checkbox_ from '../components/Checkbox.astro';
+import Checkbox from './checkbox.astro';
 ---
 
 <Layout title='TransferList'>
@@ -90,11 +92,7 @@ import Layout from './_layout.astro';
           </li>
         </ul>
       </div>
-
-      <label class='iui-checkbox-wrapper'>
-        <input class='iui-checkbox' type='checkbox' checked />
-        <span class='iui-checkbox-label'>Models above will be grouped automatically.</span>
-      </label>
+      <Checkbox_ checked>Models above will be grouped automatically.</Checkbox_>
     </div>
   </section>
 
