@@ -41,7 +41,7 @@ export type DialogContextProps = {
   trapFocus?: boolean;
   /**
    * If true, focuses the dialog.
-   * @default false
+   * @default true
    */
   setFocus?: boolean;
   /**

@@ -25,7 +25,7 @@ type DialogProps = {
 const DialogComponent = React.forwardRef((props, ref) => {
   const {
     trapFocus = false,
-    setFocus = false,
+    setFocus = true,
     preventDocumentScroll = false,
     isOpen = false,
     isDismissible = true,
