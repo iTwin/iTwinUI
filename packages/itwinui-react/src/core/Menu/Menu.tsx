@@ -71,6 +71,8 @@ export const Menu = React.forwardRef((props, ref) => {
     }
 
     const currentIndex = focusedIndex ?? 0;
+    console.log('currentIndex', currentIndex);
+
     switch (event.key) {
       case 'ArrowDown': {
         setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
@@ -89,6 +91,16 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   };
 
+  // Update focusedIndex when focused node is changed.
+  const onFocus = (event: React.FocusEvent<HTMLDivElement, Element>) => {
+    const items = getFocusableNodes();
+    const currentIndex = items.findIndex((el) => el === event.target);
+
+    if (currentIndex > -1) {
+      setFocusedIndex(currentIndex);
+    }
+  };
+
   return (
     <Box
       as='div'
@@ -97,6 +109,7 @@ export const Menu = React.forwardRef((props, ref) => {
       ref={refs}
       {...rest}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
+      onFocus={mergeEventHandlers(props.onFocus, onFocus)}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;

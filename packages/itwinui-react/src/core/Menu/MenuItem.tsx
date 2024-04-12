@@ -201,12 +201,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // const tree = useFloatingTree();
       // console.log('TREE', tree?.nodesRef.current);
 
-      console.log(
-        'TREE',
-        tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
-          nodeId,
-        children,
-      );
+      // console.log(
+      //   'TREE',
+      //   tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
+      //     nodeId,
+      //   children,
+      // );
 
       if (
         tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
@@ -238,14 +238,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   React.useEffect(
     () => {
-      if (children === 'Item 1_3') {
-        console.log(
-          'useEffect',
-          rightArrowPressed,
-          subMenuItems.length,
-          tree?.nodesRef.current,
-        );
-      }
+      // if (children === 'Item 1_3') {
+      //   console.log(
+      //     'useEffect',
+      //     rightArrowPressed,
+      //     subMenuItems.length,
+      //     tree?.nodesRef.current,
+      //   );
+      // }
 
       if (
         rightArrowPressed &&
