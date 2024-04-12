@@ -1,5 +1,6 @@
 ---
 type Props = {
+  wrapperStyle?: astroHTML.JSX.CSSProperties;
   isLoading?: boolean;
   indeterminate?: boolean;
   variant?: 'eyeball';
@@ -8,11 +9,12 @@ type Props = {
 
 const {
   class: className,
+  disabled,
   status,
   isLoading,
   indeterminate,
-  disabled,
   variant,
+  wrapperStyle,
   ...props
 } = Astro.props;
 
@@ -29,6 +31,7 @@ const inputProps = {
   ],
   indeterminate: indeterminate,
   type: 'checkbox',
+  disabled: disabled,
   ...props,
 };
 ---
@@ -45,6 +48,7 @@ const inputProps = {
           [`iui-${status}`]: !!status,
         },
       ]}
+      style={wrapperStyle}
     >
       <input {...inputProps} />
       {isLoading && (
