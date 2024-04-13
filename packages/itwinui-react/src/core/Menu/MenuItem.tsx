@@ -216,14 +216,24 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
+    const handleNodeFocused = (event: TreeEvent) => {
+      // When a submenu "X" is opened, close all submenus of "X"
+      if (parentId === event.nodeId) {
+        setIsSubmenuVisible(false);
+        // setIsNestedSubmenuVisible(false);
+      }
+    };
+
     tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
     tree?.events.on('arrowRightPressed', handleArrowRightPressed);
+    tree?.events.on('nodeFocused', handleNodeFocused);
 
     return () => {
       tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
       tree?.events.off('arrowRightPressed', handleArrowRightPressed);
+      tree?.events.off('nodeFocused', handleNodeFocused);
     };
   }, [
     nodeId,
@@ -340,7 +350,25 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
       menuItemRef.current?.focus();
 
+      // tree?.events.emit('nodeFocused', {
+      //   nodeId,
+      //   parentId,
+      // } satisfies TreeEvent);
+
       e.stopPropagation();
+    }
+  };
+
+  const onFocus = (e: React.FocusEvent<HTMLElement>) => {
+    if (e.target === e.currentTarget) {
+      // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+
+      console.log('onFocus', children);
+
+      tree?.events.emit('nodeFocused', {
+        nodeId,
+        parentId,
+      } satisfies TreeEvent);
     }
   };
 
@@ -348,6 +376,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
     onMouseEnter,
+    onFocus,
   };
 
   return (
