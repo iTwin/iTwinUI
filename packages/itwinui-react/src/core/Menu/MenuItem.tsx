@@ -161,25 +161,24 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     if (open) {
       // // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
       // setFocusOnSubmenu(false);
-
-      tree?.events.emit('submenuOpened', {
-        nodeId,
-        parentId,
-      } satisfies TreeEvent);
+      // tree?.events.emit('submenuOpened', {
+      //   nodeId,
+      //   parentId,
+      // } satisfies TreeEvent);
     }
   };
 
   React.useEffect(() => {
-    const handleSubmenuOpened = (event: TreeEvent) => {
-      // Only one submenu in each menu can be open at a time
-      // So, if a sibling's submenu is opened, close this submenu
-      if (event.parentId === parentId && event.nodeId !== nodeId) {
-        // TODO: Temporary. Might need to uncomment this line or replace with a proper solution
-        // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
-        setIsSubmenuVisible(false);
-        // setIsNestedSubmenuVisible(false);
-      }
-    };
+    // const handleSubmenuOpened = (event: TreeEvent) => {
+    // // Only one submenu in each menu can be open at a time
+    // // So, if a sibling's submenu is opened, close this submenu
+    // if (event.parentId === parentId && event.nodeId !== nodeId) {
+    //   // TODO: Temporary. Might need to uncomment this line or replace with a proper solution
+    //   // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+    //   setIsSubmenuVisible(false);
+    //   // setIsNestedSubmenuVisible(false);
+    // }
+    // };
 
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
@@ -217,26 +216,28 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     };
 
     const handleNodeFocused = (event: TreeEvent) => {
-      // When a submenu "X" is opened, close all submenus of "X"
+      // Consider a node "X" with its submenu "Y".
+      // Focusing "X" should close all submenus of "Y".
       if (parentId === event.nodeId) {
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
       }
 
       // When a node "X" is focused, close "X"'s siblings' submenus
+      // i.e. only one submenu in each menu can be open at a time
       if (parentId === event.parentId && nodeId !== event.nodeId) {
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
       }
     };
 
-    tree?.events.on('submenuOpened', handleSubmenuOpened);
+    // tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
     tree?.events.on('arrowRightPressed', handleArrowRightPressed);
     tree?.events.on('nodeFocused', handleNodeFocused);
 
     return () => {
-      tree?.events.off('submenuOpened', handleSubmenuOpened);
+      // tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
       tree?.events.off('arrowRightPressed', handleArrowRightPressed);
       tree?.events.off('nodeFocused', handleNodeFocused);
