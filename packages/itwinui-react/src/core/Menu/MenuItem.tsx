@@ -222,6 +222,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
       }
+
+      // When a node "X" is focused, close "X"'s siblings' submenus
+      if (parentId === event.parentId && nodeId !== event.nodeId) {
+        setIsSubmenuVisible(false);
+        // setIsNestedSubmenuVisible(false);
+      }
     };
 
     tree?.events.on('submenuOpened', handleSubmenuOpened);
