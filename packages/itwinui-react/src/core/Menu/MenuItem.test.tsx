@@ -112,6 +112,15 @@ it('should handle click', () => {
   expect(mockedOnClick).toHaveBeenCalledWith('test_value');
 });
 
+it('should focus on hover', () => {
+  render(<MenuItem data-testid='item'>Item</MenuItem>);
+
+  const menuItem = screen.getByTestId('item');
+  expect(menuItem).not.toHaveFocus();
+  fireEvent.mouseEnter(menuItem);
+  expect(menuItem).toHaveFocus();
+});
+
 it('should handle key press', () => {
   const mockedOnClick = vi.fn();
   const { container } = render(
