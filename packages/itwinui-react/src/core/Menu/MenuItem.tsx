@@ -23,20 +23,6 @@ import {
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 import { flushSync } from 'react-dom';
-// import { flushSync } from 'react-dom';
-
-/**
- * Context used to provide menu item ref to sub-menu items.
- */
-const MenuItemContext = React.createContext<{
-  ref: React.RefObject<HTMLElement> | undefined;
-  setIsSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}>({
-  ref: undefined,
-  setIsSubmenuVisible: () => {},
-  setIsNestedSubmenuVisible: () => {},
-});
 
 export type MenuItemProps = {
   /**
@@ -351,29 +337,21 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         {subMenuItems.length > 0 && popover.open && (
           <FloatingNode id={nodeId}>
             <Portal>
-              <MenuItemContext.Provider
-                value={{
-                  ref: menuItemRef,
-                  setIsSubmenuVisible,
-                  setIsNestedSubmenuVisible: () => {},
-                }}
+              <Menu
+                // setFocus={focusOnSubmenu}
+                setFocus={false}
+                ref={popover.refs.setFloating}
+                {...popover.getFloatingProps({
+                  id: submenuId,
+                  onPointerMove: () => {
+                    // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                    // so we need to flip it back to true when pointer re-enters this submenu.
+                    setIsSubmenuVisible(true);
+                  },
+                })}
               >
-                <Menu
-                  // setFocus={focusOnSubmenu}
-                  setFocus={false}
-                  ref={popover.refs.setFloating}
-                  {...popover.getFloatingProps({
-                    id: submenuId,
-                    onPointerMove: () => {
-                      // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                      // so we need to flip it back to true when pointer re-enters this submenu.
-                      setIsSubmenuVisible(true);
-                    },
-                  })}
-                >
-                  {subMenuItems}
-                </Menu>
-              </MenuItemContext.Provider>
+                {subMenuItems}
+              </Menu>
             </Portal>
           </FloatingNode>
         )}
