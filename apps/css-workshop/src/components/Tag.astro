@@ -22,7 +22,7 @@ const Element = href ? 'a' : 'span';
       </span>
     )
   }{
-    closeButton && (
+    variant !== 'basic'  && (
       <button
         class='iui-button iui-tag-button'
         data-iui-variant='borderless'
