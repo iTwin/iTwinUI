@@ -823,6 +823,12 @@ const NotificationMarkerMainExample = withThemeProvider(
 );
 export { NotificationMarkerMainExample };
 
+import { default as NotificationMarkerStatusesExampleRaw } from './NotificationMarker.statuses';
+const NotificationMarkerStatusesExample = withThemeProvider(
+  NotificationMarkerStatusesExampleRaw,
+);
+export { NotificationMarkerStatusesExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as OverlayMainExampleRaw } from './Overlay.main';

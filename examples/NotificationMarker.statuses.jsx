@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { NotificationMarker } from '@itwin/itwinui-react';
+import { NotificationMarker, IconButton } from '@itwin/itwinui-react';
 import { SvgNotification } from '@itwin/itwinui-icons-react';
 
 export default () => {
