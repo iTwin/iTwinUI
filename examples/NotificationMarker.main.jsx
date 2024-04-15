@@ -10,7 +10,7 @@ export default () => {
   return (
     <div className='demo-container'>
       <NotificationMarker status='primary'>
-        <SvgNotification width={16} height={16} fill='currentColor' />
+        <SvgNotification className='icon' />
       </NotificationMarker>
       <NotificationMarker status='primary'>Normal</NotificationMarker>
     </div>

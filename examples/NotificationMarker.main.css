@@ -4,3 +4,7 @@
   align-items: center;
   row-gap: 1rem;
 }
+
+.icon {
+  fill: currentColor;
+}

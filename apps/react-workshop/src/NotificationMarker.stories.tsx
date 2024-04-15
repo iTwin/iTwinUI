@@ -33,7 +33,7 @@ export const Basic = () => {
   return (
     <>
       <NotificationMarker status='primary'>
-        <SvgNotification width={16} height={16} fill='currentColor' />
+        <SvgNotification fill='currentColor' />
       </NotificationMarker>
       <NotificationMarker status='primary'>Normal</NotificationMarker>
     </>
