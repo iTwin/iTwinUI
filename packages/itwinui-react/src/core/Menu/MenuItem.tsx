@@ -121,13 +121,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  // const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  // const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
-  //   React.useState(false);
-  // const parent = React.useContext(MenuItemContext);
 
   const dropdownMenuContext = React.useContext(DropdownMenuContext);
 
@@ -135,51 +131,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  // console.log(tree?.nodesRef.current);
-
-  // const onVisibleChange = (open: boolean) => {
-  //   if (open) {
-  //     // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
-  //     setFocusOnSubmenu(false);
-
-  //     tree?.events.emit('submenuOpened', {
-  //       nodeId,
-  //       parentId,
-  //     } satisfies TreeEvent);
-  //   }
-
-  //   setIsSubmenuVisible(open || isNestedSubmenuVisible);
-
-  //   // we don't want parent to close when mouse goes into a nested submenu,
-  //   // so we need to let the parent know whether the submenu is still open.
-  //   parent.setIsNestedSubmenuVisible(open);
-  // };
-
   const onVisibleChange = (open: boolean) => {
     setIsSubmenuVisible(open);
 
     if (open) {
-      // // Once the menu is opened, reset focusOnSubmenu (since it is set to true when the right arrow is pressed)
-      // setFocusOnSubmenu(false);
-      // tree?.events.emit('submenuOpened', {
-      //   nodeId,
-      //   parentId,
-      // } satisfies TreeEvent);
     }
   };
 
   React.useEffect(() => {
-    // const handleSubmenuOpened = (event: TreeEvent) => {
-    // // Only one submenu in each menu can be open at a time
-    // // So, if a sibling's submenu is opened, close this submenu
-    // if (event.parentId === parentId && event.nodeId !== nodeId) {
-    //   // TODO: Temporary. Might need to uncomment this line or replace with a proper solution
-    //   // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
-    //   setIsSubmenuVisible(false);
-    //   // setIsNestedSubmenuVisible(false);
-    // }
-    // };
-
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
         dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
@@ -193,19 +152,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
      * The `FloatingTree` needs to be updated with the nodes from the new submenu before calling this function.
      */
     const handleArrowRightPressed = (event: TreeEvent) => {
-      // if (event.parentId === nodeId) {
-      // }
-
-      // const tree = useFloatingTree();
-      // console.log('TREE', tree?.nodesRef.current);
-
-      // console.log(
-      //   'TREE',
-      //   tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
-      //     nodeId,
-      //   children,
-      // );
-
       if (
         tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
         nodeId
@@ -219,24 +165,20 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // Focusing "X" should close all submenus of "Y".
       if (parentId === event.nodeId) {
         setIsSubmenuVisible(false);
-        // setIsNestedSubmenuVisible(false);
       }
 
       // When a node "X" is focused, close "X"'s siblings' submenus
       // i.e. only one submenu in each menu can be open at a time
       if (parentId === event.parentId && nodeId !== event.nodeId) {
         setIsSubmenuVisible(false);
-        // setIsNestedSubmenuVisible(false);
       }
     };
 
-    // tree?.events.on('submenuOpened', handleSubmenuOpened);
     tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
     tree?.events.on('arrowRightPressed', handleArrowRightPressed);
     tree?.events.on('nodeFocused', handleNodeFocused);
 
     return () => {
-      // tree?.events.off('submenuOpened', handleSubmenuOpened);
       tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
       tree?.events.off('arrowRightPressed', handleArrowRightPressed);
       tree?.events.off('nodeFocused', handleNodeFocused);
@@ -252,17 +194,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const [rightArrowPressed, setRightArrowPressed] = React.useState(false);
 
+  // Needed to trigger arrowRightPressed only after the FloatingTree has been
+  // updated with the nodes from the new submenu.
   React.useEffect(
     () => {
-      // if (children === 'Item 1_3') {
-      //   console.log(
-      //     'useEffect',
-      //     rightArrowPressed,
-      //     subMenuItems.length,
-      //     tree?.nodesRef.current,
-      //   );
-      // }
-
       if (
         rightArrowPressed &&
         subMenuItems.length > 0 &&
@@ -296,7 +231,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     nodeId,
     visible:
       isSubmenuVisible ||
-      // isNestedSubmenuVisible ||
       // to keep the submenus open up till the last hovered submenu, even after hovering out of the entire tree.
       (dropdownMenuContext.lastHoveredNode != null
         ? isAncestor({
@@ -306,7 +240,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           })
         : false),
     onVisibleChange,
-    // onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
   });
@@ -326,9 +259,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          // setFocusOnSubmenu(true);
           flushSync(() => setIsSubmenuVisible(true));
-
           setRightArrowPressed(true);
 
           event.preventDefault();
@@ -355,11 +286,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     if (e.target === e.currentTarget) {
       dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
       menuItemRef.current?.focus();
-
-      // tree?.events.emit('nodeFocused', {
-      //   nodeId,
-      //   parentId,
-      // } satisfies TreeEvent);
 
       e.stopPropagation();
     }
@@ -499,9 +425,6 @@ const isAncestor = ({
   node: string;
 }) => {
   const ancestorTree = getAncestorTree({ tree });
-
-  // console.log(tree?.nodesRef.current, ancestorTree);
-
   return ancestorTree[referenceNode]?.includes(node);
 };
 
