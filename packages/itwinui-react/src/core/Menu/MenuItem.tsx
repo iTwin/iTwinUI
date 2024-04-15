@@ -182,8 +182,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
-        // TODO: Temporary. Might need to uncomment this line or replace with a proper solution
-        // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
         menuItemRef.current?.focus();
