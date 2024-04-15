@@ -263,8 +263,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
-
-      e.stopPropagation();
     }
   };
 
@@ -334,7 +332,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           <FloatingNode id={nodeId}>
             <Portal>
               <Menu
-                // setFocus={focusOnSubmenu}
                 setFocus={false}
                 ref={popover.refs.setFloating}
                 {...popover.getFloatingProps({
