@@ -259,7 +259,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    console.log('onMouseEnter', children);
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
     }
@@ -280,16 +279,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
     onMouseEnter,
-    // onMouseMove: (e) => {
-    //   if (e.target === e.currentTarget) {
-    //     console.log('onMouseMove', children);
-    //   }
-    // },
-    onMouseLeave: (e) => {
-      if (e.target === e.currentTarget) {
-        console.log('onMouseLeave', children);
-      }
-    },
     onFocus,
   };
 
