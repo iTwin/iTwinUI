@@ -131,13 +131,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  const onVisibleChange = (open: boolean) => {
-    setIsSubmenuVisible(open);
-
-    if (open) {
-    }
-  };
-
   React.useEffect(() => {
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
@@ -239,7 +232,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             node: dropdownMenuContext.lastHoveredNode.nodeId,
           })
         : false),
-    onVisibleChange,
+    onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
   });
