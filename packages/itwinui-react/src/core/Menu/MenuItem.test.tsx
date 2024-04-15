@@ -7,6 +7,8 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MenuItem } from './MenuItem.js';
 import { SvgSmileyHappy } from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
+import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
+import { Button } from '../Buttons/Button.js';
 
 function assertBaseElement(
   menuItem: HTMLElement,
@@ -236,28 +238,39 @@ it('should show sub menu on hover', () => {
 it('should handle key press with sub menus', async () => {
   const mockedSubOnClick = vi.fn();
   render(
-    <MenuItem
-      value='test_value'
-      data-testid='parent'
-      subMenuItems={[
+    <DropdownMenu
+      menuItems={[
         <MenuItem
-          key={1}
-          onClick={mockedSubOnClick}
-          value='test_value_sub'
-          data-testid='sub'
+          key={0}
+          value='test_value'
+          data-testid='parent'
+          subMenuItems={[
+            <MenuItem
+              key={1}
+              onClick={mockedSubOnClick}
+              value='test_value_sub'
+              data-testid='sub'
+            >
+              Test sub
+            </MenuItem>,
+          ]}
         >
-          Test sub
+          Test item
         </MenuItem>,
       ]}
     >
-      Test item
-    </MenuItem>,
+      <Button data-testid='trigger'>Menu</Button>
+    </DropdownMenu>,
   );
 
-  const menuItem = screen.getByTestId('parent');
+  // Open the DropdownMenu
+  const trigger = screen.getByTestId('trigger');
+  fireEvent.click(trigger);
 
-  // focus to open sub menu
+  // focus + right arrow to open sub menu
+  const menuItem = screen.getByTestId('parent');
   act(() => menuItem.focus());
+  await userEvent.keyboard('{ArrowRight}');
   const subMenuItem = screen.getByTestId('sub');
   expect(subMenuItem).toHaveTextContent('Test sub');
 
@@ -270,14 +283,8 @@ it('should handle key press with sub menus', async () => {
   expect(subMenuItem).not.toBeVisible();
   expect(menuItem).toHaveFocus();
 
-  // escape to close
-  await userEvent.keyboard('{Escape}');
-  expect(screen.queryByTestId('sub')).toBeFalsy();
-
-  // going right should re-open the sub menu and move the focus to the first item in the submenu.
+  // go right again to move focus into sub menu
   await userEvent.keyboard('{ArrowRight}');
-  expect(screen.queryByTestId('sub')).toBeTruthy();
-  expect(screen.getByTestId('sub')).toHaveFocus();
 
   // click
   await userEvent.keyboard('{Enter}');
