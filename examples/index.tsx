@@ -817,6 +817,14 @@ export { NonIdealStateErrorExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as NotificationMarkerMainExampleRaw } from './NotificationMarker.main';
+const NotificationMarkerMainExample = withThemeProvider(
+  NotificationMarkerMainExampleRaw,
+);
+export { NotificationMarkerMainExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as OverlayMainExampleRaw } from './Overlay.main';
 const OverlayMainExample = withThemeProvider(OverlayMainExampleRaw);
 export { OverlayMainExample };

@@ -1,0 +1,46 @@
+---
+title: NotificationMarker
+description: A notification indicator
+propsPath: '@itwin/itwinui-react/esm/core/NotificationMarker/NotificationMarker.d.ts'
+thumbnail:
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='NotificationMarker.main.jsx' truncate={false}>
+  <AllExamples.NotificationMarkerMainExample client:load />
+</LiveExample>
+
+## Appearance
+
+Each type of error page should be designed based on what you wish to tell the user about that error. First off, the error code, along with a short description, should be displayed so the user can identify the source of the problem. Then, informative text, accompanied with images that can be informative as well and/or decorative to aid the user moving onto the next step. The error illustration should take up no more than ⅓ of the screen width.
+
+## Usage
+
+Error pages come with their own error and should not be mixed and matched to avoid confusion from one error to another. Here are a few of the error pages you can use.
+
+### Status
+
+`NotificationMarker`s can have `primary` (default), `positive`, `warning`, `negative`, or `white` statuses. The `white` status is used on colored backgrounds, such as the high visibility or the call-to-action button.
+
+<LiveExample src='NonIdealState.unauthorized.jsx' truncate={false}>
+  <AllExamples.NonIdealStateUnauthorizedExample client:load />
+</LiveExample>
+
+### Controlled
+
+The `enabled` prop can be used to programatically show or hide the notification marker.
+
+### Pulsing
+
+To give a higher important to the notification, you can use the `pulsing` prop to show a pulse effect around the marker.
+
+**NOTE**: This prop should be used sparingly as it can be distracting to the user.
+
+<LiveExample src='NonIdealState.unauthorized.jsx' truncate={false}>
+  <AllExamples.NonIdealStateUnauthorizedExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
