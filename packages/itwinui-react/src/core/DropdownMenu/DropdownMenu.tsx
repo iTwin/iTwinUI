@@ -26,14 +26,14 @@ import type { TreeEvent } from '../Menu/MenuItem.js';
 
 export const DropdownMenuContext = React.createContext<{
   close: () => void;
-  lastHoveredNode: TreeEvent | undefined;
-  setLastHoveredNode: React.Dispatch<
+  lastFocusedNode: TreeEvent | undefined;
+  setLastFocusedNode: React.Dispatch<
     React.SetStateAction<TreeEvent | undefined>
   >;
 }>({
   close: () => {},
-  lastHoveredNode: undefined,
-  setLastHoveredNode: () => {},
+  lastFocusedNode: undefined,
+  setLastFocusedNode: () => {},
 });
 
 export type DropdownMenuProps = {
@@ -111,7 +111,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
 
   const triggerRef = React.useRef<HTMLElement>(null);
 
-  const [lastHoveredNode, setLastHoveredNode] = React.useState<TreeEvent>();
+  const [lastFocusedNode, setLastFocusedNode] = React.useState<TreeEvent>();
 
   const close = React.useCallback(() => {
     setVisible(false);
@@ -141,8 +141,8 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     <DropdownMenuContext.Provider
       value={{
         close,
-        lastHoveredNode,
-        setLastHoveredNode,
+        lastFocusedNode,
+        setLastFocusedNode,
       }}
     >
       {cloneElementWithRef(children, (children) => ({

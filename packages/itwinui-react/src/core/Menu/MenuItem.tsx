@@ -120,7 +120,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   React.useEffect(() => {
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
-        dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+        dropdownMenuContext.setLastFocusedNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         // setIsNestedSubmenuVisible(false);
         menuItemRef.current?.focus();
@@ -211,11 +211,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     visible:
       isSubmenuVisible ||
       // to keep the submenus open up till the last hovered submenu, even after hovering out of the entire tree.
-      (dropdownMenuContext.lastHoveredNode != null
+      (dropdownMenuContext.lastFocusedNode != null
         ? isAncestor({
             tree,
             referenceNode: nodeId,
-            node: dropdownMenuContext.lastHoveredNode.nodeId,
+            node: dropdownMenuContext.lastFocusedNode.nodeId,
           })
         : false),
     onVisibleChange: setIsSubmenuVisible,
@@ -263,7 +263,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
-      dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
       menuItemRef.current?.focus();
 
       e.stopPropagation();
@@ -272,7 +271,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
-      // dropdownMenuContext.setLastHoveredNode({ nodeId, parentId });
+      dropdownMenuContext.setLastFocusedNode({ nodeId, parentId });
 
       console.log('onFocus', children);
 
