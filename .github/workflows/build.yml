@@ -134,6 +134,9 @@ jobs:
       - name: Build react-workshop
         run: pnpm run build --filter=react-workshop
 
+      - name: Build vite-playground
+        run: pnpm run build --filter=vite-playground
+
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
         uses: actions/github-script@v4
@@ -175,6 +178,16 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
+      - name: Host vite-playground under /vite
+        if: github.ref != 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/playgrounds/vite/dist
+          target-folder: ${{ env.base_folder }}/vite
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
       - name: Post deploy preview link under Checks
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
         uses: actions/github-script@v6
@@ -192,7 +205,8 @@ jobs:
                 text: `\
             - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
             - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
-            - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)`
+            - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
+            - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)`
               }
             })
 
