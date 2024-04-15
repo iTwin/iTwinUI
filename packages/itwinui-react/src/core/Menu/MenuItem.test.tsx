@@ -297,50 +297,51 @@ it('should handle key press with sub menus', async () => {
 
 it('should have only one active submenu at a time', async () => {
   render(
-    <MenuItem
-      key={0}
-      data-testid='parent'
-      subMenuItems={[
+    <DropdownMenu
+      menuItems={[
         <MenuItem
-          key={1}
-          data-testid='sub-1'
+          key={0}
+          data-testid='root-1'
           subMenuItems={[
-            <MenuItem key={2} data-testid='sub-2'>
-              Test sub sub
+            <MenuItem key={0} data-testid='sub-1'>
+              Test sub
             </MenuItem>,
           ]}
         >
-          Test sub
+          Test item
         </MenuItem>,
         <MenuItem
-          key={3}
-          data-testid='sub-3'
+          key={1}
+          data-testid='root-2'
           subMenuItems={[
-            <MenuItem key={4} data-testid='sub-4'>
-              Test sub sub
+            <MenuItem key={0} data-testid='sub-2'>
+              Test sub
             </MenuItem>,
           ]}
         >
-          Test sub
+          Test item
         </MenuItem>,
       ]}
     >
-      Test item
-    </MenuItem>,
+      <Button data-testid='trigger'>Menu</Button>
+    </DropdownMenu>,
   );
 
-  const menuItem = screen.getByTestId('parent');
+  // Open the DropdownMenu
+  const trigger = screen.getByTestId('trigger');
+  fireEvent.click(trigger);
 
-  // focus to open sub menu
-  act(() => menuItem.focus());
+  const root1 = screen.getByTestId('root-1');
 
-  // go right to move focus to the first submenu item and open its submenu.
+  // focus the first MenuItem
+  act(() => root1.focus());
+
+  // go right to open and move focus to the first submenu.
   await userEvent.keyboard('{ArrowRight}');
   expect(screen.queryByTestId('sub-1')).toHaveFocus();
-  expect(screen.queryByTestId('sub-2')).toBeTruthy();
-
-  // hovering over the second submenu item should close the previously opened submenu.
-  fireEvent.mouseEnter(screen.getByTestId('sub-3'));
-  expect(screen.queryByTestId('sub-4')).toBeTruthy();
   expect(screen.queryByTestId('sub-2')).toBeFalsy();
+
+  // hovering over the second MenuItem should close the previously opened submenu.
+  fireEvent.mouseEnter(screen.getByTestId('root-2'));
+  expect(screen.queryByTestId('sub-1')).toBeFalsy();
 });
