@@ -109,6 +109,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  const [rightArrowPressed, setRightArrowPressed] = React.useState(false);
 
   const dropdownMenuContext = React.useContext(DropdownMenuContext);
 
@@ -168,8 +169,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     dropdownMenuContext,
     children,
   ]);
-
-  const [rightArrowPressed, setRightArrowPressed] = React.useState(false);
 
   // Needed to trigger arrowRightPressed only after the FloatingTree has been
   // updated with the nodes from the new submenu.
