@@ -208,13 +208,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     visible:
       isSubmenuVisible ||
       // to keep the submenus open up till the last hovered submenu, even after hovering out of the entire tree.
-      (dropdownMenuContext.lastFocusedNode != null
-        ? isAncestor({
-            tree,
-            referenceNode: nodeId,
-            node: dropdownMenuContext.lastFocusedNode.nodeId,
-          })
-        : false),
+      (dropdownMenuContext.lastFocusedNode != null &&
+        isAncestor({
+          tree,
+          referenceNode: nodeId,
+          node: dropdownMenuContext.lastFocusedNode.nodeId,
+        })),
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
