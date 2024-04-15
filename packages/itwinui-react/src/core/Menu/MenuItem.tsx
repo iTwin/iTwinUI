@@ -5,16 +5,17 @@
 import * as React from 'react';
 import {
   SvgCaretRightSmall,
-  Portal,
+  // Portal,
   useMergedRefs,
   useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu } from './Menu.js';
+// import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
+// import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -107,10 +108,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
     React.useState(false);
   const parent = React.useContext(MenuItemContext);
@@ -180,6 +183,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onKeyDown,
   };
 
+  // const dropdownMenuContext = React.useContext(DropdownMenuContext);
+
+  // const { layered } = dropdownMenuContext;
+
   return (
     <ListItem
       as='div'
@@ -223,7 +230,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         </ListItem.Icon>
       )}
 
-      {subMenuItems.length > 0 && popover.open && (
+      {/* {subMenuItems.length > 0 && popover.open && (
         <Portal>
           <MenuItemContext.Provider
             value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
@@ -244,7 +251,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             </Menu>
           </MenuItemContext.Provider>
         </Portal>
-      )}
+      )} */}
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

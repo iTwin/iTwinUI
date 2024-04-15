@@ -15,8 +15,9 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { Menu } from '../Menu/Menu.js';
+// import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
+import { Surface } from '../Surface/Surface.js';
 
 export type DropdownMenuProps = {
   /**
@@ -36,6 +37,12 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
+  /**
+   * Whether the DropdownMenu is layered.
+   *
+   * @default false
+   */
+  layered?: boolean;
 } & Pick<
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
@@ -72,6 +79,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     matchWidth = false,
     onVisibleChange,
     portal = true,
+    layered = false,
     ...rest
   } = props;
 
@@ -90,6 +98,12 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
+      // console.log(menuItems(close));
+
+      menuItems(close).forEach((item) => {
+        console.log(item.props.subMenuItems);
+      });
+
       return menuItems(close);
     }
     return menuItems;
@@ -106,32 +120,67 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {cloneElementWithRef(children, (children) => ({
-        ...popover.getReferenceProps(children.props),
-        'aria-expanded': popover.open,
-        ref: mergeRefs(triggerRef, popover.refs.setReference),
-      }))}
-      {popover.open && (
-        <Portal portal={portal}>
-          <Menu
-            {...popover.getFloatingProps({
-              role,
-              ...rest,
-              onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                if (e.defaultPrevented) {
-                  return;
-                }
-                if (e.key === 'Tab') {
-                  close();
-                }
-              }),
-            })}
-            ref={popoverRef}
-          >
-            {menuContent}
-          </Menu>
-        </Portal>
-      )}
+      <DropdownMenuContext.Provider
+        value={{
+          layered: layered,
+        }}
+      >
+        {cloneElementWithRef(children, (children) => ({
+          ...popover.getReferenceProps(children.props),
+          'aria-expanded': popover.open,
+          ref: mergeRefs(triggerRef, popover.refs.setReference),
+        }))}
+
+        {popover.open && (
+          <Portal portal={portal}>
+            {
+              <Surface
+                {...popover.getFloatingProps({
+                  role,
+                  ...rest,
+                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    if (e.defaultPrevented) {
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      close();
+                    }
+                  }),
+                })}
+                ref={popoverRef}
+              >
+                <Surface.Header>ABC</Surface.Header>
+                <Surface.Body>{menuContent}</Surface.Body>
+              </Surface>
+            }
+            {/* <Menu
+              {...popover.getFloatingProps({
+                role,
+                ...rest,
+                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                  if (e.defaultPrevented) {
+                    return;
+                  }
+                  if (e.key === 'Tab') {
+                    close();
+                  }
+                }),
+              })}
+              ref={popoverRef}
+            >
+              {menuContent}
+            </Menu> */}
+          </Portal>
+        )}
+      </DropdownMenuContext.Provider>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
+
+// ----------------------------------------------------------------------------
+
+export const DropdownMenuContext = React.createContext<{
+  layered: DropdownMenuProps['layered'];
+}>({
+  layered: false,
+});
