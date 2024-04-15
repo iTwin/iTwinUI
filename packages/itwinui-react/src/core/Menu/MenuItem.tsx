@@ -259,6 +259,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    console.log('onMouseEnter', children);
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
     }
@@ -279,51 +280,63 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onClick: () => !disabled && onClick?.(value),
     onKeyDown,
     onMouseEnter,
+    // onMouseMove: (e) => {
+    //   if (e.target === e.currentTarget) {
+    //     console.log('onMouseMove', children);
+    //   }
+    // },
+    onMouseLeave: (e) => {
+      if (e.target === e.currentTarget) {
+        console.log('onMouseLeave', children);
+      }
+    },
     onFocus,
   };
 
   return (
-    <ListItem
-      as='div'
-      actionable
-      size={size}
-      active={isSelected}
-      disabled={disabled}
-      ref={useMergedRefs(
-        menuItemRef,
-        forwardedRef,
-        subMenuItems.length > 0 ? popover.refs.setReference : null,
-      )}
-      role={role}
-      tabIndex={disabled || role === 'presentation' ? undefined : -1}
-      aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
-      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-      aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
-      aria-disabled={disabled}
-      {...(subMenuItems.length === 0
-        ? { ...handlers, ...rest }
-        : popover.getReferenceProps({ ...handlers, ...rest }))}
-    >
-      {startIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {startIcon}
-        </ListItem.Icon>
-      )}
-      <ListItem.Content>
-        <div>{children}</div>
-        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
-      </ListItem.Content>
-      {!endIcon && subMenuItems.length > 0 && (
-        <ListItem.Icon as='span' aria-hidden>
-          <SvgCaretRightSmall />
-        </ListItem.Icon>
-      )}
-      {endIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {endIcon}
-        </ListItem.Icon>
-      )}
+    <>
+      <ListItem
+        as='div'
+        actionable
+        size={size}
+        active={isSelected}
+        disabled={disabled}
+        ref={useMergedRefs(
+          menuItemRef,
+          forwardedRef,
+          subMenuItems.length > 0 ? popover.refs.setReference : null,
+        )}
+        role={role}
+        tabIndex={disabled || role === 'presentation' ? undefined : -1}
+        aria-selected={isSelected}
+        aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
+        aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+        aria-disabled={disabled}
+        {...(subMenuItems.length === 0
+          ? { ...handlers, ...rest }
+          : popover.getReferenceProps({ ...handlers, ...rest }))}
+      >
+        {startIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {startIcon}
+          </ListItem.Icon>
+        )}
+        <ListItem.Content>
+          <div>{children}</div>
+          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+        </ListItem.Content>
+        {!endIcon && subMenuItems.length > 0 && (
+          <ListItem.Icon as='span' aria-hidden>
+            <SvgCaretRightSmall />
+          </ListItem.Icon>
+        )}
+        {endIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {endIcon}
+          </ListItem.Icon>
+        )}
+      </ListItem>
 
       {subMenuItems.length > 0 && popover.open && (
         <FloatingNode id={nodeId}>
@@ -345,7 +358,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </Portal>
         </FloatingNode>
       )}
-    </ListItem>
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 
