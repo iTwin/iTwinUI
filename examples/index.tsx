@@ -829,6 +829,12 @@ const NotificationMarkerStatusesExample = withThemeProvider(
 );
 export { NotificationMarkerStatusesExample };
 
+import { default as NotificationMarkerPulsingExampleRaw } from './NotificationMarker.pulsing';
+const NotificationMarkerPulsingExample = withThemeProvider(
+  NotificationMarkerPulsingExampleRaw,
+);
+export { NotificationMarkerPulsingExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as OverlayMainExampleRaw } from './Overlay.main';
