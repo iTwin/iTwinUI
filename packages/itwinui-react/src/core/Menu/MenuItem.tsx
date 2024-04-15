@@ -122,7 +122,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       if (event.parentId === nodeId) {
         dropdownMenuContext.setLastFocusedNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
-        // setIsNestedSubmenuVisible(false);
         menuItemRef.current?.focus();
       }
     };
@@ -272,8 +271,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
       dropdownMenuContext.setLastFocusedNode({ nodeId, parentId });
-
-      console.log('onFocus', children);
 
       tree?.events.emit('nodeFocused', {
         nodeId,

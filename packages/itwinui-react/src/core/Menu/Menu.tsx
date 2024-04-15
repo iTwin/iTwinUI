@@ -71,8 +71,6 @@ export const Menu = React.forwardRef((props, ref) => {
     }
 
     const currentIndex = focusedIndex ?? 0;
-    console.log('currentIndex', currentIndex);
-
     switch (event.key) {
       case 'ArrowDown': {
         setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
