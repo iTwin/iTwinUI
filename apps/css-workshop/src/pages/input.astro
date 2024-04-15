@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Input'>
@@ -196,13 +197,9 @@ import Layout from './_layout.astro';
           id='input-14'
           value='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         />
-        <button
-          class='iui-button iui-input-flex-container-icon'
-          data-iui-variant='borderless'
-          aria-label='Clear'
-        >
+        <Button_ class='iui-input-flex-container-icon' variant='borderless' aria-label='Clear'>
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </button>
+        </Button_>
       </div>
     </div>
   </section>
@@ -407,13 +404,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' id='search-2' value='test search input' />
-      <button
-        class='iui-button iui-input-flex-container-icon'
-        data-iui-variant='borderless'
-        data-iui-size='small'
-      >
+      <Button_ class='iui-input-flex-container-icon' variant='borderless' size='small'>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-disabled='true'>
       <span
@@ -423,13 +416,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' id='search-3' disabled />
-      <button
-        class='iui-button iui-input-flex-container-icon'
-        data-iui-variant='borderless'
-        disabled
-      >
+      <Button_ class='iui-input-flex-container-icon' variant='borderless' disabled>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' id='demo-search-hover'>
       <span
@@ -439,9 +428,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-status='positive'>
       <span
@@ -451,9 +440,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-status='warning'>
       <span
@@ -463,9 +452,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-status='negative'>
       <span
@@ -475,9 +464,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
     <div class='iui-input-flex-container iui-searchbox'>
       <span
@@ -490,15 +479,15 @@ import Layout from './_layout.astro';
       <p class='iui-text-block iui-text-muted' style='padding-right: var(--iui-size-s);'>0/3</p>
       <hr class='iui-divider' aria-orientation='vertical' />
 
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-chevron-down class='iui-button-icon' aria-hidden='true'></svg-chevron-down>
-      </button>
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      </Button_>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-chevron-up class='iui-button-icon' aria-hidden='true'></svg-chevron-up>
-      </button>
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
+      </Button_>
+      <Button_ class='iui-input-flex-container-icon' variant='borderless'>
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      </Button_>
     </div>
   </section>
 </Layout>

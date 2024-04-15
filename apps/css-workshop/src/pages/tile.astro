@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Badge from '../components/Badge.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Tile'>
@@ -108,25 +109,25 @@ import Badge from '../components/Badge.astro';
       </div>
 
       <div class='iui-tile-thumbnail'>
-        <button
+        <Button_
           aria-label='Type indicator'
           type='button'
-          class='iui-button iui-tile-thumbnail-type-indicator'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-type-indicator'
+          variant='borderless'
+          size='small'
         >
           <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        </button>
-        <button
+        </Button_>
+        <Button_
           aria-label='Favorited'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
-          data-iui-active='true'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
+          active
         >
           <svg-star class='iui-button-icon' aria-hidden='true'></svg-star>
-        </button>
+        </Button_>
         <svg-placeholder class='iui-thumbnail-icon' aria-hidden='true'></svg-placeholder>
       </div>
 
@@ -159,22 +160,21 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
+          <Button_
             aria-label='More options'
             type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+            variant='borderless'
+            size='small'
             id='test-button'
           >
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
 
       <div class='iui-tile-buttons'>
-        <button class='iui-button'> Button 1</button>
-        <button class='iui-button'> Button 2</button>
+        <Button_>Button 1</Button_>
+        <Button_>Button 2</Button_>
       </div>
     </div>
 
@@ -186,25 +186,25 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Type indicator'
           type='button'
-          class='iui-button iui-tile-thumbnail-type-indicator'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-type-indicator'
+          variant='borderless'
+          size='small'
         >
           <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        </button>
-        <button
+        </Button_>
+        <Button_
           aria-label='Favorited'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
-          data-iui-active='true'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
+          active
         >
           <svg-star class='iui-button-icon' aria-hidden='true'></svg-star>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-tile-content'>
@@ -217,20 +217,14 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
 
       <div class='iui-tile-buttons'>
-        <button class='iui-button'> Only button</button>
+        <Button_>Only button</Button_>
       </div>
     </div>
 
@@ -243,24 +237,24 @@ import Badge from '../components/Badge.astro';
       </div>
 
       <div class='iui-tile-thumbnail'>
-        <button
+        <Button_
           aria-label='Type indicator'
           type='button'
-          class='iui-button iui-tile-thumbnail-type-indicator'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-type-indicator'
+          variant='borderless'
+          size='small'
         >
           <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        </button>
-        <button
+        </Button_>
+        <Button_
           aria-label='Add to favorites'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
+        </Button_>
         <div class='iui-tile-thumbnail-badge-container'>
           <Badge backgroundColor='skyblue'>Badge</Badge>
           <Badge backgroundColor='celery'>Badge</Badge>
@@ -273,16 +267,15 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-description'>This tile uses many badges.</div>
 
         <div class='iui-tile-more-options'>
-          <button
+          <Button_
             aria-label='More options'
             type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+            variant='borderless'
+            size='small'
             id='test-button'
           >
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -301,15 +294,15 @@ import Badge from '../components/Badge.astro';
       </div>
 
       <div class='iui-tile-thumbnail'>
-        <button
+        <Button_
           aria-label='Info'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-info class='iui-button-icon' aria-hidden='true'></svg-info>
-        </button>
+        </Button_>
         <svg-imodel-hollow class='iui-thumbnail-icon' aria-hidden='true'></svg-imodel-hollow>
       </div>
 
@@ -329,15 +322,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -352,15 +339,15 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Info'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-info class='iui-button-icon' aria-hidden='true'></svg-info>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-tile-content'>
@@ -379,15 +366,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -403,15 +384,15 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Info'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-info class='iui-button-icon' aria-hidden='true'></svg-info>
-        </button>
+        </Button_>
         <div class='iui-tile-thumbnail-badge-container'>
           <Badge backgroundColor='froly'>Link</Badge>
         </div>
@@ -433,15 +414,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -455,15 +430,15 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Info'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-info class='iui-button-icon' aria-hidden='true'></svg-info>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-tile-content'>
@@ -482,15 +457,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -515,15 +484,9 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-description'>CEO</div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -544,15 +507,9 @@ import Badge from '../components/Badge.astro';
         <div class='iui-tile-description'>CEO</div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -566,12 +523,12 @@ import Badge from '../components/Badge.astro';
     <div class='iui-tile'>
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-map'></div>
-        <button
+        <Button_
           aria-label='Assetwise'
           type='button'
-          class='iui-button iui-tile-thumbnail-type-indicator'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-type-indicator'
+          variant='borderless'
+          size='small'
         >
           <span class='iui-button-icon' aria-hidden='true'>
             <svg viewBox='0 0 16 16'>
@@ -580,7 +537,7 @@ import Badge from '../components/Badge.astro';
               ></path>
             </svg>
           </span>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-tile-content'>
@@ -596,21 +553,15 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
 
       <div class='iui-tile-buttons'>
-        <button class='iui-button'> Manage</button>
-        <button class='iui-button'> Projects</button>
+        <Button_>Manage</Button_>
+        <Button_>Projects</Button_>
       </div>
     </div>
 
@@ -622,12 +573,12 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Assetwise'
           type='button'
-          class='iui-button iui-tile-thumbnail-type-indicator'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-type-indicator'
+          variant='borderless'
+          size='small'
         >
           <span class='iui-button-icon' aria-hidden='true'>
             <svg viewBox='0 0 16 16'>
@@ -636,7 +587,7 @@ import Badge from '../components/Badge.astro';
               ></path>
             </svg>
           </span>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-tile-content'>
@@ -648,20 +599,14 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
       <div class='iui-tile-buttons'>
-        <button class='iui-button'> Manage</button>
-        <button class='iui-button'> Projects</button>
+        <Button_>Manage</Button_>
+        <Button_>Projects</Button_>
       </div>
     </div>
   </section>
@@ -677,15 +622,15 @@ import Badge from '../components/Badge.astro';
       </div>
 
       <div class='iui-tile-thumbnail'>
-        <button
+        <Button_
           aria-label='Favorite'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
+        </Button_>
         <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
       </div>
 
@@ -701,15 +646,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -722,15 +661,15 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Favorite'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
+        </Button_>
         <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
       </div>
 
@@ -746,15 +685,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -768,15 +701,15 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-thumbnail'>
         <div class='iui-tile-thumbnail-picture demo-photo'></div>
-        <button
+        <Button_
           aria-label='Favorite'
           type='button'
-          class='iui-button iui-tile-thumbnail-quick-action'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          class='iui-tile-thumbnail-quick-action'
+          variant='borderless'
+          size='small'
         >
           <svg-star-hollow class='iui-button-icon' aria-hidden='true'></svg-star-hollow>
-        </button>
+        </Button_>
         <svg-play-circular class='iui-thumbnail-icon' aria-hidden='true'></svg-play-circular>
       </div>
 
@@ -792,15 +725,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -828,15 +755,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -857,15 +778,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -886,15 +801,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -916,15 +825,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -963,15 +866,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1004,15 +901,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1046,15 +937,9 @@ import Badge from '../components/Badge.astro';
           </div>
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1076,15 +961,9 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-content'>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1115,15 +994,9 @@ import Badge from '../components/Badge.astro';
           </div>
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1152,15 +1025,9 @@ import Badge from '../components/Badge.astro';
           </div>
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1184,15 +1051,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1215,15 +1076,9 @@ import Badge from '../components/Badge.astro';
         </div>
 
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1244,15 +1099,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1274,15 +1123,9 @@ import Badge from '../components/Badge.astro';
 
       <div class='iui-tile-content'>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1303,15 +1146,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
@@ -1330,15 +1167,9 @@ import Badge from '../components/Badge.astro';
           A collection of all Bentley Systems 2D and 3D marketing assets.
         </div>
         <div class='iui-tile-more-options'>
-          <button
-            aria-label='More options'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
+          <Button_ aria-label='More options' type='button' variant='borderless' size='small'>
             <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          </Button_>
         </div>
       </div>
     </div>
