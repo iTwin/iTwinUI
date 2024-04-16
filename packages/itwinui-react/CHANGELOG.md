@@ -10,7 +10,6 @@
   <ButtonGroup role="toolbar">
   ```
 
-- 1ac8942e0c8e15942adafb48759bcc11feb209e2: `Anchor` elements inside `Text` will now be underlined by default.
 - [#1986](https://github.com/iTwin/iTwinUI/pull/1986): `tableFilters.DateRangeFilter` now accepts `showYearSelection` to enable year-selection buttons.
 
   ```js
@@ -18,6 +17,7 @@
   ```
 
 - [#1971](https://github.com/iTwin/iTwinUI/pull/1971): Added a new `stretched` prop to `Button` to allow it to span the full width of its container.
+- [#1996](https://github.com/iTwin/iTwinUI/pull/1996): `Anchor` elements inside `Text` will now be underlined by default.
 
 ### Patch Changes
 
