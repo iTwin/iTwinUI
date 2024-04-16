@@ -337,11 +337,6 @@ it('should have only one active submenu at a time', async () => {
   const trigger = screen.getByTestId('trigger');
   fireEvent.click(trigger);
 
-  const root1 = screen.getByTestId('root-1');
-
-  // focus the first MenuItem
-  act(() => root1.focus());
-
   // go right to open and move focus to the first submenu.
   await userEvent.keyboard('{ArrowRight}');
   expect(screen.queryByTestId('sub-1')).toHaveFocus();
