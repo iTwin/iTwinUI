@@ -21,7 +21,6 @@ import {
   useFloatingTree,
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
-import { flushSync } from 'react-dom';
 
 export type MenuItemProps = {
   /**
@@ -234,7 +233,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          flushSync(() => setIsSubmenuVisible(true));
+          setIsSubmenuVisible(true);
           setRightArrowPressed(true);
 
           event.preventDefault();
