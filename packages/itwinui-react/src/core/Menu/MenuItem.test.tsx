@@ -346,3 +346,99 @@ it('should have only one active submenu at a time', async () => {
   fireEvent.mouseEnter(screen.getByTestId('root-2'));
   expect(screen.queryByTestId('sub-1')).toBeFalsy();
 });
+
+it.only('should support deep level submenus', async () => {
+  render(
+    <DropdownMenu
+      menuItems={(close) => [
+        <MenuItem
+          key='Item 1_1'
+          data-testid='Item 1_1'
+          subMenuItems={[
+            <MenuItem key='Item 2_1' data-testid='Item 2_1' onClick={close}>
+              Item 2_1
+            </MenuItem>,
+            <MenuItem key='Item 2_2' data-testid='Item 2_2' onClick={close}>
+              Item 2_2
+            </MenuItem>,
+            <MenuItem
+              key='Item 2_3'
+              data-testid='Item 2_3'
+              subMenuItems={[
+                <MenuItem key='Item 3_1' data-testid='Item 3_1' onClick={close}>
+                  Item 3_1
+                </MenuItem>,
+                <MenuItem key='Item 3_2' data-testid='Item 3_2' onClick={close}>
+                  Item 3_2
+                </MenuItem>,
+                <MenuItem
+                  key='Item 3_3'
+                  data-testid='Item 3_3'
+                  subMenuItems={[
+                    <MenuItem
+                      key='Item 4_1'
+                      data-testid='Item 4_1'
+                      onClick={close}
+                    >
+                      Item 4_1
+                    </MenuItem>,
+                    <MenuItem
+                      key='Item 4_2'
+                      data-testid='Item 4_2'
+                      onClick={close}
+                    >
+                      Item 4_2
+                    </MenuItem>,
+                  ]}
+                >
+                  Item 3_3
+                </MenuItem>,
+              ]}
+            >
+              Item 2_3
+            </MenuItem>,
+          ]}
+        >
+          Item 1_1
+        </MenuItem>,
+      ]}
+    >
+      <Button data-testid='trigger'>Menu</Button>
+    </DropdownMenu>,
+  );
+
+  // Open the DropdownMenu
+  const trigger = screen.getByTestId('trigger');
+  fireEvent.click(trigger);
+
+  // Go to the deepest level using keyboard
+  await userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowDown}');
+
+  expect(screen.queryByTestId('Item 4_2')).toHaveFocus();
+
+  // Hovering an ancestor "X" that has a submenu "Y" should close all submenus of "Y"
+  fireEvent.mouseEnter(screen.getByTestId('Item 1_1'));
+
+  expect(screen.queryByTestId('Item 2_1')).toBeTruthy();
+  expect(screen.queryByTestId('Item 2_2')).toBeTruthy();
+  expect(screen.queryByTestId('Item 2_3')).toBeTruthy();
+  expect(screen.queryByTestId('Item 3_1')).toBeFalsy();
+  expect(screen.queryByTestId('Item 3_2')).toBeFalsy();
+  expect(screen.queryByTestId('Item 3_3')).toBeFalsy();
+  expect(screen.queryByTestId('Item 4_1')).toBeFalsy();
+  expect(screen.queryByTestId('Item 4_2')).toBeFalsy();
+
+  // Go to the deepest level using mouse
+  fireEvent.mouseEnter(screen.getByTestId('Item 2_3'));
+  fireEvent.mouseEnter(screen.getByTestId('Item 3_3'));
+  fireEvent.mouseEnter(screen.getByTestId('Item 4_2'));
+
+  expect(screen.queryByTestId('Item 4_2')).toHaveFocus();
+});
