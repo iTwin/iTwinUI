@@ -276,15 +276,12 @@ it('should handle key press with sub menus', async () => {
   const trigger = screen.getByTestId('trigger');
   fireEvent.click(trigger);
 
-  // focus + right arrow to open sub menu
+  // focus + right arrow to open sub menu and move focus to it.
   const menuItem = screen.getByTestId('parent');
   act(() => menuItem.focus());
   await userEvent.keyboard('{ArrowRight}');
   const subMenuItem = screen.getByTestId('sub');
   expect(subMenuItem).toHaveTextContent('Test sub');
-
-  // go right to move focus
-  await userEvent.keyboard('{ArrowRight}');
   expect(subMenuItem).toHaveFocus();
 
   // going left should close that submenu and move the focus back to the parent menu item.
