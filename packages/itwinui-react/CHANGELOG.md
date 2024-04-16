@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.9.0
+
+### Minor Changes
+
+- [#1994](https://github.com/iTwin/iTwinUI/pull/1994): Added `role="toolbar"` support to `ButtonGroup`. Use this to enable the [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/), with arrow-key navigation functionality.
+
+  ```jsx
+  <ButtonGroup role="toolbar">
+  ```
+
+- [#1986](https://github.com/iTwin/iTwinUI/pull/1986): `tableFilters.DateRangeFilter` now accepts `showYearSelection` to enable year-selection buttons.
+
+  ```js
+  tableFilters.DateRangeFilter({ showYearSelection: true });
+  ```
+
+- [#1971](https://github.com/iTwin/iTwinUI/pull/1971): Added a new `stretched` prop to `Button` to allow it to span the full width of its container.
+- [#1996](https://github.com/iTwin/iTwinUI/pull/1996): `Anchor` elements inside `Text` will now be underlined by default.
+
+### Patch Changes
+
+- [#1997](https://github.com/iTwin/iTwinUI/pull/1997): Fixed an issue where draggable `Dialog` was overriding its intrinsic size after mount.
+- [#1981](https://github.com/iTwin/iTwinUI/pull/1981): Fixed `jest` detection logic to correctly exit from scenarios that should not be executed in unit test environments.
+- [#1982](https://github.com/iTwin/iTwinUI/pull/1982): Fixed an issue where some components (such as `InputGroup`) were trying to render `undefined`, which is not supported in React 17.
+- [#1986](https://github.com/iTwin/iTwinUI/pull/1986): Updated the date pickers in `tableFilters.DateRangeFilter` to _not_ display dates outside the current month.
+
 ## 3.8.1
 
 ### Patch Changes
