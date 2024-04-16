@@ -23,7 +23,7 @@ import Tag_ from '../components/Tag.astro';
     <Tag_ id='test-tag-1'>Tag</Tag_>
     <br />
 
-    <Tag_ style='max-width: 125px;'>Overflowing tag</Tag_>
+    <Tag_ style='max-width: 125px;' id='test-tag-2'>Overflowing tag</Tag_>
     <br />
     <Tag_ closeButton={false} >No button</Tag_>
   </section>
@@ -101,7 +101,7 @@ import Tag_ from '../components/Tag.astro';
   <h2>Truncate basic tag containers</h2>
   <section id='demo-truncate'>
     <div class='iui-tag-container iui-truncate'>
-      <Tag_ variant='basic'     
+      <Tag_ variant='basic' id='test-tag-3'
         >tags</Tag_><Tag_ variant='basic'
         >go</Tag_><Tag_ variant='basic' 
         >here</Tag_><Tag_ variant='basic' 
@@ -129,7 +129,7 @@ import Tag_ from '../components/Tag.astro';
     </div>
 
     <div class='iui-tag-container iui-truncate'>
-      <Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+      <Tag_ variant='basic' class='iui-anchor' as='a' href='#' id='test-tag-3'
         >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
         >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
         >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
