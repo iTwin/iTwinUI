@@ -279,6 +279,7 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
   const { content, children, portal = true, className, style, ...rest } = props;
 
   const tooltip = useTooltip(rest);
+  const refs = useMergedRefs(tooltip.refs.setFloating, forwardedRef);
 
   return (
     <>
@@ -287,16 +288,21 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
         ref: tooltip.refs.setReference,
       }))}
 
-      <Portal portal={portal}>
-        <Box
-          className={cx('iui-tooltip', className)}
-          ref={useMergedRefs(tooltip.refs.setFloating, forwardedRef)}
-          style={{ ...tooltip.floatingStyles, ...style }}
-          {...tooltip.floatingProps}
-        >
-          {content}
-        </Box>
-      </Portal>
+      {
+        // Tooltip must always be present in the DOM (even when closed) for ARIA to work
+        props.ariaStrategy !== 'none' || tooltip.context.open ? (
+          <Portal portal={portal}>
+            <Box
+              className={cx('iui-tooltip', className)}
+              ref={refs}
+              style={{ ...tooltip.floatingStyles, ...style }}
+              {...tooltip.floatingProps}
+            >
+              {content}
+            </Box>
+          </Portal>
+        ) : null
+      }
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
