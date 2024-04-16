@@ -213,9 +213,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           node: nodeId,
           referenceNode: dropdownMenuContext.lastFocusedNode.nodeId,
         })),
-    // dropdownMenuContext.lastFocusedNode.parentId === nodeId
-    // ),
-    // parentId === dropdownMenuContext.lastFocusedNode.nodeId),
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
