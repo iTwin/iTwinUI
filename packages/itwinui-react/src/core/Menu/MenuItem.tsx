@@ -210,9 +210,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       (dropdownMenuContext.lastFocusedNode != null &&
         isAncestor({
           tree,
-          referenceNode: nodeId,
-          node: dropdownMenuContext.lastFocusedNode.nodeId,
+          node: nodeId,
+          referenceNode: dropdownMenuContext.lastFocusedNode.nodeId,
         })),
+    // dropdownMenuContext.lastFocusedNode.parentId === nodeId
+    // ),
+    // parentId === dropdownMenuContext.lastFocusedNode.nodeId),
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
@@ -371,7 +374,7 @@ const isAncestor = ({
   node: string;
 }) => {
   const ancestorTree = getAncestorTree({ tree });
-  return ancestorTree[referenceNode]?.includes(node);
+  return ancestorTree[node]?.includes(referenceNode);
 };
 
 /**
