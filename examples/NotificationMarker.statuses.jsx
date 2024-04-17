@@ -9,12 +9,6 @@ import { SvgNotification } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <div className='demo-container'>
-      <Text>Primary</Text>
-      <Text>Positive</Text>
-      <Text>Warning</Text>
-      <Text>Negative</Text>
-      <Text>White</Text>
-
       <IconButton label='Primary' styleType='borderless'>
         <NotificationMarker status='primary'>
           <SvgNotification />
@@ -39,18 +33,17 @@ export default () => {
         </NotificationMarker>
       </IconButton>
 
-      <div style={{ display: 'flex', columnGap: '10px' }}>
-        <IconButton label='White' styleType='high-visibility'>
-          <NotificationMarker status='white'>
-            <SvgNotification />
-          </NotificationMarker>
-        </IconButton>
-        <IconButton label='White' styleType='cta'>
-          <NotificationMarker status='white'>
-            <SvgNotification />
-          </NotificationMarker>
-        </IconButton>
-      </div>
+      <IconButton label='White' styleType='high-visibility'>
+        <NotificationMarker status='white'>
+          <SvgNotification />
+        </NotificationMarker>
+      </IconButton>
+
+      <IconButton label='White' styleType='cta'>
+        <NotificationMarker status='white'>
+          <SvgNotification />
+        </NotificationMarker>
+      </IconButton>
     </div>
   );
 };
