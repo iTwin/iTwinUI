@@ -12,15 +12,27 @@ thumbnail: #TODO
 
 ## Usage
 
-Wrap the content with the `NotificationMarker` component. You can use the `enabled` prop to show or hide the notification marker but still keep it in the DOM (e.g. to prevent layout shifts).
+Wrap the content with the `NotificationMarker` component.
 
 ```jsx {2, 4}
 <IconButton label='Notifications' styleType='borderless'>
-  <NotificationMarker enabled={notifications.length > 0}>
+  <NotificationMarker>
     <SvgNotification />
   </NotificationMarker>
 </IconButton>
 ```
+
+### Conditional rendering
+
+There are many situations when the notification marker needs to appear/disappear depending on the application lifetime. Instead of conditionally rendering the `NotificationMarker` in such situations, the `enabled` prop can be used.
+
+```jsx
+<NotificationMarker enabled={notifications.length 0}>
+  …
+</NotificationMarker>
+```
+
+When `enabled` is set to `false`, the DOM element will still be present, but the notification marker will not be displayed visually.
 
 ### Status
 
