@@ -141,16 +141,27 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange,
-    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    middleware: [
-      middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
-      middleware.flip && flip(),
-      middleware.shift && shift(),
-      middleware.size && size(),
-      middleware.autoPlacement && autoPlacement(),
-      middleware.inline && inline(),
-      middleware.hide && hide(),
-    ].filter(Boolean),
+    whileElementsMounted: React.useMemo(
+      () =>
+        // autoUpdate is expensive and should only be called when tooltip is open
+        open ? (...args) => autoUpdate(...args, autoUpdateOptions) : undefined,
+      [autoUpdateOptions, open],
+    ),
+    middleware: React.useMemo(
+      () =>
+        [
+          middleware.offset !== undefined
+            ? offset(middleware.offset)
+            : offset(4),
+          middleware.flip && flip(),
+          middleware.shift && shift(),
+          middleware.size && size(),
+          middleware.autoPlacement && autoPlacement(),
+          middleware.inline && inline(),
+          middleware.hide && hide(),
+        ].filter(Boolean),
+      [middleware],
+    ),
     ...(reference && { elements: { reference } }),
   });
 
@@ -242,7 +253,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   return React.useMemo(
-    () => ({ getReferenceProps, floatingProps, ...floating }),
+    () => ({
+      getReferenceProps,
+      floatingProps,
+      ...floating,
+      // styles are not relevant when tooltip is not open
+      floatingStyles: floating.context.open ? floating.floatingStyles : {},
+    }),
     [getReferenceProps, floatingProps, floating],
   );
 };
