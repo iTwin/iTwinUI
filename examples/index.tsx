@@ -823,6 +823,26 @@ export { NonIdealStateErrorExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as NotificationMarkerMainExampleRaw } from './NotificationMarker.main';
+const NotificationMarkerMainExample = withThemeProvider(
+  NotificationMarkerMainExampleRaw,
+);
+export { NotificationMarkerMainExample };
+
+import { default as NotificationMarkerStatusesExampleRaw } from './NotificationMarker.statuses';
+const NotificationMarkerStatusesExample = withThemeProvider(
+  NotificationMarkerStatusesExampleRaw,
+);
+export { NotificationMarkerStatusesExample };
+
+import { default as NotificationMarkerPulsingExampleRaw } from './NotificationMarker.pulsing';
+const NotificationMarkerPulsingExample = withThemeProvider(
+  NotificationMarkerPulsingExampleRaw,
+);
+export { NotificationMarkerPulsingExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as OverlayMainExampleRaw } from './Overlay.main';
 const OverlayMainExample = withThemeProvider(OverlayMainExampleRaw);
 export { OverlayMainExample };
