@@ -346,7 +346,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 /** Applies `display: contents` to the parent div. */
-const DisplayContents = () => {
+const DisplayContents = React.memo(() => {
   return (
     <ShadowRoot
       css={`
@@ -358,4 +358,4 @@ const DisplayContents = () => {
       <slot />
     </ShadowRoot>
   );
-};
+});
