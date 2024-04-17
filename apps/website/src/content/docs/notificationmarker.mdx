@@ -27,16 +27,14 @@ The `NotificationMarker` component should be wrapped around the content which ne
 There are many situations when the notification marker needs to appear/disappear depending on the application lifetime. Instead of conditionally rendering the `NotificationMarker` in such situations, the `enabled` prop can be used.
 
 ```jsx
-<NotificationMarker enabled={notifications.length 0}>
-  …
-</NotificationMarker>
+<NotificationMarker enabled={notifications.length > 0}>…</NotificationMarker>
 ```
 
 When `enabled` is set to `false`, the DOM element will still be present, but the notification marker will not be displayed visually.
 
 ### Status
 
-`NotificationMarker`s can have the follow statuese:
+`NotificationMarker`s can have the follow statuses:
 
 - `primary` (default)
 - `positive`
