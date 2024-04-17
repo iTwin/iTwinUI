@@ -180,6 +180,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
           'iui-field',
           'iui-table-paginator-page-button',
         )}
+        data-iui-variant='borderless'
         data-iui-size={buttonSize}
         data-iui-active={index === currentPage}
         onClick={() => onPageChange(index)}
