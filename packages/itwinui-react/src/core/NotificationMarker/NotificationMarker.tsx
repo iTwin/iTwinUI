@@ -31,12 +31,10 @@ type NotificationMarkerProps = {
    */
   pulsing?: boolean;
   /**
-   * Set this programmatically to false when you just want to render the passed children without the notification
+   * You can use this prop to show or hide the notification marker but still keep it in the DOM (e.g. to prevent layout shifts).
    * @default true
    * @example
-   * let [newMessagesCount, ...] = useState(0);
-   * ...
-   * <NotificationMarker enabled={newMessagesCount > 0}>
+   * <NotificationMarker enabled={notifications.length > 0}>
    *   <SvgNotification />
    * </NotificationMarker>
    */

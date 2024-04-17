@@ -12,11 +12,11 @@ thumbnail: #TODO
 
 ## Usage
 
-Wrap the content (e.g. the content in an [`IconButton`](button#iconbutton)) with the `NotificationMarker` component.
+Wrap the content with the `NotificationMarker` component. You can use the `enabled` prop to show or hide the notification marker but still keep it in the DOM (e.g. to prevent layout shifts).
 
 ```jsx {2, 4}
 <IconButton label='Notifications' styleType='borderless'>
-  <NotificationMarker status='primary'>
+  <NotificationMarker enabled={notifications.length > 0}>
     <SvgNotification />
   </NotificationMarker>
 </IconButton>
@@ -37,10 +37,6 @@ Wrap the content (e.g. the content in an [`IconButton`](button#iconbutton)) with
 </LiveExample>
 
 The `white` status is used on colored backgrounds, such as when using it in the [high visibility](button#high-visibility) or the [call-to-action](button#call-to-action) buttons.
-
-### Controlled
-
-The `enabled` prop can be used to programatically show or hide the notification marker.
 
 ### Pulsing
 
