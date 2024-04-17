@@ -1,6 +1,6 @@
 ---
 type Props = {
-  wrapperProps?: React.ComponentProps;
+  wrapperProps?: astroHTML.JSX.HTMLAttributes;
   isLoading?: boolean;
   indeterminate?: boolean;
   variant?: 'eyeball';
@@ -19,7 +19,6 @@ const {
 } = Astro.props;
 
 const basic = !Astro.slots.has('default');
-const { style: wrapperStyle, ...restWrapperProps } = wrapperProps;
 
 const inputProps = {
   ['class:list']: [
@@ -50,7 +49,7 @@ const inputProps = {
         },
       ]}
       style={wrapperStyle}
-      {...restWrapperProps}
+      {...wrapperProps}
     >
       <input {...inputProps} />
       {isLoading && (
