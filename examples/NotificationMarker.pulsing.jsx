@@ -8,12 +8,10 @@ import { SvgNotification } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <div className='demo-container'>
-      <IconButton label='Notifications' styleType='borderless'>
-        <NotificationMarker status='negative' pulsing>
-          <SvgNotification />
-        </NotificationMarker>
-      </IconButton>
-    </div>
+    <IconButton label='Notifications' styleType='borderless'>
+      <NotificationMarker status='negative' pulsing>
+        <SvgNotification />
+      </NotificationMarker>
+    </IconButton>
   );
 };
