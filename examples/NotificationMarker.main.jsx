@@ -9,7 +9,7 @@ import { SvgNotification } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <NotificationMarker status='primary'>
-      <SvgNotification className='icon' />
+      <SvgNotification />
     </NotificationMarker>
   );
 };
