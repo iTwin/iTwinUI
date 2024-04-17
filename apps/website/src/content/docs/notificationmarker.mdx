@@ -12,6 +12,16 @@ thumbnail: #TODO
 
 ## Usage
 
+Wrap the content (e.g. the content in an [`IconButton`](button#iconbutton)) with the `NotificationMarker` component.
+
+```jsx {2, 4}
+<IconButton label='Notifications' styleType='borderless'>
+  <NotificationMarker status='primary'>
+    <SvgNotification />
+  </NotificationMarker>
+</IconButton>
+```
+
 ### Status
 
 `NotificationMarker`s can have the follow statuese:
