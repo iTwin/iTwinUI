@@ -12,7 +12,6 @@ export default () => {
       <NotificationMarker status='primary'>
         <SvgNotification className='icon' />
       </NotificationMarker>
-      <NotificationMarker status='primary'>Normal</NotificationMarker>
     </div>
   );
 };

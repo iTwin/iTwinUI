@@ -14,10 +14,6 @@ export default () => {
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
-
-      <NotificationMarker status='negative' pulsing>
-        <Text style={{ fontWeight: '700' }}>URGENT</Text>
-      </NotificationMarker>
     </div>
   );
 };
