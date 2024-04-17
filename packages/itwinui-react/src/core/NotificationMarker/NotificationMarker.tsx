@@ -31,12 +31,15 @@ type NotificationMarkerProps = {
    */
   pulsing?: boolean;
   /**
-   * You can use this prop to show or hide the notification marker but still keep it in the DOM (e.g. to prevent layout shifts).
-   * @default true
+   * Instead of conditionally rendering the `NotificationMarker`, the `enabled` prop can be used.
+   *
+   * When `enabled` is set to `false`, the DOM element will still be present, but the notification marker will not be displayed visually.
+   *
    * @example
    * <NotificationMarker enabled={notifications.length > 0}>
-   *   <SvgNotification />
+   *  …
    * </NotificationMarker>
+   * @default true
    */
   enabled?: boolean;
 };
