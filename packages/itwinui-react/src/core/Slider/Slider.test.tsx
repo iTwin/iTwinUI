@@ -202,7 +202,7 @@ it('should not show tooltip if visibility is overridden', async () => {
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
-  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
+  expect(document.querySelector('.iui-tooltip')).toBeNull();
 });
 
 it('should show custom tooltip when focused', async () => {
@@ -502,7 +502,7 @@ it('should show tooltip on thumb hover', async () => {
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
-  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
+  expect(document.querySelector('.iui-tooltip')).toBeNull();
 
   vi.useFakeTimers();
   fireEvent.mouseEnter(thumb);
@@ -519,7 +519,7 @@ it('should show tooltip on thumb focus', async () => {
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
-  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
+  expect(document.querySelector('.iui-tooltip')).toBeNull();
 
   await userEvent.tab();
 
