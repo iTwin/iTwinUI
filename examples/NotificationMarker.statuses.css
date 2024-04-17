@@ -3,6 +3,7 @@
   place-items: start;
   row-gap: 20px;
   column-gap: 30px;
-  grid-template-columns: fit-content(1px) auto;
+  grid-template-columns: auto auto auto auto auto;
   align-items: center;
+  justify-items: center;
 }

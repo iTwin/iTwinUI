@@ -10,41 +10,42 @@ export default () => {
   return (
     <div className='demo-container'>
       <Text>Primary</Text>
-      <IconButton label='Notifications' styleType='borderless'>
+      <Text>Positive</Text>
+      <Text>Warning</Text>
+      <Text>Negative</Text>
+      <Text>White</Text>
+
+      <IconButton label='Primary' styleType='borderless'>
         <NotificationMarker status='primary'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <Text>Positive</Text>
-      <IconButton label='Notifications' styleType='borderless'>
+      <IconButton label='Positive' styleType='borderless'>
         <NotificationMarker status='positive'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <Text>Warning</Text>
-      <IconButton label='Notifications' styleType='borderless'>
+      <IconButton label='Warning' styleType='borderless'>
         <NotificationMarker status='warning'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <Text>Negative</Text>
-      <IconButton label='Notifications' styleType='borderless'>
+      <IconButton label='Negative' styleType='borderless'>
         <NotificationMarker status='negative'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <Text>White</Text>
       <div style={{ display: 'flex', columnGap: '10px' }}>
-        <IconButton label='Notifications' styleType='high-visibility'>
+        <IconButton label='White' styleType='high-visibility'>
           <NotificationMarker status='white'>
             <SvgNotification />
           </NotificationMarker>
         </IconButton>
-        <IconButton label='Notifications' styleType='cta'>
+        <IconButton label='White' styleType='cta'>
           <NotificationMarker status='white'>
             <SvgNotification />
           </NotificationMarker>
