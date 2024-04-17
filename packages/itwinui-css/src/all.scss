@@ -4,6 +4,7 @@
 
 @layer itwinui.v3 {
   @include meta.load-css('global');
+  @include meta.load-css('utils/utils');
   @include meta.load-css('field');
   @include meta.load-css('alert/alert');
   @include meta.load-css('anchor/anchor');
@@ -53,6 +54,5 @@
   @include meta.load-css('tooltip/tooltip');
   @include meta.load-css('transfer-list/transfer-list');
   @include meta.load-css('tree/tree');
-  @include meta.load-css('utils/utils');
   @include meta.load-css('workflow-diagram/workflow-diagram');
 }

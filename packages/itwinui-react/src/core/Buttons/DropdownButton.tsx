@@ -65,6 +65,7 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
     >
       <Button
         className={cx('iui-button-dropdown', className)}
+        data-iui-type='dropdown'
         size={size}
         styleType={styleType}
         endIcon={

@@ -661,7 +661,7 @@ const SelectButton = React.forwardRef((props, forwardedRef) => {
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       {...rest}
       ref={forwardedRef}
-      className={cx('iui-select-button', props.className)}
+      className={cx('iui-select-button iui-field', props.className)}
     />
   );
 }) as PolymorphicForwardRefComponent<
