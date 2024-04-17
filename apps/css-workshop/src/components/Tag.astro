@@ -13,14 +13,11 @@ import Button_ from './Button.astro'
     className,
   ]}
   {...props}
->
-  {
+>{
     variant === 'basic' ? (
       <slot />
     ) : (
-      <span class='iui-tag-label'>
-        <slot />
-      </span>
+      <span class='iui-tag-label'><slot /></span>
     )
   }{
     variant !== 'basic'  && closeButton && (
@@ -30,8 +27,8 @@ import Button_ from './Button.astro'
         variant='borderless'
         size='small'
         type='button'
-      >
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
+      ><svg-close-small class='iui-button-icon' aria-hidden='true'
+        ></svg-close-small>
       </Button_>
     )
   }
