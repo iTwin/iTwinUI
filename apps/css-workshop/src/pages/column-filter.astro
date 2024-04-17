@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Column filter'>
@@ -31,12 +32,12 @@ import Layout from './_layout.astro';
       </label>
       <input class='iui-input' />
       <div class='iui-button-bar'>
-        <button class='iui-button' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Filter</span>
-        </button>
-        <button class='iui-button'>
+        </Button_>
+        <Button_>
           <span>Clear</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </section>
@@ -50,26 +51,26 @@ import Layout from './_layout.astro';
         <div class='iui-input-label'>From</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020' />
-          <button
-            class='iui-button iui-input-flex-container-icon'
-            data-iui-variant='borderless'
+          <Button_
+            class='iui-input-flex-container-icon'
+            variant='borderless'
             aria-label='Choose date'
           >
             <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </button>
+          </Button_>
         </div>
       </label>
       <label class='iui-input-grid' data-iui-label-placement='inline'>
         <div class='iui-input-label'>To</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020' />
-          <button
-            class='iui-button iui-input-flex-container-icon'
-            data-iui-variant='borderless'
+          <Button_
+            class='iui-input-flex-container-icon'
+            variant='borderless'
             aria-label='Choose date'
           >
             <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </button>
+          </Button_>
         </div>
       </label>
 
@@ -78,12 +79,12 @@ import Layout from './_layout.astro';
           <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
           <span class='iui-toggle-switch-label'>All day</span>
         </label>
-        <button class='iui-button' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Filter</span>
-        </button>
-        <button class='iui-button'>
+        </Button_>
+        <Button_>
           <span>Clear</span>
-        </button>
+        </Button_>
       </div>
     </div>
 
@@ -94,26 +95,26 @@ import Layout from './_layout.astro';
         <div class='iui-input-label'>From</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020 9:00 AM' />
-          <button
-            class='iui-button iui-input-flex-container-icon'
-            data-iui-variant='borderless'
+          <Button_
+            class='iui-input-flex-container-icon'
+            variant='borderless'
             aria-label='Choose date'
           >
             <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </button>
+          </Button_>
         </div>
       </label>
       <label class='iui-input-grid' data-iui-label-placement='inline'>
         <div class='iui-input-label'>To</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020 12:00 PM' />
-          <button
-            class='iui-button iui-input-flex-container-icon'
-            data-iui-variant='borderless'
+          <Button_
+            class='iui-input-flex-container-icon'
+            variant='borderless'
             aria-label='Choose date'
           >
             <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </button>
+          </Button_>
         </div>
       </label>
 
@@ -122,12 +123,12 @@ import Layout from './_layout.astro';
           <input class='iui-toggle-switch' type='checkbox' role='switch' />
           <span class='iui-toggle-switch-label'>All day</span>
         </label>
-        <button class='iui-button' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Filter</span>
-        </button>
-        <button class='iui-button'>
+        </Button_>
+        <Button_>
           <span>Clear</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </section>

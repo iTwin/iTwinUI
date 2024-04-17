@@ -44,7 +44,7 @@ export type ButtonProps = {
    *
    * This is useful on narrow containers and mobile views.
    */
-  stretch?: boolean;
+  stretched?: boolean;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
@@ -67,7 +67,7 @@ export const Button = React.forwardRef((props, ref) => {
     labelProps,
     startIconProps,
     endIconProps,
-    stretch,
+    stretched,
     ...rest
   } = props;
 
@@ -80,7 +80,7 @@ export const Button = React.forwardRef((props, ref) => {
       {...rest}
       style={
         {
-          '--_iui-width': stretch ? '100%' : undefined,
+          '--_iui-width': stretched ? '100%' : undefined,
           ...props.style,
         } as React.CSSProperties
       }
