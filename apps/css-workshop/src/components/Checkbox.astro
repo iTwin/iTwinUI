@@ -1,6 +1,6 @@
 ---
 type Props = {
-  wrapperStyle?: astroHTML.JSX.CSSProperties;
+  wrapperProps?: React.ComponentProps;
   isLoading?: boolean;
   indeterminate?: boolean;
   variant?: 'eyeball';
@@ -14,11 +14,12 @@ const {
   isLoading,
   indeterminate,
   variant,
-  wrapperStyle,
+  wrapperProps = {},
   ...props
 } = Astro.props;
 
 const basic = !Astro.slots.has('default');
+const { style: wrapperStyle, ...restWrapperProps } = wrapperProps;
 
 const inputProps = {
   ['class:list']: [
@@ -36,10 +37,7 @@ const inputProps = {
 };
 ---
 
-{
-  /* 
-// @ts-ignore */
-}{basic && <input {...inputProps} />}
+{basic && <input {...inputProps} />}
 {
   !basic && (
     <label
@@ -52,9 +50,8 @@ const inputProps = {
         },
       ]}
       style={wrapperStyle}
+      {...restWrapperProps}
     >
-      {/* 
-// @ts-ignore */}
       <input {...inputProps} />
       {isLoading && (
         <div
@@ -72,6 +69,5 @@ const inputProps = {
 
 <script>
   const indeterminateInputs = [...document.querySelectorAll('input[indeterminate]')];
-  //@ts-ignore
   indeterminateInputs.forEach((input) => (input.indeterminate = true));
 </script>
