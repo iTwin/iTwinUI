@@ -19,7 +19,6 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
-  type OpenChangeReason,
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 
@@ -203,29 +202,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ],
   );
 
-  const onOpenChange = (
-    open: boolean,
-    event?: Event,
-    reason?: OpenChangeReason,
-  ) => {
-    console.log('onOpenChange', children, open, event, reason);
-
-    // if (reason === "hover") {
-
-    // }
-
-    if (!open && dropdownMenuContext.lastFocusedNode?.parentId === nodeId) {
-      return;
-    }
-
-    setIsSubmenuVisible(open);
-  };
-
   const popover = usePopover({
     nodeId,
-    visible: isSubmenuVisible,
-    onOpenChange: onOpenChange,
-    // onVisibleChange: setIsSubmenuVisible,
+    visible:
+      isSubmenuVisible ||
+      dropdownMenuContext.lastFocusedNode?.parentId === nodeId,
+    onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: { hover: true },
   });
