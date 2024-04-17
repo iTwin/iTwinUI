@@ -14,7 +14,7 @@ const {
   isLoading,
   indeterminate,
   variant,
-  wrapperProps = {},
+  wrapperProps,
   ...props
 } = Astro.props;
 
@@ -33,7 +33,7 @@ const inputProps = {
   type: 'checkbox',
   disabled: disabled,
   ...props,
-};
+} as astroHTML.JSX.InputHTMLAttributes;
 ---
 
 {basic && <input {...inputProps} />}
@@ -66,6 +66,10 @@ const inputProps = {
 }
 
 <script>
-  const indeterminateInputs = [...document.querySelectorAll('input[indeterminate]')];
-  indeterminateInputs.forEach((input) => (input.indeterminate = true));
+  const indeterminateInputs = [
+    ...document.querySelectorAll<HTMLInputElement>('input[type=checkbox][indeterminate]'),
+  ];
+  indeterminateInputs.forEach((input) => {
+    input.indeterminate = true;
+  });
 </script>
