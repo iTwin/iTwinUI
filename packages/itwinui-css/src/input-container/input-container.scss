@@ -178,12 +178,6 @@
       opacity: 1;
     }
 
-    &:where([disabled], :disabled, [aria-disabled='true']) {
-      &::placeholder {
-        color: transparent;
-      }
-    }
-
     &:focus {
       outline: none;
     }
