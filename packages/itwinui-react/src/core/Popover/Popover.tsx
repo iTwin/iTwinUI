@@ -32,7 +32,6 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
-  useIsClient,
   useLayoutEffect,
   useMergedRefs,
 } from '../../utils/index.js';
@@ -290,8 +289,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
   const triggerId = `${useId()}-trigger`;
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
-  const portalTo = usePortalTo(portal);
-  const isClient = useIsClient();
 
   useLayoutEffect(() => {
     if (!positionReference) {
@@ -309,10 +306,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
         ref: popover.refs.setReference,
       }))}
 
-      {isClient && popover.open ? (
-        <FloatingPortal root={portalTo}>
-          <DisplayContents />
-
+      {popover.open ? (
+        <PopoverPortal portal={portal}>
           <ThemeProvider
             portalContainer={popoverElement} // portal nested popovers into this one
           >
@@ -339,11 +334,27 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
               </Box>
             </FloatingFocusManager>
           </ThemeProvider>
-        </FloatingPortal>
+        </PopoverPortal>
       ) : null}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
+
+// ----------------------------------------------------------------------------
+
+const PopoverPortal = ({
+  children,
+  portal = true,
+}: React.PropsWithChildren<PortalProps>) => {
+  const portalTo = usePortalTo(portal);
+
+  return (
+    <FloatingPortal root={portalTo}>
+      <DisplayContents />
+      {children}
+    </FloatingPortal>
+  );
+};
 
 // ----------------------------------------------------------------------------
 
