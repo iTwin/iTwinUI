@@ -141,16 +141,27 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange,
-    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    middleware: [
-      middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
-      middleware.flip && flip(),
-      middleware.shift && shift(),
-      middleware.size && size(),
-      middleware.autoPlacement && autoPlacement(),
-      middleware.inline && inline(),
-      middleware.hide && hide(),
-    ].filter(Boolean),
+    whileElementsMounted: React.useMemo(
+      () =>
+        // autoUpdate is expensive and should only be called when tooltip is open
+        open ? (...args) => autoUpdate(...args, autoUpdateOptions) : undefined,
+      [autoUpdateOptions, open],
+    ),
+    middleware: React.useMemo(
+      () =>
+        [
+          middleware.offset !== undefined
+            ? offset(middleware.offset)
+            : offset(4),
+          middleware.flip && flip(),
+          middleware.shift && shift(),
+          middleware.size && size(),
+          middleware.autoPlacement && autoPlacement(),
+          middleware.inline && inline(),
+          middleware.hide && hide(),
+        ].filter(Boolean),
+      [middleware],
+    ),
     ...(reference && { elements: { reference } }),
   });
 
@@ -242,7 +253,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   return React.useMemo(
-    () => ({ getReferenceProps, floatingProps, ...floating }),
+    () => ({
+      getReferenceProps,
+      floatingProps,
+      ...floating,
+      // styles are not relevant when tooltip is not open
+      floatingStyles: floating.context.open ? floating.floatingStyles : {},
+    }),
     [getReferenceProps, floatingProps, floating],
   );
 };
@@ -262,6 +279,7 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
   const { content, children, portal = true, className, style, ...rest } = props;
 
   const tooltip = useTooltip(rest);
+  const refs = useMergedRefs(tooltip.refs.setFloating, forwardedRef);
 
   return (
     <>
@@ -270,16 +288,21 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
         ref: tooltip.refs.setReference,
       }))}
 
-      <Portal portal={portal}>
-        <Box
-          className={cx('iui-tooltip', className)}
-          ref={useMergedRefs(tooltip.refs.setFloating, forwardedRef)}
-          style={{ ...tooltip.floatingStyles, ...style }}
-          {...tooltip.floatingProps}
-        >
-          {content}
-        </Box>
-      </Portal>
+      {
+        // Tooltip must always be present in the DOM (even when closed) for ARIA to work
+        props.ariaStrategy !== 'none' || tooltip.context.open ? (
+          <Portal portal={portal}>
+            <Box
+              className={cx('iui-tooltip', className)}
+              ref={refs}
+              style={{ ...tooltip.floatingStyles, ...style }}
+              {...tooltip.floatingProps}
+            >
+              {content}
+            </Box>
+          </Portal>
+        ) : null
+      }
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
