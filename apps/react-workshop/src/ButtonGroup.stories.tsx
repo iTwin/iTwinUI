@@ -28,7 +28,7 @@ export default {
 
 export const WithIcons = () => {
   return (
-    <ButtonGroup>
+    <ButtonGroup role='toolbar'>
       <IconButton label='Add' onClick={() => console.log('Clicked add!')}>
         <SvgAdd />
       </IconButton>
