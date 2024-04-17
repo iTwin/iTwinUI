@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.9.1
+
+### Patch Changes
+
+- [#2005](https://github.com/iTwin/iTwinUI/pull/2005): Improved `IconButton` so that its tooltip is removed from the DOM when not visible.
+- [#2004](https://github.com/iTwin/iTwinUI/pull/2004): Fixed a performance issue in `Tooltip` where expensive calculations were being run even when the tooltip was not visible.
+
 ## 3.9.0
 
 ### Minor Changes
