@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Breadcrumbs'>
@@ -30,10 +31,10 @@ import Layout from './_layout.astro';
   <h2>Breadcrumbs anchor</h2>
   <section id='demo-anchors'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <button class='iui-button iui-button-dropdown' data-iui-variant='borderless'>
+      <Button_ variant='borderless' iuiType='dropdown'>
         <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </button>
+      </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
           <a class='iui-anchor iui-breadcrumbs-content' href='#'> Root</a>
@@ -71,10 +72,10 @@ import Layout from './_layout.astro';
   <h2>Breadcrumbs button</h2>
   <section id='demo-buttons-1'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <button class='iui-button iui-button-dropdown' data-iui-variant='borderless'>
+      <Button_ variant='borderless' iuiType='dropdown'>
         <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </button>
+      </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
           <button class='iui-breadcrumbs-content'>
@@ -118,10 +119,10 @@ import Layout from './_layout.astro';
   <h2>Overflow button</h2>
   <section id='demo-buttons-2'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <button class='iui-button iui-button-dropdown' data-iui-variant='borderless'>
+      <Button_ variant='borderless' iuiType='dropdown'>
         <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </button>
+      </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
           <button class='iui-breadcrumbs-content'>
@@ -167,19 +168,19 @@ import Layout from './_layout.astro';
   <h2>After clicking "you are here"</h2>
   <section id='demo-not-tested'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <button class='iui-button iui-button-dropdown' data-iui-variant='borderless'>
+      <Button_ variant='borderless' iuiType='dropdown'>
         <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </button>
+      </Button_>
       <label class='iui-input-grid iui-inline-label iui-inline-icon'>
         <input
           value='C:/Root/Lorem/Ipsum/Nested/Double nested folder with truncation/You are here/'
           class='iui-input'
           spellcheck='false'
         />
-        <button class='iui-button' data-iui-variant='borderless' aria-label='Close'>
+        <Button_ variant='borderless' aria-label='Close'>
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </button>
+        </Button_>
       </label>
     </nav>
   </section>
