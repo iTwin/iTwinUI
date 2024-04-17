@@ -40,22 +40,22 @@
   }
 
   @include variant.iui-button-variant;
+}
 
-  &[data-iui-type='feedback'] {
-    @include idea.iui-button-idea;
+.iui-button-dropdown {
+  @include base.iui-button-dropdown;
+
+  &[data-iui-size='small'] {
+    @include base.iui-button-dropdown(small);
   }
 
-  &[data-iui-type='dropdown'] {
-    @include base.iui-button-dropdown;
-
-    &[data-iui-size='small'] {
-      @include base.iui-button-dropdown(small);
-    }
-
-    &[data-iui-size='large'] {
-      @include base.iui-button-dropdown(large);
-    }
+  &[data-iui-size='large'] {
+    @include base.iui-button-dropdown(large);
   }
+}
+
+.iui-button-idea {
+  @include idea.iui-button-idea;
 }
 
 .iui-button-icon {

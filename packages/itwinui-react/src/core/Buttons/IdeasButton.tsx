@@ -29,8 +29,8 @@ export const IdeasButton = React.forwardRef((props, ref) => {
   return (
     <Button
       ref={ref}
+      className='iui-button-idea'
       data-iui-variant='high-visibility'
-      data-iui-type='feedback'
       onClick={onClick}
       startIcon={<SvgSmileyHappy aria-hidden />}
       {...rest}

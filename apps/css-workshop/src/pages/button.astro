@@ -209,7 +209,7 @@ import Layout from './_layout.astro';
       <button class='iui-button iui-field' data-iui-size='small'>
         <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
       </button>
-      <button class='iui-button iui-field' data-iui-type='dropdown' data-iui-size='small'>
+      <button class='iui-button iui-field iui-button-dropdown' data-iui-size='small'>
         <span>Small dropdown</span>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
       </button>
@@ -234,7 +234,7 @@ import Layout from './_layout.astro';
       <button class='iui-button iui-field'>
         <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
       </button>
-      <button class='iui-button iui-field' data-iui-type='dropdown'>
+      <button class='iui-button iui-field iui-button-dropdown'>
         <span>Normal dropdown</span>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
       </button>
@@ -259,7 +259,7 @@ import Layout from './_layout.astro';
       <button class='iui-button iui-field' data-iui-size='large'>
         <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
       </button>
-      <button class='iui-button iui-field' data-iui-type='dropdown' data-iui-size='large'>
+      <button class='iui-button iui-field iui-button-dropdown' data-iui-size='large'>
         <span>Large dropdown</span>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
       </button>
@@ -288,8 +288,7 @@ import Layout from './_layout.astro';
         <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
       </button>
       <button
-        class='iui-button iui-field'
-        data-iui-type='dropdown'
+        class='iui-button iui-field iui-button-dropdown'
         data-iui-variant='borderless'
         data-iui-size='small'
       >
@@ -322,7 +321,7 @@ import Layout from './_layout.astro';
       <button class='iui-button iui-field' data-iui-variant='borderless'>
         <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
       </button>
-      <button class='iui-button iui-field' data-iui-type='dropdown' data-iui-variant='borderless'>
+      <button class='iui-button iui-field iui-button-dropdown' data-iui-variant='borderless'>
         <span>Normal dropdown</span>
         <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
       </button>
@@ -348,8 +347,7 @@ import Layout from './_layout.astro';
         <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
       </button>
       <button
-        class='iui-button iui-field'
-        data-iui-type='dropdown'
+        class='iui-button iui-field iui-button-dropdown'
         data-iui-variant='borderless'
         data-iui-size='large'
       >
@@ -910,8 +908,7 @@ import Layout from './_layout.astro';
   <br />
   <section>
     <button
-      class='iui-button iui-field'
-      data-iui-type='feedback'
+      class='iui-button-idea iui-button iui-field'
       data-iui-variant='high-visibility'
       id='demo-ideas'
     >
