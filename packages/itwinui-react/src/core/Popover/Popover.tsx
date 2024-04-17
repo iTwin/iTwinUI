@@ -311,15 +311,15 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
         <FloatingPortal root={portalTo}>
           <DisplayContents />
 
-          <FloatingFocusManager
-            context={popover.context}
-            modal={false}
-            initialFocus={popover.refs.floating}
+          <ThemeProvider
+            portalContainer={popoverElement} // portal nested popovers into this one
           >
-            <ThemeProvider
-              portalContainer={popoverElement} // portal nested popovers into this one
+            <DisplayContents />
+            <FloatingFocusManager
+              context={popover.context}
+              modal={false}
+              initialFocus={popover.refs.floating}
             >
-              <DisplayContents />
               <Box
                 className={cx(
                   { 'iui-popover-surface': applyBackground },
@@ -335,8 +335,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
               >
                 {content}
               </Box>
-            </ThemeProvider>
-          </FloatingFocusManager>
+            </FloatingFocusManager>
+          </ThemeProvider>
         </FloatingPortal>
       ) : null}
     </>
