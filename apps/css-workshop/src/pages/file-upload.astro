@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='File Upload'>
@@ -96,16 +97,16 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell'>
                 Name
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button'
+                    variant='borderless'
+                    size='small'
                     aria-label='Apply filter'
                     type='button'
                   >
                     <svg-filter-hollow class='iui-button-icon' aria-hidden='true'
                     ></svg-filter-hollow>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -115,16 +116,16 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell iui-sorted'>
                 Modified
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button'
+                    variant='borderless'
+                    size='small'
                     aria-label='Apply filter'
                     type='button'
                   >
                     <svg-filter-hollow class='iui-button-icon' aria-hidden='true'
                     ></svg-filter-hollow>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -134,16 +135,15 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell'>
                 Modified by
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
-                    data-iui-active='true'
+                  <Button_
+                    class='iui-table-filter-button iui-active'
+                    variant='borderless'
+                    size='small'
                     aria-label='Modify filter'
                     type='button'
                   >
                     <svg-filter class='iui-button-icon' aria-hidden='true'></svg-filter>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -153,16 +153,16 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell'>
                 Size
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button'
+                    variant='borderless'
+                    size='small'
                     aria-label='Apply filter'
                     type='button'
                   >
                     <svg-filter-hollow class='iui-button-icon' aria-hidden='true'
                     ></svg-filter-hollow>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -170,15 +170,10 @@ import Layout from './_layout.astro';
                 </div>
               </div>
               <div class='iui-table-cell iui-slot'>
-                <button
-                  class='iui-button iui-field'
-                  data-iui-variant='borderless'
-                  aria-label='Modify columns'
-                  type='button'
-                >
+                <Button_ variant='borderless' aria-label='Modify columns' type='button'>
                   <svg-column-manager class='iui-button-icon' aria-hidden='true'
                   ></svg-column-manager>
-                </button>
+                </Button_>
               </div>
             </div>
           </div>
@@ -201,14 +196,14 @@ import Layout from './_layout.astro';
             </div>
             <div class='iui-table-cell demo-right-align'>7 MB</div>
             <div class='iui-table-cell iui-slot'>
-              <button
-                class='iui-button iui-field iui-table-more-options'
-                data-iui-variant='borderless'
+              <Button_
+                class='iui-table-more-options'
+                variant='borderless'
                 aria-label='More options'
                 type='button'
               >
                 <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-              </button>
+              </Button_>
             </div>
           </div>
 
@@ -228,14 +223,14 @@ import Layout from './_layout.astro';
             </div>
             <div class='iui-table-cell demo-right-align'>18 MB</div>
             <div class='iui-table-cell iui-slot'>
-              <button
-                class='iui-button iui-field iui-table-more-options'
-                data-iui-variant='borderless'
+              <Button_
+                class='iui-table-more-options'
+                variant='borderless'
                 aria-label='More options'
                 type='button'
               >
                 <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-              </button>
+              </Button_>
             </div>
           </div>
 
@@ -255,14 +250,14 @@ import Layout from './_layout.astro';
             </div>
             <div class='iui-table-cell demo-right-align'>1 GB</div>
             <div class='iui-table-cell iui-slot'>
-              <button
-                class='iui-button iui-field iui-table-more-options'
-                data-iui-variant='borderless'
+              <Button_
+                class='iui-table-more-options'
+                variant='borderless'
                 aria-label='More options'
                 type='button'
               >
                 <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-              </button>
+              </Button_>
             </div>
           </div>
         </div>
@@ -284,16 +279,16 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell'>
                 Name
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button'
+                    variant='borderless'
+                    size='small'
                     aria-label='Apply filter'
                     type='button'
                   >
                     <svg-filter-hollow class='iui-button-icon' aria-hidden='true'
                     ></svg-filter-hollow>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -303,16 +298,16 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell iui-sorted'>
                 Modified
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button'
+                    variant='borderless'
+                    size='small'
                     aria-label='Apply filter'
                     type='button'
                   >
                     <svg-filter-hollow class='iui-button-icon' aria-hidden='true'
                     ></svg-filter-hollow>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -322,16 +317,15 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell'>
                 Modified by
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-active='true'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button iui-active'
+                    variant='borderless'
+                    size='small'
                     aria-label='Modify filter'
                     type='button'
                   >
                     <svg-filter class='iui-button-icon' aria-hidden='true'></svg-filter>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -341,16 +335,16 @@ import Layout from './_layout.astro';
               <div class='iui-table-cell'>
                 Size
                 <div class='iui-table-header-actions-container'>
-                  <button
-                    class='iui-button iui-field iui-table-filter-button'
-                    data-iui-variant='borderless'
-                    data-iui-size='small'
+                  <Button_
+                    class='iui-table-filter-button'
+                    variant='borderless'
+                    size='small'
                     aria-label='Apply filter'
                     type='button'
                   >
                     <svg-filter-hollow class='iui-button-icon' aria-hidden='true'
                     ></svg-filter-hollow>
-                  </button>
+                  </Button_>
                   <div class='iui-table-cell-end-icon'>
                     <svg-sort-down class='iui-icon iui-table-sort' aria-hidden='true'
                     ></svg-sort-down>
@@ -358,15 +352,10 @@ import Layout from './_layout.astro';
                 </div>
               </div>
               <div class='iui-table-cell iui-slot'>
-                <button
-                  class='iui-button iui-field'
-                  data-iui-variant='borderless'
-                  aria-label='Modify columns'
-                  type='button'
-                >
+                <Button_ variant='borderless' aria-label='Modify columns' type='button'>
                   <svg-column-manager class='iui-button-icon' aria-hidden='true'
                   ></svg-column-manager>
-                </button>
+                </Button_>
               </div>
             </div>
           </div>
@@ -389,14 +378,14 @@ import Layout from './_layout.astro';
             </div>
             <div class='iui-table-cell demo-right-align'>7 MB</div>
             <div class='iui-table-cell iui-slot'>
-              <button
-                class='iui-button iui-field iui-table-more-options'
-                data-iui-variant='borderless'
+              <Button_
+                class='iui-table-more-options'
+                variant='borderless'
                 aria-label='More options'
                 type='button'
               >
                 <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-              </button>
+              </Button_>
             </div>
           </div>
 
@@ -416,14 +405,14 @@ import Layout from './_layout.astro';
             </div>
             <div class='iui-table-cell demo-right-align'>18 MB</div>
             <div class='iui-table-cell iui-slot'>
-              <button
-                class='iui-button iui-field iui-table-more-options'
-                data-iui-variant='borderless'
+              <Button_
+                class='iui-table-more-options'
+                variant='borderless'
                 aria-label='More options'
                 type='button'
               >
                 <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-              </button>
+              </Button_>
             </div>
           </div>
 
@@ -443,14 +432,14 @@ import Layout from './_layout.astro';
             </div>
             <div class='iui-table-cell demo-right-align'>1 GB</div>
             <div class='iui-table-cell iui-slot'>
-              <button
-                class='iui-button iui-field iui-table-more-options'
-                data-iui-variant='borderless'
+              <Button_
+                class='iui-table-more-options'
+                variant='borderless'
                 aria-label='More options'
                 type='button'
               >
                 <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-              </button>
+              </Button_>
             </div>
           </div>
         </div>

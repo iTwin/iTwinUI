@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 import Checkbox_ from '../components/Checkbox.astro';
 ---
 
@@ -180,15 +181,15 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-non-ideal-state-description'>
         You do not have permission to access this server.
         <br />
-        Unable to fulfill request.
+         Unable to fulfill request.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -346,15 +347,15 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-non-ideal-state-description'>
         You do not have permission to access this server.
         <br />
-        Unable to fulfill request.
+         Unable to fulfill request.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -531,15 +532,15 @@ import Checkbox_ from '../components/Checkbox.astro';
       <div class='iui-non-ideal-state-description'>
         We can't find the iModel that you are looking for or it does not exist.
         <br />
-        Visit the iModel HUB or contact our support team.
+         Visit the iModel HUB or contact our support team.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -682,12 +683,12 @@ import Checkbox_ from '../components/Checkbox.astro';
         the iModel HUB.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -853,12 +854,12 @@ import Checkbox_ from '../components/Checkbox.astro';
         HUB.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -1005,12 +1006,12 @@ import Checkbox_ from '../components/Checkbox.astro';
         This service is being worked on. Please come back in a little bit or visit iModel HUB.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -1212,12 +1213,12 @@ import Checkbox_ from '../components/Checkbox.astro';
         or contact our support team.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Visit iModel HUB</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span>Contact Us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -1262,14 +1263,16 @@ import Checkbox_ from '../components/Checkbox.astro';
         Select a destination below to be redirected.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
-          <span>Web Portal</span></button
-        >
-        <button class='iui-button iui-field'>
+        <Button_ variant='high-visibility'>
+          <span>Web Portal</span>
+        </Button_>
+        <Button_>
           <span>ProjectWise Explorer</span>
-        </button>
+        </Button_>
       </div>
-      <Checkbox_ checked style={{ flexDirection: 'row-reverse' }}>Remember my choice</Checkbox_>
+      <Checkbox_ checked wrapperProps={{ style: { flexDirection: 'row-reverse' } }}>
+        Remember my choice
+      </Checkbox_>
     </div>
   </div>
 
@@ -1320,11 +1323,13 @@ import Checkbox_ from '../components/Checkbox.astro';
             ></svg-caret-down-small>
           </div>
         </label>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Open</span>
-        </button>
+        </Button_>
       </div>
-      <Checkbox_ checked style={{ flexDirection: 'row-reverse' }}>Remember my choice</Checkbox_>
+      <Checkbox_ checked wrapperProps={{ style: { flexDirection: 'row-reverse' } }}>
+        Remember my choice
+      </Checkbox_>
     </div>
   </div>
 
@@ -1470,12 +1475,12 @@ import Checkbox_ from '../components/Checkbox.astro';
         Your session has been terminated due to inactivity. Sign back in to resume.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Sign in</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span class='iui-button-text'>Contact us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>
@@ -1490,12 +1495,12 @@ import Checkbox_ from '../components/Checkbox.astro';
         Your session has been terminated due to inactivity. Sign back in to resume.
       </div>
       <div class='iui-non-ideal-state-actions'>
-        <button class='iui-button iui-field' data-iui-variant='high-visibility'>
+        <Button_ variant='high-visibility'>
           <span>Sign in</span>
-        </button>
-        <button class='iui-button iui-field'>
+        </Button_>
+        <Button_>
           <span class='iui-button-text'>Contact us</span>
-        </button>
+        </Button_>
       </div>
     </div>
   </div>

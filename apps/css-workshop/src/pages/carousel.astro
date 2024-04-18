@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Carousel'>
@@ -77,28 +78,28 @@ import Layout from './_layout.astro';
     >
       <div class='iui-carousel-navigation'>
         <div class='iui-carousel-navigation-left'>
-          <button
-            class='iui-button iui-field iui-carousel-navigation-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+          <Button_
+            class='iui-carousel-navigation-button'
+            variant='borderless'
+            size='small'
             type='button'
             aria-controls='myCarousel-items'
             aria-label='Previous slide'
             tabindex='-1'
           >
             <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </button>
-          <button
-            class='iui-button iui-field iui-carousel-navigation-animation-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+          </Button_>
+          <Button_
+            class='iui-carousel-navigation-animation-button'
+            variant='borderless'
+            size='small'
             type='button'
             aria-label='Play animation'
             data-action='play'
             tabindex='-1'
           >
             <svg-play class='iui-button-icon' aria-hidden='true'></svg-play>
-          </button>
+          </Button_>
         </div>
 
         <div class='iui-carousel-navigation-dots' role='tablist' aria-label='Slides' tabindex='-1'>
@@ -195,17 +196,17 @@ import Layout from './_layout.astro';
         </div>
 
         <div class='iui-carousel-navigation-right'>
-          <button
-            class='iui-button iui-field iui-carousel-navigation-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
+          <Button_
+            class='iui-carousel-navigation-button'
+            variant='borderless'
+            size='small'
             type='button'
             aria-controls='myCarousel-items'
             aria-label='Next slide'
             tabindex='-1'
           >
             <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </button>
+          </Button_>
         </div>
       </div>
 

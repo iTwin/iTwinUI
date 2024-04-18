@@ -33,9 +33,8 @@ export const Basic = () => {
   return (
     <>
       <NotificationMarker status='primary'>
-        <SvgNotification width={16} height={16} fill='currentColor' />
+        <SvgNotification fill='currentColor' />
       </NotificationMarker>
-      <NotificationMarker status='primary'>Normal</NotificationMarker>
     </>
   );
 };
@@ -43,7 +42,7 @@ export const Basic = () => {
 export const WithButtons = () => {
   return (
     <>
-      <IconButton styleType='borderless'>
+      <IconButton label='Notifications' styleType='borderless'>
         <NotificationMarker status='primary'>
           <SvgNotification />
         </NotificationMarker>
@@ -59,15 +58,11 @@ export const WithButtons = () => {
 export const Pulsing = () => {
   return (
     <>
-      <IconButton styleType='borderless'>
+      <IconButton label='Notifications' styleType='borderless'>
         <NotificationMarker status='negative' pulsing>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
-
-      <NotificationMarker status='negative' pulsing>
-        <Text style={{ fontWeight: '700' }}>URGENT</Text>
-      </NotificationMarker>
     </>
   );
 };
@@ -75,42 +70,42 @@ export const Pulsing = () => {
 export const Status = () => {
   return (
     <>
-      <NotificationMarker status='primary'>Primary</NotificationMarker>
-      <IconButton styleType='borderless'>
+      <Text>Primary</Text>
+      <IconButton label='Notifications' styleType='borderless'>
         <NotificationMarker status='primary'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='positive'>Positive</NotificationMarker>
-      <IconButton styleType='borderless'>
+      <Text>Positive</Text>
+      <IconButton label='Notifications' styleType='borderless'>
         <NotificationMarker status='positive'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='warning'>Warning</NotificationMarker>
-      <IconButton styleType='borderless'>
+      <Text>Warning</Text>
+      <IconButton label='Notifications' styleType='borderless'>
         <NotificationMarker status='warning'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='negative'>Negative</NotificationMarker>
-      <IconButton styleType='borderless'>
+      <Text>Negative</Text>
+      <IconButton label='Notifications' styleType='borderless'>
         <NotificationMarker status='negative'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='white'>White</NotificationMarker>
+      <Text>White</Text>
       <div style={{ display: 'flex', columnGap: '10px' }}>
-        <IconButton styleType='high-visibility'>
+        <IconButton label='Notifications' styleType='high-visibility'>
           <NotificationMarker status='white'>
             <SvgNotification />
           </NotificationMarker>
         </IconButton>
-        <IconButton styleType='cta'>
+        <IconButton label='Notifications' styleType='cta'>
           <NotificationMarker status='white'>
             <SvgNotification />
           </NotificationMarker>

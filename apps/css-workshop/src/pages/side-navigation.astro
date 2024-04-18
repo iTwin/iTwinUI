@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Side navigation'>
@@ -49,24 +50,24 @@ import Layout from './_layout.astro';
   <section id='demo-side-navigation'>
     <div class='iui-side-navigation iui-collapsed' id='demo-sidenav-container'>
       <!-- Expand arrow -->
-      <button
-        class='iui-button iui-field iui-sidenav-button iui-expand'
-        data-iui-size='small'
+      <Button_
+        class='iui-sidenav-button iui-expand'
+        size='small'
         role='button'
         aria-label='Expand menu'
         onclick='togglePanelExpansion(this)'
         id='test-expand'
       >
         <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-      </button>
+      </Button_>
 
       <!-- Rest of the tabs -->
       <div class='iui-sidenav-content' role='tablist' aria-label='Applications'>
         <div class='iui-top'>
-          <button
-            class='iui-button iui-field iui-sidenav-button'
-            data-iui-size='large'
-            data-iui-active='true'
+          <Button_
+            class='iui-sidenav-button'
+            size='large'
+            active
             role='tab'
             aria-selected='true'
             aria-label='Home'
@@ -75,12 +76,12 @@ import Layout from './_layout.astro';
           >
             <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
             <span>Home</span>
-          </button>
+          </Button_>
           <span class='iui-tooltip'>Home</span>
 
-          <button
-            class='iui-button iui-field iui-sidenav-button'
-            data-iui-size='large'
+          <Button_
+            class='iui-sidenav-button'
+            size='large'
             role='tab'
             aria-selected='false'
             aria-label='Documents'
@@ -95,12 +96,12 @@ import Layout from './_layout.astro';
               <svg-document></svg-document>
             </span>
             <span>Documents</span>
-          </button>
+          </Button_>
           <span class='iui-tooltip'>Documents</span>
 
-          <button
-            class='iui-button iui-field iui-sidenav-button'
-            data-iui-size='large'
+          <Button_
+            class='iui-sidenav-button'
+            size='large'
             role='tab'
             aria-selected='false'
             aria-label='Map'
@@ -111,12 +112,12 @@ import Layout from './_layout.astro';
               <svg-map></svg-map>
             </span>
             <span>Map</span>
-          </button>
+          </Button_>
           <span class='iui-tooltip'>Map</span>
 
-          <button
-            class='iui-button iui-field iui-sidenav-button'
-            data-iui-size='large'
+          <Button_
+            class='iui-sidenav-button'
+            size='large'
             role='tab'
             aria-selected='false'
             aria-label='Archives'
@@ -126,12 +127,12 @@ import Layout from './_layout.astro';
           >
             <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
             <span>Archives</span>
-          </button>
+          </Button_>
           <span class='iui-tooltip'>Archives</span>
 
-          <button
-            class='iui-button iui-field iui-sidenav-button'
-            data-iui-size='large'
+          <Button_
+            class='iui-sidenav-button'
+            size='large'
             role='tab'
             aria-selected='false'
             aria-label='Calendar'
@@ -141,14 +142,14 @@ import Layout from './_layout.astro';
           >
             <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
             <span>Calendar</span>
-          </button>
+          </Button_>
           <span class='iui-tooltip'>Calendar</span>
         </div>
 
         <div class='iui-bottom'>
-          <button
-            class='iui-button iui-field iui-sidenav-button'
-            data-iui-size='large'
+          <Button_
+            class='iui-sidenav-button'
+            size='large'
             role='tab'
             aria-selected='false'
             aria-label='Administration'
@@ -158,7 +159,7 @@ import Layout from './_layout.astro';
           >
             <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
             <span>Administration</span>
-          </button>
+          </Button_>
           <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
         </div>
       </div>
@@ -174,10 +175,10 @@ import Layout from './_layout.astro';
         <!-- Rest of the tabs -->
         <div class='iui-sidenav-content' role='tablist' aria-label='Applications'>
           <div class='iui-top'>
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
-              data-iui-active='true'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
+              active
               role='tab'
               aria-selected='false'
               aria-label='Home'
@@ -185,12 +186,12 @@ import Layout from './_layout.astro';
             >
               <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
               <span>Home</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Home</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button iui-submenu-open'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button iui-submenu-open'
+              size='large'
               role='tab'
               aria-selected='true'
               aria-label='Documents'
@@ -198,12 +199,12 @@ import Layout from './_layout.astro';
             >
               <svg-document class='iui-button-icon' aria-hidden='true'></svg-document>
               <span>Documents</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Documents</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Map'
@@ -211,12 +212,12 @@ import Layout from './_layout.astro';
             >
               <svg-map class='iui-button-icon' aria-hidden='true'></svg-map>
               <span>Map</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Map</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Archives'
@@ -225,12 +226,12 @@ import Layout from './_layout.astro';
             >
               <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
               <span>Archives</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Archives</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Calendar'
@@ -238,14 +239,14 @@ import Layout from './_layout.astro';
             >
               <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
               <span>Calendar</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Calendar</span>
           </div>
 
           <div class='iui-bottom'>
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Administration'
@@ -253,37 +254,37 @@ import Layout from './_layout.astro';
             >
               <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
               <span>Administration</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
           </div>
         </div>
 
         <!-- Expand arrow -->
-        <button
-          class='iui-button iui-field iui-sidenav-button iui-expand'
-          data-iui-size='small'
+        <Button_
+          class='iui-sidenav-button iui-expand'
+          size='small'
           role='button'
           aria-label='Expand menu'
           onclick='togglePanelExpansion(this)'
           id='test-expand-2'
         >
           <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-side-navigation-submenu' style='width: 384px;'>
         <div class='iui-side-navigation-submenu-content'>
           <div class='iui-side-navigation-submenu-header'>
             <div class='iui-side-navigation-submenu-header-label'>
-              <button class='iui-button iui-field' data-iui-variant='borderless'>
+              <Button_ variant='borderless'>
                 <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-              </button>
+              </Button_>
               <span>Documents with a long label to test for truncation</span>
             </div>
             <div class='iui-side-navigation-submenu-header-actions'>
-              <button class='iui-button iui-field' data-iui-variant='borderless'>
+              <Button_ variant='borderless'>
                 <svg-settings class='iui-button-icon' aria-hidden='true'></svg-settings>
-              </button>
+              </Button_>
             </div>
           </div>
 
@@ -331,9 +332,9 @@ import Layout from './_layout.astro';
         <!-- Rest of the tabs -->
         <div class='iui-sidenav-content' role='tablist' aria-label='Applications'>
           <div class='iui-top'>
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Home'
@@ -341,13 +342,13 @@ import Layout from './_layout.astro';
             >
               <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
               <span>Home</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Home</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button iui-submenu-open'
-              data-iui-active='true'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button iui-submenu-open'
+              active
+              size='large'
               role='tab'
               aria-selected='true'
               aria-label='Documents'
@@ -355,12 +356,12 @@ import Layout from './_layout.astro';
             >
               <svg-document class='iui-button-icon' aria-hidden='true'></svg-document>
               <span>Documents</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Documents</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Map'
@@ -368,12 +369,12 @@ import Layout from './_layout.astro';
             >
               <svg-map class='iui-button-icon' aria-hidden='true'></svg-map>
               <span>Map</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Map</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Archives'
@@ -382,12 +383,12 @@ import Layout from './_layout.astro';
             >
               <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
               <span>Archives</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Archives</span>
 
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Calendar'
@@ -395,14 +396,14 @@ import Layout from './_layout.astro';
             >
               <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
               <span>Calendar</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip'>Calendar</span>
           </div>
 
           <div class='iui-bottom'>
-            <button
-              class='iui-button iui-field iui-sidenav-button'
-              data-iui-size='large'
+            <Button_
+              class='iui-sidenav-button'
+              size='large'
               role='tab'
               aria-selected='false'
               aria-label='Administration'
@@ -410,37 +411,37 @@ import Layout from './_layout.astro';
             >
               <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
               <span>Administration</span>
-            </button>
+            </Button_>
             <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
           </div>
         </div>
 
         <!-- Expand arrow -->
-        <button
-          class='iui-button iui-field iui-sidenav-button iui-expand'
-          data-iui-size='small'
+        <Button_
+          class='iui-sidenav-button iui-expand'
+          size='small'
           role='button'
           aria-label='Expand menu'
           onclick='togglePanelExpansion(this)'
           id='test-expand-2'
         >
           <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-        </button>
+        </Button_>
       </div>
 
       <div class='iui-side-navigation-submenu' style='width: 384px;'>
         <div class='iui-side-navigation-submenu-content'>
           <div class='iui-side-navigation-submenu-header'>
             <div class='iui-side-navigation-submenu-header-label'>
-              <button class='iui-button iui-field' data-iui-variant='borderless'>
+              <Button_ variant='borderless'>
                 <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-              </button>
+              </Button_>
               <span>Documents with a long label to test for truncation</span>
             </div>
             <div class='iui-side-navigation-submenu-header-actions'>
-              <button class='iui-button iui-field' data-iui-variant='borderless'>
+              <Button_ variant='borderless'>
                 <svg-settings class='iui-button-icon' aria-hidden='true'></svg-settings>
-              </button>
+              </Button_>
             </div>
           </div>
 
