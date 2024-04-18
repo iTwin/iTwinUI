@@ -209,9 +209,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     nodeId,
-    visible:
-      isSubmenuVisible ||
-      dropdownMenuContext.lastFocusedNode?.parentId === nodeId,
+    visible: isSubmenuVisible,
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     trigger: {
