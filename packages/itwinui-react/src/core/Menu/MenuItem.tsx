@@ -132,18 +132,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  // TODO: Try to find a better way to get the index.
-  const parentTreeIndex = React.useMemo(
-    () => {
-      const allSiblingNodes = tree?.nodesRef.current.filter(
-        (n) => n.parentId === parentId,
-      );
-      return allSiblingNodes?.findIndex((n) => n.id === nodeId) ?? 0;
-    },
-    // TODO: Try to remove the eslint-disable
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [nodeId, parentId, tree?.nodesRef, tree?.nodesRef.current],
-  );
+  const parentTreeIndex = React.useMemo(() => {
+    const siblings = Array.from(
+      menuItemRef.current?.parentElement?.children ?? [],
+    );
+    return siblings.indexOf(menuItemRef.current as HTMLElement);
+  }, []);
 
   React.useEffect(() => {
     const handleNodeFocused = (event: TreeEvent) => {
