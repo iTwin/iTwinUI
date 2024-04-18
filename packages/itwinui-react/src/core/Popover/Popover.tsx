@@ -26,11 +26,7 @@ import {
   FloatingPortal,
   useFloatingTree,
 } from '@floating-ui/react';
-import type {
-  SizeOptions,
-  Placement,
-  UseFloatingOptions,
-} from '@floating-ui/react';
+import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
   Box,
   cloneElementWithRef,
@@ -113,7 +109,6 @@ type PopoverInternalProps = {
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-  onOpenChange?: UseFloatingOptions['onOpenChange'];
 } & Record<string, any>;
 
 // ----------------------------------------------------------------------------
@@ -123,7 +118,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     placement = 'bottom-start',
     visible,
     onVisibleChange,
-    onOpenChange: onOpenChangeProp,
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
@@ -145,13 +139,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const floating = useFloating({
     placement,
     open,
-    onOpenChange: (open, event, reason) => {
-      onOpenChange(open);
-
-      if (onOpenChangeProp) {
-        onOpenChangeProp(open, event, reason);
-      }
-    },
+    onOpenChange,
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     ...rest,
     middleware: [
