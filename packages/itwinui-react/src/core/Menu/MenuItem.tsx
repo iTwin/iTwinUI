@@ -23,6 +23,19 @@ import {
   useListNavigation,
 } from '@floating-ui/react';
 
+/**
+ * Context used to provide menu item ref to sub-menu items.
+ */
+const MenuItemContext = React.createContext<{
+  // ref: React.RefObject<HTMLElement> | undefined;
+  // setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  listItemsRef: React.MutableRefObject<(HTMLElement | null)[]>;
+}>({
+  setActiveIndex: () => {},
+  listItemsRef: { current: [] },
+});
+
 export type MenuItemProps = {
   /**
    * Item is selected.
@@ -105,6 +118,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  const parent = React.useContext(MenuItemContext);
+
   const menuItemRef = React.useRef<HTMLElement>(null);
   // const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
@@ -121,6 +136,24 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
+
+  // TODO: Try to find a better way to get the index.
+  const parentTreeIndex = React.useMemo(
+    () => {
+      const allSiblingNodes = tree?.nodesRef.current.filter(
+        (n) => n.parentId === parentId,
+      );
+      // if (children === 'Item 2_1') {
+      //   console.log('allSiblingNodes', allSiblingNodes, tree?.nodesRef.current);
+      // }
+      return allSiblingNodes?.findIndex((n) => n.id === nodeId) ?? 0;
+    },
+    // TODO: Try to remove the eslint-disable
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [nodeId, parentId, tree?.nodesRef, tree?.nodesRef.current],
+  );
+
+  // console.log('parentTreeIndex', parentTreeIndex, children);
 
   React.useEffect(() => {
     // const handleArrowLeftPressed = (event: TreeEvent) => {
@@ -208,7 +241,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   //   ],
   // );
 
-  const listItemsRef = React.useRef<Array<HTMLButtonElement | null>>([]);
+  const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
 
   const popover = usePopover({
     nodeId,
@@ -278,6 +311,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
     // console.log('onfocus', children);
+    parent.setActiveIndex(parentTreeIndex);
+
     if (e.target === e.currentTarget) {
       tree?.events.emit('nodeFocused', {
         nodeId,
@@ -307,6 +342,20 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           menuItemRef,
           forwardedRef,
           subMenuItems.length > 0 ? popover.refs.setReference : null,
+          (el) => {
+            // console.log(
+            //   'in ref',
+            //   // el,
+            //   parentTreeIndex,
+            //   children,
+            //   // parentTreeIndex,
+            //   // parent.listItemsRef.current.length,
+            //   // parent.listItemsRef.current[parentTreeIndex],
+            // );
+
+            // listItemsRef.current[parentTreeIndex] = e as HTMLElement;
+            parent.listItemsRef.current[parentTreeIndex] = el as HTMLElement;
+          },
         )}
         role={role}
         tabIndex={disabled || role === 'presentation' ? undefined : -1}
@@ -354,39 +403,47 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             order={['reference', 'content']}
           > */}
           <Portal>
-            <Menu
-              // setFocus={true}
-              setFocus={false}
-              ref={popover.refs.setFloating}
-              {...popover.getFloatingProps({
-                id: submenuId,
-                onPointerMove: () => {
-                  // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                  // so we need to flip it back to true when pointer re-enters this submenu.
-                  setIsSubmenuVisible(true);
-                },
-                onMouseEnter: () => {
-                  setHasMouseEntered(true);
-                },
-              })}
+            <MenuItemContext.Provider
+              // value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
+              value={{
+                setActiveIndex,
+                listItemsRef,
+              }}
             >
-              {/* {subMenuItems} */}
-              {subMenuItems.map((item, index) => {
-                return React.cloneElement(item, {
-                  // key: index,
-                  ref: (el: HTMLButtonElement | null) => {
-                    // console.log('in ref');
-                    listItemsRef.current[index] = el;
+              <Menu
+                // setFocus={true}
+                setFocus={false}
+                ref={popover.refs.setFloating}
+                {...popover.getFloatingProps({
+                  id: submenuId,
+                  onPointerMove: () => {
+                    // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                    // so we need to flip it back to true when pointer re-enters this submenu.
+                    setIsSubmenuVisible(true);
                   },
-                  onPointerEnter: () => {
-                    setActiveIndex(index);
+                  onMouseEnter: () => {
+                    setHasMouseEntered(true);
                   },
-                  onFocus: () => {
-                    setActiveIndex(index);
-                  },
-                });
-              })}
-            </Menu>
+                })}
+              >
+                {subMenuItems}
+                {/* {subMenuItems.map((item, index) => {
+                  return React.cloneElement(item, {
+                    // key: index,
+                    // ref: (el: HTMLButtonElement | null) => {
+                    //   // console.log('in ref');
+                    //   listItemsRef.current[index] = el;
+                    // },
+                    // onPointerEnter: () => {
+                    //   setActiveIndex(index);
+                    // },
+                    // onFocus: () => {
+                    //   setActiveIndex(index);
+                    // },
+                  });
+                })} */}
+              </Menu>
+            </MenuItemContext.Provider>
           </Portal>
           {/* </FloatingFocusManager> */}
         </FloatingNode>
