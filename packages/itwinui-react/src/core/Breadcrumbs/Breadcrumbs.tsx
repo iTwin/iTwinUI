@@ -230,15 +230,13 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const { children: childrenProp, className, ...rest } = props;
 
-  const resolvedAs = !!props.href
-    ? 'anchor'
-    : !!props.onClick
-      ? 'button'
-      : 'span';
+  const resolvedAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
 
-  // TODO: Can we have something better than any here?
-  const resolvedAsComponentsMap: Record<typeof resolvedAs, any> = {
-    anchor: Anchor,
+  const resolvedAsComponentsMap: Record<
+    typeof resolvedAs,
+    PolymorphicForwardRefComponent<'a' | 'button'> | 'span'
+  > = {
+    a: Anchor,
     button: Button,
     span: 'span',
   };
@@ -249,11 +247,7 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       as={resolvedAsComponentsMap[resolvedAs] as 'a'}
-      className={cx(
-        // ...(resolvedAs === 'button' ? ['iui-button', 'iui-field'] : []),
-        'iui-breadcrumbs-content',
-        className,
-      )}
+      className={cx('iui-breadcrumbs-content', className)}
       data-iui-variant={resolvedAs === 'button' ? 'borderless' : undefined}
       ref={forwardedRef}
       {...rest}
