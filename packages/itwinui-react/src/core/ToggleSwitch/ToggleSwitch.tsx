@@ -13,6 +13,10 @@ type ToggleSwitchProps = {
    */
   label?: React.ReactNode;
   /**
+   * Customizable props for label.
+   */
+  labelProps?: React.ComponentProps<'span'>;
+  /**
    * Position of the label.
    * @default 'right'
    */
@@ -63,6 +67,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     className,
     style,
     size = 'default',
+    labelProps = {},
     icon: iconProp,
     ...rest
   } = props;
@@ -70,6 +75,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
     iconProp === undefined || (iconProp !== null && size !== 'small');
+
+  const { className: labelClassName, ...restLabelProps } = labelProps;
 
   return (
     <Box
@@ -101,7 +108,11 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         </Box>
       )}
       {label && (
-        <Box as='span' className='iui-toggle-switch-label'>
+        <Box
+          as='span'
+          className={cx('iui-toggle-switch-label', labelClassName)}
+          {...restLabelProps}
+        >
           {label}
         </Box>
       )}

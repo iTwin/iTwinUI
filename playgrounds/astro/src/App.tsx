@@ -1,9 +1,13 @@
-import { Button } from '@itwin/itwinui-react';
+import { Button, ToggleSwitch } from '@itwin/itwinui-react';
 
 export default function App() {
   return (
     <>
-      <Button>Hello world</Button>
+      <ToggleSwitch
+        label='label'
+        labelProps={{ className: 'test-classNAME', style: { backgroundColor: 'red' } }}
+      ></ToggleSwitch>
+      <Button>Hello ld</Button>
     </>
   );
 }
