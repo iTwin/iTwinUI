@@ -132,12 +132,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  const parentTreeIndex = React.useMemo(() => {
-    const siblings = Array.from(
-      menuItemRef.current?.parentElement?.children ?? [],
-    );
-    return siblings.indexOf(menuItemRef.current as HTMLElement);
-  }, []);
+  // TODO: Try to find a better way to get the index.
+  const parentTreeIndex = React.useMemo(
+    () => {
+      const allSiblingNodes = tree?.nodesRef.current.filter(
+        (n) => n.parentId === parentId,
+      );
+      return allSiblingNodes?.findIndex((n) => n.id === nodeId) ?? 0;
+    },
+    // TODO: Try to remove the eslint-disable
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [nodeId, parentId, tree?.nodesRef, tree?.nodesRef.current],
+  );
 
   React.useEffect(() => {
     const handleNodeFocused = (event: TreeEvent) => {
@@ -168,19 +174,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     visible: isSubmenuVisible,
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
-    trigger: {
+    interactions: {
       hover: subMenuItems.length > 0 && !hasMouseEntered,
+      listNavigation: true,
     },
-    triggers: (context) => [
-      // TODO: Do a proper fix
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useListNavigation(context, {
+    interactionsProps: {
+      listNavigation: {
         listRef: listItemsRef,
         activeIndex,
         nested: subMenuItems.length > 0,
         onNavigate: setActiveIndex,
-      }),
-    ],
+      },
+    },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
