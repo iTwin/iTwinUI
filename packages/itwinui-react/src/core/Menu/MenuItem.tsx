@@ -15,7 +15,6 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { usePopover } from '../Popover/Popover.js';
 import {
-  // FloatingFocusManager,
   FloatingNode,
   useFloatingNodeId,
   useFloatingParentNodeId,
@@ -27,8 +26,6 @@ import {
  * Context used to provide menu item ref to sub-menu items.
  */
 const MenuItemContext = React.createContext<{
-  // ref: React.RefObject<HTMLElement> | undefined;
-  // setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
   listItemsRef: React.MutableRefObject<(HTMLElement | null)[]>;
 }>({
@@ -121,11 +118,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parent = React.useContext(MenuItemContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  // const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  // const [rightArrowPressed, setRightArrowPressed] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const [hasMouseEntered, setHasMouseEntered] = React.useState(false);
@@ -143,9 +138,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       const allSiblingNodes = tree?.nodesRef.current.filter(
         (n) => n.parentId === parentId,
       );
-      // if (children === 'Item 2_1') {
-      //   console.log('allSiblingNodes', allSiblingNodes, tree?.nodesRef.current);
-      // }
       return allSiblingNodes?.findIndex((n) => n.id === nodeId) ?? 0;
     },
     // TODO: Try to remove the eslint-disable
@@ -153,37 +145,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     [nodeId, parentId, tree?.nodesRef, tree?.nodesRef.current],
   );
 
-  // console.log('parentTreeIndex', parentTreeIndex, children);
-
   React.useEffect(() => {
-    // const handleArrowLeftPressed = (event: TreeEvent) => {
-    //   if (event.parentId === nodeId) {
-    //     setIsSubmenuVisible(false);
-    //     menuItemRef.current?.focus();
-    //   }
-    // };
-
-    // /**
-    //  * The `FloatingTree` needs to be updated with the nodes from the new submenu before calling this function.
-    //  */
-    // const handleArrowRightPressed = (event: TreeEvent) => {
-    //   if (
-    //     tree?.nodesRef.current.find((n) => n.parentId === event.nodeId)?.id ===
-    //     nodeId
-    //   ) {
-    //     menuItemRef.current?.focus();
-    //   }
-    // };
-
     const handleNodeFocused = (event: TreeEvent) => {
-      // console.log(
-      //   'node focused',
-      //   event.nodeId,
-      //   event.parentId,
-      //   nodeId,
-      //   parentId,
-      // );
-
       // Consider a node "X" with its submenu "Y".
       // Focusing "X" should close all submenus of "Y".
       if (parentId === event.nodeId) {
@@ -197,49 +160,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     };
 
-    // tree?.events.on('arrowLeftPressed', handleArrowLeftPressed);
-    // tree?.events.on('arrowRightPressed', handleArrowRightPressed);
     tree?.events.on('nodeFocused', handleNodeFocused);
 
     return () => {
-      // tree?.events.off('arrowLeftPressed', handleArrowLeftPressed);
-      // tree?.events.off('arrowRightPressed', handleArrowRightPressed);
       tree?.events.off('nodeFocused', handleNodeFocused);
     };
   }, [nodeId, parentId, tree?.events, tree?.nodesRef, children]);
-
-  // // Needed to trigger arrowRightPressed only after the FloatingTree has been
-  // // updated with the nodes from the new submenu.
-  // React.useEffect(
-  //   () => {
-  //     if (
-  //       rightArrowPressed &&
-  //       subMenuItems.length > 0 &&
-  //       !!tree?.nodesRef.current.find((n) => n.parentId === nodeId) // Tree has been updated with the new submenu
-  //     ) {
-  //       tree.events.emit('arrowRightPressed', {
-  //         nodeId,
-  //         parentId,
-  //       } satisfies TreeEvent);
-
-  //       setRightArrowPressed(false);
-  //     }
-  //   },
-  //   // TODO: Try to not require this eslint disable
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [
-  //     rightArrowPressed, // Run this whenever rightArrowPressed changes
-  //     nodeId,
-  //     parentId,
-  //     subMenuItems.length,
-  //     tree?.events,
-  //     // TODO: How to handle this warning?
-  //     // warning  React Hook React.useEffect has an unnecessary dependency: 'tree?.nodesRef.current'. Either exclude it or remove the dependency array. Mutable values like 'tree.nodesRef.current' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
-  //     tree?.nodesRef.current,
-  //     children,
-  //     tree?.nodesRef,
-  //   ],
-  // );
 
   const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
 
@@ -276,26 +202,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         event.preventDefault();
         break;
       }
-      // case 'ArrowRight': {
-      //   if (subMenuItems.length > 0) {
-      //     setIsSubmenuVisible(true);
-      //     setRightArrowPressed(true);
-
-      //     event.preventDefault();
-      //     event.stopPropagation();
-      //   }
-      //   break;
-      // }
-      // case 'ArrowLeft': {
-      //   tree?.events.emit('arrowLeftPressed', {
-      //     nodeId,
-      //     parentId,
-      //   } satisfies TreeEvent);
-
-      //   event.stopPropagation();
-      //   event.preventDefault();
-      //   break;
-      // }
       default:
         break;
     }
@@ -310,7 +216,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
-    // console.log('onfocus', children);
     parent.setActiveIndex(parentTreeIndex);
 
     if (e.target === e.currentTarget) {
@@ -328,8 +233,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onFocus,
   };
 
-  // console.log('ref', listItemsRef.current);
-
   return (
     <>
       <ListItem
@@ -342,20 +245,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           menuItemRef,
           forwardedRef,
           subMenuItems.length > 0 ? popover.refs.setReference : null,
-          (el) => {
-            // console.log(
-            //   'in ref',
-            //   // el,
-            //   parentTreeIndex,
-            //   children,
-            //   // parentTreeIndex,
-            //   // parent.listItemsRef.current.length,
-            //   // parent.listItemsRef.current[parentTreeIndex],
-            // );
-
-            // listItemsRef.current[parentTreeIndex] = e as HTMLElement;
-            parent.listItemsRef.current[parentTreeIndex] = el as HTMLElement;
-          },
+          (el) =>
+            (parent.listItemsRef.current[parentTreeIndex] = el as HTMLElement),
         )}
         role={role}
         tabIndex={disabled || role === 'presentation' ? undefined : -1}
@@ -391,27 +282,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
       {subMenuItems.length > 0 && popover.open && (
         <FloatingNode id={nodeId}>
-          {/* <FloatingFocusManager
-            context={popover.context}
-            modal={submenuId.length <= 0}
-            returnFocus={submenuId.length <= 0}
-            initialFocus={0}
-            // Touch-based screen readers will be able to navigate back to the
-            // reference and click it to dismiss the menu without clicking an item.
-            // This acts as a touch-based `Esc` key. A visually-hidden dismiss button
-            // is an alternative.
-            order={['reference', 'content']}
-          > */}
           <Portal>
             <MenuItemContext.Provider
-              // value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
               value={{
                 setActiveIndex,
                 listItemsRef,
               }}
             >
               <Menu
-                // setFocus={true}
                 setFocus={false}
                 ref={popover.refs.setFloating}
                 {...popover.getFloatingProps({
@@ -427,25 +305,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 })}
               >
                 {subMenuItems}
-                {/* {subMenuItems.map((item, index) => {
-                  return React.cloneElement(item, {
-                    // key: index,
-                    // ref: (el: HTMLButtonElement | null) => {
-                    //   // console.log('in ref');
-                    //   listItemsRef.current[index] = el;
-                    // },
-                    // onPointerEnter: () => {
-                    //   setActiveIndex(index);
-                    // },
-                    // onFocus: () => {
-                    //   setActiveIndex(index);
-                    // },
-                  });
-                })} */}
               </Menu>
             </MenuItemContext.Provider>
           </Portal>
-          {/* </FloatingFocusManager> */}
         </FloatingNode>
       )}
     </>
