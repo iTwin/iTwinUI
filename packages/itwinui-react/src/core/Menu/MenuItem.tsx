@@ -20,7 +20,6 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
-import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 
 export type MenuItemProps = {
   /**
@@ -115,8 +114,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     setHasMouseEntered(false);
   }
 
-  const dropdownMenuContext = React.useContext(DropdownMenuContext);
-
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
@@ -124,7 +121,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   React.useEffect(() => {
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
-        dropdownMenuContext.setLastFocusedNode({ nodeId, parentId });
         setIsSubmenuVisible(false);
         menuItemRef.current?.focus();
       }
@@ -165,14 +161,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       tree?.events.off('arrowRightPressed', handleArrowRightPressed);
       tree?.events.off('nodeFocused', handleNodeFocused);
     };
-  }, [
-    nodeId,
-    parentId,
-    tree?.events,
-    tree?.nodesRef,
-    dropdownMenuContext,
-    children,
-  ]);
+  }, [nodeId, parentId, tree?.events, tree?.nodesRef, children]);
 
   // Needed to trigger arrowRightPressed only after the FloatingTree has been
   // updated with the nodes from the new submenu.
@@ -265,8 +254,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
-      dropdownMenuContext.setLastFocusedNode({ nodeId, parentId });
-
       tree?.events.emit('nodeFocused', {
         nodeId,
         parentId,
