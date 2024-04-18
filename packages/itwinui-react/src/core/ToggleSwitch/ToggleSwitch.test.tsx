@@ -121,3 +121,19 @@ it('should not render an icon if it is set to null', () => {
   const { container } = render(<ToggleSwitch icon={null} />);
   expect(container.querySelector('.iui-toggle-switch-icon')).toBeNull();
 });
+
+it('should correctly pass labelProps', () => {
+  const { container } = render(
+    <ToggleSwitch
+      label='some-label'
+      labelProps={{
+        className: 'some-class',
+        style: { backgroundColor: 'red' },
+      }}
+    />,
+  );
+
+  const label = container.querySelector('.some-class') as HTMLElement;
+
+  expect(label.style.backgroundColor).toBe('red');
+});
