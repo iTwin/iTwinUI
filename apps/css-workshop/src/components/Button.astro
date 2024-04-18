@@ -17,5 +17,13 @@ const { class: className, variant, size, isActive, dropdown, ...props } = Astro.
   data-iui-active={isActive ? 'true' : undefined}
   {...props}
 >
-  <slot />
+  <slot name='start-icon' />
+  {
+    Astro.slots.has('default') ? (
+      <span>
+        <slot />
+      </span>
+    ) : undefined
+  }
+  <slot name='end-icon' />
 </button>

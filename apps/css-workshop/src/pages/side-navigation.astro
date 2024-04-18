@@ -74,8 +74,8 @@ import IconButton_ from '../components/IconButton.astro';
             aria-controls='home-tab'
             onclick='toggleActiveState(this)'
           >
-            <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
-            <span>Home</span>
+            <svg-home class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-home>
+             Home
           </Button_>
           <span class='iui-tooltip'>Home</span>
 
@@ -92,10 +92,11 @@ import IconButton_ from '../components/IconButton.astro';
               class='iui-button-icon iui-notification-marker'
               data-iui-variant='negative'
               data-iui-urgent='true'
+              slot='start-icon'
             >
               <svg-document></svg-document>
             </span>
-            <span>Documents</span>
+             Documents
           </Button_>
           <span class='iui-tooltip'>Documents</span>
 
@@ -108,10 +109,14 @@ import IconButton_ from '../components/IconButton.astro';
             aria-controls='map-tab'
             onclick='toggleActiveState(this)'
           >
-            <span class='iui-button-icon iui-notification-marker' data-iui-variant='positive'>
+            <span
+              class='iui-button-icon iui-notification-marker'
+              data-iui-variant='positive'
+              slot='start-icon'
+            >
               <svg-map></svg-map>
             </span>
-            <span>Map</span>
+             Map
           </Button_>
           <span class='iui-tooltip'>Map</span>
 
@@ -125,8 +130,8 @@ import IconButton_ from '../components/IconButton.astro';
             disabled
             onclick='toggleActiveState(this)'
           >
-            <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
-            <span>Archives</span>
+            <svg-archive class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-archive>
+             Archives
           </Button_>
           <span class='iui-tooltip'>Archives</span>
 
@@ -140,8 +145,9 @@ import IconButton_ from '../components/IconButton.astro';
             id='test-tab-1'
             onclick='toggleActiveState(this)'
           >
-            <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-            <span>Calendar</span>
+            <svg-calendar class='iui-button-icon' aria-hidden='true' slot='start-icon'
+            ></svg-calendar>
+             Calendar
           </Button_>
           <span class='iui-tooltip'>Calendar</span>
         </div>
@@ -157,8 +163,8 @@ import IconButton_ from '../components/IconButton.astro';
             id='test-tab-2'
             onclick='toggleActiveState(this)'
           >
-            <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
-            <span>Administration</span>
+            <svg-setup class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-setup>
+             Administration
           </Button_>
           <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
         </div>
@@ -184,8 +190,8 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Home'
               aria-controls='home-tab'
             >
-              <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
-              <span>Home</span>
+              <svg-home class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-home>
+               Home
             </Button_>
             <span class='iui-tooltip'>Home</span>
 
@@ -197,8 +203,9 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Documents'
               aria-controls='documents-tab'
             >
-              <svg-document class='iui-button-icon' aria-hidden='true'></svg-document>
-              <span>Documents</span>
+              <svg-document class='iui-button-icon' aria-hidden='true' slot='start-icon'
+              ></svg-document>
+               Documents
             </Button_>
             <span class='iui-tooltip'>Documents</span>
 
@@ -210,8 +217,8 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Map'
               aria-controls='map-tab'
             >
-              <svg-map class='iui-button-icon' aria-hidden='true'></svg-map>
-              <span>Map</span>
+              <svg-map class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-map>
+               Map
             </Button_>
             <span class='iui-tooltip'>Map</span>
 
@@ -224,8 +231,9 @@ import IconButton_ from '../components/IconButton.astro';
               aria-controls='archives-tab'
               disabled
             >
-              <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
-              <span>Archives</span>
+              <svg-archive class='iui-button-icon' aria-hidden='true' slot='start-icon'
+              ></svg-archive>
+               Archives
             </Button_>
             <span class='iui-tooltip'>Archives</span>
 
@@ -237,8 +245,9 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Calendar'
               aria-controls='calendar-tab'
             >
-              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-              <span>Calendar</span>
+              <svg-calendar class='iui-button-icon' aria-hidden='true' slot='start-icon'
+              ></svg-calendar>
+               Calendar
             </Button_>
             <span class='iui-tooltip'>Calendar</span>
           </div>
@@ -252,8 +261,8 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Administration'
               aria-controls='administration-tab'
             >
-              <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
-              <span>Administration</span>
+              <svg-setup class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-setup>
+               Administration
             </Button_>
             <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
           </div>
@@ -339,8 +348,8 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Home'
               aria-controls='home-tab'
             >
-              <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
-              <span>Home</span>
+              <svg-home class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-home>
+               Home
             </Button_>
             <span class='iui-tooltip'>Home</span>
 
@@ -353,8 +362,9 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Documents'
               aria-controls='documents-tab'
             >
-              <svg-document class='iui-button-icon' aria-hidden='true'></svg-document>
-              <span>Documents</span>
+              <svg-document class='iui-button-icon' aria-hidden='true' slot='start-icon'
+              ></svg-document>
+               Documents
             </Button_>
             <span class='iui-tooltip'>Documents</span>
 
@@ -366,8 +376,8 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Map'
               aria-controls='map-tab'
             >
-              <svg-map class='iui-button-icon' aria-hidden='true'></svg-map>
-              <span>Map</span>
+              <svg-map class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-map>
+               Map
             </Button_>
             <span class='iui-tooltip'>Map</span>
 
@@ -380,8 +390,9 @@ import IconButton_ from '../components/IconButton.astro';
               aria-controls='archives-tab'
               disabled
             >
-              <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
-              <span>Archives</span>
+              <svg-archive class='iui-button-icon' aria-hidden='true' slot='start-icon'
+              ></svg-archive>
+               Archives
             </Button_>
             <span class='iui-tooltip'>Archives</span>
 
@@ -393,8 +404,9 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Calendar'
               aria-controls='calendar-tab'
             >
-              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-              <span>Calendar</span>
+              <svg-calendar class='iui-button-icon' aria-hidden='true' slot='start-icon'
+              ></svg-calendar>
+               Calendar
             </Button_>
             <span class='iui-tooltip'>Calendar</span>
           </div>
@@ -408,8 +420,8 @@ import IconButton_ from '../components/IconButton.astro';
               aria-label='Administration'
               aria-controls='administration-tab'
             >
-              <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
-              <span>Administration</span>
+              <svg-setup class='iui-button-icon' aria-hidden='true' slot='start-icon'></svg-setup>
+               Administration
             </Button_>
             <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
           </div>
