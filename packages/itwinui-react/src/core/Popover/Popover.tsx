@@ -25,9 +25,13 @@ import {
   useRole,
   FloatingPortal,
   useFloatingTree,
-  // useListNavigation,
+  useListNavigation,
 } from '@floating-ui/react';
-import type { SizeOptions, Placement } from '@floating-ui/react';
+import type {
+  SizeOptions,
+  Placement,
+  UseListNavigationProps,
+} from '@floating-ui/react';
 import {
   Box,
   cloneElementWithRef,
@@ -100,18 +104,38 @@ type PopoverInternalProps = {
     animationFrame?: boolean;
     layoutShift?: boolean;
   };
-  /**
-   * By default, the popover will only open on click.
-   * `hover` and `focus` can be manually specified as triggers.
-   */
-  trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
-  triggers?: (context: any) => any[];
   role?: 'dialog' | 'menu' | 'listbox';
   /**
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-} & Record<string, any>;
+} & PopoverInteractionProps &
+  Record<string, any>;
+
+/** If listNavigation is an interaction, it forces the required props for it to be provided */
+type PopoverInteractionProps =
+  | {
+      /**
+       * By default, only the click interaction/trigger is enabled.
+       * `hover` and `focus` can be manually specified as interactions/triggers.
+       *
+       * Note: If `listNavigation` is enabled, `interactionsProps.listNavigation` must be provided.
+       */
+      interactions?: Partial<Record<'hover' | 'click' | 'focus', boolean>> & {
+        listNavigation: true;
+      };
+      interactionsProps: {
+        listNavigation: UseListNavigationProps;
+      };
+    }
+  | {
+      interactions?: Partial<Record<'hover' | 'click' | 'focus', boolean>> & {
+        listNavigation?: false;
+      };
+      interactionsProps?: {
+        listNavigation?: UseListNavigationProps;
+      };
+    };
 
 // ----------------------------------------------------------------------------
 
@@ -123,8 +147,15 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
-    trigger = { click: true, hover: false, focus: false },
-    triggers = () => [],
+    interactions: interactionsProp = {
+      click: true,
+      hover: false,
+      focus: false,
+      listNavigation: false,
+    },
+    interactionsProps = {
+      listNavigation: undefined,
+    },
     role,
     ...rest
   } = options;
@@ -162,19 +193,22 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   });
 
   const interactions = useInteractions([
-    useClick(floating.context, { enabled: !!trigger.click }),
+    useClick(floating.context, { enabled: !!interactionsProp.click }),
     useDismiss(floating.context, {
       outsidePress: closeOnOutsideClick,
       bubbles: tree != null, // Only bubble when inside a FloatingTree
     }),
     useHover(floating.context, {
-      enabled: !!trigger.hover,
+      enabled: !!interactionsProp.hover,
       delay: 100,
       handleClose: safePolygon({ buffer: 1, requireIntent: false }),
     }),
-    useFocus(floating.context, { enabled: !!trigger.focus }),
+    useFocus(floating.context, { enabled: !!interactionsProp.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
-    ...triggers(floating.context),
+    useListNavigation(floating.context, {
+      enabled: !!interactionsProp.listNavigation,
+      ...interactionsProps.listNavigation,
+    } as UseListNavigationProps),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
