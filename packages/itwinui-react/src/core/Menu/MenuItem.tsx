@@ -19,7 +19,6 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
-  useListNavigation,
 } from '@floating-ui/react';
 
 /**
@@ -131,18 +130,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
-
-  // TODO: Try to find a better way to get the index.
-  const parentTreeIndex = React.useMemo(
-    () => {
-      const allSiblingNodes = tree?.nodesRef.current.filter(
-        (n) => n.parentId === parentId,
-      );
-      return allSiblingNodes?.findIndex((n) => n.id === nodeId) ?? 0;
-    },
-    // TODO: Try to remove the eslint-disable
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [nodeId, parentId, tree?.nodesRef, tree?.nodesRef.current],
+  const parentTreeIndex = Number(
+    menuItemRef.current?.dataset['menuChildIndex'],
   );
 
   React.useEffect(() => {
@@ -303,7 +292,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                   },
                 })}
               >
-                {subMenuItems}
+                {subMenuItems.map((item, index) =>
+                  React.cloneElement(item, {
+                    key: index,
+                    ['data-menu-child-index']: index,
+                  }),
+                )}
               </Menu>
             </MenuItemContext.Provider>
           </Portal>
