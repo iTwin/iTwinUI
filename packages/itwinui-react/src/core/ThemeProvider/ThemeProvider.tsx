@@ -15,6 +15,7 @@ import {
   importCss,
   isUnitTest,
   HydrationProvider,
+  useHydration,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -184,21 +185,31 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
           {...rest}
         >
           <ToastProvider>
-            {children}
+            <OwnerDocumentContext.Provider value={rootElement?.ownerDocument}>
+              {children}
 
-            {portaledPortalContainer ? (
-              ReactDOM.createPortal(<Toaster />, portaledPortalContainer)
-            ) : (
-              <div ref={setPortalContainer} style={{ display: 'contents' }}>
-                <Toaster />
-              </div>
-            )}
+              {portaledPortalContainer ? (
+                <PortalContainer
+                  portaledPortalContainer={portaledPortalContainer}
+                  setPortalContainer={setPortalContainer}
+                />
+              ) : (
+                <div
+                  ref={setPortalContainer}
+                  style={{ display: 'contents' }}
+                  data-main
+                >
+                  <Toaster />
+                </div>
+              )}
+            </OwnerDocumentContext.Provider>
           </ToastProvider>
         </Root>
       </ThemeContext.Provider>
     </HydrationProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
+ThemeProvider.displayName = 'ThemeProvider';
 
 // ----------------------------------------------------------------------------
 
@@ -290,6 +301,45 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
     context: parentContext,
   } as const;
 };
+
+// ----------------------------------------------------------------------------
+
+const OwnerDocumentContext = React.createContext<Document | undefined>(
+  undefined,
+);
+
+// ----------------------------------------------------------------------------
+
+const PortalContainer = React.memo(function PortalContainer({
+  portaledPortalContainer,
+  setPortalContainer,
+}: any) {
+  const ownerDocument = React.useContext(OwnerDocumentContext);
+
+  const isHydrated = useHydration() === 'hydrated';
+
+  if (!isHydrated) {
+    return null;
+  }
+
+  console.log({
+    portaledPortalContainer,
+    ownerDocumentBody: ownerDocument?.body,
+  });
+
+  if (portaledPortalContainer.ownerDocument !== ownerDocument) {
+    return (
+      <div ref={setPortalContainer} style={{ display: 'contents' }} data-child>
+        <Toaster />
+      </div>
+    );
+  }
+
+  return (
+    portaledPortalContainer &&
+    ReactDOM.createPortal(<Toaster />, portaledPortalContainer)
+  );
+});
 
 // ----------------------------------------------------------------------------
 
