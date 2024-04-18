@@ -110,6 +110,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
   const [rightArrowPressed, setRightArrowPressed] = React.useState(false);
 
+  const [hasMouseEntered, setHasMouseEntered] = React.useState(false);
+  if (!isSubmenuVisible && hasMouseEntered) {
+    setHasMouseEntered(false);
+  }
+
   const dropdownMenuContext = React.useContext(DropdownMenuContext);
 
   const nodeId = useFloatingNodeId();
@@ -209,7 +214,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       dropdownMenuContext.lastFocusedNode?.parentId === nodeId,
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
-    trigger: { hover: true },
+    trigger: {
+      hover: subMenuItems.length > 0 && !hasMouseEntered,
+    },
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -251,6 +258,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    setHasMouseEntered(true);
+
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
     }
@@ -331,6 +340,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                   // pointer might move into a nested submenu and set isSubmenuVisible to false,
                   // so we need to flip it back to true when pointer re-enters this submenu.
                   setIsSubmenuVisible(true);
+                },
+                onMouseEnter: () => {
+                  setHasMouseEntered(true);
                 },
               })}
             >
