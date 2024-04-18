@@ -116,6 +116,35 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
+  const onVisibleChange = (open: boolean, event, reason) => {
+    // Don't close the submenu that includes the last focused node
+    if (
+      !open &&
+      // dropdownMenuContext.lastFocusedNode != null &&
+      // isAncestor({
+      //   tree,
+      //   referenceNode: dropdownMenuContext.lastFocusedNode.nodeId,
+      //   node: nodeId,
+      // })
+      dropdownMenuContext.lastFocusedNode?.parentId === nodeId
+    ) {
+      return;
+    }
+
+    if (!open && reason !== 'safe-polygon') {
+      console.log(
+        'onVisibleChange',
+        children,
+        dropdownMenuContext.lastFocusedNode,
+        { nodeId, parentId },
+        open,
+        // event,
+        reason,
+      );
+    }
+    setIsSubmenuVisible(open);
+  };
+
   React.useEffect(() => {
     const handleArrowLeftPressed = (event: TreeEvent) => {
       if (event.parentId === nodeId) {
@@ -204,10 +233,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     nodeId,
-    visible:
-      isSubmenuVisible ||
-      dropdownMenuContext.lastFocusedNode?.parentId === nodeId,
-    onVisibleChange: setIsSubmenuVisible,
+    visible: isSubmenuVisible,
+    onOpenChange: onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true },
   });
@@ -304,7 +331,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </ListItem.Icon>
         )}
         <ListItem.Content>
-          <div>{children}</div>
+          <div>
+            {children},{nodeId}
+          </div>
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
@@ -349,3 +378,81 @@ export type TreeEvent = {
   nodeId: string;
   parentId: string | null;
 };
+
+// ----------------------------------------------------------------------------
+
+// /**
+//  * Returns `true` if `node` is an ancestor of `referenceNode` in the tree.
+//  */
+// const isAncestor = ({
+//   tree,
+//   referenceNode,
+//   node,
+// }: {
+//   tree: ReturnType<typeof useFloatingTree>;
+//   referenceNode: string;
+//   node: string;
+// }) => {
+//   const ancestorTree = getAncestorTree({ tree });
+//   return ancestorTree[node]?.includes(referenceNode);
+// };
+
+// /**
+//  * @example
+//  * <caption>Input (tree?.nodesRef.current):</caption>
+//  * ```tsx
+//  * [
+//  *   { id: "1", "parentId": null },
+//  *   { id: "2", "parentId": "1" },
+//  *   { id: "3", "parentId": "2" },
+//  *   { id: "4", "parentId": "2" },
+//  *   { id: "5", "parentId": "2" },
+//  *   { id: "6", "parentId": "2" },
+//  *   { id: "7", "parentId": "6" },
+//  *   { id: "8", "parentId": "6" },
+//  * ]
+//  * ```
+//  *
+//  * <caption>Output:</caption>
+//  * ```tsx
+//  * {
+//  *   "1": ["2", "3", "4", "5", "6", "7", "8"],
+//  *   "2": ["3", "4", "5", "6", "7", "8"],
+//  *   "3": [],
+//  *   "4": [],
+//  *   "5": [],
+//  *   "6": ["7", "8"],
+//  *   "7": [],
+//  *   "8": [],
+//  * }
+//  * ```
+//  */
+// const getAncestorTree = ({
+//   tree,
+// }: {
+//   tree: ReturnType<typeof useFloatingTree>;
+// }) => {
+//   const result: Record<string, string[]> = {};
+
+//   if (!tree) {
+//     return result;
+//   }
+
+//   const nodes = tree.nodesRef.current;
+//   if (!nodes) {
+//     return result;
+//   }
+
+//   const nodeIds = nodes.map((node) => node.id).reverse();
+
+//   for (const nodeId of nodeIds) {
+//     const directChildren = nodes
+//       .filter((node) => node.parentId === nodeId)
+//       .map((node) => node.id);
+//     const indirectChildren = directChildren.flatMap((child) => result[child]);
+
+//     result[nodeId] = [...directChildren, ...indirectChildren];
+//   }
+
+//   return result;
+// };
