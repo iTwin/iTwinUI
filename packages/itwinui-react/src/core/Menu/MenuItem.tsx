@@ -143,6 +143,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     // };
 
     const handleNodeFocused = (event: TreeEvent) => {
+      // console.log(
+      //   'node focused',
+      //   event.nodeId,
+      //   event.parentId,
+      //   nodeId,
+      //   parentId,
+      // );
+
       // Consider a node "X" with its submenu "Y".
       // Focusing "X" should close all submenus of "Y".
       if (parentId === event.nodeId) {
@@ -269,6 +277,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
+    // console.log('onfocus', children);
     if (e.target === e.currentTarget) {
       tree?.events.emit('nodeFocused', {
         nodeId,
@@ -347,6 +356,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           <Portal>
             <Menu
               // setFocus={true}
+              setFocus={false}
               ref={popover.refs.setFloating}
               {...popover.getFloatingProps({
                 id: submenuId,
