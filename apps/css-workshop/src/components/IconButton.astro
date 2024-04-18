@@ -11,6 +11,7 @@ const { class: className, variant, size, isActive, shift, ...props } = Astro.pro
 
 <button
   class:list={['iui-button', className]}
+  type='button'
   data-iui-variant={variant}
   data-iui-size={size}
   data-iui-active={isActive ? 'true' : undefined}

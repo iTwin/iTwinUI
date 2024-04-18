@@ -57,12 +57,7 @@ import IconButton_ from '../components/IconButton.astro';
     </div>
   </div>
 
-  <Button_
-    aria-label='Open dialog'
-    id='open-dialog'
-    type='button'
-    onclick="toggleDialog('default-dialog')"
-  >
+  <Button_ aria-label='Open dialog' id='open-dialog' onclick="toggleDialog('default-dialog')">
     Open dialog
   </Button_>
 
@@ -71,7 +66,6 @@ import IconButton_ from '../components/IconButton.astro';
   <Button_
     aria-label='Open full page dialog'
     id='open-full-page-dialog'
-    type='button'
     onclick="toggleDialog('full-page-dialog')"
   >
     Open full page dialog
@@ -82,7 +76,6 @@ import IconButton_ from '../components/IconButton.astro';
   <Button_
     aria-label='Toggle draggable dialog'
     id='toggle-draggable-dialog'
-    type='button'
     onclick="toggleDialog('draggable-dialog')"
   >
     Toggle draggable dialog
@@ -95,7 +88,6 @@ import IconButton_ from '../components/IconButton.astro';
         <div class='iui-dialog-title'>Title</div>
         <IconButton_
           aria-label='Close'
-          type='button'
           variant='borderless'
           size='small'
           onclick="toggleDialog('default-dialog')"
@@ -132,7 +124,6 @@ import IconButton_ from '../components/IconButton.astro';
         <div class='iui-dialog-title'>Title</div>
         <IconButton_
           aria-label='Close'
-          type='button'
           variant='borderless'
           size='small'
           onclick="toggleDialog('full-page-dialog')"
@@ -168,7 +159,6 @@ import IconButton_ from '../components/IconButton.astro';
         <div class='iui-dialog-title'>Title</div>
         <IconButton_
           aria-label='Close'
-          type='button'
           variant='borderless'
           size='small'
           onclick="toggleDialog('draggable-dialog')"
@@ -203,7 +193,6 @@ import IconButton_ from '../components/IconButton.astro';
       <Button_
         aria-label='Open relative to container dialog'
         id='open-relative-to-container-dialog'
-        type='button'
         onclick="toggleDialog('draggable-dialog-relative')"
       >
         Open relative to container dialog
@@ -214,7 +203,6 @@ import IconButton_ from '../components/IconButton.astro';
             <div class='iui-dialog-title'>Title</div>
             <IconButton_
               aria-label='Close'
-              type='button'
               variant='borderless'
               size='small'
               onclick="toggleDialog('draggable-dialog-relative')"
@@ -249,7 +237,6 @@ import IconButton_ from '../components/IconButton.astro';
       <Button_
         aria-label='Open with backdrop relative to container dialog'
         id='open-with-backdrop-relative-to-container-dialog'
-        type='button'
         onclick="toggleDialog('relative-dialog-with-backdrop')"
       >
         Open with backdrop relative to container dialog
@@ -261,7 +248,6 @@ import IconButton_ from '../components/IconButton.astro';
             <div class='iui-dialog-title'>Title</div>
             <IconButton_
               aria-label='Close'
-              type='button'
               variant='borderless'
               size='small'
               onclick="toggleDialog('relative-dialog-with-backdrop')"
