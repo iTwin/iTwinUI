@@ -25,6 +25,7 @@ import {
   useRole,
   FloatingPortal,
   useFloatingTree,
+  // useListNavigation,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
@@ -104,6 +105,7 @@ type PopoverInternalProps = {
    * `hover` and `focus` can be manually specified as triggers.
    */
   trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
+  triggers?: (context: any) => any[];
   role?: 'dialog' | 'menu' | 'listbox';
   /**
    * Whether the popover should match the width of the trigger.
@@ -122,6 +124,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     autoUpdateOptions,
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
+    triggers = () => [],
     role,
     ...rest
   } = options;
@@ -171,6 +174,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     }),
     useFocus(floating.context, { enabled: !!trigger.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
+    ...triggers(floating.context),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
