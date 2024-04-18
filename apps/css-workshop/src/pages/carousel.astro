@@ -1,6 +1,6 @@
 ---
 import Layout from './_layout.astro';
-import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Carousel'>
@@ -78,7 +78,7 @@ import Button_ from '../components/Button.astro';
     >
       <div class='iui-carousel-navigation'>
         <div class='iui-carousel-navigation-left'>
-          <Button_
+          <IconButton_
             class='iui-carousel-navigation-button'
             variant='borderless'
             size='small'
@@ -88,8 +88,8 @@ import Button_ from '../components/Button.astro';
             tabindex='-1'
           >
             <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
-          <Button_
+          </IconButton_>
+          <IconButton_
             class='iui-carousel-navigation-animation-button'
             variant='borderless'
             size='small'
@@ -99,7 +99,7 @@ import Button_ from '../components/Button.astro';
             tabindex='-1'
           >
             <svg-play class='iui-button-icon' aria-hidden='true'></svg-play>
-          </Button_>
+          </IconButton_>
         </div>
 
         <div class='iui-carousel-navigation-dots' role='tablist' aria-label='Slides' tabindex='-1'>
@@ -196,7 +196,7 @@ import Button_ from '../components/Button.astro';
         </div>
 
         <div class='iui-carousel-navigation-right'>
-          <Button_
+          <IconButton_
             class='iui-carousel-navigation-button'
             variant='borderless'
             size='small'
@@ -206,7 +206,7 @@ import Button_ from '../components/Button.astro';
             tabindex='-1'
           >
             <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
+          </IconButton_>
         </div>
       </div>
 

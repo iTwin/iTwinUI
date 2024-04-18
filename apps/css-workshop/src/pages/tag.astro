@@ -1,6 +1,6 @@
 ---
 import Layout from './_layout.astro';
-import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Tag'>
@@ -22,7 +22,7 @@ import Button_ from '../components/Button.astro';
   <section id='demo-default'>
     <span class='iui-tag' id='test-tag-1'>
       <span class='iui-tag-label' title='Tag'>Tag</span>
-      <Button_
+      <IconButton_
         class='iui-tag-button'
         variant='borderless'
         size='small'
@@ -30,14 +30,14 @@ import Button_ from '../components/Button.astro';
         type='button'
       >
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </Button_>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-tag' style='max-width: 125px;'>
       <span class='iui-tag-label' title='Overflowing tag'>Overflowing tag</span>
-      <Button_
+      <IconButton_
         class='iui-tag-button'
         variant='borderless'
         size='small'
@@ -46,7 +46,7 @@ import Button_ from '../components/Button.astro';
         id='test-tag-2'
       >
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </Button_>
+      </IconButton_>
     </span>
 
     <br />
@@ -62,7 +62,7 @@ import Button_ from '../components/Button.astro';
   <section id='demo-default-container'>
     <div class='iui-tag-container iui-visible' aria-label='My tags'>
       <span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span><Button_
+        <span class='iui-tag-label' title='Tag'>Tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -70,9 +70,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span><Button_
+        <span class='iui-tag-label' title='Long tag'>Long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -80,9 +80,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span><Button_
+        <span class='iui-tag-label' title='Very long tag'>Very long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -90,9 +90,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span><Button_
+        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -100,9 +100,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span><Button_
+        <span class='iui-tag-label' title='Tag'>Tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -110,9 +110,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span><Button_
+        <span class='iui-tag-label' title='Long tag'>Long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -120,9 +120,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span><Button_
+        <span class='iui-tag-label' title='Very long tag'>Very long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -130,9 +130,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Very very long tag'>Very very long tag</span><Button_
+        ><span class='iui-tag-label' title='Very very long tag'>Very very long tag</span
+        ><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -140,9 +141,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Tag'>Tag</span><Button_
+        ><span class='iui-tag-label' title='Tag'>Tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -150,9 +151,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Long tag'>Long tag</span><Button_
+        ><span class='iui-tag-label' title='Long tag'>Long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -160,9 +161,9 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Very long tag'>Very long tag</span><Button_
+        ><span class='iui-tag-label' title='Very long tag'>Very long tag</span><IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -170,10 +171,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'
         ><span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -181,7 +182,7 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span>
     </div>
 
@@ -190,7 +191,7 @@ import Button_ from '../components/Button.astro';
     <div class='iui-tag-container iui-visible iui-truncate' aria-label='My tags'>
       <span class='iui-tag'>
         <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -198,10 +199,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -209,10 +210,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -220,10 +221,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -231,7 +232,7 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span>
     </div>
 
@@ -240,7 +241,7 @@ import Button_ from '../components/Button.astro';
     <div class='iui-tag-container iui-visible iui-scroll' aria-label='My tags'>
       <span class='iui-tag'>
         <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -248,10 +249,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -259,10 +260,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -270,10 +271,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -281,10 +282,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -292,10 +293,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -303,10 +304,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -314,10 +315,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -325,10 +326,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -336,10 +337,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -347,10 +348,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -358,10 +359,10 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span><span class='iui-tag'>
         <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
+        <IconButton_
           class='iui-tag-button'
           variant='borderless'
           size='small'
@@ -369,7 +370,7 @@ import Button_ from '../components/Button.astro';
           type='button'
         >
           <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        </IconButton_>
       </span>
     </div>
   </section>
