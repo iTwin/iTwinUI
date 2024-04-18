@@ -89,7 +89,7 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   };
 
-  // Update focusedIndex when focused node is changed.
+  // Keep focusedIndex in sync with the real focused node's index.
   const onFocus = (event: React.FocusEvent<HTMLDivElement, Element>) => {
     const items = getFocusableNodes();
     const currentIndex = items.findIndex((el) => el === event.target);
