@@ -115,7 +115,7 @@ export const AsLink = () => {
 };
 
 export const Stretch = () => {
-  return <Button stretch>Sign in</Button>;
+  return <Button stretched>Sign in</Button>;
 };
 Stretch.decorators = [
   (Story: () => React.ReactNode) => (

@@ -197,7 +197,6 @@ import Checkbox_ from '../components/Checkbox.astro';
 
   <h2>Without group label</h2>
   <section id='demo-no-label'>
-    <h3>Checkbox on left</h3>
     <div
       id='left'
       style='
@@ -217,28 +216,6 @@ import Checkbox_ from '../components/Checkbox.astro';
       <Checkbox_ status='warning'>Checkbox</Checkbox_>
     </div>
 
-    <h3>Checkbox on right</h3>
-    <div
-      id='right'
-      style='
-          width: fit-content;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;'
-    >
-      <Checkbox_ indeterminate style={{ flexDirection: 'row-reverse' }}>Half checkbox</Checkbox_>
-      <Checkbox_ checked style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ isLoading style={{ flexDirection: 'row-reverse' }}>Loading checkbox</Checkbox_>
-      <Checkbox_ disabled style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ indeterminate disabled style={{ flexDirection: 'row-reverse' }}>
-        Half checkbox
-      </Checkbox_>
-      <Checkbox_ checked disabled style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ status='positive' style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ status='negative' style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-      <Checkbox_ status='warning' style={{ flexDirection: 'row-reverse' }}>Checkbox</Checkbox_>
-    </div>
-
     <h3>Empty label</h3>
     <Checkbox_ checked />
     <Checkbox_ indeterminate />
@@ -250,12 +227,12 @@ import Checkbox_ from '../components/Checkbox.astro';
   <br />
   <h2>Specialty styling</h2>
   <section id='demo-special'>
-    <Checkbox_ variant='eyeball' checked basic />
-    <Checkbox_ variant='eyeball' indeterminate basic />
-    <Checkbox_ variant='eyeball' basic />
-    <Checkbox_ variant='eyeball' checked disabled basic />
-    <Checkbox_ variant='eyeball' indeterminate disabled basic />
-    <Checkbox_ variant='eyeball' disabled basic />
+    <Checkbox_ variant='eyeball' checked />
+    <Checkbox_ variant='eyeball' indeterminate />
+    <Checkbox_ variant='eyeball' />
+    <Checkbox_ variant='eyeball' checked disabled />
+    <Checkbox_ variant='eyeball' indeterminate disabled />
+    <Checkbox_ variant='eyeball' disabled />
   </section>
 
   <script is:inline>
