@@ -130,9 +130,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
-  const parentTreeIndex = Number(
-    menuItemRef.current?.dataset['menuChildIndex'],
-  );
+  const parentTreeIndex =
+    menuItemRef.current?.dataset['menuChildIndex'] != null
+      ? Number(menuItemRef.current?.dataset['menuChildIndex'])
+      : undefined;
 
   React.useEffect(() => {
     const handleNodeFocused = (event: TreeEvent) => {
@@ -204,7 +205,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onFocus = (e: React.FocusEvent<HTMLElement>) => {
-    parent.setActiveIndex(parentTreeIndex);
+    if (parent != null && parentTreeIndex != null) {
+      parent.setActiveIndex(parentTreeIndex);
+    }
 
     if (e.target === e.currentTarget) {
       tree?.events.emit('nodeFocused', {
@@ -233,8 +236,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           menuItemRef,
           forwardedRef,
           subMenuItems.length > 0 ? popover.refs.setReference : null,
-          (el) =>
-            (parent.listItemsRef.current[parentTreeIndex] = el as HTMLElement),
+          (el) => {
+            if (parent != null && parentTreeIndex != null) {
+              parent.listItemsRef.current[parentTreeIndex] = el as HTMLElement;
+            }
+          },
         )}
         role={role}
         tabIndex={disabled || role === 'presentation' ? undefined : -1}
