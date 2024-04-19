@@ -104,7 +104,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     isSelected,
     disabled,
     value,
-    onClick,
+    onClick: onClickProp,
     sublabel,
     size = !!sublabel ? 'large' : 'default',
     icon,
@@ -187,7 +187,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        !disabled && onClick?.(value);
+        !disabled && onClickProp?.(value);
         event.preventDefault();
         break;
       }
@@ -217,8 +217,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
+  const onClick = (e: React.MouseEvent<HTMLElement>) => {
+    !disabled && onClickProp?.(value);
+
+    setIsSubmenuVisible((prev) => !prev);
+
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   const handlers = {
-    onClick: () => !disabled && onClick?.(value),
+    onClick,
     onKeyDown,
     onMouseEnter,
     onFocus,
