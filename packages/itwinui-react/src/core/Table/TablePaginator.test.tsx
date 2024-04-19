@@ -290,7 +290,7 @@ it('should render elements in small size', () => {
   ).toBe(true);
 
   const pages = container.querySelectorAll(
-    '.iui-table-paginator-page-button-small',
+    '.iui-table-paginator-page-button[data-iui-size="small"]',
   );
   expect(pages).toHaveLength(7);
 
