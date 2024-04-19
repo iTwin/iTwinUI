@@ -123,9 +123,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const [hasMouseEntered, setHasMouseEntered] = React.useState(false);
-  if (!isSubmenuVisible && hasMouseEntered) {
-    setHasMouseEntered(false);
-  }
 
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
@@ -165,7 +162,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     interactions: {
-      hover: subMenuItems.length > 0 && !hasMouseEntered,
+      hover: !hasMouseEntered,
       listNavigation: true,
     },
     interactionsProps: {
@@ -197,8 +194,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    setHasMouseEntered(true);
-
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
     }
@@ -293,8 +288,21 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                     // so we need to flip it back to true when pointer re-enters this submenu.
                     setIsSubmenuVisible(true);
                   },
-                  onMouseEnter: () => {
+                  onMouseEnter: (e) => {
+                    if (
+                      e.target === e.currentTarget &&
+                      subMenuItems.length > 0
+                    ) {
+                    }
                     setHasMouseEntered(true);
+                  },
+                  onMouseLeave: (e) => {
+                    if (
+                      e.target === e.currentTarget &&
+                      subMenuItems.length > 0
+                    ) {
+                    }
+                    setHasMouseEntered(false);
                   },
                 })}
               >
