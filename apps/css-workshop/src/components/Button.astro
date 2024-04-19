@@ -19,11 +19,22 @@ const { class: className, variant, size, isActive, dropdown, ...props } = Astro.
 >
   <slot name='start-icon' />
   {
-    Astro.slots.has('default') ? (
+    Astro.slots.has('default') && (
       <span>
         <slot />
       </span>
-    ) : undefined
+    )
   }
   <slot name='end-icon' />
 </button>
+
+<script>
+  const buttonIcons = [
+    ...document.querySelectorAll<HTMLInputElement>('[slot="start-icon"]'),
+    ...document.querySelectorAll<HTMLInputElement>('[slot="end-icon"]'),
+    ...document.querySelectorAll<HTMLInputElement>('.iui-notification-marker'),
+  ];
+  buttonIcons.forEach((icon) => {
+    icon.classList.add('iui-button-icon');
+  });
+</script>

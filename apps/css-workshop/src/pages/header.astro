@@ -136,7 +136,7 @@ import IconButton_ from '../components/IconButton.astro';
               variant='borderless'
               aria-label='Search'
             >
-              <svg-search class='iui-button-icon' aria-hidden='true'></svg-search>
+              <svg-search slot='button-icon' aria-hidden='true'></svg-search>
             </IconButton_>
           </label>
         </div>
@@ -149,14 +149,14 @@ import IconButton_ from '../components/IconButton.astro';
             aria-expanded='false'
             id='test-button-2'
           >
-            <span class='iui-button-icon iui-notification-marker' aria-hidden='true'>
+            <span class='iui-notification-marker' aria-hidden='true' slot='button-icon'>
               <svg-notification></svg-notification>
             </span>
           </IconButton_>
 
           <!-- Help -->
           <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+            <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
             ></svg-help-circular-hollow>
           </IconButton_>
 
@@ -167,7 +167,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- More menu -->
           <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+            <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
           </IconButton_>
         </div>
       </header>
@@ -242,9 +242,10 @@ import IconButton_ from '../components/IconButton.astro';
           <!-- Notifications -->
           <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
             <span
-              class='iui-button-icon iui-notification-marker'
+              class='iui-notification-marker'
               aria-hidden='true'
               data-iui-variant='positive'
+              slot='button-icon'
             >
               <svg-notification></svg-notification>
             </span>
@@ -252,7 +253,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- Help -->
           <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+            <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
             ></svg-help-circular-hollow>
           </IconButton_>
 
@@ -263,7 +264,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- More menu -->
           <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+            <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
           </IconButton_>
         </div>
       </header>
@@ -339,9 +340,10 @@ import IconButton_ from '../components/IconButton.astro';
             id='test-button-4'
           >
             <span
-              class='iui-button-icon iui-notification-marker'
+              class='iui-notification-marker'
               data-iui-variant='warning'
               data-iui-urgent='true'
+              slot='button-icon'
             >
               <svg-notification></svg-notification>
             </span>
@@ -349,7 +351,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- Help -->
           <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+            <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
             ></svg-help-circular-hollow>
           </IconButton_>
 
@@ -360,7 +362,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- More menu -->
           <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+            <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
           </IconButton_>
         </div>
       </header>
@@ -420,9 +422,10 @@ import IconButton_ from '../components/IconButton.astro';
           <!-- Notifications -->
           <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
             <span
-              class='iui-button-icon iui-notification-marker'
+              class='iui-notification-marker'
               data-iui-variant='negative'
               data-iui-urgent='true'
+              slot='button-icon'
             >
               <svg-notification></svg-notification>
             </span>
@@ -430,7 +433,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- Help -->
           <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+            <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
             ></svg-help-circular-hollow>
           </IconButton_>
 
@@ -441,7 +444,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- More menu -->
           <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+            <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
           </IconButton_>
         </div>
       </header>
@@ -565,12 +568,12 @@ import IconButton_ from '../components/IconButton.astro';
         <div class='iui-page-header-right'>
           <!-- Notifications -->
           <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
-            <svg-notification class='iui-button-icon' aria-hidden='true'></svg-notification>
+            <svg-notification slot='button-icon' aria-hidden='true'></svg-notification>
           </IconButton_>
 
           <!-- Help -->
           <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+            <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
             ></svg-help-circular-hollow>
           </IconButton_>
 
@@ -581,7 +584,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- More menu -->
           <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+            <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
           </IconButton_>
         </div>
       </header>
@@ -691,12 +694,12 @@ import IconButton_ from '../components/IconButton.astro';
         <div class='iui-page-header-right'>
           <!-- Notifications -->
           <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
-            <svg-notification class='iui-button-icon' aria-hidden='true'></svg-notification>
+            <svg-notification slot='button-icon' aria-hidden='true'></svg-notification>
           </IconButton_>
 
           <!-- Help -->
           <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+            <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
             ></svg-help-circular-hollow>
           </IconButton_>
 
@@ -707,7 +710,7 @@ import IconButton_ from '../components/IconButton.astro';
 
           <!-- More menu -->
           <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+            <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
           </IconButton_>
         </div>
       </header>
@@ -784,14 +787,14 @@ import IconButton_ from '../components/IconButton.astro';
       <div class='iui-page-header-right'>
         <!-- Notifications -->
         <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
-          <span class='iui-button-icon iui-notification-marker' data-iui-urgent='true'>
+          <span class='iui-notification-marker' data-iui-urgent='true' slot='button-icon'>
             <svg-notification></svg-notification>
           </span>
         </IconButton_>
 
         <!-- Help -->
         <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
-          <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
+          <svg-help-circular-hollow slot='button-icon' aria-hidden='true'
           ></svg-help-circular-hollow>
         </IconButton_>
 
@@ -802,7 +805,7 @@ import IconButton_ from '../components/IconButton.astro';
 
         <!-- More menu -->
         <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
-          <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
+          <svg-more-vertical slot='button-icon' aria-hidden='true'></svg-more-vertical>
         </IconButton_>
       </div>
     </header>
@@ -818,15 +821,15 @@ import IconButton_ from '../components/IconButton.astro';
             role='tab'
             aria-selected='true'
           >
-            <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+            <svg-placeholder slot='button-icon' aria-hidden='true'></svg-placeholder>
           </IconButton_>
 
           <IconButton_ class='iui-sidenav-button' size='large' role='tab' aria-selected='false'>
-            <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+            <svg-placeholder slot='button-icon' aria-hidden='true'></svg-placeholder>
           </IconButton_>
 
           <IconButton_ class='iui-sidenav-button' size='large' role='tab' aria-selected='false'>
-            <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+            <svg-placeholder slot='button-icon' aria-hidden='true'></svg-placeholder>
           </IconButton_>
         </div>
       </div>
