@@ -205,19 +205,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const onFocus = (e: React.FocusEvent<HTMLElement>) => {
-    if (e.target === e.currentTarget) {
-      if (parent != null && parentTreeIndex != null) {
-        parent.setActiveIndex(parentTreeIndex);
-      }
-
-      parent.setHasFocusedNodeInSubmenu(true);
-
-      tree?.events.emit('nodeFocused', {
-        nodeId,
-        parentId,
-      } satisfies TreeEvent);
+  const onFocus = () => {
+    if (parent != null && parentTreeIndex != null) {
+      parent.setActiveIndex(parentTreeIndex);
     }
+
+    parent.setHasFocusedNodeInSubmenu(true);
+
+    tree?.events.emit('nodeFocused', {
+      nodeId,
+      parentId,
+    } satisfies TreeEvent);
   };
 
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
