@@ -118,13 +118,7 @@ type PopoverInternalProps = {
 /** If listNavigation is an interaction, it forces the required props for it to be provided */
 type PopoverInteractionConditionalProps =
   | {
-      /**
-       * By default, only the click interaction/trigger is enabled.
-       * `hover` and `focus` can be manually specified as interactions/triggers.
-       *
-       * Note: If `listNavigation` is enabled, `interactionsProps.listNavigation` must be provided.
-       */
-      interactions?: Partial<Record<'hover' | 'click' | 'focus', boolean>> & {
+      interactions?: {
         listNavigation: true;
       };
       interactionsProps: {
@@ -132,7 +126,7 @@ type PopoverInteractionConditionalProps =
       };
     }
   | {
-      interactions?: Partial<Record<'hover' | 'click' | 'focus', boolean>> & {
+      interactions?: {
         listNavigation?: false;
       };
       interactionsProps?: {
@@ -148,6 +142,13 @@ type PopoverInteractionProps = PopoverInteractionConditionalProps & {
 
 type UsePopoverProps = Omit<PopoverOptions, 'onVisibleChange'> &
   PopoverInternalProps & {
+    /**
+     * By default, only the click interaction/trigger is enabled.
+     * `hover` and `focus` can be manually specified as interactions/triggers.
+     *
+     * Note: If `listNavigation` is enabled, `interactionsProps.listNavigation` must be provided.
+     */
+    interactions?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
     onVisibleChange?: UseFloatingOptions['onOpenChange'];
   };
 
