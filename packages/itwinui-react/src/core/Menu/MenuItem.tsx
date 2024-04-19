@@ -27,9 +27,11 @@ import {
 const MenuItemContext = React.createContext<{
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
   listItemsRef: React.MutableRefObject<(HTMLElement | null)[]>;
+  setHasFocusedNodeInSubmenu: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   setActiveIndex: () => {},
   listItemsRef: { current: [] },
+  setHasFocusedNodeInSubmenu: () => {},
 });
 
 export type MenuItemProps = {
@@ -122,7 +124,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
-  const [hasMouseEntered, setHasMouseEntered] = React.useState(false);
+  const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
+    React.useState(false);
 
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
@@ -138,12 +141,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // Focusing "X" should close all submenus of "Y".
       if (parentId === event.nodeId) {
         setIsSubmenuVisible(false);
+        setHasFocusedNodeInSubmenu(false);
       }
 
       // When a node "X" is focused, close "X"'s siblings' submenus
       // i.e. only one submenu in each menu can be open at a time
       if (parentId === event.parentId && nodeId !== event.nodeId) {
         setIsSubmenuVisible(false);
+        setHasFocusedNodeInSubmenu(false);
       }
     };
 
@@ -162,7 +167,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     interactions: {
-      hover: !hasMouseEntered,
+      hover: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
       listNavigation: true,
     },
     interactionsProps: {
@@ -209,6 +214,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         nodeId,
         parentId,
       } satisfies TreeEvent);
+
+      const isFocused = document.activeElement === e.target;
+      if (isFocused) {
+        parent.setHasFocusedNodeInSubmenu(true);
+      } else {
+        parent.setHasFocusedNodeInSubmenu(false);
+      }
     }
   };
 
@@ -254,7 +266,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </ListItem.Icon>
         )}
         <ListItem.Content>
-          <div>{children}</div>
+          {/* <div>{children}</div> */}
+          <div>
+            {children},{`${hasFocusedNodeInSubmenu}`}
+          </div>
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
@@ -276,6 +291,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               value={{
                 setActiveIndex,
                 listItemsRef,
+                setHasFocusedNodeInSubmenu,
               }}
             >
               <Menu
@@ -287,22 +303,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                     // pointer might move into a nested submenu and set isSubmenuVisible to false,
                     // so we need to flip it back to true when pointer re-enters this submenu.
                     setIsSubmenuVisible(true);
-                  },
-                  onMouseEnter: (e) => {
-                    if (
-                      e.target === e.currentTarget &&
-                      subMenuItems.length > 0
-                    ) {
-                    }
-                    setHasMouseEntered(true);
-                  },
-                  onMouseLeave: (e) => {
-                    if (
-                      e.target === e.currentTarget &&
-                      subMenuItems.length > 0
-                    ) {
-                    }
-                    setHasMouseEntered(false);
                   },
                 })}
               >
