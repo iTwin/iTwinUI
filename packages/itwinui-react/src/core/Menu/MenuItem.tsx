@@ -169,6 +169,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       listNavigation: true,
     },
     interactionsProps: {
+      hover: {
+        move: false,
+      },
       listNavigation: {
         listRef: listItemsRef,
         activeIndex,
@@ -187,7 +190,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        !disabled && onClickProp?.(value);
+        onActivate();
         event.preventDefault();
         break;
       }
@@ -218,12 +221,15 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
-    !disabled && onClickProp?.(value);
-
-    setIsSubmenuVisible((prev) => !prev);
+    onActivate();
 
     e.preventDefault();
     e.stopPropagation();
+  };
+
+  const onActivate = () => {
+    !disabled && onClickProp?.(value);
+    setIsSubmenuVisible((prev) => !prev);
   };
 
   const handlers = {

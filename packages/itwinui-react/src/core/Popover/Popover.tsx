@@ -31,6 +31,9 @@ import type {
   SizeOptions,
   Placement,
   UseListNavigationProps,
+  ReferenceType,
+  UseFloatingOptions,
+  UseHoverProps,
 } from '@floating-ui/react';
 import {
   Box,
@@ -113,7 +116,7 @@ type PopoverInternalProps = {
   Record<string, any>;
 
 /** If listNavigation is an interaction, it forces the required props for it to be provided */
-type PopoverInteractionProps =
+type PopoverInteractionConditionalProps =
   | {
       /**
        * By default, only the click interaction/trigger is enabled.
@@ -137,9 +140,20 @@ type PopoverInteractionProps =
       };
     };
 
+type PopoverInteractionProps = PopoverInteractionConditionalProps & {
+  interactionsProps?: {
+    hover?: UseHoverProps<ReferenceType>;
+  };
+};
+
+type UsePopoverProps = Omit<PopoverOptions, 'onVisibleChange'> &
+  PopoverInternalProps & {
+    onVisibleChange?: UseFloatingOptions['onOpenChange'];
+  };
+
 // ----------------------------------------------------------------------------
 
-export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
+export const usePopover = (options: UsePopoverProps) => {
   const {
     placement = 'bottom-start',
     visible,
@@ -202,6 +216,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       enabled: !!interactionsProp.hover,
       delay: 100,
       handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+      ...interactionsProps.hover,
     }),
     useFocus(floating.context, { enabled: !!interactionsProp.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
