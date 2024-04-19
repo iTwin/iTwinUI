@@ -137,16 +137,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   React.useEffect(() => {
     const handleNodeFocused = (event: TreeEvent) => {
-      // Consider a node "X" with its submenu "Y".
-      // Focusing "X" should close all submenus of "Y".
-      if (parentId === event.nodeId) {
-        setIsSubmenuVisible(false);
-        setHasFocusedNodeInSubmenu(false);
-      }
-
-      // When a node "X" is focused, close "X"'s siblings' submenus
-      // i.e. only one submenu in each menu can be open at a time
-      if (parentId === event.parentId && nodeId !== event.nodeId) {
+      if (
+        // Consider a node "X" with its submenu "Y".
+        // Focusing "X" should close all submenus of "Y".
+        parentId === event.nodeId ||
+        // When a node "X" is focused, close "X"'s siblings' submenus
+        // i.e. only one submenu in each menu can be open at a time
+        (parentId === event.parentId && nodeId !== event.nodeId)
+      ) {
         setIsSubmenuVisible(false);
         setHasFocusedNodeInSubmenu(false);
       }
