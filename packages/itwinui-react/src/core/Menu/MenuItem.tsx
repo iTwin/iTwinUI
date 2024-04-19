@@ -259,10 +259,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </ListItem.Icon>
         )}
         <ListItem.Content>
-          {/* <div>{children}</div> */}
-          <div>
-            {children},{`${hasFocusedNodeInSubmenu}`}
-          </div>
+          <div>{children}</div>
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
