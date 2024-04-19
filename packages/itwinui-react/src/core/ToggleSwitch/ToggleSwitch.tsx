@@ -13,7 +13,7 @@ type ToggleSwitchProps = {
    */
   label?: React.ReactNode;
   /**
-   * Customizable props for label.
+   * Passes properties for ToggleSwitch label.
    */
   labelProps?: React.ComponentProps<'span'>;
   /**
