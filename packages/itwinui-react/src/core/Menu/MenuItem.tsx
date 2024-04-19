@@ -19,6 +19,7 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
+  type OpenChangeReason,
 } from '@floating-ui/react';
 
 /**
@@ -162,9 +163,23 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible: isSubmenuVisible,
-    onVisibleChange: setIsSubmenuVisible,
+    onVisibleChange: (
+      open: boolean,
+      event?: Event,
+      reason?: OpenChangeReason,
+    ) => {
+      console.log('onVisibleChange', open, event, reason);
+      if (reason === 'click') {
+        console.log('HERE');
+        setIsSubmenuVisible((prev) => !prev);
+        setHasFocusedNodeInSubmenu(false);
+      } else {
+        setIsSubmenuVisible(open);
+      }
+    },
     placement: 'right-start',
     interactions: {
+      click: true,
       hover: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
       listNavigation: true,
     },
@@ -175,6 +190,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         nested: subMenuItems.length > 0,
         onNavigate: setActiveIndex,
       },
+      hover: {
+        move: false,
+      },
+      // dismiss: {
+      //   referencePress: true,
+      //   referencePressEvent: 'click',
+      // },
     },
   });
 
