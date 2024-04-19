@@ -86,11 +86,19 @@ it('should render breadcrumbs item as span element by default', () => {
 
 it('should render breadcrumbs item as anchor elements', () => {
   const { container } = render(
-    <Breadcrumbs.Item href='https://www.example.com/'>
-      Anchor 1
-    </Breadcrumbs.Item>,
+    <Breadcrumbs.Item href='https://www.example.com/'>Anchor</Breadcrumbs.Item>,
   );
   expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
+});
+
+it('should render breadcrumbs item as button elements', () => {
+  const { container } = render(
+    <Breadcrumbs.Item onClick={() => {}}>Button</Breadcrumbs.Item>,
+  );
+
+  const button = container.querySelector('button');
+  expect(button).toHaveClass('iui-breadcrumbs-content');
+  expect(button).toHaveAttribute('data-iui-variant', 'borderless');
 });
 
 it('should render custom separators', () => {
