@@ -31,11 +31,6 @@ import type {
   SizeOptions,
   Placement,
   UseListNavigationProps,
-  UseFloatingOptions,
-  UseDismissProps,
-  UseHoverProps,
-  ReferenceType,
-  OpenChangeReason,
 } from '@floating-ui/react';
 import {
   Box,
@@ -118,7 +113,7 @@ type PopoverInternalProps = {
   Record<string, any>;
 
 /** If listNavigation is an interaction, it forces the required props for it to be provided */
-type PopoverInteractionConditionalProps =
+type PopoverInteractionProps =
   | {
       /**
        * By default, only the click interaction/trigger is enabled.
@@ -142,21 +137,9 @@ type PopoverInteractionConditionalProps =
       };
     };
 
-type PopoverInteractionProps = PopoverInteractionConditionalProps & {
-  interactionsProps?: {
-    dismiss?: UseDismissProps;
-    hover?: UseHoverProps<ReferenceType>;
-  };
-};
-
-type UsePopoverProps = Omit<PopoverOptions, 'onVisibleChange'> &
-  PopoverInternalProps & {
-    onVisibleChange?: UseFloatingOptions['onOpenChange'];
-  };
-
 // ----------------------------------------------------------------------------
 
-export const usePopover = (options: UsePopoverProps) => {
+export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const {
     placement = 'bottom-start',
     visible,
@@ -181,13 +164,6 @@ export const usePopover = (options: UsePopoverProps) => {
 
   const middleware = { flip: true, shift: true, ...options.middleware };
 
-  // const onOpenChangeFullFunction = React.useCallback(
-  //   (open: boolean, event?: Event, reason?: OpenChangeReason) => {
-  //     onVisibleChange?.(open);
-  //   },
-  //   [onVisibleChange],
-  // );
-
   const [open, onOpenChange] = useControlledState(
     false,
     visible,
@@ -197,12 +173,7 @@ export const usePopover = (options: UsePopoverProps) => {
   const floating = useFloating({
     placement,
     open,
-    onOpenChange: (open: boolean, event?: Event, reason?: OpenChangeReason) => {
-      onOpenChange(open);
-      if (onVisibleChange != null) {
-        onVisibleChange(open, event, reason);
-      }
-    },
+    onOpenChange,
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     ...rest,
     middleware: [
@@ -226,13 +197,11 @@ export const usePopover = (options: UsePopoverProps) => {
     useDismiss(floating.context, {
       outsidePress: closeOnOutsideClick,
       bubbles: tree != null, // Only bubble when inside a FloatingTree
-      ...interactionsProps.dismiss,
     }),
     useHover(floating.context, {
       enabled: !!interactionsProp.hover,
       delay: 100,
       handleClose: safePolygon({ buffer: 1, requireIntent: false }),
-      ...interactionsProps.hover,
     }),
     useFocus(floating.context, { enabled: !!interactionsProp.focus }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
