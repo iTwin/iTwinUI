@@ -11,3 +11,5 @@ Add `.iui-field` class to unify & centralize basic styling for `.iui-button`, `.
 - Feedback button type now requires `data-iui-variant`.
 - Disabled `.iui-input` and `.iui-select-button` with a value have a different text color.
 - Disabled `.iui-input` and `.iui-select-button` with a placeholder no longer show placeholder text.
+- Within `all.scss`, `field` include added & `utils/utils` moved further up the list.
+  - `.iui-search-icon` is no longer no-op.
