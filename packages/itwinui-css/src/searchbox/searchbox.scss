@@ -16,7 +16,7 @@
   --_iui-button-icon-fill: var(--iui-color-icon-muted);
 
   [data-iui-size='small'] & svg {
-    inline-size: 0.75rem;
+    inline-size: var(--iui-size-s);
   }
 }
 
