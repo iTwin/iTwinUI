@@ -216,7 +216,7 @@ it('should render [x]Props correctly', () => {
   expect(labelElement.style.width).toBe('80px');
 });
 
-it('should respect `stretch` prop', () => {
-  const { container } = render(<Button stretch>Do not click</Button>);
+it('should respect `stretched` prop', () => {
+  const { container } = render(<Button stretched>Do not click</Button>);
   expect(container.querySelector('button')).toHaveStyle('--_iui-width: 100%');
 });
