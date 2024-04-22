@@ -40,7 +40,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     let isAllSubSelected = true;
     row.initialSubRows.forEach((subRow) => {
       const result = handleRow(subRow);
-      if (!result && !isRowDisabled?.(subRow.original)) {
+      if (!result) {
         isAllSubSelected = false;
       }
     });
