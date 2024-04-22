@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Nested DropdownMenu', () => {
+test.describe('DropdownMenu', () => {
   test('should support deep level submenus', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
