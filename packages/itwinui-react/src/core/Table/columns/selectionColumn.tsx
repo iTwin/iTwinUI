@@ -81,11 +81,15 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         title='' // Removes default title that comes from react-table
         disabled={isDisabled?.(row.original)}
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
-        onChange={() =>
-          row.toggleRowSelected(
-            !row.initialSubRows.some((subRow) => subRow.isSelected),
-          )
-        }
+        onChange={() => {
+          if (row.initialSubRows.length > 0) {
+            row.toggleRowSelected(
+              !row.initialSubRows.some((subRow) => subRow.isSelected),
+            );
+          } else {
+            row.toggleRowSelected();
+          }
+        }}
       />
     ),
     cellRenderer: (props: CellRendererProps<T>) => (

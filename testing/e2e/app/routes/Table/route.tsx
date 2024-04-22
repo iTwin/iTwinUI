@@ -41,6 +41,7 @@ export default function Resizing() {
         data={data}
         emptyTableContent='No data.'
         isResizable
+        isSelectable
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
       />
@@ -65,6 +66,18 @@ const data = [
     index: 3,
     name: 'Name3',
     description: 'Description3',
+    subRows: [
+      {
+        name: 'Name3.1',
+        description: 'Description3.1',
+        id: '334',
+      },
+      {
+        name: 'Name3.2',
+        description: 'Description3.2',
+        id: '335',
+      },
+    ],
     id: '333',
   },
 ];
