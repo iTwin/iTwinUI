@@ -1,5 +1,4 @@
 import { Button, DropdownMenu, MenuItem } from '@itwin/itwinui-react';
-import React from 'react';
 
 export default () => {
   return (
@@ -31,6 +30,15 @@ export default () => {
                     key='Item 3_2'
                     data-testid='Item 3_2'
                     onClick={close}
+                    subMenuItems={[
+                      <MenuItem
+                        key='Item 3_2_1'
+                        data-testid='Item 3_2_1'
+                        onClick={close}
+                      >
+                        Item 3_2_1
+                      </MenuItem>,
+                    ]}
                   >
                     Item 3_2
                   </MenuItem>,
@@ -39,18 +47,11 @@ export default () => {
                     data-testid='Item 3_3'
                     subMenuItems={[
                       <MenuItem
-                        key='Item 4_1'
-                        data-testid='Item 4_1'
+                        key='Item 3_3_1'
+                        data-testid='Item 3_3_1'
                         onClick={close}
                       >
-                        Item 4_1
-                      </MenuItem>,
-                      <MenuItem
-                        key='Item 4_2'
-                        data-testid='Item 4_2'
-                        onClick={close}
-                      >
-                        Item 4_2
+                        Item 3_3_1
                       </MenuItem>,
                     ]}
                   >
