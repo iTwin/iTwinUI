@@ -61,7 +61,6 @@ type PopoverOptions = {
    * Controlled flag for whether the popover is visible.
    */
   visible?: boolean;
-
   /**
    * Callback invoked every time the popover visibility changes as a result
    * of internal logic. Should be used alongside `visible` prop.
@@ -142,20 +141,11 @@ type PopoverInternalProps = {
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-  /**
-   * Useful when using [`FloatingTree`](https://floating-ui.com/docs/floatingtree) and `FloatingNode`
-   */
-  nodeId?: UseFloatingOptions['nodeId'];
-};
-
-type UsePopoverProps = Omit<PopoverOptions, 'onVisibleChange'> &
-  PopoverInternalProps & {
-    onVisibleChange?: UseFloatingOptions['onOpenChange'];
-  };
+} & Omit<UseFloatingOptions, 'middleware' | 'placement'>;
 
 // ----------------------------------------------------------------------------
 
-export const usePopover = (options: UsePopoverProps) => {
+export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const {
     placement = 'bottom-start',
     visible,
