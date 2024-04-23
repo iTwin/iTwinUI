@@ -82,9 +82,9 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         disabled={isDisabled?.(row.original)}
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
         onChange={() => {
-          if (row.initialSubRows.length > 0) {
+          if (row.subRows.length > 0) {
             row.toggleRowSelected(
-              !row.initialSubRows.some((subRow) => subRow.isSelected),
+              !row.subRows.some((subRow) => subRow.isSelected),
             );
           } else {
             row.toggleRowSelected();
