@@ -114,22 +114,21 @@ type PopoverInternalProps = {
    * By default, only the click and dismiss interactions/triggers are enabled.
    *
    * Pass a boolean to enable/disable any of the supported interactions.
-   * Alternatively, you can pass an object to override the default props that Popover sets for an interaction/trigger.
+   * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
    *
-   * When additional parameters are required for an interaction/trigger, an object must be passed to enable it.
+   * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
    * Booleans will not be allowed in this case.
    *
    * @example
-   * ```jsx
    * <Popover
    *   interactions={{
    *     click: false,
    *     focus: true,
    *     hover: { move: false },
+   *     listNavigation: { … },
    *   }}
    *   // …
    * >…</Popover>
-   * ```
    */
   interactions?: {
     click?: boolean | UseClickProps;
@@ -160,13 +159,7 @@ export const usePopover = (options: UsePopoverProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
-    interactions: interactionsProp = {
-      click: true,
-      dismiss: true,
-      hover: false,
-      focus: false,
-      listNavigation: undefined,
-    },
+    interactions: interactionsProp,
     role,
     ...rest
   } = options;
@@ -206,45 +199,48 @@ export const usePopover = (options: UsePopoverProps) => {
   const interactions = useInteractions([
     useClick(
       floating.context,
-      typeof interactionsProp.click === 'object'
-        ? interactionsProp.click
-        : { enabled: !!interactionsProp.click },
+      mergedInteractionProps({
+        defaultProps: { enabled: true },
+        customProps: interactionsProp?.click,
+      }),
     ),
-    useDismiss(floating.context, {
-      ...(typeof interactionsProp.dismiss === 'boolean'
-        ? {
-            enabled: interactionsProp.dismiss,
-            outsidePress: closeOnOutsideClick,
-            bubbles: tree != null, // Only bubble when inside a FloatingTree
-          }
-        : {}),
-      ...(typeof interactionsProp.dismiss === 'object'
-        ? interactionsProp.dismiss
-        : {}),
-    }),
-    useHover(floating.context, {
-      ...(typeof interactionsProp.hover === 'boolean'
-        ? {
-            enabled: interactionsProp.hover,
-            delay: 100,
-            handleClose: safePolygon({ buffer: 1, requireIntent: false }),
-          }
-        : {}),
-      ...(typeof interactionsProp.hover === 'object'
-        ? interactionsProp.hover
-        : {}),
-    }),
+    useDismiss(
+      floating.context,
+      mergedInteractionProps({
+        defaultProps: {
+          enabled: true,
+          outsidePress: closeOnOutsideClick,
+          bubbles: tree != null, // Only bubble when inside a FloatingTree
+        },
+        customProps: interactionsProp?.dismiss,
+      }),
+    ),
+    useHover(
+      floating.context,
+      mergedInteractionProps({
+        defaultProps: {
+          enabled: false,
+          delay: 100,
+          handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+        },
+        customProps: interactionsProp?.hover,
+      }),
+    ),
     useFocus(
       floating.context,
-      typeof interactionsProp.focus === 'object'
-        ? interactionsProp.focus
-        : { enabled: !!interactionsProp.focus },
+      mergedInteractionProps({
+        defaultProps: { enabled: false },
+        customProps: interactionsProp?.focus,
+      }),
     ),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
-    useListNavigation(floating.context, {
-      enabled: interactionsProp.listNavigation != null,
-      ...(interactionsProp.listNavigation as UseListNavigationProps),
-    }),
+    useListNavigation(
+      floating.context,
+      mergedInteractionProps({
+        defaultProps: { enabled: false },
+        customProps: interactionsProp?.listNavigation,
+      }) as UseListNavigationProps,
+    ),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
@@ -409,3 +405,46 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * If `customProps` is:
+ * - a boolean: it will enable/disable the interaction and use the `defaultProps`.
+ * - an object: it will enable the interaction and merge the `customProps` with the `defaultProps`.
+ * - undefined: it will use the `defaultProps`.
+ */
+const mergedInteractionProps = ({
+  defaultProps,
+  customProps,
+}: {
+  /**
+   * Default interaction props.
+   *
+   * `enabled` is required to be specified. This determines whether the interaction is enabled or not .
+   */
+  defaultProps: Record<string, any> & {
+    enabled: boolean;
+  };
+  /**
+   * Custom interaction props. Can be a boolean or an object.
+   */
+  customProps: boolean | Record<string, any> | undefined;
+}) => {
+  if (typeof customProps === 'boolean') {
+    return {
+      ...defaultProps,
+      enabled: customProps,
+    };
+  }
+
+  if (typeof customProps === 'object') {
+    return {
+      ...defaultProps,
+      enabled: true,
+      ...customProps,
+    };
+  }
+
+  return defaultProps;
+};
