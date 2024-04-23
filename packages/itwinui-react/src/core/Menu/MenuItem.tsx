@@ -165,11 +165,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     interactions: {
-      hover: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
-      listNavigation: true,
-    },
-    interactionsProps: {
       hover: {
+        enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
         move: false,
       },
       listNavigation: {
