@@ -216,6 +216,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           enabled: false,
           delay: 100,
           handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+          move: false,
         },
         customProps: interactionsProp?.hover,
       }),
