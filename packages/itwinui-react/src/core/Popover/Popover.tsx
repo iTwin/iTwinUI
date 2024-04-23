@@ -111,10 +111,10 @@ type PopoverInternalProps = {
     layoutShift?: boolean;
   };
   /**
-   * By default, only the click interaction/trigger is enabled.
+   * By default, only the click and dismiss interactions/triggers are enabled.
    *
    * Pass a boolean to enable/disable any of the supported interactions.
-   * Alternatively, you can also pass an object to further customize the interaction/trigger.
+   * Alternatively, you can pass an object to override the default props that Popover sets for an interaction/trigger.
    *
    * When additional parameters are required for an interaction/trigger, an object must be passed to enable it.
    * Booleans will not be allowed in this case.
@@ -167,9 +167,6 @@ export const usePopover = (options: UsePopoverProps) => {
       listNavigation: undefined,
       dismiss: false,
     },
-    interactionsProps = {
-      listNavigation: undefined,
-    },
     role,
     ...rest
   } = options;
@@ -210,39 +207,42 @@ export const usePopover = (options: UsePopoverProps) => {
     useClick(
       floating.context,
       typeof interactionsProp.click === 'boolean'
-        ? { enabled: !!interactionsProp.click }
+        ? { enabled: interactionsProp.click }
         : interactionsProp.click,
     ),
-    useDismiss(
-      floating.context,
-      typeof interactionsProp.dismiss === 'boolean'
+    useDismiss(floating.context, {
+      ...(typeof interactionsProp.dismiss === 'boolean'
         ? {
-            enabled: !!interactionsProp.dismiss,
+            enabled: interactionsProp.dismiss,
             outsidePress: closeOnOutsideClick,
             bubbles: tree != null, // Only bubble when inside a FloatingTree
           }
-        : interactionsProp.dismiss,
-    ),
-    useHover(
-      floating.context,
-      typeof interactionsProp.hover === 'boolean'
+        : {}),
+      ...(typeof interactionsProp.dismiss === 'object'
+        ? interactionsProp.dismiss
+        : {}),
+    }),
+    useHover(floating.context, {
+      ...(typeof interactionsProp.hover === 'boolean'
         ? {
-            enabled: !!interactionsProp.hover,
+            enabled: interactionsProp.hover,
             delay: 100,
             handleClose: safePolygon({ buffer: 1, requireIntent: false }),
-            ...interactionsProps.hover,
           }
-        : interactionsProp.hover,
-    ),
+        : {}),
+      ...(typeof interactionsProp.hover === 'object'
+        ? interactionsProp.hover
+        : {}),
+    }),
     useFocus(
       floating.context,
       typeof interactionsProp.focus === 'boolean'
-        ? { enabled: !!interactionsProp.focus }
+        ? { enabled: interactionsProp.focus }
         : interactionsProp.focus,
     ),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
-      enabled: !!interactionsProp.listNavigation,
+      enabled: interactionsProp.listNavigation != null,
       ...(interactionsProp.listNavigation as UseListNavigationProps),
     }),
   ]);
