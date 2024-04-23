@@ -8,6 +8,7 @@ test.describe('Table sorting', () => {
     expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
     await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
 
     // ascending
     await page.keyboard.press('Enter');
