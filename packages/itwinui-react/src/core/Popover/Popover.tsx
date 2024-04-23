@@ -132,10 +132,10 @@ type PopoverInternalProps = {
    * ```
    */
   interactions?: {
-    hover?: boolean | UseHoverProps<ReferenceType>;
     click?: boolean | UseClickProps;
-    focus?: boolean | UseFocusProps;
     dismiss?: boolean | UseDismissProps;
+    hover?: boolean | UseHoverProps<ReferenceType>;
+    focus?: boolean | UseFocusProps;
     listNavigation?: UseListNavigationProps;
   };
   role?: 'dialog' | 'menu' | 'listbox';
@@ -162,10 +162,10 @@ export const usePopover = (options: UsePopoverProps) => {
     matchWidth,
     interactions: interactionsProp = {
       click: true,
+      dismiss: true,
       hover: false,
       focus: false,
       listNavigation: undefined,
-      dismiss: false,
     },
     role,
     ...rest
@@ -206,9 +206,9 @@ export const usePopover = (options: UsePopoverProps) => {
   const interactions = useInteractions([
     useClick(
       floating.context,
-      typeof interactionsProp.click === 'boolean'
-        ? { enabled: interactionsProp.click }
-        : interactionsProp.click,
+      typeof interactionsProp.click === 'object'
+        ? interactionsProp.click
+        : { enabled: !!interactionsProp.click },
     ),
     useDismiss(floating.context, {
       ...(typeof interactionsProp.dismiss === 'boolean'
@@ -236,9 +236,9 @@ export const usePopover = (options: UsePopoverProps) => {
     }),
     useFocus(
       floating.context,
-      typeof interactionsProp.focus === 'boolean'
-        ? { enabled: interactionsProp.focus }
-        : interactionsProp.focus,
+      typeof interactionsProp.focus === 'object'
+        ? interactionsProp.focus
+        : { enabled: !!interactionsProp.focus },
     ),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
