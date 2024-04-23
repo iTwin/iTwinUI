@@ -153,7 +153,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
-    interactions: interactionsProp,
+    interactions: interactionsProp = {
+      click: true,
+      dismiss: true,
+      hover: false,
+      focus: false,
+      listNavigation: false,
+    },
     role,
     ...rest
   } = options;
@@ -191,51 +197,47 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   });
 
   const interactions = useInteractions([
-    useClick(
-      floating.context,
-      mergedInteractionProps<UseClickProps>({
-        defaultProps: { enabled: true },
-        customProps: interactionsProp?.click,
-      }),
-    ),
-    useDismiss(
-      floating.context,
-      mergedInteractionProps<UseDismissProps>({
-        defaultProps: {
-          enabled: true,
-          outsidePress: closeOnOutsideClick,
-          bubbles: tree != null, // Only bubble when inside a FloatingTree
-        },
-        customProps: interactionsProp?.dismiss,
-      }),
-    ),
-    useHover(
-      floating.context,
-      mergedInteractionProps<UseHoverProps>({
-        defaultProps: {
-          enabled: false,
-          delay: 100,
-          handleClose: safePolygon({ buffer: 1, requireIntent: false }),
-          move: false,
-        },
-        customProps: interactionsProp?.hover,
-      }),
-    ),
-    useFocus(
-      floating.context,
-      mergedInteractionProps<UseFocusProps>({
-        defaultProps: { enabled: false },
-        customProps: interactionsProp?.focus,
-      }),
-    ),
+    useClick(floating.context, {
+      enabled: !!interactionsProp.click,
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
+      ...interactionsProp.click,
+    }),
+    useDismiss(floating.context, {
+      enabled: !!interactionsProp?.dismiss,
+      outsidePress: closeOnOutsideClick,
+      bubbles: tree != null, // Only bubble when inside a FloatingTree
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
+      ...interactionsProp.dismiss,
+    }),
+    useHover(floating.context, {
+      enabled: !!interactionsProp?.hover,
+      delay: 100,
+      handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+      move: false,
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
+      ...interactionsProp?.hover,
+    }),
+    useFocus(floating.context, {
+      enabled: !!interactionsProp?.focus,
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
+      ...interactionsProp?.focus,
+    }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
-    useListNavigation(
-      floating.context,
-      mergedInteractionProps<UseListNavigationProps>({
-        defaultProps: { enabled: false, ...({} as UseListNavigationProps) },
-        customProps: interactionsProp?.listNavigation,
-      }) as UseListNavigationProps,
-    ),
+    useListNavigation(floating.context, {
+      enabled: !!interactionsProp?.listNavigation,
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
+      ...interactionsProp?.listNavigation,
+    }),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
@@ -400,46 +402,3 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
-
-// ----------------------------------------------------------------------------
-
-/**
- * If `customProps` is:
- * - a boolean: it will enable/disable the interaction and use the `defaultProps`.
- * - an object: it will enable the interaction and merge the `customProps` with the `defaultProps`.
- * - undefined: it will use the `defaultProps`.
- */
-const mergedInteractionProps = <T,>({
-  defaultProps,
-  customProps,
-}: {
-  /**
-   * Default interaction props.
-   *
-   * `enabled` is required to be specified. This determines whether the interaction is enabled or not .
-   */
-  defaultProps: T & {
-    enabled: boolean;
-  };
-  /**
-   * Custom interaction props. Can be a boolean or an object.
-   */
-  customProps: boolean | T | undefined;
-}) => {
-  if (typeof customProps === 'boolean') {
-    return {
-      ...defaultProps,
-      enabled: customProps,
-    };
-  }
-
-  if (typeof customProps === 'object') {
-    return {
-      ...defaultProps,
-      enabled: true,
-      ...customProps,
-    };
-  }
-
-  return defaultProps;
-};
