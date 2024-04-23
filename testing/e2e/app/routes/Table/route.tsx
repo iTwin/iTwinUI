@@ -1,5 +1,6 @@
 import { Table } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
+import React from 'react';
 
 export default function Resizing() {
   const [searchParams] = useSearchParams();
@@ -8,6 +9,13 @@ export default function Resizing() {
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
+
+  const isRowDisabled = React.useCallback(
+    (rowData: Record<string, unknown>) => {
+      return rowData.name === 'Name3.2';
+    },
+    [],
+  );
 
   return (
     <>
@@ -41,6 +49,7 @@ export default function Resizing() {
         data={data}
         emptyTableContent='No data.'
         isResizable
+        isRowDisabled={isRowDisabled}
         isSelectable
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
