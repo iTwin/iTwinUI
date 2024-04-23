@@ -15,6 +15,7 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
+import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 // import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
 
 /**
@@ -107,6 +108,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  const dropdownMenuContext = React.useContext(DropdownMenuContext);
+
   const menuItemRef = React.useRef<HTMLElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
@@ -126,14 +129,54 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     parent.setIsNestedSubmenuVisible(open);
   };
 
+  // const popover = dropdownMenuContext.layered
+  //   ? undefined
+  //   : usePopover({
+  //       visible: isSubmenuVisible || isNestedSubmenuVisible,
+  //       onVisibleChange,
+  //       placement: 'right-start',
+  //       trigger: { hover: true, focus: true },
+  //     });
+  // const shouldShowSubmenu =
+  //   subMenuItems.length > 0 && !dropdownMenuContext.layered && popover != null;
+
   const popover = usePopover({
     visible: isSubmenuVisible || isNestedSubmenuVisible,
     onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
   });
+  const shouldShowSubmenu =
+    subMenuItems.length > 0 && !dropdownMenuContext.layered;
+
+  const onActivate = () => {
+    if (!disabled) {
+      onClick?.(value);
+
+      if (menuHierarchyIndex != null && subMenuItems.length > 0) {
+        dropdownMenuContext.menuChildOnClick?.(menuHierarchyIndex);
+      }
+    }
+  };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    console.log(
+      'onKeyDown',
+      event.key,
+      event.code,
+      event.keyCode,
+      event.charCode,
+      event.which,
+      event.altKey,
+      event.ctrlKey,
+      event.shiftKey,
+      event.metaKey,
+      event.getModifierState('Alt'),
+      event.getModifierState('Control'),
+      event.getModifierState('Shift'),
+      event.getModifierState('Meta'),
+    );
+
     if (event.altKey) {
       return;
     }
@@ -142,17 +185,24 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        !disabled && onClick?.(value);
+        onActivate();
+
         event.preventDefault();
         break;
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          setIsSubmenuVisible(true);
+          if (dropdownMenuContext.layered) {
+            if (menuHierarchyIndex != null) {
+              dropdownMenuContext.menuChildOnClick?.(menuHierarchyIndex);
+            }
+          } else {
+            setIsSubmenuVisible(true);
 
-          // flush and reset state so we are ready to focus again next time
-          flushSync(() => setFocusOnSubmenu(true));
-          setFocusOnSubmenu(false);
+            // flush and reset state so we are ready to focus again next time
+            flushSync(() => setFocusOnSubmenu(true));
+            setFocusOnSubmenu(false);
+          }
 
           event.preventDefault();
           event.stopPropagation();
@@ -160,17 +210,30 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'ArrowLeft': {
-        if (parent.ref) {
-          parent.ref.current?.focus();
-          parent.setIsNestedSubmenuVisible(false);
+        if (dropdownMenuContext.layered) {
+          dropdownMenuContext.backButtonOnClick?.();
+        } else {
+          if (parent.ref) {
+            parent.ref.current?.focus();
+            parent.setIsNestedSubmenuVisible(false);
+          }
         }
+
         event.stopPropagation();
         event.preventDefault();
         break;
       }
       case 'Escape': {
-        // focus might get lost if submenu closes so move it back to parent
-        parent.ref?.current?.focus();
+        console.log('HERE');
+        if (dropdownMenuContext.layered) {
+          // dropdownMenuContext.backButtonOnClick?.();
+        } else {
+          // focus might get lost if submenu closes so move it back to parent
+          parent.ref?.current?.focus();
+          event.stopPropagation();
+          event.preventDefault();
+        }
+
         break;
       }
       default:
@@ -178,14 +241,15 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
+  const menuHierarchyIndex =
+    menuItemRef.current?.dataset['menuHierarchyIndex'] != null
+      ? Number(menuItemRef.current?.dataset['menuHierarchyIndex'])
+      : undefined;
+
   const handlers = {
-    onClick: () => !disabled && onClick?.(value),
+    onClick: onActivate,
     onKeyDown,
   };
-
-  // const dropdownMenuContext = React.useContext(DropdownMenuContext);
-
-  // const { layered } = dropdownMenuContext;
 
   return (
     <ListItem
@@ -197,18 +261,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       ref={useMergedRefs(
         menuItemRef,
         forwardedRef,
-        subMenuItems.length > 0 ? popover.refs.setReference : null,
+        shouldShowSubmenu ? popover.refs.setReference : null,
       )}
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
-      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-      aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+      aria-haspopup={shouldShowSubmenu ? 'true' : undefined}
+      aria-controls={shouldShowSubmenu ? submenuId : undefined}
+      aria-expanded={shouldShowSubmenu ? popover.open : undefined}
       aria-disabled={disabled}
-      {...(subMenuItems.length === 0
-        ? { ...handlers, ...rest }
-        : popover.getReferenceProps({ ...handlers, ...rest }))}
+      {...(shouldShowSubmenu
+        ? popover.getReferenceProps({ ...handlers, ...rest })
+        : { ...handlers, ...rest })}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -255,3 +319,5 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
+
+MenuItem.displayName = 'MenuItem';

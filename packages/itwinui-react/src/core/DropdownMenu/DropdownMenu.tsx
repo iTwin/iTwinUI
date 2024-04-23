@@ -10,6 +10,7 @@ import {
   useControlledState,
   mergeRefs,
   mergeEventHandlers,
+  SvgChevronLeft,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -18,6 +19,11 @@ import type {
 // import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 import { Surface } from '../Surface/Surface.js';
+import { IconButton } from '../Buttons/IconButton.js';
+// import { Button } from '../Buttons/Button.js';
+import { Flex } from '../Flex/Flex.js';
+import { Menu } from '../Menu/Menu.js';
+import { flushSync } from 'react-dom';
 
 export type DropdownMenuProps = {
   /**
@@ -92,7 +98,9 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   const triggerRef = React.useRef<HTMLElement>(null);
 
   const close = React.useCallback(() => {
+    // console.log('close');
     setVisible(false);
+    setCurrentMenuHierarchyItem(undefined);
     triggerRef.current?.focus({ preventScroll: true });
   }, [setVisible]);
 
@@ -100,31 +108,139 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     if (typeof menuItems === 'function') {
       // console.log(menuItems(close));
 
-      menuItems(close).forEach((item) => {
-        console.log(item.props.subMenuItems);
-      });
+      // menuItems(close).forEach((item) => {
+      //   // console.log(item.type.displayName);
+
+      //   console.log(item);
+      // });
 
       return menuItems(close);
     }
     return menuItems;
   }, [menuItems, close]);
 
+  const menuHierarchy = React.useMemo(() => {
+    const hierarchyItems: Array<MenuHierarchyItem> = [];
+
+    const populateMenuHierarchy = (
+      menuItems: JSX.Element[],
+      parent?: number,
+    ) => {
+      menuItems.forEach((item) => {
+        hierarchyItems.push({
+          item: item,
+          parent: parent,
+        } satisfies MenuHierarchyItem);
+
+        if (item.props.subMenuItems) {
+          populateMenuHierarchy(
+            item.props.subMenuItems,
+            hierarchyItems.length - 1,
+          );
+        }
+      });
+
+      return hierarchyItems;
+    };
+
+    // menuContent === JSX.Element[]
+    if (Array.isArray(menuContent)) {
+      const result = populateMenuHierarchy(menuContent);
+      // console.log(result);
+      return result;
+    }
+
+    // menuContent === JSX.Element
+    return [
+      {
+        item: menuContent as JSX.Element,
+        parent: undefined,
+      },
+    ];
+  }, [menuContent]);
+
+  const [currentMenuHierarchyItem, setCurrentMenuHierarchyItem] =
+    React.useState<number | undefined>(undefined);
+
+  const [focusOnMenu, setFocusOnMenu] = React.useState(true);
+
   const popover = usePopover({
     visible,
-    onVisibleChange: (open) => (open ? setVisible(true) : close()),
+    onVisibleChange: (open) => {
+      // Always start from the beginning of the menu hierarchy
+      if (open) {
+        setCurrentMenuHierarchyItem(undefined);
+      }
+
+      open ? setVisible(true) : close();
+    },
     placement,
     matchWidth,
   });
 
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
+  const backButtonOnClick = React.useCallback(() => {
+    if (currentMenuHierarchyItem == undefined) {
+      return undefined;
+    }
+
+    flushSync(() => {
+      setCurrentMenuHierarchyItem((prev) => {
+        if (prev == undefined) {
+          return undefined;
+        }
+        return menuHierarchy[prev].parent;
+      });
+    });
+
+    // if (menuHierarchy[currentMenuHierarchyItem].parent != null) {
+    itemRefs.current[currentMenuHierarchyItem]?.focus();
+    // }
+  }, [
+    menuHierarchy,
+    // itemRefs,
+    currentMenuHierarchyItem,
+  ]);
+
+  const menuChildOnClick = React.useCallback(
+    (index: number) => {
+      // console.log('menuChildOnClick', index);
+      if (popover.open) {
+        setCurrentMenuHierarchyItem(index);
+
+        // flush and reset state so we are ready to focus again next time
+        flushSync(() => setFocusOnMenu(false));
+        setFocusOnMenu(true);
+      }
+    },
+    [
+      popover.open,
+      setCurrentMenuHierarchyItem,
+      // menuHierarchy,
+    ],
+  );
+
+  // React.useEffect(() => {
+  //   console.log(
+  //     'filteredMenuHierarchy',
+  //     menuHierarchy.filter((item) => item.parent === currentMenuHierarchyItem),
+  //   );
+  // }, [currentMenuHierarchyItem, menuHierarchy]);
+
+  const itemRefs = React.useRef<HTMLElement[]>([]);
+
   return (
     <>
       <DropdownMenuContext.Provider
         value={{
           layered: layered,
+          menuChildOnClick,
+          backButtonOnClick,
         }}
       >
+        <p>{`${currentMenuHierarchyItem}`}</p>
+
         {cloneElementWithRef(children, (children) => ({
           ...popover.getReferenceProps(children.props),
           'aria-expanded': popover.open,
@@ -135,22 +251,82 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
           <Portal portal={portal}>
             {
               <Surface
+                as={Menu}
+                setFocus={focusOnMenu}
                 {...popover.getFloatingProps({
                   role,
                   ...rest,
                   onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    console.log('onKeyDown HERE 123', e.key);
                     if (e.defaultPrevented) {
                       return;
                     }
                     if (e.key === 'Tab') {
                       close();
                     }
+
+                    if (e.key === 'Escape') {
+                      backButtonOnClick();
+
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }
                   }),
                 })}
                 ref={popoverRef}
               >
-                <Surface.Header>ABC</Surface.Header>
-                <Surface.Body>{menuContent}</Surface.Body>
+                {currentMenuHierarchyItem != null && (
+                  <Surface.Header as={Flex}>
+                    {/* <Button
+                    styleType='borderless'
+                    onClick={backButtonOnClick}
+                    startIcon={<SvgChevronLeft />}
+                    >
+                    Back
+                  </Button> */}
+                    <IconButton
+                      label='Back'
+                      styleType='borderless'
+                      data-iui-shift='left'
+                      onClick={backButtonOnClick}
+                    >
+                      <SvgChevronLeft />
+                    </IconButton>
+                    {
+                      menuHierarchy[currentMenuHierarchyItem]?.item?.props
+                        ?.children
+                    }
+                  </Surface.Header>
+                )}
+                <Surface.Body>
+                  {menuHierarchy
+                    .map((item, index) => {
+                      return {
+                        ...item,
+                        menuHierarchyIndex: index,
+                      };
+                    })
+                    .filter((item) => item.parent === currentMenuHierarchyItem)
+                    .map((item, index) => {
+                      return React.cloneElement(item.item, {
+                        ref: (el: HTMLElement) => {
+                          itemRefs.current[item.menuHierarchyIndex] = el;
+                        },
+                        ['data-menu-child-index']: index,
+                        ['data-menu-hierarchy-index']: item.menuHierarchyIndex,
+                      });
+                    })}
+                  {/* {menuHierarchy
+                    .filter((item) => item.parent === currentMenuHierarchyItem)
+                    .map((item) => {
+                      console.log('ITEM', item);
+                      return React.cloneElement(item.item, {
+                        onClick: () => {
+                          console.log('Clicked');
+                        },
+                      });
+                    })} */}
+                </Surface.Body>
               </Surface>
             }
             {/* <Menu
@@ -181,6 +357,15 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
 export const DropdownMenuContext = React.createContext<{
   layered: DropdownMenuProps['layered'];
+  menuChildOnClick: (index: number) => void;
+  backButtonOnClick: () => void;
 }>({
   layered: false,
+  menuChildOnClick: () => {},
+  backButtonOnClick: () => {},
 });
+
+type MenuHierarchyItem = {
+  item: JSX.Element;
+  parent: number | undefined;
+};
