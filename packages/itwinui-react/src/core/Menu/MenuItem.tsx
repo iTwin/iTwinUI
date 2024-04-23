@@ -131,8 +131,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
   const parentTreeIndex =
-    menuItemRef.current?.dataset['menuChildIndex'] != null
-      ? Number(menuItemRef.current?.dataset['menuChildIndex'])
+    menuItemRef.current?.dataset['iuiMenuChildIndex'] != null
+      ? Number(menuItemRef.current?.dataset['iuiMenuChildIndex'])
       : undefined;
 
   React.useEffect(() => {
@@ -308,7 +308,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               >
                 {subMenuItems.map((item, index) =>
                   React.cloneElement(item, {
-                    ['data-menu-child-index']: index,
+                    ['data-iui-menu-child-index']: index,
                   }),
                 )}
               </Menu>
