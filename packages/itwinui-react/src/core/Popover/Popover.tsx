@@ -203,14 +203,14 @@ export const usePopover = (options: UsePopoverProps) => {
   const interactions = useInteractions([
     useClick(
       floating.context,
-      mergedInteractionProps({
+      mergedInteractionProps<UseClickProps>({
         defaultProps: { enabled: true },
         customProps: interactionsProp?.click,
       }),
     ),
     useDismiss(
       floating.context,
-      mergedInteractionProps({
+      mergedInteractionProps<UseDismissProps>({
         defaultProps: {
           enabled: true,
           outsidePress: closeOnOutsideClick,
@@ -221,7 +221,7 @@ export const usePopover = (options: UsePopoverProps) => {
     ),
     useHover(
       floating.context,
-      mergedInteractionProps({
+      mergedInteractionProps<UseHoverProps>({
         defaultProps: {
           enabled: false,
           delay: 100,
@@ -232,7 +232,7 @@ export const usePopover = (options: UsePopoverProps) => {
     ),
     useFocus(
       floating.context,
-      mergedInteractionProps({
+      mergedInteractionProps<UseFocusProps>({
         defaultProps: { enabled: false },
         customProps: interactionsProp?.focus,
       }),
@@ -240,8 +240,8 @@ export const usePopover = (options: UsePopoverProps) => {
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(
       floating.context,
-      mergedInteractionProps({
-        defaultProps: { enabled: false },
+      mergedInteractionProps<UseListNavigationProps>({
+        defaultProps: { enabled: false, ...({} as UseListNavigationProps) },
         customProps: interactionsProp?.listNavigation,
       }) as UseListNavigationProps,
     ),
@@ -418,7 +418,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
  * - an object: it will enable the interaction and merge the `customProps` with the `defaultProps`.
  * - undefined: it will use the `defaultProps`.
  */
-const mergedInteractionProps = ({
+const mergedInteractionProps = <T,>({
   defaultProps,
   customProps,
 }: {
@@ -427,13 +427,13 @@ const mergedInteractionProps = ({
    *
    * `enabled` is required to be specified. This determines whether the interaction is enabled or not .
    */
-  defaultProps: Record<string, any> & {
+  defaultProps: T & {
     enabled: boolean;
   };
   /**
    * Custom interaction props. Can be a boolean or an object.
    */
-  customProps: boolean | Record<string, any> | undefined;
+  customProps: boolean | T | undefined;
 }) => {
   if (typeof customProps === 'boolean') {
     return {
