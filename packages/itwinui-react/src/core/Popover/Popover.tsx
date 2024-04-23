@@ -142,7 +142,11 @@ type PopoverInternalProps = {
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-} & Record<string, any>;
+  /**
+   * Useful when using [`FloatingTree`](https://floating-ui.com/docs/floatingtree) and `FloatingNode`
+   */
+  nodeId?: UseFloatingOptions['nodeId'];
+};
 
 type UsePopoverProps = Omit<PopoverOptions, 'onVisibleChange'> &
   PopoverInternalProps & {
