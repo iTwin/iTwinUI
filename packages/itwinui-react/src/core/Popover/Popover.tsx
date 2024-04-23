@@ -34,6 +34,9 @@ import type {
   ReferenceType,
   UseFloatingOptions,
   UseHoverProps,
+  UseClickProps,
+  UseFocusProps,
+  UseDismissProps,
 } from '@floating-ui/react';
 import {
   Box,
@@ -107,48 +110,43 @@ type PopoverInternalProps = {
     animationFrame?: boolean;
     layoutShift?: boolean;
   };
+  /**
+   * By default, only the click interaction/trigger is enabled.
+   *
+   * Pass a boolean to enable/disable any of the supported interactions.
+   * Alternatively, you can also pass an object to further customize the interaction/trigger.
+   *
+   * When additional parameters are required for an interaction/trigger, an object must be passed to enable it.
+   * Booleans will not be allowed in this case.
+   *
+   * @example
+   * ```jsx
+   * <Popover
+   *   interactions={{
+   *     click: false,
+   *     focus: true,
+   *     hover: { move: false },
+   *   }}
+   *   // …
+   * >…</Popover>
+   * ```
+   */
+  interactions?: {
+    hover?: boolean | UseHoverProps<ReferenceType>;
+    click?: boolean | UseClickProps;
+    focus?: boolean | UseFocusProps;
+    dismiss?: boolean | UseDismissProps;
+    listNavigation?: UseListNavigationProps;
+  };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-} & PopoverInteractionProps &
-  Record<string, any>;
-
-/** If listNavigation is an interaction, it forces the required props for it to be provided */
-type PopoverInteractionConditionalProps =
-  | {
-      interactions?: {
-        listNavigation: true;
-      };
-      interactionsProps: {
-        listNavigation: UseListNavigationProps;
-      };
-    }
-  | {
-      interactions?: {
-        listNavigation?: false;
-      };
-      interactionsProps?: {
-        listNavigation?: UseListNavigationProps;
-      };
-    };
-
-type PopoverInteractionProps = PopoverInteractionConditionalProps & {
-  interactionsProps?: {
-    hover?: UseHoverProps<ReferenceType>;
-  };
-};
+} & Record<string, any>;
 
 type UsePopoverProps = Omit<PopoverOptions, 'onVisibleChange'> &
   PopoverInternalProps & {
-    /**
-     * By default, only the click interaction/trigger is enabled.
-     * `hover` and `focus` can be manually specified as interactions/triggers.
-     *
-     * Note: If `listNavigation` is enabled, `interactionsProps.listNavigation` must be provided.
-     */
-    interactions?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
     onVisibleChange?: UseFloatingOptions['onOpenChange'];
   };
 
@@ -166,7 +164,8 @@ export const usePopover = (options: UsePopoverProps) => {
       click: true,
       hover: false,
       focus: false,
-      listNavigation: false,
+      listNavigation: undefined,
+      dismiss: false,
     },
     interactionsProps = {
       listNavigation: undefined,
@@ -208,23 +207,44 @@ export const usePopover = (options: UsePopoverProps) => {
   });
 
   const interactions = useInteractions([
-    useClick(floating.context, { enabled: !!interactionsProp.click }),
-    useDismiss(floating.context, {
-      outsidePress: closeOnOutsideClick,
-      bubbles: tree != null, // Only bubble when inside a FloatingTree
-    }),
-    useHover(floating.context, {
-      enabled: !!interactionsProp.hover,
-      delay: 100,
-      handleClose: safePolygon({ buffer: 1, requireIntent: false }),
-      ...interactionsProps.hover,
-    }),
-    useFocus(floating.context, { enabled: !!interactionsProp.focus }),
+    useClick(
+      floating.context,
+      typeof interactionsProp.click === 'boolean'
+        ? { enabled: !!interactionsProp.click }
+        : interactionsProp.click,
+    ),
+    useDismiss(
+      floating.context,
+      typeof interactionsProp.dismiss === 'boolean'
+        ? {
+            enabled: !!interactionsProp.dismiss,
+            outsidePress: closeOnOutsideClick,
+            bubbles: tree != null, // Only bubble when inside a FloatingTree
+          }
+        : interactionsProp.dismiss,
+    ),
+    useHover(
+      floating.context,
+      typeof interactionsProp.hover === 'boolean'
+        ? {
+            enabled: !!interactionsProp.hover,
+            delay: 100,
+            handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+            ...interactionsProps.hover,
+          }
+        : interactionsProp.hover,
+    ),
+    useFocus(
+      floating.context,
+      typeof interactionsProp.focus === 'boolean'
+        ? { enabled: !!interactionsProp.focus }
+        : interactionsProp.focus,
+    ),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
       enabled: !!interactionsProp.listNavigation,
-      ...interactionsProps.listNavigation,
-    } as UseListNavigationProps),
+      ...(interactionsProp.listNavigation as UseListNavigationProps),
+    }),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
