@@ -308,7 +308,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               >
                 {subMenuItems.map((item, index) =>
                   React.cloneElement(item, {
-                    key: index,
                     ['data-menu-child-index']: index,
                   }),
                 )}
