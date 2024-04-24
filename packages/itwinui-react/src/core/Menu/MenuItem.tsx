@@ -120,7 +120,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   if (onClickProp != null && subMenuItems.length > 0) {
     logWarningInDev(
-      'Passing submenuItems and onClick to MenuItem at the same time is not supported. This is because clicking a MenuItem with submenuItems toggles the submenu visibility.',
+      'Passing submenuItems and onClick to MenuItem at the same time is not supported. If both props are passed, clicking the `MenuItem` will only toggle the submenu visibility and will not call `onClick`',
     );
   }
 
