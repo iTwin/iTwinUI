@@ -61,12 +61,12 @@
     --_iui-field-focus-outline-width: 1px;
   }
 
-  @each $fieldSize in small, large {
-    &:where([data-iui-size='#{$fieldSize}']) {
-      --_iui-field-height: var(--iui-component-height-#{$fieldSize});
-      @if $fieldSize == large {
-        --_iui-field-font-size: var(--iui-font-size-2);
-      }
-    }
+  &:where([data-iui-size='small']) {
+    --_iui-field-height: var(--iui-component-height-small);
+  }
+
+  &:where([data-iui-size='large']) {
+    --_iui-field-height: var(--iui-component-height-large);
+    --_iui-field-font-size: var(--iui-font-size-2);
   }
 }
