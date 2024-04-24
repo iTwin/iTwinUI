@@ -148,28 +148,40 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     [nodeId, parentId, tree?.events],
   );
 
+  const closeSiblingMenus = React.useCallback(
+    (event: TreeEvent) => {
+      // When a node "X" is focused, close "X"'s siblings' submenus
+      // i.e. only one submenu in each menu can be open at a time
+      if (parentId === event.parentId && nodeId !== event.nodeId) {
+        setIsSubmenuVisible(false);
+        setHasFocusedNodeInSubmenu(false);
+      }
+    },
+    [nodeId, parentId],
+  );
+
+  const closeChildMenus = React.useCallback(
+    (event: TreeEvent) => {
+      // Consider a node "X" with its submenu "Y".
+      // Focusing "X" should close all submenus of "Y".
+      if (parentId === event.nodeId) {
+        setIsSubmenuVisible(false);
+        setHasFocusedNodeInSubmenu(false);
+      }
+    },
+    [parentId],
+  );
+
   useSyncExternalStore(
     React.useCallback(() => {
-      const closeUnrelatedMenus = (event: TreeEvent) => {
-        if (
-          // Consider a node "X" with its submenu "Y".
-          // Focusing "X" should close all submenus of "Y".
-          parentId === event.nodeId ||
-          // When a node "X" is focused, close "X"'s siblings' submenus
-          // i.e. only one submenu in each menu can be open at a time
-          (parentId === event.parentId && nodeId !== event.nodeId)
-        ) {
-          setIsSubmenuVisible(false);
-          setHasFocusedNodeInSubmenu(false);
-        }
-      };
-
-      tree?.events.on('onOpen', closeUnrelatedMenus);
+      tree?.events.on('onOpen', closeSiblingMenus);
+      tree?.events.on('onNodeFocused', closeChildMenus);
 
       return () => {
-        tree?.events.off('onOpen', closeUnrelatedMenus);
+        tree?.events.off('onOpen', closeSiblingMenus);
+        tree?.events.off('onNodeFocused', closeChildMenus);
       };
-    }, [nodeId, parentId, tree?.events]),
+    }, [closeSiblingMenus, closeChildMenus, tree?.events]),
     () => undefined,
     () => undefined,
   );
@@ -222,6 +234,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onFocus = () => {
     parent.setHasFocusedNodeInSubmenu(true);
+
+    tree?.events.emit('onNodeFocused', {
+      nodeId,
+      parentId,
+    } satisfies TreeEvent);
   };
 
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
