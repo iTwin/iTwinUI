@@ -213,11 +213,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     } satisfies TreeEvent);
   };
 
-  const onClick = (e: React.MouseEvent<HTMLElement>) => {
+  const onClick = () => {
     onActivate();
-
-    e.preventDefault();
-    e.stopPropagation();
   };
 
   const onActivate = () => {
