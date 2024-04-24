@@ -9,40 +9,30 @@ test.describe('DropdownMenu', () => {
 
     expect(page.getByTestId('Item 1_1')).toBeFocused();
 
-    // Go to the deepest level using keyboard
-    await page.keyboard.press('ArrowRight', {
+    const keyboardPressOptions = {
       delay: 200,
-    });
+    };
+
+    // Go to the deepest level using keyboard
+    await page.keyboard.press('ArrowRight', keyboardPressOptions);
     expect(page.getByTestId('Item 2_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', {
-      delay: 200,
-    });
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
     expect(page.getByTestId('Item 2_2')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', {
-      delay: 200,
-    });
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
     expect(page.getByTestId('Item 2_3')).toBeFocused();
 
-    await page.keyboard.press('ArrowRight', {
-      delay: 200,
-    });
+    await page.keyboard.press('ArrowRight', keyboardPressOptions);
     expect(page.getByTestId('Item 3_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', {
-      delay: 200,
-    });
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
     expect(page.getByTestId('Item 3_2')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', {
-      delay: 200,
-    });
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
     expect(page.getByTestId('Item 3_3')).toBeFocused();
 
-    await page.keyboard.press('ArrowRight', {
-      delay: 200,
-    });
+    await page.keyboard.press('ArrowRight', keyboardPressOptions);
     expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     // Hovering out of a submenu should not close the entire menu tree
@@ -53,7 +43,8 @@ test.describe('DropdownMenu', () => {
       page,
     });
 
-    // If the last menu item of the tree is visible, the whole tree is visible
+    // If the last menu item of the tree is visible, the whole tree is visible.
+    // So just checking for the last item is enough.
     expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     // Hovering an ancestor "X" that has a submenu "Y" should close all submenus of "Y"
@@ -64,40 +55,6 @@ test.describe('DropdownMenu', () => {
       page,
     });
 
-    // const item1_1 = page.getByTestId('Item 1_1');
-
-    // const item1_1Coordinates = await item1_1.boundingBox();
-    // const xMid = item1_1Coordinates.x + item1_1Coordinates.width / 2;
-    // const yBottom = item1_1Coordinates.y + item1_1Coordinates.height;
-    // // Move the mouse incrementally into item1_1. Don't hover directly
-
-    // // Array from +30 to -30 in steps of 1
-    // Array.from({ length: 60 }, (_, i) => 30 - i).forEach(async (i) => {
-    //   await page.mouse.move(xMid, yBottom + i);
-    // });
-
-    // await page.mouse.move(xMid, yBottom + 2);
-    // await page.mouse.move(xMid, yBottom + 2);
-    // await page.mouse.move(xMid, yBottom + 2);
-    // await page.mouse.move(xMid, yBottom + 2);
-    // await page.mouse.move(xMid, yBottom + 2);
-    // await page.mouse.move(xMid, yBottom + 1);
-    // await page.mouse.move(xMid, yBottom);
-    // await page.mouse.move(xMid, yBottom - 1);
-    // await page.mouse.move(xMid, yBottom - 2);
-    // await page.mouse.move(1, 1);
-    // await page.mouse.move(2, 2);
-    // await page.mouse.move(3, 3);
-    // await page.mouse.move(4, 4);
-    // await page.mouse.move(5, 5);
-
-    // await item1_1.hover();
-    // await page.getByTestId('Item 2_3').hover();
-    // await page.getByTestId('Item 2_3').click();
-    // await item1_1.hover();
-
-    // await page.waitForTimeout(1000);
-
     expect(page.getByTestId('Item 2_1')).toBeVisible();
     expect(page.getByTestId('Item 2_2')).toBeVisible();
     expect(page.getByTestId('Item 2_3')).toBeVisible();
@@ -105,7 +62,8 @@ test.describe('DropdownMenu', () => {
     expect(page.getByTestId('Item 3_2')).toBeHidden();
     expect(page.getByTestId('Item 3_3')).toBeHidden();
 
-    // Go to the deepest level using mouse
+    // Go to the deepest level using mouse.
+    // Hovering an element should focus it.
     await moveMouseWithRespectToComponent({
       side: 'left',
       direction: 'in',
@@ -130,8 +88,6 @@ test.describe('DropdownMenu', () => {
     });
     expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
-    // expect('q').toBe('q');
-
     // When a node "X" is focused, should close "X"'s siblings' submenus
     // i.e. only one submenu in each menu should be open at a time
     await moveMouseWithRespectToComponent({
@@ -140,7 +96,6 @@ test.describe('DropdownMenu', () => {
       componentTestId: 'Item 3_3_1',
       page,
     });
-    // await page.waitForTimeout(1000);
     await moveMouseWithRespectToComponent({
       side: 'right',
       direction: 'in',
@@ -148,10 +103,10 @@ test.describe('DropdownMenu', () => {
       page,
     });
 
-    await page.waitForTimeout(200);
-
     expect(page.getByTestId('Item 3_2_1')).toBeVisible();
     expect(page.getByTestId('Item 3_3_1')).toBeHidden();
+
+    await page.waitForTimeout(200);
   });
 });
 
@@ -172,7 +127,6 @@ const moveMouseWithRespectToComponent = async ({
   });
 
   if (boundingBox == null) {
-    expect('HERE').not.toBe('HERE');
     throw new Error(`Component with test id ${componentTestId} not found.`);
   }
 
