@@ -96,33 +96,32 @@ it('should render with custom role', () => {
 
 it('should handle click', () => {
   const mockedOnClick = vi.fn();
-  render(
-    <MenuItem
-      onClick={mockedOnClick}
-      data-testid='item'
-      value='test_value'
-      subMenuItems={[
-        <MenuItem key={1} data-testid='sub'>
-          Test sub item
-        </MenuItem>,
-      ]}
-    >
+  const { container } = render(
+    <MenuItem onClick={mockedOnClick} value='test_value'>
       Test item
     </MenuItem>,
   );
 
-  const menuItem = screen.getByTestId('item');
-  assertBaseElement(menuItem, { hasBadge: true });
+  const menuItem = container.querySelector('.iui-list-item');
+  assertBaseElement(menuItem);
 
   fireEvent.click(menuItem);
   expect(mockedOnClick).toHaveBeenCalledWith('test_value');
+});
 
-  const subMenuItem = screen.getByTestId('sub');
-  expect(subMenuItem).toBeVisible();
+it('should not be clickable with disabled', () => {
+  const mockedOnClick = vi.fn();
+  const { container } = render(
+    <MenuItem disabled onClick={mockedOnClick}>
+      Test item
+    </MenuItem>,
+  );
+
+  const menuItem = container.querySelector('.iui-list-item');
+  assertBaseElement(menuItem, { disabled: true });
 
   fireEvent.click(menuItem);
-  expect(mockedOnClick).toHaveBeenCalledTimes(2);
-  expect(subMenuItem).not.toBeVisible();
+  expect(mockedOnClick).not.toHaveBeenCalled();
 });
 
 it('should focus on hover', () => {

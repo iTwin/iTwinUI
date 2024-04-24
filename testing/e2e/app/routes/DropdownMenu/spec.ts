@@ -108,6 +108,37 @@ test.describe('DropdownMenu', () => {
 
     await page.waitForTimeout(200);
   });
+
+  test('should respect click and keyboard enter/space triggers', async ({
+    page,
+  }) => {
+    await page.goto('/DropdownMenu');
+
+    const trigger = page.getByTestId('trigger');
+    await trigger.click();
+
+    expect(page.getByTestId('Item 1_1')).toBeFocused();
+
+    await page.getByTestId('Item 1_1').click();
+    expect(page.getByTestId('Item 1_1')).toBeFocused();
+    expect(page.getByTestId('Item 2_1')).toBeVisible();
+
+    await page.getByTestId('Item 1_1').click();
+    expect(page.getByTestId('Item 1_1')).toBeFocused();
+    expect(page.getByTestId('Item 2_1')).toBeHidden();
+
+    await page.keyboard.press('Enter');
+    expect(page.getByTestId('Item 2_1')).toBeFocused();
+
+    await page.keyboard.press('ArrowLeft');
+    expect(page.getByTestId('Item 1_1')).toBeFocused();
+
+    await page.keyboard.press('Space');
+    expect(page.getByTestId('Item 2_1')).toBeFocused();
+
+    await page.keyboard.press('ArrowLeft');
+    expect(page.getByTestId('Item 1_1')).toBeFocused();
+  });
 });
 
 /**
