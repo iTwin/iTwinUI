@@ -4,15 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ThemeContext } from '../../core/ThemeProvider/ThemeContext.js';
 import { getDocument } from '../functions/dom.js';
 import { useIsClient } from '../hooks/useIsClient.js';
+import { atom } from 'jotai';
+import { useScopedAtom } from '../providers/ScopeProvider.js';
+
+// ----------------------------------------------------------------------------
+
+export const portalContainerAtom = atom<HTMLElement | undefined>(undefined);
+
+// ----------------------------------------------------------------------------
 
 export type PortalProps = {
   /**
    * Where should the element be portaled to?
    *
-   * If true, it will portal into nearest ThemeContext.portalContainer.
+   * If true, it will portal into nearest ThemeProvider's portalContainer.
    *
    * If false, it will not be portaled.
    *
@@ -38,7 +45,7 @@ export type PortalProps = {
 /**
  * Helper component that portals children according to the following conditions:
  *   - renders null on server
- *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
+ *   - if `portal` is set to true, renders into nearest ThemeProvider's portalContainer
  *   - if `portal` is set to false, renders as-is without portal
  *   - otherwise renders into `portal.to` (can be an element or a function)
  *     - If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
@@ -62,8 +69,8 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 // ----------------------------------------------------------------------------
 
 export const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
-  const themeInfo = React.useContext(ThemeContext);
-  const defaultPortalTo = themeInfo?.portalContainer ?? getDocument()?.body;
+  const [portalContainer] = useScopedAtom(portalContainerAtom);
+  const defaultPortalTo = portalContainer ?? getDocument()?.body;
 
   if (typeof portal === 'boolean') {
     return portal ? defaultPortalTo : null;
