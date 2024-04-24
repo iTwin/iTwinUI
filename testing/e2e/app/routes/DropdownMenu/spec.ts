@@ -110,6 +110,19 @@ test.describe('DropdownMenu', () => {
   });
 });
 
+/**
+ * Sometimes `component.hover()` doesn't work as expected.
+ * This function instead uses `mouse.move()` to move the mouse along the `direction` on the specified `side`.
+ *
+ * @example
+ * <caption>Mouse moves in small increments starting slightly from the left of the left edge and ending slightly to the right of the left edge. </caption>
+ * moveMouseWithRespectToComponent({
+ *   side: 'left',
+ *   direction: 'in',
+ *   componentTestId: 'my-test-id',
+ *   page,
+ * })
+ */
 const moveMouseWithRespectToComponent = async ({
   side,
   direction,
