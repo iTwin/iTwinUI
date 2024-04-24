@@ -19,6 +19,7 @@ import {
   portalContainerAtom,
   useScopedAtom,
   useScopedSetAtom,
+  usePropChanged,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -305,7 +306,7 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
  *
  * Updates `portalContainerAtom` with the correct portal container.
  */
-const PortalContainer = React.memo(function PortalContainer({
+const PortalContainer = ({
   portalContainerProp,
   portalContainerFromParent,
   isInheritingTheme,
@@ -313,16 +314,13 @@ const PortalContainer = React.memo(function PortalContainer({
   portalContainerProp: HTMLElement | undefined;
   portalContainerFromParent: HTMLElement | undefined;
   isInheritingTheme: boolean;
-}) {
+}) => {
   const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
   const setPortalContainerForChildren = useScopedSetAtom(portalContainerAtom);
 
   // Synchronize atom with prop changes
-  const [previousProp, setPreviousProp] = React.useState(portalContainerProp);
-  if (portalContainerProp && portalContainerProp !== previousProp) {
-    setPreviousProp(portalContainerProp);
-    setPortalContainerForChildren(portalContainerProp);
-  }
+  usePropChanged(portalContainerProp, setPortalContainerForChildren);
+  usePropChanged(portalContainerFromParent, setPortalContainerForChildren);
 
   // bail if not hydrated, because portals don't work on server
   const isHydrated = useHydration() === 'hydrated';
@@ -350,7 +348,7 @@ const PortalContainer = React.memo(function PortalContainer({
   const portalTarget = portalContainerProp || portalContainerFromParent;
 
   return portalTarget ? ReactDOM.createPortal(<Toaster />, portalTarget) : null;
-});
+};
 
 // ----------------------------------------------------------------------------
 
