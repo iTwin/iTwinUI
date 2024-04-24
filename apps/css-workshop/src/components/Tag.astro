@@ -2,9 +2,10 @@
 const { hasCloseButton = true, variant, class: className, as, buttonProps, ...props } = Astro.props;
 
 const Element = as ?? 'span';
-import Button_ from './Button.astro'
+import Button_ from './Button.astro';
 ---
 
+<!-- prettier-ignore -->
 <Element
   class:list={[
     {
