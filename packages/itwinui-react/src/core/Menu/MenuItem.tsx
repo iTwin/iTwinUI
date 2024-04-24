@@ -132,54 +132,28 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const indexInParentTree = React.useContext(MenuItemIndexContext);
 
-  const onVisibleChange = React.useCallback(
-    (open: boolean) => {
-      setIsSubmenuVisible(open);
-
-      if (open) {
-        tree?.events.emit('onOpen', {
-          nodeId,
-          parentId,
-        } satisfies TreeEvent);
-      }
-    },
-    [nodeId, parentId, tree?.events],
-  );
-
-  const closeSiblingMenus = React.useCallback(
-    (event: TreeEvent) => {
-      // When a node "X" is focused, close "X"'s siblings' submenus
-      // i.e. only one submenu in each menu can be open at a time
-      if (parentId === event.parentId && nodeId !== event.nodeId) {
-        setIsSubmenuVisible(false);
-        setHasFocusedNodeInSubmenu(false);
-      }
-    },
-    [nodeId, parentId],
-  );
-
-  const closeChildMenus = React.useCallback(
-    (event: TreeEvent) => {
-      // Consider a node "X" with its submenu "Y".
-      // Focusing "X" should close all submenus of "Y".
-      if (parentId === event.nodeId) {
-        setIsSubmenuVisible(false);
-        setHasFocusedNodeInSubmenu(false);
-      }
-    },
-    [parentId],
-  );
-
   useSyncExternalStore(
     React.useCallback(() => {
-      tree?.events.on('onOpen', closeSiblingMenus);
-      tree?.events.on('onNodeFocused', closeChildMenus);
+      const closeUnrelatedMenus = (event: TreeEvent) => {
+        if (
+          // When a node "X" is focused, close "X"'s siblings' submenus
+          // i.e. only one submenu in each menu can be open at a time
+          (parentId === event.parentId && nodeId !== event.nodeId) ||
+          // Consider a node "X" with its submenu "Y".
+          // Focusing "X" should close all submenus of "Y".
+          parentId === event.nodeId
+        ) {
+          setIsSubmenuVisible(false);
+          setHasFocusedNodeInSubmenu(false);
+        }
+      };
+
+      tree?.events.on('onNodeFocused', closeUnrelatedMenus);
 
       return () => {
-        tree?.events.off('onOpen', closeSiblingMenus);
-        tree?.events.off('onNodeFocused', closeChildMenus);
+        tree?.events.off('onNodeFocused', closeUnrelatedMenus);
       };
-    }, [closeSiblingMenus, closeChildMenus, tree?.events]),
+    }, [nodeId, parentId, tree?.events]),
     () => undefined,
     () => undefined,
   );
@@ -189,7 +163,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible: isSubmenuVisible,
-    onVisibleChange,
+    onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     interactions: {
       click: false,
