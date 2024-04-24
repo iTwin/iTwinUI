@@ -153,16 +153,21 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
-    interactions: interactionsProp = {
+    interactions: interactionsProp,
+    role,
+    ...rest
+  } = options;
+
+  const mergedInteractions = {
+    ...{
       click: true,
       dismiss: true,
       hover: false,
       focus: false,
       listNavigation: false,
     },
-    role,
-    ...rest
-  } = options;
+    ...interactionsProp,
+  };
 
   const tree = useFloatingTree();
 
@@ -198,45 +203,45 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
   const interactions = useInteractions([
     useClick(floating.context, {
-      enabled: !!interactionsProp.click,
+      enabled: !!mergedInteractions.click,
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
-      ...interactionsProp.click,
+      ...mergedInteractions.click,
     }),
     useDismiss(floating.context, {
-      enabled: !!interactionsProp?.dismiss,
+      enabled: !!mergedInteractions.dismiss,
       outsidePress: closeOnOutsideClick,
       bubbles: tree != null, // Only bubble when inside a FloatingTree
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
-      ...interactionsProp.dismiss,
+      ...mergedInteractions.dismiss,
     }),
     useHover(floating.context, {
-      enabled: !!interactionsProp?.hover,
+      enabled: !!mergedInteractions.hover,
       delay: 100,
       handleClose: safePolygon({ buffer: 1, requireIntent: false }),
       move: false,
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
-      ...interactionsProp?.hover,
+      ...mergedInteractions.hover,
     }),
     useFocus(floating.context, {
-      enabled: !!interactionsProp?.focus,
+      enabled: !!mergedInteractions.focus,
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
-      ...interactionsProp?.focus,
+      ...mergedInteractions.focus,
     }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
-      enabled: !!interactionsProp?.listNavigation,
+      enabled: !!mergedInteractions.listNavigation,
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - Applying spread on a boolean is a no-op and does not give any error
-      ...interactionsProp?.listNavigation,
+      ...mergedInteractions.listNavigation,
     }),
   ]);
 
