@@ -76,8 +76,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const shouldShowIcon =
     iconProp === undefined || (iconProp !== null && size !== 'small');
 
-  const { className: labelClassName } = labelProps;
-
   return (
     <Box
       as={label ? 'label' : 'div'}
@@ -111,7 +109,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         <Box
           as='span'
           {...labelProps}
-          className={cx('iui-toggle-switch-label', labelClassName)}
+          className={cx('iui-toggle-switch-label', labelProps?.className)}
         >
           {label}
         </Box>
