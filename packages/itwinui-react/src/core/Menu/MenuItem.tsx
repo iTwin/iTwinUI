@@ -9,6 +9,7 @@ import {
   useMergedRefs,
   useId,
   useSyncExternalStore,
+  createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu } from './Menu.js';
@@ -21,6 +22,8 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
+
+const logWarningInDev = createWarningLogger();
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -114,6 +117,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     subMenuItems = [],
     ...rest
   } = props;
+
+  if (onClickProp != null && subMenuItems.length > 0) {
+    logWarningInDev(
+      'Passing submenuItems and onClick to MenuItem at the same time is not supported. This is because clicking a MenuItem with submenuItems toggles the submenu visibility.',
+    );
+  }
 
   const parent = React.useContext(MenuItemContext);
 
@@ -218,7 +227,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onActivate = () => {
-    !disabled && onClickProp?.(value);
+    !disabled && subMenuItems.length === 0 && onClickProp?.(value);
     setIsSubmenuVisible((prev) => !prev);
   };
 
