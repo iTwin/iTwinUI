@@ -321,14 +321,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
               <Menu
                 setFocus={false}
                 ref={popover.refs.setFloating}
-                {...popover.getFloatingProps({
-                  id: submenuId,
-                  onPointerMove: () => {
-                    // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                    // so we need to flip it back to true when pointer re-enters this submenu.
-                    setIsSubmenuVisible(true);
-                  },
-                })}
+                {...popover.getFloatingProps({ id: submenuId })}
               >
                 {subMenuItems.map((item, index) => (
                   <MenuItemIndexContext.Provider
