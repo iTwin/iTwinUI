@@ -2,7 +2,7 @@
 const { hasCloseButton = true, variant, class: className, as, buttonProps, ...props } = Astro.props;
 
 const Element = as ?? 'span';
-import Button_ from './Button.astro';
+import Button_ from './Button.astro'
 ---
 
 <Element
@@ -14,25 +14,22 @@ import Button_ from './Button.astro';
     className,
   ]}
   {...props}
->
-  {
+>{
     variant === 'basic' ? (
       <slot />
     ) : (
-      <span class='iui-tag-label'>
-        <slot />
-      </span>
+      <span class='iui-tag-label'><slot /></span>
     )
   }{
-    variant !== 'basic' && hasCloseButton && (
+    variant !== 'basic'  && hasCloseButton && (
       <Button_
         class='iui-tag-button'
         variant='borderless'
         size='small'
         type='button'
         {...buttonProps}
-      >
-        <svg-close-small class='iui-button-icon' aria-hidden='true' />
+      ><svg-close-small class='iui-button-icon' aria-hidden='true'
+        ></svg-close-small>
       </Button_>
     )
   }
