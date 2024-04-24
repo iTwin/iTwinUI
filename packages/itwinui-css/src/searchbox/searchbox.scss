@@ -12,15 +12,10 @@
   }
 }
 
-.iui-search-icon {
-  --_iui-button-icon-fill: var(--iui-color-icon-muted);
-
-  [data-iui-size='small'] & svg {
-    inline-size: var(--iui-size-s);
-  }
-}
-
 // noop https://github.com/iTwin/iTwinUI/pull/1881#discussion_r1506166537
+/* stylelint-disable-next-line block-no-empty */
+.iui-search-icon {
+}
 /* stylelint-disable-next-line block-no-empty */
 .iui-search-input {
 }
