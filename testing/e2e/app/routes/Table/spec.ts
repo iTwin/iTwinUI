@@ -4,10 +4,9 @@ test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
 
-    const firstColumnCells = page.locator('[role="cell"]:nth-child(2)');
+    const firstColumnCells = page.locator('[role="cell"]:first-child');
     expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
-    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
 
     // ascending
@@ -28,6 +27,18 @@ test.describe('Table resizing', () => {
   test('should adjust column widths', async ({ page }) => {
     await page.goto('/Table');
 
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +100;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1] - delta);
+    }
+
     // resize second column
     {
       const initialWidths = await getColumnWidths(page);
@@ -36,26 +47,30 @@ test.describe('Table resizing', () => {
       await resizeColumn({ index: 1, delta, page });
 
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[2]).toBe(initialWidths[2] + delta);
-      expect(newWidths[3]).toBe(initialWidths[3] - delta);
-    }
-
-    // resize third column
-    {
-      const initialWidths = await getColumnWidths(page);
-
-      const delta = +40;
-      await resizeColumn({ index: 2, delta, page });
-
-      const newWidths = await getColumnWidths(page);
-      expect(newWidths[3]).toBe(initialWidths[3] + delta);
-      expect(newWidths[4]).toBe(initialWidths[4] - delta);
+      expect(newWidths[1]).toBe(initialWidths[1] + delta);
+      expect(newWidths[2]).toBe(initialWidths[2] - delta);
     }
   });
 
   test('should respect columnResizeMode=expand', async ({ page }) => {
     await page.goto('/Table?columnResizeMode=expand');
 
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +100;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+
+      // other columns should not change
+      expect(newWidths[1]).toBe(initialWidths[1]);
+      expect(newWidths[2]).toBe(initialWidths[2]);
+      expect(newWidths[3]).toBe(initialWidths[3]);
+    }
+
     // resize second column
     {
       const initialWidths = await getColumnWidths(page);
@@ -64,30 +79,12 @@ test.describe('Table resizing', () => {
       await resizeColumn({ index: 1, delta, page });
 
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[2]).toBe(initialWidths[2] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1] + delta);
 
       // other columns should not change
       expect(newWidths[0]).toBe(initialWidths[0]);
-      expect(newWidths[1]).toBe(initialWidths[1]);
-      expect(newWidths[3]).toBe(initialWidths[3]);
-      expect(newWidths[4]).toBe(initialWidths[4]);
-    }
-
-    // resize third column
-    {
-      const initialWidths = await getColumnWidths(page);
-
-      const delta = +100;
-      await resizeColumn({ index: 2, delta, page });
-
-      const newWidths = await getColumnWidths(page);
-      expect(newWidths[3]).toBe(initialWidths[3] + delta);
-
-      // other columns should not change
-      expect(newWidths[0]).toBe(initialWidths[0]);
-      expect(newWidths[1]).toBe(initialWidths[1]);
       expect(newWidths[2]).toBe(initialWidths[2]);
-      expect(newWidths[4]).toBe(initialWidths[4]);
+      expect(newWidths[3]).toBe(initialWidths[3]);
     }
   });
 
@@ -101,21 +98,21 @@ test.describe('Table resizing', () => {
     {
       await resizeColumn({ index: 0, delta: -100, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[1]).toBe(minWidth0);
+      expect(newWidths[0]).toBe(minWidth0);
     }
 
     // resize second column
     {
       await resizeColumn({ index: 1, delta: -600, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[2]).toBe(minWidth1);
+      expect(newWidths[1]).toBe(minWidth1);
     }
 
     // resize third column (has implicit min width)
     {
       await resizeColumn({ index: 2, delta: -800, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[3]).toBe(72); // 72 is the implicit min width
+      expect(newWidths[2]).toBe(72); // 72 is the implicit min width
     }
   });
 
@@ -129,30 +126,30 @@ test.describe('Table resizing', () => {
     {
       await resizeColumn({ index: 0, delta: +100, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[1]).toBe(maxWidth0);
+      expect(newWidths[0]).toBe(maxWidth0);
     }
 
     // resize second column
     {
       await resizeColumn({ index: 1, delta: +100, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[2]).toBe(maxWidth1);
+      expect(newWidths[1]).toBe(maxWidth1);
     }
   });
 
   test('should respect disableResizing', async ({ page }) => {
     await page.goto('/Table?disableResizing=true');
 
-    // resize second column
+    // resize first column
     {
       const initialWidths = await getColumnWidths(page);
 
       const delta = +50;
-      await resizeColumn({ index: 1, delta, page });
+      await resizeColumn({ index: 0, delta, page });
 
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[2]).toBe(initialWidths[2]);
-      expect(newWidths[3]).toBe(initialWidths[3] - delta); // should not change
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1]); // should not change
     }
   });
 
@@ -195,7 +192,7 @@ test.describe('Table resizing', () => {
 
 test.describe('Table row selection', () => {
   test('Should select single row', async ({ page }) => {
-    await page.goto('/Table');
+    await page.goto('/Table?isSelectable=true');
 
     const checkboxes = page.locator('input[type="checkbox"]');
     const firstRowCheckbox = checkboxes.nth(1);
@@ -207,13 +204,37 @@ test.describe('Table row selection', () => {
     await expect(firstRowCheckbox).not.toBeChecked();
   });
 
+  test('Should select all sub rows when parent row is selected', async ({
+    page,
+  }) => {
+    await page.goto('/Table?isSelectable=true&subRows=true');
+
+    const subRowExpanders = page.getByLabel('Toggle sub row');
+    await subRowExpanders.nth(0).click();
+
+    const checkboxes = page.locator('input[type="checkbox"]');
+    const secondRowCheckbox = checkboxes.nth(2);
+    const firstSubRowCheckbox = checkboxes.nth(3);
+    const secondSubRowCheckbox = checkboxes.nth(4);
+
+    await secondRowCheckbox.click();
+    await expect(secondRowCheckbox).toBeChecked();
+    await expect(firstSubRowCheckbox).toBeChecked();
+    await expect(secondSubRowCheckbox).toBeChecked();
+
+    await secondRowCheckbox.click();
+    await expect(secondRowCheckbox).not.toBeChecked();
+    await expect(firstSubRowCheckbox).not.toBeChecked();
+    await expect(secondSubRowCheckbox).not.toBeChecked();
+  });
+
   test('Should show indeterminate when sub rows are disabled', async ({
     page,
   }) => {
-    await page.goto('/Table');
+    await page.goto('/Table?isSelectable=true&subRows=true');
 
     const subRowExpander = page.getByLabel('Toggle sub row');
-    await subRowExpander.click();
+    await subRowExpander.nth(1).click();
 
     const checkboxes = page.locator('input[type="checkbox"]');
     const thirdRowCheckbox = checkboxes.nth(3);

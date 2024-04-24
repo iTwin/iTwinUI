@@ -9,6 +9,74 @@ export default function Resizing() {
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
+  const isSelectable = searchParams.get('isSelectable') === 'true';
+  const subRows = searchParams.get('subRows') === 'true';
+
+  const data = subRows
+    ? [
+        {
+          index: 1,
+          name: 'Name1',
+          description: 'Description1',
+          id: '111',
+        },
+        {
+          index: 2,
+          name: 'Name2',
+          description: 'Description2',
+          subRows: [
+            {
+              name: 'Name2.1',
+              description: 'Description2.1',
+              id: '223',
+            },
+            {
+              name: 'Name2.2',
+              description: 'Description2.2',
+              id: '224',
+            },
+          ],
+          id: '222',
+        },
+        {
+          index: 3,
+          name: 'Name3',
+          description: 'Description3',
+          subRows: [
+            {
+              name: 'Name3.1',
+              description: 'Description3.1',
+              id: '334',
+            },
+            {
+              name: 'Name3.2',
+              description: 'Description3.2',
+              id: '335',
+            },
+          ],
+          id: '333',
+        },
+      ]
+    : [
+        {
+          index: 1,
+          name: 'Name1',
+          description: 'Description1',
+          id: '111',
+        },
+        {
+          index: 2,
+          name: 'Name2',
+          description: 'Description2',
+          id: '222',
+        },
+        {
+          index: 3,
+          name: 'Name3',
+          description: 'Description3',
+          id: '333',
+        },
+      ];
 
   const isRowDisabled = React.useCallback(
     (rowData: Record<string, unknown>) => {
@@ -50,43 +118,10 @@ export default function Resizing() {
         emptyTableContent='No data.'
         isResizable
         isRowDisabled={isRowDisabled}
-        isSelectable
+        isSelectable={isSelectable}
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
       />
     </>
   );
 }
-
-const data = [
-  {
-    index: 1,
-    name: 'Name1',
-    description: 'Description1',
-    id: '111',
-  },
-  {
-    index: 2,
-    name: 'Name2',
-    description: 'Description2',
-    id: '222',
-  },
-  {
-    index: 3,
-    name: 'Name3',
-    description: 'Description3',
-    subRows: [
-      {
-        name: 'Name3.1',
-        description: 'Description3.1',
-        id: '334',
-      },
-      {
-        name: 'Name3.2',
-        description: 'Description3.2',
-        id: '335',
-      },
-    ],
-    id: '333',
-  },
-];
