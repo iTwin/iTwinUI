@@ -102,7 +102,7 @@ it('should handle click', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item');
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
 
   fireEvent.click(menuItem);
@@ -117,7 +117,7 @@ it('should not be clickable with disabled', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item');
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { disabled: true });
 
   fireEvent.click(menuItem);
