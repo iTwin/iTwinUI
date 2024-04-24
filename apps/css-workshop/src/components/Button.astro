@@ -10,7 +10,7 @@ const { class: className, variant, size, isActive, dropdown, ...props } = Astro.
 ---
 
 <button
-  class:list={['iui-button', { 'iui-button-dropdown': dropdown }, className]}
+  class:list={['iui-button', 'iui-button-base', { 'iui-button-dropdown': dropdown }, className]}
   type='button'
   data-iui-variant={variant}
   data-iui-size={size}
