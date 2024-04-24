@@ -129,10 +129,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const nodeId = useFloatingNodeId();
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
-  const parentTreeIndex =
-    menuItemRef.current?.dataset['iuiIndex'] != null
-      ? Number(menuItemRef.current?.dataset['iuiIndex'])
-      : undefined;
+
+  const indexInParentTree = React.useContext(MenuItemIndexContext);
 
   const onVisibleChange = React.useCallback(
     (open: boolean) => {
@@ -273,8 +271,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           forwardedRef,
           subMenuItems.length > 0 ? popover.refs.setReference : null,
           (el) => {
-            if (parent != null && parentTreeIndex != null) {
-              parent.listItemsRef.current[parentTreeIndex] = el as HTMLElement;
+            if (parent != null && indexInParentTree != null) {
+              parent.listItemsRef.current[indexInParentTree] =
+                el as HTMLElement;
             }
           },
         )}
@@ -331,11 +330,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                   },
                 })}
               >
-                {subMenuItems.map((item, index) =>
-                  React.cloneElement(item, {
-                    ['data-iui-index']: index,
-                  }),
-                )}
+                {subMenuItems.map((item, index) => (
+                  <MenuItemIndexContext.Provider
+                    key={item.props.value || index}
+                    value={index}
+                  >
+                    {item}
+                  </MenuItemIndexContext.Provider>
+                ))}
               </Menu>
             </MenuItemContext.Provider>
           </Portal>
@@ -351,3 +353,5 @@ export type TreeEvent = {
   nodeId: string;
   parentId: string | null;
 };
+
+const MenuItemIndexContext = React.createContext<number | undefined>(undefined);
