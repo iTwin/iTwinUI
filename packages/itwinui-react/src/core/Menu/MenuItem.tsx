@@ -29,9 +29,11 @@ const logWarningInDev = createWarningLogger();
  * Context used to provide menu item ref to sub-menu items.
  */
 const MenuItemContext = React.createContext<{
+  setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
   listItemsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   setHasFocusedNodeInSubmenu: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
+  setActiveIndex: () => {},
   listItemsRef: { current: [] },
   setHasFocusedNodeInSubmenu: () => {},
 });
@@ -216,6 +218,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onFocus = () => {
+    // Since we manually focus the MenuItem on hover, we need to manually update the active index for
+    // Floating UI's keyboard navigation to work correctly.
+    if (parent != null && indexInParentTree != null) {
+      parent.setActiveIndex(indexInParentTree);
+    }
+
     parent.setHasFocusedNodeInSubmenu(true);
 
     tree?.events.emit('onNodeFocused', {
@@ -294,6 +302,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           <Portal>
             <MenuItemContext.Provider
               value={{
+                setActiveIndex,
                 listItemsRef,
                 setHasFocusedNodeInSubmenu,
               }}
