@@ -248,4 +248,31 @@ test.describe('Table row selection', () => {
     await expect(thirdRowCheckbox).not.toHaveJSProperty('indeterminate', true);
     await expect(firstSubRowCheckbox).not.toBeChecked();
   });
+
+  test('Should show indeterminate when some sub rows are filtered out', async ({
+    page,
+  }) => {
+    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+
+    const filterButton = page.getByLabel('Filter');
+    await filterButton.click();
+    const filterInput = page.locator('input[value]');
+    await filterInput.fill('Name2.1');
+    await page.keyboard.press('Enter');
+
+    const subRowExpander = page.getByLabel('Toggle sub row');
+    await subRowExpander.click();
+
+    const checkboxes = page.locator('input[type="checkbox"]');
+    const secondRowCheckbox = checkboxes.nth(1);
+    const subRowCheckbox = checkboxes.nth(2);
+
+    await secondRowCheckbox.click();
+    await expect(secondRowCheckbox).toHaveJSProperty('indeterminate', true);
+    await expect(subRowCheckbox).toBeChecked();
+
+    await secondRowCheckbox.click();
+    await expect(secondRowCheckbox).not.toHaveJSProperty('indeterminate', true);
+    await expect(subRowCheckbox).not.toBeChecked();
+  });
 });

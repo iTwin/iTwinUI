@@ -1,4 +1,4 @@
-import { Table } from '@itwin/itwinui-react';
+import { Table, tableFilters } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
 import React from 'react';
 
@@ -11,6 +11,7 @@ export default function Resizing() {
   const minWidths = searchParams.getAll('minWidth');
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const subRows = searchParams.get('subRows') === 'true';
+  const filter = searchParams.get('filter') === 'true';
 
   const data = subRows
     ? [
@@ -102,6 +103,7 @@ export default function Resizing() {
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
             disableResizing,
+            Filter: filter ? tableFilters.TextFilter() : undefined,
           },
           {
             Header: 'Description',
