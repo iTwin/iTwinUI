@@ -6,14 +6,10 @@ import * as React from 'react';
 import { createStore, useAtomValue, useSetAtom } from 'jotai';
 import type { Atom, WritableAtom } from 'jotai';
 
-const defaultScope = createStore();
-
-const ScopeContext = React.createContext(defaultScope);
-
-/** Keeps track of all atoms in all scopes */
-const scopes = new WeakMap([
-  [defaultScope, new Set<WritableAtom<unknown, unknown[], unknown>>()],
-]);
+const ScopeContext = React.createContext({
+  store: createStore(),
+  parentStore: null as null | ReturnType<typeof createStore>,
+});
 
 /**
  * Provider that creates a fresh, isolated jotai store for its children
@@ -24,32 +20,35 @@ const scopes = new WeakMap([
  */
 export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
   const store = React.useMemo(() => createStore(), []);
-  const parentStore = React.useContext(ScopeContext);
-
-  if (!scopes.has(store)) {
-    // Copy parent store's atoms to this store
-    if (parentStore) {
-      scopes.get(parentStore)?.forEach((atom) => {
-        store.set(atom, parentStore.get(atom));
-      });
-    }
-
-    scopes.set(store, new Set());
-  }
+  const parentStore = React.useContext(ScopeContext).store;
 
   return (
-    <ScopeContext.Provider value={store}>{children}</ScopeContext.Provider>
+    <ScopeContext.Provider
+      value={React.useMemo(
+        () => ({ store, parentStore }),
+        [store, parentStore],
+      )}
+    >
+      {children}
+    </ScopeContext.Provider>
   );
 };
 
 /**
  * Wrapper over `useAtom` that uses the store from the nearest `ScopeProvider`.
+ *
+ * If the atom is not set in the current store, it will look for the atom in the parent store.
+ *
  * @private
  */
 export const useScopedAtom = <T,>(atom: Atom<T>) => {
-  const store = React.useContext(ScopeContext);
+  const { store, parentStore } = React.useContext(ScopeContext);
+
+  const value = useAtomValue(atom, { store });
+  const inheritedValue = useAtomValue(atom, { store: parentStore || store });
+
   return [
-    useAtomValue(atom, { store }),
+    React.useMemo(() => value ?? inheritedValue, [inheritedValue, value]),
     useScopedSetAtom(atom as WritableAtom<T, unknown[], unknown>),
   ] as const;
 };
@@ -61,7 +60,6 @@ export const useScopedAtom = <T,>(atom: Atom<T>) => {
 export const useScopedSetAtom = <T,>(
   atom: WritableAtom<T, unknown[], unknown>,
 ) => {
-  const store = React.useContext(ScopeContext);
-  scopes.get(store)?.add(atom);
+  const { store } = React.useContext(ScopeContext);
   return useSetAtom(atom, { store });
 };
