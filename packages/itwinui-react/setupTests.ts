@@ -34,7 +34,9 @@ vi.mock('@testing-library/react', async () => {
      * microtasks to be flushed. This is necessary for ShadowRoot to be tested properly.
      */
     render: (...args: Parameters<typeof originalRtl.render>) => {
-      vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+      if (!vi.isFakeTimers()) {
+        vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+      }
       const result = originalRtl.render(...args);
       originalRtl.act(() => vi.runAllTicks());
       return result;
