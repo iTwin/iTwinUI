@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { getDocument } from '../functions/dom.js';
 import { useIsClient } from '../hooks/useIsClient.js';
 import { atom } from 'jotai';
 import { useScopedAtom } from '../providers/ScopeProvider.js';
@@ -70,12 +69,11 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 
 export const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
   const [portalContainer] = useScopedAtom(portalContainerAtom);
-  const defaultPortalTo = portalContainer ?? getDocument()?.body;
 
   if (typeof portal === 'boolean') {
-    return portal ? defaultPortalTo : null;
+    return portal ? portalContainer : null;
   }
 
   const portalTo = typeof portal.to === 'function' ? portal.to() : portal.to;
-  return portalTo ?? defaultPortalTo;
+  return portalTo ?? portalContainer;
 };
