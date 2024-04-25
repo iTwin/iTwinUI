@@ -89,16 +89,6 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   };
 
-  // Keep focusedIndex in sync with the real focused node's index.
-  const onFocus = (event: React.FocusEvent<HTMLDivElement, Element>) => {
-    const items = getFocusableNodes();
-    const currentIndex = items.findIndex((el) => el === event.target);
-
-    if (currentIndex > -1) {
-      setFocusedIndex(currentIndex);
-    }
-  };
-
   return (
     <Box
       as='div'
@@ -107,7 +97,6 @@ export const Menu = React.forwardRef((props, ref) => {
       ref={refs}
       {...rest}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
-      onFocus={mergeEventHandlers(props.onFocus, onFocus)}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
