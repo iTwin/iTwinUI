@@ -1,8 +1,9 @@
 ---
 import Layout from './_layout.astro';
-import Button_ from '../components/Button.astro';
+import Tag_ from '../components/Tag.astro';
 ---
 
+<!-- prettier-ignore -->
 <Layout title='Tag'>
   <script>
     import '@itwin/itwinui-icons-elements/close-small';
@@ -20,433 +21,145 @@ import Button_ from '../components/Button.astro';
 
   <h2>Default</h2>
   <section id='demo-default'>
-    <span class='iui-tag' id='test-tag-1'>
-      <span class='iui-tag-label' title='Tag'>Tag</span>
-      <Button_
-        class='iui-tag-button'
-        variant='borderless'
-        size='small'
-        aria-label='Delete tag'
-        type='button'
-      >
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </Button_>
-    </span>
-
+    <Tag_ id='test-tag-1'>Tag</Tag_>
     <br />
 
-    <span class='iui-tag' style='max-width: 125px;'>
-      <span class='iui-tag-label' title='Overflowing tag'>Overflowing tag</span>
-      <Button_
-        class='iui-tag-button'
-        variant='borderless'
-        size='small'
-        aria-label='Delete overflowing tag'
-        type='button'
-        id='test-tag-2'
-      >
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </Button_>
-    </span>
-
+    <Tag_ style='max-width: 125px;' buttonProps={{id: 'test-tag-2'}}>Overflowing tag</Tag_>
     <br />
-
-    <span class='iui-tag'>
-      <span class='iui-tag-label' title='No button'>No button</span>
-    </span>
+    <Tag_ hasCloseButton={false} >No button</Tag_>
   </section>
 
   <hr />
 
   <h2>Default tag containers</h2>
   <section id='demo-default-container'>
+
     <div class='iui-tag-container iui-visible' aria-label='My tags'>
-      <span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Very very long tag'>Very very long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Tag'>Tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Long tag'>Long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Very long tag'>Very long tag</span><Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'
-        ><span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span>
+      <Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_><Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_><Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_>
     </div>
 
     <br />
 
     <div class='iui-tag-container iui-visible iui-truncate' aria-label='My tags'>
-      <span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span>
+      <Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_>
     </div>
 
     <br />
 
     <div class='iui-tag-container iui-visible iui-scroll' aria-label='My tags'>
-      <span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Tag'>Tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Long tag'>Long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very long tag'>Very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span><span class='iui-tag'>
-        <span class='iui-tag-label' title='Very very long tag'>Very very long tag</span>
-        <Button_
-          class='iui-tag-button'
-          variant='borderless'
-          size='small'
-          aria-label='Delete very very long tag'
-          type='button'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
-      </span>
+      <Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_><Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_><Tag_
+        >Tag</Tag_><Tag_
+        >Long tag</Tag_><Tag_
+        >Very long tag</Tag_><Tag_
+        >Very very long tag</Tag_>
     </div>
   </section>
 
   <hr />
-
   <h2>Basic tag containers</h2>
   <section id='demo-basic'>
     <div class='iui-tag-container'>
-      <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      >
+      <Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic' 
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic' 
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_>
     </div>
 
     <div class='iui-tag-container'>
-      <a href='#' class='iui-anchor iui-tag-basic' id='test-tag-3'>tags</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>go</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>here</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>tags</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>go</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>here</a
-      >
+      <Tag_ variant='basic' class='iui-anchor' as='a' href='#' id='test-tag-3'
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_>
     </div>
   </section>
 
   <h2>Truncate basic tag containers</h2>
   <section id='demo-truncate'>
     <div class='iui-tag-container iui-truncate'>
-      <span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      ><span class='iui-tag-basic'>tags</span><span class='iui-tag-basic'>go</span><span
-        class='iui-tag-basic'>here</span
-      >
+      <Tag_ variant='basic'
+        >tags</Tag_><Tag_ variant='basic'
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic'
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic'  
+        >tags</Tag_><Tag_ variant='basic'
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic' 
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic'
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic'
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic'  
+        >tags</Tag_><Tag_ variant='basic'
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_><Tag_ variant='basic' 
+        >tags</Tag_><Tag_ variant='basic' 
+        >go</Tag_><Tag_ variant='basic' 
+        >here</Tag_>
     </div>
 
     <div class='iui-tag-container iui-truncate'>
-      <a href='#' class='iui-anchor iui-tag-basic' id='test-tag-3'>tags</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>go</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>here</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>tags</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>go</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>here</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>tags</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>go</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>here</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>tags</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>go</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>here</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>tags</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>go</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>here</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>tags</a
-      ><a href='#' class='iui-anchor iui-tag-basic'>go</a><a
-        href='#'
-        class='iui-anchor iui-tag-basic'>here</a
-      >
+      <Tag_ variant='basic' class='iui-anchor' as='a' href='#' id='test-tag-3'
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >tags</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >go</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        >here</Tag_><Tag_ variant='basic' class='iui-anchor' as='a' href='#' 
+        ></Tag_>
     </div>
   </section>
 </Layout>
