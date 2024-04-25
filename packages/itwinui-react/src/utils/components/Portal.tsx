@@ -58,7 +58,7 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
   const isClient = useIsClient();
   const portalTo = usePortalTo(portal);
 
-  if (!isClient || portalTo === undefined) {
+  if (!isClient) {
     return null;
   }
 
