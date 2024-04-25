@@ -62,7 +62,7 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
     return null;
   }
 
-  return portalTo ? ReactDOM.createPortal(children, portalTo) : children;
+  return portalTo ? ReactDOM.createPortal(children, portalTo) : null;
 };
 
 // ----------------------------------------------------------------------------
