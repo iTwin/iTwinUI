@@ -319,11 +319,16 @@ const PortalContainer = React.memo(
     const setPortalContainerForChildren = useScopedSetAtom(portalContainerAtom);
 
     // Synchronize atom with prop changes
-    const [previousProp, setPreviousProp] = React.useState(portalContainerProp);
-    if (portalContainerProp && portalContainerProp !== previousProp) {
-      setPreviousProp(portalContainerProp);
-      setPortalContainerForChildren(portalContainerProp);
-    }
+    React.useEffect(() => {
+      setPortalContainerForChildren(
+        portalContainerProp || portalContainerFromParent,
+      );
+      return () => void setPortalContainerForChildren(undefined);
+    }, [
+      portalContainerProp,
+      portalContainerFromParent,
+      setPortalContainerForChildren,
+    ]);
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
