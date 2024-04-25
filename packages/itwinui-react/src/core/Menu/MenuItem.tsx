@@ -141,23 +141,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const indexInParentTree = React.useContext(MenuItemIndexContext);
 
-  /**
-   * Changes the submenu visibility, but only if it meets the required pre-requisites.
-   *
-   * @param open - If boolean, sets the submenu visibility. If `'toggle'`, toggles the submenu visibility.
-   */
-  const changeSubmenuVisibility = (open: boolean | 'toggle') => {
-    if (disabled) {
-      return;
-    }
-
-    if (open === 'toggle') {
-      setIsSubmenuVisible((prev) => !prev);
-    } else {
-      setIsSubmenuVisible(open);
-    }
-  };
-
   useSyncExternalStore(
     React.useCallback(() => {
       const closeUnrelatedMenus = (event: TreeEvent) => {
@@ -189,7 +172,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible: isSubmenuVisible,
-    onVisibleChange: changeSubmenuVisibility,
+    onVisibleChange: setIsSubmenuVisible,
     placement: 'right-start',
     interactions: !disabled
       ? {
@@ -243,7 +226,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onClick = () => {
     onClickProp?.(value);
-    changeSubmenuVisibility('toggle');
+    setIsSubmenuVisible((prev) => !prev);
   };
 
   const handlers = !disabled
@@ -306,7 +289,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         )}
       </ListItem>
 
-      {subMenuItems.length > 0 && popover.open && (
+      {subMenuItems.length > 0 && !disabled && popover.open && (
         <FloatingNode id={nodeId}>
           <Portal>
             <MenuItemContext.Provider
