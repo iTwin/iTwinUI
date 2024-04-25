@@ -242,7 +242,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onClick = () => {
-    !disabled && onClickProp?.(value);
+    if (disabled) {
+      return;
+    }
+
+    onClickProp?.(value);
     changeSubmenuVisibility('toggle');
   };
 
