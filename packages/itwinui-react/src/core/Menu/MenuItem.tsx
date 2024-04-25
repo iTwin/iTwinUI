@@ -197,7 +197,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        onActivate();
+        onClick();
         event.preventDefault();
         break;
       }
@@ -223,10 +223,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onClick = () => {
-    onActivate();
-  };
-
-  const onActivate = () => {
     !disabled && subMenuItems.length === 0 && onClickProp?.(value);
     setIsSubmenuVisible((prev) => !prev);
   };
