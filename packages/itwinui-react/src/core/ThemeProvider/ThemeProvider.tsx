@@ -19,7 +19,6 @@ import {
   portalContainerAtom,
   useScopedAtom,
   useScopedSetAtom,
-  usePropChanged,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -306,49 +305,59 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
  *
  * Updates `portalContainerAtom` with the correct portal container.
  */
-const PortalContainer = ({
-  portalContainerProp,
-  portalContainerFromParent,
-  isInheritingTheme,
-}: {
-  portalContainerProp: HTMLElement | undefined;
-  portalContainerFromParent: HTMLElement | undefined;
-  isInheritingTheme: boolean;
-}) => {
-  const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-  const setPortalContainerForChildren = useScopedSetAtom(portalContainerAtom);
+const PortalContainer = React.memo(
+  ({
+    portalContainerProp,
+    portalContainerFromParent,
+    isInheritingTheme,
+  }: {
+    portalContainerProp: HTMLElement | undefined;
+    portalContainerFromParent: HTMLElement | undefined;
+    isInheritingTheme: boolean;
+  }) => {
+    const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
+    const setPortalContainerForChildren = useScopedSetAtom(portalContainerAtom);
 
-  // Synchronize atom with prop changes
-  usePropChanged(portalContainerProp, setPortalContainerForChildren);
-  usePropChanged(portalContainerFromParent, setPortalContainerForChildren);
+    // Synchronize atom with prop changes
+    const [previousProp, setPreviousProp] = React.useState(portalContainerProp);
+    if (portalContainerProp && portalContainerProp !== previousProp) {
+      setPreviousProp(portalContainerProp);
+      setPortalContainerForChildren(portalContainerProp);
+    }
 
-  // bail if not hydrated, because portals don't work on server
-  const isHydrated = useHydration() === 'hydrated';
-  if (!isHydrated) {
-    return null;
-  }
+    // bail if not hydrated, because portals don't work on server
+    const isHydrated = useHydration() === 'hydrated';
+    if (!isHydrated) {
+      return null;
+    }
 
-  // Create a new portal container only if necessary:
-  // - not inheriting theme
-  // - no parent portal container to portal into
-  // - parent portal container is in a different window (#2006)
-  if (
-    !portalContainerProp && // bail if portalContainerProp is set, because it takes precedence
-    (!isInheritingTheme ||
-      !portalContainerFromParent ||
-      portalContainerFromParent.ownerDocument !== ownerDocument)
-  ) {
-    return (
-      <div style={{ display: 'contents' }} ref={setPortalContainerForChildren}>
-        <Toaster />
-      </div>
-    );
-  }
+    // Create a new portal container only if necessary:
+    // - not inheriting theme
+    // - no parent portal container to portal into
+    // - parent portal container is in a different window (#2006)
+    if (
+      !portalContainerProp && // bail if portalContainerProp is set, because it takes precedence
+      (!isInheritingTheme ||
+        !portalContainerFromParent ||
+        portalContainerFromParent.ownerDocument !== ownerDocument)
+    ) {
+      return (
+        <div
+          style={{ display: 'contents' }}
+          ref={setPortalContainerForChildren}
+        >
+          <Toaster />
+        </div>
+      );
+    }
 
-  const portalTarget = portalContainerProp || portalContainerFromParent;
+    const portalTarget = portalContainerProp || portalContainerFromParent;
 
-  return portalTarget ? ReactDOM.createPortal(<Toaster />, portalTarget) : null;
-};
+    return portalTarget
+      ? ReactDOM.createPortal(<Toaster />, portalTarget)
+      : null;
+  },
+);
 
 // ----------------------------------------------------------------------------
 

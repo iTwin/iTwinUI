@@ -3,10 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { createStore, useAtom, useSetAtom } from 'jotai';
+import { createStore, useAtomValue, useSetAtom } from 'jotai';
 import type { Atom, WritableAtom } from 'jotai';
 
-const ScopeContext = React.createContext(createStore());
+const defaultScope = createStore();
+
+const ScopeContext = React.createContext(defaultScope);
+
+/** Keeps track of all atoms in all scopes */
+const scopes = new WeakMap([
+  [defaultScope, new Set<WritableAtom<unknown, unknown[], unknown>>()],
+]);
 
 /**
  * Provider that creates a fresh, isolated jotai store for its children
@@ -16,10 +23,22 @@ const ScopeContext = React.createContext(createStore());
  * @private
  */
 export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
+  const store = React.useMemo(() => createStore(), []);
+  const parentStore = React.useContext(ScopeContext);
+
+  if (!scopes.has(store)) {
+    // Copy parent store's atoms to this store
+    if (parentStore) {
+      scopes.get(parentStore)?.forEach((atom) => {
+        store.set(atom, parentStore.get(atom));
+      });
+    }
+
+    scopes.set(store, new Set());
+  }
+
   return (
-    <ScopeContext.Provider value={React.useMemo(() => createStore(), [])}>
-      {children}
-    </ScopeContext.Provider>
+    <ScopeContext.Provider value={store}>{children}</ScopeContext.Provider>
   );
 };
 
@@ -29,7 +48,10 @@ export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
  */
 export const useScopedAtom = <T,>(atom: Atom<T>) => {
   const store = React.useContext(ScopeContext);
-  return useAtom(atom, { store });
+  return [
+    useAtomValue(atom, { store }),
+    useScopedSetAtom(atom as WritableAtom<T, unknown[], unknown>),
+  ] as const;
 };
 
 /**
@@ -40,5 +62,6 @@ export const useScopedSetAtom = <T,>(
   atom: WritableAtom<T, unknown[], unknown>,
 ) => {
   const store = React.useContext(ScopeContext);
+  scopes.get(store)?.add(atom);
   return useSetAtom(atom, { store });
 };
