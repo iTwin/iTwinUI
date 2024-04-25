@@ -141,6 +141,23 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const indexInParentTree = React.useContext(MenuItemIndexContext);
 
+  /**
+   * Changes the submenu visibility, but only if it meets the required pre-requisites.
+   *
+   * @param open - If boolean, sets the submenu visibility. If `'toggle'`, toggles the submenu visibility.
+   */
+  const changeSubmenuVisibility = (open: boolean | 'toggle') => {
+    if (disabled) {
+      return;
+    }
+
+    if (open === 'toggle') {
+      setIsSubmenuVisible((prev) => !prev);
+    } else {
+      setIsSubmenuVisible(open);
+    }
+  };
+
   useSyncExternalStore(
     React.useCallback(() => {
       const closeUnrelatedMenus = (event: TreeEvent) => {
@@ -172,20 +189,22 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible: isSubmenuVisible,
-    onVisibleChange: setIsSubmenuVisible,
+    onVisibleChange: changeSubmenuVisibility,
     placement: 'right-start',
-    interactions: {
-      click: false,
-      hover: {
-        enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
-      },
-      listNavigation: {
-        listRef: listItemsRef,
-        activeIndex,
-        nested: subMenuItems.length > 0,
-        onNavigate: setActiveIndex,
-      },
-    },
+    interactions: !disabled
+      ? {
+          click: false,
+          hover: {
+            enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
+          },
+          listNavigation: {
+            listRef: listItemsRef,
+            activeIndex,
+            nested: subMenuItems.length > 0,
+            onNavigate: setActiveIndex,
+          },
+        }
+      : {},
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -224,7 +243,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const onClick = () => {
     !disabled && onClickProp?.(value);
-    setIsSubmenuVisible((prev) => !prev);
+    changeSubmenuVisibility('toggle');
   };
 
   const handlers = {
