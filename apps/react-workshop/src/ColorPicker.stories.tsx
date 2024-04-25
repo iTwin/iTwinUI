@@ -81,9 +81,10 @@ export const Basic = () => {
           </ColorPicker>
         }
         visible={isOpen}
+        onVisibleChange={setIsOpen}
         placement='bottom-start'
       >
-        <IconButton onClick={() => setIsOpen((open) => !open)}>
+        <IconButton>
           <ColorSwatch
             style={{ pointerEvents: 'none', margin: 0 }}
             color={activeColor.color}
@@ -147,9 +148,10 @@ export const Advanced = () => {
             </ColorPicker>
           }
           visible={isOpen}
+          onVisibleChange={setIsOpen}
           placement='bottom-start'
         >
-          <IconButton onClick={() => setIsOpen((open) => !open)}>
+          <IconButton>
             <ColorSwatch
               style={{ pointerEvents: 'none', margin: 0 }}
               color={selectedColor}
@@ -223,9 +225,10 @@ export const WithAlpha = () => {
             </ColorPicker>
           }
           visible={isOpen}
+          onVisibleChange={setIsOpen}
           placement='bottom-start'
         >
-          <IconButton onClick={() => setIsOpen((open) => !open)}>
+          <IconButton>
             <ColorSwatch
               style={{ pointerEvents: 'none', margin: 0 }}
               color={selectedColor}
