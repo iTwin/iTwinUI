@@ -19,16 +19,13 @@ export default function ThemeProviderExample() {
       data-container='main'
       portalContainer={portalContainer}
     >
-      <Tooltip content={<div data-tooltip='main'>main tooltip</div>} visible>
+      <Tooltip content='main tooltip' visible>
         <button>hello</button>
       </Tooltip>
 
       {nested && (
         <ThemeProvider data-container='nested'>
-          <Tooltip
-            content={<div data-tooltip='nested'>nested tooltip</div>}
-            visible
-          >
+          <Tooltip content='nested tooltip' visible>
             <button>hello</button>
           </Tooltip>
         </ThemeProvider>
