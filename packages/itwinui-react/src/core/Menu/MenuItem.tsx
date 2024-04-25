@@ -26,15 +26,31 @@ import {
 const logWarningInDev = createWarningLogger();
 
 /**
- * Context used to provide menu item ref to sub-menu items.
+ * Should be wrapped around the `Menu` containing the `MenuItem`s.
  */
-const MenuItemContext = React.createContext<{
+export const MenuItemsParentMenuContext = React.createContext<{
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
   listItemsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  setHasFocusedNodeInSubmenu: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   setActiveIndex: () => {},
   listItemsRef: { current: [] },
+});
+
+/**
+ * The component using the `Menu` should wrap each item in the `Menu` with this.
+ *
+ * The main purpose of this Context is to tell the `MenuItem` its index in relation to its siblings.
+ */
+export const MenuItemIndexContext = React.createContext<number | undefined>(
+  undefined,
+);
+
+/**
+ * `MenuItem` should wrap its submenu with this.
+ */
+const MenuItemSubmenuContext = React.createContext<{
+  setHasFocusedNodeInSubmenu: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
   setHasFocusedNodeInSubmenu: () => {},
 });
 
@@ -126,7 +142,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  const parent = React.useContext(MenuItemContext);
+  const menuItemsParentMenuContext = React.useContext(
+    MenuItemsParentMenuContext,
+  );
+  const menuItemSubmenuContext = React.useContext(MenuItemSubmenuContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -217,14 +236,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
       // Since we manually focus the MenuItem on hover, we need to manually update the active index for
       // Floating UI's keyboard navigation to work correctly.
-      if (parent != null && indexInParentTree != null) {
-        parent.setActiveIndex(indexInParentTree);
+      if (menuItemsParentMenuContext != null && indexInParentTree != null) {
+        menuItemsParentMenuContext.setActiveIndex(indexInParentTree);
       }
     }
   };
 
   const onFocus = () => {
-    parent.setHasFocusedNodeInSubmenu(true);
+    menuItemSubmenuContext.setHasFocusedNodeInSubmenu(true);
 
     tree?.events.emit('onNodeFocused', {
       nodeId,
@@ -259,9 +278,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           forwardedRef,
           subMenuItems.length > 0 ? popover.refs.setReference : null,
           (el) => {
-            if (parent != null && indexInParentTree != null) {
-              parent.listItemsRef.current[indexInParentTree] =
-                el as HTMLElement;
+            if (
+              menuItemsParentMenuContext != null &&
+              indexInParentTree != null
+            ) {
+              menuItemsParentMenuContext.listItemsRef.current[
+                indexInParentTree
+              ] = el as HTMLElement;
             }
           },
         )}
@@ -300,28 +323,31 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {subMenuItems.length > 0 && !disabled && popover.open && (
         <FloatingNode id={nodeId}>
           <Portal>
-            <MenuItemContext.Provider
+            <MenuItemsParentMenuContext.Provider
               value={{
                 setActiveIndex,
                 listItemsRef,
-                setHasFocusedNodeInSubmenu,
               }}
             >
-              <Menu
-                setFocus={false}
-                ref={popover.refs.setFloating}
-                {...popover.getFloatingProps({ id: submenuId })}
+              <MenuItemSubmenuContext.Provider
+                value={{ setHasFocusedNodeInSubmenu }}
               >
-                {subMenuItems.map((item, index) => (
-                  <MenuItemIndexContext.Provider
-                    key={item.props.value || index}
-                    value={index}
-                  >
-                    {item}
-                  </MenuItemIndexContext.Provider>
-                ))}
-              </Menu>
-            </MenuItemContext.Provider>
+                <Menu
+                  setFocus={false}
+                  ref={popover.refs.setFloating}
+                  {...popover.getFloatingProps({ id: submenuId })}
+                >
+                  {subMenuItems.map((item, index) => (
+                    <MenuItemIndexContext.Provider
+                      key={item.props.value || index}
+                      value={index}
+                    >
+                      {item}
+                    </MenuItemIndexContext.Provider>
+                  ))}
+                </Menu>
+              </MenuItemSubmenuContext.Provider>
+            </MenuItemsParentMenuContext.Provider>
           </Portal>
         </FloatingNode>
       )}
@@ -335,5 +361,3 @@ export type TreeEvent = {
   nodeId: string;
   parentId: string | null;
 };
-
-const MenuItemIndexContext = React.createContext<number | undefined>(undefined);

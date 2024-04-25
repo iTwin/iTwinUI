@@ -22,6 +22,10 @@ import {
   FloatingTree,
   useFloatingNodeId,
 } from '@floating-ui/react';
+import {
+  MenuItemIndexContext,
+  MenuItemsParentMenuContext,
+} from '../Menu/MenuItem.js';
 
 export type DropdownMenuProps = {
   /**
@@ -110,6 +114,9 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
+
   const nodeId = useFloatingNodeId();
 
   const popover = usePopover({
@@ -118,6 +125,13 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
     matchWidth,
+    interactions: {
+      listNavigation: {
+        activeIndex,
+        onNavigate: setActiveIndex,
+        listRef: listItemsRef,
+      },
+    },
   });
 
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
@@ -132,23 +146,40 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
       <FloatingNode id={nodeId}>
         {popover.open && (
           <Portal portal={portal}>
-            <Menu
-              {...popover.getFloatingProps({
-                role,
-                ...rest,
-                onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                  if (e.defaultPrevented) {
-                    return;
-                  }
-                  if (e.key === 'Tab') {
-                    close();
-                  }
-                }),
-              })}
-              ref={popoverRef}
+            <MenuItemsParentMenuContext.Provider
+              value={{
+                setActiveIndex,
+                listItemsRef,
+              }}
             >
-              {menuContent}
-            </Menu>
+              <Menu
+                setFocus={false}
+                {...popover.getFloatingProps({
+                  role,
+                  ...rest,
+                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    if (e.defaultPrevented) {
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      close();
+                    }
+                  }),
+                })}
+                ref={popoverRef}
+              >
+                {Array.isArray(menuContent)
+                  ? menuContent.map((item, index) => (
+                      <MenuItemIndexContext.Provider
+                        key={item.props.value || index}
+                        value={index}
+                      >
+                        {item}
+                      </MenuItemIndexContext.Provider>
+                    ))
+                  : menuContent}
+              </Menu>
+            </MenuItemsParentMenuContext.Provider>
           </Portal>
         )}
       </FloatingNode>
