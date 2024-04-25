@@ -1,0 +1,32 @@
+---
+import Button from './Button.astro';
+
+type Props = {
+  svg?: string;
+  size?: 's' | 'm' | 'l';
+  wrapperProps?: astroHTML.JSX.HTMLAttributes;
+} & astroHTML.JSX.HTMLAttributes;
+
+const { svg, size = 'auto', wrapperProps, ...rest } = Astro.props;
+
+const basic = !Astro.slots.has('default');
+
+const Element = `svg-${svg}`;
+
+const iconProps = {
+  class: 'iui-svg-icon',
+  ['data-iui-icon-size']: size,
+  ['aria-hidden']: 'true',
+  ...rest,
+};
+---
+
+<!-- @ts-ignore -->{basic && <Element {...iconProps} />}
+{
+  !basic && (
+    <div class:list={['iui-text-spacing', wrapperProps?.class]} {...wrapperProps}>
+      <Element {...iconProps} />
+      <slot />
+    </div>
+  )
+}
