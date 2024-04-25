@@ -42,7 +42,7 @@
     outline-offset: var(--_iui-field-focus-outline-offset);
   }
 
-  &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true'], .iui-disabled) {
+  &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
     background-color: var(--_iui-field-color-background-disabled);
     border-color: var(--_iui-field-color-border-disabled);
     color: var(--_iui-field-color-text-disabled);
