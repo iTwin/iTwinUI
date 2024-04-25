@@ -1,5 +1,10 @@
 import { test, expect, Page } from '@playwright/test';
 
+// Needed to solve flakiness in the test
+const keyboardPressOptions = {
+  delay: 200,
+};
+
 test.describe('DropdownMenu', () => {
   test('should support deep level submenus', async ({ page }) => {
     await page.goto('/DropdownMenu');
@@ -8,10 +13,6 @@ test.describe('DropdownMenu', () => {
     await trigger.click();
 
     expect(page.getByTestId('Item 1_1')).toBeFocused();
-
-    const keyboardPressOptions = {
-      delay: 200,
-    };
 
     // Go to the deepest level using keyboard
     await page.keyboard.press('ArrowRight', keyboardPressOptions);
@@ -127,16 +128,16 @@ test.describe('DropdownMenu', () => {
     expect(page.getByTestId('Item 1_1')).toBeFocused();
     expect(page.getByTestId('Item 2_1')).toBeHidden();
 
-    await page.keyboard.press('Enter');
+    await page.keyboard.press('Enter', keyboardPressOptions);
     expect(page.getByTestId('Item 2_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowLeft', keyboardPressOptions);
     expect(page.getByTestId('Item 1_1')).toBeFocused();
 
-    await page.keyboard.press('Space');
+    await page.keyboard.press('Space', keyboardPressOptions);
     expect(page.getByTestId('Item 2_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowLeft', keyboardPressOptions);
     expect(page.getByTestId('Item 1_1')).toBeFocused();
   });
 });
