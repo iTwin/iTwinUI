@@ -242,20 +242,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onClick = () => {
-    if (disabled) {
-      return;
-    }
-
     onClickProp?.(value);
     changeSubmenuVisibility('toggle');
   };
 
-  const handlers = {
-    onClick,
-    onKeyDown,
-    onMouseEnter,
-    onFocus,
-  };
+  const handlers = !disabled
+    ? {
+        onClick,
+        onKeyDown,
+        onMouseEnter,
+        onFocus,
+      }
+    : {};
 
   return (
     <>
