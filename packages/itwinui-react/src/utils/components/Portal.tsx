@@ -61,7 +61,7 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 
 // ----------------------------------------------------------------------------
 
-const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
+export const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
   const themeInfo = React.useContext(ThemeContext);
   const defaultPortalTo = themeInfo?.portalContainer ?? getDocument()?.body;
 
