@@ -17,5 +17,5 @@ const { class: className, variant, size, isActive, shift, ...props } = Astro.pro
   data-iui-active={isActive ? 'true' : undefined}
   data-iui-shift={shift}
   {...props}
-  ><span class='iui-button-icon' aria-hidden='true'> <slot name='button-icon' /></span>
+  ><span class='iui-button-icon' aria-hidden='true'> <slot /></span>
 </button>
