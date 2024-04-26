@@ -23,3 +23,16 @@ test('should inherit the portalContainer if inheriting theme', async ({
     'nested tooltip',
   );
 });
+
+test('should not inherit portalContainer across different windows', async ({
+  page,
+}) => {
+  const popoutPromise = page.waitForEvent('popup');
+  await page.goto('/ThemeProvider?popout=true');
+  await page.click('button');
+  const popout = await popoutPromise;
+
+  await expect(popout.locator('[data-container="popout"]')).toContainText(
+    'popout tooltip',
+  );
+});
