@@ -22,10 +22,7 @@ import {
   FloatingTree,
   useFloatingNodeId,
 } from '@floating-ui/react';
-import {
-  MenuItemIndexContext,
-  MenuItemsParentMenuContext,
-} from '../Menu/MenuItem.js';
+import { MenuItemContext, MenuItemIndexContext } from '../Menu/MenuItem.js';
 
 export type DropdownMenuProps = {
   /**
@@ -146,7 +143,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
       <FloatingNode id={nodeId}>
         {popover.open && (
           <Portal portal={portal}>
-            <MenuItemsParentMenuContext.Provider
+            <MenuItemContext.Provider
               value={{
                 setActiveIndex,
                 listItemsRef,
@@ -179,7 +176,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
                     ))
                   : menuContent}
               </Menu>
-            </MenuItemsParentMenuContext.Provider>
+            </MenuItemContext.Provider>
           </Portal>
         )}
       </FloatingNode>
