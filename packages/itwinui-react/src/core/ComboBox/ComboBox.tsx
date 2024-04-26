@@ -526,7 +526,7 @@ export const ComboBox = React.forwardRef(
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
       closeOnOutsideClick: true,
-      interactions: { focus: true },
+      interactions: { click: false, focus: true },
     });
 
     return (

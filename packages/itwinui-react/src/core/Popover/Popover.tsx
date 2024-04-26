@@ -112,6 +112,7 @@ type PopoverInternalProps = {
   };
   /**
    * By default, only the click and dismiss interactions/triggers are enabled.
+   * Explicitly pass `false` to disable the defaults.
    *
    * Pass a boolean to enable/disable any of the supported interactions.
    * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
