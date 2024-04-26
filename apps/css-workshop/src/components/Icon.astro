@@ -32,7 +32,7 @@ const basic = !Astro.slots.has('default');
 const Element = `svg-${svg}`;
 ---
 
-<!-- @ts-ignore -->{basic && <Element {...iconProps} />}
+{basic && <Element {...iconProps} />}
 {
   !basic && (
     <div class:list={['iui-text-spacing', wrapperProps?.class]} {...wrapperProps}>
