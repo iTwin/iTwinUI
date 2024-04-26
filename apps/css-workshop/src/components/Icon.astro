@@ -1,23 +1,19 @@
 ---
 type Props = {
-  buttonIcon?: boolean;
-  svg?: string;
+  svg: string;
   size?: 's' | 'm' | 'l';
   wrapperProps?: astroHTML.JSX.HTMLAttributes;
+  buttonIcon?: boolean;
 } & astroHTML.JSX.HTMLAttributes;
 
 const {
   svg,
-  class: className,
   size = 'auto',
+  class: className,
   buttonIcon = false,
   wrapperProps,
   ...rest
 } = Astro.props;
-
-const basic = !Astro.slots.has('default');
-
-const Element = `svg-${svg}`;
 
 const iconProps = {
   ['class:list']: [
@@ -31,6 +27,9 @@ const iconProps = {
   ['aria-hidden']: 'true',
   ...rest,
 };
+
+const basic = !Astro.slots.has('default');
+const Element = `svg-${svg}`;
 ---
 
 <!-- @ts-ignore -->{basic && <Element {...iconProps} />}
