@@ -18,7 +18,13 @@ const { class: className, variant, size, isActive, dropdown, idea, ...props } = 
   data-iui-active={isActive ? 'true' : undefined}
   {...props}
 >
-  <slot name='start-icon' />
+  {
+    Astro.slots.has('start-icon') && (
+      <span class='iui-button-icon' aria-hidden='true'>
+        <slot name='start-icon' />
+      </span>
+    )
+  }
   {
     Astro.slots.has('default') && (
       <span>
@@ -26,16 +32,11 @@ const { class: className, variant, size, isActive, dropdown, idea, ...props } = 
       </span>
     )
   }
-  <slot name='end-icon' />
+  {
+    Astro.slots.has('end-icon') && (
+      <span class='iui-button-icon' aria-hidden='true'>
+        <slot name='end-icon' />
+      </span>
+    )
+  }
 </button>
-
-<script>
-  const buttonIcons = [
-    ...document.querySelectorAll<HTMLInputElement>('[slot="start-icon"]'),
-    ...document.querySelectorAll<HTMLInputElement>('[slot="end-icon"]'),
-    ...document.querySelectorAll<HTMLInputElement>('.iui-notification-marker'),
-  ];
-  buttonIcons.forEach((icon) => {
-    icon.classList.add('iui-button-icon');
-  });
-</script>

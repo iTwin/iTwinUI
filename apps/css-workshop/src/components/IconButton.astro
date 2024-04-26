@@ -17,13 +17,5 @@ const { class: className, variant, size, isActive, shift, ...props } = Astro.pro
   data-iui-active={isActive ? 'true' : undefined}
   data-iui-shift={shift}
   {...props}
-  ><slot name='button-icon' />
-</button><script>
-  const buttonIcons = [
-    ...document.querySelectorAll<HTMLInputElement>('[slot="button-icon"]'),
-    ...document.querySelectorAll<HTMLInputElement>('button.iui-button>span[aria-hidden="true"]'),
-  ];
-  buttonIcons.forEach((icon) => {
-    icon.classList.add('iui-button-icon');
-  });
-</script>
+  ><span class='iui-button-icon' aria-hidden='true'> <slot name='button-icon' /></span>
+</button>
