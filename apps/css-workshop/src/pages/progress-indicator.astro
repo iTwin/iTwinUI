@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Progress indicator'>
@@ -62,8 +63,7 @@ import Layout from './_layout.astro';
     <div class='iui-progress-indicator-linear' data-iui-status='positive'>
       <div class='iui-progress-indicator-linear-label'>
         <span>Upload successful!</span>
-        <svg-status-success class='iui-svg-icon' aria-hidden='true' data-iui-icon-color='positive'
-        ></svg-status-success>
+        <Icon_ svg='status-success' data-iui-icon-color='positive' size='m' />
       </div>
     </div>
 
@@ -72,8 +72,7 @@ import Layout from './_layout.astro';
     <div class='iui-progress-indicator-linear' data-iui-status='warning'>
       <div class='iui-progress-indicator-linear-label'>
         <span>Upload successful with warnings!</span>
-        <svg-status-warning class='iui-svg-icon' aria-hidden='true' data-iui-icon-color='warning'
-        ></svg-status-warning>
+        <Icon_ svg='status-warning' data-iui-icon-color='warning' size='m' />
       </div>
     </div>
 
@@ -91,8 +90,7 @@ import Layout from './_layout.astro';
     >
       <div class='iui-progress-indicator-linear-label'>
         <span>Upload failed!</span>
-        <svg-status-error class='iui-svg-icon' aria-hidden='true' data-iui-icon-color='negative'
-        ></svg-status-error>
+        <Icon_ svg='status-error' data-iui-icon-color='negative' size='m' />
       </div>
     </div>
   </section>

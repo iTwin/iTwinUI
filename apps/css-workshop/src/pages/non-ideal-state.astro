@@ -2,6 +2,7 @@
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
 import Checkbox_ from '../components/Checkbox.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Non ideal state'>
@@ -1319,8 +1320,7 @@ import Checkbox_ from '../components/Checkbox.astro';
         <label class='iui-input-grid'>
           <div class='iui-input-with-icon'>
             <div class='iui-select-button iui-placeholder'>Please choose…</div>
-            <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-            ></svg-caret-down-small>
+            <Icon_ svg='caret-down-small' class='iui-end-icon' />
           </div>
         </label>
         <Button_ variant='high-visibility'>
