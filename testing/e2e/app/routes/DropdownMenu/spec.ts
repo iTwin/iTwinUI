@@ -1,10 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
 
-// Needed to solve flakiness in the test
-const keyboardPressOptions = {
-  delay: 200,
-};
-
 test.describe('DropdownMenu', () => {
   test('should support deep level submenus', async ({ page }) => {
     await page.goto('/DropdownMenu');
@@ -107,7 +102,7 @@ test.describe('DropdownMenu', () => {
     expect(page.getByTestId('Item 3_2_1')).toBeVisible();
     expect(page.getByTestId('Item 3_3_1')).toBeHidden();
 
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(100);
   });
 
   test('should respect click and keyboard enter/space triggers', async ({
@@ -140,7 +135,49 @@ test.describe('DropdownMenu', () => {
     await page.keyboard.press('ArrowLeft', keyboardPressOptions);
     expect(page.getByTestId('Item 1_1')).toBeFocused();
   });
+
+  test('should close entire menu on pressing escape or tab key', async ({
+    page,
+  }) => {
+    const goToTheDeepestLevel = async () => {
+      await page.keyboard.press('ArrowRight', keyboardPressOptions);
+      await page.keyboard.press('ArrowDown', keyboardPressOptions);
+      await page.keyboard.press('ArrowDown', keyboardPressOptions);
+      await page.keyboard.press('ArrowRight', keyboardPressOptions);
+      await page.keyboard.press('ArrowDown', keyboardPressOptions);
+      await page.keyboard.press('ArrowDown', keyboardPressOptions);
+      await page.keyboard.press('ArrowRight', keyboardPressOptions);
+    };
+
+    await page.goto('/DropdownMenu');
+
+    const trigger = page.getByTestId('trigger');
+    await trigger.click();
+
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await goToTheDeepestLevel();
+    await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
+
+    await page.keyboard.press('Escape', keyboardPressOptions);
+    await expect(page.locator('.iui-menu')).not.toBeVisible();
+
+    await trigger.click();
+
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    goToTheDeepestLevel();
+    await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
+
+    await page.keyboard.press('Tab', keyboardPressOptions);
+    await expect(page.locator('.iui-menu')).not.toBeVisible();
+  });
 });
+
+// ----------------------------------------------------------------------------
+
+// Needed to solve flakiness in the test
+const keyboardPressOptions = {
+  delay: 30,
+};
 
 /**
  * Sometimes `component.hover()` doesn't work as expected.

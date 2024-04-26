@@ -69,6 +69,7 @@ export default () => {
       >
         <Button data-testid='trigger'>Menu</Button>
       </DropdownMenu>
+      <Button>Outside</Button>
     </>
   );
 };
