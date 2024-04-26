@@ -127,6 +127,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
         activeIndex,
         onNavigate: setActiveIndex,
         listRef: listItemsRef,
+        focusItemOnOpen: true,
       },
     },
   });
