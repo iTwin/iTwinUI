@@ -3,6 +3,7 @@ const { hasCloseButton = true, variant, class: className, as, buttonProps, ...pr
 
 const Element = as ?? 'span';
 import Button_ from './Button.astro';
+import Icon_ from './Icon.astro';
 ---
 
 <!-- prettier-ignore -->
@@ -29,8 +30,8 @@ import Button_ from './Button.astro';
         size='small'
         type='button'
         {...buttonProps}
-      ><svg-close-small class='iui-button-icon' aria-hidden='true'
-        ></svg-close-small>
+        >
+        <Icon_ svg='close-small' buttonIcon />
       </Button_>
     )
   }
