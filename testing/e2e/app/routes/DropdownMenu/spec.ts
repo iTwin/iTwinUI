@@ -170,6 +170,21 @@ test.describe('DropdownMenu', () => {
     await page.keyboard.press('Tab', keyboardPressOptions);
     await expect(page.locator('.iui-menu')).not.toBeVisible();
   });
+
+  test('should focus target after hide', async ({ page }) => {
+    await page.goto('/DropdownMenu');
+
+    const trigger = page.getByTestId('trigger');
+
+    await page.keyboard.press('Tab', keyboardPressOptions);
+    expect(trigger).toBeFocused();
+
+    await trigger.click();
+    expect(trigger).not.toBeFocused();
+
+    await trigger.click();
+    expect(trigger).toBeFocused();
+  });
 });
 
 // ----------------------------------------------------------------------------
