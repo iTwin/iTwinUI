@@ -22,7 +22,7 @@ import {
   FloatingTree,
   useFloatingNodeId,
 } from '@floating-ui/react';
-import { MenuItemContext, MenuItemIndexContext } from '../Menu/MenuItem.js';
+import { MenuItemContext } from '../Menu/MenuItem.js';
 
 export type DropdownMenuProps = {
   /**
@@ -111,8 +111,10 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
+  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+    number | null
+  >(null);
+  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
   const nodeId = useFloatingNodeId();
 
@@ -124,9 +126,9 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     matchWidth,
     interactions: {
       listNavigation: {
-        activeIndex,
-        onNavigate: setActiveIndex,
-        listRef: listItemsRef,
+        activeIndex: currentFocusedNodeIndex,
+        onNavigate: setCurrentFocusedNodeIndex,
+        listRef: focusableNodes,
         focusItemOnOpen: true,
       },
     },
@@ -146,8 +148,8 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
           <Portal portal={portal}>
             <MenuItemContext.Provider
               value={{
-                setActiveIndex,
-                listItemsRef,
+                setCurrentFocusedNodeIndex,
+                focusableNodes,
               }}
             >
               <Menu
@@ -166,16 +168,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
                 })}
                 ref={popoverRef}
               >
-                {Array.isArray(menuContent)
-                  ? menuContent.map((item, index) => (
-                      <MenuItemIndexContext.Provider
-                        key={item.props.value || index}
-                        value={index}
-                      >
-                        {item}
-                      </MenuItemIndexContext.Provider>
-                    ))
-                  : menuContent}
+                {menuContent}
               </Menu>
             </MenuItemContext.Provider>
           </Portal>
