@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useMergedRefs,
-  getFocusableElements,
-  Box,
-  mergeEventHandlers,
-} from '../../utils/index.js';
+import { useMergedRefs, getFocusableElements, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type MenuProps = {
@@ -60,35 +55,6 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   }, [setFocus, focusedIndex, getFocusableNodes]);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    const items = getFocusableNodes();
-    if (!items?.length) {
-      return;
-    }
-
-    const currentIndex = focusedIndex ?? 0;
-    switch (event.key) {
-      case 'ArrowDown': {
-        setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      }
-      case 'ArrowUp': {
-        setFocusedIndex(Math.max(currentIndex - 1, 0));
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
   return (
     <Box
       as='div'
@@ -96,7 +62,6 @@ export const Menu = React.forwardRef((props, ref) => {
       role='menu'
       ref={refs}
       {...rest}
-      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
