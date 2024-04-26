@@ -1,12 +1,19 @@
 ---
 type Props = {
-  buttonIcon: boolean;
+  buttonIcon?: boolean;
   svg?: string;
   size?: 's' | 'm' | 'l';
   wrapperProps?: astroHTML.JSX.HTMLAttributes;
 } & astroHTML.JSX.HTMLAttributes;
 
-const { svg, size = 'auto', buttonIcon = false, wrapperProps, ...rest } = Astro.props;
+const {
+  svg,
+  class: className,
+  size = 'auto',
+  buttonIcon = false,
+  wrapperProps,
+  ...rest
+} = Astro.props;
 
 const basic = !Astro.slots.has('default');
 
@@ -18,6 +25,7 @@ const iconProps = {
       ['iui-svg-icon']: !buttonIcon,
       ['iui-button-icon']: buttonIcon,
     },
+    className,
   ],
   ['data-iui-icon-size']: size,
   ['aria-hidden']: 'true',
