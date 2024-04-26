@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Slider'>
@@ -42,8 +43,7 @@ import Layout from './_layout.astro';
       <div class='iui-input-label'>Volume</div>
       <div class='iui-slider-container' data-iui-orientation='horizontal'>
         <span class='iui-slider-min'>
-          <svg-sound-mute class='iui-svg-icon' data-iui-icon-size='m' aria-hidden='true'
-          ></svg-sound-mute>
+          <Icon_ svg='sound-mute' size='m' />
         </span>
         <div class='iui-slider iui-progress-slider'>
           <div class='iui-slider-track'></div>
@@ -59,8 +59,7 @@ import Layout from './_layout.astro';
           </div>
         </div>
         <span class='iui-slider-max'>
-          <svg-sound-loud class='iui-svg-icon' data-iui-icon-size='m' aria-hidden='true'
-          ></svg-sound-loud>
+          <Icon_ svg='sound-loud' size='m' />
         </span>
       </div>
     </div>
@@ -286,8 +285,7 @@ import Layout from './_layout.astro';
       <div class='iui-input-label'>Volume</div>
       <div class='iui-slider-container' data-iui-orientation='vertical' style='height: 500px;'>
         <span class='iui-slider-min'>
-          <svg-sound-mute class='iui-svg-icon' data-iui-icon-size='m' aria-hidden='true'
-          ></svg-sound-mute>
+          <Icon_ svg='sound-mute' size='m' />
         </span>
         <div class='iui-slider iui-progress-slider'>
           <div class='iui-slider-track'></div>
@@ -303,8 +301,7 @@ import Layout from './_layout.astro';
           </div>
         </div>
         <span class='iui-slider-max'>
-          <svg-sound-loud class='iui-svg-icon' data-iui-icon-size='m' aria-hidden='true'
-          ></svg-sound-loud>
+          <Icon_ svg='sound-loud' size='m' />
         </span>
       </div>
     </div>
