@@ -22,7 +22,6 @@ import type {
 import type { Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
-import { MenuItemContext, MenuItemIndexContext } from '../Menu/MenuItem.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -97,21 +96,11 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
-
   const popover = usePopover({
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement: menuPlacement,
     matchWidth: true,
-    interactions: {
-      listNavigation: {
-        activeIndex,
-        onNavigate: setActiveIndex,
-        listRef: listItemsRef,
-      },
-    },
   });
 
   const labelId = useId();
@@ -152,32 +141,18 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       </IconButton>
       {popover.open && (
         <Portal portal={portal}>
-          <MenuItemContext.Provider
-            value={{
-              listItemsRef,
-              setActiveIndex,
-            }}
+          <Menu
+            {...popover.getFloatingProps({
+              onKeyDown: ({ key }) => {
+                if (key === 'Tab') {
+                  close();
+                }
+              },
+            })}
+            ref={popover.refs.setFloating}
           >
-            <Menu
-              {...popover.getFloatingProps({
-                onKeyDown: ({ key }) => {
-                  if (key === 'Tab') {
-                    close();
-                  }
-                },
-              })}
-              ref={popover.refs.setFloating}
-            >
-              {menuContent.map((item, index) => (
-                <MenuItemIndexContext.Provider
-                  key={item.props.value || index}
-                  value={index}
-                >
-                  {item}
-                </MenuItemIndexContext.Provider>
-              ))}
-            </Menu>
-          </MenuItemContext.Provider>
+            {menuContent}
+          </Menu>
         </Portal>
       )}
     </Box>
