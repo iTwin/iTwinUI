@@ -28,6 +28,7 @@ import {
 import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
   Box,
+  ShadowRoot,
   cloneElementWithRef,
   useControlledState,
   useId,
@@ -35,7 +36,7 @@ import {
   useMergedRefs,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Portal } from '../../utils/components/Portal.js';
+import { usePortalTo } from '../../utils/components/Portal.js';
 import type { PortalProps } from '../../utils/components/Portal.js';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
@@ -124,7 +125,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     role,
   } = options;
 
-  const middleware = { flip: true, shift: true, ...options.middleware };
+  const middleware = React.useMemo(
+    () => ({ flip: true, shift: true, ...options.middleware }),
+    [options.middleware],
+  );
 
   const [open, onOpenChange] = useControlledState(
     false,
@@ -136,21 +140,30 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     placement,
     open,
     onOpenChange,
-    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    middleware: [
-      middleware.offset !== undefined && offset(middleware.offset),
-      middleware.flip && flip(),
-      middleware.shift && shift(),
-      matchWidth &&
-        size({
-          apply: ({ rects }) => {
-            setReferenceWidth(rects.reference.width);
-          },
-        } as SizeOptions),
-      middleware.autoPlacement && autoPlacement(),
-      middleware.inline && inline(),
-      middleware.hide && hide(),
-    ].filter(Boolean),
+    whileElementsMounted: React.useMemo(
+      () =>
+        // autoUpdate is expensive and should only be called when the popover is open
+        open ? (...args) => autoUpdate(...args, autoUpdateOptions) : undefined,
+      [autoUpdateOptions, open],
+    ),
+    middleware: React.useMemo(
+      () =>
+        [
+          middleware.offset !== undefined && offset(middleware.offset),
+          middleware.flip && flip(),
+          middleware.shift && shift(),
+          matchWidth &&
+            size({
+              apply: ({ rects }) => {
+                setReferenceWidth(rects.reference.width);
+              },
+            } as SizeOptions),
+          middleware.autoPlacement && autoPlacement(),
+          middleware.inline && inline(),
+          middleware.hide && hide(),
+        ].filter(Boolean),
+      [matchWidth, middleware],
+    ),
   });
 
   const interactions = useInteractions([
@@ -294,36 +307,68 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       }))}
 
       {popover.open ? (
-        <Portal portal={portal}>
-          <FloatingPortal>
-            <ThemeProvider
-              portalContainer={popoverElement} // portal nested popovers into this one
+        <PopoverPortal portal={portal}>
+          <ThemeProvider
+            portalContainer={popoverElement} // portal nested popovers into this one
+          >
+            <DisplayContents />
+            <FloatingFocusManager
+              context={popover.context}
+              modal={false}
+              initialFocus={popover.refs.floating}
             >
-              <FloatingFocusManager
-                context={popover.context}
-                modal={false}
-                initialFocus={popover.refs.floating}
+              <Box
+                className={cx(
+                  { 'iui-popover-surface': applyBackground },
+                  className,
+                )}
+                aria-labelledby={
+                  !hasAriaLabel
+                    ? popover.refs.domReference.current?.id
+                    : undefined
+                }
+                {...popover.getFloatingProps(rest)}
+                ref={popoverRef}
               >
-                <Box
-                  className={cx(
-                    { 'iui-popover-surface': applyBackground },
-                    className,
-                  )}
-                  aria-labelledby={
-                    !hasAriaLabel
-                      ? popover.refs.domReference.current?.id
-                      : undefined
-                  }
-                  {...popover.getFloatingProps(rest)}
-                  ref={popoverRef}
-                >
-                  {content}
-                </Box>
-              </FloatingFocusManager>
-            </ThemeProvider>
-          </FloatingPortal>
-        </Portal>
+                {content}
+              </Box>
+            </FloatingFocusManager>
+          </ThemeProvider>
+        </PopoverPortal>
       ) : null}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
+
+// ----------------------------------------------------------------------------
+
+const PopoverPortal = ({
+  children,
+  portal = true,
+}: React.PropsWithChildren<PortalProps>) => {
+  const portalTo = usePortalTo(portal);
+
+  return (
+    <FloatingPortal root={portalTo}>
+      <DisplayContents />
+      {children}
+    </FloatingPortal>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+/** Applies `display: contents` to the parent div. */
+const DisplayContents = React.memo(() => {
+  return (
+    <ShadowRoot
+      css={`
+        :host {
+          display: contents;
+        }
+      `}
+    >
+      <slot />
+    </ShadowRoot>
+  );
+});
