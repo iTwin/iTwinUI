@@ -117,6 +117,7 @@ it('should propagate custom className and style props', () => {
 });
 
 it('should navigate with keyboard', () => {
+  vi.useFakeTimers({ toFake: ['setTimeout'] });
   const onClick = vi.fn();
   const { container } = render(
     <TimePicker
@@ -126,6 +127,7 @@ it('should navigate with keyboard', () => {
       precision='seconds'
     />,
   );
+  vi.runAllTimers();
   let selectedHours = container.querySelector(
     '.iui-time:first-child .iui-selected',
   ) as HTMLElement;
@@ -134,22 +136,26 @@ it('should navigate with keyboard', () => {
 
   // go down
   fireEvent.keyDown(selectedHours, { key: 'ArrowDown' });
+  vi.runAllTimers();
   let nextHour = selectedHours.nextElementSibling as Element;
   expect(nextHour.textContent).toBe('23');
   expect(document.activeElement).toEqual(nextHour);
 
   // go up
   fireEvent.keyDown(nextHour as Node, { key: 'ArrowUp' });
+  vi.runAllTimers();
   expect(document.activeElement).toEqual(selectedHours);
 
   // go up
   fireEvent.keyDown(selectedHours, { key: 'ArrowUp' });
+  vi.runAllTimers();
   nextHour = selectedHours.previousElementSibling as Element;
   expect(nextHour.textContent).toBe('21');
   expect(document.activeElement).toEqual(nextHour);
 
   // select
   fireEvent.keyDown(nextHour as Node, { key: 'Enter' });
+  vi.runAllTimers();
   selectedHours = container.querySelector(
     '.iui-time:first-child .iui-selected',
   ) as HTMLElement;
@@ -167,24 +173,28 @@ it('should navigate with keyboard', () => {
 
   // go up
   fireEvent.keyDown(selectedMinutes, { key: 'ArrowUp' });
+  vi.runAllTimers();
   let nextMinute = selectedMinutes.previousElementSibling as Element;
   expect(nextMinute.textContent).toBe('10');
   expect(document.activeElement).toEqual(nextMinute);
 
   // go up
   fireEvent.keyDown(nextMinute, { key: 'ArrowUp' });
+  vi.runAllTimers();
   nextMinute = nextMinute.previousElementSibling as Element;
   expect(nextMinute.textContent).toBe('09');
   expect(document.activeElement).toEqual(nextMinute);
 
   // go down
   fireEvent.keyDown(nextMinute, { key: 'ArrowDown' });
+  vi.runAllTimers();
   nextMinute = nextMinute.nextElementSibling as Element;
   expect(nextMinute.textContent).toBe('10');
   expect(document.activeElement).toEqual(nextMinute);
 
   // select
   fireEvent.keyDown(nextMinute, { key: ' ' });
+  vi.runAllTimers();
   selectedMinutes = container.querySelector(
     '.iui-time:nth-child(2) .iui-selected',
   ) as HTMLElement;
@@ -202,12 +212,14 @@ it('should navigate with keyboard', () => {
 
   // go down
   fireEvent.keyDown(selectedSeconds, { key: 'ArrowDown' });
+  vi.runAllTimers();
   const nextSecond = selectedSeconds.nextElementSibling as Element;
   expect(nextSecond.textContent).toBe('46');
   expect(document.activeElement).toEqual(nextSecond);
 
   // select
   fireEvent.keyDown(nextSecond, { key: ' ' });
+  vi.runAllTimers();
   selectedSeconds = container.querySelector(
     '.iui-time:last-child .iui-selected',
   ) as HTMLElement;
@@ -217,6 +229,7 @@ it('should navigate with keyboard', () => {
 });
 
 it('should navigate with keyboard (12 hours)', () => {
+  vi.useFakeTimers({ toFake: ['setTimeout'] });
   const onClick = vi.fn();
   const { container } = render(
     <TimePicker
@@ -226,6 +239,7 @@ it('should navigate with keyboard (12 hours)', () => {
       use12Hours
     />,
   );
+  vi.runAllTimers();
   let selectedHours = container.querySelector(
     '.iui-time:first-child .iui-selected',
   ) as HTMLElement;
@@ -234,24 +248,28 @@ it('should navigate with keyboard (12 hours)', () => {
 
   // go down (already bottom, no move)
   fireEvent.keyDown(selectedHours, { key: 'ArrowDown' });
+  vi.runAllTimers();
   let nextHour = selectedHours.nextElementSibling as Element;
   expect(nextHour).toBeFalsy();
   expect(document.activeElement).toEqual(selectedHours);
 
   // go up
   fireEvent.keyDown(selectedHours as Node, { key: 'ArrowUp' });
+  vi.runAllTimers();
   nextHour = selectedHours.previousElementSibling as Element;
   expect(nextHour.textContent).toBe('10');
   expect(document.activeElement).toEqual(nextHour);
 
   // go up
   fireEvent.keyDown(nextHour, { key: 'ArrowUp' });
+  vi.runAllTimers();
   nextHour = nextHour.previousElementSibling as Element;
   expect(nextHour.textContent).toBe('09');
   expect(document.activeElement).toEqual(nextHour);
 
   // select
   fireEvent.keyDown(nextHour as Node, { key: 'Enter' });
+  vi.runAllTimers();
   selectedHours = container.querySelector(
     '.iui-time:first-child .iui-selected',
   ) as HTMLElement;
@@ -269,12 +287,14 @@ it('should navigate with keyboard (12 hours)', () => {
 
   // go up
   fireEvent.keyDown(selectedMinutes, { key: 'ArrowUp' });
+  vi.runAllTimers();
   const nextMinute = selectedMinutes.previousElementSibling as Element;
   expect(nextMinute.textContent).toBe('21');
   expect(document.activeElement).toEqual(nextMinute);
 
   // select
   fireEvent.keyDown(nextMinute, { key: ' ' });
+  vi.runAllTimers();
   selectedMinutes = container.querySelector(
     '.iui-time:nth-child(2) .iui-selected',
   ) as HTMLElement;
@@ -292,17 +312,20 @@ it('should navigate with keyboard (12 hours)', () => {
 
   // go up
   fireEvent.keyDown(selectedMeridiem, { key: 'ArrowUp' });
+  vi.runAllTimers();
   let nextMeridiem = selectedMeridiem.previousElementSibling as Element;
   expect(nextMeridiem.textContent).toBe('AM');
   expect(document.activeElement).toEqual(nextMeridiem);
 
   // go up (already top, no move)
   fireEvent.keyDown(nextMeridiem, { key: 'ArrowUp' });
+  vi.runAllTimers();
   expect(nextMeridiem.previousElementSibling).toBeFalsy();
   expect(document.activeElement).toEqual(nextMeridiem);
 
   // select
   fireEvent.keyDown(nextMeridiem, { key: 'Spacebar' });
+  vi.runAllTimers();
   selectedMeridiem = container.querySelector(
     '.iui-period .iui-selected',
   ) as HTMLElement;
@@ -312,12 +335,14 @@ it('should navigate with keyboard (12 hours)', () => {
 
   // go down
   fireEvent.keyDown(selectedMeridiem, { key: 'ArrowDown' });
+  vi.runAllTimers();
   nextMeridiem = selectedMeridiem.nextElementSibling as Element;
   expect(nextMeridiem.textContent).toBe('PM');
   expect(document.activeElement).toEqual(nextMeridiem);
 
   // select
   fireEvent.keyDown(nextMeridiem, { key: 'Spacebar' });
+  vi.runAllTimers();
   selectedMeridiem = container.querySelector(
     '.iui-period .iui-selected',
   ) as HTMLElement;
@@ -548,6 +573,7 @@ it('should return selected time in combined renderer (hours)', async () => {
 });
 
 it('should navigate with keyboard in combined renderer', () => {
+  vi.useFakeTimers({ toFake: ['setTimeout'] });
   const onClick = vi.fn();
   const { container } = render(
     <TimePicker
@@ -558,6 +584,7 @@ it('should navigate with keyboard in combined renderer', () => {
       precision='seconds'
     />,
   );
+  vi.runAllTimers();
   let selectedTime = container.querySelector(
     '.iui-time .iui-selected',
   ) as HTMLElement;
@@ -566,22 +593,26 @@ it('should navigate with keyboard in combined renderer', () => {
 
   // go down
   fireEvent.keyDown(selectedTime, { key: 'ArrowDown' });
+  vi.runAllTimers();
   let nextTime = selectedTime.nextElementSibling as Element;
   expect(nextTime.textContent).toBe('22:11:46');
   expect(document.activeElement).toEqual(nextTime);
 
   // go up
   fireEvent.keyDown(nextTime as Node, { key: 'ArrowUp' });
+  vi.runAllTimers();
   expect(document.activeElement).toEqual(selectedTime);
 
   // go up
   fireEvent.keyDown(selectedTime, { key: 'ArrowUp' });
+  vi.runAllTimers();
   nextTime = selectedTime.previousElementSibling as Element;
   expect(nextTime.textContent).toBe('22:11:44');
   expect(document.activeElement).toEqual(nextTime);
 
   // select
   fireEvent.keyDown(nextTime as Node, { key: 'Enter' });
+  vi.runAllTimers();
   selectedTime = container.querySelector(
     '.iui-time .iui-selected',
   ) as HTMLElement;
@@ -591,6 +622,7 @@ it('should navigate with keyboard in combined renderer', () => {
 });
 
 it('should navigate with keyboard in combined renderer (12 hours)', () => {
+  vi.useFakeTimers({ toFake: ['setTimeout'] });
   const onClick = vi.fn();
   const { container } = render(
     <TimePicker
@@ -602,6 +634,7 @@ it('should navigate with keyboard in combined renderer (12 hours)', () => {
       use12Hours
     />,
   );
+  vi.runAllTimers();
   let selectedTime = container.querySelector(
     '.iui-time .iui-selected',
   ) as HTMLElement;
@@ -610,16 +643,19 @@ it('should navigate with keyboard in combined renderer (12 hours)', () => {
 
   // go down
   fireEvent.keyDown(selectedTime, { key: 'ArrowDown' });
+  vi.runAllTimers();
   let nextTime = selectedTime.nextElementSibling as Element;
   expect(nextTime.textContent).toBe('10:11:46');
   expect(document.activeElement).toEqual(nextTime);
 
   // go up
   fireEvent.keyDown(nextTime as Node, { key: 'ArrowUp' });
+  vi.runAllTimers();
   expect(document.activeElement).toEqual(selectedTime);
 
   // go up
   fireEvent.keyDown(selectedTime, { key: 'ArrowUp' });
+  vi.runAllTimers();
   nextTime = selectedTime.previousElementSibling as Element;
   expect(nextTime.textContent).toBe('10:11:44');
   expect(document.activeElement).toEqual(nextTime);
@@ -638,17 +674,20 @@ it('should navigate with keyboard in combined renderer (12 hours)', () => {
     '.iui-period .iui-selected',
   ) as HTMLElement;
   selectedMeridiem.focus();
+  vi.runAllTimers();
   expect(selectedMeridiem.textContent).toBe('PM');
   expect(document.activeElement).toEqual(selectedMeridiem);
 
   // go up
   fireEvent.keyDown(selectedMeridiem, { key: 'ArrowUp' });
+  vi.runAllTimers();
   const meridiemAM = selectedMeridiem.previousElementSibling as Element;
   expect(meridiemAM.textContent).toBe('AM');
   expect(document.activeElement).toEqual(meridiemAM);
 
   // select
   fireEvent.keyDown(meridiemAM, { key: ' ' });
+  vi.runAllTimers();
   selectedMeridiem = container.querySelector(
     '.iui-period .iui-selected',
   ) as HTMLElement;
