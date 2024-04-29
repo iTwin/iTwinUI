@@ -1,14 +1,14 @@
 ---
 type Props = {
   svg: string;
-  size?: 's' | 'm' | 'l';
+  size?: 's' | 'm' | 'l' | 'auto';
   wrapperProps?: astroHTML.JSX.HTMLAttributes;
   buttonIcon?: boolean;
 } & astroHTML.JSX.HTMLAttributes;
 
 const {
   svg,
-  size = 'auto',
+  size = 'm',
   class: className,
   buttonIcon = false,
   wrapperProps,
