@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Select'>
@@ -50,8 +51,7 @@ import Button_ from '../components/Button.astro';
         <div tabindex='0' class='iui-select-button iui-placeholder' id='test-select-1'>
           <span class='iui-content'>Placeholder…</span>
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -67,8 +67,7 @@ import Button_ from '../components/Button.astro';
           <option value='two' disabled>Option two</option>
           <option value='three'>Option three</option>
         </select>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -79,8 +78,7 @@ import Button_ from '../components/Button.astro';
       <div class='iui-input-label'>ComboBox label</div>
       <div class='iui-input-with-icon'>
         <input class='iui-input' placeholder='Placeholder…' />
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -95,8 +93,7 @@ import Button_ from '../components/Button.astro';
           placeholder='Placeholder…'
           style='padding-left: min(414px, calc(70% + 20px))'
         />
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
         <div class='iui-select-tag-container'>
           <multi-select-tag value='Option 1' dismissible></multi-select-tag>
           <multi-select-tag value='Option 2' dismissible></multi-select-tag>
@@ -113,8 +110,7 @@ import Button_ from '../components/Button.astro';
       <div class='iui-input-label' data-iui-disabled='true'>Disabled ComboBox label</div>
       <div class='iui-input-with-icon'>
         <input class='iui-input iui-disabled' placeholder='Placeholder…' disabled />
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-disabled iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -127,8 +123,7 @@ import Button_ from '../components/Button.astro';
         <div tabindex='0' class='iui-select-button'>
           <span class='iui-content'></span>
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -149,8 +144,7 @@ import Button_ from '../components/Button.astro';
             mollit anim id est laborum.</span
           >
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -172,8 +166,7 @@ import Button_ from '../components/Button.astro';
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
         </select>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -186,8 +179,7 @@ import Button_ from '../components/Button.astro';
         <div class='iui-select-button iui-disabled iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-disabled iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -207,8 +199,7 @@ import Button_ from '../components/Button.astro';
             mollit anim id est laborum.</span
           >
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-disabled iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -230,8 +221,7 @@ import Button_ from '../components/Button.astro';
           >
           <option value='large'>Large native</option>
         </select>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-disabled iui-end-icon' />
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -247,11 +237,10 @@ import Button_ from '../components/Button.astro';
         <div tabindex='0' class='iui-select-button iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message' data-iui-status='positive'>
-        <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
+        <Icon_ svg='status-success' />
         <div>Positive message.</div>
       </div>
     </label>
@@ -262,11 +251,10 @@ import Button_ from '../components/Button.astro';
         <div tabindex='0' class='iui-select-button iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message' data-iui-status='warning'>
-        <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
+        <Icon_ svg='status-warning' />
         <div>Warning message.</div>
       </div>
     </label>
@@ -277,11 +265,10 @@ import Button_ from '../components/Button.astro';
         <div tabindex='0' class='iui-select-button iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'>
-        </svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message' data-iui-status='negative'>
-        <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
+        <Icon_ svg='status-error' />
         <div>Negative message.</div>
       </div>
     </label>
@@ -294,11 +281,10 @@ import Button_ from '../components/Button.astro';
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
         </select>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message' data-iui-status='positive'>
-        <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
+        <Icon_ svg='status-success' />
         <div>Positive message.</div>
       </div>
     </label>
@@ -311,11 +297,10 @@ import Button_ from '../components/Button.astro';
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
         </select>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-        ></svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message' data-iui-status='warning'>
-        <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
+        <Icon_ svg='status-warning' />
         <div>Warning message.</div>
       </div>
     </label>
@@ -328,11 +313,10 @@ import Button_ from '../components/Button.astro';
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
         </select>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'>
-        </svg-caret-down-small>
+        <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
       <div class='iui-status-message' data-iui-status='negative'>
-        <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
+        <Icon_ svg='status-error' />
         <div>Negative message.</div>
       </div>
     </label>
@@ -357,8 +341,7 @@ import Button_ from '../components/Button.astro';
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -374,8 +357,7 @@ import Button_ from '../components/Button.astro';
         >
         <option value='large'>Large native</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon iui-disabled' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -384,8 +366,7 @@ import Button_ from '../components/Button.astro';
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -394,8 +375,7 @@ import Button_ from '../components/Button.astro';
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -404,8 +384,7 @@ import Button_ from '../components/Button.astro';
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'>
-      </svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
   </section>
 
@@ -420,22 +399,19 @@ import Button_ from '../components/Button.astro';
       <div tabindex='0' class='iui-select-button' data-iui-size='small'>
         <span class='iui-content'>Small</span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
       <div tabindex='0' class='iui-select-button'><span class='iui-content'>Default</span></div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
       <div tabindex='0' class='iui-select-button' data-iui-size='large'>
         <span class='iui-content'>Large</span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -444,8 +420,7 @@ import Button_ from '../components/Button.astro';
         <option value='default'>Default native</option>
         <option value='large'>Large native</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -454,8 +429,7 @@ import Button_ from '../components/Button.astro';
         <option value='default' selected>Default native</option>
         <option value='large'>Large native</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -464,8 +438,7 @@ import Button_ from '../components/Button.astro';
         <option value='default'>Default native</option>
         <option value='large' selected> Large native</option>
       </select>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
   </section>
 
@@ -483,24 +456,21 @@ import Button_ from '../components/Button.astro';
       <div tabindex='0' class='iui-select-button iui-placeholder' data-iui-status='positive'>
         <span class='iui-content'>Placeholder…</span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
       <div tabindex='0' class='iui-select-button iui-placeholder' data-iui-status='warning'>
         <span class='iui-content'>Placeholder…</span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
       <div tabindex='0' class='iui-select-button iui-placeholder' data-iui-status='negative'>
         <span class='iui-content'>Placeholder…</span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'>
-      </svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <!-- ------------------------------------------------------------------------------------------------ -->
@@ -524,8 +494,7 @@ import Button_ from '../components/Button.astro';
           est laborum.</span
         >
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
     <Button_>
       <span>Add</span>
@@ -547,8 +516,7 @@ import Button_ from '../components/Button.astro';
           </div>
         </span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -561,8 +529,7 @@ import Button_ from '../components/Button.astro';
           </div>
         </span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon'>
@@ -575,8 +542,7 @@ import Button_ from '../components/Button.astro';
           </div>
         </span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
 
     <div class='iui-input-with-icon' style='width: 480px'>
@@ -590,8 +556,7 @@ import Button_ from '../components/Button.astro';
           </div>
         </span>
       </div>
-      <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
-      ></svg-caret-down-small>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
     </div>
   </section>
 </Layout>
