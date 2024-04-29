@@ -13,6 +13,10 @@ type ToggleSwitchProps = {
    */
   label?: React.ReactNode;
   /**
+   * Passes properties for ToggleSwitch label.
+   */
+  labelProps?: React.ComponentProps<'span'>;
+  /**
    * Position of the label.
    * @default 'right'
    */
@@ -63,6 +67,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     className,
     style,
     size = 'default',
+    labelProps = {},
     icon: iconProp,
     ...rest
   } = props;
@@ -101,7 +106,11 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         </Box>
       )}
       {label && (
-        <Box as='span' className='iui-toggle-switch-label'>
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-toggle-switch-label', labelProps?.className)}
+        >
           {label}
         </Box>
       )}
