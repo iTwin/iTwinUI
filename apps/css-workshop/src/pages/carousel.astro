@@ -441,12 +441,12 @@ import IconButton_ from '../components/IconButton.astro';
           startAutoPlay();
           playbackButton.dataset.action = 'pause';
           playbackButton.ariaLabel = 'Pause animation';
-          playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          playbackButton.innerHTML = `<svg-pause></svg-pause>`;
         } else {
           stopAutoPlay();
           playbackButton.dataset.action = 'play';
           playbackButton.ariaLabel = 'Play animation';
-          playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
+          playbackButton.innerHTML = `<svg-play></svg-play>`;
         }
       };
       playbackButton.addEventListener('click', () => togglePlaybackState());
