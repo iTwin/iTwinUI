@@ -9,7 +9,7 @@ import type { ButtonProps } from './Button.js';
 import { IconButton } from './IconButton.js';
 import {
   Box,
-  Portal,
+  // Portal,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
   useId,
@@ -21,7 +21,7 @@ import type {
 } from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
-import { usePopover } from '../Popover/Popover.js';
+// import { usePopover } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -96,19 +96,39 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const popover = usePopover({
-    visible,
-    onVisibleChange: (open) => (open ? setVisible(true) : close()),
-    placement: menuPlacement,
-    matchWidth: true,
+  // const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  // const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
+
+  const menuProps = Menu.getMenuProps({
+    portal,
+    popoverProps: {
+      visible,
+      onVisibleChange: (open) => (open ? setVisible(true) : close()),
+      placement: menuPlacement,
+      matchWidth: true,
+    },
   });
+
+  // const popover = usePopover({
+  //   visible,
+  //   onVisibleChange: (open) => (open ? setVisible(true) : close()),
+  //   placement: menuPlacement,
+  //   matchWidth: true,
+  //   interactions: {
+  //     listNavigation: {
+  //       activeIndex,
+  //       onNavigate: setActiveIndex,
+  //       listRef: listItemsRef,
+  //     },
+  //   },
+  // });
 
   const labelId = useId();
 
   return (
     <Box
       {...wrapperProps}
-      ref={popover.refs.setPositionReference}
+      ref={menuProps.popover.refs.setPositionReference}
       className={cx(
         'iui-button-split',
         {
@@ -133,28 +153,29 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         size={size}
         disabled={props.disabled}
         aria-labelledby={props.labelProps?.id || labelId}
-        aria-expanded={popover.open}
-        ref={popover.refs.setReference}
-        {...popover.getReferenceProps(menuButtonProps)}
+        aria-expanded={menuProps.popover.open}
+        ref={menuProps.popover.refs.setReference}
+        {...menuProps.popover.getReferenceProps(menuButtonProps)}
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
-      {popover.open && (
-        <Portal portal={portal}>
-          <Menu
-            {...popover.getFloatingProps({
-              onKeyDown: ({ key }) => {
-                if (key === 'Tab') {
-                  close();
-                }
-              },
-            })}
-            ref={popover.refs.setFloating}
-          >
-            {menuContent}
-          </Menu>
-        </Portal>
-      )}
+      {/* {popover.open && ( */}
+      {/* <Portal portal={portal}> */}
+      <Menu
+        menuProps={menuProps}
+        // {...popover.getFloatingProps({
+        //   onKeyDown: ({ key }) => {
+        //     if (key === 'Tab') {
+        //       close();
+        //     }
+        //   },
+        // })}
+        // ref={popover.refs.setFloating}
+      >
+        {menuContent}
+      </Menu>
+      {/* </Portal> */}
+      {/* )} */}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;
