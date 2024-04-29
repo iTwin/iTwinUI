@@ -319,11 +319,6 @@ const PortalContainer = React.memo(
     const [portalContainer, setPortalContainer] =
       useScopedAtom(portalContainerAtom);
 
-    // Synchronize atom with prop changes
-    if (portalContainerProp && portalContainerProp !== portalContainer) {
-      setPortalContainer(portalContainerProp);
-    }
-
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
     if (!isHydrated) {
@@ -348,6 +343,11 @@ const PortalContainer = React.memo(
     }
 
     const portalTarget = portalContainerProp || portalContainerFromParent;
+
+    // Synchronize atom with the correct portal container if necessary.
+    if (portalTarget && portalTarget !== portalContainer) {
+      setPortalContainer(portalTarget);
+    }
 
     return portalTarget
       ? ReactDOM.createPortal(<Toaster />, portalTarget)

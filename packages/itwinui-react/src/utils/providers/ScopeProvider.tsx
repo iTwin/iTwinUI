@@ -38,6 +38,7 @@ export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
  * Wrapper over `useAtom` that uses the store from the nearest `ScopeProvider`.
  *
  * If the atom is not set in the current store, it will recursively look in the parent store(s).
+ * This is only useful for initial values. Future updates to the parent will not be reflected.
  *
  * @private
  */
