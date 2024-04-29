@@ -12,7 +12,7 @@ const ScopeContext = React.createContext({
 });
 
 /**
- * Provider that creates a fresh, isolated jotai store for its children
+ * Provider that creates a fresh, isolated jotai store for its children.
  *
  * Should be used with `useScopedAtom` and/or `useScopedSetAtom`.
  *
@@ -37,20 +37,21 @@ export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
 /**
  * Wrapper over `useAtom` that uses the store from the nearest `ScopeProvider`.
  *
- * If the atom is not set in the current store, it will look for the atom in the parent store.
+ * If the atom is not set in the current store, it will recursively look in the parent store(s).
  *
  * @private
  */
 export const useScopedAtom = <T,>(atom: Atom<T>) => {
   const { store, parentStore } = React.useContext(ScopeContext);
+  const setAtom = useScopedSetAtom(atom as WritableAtom<T, unknown[], unknown>);
 
   const value = useAtomValue(atom, { store });
   const inheritedValue = useAtomValue(atom, { store: parentStore || store });
+  if (value == undefined && inheritedValue != undefined) {
+    setAtom(inheritedValue);
+  }
 
-  return [
-    React.useMemo(() => value ?? inheritedValue, [inheritedValue, value]),
-    useScopedSetAtom(atom as WritableAtom<T, unknown[], unknown>),
-  ] as const;
+  return [value, setAtom] as const;
 };
 
 /**
