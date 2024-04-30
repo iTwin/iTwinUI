@@ -20,13 +20,25 @@ type TreeNodeProps = {
    */
   label: React.ReactNode;
   /**
+   * Props for TreeNode label
+   */
+  labelProps?: React.ComponentProps<any>;
+  /**
    * Small note displayed below main label.
    */
   sublabel?: React.ReactNode;
   /**
+   * Props for TreeNode sublabel
+   */
+  sublabelProps?: React.ComponentProps<any>;
+  /**
    * Icon shown before label and sublabel content.
    */
   icon?: JSX.Element;
+  /**
+   * Props for TreeNode Icon
+   */
+  iconProps?: React.ComponentProps<any>;
   /**
    * Flag whether the node has child sub-nodes. It is used to show expander icon.
    * @default false
@@ -96,10 +108,13 @@ export const TreeNode = (props: TreeNodeProps) => {
   const {
     nodeId,
     label,
+    labelProps = {},
     sublabel,
+    sublabelProps = {},
     children,
     className,
     icon,
+    iconProps = {},
     hasSubNodes = false,
     isDisabled = false,
     isExpanded = false,
@@ -257,14 +272,26 @@ export const TreeNode = (props: TreeNodeProps) => {
               />
             )}
             {icon && (
-              <Box as='span' className='iui-tree-node-content-icon' aria-hidden>
+              <Box
+                as='span'
+                className='iui-tree-node-content-icon'
+                aria-hidden
+                {...iconProps}
+              >
                 {icon}
               </Box>
             )}
             <Box className='iui-tree-node-content-label'>
-              <Box className='iui-tree-node-content-title'>{label}</Box>
+              <Box className='iui-tree-node-content-title' {...labelProps}>
+                {label}
+              </Box>
               {sublabel && (
-                <Box className='iui-tree-node-content-caption'>{sublabel}</Box>
+                <Box
+                  className='iui-tree-node-content-caption'
+                  {...sublabelProps}
+                >
+                  {sublabel}
+                </Box>
               )}
             </Box>
             {children}
