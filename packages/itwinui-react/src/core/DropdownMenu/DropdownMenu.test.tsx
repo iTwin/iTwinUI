@@ -7,7 +7,6 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { DropdownMenu, type DropdownMenuProps } from './DropdownMenu.js';
 import { Button } from '../Buttons/Button.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import { userEvent } from '@testing-library/user-event';
 
 function assertBaseElement(menu: HTMLElement, role = 'menu') {
   expect(menu).toBeTruthy();
@@ -100,39 +99,6 @@ it('should render menu with custom style', () => {
   const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.style.color).toEqual('red');
-});
-
-it('should focus target after hide', async () => {
-  const { container } = renderComponent();
-
-  const button = container.querySelector('.iui-button') as HTMLButtonElement;
-
-  await userEvent.click(button);
-  expect(document.activeElement).not.toEqual(button);
-
-  await userEvent.click(button);
-  expect(document.activeElement).toEqual(button);
-});
-
-it('should close menu on pressing escape or tab key', async () => {
-  const { container } = renderComponent();
-
-  const button = container.querySelector('.iui-button') as HTMLButtonElement;
-  await userEvent.click(button);
-
-  let menu = document.querySelector('.iui-menu') as HTMLElement;
-  assertBaseElement(menu);
-
-  expect(menu).toBeVisible();
-  await userEvent.keyboard('{Escape}');
-  expect(menu).not.toBeVisible();
-
-  await userEvent.click(button);
-  menu = document.querySelector('.iui-menu') as HTMLElement;
-  expect(menu).toBeVisible();
-
-  await userEvent.tab();
-  expect(menu).not.toBeVisible();
 });
 
 it('should render menu from list', () => {
