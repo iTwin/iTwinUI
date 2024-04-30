@@ -1,6 +1,6 @@
 ---
 import Layout from './_layout.astro';
-import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Date picker'>
@@ -24,27 +24,20 @@ import Button_ from '../components/Button.astro';
     <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
-          <Button_
+          <IconButton_
             aria-label='Previous month'
-            type='button'
             role='month-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
 
           <span aria-live='polite'><span class='iui-calendar-month'>August</span>&nbsp;2020</span>
 
-          <Button_
-            aria-label='Next month'
-            type='button'
-            role='month-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
+          <IconButton_ aria-label='Next month' role='month-next' variant='borderless' size='small'>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
         </div>
         <div class='iui-calendar-weekdays'>
           <div title='Sunday' abbr='Sunday'>Su</div>
@@ -377,47 +370,31 @@ import Button_ from '../components/Button.astro';
     <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
-          <Button_
+          <IconButton_
             aria-label='Previous year'
-            type='button'
             role='year-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left-double class='iui-button-icon' aria-hidden='true'
-            ></svg-chevron-left-double>
-          </Button_>
-          <Button_
+            <svg-chevron-left-double></svg-chevron-left-double>
+          </IconButton_>
+          <IconButton_
             aria-label='Previous month'
-            type='button'
             role='month-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
 
           <span aria-live='polite'><span class='iui-calendar-month'>August</span>&nbsp;2020</span>
 
-          <Button_
-            aria-label='Next month'
-            type='button'
-            role='month-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
-          <Button_
-            aria-label='Next year'
-            type='button'
-            role='year-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right-double class='iui-button-icon' aria-hidden='true'
-            ></svg-chevron-right-double>
-          </Button_>
+          <IconButton_ aria-label='Next month' role='month-next' variant='borderless' size='small'>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
+          <IconButton_ aria-label='Next year' role='year-next' variant='borderless' size='small'>
+            <svg-chevron-right-double></svg-chevron-right-double>
+          </IconButton_>
         </div>
         <div class='iui-calendar-weekdays'>
           <div title='Sunday' abbr='Sunday'>Su</div>
@@ -838,27 +815,20 @@ import Button_ from '../components/Button.astro';
     <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
-          <Button_
+          <IconButton_
             aria-label='Previous month'
-            type='button'
             role='month-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
 
           <span aria-live='polite'><span class='iui-calendar-month'>August</span>&nbsp;2020</span>
 
-          <Button_
-            aria-label='Next month'
-            type='button'
-            role='month-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
+          <IconButton_ aria-label='Next month' role='month-next' variant='borderless' size='small'>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
         </div>
         <div class='iui-calendar-weekdays'>
           <div title='Sunday' abbr='Sunday'>Su</div>
@@ -1340,27 +1310,20 @@ import Button_ from '../components/Button.astro';
     <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
-          <Button_
+          <IconButton_
             aria-label='Previous month'
-            type='button'
             role='month-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
 
           <span aria-live='polite'><span class='iui-calendar-month'>August</span>&nbsp;2020</span>
 
-          <Button_
-            aria-label='Next month'
-            type='button'
-            role='month-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
+          <IconButton_ aria-label='Next month' role='month-next' variant='borderless' size='small'>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
         </div>
         <div class='iui-calendar-weekdays'>
           <div title='Sunday' abbr='Sunday'>Su</div>
@@ -1881,47 +1844,31 @@ import Button_ from '../components/Button.astro';
     <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
-          <Button_
+          <IconButton_
             aria-label='Previous year'
-            type='button'
             role='year-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left-double class='iui-button-icon' aria-hidden='true'
-            ></svg-chevron-left-double>
-          </Button_>
-          <Button_
+            <svg-chevron-left-double></svg-chevron-left-double>
+          </IconButton_>
+          <IconButton_
             aria-label='Previous month'
-            type='button'
             role='month-previous'
             variant='borderless'
             size='small'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
 
           <span aria-live='polite'><span class='iui-calendar-month'>August</span>&nbsp;2020</span>
 
-          <Button_
-            aria-label='Next month'
-            type='button'
-            role='month-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
-          <Button_
-            aria-label='Next year'
-            type='button'
-            role='year-next'
-            variant='borderless'
-            size='small'
-          >
-            <svg-chevron-right-double class='iui-button-icon' aria-hidden='true'
-            ></svg-chevron-right-double>
-          </Button_>
+          <IconButton_ aria-label='Next month' role='month-next' variant='borderless' size='small'>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
+          <IconButton_ aria-label='Next year' role='year-next' variant='borderless' size='small'>
+            <svg-chevron-right-double></svg-chevron-right-double>
+          </IconButton_>
         </div>
         <div class='iui-calendar-weekdays'>
           <div title='Sunday' abbr='Sunday'>Su</div>
@@ -2340,51 +2287,45 @@ import Button_ from '../components/Button.astro';
     <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
-          <Button_
+          <IconButton_
             aria-label='Previous year'
-            type='button'
             role='year-previous'
             variant='borderless'
             size='small'
             disabled=''
           >
-            <svg-chevron-left-double class='iui-button-icon' aria-hidden='true'
-            ></svg-chevron-left-double>
-          </Button_>
-          <Button_
+            <svg-chevron-left-double></svg-chevron-left-double>
+          </IconButton_>
+          <IconButton_
             aria-label='Previous month'
-            type='button'
             role='month-previous'
             variant='borderless'
             size='small'
             disabled=''
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
 
           <span aria-live='polite'><span class='iui-calendar-month'>August</span>&nbsp;2020</span>
 
-          <Button_
+          <IconButton_
             aria-label='Next month'
-            type='button'
             role='month-next'
             variant='borderless'
             size='small'
             disabled=''
           >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
-          <Button_
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
+          <IconButton_
             aria-label='Next year'
-            type='button'
             role='year-next'
             variant='borderless'
             size='small'
             disabled=''
           >
-            <svg-chevron-right-double class='iui-button-icon' aria-hidden='true'
-            ></svg-chevron-right-double>
-          </Button_>
+            <svg-chevron-right-double></svg-chevron-right-double>
+          </IconButton_>
         </div>
         <div class='iui-calendar-weekdays'>
           <div title='Sunday' abbr='Sunday'>Su</div>

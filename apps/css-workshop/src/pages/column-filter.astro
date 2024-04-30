@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Column filter'>
@@ -32,12 +33,8 @@ import Button_ from '../components/Button.astro';
       </label>
       <input class='iui-input' />
       <div class='iui-button-bar'>
-        <Button_ variant='high-visibility'>
-          <span>Filter</span>
-        </Button_>
-        <Button_>
-          <span>Clear</span>
-        </Button_>
+        <Button_ variant='high-visibility'>Filter</Button_>
+        <Button_>Clear</Button_>
       </div>
     </div>
   </section>
@@ -51,26 +48,26 @@ import Button_ from '../components/Button.astro';
         <div class='iui-input-label'>From</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020' />
-          <Button_
+          <IconButton_
             class='iui-input-flex-container-icon'
             variant='borderless'
             aria-label='Choose date'
           >
-            <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </Button_>
+            <svg-calendar></svg-calendar>
+          </IconButton_>
         </div>
       </label>
       <label class='iui-input-grid' data-iui-label-placement='inline'>
         <div class='iui-input-label'>To</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020' />
-          <Button_
+          <IconButton_
             class='iui-input-flex-container-icon'
             variant='borderless'
             aria-label='Choose date'
           >
-            <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </Button_>
+            <svg-calendar></svg-calendar>
+          </IconButton_>
         </div>
       </label>
 
@@ -79,12 +76,8 @@ import Button_ from '../components/Button.astro';
           <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
           <span class='iui-toggle-switch-label'>All day</span>
         </label>
-        <Button_ variant='high-visibility'>
-          <span>Filter</span>
-        </Button_>
-        <Button_>
-          <span>Clear</span>
-        </Button_>
+        <Button_ variant='high-visibility'>Filter</Button_>
+        <Button_>Clear</Button_>
       </div>
     </div>
 
@@ -95,26 +88,26 @@ import Button_ from '../components/Button.astro';
         <div class='iui-input-label'>From</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020 9:00 AM' />
-          <Button_
+          <IconButton_
             class='iui-input-flex-container-icon'
             variant='borderless'
             aria-label='Choose date'
           >
-            <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </Button_>
+            <svg-calendar></svg-calendar>
+          </IconButton_>
         </div>
       </label>
       <label class='iui-input-grid' data-iui-label-placement='inline'>
         <div class='iui-input-label'>To</div>
         <div class='iui-input-flex-container'>
           <input value='Feb 6, 2020 12:00 PM' />
-          <Button_
+          <IconButton_
             class='iui-input-flex-container-icon'
             variant='borderless'
             aria-label='Choose date'
           >
-            <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-          </Button_>
+            <svg-calendar></svg-calendar>
+          </IconButton_>
         </div>
       </label>
 
@@ -123,12 +116,8 @@ import Button_ from '../components/Button.astro';
           <input class='iui-toggle-switch' type='checkbox' role='switch' />
           <span class='iui-toggle-switch-label'>All day</span>
         </label>
-        <Button_ variant='high-visibility'>
-          <span>Filter</span>
-        </Button_>
-        <Button_>
-          <span>Clear</span>
-        </Button_>
+        <Button_ variant='high-visibility'>Filter</Button_>
+        <Button_>Clear</Button_>
       </div>
     </div>
   </section>
