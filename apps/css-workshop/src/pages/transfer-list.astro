@@ -1,7 +1,7 @@
 ---
 import Layout from './_layout.astro';
-import Button_ from '../components/Button.astro';
 import Checkbox_ from '../components/Checkbox.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='TransferList'>
@@ -63,18 +63,18 @@ import Checkbox_ from '../components/Checkbox.astro';
       </div>
 
       <div class='iui-transfer-list-toolbar' role='toolbar' aria-label='Actions'>
-        <Button_ variant='borderless'>
-          <svg-chevron-up class='iui-button-icon' aria-hidden='true'></svg-chevron-up>
-        </Button_>
-        <Button_ variant='borderless'>
-          <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-        </Button_>
-        <Button_ variant='borderless'>
-          <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-        </Button_>
-        <Button_ variant='borderless'>
-          <svg-chevron-down class='iui-button-icon' aria-hidden='true'></svg-chevron-down>
-        </Button_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-up></svg-chevron-up>
+        </IconButton_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-right></svg-chevron-right>
+        </IconButton_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-left></svg-chevron-left>
+        </IconButton_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-down></svg-chevron-down>
+        </IconButton_>
       </div>
 
       <div class='iui-transfer-list-listbox-wrapper'>
