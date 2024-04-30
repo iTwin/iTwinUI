@@ -19,7 +19,6 @@ const iconProps = {
   ['class:list']: [
     {
       ['iui-svg-icon']: !buttonIcon,
-      ['iui-button-icon']: buttonIcon,
     },
     className,
   ],
@@ -35,7 +34,11 @@ const Element = `svg-${svg}`;
 {basic && <Element {...iconProps} />}
 {
   !basic && (
-    <div class:list={['iui-text-spacing', wrapperProps?.class]} {...wrapperProps}>
+    <div
+      class:list={['iui-text-spacing', wrapperProps?.class]}
+      {...wrapperProps}
+      aria-hidden='true'
+    >
       <Element {...iconProps} />
       <slot />
     </div>
