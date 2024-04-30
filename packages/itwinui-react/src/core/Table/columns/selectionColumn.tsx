@@ -83,6 +83,8 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
         onChange={() => {
           if (row.subRows.length > 0) {
+            //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
+            //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
             row.toggleRowSelected(
               !row.subRows.every(
                 (subRow) => subRow.isSelected || isDisabled?.(subRow.original),
@@ -91,7 +93,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
           } else {
             row.toggleRowSelected();
           }
-        }} // For rows with sub rows, toggles to unchecked if every non filtered and non disabled sub row is checked, else checks every available sub row.
+        }}
       />
     ),
     cellRenderer: (props: CellRendererProps<T>) => (
