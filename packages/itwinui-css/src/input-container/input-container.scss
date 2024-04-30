@@ -98,34 +98,41 @@
 // ----------------------------------------------------------------------------
 
 .iui-input-flex-container {
+  --_iui-input-background-color: var(--iui-color-background);
+  --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-accent-border-color: var(--iui-color-border-accent);
+  --_iui-input-text-color: var(--iui-color-text);
   --_iui-input-padding-block: var(--iui-size-2xs);
+  --_iui-input-min-height: var(--iui-component-height);
 
   display: inline-flex;
   align-items: center;
+  background-color: var(--_iui-input-background-color);
+  border-radius: var(--iui-border-radius-1);
+  color: var(--_iui-input-text-color);
   position: relative;
+  block-size: var(--_iui-input-min-height);
   inline-size: 100%;
   isolation: isolate;
+  min-block-size: var(--_iui-input-min-height);
   block-size: fit-content;
   line-height: var(--iui-size-l);
-  border: none;
   padding-inline: 1px; // To account for the left and right edges of the 1px border
-  transition:
-    background-color var(--iui-duration-1) ease-out,
-    color var(--iui-duration-1) ease-out;
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    border: 1px solid var(--_iui-input-border-color, var(--_iui-field-color-border));
+    border: 1px solid var(--_iui-input-border-color);
     border-radius: var(--iui-border-radius-1);
     transition: border-color var(--iui-duration-1) ease-out;
   }
 
-  &:where(:hover) {
-    --_iui-input-border-color: var(--_iui-field-color-border-hover);
+  &:hover {
+    --_iui-input-border-color: var(--iui-color-border-foreground-hover);
+    --_iui-input-background-color: var(--iui-color-background-hover);
+    --_iui-input-text-color: var(--iui-color-text-hover);
   }
 
   &:has(input:focus-visible),
@@ -157,9 +164,10 @@
     background: transparent;
     border: none;
     font: inherit;
+    color: inherit;
     z-index: 2;
-    min-inline-size: var(--_iui-field-height);
-    min-block-size: var(--_iui-field-height);
+    min-inline-size: var(--_iui-input-min-height);
+    min-block-size: var(--_iui-input-min-height);
     flex: 999;
     padding-inline: var(--iui-size-s);
     padding-block: var(--_iui-input-padding-block);
@@ -181,6 +189,10 @@
     &:focus {
       outline: none;
     }
+
+    &:disabled {
+      color: var(--iui-color-text-disabled);
+    }
   }
 
   // Collapse padding between input/textarea and .iui-input-flex-container-icon (Icon or IconButton)
@@ -193,26 +205,31 @@
   }
 
   &[data-iui-disabled='true'] {
-    --_iui-input-border-color: var(--_iui-field-color-border-disabled);
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     cursor: not-allowed;
   }
 
   &[data-iui-size='small'] {
     --_iui-input-padding-block: 0;
+    --_iui-input-min-height: var(--iui-component-height-small);
   }
 
   &[data-iui-size='large'] {
     --_iui-input-padding-block: var(--iui-size-xs);
-  }
-
-  &:is([data-iui-status='positive'], [data-iui-status='warning'], [data-iui-status='negative'])::before {
-    border-block-end-width: var(--iui-size-3xs);
-    border-block-end-color: var(--_iui-input-accent-border-color);
+    --_iui-input-min-height: var(--iui-component-height-large);
+    font-size: var(--iui-font-size-2);
   }
 
   @each $status in positive, warning, negative {
     &[data-iui-status='#{$status}'] {
       --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
+
+      &::before {
+        border-block-end-width: var(--iui-size-3xs);
+        border-block-end-color: var(--_iui-input-accent-border-color);
+      }
 
       &:hover {
         --_iui-input-border-color: var(--iui-color-border-#{$status});
@@ -220,10 +237,6 @@
 
       input {
         @include iui-text-selection($status);
-      }
-
-      .iui-button {
-        --_iui-field-color-focus-outline: var(--iui-color-border-#{$status});
       }
     }
   }

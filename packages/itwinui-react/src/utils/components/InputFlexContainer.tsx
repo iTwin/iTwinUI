@@ -27,7 +27,7 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      className={cx('iui-input-flex-container', 'iui-field', className)}
+      className={cx('iui-input-flex-container', className)}
       data-iui-status={status}
       data-iui-size={size}
       data-iui-disabled={isDisabled ? 'true' : undefined}

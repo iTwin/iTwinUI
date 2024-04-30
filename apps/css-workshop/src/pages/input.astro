@@ -143,7 +143,7 @@ import Button_ from '../components/Button.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label'>Input label</label>
-      <div class='iui-input-flex-container iui-field' data-iui-status='positive'>
+      <div class='iui-input-flex-container' data-iui-status='positive'>
         <input placeholder='Placeholder…' />
         <svg-status-success
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -156,7 +156,7 @@ import Button_ from '../components/Button.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label'>Input label</label>
-      <div class='iui-input-flex-container iui-field' data-iui-status='warning'>
+      <div class='iui-input-flex-container' data-iui-status='warning'>
         <input placeholder='Placeholder…' />
         <svg-status-warning
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -169,7 +169,7 @@ import Button_ from '../components/Button.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label'>Input label</label>
-      <div class='iui-input-flex-container iui-field' data-iui-status='negative'>
+      <div class='iui-input-flex-container' data-iui-status='negative'>
         <input placeholder='Placeholder…' />
         <svg-status-error
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -184,7 +184,7 @@ import Button_ from '../components/Button.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-14'>Input label</label>
-      <div class='iui-input-flex-container iui-field'>
+      <div class='iui-input-flex-container'>
         <input
           id='input-14'
           value='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -202,7 +202,7 @@ import Button_ from '../components/Button.astro';
   <section id='demo-hybrid'>
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-15'>Input label</label>
-      <div class='iui-input-flex-container iui-field'>
+      <div class='iui-input-flex-container'>
         <input
           id='input-15'
           value='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -220,7 +220,7 @@ import Button_ from '../components/Button.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label'>Input label</label>
-      <div class='iui-input-flex-container iui-field'>
+      <div class='iui-input-flex-container'>
         <input placeholder='Placeholder…' />
         <svg-info-circular
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -285,7 +285,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-grid' data-iui-status='positive'>
-      <div class='iui-input-flex-container iui-field' data-iui-status='positive'>
+      <div class='iui-input-flex-container' data-iui-status='positive'>
         <input placeholder='Placeholder…' />
         <svg-status-success
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -297,7 +297,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-grid' data-iui-status='warning'>
-      <div class='iui-input-flex-container iui-field' data-iui-status='warning'>
+      <div class='iui-input-flex-container' data-iui-status='warning'>
         <input placeholder='Placeholder…' />
         <svg-status-warning
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -309,7 +309,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-grid' data-iui-status='negative'>
-      <div class='iui-input-flex-container iui-field' data-iui-status='negative'>
+      <div class='iui-input-flex-container' data-iui-status='negative'>
         <input placeholder='Placeholder…' />
         <svg-status-error
           class='iui-svg-icon iui-input-flex-container-icon'
@@ -371,7 +371,7 @@ import Button_ from '../components/Button.astro';
 
   <h2>Search box</h2>
   <section id='demo-search-box'>
-    <div class='iui-input-flex-container iui-field' data-iui-size='small'>
+    <div class='iui-input-flex-container' data-iui-size='small'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-icon-size='s'
@@ -384,7 +384,7 @@ import Button_ from '../components/Button.astro';
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
       </Button_>
     </div>
-    <div class='iui-field iui-input-flex-container iui-searchbox' data-iui-disabled='true'>
+    <div class='iui-input-flex-container iui-searchbox' data-iui-disabled='true'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-padded='true'
@@ -396,7 +396,7 @@ import Button_ from '../components/Button.astro';
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
       </Button_>
     </div>
-    <div class='iui-field iui-input-flex-container iui-searchbox' id='demo-search-hover'>
+    <div class='iui-input-flex-container iui-searchbox' id='demo-search-hover'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-padded='true'
@@ -408,7 +408,7 @@ import Button_ from '../components/Button.astro';
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
       </Button_>
     </div>
-    <div class='iui-field iui-input-flex-container iui-searchbox' data-iui-status='positive'>
+    <div class='iui-input-flex-container iui-searchbox' data-iui-status='positive'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-padded='true'
@@ -420,7 +420,7 @@ import Button_ from '../components/Button.astro';
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
       </Button_>
     </div>
-    <div class='iui-field iui-input-flex-container iui-searchbox' data-iui-status='warning'>
+    <div class='iui-input-flex-container iui-searchbox' data-iui-status='warning'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-padded='true'
@@ -432,7 +432,7 @@ import Button_ from '../components/Button.astro';
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
       </Button_>
     </div>
-    <div class='iui-field iui-input-flex-container iui-searchbox' data-iui-status='negative'>
+    <div class='iui-input-flex-container iui-searchbox' data-iui-status='negative'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-padded='true'
@@ -444,7 +444,7 @@ import Button_ from '../components/Button.astro';
         <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
       </Button_>
     </div>
-    <div class='iui-field iui-input-flex-container iui-searchbox'>
+    <div class='iui-input-flex-container iui-searchbox'>
       <span
         class='iui-svg-icon iui-input-flex-container-icon iui-search-icon'
         data-iui-padded='true'
