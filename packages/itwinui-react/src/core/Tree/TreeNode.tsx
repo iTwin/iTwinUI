@@ -76,6 +76,10 @@ type TreeNodeProps = {
    */
   checkbox?: React.ReactNode;
   /**
+   * Props for TreeNode checkbox.
+   */
+  checkboxProps?: React.ComponentProps<any>;
+  /**
    * Custom expander element. If `hasSubNodes` is false, it won't be shown.
    */
   expander?: React.ReactNode;
@@ -122,6 +126,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     onSelected,
     onExpanded,
     checkbox,
+    checkboxProps = {},
     expander,
     ...rest
   } = props;
@@ -253,7 +258,10 @@ export const TreeNode = (props: TreeNodeProps) => {
           onClick={() => !isDisabled && onSelected?.(nodeId, !isSelected)}
         >
           {checkbox && (
-            <Box className='iui-tree-node-checkbox'>
+            <Box
+              className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
+              {...checkboxProps}
+            >
               {React.isValidElement(checkbox)
                 ? React.cloneElement(checkbox as JSX.Element, {
                     tabIndex: isFocused ? 0 : -1,
@@ -274,7 +282,9 @@ export const TreeNode = (props: TreeNodeProps) => {
             {icon && (
               <Box
                 as='span'
-                className='iui-tree-node-content-icon'
+                className={
+                  (cx('iui-tree-node-content-icon'), iconProps?.className)
+                }
                 aria-hidden
                 {...iconProps}
               >
@@ -282,12 +292,20 @@ export const TreeNode = (props: TreeNodeProps) => {
               </Box>
             )}
             <Box className='iui-tree-node-content-label'>
-              <Box className='iui-tree-node-content-title' {...labelProps}>
+              <Box
+                className={cx(
+                  'iui-tree-node-content-title',
+                  labelProps?.className,
+                )}
+              >
                 {label}
               </Box>
               {sublabel && (
                 <Box
-                  className='iui-tree-node-content-caption'
+                  className={
+                    (cx('iui-tree-node-content-caption'),
+                    sublabelProps.className)
+                  }
                   {...sublabelProps}
                 >
                   {sublabel}
