@@ -139,7 +139,7 @@ const getMenuProps = ({
   ...rest
 }: {
   popoverProps: Parameters<typeof usePopover>[0];
-  portal: PortalProps['portal'];
+  portal?: PortalProps['portal'];
 }) => {
   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
     number | null

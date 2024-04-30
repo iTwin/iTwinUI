@@ -15,7 +15,7 @@ import {
   AutoclearingHiddenLiveRegion,
   useId,
 } from '../../utils/index.js';
-import { usePopover } from '../Popover/Popover.js';
+// import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../../utils/index.js';
 import {
   ComboBoxActionContext,
@@ -28,6 +28,7 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
+import { Menu } from '../Menu/Menu.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -521,12 +522,14 @@ export const ComboBox = React.forwardRef(
       [emptyStateMessage],
     );
 
-    const popover = usePopover({
-      visible: isOpen,
-      onVisibleChange: (open) => (open ? show() : hide()),
-      matchWidth: true,
-      closeOnOutsideClick: true,
-      interactions: { click: false, focus: true },
+    const menuProps = Menu.getMenuProps({
+      popoverProps: {
+        visible: isOpen,
+        onVisibleChange: (open) => (open ? show() : hide()),
+        matchWidth: true,
+        closeOnOutsideClick: true,
+        interactions: { click: false, focus: true },
+      },
     });
 
     return (
@@ -544,7 +547,7 @@ export const ComboBox = React.forwardRef(
               filteredOptions,
               getMenuItem,
               multiple,
-              popover,
+              menuProps,
               show,
               hide,
             }}

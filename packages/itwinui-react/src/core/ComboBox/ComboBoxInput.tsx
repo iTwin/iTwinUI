@@ -32,14 +32,18 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     enableVirtualization,
     multiple,
     onClickHandler,
-    popover,
+    menuProps,
     show,
     hide,
   } = useSafeContext(ComboBoxStateContext);
   const dispatch = useSafeContext(ComboBoxActionContext);
   const { inputRef, menuRef, optionsExtraInfoRef } =
     useSafeContext(ComboBoxRefsContext);
-  const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
+  const refs = useMergedRefs(
+    inputRef,
+    menuProps.popover.refs.setReference,
+    forwardedRef,
+  );
 
   const focusedIndexRef = React.useRef(focusedIndex ?? -1);
   React.useEffect(() => {
@@ -230,7 +234,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         }}
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
         size={size}
-        {...popover.getReferenceProps({
+        {...menuProps.popover.getReferenceProps({
           ...rest,
           onPointerDown: mergeEventHandlers(
             props.onPointerDown,

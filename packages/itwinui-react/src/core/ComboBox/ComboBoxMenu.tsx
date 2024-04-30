@@ -15,7 +15,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxMenuProps = Omit<
-  React.ComponentPropsWithoutRef<typeof Menu>,
+  Omit<React.ComponentPropsWithoutRef<typeof Menu>, 'menuProps'>,
   'onClick'
 > &
   React.ComponentPropsWithoutRef<'div'>;
@@ -66,31 +66,47 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
   const { children, style, ...rest } = props;
-  const { id, enableVirtualization, popover } =
+  const { id, enableVirtualization, menuProps } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-  const refs = useMergedRefs(popover.refs.setFloating, forwardedRef, menuRef);
+  const refs = useMergedRefs(
+    menuProps.popover.refs.setFloating,
+    forwardedRef,
+    menuRef,
+  );
 
   return (
-    popover.open && (
+    menuProps.popover.open && (
       <Portal portal>
         <Menu
           id={`${id}-list`}
           setFocus={false}
           role='listbox'
           ref={refs}
-          {...popover.getFloatingProps({
-            style: !enableVirtualization
+          menuProps={menuProps}
+          style={
+            !enableVirtualization
               ? style
               : ({
                   // set as constant because we don't want it shifting when items are unmounted
                   maxInlineSize: 0,
 
                   ...style,
-                } as React.CSSProperties),
-            ...rest,
-          })}
+                } as React.CSSProperties)
+          }
+          // {...menuProps.popover.getFloatingProps({
+          //   style: !enableVirtualization
+          //     ? style
+          //     : ({
+          //         // set as constant because we don't want it shifting when items are unmounted
+          //         maxInlineSize: 0,
+
+          //         ...style,
+          //       } as React.CSSProperties),
+          //   ...rest,
+          // })}
+          {...rest}
         >
           {!enableVirtualization ? (
             children
