@@ -79,6 +79,6 @@
   "engines": {
     "node": ">=18.14.1"
   },
-  "packageManager": "pnpm@8.15.3",
+  "packageManager": "pnpm@9.0.6",
   "prettier": "configs/prettier-config"
 }
