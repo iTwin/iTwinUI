@@ -83,11 +83,15 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
         onChange={() => {
           if (row.subRows.length > 0) {
-            row.toggleRowSelected(!(row.isSomeSelected || row.isSelected));
+            row.toggleRowSelected(
+              !row.subRows.every(
+                (subRow) => subRow.isSelected || isDisabled?.(subRow.original),
+              ),
+            );
           } else {
             row.toggleRowSelected();
           }
-        }}
+        }} // For rows with sub rows, toggles to unchecked if every non filtered and non disabled sub row is checked, else checks every available sub row.
       />
     ),
     cellRenderer: (props: CellRendererProps<T>) => (

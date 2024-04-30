@@ -254,26 +254,56 @@ test.describe('Table row selection', () => {
   }) => {
     await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
 
-    const filterButton = page.getByLabel('Filter');
-    await filterButton.click();
-    const filterInput = page.locator('input[value]');
-    await filterInput.fill('Name2.1');
-    await page.keyboard.press('Enter');
+    await filter(page);
 
-    const subRowExpander = page.getByLabel('Toggle sub row');
-    await subRowExpander.click();
+    //Testing without selected filtered sub rows(parent should flip between unchecked and indeterminate)
+    {
+      const subRowExpander = page.getByLabel('Toggle sub row');
+      await subRowExpander.click();
+
+      const checkboxes = page.locator('input[type="checkbox"]');
+      const secondRowCheckbox = checkboxes.nth(1);
+      const subRowCheckbox = checkboxes.nth(2);
+
+      await secondRowCheckbox.click();
+      await expect(secondRowCheckbox).toHaveJSProperty('indeterminate', true);
+      await expect(subRowCheckbox).toBeChecked();
+
+      await secondRowCheckbox.click();
+      await expect(secondRowCheckbox).not.toHaveJSProperty(
+        'indeterminate',
+        true,
+      );
+      await expect(secondRowCheckbox).not.toBeChecked();
+      await expect(subRowCheckbox).not.toBeChecked();
+    }
+
+    await clearFilter(page);
 
     const checkboxes = page.locator('input[type="checkbox"]');
-    const secondRowCheckbox = checkboxes.nth(1);
-    const subRowCheckbox = checkboxes.nth(2);
-
+    const secondRowCheckbox = checkboxes.nth(2);
     await secondRowCheckbox.click();
-    await expect(secondRowCheckbox).toHaveJSProperty('indeterminate', true);
-    await expect(subRowCheckbox).toBeChecked();
 
-    await secondRowCheckbox.click();
-    await expect(secondRowCheckbox).not.toHaveJSProperty('indeterminate', true);
-    await expect(subRowCheckbox).not.toBeChecked();
+    await filter(page);
+
+    //Testing with selected filtered sub rows(parent row should flip between indeterminate and checked)
+    {
+      const checkboxes = page.locator('input[type="checkbox"]');
+      const secondRowCheckbox = checkboxes.nth(1);
+      const subRowCheckbox = checkboxes.nth(2);
+
+      await secondRowCheckbox.click();
+      await expect(secondRowCheckbox).toHaveJSProperty('indeterminate', true);
+      await expect(subRowCheckbox).not.toBeChecked();
+
+      await secondRowCheckbox.click();
+      await expect(secondRowCheckbox).not.toHaveJSProperty(
+        'indeterminate',
+        true,
+      );
+      await expect(secondRowCheckbox).toBeChecked();
+      await expect(subRowCheckbox).toBeChecked();
+    }
   });
 
   test('parent checkbox state should become indeterminate when some filtered sub rows are deselected', async ({
@@ -293,11 +323,7 @@ test.describe('Table row selection', () => {
     }
 
     //filter
-    const filterButton = page.getByLabel('Filter');
-    await filterButton.click();
-    const filterInput = page.locator('input[value]');
-    await filterInput.fill('Name2.1');
-    await page.keyboard.press('Enter');
+    await filter(page);
 
     //unselect sub row
     {
@@ -310,9 +336,7 @@ test.describe('Table row selection', () => {
     }
 
     //clear filter
-    filterButton.click();
-    const clearButton = page.getByText('Clear');
-    clearButton.click();
+    await clearFilter(page);
 
     //evaluate checkbox state
     {
@@ -325,4 +349,19 @@ test.describe('Table row selection', () => {
       await expect(secondSubRowCheckbox).toBeChecked();
     }
   });
+
+  const filter = async (page: Page) => {
+    const filterButton = page.getByLabel('Filter');
+    await filterButton.click();
+    const filterInput = page.locator('input[value]');
+    await filterInput.fill('Name2.1');
+    await page.keyboard.press('Enter');
+  };
+
+  const clearFilter = async (page: Page) => {
+    const filterButton = page.getByLabel('Filter');
+    await filterButton.click();
+    const clearButton = page.getByText('Clear');
+    await clearButton.click();
+  };
 });
