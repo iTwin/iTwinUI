@@ -11,6 +11,7 @@ import {
   mergeEventHandlers,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { MenuItemContext } from './MenuItem.js';
 
 type MenuProps = {
   /**
@@ -37,6 +38,8 @@ export const Menu = React.forwardRef((props, ref) => {
   const menuRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(menuRef, ref);
 
+  const menuItemContext = React.useContext(MenuItemContext);
+
   const getFocusableNodes = React.useCallback(() => {
     const focusableItems = getFocusableElements(menuRef.current);
     // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
@@ -44,6 +47,16 @@ export const Menu = React.forwardRef((props, ref) => {
       (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
     ) as HTMLElement[];
   }, []);
+
+  React.useEffect(() => {
+    const focusableNodes = getFocusableNodes();
+    if (
+      menuItemContext != null &&
+      menuItemContext.focusableNodes.current !== focusableNodes
+    ) {
+      menuItemContext.focusableNodes.current = focusableNodes;
+    }
+  }, [getFocusableNodes, menuItemContext]);
 
   React.useEffect(() => {
     const items = getFocusableNodes();
