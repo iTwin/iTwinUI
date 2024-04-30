@@ -228,7 +228,7 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 // ----------------------------------------------------------------------------
 
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
-  const { children: childrenProp, className, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   const resolvedAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
 
@@ -240,9 +240,6 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
     button: Button,
     span: 'span',
   };
-
-  const children =
-    resolvedAs === 'button' ? <span>{childrenProp}</span> : childrenProp;
 
   return (
     <Box
