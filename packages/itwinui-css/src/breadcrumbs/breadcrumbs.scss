@@ -34,11 +34,7 @@
 
 .iui-breadcrumbs-content {
   padding-inline: var(--iui-size-xs);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   line-height: var(--iui-component-height);
-  border: none;
 
   &,
   > * {
