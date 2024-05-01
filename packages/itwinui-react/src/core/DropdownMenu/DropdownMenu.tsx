@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  useMergedRefs,
+  // useMergedRefs,
   Portal,
   cloneElementWithRef,
   useControlledState,
@@ -22,7 +22,7 @@ import {
   FloatingTree,
   useFloatingNodeId,
 } from '@floating-ui/react';
-import { MenuItemContext } from '../Menu/MenuItem.js';
+// import { MenuItemContext } from '../Menu/MenuItem.js';
 
 export type DropdownMenuProps = {
   /**
@@ -111,66 +111,98 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
-    number | null
-  >(null);
-  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+  // const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+  //   number | null
+  // >(null);
+  // const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
   const nodeId = useFloatingNodeId();
 
-  const popover = usePopover({
-    nodeId,
-    visible,
-    onVisibleChange: (open) => (open ? setVisible(true) : close()),
-    placement,
-    matchWidth,
-    interactions: {
-      listNavigation: {
-        activeIndex: currentFocusedNodeIndex,
-        onNavigate: setCurrentFocusedNodeIndex,
-        listRef: focusableNodes,
-        focusItemOnOpen: true,
+  // const popover = usePopover({
+  //   nodeId,
+  //   visible,
+  //   onVisibleChange: (open) => (open ? setVisible(true) : close()),
+  //   placement,
+  //   matchWidth,
+  //   interactions: {
+  //     listNavigation: {
+  //       focusItemOnOpen: true,
+  //     },
+  //   },
+  // });
+
+  const menuProps = Menu.getMenuProps({
+    popoverProps: {
+      nodeId,
+      visible,
+      onVisibleChange: (open) => (open ? setVisible(true) : close()),
+      placement,
+      matchWidth,
+      interactions: {
+        listNavigation: {
+          focusItemOnOpen: true,
+        },
       },
     },
   });
 
-  const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
+  // const popoverRef = useMergedRefs(forwardedRef, menuProps.popover.refs.setFloating);
 
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
-        ...popover.getReferenceProps(children.props),
-        'aria-expanded': popover.open,
-        ref: mergeRefs(triggerRef, popover.refs.setReference),
+        ...menuProps.popover.getReferenceProps(children.props),
+        'aria-expanded': menuProps.popover.open,
+        ref: mergeRefs(triggerRef, menuProps.popover.refs.setReference),
       }))}
       <FloatingNode id={nodeId}>
-        {popover.open && (
+        {menuProps.popover.open && (
           <Portal portal={portal}>
-            <MenuItemContext.Provider
+            {/* <MenuItemContext.Provider
               value={{
                 setCurrentFocusedNodeIndex,
                 focusableNodes,
               }}
+            > */}
+            <Menu
+              menuProps={menuProps}
+              setFocus={false}
+              // {...popover.getFloatingProps({
+              //   role,
+              //   ...rest,
+              //   onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+              //     if (e.defaultPrevented) {
+              //       return;
+              //     }
+              //     if (e.key === 'Tab') {
+              //       close();
+              //     }
+              //   }),
+              // })}
+              // ref={popoverRef}
+              // TODO: Properly fix type errors for onKeyDown
+              // onKeyDown={props.onKeyDown}
+              onKeyDown={mergeEventHandlers(
+                props.onKeyDown as
+                  | React.KeyboardEventHandler<HTMLDivElement>
+                  | undefined,
+                (e) => {
+                  if (e.defaultPrevented) {
+                    return;
+                  }
+                  if (e.key === 'Tab') {
+                    close();
+                  }
+                },
+              )}
+              role={role}
+              ref={forwardedRef}
+              // TODO: Properly fix type errors
+              {...(rest as React.ComponentPropsWithoutRef<'div'>)}
             >
-              <Menu
-                setFocus={false}
-                {...popover.getFloatingProps({
-                  role,
-                  ...rest,
-                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-                    if (e.defaultPrevented) {
-                      return;
-                    }
-                    if (e.key === 'Tab') {
-                      close();
-                    }
-                  }),
-                })}
-                ref={popoverRef}
-              >
-                {menuContent}
-              </Menu>
-            </MenuItemContext.Provider>
+              {menuContent}
+            </Menu>
+            {/* </MenuItemContext.Provider> */}
           </Portal>
         )}
       </FloatingNode>

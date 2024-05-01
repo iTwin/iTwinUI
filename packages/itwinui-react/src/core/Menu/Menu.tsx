@@ -138,13 +138,29 @@ const getMenuProps = ({
   popoverProps,
   ...rest
 }: {
-  popoverProps: Parameters<typeof usePopover>[0];
+  // TODO: Try making types simpler
+  popoverProps: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
+    interactions: Omit<
+      Parameters<typeof usePopover>[0]['interactions'],
+      'listNavigation'
+    > & {
+      listNavigation?: Partial<
+        NonNullable<
+          Parameters<typeof usePopover>[0]['interactions']
+        >['listNavigation']
+      >;
+    };
+  };
+  // popoverProps: Partial<Parameters<typeof usePopover>[0]>;
   portal?: PortalProps['portal'];
 }) => {
   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
     number | null
   >(null);
   const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+
+  const { interactions, ...popoverPropsRest } = popoverProps;
+  const { listNavigation, ...interactionsRest } = interactions ?? {};
 
   return {
     popover: usePopover({
@@ -154,11 +170,11 @@ const getMenuProps = ({
           onNavigate: setCurrentFocusedNodeIndex,
           listRef: focusableNodes,
           focusItemOnOpen: true,
-          ...popoverProps.interactions?.listNavigation,
+          ...listNavigation,
         },
-        ...popoverProps.interactions,
+        ...interactionsRest,
       },
-      ...popoverProps,
+      ...popoverPropsRest,
     }),
     ...rest,
     currentFocusedNodeIndex,
