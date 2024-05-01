@@ -29,14 +29,6 @@ jobs:
 
       - run: pnpm install
 
-      - name: Cache Cypress binary
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress # https://docs.cypress.io/guides/continuous-integration/introduction#Caching
-          key: cypress-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('pnpm-lock.yaml') }}
-
   audit:
     name: Audit node modules
     needs: install
@@ -339,13 +331,10 @@ jobs:
 
       - run: pnpm run build --filter=itwinui-react
 
-      - name: Cache Cypress binary
-        uses: actions/cache@v4
+      - name: Install node modules inside Docker
+        uses: cypress-io/github-action@v6
         with:
-          path: ~/.cache/Cypress # https://docs.cypress.io/guides/continuous-integration/introduction#Caching
-          key: cypress-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('pnpm-lock.yaml') }}
+          runTests: false # just perform install from monorepo root
 
       - name: Run a11y tests
         uses: cypress-io/github-action@v6
