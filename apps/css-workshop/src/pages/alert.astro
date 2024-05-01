@@ -1,6 +1,5 @@
 ---
 import Layout from './_layout.astro';
-import Icon_ from '../components/Icon.astro';
 import IconButton_ from '../components/IconButton.astro';
 ---
 
@@ -38,7 +37,8 @@ import IconButton_ from '../components/IconButton.astro';
 
   <section id='demo-default'>
     <div class='iui-alert' data-iui-status='informational'>
-      <Icon_ svg='info-circular' fill='informational' />
+      <svg-info-circular class='iui-svg-icon' data-iui-icon-color='informational' aria-hidden='true'
+      ></svg-info-circular>
       <span class='iui-alert-message'
         >Informational message.<a
           class='iui-anchor iui-alert-link'
@@ -48,12 +48,13 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' />
+        <svg-close-small></svg-close-small>
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='positive'>
-      <Icon_ svg='status-success' fill='positive' />
+      <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
+      ></svg-status-success>
       <span class='iui-alert-message'
         >Positive message.<a
           class='iui-anchor iui-alert-link'
@@ -63,12 +64,13 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' />
+        <svg-close-small></svg-close-small>
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='warning'>
-      <Icon_ svg='status-warning' fill='warning' />
+      <svg-status-warning class='iui-svg-icon' data-iui-icon-color='warning' aria-hidden='true'
+      ></svg-status-warning>
       <span class='iui-alert-message'
         >Warning message.<a
           class='iui-anchor iui-alert-link'
@@ -78,12 +80,13 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' />
+        <svg-close-small></svg-close-small>
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='negative' id='test-single-alert'>
-      <Icon_ svg='status-error' fill='negative' />
+      <svg-status-error class='iui-svg-icon' data-iui-icon-color='negative' aria-hidden='true'
+      ></svg-status-error>
       <span class='iui-alert-message'
         >Negative message.<a
           class='iui-anchor iui-alert-link'
@@ -93,12 +96,13 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' />
+        <svg-close-small></svg-close-small>
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='informational'>
-      <Icon_ svg='info-circular' fill='informational' />
+      <svg-info-circular class='iui-svg-icon' data-iui-icon-color='informational' aria-hidden='true'
+      ></svg-info-circular>
       <span class='iui-alert-message'
         >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -112,7 +116,7 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' />
+        <svg-close-small></svg-close-small>
       </IconButton_>
     </div>
   </section>
@@ -120,7 +124,10 @@ import IconButton_ from '../components/IconButton.astro';
   <section id='demo-sticky'>
     <div id='sticky-container'>
       <div class='iui-alert' data-iui-status='informational' data-iui-variant='sticky'>
-        <Icon_ svg='info-circular' fill='informational' />
+        <svg-info-circular
+          class='iui-svg-icon'
+          data-iui-icon-color='informational'
+          aria-hidden='true'></svg-info-circular>
         <span class='iui-alert-message'
           >This is a sticky alert.<a
             class='iui-anchor iui-alert-link'
@@ -130,7 +137,7 @@ import IconButton_ from '../components/IconButton.astro';
           >
         </span>
         <IconButton_ aria-label='Close' variant='borderless' size='small'>
-          <Icon_ svg='close-small' />
+          <svg-close-small></svg-close-small>
         </IconButton_>
       </div>
       <p>
