@@ -230,27 +230,18 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const { children, className, ...rest } = props;
 
-  const resolvedAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
-
-  const resolvedAsComponentsMap: Record<
-    typeof resolvedAs,
-    PolymorphicForwardRefComponent<'a' | 'button'> | 'span'
-  > = {
-    a: Anchor,
-    button: Button,
-    span: 'span',
-  };
+  const defaultAs = !!props.href ? Anchor : !!props.onClick ? 'button' : 'span';
 
   return (
-    <Box
-      as={resolvedAsComponentsMap[resolvedAs] as 'a'}
+    <Button
+      as={defaultAs as 'a'}
       className={cx('iui-breadcrumbs-content', className)}
-      data-iui-variant={resolvedAs === 'button' ? 'borderless' : undefined}
+      styleType='borderless'
       ref={forwardedRef}
       {...rest}
     >
       {children}
-    </Box>
+    </Button>
   );
 }) as PolymorphicForwardRefComponent<'a'>;
 BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
