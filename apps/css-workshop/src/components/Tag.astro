@@ -2,9 +2,7 @@
 const { hasCloseButton = true, variant, class: className, as, buttonProps, ...props } = Astro.props;
 
 const Element = as ?? 'span';
-import Icon_ from './Icon.astro';
 import IconButton_ from './IconButton.astro';
-
 ---
 
 <!-- prettier-ignore -->
@@ -30,8 +28,8 @@ import IconButton_ from './IconButton.astro';
         variant='borderless'
         size='small'
         {...buttonProps}
-        >
-        <Icon_ svg='close-small' buttonIcon />
+      ><svg-close-small
+        ></svg-close-small>
       </IconButton_>
     )
   }
