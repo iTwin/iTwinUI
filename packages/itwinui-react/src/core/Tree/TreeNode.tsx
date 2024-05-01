@@ -298,6 +298,7 @@ export const TreeNode = (props: TreeNodeProps) => {
                   'iui-tree-node-content-title',
                   labelProps?.className,
                 )}
+                {...labelProps}
               >
                 {label}
               </Box>

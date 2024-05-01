@@ -242,7 +242,7 @@ it('should checkboxProps correctly', () => {
   expect(checkBox?.style.color).toBe('green');
 });
 
-it('should checkbox props correctly', () => {
+it('should iconProps correctly', () => {
   const { container } = renderComponent({
     props: {
       icon: <SvgPlaceholder />,
@@ -262,7 +262,7 @@ it('should checkbox props correctly', () => {
   expect(icon?.style.color).toBe('orange');
 });
 
-it('should sublabel props correctly', () => {
+it('should sublabelProps correctly', () => {
   const { container } = renderComponent({
     props: {
       sublabelProps: {
@@ -283,7 +283,7 @@ it('should sublabel props correctly', () => {
   expect(sublabel?.style.color).toBe('red');
 });
 
-it('should label props correctly', () => {
+it('should labelProps correctly', () => {
   const { container } = renderComponent({
     props: {
       labelProps: {
