@@ -304,7 +304,7 @@ export const TreeNode = (props: TreeNodeProps) => {
                 <Box
                   className={
                     (cx('iui-tree-node-content-caption'),
-                    sublabelProps.className)
+                    sublabelProps?.className)
                   }
                   {...sublabelProps}
                 >
