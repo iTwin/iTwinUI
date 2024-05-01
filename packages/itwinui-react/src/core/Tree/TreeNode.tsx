@@ -282,9 +282,10 @@ export const TreeNode = (props: TreeNodeProps) => {
             {icon && (
               <Box
                 as='span'
-                className={
-                  (cx('iui-tree-node-content-icon'), iconProps?.className)
-                }
+                className={cx(
+                  'iui-tree-node-content-icon',
+                  iconProps?.className,
+                )}
                 aria-hidden
                 {...iconProps}
               >
@@ -302,10 +303,10 @@ export const TreeNode = (props: TreeNodeProps) => {
               </Box>
               {sublabel && (
                 <Box
-                  className={
-                    (cx('iui-tree-node-content-caption'),
-                    sublabelProps?.className)
-                  }
+                  className={cx(
+                    'iui-tree-node-content-caption',
+                    sublabelProps?.className,
+                  )}
                   {...sublabelProps}
                 >
                   {sublabel}
