@@ -331,13 +331,7 @@ jobs:
 
       - run: pnpm run build --filter=itwinui-react
 
-      - name: Cache Cypress binary
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress # https://docs.cypress.io/guides/continuous-integration/introduction#Caching
-          key: cypress-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-${{ github.ref }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - run: pnpx cypress install
 
       - name: Install node modules inside Docker
         uses: cypress-io/github-action@v6
