@@ -15,7 +15,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxMenuProps = Omit<
-  Omit<React.ComponentPropsWithoutRef<typeof Menu>, 'menuProps'>,
+  Omit<React.ComponentPropsWithoutRef<typeof Menu>, 'instance'>,
   'onClick'
 > &
   React.ComponentPropsWithoutRef<'div'>;
@@ -66,56 +66,56 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
   const { children, style, ...rest } = props;
-  const { id, enableVirtualization, menuProps } =
+  const { id, enableVirtualization, instance } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
   const refs = useMergedRefs(
-    menuProps.popover.refs.setFloating,
+    instance.popover?.refs.setFloating,
     forwardedRef,
     menuRef,
   );
 
   return (
-    menuProps.popover.open && (
-      <Portal portal>
-        <Menu
-          id={`${id}-list`}
-          setFocus={false}
-          role='listbox'
-          ref={refs}
-          menuProps={menuProps}
-          style={
-            !enableVirtualization
-              ? style
-              : ({
-                  // set as constant because we don't want it shifting when items are unmounted
-                  maxInlineSize: 0,
+    // instance.popover?.open && (
+    //   <Portal portal>
+    <Menu
+      id={`${id}-list`}
+      setFocus={false}
+      role='listbox'
+      ref={refs}
+      instance={instance}
+      style={
+        !enableVirtualization
+          ? style
+          : ({
+              // set as constant because we don't want it shifting when items are unmounted
+              maxInlineSize: 0,
 
-                  ...style,
-                } as React.CSSProperties)
-          }
-          // {...menuProps.popover.getFloatingProps({
-          //   style: !enableVirtualization
-          //     ? style
-          //     : ({
-          //         // set as constant because we don't want it shifting when items are unmounted
-          //         maxInlineSize: 0,
+              ...style,
+            } as React.CSSProperties)
+      }
+      // {...menuProps.popover.getFloatingProps({
+      //   style: !enableVirtualization
+      //     ? style
+      //     : ({
+      //         // set as constant because we don't want it shifting when items are unmounted
+      //         maxInlineSize: 0,
 
-          //         ...style,
-          //       } as React.CSSProperties),
-          //   ...rest,
-          // })}
-          {...rest}
-        >
-          {!enableVirtualization ? (
-            children
-          ) : (
-            <VirtualizedComboBoxMenu>{children}</VirtualizedComboBoxMenu>
-          )}
-        </Menu>
-      </Portal>
-    )
+      //         ...style,
+      //       } as React.CSSProperties),
+      //   ...rest,
+      // })}
+      {...rest}
+    >
+      {!enableVirtualization ? (
+        children
+      ) : (
+        <VirtualizedComboBoxMenu>{children}</VirtualizedComboBoxMenu>
+      )}
+    </Menu>
+    // </Portal>
+    // )
   );
 }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

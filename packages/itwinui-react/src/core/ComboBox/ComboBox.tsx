@@ -522,7 +522,7 @@ export const ComboBox = React.forwardRef(
       [emptyStateMessage],
     );
 
-    const menuProps = Menu.getMenuProps({
+    const instance = Menu.useInstance({
       popoverProps: {
         visible: isOpen,
         onVisibleChange: (open) => (open ? show() : hide()),
@@ -547,7 +547,7 @@ export const ComboBox = React.forwardRef(
               filteredOptions,
               getMenuItem,
               multiple,
-              menuProps,
+              instance,
               show,
               hide,
             }}

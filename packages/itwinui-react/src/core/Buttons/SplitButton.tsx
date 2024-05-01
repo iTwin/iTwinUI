@@ -99,7 +99,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   // const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   // const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
 
-  const menuProps = Menu.getMenuProps({
+  const instance = Menu.useInstance({
     portal,
     popoverProps: {
       visible,
@@ -128,7 +128,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       {...wrapperProps}
-      ref={menuProps.popover.refs.setPositionReference}
+      ref={instance.popover?.refs.setPositionReference}
       className={cx(
         'iui-button-split',
         {
@@ -153,16 +153,16 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         size={size}
         disabled={props.disabled}
         aria-labelledby={props.labelProps?.id || labelId}
-        aria-expanded={menuProps.popover.open}
-        ref={menuProps.popover.refs.setReference}
-        {...menuProps.popover.getReferenceProps(menuButtonProps)}
+        aria-expanded={instance.popover?.open}
+        ref={instance.popover?.refs.setReference}
+        {...instance.popover?.getReferenceProps(menuButtonProps)}
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
       {/* {popover.open && ( */}
       {/* <Portal portal={portal}> */}
       <Menu
-        menuProps={menuProps}
+        instance={instance}
         // {...popover.getFloatingProps({
         //   onKeyDown: ({ key }) => {
         //     if (key === 'Tab') {

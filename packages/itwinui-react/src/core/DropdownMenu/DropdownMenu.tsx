@@ -131,7 +131,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   //   },
   // });
 
-  const menuProps = Menu.getMenuProps({
+  const instance = Menu.useInstance({
     popoverProps: {
       nodeId,
       visible,
@@ -146,19 +146,19 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     },
   });
 
-  console.log('DROPDOWNMENU', menuProps.focusableNodes.current.length);
+  // console.log('DROPDOWNMENU', menuProps.focusableNodes.current.length);
 
   // const popoverRef = useMergedRefs(forwardedRef, menuProps.popover.refs.setFloating);
 
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
-        ...menuProps.popover.getReferenceProps(children.props),
-        'aria-expanded': menuProps.popover.open,
-        ref: mergeRefs(triggerRef, menuProps.popover.refs.setReference),
+        ...instance.popover?.getReferenceProps(children.props),
+        'aria-expanded': instance.popover?.open,
+        ref: mergeRefs(triggerRef, instance.popover?.refs.setReference),
       }))}
       <FloatingNode id={nodeId}>
-        {menuProps.popover.open && (
+        {instance.popover?.open && (
           <Portal portal={portal}>
             {/* <MenuItemContext.Provider
               value={{
@@ -167,7 +167,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
               }}
             > */}
             <Menu
-              menuProps={menuProps}
+              instance={instance}
               setFocus={false}
               // {...popover.getFloatingProps({
               //   role,

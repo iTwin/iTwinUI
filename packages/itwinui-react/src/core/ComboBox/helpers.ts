@@ -84,7 +84,7 @@ type ComboBoxStateContextProps<T = unknown> = {
   getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
   focusedIndex?: number;
   multiple?: boolean;
-  menuProps: ReturnType<typeof Menu.getMenuProps>;
+  instance: ReturnType<typeof Menu.useInstance>;
   show: () => void;
   hide: () => void;
 };
