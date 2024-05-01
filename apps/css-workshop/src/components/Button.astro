@@ -5,12 +5,22 @@ type Props = {
   isActive?: boolean;
   dropdown?: boolean;
   idea?: boolean;
+  as?: string;
 } & astroHTML.JSX.ButtonHTMLAttributes;
 
-const { class: className, variant, size, isActive, dropdown, idea, ...props } = Astro.props;
+const {
+  as: Element = 'button',
+  class: className,
+  variant,
+  size,
+  isActive,
+  dropdown,
+  idea,
+  ...props
+} = Astro.props;
 ---
 
-<button
+<Element
   class:list={[
     'iui-button',
     'iui-button-base',
@@ -46,4 +56,4 @@ const { class: className, variant, size, isActive, dropdown, idea, ...props } = 
       </span>
     )
   }
-</button>
+</Element>
