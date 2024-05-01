@@ -31,18 +31,29 @@ type MenuProps = {
    * @default true
    */
   setFocus?: boolean;
-  menuProps: ReturnType<typeof getMenuProps>;
+  // menuProps: ReturnType<typeof getMenuProps>;
 };
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
  */
-const MenuComponent = React.forwardRef((props, ref) => {
-  const { setFocus = true, className, menuProps, ...rest } = props;
+export const Menu = React.forwardRef((props, ref) => {
+  const { setFocus = true, className, ...rest } = props;
+
+  const menuContext = React.useContext(MenuContext);
+
+  // const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+  //   number | null
+  // >(null);
+  // const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const menuRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(menuRef, ref, menuProps.popover.refs.setFloating);
+  const refs = useMergedRefs(
+    menuRef,
+    ref,
+    menuContext?.popover.refs.setFloating,
+  );
 
   // const menuItemContext = React.useContext(MenuItemContext);
 
@@ -54,15 +65,17 @@ const MenuComponent = React.forwardRef((props, ref) => {
     ) as HTMLElement[];
   }, []);
 
+  // TODO: Try to remove this useEffect
   React.useEffect(() => {
-    const focusableNodes = getFocusableNodes();
+    const newFocusableNodes = getFocusableNodes();
 
-    // console.log('focusableNodes', focusableNodes.length, rest.children.length);
-
-    if (menuProps.focusableNodes.current !== focusableNodes) {
-      menuProps.focusableNodes.current = focusableNodes;
+    if (
+      menuContext?.menuInteractions?.focusableNodes != null &&
+      menuContext.menuInteractions.focusableNodes.current !== newFocusableNodes
+    ) {
+      menuContext.menuInteractions.focusableNodes.current = newFocusableNodes;
     }
-  }, [menuProps.focusableNodes.current, getFocusableNodes]);
+  }, [menuContext, getFocusableNodes]);
 
   React.useEffect(() => {
     const items = getFocusableNodes();
@@ -111,14 +124,14 @@ const MenuComponent = React.forwardRef((props, ref) => {
   };
 
   return (
-    menuProps.popover.open && (
-      <Portal portal={menuProps.portal}>
+    menuContext?.popover.open && (
+      <Portal portal={menuContext.portal}>
         <Box
           as='div'
           className={cx('iui-menu', className)}
           // role='menu'
           ref={refs}
-          {...menuProps.popover.getFloatingProps({
+          {...menuContext.popover.getFloatingProps({
             role: 'menu',
             ...rest,
             onKeyDown: mergeEventHandlers(props.onKeyDown, onKeyDown),
@@ -134,62 +147,90 @@ const MenuComponent = React.forwardRef((props, ref) => {
 
 // ----------------------------------------------------------------------------
 
-type ListNavigationProps = NonNullable<
-  Parameters<typeof usePopover>[0]['interactions']
->['listNavigation'];
+// type ListNavigationProps = NonNullable<
+//   Parameters<typeof usePopover>[0]['interactions']
+// >['listNavigation'];
 
-const getMenuProps = ({
-  popoverProps,
-  ...rest
-}: {
-  // TODO: Try making types simpler
-  popoverProps: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
-    interactions?: Omit<
-      NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
-      'listNavigation'
-    > & {
-      listNavigation?: NonNullable<
-        Omit<
-          NonNullable<ListNavigationProps>,
-          'listRef' | 'activeIndex' | 'onNavigate'
-        >
-      >;
-    };
-  };
-  // popoverProps: Partial<Parameters<typeof usePopover>[0]>;
-  portal?: PortalProps['portal'];
-}) => {
+// const getMenuProps = ({
+//   popoverProps,
+//   ...rest
+// }: {
+//   // TODO: Try making types simpler
+//   popoverProps: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
+//     interactions?: Omit<
+//       NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
+//       'listNavigation'
+//     > & {
+//       listNavigation?: NonNullable<
+//         Omit<
+//           NonNullable<ListNavigationProps>,
+//           'listRef' | 'activeIndex' | 'onNavigate'
+//         >
+//       >;
+//     };
+//   };
+//   // popoverProps: Partial<Parameters<typeof usePopover>[0]>;
+//   portal?: PortalProps['portal'];
+// }) => {
+//   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+//     number | null
+//   >(null);
+//   const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+
+//   const { interactions, ...popoverPropsRest } = popoverProps;
+//   const { listNavigation, ...interactionsRest } = interactions ?? {};
+
+//   return {
+//     popover: usePopover({
+//       interactions: {
+//         listNavigation: {
+//           activeIndex: currentFocusedNodeIndex,
+//           onNavigate: setCurrentFocusedNodeIndex,
+//           listRef: focusableNodes,
+//           focusItemOnOpen: true,
+//           ...listNavigation,
+//         },
+//         ...interactionsRest,
+//       },
+//       ...popoverPropsRest,
+//     }),
+//     ...rest,
+//     currentFocusedNodeIndex,
+//     setCurrentFocusedNodeIndex,
+//     focusableNodes,
+//   };
+// };
+
+// ----------------------------------------------------------------------------
+
+// export const Menu = Object.assign(MenuComponent, {
+//   getMenuProps,
+// });
+
+/**
+ * Must wrap all uses of `Menu` with this context.
+ *
+ * @private
+ */
+export const MenuContext = React.createContext<
+  | {
+      popover: ReturnType<typeof usePopover>;
+      portal?: PortalProps['portal'];
+      // TODO: Better name
+      menuInteractions?: ReturnType<typeof useMenuInteractions>;
+    }
+  | undefined
+>(undefined);
+
+export const useMenuInteractions = () => {
   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
     number | null
   >(null);
   const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
-  const { interactions, ...popoverPropsRest } = popoverProps;
-  const { listNavigation, ...interactionsRest } = interactions ?? {};
-
   return {
-    popover: usePopover({
-      interactions: {
-        listNavigation: {
-          activeIndex: currentFocusedNodeIndex,
-          onNavigate: setCurrentFocusedNodeIndex,
-          listRef: focusableNodes,
-          focusItemOnOpen: true,
-          ...listNavigation,
-        },
-        ...interactionsRest,
-      },
-      ...popoverPropsRest,
-    }),
-    ...rest,
     currentFocusedNodeIndex,
     setCurrentFocusedNodeIndex,
     focusableNodes,
   };
 };
-
-// ----------------------------------------------------------------------------
-
-export const Menu = Object.assign(MenuComponent, {
-  getMenuProps,
-});

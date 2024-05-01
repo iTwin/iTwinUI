@@ -20,8 +20,8 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
-import { Menu } from '../Menu/Menu.js';
-// import { usePopover } from '../Popover/Popover.js';
+import { Menu, MenuContext } from '../Menu/Menu.js';
+import { usePopover } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -99,14 +99,11 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   // const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   // const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
 
-  const menuProps = Menu.getMenuProps({
-    portal,
-    popoverProps: {
-      visible,
-      onVisibleChange: (open) => (open ? setVisible(true) : close()),
-      placement: menuPlacement,
-      matchWidth: true,
-    },
+  const popover = usePopover({
+    visible,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
+    placement: menuPlacement,
+    matchWidth: true,
   });
 
   // const popover = usePopover({
@@ -128,7 +125,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       {...wrapperProps}
-      ref={menuProps.popover.refs.setPositionReference}
+      ref={popover.refs.setPositionReference}
       className={cx(
         'iui-button-split',
         {
@@ -153,16 +150,17 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         size={size}
         disabled={props.disabled}
         aria-labelledby={props.labelProps?.id || labelId}
-        aria-expanded={menuProps.popover.open}
-        ref={menuProps.popover.refs.setReference}
-        {...menuProps.popover.getReferenceProps(menuButtonProps)}
+        aria-expanded={popover.open}
+        ref={popover.refs.setReference}
+        {...popover.getReferenceProps(menuButtonProps)}
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
       {/* {popover.open && ( */}
       {/* <Portal portal={portal}> */}
-      <Menu
-        menuProps={menuProps}
+      <MenuContext.Provider value={{ popover, portal }}>
+        <Menu
+        // menuProps={menuProps}
         // {...popover.getFloatingProps({
         //   onKeyDown: ({ key }) => {
         //     if (key === 'Tab') {
@@ -171,9 +169,10 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         //   },
         // })}
         // ref={popover.refs.setFloating}
-      >
-        {menuContent}
-      </Menu>
+        >
+          {menuContent}
+        </Menu>
+      </MenuContext.Provider>
       {/* </Portal> */}
       {/* )} */}
     </Box>

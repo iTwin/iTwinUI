@@ -5,14 +5,13 @@
 import * as React from 'react';
 import {
   SvgCaretRightSmall,
-  Portal,
   useMergedRefs,
   useId,
   useSyncExternalStore,
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu } from './Menu.js';
+import { Menu, MenuContext, useMenuInteractions } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 // import { usePopover } from '../Popover/Popover.js';
@@ -22,6 +21,7 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
+import { usePopover } from '../Popover/Popover.js';
 
 const logWarningInDev = createWarningLogger();
 
@@ -29,14 +29,14 @@ const logWarningInDev = createWarningLogger();
  * Should be wrapped around the `Menu` containing the `MenuItem`s.
  */
 export const MenuItemContext = React.createContext<{
-  setCurrentFocusedNodeIndex: React.Dispatch<
-    React.SetStateAction<number | null>
-  >;
-  focusableNodes: React.MutableRefObject<(HTMLElement | null)[]>;
+  // setCurrentFocusedNodeIndex: React.Dispatch<
+  //   React.SetStateAction<number | null>
+  // >;
+  // focusableNodes: React.MutableRefObject<(HTMLElement | null)[]>;
   setHasFocusedNodeInSubmenu?: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
-  setCurrentFocusedNodeIndex: () => {},
-  focusableNodes: { current: [] },
+  // setCurrentFocusedNodeIndex: () => {},
+  // focusableNodes: { current: [] },
   setHasFocusedNodeInSubmenu: undefined,
 });
 
@@ -128,7 +128,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  const parent = React.useContext(MenuItemContext);
+  const parentMenuItem = React.useContext(MenuItemContext);
+  const parentMenu = React.useContext(MenuContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -146,7 +147,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 
   const focusableNodeIndexInParentTree =
-    parent.focusableNodes.current.findIndex((el) => el === menuItemRef.current);
+    parentMenu?.menuInteractions?.focusableNodes.current.findIndex(
+      (el) => el === menuItemRef.current,
+    );
 
   useSyncExternalStore(
     React.useCallback(() => {
@@ -174,45 +177,46 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     () => undefined,
   );
 
-  // const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+  const menuInteractions = useMenuInteractions();
 
-  const menuProps = Menu.getMenuProps({
-    popoverProps: {
-      nodeId,
-      visible: isSubmenuVisible,
-      onVisibleChange: setIsSubmenuVisible,
-      placement: 'right-start',
-      interactions: !disabled
-        ? {
-            click: false,
-            hover: {
-              enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
-            },
-            listNavigation: {
-              // listRef: focusableNodes,
-              // activeIndex: currentFocusedNodeIndex,
-              nested: subMenuItems.length > 0,
-              // onNavigate: (activeIndex) => {
-              //   console.log(
-              //     'onNavigate',
-              //     activeIndex,
-              //     // focusableNodes.current.length,
-              //     menuProps.focusableNodes.current.length,
-              //   );
+  const popover = usePopover({
+    nodeId,
+    visible: isSubmenuVisible,
+    onVisibleChange: setIsSubmenuVisible,
+    placement: 'right-start',
+    interactions: !disabled
+      ? {
+          click: false,
+          hover: {
+            enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
+          },
+          listNavigation: {
+            // listRef: focusableNodes,
+            // activeIndex: currentFocusedNodeIndex,
+            activeIndex: menuInteractions.currentFocusedNodeIndex,
+            onNavigate: menuInteractions.setCurrentFocusedNodeIndex,
+            listRef: menuInteractions.focusableNodes,
+            nested: subMenuItems.length > 0,
+            // onNavigate: (activeIndex) => {
+            //   console.log(
+            //     'onNavigate',
+            //     activeIndex,
+            //     // focusableNodes.current.length,
+            //     menuProps.focusableNodes.current.length,
+            //   );
 
-              //   setCurrentFocusedNodeIndex(0);
-              // },
-              focusItemOnOpen: true,
-            },
-          }
-        : {},
-    },
+            //   setCurrentFocusedNodeIndex(0);
+            // },
+            focusItemOnOpen: true,
+          },
+        }
+      : {},
   });
 
   // if ((children as any[]).length > 0) {
-  if (children === 'Item #3') {
-    console.log('MENUITEM', menuProps.focusableNodes.current.length);
-  }
+  // if (children === 'Item #3') {
+  //   console.log('MENUITEM', menuProps.focusableNodes.current.length);
+  // }
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -239,14 +243,16 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
       // Since we manually focus the MenuItem on hover, we need to manually update the active index for
       // Floating UI's keyboard navigation to work correctly.
-      if (parent != null && focusableNodeIndexInParentTree != null) {
-        parent.setCurrentFocusedNodeIndex(focusableNodeIndexInParentTree);
+      if (parentMenu != null && focusableNodeIndexInParentTree != null) {
+        parentMenu.menuInteractions?.setCurrentFocusedNodeIndex(
+          focusableNodeIndexInParentTree,
+        );
       }
     }
   };
 
   const onFocus = () => {
-    parent.setHasFocusedNodeInSubmenu?.(true);
+    parentMenuItem.setHasFocusedNodeInSubmenu?.(true);
 
     tree?.events.emit('onNodeFocused', {
       nodeId,
@@ -279,20 +285,18 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         ref={useMergedRefs(
           menuItemRef,
           forwardedRef,
-          subMenuItems.length > 0 ? menuProps.popover.refs.setReference : null,
+          subMenuItems.length > 0 ? popover.refs.setReference : null,
         )}
         role={role}
         tabIndex={disabled || role === 'presentation' ? undefined : -1}
         aria-selected={isSelected}
         aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
         aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-        aria-expanded={
-          subMenuItems.length > 0 ? menuProps.popover.open : undefined
-        }
+        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
         aria-disabled={disabled}
         {...(subMenuItems.length === 0
           ? { ...handlers, ...rest }
-          : menuProps.popover.getReferenceProps({ ...handlers, ...rest }))}
+          : popover.getReferenceProps({ ...handlers, ...rest }))}
       >
         {startIcon && (
           <ListItem.Icon as='span' aria-hidden>
@@ -315,18 +319,19 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         )}
       </ListItem>
 
-      {/* {subMenuItems.length > 0 && !disabled && menuProps.popover.open && ( */}
+      {/* {subMenuItems.length > 0 && !disabled && popover.open && ( */}
       <FloatingNode id={nodeId}>
-        <Portal>
-          <MenuItemContext.Provider
-            value={{
-              setCurrentFocusedNodeIndex: menuProps.setCurrentFocusedNodeIndex,
-              focusableNodes: menuProps.focusableNodes,
-              setHasFocusedNodeInSubmenu,
-            }}
-          >
+        {/* <Portal> */}
+        {/* <MenuItemContext.Provider
+          value={{
+            setCurrentFocusedNodeIndex: setCurrentFocusedNodeIndex,
+            focusableNodes: focusableNodes,
+            setHasFocusedNodeInSubmenu,
+          }}
+        > */}
+        <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
+          <MenuContext.Provider value={{ popover, menuInteractions }}>
             <Menu
-              menuProps={menuProps}
               setFocus={false}
               // ref={menuProps.popover.refs.setFloating}
               id={submenuId}
@@ -334,8 +339,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             >
               {subMenuItems}
             </Menu>
-          </MenuItemContext.Provider>
-        </Portal>
+          </MenuContext.Provider>
+        </MenuItemContext.Provider>
+        {/* </Portal> */}
       </FloatingNode>
       {/* )} */}
     </>

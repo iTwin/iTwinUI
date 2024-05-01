@@ -400,27 +400,22 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
 
-  const menuProps = Menu.getMenuProps({
-    popoverProps: {
-      visible: isOpen,
-      matchWidth: true,
-      closeOnOutsideClick: true,
-      ...popoverProps,
-      onVisibleChange: (open) => (open ? show() : hide()),
-    },
+  const popover = usePopover({
+    visible: isOpen,
+    matchWidth: true,
+    closeOnOutsideClick: true,
+    ...popoverProps,
+    onVisibleChange: (open) => (open ? show() : hide()),
   });
 
   return (
     <>
       <InputWithIcon
         {...rest}
-        ref={useMergedRefs(
-          menuProps.popover.refs.setPositionReference,
-          forwardedRef,
-        )}
+        ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
       >
         <SelectButton
-          {...menuProps.popover.getReferenceProps()}
+          {...popover.getReferenceProps()}
           tabIndex={0}
           role='combobox'
           size={size}
@@ -435,7 +430,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           ref={useMergedRefs(
             selectRef,
             triggerProps?.ref,
-            menuProps.popover.refs.setReference,
+            popover.refs.setReference,
           )}
           className={cx(
             {
@@ -479,28 +474,20 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         ) : null}
       </InputWithIcon>
 
-      {/* {popover.open && (
-        <Portal> */}
       <Menu
-        menuProps={menuProps}
         role='listbox'
         className={menuClassName}
         id={`${uid}-menu`}
         key={`${uid}-menu`}
-        // {...menuProps.popover.getFloatingProps({
         style={menuStyle}
         onKeyDown={({ key }) => {
           if (key === 'Tab') {
             hide();
           }
         }}
-        // })}
-        // ref={menuProps.popover.refs.setFloating}
       >
         {menuItems}
       </Menu>
-      {/* </Portal>
-      )} */}
     </>
   );
 }) as <T>(
