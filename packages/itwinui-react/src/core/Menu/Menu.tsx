@@ -144,7 +144,7 @@ const getMenuProps = ({
 }: {
   // TODO: Try making types simpler
   popoverProps: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
-    interactions: Omit<
+    interactions?: Omit<
       NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
       'listNavigation'
     > & {
