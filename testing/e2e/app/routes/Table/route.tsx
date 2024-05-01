@@ -27,11 +27,13 @@ export default function Resizing() {
           description: 'Description2',
           subRows: [
             {
+              index: 2.1,
               name: 'Name2.1',
               description: 'Description2.1',
               id: '223',
             },
             {
+              index: 2.2,
               name: 'Name2.2',
               description: 'Description2.2',
               id: '224',
@@ -45,11 +47,13 @@ export default function Resizing() {
           description: 'Description3',
           subRows: [
             {
+              index: 3.1,
               name: 'Name3.1',
               description: 'Description3.1',
               id: '334',
             },
             {
+              index: 3.2,
               name: 'Name3.2',
               description: 'Description3.2',
               id: '335',
