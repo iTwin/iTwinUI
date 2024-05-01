@@ -220,3 +220,84 @@ it('should render selected node', () => {
   fireEvent.click(treeNode);
   expect(onSelected).toHaveBeenCalledWith('testId', false);
 });
+
+it('should checkboxProps correctly', () => {
+  const { container } = renderComponent({
+    props: {
+      checkbox: <Checkbox variant='eyeball' className='testClass' />,
+      checkboxProps: {
+        style: { color: 'green' },
+        className: 'custom-checkbox-class',
+      },
+    },
+  });
+
+  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
+  expect(treeNode).toBeTruthy();
+
+  const checkBox = container.querySelector(
+    'custom-checkbox-class',
+  ) as HTMLElement;
+
+  expect(checkBox?.style.color).toBe('green');
+});
+
+it('should checkbox props correctly', () => {
+  const { container } = renderComponent({
+    props: {
+      icon: <SvgPlaceholder />,
+      iconProps: {
+        style: { color: 'orange' },
+        className: 'custom-icon-class',
+      },
+    },
+  });
+
+  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
+  expect(treeNode).toBeTruthy();
+
+  const icon = container.querySelector('custom-icon-class') as HTMLElement;
+  expect(icon).toBeTruthy();
+
+  expect(icon?.style.color).toBe('orange');
+});
+
+it('should sublabel props correctly', () => {
+  const { container } = renderComponent({
+    props: {
+      sublabelProps: {
+        style: { color: 'red' },
+        className: 'custom-sublabel-class',
+      },
+    },
+  });
+
+  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
+  expect(treeNode).toBeTruthy();
+
+  const sublabel = container.querySelector(
+    '.custom-sublabel-class',
+  ) as HTMLElement;
+
+  expect(sublabel).toBeTruthy();
+  expect(sublabel?.style.color).toBe('red');
+});
+
+it('should label props correctly', () => {
+  const { container } = renderComponent({
+    props: {
+      labelProps: {
+        style: { color: 'blue' },
+        className: 'custom-label-class',
+      },
+    },
+  });
+
+  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
+  expect(treeNode).toBeTruthy();
+
+  const label = container.querySelector('.custom-label-class') as HTMLElement;
+
+  expect(label).toBeTruthy();
+  expect(label?.style.color).toBe('blue');
+});
