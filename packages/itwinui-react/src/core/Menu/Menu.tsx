@@ -134,6 +134,10 @@ const MenuComponent = React.forwardRef((props, ref) => {
 
 // ----------------------------------------------------------------------------
 
+type ListNavigationProps = NonNullable<
+  Parameters<typeof usePopover>[0]['interactions']
+>['listNavigation'];
+
 const getMenuProps = ({
   popoverProps,
   ...rest
@@ -144,10 +148,11 @@ const getMenuProps = ({
       NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
       'listNavigation'
     > & {
-      listNavigation?: Partial<
-        NonNullable<
-          Parameters<typeof usePopover>[0]['interactions']
-        >['listNavigation']
+      listNavigation?: NonNullable<
+        Omit<
+          NonNullable<ListNavigationProps>,
+          'listRef' | 'activeIndex' | 'onNavigate'
+        >
       >;
     };
   };
