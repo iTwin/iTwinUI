@@ -3,8 +3,6 @@
 @use '../mixins';
 
 @mixin iui-input {
-  --_iui-field-color-text-placeholder: var(--iui-color-text-placeholder);
-
   inline-size: 100%;
   line-height: var(--iui-size-l);
   appearance: none;
@@ -13,7 +11,7 @@
   @include iui-input-size;
 
   &::placeholder {
-    color: var(--_iui-field-color-text-placeholder);
+    color: var(--iui-color-text-placeholder);
     font-weight: var(--iui-font-weight-light);
     opacity: 1;
     user-select: none;

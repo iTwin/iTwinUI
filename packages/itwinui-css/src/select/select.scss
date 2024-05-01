@@ -5,8 +5,6 @@
 @use '../tag/base' as tag;
 
 @mixin iui-select-button {
-  --_iui-field-color-text-placeholder: var(--iui-color-text-placeholder);
-
   inline-size: 100%;
   padding-block: var(--_iui-select-padding-block);
   padding-inline: var(--iui-size-s);
@@ -56,7 +54,7 @@
 
   &.iui-placeholder,
   &:has(option[value='']:checked) {
-    color: var(--_iui-field-color-text-placeholder);
+    color: var(--iui-color-text-placeholder);
     font-weight: var(--iui-font-weight-light);
   }
 }
