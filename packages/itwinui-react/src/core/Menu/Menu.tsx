@@ -57,7 +57,7 @@ const MenuComponent = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     const focusableNodes = getFocusableNodes();
 
-    console.log('focusableNodes', focusableNodes);
+    // console.log('focusableNodes', focusableNodes.length, rest.children.length);
 
     if (menuProps.focusableNodes.current !== focusableNodes) {
       menuProps.focusableNodes.current = focusableNodes;
@@ -141,7 +141,7 @@ const getMenuProps = ({
   // TODO: Try making types simpler
   popoverProps: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
     interactions: Omit<
-      Parameters<typeof usePopover>[0]['interactions'],
+      NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
       'listNavigation'
     > & {
       listNavigation?: Partial<

@@ -15,7 +15,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-import { usePopover } from '../Popover/Popover.js';
+// import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   useFloatingNodeId,
@@ -134,9 +134,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
-    number | null
-  >(null);
+  // const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+  //   number | null
+  // >(null);
 
   const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
     React.useState(false);
@@ -174,28 +174,45 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     () => undefined,
   );
 
-  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+  // const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
-  const popover = usePopover({
-    nodeId,
-    visible: isSubmenuVisible,
-    onVisibleChange: setIsSubmenuVisible,
-    placement: 'right-start',
-    interactions: !disabled
-      ? {
-          click: false,
-          hover: {
-            enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
-          },
-          listNavigation: {
-            listRef: focusableNodes,
-            activeIndex: currentFocusedNodeIndex,
-            nested: subMenuItems.length > 0,
-            onNavigate: setCurrentFocusedNodeIndex,
-          },
-        }
-      : {},
+  const menuProps = Menu.getMenuProps({
+    popoverProps: {
+      nodeId,
+      visible: isSubmenuVisible,
+      onVisibleChange: setIsSubmenuVisible,
+      placement: 'right-start',
+      interactions: !disabled
+        ? {
+            click: false,
+            hover: {
+              enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
+            },
+            listNavigation: {
+              // listRef: focusableNodes,
+              // activeIndex: currentFocusedNodeIndex,
+              nested: subMenuItems.length > 0,
+              // onNavigate: (activeIndex) => {
+              //   console.log(
+              //     'onNavigate',
+              //     activeIndex,
+              //     // focusableNodes.current.length,
+              //     menuProps.focusableNodes.current.length,
+              //   );
+
+              //   setCurrentFocusedNodeIndex(0);
+              // },
+              focusItemOnOpen: true,
+            },
+          }
+        : {},
+    },
   });
+
+  // if ((children as any[]).length > 0) {
+  if (children === 'Item #3') {
+    console.log('MENUITEM', menuProps.focusableNodes.current.length);
+  }
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -262,18 +279,20 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         ref={useMergedRefs(
           menuItemRef,
           forwardedRef,
-          subMenuItems.length > 0 ? popover.refs.setReference : null,
+          subMenuItems.length > 0 ? menuProps.popover.refs.setReference : null,
         )}
         role={role}
         tabIndex={disabled || role === 'presentation' ? undefined : -1}
         aria-selected={isSelected}
         aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
         aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+        aria-expanded={
+          subMenuItems.length > 0 ? menuProps.popover.open : undefined
+        }
         aria-disabled={disabled}
         {...(subMenuItems.length === 0
           ? { ...handlers, ...rest }
-          : popover.getReferenceProps({ ...handlers, ...rest }))}
+          : menuProps.popover.getReferenceProps({ ...handlers, ...rest }))}
       >
         {startIcon && (
           <ListItem.Icon as='span' aria-hidden>
@@ -296,27 +315,29 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         )}
       </ListItem>
 
-      {subMenuItems.length > 0 && !disabled && popover.open && (
-        <FloatingNode id={nodeId}>
-          <Portal>
-            <MenuItemContext.Provider
-              value={{
-                setCurrentFocusedNodeIndex,
-                focusableNodes,
-                setHasFocusedNodeInSubmenu,
-              }}
+      {/* {subMenuItems.length > 0 && !disabled && menuProps.popover.open && ( */}
+      <FloatingNode id={nodeId}>
+        <Portal>
+          <MenuItemContext.Provider
+            value={{
+              setCurrentFocusedNodeIndex: menuProps.setCurrentFocusedNodeIndex,
+              focusableNodes: menuProps.focusableNodes,
+              setHasFocusedNodeInSubmenu,
+            }}
+          >
+            <Menu
+              menuProps={menuProps}
+              setFocus={false}
+              // ref={menuProps.popover.refs.setFloating}
+              id={submenuId}
+              // {...menuProps.popover.getFloatingProps({ id: submenuId })}
             >
-              <Menu
-                setFocus={false}
-                ref={popover.refs.setFloating}
-                {...popover.getFloatingProps({ id: submenuId })}
-              >
-                {subMenuItems}
-              </Menu>
-            </MenuItemContext.Provider>
-          </Portal>
-        </FloatingNode>
-      )}
+              {subMenuItems}
+            </Menu>
+          </MenuItemContext.Provider>
+        </Portal>
+      </FloatingNode>
+      {/* )} */}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

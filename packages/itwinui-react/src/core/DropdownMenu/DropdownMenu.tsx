@@ -146,6 +146,8 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     },
   });
 
+  console.log('DROPDOWNMENU', menuProps.focusableNodes.current.length);
+
   // const popoverRef = useMergedRefs(forwardedRef, menuProps.popover.refs.setFloating);
 
   return (
