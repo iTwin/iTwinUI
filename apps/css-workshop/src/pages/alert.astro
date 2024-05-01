@@ -38,7 +38,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <section id='demo-default'>
     <div class='iui-alert' data-iui-status='informational'>
-      <Icon_ svg='info-circular' data-iui-icon-color='informational' />
+      <Icon_ svg='info-circular' fill='informational' />
       <span class='iui-alert-message'
         >Informational message.<a
           class='iui-anchor iui-alert-link'
@@ -48,12 +48,12 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' buttonIcon />
+        <Icon_ svg='close-small' />
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='positive'>
-      <Icon_ svg='status-success' data-iui-icon-color='positive' />
+      <Icon_ svg='status-success' fill='positive' />
       <span class='iui-alert-message'
         >Positive message.<a
           class='iui-anchor iui-alert-link'
@@ -63,12 +63,12 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' buttonIcon />
+        <Icon_ svg='close-small' />
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='warning'>
-      <Icon_ svg='status-warning' data-iui-icon-color='warning' />
+      <Icon_ svg='status-warning' fill='warning' />
       <span class='iui-alert-message'
         >Warning message.<a
           class='iui-anchor iui-alert-link'
@@ -78,12 +78,12 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' buttonIcon />
+        <Icon_ svg='close-small' />
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='negative' id='test-single-alert'>
-      <Icon_ svg='status-error' data-iui-icon-color='negative' />
+      <Icon_ svg='status-error' fill='negative' />
       <span class='iui-alert-message'
         >Negative message.<a
           class='iui-anchor iui-alert-link'
@@ -93,12 +93,12 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' buttonIcon />
+        <Icon_ svg='close-small' />
       </IconButton_>
     </div>
 
     <div class='iui-alert' data-iui-status='informational'>
-      <Icon_ svg='info-circular' data-iui-icon-color='informational' />
+      <Icon_ svg='info-circular' fill='informational' />
       <span class='iui-alert-message'
         >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -112,7 +112,7 @@ import IconButton_ from '../components/IconButton.astro';
         >
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' buttonIcon />
+        <Icon_ svg='close-small' />
       </IconButton_>
     </div>
   </section>
@@ -120,7 +120,7 @@ import IconButton_ from '../components/IconButton.astro';
   <section id='demo-sticky'>
     <div id='sticky-container'>
       <div class='iui-alert' data-iui-status='informational' data-iui-variant='sticky'>
-        <Icon_ svg='info-circular' data-iui-icon-color='informational' />
+        <Icon_ svg='info-circular' fill='informational' />
         <span class='iui-alert-message'
           >This is a sticky alert.<a
             class='iui-anchor iui-alert-link'
@@ -129,9 +129,9 @@ import IconButton_ from '../components/IconButton.astro';
             data-iui-underline='true'>Learn more</a
           >
         </span>
-      <IconButton_ aria-label='Close' variant='borderless' size='small'>
-        <Icon_ svg='close-small' buttonIcon />
-      </IconButton_>
+        <IconButton_ aria-label='Close' variant='borderless' size='small'>
+          <Icon_ svg='close-small' />
+        </IconButton_>
       </div>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
