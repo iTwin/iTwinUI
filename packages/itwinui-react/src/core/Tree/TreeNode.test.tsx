@@ -239,6 +239,7 @@ it('should checkboxProps correctly', () => {
     'custom-checkbox-class',
   ) as HTMLElement;
 
+  expect(checkBox).toBeTruthy();
   expect(checkBox?.style.color).toBe('green');
 });
 
