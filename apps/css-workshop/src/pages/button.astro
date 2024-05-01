@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Button'>
@@ -54,65 +55,59 @@ import Button_ from '../components/Button.astro';
 
   <section id='demo-high-visibility'>
     <div id='demo-high-visibility-small' class='demo-container'>
+      <Button_ variant='high-visibility' size='small'>Small</Button_>
       <Button_ variant='high-visibility' size='small'>
-        <span>Small</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small left icon
       </Button_>
       <Button_ variant='high-visibility' size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small left icon</span>
+        Small right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='high-visibility' size='small'>
-        <span>Small right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='high-visibility' size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
+      <IconButton_ variant='high-visibility' size='small'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
       <Button_ variant='high-visibility' size='small' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small disabled
       </Button_>
     </div>
 
     <div id='demo-high-visibility-normal' class='demo-container'>
+      <Button_ variant='high-visibility'>Normal</Button_>
       <Button_ variant='high-visibility'>
-        <span>Normal</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal left icon
       </Button_>
       <Button_ variant='high-visibility'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal left icon</span>
+        Normal right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='high-visibility'>
-        <span>Normal right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='high-visibility'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
+      <IconButton_ variant='high-visibility'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
       <Button_ variant='high-visibility' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal disabled
       </Button_>
     </div>
 
     <div id='demo-high-visibility-large' class='demo-container'>
+      <Button_ variant='high-visibility' size='large'>Large</Button_>
       <Button_ variant='high-visibility' size='large'>
-        <span>Large</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large left icon
       </Button_>
       <Button_ variant='high-visibility' size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large left icon</span>
+        Large right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='high-visibility' size='large'>
-        <span>Large right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='high-visibility' size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
+      <IconButton_ variant='high-visibility' size='large'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
       <Button_ variant='high-visibility' size='large' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large disabled
       </Button_>
     </div>
   </section>
@@ -120,65 +115,59 @@ import Button_ from '../components/Button.astro';
   <h3>Call to action</h3>
   <section id='demo-cta'>
     <div id='demo-cta-small' class='demo-container'>
+      <Button_ variant='cta' size='small'>Small</Button_>
       <Button_ variant='cta' size='small'>
-        <span>Small</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small left icon
       </Button_>
       <Button_ variant='cta' size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small left icon</span>
+        Small right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='cta' size='small'>
-        <span>Small right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='cta' size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
+      <IconButton_ variant='cta' size='small'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
       <Button_ variant='cta' size='small' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small disabled
       </Button_>
     </div>
 
     <div id='demo-cta-medium' class='demo-container'>
+      <Button_ variant='cta'>Normal</Button_>
       <Button_ variant='cta'>
-        <span>Normal</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal left icon
       </Button_>
       <Button_ variant='cta'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal left icon</span>
+        Normal right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='cta'>
-        <span>Normal right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='cta'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
+      <IconButton_ variant='cta'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
       <Button_ variant='cta' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal disabled
       </Button_>
     </div>
 
     <div id='demo-cta-large' class='demo-container'>
+      <Button_ variant='cta' size='large'>Large</Button_>
       <Button_ variant='cta' size='large'>
-        <span>Large</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large left icon
       </Button_>
       <Button_ variant='cta' size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large left icon</span>
+        Large right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='cta' size='large'>
-        <span>Large right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='cta' size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
+      <IconButton_ variant='cta' size='large'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
       <Button_ variant='cta' size='large' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large disabled
       </Button_>
     </div>
   </section>
@@ -186,77 +175,71 @@ import Button_ from '../components/Button.astro';
   <h3>Default</h3>
   <section id='demo-default'>
     <div id='demo-default-small' class='demo-container'>
+      <Button_ size='small'>Small</Button_>
       <Button_ size='small'>
-        <span>Small</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small left icon
       </Button_>
       <Button_ size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small left icon</span>
+        Small right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ size='small'>
-        <span>Small right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ iuiType='dropdown' size='small'>
-        <span>Small dropdown</span>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <IconButton_ size='small'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
+      <Button_ dropdown size='small'>
+        Small dropdown
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <Button_ size='small' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small disabled
       </Button_>
     </div>
 
     <div id='demo-default-medium' class='demo-container'>
+      <Button_>Normal</Button_>
       <Button_>
-        <span>Normal</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal left icon
       </Button_>
       <Button_>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal left icon</span>
+        Normal right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_>
-        <span>Normal right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ iuiType='dropdown'>
-        <span>Normal dropdown</span>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <IconButton_>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
+      <Button_ dropdown>
+        Normal dropdown
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <Button_ disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal disabled
       </Button_>
     </div>
 
     <div id='demo-default-large' class='demo-container'>
+      <Button_ size='large'>Large</Button_>
       <Button_ size='large'>
-        <span>Large</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large left icon
       </Button_>
       <Button_ size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large left icon</span>
+        Large right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ size='large'>
-        <span>Large right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ iuiType='dropdown' size='large'>
-        <span>Large dropdown</span>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <IconButton_ size='large'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
+      <Button_ dropdown size='large'>
+        Large dropdown
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <Button_ size='large' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large disabled
       </Button_>
     </div>
   </section>
@@ -264,77 +247,71 @@ import Button_ from '../components/Button.astro';
   <h3>Borderless</h3>
   <section id='demo-borderless'>
     <div id='demo-borderless-small' class='demo-container'>
+      <Button_ variant='borderless' size='small'>Small</Button_>
       <Button_ variant='borderless' size='small'>
-        <span>Small</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small left icon
       </Button_>
       <Button_ variant='borderless' size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small left icon</span>
+        Small right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='borderless' size='small'>
-        <span>Small right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='borderless' size='small'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ iuiType='dropdown' variant='borderless' size='small'>
-        <span>Small dropdown</span>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <IconButton_ variant='borderless' size='small'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
+      <Button_ dropdown variant='borderless' size='small'>
+        Small dropdown
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <Button_ variant='borderless' size='small' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Small disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Small disabled
       </Button_>
     </div>
 
     <div id='demo-borderless-medium' class='demo-container'>
+      <Button_ variant='borderless'>Normal</Button_>
       <Button_ variant='borderless'>
-        <span>Normal</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal left icon
       </Button_>
       <Button_ variant='borderless'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal left icon</span>
+        Normal right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='borderless'>
-        <span>Normal right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='borderless'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ iuiType='dropdown' variant='borderless'>
-        <span>Normal dropdown</span>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <IconButton_ variant='borderless'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
+      <Button_ dropdown variant='borderless'>
+        Normal dropdown
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <Button_ variant='borderless' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Normal disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Normal disabled
       </Button_>
     </div>
 
     <div id='demo-borderless-large' class='demo-container'>
+      <Button_ variant='borderless' size='large'>Large</Button_>
       <Button_ variant='borderless' size='large'>
-        <span>Large</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large left icon
       </Button_>
       <Button_ variant='borderless' size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large left icon</span>
+        Large right icon
+        <svg-placeholder aria-hidden='true' slot='end-icon'></svg-placeholder>
       </Button_>
-      <Button_ variant='borderless' size='large'>
-        <span>Large right icon</span>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ variant='borderless' size='large'>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      </Button_>
-      <Button_ iuiType='dropdown' variant='borderless' size='large'>
-        <span>Large dropdown</span>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <IconButton_ variant='borderless' size='large'>
+        <svg-placeholder></svg-placeholder>
+      </IconButton_>
+      <Button_ dropdown variant='borderless' size='large'>
+        Large dropdown
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <Button_ variant='borderless' size='large' disabled>
-        <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-        <span>Large disabled</span>
+        <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+         Large disabled
       </Button_>
     </div>
   </section>
@@ -346,129 +323,141 @@ import Button_ from '../components/Button.astro';
     <div id='demo-notification-small' class='demo-container'>
       <Button_ variant='high-visibility' size='small'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='white'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ variant='cta' size='small'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='white'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ size='small'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='informational'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ variant='borderless' size='small'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='primary'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
     </div>
 
     <div id='demo-notification-medium' class='demo-container'>
       <Button_ variant='high-visibility'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='white'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ variant='cta'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='white'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='informational'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ variant='borderless'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='primary'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
     </div>
 
     <div id='demo-notification-large' class='demo-container'>
       <Button_ variant='high-visibility' size='large'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='white'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ variant='cta' size='large'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='white'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ size='large'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='informational'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
       <Button_ variant='borderless' size='large'>
         <span
-          class='iui-button-icon iui-notification-marker'
+          class='iui-notification-marker'
           data-iui-variant='primary'
           aria-hidden='true'
+          slot='start-icon'
         >
-          <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
+          <svg-placeholder aria-hidden='true'></svg-placeholder>
         </span>
-        <span>Notification</span>
+         Notification
       </Button_>
     </div>
   </section>
@@ -480,134 +469,116 @@ import Button_ from '../components/Button.astro';
   <h3>Default</h3>
   <section id='demo-grouped-default'>
     <span class='iui-button-group'>
-      <Button_ size='small'>
-        <span>Left</span>
-      </Button_>
-      <Button_ size='small'>
-        <span>Middle</span>
-      </Button_>
-      <Button_ size='small'>
-        <span>Right</span>
-      </Button_>
+      <Button_ size='small'>Left</Button_>
+      <Button_ size='small'>Middle</Button_>
+      <Button_ size='small'>Right</Button_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_>
-        <span>Left</span>
-      </Button_>
-      <Button_>
-        <span>Middle</span>
-      </Button_>
-      <Button_>
-        <span>Right</span>
-      </Button_>
+      <Button_>Left</Button_>
+      <Button_>Middle</Button_>
+      <Button_>Right</Button_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ size='large'>
-        <span>Left</span>
-      </Button_>
-      <Button_ size='large'>
-        <span>Middle</span>
-      </Button_>
-      <Button_ size='large'>
-        <span>Right</span>
-      </Button_>
+      <Button_ size='large'>Left</Button_>
+      <Button_ size='large'>Middle</Button_>
+      <Button_ size='large'>Right</Button_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ title='Download'>
-        <svg-download class='iui-button-icon' aria-hidden='true'></svg-download>
-      </Button_>
-      <Button_ title='Move'>
-        <svg-arrow-right class='iui-button-icon' aria-hidden='true'></svg-arrow-right>
-      </Button_>
-      <Button_ title='Delete' disabled>
-        <svg-delete class='iui-button-icon' aria-hidden='true'></svg-delete>
-      </Button_>
-      <Button_ title='Rename'>
-        <svg-rename class='iui-button-icon' aria-hidden='true'></svg-rename>
-      </Button_>
-      <Button_ title='More options…'>
-        <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-      </Button_>
+      <IconButton_ title='Download'>
+        <svg-download></svg-download>
+      </IconButton_>
+      <IconButton_ title='Move'>
+        <svg-arrow-right></svg-arrow-right>
+      </IconButton_>
+      <IconButton_ title='Delete' disabled>
+        <svg-delete></svg-delete>
+      </IconButton_>
+      <IconButton_ title='Rename'>
+        <svg-rename></svg-rename>
+      </IconButton_>
+      <IconButton_ title='More options…'>
+        <svg-more></svg-more>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ disabled title='Download'>
-        <svg-download class='iui-button-icon' aria-hidden='true'></svg-download>
-      </Button_>
-      <Button_ disabled title='Move'>
-        <svg-arrow-right class='iui-button-icon' aria-hidden='true'></svg-arrow-right>
-      </Button_>
-      <Button_ title='Delete' disabled>
-        <svg-delete class='iui-button-icon' aria-hidden='true'></svg-delete>
-      </Button_>
-      <Button_ disabled title='Rename'>
-        <svg-rename class='iui-button-icon' aria-hidden='true'></svg-rename>
-      </Button_>
-      <Button_ disabled title='More options…'>
-        <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-      </Button_>
+      <IconButton_ disabled title='Download'>
+        <svg-download></svg-download>
+      </IconButton_>
+      <IconButton_ disabled title='Move'>
+        <svg-arrow-right></svg-arrow-right>
+      </IconButton_>
+      <IconButton_ title='Delete' disabled>
+        <svg-delete></svg-delete>
+      </IconButton_>
+      <IconButton_ disabled title='Rename'>
+        <svg-rename></svg-rename>
+      </IconButton_>
+      <IconButton_ disabled title='More options…'>
+        <svg-more></svg-more>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ title='List view'>
-        <svg-list class='iui-button-icon' aria-hidden='true'></svg-list>
-      </Button_>
-      <Button_ title='Tile view' active>
-        <svg-thumbnails class='iui-button-icon' aria-hidden='true'></svg-thumbnails>
-      </Button_>
+      <IconButton_ title='List view'>
+        <svg-list></svg-list>
+      </IconButton_>
+      <IconButton_ title='Tile view' isActive>
+        <svg-thumbnails></svg-thumbnails>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ disabled title='List view'>
-        <svg-list class='iui-button-icon' aria-hidden='true'></svg-list>
-      </Button_>
-      <Button_ disabled title='Tile view' active>
-        <svg-thumbnails class='iui-button-icon' aria-hidden='true'></svg-thumbnails>
-      </Button_>
+      <IconButton_ disabled title='List view'>
+        <svg-list></svg-list>
+      </IconButton_>
+      <IconButton_ disabled title='Tile view' isActive>
+        <svg-thumbnails></svg-thumbnails>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group' data-iui-orientation='vertical'>
-      <Button_>
-        <svg-download class='iui-button-icon' aria-hidden='true'></svg-download>
-      </Button_>
-      <Button_>
-        <svg-arrow-right class='iui-button-icon' aria-hidden='true'></svg-arrow-right>
-      </Button_>
-      <Button_ disabled>
-        <svg-delete class='iui-button-icon' aria-hidden='true'></svg-delete>
-      </Button_>
-      <Button_ disabled>
-        <svg-rename class='iui-button-icon' aria-hidden='true'></svg-rename>
-      </Button_>
-      <Button_>
-        <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-      </Button_>
+      <IconButton_>
+        <svg-download></svg-download>
+      </IconButton_>
+      <IconButton_>
+        <svg-arrow-right></svg-arrow-right>
+      </IconButton_>
+      <IconButton_ disabled>
+        <svg-delete></svg-delete>
+      </IconButton_>
+      <IconButton_ disabled>
+        <svg-rename></svg-rename>
+      </IconButton_>
+      <IconButton_>
+        <svg-more></svg-more>
+      </IconButton_>
     </span>
 
     <span class='iui-button-group' data-iui-orientation='vertical'>
-      <Button_>
-        <svg-list class='iui-button-icon' aria-hidden='true'></svg-list>
-      </Button_>
-      <Button_ active>
-        <svg-thumbnails class='iui-button-icon' aria-hidden='true'></svg-thumbnails>
-      </Button_>
+      <IconButton_>
+        <svg-list></svg-list>
+      </IconButton_>
+      <IconButton_ isActive>
+        <svg-thumbnails></svg-thumbnails>
+      </IconButton_>
     </span>
   </section>
 
@@ -616,105 +587,87 @@ import Button_ from '../components/Button.astro';
   <h3>Borderless</h3>
   <section id='demo-grouped-borderless'>
     <span class='iui-button-group'>
-      <Button_ variant='borderless' size='small'>
-        <span>Left</span>
-      </Button_>
-      <Button_ variant='borderless' size='small'>
-        <span>Middle</span>
-      </Button_>
-      <Button_ variant='borderless' size='small'>
-        <span>Right</span>
-      </Button_>
+      <Button_ variant='borderless' size='small'>Left</Button_>
+      <Button_ variant='borderless' size='small'>Middle</Button_>
+      <Button_ variant='borderless' size='small'>Right</Button_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ variant='borderless'>
-        <span>Left</span>
-      </Button_>
-      <Button_ variant='borderless'>
-        <span>Middle</span>
-      </Button_>
-      <Button_ variant='borderless'>
-        <span>Right</span>
-      </Button_>
+      <Button_ variant='borderless'>Left</Button_>
+      <Button_ variant='borderless'>Middle</Button_>
+      <Button_ variant='borderless'>Right</Button_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ variant='borderless' size='large'>
-        <span>Left</span>
-      </Button_>
-      <Button_ variant='borderless' size='large'>
-        <span>Middle</span>
-      </Button_>
-      <Button_ variant='borderless' size='large'>
-        <span>Right</span>
-      </Button_>
+      <Button_ variant='borderless' size='large'>Left</Button_>
+      <Button_ variant='borderless' size='large'>Middle</Button_>
+      <Button_ variant='borderless' size='large'>Right</Button_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ title='Download' variant='borderless'>
-        <svg-download class='iui-button-icon' aria-hidden='true'></svg-download>
-      </Button_>
-      <Button_ title='Move' variant='borderless'>
-        <svg-arrow-right class='iui-button-icon' aria-hidden='true'></svg-arrow-right>
-      </Button_>
-      <Button_ title='Delete' variant='borderless' disabled>
-        <svg-delete class='iui-button-icon' aria-hidden='true'></svg-delete>
-      </Button_>
-      <Button_ title='Rename' variant='borderless'>
-        <svg-rename class='iui-button-icon' aria-hidden='true'></svg-rename>
-      </Button_>
-      <Button_ title='More options…' variant='borderless'>
-        <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-      </Button_>
+      <IconButton_ title='Download' variant='borderless'>
+        <svg-download></svg-download>
+      </IconButton_>
+      <IconButton_ title='Move' variant='borderless'>
+        <svg-arrow-right></svg-arrow-right>
+      </IconButton_>
+      <IconButton_ title='Delete' variant='borderless' disabled>
+        <svg-delete></svg-delete>
+      </IconButton_>
+      <IconButton_ title='Rename' variant='borderless'>
+        <svg-rename></svg-rename>
+      </IconButton_>
+      <IconButton_ title='More options…' variant='borderless'>
+        <svg-more></svg-more>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ disabled title='Download' variant='borderless'>
-        <svg-download class='iui-button-icon' aria-hidden='true'></svg-download>
-      </Button_>
-      <Button_ disabled title='Move' variant='borderless'>
-        <svg-arrow-right class='iui-button-icon' aria-hidden='true'></svg-arrow-right>
-      </Button_>
-      <Button_ title='Delete' variant='borderless' disabled>
-        <svg-delete class='iui-button-icon' aria-hidden='true'></svg-delete>
-      </Button_>
-      <Button_ disabled title='Rename' variant='borderless'>
-        <svg-rename class='iui-button-icon' aria-hidden='true'></svg-rename>
-      </Button_>
-      <Button_ disabled title='More options…' variant='borderless'>
-        <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-      </Button_>
+      <IconButton_ disabled title='Download' variant='borderless'>
+        <svg-download></svg-download>
+      </IconButton_>
+      <IconButton_ disabled title='Move' variant='borderless'>
+        <svg-arrow-right></svg-arrow-right>
+      </IconButton_>
+      <IconButton_ title='Delete' variant='borderless' disabled>
+        <svg-delete></svg-delete>
+      </IconButton_>
+      <IconButton_ disabled title='Rename' variant='borderless'>
+        <svg-rename></svg-rename>
+      </IconButton_>
+      <IconButton_ disabled title='More options…' variant='borderless'>
+        <svg-more></svg-more>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ title='List view' variant='borderless'>
-        <svg-list class='iui-button-icon' aria-hidden='true'></svg-list>
-      </Button_>
-      <Button_ title='Tile view' variant='borderless' active>
-        <svg-thumbnails class='iui-button-icon' aria-hidden='true'></svg-thumbnails>
-      </Button_>
+      <IconButton_ title='List view' variant='borderless'>
+        <svg-list></svg-list>
+      </IconButton_>
+      <IconButton_ title='Tile view' variant='borderless' isActive>
+        <svg-thumbnails></svg-thumbnails>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-group'>
-      <Button_ disabled title='List view' variant='borderless'>
-        <svg-list class='iui-button-icon' aria-hidden='true'></svg-list>
-      </Button_>
-      <Button_ disabled title='Tile view' variant='borderless' active>
-        <svg-thumbnails class='iui-button-icon' aria-hidden='true'></svg-thumbnails>
-      </Button_>
+      <IconButton_ disabled title='List view' variant='borderless'>
+        <svg-list></svg-list>
+      </IconButton_>
+      <IconButton_ disabled title='Tile view' variant='borderless' isActive>
+        <svg-thumbnails></svg-thumbnails>
+      </IconButton_>
     </span>
   </section>
 
@@ -723,106 +676,82 @@ import Button_ from '../components/Button.astro';
   <h3>Split menu</h3>
   <section id='demo-split'>
     <span class='iui-button-split'>
-      <Button_ variant='high-visibility' size='small'>
-        <span>Small split menu</span>
-      </Button_>
-      <Button_ variant='high-visibility' size='small'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ variant='high-visibility' size='small'>Small split menu</Button_>
+      <IconButton_ variant='high-visibility' size='small'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ variant='cta' size='small'>
-        <span>Small split menu</span>
-      </Button_>
-      <Button_ variant='cta' size='small'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ variant='cta' size='small'>Small split menu</Button_>
+      <IconButton_ variant='cta' size='small'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ size='small'>
-        <span>Small split menu</span>
-      </Button_>
-      <Button_ size='small'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ size='small'>Small split menu</Button_>
+      <IconButton_ size='small'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ size='small' disabled>
-        <span>Small split menu</span>
-      </Button_>
-      <Button_ size='small' disabled>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ size='small' disabled>Small split menu</Button_>
+      <IconButton_ size='small' disabled>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-split'>
-      <Button_ variant='high-visibility'>
-        <span>Split menu</span>
-      </Button_>
-      <Button_ variant='high-visibility'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ variant='high-visibility'>Split menu</Button_>
+      <IconButton_ variant='high-visibility'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ variant='cta'>
-        <span>Split menu</span>
-      </Button_>
-      <Button_ variant='cta'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ variant='cta'>Split menu</Button_>
+      <IconButton_ variant='cta'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_>
-        <span>Split menu</span>
-      </Button_>
-      <Button_>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_>Split menu</Button_>
+      <IconButton_>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ disabled>
-        <span>Split menu</span>
-      </Button_>
-      <Button_ disabled>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ disabled>Split menu</Button_>
+      <IconButton_ disabled>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
 
     <br />
 
     <span class='iui-button-split'>
-      <Button_ variant='high-visibility' size='large'>
-        <span>Large split menu</span>
-      </Button_>
-      <Button_ variant='high-visibility' size='large'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ variant='high-visibility' size='large'>Large split menu</Button_>
+      <IconButton_ variant='high-visibility' size='large'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ variant='cta' size='large'>
-        <span>Large split menu</span>
-      </Button_>
-      <Button_ variant='cta' size='large'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ variant='cta' size='large'>Large split menu</Button_>
+      <IconButton_ variant='cta' size='large'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ size='large'>
-        <span>Large split menu</span>
-      </Button_>
-      <Button_ size='large'>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ size='large'>Large split menu</Button_>
+      <IconButton_ size='large'>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
     <span class='iui-button-split'>
-      <Button_ size='large' disabled>
-        <span>Large split menu</span>
-      </Button_>
-      <Button_ size='large' disabled>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-      </Button_>
+      <Button_ size='large' disabled>Large split menu</Button_>
+      <IconButton_ size='large' disabled>
+        <svg-caret-down-small></svg-caret-down-small>
+      </IconButton_>
     </span>
   </section>
 
@@ -832,25 +761,17 @@ import Button_ from '../components/Button.astro';
 
   <section id='demo-combo-group'>
     <div class='iui-button-group'>
-      <Button_>
-        <span>Button 1</span>
-      </Button_>
+      <Button_>Button 1</Button_>
       <input class='iui-input iui-field' />
-      <Button_>
-        <span>Button 2</span>
-      </Button_>
+      <Button_>Button 2</Button_>
     </div>
 
     <br />
 
     <div class='iui-button-group'>
-      <Button_>
-        <span>Button 1</span>
-      </Button_>
+      <Button_>Button 1</Button_>
       <input class='iui-input iui-field' disabled />
-      <Button_>
-        <span>Button 2</span>
-      </Button_>
+      <Button_>Button 2</Button_>
     </div>
 
     <br />
@@ -859,9 +780,7 @@ import Button_ from '../components/Button.astro';
       <div class='iui-input-flex-container' data-iui-disabled='true'>
         <input value='https://itwin.github.io/iTwinUI' disabled />
       </div>
-      <Button_ variant='high-visibility'>
-        <span>Copy</span>
-      </Button_>
+      <Button_ variant='high-visibility'>Copy</Button_>
     </div>
 
     <br />
@@ -869,13 +788,13 @@ import Button_ from '../components/Button.astro';
     <div class='iui-button-group'>
       <div class='iui-input-flex-container'>
         <input value='https://itwin.github.io/iTwinUI' />
-        <Button_ class='iui-input-flex-container-icon' variant='borderless'>
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </Button_>
+        <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+          <svg-close-small></svg-close-small>
+        </IconButton_>
       </div>
-      <Button_>
-        <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-      </Button_>
+      <IconButton_>
+        <svg-more></svg-more>
+      </IconButton_>
     </div>
   </section>
 
@@ -885,9 +804,9 @@ import Button_ from '../components/Button.astro';
   <p class='iui-text-small iui-text-muted'>Look to the bottom right of your browser window.</p>
   <br />
   <section>
-    <Button_ variant='high-visibility' iuiType='feedback' id='demo-ideas'>
-      <svg-smiley-happy class='iui-button-icon' aria-hidden='true'></svg-smiley-happy>
-      <span>Feedback</span>
+    <Button_ idea id='demo-ideas'>
+      <svg-smiley-happy aria-hidden='true' slot='start-icon'></svg-smiley-happy>
+       Feedback
     </Button_>
   </section>
 </Layout>

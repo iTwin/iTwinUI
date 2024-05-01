@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Surface'>
@@ -80,9 +81,9 @@ import Button_ from '../components/Button.astro';
       <div class='iui-surface-header'>
         <div class='demo-flex-component'>
           <h2 class='iui-text-subheading'>Default surface</h2>
-          <Button_ variant='borderless' shift='right'>
-            <svg-settings class='iui-button-icon' aria-hidden='true'></svg-settings>
-          </Button_>
+          <IconButton_ variant='borderless' shift='right'>
+            <svg-settings></svg-settings>
+          </IconButton_>
         </div>
       </div>
       <div class='iui-surface-body' data-iui-padded='true'>
@@ -117,9 +118,7 @@ import Button_ from '../components/Button.astro';
         </p>
       </div>
       <hr class='iui-divider' />
-      <Button_ variant='borderless' style='align-self: stretch;'>
-        <span>View all</span>
-      </Button_>
+      <Button_ variant='borderless' style='align-self: stretch;'>View all</Button_>
     </div>
 
     <div class='iui-surface' data-iui-layout='true'>

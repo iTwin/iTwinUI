@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Side navigation'>
@@ -50,7 +51,7 @@ import Button_ from '../components/Button.astro';
   <section id='demo-side-navigation'>
     <div class='iui-side-navigation iui-collapsed' id='demo-sidenav-container'>
       <!-- Expand arrow -->
-      <Button_
+      <IconButton_
         class='iui-sidenav-button iui-expand'
         size='small'
         role='button'
@@ -58,8 +59,8 @@ import Button_ from '../components/Button.astro';
         onclick='togglePanelExpansion(this)'
         id='test-expand'
       >
-        <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-      </Button_>
+        <svg-chevron-right></svg-chevron-right>
+      </IconButton_>
 
       <!-- Rest of the tabs -->
       <div class='iui-sidenav-content' role='tablist' aria-label='Applications'>
@@ -67,15 +68,15 @@ import Button_ from '../components/Button.astro';
           <Button_
             class='iui-sidenav-button'
             size='large'
-            active
+            isActive
             role='tab'
             aria-selected='true'
             aria-label='Home'
             aria-controls='home-tab'
             onclick='toggleActiveState(this)'
           >
-            <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
-            <span>Home</span>
+            <svg-home aria-hidden='true' slot='start-icon'></svg-home>
+             Home
           </Button_>
           <span class='iui-tooltip'>Home</span>
 
@@ -89,13 +90,14 @@ import Button_ from '../components/Button.astro';
             onclick='toggleActiveState(this)'
           >
             <span
-              class='iui-button-icon iui-notification-marker'
+              class='iui-notification-marker'
               data-iui-variant='negative'
               data-iui-urgent='true'
+              slot='start-icon'
             >
               <svg-document></svg-document>
             </span>
-            <span>Documents</span>
+             Documents
           </Button_>
           <span class='iui-tooltip'>Documents</span>
 
@@ -108,10 +110,10 @@ import Button_ from '../components/Button.astro';
             aria-controls='map-tab'
             onclick='toggleActiveState(this)'
           >
-            <span class='iui-button-icon iui-notification-marker' data-iui-variant='positive'>
+            <span class='iui-notification-marker' data-iui-variant='positive' slot='start-icon'>
               <svg-map></svg-map>
             </span>
-            <span>Map</span>
+             Map
           </Button_>
           <span class='iui-tooltip'>Map</span>
 
@@ -125,8 +127,8 @@ import Button_ from '../components/Button.astro';
             disabled
             onclick='toggleActiveState(this)'
           >
-            <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
-            <span>Archives</span>
+            <svg-archive aria-hidden='true' slot='start-icon'></svg-archive>
+             Archives
           </Button_>
           <span class='iui-tooltip'>Archives</span>
 
@@ -140,8 +142,8 @@ import Button_ from '../components/Button.astro';
             id='test-tab-1'
             onclick='toggleActiveState(this)'
           >
-            <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-            <span>Calendar</span>
+            <svg-calendar aria-hidden='true' slot='start-icon'></svg-calendar>
+             Calendar
           </Button_>
           <span class='iui-tooltip'>Calendar</span>
         </div>
@@ -157,8 +159,8 @@ import Button_ from '../components/Button.astro';
             id='test-tab-2'
             onclick='toggleActiveState(this)'
           >
-            <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
-            <span>Administration</span>
+            <svg-setup aria-hidden='true' slot='start-icon'></svg-setup>
+             Administration
           </Button_>
           <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
         </div>
@@ -178,14 +180,14 @@ import Button_ from '../components/Button.astro';
             <Button_
               class='iui-sidenav-button'
               size='large'
-              active
+              isActive
               role='tab'
               aria-selected='false'
               aria-label='Home'
               aria-controls='home-tab'
             >
-              <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
-              <span>Home</span>
+              <svg-home aria-hidden='true' slot='start-icon'></svg-home>
+               Home
             </Button_>
             <span class='iui-tooltip'>Home</span>
 
@@ -197,8 +199,8 @@ import Button_ from '../components/Button.astro';
               aria-label='Documents'
               aria-controls='documents-tab'
             >
-              <svg-document class='iui-button-icon' aria-hidden='true'></svg-document>
-              <span>Documents</span>
+              <svg-document aria-hidden='true' slot='start-icon'></svg-document>
+               Documents
             </Button_>
             <span class='iui-tooltip'>Documents</span>
 
@@ -210,8 +212,8 @@ import Button_ from '../components/Button.astro';
               aria-label='Map'
               aria-controls='map-tab'
             >
-              <svg-map class='iui-button-icon' aria-hidden='true'></svg-map>
-              <span>Map</span>
+              <svg-map aria-hidden='true' slot='start-icon'></svg-map>
+               Map
             </Button_>
             <span class='iui-tooltip'>Map</span>
 
@@ -224,8 +226,8 @@ import Button_ from '../components/Button.astro';
               aria-controls='archives-tab'
               disabled
             >
-              <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
-              <span>Archives</span>
+              <svg-archive aria-hidden='true' slot='start-icon'></svg-archive>
+               Archives
             </Button_>
             <span class='iui-tooltip'>Archives</span>
 
@@ -237,8 +239,8 @@ import Button_ from '../components/Button.astro';
               aria-label='Calendar'
               aria-controls='calendar-tab'
             >
-              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-              <span>Calendar</span>
+              <svg-calendar aria-hidden='true' slot='start-icon'></svg-calendar>
+               Calendar
             </Button_>
             <span class='iui-tooltip'>Calendar</span>
           </div>
@@ -252,15 +254,15 @@ import Button_ from '../components/Button.astro';
               aria-label='Administration'
               aria-controls='administration-tab'
             >
-              <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
-              <span>Administration</span>
+              <svg-setup aria-hidden='true' slot='start-icon'></svg-setup>
+               Administration
             </Button_>
             <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
           </div>
         </div>
 
         <!-- Expand arrow -->
-        <Button_
+        <IconButton_
           class='iui-sidenav-button iui-expand'
           size='small'
           role='button'
@@ -268,23 +270,23 @@ import Button_ from '../components/Button.astro';
           onclick='togglePanelExpansion(this)'
           id='test-expand-2'
         >
-          <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-        </Button_>
+          <svg-chevron-right></svg-chevron-right>
+        </IconButton_>
       </div>
 
       <div class='iui-side-navigation-submenu' style='width: 384px;'>
         <div class='iui-side-navigation-submenu-content'>
           <div class='iui-side-navigation-submenu-header'>
             <div class='iui-side-navigation-submenu-header-label'>
-              <Button_ variant='borderless'>
-                <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-              </Button_>
+              <IconButton_ variant='borderless'>
+                <svg-chevron-left></svg-chevron-left>
+              </IconButton_>
               <span>Documents with a long label to test for truncation</span>
             </div>
             <div class='iui-side-navigation-submenu-header-actions'>
-              <Button_ variant='borderless'>
-                <svg-settings class='iui-button-icon' aria-hidden='true'></svg-settings>
-              </Button_>
+              <IconButton_ variant='borderless'>
+                <svg-settings></svg-settings>
+              </IconButton_>
             </div>
           </div>
 
@@ -340,22 +342,22 @@ import Button_ from '../components/Button.astro';
               aria-label='Home'
               aria-controls='home-tab'
             >
-              <svg-home class='iui-button-icon' aria-hidden='true'></svg-home>
-              <span>Home</span>
+              <svg-home aria-hidden='true' slot='start-icon'></svg-home>
+               Home
             </Button_>
             <span class='iui-tooltip'>Home</span>
 
             <Button_
               class='iui-sidenav-button iui-submenu-open'
-              active
+              isActive
               size='large'
               role='tab'
               aria-selected='true'
               aria-label='Documents'
               aria-controls='documents-tab'
             >
-              <svg-document class='iui-button-icon' aria-hidden='true'></svg-document>
-              <span>Documents</span>
+              <svg-document aria-hidden='true' slot='start-icon'></svg-document>
+               Documents
             </Button_>
             <span class='iui-tooltip'>Documents</span>
 
@@ -367,8 +369,8 @@ import Button_ from '../components/Button.astro';
               aria-label='Map'
               aria-controls='map-tab'
             >
-              <svg-map class='iui-button-icon' aria-hidden='true'></svg-map>
-              <span>Map</span>
+              <svg-map aria-hidden='true' slot='start-icon'></svg-map>
+               Map
             </Button_>
             <span class='iui-tooltip'>Map</span>
 
@@ -381,8 +383,8 @@ import Button_ from '../components/Button.astro';
               aria-controls='archives-tab'
               disabled
             >
-              <svg-archive class='iui-button-icon' aria-hidden='true'></svg-archive>
-              <span>Archives</span>
+              <svg-archive aria-hidden='true' slot='start-icon'></svg-archive>
+               Archives
             </Button_>
             <span class='iui-tooltip'>Archives</span>
 
@@ -394,8 +396,8 @@ import Button_ from '../components/Button.astro';
               aria-label='Calendar'
               aria-controls='calendar-tab'
             >
-              <svg-calendar class='iui-button-icon' aria-hidden='true'></svg-calendar>
-              <span>Calendar</span>
+              <svg-calendar aria-hidden='true' slot='start-icon'></svg-calendar>
+               Calendar
             </Button_>
             <span class='iui-tooltip'>Calendar</span>
           </div>
@@ -409,15 +411,15 @@ import Button_ from '../components/Button.astro';
               aria-label='Administration'
               aria-controls='administration-tab'
             >
-              <svg-setup class='iui-button-icon' aria-hidden='true'></svg-setup>
-              <span>Administration</span>
+              <svg-setup aria-hidden='true' slot='start-icon'></svg-setup>
+               Administration
             </Button_>
             <span class='iui-tooltip' style='margin-bottom: 10px;'>Administration</span>
           </div>
         </div>
 
         <!-- Expand arrow -->
-        <Button_
+        <IconButton_
           class='iui-sidenav-button iui-expand'
           size='small'
           role='button'
@@ -425,23 +427,23 @@ import Button_ from '../components/Button.astro';
           onclick='togglePanelExpansion(this)'
           id='test-expand-2'
         >
-          <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-        </Button_>
+          <svg-chevron-right></svg-chevron-right>
+        </IconButton_>
       </div>
 
       <div class='iui-side-navigation-submenu' style='width: 384px;'>
         <div class='iui-side-navigation-submenu-content'>
           <div class='iui-side-navigation-submenu-header'>
             <div class='iui-side-navigation-submenu-header-label'>
-              <Button_ variant='borderless'>
-                <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-              </Button_>
+              <IconButton_ variant='borderless'>
+                <svg-chevron-left></svg-chevron-left>
+              </IconButton_>
               <span>Documents with a long label to test for truncation</span>
             </div>
             <div class='iui-side-navigation-submenu-header-actions'>
-              <Button_ variant='borderless'>
-                <svg-settings class='iui-button-icon' aria-hidden='true'></svg-settings>
-              </Button_>
+              <IconButton_ variant='borderless'>
+                <svg-settings></svg-settings>
+              </IconButton_>
             </div>
           </div>
 

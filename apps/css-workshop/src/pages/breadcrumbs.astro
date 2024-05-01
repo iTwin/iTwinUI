@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Breadcrumbs'>
@@ -31,9 +32,9 @@ import Button_ from '../components/Button.astro';
   <h2>Breadcrumbs anchor</h2>
   <section id='demo-anchors'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <Button_ variant='borderless' iuiType='dropdown'>
-        <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <Button_ variant='borderless' dropdown>
+        <svg-folder aria-hidden='true' slot='start-icon'></svg-folder>
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
@@ -90,9 +91,9 @@ import Button_ from '../components/Button.astro';
   <h2>Breadcrumbs button</h2>
   <section id='demo-buttons-1'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <Button_ variant='borderless' iuiType='dropdown'>
-        <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <Button_ variant='borderless' dropdown>
+        <svg-folder aria-hidden='true' slot='start-icon'></svg-folder>
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
@@ -137,9 +138,9 @@ import Button_ from '../components/Button.astro';
   <h2>Overflow button</h2>
   <section id='demo-buttons-2'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <Button_ variant='borderless' iuiType='dropdown'>
-        <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <Button_ variant='borderless' dropdown>
+        <svg-folder aria-hidden='true' slot='start-icon'></svg-folder>
+        <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
       </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
@@ -151,9 +152,9 @@ import Button_ from '../components/Button.astro';
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <Button_ class='iui-breadcrumbs-content' variant='borderless' id='overflow-hover'>
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </Button_>
+          <IconButton_ class='iui-breadcrumbs-content' variant='borderless' id='overflow-hover'>
+            <svg-more></svg-more>
+          </IconButton_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
@@ -186,9 +187,9 @@ import Button_ from '../components/Button.astro';
   <h2>After clicking "you are here"</h2>
   <section id='demo-not-tested'>
     <nav class='iui-breadcrumbs' aria-label='Breadcrumbs'>
-      <Button_ variant='borderless' iuiType='dropdown'>
-        <svg-folder class='iui-button-icon' aria-hidden='true'></svg-folder>
-        <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
+      <Button_ variant='borderless' dropdown>
+        <svg-folder aria-hidden='true' slot='start-icon'></svg-folder>
+        <svg-caret-down-small aria-hidden='true' slot='endo-icon'></svg-caret-down-small>
       </Button_>
       <label class='iui-input-grid iui-inline-label iui-inline-icon'>
         <div class='iui-input-flex-container'>
@@ -197,9 +198,9 @@ import Button_ from '../components/Button.astro';
             class='iui-input iui-field'
             spellcheck='false'
           />
-          <Button_ variant='borderless' aria-label='Close'>
-            <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-          </Button_>
+          <IconButton_ variant='borderless' aria-label='Close'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
         </div>
       </label>
     </nav>
