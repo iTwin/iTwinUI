@@ -11,17 +11,17 @@
     --_iui-button-icon-fill: var(--iui-color-white);
   }
 
-  $variant-mappings: (
-    'high-visibility': 'informational',
-    'cta': 'positive',
-  );
-
-  @each $newVariant, $originalVariant in $variant-mappings {
-    &:where([data-iui-variant='#{$newVariant}']) {
-      --_iui-field-color-background: var(--iui-color-background-#{$originalVariant});
-      --_iui-field-color-background-hover: var(--iui-color-background-#{$originalVariant}-hover);
-      --_iui-field-color-border: var(--iui-color-background-#{$originalVariant});
-      --_iui-field-color-border-hover: var(--iui-color-background-#{$originalVariant}-hover);
-    }
+  &:where([data-iui-variant='high-visibility']) {
+    --_iui-field-color-background: var(--iui-color-background-accent);
+    --_iui-field-color-background-hover: var(--iui-color-background-accent-hover);
+    --_iui-field-color-border: var(--iui-color-background-accent);
+    --_iui-field-color-border-hover: var(--iui-color-background-accent-hover);
+  }
+  
+  &:where([data-iui-variant='cta']) {
+    --_iui-field-color-background: var(--iui-color-background-positive);
+    --_iui-field-color-background-hover: var(--iui-color-background-positive-hover);
+    --_iui-field-color-border: var(--iui-color-background-positive);
+    --_iui-field-color-border-hover: var(--iui-color-background-positive-hover);
   }
 }
