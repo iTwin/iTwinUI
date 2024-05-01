@@ -400,7 +400,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
 
-  const instance = Menu.useInstance({
+  const menuProps = Menu.getMenuProps({
     popoverProps: {
       visible: isOpen,
       matchWidth: true,
@@ -415,12 +415,12 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
       <InputWithIcon
         {...rest}
         ref={useMergedRefs(
-          instance.popover?.refs.setPositionReference,
+          menuProps.popover.refs.setPositionReference,
           forwardedRef,
         )}
       >
         <SelectButton
-          {...instance.popover?.getReferenceProps()}
+          {...menuProps.popover.getReferenceProps()}
           tabIndex={0}
           role='combobox'
           size={size}
@@ -435,7 +435,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           ref={useMergedRefs(
             selectRef,
             triggerProps?.ref,
-            instance.popover?.refs.setReference,
+            menuProps.popover.refs.setReference,
           )}
           className={cx(
             {
@@ -482,7 +482,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
       {/* {popover.open && (
         <Portal> */}
       <Menu
-        instance={instance}
+        menuProps={menuProps}
         role='listbox'
         className={menuClassName}
         id={`${uid}-menu`}
