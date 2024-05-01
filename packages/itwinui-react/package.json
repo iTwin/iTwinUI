@@ -70,9 +70,7 @@
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
     "lint:fix": "pnpm lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
-    "dev": "pnpm clean:build && concurrently \"pnpm dev:esm\" \"pnpm dev:cjs\" \"pnpm build:styles --watch\" \"pnpm dev:types\"",
-    "dev:esm": "swc src -d esm --watch",
-    "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
+    "dev": "pnpm clean:build && concurrently \"pnpm build:styles --watch\" \"pnpm dev:types\"",
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.react-table.json --watch --preserveWatchOutput\"",
     "dev:styles": "pnpm build:styles --watch"
   },
