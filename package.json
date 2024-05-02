@@ -52,6 +52,7 @@
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
     "configs": "workspace:*",
+    "cypress": "13.8.1",
     "e2e": "workspace:*",
     "execa": "^8.0.1",
     "helpers": "workspace:*",
