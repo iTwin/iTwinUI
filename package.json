@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --concurrency=15",
+    "dev": "NODE_ENV=development turbo run dev --concurrency=15",
     "test": "node scripts/runTests.mjs",
     "test:css": "pnpm run build --filter=css-workshop && pnpm --filter=css-workshop run test",
     "test:react": "pnpm run build --filter=react-workshop && pnpm --filter=react-workshop run test",
@@ -52,8 +52,10 @@
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
     "configs": "workspace:*",
+    "cypress": "13.8.1",
     "e2e": "workspace:*",
     "execa": "^8.0.1",
+    "helpers": "workspace:*",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
     "octokit": "^3.1.2",
@@ -79,6 +81,6 @@
   "engines": {
     "node": ">=18.14.1"
   },
-  "packageManager": "pnpm@8.15.3",
+  "packageManager": "pnpm@9.0.6",
   "prettier": "configs/prettier-config"
 }

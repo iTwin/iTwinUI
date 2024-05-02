@@ -19,7 +19,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -39,7 +39,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -63,7 +63,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -87,7 +87,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -115,7 +115,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -220,7 +220,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -251,7 +251,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -288,7 +288,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -319,7 +319,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -329,20 +329,11 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run build --filter=itwinui-react
-
-      - name: Install node modules inside Docker
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false # just perform install from monorepo root
+      - name: Install Cypress binary if not found
+        run: pnpx cypress install
 
       - name: Run a11y tests
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: testing/a11y
-          component: true
-          browser: chrome
-          install: false # we already installed deps above
+        run: pnpm run test --filter=a11y
 
   e2e:
     name: Run e2e tests
@@ -355,7 +346,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
