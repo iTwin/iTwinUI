@@ -120,16 +120,19 @@ type PopoverInternalProps = {
    * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
    * Booleans will not be allowed in this case.
    *
+   * When trying to add `listNavigation`, consider using `useListNavigationProps` to generate the necessary props.
+   *
    * @example
-   * <Popover
-   *   interactions={{
+   * const listNavigationProps = useListNavigationProps({ focusItemOnOpen: true });
+   * const popover = usePopover({
+   *   interactions: {
    *     click: false,
    *     focus: true,
    *     hover: { move: false },
-   *     listNavigation: { … },
-   *   }}
+   *     listNavigation: listNavigationProps,
+   *   }
    *   // …
-   * >…</Popover>
+   * });
    */
   interactions?: {
     click?: boolean | UseClickProps;
