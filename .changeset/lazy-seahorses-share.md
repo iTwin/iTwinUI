@@ -7,7 +7,7 @@
 ```diff
   <button
 -   class="iui-button iui-button-base iui-sidenav-button iui-expand"
-+   class="iui-button iui-button-base iui-field iui-sidenav-button iui-expand"
++   class="iui-button iui-button-base iui-sidenav-button iui-field iui-expand"
 +   data-iui-size="small"
   >
 ```

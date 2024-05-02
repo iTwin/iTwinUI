@@ -7,7 +7,7 @@
 ```diff
   <button
 -   class="iui-table-paginator-page-button iui-table-paginator-page-button-small"
-+   class="iui-button iui-button-base iui-field iui-table-paginator-page-button"
++   class="iui-table-paginator-page-button iui-button iui-button-base iui-field"
 +   data-iui-variant="borderless"
 +   data-iui-size="small"
   >
