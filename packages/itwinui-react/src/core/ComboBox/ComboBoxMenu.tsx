@@ -88,17 +88,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
                 ...style,
               } as React.CSSProperties)
         }
-        // {...menuProps.popover.getFloatingProps({
-        //   style: !enableVirtualization
-        //     ? style
-        //     : ({
-        //         // set as constant because we don't want it shifting when items are unmounted
-        //         maxInlineSize: 0,
-
-        //         ...style,
-        //       } as React.CSSProperties),
-        //   ...rest,
-        // })}
         {...rest}
       >
         {!enableVirtualization ? (

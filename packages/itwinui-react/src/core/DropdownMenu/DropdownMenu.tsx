@@ -108,11 +108,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  // const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
-  //   number | null
-  // >(null);
-  // const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
-
   const menuInteractions = useMenuInteractions();
 
   const nodeId = useFloatingNodeId();
@@ -133,10 +128,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     },
   });
 
-  // console.log('DROPDOWNMENU', menuProps.focusableNodes.current.length);
-
-  // const popoverRef = useMergedRefs(forwardedRef, menuProps.popover.refs.setFloating);
-
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
@@ -145,32 +136,10 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
         ref: mergeRefs(triggerRef, popover.refs.setReference),
       }))}
       <FloatingNode id={nodeId}>
-        {/* {popover.open && (
-          <Portal portal={portal}> */}
-        {/* <MenuItemContext.Provider
-              value={{
-                setCurrentFocusedNodeIndex,
-                focusableNodes,
-              }}
-            > */}
         <MenuContext.Provider value={{ popover, menuInteractions, portal }}>
           <Menu
             setFocus={false}
-            // {...popover.getFloatingProps({
-            //   role,
-            //   ...rest,
-            //   onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
-            //     if (e.defaultPrevented) {
-            //       return;
-            //     }
-            //     if (e.key === 'Tab') {
-            //       close();
-            //     }
-            //   }),
-            // })}
-            // ref={popoverRef}
             // TODO: Properly fix type errors for onKeyDown
-            // onKeyDown={props.onKeyDown}
             onKeyDown={mergeEventHandlers(
               props.onKeyDown as
                 | React.KeyboardEventHandler<HTMLDivElement>

@@ -227,19 +227,6 @@ export const Submenu = () => {
         >
           Item #6
         </MenuItem>,
-        <MenuItem
-          key={7}
-          subMenuItems={[
-            <MenuItem key={9} onClick={onClick(9, close)}>
-              Item #9
-            </MenuItem>,
-            <MenuItem key={10} onClick={onClick(10, close)}>
-              Item #10
-            </MenuItem>,
-          ]}
-        >
-          Item #6
-        </MenuItem>,
       ]}
     >
       Item #3

@@ -12,7 +12,6 @@ import {
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
-  // Portal,
   useMergedRefs,
   SvgCheckmark,
   useLatestRef,

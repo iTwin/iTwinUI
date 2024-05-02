@@ -14,7 +14,6 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu, MenuContext, useMenuInteractions } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-// import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   useFloatingNodeId,
@@ -29,14 +28,8 @@ const logWarningInDev = createWarningLogger();
  * Should be wrapped around the `Menu` containing the `MenuItem`s.
  */
 export const MenuItemContext = React.createContext<{
-  // setCurrentFocusedNodeIndex: React.Dispatch<
-  //   React.SetStateAction<number | null>
-  // >;
-  // focusableNodes: React.MutableRefObject<(HTMLElement | null)[]>;
   setHasFocusedNodeInSubmenu?: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
-  // setCurrentFocusedNodeIndex: () => {},
-  // focusableNodes: { current: [] },
   setHasFocusedNodeInSubmenu: undefined,
 });
 
@@ -135,9 +128,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  // const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
-  //   number | null
-  // >(null);
 
   const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
     React.useState(false);
@@ -191,32 +181,15 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
             enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
           },
           listNavigation: {
-            // listRef: focusableNodes,
-            // activeIndex: currentFocusedNodeIndex,
             activeIndex: menuInteractions.currentFocusedNodeIndex,
             onNavigate: menuInteractions.setCurrentFocusedNodeIndex,
             listRef: menuInteractions.focusableNodes,
             nested: subMenuItems.length > 0,
-            // onNavigate: (activeIndex) => {
-            //   console.log(
-            //     'onNavigate',
-            //     activeIndex,
-            //     // focusableNodes.current.length,
-            //     menuProps.focusableNodes.current.length,
-            //   );
-
-            //   setCurrentFocusedNodeIndex(0);
-            // },
             focusItemOnOpen: true,
           },
         }
       : {},
   });
-
-  // if ((children as any[]).length > 0) {
-  // if (children === 'Item #3') {
-  //   console.log('MENUITEM', menuProps.focusableNodes.current.length);
-  // }
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -319,31 +292,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         )}
       </ListItem>
 
-      {/* {subMenuItems.length > 0 && !disabled && popover.open && ( */}
-      <FloatingNode id={nodeId}>
-        {/* <Portal> */}
-        {/* <MenuItemContext.Provider
-          value={{
-            setCurrentFocusedNodeIndex: setCurrentFocusedNodeIndex,
-            focusableNodes: focusableNodes,
-            setHasFocusedNodeInSubmenu,
-          }}
-        > */}
-        <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
-          <MenuContext.Provider value={{ popover, menuInteractions }}>
-            <Menu
-              setFocus={false}
-              // ref={menuProps.popover.refs.setFloating}
-              id={submenuId}
-              // {...menuProps.popover.getFloatingProps({ id: submenuId })}
-            >
-              {subMenuItems}
-            </Menu>
-          </MenuContext.Provider>
-        </MenuItemContext.Provider>
-        {/* </Portal> */}
-      </FloatingNode>
-      {/* )} */}
+      {subMenuItems.length > 0 && !disabled && (
+        <FloatingNode id={nodeId}>
+          <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
+            <MenuContext.Provider value={{ popover, menuInteractions }}>
+              <Menu setFocus={false} id={submenuId}>
+                {subMenuItems}
+              </Menu>
+            </MenuContext.Provider>
+          </MenuItemContext.Provider>
+        </FloatingNode>
+      )}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

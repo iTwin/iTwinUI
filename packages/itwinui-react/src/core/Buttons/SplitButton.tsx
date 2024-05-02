@@ -9,7 +9,6 @@ import type { ButtonProps } from './Button.js';
 import { IconButton } from './IconButton.js';
 import {
   Box,
-  // Portal,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
   useId,
@@ -96,29 +95,12 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  // const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  // const listItemsRef = React.useRef<Array<HTMLElement | null>>([]);
-
   const popover = usePopover({
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement: menuPlacement,
     matchWidth: true,
   });
-
-  // const popover = usePopover({
-  //   visible,
-  //   onVisibleChange: (open) => (open ? setVisible(true) : close()),
-  //   placement: menuPlacement,
-  //   matchWidth: true,
-  //   interactions: {
-  //     listNavigation: {
-  //       activeIndex,
-  //       onNavigate: setActiveIndex,
-  //       listRef: listItemsRef,
-  //     },
-  //   },
-  // });
 
   const labelId = useId();
 
@@ -156,25 +138,18 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
-      {/* {popover.open && ( */}
-      {/* <Portal portal={portal}> */}
+
       <MenuContext.Provider value={{ popover, portal }}>
         <Menu
-        // menuProps={menuProps}
-        // {...popover.getFloatingProps({
-        //   onKeyDown: ({ key }) => {
-        //     if (key === 'Tab') {
-        //       close();
-        //     }
-        //   },
-        // })}
-        // ref={popover.refs.setFloating}
+          onKeyDown={({ key }) => {
+            if (key === 'Tab') {
+              close();
+            }
+          }}
         >
           {menuContent}
         </Menu>
       </MenuContext.Provider>
-      {/* </Portal> */}
-      {/* )} */}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;
