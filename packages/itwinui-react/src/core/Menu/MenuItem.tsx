@@ -293,9 +293,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         <FloatingNode id={nodeId}>
           <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
             <MenuContext.Provider value={{ popover, listNavigationProps }}>
-              <Menu setFocus={false} id={submenuId}>
-                {subMenuItems}
-              </Menu>
+              <Menu id={submenuId}>{subMenuItems}</Menu>
             </MenuContext.Provider>
           </MenuItemContext.Provider>
         </FloatingNode>

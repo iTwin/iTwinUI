@@ -75,7 +75,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
     <MenuContext.Provider value={{ popover }}>
       <Menu
         id={`${id}-list`}
-        setFocus={false}
         role='listbox'
         ref={refs}
         style={

@@ -134,7 +134,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
       <FloatingNode id={nodeId}>
         <MenuContext.Provider value={{ popover, portal, listNavigationProps }}>
           <Menu
-            setFocus={false}
             onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
               if (e.defaultPrevented) {
                 return;

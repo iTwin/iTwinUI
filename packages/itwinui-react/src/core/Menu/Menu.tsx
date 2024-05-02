@@ -25,22 +25,16 @@ type MenuProps = {
    * and selected item should have `aria-selected={true}`.
    */
   children: React.ReactNode;
-  /**
-   * If true, the first selected or enabled menu item will be focused automatically.
-   * @default true
-   */
-  setFocus?: boolean;
 };
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
  */
 export const Menu = React.forwardRef((props, ref) => {
-  const { setFocus = true, className, ...rest } = props;
+  const { className, ...rest } = props;
 
   const menuContext = React.useContext(MenuContext);
 
-  const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const menuRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(
     menuRef,
@@ -67,21 +61,6 @@ export const Menu = React.forwardRef((props, ref) => {
       menuContext.listNavigationProps.listRef.current = newFocusableNodes;
     }
   }, [menuContext, getFocusableNodes]);
-
-  React.useEffect(() => {
-    const items = getFocusableNodes();
-    if (focusedIndex != null) {
-      (items?.[focusedIndex] as HTMLElement)?.focus();
-      return;
-    }
-
-    const selectedIndex = items.findIndex(
-      (el) => el.getAttribute('aria-selected') === 'true',
-    );
-    if (setFocus) {
-      setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
-    }
-  }, [setFocus, focusedIndex, getFocusableNodes]);
 
   return (
     menuContext?.popover.open && (
