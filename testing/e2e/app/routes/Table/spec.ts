@@ -189,3 +189,161 @@ test.describe('Table resizing', () => {
   };
   // #endregion
 });
+
+test.describe('Table row selection', () => {
+  test('Should select single row', async ({ page }) => {
+    await page.goto('/Table?isSelectable=true');
+
+    const row1 = page.getByText('1Name1Description1');
+    const row1Checkbox = row1.getByRole('checkbox');
+
+    await row1Checkbox.click();
+    await expect(row1Checkbox).toBeChecked();
+
+    await row1Checkbox.click();
+    await expect(row1Checkbox).not.toBeChecked();
+  });
+
+  test('Should select all sub rows when parent row is selected', async ({
+    page,
+  }) => {
+    await page.goto('/Table?isSelectable=true&subRows=true');
+
+    const row2 = page.getByText('2Name2Description2');
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+    const row21 = page.getByText('2.1Name2.1Description2.1');
+    const row22 = page.getByText('2.2Name2.2Description2.2');
+
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+    const row22Checkbox = row22.getByRole('checkbox');
+
+    await row2Checkbox.click();
+    await expect(row2Checkbox).toBeChecked();
+    await expect(row21Checkbox).toBeChecked();
+    await expect(row22Checkbox).toBeChecked();
+
+    await row2Checkbox.click();
+    await expect(row2Checkbox).not.toBeChecked();
+    await expect(row21Checkbox).not.toBeChecked();
+    await expect(row22Checkbox).not.toBeChecked();
+  });
+
+  test('Should show indeterminate when sub rows are disabled', async ({
+    page,
+  }) => {
+    await page.goto('/Table?isSelectable=true&subRows=true');
+
+    const row3 = page.getByText('3Name3Description3');
+    const row3SubRowExpander = row3.getByLabel('Toggle sub row');
+    await row3SubRowExpander.click();
+    const row31 = page.getByText('3.1Name3.1Description3.1');
+
+    const row3Checkbox = row3.getByRole('checkbox');
+    const row31Checkbox = row31.getByRole('checkbox');
+
+    await row3Checkbox.click();
+    await expect(row3Checkbox).toHaveJSProperty('indeterminate', true);
+    await expect(row31Checkbox).toBeChecked();
+
+    await row3Checkbox.click();
+    await expect(row3Checkbox).not.toHaveJSProperty('indeterminate', true);
+    await expect(row31Checkbox).not.toBeChecked();
+  });
+
+  test('Should show indeterminate when some sub rows are filtered out', async ({
+    page,
+  }) => {
+    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+
+    await filter(page);
+    const row2 = page.getByText('2Name2Description2');
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+    const row21 = page.getByText('2.1Name2.1Description2.1');
+
+    //Testing without selected filtered sub rows(parent should flip between unchecked and indeterminate)
+
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+
+    await row2Checkbox.click();
+    await expect(row2Checkbox).toHaveJSProperty('indeterminate', true);
+    await expect(row21Checkbox).toBeChecked();
+
+    await row2Checkbox.click();
+    await expect(row2Checkbox).not.toHaveJSProperty('indeterminate', true);
+    await expect(row2Checkbox).not.toBeChecked();
+    await expect(row21Checkbox).not.toBeChecked();
+
+    await clearFilter(page);
+
+    await row2Checkbox.click();
+
+    await filter(page);
+
+    //Testing with selected filtered sub rows(parent row should flip between indeterminate and checked)
+
+    await row2Checkbox.click();
+    await expect(row2Checkbox).toHaveJSProperty('indeterminate', true);
+    await expect(row21Checkbox).not.toBeChecked();
+
+    await row2Checkbox.click();
+    await expect(row2Checkbox).not.toHaveJSProperty('indeterminate', true);
+    await expect(row2Checkbox).toBeChecked();
+    await expect(row21Checkbox).toBeChecked();
+  });
+
+  test('parent checkbox state should become indeterminate when some filtered sub rows are deselected', async ({
+    page,
+  }) => {
+    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+
+    //expand subRows
+    const row2 = page.getByText('2Name2Description2');
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+    const row21 = page.getByText('2.1Name2.1Description2.1');
+    const row22 = page.getByText('2.2Name2.2Description2.2');
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+    const row22Checkbox = row22.getByRole('checkbox');
+
+    //select second row
+    await row2Checkbox.click();
+
+    //filter
+    await filter(page);
+
+    //unselect sub row
+    await row21Checkbox.click();
+    await expect(row2Checkbox).toHaveJSProperty('indeterminate', true);
+    await expect(row21Checkbox).not.toBeChecked();
+
+    //clear filter
+    await clearFilter(page);
+
+    //evaluate checkbox state
+    await expect(row2Checkbox).toHaveJSProperty('indeterminate', true);
+    await expect(row21Checkbox).not.toBeChecked();
+    await expect(row22Checkbox).toBeChecked();
+  });
+
+  //#region Helpers for row selection tests
+  const filter = async (page: Page) => {
+    const filterButton = page.getByLabel('Filter');
+    await filterButton.click();
+    const filterInput = page.locator('input[value]');
+    await filterInput.fill('Name2.1');
+    await page.keyboard.press('Enter');
+  };
+
+  const clearFilter = async (page: Page) => {
+    const filterButton = page.getByLabel('Filter');
+    await filterButton.click();
+    const clearButton = page.getByText('Clear');
+    await clearButton.click();
+  };
+  //#endregion
+});

@@ -26,7 +26,7 @@ const useInstance = <T extends Record<string, unknown>>(
       selectedRowIds: Record<IdType<T>, boolean>,
     ) => {
       let isSomeSubRowsSelected = false;
-      row.subRows.forEach((subRow) => {
+      row.initialSubRows.forEach((subRow) => {
         setSelectionState(subRow, selectedRowIds);
         if (subRow.isSelected || subRow.isSomeSelected) {
           isSomeSubRowsSelected = true;
