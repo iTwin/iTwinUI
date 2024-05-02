@@ -8,10 +8,14 @@ import {
   useMergedRefs,
   getFocusableElements,
   Box,
-  mergeEventHandlers,
+  Portal,
 } from '../../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { MenuItemContext } from './MenuItem.js';
+import type {
+  PolymorphicForwardRefComponent,
+  PortalProps,
+} from '../../utils/index.js';
+import { usePopover } from '../Popover/Popover.js';
+import type { UseListNavigationProps } from '@floating-ui/react';
 
 type MenuProps = {
   /**
@@ -34,11 +38,15 @@ type MenuProps = {
 export const Menu = React.forwardRef((props, ref) => {
   const { setFocus = true, className, ...rest } = props;
 
+  const menuContext = React.useContext(MenuContext);
+
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const menuRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(menuRef, ref);
-
-  const menuItemContext = React.useContext(MenuItemContext);
+  const refs = useMergedRefs(
+    menuRef,
+    ref,
+    menuContext?.popover.refs.setFloating,
+  );
 
   const getFocusableNodes = React.useCallback(() => {
     const focusableItems = getFocusableElements(menuRef.current);
@@ -48,15 +56,17 @@ export const Menu = React.forwardRef((props, ref) => {
     ) as HTMLElement[];
   }, []);
 
+  // TODO: Try to remove this useEffect
   React.useEffect(() => {
-    const focusableNodes = getFocusableNodes();
+    const newFocusableNodes = getFocusableNodes();
+
     if (
-      menuItemContext != null &&
-      menuItemContext.focusableNodes.current !== focusableNodes
+      menuContext?.listNavigationProps?.listRef != null &&
+      menuContext.listNavigationProps.listRef.current !== newFocusableNodes
     ) {
-      menuItemContext.focusableNodes.current = focusableNodes;
+      menuContext.listNavigationProps.listRef.current = newFocusableNodes;
     }
-  }, [getFocusableNodes, menuItemContext]);
+  }, [menuContext, getFocusableNodes]);
 
   React.useEffect(() => {
     const items = getFocusableNodes();
@@ -73,43 +83,36 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   }, [setFocus, focusedIndex, getFocusableNodes]);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    const items = getFocusableNodes();
-    if (!items?.length) {
-      return;
-    }
-
-    const currentIndex = focusedIndex ?? 0;
-    switch (event.key) {
-      case 'ArrowDown': {
-        setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      }
-      case 'ArrowUp': {
-        setFocusedIndex(Math.max(currentIndex - 1, 0));
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
   return (
-    <Box
-      as='div'
-      className={cx('iui-menu', className)}
-      role='menu'
-      ref={refs}
-      {...rest}
-      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
-    />
+    menuContext?.popover.open && (
+      <Portal portal={menuContext.portal}>
+        <Box
+          as='div'
+          className={cx('iui-menu', className)}
+          ref={refs}
+          {...menuContext.popover.getFloatingProps({
+            role: 'menu',
+            ...rest,
+          })}
+          {...rest}
+        />
+      </Portal>
+    )
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Must wrap all uses of `Menu` with this context.
+ *
+ * @private
+ */
+export const MenuContext = React.createContext<
+  | {
+      popover: ReturnType<typeof usePopover>;
+      portal?: PortalProps['portal'];
+      listNavigationProps?: UseListNavigationProps;
+    }
+  | undefined
+>(undefined);
