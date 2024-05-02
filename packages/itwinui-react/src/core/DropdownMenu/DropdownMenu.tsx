@@ -43,7 +43,6 @@ export type DropdownMenuProps = {
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
 > &
-  React.ComponentPropsWithoutRef<'ul'> &
   Pick<PortalProps, 'portal'>;
 
 /**
@@ -136,24 +135,17 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
         <MenuContext.Provider value={{ popover, portal, listNavigationProps }}>
           <Menu
             setFocus={false}
-            // TODO: Properly fix type errors for onKeyDown
-            onKeyDown={mergeEventHandlers(
-              props.onKeyDown as
-                | React.KeyboardEventHandler<HTMLDivElement>
-                | undefined,
-              (e) => {
-                if (e.defaultPrevented) {
-                  return;
-                }
-                if (e.key === 'Tab') {
-                  close();
-                }
-              },
-            )}
+            onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
+              if (e.defaultPrevented) {
+                return;
+              }
+              if (e.key === 'Tab') {
+                close();
+              }
+            })}
             role={role}
             ref={forwardedRef}
-            // TODO: Properly fix type errors
-            {...(rest as React.ComponentPropsWithoutRef<'div'>)}
+            {...rest}
           >
             {menuContent}
           </Menu>
