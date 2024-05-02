@@ -1,5 +1,6 @@
-import { Table } from '@itwin/itwinui-react';
+import { Table, tableFilters } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
+import React from 'react';
 
 export default function Resizing() {
   const [searchParams] = useSearchParams();
@@ -8,6 +9,86 @@ export default function Resizing() {
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
+  const isSelectable = searchParams.get('isSelectable') === 'true';
+  const subRows = searchParams.get('subRows') === 'true';
+  const filter = searchParams.get('filter') === 'true';
+
+  const data = subRows
+    ? [
+        {
+          index: 1,
+          name: 'Name1',
+          description: 'Description1',
+          id: '111',
+        },
+        {
+          index: 2,
+          name: 'Name2',
+          description: 'Description2',
+          subRows: [
+            {
+              index: 2.1,
+              name: 'Name2.1',
+              description: 'Description2.1',
+              id: '223',
+            },
+            {
+              index: 2.2,
+              name: 'Name2.2',
+              description: 'Description2.2',
+              id: '224',
+            },
+          ],
+          id: '222',
+        },
+        {
+          index: 3,
+          name: 'Name3',
+          description: 'Description3',
+          subRows: [
+            {
+              index: 3.1,
+              name: 'Name3.1',
+              description: 'Description3.1',
+              id: '334',
+            },
+            {
+              index: 3.2,
+              name: 'Name3.2',
+              description: 'Description3.2',
+              id: '335',
+            },
+          ],
+          id: '333',
+        },
+      ]
+    : [
+        {
+          index: 1,
+          name: 'Name1',
+          description: 'Description1',
+          id: '111',
+        },
+        {
+          index: 2,
+          name: 'Name2',
+          description: 'Description2',
+          id: '222',
+        },
+        {
+          index: 3,
+          name: 'Name3',
+          description: 'Description3',
+          id: '333',
+        },
+      ];
+
+  const isRowDisabled = React.useCallback(
+    (rowData: Record<string, unknown>) => {
+      return rowData.name === 'Name3.2';
+    },
+    [],
+  );
 
   return (
     <>
@@ -26,6 +107,7 @@ export default function Resizing() {
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
             disableResizing,
+            Filter: filter ? tableFilters.TextFilter() : undefined,
           },
           {
             Header: 'Description',
@@ -41,30 +123,11 @@ export default function Resizing() {
         data={data}
         emptyTableContent='No data.'
         isResizable
+        isRowDisabled={isRowDisabled}
+        isSelectable={isSelectable}
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
       />
     </>
   );
 }
-
-const data = [
-  {
-    index: 1,
-    name: 'Name1',
-    description: 'Description1',
-    id: '111',
-  },
-  {
-    index: 2,
-    name: 'Name2',
-    description: 'Description2',
-    id: '222',
-  },
-  {
-    index: 3,
-    name: 'Name3',
-    description: 'Description3',
-    id: '333',
-  },
-];
