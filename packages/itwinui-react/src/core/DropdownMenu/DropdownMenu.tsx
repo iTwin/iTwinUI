@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
+  useMergedRefs,
+  Portal,
   cloneElementWithRef,
   useControlledState,
   mergeRefs,
@@ -13,13 +15,14 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { Menu, MenuContext } from '../Menu/Menu.js';
-import { usePopover, useListNavigationProps } from '../Popover/Popover.js';
+import { Menu } from '../Menu/Menu.js';
+import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   FloatingTree,
   useFloatingNodeId,
 } from '@floating-ui/react';
+import { MenuItemContext } from '../Menu/MenuItem.js';
 
 export type DropdownMenuProps = {
   /**
@@ -43,6 +46,7 @@ export type DropdownMenuProps = {
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
 > &
+  React.ComponentPropsWithoutRef<'ul'> &
   Pick<PortalProps, 'portal'>;
 
 /**
@@ -107,9 +111,10 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const listNavigationProps = useListNavigationProps({
-    focusItemOnOpen: true,
-  });
+  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+    number | null
+  >(null);
+  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
   const nodeId = useFloatingNodeId();
 
@@ -120,9 +125,16 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     placement,
     matchWidth,
     interactions: {
-      listNavigation: listNavigationProps,
+      listNavigation: {
+        activeIndex: currentFocusedNodeIndex,
+        onNavigate: setCurrentFocusedNodeIndex,
+        listRef: focusableNodes,
+        focusItemOnOpen: true,
+      },
     },
   });
+
+  const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
   return (
     <>
@@ -132,24 +144,35 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
         ref: mergeRefs(triggerRef, popover.refs.setReference),
       }))}
       <FloatingNode id={nodeId}>
-        <MenuContext.Provider value={{ popover, portal, listNavigationProps }}>
-          <Menu
-            setFocus={false}
-            onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
-              if (e.defaultPrevented) {
-                return;
-              }
-              if (e.key === 'Tab') {
-                close();
-              }
-            })}
-            role={role}
-            ref={forwardedRef}
-            {...rest}
-          >
-            {menuContent}
-          </Menu>
-        </MenuContext.Provider>
+        {popover.open && (
+          <Portal portal={portal}>
+            <MenuItemContext.Provider
+              value={{
+                setCurrentFocusedNodeIndex,
+                focusableNodes,
+              }}
+            >
+              <Menu
+                setFocus={false}
+                {...popover.getFloatingProps({
+                  role,
+                  ...rest,
+                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    if (e.defaultPrevented) {
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      close();
+                    }
+                  }),
+                })}
+                ref={popoverRef}
+              >
+                {menuContent}
+              </Menu>
+            </MenuItemContext.Provider>
+          </Portal>
+        )}
       </FloatingNode>
     </>
   );

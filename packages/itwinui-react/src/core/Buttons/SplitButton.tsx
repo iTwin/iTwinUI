@@ -9,6 +9,7 @@ import type { ButtonProps } from './Button.js';
 import { IconButton } from './IconButton.js';
 import {
   Box,
+  Portal,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
   useId,
@@ -19,7 +20,7 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
-import { Menu, MenuContext } from '../Menu/Menu.js';
+import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
@@ -138,18 +139,22 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
-
-      <MenuContext.Provider value={{ popover, portal }}>
-        <Menu
-          onKeyDown={({ key }) => {
-            if (key === 'Tab') {
-              close();
-            }
-          }}
-        >
-          {menuContent}
-        </Menu>
-      </MenuContext.Provider>
+      {popover.open && (
+        <Portal portal={portal}>
+          <Menu
+            {...popover.getFloatingProps({
+              onKeyDown: ({ key }) => {
+                if (key === 'Tab') {
+                  close();
+                }
+              },
+            })}
+            ref={popover.refs.setFloating}
+          >
+            {menuContent}
+          </Menu>
+        </Portal>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;

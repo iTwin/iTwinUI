@@ -12,6 +12,7 @@ import {
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
+  Portal,
   useMergedRefs,
   SvgCheckmark,
   useLatestRef,
@@ -473,20 +474,27 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         ) : null}
       </InputWithIcon>
 
-      <Menu
-        role='listbox'
-        className={menuClassName}
-        id={`${uid}-menu`}
-        key={`${uid}-menu`}
-        style={menuStyle}
-        onKeyDown={({ key }) => {
-          if (key === 'Tab') {
-            hide();
-          }
-        }}
-      >
-        {menuItems}
-      </Menu>
+      {popover.open && (
+        <Portal>
+          <Menu
+            role='listbox'
+            className={menuClassName}
+            id={`${uid}-menu`}
+            key={`${uid}-menu`}
+            {...popover.getFloatingProps({
+              style: menuStyle,
+              onKeyDown: ({ key }) => {
+                if (key === 'Tab') {
+                  hide();
+                }
+              },
+            })}
+            ref={popover.refs.setFloating}
+          >
+            {menuItems}
+          </Menu>
+        </Portal>
+      )}
     </>
   );
 }) as <T>(
