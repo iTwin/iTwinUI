@@ -15,6 +15,7 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
+import type { UseListNavigationProps } from '@floating-ui/react';
 
 type MenuProps = {
   /**
@@ -60,10 +61,10 @@ export const Menu = React.forwardRef((props, ref) => {
     const newFocusableNodes = getFocusableNodes();
 
     if (
-      menuContext?.menuInteractions?.focusableNodes != null &&
-      menuContext.menuInteractions.focusableNodes.current !== newFocusableNodes
+      menuContext?.listNavigationProps?.listRef != null &&
+      menuContext.listNavigationProps.listRef.current !== newFocusableNodes
     ) {
-      menuContext.menuInteractions.focusableNodes.current = newFocusableNodes;
+      menuContext.listNavigationProps.listRef.current = newFocusableNodes;
     }
   }, [menuContext, getFocusableNodes]);
 
@@ -111,21 +112,45 @@ export const MenuContext = React.createContext<
   | {
       popover: ReturnType<typeof usePopover>;
       portal?: PortalProps['portal'];
-      // TODO: Better name
-      menuInteractions?: ReturnType<typeof useMenuInteractions>;
+      listNavigationProps?: UseListNavigationProps;
     }
   | undefined
 >(undefined);
 
-export const useMenuInteractions = () => {
+/**
+ * @private
+ * Helper hook to generate the necessary props for the listNavigation interaction in `usePopover`.
+ *
+ * This automatically takes care of providing `listRef` and `activeIndex`.
+ * It also updates the `activeIndex` when the user navigates through the list using the `listNavigation` interaction.
+ *
+ * @param props Will be merged with the generated props.
+ * @returns The props to spread on the `usePopover.interactions.listNavigation`.
+ */
+export const useListNavigationProps = (
+  props?: Partial<Omit<UseListNavigationProps, 'activeIndex' | 'listRef'>>,
+): UseListNavigationProps => {
   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
     number | null
   >(null);
   const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    activeIndex: activeIndexProp,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    listRef: listRefProp,
+    onNavigate: onNavigateProp,
+    ...rest
+  } = (props ?? {}) as UseListNavigationProps;
+
   return {
-    currentFocusedNodeIndex,
-    setCurrentFocusedNodeIndex,
-    focusableNodes,
+    activeIndex: currentFocusedNodeIndex,
+    onNavigate: (index) => {
+      setCurrentFocusedNodeIndex(index);
+      onNavigateProp?.(index);
+    },
+    listRef: focusableNodes,
+    ...rest,
   };
 };

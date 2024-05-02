@@ -13,7 +13,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { Menu, MenuContext, useMenuInteractions } from '../Menu/Menu.js';
+import { Menu, MenuContext, useListNavigationProps } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
@@ -108,7 +108,9 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const menuInteractions = useMenuInteractions();
+  const listNavigationProps = useListNavigationProps({
+    focusItemOnOpen: true,
+  });
 
   const nodeId = useFloatingNodeId();
 
@@ -119,12 +121,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     placement,
     matchWidth,
     interactions: {
-      listNavigation: {
-        activeIndex: menuInteractions.currentFocusedNodeIndex,
-        onNavigate: menuInteractions.setCurrentFocusedNodeIndex,
-        listRef: menuInteractions.focusableNodes,
-        focusItemOnOpen: true,
-      },
+      listNavigation: listNavigationProps,
     },
   });
 
@@ -136,7 +133,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
         ref: mergeRefs(triggerRef, popover.refs.setReference),
       }))}
       <FloatingNode id={nodeId}>
-        <MenuContext.Provider value={{ popover, menuInteractions, portal }}>
+        <MenuContext.Provider value={{ popover, portal, listNavigationProps }}>
           <Menu
             setFocus={false}
             // TODO: Properly fix type errors for onKeyDown
@@ -161,9 +158,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
             {menuContent}
           </Menu>
         </MenuContext.Provider>
-        {/* </MenuItemContext.Provider> */}
-        {/* </Portal>
-        )} */}
       </FloatingNode>
     </>
   );

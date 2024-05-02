@@ -11,7 +11,7 @@ import {
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu, MenuContext, useMenuInteractions } from './Menu.js';
+import { Menu, MenuContext, useListNavigationProps } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import {
@@ -137,7 +137,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 
   const focusableNodeIndexInParentTree =
-    parentMenu?.menuInteractions?.focusableNodes.current.findIndex(
+    parentMenu?.listNavigationProps?.listRef.current.findIndex(
       (el) => el === menuItemRef.current,
     );
 
@@ -167,7 +167,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     () => undefined,
   );
 
-  const menuInteractions = useMenuInteractions();
+  const listNavigationProps = useListNavigationProps({
+    nested: subMenuItems.length > 0,
+    focusItemOnOpen: true,
+  });
 
   const popover = usePopover({
     nodeId,
@@ -180,13 +183,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           hover: {
             enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
           },
-          listNavigation: {
-            activeIndex: menuInteractions.currentFocusedNodeIndex,
-            onNavigate: menuInteractions.setCurrentFocusedNodeIndex,
-            listRef: menuInteractions.focusableNodes,
-            nested: subMenuItems.length > 0,
-            focusItemOnOpen: true,
-          },
+          listNavigation: listNavigationProps,
         }
       : {},
   });
@@ -217,7 +214,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       // Since we manually focus the MenuItem on hover, we need to manually update the active index for
       // Floating UI's keyboard navigation to work correctly.
       if (parentMenu != null && focusableNodeIndexInParentTree != null) {
-        parentMenu.menuInteractions?.setCurrentFocusedNodeIndex(
+        parentMenu.listNavigationProps?.onNavigate?.(
           focusableNodeIndexInParentTree,
         );
       }
@@ -295,7 +292,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {subMenuItems.length > 0 && !disabled && (
         <FloatingNode id={nodeId}>
           <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
-            <MenuContext.Provider value={{ popover, menuInteractions }}>
+            <MenuContext.Provider value={{ popover, listNavigationProps }}>
               <Menu setFocus={false} id={submenuId}>
                 {subMenuItems}
               </Menu>
