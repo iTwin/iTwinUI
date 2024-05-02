@@ -329,9 +329,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run build --filter=itwinui-react
-
-      - name: Force install Cypress binary
+      - name: Install Cypress binary if not found
         run: pnpx cypress install
 
       - name: Run a11y tests
