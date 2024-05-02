@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { DropdownMenu, type DropdownMenuProps } from './DropdownMenu.js';
+import { DropdownMenu } from './DropdownMenu.js';
 import { Button } from '../Buttons/Button.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 
@@ -18,7 +18,9 @@ function assertBaseElement(menu: HTMLElement, role = 'menu') {
   });
 }
 
-function renderComponent(props?: Partial<DropdownMenuProps>) {
+function renderComponent(
+  props?: Partial<React.ComponentPropsWithoutRef<typeof DropdownMenu>>,
+) {
   return render(
     <DropdownMenu
       menuItems={(close) => [
