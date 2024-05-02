@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { itwinuiReactAliases } from 'helpers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,4 +9,7 @@ export default defineConfig({
     port: 1701,
   },
   base: './',
+  resolve: {
+    alias: itwinuiReactAliases,
+  },
 });

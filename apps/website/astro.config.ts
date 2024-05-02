@@ -13,6 +13,7 @@ import sitemap from '@astrojs/sitemap';
 import AutoImport from 'astro-auto-import';
 import astroExpressiveCode from 'astro-expressive-code';
 import * as lightningCss from 'lightningcss';
+import { itwinuiReactAliases } from 'helpers';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -58,6 +59,7 @@ export default defineConfig({
     },
     build: { cssMinify: false, assetsInlineLimit: 500 },
     plugins: [lightningCssVite()],
+    resolve: { alias: itwinuiReactAliases },
   },
   devToolbar: {
     enabled: false,
