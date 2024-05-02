@@ -50,7 +50,6 @@ export const Menu = React.forwardRef((props, ref) => {
     ) as HTMLElement[];
   }, []);
 
-  // TODO: Try to remove this useEffect
   React.useEffect(() => {
     const newFocusableNodes = getFocusableNodes();
 
