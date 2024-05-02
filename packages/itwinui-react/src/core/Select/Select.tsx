@@ -421,6 +421,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           size={size}
           status={status}
           aria-disabled={disabled ? 'true' : undefined}
+          data-iui-disabled={disabled ? 'true' : undefined}
           aria-autocomplete='none'
           aria-expanded={isOpen}
           aria-haspopup='listbox'
@@ -436,7 +437,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             {
               'iui-placeholder':
                 (!selectedItems || selectedItems.length === 0) && !!placeholder,
-              'iui-disabled': disabled,
             },
             triggerProps?.className,
           )}
@@ -654,7 +654,7 @@ const SelectButton = React.forwardRef((props, forwardedRef) => {
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       {...rest}
       ref={forwardedRef}
-      className={cx('iui-select-button', props.className)}
+      className={cx('iui-select-button', 'iui-field', props.className)}
     />
   );
 }) as PolymorphicForwardRefComponent<

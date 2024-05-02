@@ -36,6 +36,8 @@
   .iui-input-grid[data-iui-status='#{$status}'] :where(.iui-input, .iui-select-button),
   :is(.iui-input, .iui-input-with-icon > .iui-select-button):where([data-iui-status='#{$status}']) {
     @include iui-text-selection($status);
+    --_iui-field-color-focus-outline: var(--iui-color-text-#{$status});
+    --_iui-field-color-border-hover: var(--iui-color-border-#{$status});
 
     // #region Bottom padding to vertically center text when the status stripe is present.
     // The bottom border is 2px and the top border is 1px, so we need to subtract 1px from the bottom padding
@@ -51,16 +53,6 @@
     // #endregion
 
     border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-
-    &:focus {
-      outline: 2px solid var(--iui-color-text-#{$status});
-      outline-offset: -2px;
-    }
-
-    &:hover {
-      --_iui-input-border-color: var(--iui-color-border-#{$status});
-      --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
-    }
   }
 }
 
@@ -139,6 +131,8 @@
 
   &:hover {
     --_iui-input-border-color: var(--iui-color-border-foreground-hover);
+    --_iui-input-background-color: var(--iui-color-background-hover);
+    --_iui-input-text-color: var(--iui-color-text-hover);
   }
 
   &:has(input:focus-visible),
@@ -170,6 +164,7 @@
     background: transparent;
     border: none;
     font: inherit;
+    color: inherit;
     z-index: 2;
     min-inline-size: var(--_iui-input-min-height);
     min-block-size: var(--_iui-input-min-height);
@@ -193,6 +188,10 @@
 
     &:focus {
       outline: none;
+    }
+
+    &:disabled {
+      color: var(--iui-color-text-disabled);
     }
   }
 

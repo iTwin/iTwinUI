@@ -34,31 +34,26 @@
 
 .iui-breadcrumbs-content {
   padding-inline: var(--iui-size-xs);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   line-height: var(--iui-component-height);
 
-  &:where(a) {
-    &:focus {
-      outline-offset: -1px;
-    }
+  &,
+  > * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:where(a):focus {
+    outline-offset: -1px;
   }
 
   &:where(button) {
     @include base.iui-button;
     @include borderless.iui-button-borderless;
-    border: none;
     color: var(--iui-color-text-accent);
 
     &[aria-current] {
       color: var(--iui-color-text);
-    }
-
-    > * {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
   }
 }
