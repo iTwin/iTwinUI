@@ -11,3 +11,10 @@
 +   data-iui-variant="borderless"
   >
 ```
+
+Similarly, `.iui-select-tag-button-icon` also requires `.iui-button-icon`.
+
+```diff
+-  <span class="iui-select-tag-button-icon">
++  <span class="iui-select-tag-button-icon iui-button-icon">
+```
