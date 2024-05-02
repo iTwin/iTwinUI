@@ -1,5 +1,28 @@
 # Changelog
 
+## 3.10.0
+
+### Minor Changes
+
+- [#2010](https://github.com/iTwin/iTwinUI/pull/2010): ToggleSwitch: Added new `labelProps` to allow for customization of label element.
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): Clicking a `MenuItem` with `submenuItems` now toggles the submenu visibility.
+  - If both `submenuItems` and `onClick` props are passed, then clicking the `MenuItem` will toggle the submenu visibility but also _still_ call the `onClick`. However, this behavior can lead to a confusing UX and is not recommended, so a warning will be shown.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): Aggregated a subset of CSS styles across some field components: `Button`, `Input`, `Textarea`, and `Select`, in order to reduce the CSS size and improve visual consistency. Some resulting changes:
+  - `Input`, `Textarea`, and `Select` have a similar hover state as `Button`.
+  - `Input`, `Textarea`, and `Select` now show their value as greyed out when disabled.
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): `DropdownMenu`'s keyboard navigation, hover triggers, and overall behavior has been improved.
+- [#2011](https://github.com/iTwin/iTwinUI/pull/2011): Added dependency on `jotai`.
+
+### Patch Changes
+
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): Disabled `MenuItem`s no longer show their submenu.
+- [#2013](https://github.com/iTwin/iTwinUI/pull/2013): Fixed issue with `Table` row selection not correctly deselecting all sub rows when the row has disabled sub rows or when some rows are filtered out.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): The small sized `TablePaginator`'s buttons are now squares instead of rectangles. This makes it consistent with the shape of the regular sized `TablePaginator` buttons.
+- [#2011](https://github.com/iTwin/iTwinUI/pull/2011): When `ThemeProvider` is portaled into popup windows, it will now automatically create a portal container in the correct document, avoiding the need to manually specify `portalContainer`.
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): Fixed a bug in `DropdownMenu` where the submenus would not close in some circumstances, despite calling `close()`.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): The hover styling of `Breadcrumbs.Item` has been made more consistent across buttons and anchors.
+- [#2009](https://github.com/iTwin/iTwinUI/pull/2009): Fixed an issue where `Popover` wasn't respecting the `ThemeProvider`'s `portalContainer`.
+
 ## 3.9.1
 
 ### Patch Changes
