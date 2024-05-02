@@ -221,7 +221,7 @@ it('should render selected node', () => {
   expect(onSelected).toHaveBeenCalledWith('testId', false);
 });
 
-it('should checkboxProps correctly', () => {
+it('should render checkbox with  checkboxProps correctly', () => {
   const { container } = renderComponent({
     props: {
       checkbox: <Checkbox variant='eyeball' className='testClass' />,
@@ -235,15 +235,15 @@ it('should checkboxProps correctly', () => {
   const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
   expect(treeNode).toBeTruthy();
 
-  const checkBox = container.querySelector(
-    'custom-checkbox-class',
+  const checkbox = container.querySelector(
+    '.custom-checkbox-class',
   ) as HTMLElement;
 
-  expect(checkBox).toBeTruthy();
-  expect(checkBox?.style.color).toBe('green');
+  expect(checkbox).toBeTruthy();
+  expect(checkbox?.style.color).toBe('green');
 });
 
-it('should iconProps correctly', () => {
+it('should render icon with iconProps correctly', () => {
   const { container } = renderComponent({
     props: {
       icon: <SvgPlaceholder />,
@@ -257,13 +257,13 @@ it('should iconProps correctly', () => {
   const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
   expect(treeNode).toBeTruthy();
 
-  const icon = container.querySelector('custom-icon-class') as HTMLElement;
+  const icon = container.querySelector('.custom-icon-class') as HTMLElement;
   expect(icon).toBeTruthy();
 
   expect(icon?.style.color).toBe('orange');
 });
 
-it('should sublabelProps correctly', () => {
+it('should render sublabel with sublabelProps correctly', () => {
   const { container } = renderComponent({
     props: {
       sublabelProps: {
@@ -284,7 +284,7 @@ it('should sublabelProps correctly', () => {
   expect(sublabel?.style.color).toBe('red');
 });
 
-it('should labelProps correctly', () => {
+it('should render label with labelProps correctly', () => {
   const { container } = renderComponent({
     props: {
       labelProps: {
