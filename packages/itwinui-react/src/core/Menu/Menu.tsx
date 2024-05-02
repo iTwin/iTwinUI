@@ -29,6 +29,14 @@ type MenuProps = {
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
+ *
+ * This *must* be wrapped in a `MenuContext`.
+ *
+ * This handles the portaling, conditional rendering based on the popover's open state,
+ * spreading the `popover.getFloatingProps`, and setting the ref to the floating element (all other refs need to be
+ * handled by the uses of `Menu`).
+ *
+ * It can also handle keyboard/list navigation if `listNavigationProps` is passed in `MenuContext`.
  */
 export const Menu = React.forwardRef((props, ref) => {
   const { className, ...rest } = props;
