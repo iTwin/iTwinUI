@@ -279,6 +279,50 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
 // ----------------------------------------------------------------------------
 
+/**
+ * @private
+ * Helper hook to generate the necessary props for the listNavigation interaction in `usePopover`.
+ *
+ * This automatically takes care of providing `listRef` and `activeIndex`.
+ * It also updates the `activeIndex` when the user navigates through the list using the `listNavigation` interaction.
+ *
+ * @param props Will be merged with the generated props.
+ * @returns The props to spread on the `usePopover.interactions.listNavigation`.
+ *
+ * @example
+ * const listNavigationProps = useListNavigationProps({ focusItemOnOpen: true });
+ * const popover = usePopover({ interactions: { listNavigation: listNavigationProps })
+ */
+export const useListNavigationProps = (
+  props?: Partial<Omit<UseListNavigationProps, 'activeIndex' | 'listRef'>>,
+): UseListNavigationProps => {
+  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+    number | null
+  >(null);
+  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    activeIndex: activeIndexProp,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    listRef: listRefProp,
+    onNavigate: onNavigateProp,
+    ...rest
+  } = (props ?? {}) as UseListNavigationProps;
+
+  return {
+    activeIndex: currentFocusedNodeIndex,
+    onNavigate: (index) => {
+      setCurrentFocusedNodeIndex(index);
+      onNavigateProp?.(index);
+    },
+    listRef: focusableNodes,
+    ...rest,
+  };
+};
+
+// ----------------------------------------------------------------------------
+
 type PopoverPublicProps = {
   /**
    * Content displayed inside the popover.

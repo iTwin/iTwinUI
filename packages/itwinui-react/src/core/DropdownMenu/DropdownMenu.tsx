@@ -13,8 +13,8 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { Menu, MenuContext, useListNavigationProps } from '../Menu/Menu.js';
-import { usePopover } from '../Popover/Popover.js';
+import { Menu, MenuContext } from '../Menu/Menu.js';
+import { usePopover, useListNavigationProps } from '../Popover/Popover.js';
 import {
   FloatingNode,
   FloatingTree,

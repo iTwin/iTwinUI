@@ -11,7 +11,7 @@ import {
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu, MenuContext, useListNavigationProps } from './Menu.js';
+import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import {
@@ -20,7 +20,7 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
-import { usePopover } from '../Popover/Popover.js';
+import { usePopover, useListNavigationProps } from '../Popover/Popover.js';
 
 const logWarningInDev = createWarningLogger();
 
