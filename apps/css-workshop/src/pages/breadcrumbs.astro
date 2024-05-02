@@ -38,7 +38,9 @@ import IconButton_ from '../components/IconButton.astro';
       </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
-          <a class='iui-anchor iui-breadcrumbs-content' href='#'> Root</a>
+          <Button_ as='a' class='iui-anchor iui-breadcrumbs-content' variant='borderless' href='#'>
+            Root
+          </Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
@@ -50,15 +52,29 @@ import IconButton_ from '../components/IconButton.astro';
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <a class='iui-anchor iui-breadcrumbs-content' href='#' id='test-1'> Nested</a>
+          <Button_
+            as='a'
+            class='iui-anchor iui-breadcrumbs-content'
+            variant='borderless'
+            href='#'
+            id='test-1'
+          >
+            Nested
+          </Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <a class='iui-anchor iui-breadcrumbs-content' href='#' id='test-2'>
+          <Button_
+            as='a'
+            class='iui-anchor iui-breadcrumbs-content'
+            variant='borderless'
+            href='#'
+            id='test-2'
+          >
             Double nested folder with truncation
-          </a>
+          </Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
@@ -79,9 +95,7 @@ import IconButton_ from '../components/IconButton.astro';
       </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content'>
-            <span> Root</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless'>Root</Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
@@ -93,25 +107,23 @@ import IconButton_ from '../components/IconButton.astro';
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content' id='test-3'>
-            <span> Nested</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless' id='test-3'>Nested</Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content' id='test-4'>
-            <span> Double nested folder with truncation</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless' id='test-4'>
+            Double nested folder with truncation
+          </Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content' aria-current='page'>
-            <span> You are here</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless' aria-current='page'>
+            You are here
+          </Button_>
         </li>
       </ol>
     </nav>
@@ -126,41 +138,37 @@ import IconButton_ from '../components/IconButton.astro';
       </Button_>
       <ol class='iui-breadcrumbs-list'>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content'>
-            <span>Root</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless'>Root</Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content' id='overflow-hover'>
-            <svg-more class='iui-button-icon' aria-hidden='true'></svg-more>
-          </button>
+          <IconButton_ class='iui-breadcrumbs-content' variant='borderless' id='overflow-hover'>
+            <svg-more></svg-more>
+          </IconButton_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content'>
-            <span> Nested</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless'>Nested</Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content' id='overflow-focus'>
-            <span>Double nested folder with truncation</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless' id='overflow-focus'>
+            Double nested folder with truncation
+          </Button_>
         </li>
         <li class='iui-breadcrumbs-separator' aria-hidden='true'>
           <svg-chevron-right aria-hidden='true'></svg-chevron-right>
         </li>
         <li class='iui-breadcrumbs-item'>
-          <button class='iui-breadcrumbs-content' aria-current='page'>
-            <span>You are here</span>
-          </button>
+          <Button_ class='iui-breadcrumbs-content' variant='borderless' aria-current='page'>
+            You are here
+          </Button_>
         </li>
       </ol>
     </nav>
@@ -174,14 +182,16 @@ import IconButton_ from '../components/IconButton.astro';
         <svg-caret-down-small aria-hidden='true' slot='endo-icon'></svg-caret-down-small>
       </Button_>
       <label class='iui-input-grid iui-inline-label iui-inline-icon'>
-        <input
-          value='C:/Root/Lorem/Ipsum/Nested/Double nested folder with truncation/You are here/'
-          class='iui-input'
-          spellcheck='false'
-        />
-        <IconButton_ variant='borderless' aria-label='Close'>
-          <svg-close-small></svg-close-small>
-        </IconButton_>
+        <div class='iui-input-flex-container'>
+          <input
+            value='C:/Root/Lorem/Ipsum/Nested/Double nested folder with truncation/You are here/'
+            class='iui-input iui-field'
+            spellcheck='false'
+          />
+          <IconButton_ variant='borderless' aria-label='Close'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
+        </div>
       </label>
     </nav>
   </section>
