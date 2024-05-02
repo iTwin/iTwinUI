@@ -167,14 +167,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     () => undefined,
   );
 
-  const menuRef = React.useRef<HTMLDivElement>(null);
-
   const listNavigationProps = useListNavigationProps({
-    parentContainerRef: menuRef,
-    listNavigationExtraProps: {
-      nested: subMenuItems.length > 0,
-      focusItemOnOpen: true,
-    },
+    nested: subMenuItems.length > 0,
+    focusItemOnOpen: true,
   });
 
   const popover = usePopover({
@@ -298,7 +293,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         <FloatingNode id={nodeId}>
           <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
             <MenuContext.Provider value={{ popover, listNavigationProps }}>
-              <Menu ref={menuRef} setFocus={false} id={submenuId}>
+              <Menu setFocus={false} id={submenuId}>
                 {subMenuItems}
               </Menu>
             </MenuContext.Provider>

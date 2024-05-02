@@ -42,7 +42,6 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
-  getFocusableElements,
   useControlledState,
   useId,
   useLayoutEffect,
@@ -297,17 +296,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
  * const listNavigationProps = useListNavigationProps({ focusItemOnOpen: true });
  * const popover = usePopover({ interactions: { listNavigation: listNavigationProps })
  */
-export const useListNavigationProps = ({
-  parentContainerRef,
-  listNavigationExtraProps,
-}: {
-  parentContainerRef: React.RefObject<HTMLElement>;
-  listNavigationExtraProps?: Partial<
-    Omit<UseListNavigationProps, 'activeIndex' | 'listRef'>
-  >;
-}): UseListNavigationProps => {
-  const [activeIndex, onNavigate] = React.useState<number | null>(null);
-  const listRef = React.useRef<Array<HTMLElement | null>>([]);
+export const useListNavigationProps = (
+  props?: Partial<Omit<UseListNavigationProps, 'activeIndex' | 'listRef'>>,
+): UseListNavigationProps => {
+  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+    number | null
+  >(null);
+  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -316,36 +311,15 @@ export const useListNavigationProps = ({
     listRef: listRefProp,
     onNavigate: onNavigateProp,
     ...rest
-  } = (listNavigationExtraProps ?? {}) as UseListNavigationProps;
-
-  const getFocusableNodes = React.useCallback(() => {
-    console.log('parentContainerRef.current', parentContainerRef.current);
-
-    const focusableItems = getFocusableElements(parentContainerRef.current);
-    // Filter out focusable elements that are inside each item, e.g. checkbox, anchor
-    return focusableItems.filter(
-      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-    ) as HTMLElement[];
-  }, [parentContainerRef, parentContainerRef.current]);
-
-  // TODO: Try to remove this useEffect
-  React.useEffect(() => {
-    const newFocusableNodes = getFocusableNodes();
-
-    if (listRef.current !== newFocusableNodes) {
-      listRef.current = newFocusableNodes;
-    }
-
-    console.log('listRef.current', listRef.current);
-  }, [getFocusableNodes]);
+  } = (props ?? {}) as UseListNavigationProps;
 
   return {
-    activeIndex,
+    activeIndex: currentFocusedNodeIndex,
     onNavigate: (index) => {
-      onNavigate(index);
+      setCurrentFocusedNodeIndex(index);
       onNavigateProp?.(index);
     },
-    listRef,
+    listRef: focusableNodes,
     ...rest,
   };
 };

@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergedRefs,
-  // getFocusableElements,
+  getFocusableElements,
   Box,
   Portal,
 } from '../../utils/index.js';
@@ -40,7 +40,7 @@ export const Menu = React.forwardRef((props, ref) => {
 
   const menuContext = React.useContext(MenuContext);
 
-  // const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
+  const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const menuRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(
     menuRef,
@@ -48,40 +48,40 @@ export const Menu = React.forwardRef((props, ref) => {
     menuContext?.popover.refs.setFloating,
   );
 
-  // const getFocusableNodes = React.useCallback(() => {
-  //   const focusableItems = getFocusableElements(menuRef.current);
-  //   // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-  //   return focusableItems.filter(
-  //     (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-  //   ) as HTMLElement[];
-  // }, []);
+  const getFocusableNodes = React.useCallback(() => {
+    const focusableItems = getFocusableElements(menuRef.current);
+    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+    return focusableItems.filter(
+      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
+    ) as HTMLElement[];
+  }, []);
 
-  // // TODO: Try to remove this useEffect
-  // React.useEffect(() => {
-  //   const newFocusableNodes = getFocusableNodes();
+  // TODO: Try to remove this useEffect
+  React.useEffect(() => {
+    const newFocusableNodes = getFocusableNodes();
 
-  //   if (
-  //     menuContext?.listNavigationProps?.listRef != null &&
-  //     menuContext.listNavigationProps.listRef.current !== newFocusableNodes
-  //   ) {
-  //     menuContext.listNavigationProps.listRef.current = newFocusableNodes;
-  //   }
-  // }, [menuContext, getFocusableNodes]);
+    if (
+      menuContext?.listNavigationProps?.listRef != null &&
+      menuContext.listNavigationProps.listRef.current !== newFocusableNodes
+    ) {
+      menuContext.listNavigationProps.listRef.current = newFocusableNodes;
+    }
+  }, [menuContext, getFocusableNodes]);
 
-  // React.useEffect(() => {
-  //   const items = getFocusableNodes();
-  //   if (focusedIndex != null) {
-  //     (items?.[focusedIndex] as HTMLElement)?.focus();
-  //     return;
-  //   }
+  React.useEffect(() => {
+    const items = getFocusableNodes();
+    if (focusedIndex != null) {
+      (items?.[focusedIndex] as HTMLElement)?.focus();
+      return;
+    }
 
-  //   const selectedIndex = items.findIndex(
-  //     (el) => el.getAttribute('aria-selected') === 'true',
-  //   );
-  //   if (setFocus) {
-  //     setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
-  //   }
-  // }, [setFocus, focusedIndex, getFocusableNodes]);
+    const selectedIndex = items.findIndex(
+      (el) => el.getAttribute('aria-selected') === 'true',
+    );
+    if (setFocus) {
+      setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
+    }
+  }, [setFocus, focusedIndex, getFocusableNodes]);
 
   return (
     menuContext?.popover.open && (
@@ -89,8 +89,8 @@ export const Menu = React.forwardRef((props, ref) => {
         <Box
           as='div'
           className={cx('iui-menu', className)}
+          ref={refs}
           {...menuContext.popover.getFloatingProps({
-            ref: refs,
             role: 'menu',
             ...rest,
           })}
