@@ -29,7 +29,7 @@ const {
     { 'iui-button-idea': idea },
     className,
   ]}
-  type='button'
+  type={Element === 'button' ? 'button' : undefined}
   data-iui-size={size}
   data-iui-variant={idea ? 'high-visibility' : variant}
   data-iui-active={isActive ? 'true' : undefined}
