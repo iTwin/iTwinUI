@@ -74,7 +74,7 @@ export const Button = React.forwardRef((props, ref) => {
   return (
     <ButtonBase
       ref={ref}
-      className={cx('iui-button', className)}
+      className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
       {...rest}
