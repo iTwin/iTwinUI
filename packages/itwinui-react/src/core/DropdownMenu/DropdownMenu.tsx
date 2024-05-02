@@ -107,8 +107,14 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
+  const menuRef = React.useRef<HTMLElement>(null);
+  const mergedRefs = mergeRefs(forwardedRef, menuRef);
+
   const listNavigationProps = useListNavigationProps({
-    focusItemOnOpen: true,
+    parentContainerRef: menuRef,
+    listNavigationExtraProps: {
+      focusItemOnOpen: true,
+    },
   });
 
   const nodeId = useFloatingNodeId();
@@ -144,7 +150,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
               }
             })}
             role={role}
-            ref={forwardedRef}
+            ref={mergedRefs}
             {...rest}
           >
             {menuContent}
