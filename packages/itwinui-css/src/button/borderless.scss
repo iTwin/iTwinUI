@@ -3,31 +3,6 @@
 @use 'base';
 
 @mixin iui-button-borderless {
-  --_iui-button-text-color: var(--iui-color-text);
-  --_iui-button-background-color: transparent;
-  --_iui-button-border-color: transparent;
-  --_iui-button-icon-fill: var(--iui-color-icon);
-  @include base.iui-button-size(medium, borderless);
-
-  &:where(:hover, :active) {
-    --_iui-button-text-color: var(--iui-color-text-hover);
-    --_iui-button-background-color: var(--iui-color-background-transparent-hover);
-    --_iui-button-icon-fill: var(--iui-color-icon-hover);
-  }
-
-  &:where(:focus) {
-    outline-offset: -1px;
-    outline-width: 1px;
-  }
-
-  &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
-    --_iui-button-text-color: var(--iui-color-text-disabled);
-    --_iui-button-background-color: transparent;
-    --_iui-button-border-color: transparent;
-    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
-  }
-
-  // #region Visual adjustments to help align based on the "visible" edge of the button content.
   &[data-iui-shift='left'] {
     margin-inline-start: calc(-1 * var(--_iui-button-padding-inline));
   }
@@ -35,9 +10,9 @@
   &[data-iui-shift='right'] {
     margin-inline-end: calc(-1 * var(--_iui-button-padding-inline));
   }
-  // #endregion
 }
 
 @mixin iui-button-borderless-active {
-  --_iui-button-background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
+  --_iui-field-color-background: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
+  --_iui-field-color-background-hover: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
 }

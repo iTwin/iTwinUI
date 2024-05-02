@@ -2,8 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../surface/base' as surface;
 @use '../mixins';
-@use '../button/base' as *;
-@use '../button/borderless';
 
 $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
@@ -345,8 +343,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 /// @arg $variant Can be either: type-indicator, quick-action
 @mixin iui-tile-thumbnail-button($variant) {
-  @include borderless.iui-button-borderless;
-  @include iui-button-size(small, borderless);
   z-index: 2;
   border-radius: 50%;
   margin-block-start: calc(var(--iui-size-s) * 0.5);
@@ -355,11 +351,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   @if $variant == quick-action {
     justify-self: end;
-  }
-
-  &[data-iui-active='true'] {
-    --_iui-button-text-color: var(--iui-color-text-accent);
-    --_iui-button-background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
   }
 
   .iui-tile-thumbnail-picture ~ & {

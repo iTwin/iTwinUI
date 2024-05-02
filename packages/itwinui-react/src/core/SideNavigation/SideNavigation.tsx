@@ -116,6 +116,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
       label='Toggle icon labels'
       aria-expanded={_isExpanded}
       className='iui-sidenav-button iui-expand'
+      size='small'
       onClick={React.useCallback(() => {
         _setIsExpanded((expanded) => !expanded);
         onExpanderClick?.();
