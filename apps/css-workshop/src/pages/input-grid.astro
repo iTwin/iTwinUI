@@ -44,7 +44,7 @@ import Layout from './_layout.astro';
   <section id='demo-default'>
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-01'>This is label</label>
-      <input class='iui-input' id='input-01' placeholder='Input...' />
+      <input class='iui-input iui-field' id='input-01' placeholder='Input...' />
       <div class='iui-status-message'>
         <div>This is message</div>
       </div>
@@ -52,15 +52,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-02'>This is label</label>
-      <input class='iui-input' id='input-02' placeholder='Input...' value='With value' />
-      <div class='iui-status-message'>
-        <div>This is message</div>
-      </div>
-    </div>
-
-    <div class='iui-input-grid'>
-      <label class='iui-input-label' data-iui-disabled='true' for='input-03'>This is label</label>
-      <input class='iui-input' disabled id='input-03' placeholder='Disabled input...' />
+      <input class='iui-input iui-field' id='input-02' placeholder='Input...' value='With value' />
       <div class='iui-status-message'>
         <div>This is message</div>
       </div>
@@ -69,7 +61,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid'>
       <label class='iui-input-label' data-iui-disabled='true' for='input-04'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         disabled
         id='input-04'
         placeholder='Input...'
@@ -82,7 +74,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid'>
       <label class='iui-input-label iui-required' for='input-05'>This is label</label>
-      <input class='iui-input' required id='input-05' placeholder='Required input...' />
+      <input class='iui-input iui-field' required id='input-05' placeholder='Required input...' />
       <div class='iui-status-message'>
         <div>This is message</div>
       </div>
@@ -91,7 +83,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-06'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         id='input-06'
         placeholder='Positive input...'
         data-iui-status='positive'
@@ -104,7 +96,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-07'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         id='input-07'
         placeholder='Warning input...'
         data-iui-status='warning'
@@ -117,7 +109,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-08'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         id='input-08'
         placeholder='Negative input...'
         data-iui-status='negative'
@@ -134,7 +126,7 @@ import Layout from './_layout.astro';
   <section id='demo-inline'>
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-inline-01'>This is label</label>
-      <input class='iui-input' id='input-inline-01' placeholder='Input...' />
+      <input class='iui-input iui-field' id='input-inline-01' placeholder='Input...' />
       <div class='iui-status-message'>
         <div>This is message</div>
       </div>
@@ -142,17 +134,12 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-inline-02'>This is label</label>
-      <input class='iui-input' id='input-inline-02' placeholder='Input...' value='With value' />
-      <div class='iui-status-message'>
-        <div>This is message</div>
-      </div>
-    </div>
-
-    <div class='iui-input-grid' data-iui-label-placement='inline'>
-      <label class='iui-input-label' data-iui-disabled='true' for='input-inline-03'
-        >This is label</label
-      >
-      <input class='iui-input' disabled id='input-inline-03' placeholder='Disabled input...' />
+      <input
+        class='iui-input iui-field'
+        id='input-inline-02'
+        placeholder='Input...'
+        value='With value'
+      />
       <div class='iui-status-message'>
         <div>This is message</div>
       </div>
@@ -163,7 +150,7 @@ import Layout from './_layout.astro';
         >This is label</label
       >
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         disabled
         id='input-inline-04'
         placeholder='Input...'
@@ -176,7 +163,12 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label iui-required' for='input-inline-05'>This is label</label>
-      <input class='iui-input' required id='input-inline-05' placeholder='Required input...' />
+      <input
+        class='iui-input iui-field'
+        required
+        id='input-inline-05'
+        placeholder='Required input...'
+      />
       <div class='iui-status-message'>
         <div>This is message</div>
       </div>
@@ -185,7 +177,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-inline-06'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         id='input-inline-06'
         placeholder='Positive input...'
         data-iui-status='positive'
@@ -198,7 +190,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-inline-07'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         id='input-inline-07'
         placeholder='Warning input...'
         data-iui-status='warning'
@@ -211,7 +203,7 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-inline-08'>This is label</label>
       <input
-        class='iui-input'
+        class='iui-input iui-field'
         id='input-inline-08'
         placeholder='Negative input...'
         data-iui-status='negative'

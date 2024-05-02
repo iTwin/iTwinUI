@@ -37,7 +37,7 @@ export const Input = React.forwardRef((props, ref) => {
   return (
     <Box
       as='input'
-      className={cx('iui-input', className)}
+      className={cx('iui-input', 'iui-field', className)}
       data-iui-size={size}
       data-iui-status={status}
       size={htmlSize}

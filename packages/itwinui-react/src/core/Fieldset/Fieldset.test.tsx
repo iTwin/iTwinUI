@@ -91,7 +91,7 @@ it('should render disabled select group', () => {
   expect(fieldset.disabled).toBe(true);
 
   const selectButton = container.querySelector(
-    '.iui-select-button.iui-disabled',
+    '.iui-select-button[data-iui-disabled="true"]',
   ) as HTMLElement;
   expect(selectButton).toHaveAttribute('aria-disabled', 'true');
   expect(selectButton).toBeTruthy();

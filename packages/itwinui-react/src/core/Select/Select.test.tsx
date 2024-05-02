@@ -131,7 +131,7 @@ it('should render disabled select', async () => {
   });
 
   const selectButton = container.querySelector(
-    '.iui-select-button.iui-disabled',
+    '.iui-select-button[data-iui-disabled=true]',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
   expect(selectButton).toHaveAttribute('aria-disabled', 'true');
