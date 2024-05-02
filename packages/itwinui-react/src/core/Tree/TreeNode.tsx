@@ -259,8 +259,8 @@ export const TreeNode = (props: TreeNodeProps) => {
         >
           {checkbox && (
             <Box
-              className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
               {...checkboxProps}
+              className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
             >
               {React.isValidElement(checkbox)
                 ? React.cloneElement(checkbox as JSX.Element, {
@@ -281,34 +281,34 @@ export const TreeNode = (props: TreeNodeProps) => {
             )}
             {icon && (
               <Box
+                {...iconProps}
                 as='span'
                 className={cx(
                   'iui-tree-node-content-icon',
                   iconProps?.className,
                 )}
                 aria-hidden
-                {...iconProps}
               >
                 {icon}
               </Box>
             )}
             <Box className='iui-tree-node-content-label'>
               <Box
+                {...labelProps}
                 className={cx(
                   'iui-tree-node-content-title',
                   labelProps?.className,
                 )}
-                {...labelProps}
               >
                 {label}
               </Box>
               {sublabel && (
                 <Box
+                  {...sublabelProps}
                   className={cx(
                     'iui-tree-node-content-caption',
                     sublabelProps?.className,
                   )}
-                  {...sublabelProps}
                 >
                   {sublabel}
                 </Box>
