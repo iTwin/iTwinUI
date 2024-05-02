@@ -4,6 +4,7 @@
 
 @layer itwinui.v3 {
   @include meta.load-css('global');
+  @include meta.load-css('field');
   @include meta.load-css('alert/alert');
   @include meta.load-css('anchor/anchor');
   @include meta.load-css('avatar/avatar');
