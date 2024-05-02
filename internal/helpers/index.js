@@ -7,11 +7,11 @@ import * as path from 'node:path';
 export const itwinuiReactAliases =
   process.env.NODE_ENV === 'development'
     ? {
-        '@itwin/itwinui-react': path.resolve(
-          '../../packages/itwinui-react/src',
-        ),
         '@itwin/itwinui-react/styles.css': path.resolve(
           '../../packages/itwinui-react/styles.css',
+        ),
+        '@itwin/itwinui-react': path.resolve(
+          '../../packages/itwinui-react/src',
         ),
       }
     : {};
