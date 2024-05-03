@@ -20,7 +20,7 @@ import type {
 } from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
 import { Menu, MenuContext } from '../Menu/Menu.js';
-import { usePopover } from '../Popover/Popover.js';
+import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -95,11 +95,14 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
+  const listNavigationProps = useListNavigationProps();
+
   const popover = usePopover({
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement: menuPlacement,
     matchWidth: true,
+    interactions: { listNavigation: listNavigationProps },
   });
 
   const labelId = useId();
@@ -139,7 +142,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
 
-      <MenuContext.Provider value={{ popover, portal }}>
+      <MenuContext.Provider value={{ popover, portal, listNavigationProps }}>
         <Menu
           onKeyDown={({ key }) => {
             if (key === 'Tab') {
