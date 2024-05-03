@@ -123,7 +123,7 @@ type PopoverInternalProps = {
    * When trying to add `listNavigation`, consider using `useListNavigationProps` to generate the necessary props.
    *
    * @example
-   * const listNavigationProps = useListNavigationProps({ focusItemOnOpen: true });
+   * const listNavigationProps = useListNavigationProps({ nested: subMenuItems.length > 0 });
    * const popover = usePopover({
    *   interactions: {
    *     click: false,
@@ -289,11 +289,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
  * This automatically takes care of providing `listRef` and `activeIndex`.
  * It also updates the `activeIndex` when the user navigates through the list using the `listNavigation` interaction.
  *
- * @param props Will be merged with the generated props.
+ * @param props Will be merged with the default props.
  * @returns The props to spread on the `usePopover.interactions.listNavigation`.
  *
  * @example
- * const listNavigationProps = useListNavigationProps({ focusItemOnOpen: true });
+ * const listNavigationProps = useListNavigationProps({ nested: subMenuItems.length > 0 });
  * const popover = usePopover({ interactions: { listNavigation: listNavigationProps })
  */
 export const useListNavigationProps = (
@@ -320,6 +320,7 @@ export const useListNavigationProps = (
       onNavigateProp?.(index);
     },
     listRef: focusableNodes,
+    focusItemOnOpen: true,
     ...rest,
   };
 };

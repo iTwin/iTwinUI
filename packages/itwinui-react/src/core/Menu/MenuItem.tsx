@@ -169,7 +169,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const listNavigationProps = useListNavigationProps({
     nested: subMenuItems.length > 0,
-    focusItemOnOpen: true,
   });
 
   const popover = usePopover({

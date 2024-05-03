@@ -107,9 +107,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const listNavigationProps = useListNavigationProps({
-    focusItemOnOpen: true,
-  });
+  const listNavigationProps = useListNavigationProps();
 
   const nodeId = useFloatingNodeId();
 

@@ -63,10 +63,7 @@ test.describe('Menu', () => {
 
     await expect(menu).toBeVisible();
 
-    // Manually focus the first focus target because this is not done by default.
-    await page.getByTestId('FocusTarget-0').focus({
-      timeout: 200,
-    });
+    // The first item should be automatically focused.
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
 
     // Should not loop around when navigating past the first or the last item.
