@@ -18,7 +18,7 @@ type TreeNodeProps = {
   /**
    * Props for treeNode
    */
-  nodeProps?: React.CommonProps<any>;
+  nodeProps?: React.ComponentProps<any>;
   /**
    * The main text displayed on the node.
    */
@@ -94,7 +94,7 @@ type TreeNodeProps = {
   /**
    * Props for content
    */
-  contentProps?: React.CommonProps<any>;
+  contentProps?: React.ComponentProps<any>;
   /**
    * Content shown after `TreeNode`.
    */
