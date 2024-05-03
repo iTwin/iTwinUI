@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { keyboardPressOptions } from '~/utils/utils.js';
 
 test.describe('DropdownMenu', () => {
   test('should support deep level submenus', async ({ page }) => {
@@ -188,11 +189,6 @@ test.describe('DropdownMenu', () => {
 });
 
 // ----------------------------------------------------------------------------
-
-// Needed to solve flakiness in the test
-const keyboardPressOptions = {
-  delay: 30,
-};
 
 /**
  * Sometimes `component.hover()` doesn't work as expected.
