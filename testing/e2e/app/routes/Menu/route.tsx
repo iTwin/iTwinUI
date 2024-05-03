@@ -94,11 +94,7 @@ export default () => {
           listNavigationProps: listNavigationProps,
         }}
       >
-        <Menu
-          className='Menu'
-          style={{ color: 'red' }}
-          role={role != null ? role : undefined}
-        >
+        <Menu className='Menu' role={role != null ? role : undefined}>
           {children}
         </Menu>
       </MenuContext.Provider>
