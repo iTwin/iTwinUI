@@ -322,6 +322,7 @@ it('should render label with nodeProps correctly', () => {
 it('should render label with subNodeProps correctly', () => {
   const { container } = renderComponent({
     props: {
+      hasSubNodes: true,
       subNodeProps: {
         style: { color: 'blue' },
         className: 'custom-subnode-class',
