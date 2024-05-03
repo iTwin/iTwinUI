@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Menu } from '../Menu/Menu.js';
+import { Menu, MenuContext } from '../Menu/Menu.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
@@ -25,7 +25,7 @@ import type {
 import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';
-import { usePopover } from '../Popover/Popover.js';
+import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
 
 // ----------------------------------------------------------------------------
 
@@ -399,12 +399,15 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
 
+  const listNavigationProps = useListNavigationProps();
+
   const popover = usePopover({
     visible: isOpen,
     matchWidth: true,
     closeOnOutsideClick: true,
     ...popoverProps,
     onVisibleChange: (open) => (open ? show() : hide()),
+    interactions: { listNavigation: listNavigationProps },
   });
 
   return (
@@ -473,20 +476,22 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         ) : null}
       </InputWithIcon>
 
-      <Menu
-        role='listbox'
-        className={menuClassName}
-        id={`${uid}-menu`}
-        key={`${uid}-menu`}
-        style={menuStyle}
-        onKeyDown={({ key }) => {
-          if (key === 'Tab') {
-            hide();
-          }
-        }}
-      >
-        {menuItems}
-      </Menu>
+      <MenuContext.Provider value={{ popover, listNavigationProps }}>
+        <Menu
+          role='listbox'
+          className={menuClassName}
+          id={`${uid}-menu`}
+          key={`${uid}-menu`}
+          style={menuStyle}
+          onKeyDown={({ key }) => {
+            if (key === 'Tab') {
+              hide();
+            }
+          }}
+        >
+          {menuItems}
+        </Menu>
+      </MenuContext.Provider>
     </>
   );
 }) as <T>(

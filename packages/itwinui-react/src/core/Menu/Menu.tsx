@@ -80,7 +80,6 @@ export const Menu = React.forwardRef((props, ref) => {
             role: 'menu',
             ...rest,
           })}
-          {...rest}
         />
       </Portal>
     )
