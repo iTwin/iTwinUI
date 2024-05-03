@@ -284,9 +284,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
 /**
  * @private
- * Helper hook to generate the necessary props for the listNavigation interaction in `usePopover`.
+ * Helper hook to generate the necessary props for
+ * Floating UI's [listNavigation](https://floating-ui.com/docs/useListNavigation) interaction in `usePopover`.
  *
- * This automatically takes care of providing `listRef` and `activeIndex`.
+ * This helper hook automatically takes care of providing `listRef` and `activeIndex`.
  * It also updates the `activeIndex` when the user navigates through the list using the `listNavigation` interaction.
  *
  * @param props Will be merged with the default props.
