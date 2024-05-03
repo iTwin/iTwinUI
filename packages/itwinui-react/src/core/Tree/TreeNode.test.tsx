@@ -302,3 +302,40 @@ it('should render label with labelProps correctly', () => {
   expect(label).toBeTruthy();
   expect(label?.style.color).toBe('blue');
 });
+
+it('should render label with nodeProps correctly', () => {
+  const { container } = renderComponent({
+    props: {
+      nodeProps: {
+        style: { color: 'blue' },
+        className: 'custom-node-class',
+      },
+    },
+  });
+
+  const treeNode = container.querySelector('.custom-node-class') as HTMLElement;
+  expect(treeNode).toBeTruthy();
+
+  expect(treeNode?.style.color).toBe('blue');
+});
+
+it('should render label with subNodeProps correctly', () => {
+  const { container } = renderComponent({
+    props: {
+      subNodeProps: {
+        style: { color: 'blue' },
+        className: 'custom-subnode-class',
+      },
+    },
+  });
+
+  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
+  expect(treeNode).toBeTruthy();
+
+  const subnode = container.querySelector(
+    '.custom-subnode-class',
+  ) as HTMLElement;
+
+  expect(subnode).toBeTruthy();
+  expect(subnode?.style.color).toBe('blue');
+});
