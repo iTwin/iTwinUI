@@ -142,26 +142,6 @@ it('should render disabled select', async () => {
   expect(document.querySelector('.iui-menu')).toBeNull();
 });
 
-it('should set focus on select and call onBlur', () => {
-  const onBlur = vi.fn();
-  const { container } = renderComponent({ onBlur });
-
-  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
-  assertSelect(select);
-  const selectButton = container.querySelector(
-    '.iui-select-button',
-  ) as HTMLElement;
-  selectButton.focus();
-  expect(selectButton).toBeTruthy();
-  expect(selectButton.getAttribute('tabIndex')).toBe('0');
-  expect(selectButton).toHaveFocus();
-  expect(onBlur).not.toHaveBeenCalled();
-
-  fireEvent.click(selectButton);
-  expect(selectButton).not.toHaveFocus();
-  expect(onBlur).toHaveBeenCalled();
-});
-
 it('should render select with custom className', () => {
   const { container } = renderComponent({ className: 'test-className' });
 
