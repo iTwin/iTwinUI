@@ -229,7 +229,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useHover(floating.context, {
       enabled: !!mergedInteractions.hover,
       delay: 100,
-      handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+      handleClose: safePolygon({
+        buffer: 1,
+        requireIntent: false,
+        blockPointerEvents: true,
+      }),
       move: false,
       ...(mergedInteractions.hover as object),
     }),
