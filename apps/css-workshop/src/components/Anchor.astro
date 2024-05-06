@@ -15,7 +15,5 @@ const { class: className, external, href, status, underline, ...props } = Astro.
   data-iui-underline={underline}
   {...external ? { referrerpolicy: 'no-referrer', target: '_blank' } : {}}
   href={href ? href : '#'}
-  {...props}
+  {...props}><slot /></a
 >
-  <slot />
-</a>
