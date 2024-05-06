@@ -30,6 +30,7 @@ export const TreeNodeExpander = React.forwardRef((props, ref) => {
       {...rest}
     >
       <ChevronIcon
+        {...expanderIconProps}
         className={cx(
           'iui-tree-node-content-expander-icon',
           expanderIconProps?.className,
@@ -37,7 +38,6 @@ export const TreeNodeExpander = React.forwardRef((props, ref) => {
             'iui-tree-node-content-expander-icon-expanded': isExpanded,
           },
         )}
-        {...expanderIconProps}
       />
     </IconButton>
   );

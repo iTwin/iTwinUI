@@ -255,6 +255,12 @@ it('should render treeNode with  [x]Props correctly', () => {
         style: { color: 'black' },
         className: 'custom-title-class',
       },
+      treeNodeExpanderProps: {
+        expanderIconProps: {
+          style: { color: 'white' },
+          className: 'custom-expander-icon-class',
+        },
+      },
     },
   });
 
@@ -305,4 +311,12 @@ it('should render treeNode with  [x]Props correctly', () => {
   expect(title).toBeTruthy();
   expect(title).toHaveClass('iui-tree-node-content-title');
   expect(title?.style.color).toBe('black');
+
+  const expanderIcon = container.querySelector(
+    '.custom-expander-icon-class',
+  ) as HTMLElement;
+
+  expect(expanderIcon).toBeTruthy();
+  expect(expanderIcon).toHaveClass('iui-tree-node-content-expander-icon');
+  expect(expanderIcon?.style.color).toBe('white');
 });
