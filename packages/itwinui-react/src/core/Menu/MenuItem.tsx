@@ -174,7 +174,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible: isSubmenuVisible,
-    onVisibleChange: setIsSubmenuVisible,
+    onVisibleChange: React.useCallback((visible: boolean) => {
+      if (!visible) {
+        setHasFocusedNodeInSubmenu(false);
+      }
+      setIsSubmenuVisible(visible);
+    }, []),
     placement: 'right-start',
     interactions: !disabled
       ? {
@@ -221,7 +226,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onFocus = () => {
-    parentMenuItem.setHasFocusedNodeInSubmenu?.(true);
+    // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+    // E.g. Even when hovering into it rapidly.
+    queueMicrotask(() => {
+      parentMenuItem.setHasFocusedNodeInSubmenu?.(true);
+    });
 
     tree?.events.emit('onNodeFocused', {
       nodeId,
