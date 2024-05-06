@@ -44,12 +44,13 @@ test.describe('Menu', () => {
   });
 
   test('should focus selected item', async ({ page }) => {
-    // TODO: Do we need to focus the selected item?
-    // await page.goto('/Menu?selectedIndex=1');
-    // expect(page.getByTestId('MenuItem-0')).not.toBeFocused();
-    // expect(page.getByTestId('MenuItem-1')).toBeFocused();
-    // expect(page.getByTestId('MenuItem-2')).not.toBeFocused();
-    // await page.waitForTimeout(50);
+    await page.goto('/Menu?selectedIndex=1&listNavigation=true');
+
+    expect(page.getByTestId('MenuItem-0')).not.toBeFocused();
+    expect(page.getByTestId('MenuItem-1')).toBeFocused();
+    expect(page.getByTestId('MenuItem-2')).not.toBeFocused();
+
+    await page.waitForTimeout(50);
   });
 
   test('should handle keyboard navigation', async ({ page }) => {
