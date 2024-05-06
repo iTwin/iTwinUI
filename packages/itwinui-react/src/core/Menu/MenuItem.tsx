@@ -215,13 +215,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
 
-      // // Since we manually focus the MenuItem on hover, we need to manually update the active index for
-      // // Floating UI's keyboard navigation to work correctly.
-      // if (parentMenu != null && focusableNodeIndexInParentTree != null) {
-      //   parentMenu.listNavigationProps?.onNavigate?.(
-      //     focusableNodeIndexInParentTree,
-      //   );
-      // }
+      // Since we manually focus the MenuItem on hover, we need to manually update the active index for
+      // Floating UI's keyboard navigation to work correctly.
+      if (parentMenu != null && focusableNodeIndexInParentTree != null) {
+        parentMenu.listNavigationProps?.onNavigate?.(
+          focusableNodeIndexInParentTree,
+        );
+      }
     }
   };
 

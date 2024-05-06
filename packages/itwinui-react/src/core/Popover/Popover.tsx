@@ -320,8 +320,6 @@ export const useListNavigationProps = (
   return {
     activeIndex: currentFocusedNodeIndex,
     onNavigate: (index) => {
-      console.log('onNavigate called', index);
-
       setCurrentFocusedNodeIndex(index);
       onNavigateProp?.(index);
     },
