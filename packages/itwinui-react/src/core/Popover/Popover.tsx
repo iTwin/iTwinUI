@@ -231,7 +231,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       delay: 100,
       handleClose: safePolygon({
         buffer: 1,
-        requireIntent: false,
         blockPointerEvents: true,
       }),
       move: false,
