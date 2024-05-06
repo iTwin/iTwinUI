@@ -18,7 +18,7 @@ type TreeNodeProps = {
   /**
    * Props for treeNode
    */
-  nodeProps?: React.ComponentProps<any>;
+  nodeProps?: React.ComponentProps<'div'>;
   /**
    * The main text displayed on the node.
    */
@@ -26,11 +26,11 @@ type TreeNodeProps = {
   /**
    * Props for TreeNode label(effects both the main and sub label).
    */
-  labelProps?: React.ComponentProps<any>;
+  labelProps?: React.ComponentProps<'div'>;
   /**
    * Props for the TreeNode's main label.
    */
-  titleProps?: React.ComponentProps<any>;
+  titleProps?: React.ComponentProps<'div'>;
   /**
    * Small note displayed below main label.
    */
@@ -38,7 +38,7 @@ type TreeNodeProps = {
   /**
    * Props for TreeNode sublabel
    */
-  sublabelProps?: React.ComponentProps<any>;
+  sublabelProps?: React.ComponentProps<'div'>;
   /**
    * Icon shown before label and sublabel content.
    */
@@ -46,7 +46,7 @@ type TreeNodeProps = {
   /**
    * Props for TreeNode Icon
    */
-  iconProps?: React.ComponentProps<any>;
+  iconProps?: React.ComponentProps<'span'>;
   /**
    * Flag whether the node has child sub-nodes. It is used to show expander icon.
    * @default false
@@ -55,7 +55,7 @@ type TreeNodeProps = {
   /**
    * Props for subNode
    */
-  subNodeProps?: React.ComponentProps<any>;
+  subNodeProps?: React.ComponentProps<'ul'>;
   /**
    * Flag whether the node is disabled.
    * @default false
@@ -90,7 +90,7 @@ type TreeNodeProps = {
   /**
    * Props for TreeNode checkbox.
    */
-  checkboxProps?: React.ComponentProps<any>;
+  checkboxProps?: React.ComponentProps<'div'>;
   /**
    * Custom expander element. If `hasSubNodes` is false, it won't be shown.
    */
@@ -98,7 +98,7 @@ type TreeNodeProps = {
   /**
    * Props for content
    */
-  contentProps?: React.ComponentProps<any>;
+  contentProps?: React.ComponentProps<'div'>;
   /**
    * Content shown after `TreeNode`.
    */
@@ -270,6 +270,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     >
       {
         <Box
+          as='div'
           style={{ '--level': nodeDepth } as React.CSSProperties}
           onClick={() => !isDisabled && onSelected?.(nodeId, !isSelected)}
           {...nodeProps}
@@ -284,6 +285,7 @@ export const TreeNode = (props: TreeNodeProps) => {
         >
           {checkbox && (
             <Box
+              as='div'
               {...checkboxProps}
               className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
             >
@@ -295,6 +297,7 @@ export const TreeNode = (props: TreeNodeProps) => {
             </Box>
           )}
           <Box
+            as='div'
             {...contentProps}
             className={cx('iui-tree-node-content', contentProps?.className)}
           >
@@ -321,6 +324,7 @@ export const TreeNode = (props: TreeNodeProps) => {
               </Box>
             )}
             <Box
+              as='div'
               {...labelProps}
               className={cx(
                 'iui-tree-node-content-label',
@@ -328,6 +332,7 @@ export const TreeNode = (props: TreeNodeProps) => {
               )}
             >
               <Box
+                as='div'
                 {...titleProps}
                 className={cx(
                   'iui-tree-node-content-title',
@@ -338,6 +343,7 @@ export const TreeNode = (props: TreeNodeProps) => {
               </Box>
               {sublabel && (
                 <Box
+                  as='div'
                   {...sublabelProps}
                   className={cx(
                     'iui-tree-node-content-caption',
