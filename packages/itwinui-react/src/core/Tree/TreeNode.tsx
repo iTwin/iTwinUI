@@ -24,7 +24,7 @@ type TreeNodeProps = {
    */
   label: React.ReactNode;
   /**
-   * Props for TreeNode label(effects both the main and sub label).
+   * Props for TreeNode label(affects both the main and sub label).
    */
   labelProps?: React.ComponentProps<'div'>;
   /**
@@ -53,7 +53,7 @@ type TreeNodeProps = {
    */
   hasSubNodes?: boolean;
   /**
-   * Props for subTree list(effects all subnodes of this node).
+   * Props for subTree list(affects all subnodes of this node).
    */
   subTreeProps?: React.ComponentProps<'ul'>;
   /**
@@ -97,7 +97,7 @@ type TreeNodeProps = {
   expander?: React.ReactNode;
   /**
    * Props for content of the TreeNode.
-   * This effects all passed in children of the node, as well as the label, sublabel, icon, and expander.
+   * This affects all passed in children of the node, as well as the label, sublabel, icon, and expander.
    * Note that this does not effect the checkbox.
    */
   contentProps?: React.ComponentProps<'div'>;
