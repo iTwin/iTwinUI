@@ -24,9 +24,13 @@ type TreeNodeProps = {
    */
   label: React.ReactNode;
   /**
-   * Props for TreeNode label
+   * Props for TreeNode label(effects both the main and sub label).
    */
   labelProps?: React.ComponentProps<any>;
+  /**
+   * Props for the TreeNode's main label.
+   */
+  titleProps?: React.ComponentProps<any>;
   /**
    * Small note displayed below main label.
    */
@@ -142,6 +146,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     checkboxProps = {},
     subNodeProps = {},
     contentProps = {},
+    titleProps = {},
     expander,
     ...rest
   } = props;
@@ -315,12 +320,18 @@ export const TreeNode = (props: TreeNodeProps) => {
                 {icon}
               </Box>
             )}
-            <Box className='iui-tree-node-content-label'>
+            <Box
+              {...labelProps}
+              className={cx(
+                'iui-tree-node-content-label',
+                labelProps?.className,
+              )}
+            >
               <Box
-                {...labelProps}
+                {...titleProps}
                 className={cx(
                   'iui-tree-node-content-title',
-                  labelProps?.className,
+                  titleProps?.className,
                 )}
               >
                 {label}
