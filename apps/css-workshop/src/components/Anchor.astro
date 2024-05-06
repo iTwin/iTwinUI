@@ -13,6 +13,7 @@ const { class: className, external, status, underline, ...props } = Astro.props;
   data-iui-external={external}
   data-iui-status={status}
   data-iui-underline={underline}
+  {...external ? { referrerpolicy: 'no-referrer', target: '_blank' } : {}}
   {...props}
 >
   <slot />
