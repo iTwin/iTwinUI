@@ -78,6 +78,13 @@ export const Menu = React.forwardRef((props, ref) => {
       );
 
       if (selectedIndex >= 0) {
+        console.log(
+          'navigating to ',
+          selectedIndex,
+          menuContext != null,
+          menuContext?.listNavigationProps != null,
+          menuContext?.listNavigationProps?.onNavigate != null,
+        );
         menuContext?.listNavigationProps?.onNavigate?.(selectedIndex);
       }
     }
