@@ -53,9 +53,9 @@ type TreeNodeProps = {
    */
   hasSubNodes?: boolean;
   /**
-   * Props for subNode
+   * Props for subTree list(effects all subnodes of this node).
    */
-  subNodeProps?: React.ComponentProps<'ul'>;
+  subTreeProps?: React.ComponentProps<'ul'>;
   /**
    * Flag whether the node is disabled.
    * @default false
@@ -144,7 +144,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     onExpanded,
     checkbox,
     checkboxProps = {},
-    subNodeProps = {},
+    subTreeProps = {},
     contentProps = {},
     titleProps = {},
     expander,
@@ -363,8 +363,8 @@ export const TreeNode = (props: TreeNodeProps) => {
           as='ul'
           role='group'
           aria-owns={subNodeIds.join(' ')}
-          {...subNodeProps}
-          className={cx('iui-sub-tree', subNodeProps?.className)}
+          {...subTreeProps}
+          className={cx('iui-sub-tree', subTreeProps?.className)}
         />
       )}
     </Box>

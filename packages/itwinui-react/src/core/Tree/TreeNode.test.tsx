@@ -247,7 +247,7 @@ it('should render treeNode with  [x]Props correctly', () => {
         className: 'custom-node-class',
       },
       hasSubNodes: true,
-      subNodeProps: {
+      subTreeProps: {
         style: { color: 'yellow' },
         className: 'custom-subnode-class',
       },
@@ -292,13 +292,13 @@ it('should render treeNode with  [x]Props correctly', () => {
   expect(label).toHaveClass('iui-tree-node-content-label');
   expect(label?.style.color).toBe('blue');
 
-  const subnode = container.querySelector(
+  const subtree = container.querySelector(
     '.custom-subnode-class',
   ) as HTMLElement;
 
-  expect(subnode).toBeTruthy();
-  expect(subnode).toHaveClass('iui-sub-tree');
-  expect(subnode?.style.color).toBe('yellow');
+  expect(subtree).toBeTruthy();
+  expect(subtree).toHaveClass('iui-sub-tree');
+  expect(subtree?.style.color).toBe('yellow');
 
   const title = container.querySelector('.custom-title-class') as HTMLElement;
 
