@@ -42,7 +42,7 @@ import IconButton_ from '../components/IconButton.astro';
       ></svg-info-circular>
       <span class='iui-alert-message'>
         Informational message.
-        <Anchor_ underline='true' status='informational'>Learn more</Anchor_>
+        <Anchor_ class='iui-alert-link' underline='true' status='informational'>Learn more</Anchor_>
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
         <svg-close-small></svg-close-small>
@@ -54,7 +54,7 @@ import IconButton_ from '../components/IconButton.astro';
       ></svg-status-success>
       <span class='iui-alert-message'>
         Positive message.
-        <Anchor_ underline='true' status='positive'>Learn more</Anchor_>
+        <Anchor_ class='iui-alert-link' underline='true' status='positive'>Learn more</Anchor_>
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
         <svg-close-small></svg-close-small>
@@ -66,7 +66,7 @@ import IconButton_ from '../components/IconButton.astro';
       ></svg-status-warning>
       <span class='iui-alert-message'>
         Warning message.
-        <Anchor_ underline='true' status='warning'>Learn more</Anchor_>
+        <Anchor_ class='iui-alert-link' underline='true' status='warning'>Learn more</Anchor_>
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
         <svg-close-small></svg-close-small>
@@ -78,7 +78,7 @@ import IconButton_ from '../components/IconButton.astro';
       ></svg-status-error>
       <span class='iui-alert-message'>
         Negative message.
-        <Anchor_ underline='true' status='negative'>Learn more</Anchor_>
+        <Anchor_ class='iui-alert-link' underline='true' status='negative'>Learn more</Anchor_>
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
         <svg-close-small></svg-close-small>
@@ -94,7 +94,7 @@ import IconButton_ from '../components/IconButton.astro';
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <Anchor_ underline='true' status='informational'>Learn more</Anchor_>
+        <Anchor_ class='iui-alert-link' underline='true' status='informational'>Learn more</Anchor_>
       </span>
       <IconButton_ aria-label='Close' variant='borderless' size='small'>
         <svg-close-small></svg-close-small>
@@ -111,7 +111,9 @@ import IconButton_ from '../components/IconButton.astro';
           aria-hidden='true'></svg-info-circular>
         <span class='iui-alert-message'>
           This is a sticky alert.
-          <Anchor_ underline='true' status='informational'>Learn more</Anchor_>
+          <Anchor_ class='iui-alert-link' underline='true' status='informational'>
+            Learn more
+          </Anchor_>
         </span>
         <IconButton_ aria-label='Close' variant='borderless' size='small'>
           <svg-close-small></svg-close-small>
