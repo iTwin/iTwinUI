@@ -96,7 +96,9 @@ type TreeNodeProps = {
    */
   expander?: React.ReactNode;
   /**
-   * Props for content
+   * Props for content of the TreeNode.
+   * This effects all passed in children of the node, as well as the label, sublabel, icon, and expander.
+   * Note that this does not effect the checkbox.
    */
   contentProps?: React.ComponentProps<'div'>;
   /**
