@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Previously added leniency in mouse precision when hovering from one `MenuItem` to its submenu now even works for `MenuItem`s that are not at the end of the menu.
+Submenus within a `DropdownMenu` will now consistently require less precision when moving the mouse between the parent item and the submenu.
