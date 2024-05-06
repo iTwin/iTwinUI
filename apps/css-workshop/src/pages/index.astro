@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import Layout from './_layout.astro';
+import Anchor_ from '../components/Anchor.astro';
 import Code_ from '../components/Code.astro';
 
 const components = await fs.promises.readdir('./src/pages').then((files) => {
@@ -18,10 +19,9 @@ const components = await fs.promises.readdir('./src/pages').then((files) => {
   <h1>iTwinUI-CSS</h1>
   <p>
     This site is specifically designed for testing the CSS from <Code_>@itwin/itwinui-css</Code_>.
-    To learn more about iTwinUI, please visit the <a
-      href='https://iTwinUI.Bentley.com'
-      class='iui-anchor'>iTwinUI documentation site</a
-    >.
+    To learn more about iTwinUI, please visit the <Anchor_ href='https://iTwinUI.Bentley.com'>
+      iTwinUI documentation site
+    </Anchor_>.
   </p>
   <hr />
   <main>
@@ -30,9 +30,7 @@ const components = await fs.promises.readdir('./src/pages').then((files) => {
         components.map((component) => {
           return (
             <li>
-              <a class='iui-anchor' href={component}>
-                {component}
-              </a>
+              <Anchor_ href={component}>{component.replace(/-/g, ' ')}</Anchor_>
             </li>
           );
         })
