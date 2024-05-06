@@ -12,7 +12,7 @@ import { TreeContext } from './TreeContext.js';
 
 type TreeNodeExpanderProps = {
   isExpanded?: boolean;
-  iconProps?: React.ComponentProps<any>;
+  iconProps?: React.ComponentProps<'svg'>;
 } & IconButtonProps;
 
 export const TreeNodeExpander = React.forwardRef((props, ref) => {
