@@ -20,7 +20,7 @@
     pointer-events: all;
     position: relative;
 
-    &:where(.iui-input-flex-container, .iui-field) {
+    &:where(.iui-field, .iui-input-flex-container) {
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
         --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
@@ -47,7 +47,7 @@
       }
     }
 
-    &:where(.iui-input-flex-container, .iui-field:not([data-iui-variant='borderless'])) {
+    &:where(.iui-field:not([data-iui-variant='borderless']), .iui-input-flex-container) {
       // Reset border radius
       border-radius: 0;
 
@@ -59,7 +59,7 @@
       }
     }
 
-    // Add rounded corners to first and last items
+    // Add rounded corners to first item
     &:where(:nth-child(1 of :where(.iui-field, .iui-input-flex-container))) {
       border-start-start-radius: var(--iui-border-radius-1);
 
@@ -70,6 +70,7 @@
       }
     }
 
+    // Add rounded corners to last item
     &:where(:nth-last-child(1 of :where(.iui-field, .iui-input-flex-container))) {
       border-end-end-radius: var(--iui-border-radius-1);
 
@@ -81,7 +82,7 @@
     }
 
     // Use negative margin to make adjacent borders overlap
-    ~ .iui-field {
+    ~ :where(.iui-field, .iui-input-flex-container) {
       @if $orientation == 'horizontal' {
         margin-inline-start: -1px;
       } @else {
