@@ -47,7 +47,7 @@
       }
     }
 
-    &:where(.iui-input-flex-container, .iui-field) {
+    &:where(.iui-input-flex-container, .iui-field:not([data-iui-variant='borderless'])) {
       // Reset border radius
       border-radius: 0;
 
