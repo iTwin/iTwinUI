@@ -221,13 +221,39 @@ it('should render selected node', () => {
   expect(onSelected).toHaveBeenCalledWith('testId', false);
 });
 
-it('should render checkbox with  checkboxProps correctly', () => {
+it('should render treeNode with  [x]Props correctly', () => {
   const { container } = renderComponent({
     props: {
       checkbox: <Checkbox variant='eyeball' className='testClass' />,
       checkboxProps: {
         style: { color: 'green' },
         className: 'custom-checkbox-class',
+      },
+      icon: <SvgPlaceholder />,
+      iconProps: {
+        style: { color: 'orange' },
+        className: 'custom-icon-class',
+      },
+      sublabelProps: {
+        style: { color: 'red' },
+        className: 'custom-sublabel-class',
+      },
+      labelProps: {
+        style: { color: 'blue' },
+        className: 'custom-label-class',
+      },
+      nodeProps: {
+        style: { color: 'purple' },
+        className: 'custom-node-class',
+      },
+      hasSubNodes: true,
+      subNodeProps: {
+        style: { color: 'yellow' },
+        className: 'custom-subnode-class',
+      },
+      titleProps: {
+        style: { color: 'black' },
+        className: 'custom-title-class',
       },
     },
   });
@@ -241,40 +267,11 @@ it('should render checkbox with  checkboxProps correctly', () => {
 
   expect(checkbox).toBeTruthy();
   expect(checkbox?.style.color).toBe('green');
-});
-
-it('should render icon with iconProps correctly', () => {
-  const { container } = renderComponent({
-    props: {
-      icon: <SvgPlaceholder />,
-      iconProps: {
-        style: { color: 'orange' },
-        className: 'custom-icon-class',
-      },
-    },
-  });
-
-  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
-  expect(treeNode).toBeTruthy();
 
   const icon = container.querySelector('.custom-icon-class') as HTMLElement;
   expect(icon).toBeTruthy();
 
   expect(icon?.style.color).toBe('orange');
-});
-
-it('should render sublabel with sublabelProps correctly', () => {
-  const { container } = renderComponent({
-    props: {
-      sublabelProps: {
-        style: { color: 'red' },
-        className: 'custom-sublabel-class',
-      },
-    },
-  });
-
-  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
-  expect(treeNode).toBeTruthy();
 
   const sublabel = container.querySelector(
     '.custom-sublabel-class',
@@ -282,61 +279,23 @@ it('should render sublabel with sublabelProps correctly', () => {
 
   expect(sublabel).toBeTruthy();
   expect(sublabel?.style.color).toBe('red');
-});
-
-it('should render label with labelProps correctly', () => {
-  const { container } = renderComponent({
-    props: {
-      labelProps: {
-        style: { color: 'blue' },
-        className: 'custom-label-class',
-      },
-    },
-  });
-
-  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
-  expect(treeNode).toBeTruthy();
 
   const label = container.querySelector('.custom-label-class') as HTMLElement;
 
   expect(label).toBeTruthy();
   expect(label?.style.color).toBe('blue');
-});
 
-it('should render label with nodeProps correctly', () => {
-  const { container } = renderComponent({
-    props: {
-      nodeProps: {
-        style: { color: 'blue' },
-        className: 'custom-node-class',
-      },
-    },
-  });
-
-  const treeNode = container.querySelector('.custom-node-class') as HTMLElement;
-  expect(treeNode).toBeTruthy();
-
-  expect(treeNode?.style.color).toBe('blue');
-});
-
-it('should render label with subNodeProps correctly', () => {
-  const { container } = renderComponent({
-    props: {
-      hasSubNodes: true,
-      subNodeProps: {
-        style: { color: 'blue' },
-        className: 'custom-subnode-class',
-      },
-    },
-  });
-
-  const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
-  expect(treeNode).toBeTruthy();
+  expect(treeNode?.style.color).toBe('purple');
 
   const subnode = container.querySelector(
     '.custom-subnode-class',
   ) as HTMLElement;
 
   expect(subnode).toBeTruthy();
-  expect(subnode?.style.color).toBe('blue');
+  expect(subnode?.style.color).toBe('yellow');
+
+  const title = container.querySelector('.custom-title-class') as HTMLElement;
+
+  expect(title).toBeTruthy();
+  expect(title?.style.color).toBe('black');
 });
