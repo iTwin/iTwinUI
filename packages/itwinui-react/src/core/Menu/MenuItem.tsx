@@ -179,7 +179,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible: isSubmenuVisible,
-    onVisibleChange: setIsSubmenuVisible,
+    onVisibleChange: (v) => {
+      if (!v) {
+        setHasFocusedNodeInSubmenu(false);
+      }
+
+      setIsSubmenuVisible(v);
+    },
     placement: 'right-start',
     interactions: !disabled
       ? {
