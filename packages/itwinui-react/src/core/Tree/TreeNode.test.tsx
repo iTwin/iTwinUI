@@ -259,18 +259,23 @@ it('should render treeNode with  [x]Props correctly', () => {
   });
 
   const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
+
   expect(treeNode).toBeTruthy();
+  expect(treeNode).toHaveClass('custom-node-class');
+  expect(treeNode?.style.color).toBe('purple');
 
   const checkbox = container.querySelector(
     '.custom-checkbox-class',
   ) as HTMLElement;
 
   expect(checkbox).toBeTruthy();
+  expect(checkbox).toHaveClass('iui-tree-node-checkbox');
   expect(checkbox?.style.color).toBe('green');
 
   const icon = container.querySelector('.custom-icon-class') as HTMLElement;
-  expect(icon).toBeTruthy();
 
+  expect(icon).toBeTruthy();
+  expect(icon).toHaveClass('iui-tree-node-content-icon');
   expect(icon?.style.color).toBe('orange');
 
   const sublabel = container.querySelector(
@@ -278,24 +283,26 @@ it('should render treeNode with  [x]Props correctly', () => {
   ) as HTMLElement;
 
   expect(sublabel).toBeTruthy();
+  expect(sublabel).toHaveClass('iui-tree-node-content-caption');
   expect(sublabel?.style.color).toBe('red');
 
   const label = container.querySelector('.custom-label-class') as HTMLElement;
 
   expect(label).toBeTruthy();
+  expect(label).toHaveClass('iui-tree-node-content-label');
   expect(label?.style.color).toBe('blue');
-
-  expect(treeNode?.style.color).toBe('purple');
 
   const subnode = container.querySelector(
     '.custom-subnode-class',
   ) as HTMLElement;
 
   expect(subnode).toBeTruthy();
+  expect(subnode).toHaveClass('iui-sub-tree');
   expect(subnode?.style.color).toBe('yellow');
 
   const title = container.querySelector('.custom-title-class') as HTMLElement;
 
   expect(title).toBeTruthy();
+  expect(title).toHaveClass('iui-tree-node-content-title');
   expect(title?.style.color).toBe('black');
 });
