@@ -9,8 +9,7 @@ const { class: className, external, href, status, underline, ...props } = Astro.
 ---
 
 <a
-  class:list={['iui-anchor', className]}
-  data-iui-external={external}
+  class:list={['iui-anchor', className, external ? 'iui-anchor-external' : '']}
   data-iui-status={status}
   data-iui-underline={underline}
   {...external ? { referrerpolicy: 'no-referrer', target: '_blank' } : {}}
