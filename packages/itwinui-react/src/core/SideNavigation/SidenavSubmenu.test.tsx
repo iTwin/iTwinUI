@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { SvgMore } from '../utils/index.js';
+import { SvgMore } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { SidenavSubmenu } from './SidenavSubmenu.js';
 import { SidenavSubmenuHeader } from './SidenavSubmenuHeader.js';

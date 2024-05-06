@@ -1,6 +1,5 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalDotEnv": [".env"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -44,7 +43,6 @@
     "lint": {},
     "dev": {
       "dependsOn": [],
-      "dotEnv": [".env.development", ".env.local"],
       "cache": false,
       "persistent": true
     },

@@ -9,8 +9,8 @@ import {
   InputFlexContainerButton,
   InputFlexContainerIcon,
   useSafeContext,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import type { InputProps } from '../Input/Input.js';
 
 const InputWithDecorationsContext = React.createContext<

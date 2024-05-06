@@ -10,8 +10,8 @@ import {
   SvgCaretUpSmall,
   Box,
   ButtonBase,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import type { SplitButtonProps } from '../Buttons/SplitButton.js';
 import { HeaderBasicButton } from './HeaderBasicButton.js';
 

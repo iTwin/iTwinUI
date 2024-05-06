@@ -9,8 +9,8 @@ import {
   useMergedRefs,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { HeaderBasicButton } from './HeaderBasicButton.js';
 import type { DropdownButtonProps } from '../Buttons/DropdownButton.js';
 

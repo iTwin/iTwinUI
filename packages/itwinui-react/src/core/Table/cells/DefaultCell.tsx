@@ -5,7 +5,8 @@
 import * as React from 'react';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
-import { Box, LineClamp, ShadowRoot } from '../../utils/index.js';
+import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
+import { TableColumnsContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
@@ -23,7 +24,8 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Should the contents of the cell be clamped after a certain number of lines?
    *
-   * Will be enabled by default if the cell content is a string.
+   * Will be enabled by default if the cell content is a string and a custom `Cell`
+   * is not specified in the column object.
    */
   clamp?: boolean;
 } & CellRendererProps<T> &
@@ -43,6 +45,15 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
+  const columnsProp = React.useContext(TableColumnsContext);
+  const isCustomCell = React.useMemo(
+    () =>
+      columnsProp
+        .find(({ id }) => props.cellProps.column.id === id)
+        ?.hasOwnProperty('Cell'),
+    [props.cellProps.column.id, columnsProp],
+  );
+
   const {
     cellElementProps: {
       className: cellElementClassName,
@@ -57,7 +68,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string',
+    clamp = typeof cellProps.value === 'string' && !isCustomCell,
     ...rest
   } = props;
 

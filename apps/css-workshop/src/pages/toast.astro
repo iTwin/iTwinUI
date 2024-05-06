@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Toast notification'>
@@ -83,15 +84,9 @@ import Layout from './_layout.astro';
             data-iui-underline='true'
             data-iui-status='positive'>View the report</a
           >
-          <button
-            aria-label='Close'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-          </button>
+          <IconButton_ aria-label='Close' variant='borderless' size='small'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
         </div>
 
         <div class='iui-toast iui-positive'>
@@ -99,15 +94,9 @@ import Layout from './_layout.astro';
             <svg-status-success class='iui-icon' aria-hidden='true'></svg-status-success>
           </div>
           <div class='iui-message'>Processing completed.</div>
-          <button
-            aria-label='Close'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-          </button>
+          <IconButton_ aria-label='Close' variant='borderless' size='small'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
         </div>
 
         <div class='iui-toast iui-positive'>
@@ -140,15 +129,9 @@ import Layout from './_layout.astro';
             data-iui-underline='true'
             data-iui-status='informational'>View</a
           >
-          <button
-            aria-label='Close'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-          </button>
+          <IconButton_ aria-label='Close' variant='borderless' size='small'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
         </div>
 
         <div class='iui-toast iui-informational' id='demo-informational'>
@@ -175,15 +158,9 @@ import Layout from './_layout.astro';
             data-iui-underline='true'
             data-iui-status='negative'>View the report</a
           >
-          <button
-            aria-label='Close'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-          </button>
+          <IconButton_ aria-label='Close' variant='borderless' size='small'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
         </div>
 
         <div class='iui-toast iui-warning' id='demo-warning'>
@@ -197,15 +174,9 @@ import Layout from './_layout.astro';
             data-iui-underline='true'
             data-iui-status='warning'>Approve</a
           >
-          <button
-            aria-label='Close'
-            type='button'
-            class='iui-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-          >
-            <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-          </button>
+          <IconButton_ aria-label='Close' variant='borderless' size='small'>
+            <svg-close-small></svg-close-small>
+          </IconButton_>
         </div>
       </div>
     </div>

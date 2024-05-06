@@ -6,8 +6,8 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type HeaderLogoOwnProps = {
   /**
@@ -35,7 +35,7 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
     children,
     logo,
     onClick,
-    as = (!!onClick ? 'button' : 'div') as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+    as = (!!onClick ? 'button' : 'div') as any,
     ...rest
   } = props;
 

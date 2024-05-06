@@ -158,7 +158,6 @@ export const LabeledSelect = React.forwardRef(
           {...{ required: props.native ? required : undefined }}
           {...rest}
           ref={forwardedRef}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           {...({ styleType: 'default' } as any)} // Never allow LabeledSelect to be borderless
         />
         {typeof message === 'string' ? (

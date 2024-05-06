@@ -11,7 +11,6 @@ import { TextFilter } from './TextFilter.js';
 const setFilter = vi.fn() as (value: unknown) => void;
 const clearFilter = vi.fn() as () => void;
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (initialProps?: Partial<TableFilterProps<any>>) => {
   const props = {
     column: {} as HeaderGroup,
@@ -22,7 +21,6 @@ const renderComponent = (initialProps?: Partial<TableFilterProps<any>>) => {
   } as TableFilterProps<any>;
   return render(<TextFilter {...props} />);
 };
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -57,7 +55,6 @@ it('should call setFilter when Enter is pressed', () => {
 
 it('should load filter with set value and clear it', () => {
   const { container } = renderComponent({
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     column: { filterValue: 'test filter' } as HeaderGroup<any>,
   });
 

@@ -1,5 +1,5 @@
 ---
-title: Button group
+title: ButtonGroup
 description: A button group is a set of buttons with similar functionality.
 propsPath: '@itwin/itwinui-react/esm/core/ButtonGroup/ButtonGroup.d.ts'
 thumbnail: ButtonGroup
@@ -19,7 +19,29 @@ Use a button group if you want to put similar functionality in one place. It hel
 
 Buttons in a button group can be active, disabled and both.
 
-## Appearance
+## Usage
+
+The `ButtonGroup` should almost always be used with [`IconButton`](button#iconbutton) components. Make sure to also pass the `label` prop to each `IconButton`; this text will be used to label the button and will be displayed in a tooltip.
+
+```jsx
+<ButtonGroup>
+  <IconButton label="Add">
+    <SvgAdd>
+  </IconButton>
+  <IconButton label="Edit">
+    <SvgEdit>
+  </IconButton>
+</ButtonGroup>
+```
+### Toolbar
+
+By default, the buttons are each considered to be separate tab stops. If you want to group them together in a single tab stop, you can enable the [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/) by specifying [`role="toolbar"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/roles/toolbar_role). This will add all required behaviors for the toolbar pattern, including arrow-key navigation and focus management.
+
+<LiveExample src='ButtonGroup.toolbar.jsx'>
+  <AllExamples.ButtonGroupToolbarExample client:load />
+</LiveExample>
+
+**Note**: `role="toolbar"` should only be used when the ButtonGroup contains buttons. Do not use it with inputs and other non-button elements.
 
 ### Overflow
 
@@ -39,15 +61,16 @@ Use the <code>orientation</code> prop to switch the button group to vertical.
 
 ### With input
 
-You can combine [inputs](input) with buttons in a button group.
+You can combine [inputs](input) with buttons in a button group. Use this pattern sparingly.
 
 <LiveExample src='ButtonGroup.input.jsx'>
   <AllExamples.ButtonGroupInputExample client:load />
 </LiveExample>
 
-## Usage
+## Usage guidelines
 
 - The button group should only consist of [default buttons](button#default) or [borderless buttons](button#borderless).
+- Make sure to label IconButtons with the `label` prop.
 - You should not mix different styled buttons in the same group.
 - You can put buttons and button groups in close proximity. In such cases, see if there is a main action and give it emphasis with a [high visibility](button#high-visibility) button.
 

@@ -5,8 +5,8 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { Box, ButtonBase } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box, ButtonBase } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 export type ButtonProps = {
   /**
@@ -39,6 +39,12 @@ export type ButtonProps = {
    * Passes props to the end icon.
    */
   endIconProps?: React.ComponentProps<'span'>;
+  /**
+   * Whether the button should stretch to fill the width of the container.
+   *
+   * This is useful on narrow containers and mobile views.
+   */
+  stretched?: boolean;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
@@ -61,16 +67,23 @@ export const Button = React.forwardRef((props, ref) => {
     labelProps,
     startIconProps,
     endIconProps,
+    stretched,
     ...rest
   } = props;
 
   return (
     <ButtonBase
       ref={ref}
-      className={cx('iui-button', className)}
+      className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
       {...rest}
+      style={
+        {
+          '--_iui-width': stretched ? '100%' : undefined,
+          ...props.style,
+        } as React.CSSProperties
+      }
     >
       {startIcon && (
         <Box

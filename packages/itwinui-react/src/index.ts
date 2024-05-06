@@ -200,7 +200,7 @@ export {
   getUserColor,
   ColorValue,
   MiddleTextTruncation,
-} from './core/utils/index.js';
+} from './utils/index.js';
 
 export { LinkBox, LinkAction } from './core/LinkAction/LinkAction.js';
 

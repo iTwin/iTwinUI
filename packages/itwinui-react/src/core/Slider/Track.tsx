@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type { SliderProps, TrackDisplayMode } from './Slider.js';
 
 function shouldDisplaySegment(segmentIndex: number, mode: TrackDisplayMode) {

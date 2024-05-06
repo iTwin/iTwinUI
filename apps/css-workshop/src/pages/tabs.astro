@@ -1,5 +1,7 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Tabs'>
@@ -63,17 +65,17 @@ import Layout from './_layout.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-        </button>
+        <IconButton_ variant='borderless'>
+          <svg-add-circular></svg-add-circular>
+        </IconButton_>
       </div>
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown' data-iui-size='small'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown size='small'>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -135,17 +137,17 @@ import Layout from './_layout.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-        </button>
+        <IconButton_ variant='borderless'>
+          <svg-add-circular></svg-add-circular>
+        </IconButton_>
       </div>
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -209,20 +211,16 @@ import Layout from './_layout.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-button' data-iui-variant='borderless' data-iui-size='large'>
-          <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-        </button>
+        <IconButton_ variant='borderless' size='large'>
+          <svg-add-circular></svg-add-circular>
+        </IconButton_>
       </div>
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button'>
-            <span>Trial</span>
-          </button>
+          <Button_>Trial</Button_>
 
-          <button class='iui-button' data-iui-variant='high-visibility'>
-            <span>Purchase</span>
-          </button>
+          <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
@@ -290,20 +288,16 @@ import Layout from './_layout.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-button' data-iui-variant='borderless' data-iui-size='large'>
-          <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-        </button>
+        <IconButton_ variant='borderless' size='large'>
+          <svg-add-circular></svg-add-circular>
+        </IconButton_>
       </div>
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button'>
-            <span>Trial</span>
-          </button>
+          <Button_>Trial</Button_>
 
-          <button class='iui-button' data-iui-variant='high-visibility'>
-            <span>Purchase</span>
-          </button>
+          <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
@@ -367,17 +361,17 @@ import Layout from './_layout.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-        </button>
+        <IconButton_ variant='borderless'>
+          <svg-add-circular></svg-add-circular>
+        </IconButton_>
       </div>
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -439,20 +433,16 @@ import Layout from './_layout.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-button' data-iui-variant='borderless' data-iui-size='large'>
-          <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-        </button>
+        <IconButton_ variant='borderless' size='large'>
+          <svg-add-circular></svg-add-circular>
+        </IconButton_>
       </div>
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button'>
-            <span>Trial</span>
-          </button>
+          <Button_>Trial</Button_>
 
-          <button class='iui-button' data-iui-variant='high-visibility'>
-            <span>Purchase</span>
-          </button>
+          <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
@@ -570,10 +560,10 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown' data-iui-size='small'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown size='small'>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -657,10 +647,10 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -729,10 +719,10 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown' data-iui-size='small'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown size='small'>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -802,10 +792,10 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -877,13 +867,9 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button'>
-            <span>Trial</span>
-          </button>
+          <Button_>Trial</Button_>
 
-          <button class='iui-button' data-iui-variant='high-visibility'>
-            <span>Purchase</span>
-          </button>
+          <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
@@ -960,13 +946,9 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button'>
-            <span>Trial</span>
-          </button>
+          <Button_>Trial</Button_>
 
-          <button class='iui-button' data-iui-variant='high-visibility'>
-            <span>Purchase</span>
-          </button>
+          <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
@@ -1034,10 +1016,10 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button iui-button-dropdown'>
-            <span>Actions</span>
-            <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-          </button>
+          <Button_ dropdown>
+            Actions
+            <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+          </Button_>
         </div>
       </div>
 
@@ -1107,13 +1089,9 @@ import Layout from './_layout.astro';
 
       <div class='iui-tabs-actions-wrapper'>
         <div class='iui-tabs-actions'>
-          <button class='iui-button'>
-            <span>Trial</span>
-          </button>
+          <Button_>Trial</Button_>
 
-          <button class='iui-button' data-iui-variant='high-visibility'>
-            <span>Purchase</span>
-          </button>
+          <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 

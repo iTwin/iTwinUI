@@ -1,5 +1,7 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
+import Code_ from '../components/Code.astro';
 ---
 
 <Layout title='Code'>
@@ -15,10 +17,10 @@ import Layout from './_layout.astro';
     <div class='iui-codeblock' style='width: 770px;'>
       <div class='iui-title-bar'>
         <span class='iui-title'>HTML</span>
-        <button class='iui-button' data-iui-variant='borderless' aria-label='Copy' type='button'>
-          <svg-copy class='iui-button-icon' aria-hidden='true'></svg-copy>
-          <span>Copy</span>
-        </button>
+        <Button_ variant='borderless' aria-label='Copy'>
+          <svg-copy aria-hidden='true' slot='start-icon'></svg-copy>
+           Copy
+        </Button_>
       </div>
 
       <pre
@@ -44,8 +46,8 @@ import Layout from './_layout.astro';
   <h2>Inline</h2>
   <section id='demo-inline'>
     <p>
-      The&nbsp;<code class='iui-code'>push()</code>&nbsp;method adds one or more elements to the end
-      of an array and returns the new length of the array.
+      The <Code_>push()</Code_> method adds one or more elements to the end of an array and returns
+      the new length of the array.
     </p>
   </section>
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Blockquote_ from '../components/Blockquote.astro';
 ---
 
 <Layout title='Blockquote'>
@@ -12,7 +13,7 @@ import Layout from './_layout.astro';
   <hr />
 
   <section id='demo-default'>
-    <blockquote class='iui-blockquote' cite='https://www.bentley.com/en'>
+    <Blockquote_ cite='https://www.bentley.com/en'>
       <p>
         For 36 years we have served engineers with our software, passionately believing that better
         performing and more resilient infrastructure is essential to improve the quality of life for
@@ -22,6 +23,6 @@ import Layout from './_layout.astro';
         —Greg Bentley,
         <cite>NasdaqListed</cite>
       </footer>
-    </blockquote>
+    </Blockquote_>
   </section>
 </Layout>

@@ -11,8 +11,8 @@ import {
   useMergedRefs,
   useResizeObserver,
   Box,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { CarouselDot } from './CarouselDot.js';
 
 type CarouselDotsListProps = {

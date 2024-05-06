@@ -38,9 +38,14 @@ import {
   ShadowRoot,
   LineClamp,
   useMergedRefs,
-} from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
+} from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
+import {
+  TableColumnsContext,
+  getCellStyle,
+  getStickyStyle,
+  getSubRowStyle,
+} from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
@@ -64,7 +69,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import { VirtualScroll } from '../utils/components/VirtualScroll.js';
+import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
@@ -895,7 +900,7 @@ export const Table = <
   const isHeaderDirectClick = React.useRef(false);
 
   return (
-    <>
+    <TableColumnsContext.Provider value={columns}>
       <Box
         ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
@@ -1167,6 +1172,6 @@ export const Table = <
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
-    </>
+    </TableColumnsContext.Provider>
   );
 };

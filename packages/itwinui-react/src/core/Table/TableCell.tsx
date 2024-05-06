@@ -14,7 +14,7 @@ import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
 import { SubRowExpander } from './SubRowExpander.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { DefaultCell } from './cells/index.js';
-import { Box } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;

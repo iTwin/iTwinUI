@@ -18,11 +18,11 @@ import {
   useLatestRef,
   InputWithIcon,
   mergeEventHandlers,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   CommonProps,
   PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';
@@ -290,6 +290,8 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     triggerProps,
     status,
     popoverProps,
+    // @ts-expect-error -- this prop is disallowed by types but should still be handled at runtime
+    styleType,
     ...rest
   } = props;
 
@@ -419,10 +421,12 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           size={size}
           status={status}
           aria-disabled={disabled ? 'true' : undefined}
+          data-iui-disabled={disabled ? 'true' : undefined}
           aria-autocomplete='none'
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
+          styleType={styleType}
           {...triggerProps}
           ref={useMergedRefs(
             selectRef,
@@ -433,7 +437,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             {
               'iui-placeholder':
                 (!selectedItems || selectedItems.length === 0) && !!placeholder,
-              'iui-disabled': disabled,
             },
             triggerProps?.className,
           )}
@@ -658,7 +661,7 @@ const SelectButton = React.forwardRef((props, forwardedRef) => {
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       {...rest}
       ref={forwardedRef}
-      className={cx('iui-select-button', props.className)}
+      className={cx('iui-select-button', 'iui-field', props.className)}
     />
   );
 }) as PolymorphicForwardRefComponent<

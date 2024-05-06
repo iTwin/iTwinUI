@@ -6,8 +6,8 @@ import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { Breadcrumbs } from './Breadcrumbs.js';
-import { SvgChevronRight, SvgMore } from '../utils/index.js';
-import * as UseOverflow from '../utils/hooks/useOverflow.js';
+import { SvgChevronRight, SvgMore } from '../../utils/index.js';
+import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
@@ -86,11 +86,19 @@ it('should render breadcrumbs item as span element by default', () => {
 
 it('should render breadcrumbs item as anchor elements', () => {
   const { container } = render(
-    <Breadcrumbs.Item href='https://www.example.com/'>
-      Anchor 1
-    </Breadcrumbs.Item>,
+    <Breadcrumbs.Item href='https://www.example.com/'>Anchor</Breadcrumbs.Item>,
   );
   expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
+});
+
+it('should render breadcrumbs item as button elements', () => {
+  const { container } = render(
+    <Breadcrumbs.Item onClick={() => {}}>Button</Breadcrumbs.Item>,
+  );
+
+  const button = container.querySelector('button');
+  expect(button).toHaveClass('iui-breadcrumbs-content');
+  expect(button).toHaveAttribute('data-iui-variant', 'borderless');
 });
 
 it('should render custom separators', () => {

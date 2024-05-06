@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='ColorPicker'>
@@ -205,9 +206,9 @@ import Layout from './_layout.astro';
       <div class='iui-color-input-wrapper'>
         <div class='iui-color-picker-section-label'>RGBA</div>
         <div class='iui-color-input'>
-          <button class='iui-button' data-iui-variant='borderless' data-iui-size='small'>
-            <svg-swap class='iui-button-icon' aria-hidden='true'></svg-swap>
-          </button>
+          <IconButton_ variant='borderless' size='small'>
+            <svg-swap></svg-swap>
+          </IconButton_>
           <div class='iui-color-input-fields'>
             <div class='iui-input-grid'>
               <input
@@ -215,7 +216,7 @@ import Layout from './_layout.astro';
                 min='0'
                 max='255'
                 value='255'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -225,7 +226,7 @@ import Layout from './_layout.astro';
                 min='0'
                 max='255'
                 value='195'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -235,7 +236,7 @@ import Layout from './_layout.astro';
                 min='0'
                 max='255'
                 value='53'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -246,7 +247,7 @@ import Layout from './_layout.astro';
                 max='1'
                 step='0.01'
                 value='1.0'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -257,9 +258,9 @@ import Layout from './_layout.astro';
       <div class='iui-color-palette-wrapper'>
         <div class='iui-color-picker-section-label'>Saved colors</div>
         <div class='iui-color-palette'>
-          <button class='iui-button' data-iui-variant='borderless' data-iui-size='small'>
-            <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-          </button>
+          <IconButton_ variant='borderless' size='small'>
+            <svg-add-circular></svg-add-circular>
+          </IconButton_>
           <span
             style='--iui-color-swatch-background: hsl(0, 100%, 40%);'
             class='iui-color-swatch'
@@ -343,9 +344,9 @@ import Layout from './_layout.astro';
       <div class='iui-color-input-wrapper'>
         <div class='iui-color-picker-section-label'>HSLA</div>
         <div class='iui-color-input'>
-          <button class='iui-button' data-iui-variant='borderless' data-iui-size='small'>
-            <svg-swap class='iui-button-icon' aria-hidden='true'></svg-swap>
-          </button>
+          <IconButton_ variant='borderless' size='small'>
+            <svg-swap></svg-swap>
+          </IconButton_>
           <div class='iui-color-input-fields'>
             <div class='iui-input-grid'>
               <input
@@ -353,7 +354,7 @@ import Layout from './_layout.astro';
                 min='0'
                 max='255'
                 value='42'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -363,7 +364,7 @@ import Layout from './_layout.astro';
                 min='0'
                 max='100'
                 value='100'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -373,7 +374,7 @@ import Layout from './_layout.astro';
                 min='0'
                 max='100'
                 value='60'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -384,7 +385,7 @@ import Layout from './_layout.astro';
                 max='1'
                 step='0.01'
                 value='1.0'
-                class='iui-input'
+                class='iui-input iui-field'
                 data-iui-size='small'
               />
             </div>
@@ -395,9 +396,9 @@ import Layout from './_layout.astro';
       <div class='iui-color-palette-wrapper'>
         <div class='iui-color-picker-section-label'>Saved colors</div>
         <div class='iui-color-palette'>
-          <button class='iui-button' data-iui-variant='borderless' data-iui-size='small'>
-            <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-          </button>
+          <IconButton_ variant='borderless' size='small'>
+            <svg-add-circular></svg-add-circular>
+          </IconButton_>
           <span
             style='--iui-color-swatch-background: hsl(0, 100%, 40%);'
             class='iui-color-swatch'
@@ -462,12 +463,17 @@ import Layout from './_layout.astro';
       <div class='iui-color-input-wrapper'>
         <div class='iui-color-picker-section-label'>HEX</div>
         <div class='iui-color-input'>
-          <button class='iui-button' data-iui-variant='borderless' data-iui-size='small'>
-            <svg-swap class='iui-button-icon' aria-hidden='true'></svg-swap>
-          </button>
+          <IconButton_ variant='borderless' size='small'>
+            <svg-swap></svg-swap>
+          </IconButton_>
           <div class='iui-color-input-fields'>
             <div class='iui-input-grid'>
-              <input value='#ffc335' maxlength='7' class='iui-input' data-iui-size='small' />
+              <input
+                value='#ffc335'
+                maxlength='7'
+                class='iui-input iui-field'
+                data-iui-size='small'
+              />
             </div>
           </div>
         </div>
@@ -476,9 +482,9 @@ import Layout from './_layout.astro';
       <div class='iui-color-palette-wrapper'>
         <div class='iui-color-picker-section-label'>Saved colors</div>
         <div class='iui-color-palette'>
-          <button class='iui-button' data-iui-variant='borderless' data-iui-size='small'>
-            <svg-add-circular class='iui-button-icon' aria-hidden='true'></svg-add-circular>
-          </button>
+          <IconButton_ variant='borderless' size='small'>
+            <svg-add-circular></svg-add-circular>
+          </IconButton_>
           <span
             style='--iui-color-swatch-background: hsl(0, 100%, 40%);'
             class='iui-color-swatch'

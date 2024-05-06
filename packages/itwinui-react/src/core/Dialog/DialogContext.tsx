@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { PortalProps } from '../utils/index.js';
+import type { PortalProps } from '../../utils/index.js';
 
 export type DialogContextProps = {
   /**

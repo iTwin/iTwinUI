@@ -9,7 +9,7 @@ import { InformationPanel } from './InformationPanel.js';
 import { InformationPanelWrapper } from './InformationPanelWrapper.js';
 import { InformationPanelHeader } from './InformationPanelHeader.js';
 import { InformationPanelBody } from './InformationPanelBody.js';
-import { SvgCloseSmall, SvgMore } from '../utils/index.js';
+import { SvgCloseSmall, SvgMore } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 
 const getBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;

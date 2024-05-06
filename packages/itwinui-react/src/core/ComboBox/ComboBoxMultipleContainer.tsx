@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { SelectTagContainer } from '../Select/SelectTagContainer.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type ComboBoxMultipleContainerProps = {
   selectedItems?: React.ReactNode[];

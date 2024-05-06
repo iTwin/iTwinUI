@@ -1,5 +1,78 @@
 # Changelog
 
+## 3.10.0
+
+### Minor Changes
+
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): Clicking a `MenuItem` with `submenuItems` now toggles the submenu visibility.
+  - If both `submenuItems` and `onClick` props are passed, then clicking the `MenuItem` will toggle the submenu visibility but also _still_ call the `onClick`. However, this behavior can lead to a confusing UX and is not recommended, so a warning will be shown.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): Aggregated a subset of CSS styles across some field components: `Button`, `Input`, `Textarea`, and `Select`, in order to reduce the CSS size and improve visual consistency. Some resulting changes:
+  - `Input`, `Textarea`, and `Select` have a similar hover state as `Button`.
+  - `Input`, `Textarea`, and `Select` now show their value as greyed out when disabled.
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): `DropdownMenu`'s keyboard navigation, hover triggers, and overall behavior has been improved.
+- [#2010](https://github.com/iTwin/iTwinUI/pull/2010): Added new `labelProps` to `ToggleSwitch` to allow for customization of the label element.
+- [#2011](https://github.com/iTwin/iTwinUI/pull/2011): Added dependency on `jotai`.
+
+### Patch Changes
+
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): Disabled `MenuItem`s no longer show their submenu.
+- [#1942](https://github.com/iTwin/iTwinUI/pull/1942): Fixed an issue in `DropdownMenu` where the submenus would not close in some circumstances, despite calling `close()` in `onClick`.
+- [#2013](https://github.com/iTwin/iTwinUI/pull/2013): Fixed an issue with `Table` row selection not correctly deselecting all sub rows when the row has disabled sub rows or when some rows are filtered out.
+- [#2009](https://github.com/iTwin/iTwinUI/pull/2009): Fixed an issue where `Popover` wasn't respecting the `ThemeProvider`'s `portalContainer`.
+- [#2011](https://github.com/iTwin/iTwinUI/pull/2011): When `ThemeProvider` is portaled into popup windows, it will now automatically create a portal container in the correct document, avoiding the need to manually specify `portalContainer`.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): The small sized `TablePaginator`'s buttons are now squares instead of rectangles. This makes it consistent with the shape of the regular sized `TablePaginator` buttons.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): The hover styling of `Breadcrumbs.Item` has been made more consistent across buttons and anchors.
+
+## 3.9.1
+
+### Patch Changes
+
+- [#2005](https://github.com/iTwin/iTwinUI/pull/2005): Improved `IconButton` so that its tooltip is removed from the DOM when not visible.
+- [#2004](https://github.com/iTwin/iTwinUI/pull/2004): Fixed a performance issue in `Tooltip` where expensive calculations were being run even when the tooltip was not visible.
+
+## 3.9.0
+
+### Minor Changes
+
+- [#1994](https://github.com/iTwin/iTwinUI/pull/1994): Added `role="toolbar"` support to `ButtonGroup`. Use this to enable the [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/), with arrow-key navigation functionality.
+
+  ```jsx
+  <ButtonGroup role="toolbar">
+  ```
+
+- [#1986](https://github.com/iTwin/iTwinUI/pull/1986): `tableFilters.DateRangeFilter` now accepts `showYearSelection` to enable year-selection buttons.
+
+  ```js
+  tableFilters.DateRangeFilter({ showYearSelection: true });
+  ```
+
+- [#1971](https://github.com/iTwin/iTwinUI/pull/1971): Added a new `stretched` prop to `Button` to allow it to span the full width of its container.
+- [#1996](https://github.com/iTwin/iTwinUI/pull/1996): `Anchor` elements inside `Text` will now be underlined by default.
+
+### Patch Changes
+
+- [#1997](https://github.com/iTwin/iTwinUI/pull/1997): Fixed an issue where draggable `Dialog` was overriding its intrinsic size after mount.
+- [#1981](https://github.com/iTwin/iTwinUI/pull/1981): Fixed `jest` detection logic to correctly exit from scenarios that should not be executed in unit test environments.
+- [#1982](https://github.com/iTwin/iTwinUI/pull/1982): Fixed an issue where some components (such as `InputGroup`) were trying to render `undefined`, which is not supported in React 17.
+- [#1986](https://github.com/iTwin/iTwinUI/pull/1986): Updated the date pickers in `tableFilters.DateRangeFilter` to _not_ display dates outside the current month.
+
+## 3.8.1
+
+### Patch Changes
+
+- [#1964](https://github.com/iTwin/iTwinUI/pull/1964): Fixed a bug with `InformationPanel` where changing orientation after resizing the panel would cause the panel to maintain it's resized width/height.
+
+## 3.8.0
+
+### Minor Changes
+
+- [#1957](https://github.com/iTwin/iTwinUI/pull/1957): Bumped the minimum required version of `@floating-ui/react` from `^0.26.3` to `^0.26.10`. (Make sure to also update transitive deps!)
+
+### Patch Changes
+
+- [#1962](https://github.com/iTwin/iTwinUI/pull/1962): Hydration checks have been added in some components to facilitate showing pure client-rendered content more eagerly.
+- [#1968](https://github.com/iTwin/iTwinUI/pull/1968): Fixed a regression in `Table` where the layout of a custom `Cell` unexpectedly changed from horizontal to vertical.
+
 ## 3.7.4
 
 ### Patch Changes

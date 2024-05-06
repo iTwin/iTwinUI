@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box, ButtonBase } from '../utils/index.js';
+import { Box, ButtonBase } from '../../utils/index.js';
 import { Tooltip } from '../Tooltip/Tooltip.js';
 import type { ButtonProps } from './Button.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 import { ButtonGroupContext } from '../ButtonGroup/ButtonGroup.js';
 
@@ -63,7 +63,7 @@ export const IconButton = React.forwardRef((props, ref) => {
   const button = (
     <ButtonBase
       ref={ref}
-      className={cx('iui-button', className)}
+      className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
       data-iui-active={isActive}

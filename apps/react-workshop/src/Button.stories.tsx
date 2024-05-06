@@ -113,3 +113,14 @@ export const AsLink = () => {
     </Button>
   );
 };
+
+export const Stretch = () => {
+  return <Button stretched>Sign in</Button>;
+};
+Stretch.decorators = [
+  (Story: () => React.ReactNode) => (
+    <div style={{ width: 300, outline: '1px solid', padding: 8 }}>
+      <Story />
+    </div>
+  ),
+];

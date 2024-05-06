@@ -5,8 +5,8 @@
 import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TablePaginator, type TablePaginatorProps } from './TablePaginator.js';
-import * as UseOverflow from '../utils/hooks/useOverflow.js';
-import * as UseContainerWidth from '../utils/hooks/useContainerWidth.js';
+import * as UseOverflow from '../../utils/hooks/useOverflow.js';
+import * as UseContainerWidth from '../../utils/hooks/useContainerWidth.js';
 import { userEvent } from '@testing-library/user-event';
 
 const renderComponent = (props?: Partial<TablePaginatorProps>) => {
@@ -290,7 +290,7 @@ it('should render elements in small size', () => {
   ).toBe(true);
 
   const pages = container.querySelectorAll(
-    '.iui-table-paginator-page-button-small',
+    '.iui-table-paginator-page-button[data-iui-size="small"]',
   );
   expect(pages).toHaveLength(7);
 

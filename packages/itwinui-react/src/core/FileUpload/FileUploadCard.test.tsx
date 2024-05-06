@@ -9,7 +9,7 @@ import {
   SvgUpload,
   SvgCheckmark,
   SvgSmileyHappy,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { FileUploadCard } from './FileUploadCard.js';
 import { Button } from '../Buttons/Button.js';
 import { FileEmptyCard } from './FileEmptyCard.js';

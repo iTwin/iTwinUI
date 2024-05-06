@@ -9,8 +9,8 @@ import {
   mergeEventHandlers,
   useIntersection,
   useMergedRefs,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 
 type CarouselSlideProps = {

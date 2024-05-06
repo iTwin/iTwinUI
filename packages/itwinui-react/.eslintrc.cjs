@@ -10,4 +10,8 @@ module.exports = {
   ...preset,
   extends: [...preset.extends, 'plugin:require-extensions/recommended'],
   plugins: [...preset.plugins, 'require-extensions'],
+  rules: {
+    ...preset.rules,
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
 };

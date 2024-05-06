@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 const isSameHour = (
   date1: Date,
@@ -573,19 +573,8 @@ const TimePickerColumn = <T,>(props: TimePickerColumnProps<T>): JSX.Element => {
     precision = 'minutes',
     className = 'iui-time',
   } = props;
+
   const needFocus = React.useRef(setFocus);
-
-  // Used to focus row only when changed (keyboard navigation)
-  // e.g. without this on every rerender it would be focused
-  React.useEffect(() => {
-    if (needFocus.current) {
-      needFocus.current = false;
-    }
-  });
-
-  const scrollIntoView = (ref: HTMLLIElement | null, isSame: boolean) => {
-    isSame && ref?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-  };
 
   const handleTimeKeyDown = (
     event: React.KeyboardEvent<HTMLLIElement>,
@@ -647,8 +636,20 @@ const TimePickerColumn = <T,>(props: TimePickerColumnProps<T>): JSX.Element => {
               key={index}
               tabIndex={isSameFocus ? 0 : undefined}
               ref={(ref) => {
-                scrollIntoView(ref, isSameFocus);
-                needFocus.current && isSameFocus && ref?.focus();
+                if (!ref || !isSameFocus) {
+                  return;
+                }
+
+                // Move focus/scroll in the next task, after the DOM has stabilized.
+                // This gives it priority over other conflicting logic (e.g. from floating-ui/Popover).
+                setTimeout(() => {
+                  ref.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+
+                  if (needFocus.current) {
+                    ref.focus();
+                    needFocus.current = false;
+                  }
+                });
               }}
               onClick={() => {
                 onSelectChange(value);

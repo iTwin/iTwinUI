@@ -24,19 +24,32 @@ import {
   safePolygon,
   useRole,
   FloatingPortal,
+  useFloatingTree,
+  useListNavigation,
 } from '@floating-ui/react';
-import type { SizeOptions, Placement } from '@floating-ui/react';
+import type {
+  SizeOptions,
+  Placement,
+  UseListNavigationProps,
+  ReferenceType,
+  UseFloatingOptions,
+  UseHoverProps,
+  UseClickProps,
+  UseFocusProps,
+  UseDismissProps,
+} from '@floating-ui/react';
 import {
   Box,
+  ShadowRoot,
   cloneElementWithRef,
   useControlledState,
   useId,
   useLayoutEffect,
   useMergedRefs,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { Portal } from '../utils/components/Portal.js';
-import type { PortalProps } from '../utils/components/Portal.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { usePortalTo } from '../../utils/components/Portal.js';
+import type { PortalProps } from '../../utils/components/Portal.js';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 type PopoverOptions = {
@@ -49,7 +62,6 @@ type PopoverOptions = {
    * Controlled flag for whether the popover is visible.
    */
   visible?: boolean;
-
   /**
    * Callback invoked every time the popover visibility changes as a result
    * of internal logic. Should be used alongside `visible` prop.
@@ -99,16 +111,39 @@ type PopoverInternalProps = {
     layoutShift?: boolean;
   };
   /**
-   * By default, the popover will only open on click.
-   * `hover` and `focus` can be manually specified as triggers.
+   * By default, only the click and dismiss interactions/triggers are enabled.
+   * Explicitly pass `false` to disable the defaults.
+   *
+   * Pass a boolean to enable/disable any of the supported interactions.
+   * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
+   *
+   * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
+   * Booleans will not be allowed in this case.
+   *
+   * @example
+   * <Popover
+   *   interactions={{
+   *     click: false,
+   *     focus: true,
+   *     hover: { move: false },
+   *     listNavigation: { … },
+   *   }}
+   *   // …
+   * >…</Popover>
    */
-  trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
+  interactions?: {
+    click?: boolean | UseClickProps;
+    dismiss?: boolean | UseDismissProps;
+    hover?: boolean | UseHoverProps<ReferenceType>;
+    focus?: boolean | UseFocusProps;
+    listNavigation?: UseListNavigationProps;
+  };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-};
+} & Omit<UseFloatingOptions, 'middleware' | 'placement'>;
 
 // ----------------------------------------------------------------------------
 
@@ -120,11 +155,28 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
-    trigger = { click: true, hover: false, focus: false },
+    interactions: interactionsProp,
     role,
+    ...rest
   } = options;
 
-  const middleware = { flip: true, shift: true, ...options.middleware };
+  const mergedInteractions = {
+    ...{
+      click: true,
+      dismiss: true,
+      hover: false,
+      focus: false,
+      listNavigation: undefined,
+    },
+    ...interactionsProp,
+  };
+
+  const tree = useFloatingTree();
+
+  const middleware = React.useMemo(
+    () => ({ flip: true, shift: true, ...options.middleware }),
+    [options.middleware],
+  );
 
   const [open, onOpenChange] = useControlledState(
     false,
@@ -136,33 +188,60 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     placement,
     open,
     onOpenChange,
-    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    middleware: [
-      middleware.offset !== undefined && offset(middleware.offset),
-      middleware.flip && flip(),
-      middleware.shift && shift(),
-      matchWidth &&
-        size({
-          apply: ({ rects }) => {
-            setReferenceWidth(rects.reference.width);
-          },
-        } as SizeOptions),
-      middleware.autoPlacement && autoPlacement(),
-      middleware.inline && inline(),
-      middleware.hide && hide(),
-    ].filter(Boolean),
+    whileElementsMounted: React.useMemo(
+      () =>
+        // autoUpdate is expensive and should only be called when the popover is open
+        open ? (...args) => autoUpdate(...args, autoUpdateOptions) : undefined,
+      [autoUpdateOptions, open],
+    ),
+    ...rest,
+    middleware: React.useMemo(
+      () =>
+        [
+          middleware.offset !== undefined && offset(middleware.offset),
+          middleware.flip && flip(),
+          middleware.shift && shift(),
+          matchWidth &&
+            size({
+              apply: ({ rects }) => {
+                setReferenceWidth(rects.reference.width);
+              },
+            } as SizeOptions),
+          middleware.autoPlacement && autoPlacement(),
+          middleware.inline && inline(),
+          middleware.hide && hide(),
+        ].filter(Boolean),
+      [matchWidth, middleware],
+    ),
   });
 
   const interactions = useInteractions([
-    useClick(floating.context, { enabled: !!trigger.click }),
-    useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
-    useHover(floating.context, {
-      enabled: !!trigger.hover,
-      delay: 100,
-      handleClose: safePolygon({ buffer: 1 }),
+    useClick(floating.context, {
+      enabled: !!mergedInteractions.click,
+      ...(mergedInteractions.click as object),
     }),
-    useFocus(floating.context, { enabled: !!trigger.focus }),
+    useDismiss(floating.context, {
+      enabled: !!mergedInteractions.dismiss,
+      outsidePress: closeOnOutsideClick,
+      bubbles: tree != null, // Only bubble when inside a FloatingTree
+      ...(mergedInteractions.dismiss as object),
+    }),
+    useHover(floating.context, {
+      enabled: !!mergedInteractions.hover,
+      delay: 100,
+      handleClose: safePolygon({ buffer: 1, requireIntent: false }),
+      move: false,
+      ...(mergedInteractions.hover as object),
+    }),
+    useFocus(floating.context, {
+      enabled: !!mergedInteractions.focus,
+      ...(mergedInteractions.focus as object),
+    }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
+    useListNavigation(floating.context, {
+      enabled: !!mergedInteractions.listNavigation,
+      ...(mergedInteractions.listNavigation as UseListNavigationProps),
+    }),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
@@ -294,36 +373,68 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       }))}
 
       {popover.open ? (
-        <Portal portal={portal}>
-          <FloatingPortal>
-            <ThemeProvider
-              portalContainer={popoverElement} // portal nested popovers into this one
+        <PopoverPortal portal={portal}>
+          <ThemeProvider
+            portalContainer={popoverElement} // portal nested popovers into this one
+          >
+            <DisplayContents />
+            <FloatingFocusManager
+              context={popover.context}
+              modal={false}
+              initialFocus={popover.refs.floating}
             >
-              <FloatingFocusManager
-                context={popover.context}
-                modal={false}
-                initialFocus={popover.refs.floating}
+              <Box
+                className={cx(
+                  { 'iui-popover-surface': applyBackground },
+                  className,
+                )}
+                aria-labelledby={
+                  !hasAriaLabel
+                    ? popover.refs.domReference.current?.id
+                    : undefined
+                }
+                {...popover.getFloatingProps(rest)}
+                ref={popoverRef}
               >
-                <Box
-                  className={cx(
-                    { 'iui-popover-surface': applyBackground },
-                    className,
-                  )}
-                  aria-labelledby={
-                    !hasAriaLabel
-                      ? popover.refs.domReference.current?.id
-                      : undefined
-                  }
-                  {...popover.getFloatingProps(rest)}
-                  ref={popoverRef}
-                >
-                  {content}
-                </Box>
-              </FloatingFocusManager>
-            </ThemeProvider>
-          </FloatingPortal>
-        </Portal>
+                {content}
+              </Box>
+            </FloatingFocusManager>
+          </ThemeProvider>
+        </PopoverPortal>
       ) : null}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
+
+// ----------------------------------------------------------------------------
+
+const PopoverPortal = ({
+  children,
+  portal = true,
+}: React.PropsWithChildren<PortalProps>) => {
+  const portalTo = usePortalTo(portal);
+
+  return (
+    <FloatingPortal root={portalTo}>
+      <DisplayContents />
+      {children}
+    </FloatingPortal>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+/** Applies `display: contents` to the parent div. */
+const DisplayContents = React.memo(() => {
+  return (
+    <ShadowRoot
+      css={`
+        :host {
+          display: contents;
+        }
+      `}
+    >
+      <slot />
+    </ShadowRoot>
+  );
+});

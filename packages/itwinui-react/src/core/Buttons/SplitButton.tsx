@@ -14,11 +14,11 @@ import {
   SvgCaretUpSmall,
   useId,
   useMergedRefs,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';

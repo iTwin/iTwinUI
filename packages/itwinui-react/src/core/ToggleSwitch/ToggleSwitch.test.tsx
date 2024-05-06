@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgMore as SvgPlaceholder } from '../utils/index.js';
+import { SvgMore as SvgPlaceholder } from '../../utils/index.js';
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch.js';
@@ -120,4 +120,26 @@ it('should apply style and class', () => {
 it('should not render an icon if it is set to null', () => {
   const { container } = render(<ToggleSwitch icon={null} />);
   expect(container.querySelector('.iui-toggle-switch-icon')).toBeNull();
+});
+
+it('should correctly pass labelProps', () => {
+  const { container } = render(
+    <ToggleSwitch
+      className='switch-class'
+      style={{ color: 'blue' }}
+      label='some-label'
+      labelProps={{
+        className: 'some-class',
+        style: { color: 'red' },
+      }}
+    />,
+  );
+
+  const label = container.querySelector('.some-class') as HTMLElement;
+
+  expect(label.style.color).toBe('red');
+
+  expect(
+    (container.querySelector('.switch-class') as HTMLElement).style.color,
+  ).toBe('blue');
 });

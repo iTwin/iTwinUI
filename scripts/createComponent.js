@@ -53,8 +53,8 @@ const reactComponentFactory = (directory, componentName) => {
     path: `${directory}/${componentName}.tsx`,
     template: `${copyrightBannerJs}
 import * as React from 'react';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type ${componentName}Props = {};
 

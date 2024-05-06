@@ -9,7 +9,7 @@ import {
   type CustomSelectProps,
   type SelectMultipleTypeProps,
 } from './Select.js';
-import { SvgSmileyHappy } from '../utils/index.js';
+import { SvgSmileyHappy } from '../../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { userEvent } from '@testing-library/user-event';
 
@@ -131,7 +131,7 @@ it('should render disabled select', async () => {
   });
 
   const selectButton = container.querySelector(
-    '.iui-select-button.iui-disabled',
+    '.iui-select-button[data-iui-disabled=true]',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
   expect(selectButton).toHaveAttribute('aria-disabled', 'true');

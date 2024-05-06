@@ -22,7 +22,7 @@ To get started without having to install anything locally, you can create a [cod
 
 ### Local setup
 
-To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](https://nodejs.org/en/download/), and [Pnpm 8](https://pnpm.io/installation) installed on your computer.
+To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](https://nodejs.org/en/download/), and [Pnpm 9](https://pnpm.io/installation) installed on your computer.
 
 1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
@@ -47,6 +47,12 @@ To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](h
 `pnpm test`
 
 _Before running this command, make sure Docker is running. See [Visual testing](#visual-testing-css) (CSS and React) sections below for more details._
+
+### To run all tests for a specific component
+
+`pnpm test [component-name]` e.g. `pnpm test Alert`
+
+_Please note this command is case sensitive. e.g. `Alert`, not `alert`._
 
 ### To lint and fix autofixable errors
 
@@ -73,6 +79,7 @@ If you only need to run this task for a specific workspace, you can specify turb
 #### Development environment
 
 To start the development server for all workspaces, run the following command from the root.
+
 ```
 pnpm dev
 ```
@@ -80,34 +87,39 @@ pnpm dev
 This will automatically build anything that's not already built, and run the `dev` script for every workspace in parallel, watching for file changes.
 
 By default, a portal will be opened containing links to all the different dev servers:
-  - docs website:  `http://localhost:1700`
-  - vite playground: `http://localhost:1701`
-  - next playground: `http://localhost:1702`
-  - astro playground: `http://localhost:1703`
-  - react workshop (stories): `http://localhost:6006`
-  - css workshop (html pages): `http://localhost:3050`
+
+- docs website: `http://localhost:1700`
+- vite playground: `http://localhost:1701`
+- next playground: `http://localhost:1702`
+- astro playground: `http://localhost:1703`
+- react workshop (stories): `http://localhost:6006`
+- css workshop (html pages): `http://localhost:3050`
 
 ### Running bespoke commands
 
 If a script is not available in the root package.json or if you need to pass workspace-specific cli args, then you can specify the workspace as follows:
+
 ```
 # passing Alert as a cli arg to the `test` command in itwinui-react
 pnpm --filter=@itwin/itwinui-react run test Alert
 ```
 
 ...or you can simply run the command normally from inside the workspace folder instead of the monorepo root.
+
 ```
 # run this from inside packages/itwinui-react/ for the same result
 pnpm test Alert
 ```
 
 Note that this bypasses the turborepo pipeline, so you will need to manually run any dependent tasks first. For example, if the `build` command of `react-workshop` relies on the `build` command of `@itwin/itwinui-react`, then you will need to manually run the `build` commands in the right order.
+
 ```
 pnpm --filter=@itwin/itwinui-react run build
 pnpm --filter=react-workshop run build
 ```
 
 This is why it's recommended to use the turbo `--filter` syntax whenever possible.
+
 ```
 pnpm run build --filter=react-workshop
 ```
@@ -115,6 +127,7 @@ pnpm run build --filter=react-workshop
 > [!NOTE]
 >
 > The `--filter` syntax is available in both `turbo` and `pnpm`. The usage looks slightly different:
+>
 > - `turbo`: `pnpm run [command] --filter=[workspace]`
 >   - e.g. `pnpm run build --filter=@itwin/itwinui-react`
 >   - This will also run any dependent tasks defined in the Turbo pipeline, but does not allow args. (See [Turborepo docs](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)).
@@ -197,12 +210,13 @@ apps/website
 
 #### In `packages/itwinui-react`:
 
-* Manually add the `<svg>` component to `utils/icons` and `utils/icons/index.ts`
-* Import it from `utils`
+- Manually add the `<svg>` component to `utils/icons` and `utils/icons/index.ts`
+- Import it from `utils`
 
 e.g.
+
 ```tsx
-import { SvgClose, SvgInfoCircular } from '../utils';
+import { SvgClose, SvgInfoCircular } from '../../utils';
 ```
 
 ### Documentation
@@ -303,17 +317,23 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
   - For actions like click, hover use according functions from `scenarioHelper.js` and pass them as scenario options `actions` property.
     ```js
     const { scenario, hover } = require('./~scenarioHelper.cjs');
-    module.exports = [scenario('hover', { actions: [hover('.element-selector')] })];
+    module.exports = [
+      scenario('hover', { actions: [hover('.element-selector')] }),
+    ];
     ```
   - If you want to select only specific part of the test elements, pass `selectors` property to the options.
     ```js
     const { scenario } = require('./~scenarioHelper.cjs');
-    module.exports = [scenario('selected part', { selectors: ['.selected-part-selector'] })];
+    module.exports = [
+      scenario('selected part', { selectors: ['.selected-part-selector'] }),
+    ];
     ```
   - If you want to hide some elements because they might be moving e.g. spinner, pass `hideSelectors` property to the options.
     ```js
     const { scenario } = require('./~scenarioHelper.cjs');
-    module.exports = [scenario('hide part', { hideSelectors: ['.hide-selector'] })];
+    module.exports = [
+      scenario('hide part', { hideSelectors: ['.hide-selector'] }),
+    ];
     ```
   - More information about options can be found in [BackstopJS GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
 
@@ -324,8 +344,8 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 #### Running visual tests
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
-2. From the monorepo root, run `pnpm run test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm --filter=react-workshop run test --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
+2. From the monorepo root, run `pnpm run test --filter=react-workshop` or `pnpm test:react`. This will build react-workshop and run all cypress tests in docker.
+   - If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm test:react --spec="**/Alert.*"`.
 3. Once the tests finish running, you can approve any failing test images using `pnpm approve:react`.
 
 #### Writing visual tests
@@ -335,12 +355,7 @@ Inside the `apps/react-workshop` workspace, the `src/` directory has a set of `-
 ```ts
 describe('Alert', () => {
   const storyPath = 'Alert';
-  const tests = [
-    'Positive',
-    'Negative',
-    'Warning',
-    'Informational',
-  ];
+  const tests = ['Positive', 'Negative', 'Warning', 'Informational'];
 
   tests.forEach((testName) => {
     it(testName, () => {
@@ -353,6 +368,7 @@ describe('Alert', () => {
 ```
 
 Notice how we do all of these things manually:
+
 - defining the names of all the stories that need to be tested and excluding the ones that don't.
 - specifying the story iframe url using the custom `storyId` helper.
 - visiting the iframe using `cy.visit`.
@@ -366,9 +382,9 @@ We use an automated script to evaluate each component example for accessibility 
 
 #### Running accessibility tests
 
-In the terminal: 
+In the terminal:
 
-- Run the command `pnpm run test --filter=a11y` to run automated accessibility tests for all examples.
+- Run `pnpm run test --filter=a11y` or `pnpm test:a11y` to run automated accessibility tests for all examples.
 
 In the Cypress GUI:
 
@@ -378,9 +394,9 @@ In the Cypress GUI:
 
 ##### Your results
 
-In the terminal, a table will be produced for each violating component with the Axe rule ID being violated and its description. 
+In the terminal, a table will be produced for each violating component with the Axe rule ID being violated and its description.
 
-In Cypress, if the component violates a Axe rule, its rule ID and the number of offending nodes will be output in a line in the testing window. You can click on the line to highlight the offending nodes in the test browser and to output more information in the browser console.  
+In Cypress, if the component violates a Axe rule, its rule ID and the number of offending nodes will be output in a line in the testing window. You can click on the line to highlight the offending nodes in the test browser and to output more information in the browser console.
 
 For more information on the Axe rule IDs and their meanings, visit [Deque University's list of Axe rules.](https://dequeuniversity.com/rules/axe/4.4/)
 
@@ -388,7 +404,7 @@ For more information on the Axe rule IDs and their meanings, visit [Deque Univer
 
 The `testing/e2e` workspace facilitates testing of complex scenarios in a real browser. This is achieved by running [Playwright](https://playwright.dev/) tests against a [Remix](https://remix.run/) app.
 
-- **To run tests**, use this command: `pnpm run test --filter=e2e`.
+- **To run tests**, use `pnpm run test --filter=e2e` or `pnpm test:e2e`.
 - **To write tests**, add a new [Remix route](https://remix.run/docs/en/main/discussion/routes#conventional-route-folders) and a `.spec.ts` next to it.
 
 For more details on how to write a test, see [Playwright docs](https://playwright.dev/docs/writing-tests).

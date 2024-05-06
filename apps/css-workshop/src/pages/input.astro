@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Input'>
@@ -44,7 +45,12 @@ import Layout from './_layout.astro';
   <section id='demo-default'>
     <div class='iui-input-grid' id='demo-default-singular'>
       <label class='iui-input-label iui-required'>Input label</label>
-      <input placeholder='Placeholder…' class='iui-input' id='test-default-singular' required />
+      <input
+        placeholder='Placeholder…'
+        class='iui-input iui-field'
+        id='test-default-singular'
+        required
+      />
       <div class='iui-status-message'>
         <div>Help message.</div>
       </div>
@@ -52,7 +58,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-10'>Input label</label>
-      <input id='input-10' value='A value' class='iui-input' />
+      <input id='input-10' value='A value' class='iui-input iui-field' />
       <div class='iui-status-message'>
         <div>Help message.</div>
       </div>
@@ -60,15 +66,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid'>
       <label class='iui-input-label' for='input-11'>Input label</label>
-      <input id='input-11' readonly value='A read-only value' class='iui-input' />
-      <div class='iui-status-message'>
-        <div>Help message.</div>
-      </div>
-    </div>
-
-    <div class='iui-input-grid'>
-      <label class='iui-input-label' data-iui-disabled='true'>Input label</label>
-      <input disabled placeholder='Placeholder…' class='iui-input' />
+      <input id='input-11' readonly value='A read-only value' class='iui-input iui-field' />
       <div class='iui-status-message'>
         <div>Help message.</div>
       </div>
@@ -76,7 +74,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid'>
       <label class='iui-input-label' data-iui-disabled='true' for='input-12'>Input label</label>
-      <input id='input-12' disabled value='A value' class='iui-input' />
+      <input id='input-12' disabled value='A value' class='iui-input iui-field' />
       <div class='iui-status-message'>
         <div>Help message.</div>
       </div>
@@ -87,7 +85,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid' id='demo-status-singular' data-iui-status='positive'>
       <label class='iui-input-label'>Input label</label>
-      <input placeholder='Placeholder…' class='iui-input' id='test-status-singular' />
+      <input placeholder='Placeholder…' class='iui-input iui-field' id='test-status-singular' />
       <div class='iui-status-message' data-iui-status='positive'>
         <div class='iui-svg-icon'>
           <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
@@ -98,7 +96,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid' data-iui-status='warning'>
       <label class='iui-input-label'>Input label</label>
-      <input placeholder='Placeholder…' class='iui-input' />
+      <input placeholder='Placeholder…' class='iui-input iui-field' />
       <div class='iui-status-message' data-iui-status='warning'>
         <div class='iui-svg-icon'>
           <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
@@ -109,7 +107,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid' data-iui-status='negative'>
       <label class='iui-input-label'>Input label</label>
-      <input placeholder='Placeholder…' class='iui-input' />
+      <input placeholder='Placeholder…' class='iui-input iui-field' />
       <div class='iui-status-message' data-iui-status='negative'>
         <div class='iui-svg-icon'>
           <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
@@ -127,22 +125,17 @@ import Layout from './_layout.astro';
   <section id='demo-inline'>
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label iui-required'>Input label</label>
-      <input placeholder='Placeholder…' class='iui-input' required />
+      <input placeholder='Placeholder…' class='iui-input iui-field' required />
     </div>
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' for='input-1'>Input label</label>
-      <input id='input-1' value='A value' class='iui-input' />
-    </div>
-
-    <div class='iui-input-grid' data-iui-label-placement='inline'>
-      <label class='iui-input-label' data-iui-disabled='true'>Input label</label>
-      <input disabled placeholder='Placeholder…' class='iui-input' />
+      <input id='input-1' value='A value' class='iui-input iui-field' />
     </div>
 
     <div class='iui-input-grid' data-iui-label-placement='inline'>
       <label class='iui-input-label' data-iui-disabled='true' for='input-13'>Input label</label>
-      <input id='input-13' disabled value='A value' class='iui-input' />
+      <input id='input-13' disabled value='A value' class='iui-input iui-field' />
     </div>
 
     <!-- ------------------------------------------------------------------------------------------------ -->
@@ -196,13 +189,9 @@ import Layout from './_layout.astro';
           id='input-14'
           value='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         />
-        <button
-          class='iui-button iui-input-flex-container-icon'
-          data-iui-variant='borderless'
-          aria-label='Clear'
-        >
-          <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-        </button>
+        <IconButton_ class='iui-input-flex-container-icon' variant='borderless' aria-label='Clear'>
+          <svg-close-small></svg-close-small>
+        </IconButton_>
       </div>
     </div>
   </section>
@@ -246,7 +235,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-input-grid iui-inline-label' data-iui-label-placement='inline'>
       <label class='iui-input-label'>Input label</label>
-      <input placeholder='Placeholder…' class='iui-input' />
+      <input placeholder='Placeholder…' class='iui-input iui-field' />
       <div class='iui-status-message'>
         <div class='iui-svg-icon'>
           <svg-info-circular class='iui-svg-icon' aria-hidden='true'></svg-info-circular>
@@ -261,42 +250,38 @@ import Layout from './_layout.astro';
   <h2>Without label</h2>
   <section id='demo-no-label'>
     <div class='iui-input-grid'>
-      <input placeholder='Placeholder…' class='iui-input' />
+      <input placeholder='Placeholder…' class='iui-input iui-field' />
     </div>
 
     <div class='iui-input-grid'>
-      <input aria-label='Search' value='A value' class='iui-input' />
+      <input aria-label='Search' value='A value' class='iui-input iui-field' />
     </div>
 
     <div class='iui-input-grid'>
-      <input disabled placeholder='Placeholder…' class='iui-input' />
-    </div>
-
-    <div class='iui-input-grid'>
-      <input disabled aria-label='Search' value='A value' class='iui-input' />
+      <input disabled aria-label='Search' value='A value' class='iui-input iui-field' />
     </div>
 
     <!-- ------------------------------------------------------------------------------------------------ -->
     <!-- Status styling from iui-input -->
 
-    <input placeholder='Placeholder…' class='iui-input' data-iui-status='positive' />
+    <input placeholder='Placeholder…' class='iui-input iui-field' data-iui-status='positive' />
 
-    <input placeholder='Placeholder…' class='iui-input' data-iui-status='warning' />
+    <input placeholder='Placeholder…' class='iui-input iui-field' data-iui-status='warning' />
 
-    <input placeholder='Placeholder…' class='iui-input' data-iui-status='negative' />
+    <input placeholder='Placeholder…' class='iui-input iui-field' data-iui-status='negative' />
 
     <!-- ------------------------------------------------------------------------------------------------ -->
 
     <div class='iui-input-grid'>
-      <input aria-label='Search' value='Small' class='iui-input' data-iui-size='small' />
+      <input aria-label='Search' value='Small' class='iui-input iui-field' data-iui-size='small' />
     </div>
 
     <div class='iui-input-grid'>
-      <input aria-label='Search' value='Default' class='iui-input' />
+      <input aria-label='Search' value='Default' class='iui-input iui-field' />
     </div>
 
     <div class='iui-input-grid'>
-      <input aria-label='Search' value='Large' class='iui-input' data-iui-size='large' />
+      <input aria-label='Search' value='Large' class='iui-input iui-field' data-iui-size='large' />
     </div>
 
     <div class='iui-input-grid' data-iui-status='positive'>
@@ -348,7 +333,7 @@ import Layout from './_layout.astro';
         name='email'
         id='email'
         autocomplete='on'
-        class='iui-input'
+        class='iui-input iui-field'
       />
     </div>
   </form>
@@ -360,36 +345,24 @@ import Layout from './_layout.astro';
     <div id='block-labels'>
       <label class='iui-input-label' for='test-1'>First name</label>
       <div class='iui-input-grid'>
-        <input placeholder='Placeholder…' class='iui-input' id='test-1' />
-      </div>
-
-      <label class='iui-input-label' data-iui-disabled='true' for='test-2'>Middle name</label>
-      <div class='iui-input-grid'>
-        <input placeholder='Placeholder…' class='iui-input' id='test-2' disabled />
+        <input placeholder='Placeholder…' class='iui-input iui-field' id='test-1' />
       </div>
 
       <div class='iui-input-label iui-required' for='test-3'>Last name</div>
       <div class='iui-input-grid'>
-        <input placeholder='Placeholder…' class='iui-input' id='test-3' />
+        <input placeholder='Placeholder…' class='iui-input iui-field' id='test-3' />
       </div>
     </div>
 
     <div id='inline-labels'>
       <label class='iui-input-label iui-inline' for='test-4'>First name</label>
       <div class='iui-input-grid'>
-        <input placeholder='Placeholder…' class='iui-input' id='test-4' />
-      </div>
-
-      <label class='iui-input-label iui-inline' data-iui-disabled='true' for='test-5'
-        >Middle name</label
-      >
-      <div class='iui-input-grid'>
-        <input placeholder='Placeholder…' class='iui-input' id='test-5' disabled />
+        <input placeholder='Placeholder…' class='iui-input iui-field' id='test-4' />
       </div>
 
       <label class='iui-input-label iui-inline iui-required' for='test-6'>Last name</label>
       <div class='iui-input-grid'>
-        <input placeholder='Placeholder…' class='iui-input' id='test-6' />
+        <input placeholder='Placeholder…' class='iui-input iui-field' id='test-6' />
       </div>
     </div>
   </section>
@@ -407,13 +380,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' id='search-2' value='test search input' />
-      <button
-        class='iui-button iui-input-flex-container-icon'
-        data-iui-variant='borderless'
-        data-iui-size='small'
-      >
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless' size='small'>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-disabled='true'>
       <span
@@ -422,14 +391,10 @@ import Layout from './_layout.astro';
       >
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
-      <input placeholder='Placeholder…' type='text' id='search-3' disabled />
-      <button
-        class='iui-button iui-input-flex-container-icon'
-        data-iui-variant='borderless'
-        disabled
-      >
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <input type='text' id='search-3' disabled />
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless' disabled>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' id='demo-search-hover'>
       <span
@@ -439,9 +404,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-status='positive'>
       <span
@@ -451,9 +416,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-status='warning'>
       <span
@@ -463,9 +428,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
     <div class='iui-input-flex-container iui-searchbox' data-iui-status='negative'>
       <span
@@ -475,9 +440,9 @@ import Layout from './_layout.astro';
         <svg-search class='iui-button-icon' aria-hidden='true'></svg-search></span
       >
       <input placeholder='Placeholder…' type='text' />
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
     <div class='iui-input-flex-container iui-searchbox'>
       <span
@@ -490,15 +455,15 @@ import Layout from './_layout.astro';
       <p class='iui-text-block iui-text-muted' style='padding-right: var(--iui-size-s);'>0/3</p>
       <hr class='iui-divider' aria-orientation='vertical' />
 
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-chevron-down class='iui-button-icon' aria-hidden='true'></svg-chevron-down>
-      </button>
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-chevron-up class='iui-button-icon' aria-hidden='true'></svg-chevron-up>
-      </button>
-      <button class='iui-button iui-input-flex-container-icon' data-iui-variant='borderless'>
-        <svg-close-small class='iui-button-icon' aria-hidden='true'></svg-close-small>
-      </button>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-chevron-down></svg-chevron-down>
+      </IconButton_>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-chevron-up></svg-chevron-up>
+      </IconButton_>
+      <IconButton_ class='iui-input-flex-container-icon' variant='borderless'>
+        <svg-close-small></svg-close-small>
+      </IconButton_>
     </div>
   </section>
 </Layout>

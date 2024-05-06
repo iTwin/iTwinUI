@@ -8,7 +8,7 @@ import {
   SvgMore as SvgPlaceholder,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 
 import { HeaderButton } from './HeaderButton.js';
 import { MenuItem } from '../Menu/MenuItem.js';

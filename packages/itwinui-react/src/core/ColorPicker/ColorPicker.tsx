@@ -3,12 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ColorValue, useMergedRefs, Box } from '../utils/index.js';
+import { ColorValue, useMergedRefs, Box } from '../../utils/index.js';
 import type {
   ColorType,
   HsvColor,
   PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import cx from 'classnames';
 import { ColorPickerContext } from './ColorPickerContext.js';
 

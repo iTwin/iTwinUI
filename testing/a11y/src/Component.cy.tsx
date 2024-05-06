@@ -24,7 +24,13 @@ const axeConfigPerExample = (example) => {
 };
 
 describe('Should have no WCAG violations', () => {
-  Object.entries(allExamples).forEach(([name, Component]) => {
+  const componentName = Cypress.env('componentName');
+
+  const examplesToTest = Object.entries(allExamples).filter(
+    ([name]) => componentName === undefined || name.includes(componentName),
+  );
+
+  examplesToTest.forEach(([name, Component]) => {
     it(name, () => {
       cy.mount(
         <ThemeProvider theme='dark' style={{ height: '100vh' }}>

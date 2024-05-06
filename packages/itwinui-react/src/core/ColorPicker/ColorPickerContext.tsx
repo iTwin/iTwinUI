@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { ColorValue, HsvColor } from '../utils/index.js';
+import type { ColorValue, HsvColor } from '../../utils/index.js';
 
 export const ColorPickerContext = React.createContext<
   | {

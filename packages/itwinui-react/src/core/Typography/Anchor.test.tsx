@@ -6,6 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import { Anchor } from './Anchor.js';
+import { Text } from './Text.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<Anchor>link</Anchor>);
@@ -84,6 +85,16 @@ it('should support underline prop', () => {
       link
     </Anchor>,
   );
+  expect(container.querySelector('a')).toHaveAttribute(
+    'data-iui-underline',
+    'true',
+  );
+});
+
+it('should underline by default when inside Text component', () => {
+  const { container } = render(<Anchor href='#'>link</Anchor>, {
+    wrapper: ({ children }) => <Text>{children}</Text>,
+  });
   expect(container.querySelector('a')).toHaveAttribute(
     'data-iui-underline',
     'true',

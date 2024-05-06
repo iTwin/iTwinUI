@@ -1,5 +1,7 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Dialog'>
@@ -55,56 +57,44 @@ import Layout from './_layout.astro';
     </div>
   </div>
 
-  <button
-    aria-label='Open dialog'
-    id='open-dialog'
-    type='button'
-    class='iui-button'
-    onclick="toggleDialog('default-dialog')"
-  >
+  <Button_ aria-label='Open dialog' id='open-dialog' onclick="toggleDialog('default-dialog')">
     Open dialog
-  </button>
+  </Button_>
 
   <br />
 
-  <button
+  <Button_
     aria-label='Open full page dialog'
     id='open-full-page-dialog'
-    type='button'
-    class='iui-button'
     onclick="toggleDialog('full-page-dialog')"
   >
     Open full page dialog
-  </button>
+  </Button_>
 
   <br />
 
-  <button
+  <Button_
     aria-label='Toggle draggable dialog'
     id='toggle-draggable-dialog'
-    type='button'
-    class='iui-button'
     onclick="toggleDialog('draggable-dialog')"
   >
     Toggle draggable dialog
-  </button>
+  </Button_>
 
   <div id='default-dialog'>
     <div class='iui-backdrop iui-backdrop-fixed'></div>
     <div class='iui-dialog iui-dialog-default' id='dialog-click'>
       <div class='iui-dialog-title-bar'>
         <div class='iui-dialog-title'>Title</div>
-        <button
+        <IconButton_
           aria-label='Close'
-          type='button'
-          class='iui-button'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          variant='borderless'
+          size='small'
           onclick="toggleDialog('default-dialog')"
-          data-iui-shift='right'
+          shift='right'
         >
-          <svg-close class='iui-button-icon' aria-hidden='true'></svg-close>
-        </button>
+          <svg-close></svg-close>
+        </IconButton_>
       </div>
       <div class='iui-dialog-content'>
         <p>
@@ -117,16 +107,10 @@ import Layout from './_layout.astro';
         </p>
       </div>
       <div class='iui-dialog-button-bar'>
-        <button
-          class='iui-button'
-          data-iui-variant='high-visibility'
-          onclick="toggleDialog('default-dialog')"
-        >
-          <span>Proceed</span>
-        </button>
-        <button class='iui-button' onclick="toggleDialog('default-dialog')">
-          <span>Cancel</span>
-        </button>
+        <Button_ variant='high-visibility' onclick="toggleDialog('default-dialog')">
+          Proceed
+        </Button_>
+        <Button_ onclick="toggleDialog('default-dialog')">Cancel</Button_>
       </div>
     </div>
   </div>
@@ -136,17 +120,15 @@ import Layout from './_layout.astro';
     <div class='iui-dialog iui-dialog-full-page'>
       <div class='iui-dialog-title-bar'>
         <div class='iui-dialog-title'>Title</div>
-        <button
+        <IconButton_
           aria-label='Close'
-          type='button'
-          class='iui-button'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          variant='borderless'
+          size='small'
           onclick="toggleDialog('full-page-dialog')"
-          data-iui-shift='right'
+          shift='right'
         >
-          <svg-close class='iui-button-icon' aria-hidden='true'></svg-close>
-        </button>
+          <svg-close></svg-close>
+        </IconButton_>
       </div>
       <div class='iui-dialog-content'>
         <p>
@@ -159,16 +141,10 @@ import Layout from './_layout.astro';
         </p>
       </div>
       <div class='iui-dialog-button-bar'>
-        <button
-          class='iui-button'
-          data-iui-variant='high-visibility'
-          onclick="toggleDialog('full-page-dialog')"
-        >
-          <span>Proceed</span>
-        </button>
-        <button class='iui-button' onclick="toggleDialog('full-page-dialog')">
-          <span>Cancel</span>
-        </button>
+        <Button_ variant='high-visibility' onclick="toggleDialog('full-page-dialog')">
+          Proceed
+        </Button_>
+        <Button_ onclick="toggleDialog('full-page-dialog')">Cancel</Button_>
       </div>
     </div>
   </div>
@@ -177,17 +153,15 @@ import Layout from './_layout.astro';
     <div class='iui-dialog iui-dialog-default iui-dialog-draggable'>
       <div class='iui-dialog-title-bar iui-dialog-title-bar-filled'>
         <div class='iui-dialog-title'>Title</div>
-        <button
+        <IconButton_
           aria-label='Close'
-          type='button'
-          class='iui-button'
-          data-iui-variant='borderless'
-          data-iui-size='small'
+          variant='borderless'
+          size='small'
           onclick="toggleDialog('draggable-dialog')"
-          data-iui-shift='right'
+          shift='right'
         >
-          <svg-close class='iui-button-icon' aria-hidden='true'></svg-close>
-        </button>
+          <svg-close></svg-close>
+        </IconButton_>
       </div>
       <div class='iui-dialog-content'>
         <p>
@@ -200,46 +174,36 @@ import Layout from './_layout.astro';
         </p>
       </div>
       <div class='iui-dialog-button-bar'>
-        <button
-          class='iui-button'
-          data-iui-variant='high-visibility'
-          onclick="toggleDialog('draggable-dialog')"
-        >
-          <span>Proceed</span>
-        </button>
-        <button class='iui-button' onclick="toggleDialog('draggable-dialog')">
-          <span>Cancel</span>
-        </button>
+        <Button_ variant='high-visibility' onclick="toggleDialog('draggable-dialog')">
+          Proceed
+        </Button_>
+        <Button_ onclick="toggleDialog('draggable-dialog')">Cancel</Button_>
       </div>
     </div>
   </div>
 
   <test-container-section>
     <div>
-      <button
+      <Button_
         aria-label='Open relative to container dialog'
         id='open-relative-to-container-dialog'
-        type='button'
-        class='iui-button'
         onclick="toggleDialog('draggable-dialog-relative')"
       >
         Open relative to container dialog
-      </button>
+      </Button_>
       <div class='iui-dialog-wrapper' id='draggable-dialog-relative' data-iui-relative='true'>
         <div class='iui-dialog iui-dialog-default iui-dialog-draggable'>
           <div class='iui-dialog-title-bar iui-dialog-title-bar-filled'>
             <div class='iui-dialog-title'>Title</div>
-            <button
+            <IconButton_
               aria-label='Close'
-              type='button'
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
+              variant='borderless'
+              size='small'
               onclick="toggleDialog('draggable-dialog-relative')"
-              data-iui-shift='right'
+              shift='right'
             >
-              <svg-close class='iui-button-icon' aria-hidden='true'></svg-close>
-            </button>
+              <svg-close></svg-close>
+            </IconButton_>
           </div>
           <div class='iui-dialog-content'>
             <p>
@@ -252,47 +216,37 @@ import Layout from './_layout.astro';
             </p>
           </div>
           <div class='iui-dialog-button-bar'>
-            <button
-              class='iui-button'
-              data-iui-variant='high-visibility'
-              onclick="toggleDialog('draggable-dialog-relative')"
-            >
-              <span>Proceed</span>
-            </button>
-            <button class='iui-button' onclick="toggleDialog('draggable-dialog-relative')">
-              <span>Cancel</span>
-            </button>
+            <Button_ variant='high-visibility' onclick="toggleDialog('draggable-dialog-relative')">
+              Proceed
+            </Button_>
+            <Button_ onclick="toggleDialog('draggable-dialog-relative')">Cancel</Button_>
           </div>
         </div>
       </div>
     </div>
 
     <div>
-      <button
+      <Button_
         aria-label='Open with backdrop relative to container dialog'
         id='open-with-backdrop-relative-to-container-dialog'
-        type='button'
-        class='iui-button'
         onclick="toggleDialog('relative-dialog-with-backdrop')"
       >
         Open with backdrop relative to container dialog
-      </button>
+      </Button_>
       <div class='iui-dialog-wrapper' id='relative-dialog-with-backdrop' data-iui-relative='true'>
         <div class='iui-backdrop'></div>
         <div class='iui-dialog iui-dialog-default'>
           <div class='iui-dialog-title-bar'>
             <div class='iui-dialog-title'>Title</div>
-            <button
+            <IconButton_
               aria-label='Close'
-              type='button'
-              class='iui-button'
-              data-iui-variant='borderless'
-              data-iui-size='small'
+              variant='borderless'
+              size='small'
               onclick="toggleDialog('relative-dialog-with-backdrop')"
-              data-iui-shift='right'
+              shift='right'
             >
-              <svg-close class='iui-button-icon' aria-hidden='true'></svg-close>
-            </button>
+              <svg-close></svg-close>
+            </IconButton_>
           </div>
           <div class='iui-dialog-content'>
             <p>
@@ -305,16 +259,13 @@ import Layout from './_layout.astro';
             </p>
           </div>
           <div class='iui-dialog-button-bar'>
-            <button
-              class='iui-button'
-              data-iui-variant='high-visibility'
+            <Button_
+              variant='high-visibility'
               onclick="toggleDialog('relative-dialog-with-backdrop')"
             >
-              <span>Proceed</span>
-            </button>
-            <button class='iui-button' onclick="toggleDialog('relative-dialog-with-backdrop')">
-              <span>Cancel</span>
-            </button>
+              Proceed
+            </Button_>
+            <Button_ onclick="toggleDialog('relative-dialog-with-backdrop')">Cancel</Button_>
           </div>
         </div>
       </div>

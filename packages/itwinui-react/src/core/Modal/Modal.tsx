@@ -6,7 +6,7 @@ import * as React from 'react';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { Dialog } from '../Dialog/Dialog.js';
 import type { DialogMainProps } from '../Dialog/DialogMain.js';
 

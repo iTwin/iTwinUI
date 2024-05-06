@@ -4,14 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, SvgCheckmark } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box, SvgCheckmark } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type ToggleSwitchProps = {
   /**
    * Label for the toggle switch.
    */
   label?: React.ReactNode;
+  /**
+   * Passes properties for ToggleSwitch label.
+   */
+  labelProps?: React.ComponentProps<'span'>;
   /**
    * Position of the label.
    * @default 'right'
@@ -63,6 +67,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     className,
     style,
     size = 'default',
+    labelProps = {},
     icon: iconProp,
     ...rest
   } = props;
@@ -101,7 +106,11 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         </Box>
       )}
       {label && (
-        <Box as='span' className='iui-toggle-switch-label'>
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-toggle-switch-label', labelProps?.className)}
+        >
           {label}
         </Box>
       )}

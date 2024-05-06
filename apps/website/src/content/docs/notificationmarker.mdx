@@ -1,0 +1,63 @@
+---
+title: NotificationMarker
+description: Shows a notification marker dot at the top right of the component.
+thumbnail: #TODO
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='NotificationMarker.main.jsx'>
+  <AllExamples.NotificationMarkerMainExample client:load />
+</LiveExample>
+
+## Usage
+
+The `NotificationMarker` component should be wrapped around the content which needs a marker/dot. This content is usually an icon, and is often used within an [`IconButton`](button#iconbutton).
+
+```jsx {2, 4}
+<IconButton label='Notifications' styleType='borderless'>
+  <NotificationMarker>
+    <SvgNotification />
+  </NotificationMarker>
+</IconButton>
+```
+
+### Conditional rendering
+
+There are many situations when the notification marker needs to appear/disappear depending on the application lifetime. Instead of conditionally rendering the `NotificationMarker` in such situations, the `enabled` prop can be used.
+
+```jsx
+<NotificationMarker enabled={notifications.length > 0}>…</NotificationMarker>
+```
+
+When `enabled` is set to `false`, the DOM element will still be present, but the notification marker will not be displayed visually.
+
+### Status
+
+`NotificationMarker`s can have the follow statuses:
+
+- `primary` (default)
+- `positive`
+- `warning`
+- `negative`
+- `white`
+
+<LiveExample src='NotificationMarker.statuses.jsx'>
+  <AllExamples.NotificationMarkerStatusesExample client:load />
+</LiveExample>
+
+The `white` status is used on colored backgrounds, such as when using it in the [high visibility](button#high-visibility) or the [call-to-action](button#call-to-action) buttons.
+
+### Pulsing
+
+To give a higher importance to the notification, you can use the `pulsing` prop to show a pulse effect around the marker.
+
+**Note**: This prop should be used sparingly as it can be distracting to the user.
+
+<LiveExample src='NotificationMarker.pulsing.jsx'>
+  <AllExamples.NotificationMarkerPulsingExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path={'@itwin/itwinui-react/esm/core/NotificationMarker/NotificationMarker.d.ts'} />

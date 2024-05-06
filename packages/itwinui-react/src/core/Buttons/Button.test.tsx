@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import { SvgClose as SvgPlaceholder } from '../utils/index.js';
+import { SvgClose as SvgPlaceholder } from '../../utils/index.js';
 import { Button } from './Button.js';
 
 it('renders default button correctly', () => {
@@ -214,4 +214,9 @@ it('should render [x]Props correctly', () => {
   const labelElement = container.querySelector('.label-class') as HTMLElement;
   expect(labelElement).toBeTruthy();
   expect(labelElement.style.width).toBe('80px');
+});
+
+it('should respect `stretched` prop', () => {
+  const { container } = render(<Button stretched>Do not click</Button>);
+  expect(container.querySelector('button')).toHaveStyle('--_iui-width: 100%');
 });

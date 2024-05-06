@@ -13,8 +13,8 @@ import {
   mergeEventHandlers,
   ButtonBase,
   useId,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import { LinkBox } from '../LinkAction/LinkAction.js';
 

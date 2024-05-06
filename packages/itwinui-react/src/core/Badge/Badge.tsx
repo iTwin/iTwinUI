@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { isSoftBackground, SoftBackgrounds, Box } from '../utils/index.js';
+import { isSoftBackground, SoftBackgrounds, Box } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 
 /**
  * Helper function that returns one of the preset badge color values.

@@ -40,7 +40,6 @@ import {
   Text,
   Tooltip,
 } from '../index.js';
-import { SvgMore } from '../core/utils/index.js';
 
 /**
  * Confirm that `satisfies` on columns does not give any unnecessary type errors.
@@ -445,7 +444,7 @@ import { SvgMore } from '../core/utils/index.js';
               onClick={(e) => e.stopPropagation()}
               disabled={isRowDisabled(props.row.original)}
             >
-              <SvgMore />
+              <svg />
             </IconButton>
           </DropdownMenu>
         ),

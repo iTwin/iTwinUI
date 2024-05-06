@@ -14,9 +14,9 @@ import {
   useLayoutEffect,
   AutoclearingHiddenLiveRegion,
   useId,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
-import type { InputContainerProps, CommonProps } from '../utils/index.js';
+import type { InputContainerProps, CommonProps } from '../../utils/index.js';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
@@ -526,7 +526,7 @@ export const ComboBox = React.forwardRef(
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
       closeOnOutsideClick: true,
-      trigger: { focus: true },
+      interactions: { click: false, focus: true },
     });
 
     return (

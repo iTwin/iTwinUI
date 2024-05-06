@@ -1,0 +1,59 @@
+---
+type Props = {
+  variant?: 'high-visibility' | 'borderless' | 'cta';
+  size?: 'small' | 'large';
+  isActive?: boolean;
+  dropdown?: boolean;
+  idea?: boolean;
+  as?: string;
+} & astroHTML.JSX.ButtonHTMLAttributes;
+
+const {
+  as: Element = 'button',
+  class: className,
+  variant,
+  size,
+  isActive,
+  dropdown,
+  idea,
+  ...props
+} = Astro.props;
+---
+
+<Element
+  class:list={[
+    'iui-button',
+    'iui-button-base',
+    'iui-field',
+    { 'iui-button-dropdown': dropdown },
+    { 'iui-button-idea': idea },
+    className,
+  ]}
+  type={Element === 'button' ? 'button' : undefined}
+  data-iui-size={size}
+  data-iui-variant={idea ? 'high-visibility' : variant}
+  data-iui-active={isActive ? 'true' : undefined}
+  {...props}
+>
+  {
+    Astro.slots.has('start-icon') && (
+      <span class='iui-button-icon' aria-hidden='true'>
+        <slot name='start-icon' />
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('default') && (
+      <span>
+        <slot />
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('end-icon') && (
+      <span class='iui-button-icon' aria-hidden='true'>
+        <slot name='end-icon' />
+      </span>
+    )
+  }
+</Element>

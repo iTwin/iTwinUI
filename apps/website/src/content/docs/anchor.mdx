@@ -59,9 +59,12 @@ If you do ultimately decide based on your research that it is beneficial to open
 
 ### Underlines
 
-By default, the anchor is only underlined when hovered, except when using a high-contrast theme.
+By default, an anchor is only underlined when hovered, with a few exceptions:
 
-For [better accessibility](https://adrianroselli.com/2016/06/on-link-underlines.html#recommendation), it is recommended to explicitly make the anchor underlined in all themes, using the `underline` prop.
+1. Anchors inside a [`Text`](https://itwinui.bentley.com/docs/typography#text) component are underlined by default.
+2. All anchors are underlined by default when using a high-contrast theme.
+
+For [better accessibility](https://adrianroselli.com/2016/06/on-link-underlines.html#recommendation), it is recommended to explicitly make the anchor underlined in all themes, even when used outside `Text`. This can be achieved using the `underline` prop.
 
 <LiveExample src='Anchor.underline.jsx' truncate={false}>
   <AllExamples.AnchorUnderlineExample client:idle />

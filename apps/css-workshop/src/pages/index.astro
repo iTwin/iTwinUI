@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import Layout from './_layout.astro';
+import Code_ from '../components/Code.astro';
 
 const components = await fs.promises.readdir('./src/pages').then((files) => {
   return files
@@ -16,9 +17,8 @@ const components = await fs.promises.readdir('./src/pages').then((files) => {
 
   <h1>iTwinUI-CSS</h1>
   <p>
-    This site is specifically designed for testing the CSS from&nbsp;<code class='iui-code'
-      >@itwin/itwinui-css</code
-    >. To learn more about iTwinUI, please visit the&nbsp;<a
+    This site is specifically designed for testing the CSS from <Code_>@itwin/itwinui-css</Code_>.
+    To learn more about iTwinUI, please visit the <a
       href='https://iTwinUI.Bentley.com'
       class='iui-anchor'>iTwinUI documentation site</a
     >.

@@ -15,7 +15,7 @@ if (window.PointerEvent) {
   window.PointerEvent = window.MouseEvent;
 }
 
-vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
+vi.mock('./src/utils/hooks/useGlobals.js', () => {
   return {
     // noop because we don't want to spam the terminal with warnings during tests
     useGlobals: () => {},
@@ -34,7 +34,9 @@ vi.mock('@testing-library/react', async () => {
      * microtasks to be flushed. This is necessary for ShadowRoot to be tested properly.
      */
     render: (...args: Parameters<typeof originalRtl.render>) => {
-      vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+      if (!vi.isFakeTimers()) {
+        vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+      }
       const result = originalRtl.render(...args);
       originalRtl.act(() => vi.runAllTicks());
       return result;

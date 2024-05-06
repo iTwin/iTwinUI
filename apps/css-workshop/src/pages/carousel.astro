@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Carousel'>
@@ -77,28 +78,26 @@ import Layout from './_layout.astro';
     >
       <div class='iui-carousel-navigation'>
         <div class='iui-carousel-navigation-left'>
-          <button
-            class='iui-button iui-carousel-navigation-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-            type='button'
+          <IconButton_
+            class='iui-carousel-navigation-button'
+            variant='borderless'
+            size='small'
             aria-controls='myCarousel-items'
             aria-label='Previous slide'
             tabindex='-1'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </button>
-          <button
-            class='iui-button iui-carousel-navigation-animation-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-            type='button'
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
+          <IconButton_
+            class='iui-carousel-navigation-animation-button'
+            variant='borderless'
+            size='small'
             aria-label='Play animation'
             data-action='play'
             tabindex='-1'
           >
-            <svg-play class='iui-button-icon' aria-hidden='true'></svg-play>
-          </button>
+            <svg-play></svg-play>
+          </IconButton_>
         </div>
 
         <div class='iui-carousel-navigation-dots' role='tablist' aria-label='Slides' tabindex='-1'>
@@ -195,17 +194,16 @@ import Layout from './_layout.astro';
         </div>
 
         <div class='iui-carousel-navigation-right'>
-          <button
-            class='iui-button iui-carousel-navigation-button'
-            data-iui-variant='borderless'
-            data-iui-size='small'
-            type='button'
+          <IconButton_
+            class='iui-carousel-navigation-button'
+            variant='borderless'
+            size='small'
             aria-controls='myCarousel-items'
             aria-label='Next slide'
             tabindex='-1'
           >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </button>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
         </div>
       </div>
 
@@ -443,12 +441,12 @@ import Layout from './_layout.astro';
           startAutoPlay();
           playbackButton.dataset.action = 'pause';
           playbackButton.ariaLabel = 'Pause animation';
-          playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          playbackButton.innerHTML = `<svg-pause></svg-pause>`;
         } else {
           stopAutoPlay();
           playbackButton.dataset.action = 'play';
           playbackButton.ariaLabel = 'Play animation';
-          playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
+          playbackButton.innerHTML = `<svg-play></svg-play>`;
         }
       };
       playbackButton.addEventListener('click', () => togglePlaybackState());

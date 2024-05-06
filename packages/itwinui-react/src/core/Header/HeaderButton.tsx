@@ -6,8 +6,8 @@
 import * as React from 'react';
 import type { ButtonProps } from '../Buttons/Button.js';
 
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { HeaderSplitButton } from './HeaderSplitButton.js';
 import { HeaderDropdownButton } from './HeaderDropdownButton.js';
 import type { DropdownButtonProps } from '../Buttons/DropdownButton.js';
@@ -79,7 +79,7 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     name: htmlName,
     ...(!!menuItems && { menuItems }),
     ...rest,
-  } as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  } as any;
 
   const headerButton =
     !!props.menuItems && !!props.onClick ? (

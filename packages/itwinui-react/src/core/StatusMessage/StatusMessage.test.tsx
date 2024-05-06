@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import { StatusMessage } from './StatusMessage.js';
-import { StatusIconMap } from '../utils/index.js';
+import { StatusIconMap } from '../../utils/index.js';
 
 it('should render only message', () => {
   const { container } = render(<StatusMessage>This is my text</StatusMessage>);

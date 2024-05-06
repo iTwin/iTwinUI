@@ -201,6 +201,12 @@ import { default as ButtonGroupMainExampleRaw } from './ButtonGroup.main';
 const ButtonGroupMainExample = withThemeProvider(ButtonGroupMainExampleRaw);
 export { ButtonGroupMainExample };
 
+import { default as ButtonGroupToolbarExampleRaw } from './ButtonGroup.toolbar';
+const ButtonGroupToolbarExample = withThemeProvider(
+  ButtonGroupToolbarExampleRaw,
+);
+export { ButtonGroupToolbarExample };
+
 import { default as ButtonGroupVerticalExampleRaw } from './ButtonGroup.vertical';
 const ButtonGroupVerticalExample = withThemeProvider(
   ButtonGroupVerticalExampleRaw,
@@ -814,6 +820,26 @@ const NonIdealStateErrorExample = withThemeProvider(
   NonIdealStateErrorExampleRaw,
 );
 export { NonIdealStateErrorExample };
+
+// ----------------------------------------------------------------------------
+
+import { default as NotificationMarkerMainExampleRaw } from './NotificationMarker.main';
+const NotificationMarkerMainExample = withThemeProvider(
+  NotificationMarkerMainExampleRaw,
+);
+export { NotificationMarkerMainExample };
+
+import { default as NotificationMarkerStatusesExampleRaw } from './NotificationMarker.statuses';
+const NotificationMarkerStatusesExample = withThemeProvider(
+  NotificationMarkerStatusesExampleRaw,
+);
+export { NotificationMarkerStatusesExample };
+
+import { default as NotificationMarkerPulsingExampleRaw } from './NotificationMarker.pulsing';
+const NotificationMarkerPulsingExample = withThemeProvider(
+  NotificationMarkerPulsingExampleRaw,
+);
+export { NotificationMarkerPulsingExample };
 
 // ----------------------------------------------------------------------------
 

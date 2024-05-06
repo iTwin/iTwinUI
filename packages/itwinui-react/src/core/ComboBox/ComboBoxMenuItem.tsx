@@ -4,8 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
-import { useSafeContext, useMergedRefs, SvgCheckmark } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import {
+  useSafeContext,
+  useMergedRefs,
+  SvgCheckmark,
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext } from './helpers.js';
 import { ListItem } from '../List/ListItem.js';
 

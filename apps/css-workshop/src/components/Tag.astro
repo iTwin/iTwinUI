@@ -1,0 +1,36 @@
+---
+const { hasCloseButton = true, variant, class: className, as, buttonProps, ...props } = Astro.props;
+
+const Element = as ?? 'span';
+import IconButton_ from './IconButton.astro';
+---
+
+<!-- prettier-ignore -->
+<Element
+  class:list={[
+    {
+      'iui-tag': variant !== 'basic',
+      'iui-tag-basic': variant === 'basic',
+    },
+    className,
+  ]}
+  {...props}
+>{
+    variant === 'basic' ? (
+      <slot />
+    ) : (
+      <span class='iui-tag-label'><slot /></span>
+    )
+  }{
+    variant !== 'basic'  && hasCloseButton && (
+      <IconButton_
+        class='iui-tag-button'
+        variant='borderless'
+        size='small'
+        {...buttonProps}
+      ><svg-close-small
+        ></svg-close-small>
+      </IconButton_>
+    )
+  }
+</Element>

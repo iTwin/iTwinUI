@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { getBoundedValue, useEventListener, Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { getBoundedValue, useEventListener, Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Track } from './Track.js';
 import { Thumb } from './Thumb.js';
 import type { Tooltip } from '../Tooltip/Tooltip.js';

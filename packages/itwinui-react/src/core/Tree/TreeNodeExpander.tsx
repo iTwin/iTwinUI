@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { SvgChevronRight, SvgChevronRightSmall } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { SvgChevronRight, SvgChevronRightSmall } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { TreeContext } from './TreeContext.js';

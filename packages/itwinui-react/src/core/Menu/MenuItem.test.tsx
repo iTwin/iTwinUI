@@ -5,8 +5,7 @@
 import * as React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MenuItem } from './MenuItem.js';
-import { SvgSmileyHappy } from '../utils/index.js';
-import { userEvent } from '@testing-library/user-event';
+import { SvgSmileyHappy } from '../../utils/index.js';
 
 function assertBaseElement(
   menuItem: HTMLElement,
@@ -108,6 +107,30 @@ it('should handle click', () => {
 
   fireEvent.click(menuItem);
   expect(mockedOnClick).toHaveBeenCalledWith('test_value');
+});
+
+it('should not be clickable with disabled', () => {
+  const mockedOnClick = vi.fn();
+  const { container } = render(
+    <MenuItem disabled onClick={mockedOnClick}>
+      Test item
+    </MenuItem>,
+  );
+
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
+  assertBaseElement(menuItem, { disabled: true });
+
+  fireEvent.click(menuItem);
+  expect(mockedOnClick).not.toHaveBeenCalled();
+});
+
+it('should focus on hover', () => {
+  render(<MenuItem data-testid='item'>Item</MenuItem>);
+
+  const menuItem = screen.getByTestId('item');
+  expect(menuItem).not.toHaveFocus();
+  fireEvent.mouseEnter(menuItem);
+  expect(menuItem).toHaveFocus();
 });
 
 it('should handle key press', () => {
@@ -231,60 +254,4 @@ it('should show sub menu on hover', () => {
   expect(subSubMenuItem).not.toBeVisible();
 
   vi.useRealTimers();
-});
-
-it('should handle key press with sub menus', async () => {
-  const mockedSubOnClick = vi.fn();
-  render(
-    <MenuItem
-      value='test_value'
-      data-testid='parent'
-      subMenuItems={[
-        <MenuItem
-          key={1}
-          onClick={mockedSubOnClick}
-          value='test_value_sub'
-          data-testid='sub'
-        >
-          Test sub
-        </MenuItem>,
-      ]}
-    >
-      Test item
-    </MenuItem>,
-  );
-
-  const menuItem = screen.getByTestId('parent');
-
-  // focus to open sub menu
-  act(() => menuItem.focus());
-  const subMenuItem = screen.getByTestId('sub');
-  expect(subMenuItem).toHaveTextContent('Test sub');
-
-  // go right to move focus
-  await userEvent.keyboard('{ArrowRight}');
-  expect(subMenuItem).toHaveFocus();
-
-  // go left to move focus
-  await userEvent.keyboard('{ArrowLeft}');
-  expect(menuItem).toHaveFocus();
-
-  // escape to close
-  await userEvent.keyboard('{Escape}');
-  expect(screen.queryByTestId('sub')).toBeFalsy();
-
-  // go right to open sub menu
-  await userEvent.keyboard('{ArrowRight}');
-  expect(screen.queryByTestId('sub')).toBeTruthy();
-
-  // go right again to move focus into sub menu
-  await userEvent.keyboard('{ArrowRight}');
-
-  // click
-  await userEvent.keyboard('{Enter}');
-  expect(mockedSubOnClick).toHaveBeenNthCalledWith(1, 'test_value_sub');
-  await userEvent.keyboard(' ');
-  expect(mockedSubOnClick).toHaveBeenNthCalledWith(2, 'test_value_sub');
-  await userEvent.keyboard('{Spacebar}');
-  expect(mockedSubOnClick).toHaveBeenNthCalledWith(3, 'test_value_sub');
 });

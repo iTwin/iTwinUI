@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { useMergedRefs, Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 export type InputProps = {
   /**
@@ -37,7 +37,7 @@ export const Input = React.forwardRef((props, ref) => {
   return (
     <Box
       as='input'
-      className={cx('iui-input', className)}
+      className={cx('iui-input', 'iui-field', className)}
       data-iui-size={size}
       data-iui-status={status}
       size={htmlSize}

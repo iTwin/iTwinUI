@@ -18,9 +18,7 @@ thumbnail: Button
 Buttons have states and events and should be used when a form is submitted or where the button represents a clear call to action on a page.
 In some cases, buttons can also be used in place of href links to draw special attention to that action.
 
-## Variants
-
-### Default
+## Usage
 
 The default button should be used in most circumstances. If you are unsure as to what button to use, use this button!
 
@@ -64,6 +62,16 @@ There are 3 different sizes available, which can be applied to any button. The m
 <LiveExample src='Button.size.jsx'>
   <AllExamples.ButtonSizeExample client:load />
 </LiveExample>
+
+### Stretched
+
+To make a button stretch to the full width of its parent, use the `stretched` prop.
+
+```jsx
+<Button stretched>Sign in</Button>
+```
+
+This is useful in narrow containers and mobile views. Don't overuse this!
 
 ## Button props
 
@@ -119,7 +127,7 @@ If the button does obscure anything important, we suggest adding empty space at 
 
 <PropsTable path={frontmatter.propsPathIdeasButton} />
 
-## Usage
+## Usage guidelines
 
 ### Style types
 

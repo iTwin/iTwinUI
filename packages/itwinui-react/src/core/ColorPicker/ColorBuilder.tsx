@@ -10,11 +10,11 @@ import {
   useEventListener,
   useMergedRefs,
   Box,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import type {
   HsvColor,
   PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+} from '../../utils/index.js';
 import { Slider } from '../Slider/Slider.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 

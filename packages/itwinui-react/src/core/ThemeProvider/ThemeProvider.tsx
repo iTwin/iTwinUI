@@ -10,14 +10,26 @@ import {
   useMergedRefs,
   Box,
   useLayoutEffect,
-  useControlledState,
   useLatestRef,
   importCss,
   isUnitTest,
-} from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+  HydrationProvider,
+  useHydration,
+  ScopeProvider,
+  portalContainerAtom,
+  useScopedAtom,
+  useScopedSetAtom,
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
+import { atom } from 'jotai';
+
+// ----------------------------------------------------------------------------
+
+const ownerDocumentAtom = atom<Document | undefined>(undefined);
+
+// ----------------------------------------------------------------------------
 
 export type ThemeOptions = {
   /**
@@ -98,6 +110,8 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
   includeCss?: boolean;
 };
 
+// ----------------------------------------------------------------------------
+
 /**
  * This component provides global state and applies theme to the entire tree
  * that it is wrapping around.
@@ -149,51 +163,46 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  /**
-   * We will portal our portal container into `portalContainer` prop (if specified),
-   * or inherit `portalContainer` from context (if also inheriting theme).
-   */
-  const portaledPortalContainer =
-    portalContainerProp ||
-    (themeProp === 'inherit' ? parent.context?.portalContainer : undefined);
-
-  const [portalContainer, setPortalContainer] = useControlledState(
-    null,
-    portaledPortalContainer,
-  );
+  const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, portalContainer }),
+    () => ({ theme, themeOptions }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, JSON.stringify(themeOptions), portalContainer],
+    [theme, JSON.stringify(themeOptions)],
   );
 
   return (
-    <ThemeContext.Provider value={contextValue}>
-      {includeCss && rootElement ? <FallbackStyles root={rootElement} /> : null}
+    <ScopeProvider>
+      <HydrationProvider>
+        <ThemeContext.Provider value={contextValue}>
+          <ToastProvider>
+            {includeCss && rootElement ? (
+              <FallbackStyles root={rootElement} />
+            ) : null}
 
-      <Root
-        theme={theme}
-        themeOptions={themeOptions}
-        ref={useMergedRefs(forwardedRef, setRootElement)}
-        {...rest}
-      >
-        <ToastProvider>
-          {children}
+            <Root
+              theme={theme}
+              themeOptions={themeOptions}
+              ref={useMergedRefs(forwardedRef, setRootElement)}
+              {...rest}
+            >
+              {children}
 
-          {portaledPortalContainer ? (
-            ReactDOM.createPortal(<Toaster />, portaledPortalContainer)
-          ) : (
-            <div ref={setPortalContainer} style={{ display: 'contents' }}>
-              <Toaster />
-            </div>
-          )}
-        </ToastProvider>
-      </Root>
-    </ThemeContext.Provider>
+              <PortalContainer
+                portalContainerProp={portalContainerProp}
+                portalContainerFromParent={portalContainerFromParent}
+                isInheritingTheme={themeProp === 'inherit'}
+              />
+            </Root>
+          </ToastProvider>
+        </ThemeContext.Provider>
+      </HydrationProvider>
+    </ScopeProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
+ThemeProvider.displayName = 'ThemeProvider';
+
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
@@ -205,6 +214,8 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
+  const setOwnerDocument = useScopedSetAtom(ownerDocumentAtom);
+
   return (
     <Box
       className={cx(
@@ -214,7 +225,9 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={forwardedRef}
+      ref={useMergedRefs(forwardedRef, (el) => {
+        setOwnerDocument(el?.ownerDocument);
+      })}
       {...rest}
     >
       {children}
@@ -284,6 +297,63 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
     context: parentContext,
   } as const;
 };
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Creates a new portal container if necessary, or reuses the parent portal container.
+ *
+ * Updates `portalContainerAtom` with the correct portal container.
+ */
+const PortalContainer = React.memo(
+  ({
+    portalContainerProp,
+    portalContainerFromParent,
+    isInheritingTheme,
+  }: {
+    portalContainerProp: HTMLElement | undefined;
+    portalContainerFromParent: HTMLElement | undefined;
+    isInheritingTheme: boolean;
+  }) => {
+    const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
+    const [portalContainer, setPortalContainer] =
+      useScopedAtom(portalContainerAtom);
+
+    // bail if not hydrated, because portals don't work on server
+    const isHydrated = useHydration() === 'hydrated';
+    if (!isHydrated) {
+      return null;
+    }
+
+    // Create a new portal container only if necessary:
+    // - not inheriting theme
+    // - no parent portal container to portal into
+    // - parent portal container is in a different window (#2006)
+    if (
+      !portalContainerProp && // bail if portalContainerProp is set, because it takes precedence
+      (!isInheritingTheme ||
+        !portalContainerFromParent ||
+        portalContainerFromParent.ownerDocument !== ownerDocument)
+    ) {
+      return (
+        <div style={{ display: 'contents' }} ref={setPortalContainer}>
+          <Toaster />
+        </div>
+      );
+    }
+
+    const portalTarget = portalContainerProp || portalContainerFromParent;
+
+    // Synchronize atom with the correct portal container if necessary.
+    if (portalTarget && portalTarget !== portalContainer) {
+      setPortalContainer(portalTarget);
+    }
+
+    return portalTarget
+      ? ReactDOM.createPortal(<Toaster />, portalTarget)
+      : null;
+  },
+);
 
 // ----------------------------------------------------------------------------
 

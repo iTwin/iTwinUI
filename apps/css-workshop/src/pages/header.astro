@@ -1,5 +1,7 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Header'>
@@ -129,64 +131,43 @@ import Layout from './_layout.astro';
         <div class='iui-page-header-center'>
           <label class='iui-input-flex-container demo-searchbar'>
             <input placeholder='Search within Version Gamma…' />
-            <button
-              class='iui-button demo-searchbar-button iui-input-flex-container-icon'
-              data-iui-variant='borderless'
+            <IconButton_
+              class='demo-searchbar-button iui-input-flex-container-icon'
+              variant='borderless'
               aria-label='Search'
             >
-              <svg-search class='iui-button-icon' aria-hidden='true'></svg-search>
-            </button>
+              <svg-search></svg-search>
+            </IconButton_>
           </label>
         </div>
 
         <div class='iui-page-header-right'>
           <!-- Notifications -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
+          <IconButton_
+            variant='borderless'
             aria-label='Notifications'
             aria-expanded='false'
             id='test-button-2'
           >
-            <span class='iui-button-icon iui-notification-marker' aria-hidden='true'>
+            <span class='iui-notification-marker'>
               <svg-notification></svg-notification>
             </span>
-          </button>
+          </IconButton_>
 
           <!-- Help -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Help'
-            aria-expanded='false'
-          >
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-            ></svg-help-circular-hollow>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+            <svg-help-circular-hollow></svg-help-circular-hollow>
+          </IconButton_>
 
           <!-- Profile -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='My account'
-            aria-expanded='false'
-          >
+          <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
             <x-avatar type='2'></x-avatar>
-          </button>
+          </Button_>
 
           <!-- More menu -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='More options'
-            aria-expanded='false'
-          >
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-          </button>
+          <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+            <svg-more-vertical></svg-more-vertical>
+          </IconButton_>
         </div>
       </header>
 
@@ -258,55 +239,26 @@ import Layout from './_layout.astro';
 
         <div class='iui-page-header-right'>
           <!-- Notifications -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Notifications'
-            aria-expanded='false'
-          >
-            <span
-              class='iui-button-icon iui-notification-marker'
-              aria-hidden='true'
-              data-iui-variant='positive'
-            >
+          <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
+            <span class='iui-notification-marker' data-iui-variant='positive'>
               <svg-notification></svg-notification>
             </span>
-          </button>
+          </IconButton_>
 
           <!-- Help -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Help'
-            aria-expanded='false'
-          >
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-            ></svg-help-circular-hollow>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+            <svg-help-circular-hollow></svg-help-circular-hollow>
+          </IconButton_>
 
           <!-- Profile -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='My account'
-            aria-expanded='false'
-          >
+          <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
             <x-avatar type='2'></x-avatar>
-          </button>
+          </Button_>
 
           <!-- More menu -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='More options'
-            aria-expanded='false'
-          >
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-          </button>
+          <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+            <svg-more-vertical></svg-more-vertical>
+          </IconButton_>
         </div>
       </header>
     </section>
@@ -374,56 +326,31 @@ import Layout from './_layout.astro';
 
         <div class='iui-page-header-right'>
           <!-- Notifications -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
+          <IconButton_
+            variant='borderless'
             aria-label='Notifications'
             aria-expanded='false'
             id='test-button-4'
           >
-            <span
-              class='iui-button-icon iui-notification-marker'
-              data-iui-variant='warning'
-              data-iui-urgent='true'
-            >
+            <span class='iui-notification-marker' data-iui-variant='warning' data-iui-urgent='true'>
               <svg-notification></svg-notification>
             </span>
-          </button>
+          </IconButton_>
 
           <!-- Help -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Help'
-            aria-expanded='false'
-          >
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-            ></svg-help-circular-hollow>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+            <svg-help-circular-hollow></svg-help-circular-hollow>
+          </IconButton_>
 
           <!-- Profile -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='My account'
-            aria-expanded='false'
-          >
+          <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
             <x-avatar type='2' size='small'></x-avatar>
-          </button>
+          </Button_>
 
           <!-- More menu -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='More options'
-            aria-expanded='false'
-          >
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-          </button>
+          <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+            <svg-more-vertical></svg-more-vertical>
+          </IconButton_>
         </div>
       </header>
 
@@ -480,55 +407,30 @@ import Layout from './_layout.astro';
 
         <div class='iui-page-header-right'>
           <!-- Notifications -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Notifications'
-            aria-expanded='false'
-          >
+          <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
             <span
-              class='iui-button-icon iui-notification-marker'
+              class='iui-notification-marker'
               data-iui-variant='negative'
               data-iui-urgent='true'
             >
               <svg-notification></svg-notification>
             </span>
-          </button>
+          </IconButton_>
 
           <!-- Help -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Help'
-            aria-expanded='false'
-          >
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-            ></svg-help-circular-hollow>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+            <svg-help-circular-hollow></svg-help-circular-hollow>
+          </IconButton_>
 
           <!-- Profile -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='My account'
-            aria-expanded='false'
-          >
+          <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
             <x-avatar type='2' size='small'></x-avatar>
-          </button>
+          </Button_>
 
           <!-- More menu -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='More options'
-            aria-expanded='false'
-          >
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-          </button>
+          <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+            <svg-more-vertical></svg-more-vertical>
+          </IconButton_>
         </div>
       </header>
     </section>
@@ -650,49 +552,24 @@ import Layout from './_layout.astro';
 
         <div class='iui-page-header-right'>
           <!-- Notifications -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Notifications'
-            aria-expanded='false'
-          >
-            <svg-notification class='iui-button-icon' aria-hidden='true'></svg-notification>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
+            <svg-notification></svg-notification>
+          </IconButton_>
 
           <!-- Help -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Help'
-            aria-expanded='false'
-          >
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-            ></svg-help-circular-hollow>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+            <svg-help-circular-hollow></svg-help-circular-hollow>
+          </IconButton_>
 
           <!-- Profile -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='My account'
-            aria-expanded='false'
-          >
+          <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
             <x-avatar type='2' size='small'></x-avatar>
-          </button>
+          </Button_>
 
           <!-- More menu -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='More options'
-            aria-expanded='false'
-          >
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-          </button>
+          <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+            <svg-more-vertical></svg-more-vertical>
+          </IconButton_>
         </div>
       </header>
 
@@ -800,49 +677,24 @@ import Layout from './_layout.astro';
 
         <div class='iui-page-header-right'>
           <!-- Notifications -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Notifications'
-            aria-expanded='false'
-          >
-            <svg-notification class='iui-button-icon' aria-hidden='true'></svg-notification>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
+            <svg-notification></svg-notification>
+          </IconButton_>
 
           <!-- Help -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='Help'
-            aria-expanded='false'
-          >
-            <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-            ></svg-help-circular-hollow>
-          </button>
+          <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+            <svg-help-circular-hollow></svg-help-circular-hollow>
+          </IconButton_>
 
           <!-- Profile -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='My account'
-            aria-expanded='false'
-          >
+          <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
             <x-avatar type='2'></x-avatar>
-          </button>
+          </Button_>
 
           <!-- More menu -->
-          <button
-            class='iui-button'
-            data-iui-variant='borderless'
-            type='button'
-            aria-label='More options'
-            aria-expanded='false'
-          >
-            <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-          </button>
+          <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+            <svg-more-vertical></svg-more-vertical>
+          </IconButton_>
         </div>
       </header>
     </section>
@@ -917,51 +769,26 @@ import Layout from './_layout.astro';
 
       <div class='iui-page-header-right'>
         <!-- Notifications -->
-        <button
-          class='iui-button'
-          data-iui-variant='borderless'
-          type='button'
-          aria-label='Notifications'
-          aria-expanded='false'
-        >
-          <span class='iui-button-icon iui-notification-marker' data-iui-urgent='true'>
+        <IconButton_ variant='borderless' aria-label='Notifications' aria-expanded='false'>
+          <span class='iui-notification-marker' data-iui-urgent='true'>
             <svg-notification></svg-notification>
           </span>
-        </button>
+        </IconButton_>
 
         <!-- Help -->
-        <button
-          class='iui-button'
-          data-iui-variant='borderless'
-          type='button'
-          aria-label='Help'
-          aria-expanded='false'
-        >
-          <svg-help-circular-hollow class='iui-button-icon' aria-hidden='true'
-          ></svg-help-circular-hollow>
-        </button>
+        <IconButton_ variant='borderless' aria-label='Help' aria-expanded='false'>
+          <svg-help-circular-hollow></svg-help-circular-hollow>
+        </IconButton_>
 
         <!-- Profile -->
-        <button
-          class='iui-button'
-          data-iui-variant='borderless'
-          type='button'
-          aria-label='My account'
-          aria-expanded='false'
-        >
+        <Button_ variant='borderless' aria-label='My account' aria-expanded='false'>
           <x-avatar type='2' showPlaceholder='true'></x-avatar>
-        </button>
+        </Button_>
 
         <!-- More menu -->
-        <button
-          class='iui-button'
-          data-iui-variant='borderless'
-          type='button'
-          aria-label='More options'
-          aria-expanded='false'
-        >
-          <svg-more-vertical class='iui-button-icon' aria-hidden='true'></svg-more-vertical>
-        </button>
+        <IconButton_ variant='borderless' aria-label='More options' aria-expanded='false'>
+          <svg-more-vertical></svg-more-vertical>
+        </IconButton_>
       </div>
     </header>
 
@@ -969,33 +796,23 @@ import Layout from './_layout.astro';
       <!-- Rest of the tabs -->
       <div class='iui-sidenav-content' role='tablist' aria-label='Applications'>
         <div class='iui-top'>
-          <button
-            class='iui-button iui-sidenav-button'
-            data-iui-size='large'
-            data-iui-active='true'
+          <IconButton_
+            class='iui-sidenav-button'
+            size='large'
+            isActive
             role='tab'
             aria-selected='true'
           >
-            <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-          </button>
+            <svg-placeholder></svg-placeholder>
+          </IconButton_>
 
-          <button
-            class='iui-button iui-sidenav-button'
-            data-iui-size='large'
-            role='tab'
-            aria-selected='false'
-          >
-            <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-          </button>
+          <IconButton_ class='iui-sidenav-button' size='large' role='tab' aria-selected='false'>
+            <svg-placeholder></svg-placeholder>
+          </IconButton_>
 
-          <button
-            class='iui-button iui-sidenav-button'
-            data-iui-size='large'
-            role='tab'
-            aria-selected='false'
-          >
-            <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-          </button>
+          <IconButton_ class='iui-sidenav-button' size='large' role='tab' aria-selected='false'>
+            <svg-placeholder></svg-placeholder>
+          </IconButton_>
         </div>
       </div>
     </div>

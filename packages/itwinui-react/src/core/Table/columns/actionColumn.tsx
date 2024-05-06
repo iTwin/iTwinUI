@@ -5,7 +5,7 @@
 import * as React from 'react';
 import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
-import { SvgColumnManager } from '../../utils/index.js';
+import { SvgColumnManager } from '../../../utils/index.js';
 import { DropdownMenu } from '../../DropdownMenu/DropdownMenu.js';
 import type { DropdownMenuProps } from '../../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../../Buttons/IconButton.js';

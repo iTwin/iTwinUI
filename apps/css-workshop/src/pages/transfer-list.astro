@@ -1,5 +1,7 @@
 ---
 import Layout from './_layout.astro';
+import Checkbox_ from '../components/Checkbox.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='TransferList'>
@@ -61,18 +63,18 @@ import Layout from './_layout.astro';
       </div>
 
       <div class='iui-transfer-list-toolbar' role='toolbar' aria-label='Actions'>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-chevron-up class='iui-button-icon' aria-hidden='true'></svg-chevron-up>
-        </button>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-        </button>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-        </button>
-        <button class='iui-button' data-iui-variant='borderless'>
-          <svg-chevron-down class='iui-button-icon' aria-hidden='true'></svg-chevron-down>
-        </button>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-up></svg-chevron-up>
+        </IconButton_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-right></svg-chevron-right>
+        </IconButton_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-left></svg-chevron-left>
+        </IconButton_>
+        <IconButton_ variant='borderless'>
+          <svg-chevron-down></svg-chevron-down>
+        </IconButton_>
       </div>
 
       <div class='iui-transfer-list-listbox-wrapper'>
@@ -90,11 +92,7 @@ import Layout from './_layout.astro';
           </li>
         </ul>
       </div>
-
-      <label class='iui-checkbox-wrapper'>
-        <input class='iui-checkbox' type='checkbox' checked />
-        <span class='iui-checkbox-label'>Models above will be grouped automatically.</span>
-      </label>
+      <Checkbox_ checked>Models above will be grouped automatically.</Checkbox_>
     </div>
   </section>
 

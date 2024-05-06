@@ -19,7 +19,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -39,7 +39,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -63,7 +63,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -87,7 +87,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -115,7 +115,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -133,6 +133,9 @@ jobs:
 
       - name: Build react-workshop
         run: pnpm run build --filter=react-workshop
+
+      - name: Build vite-playground
+        run: pnpm run build --filter=vite-playground
 
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
@@ -175,19 +178,36 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
+      - name: Host vite-playground under /vite
+        if: github.ref != 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/playgrounds/vite/dist
+          target-folder: ${{ env.base_folder }}/vite
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
       - name: Post deploy preview link under Checks
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.repos.createCommitStatus({
+            github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              sha: '${{ github.event.pull_request.head.sha }}',
-              state: 'success',
-              context: 'Deploy preview',
-              description: 'Live preview of the current branch',
-              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
+              head_sha: '${{ github.event.pull_request.head.sha }}',
+              conclusion: 'neutral',
+              name: 'Deploy preview',
+              output: {
+                title: 'Live preview of the current branch',
+                summary: '',
+                text: `\
+            - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
+            - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
+            - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
+            - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)`
+              }
             })
 
   unit-test:
@@ -200,7 +220,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -231,7 +251,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -268,7 +288,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -299,7 +319,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
@@ -309,20 +329,11 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run build --filter=itwinui-react
-
-      - name: Install node modules inside Docker
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false # just perform install from monorepo root
+      - name: Install Cypress binary if not found
+        run: pnpx cypress install
 
       - name: Run a11y tests
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: testing/a11y
-          component: true
-          browser: chrome
-          install: false # we already installed deps above
+        run: pnpm run test --filter=a11y
 
   e2e:
     name: Run e2e tests
@@ -335,7 +346,7 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4

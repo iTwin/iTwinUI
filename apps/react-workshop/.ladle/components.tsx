@@ -50,12 +50,14 @@ export const Provider: GlobalProvider = ({ children }) => {
   }, []);
 
   return (
-    <ThemeProvider
-      theme={theme}
-      themeOptions={{ applyBackground: false, highContrast }}
-    >
-      {children}
-    </ThemeProvider>
+    <React.StrictMode>
+      <ThemeProvider
+        theme={theme}
+        themeOptions={{ applyBackground: false, highContrast }}
+      >
+        {children}
+      </ThemeProvider>
+    </React.StrictMode>
   );
 };
 

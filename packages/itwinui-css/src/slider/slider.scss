@@ -57,15 +57,12 @@ $iui-slider-tick-thickness: 1px;
 
       &::before {
         inline-size: 100%;
+        block-size: var(--_iui-slider-track-thickness);
       }
     }
 
-    .iui-slider::before,
     .iui-slider-track {
       block-size: var(--_iui-slider-track-thickness);
-    }
-
-    .iui-slider-track {
       inset-inline: var(--iui-slider-track-position, #{$slider-position-horizontal});
     }
 
@@ -120,15 +117,12 @@ $iui-slider-tick-thickness: 1px;
 
       &::before {
         block-size: 100%;
+        inline-size: var(--_iui-slider-track-thickness);
       }
     }
 
-    .iui-slider::before,
     .iui-slider-track {
       inline-size: var(--_iui-slider-track-thickness);
-    }
-
-    .iui-slider-track {
       inset-block: var(--iui-slider-track-position, #{$slider-position-vertical});
     }
 

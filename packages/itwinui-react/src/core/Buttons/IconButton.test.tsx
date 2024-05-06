@@ -2,11 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import * as React from 'react';
-import { SvgMore } from '../utils/index.js';
+import { SvgMore } from '../../utils/index.js';
 
 import { IconButton } from './IconButton.js';
+import { userEvent } from '@testing-library/user-event';
 
 it('renders icon button correctly', () => {
   const onClickMock = vi.fn();
@@ -91,7 +92,7 @@ it('should pass props to IconButton parts', () => {
   const { container } = render(
     <IconButton
       label='hello'
-      labelProps={{ className: 'the-label' }}
+      labelProps={{ className: 'the-label', visible: true }}
       iconProps={{ className: 'custom-icon-class', style: { width: 80 } }}
     >
       <SvgMore />
@@ -107,4 +108,22 @@ it('should pass props to IconButton parts', () => {
   const label = document.querySelector('.iui-tooltip') as HTMLElement;
   expect(label).toHaveTextContent('hello');
   expect(label).toHaveClass('the-label');
+});
+
+it('should not leave behind tooltip in DOM when not visible', async () => {
+  render(
+    <IconButton label='hello'>
+      <svg />
+    </IconButton>,
+  );
+
+  expect(screen.queryAllByText('hello')).toHaveLength(1);
+
+  // focus the button
+  await userEvent.tab();
+  expect(screen.queryAllByText('hello')).toHaveLength(2);
+
+  // unfocus the button
+  await userEvent.tab();
+  expect(screen.queryAllByText('hello')).toHaveLength(1);
 });

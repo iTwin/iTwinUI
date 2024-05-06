@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Button_ from '../components/Button.astro';
 ---
 
 <Layout title='Menu'>
@@ -224,7 +225,7 @@ import Layout from './_layout.astro';
         <div class='iui-text-muted' style='margin-bottom: 8px;'>terry.rivers@email.com</div>
         <label class='iui-input-grid'>
           <div class='iui-input-with-icon'>
-            <div tabindex='0' class='iui-select-button'>
+            <div tabindex='0' class='iui-select-button iui-field'>
               <span class='iui-list-item-content'>Administrator</span>
             </div>
             <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -576,7 +577,7 @@ import Layout from './_layout.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>Small select label</div>
       <div class='iui-input-with-icon iui-small'>
-        <div tabindex='0' class='iui-select-button iui-active'>
+        <div tabindex='0' class='iui-select-button iui-field iui-active'>
           <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
           <span class='iui-list-item-content'>Alpha</span>
         </div>
@@ -637,7 +638,7 @@ import Layout from './_layout.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>Default select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button iui-active'>
+        <div tabindex='0' class='iui-select-button iui-field iui-active'>
           <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
           <span class='iui-list-item-content'>Alpha</span>
         </div>
@@ -698,7 +699,7 @@ import Layout from './_layout.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>Large select label</div>
       <div class='iui-input-with-icon iui-large'>
-        <div tabindex='0' class='iui-select-button iui-active'>
+        <div tabindex='0' class='iui-select-button iui-field iui-active'>
           <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
           <span class='iui-list-item-content'>Alpha</span>
         </div>
@@ -759,11 +760,11 @@ import Layout from './_layout.astro';
 
   <h3>Default button</h3>
   <section id='demo-button'>
-    <button class='iui-button iui-button-dropdown' data-iui-size='small'>
-      <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      <span>Small dropdown</span>
-      <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-    </button>
+    <Button_ dropdown size='small'>
+      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+       Small dropdown
+      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+    </Button_>
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
@@ -819,11 +820,11 @@ import Layout from './_layout.astro';
     </ul>
     <br />
 
-    <button class='iui-button iui-button-dropdown'>
-      <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      <span>Default dropdown</span>
-      <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-    </button>
+    <Button_ dropdown>
+      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+       Default dropdown
+      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+    </Button_>
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
@@ -879,11 +880,11 @@ import Layout from './_layout.astro';
     </ul>
     <br />
 
-    <button class='iui-button iui-button-dropdown' data-iui-size='large'>
-      <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      <span>Large dropdown</span>
-      <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-    </button>
+    <Button_ dropdown size='large'>
+      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+       Large dropdown
+      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+    </Button_>
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
@@ -942,15 +943,11 @@ import Layout from './_layout.astro';
 
   <h3>Borderless button</h3>
   <section id='demo-borderless-button'>
-    <button
-      class='iui-button iui-button-dropdown'
-      data-iui-variant='borderless'
-      data-iui-size='small'
-    >
-      <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      <span>Small dropdown</span>
-      <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-    </button>
+    <Button_ dropdown variant='borderless' size='small'>
+      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+       Small dropdown
+      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+    </Button_>
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
@@ -1006,11 +1003,11 @@ import Layout from './_layout.astro';
     </ul>
     <br />
 
-    <button class='iui-button iui-button-dropdown' data-iui-variant='borderless'>
-      <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      <span>Default dropdown</span>
-      <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-    </button>
+    <Button_ dropdown variant='borderless'>
+      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+       Default dropdown
+      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+    </Button_>
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
@@ -1066,15 +1063,11 @@ import Layout from './_layout.astro';
     </ul>
     <br />
 
-    <button
-      class='iui-button iui-button-dropdown'
-      data-iui-variant='borderless'
-      data-iui-size='large'
-    >
-      <svg-placeholder class='iui-button-icon' aria-hidden='true'></svg-placeholder>
-      <span>Large dropdown</span>
-      <svg-caret-down-small class='iui-button-icon' aria-hidden='true'></svg-caret-down-small>
-    </button>
+    <Button_ dropdown variant='borderless' size='large'>
+      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+       Large dropdown
+      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+    </Button_>
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'

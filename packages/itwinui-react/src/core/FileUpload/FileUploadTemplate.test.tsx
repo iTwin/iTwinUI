@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { FileUploadTemplate } from './FileUploadTemplate.js';
-import { SvgUpload } from '../utils/index.js';
+import { SvgUpload } from '../../utils/index.js';
 
 it('should render FileUploadTemplate', () => {
   const mockedOnChange = vi.fn();

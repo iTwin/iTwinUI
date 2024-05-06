@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import cx from 'classnames';
 
 type NotificationMarkerProps = {
@@ -31,14 +31,15 @@ type NotificationMarkerProps = {
    */
   pulsing?: boolean;
   /**
-   * Set this programmatically to false when you just want to render the passed children without the notification
-   * @default true
+   * Instead of conditionally rendering the `NotificationMarker`, the `enabled` prop can be used.
+   *
+   * When `enabled` is set to `false`, the DOM element will still be present, but the notification marker will not be displayed visually.
+   *
    * @example
-   * let [newMessagesCount, ...] = useState(0);
-   * ...
-   * <NotificationMarker enabled={newMessagesCount > 0}>
-   *   <SvgNotification />
+   * <NotificationMarker enabled={notifications.length > 0}>
+   *  …
    * </NotificationMarker>
+   * @default true
    */
   enabled?: boolean;
 };

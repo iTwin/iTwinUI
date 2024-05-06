@@ -3,16 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain.js';
 import { DialogTitleBar } from './DialogTitleBar.js';
 
 const DOMMatrixMock = vi.fn(() => ({ m41: 0, m42: 0 }));
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
 afterAll(() => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).DOMMatrix = undefined;
 });
 
@@ -268,4 +266,19 @@ it('should not handle drag when dialog is not draggable', () => {
   expect(dialog.style.transform).toEqual(originalTransform);
   fireEvent.pointerUp(titleBar);
   expect(dialog.style.transform).toEqual(originalTransform);
+});
+
+it('should not add explicit size to draggable dialog', () => {
+  render(
+    <DialogMain isOpen isDraggable>
+      <DialogTitleBar title='test title' />
+      test-content
+    </DialogMain>,
+  );
+
+  const dialog = screen.getByRole('dialog');
+  expect(dialog.style.width).toBe('');
+  expect(dialog.style.height).toBe('');
+  expect(dialog.style.inlineSize).toBe('');
+  expect(dialog.style.blockSize).toBe('');
 });
