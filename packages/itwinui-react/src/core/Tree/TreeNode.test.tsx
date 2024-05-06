@@ -255,7 +255,7 @@ it('should render treeNode with  [x]Props correctly', () => {
         style: { color: 'black' },
         className: 'custom-title-class',
       },
-      treeNodeExpanderProps: {
+      expanderProps: {
         expanderIconProps: {
           style: { color: 'white' },
           className: 'custom-expander-icon-class',

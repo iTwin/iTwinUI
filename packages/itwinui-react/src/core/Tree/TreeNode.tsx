@@ -98,7 +98,7 @@ type TreeNodeProps = {
   /**
    * Props for the default TreeNodeExpander that is shown when there are sub nodes and no expander is given.
    */
-  treeNodeExpanderProps?: React.ComponentProps<typeof TreeNodeExpander>;
+  expanderProps?: React.ComponentProps<typeof TreeNodeExpander>;
   /**
    * Props for content of the TreeNode.
    * This affects all passed in children of the node, as well as the label, sublabel, icon, and expander.
@@ -153,7 +153,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     subTreeProps = {},
     contentProps = {},
     titleProps = {},
-    treeNodeExpanderProps = {},
+    expanderProps = {},
     expander,
     ...rest
   } = props;
@@ -315,7 +315,7 @@ export const TreeNode = (props: TreeNodeProps) => {
                 disabled={isDisabled}
                 onClick={onExpanderClick}
                 tabIndex={isFocused ? 0 : -1}
-                {...treeNodeExpanderProps}
+                {...expanderProps}
               />
             )}
             {icon && (
