@@ -218,9 +218,9 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
-  const listNavigationProps = useListNavigationProps(
-    mergedInteractions.listNavigation,
-  );
+  // const listNavigationProps = useListNavigationProps(
+  //   mergedInteractions.listNavigation,
+  // );
 
   const interactions = useInteractions([
     useClick(floating.context, {
@@ -250,7 +250,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
       enabled: !!mergedInteractions.listNavigation,
-      ...(listNavigationProps as UseListNavigationProps),
+      // ...(listNavigationProps as UseListNavigationProps),
+      ...(mergedInteractions.listNavigation as UseListNavigationProps),
     }),
   ]);
 

@@ -11,16 +11,15 @@ import {
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu, MenuContext } from './Menu.js';
+import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import {
-  FloatingNode,
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
-import { usePopover, useListNavigationProps } from '../Popover/Popover.js';
+import { useListNavigationProps } from '../Popover/Popover.js';
 
 const logWarningInDev = createWarningLogger();
 
@@ -122,7 +121,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }
 
   const parentMenuItem = React.useContext(MenuItemContext);
-  const parentMenu = React.useContext(MenuContext);
+  // const parentMenu = React.useContext(MenuContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -136,8 +135,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
+  const listNavigationProps = useListNavigationProps({
+    nested: subMenuItems.length > 0,
+  });
+
   const focusableNodeIndexInParentTree =
-    parentMenu?.listNavigationProps?.listRef.current.findIndex(
+    listNavigationProps?.listRef.current.findIndex(
       (el) => el === menuItemRef.current,
     );
 
@@ -166,10 +169,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     () => undefined,
     () => undefined,
   );
-
-  const listNavigationProps = useListNavigationProps({
-    nested: subMenuItems.length > 0,
-  });
 
   // const popover = usePopover({
   //   nodeId,
@@ -217,11 +216,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
       // Since we manually focus the MenuItem on hover, we need to manually update the active index for
       // Floating UI's keyboard navigation to work correctly.
-      if (parentMenu != null && focusableNodeIndexInParentTree != null) {
-        parentMenu.listNavigationProps?.onNavigate?.(
-          focusableNodeIndexInParentTree,
-        );
-      }
+      // if (parentMenu != null && focusableNodeIndexInParentTree != null) {
+      //   parentMenu.listNavigationProps?.onNavigate?.(
+      //     focusableNodeIndexInParentTree,
+      //   );
+      // }
+
+      listNavigationProps?.onNavigate?.(focusableNodeIndexInParentTree);
     }
   };
 
@@ -321,9 +322,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
                 hover: {
                   enabled: !hasFocusedNodeInSubmenu,
                 },
-                listNavigation: {
-                  // focusItemOnOpen: true,
-                },
+                listNavigation: listNavigationProps,
+                // listNavigation: {
+                //   // focusItemOnOpen: true,
+                // },
               },
             }}
           >
