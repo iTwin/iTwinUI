@@ -53,10 +53,6 @@ export const Menu = React.forwardRef((props, ref) => {
   const {
     className,
     trigger,
-    // visible: visibleProp,
-    // onVisibleChange,
-    // placement,
-    // matchWidth,
     portal = true,
     popoverProps: popoverPropsProp,
     ...rest
@@ -93,10 +89,6 @@ export const Menu = React.forwardRef((props, ref) => {
     ...restPopoverProps,
   } satisfies Parameters<typeof usePopover>[0];
 
-  // console.log('popoverProps', popoverProps);
-
-  // const menuContext = React.useContext(MenuContext);
-
   const popover = usePopover(popoverProps);
 
   const menuRef = React.useRef<HTMLElement>(null);
@@ -118,7 +110,6 @@ export const Menu = React.forwardRef((props, ref) => {
 
   React.useEffect(() => {
     const newFocusableNodes = getFocusableNodes();
-
     if (
       listNavigationProps?.listRef != null &&
       listNavigationProps.listRef.current !== newFocusableNodes
