@@ -171,10 +171,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const popoverProps = React.useMemo(() => {
     return {
+      visible: isSubmenuVisible,
       onVisibleChange: (visible) => {
         if (!visible) {
           setHasFocusedNodeInSubmenu(false);
         }
+
+        setIsSubmenuVisible(visible);
       },
       placement: 'right-start',
       interactions: {
@@ -185,7 +188,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         listNavigation: listNavigationProps,
       },
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
-  }, [hasFocusedNodeInSubmenu, listNavigationProps]);
+  }, [hasFocusedNodeInSubmenu, listNavigationProps, isSubmenuVisible]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
