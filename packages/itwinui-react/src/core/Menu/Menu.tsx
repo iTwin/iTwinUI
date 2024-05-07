@@ -9,13 +9,20 @@ import {
   getFocusableElements,
   Box,
   Portal,
+  useControlledState,
+  cloneElementWithRef,
+  mergeRefs,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { usePopover } from '../Popover/Popover.js';
-import type { UseListNavigationProps } from '@floating-ui/react';
+import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
+import {
+  FloatingNode,
+  useFloatingNodeId,
+  type UseListNavigationProps,
+} from '@floating-ui/react';
 
 type MenuProps = {
   /**
@@ -25,7 +32,13 @@ type MenuProps = {
    * and selected item should have `aria-selected={true}`.
    */
   children: React.ReactNode;
-};
+
+  trigger: React.ReactNode;
+  portal?: PortalProps['portal'];
+} & Pick<
+  Parameters<typeof usePopover>[0],
+  'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
+>;
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
@@ -39,19 +52,55 @@ type MenuProps = {
  * It can also handle keyboard/list navigation if `listNavigationProps` is passed in `MenuContext`.
  */
 export const Menu = React.forwardRef((props, ref) => {
-  const { className, ...rest } = props;
+  const {
+    className,
+    trigger,
+    visible: visibleProp,
+    onVisibleChange,
+    placement,
+    matchWidth,
+    portal = true,
+    ...rest
+  } = props;
 
-  const menuContext = React.useContext(MenuContext);
+  const nodeId = useFloatingNodeId();
+
+  // const menuContext = React.useContext(MenuContext);
+
+  const listNavigationProps = useListNavigationProps();
+
+  const [visible, setVisible] = useControlledState(
+    false,
+    visibleProp,
+    onVisibleChange,
+  );
+
+  const popover = usePopover({
+    nodeId,
+    visible,
+    onVisibleChange: (open) => {
+      console.log('open', open);
+      return open ? setVisible(true) : close();
+    },
+    placement,
+    matchWidth,
+    interactions: {
+      listNavigation: listNavigationProps,
+    },
+  });
 
   const menuRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(
-    menuRef,
-    ref,
-    menuContext?.popover.refs.setFloating,
-  );
+  const refs = useMergedRefs(menuRef, ref, popover.refs.setFloating);
+
+  const triggerRef = React.useRef<HTMLElement>(null);
+  const close = React.useCallback(() => {
+    setVisible(false);
+    triggerRef.current?.focus({ preventScroll: true });
+  }, [setVisible]);
 
   const getFocusableNodes = React.useCallback(() => {
     const focusableItems = getFocusableElements(menuRef.current);
+
     // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
     return focusableItems.filter(
       (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
@@ -62,21 +111,21 @@ export const Menu = React.forwardRef((props, ref) => {
     const newFocusableNodes = getFocusableNodes();
 
     if (
-      menuContext?.listNavigationProps?.listRef != null &&
-      menuContext.listNavigationProps.listRef.current !== newFocusableNodes
+      listNavigationProps?.listRef != null &&
+      listNavigationProps.listRef.current !== newFocusableNodes
     ) {
-      menuContext.listNavigationProps.listRef.current = newFocusableNodes;
+      listNavigationProps.listRef.current = newFocusableNodes;
     }
 
     // If the menu is not open or there are no focusable nodes, nothing to focus
-    if (newFocusableNodes.length === 0 || !menuContext?.popover.open) {
+    if (newFocusableNodes.length === 0 || !popover.open) {
       return;
     }
 
     // Handle focus, but only when no other item is already focused
     if (
-      menuContext?.listNavigationProps?.activeIndex == null ||
-      menuContext.listNavigationProps.activeIndex < 0
+      listNavigationProps?.activeIndex == null ||
+      listNavigationProps.activeIndex < 0
     ) {
       const selectedIndex = newFocusableNodes.findIndex(
         (el) => el.getAttribute('aria-selected') === 'true',
@@ -84,29 +133,38 @@ export const Menu = React.forwardRef((props, ref) => {
 
       // If an item is selected, focus it
       if (selectedIndex >= 0) {
-        menuContext?.listNavigationProps?.onNavigate?.(selectedIndex);
+        listNavigationProps?.onNavigate?.(selectedIndex);
       }
       // Else, focus the first item
       else {
-        menuContext?.listNavigationProps?.onNavigate?.(0);
+        listNavigationProps?.onNavigate?.(0);
       }
     }
-  }, [menuContext, getFocusableNodes, menuContext?.popover.open]);
+  }, [getFocusableNodes, listNavigationProps, popover.open]);
 
   return (
-    menuContext?.popover.open && (
-      <Portal portal={menuContext.portal}>
-        <Box
-          as='div'
-          className={cx('iui-menu', className)}
-          ref={refs}
-          {...menuContext.popover.getFloatingProps({
-            role: 'menu',
-            ...rest,
-          })}
-        />
-      </Portal>
-    )
+    <>
+      {cloneElementWithRef(trigger, (triggerChild) => ({
+        ...popover.getReferenceProps(triggerChild.props),
+        'aria-expanded': popover.open,
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
+      }))}
+      <FloatingNode id={nodeId}>
+        {popover.open && (
+          <Portal portal={portal}>
+            <Box
+              as='div'
+              className={cx('iui-menu', className)}
+              ref={refs}
+              {...popover.getFloatingProps({
+                role: 'menu',
+                ...rest,
+              })}
+            />
+          </Portal>
+        )}
+      </FloatingNode>
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
 
