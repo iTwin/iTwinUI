@@ -145,18 +145,20 @@ export const Menu = React.forwardRef((props, ref) => {
         { length: listNavigationProps.listRef.current.length },
         (_, index) => {
           return () => {
+            console.log('navigateToItemFunctions', index);
             listNavigationProps.onNavigate?.(index);
           };
         },
       );
 
       listNavigationProps.listRef.current.forEach((el, index) => {
-        el?.addEventListener('focus', navigateToItemFunctions[index]);
+        el?.addEventListener('hover', navigateToItemFunctions[index]);
       });
 
       return () => {
+        // console.log('Cleanup');
         listNavigationProps.listRef.current.forEach((el, index) => {
-          el?.removeEventListener('focus', navigateToItemFunctions[index]);
+          el?.removeEventListener('hover', navigateToItemFunctions[index]);
         });
       };
     }, [listNavigationProps]),
