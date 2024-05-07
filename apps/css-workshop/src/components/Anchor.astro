@@ -1,16 +1,25 @@
 ---
 type Props = {
+  as?: string;
   isExternal?: boolean;
   status?: 'informational' | 'positive' | 'warning' | 'negative';
   underline?: boolean;
 } & astroHTML.JSX.HTMLAttributes;
 
-const { class: className, isExternal, status, underline, ...props } = Astro.props;
+const {
+  as: Element = 'a',
+  class: className,
+  isExternal,
+  status,
+  underline,
+  ...props
+} = Astro.props;
 ---
 
-<a
+<!-- prettier-ignore -->
+<Element
   class:list={['iui-anchor', className, { 'iui-anchor-external': isExternal }]}
   data-iui-status={status}
   data-iui-underline={underline ? 'true' : undefined}
-  {...props}><slot /></a
->
+  {...props}
+><slot /></Element>
