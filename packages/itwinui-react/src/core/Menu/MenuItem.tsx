@@ -171,26 +171,26 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     nested: subMenuItems.length > 0,
   });
 
-  const popover = usePopover({
-    nodeId,
-    visible: isSubmenuVisible,
-    onVisibleChange: React.useCallback((visible: boolean) => {
-      if (!visible) {
-        setHasFocusedNodeInSubmenu(false);
-      }
-      setIsSubmenuVisible(visible);
-    }, []),
-    placement: 'right-start',
-    interactions: !disabled
-      ? {
-          click: false,
-          hover: {
-            enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
-          },
-          listNavigation: listNavigationProps,
-        }
-      : {},
-  });
+  // const popover = usePopover({
+  //   nodeId,
+  //   visible: isSubmenuVisible,
+  //   onVisibleChange: React.useCallback((visible: boolean) => {
+  //     if (!visible) {
+  //       setHasFocusedNodeInSubmenu(false);
+  //     }
+  //     setIsSubmenuVisible(visible);
+  //   }, []),
+  //   placement: 'right-start',
+  //   interactions: !disabled
+  //     ? {
+  //         click: false,
+  //         hover: {
+  //           enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
+  //         },
+  //         listNavigation: listNavigationProps,
+  //       }
+  //     : {},
+  // });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -252,60 +252,89 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
     : {};
 
+  const trigger = (
+    <ListItem
+      as='div'
+      actionable
+      size={size}
+      active={isSelected}
+      disabled={disabled}
+      ref={useMergedRefs(
+        menuItemRef,
+        forwardedRef,
+        // subMenuItems.length > 0 ? popover.refs.setReference : null,
+      )}
+      role={role}
+      tabIndex={disabled || role === 'presentation' ? undefined : -1}
+      aria-selected={isSelected}
+      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
+      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+      // aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+      aria-disabled={disabled}
+      // {...(subMenuItems.length === 0
+      //   ? { ...handlers, ...rest }
+      //   : popover.getReferenceProps({ ...handlers, ...rest }))}
+      // TODO: maybe can merge handlers and rest. i.e. don't need separate handlers
+      {...handlers}
+      {...rest}
+    >
+      {startIcon && (
+        <ListItem.Icon as='span' aria-hidden>
+          {startIcon}
+        </ListItem.Icon>
+      )}
+      <ListItem.Content>
+        <div>{children}</div>
+        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+      </ListItem.Content>
+      {!endIcon && subMenuItems.length > 0 && (
+        <ListItem.Icon as='span' aria-hidden>
+          <SvgCaretRightSmall />
+        </ListItem.Icon>
+      )}
+      {endIcon && (
+        <ListItem.Icon as='span' aria-hidden>
+          {endIcon}
+        </ListItem.Icon>
+      )}
+    </ListItem>
+  );
+
   return (
     <>
-      <ListItem
-        as='div'
-        actionable
-        size={size}
-        active={isSelected}
-        disabled={disabled}
-        ref={useMergedRefs(
-          menuItemRef,
-          forwardedRef,
-          subMenuItems.length > 0 ? popover.refs.setReference : null,
+      {/* <FloatingNode id={nodeId}> */}
+      <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
+        {/* <MenuContext.Provider value={{ popover, listNavigationProps }}> */}
+        {subMenuItems.length > 0 && !disabled ? (
+          <Menu
+            id={submenuId}
+            trigger={trigger}
+            popoverProps={{
+              onVisibleChange: (visible) => {
+                if (!visible) {
+                  setHasFocusedNodeInSubmenu(false);
+                }
+              },
+              placement: 'right-start',
+              interactions: {
+                click: false,
+                hover: {
+                  enabled: !hasFocusedNodeInSubmenu,
+                },
+                listNavigation: {
+                  // focusItemOnOpen: true,
+                },
+              },
+            }}
+          >
+            {subMenuItems}
+          </Menu>
+        ) : (
+          trigger
         )}
-        role={role}
-        tabIndex={disabled || role === 'presentation' ? undefined : -1}
-        aria-selected={isSelected}
-        aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
-        aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
-        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
-        aria-disabled={disabled}
-        {...(subMenuItems.length === 0
-          ? { ...handlers, ...rest }
-          : popover.getReferenceProps({ ...handlers, ...rest }))}
-      >
-        {startIcon && (
-          <ListItem.Icon as='span' aria-hidden>
-            {startIcon}
-          </ListItem.Icon>
-        )}
-        <ListItem.Content>
-          <div>{children}</div>
-          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
-        </ListItem.Content>
-        {!endIcon && subMenuItems.length > 0 && (
-          <ListItem.Icon as='span' aria-hidden>
-            <SvgCaretRightSmall />
-          </ListItem.Icon>
-        )}
-        {endIcon && (
-          <ListItem.Icon as='span' aria-hidden>
-            {endIcon}
-          </ListItem.Icon>
-        )}
-      </ListItem>
-
-      {subMenuItems.length > 0 && !disabled && (
-        <FloatingNode id={nodeId}>
-          <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
-            <MenuContext.Provider value={{ popover, listNavigationProps }}>
-              <Menu id={submenuId}>{subMenuItems}</Menu>
-            </MenuContext.Provider>
-          </MenuItemContext.Provider>
-        </FloatingNode>
-      )}
+        {/* </MenuContext.Provider> */}
+      </MenuItemContext.Provider>
+      {/* </FloatingNode> */}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

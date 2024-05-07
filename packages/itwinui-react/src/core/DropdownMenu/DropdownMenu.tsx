@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { mergeEventHandlers } from '../../utils/index.js';
+import { mergeEventHandlers, useControlledState } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
@@ -78,15 +78,18 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  // TODO: Implement
-  const close = () => {};
+  const [visible, setVisible] = useControlledState(
+    false,
+    visibleProp,
+    onVisibleChange,
+  );
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      return menuItems(close);
+      return menuItems(() => setVisible(false));
     }
     return menuItems;
-  }, [menuItems, close]);
+  }, [menuItems]);
 
   return (
     <>
@@ -103,6 +106,12 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
         role={role}
         ref={forwardedRef}
         portal={portal}
+        popoverProps={{
+          placement,
+          matchWidth,
+          visible,
+          onVisibleChange: setVisible,
+        }}
         {...rest}
       >
         {menuContent}

@@ -139,7 +139,7 @@ type PopoverInternalProps = {
     dismiss?: boolean | UseDismissProps;
     hover?: boolean | UseHoverProps<ReferenceType>;
     focus?: boolean | UseFocusProps;
-    listNavigation?: UseListNavigationProps;
+    listNavigation?: Parameters<typeof useListNavigationProps>[0];
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
@@ -218,6 +218,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
+  const listNavigationProps = useListNavigationProps(
+    mergedInteractions.listNavigation,
+  );
+
   const interactions = useInteractions([
     useClick(floating.context, {
       enabled: !!mergedInteractions.click,
@@ -246,7 +250,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
       enabled: !!mergedInteractions.listNavigation,
-      ...(mergedInteractions.listNavigation as UseListNavigationProps),
+      ...(listNavigationProps as UseListNavigationProps),
     }),
   ]);
 
@@ -320,6 +324,8 @@ export const useListNavigationProps = (
   return {
     activeIndex: currentFocusedNodeIndex,
     onNavigate: (index) => {
+      console.log('onNavigate', index);
+
       setCurrentFocusedNodeIndex(index);
       onNavigateProp?.(index);
     },

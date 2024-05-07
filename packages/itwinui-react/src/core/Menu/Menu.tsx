@@ -35,10 +35,8 @@ type MenuProps = {
 
   trigger: React.ReactNode;
   portal?: PortalProps['portal'];
-} & Pick<
-  Parameters<typeof usePopover>[0],
-  'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
->;
+  popoverProps?: Parameters<typeof usePopover>[0];
+};
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
@@ -55,39 +53,51 @@ export const Menu = React.forwardRef((props, ref) => {
   const {
     className,
     trigger,
-    visible: visibleProp,
-    onVisibleChange,
-    placement,
-    matchWidth,
+    // visible: visibleProp,
+    // onVisibleChange,
+    // placement,
+    // matchWidth,
     portal = true,
+    popoverProps: popoverPropsProp,
     ...rest
   } = props;
 
   const nodeId = useFloatingNodeId();
 
-  // const menuContext = React.useContext(MenuContext);
+  const {
+    interactions: interactionsProp,
+    visible: visibleProp,
+    onVisibleChange: onVisibleChangeProp,
+    ...restPopoverProps
+  } = popoverPropsProp ?? {};
+  const { listNavigation: listNavigationPropsProp, ...restInteractionsProps } =
+    interactionsProp ?? {};
 
-  const listNavigationProps = useListNavigationProps();
+  const listNavigationProps = useListNavigationProps(listNavigationPropsProp);
 
   const [visible, setVisible] = useControlledState(
     false,
     visibleProp,
-    onVisibleChange,
+    onVisibleChangeProp,
   );
 
-  const popover = usePopover({
+  const popoverProps = {
     nodeId,
     visible,
-    onVisibleChange: (open) => {
-      console.log('open', open);
-      return open ? setVisible(true) : close();
-    },
-    placement,
-    matchWidth,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
     interactions: {
       listNavigation: listNavigationProps,
+      ...restInteractionsProps,
     },
-  });
+    // TODO: Confirm what defaults to set and see which components need to override them
+    ...restPopoverProps,
+  } satisfies Parameters<typeof usePopover>[0];
+
+  // console.log('popoverProps', popoverProps);
+
+  // const menuContext = React.useContext(MenuContext);
+
+  const popover = usePopover(popoverProps);
 
   const menuRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(menuRef, ref, popover.refs.setFloating);
