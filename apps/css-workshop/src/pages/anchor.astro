@@ -21,32 +21,37 @@ import Anchor_ from '../components/Anchor.astro';
     </p>
 
     <p>
-      <Anchor_ external='true' href='https://www.bentley.com/en'>
-        Bentley Systems<span class='iui-visually-hidden'>(opens in new tab)</span>
-      </Anchor_>
+      <!-- prettier-ignore -->
+      <Anchor_
+        isExternal
+        referrerpolicy='no-referrer'
+        target='_blank'
+        href='https://www.bentley.com/en'
+        id='test-2'
+      >Bentley Systems<span class='iui-visually-hidden'> (opens in new tab)</span></Anchor_>
        - An anchor link that opens in a new tab / window.
     </p>
 
     <p>
-      <Anchor_ underline='true' id='test-2'>This one</Anchor_> is underlined by default.
+      <Anchor_ underline href='#'>This one</Anchor_> is underlined by default.
     </p>
   </section>
 
   <section id='demo-status'>
     <p>
-      <Anchor_>Accent</Anchor_>
+      <Anchor_ href='#'>Accent</Anchor_>
     </p>
     <p>
-      <Anchor_ status='informational'>Informational</Anchor_>
+      <Anchor_ status='informational' href='#'>Informational</Anchor_>
     </p>
     <p>
-      <Anchor_ status='positive'>Positive</Anchor_>
+      <Anchor_ status='positive' href='#'>Positive</Anchor_>
     </p>
     <p>
-      <Anchor_ status='warning'>Warning</Anchor_>
+      <Anchor_ status='warning' href='#'>Warning</Anchor_>
     </p>
     <p>
-      <Anchor_ status='negative'>Negative</Anchor_>
+      <Anchor_ status='negative' href='#'>Negative</Anchor_>
     </p>
   </section>
 </Layout>
