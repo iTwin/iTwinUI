@@ -139,7 +139,7 @@ type PopoverInternalProps = {
     dismiss?: boolean | UseDismissProps;
     hover?: boolean | UseHoverProps<ReferenceType>;
     focus?: boolean | UseFocusProps;
-    listNavigation?: Parameters<typeof useListNavigationProps>[0];
+    listNavigation?: UseListNavigationProps;
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
