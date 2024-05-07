@@ -3,10 +3,10 @@ import { test, expect } from '@playwright/test';
 test.describe('SideNavigation tooltips', () => {
   test('should show tooltip when collapsed', async ({ page }) => {
     await page.goto('/SideNavigation');
-    const homeButton = page.getByRole('button', { name: 'Home' });
 
     // hover Home
     {
+      const homeButton = page.getByRole('button', { name: 'Home' });
       const tooltip = page.getByText('Home').locator('visible=true');
       await expect(tooltip).not.toBeVisible();
       await homeButton.hover();
