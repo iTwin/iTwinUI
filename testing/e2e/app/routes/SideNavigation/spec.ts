@@ -29,9 +29,9 @@ test.describe('SideNavigation tooltips', () => {
 
     // hover Home
     {
-      expect(await page.getByText('Home').count()).toBe(1);
+      await expect(page.getByText('Home')).toHaveCount(1);
       await homeButton.hover();
-      expect(await page.getByText('Home').count()).toBe(2);
+      await expect(page.getByText('Home')).toHaveCount(2);
     }
 
     // expand SideNavigation
@@ -42,11 +42,11 @@ test.describe('SideNavigation tooltips', () => {
 
     // hover Home again
     {
-      expect(await page.getByText('Home').count()).toBe(1);
+      await expect(page.getByText('Home')).toHaveCount(1);
       await homeButton.hover();
 
       // count stays the same because tooltip is not shown
-      expect(await page.getByText('Home').count()).toBe(1);
+      await expect(page.getByText('Home')).toHaveCount(1);
     }
   });
 });
