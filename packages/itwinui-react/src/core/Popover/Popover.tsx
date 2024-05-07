@@ -332,6 +332,7 @@ export const useListNavigationProps = (
 
     // We handle the initial focus manually
     // focusItemOnOpen: false,
+    openOnArrowKeyDown: false,
     ...rest,
   };
 };

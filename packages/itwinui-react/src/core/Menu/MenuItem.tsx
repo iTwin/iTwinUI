@@ -176,6 +176,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         },
         listNavigation: {
           nested: subMenuItems.length > 0,
+          openOnArrowKeyDown: true,
         },
       },
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
