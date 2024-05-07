@@ -257,7 +257,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         </ListItem.Icon>
       )}
       <ListItem.Content>
-        <div>{children}</div>
+        <div>
+          {children},{nodeId},{parentId}
+        </div>
         {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
       </ListItem.Content>
       {!endIcon && subMenuItems.length > 0 && (
@@ -277,7 +279,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     <>
       <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
         {subMenuItems.length > 0 && !disabled ? (
-          <Menu id={submenuId} trigger={trigger} popoverProps={popoverProps}>
+          <Menu
+            nodeId={nodeId}
+            id={submenuId}
+            trigger={trigger}
+            popoverProps={popoverProps}
+          >
             {subMenuItems}
           </Menu>
         ) : (

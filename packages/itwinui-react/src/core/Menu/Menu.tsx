@@ -19,11 +19,7 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
-import {
-  FloatingNode,
-  useFloatingNodeId,
-  type UseListNavigationProps,
-} from '@floating-ui/react';
+import { FloatingNode, type UseListNavigationProps } from '@floating-ui/react';
 
 type MenuProps = {
   /**
@@ -37,6 +33,7 @@ type MenuProps = {
   trigger: React.ReactNode;
   portal?: PortalProps['portal'];
   popoverProps?: Parameters<typeof usePopover>[0];
+  nodeId: string;
 };
 
 /**
@@ -56,10 +53,9 @@ export const Menu = React.forwardRef((props, ref) => {
     trigger,
     portal = true,
     popoverProps: popoverPropsProp,
+    nodeId,
     ...rest
   } = props;
-
-  const nodeId = useFloatingNodeId();
 
   const {
     interactions: interactionsProp,
