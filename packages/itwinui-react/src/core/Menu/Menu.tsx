@@ -68,7 +68,12 @@ export const Menu = React.forwardRef((props, ref) => {
       menuContext.listNavigationProps.listRef.current = newFocusableNodes;
     }
 
-    // Focus the selected item, but only when no other item is focused
+    // If the menu is not open or there are no focusable nodes, nothing to focus
+    if (newFocusableNodes.length === 0 || !menuContext?.popover.open) {
+      return;
+    }
+
+    // Handle focus, but only when no other item is already focused
     if (
       menuContext?.listNavigationProps?.activeIndex == null ||
       menuContext.listNavigationProps.activeIndex < 0
@@ -77,11 +82,16 @@ export const Menu = React.forwardRef((props, ref) => {
         (el) => el.getAttribute('aria-selected') === 'true',
       );
 
+      // If an item is selected, focus it
       if (selectedIndex >= 0) {
         menuContext?.listNavigationProps?.onNavigate?.(selectedIndex);
       }
+      // Else, focus the first item
+      else {
+        menuContext?.listNavigationProps?.onNavigate?.(0);
+      }
     }
-  }, [menuContext, getFocusableNodes]);
+  }, [menuContext, getFocusableNodes, menuContext?.popover.open]);
 
   return (
     menuContext?.popover.open && (

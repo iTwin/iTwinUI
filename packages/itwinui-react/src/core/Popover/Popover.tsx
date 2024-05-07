@@ -324,7 +324,9 @@ export const useListNavigationProps = (
       onNavigateProp?.(index);
     },
     listRef: focusableNodes,
-    focusItemOnOpen: true,
+
+    // We handle the initial focus manually
+    focusItemOnOpen: false,
     ...rest,
   };
 };
