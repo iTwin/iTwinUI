@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Menu, MenuContext } from '../Menu/Menu.js';
+import { Menu } from '../Menu/Menu.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
@@ -25,7 +25,8 @@ import type {
 import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';
-import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
+import { usePopover } from '../Popover/Popover.js';
+import { useFloatingNodeId } from '@floating-ui/react';
 
 // ----------------------------------------------------------------------------
 
@@ -288,7 +289,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     multiple = false,
     triggerProps,
     status,
-    popoverProps,
+    popoverProps: popoverPropsProp,
     // @ts-expect-error -- this prop is disallowed by types but should still be handled at runtime
     styleType,
     ...rest
@@ -308,14 +309,14 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
       return;
     }
     setIsOpen(true);
-    popoverProps?.onVisibleChange?.(true);
-  }, [disabled, popoverProps]);
+    popoverPropsProp?.onVisibleChange?.(true);
+  }, [disabled, popoverPropsProp]);
 
   const hide = React.useCallback(() => {
     setIsOpen(false);
     selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
-    popoverProps?.onVisibleChange?.(false);
-  }, [popoverProps]);
+    popoverPropsProp?.onVisibleChange?.(false);
+  }, [popoverPropsProp]);
 
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
@@ -399,99 +400,93 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
 
-  const listNavigationProps = useListNavigationProps();
-
-  const popover = usePopover({
+  const popoverProps = {
     visible: isOpen,
     matchWidth: true,
     closeOnOutsideClick: true,
-    ...popoverProps,
+    ...popoverPropsProp,
     onVisibleChange: (open) => (open ? show() : hide()),
-    interactions: { listNavigation: listNavigationProps },
-  });
+  } satisfies Parameters<typeof Menu>[0]['popoverProps'];
+
+  const trigger = (
+    <InputWithIcon {...rest} ref={useMergedRefs(forwardedRef)}>
+      <SelectButton
+        tabIndex={0}
+        role='combobox'
+        size={size}
+        status={status}
+        aria-disabled={disabled ? 'true' : undefined}
+        data-iui-disabled={disabled ? 'true' : undefined}
+        aria-autocomplete='none'
+        aria-expanded={isOpen}
+        aria-haspopup='listbox'
+        aria-controls={`${uid}-menu`}
+        styleType={styleType}
+        {...triggerProps}
+        ref={useMergedRefs(selectRef, triggerProps?.ref)}
+        className={cx(
+          {
+            'iui-placeholder':
+              (!selectedItems || selectedItems.length === 0) && !!placeholder,
+          },
+          triggerProps?.className,
+        )}
+      >
+        {(!selectedItems || selectedItems.length === 0) && (
+          <Box as='span' className='iui-content'>
+            {placeholder}
+          </Box>
+        )}
+        {isMultipleEnabled(selectedItems, multiple) ? (
+          <MultipleSelectButton
+            selectedItems={selectedItems}
+            selectedItemsRenderer={
+              selectedItemRenderer as (
+                options: SelectOption<unknown>[],
+              ) => JSX.Element
+            }
+            tagRenderer={tagRenderer}
+          />
+        ) : (
+          <SingleSelectButton
+            selectedItem={selectedItems}
+            selectedItemRenderer={
+              selectedItemRenderer as (
+                option: SelectOption<unknown>,
+              ) => JSX.Element
+            }
+          />
+        )}
+      </SelectButton>
+      <SelectEndIcon disabled={disabled} isOpen={isOpen} />
+
+      {multiple ? (
+        <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+      ) : null}
+    </InputWithIcon>
+  );
+
+  const nodeId = useFloatingNodeId();
 
   return (
     <>
-      <InputWithIcon
-        {...rest}
-        ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
+      <Menu
+        role='listbox'
+        className={menuClassName}
+        id={`${uid}-menu`}
+        key={`${uid}-menu`}
+        style={menuStyle}
+        trigger={trigger}
+        popoverProps={popoverProps}
+        nodeId={nodeId}
+        onKeyDown={({ key }) => {
+          if (key === 'Tab') {
+            hide();
+          }
+        }}
       >
-        <SelectButton
-          {...popover.getReferenceProps()}
-          tabIndex={0}
-          role='combobox'
-          size={size}
-          status={status}
-          aria-disabled={disabled ? 'true' : undefined}
-          data-iui-disabled={disabled ? 'true' : undefined}
-          aria-autocomplete='none'
-          aria-expanded={isOpen}
-          aria-haspopup='listbox'
-          aria-controls={`${uid}-menu`}
-          styleType={styleType}
-          {...triggerProps}
-          ref={useMergedRefs(
-            selectRef,
-            triggerProps?.ref,
-            popover.refs.setReference,
-          )}
-          className={cx(
-            {
-              'iui-placeholder':
-                (!selectedItems || selectedItems.length === 0) && !!placeholder,
-            },
-            triggerProps?.className,
-          )}
-        >
-          {(!selectedItems || selectedItems.length === 0) && (
-            <Box as='span' className='iui-content'>
-              {placeholder}
-            </Box>
-          )}
-          {isMultipleEnabled(selectedItems, multiple) ? (
-            <MultipleSelectButton
-              selectedItems={selectedItems}
-              selectedItemsRenderer={
-                selectedItemRenderer as (
-                  options: SelectOption<unknown>[],
-                ) => JSX.Element
-              }
-              tagRenderer={tagRenderer}
-            />
-          ) : (
-            <SingleSelectButton
-              selectedItem={selectedItems}
-              selectedItemRenderer={
-                selectedItemRenderer as (
-                  option: SelectOption<unknown>,
-                ) => JSX.Element
-              }
-            />
-          )}
-        </SelectButton>
-        <SelectEndIcon disabled={disabled} isOpen={isOpen} />
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-        ) : null}
-      </InputWithIcon>
-
-      <MenuContext.Provider value={{ popover, listNavigationProps }}>
-        <Menu
-          role='listbox'
-          className={menuClassName}
-          id={`${uid}-menu`}
-          key={`${uid}-menu`}
-          style={menuStyle}
-          onKeyDown={({ key }) => {
-            if (key === 'Tab') {
-              hide();
-            }
-          }}
-        >
-          {menuItems}
-        </Menu>
-      </MenuContext.Provider>
+        {menuItems}
+      </Menu>
     </>
   );
 }) as <T>(
