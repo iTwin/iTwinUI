@@ -19,7 +19,6 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
-import { useListNavigationProps } from '../Popover/Popover.js';
 
 const logWarningInDev = createWarningLogger();
 
@@ -134,15 +133,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const tree = useFloatingTree();
   const parentId = useFloatingParentNodeId();
 
-  const listNavigationProps = useListNavigationProps({
-    nested: subMenuItems.length > 0,
-  });
-
-  const focusableNodeIndexInParentTree =
-    listNavigationProps?.listRef.current.findIndex(
-      (el) => el === menuItemRef.current,
-    );
-
   useSyncExternalStore(
     React.useCallback(() => {
       const closeUnrelatedMenus = (event: TreeEvent) => {
@@ -176,7 +166,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         if (!visible) {
           setHasFocusedNodeInSubmenu(false);
         }
-
         setIsSubmenuVisible(visible);
       },
       placement: 'right-start',
@@ -185,10 +174,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         hover: {
           enabled: !hasFocusedNodeInSubmenu,
         },
-        listNavigation: listNavigationProps,
+        listNavigation: {
+          nested: subMenuItems.length > 0,
+        },
       },
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
-  }, [hasFocusedNodeInSubmenu, listNavigationProps, isSubmenuVisible]);
+  }, [hasFocusedNodeInSubmenu, isSubmenuVisible, subMenuItems.length]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -212,10 +203,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     // Focus the item when hovered.
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
-
-      // Since we manually focus the MenuItem on hover, we need to manually update the active index for
-      // Floating UI's keyboard navigation to work correctly.
-      listNavigationProps?.onNavigate?.(focusableNodeIndexInParentTree);
     }
   };
 

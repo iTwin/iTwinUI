@@ -12,6 +12,7 @@ import {
   useControlledState,
   cloneElementWithRef,
   mergeRefs,
+  useSyncExternalStore,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -136,11 +137,36 @@ export const Menu = React.forwardRef((props, ref) => {
         listNavigationProps?.onNavigate?.(selectedIndex);
       }
       // Else, focus the first item
-      else {
-        listNavigationProps?.onNavigate?.(0);
-      }
+      // else {
+      //   listNavigationProps?.onNavigate?.(0);
+      // }
     }
   }, [getFocusableNodes, listNavigationProps, popover.open]);
+
+  useSyncExternalStore(
+    React.useCallback(() => {
+      const navigateToItemFunctions = Array.from(
+        { length: listNavigationProps.listRef.current.length },
+        (_, index) => {
+          return () => {
+            listNavigationProps.onNavigate?.(index);
+          };
+        },
+      );
+
+      listNavigationProps.listRef.current.forEach((el, index) => {
+        el?.addEventListener('focus', navigateToItemFunctions[index]);
+      });
+
+      return () => {
+        listNavigationProps.listRef.current.forEach((el, index) => {
+          el?.removeEventListener('focus', navigateToItemFunctions[index]);
+        });
+      };
+    }, [listNavigationProps]),
+    () => undefined,
+    () => undefined,
+  );
 
   return (
     <>
