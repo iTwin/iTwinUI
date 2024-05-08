@@ -1,6 +1,4 @@
 ---
-import Anchor_ from '../../../css-workshop/src/components/Anchor.astro';
-
 const isDev = import.meta.env.DEV;
 
 const titleSuffix = isDev ? ' (local)' : ' (v3)';
@@ -61,9 +59,9 @@ const links = [
       {
         links.map(({ name, href }) => (
           <li>
-            <Anchor_ href={href}>
+            <a class='iui-anchor' href={href}>
               {name}
-            </Anchor_>
+            </a>
           </li>
         ))
       }
