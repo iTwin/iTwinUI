@@ -401,10 +401,10 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
 
   const popoverProps = {
     visible: isOpen,
+    onVisibleChange: (open) => (open ? show() : hide()),
     matchWidth: true,
     closeOnOutsideClick: true,
     ...popoverPropsProp,
-    onVisibleChange: (open) => (open ? show() : hide()),
   } satisfies Parameters<typeof Menu>[0]['popoverProps'];
 
   const trigger = (

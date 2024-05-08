@@ -103,7 +103,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
             return;
           }
           if (e.key === 'Tab') {
-            close();
+            setVisible(false);
           }
         })}
         role={role}

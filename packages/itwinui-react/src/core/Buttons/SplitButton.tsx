@@ -12,7 +12,6 @@ import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
   useId,
-  useMergedRefs,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -79,24 +78,18 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const buttonRef = React.useRef<HTMLElement>(null);
-
   const [visible, setVisible] = React.useState(false);
-  const close = React.useCallback(() => {
-    setVisible(false);
-    buttonRef.current?.focus({ preventScroll: true });
-  }, []);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      return menuItems(close);
+      return menuItems(() => setVisible(false));
     }
     return menuItems;
-  }, [menuItems, close]);
+  }, [menuItems]);
 
   const popoverProps = {
     visible,
-    onVisibleChange: (open) => (open ? setVisible(true) : close()),
+    onVisibleChange: setVisible,
     placement: menuPlacement,
     matchWidth: true,
   } satisfies Parameters<typeof Menu>[0]['popoverProps'];
@@ -136,7 +129,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         styleType={styleType}
         size={size}
         onClick={onClick}
-        ref={useMergedRefs(buttonRef, forwardedRef)}
+        ref={forwardedRef}
         {...rest}
         labelProps={{ id: labelId, ...props.labelProps }}
       >
@@ -149,7 +142,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         positionReference={positionReference}
         onKeyDown={({ key }) => {
           if (key === 'Tab') {
-            close();
+            setVisible(false);
           }
         }}
       >
