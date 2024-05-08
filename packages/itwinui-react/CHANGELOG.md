@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.10.1
+
+### Patch Changes
+
+- [#2031](https://github.com/iTwin/iTwinUI/pull/2031): Fixed an issue where popovers and dropdown menus used with `SidenavButton` were showing up inside a tooltip.
+- [#2030](https://github.com/iTwin/iTwinUI/pull/2030): Fixed a visual bug where items in a `ButtonGroup` were displaying a double border when an associated `Popover` was opened.
+- [#2026](https://github.com/iTwin/iTwinUI/pull/2026): Submenus within a `DropdownMenu` will now consistently require less precision when moving the mouse between the parent item and the submenu.
+
 ## 3.10.0
 
 ### Minor Changes
