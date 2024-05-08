@@ -331,6 +331,8 @@ jobs:
 
       - name: Install Cypress binary if not found
         run: pnpx cypress install
+        env:
+          CYPRESS_INSTALL_BINARY: 13.8.1
 
       - name: Run a11y tests
         run: pnpm run test --filter=a11y
