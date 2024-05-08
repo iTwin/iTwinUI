@@ -12,7 +12,6 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
-import { useFloatingNodeId } from '@floating-ui/react';
 
 type ComboBoxMenuProps = Partial<
   Omit<React.ComponentPropsWithoutRef<typeof Menu>, 'onClick' | 'trigger'>
@@ -72,13 +71,10 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
 
   const refs = useMergedRefs(forwardedRef, menuRef);
 
-  const nodeId = useFloatingNodeId();
-
   return (
     <Menu
       id={`${id}-list`}
       popoverProps={popoverProps}
-      nodeId={nodeId}
       role='listbox'
       ref={refs}
       style={

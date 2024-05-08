@@ -26,7 +26,6 @@ import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';
 import { usePopover } from '../Popover/Popover.js';
-import { useFloatingNodeId } from '@floating-ui/react';
 
 // ----------------------------------------------------------------------------
 
@@ -466,8 +465,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     </InputWithIcon>
   );
 
-  const nodeId = useFloatingNodeId();
-
   return (
     <>
       <Menu
@@ -478,7 +475,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         style={menuStyle}
         trigger={trigger}
         popoverProps={popoverProps}
-        nodeId={nodeId}
         onKeyDown={({ key }) => {
           if (key === 'Tab') {
             hide();

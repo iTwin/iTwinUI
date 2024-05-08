@@ -18,7 +18,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { useFloatingNodeId, type Placement } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
 
 export type SplitButtonProps = ButtonProps & {
@@ -102,7 +102,6 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   } satisfies Parameters<typeof Menu>[0]['popoverProps'];
 
   const labelId = useId();
-  const nodeId = useFloatingNodeId();
 
   const trigger = (
     <IconButton
@@ -144,7 +143,6 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         {children}
       </Button>
       <Menu
-        nodeId={nodeId}
         popoverProps={popoverProps}
         trigger={trigger}
         portal={portal}

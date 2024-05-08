@@ -37,8 +37,7 @@ type MenuProps = {
 
   portal?: PortalProps['portal'];
 
-  // Since Menu always enables listNavigation, the type for the listNavigation interaction
-  // does not need to include boolean for enabling/disabling it.
+  // Since Menu handles the required listNavigation props, it only needs to accept the optional ones.
   popoverProps?: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
     interactions?: Omit<
       NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
@@ -47,20 +46,41 @@ type MenuProps = {
       listNavigation?: Parameters<typeof useListNavigationProps>[0];
     };
   };
-  nodeId: string;
+  nodeId?: Parameters<typeof usePopover>[0]['nodeId'];
 };
 
 /**
- * Basic menu component. Can be used for select or dropdown components.
+ * @private
  *
- * This *must* be wrapped in a `MenuContext`.
+ * Can be used for select or dropdown components.
  *
- * This handles the portaling, conditional rendering based on the popover's open state,
- * spreading the `popover.getFloatingProps`, and setting the ref to the floating element (all other refs need to be
- * handled by the uses of `Menu`).
+ * This handles lots of the setup for a menu component:
+ * - the portaling: use the optional `portal` prop for more customization
+ * - conditional rendering based on the popover's open state
+ * - spreading the popover props (`getFloatingProps`, `getReferenceProps`)
+ * - setting the refs: use the optional`positionReference` prop to set the position reference
+ * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
+ * - register a `FloatingNode` in the `FloatingTree` if `nodeId` is provided
  *
- * TODO: Remove before line if outdated
- * It can also handle keyboard/list navigation if `listNavigationProps` is passed in `MenuContext`.
+ * @example
+ * const trigger = <Button>Menu</Button>;
+ * const [positionReference, setPositionReference] = React.useState<HTMLDivElement | null>(null);
+ * const popoverProps = { matchWidth: true };
+ * const nodeId = useFloatingNodeId();
+ *
+ * return (
+ *   <Box ref={setPositionReference}>
+ *     <Menu
+ *       trigger={trigger}
+ *       positionReference={positionReference}
+ *       nodeId={nodeId}
+ *       popoverProps={popoverProps}
+ *     >
+ *       <MenuItem>Item 1</MenuItem>
+ *       <MenuItem>Item 2</MenuItem>
+ *     </Menu>
+ *   </Box>
+ * );
  */
 export const Menu = React.forwardRef((props, ref) => {
   const {
@@ -187,28 +207,34 @@ export const Menu = React.forwardRef((props, ref) => {
     () => undefined,
   );
 
+  const reference = cloneElementWithRef(trigger, (triggerChild) => ({
+    ...popover.getReferenceProps(triggerChild.props),
+    'aria-expanded': popover.open,
+    ref: mergeRefs(triggerRef, popover.refs.setReference),
+  }));
+
+  const floating = popover.open && (
+    <Portal portal={portal}>
+      <Box
+        as='div'
+        className={cx('iui-menu', className)}
+        ref={refs}
+        {...popover.getFloatingProps({
+          role: 'menu',
+          ...rest,
+        })}
+      />
+    </Portal>
+  );
+
   return (
     <>
-      {cloneElementWithRef(trigger, (triggerChild) => ({
-        ...popover.getReferenceProps(triggerChild.props),
-        'aria-expanded': popover.open,
-        ref: mergeRefs(triggerRef, popover.refs.setReference),
-      }))}
-      <FloatingNode id={nodeId}>
-        {popover.open && (
-          <Portal portal={portal}>
-            <Box
-              as='div'
-              className={cx('iui-menu', className)}
-              ref={refs}
-              {...popover.getFloatingProps({
-                role: 'menu',
-                ...rest,
-              })}
-            />
-          </Portal>
-        )}
-      </FloatingNode>
+      {reference}
+      {nodeId != null ? (
+        <FloatingNode id={nodeId}>{floating}</FloatingNode>
+      ) : (
+        floating
+      )}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
