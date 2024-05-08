@@ -12,10 +12,11 @@ import { TreeContext } from './TreeContext.js';
 
 type TreeNodeExpanderProps = {
   isExpanded?: boolean;
+  expanderIconProps?: React.ComponentProps<'svg'>;
 } & IconButtonProps;
 
 export const TreeNodeExpander = React.forwardRef((props, ref) => {
-  const { isExpanded, ...rest } = props;
+  const { isExpanded, expanderIconProps = {}, ...rest } = props;
 
   const size = React.useContext(TreeContext)?.size ?? 'default';
   const ChevronIcon = size === 'small' ? SvgChevronRightSmall : SvgChevronRight;
@@ -29,9 +30,14 @@ export const TreeNodeExpander = React.forwardRef((props, ref) => {
       {...rest}
     >
       <ChevronIcon
-        className={cx('iui-tree-node-content-expander-icon', {
-          'iui-tree-node-content-expander-icon-expanded': isExpanded,
-        })}
+        {...expanderIconProps}
+        className={cx(
+          'iui-tree-node-content-expander-icon',
+          expanderIconProps?.className,
+          {
+            'iui-tree-node-content-expander-icon-expanded': isExpanded,
+          },
+        )}
       />
     </IconButton>
   );
