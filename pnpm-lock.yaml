@@ -17,6 +17,7 @@ overrides:
   '@types/react': 18.2.14
   '@types/react-dom': 18.2.18
   astro: ~4.5.6
+  cypress: 13.8.1
 
 importers:
   .:
@@ -5235,7 +5236,7 @@ packages:
     engines: { node: '>=10' }
     peerDependencies:
       axe-core: ^3 || ^4
-      cypress: ^10 || ^11 || ^12 || ^13
+      cypress: 13.8.1
 
   cypress-image-diff-js@1.30.1:
     resolution:
@@ -5244,7 +5245,7 @@ packages:
       }
     hasBin: true
     peerDependencies:
-      cypress: '>=9.6.1'
+      cypress: 13.8.1
 
   cypress-recurse@1.20.0:
     resolution:
