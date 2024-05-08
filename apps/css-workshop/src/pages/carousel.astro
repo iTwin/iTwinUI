@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Anchor_ from '../components/Anchor.astro';
 import IconButton_ from '../components/IconButton.astro';
 ---
 
@@ -216,12 +217,9 @@ import IconButton_ from '../components/IconButton.astro';
           aria-label='1 of 11'
           id='demo-slide-1'
         >
-          <a
-            href='#'
-            class='iui-anchor'
-            style='padding: 12px; background-color: var(--iui-color-background);'
-            >Focus will target the navigation before slide content.</a
-          >
+          <Anchor_ href='#' style='padding: 12px; background-color: var(--iui-color-background);'>
+            Focus will target the navigation before slide content.
+          </Anchor_>
         </div>
 
         <div

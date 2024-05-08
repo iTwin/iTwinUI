@@ -16,22 +16,46 @@ type TreeNodeProps = {
    */
   nodeId: string;
   /**
+   * Props for treeNode
+   */
+  nodeProps?: React.ComponentProps<'div'>;
+  /**
    * The main text displayed on the node.
    */
   label: React.ReactNode;
+  /**
+   * Props for TreeNode label(affects both the main and sub label).
+   */
+  labelProps?: React.ComponentProps<'div'>;
+  /**
+   * Props for the TreeNode's main label.
+   */
+  titleProps?: React.ComponentProps<'div'>;
   /**
    * Small note displayed below main label.
    */
   sublabel?: React.ReactNode;
   /**
+   * Props for TreeNode sublabel
+   */
+  sublabelProps?: React.ComponentProps<'div'>;
+  /**
    * Icon shown before label and sublabel content.
    */
   icon?: JSX.Element;
+  /**
+   * Props for TreeNode Icon
+   */
+  iconProps?: React.ComponentProps<'span'>;
   /**
    * Flag whether the node has child sub-nodes. It is used to show expander icon.
    * @default false
    */
   hasSubNodes?: boolean;
+  /**
+   * Props for subTree list(affects all subnodes of this node).
+   */
+  subTreeProps?: React.ComponentProps<'ul'>;
   /**
    * Flag whether the node is disabled.
    * @default false
@@ -64,9 +88,23 @@ type TreeNodeProps = {
    */
   checkbox?: React.ReactNode;
   /**
+   * Props for TreeNode checkbox.
+   */
+  checkboxProps?: React.ComponentProps<'div'>;
+  /**
    * Custom expander element. If `hasSubNodes` is false, it won't be shown.
    */
   expander?: React.ReactNode;
+  /**
+   * Props for the default TreeNodeExpander that is shown when there are sub nodes and no expander is given.
+   */
+  expanderProps?: React.ComponentProps<typeof TreeNodeExpander>;
+  /**
+   * Props for content of the TreeNode.
+   * This affects all passed in children of the node, as well as the label, sublabel, icon, and expander.
+   * Note that this does not affect the checkbox.
+   */
+  contentProps?: React.ComponentProps<'div'>;
   /**
    * Content shown after `TreeNode`.
    */
@@ -95,11 +133,15 @@ type TreeNodeProps = {
 export const TreeNode = (props: TreeNodeProps) => {
   const {
     nodeId,
+    nodeProps = {},
     label,
+    labelProps = {},
     sublabel,
+    sublabelProps = {},
     children,
     className,
     icon,
+    iconProps = {},
     hasSubNodes = false,
     isDisabled = false,
     isExpanded = false,
@@ -107,6 +149,11 @@ export const TreeNode = (props: TreeNodeProps) => {
     onSelected,
     onExpanded,
     checkbox,
+    checkboxProps = {},
+    subTreeProps = {},
+    contentProps = {},
+    titleProps = {},
+    expanderProps = {},
     expander,
     ...rest
   } = props;
@@ -230,15 +277,25 @@ export const TreeNode = (props: TreeNodeProps) => {
     >
       {
         <Box
-          className={cx('iui-tree-node', {
-            'iui-active': isSelected,
-            'iui-disabled': isDisabled,
-          })}
+          as='div'
           style={{ '--level': nodeDepth } as React.CSSProperties}
           onClick={() => !isDisabled && onSelected?.(nodeId, !isSelected)}
+          {...nodeProps}
+          className={cx(
+            'iui-tree-node',
+            {
+              'iui-active': isSelected,
+              'iui-disabled': isDisabled,
+            },
+            nodeProps?.className,
+          )}
         >
           {checkbox && (
-            <Box className='iui-tree-node-checkbox'>
+            <Box
+              as='div'
+              {...checkboxProps}
+              className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
+            >
               {React.isValidElement(checkbox)
                 ? React.cloneElement(checkbox as JSX.Element, {
                     tabIndex: isFocused ? 0 : -1,
@@ -246,7 +303,11 @@ export const TreeNode = (props: TreeNodeProps) => {
                 : checkbox}
             </Box>
           )}
-          <Box className='iui-tree-node-content'>
+          <Box
+            as='div'
+            {...contentProps}
+            className={cx('iui-tree-node-content', contentProps?.className)}
+          >
             {hasSubNodes && expander}
             {hasSubNodes && !expander && (
               <TreeNodeExpander
@@ -254,17 +315,51 @@ export const TreeNode = (props: TreeNodeProps) => {
                 disabled={isDisabled}
                 onClick={onExpanderClick}
                 tabIndex={isFocused ? 0 : -1}
+                {...expanderProps}
               />
             )}
             {icon && (
-              <Box as='span' className='iui-tree-node-content-icon' aria-hidden>
+              <Box
+                as='span'
+                aria-hidden
+                {...iconProps}
+                className={cx(
+                  'iui-tree-node-content-icon',
+                  iconProps?.className,
+                )}
+              >
                 {icon}
               </Box>
             )}
-            <Box className='iui-tree-node-content-label'>
-              <Box className='iui-tree-node-content-title'>{label}</Box>
+            <Box
+              as='div'
+              {...labelProps}
+              className={cx(
+                'iui-tree-node-content-label',
+                labelProps?.className,
+              )}
+            >
+              <Box
+                as='div'
+                {...titleProps}
+                className={cx(
+                  'iui-tree-node-content-title',
+                  titleProps?.className,
+                )}
+              >
+                {label}
+              </Box>
               {sublabel && (
-                <Box className='iui-tree-node-content-caption'>{sublabel}</Box>
+                <Box
+                  as='div'
+                  {...sublabelProps}
+                  className={cx(
+                    'iui-tree-node-content-caption',
+                    sublabelProps?.className,
+                  )}
+                >
+                  {sublabel}
+                </Box>
               )}
             </Box>
             {children}
@@ -274,9 +369,10 @@ export const TreeNode = (props: TreeNodeProps) => {
       {hasSubNodes && (
         <Box
           as='ul'
-          className='iui-sub-tree'
           role='group'
           aria-owns={subNodeIds.join(' ')}
+          {...subTreeProps}
+          className={cx('iui-sub-tree', subTreeProps?.className)}
         />
       )}
     </Box>

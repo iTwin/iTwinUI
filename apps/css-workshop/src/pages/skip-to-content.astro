@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Anchor_ from '../components/Anchor.astro';
 ---
 
 <Layout title='Skip to content link'>
@@ -55,9 +56,9 @@ import Layout from './_layout.astro';
 
   <section id='demo-skip-to-here'>
     <p>
-      This is the main content.&nbsp;<a href='#' class='iui-anchor'
-        >This is a link that directs to this page.</a
-      >&nbsp;Tab again to focus on the preceding link.
+      This is the main content.
+      <Anchor_ href='#'>This is a link that directs to this page.</Anchor_>
+       Tab again to focus on the preceding link.
     </p>
   </section>
 </Layout>
