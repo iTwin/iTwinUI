@@ -168,7 +168,6 @@ export const Menu = React.forwardRef((props, ref) => {
       });
 
       return () => {
-        // console.log('Cleanup');
         listNavigationProps.listRef.current.forEach((el, index) => {
           el?.removeEventListener('hover', navigateToItemFunctions[index]);
         });

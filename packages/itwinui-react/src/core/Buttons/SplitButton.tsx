@@ -120,7 +120,6 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     </IconButton>
   );
 
-  // const positionReferenceRef = React.useRef<HTMLDivElement | null>(null);
   const [positionReference, setPositionReference] =
     React.useState<HTMLDivElement | null>(null);
 

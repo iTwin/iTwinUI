@@ -218,10 +218,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
-  // const listNavigationProps = useListNavigationProps(
-  //   mergedInteractions.listNavigation,
-  // );
-
   const interactions = useInteractions([
     useClick(floating.context, {
       enabled: !!mergedInteractions.click,
@@ -250,7 +246,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
     useListNavigation(floating.context, {
       enabled: !!mergedInteractions.listNavigation,
-      // ...(listNavigationProps as UseListNavigationProps),
       ...(mergedInteractions.listNavigation as UseListNavigationProps),
     }),
   ]);
@@ -329,9 +324,6 @@ export const useListNavigationProps = (
       onNavigateProp?.(index);
     },
     listRef: focusableNodes,
-
-    // We handle the initial focus manually
-    // focusItemOnOpen: false,
     openOnArrowKeyDown: false,
     ...rest,
   };
