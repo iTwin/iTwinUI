@@ -78,6 +78,7 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
     popover.open && (
       <Portal portal>
         <List
+          as='div'
           className={cx('iui-menu', className)}
           id={`${id}-list`}
           role='listbox'
