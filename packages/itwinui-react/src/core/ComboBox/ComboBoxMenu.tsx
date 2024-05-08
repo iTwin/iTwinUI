@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Menu, MenuContext } from '../Menu/Menu.js';
+import { Menu } from '../Menu/Menu.js';
 import {
   useSafeContext,
   useMergedRefs,
@@ -12,12 +12,13 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
+import { useFloatingNodeId } from '@floating-ui/react';
 
-type ComboBoxMenuProps = Omit<
-  Omit<React.ComponentPropsWithoutRef<typeof Menu>, 'menuProps'>,
-  'onClick'
-> &
-  React.ComponentPropsWithoutRef<'div'>;
+type ComboBoxMenuProps = Partial<
+  Omit<React.ComponentPropsWithoutRef<typeof Menu>, 'onClick' | 'trigger'>
+> & {
+  trigger: React.ComponentPropsWithoutRef<typeof Menu>['trigger'];
+} & React.ComponentPropsWithoutRef<'div'>;
 
 const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   const { children, ...rest } = props;
@@ -65,37 +66,39 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
   const { children, style, ...rest } = props;
-  const { id, enableVirtualization, popover } =
+  const { id, enableVirtualization, popoverProps } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-  const refs = useMergedRefs(popover.refs.setFloating, forwardedRef, menuRef);
+  const refs = useMergedRefs(forwardedRef, menuRef);
+
+  const nodeId = useFloatingNodeId();
 
   return (
-    <MenuContext.Provider value={{ popover }}>
-      <Menu
-        id={`${id}-list`}
-        role='listbox'
-        ref={refs}
-        style={
-          !enableVirtualization
-            ? style
-            : ({
-                // set as constant because we don't want it shifting when items are unmounted
-                maxInlineSize: 0,
+    <Menu
+      id={`${id}-list`}
+      popoverProps={popoverProps}
+      nodeId={nodeId}
+      role='listbox'
+      ref={refs}
+      style={
+        !enableVirtualization
+          ? style
+          : ({
+              // set as constant because we don't want it shifting when items are unmounted
+              maxInlineSize: 0,
 
-                ...style,
-              } as React.CSSProperties)
-        }
-        {...rest}
-      >
-        {!enableVirtualization ? (
-          children
-        ) : (
-          <VirtualizedComboBoxMenu>{children}</VirtualizedComboBoxMenu>
-        )}
-      </Menu>
-    </MenuContext.Provider>
+              ...style,
+            } as React.CSSProperties)
+      }
+      {...rest}
+    >
+      {!enableVirtualization ? (
+        children
+      ) : (
+        <VirtualizedComboBoxMenu>{children}</VirtualizedComboBoxMenu>
+      )}
+    </Menu>
   );
 }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

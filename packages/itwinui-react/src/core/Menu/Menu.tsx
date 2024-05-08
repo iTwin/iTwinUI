@@ -45,6 +45,7 @@ type MenuProps = {
  * spreading the `popover.getFloatingProps`, and setting the ref to the floating element (all other refs need to be
  * handled by the uses of `Menu`).
  *
+ * TODO: Remove before line if outdated
  * It can also handle keyboard/list navigation if `listNavigationProps` is passed in `MenuContext`.
  */
 export const Menu = React.forwardRef((props, ref) => {

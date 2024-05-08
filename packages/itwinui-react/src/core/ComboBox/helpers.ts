@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { SelectOption } from '../Select/Select.js';
-import type { usePopover } from '../Popover/Popover.js';
+import type { Menu } from '../Menu/Menu.js';
 
 type ComboBoxAction =
   | { type: 'multiselect'; value: number[] }
@@ -83,7 +83,7 @@ type ComboBoxStateContextProps<T = unknown> = {
   getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
   focusedIndex?: number;
   multiple?: boolean;
-  popover: ReturnType<typeof usePopover>;
+  popoverProps: Parameters<typeof Menu>[0]['popoverProps'];
   show: () => void;
   hide: () => void;
 };
