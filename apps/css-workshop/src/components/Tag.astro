@@ -1,8 +1,14 @@
 ---
+import type { HTMLTag } from 'astro/types';
+import IconButton_ from './IconButton.astro';
+
+type Props = {
+  as?: HTMLTag;
+} & astroHTML.JSX.HTMLAttributes;
+
 const { hasCloseButton = true, variant, class: className, as, buttonProps, ...props } = Astro.props;
 
 const Element = as ?? 'span';
-import IconButton_ from './IconButton.astro';
 ---
 
 <!-- prettier-ignore -->
