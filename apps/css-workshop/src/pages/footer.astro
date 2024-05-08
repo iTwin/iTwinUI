@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Anchor_ from '../components/Anchor.astro';
 ---
 
 <Layout title='Footer'>
@@ -29,41 +30,30 @@ import Layout from './_layout.astro';
       </li>
       <li class='iui-legal-footer-separator'></li>
       <li class='iui-legal-footer-item'>
-        <a
+        <Anchor_
           href='https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect'
-          target='_blank'
           id='test-link-1'
-          class='iui-anchor'>Terms of service</a
         >
+          Terms of service
+        </Anchor_>
       </li>
       <li class='iui-legal-footer-separator'></li>
       <li class='iui-legal-footer-item'>
-        <a
-          href='https://www.bentley.com/en/privacy-policy'
-          target='_blank'
-          id='test-link-2'
-          class='iui-anchor'>Privacy</a
-        >
+        <Anchor_ href='https://www.bentley.com/en/privacy-policy' id='test-link-2'>Privacy</Anchor_>
       </li>
       <li class='iui-legal-footer-separator'></li>
       <li class='iui-legal-footer-item'>
-        <a
-          href='https://www.bentley.com/en/terms-of-use-and-select-online-agreement'
-          target='_blank'
-          class='iui-anchor'>Terms of use</a
-        >
+        <Anchor_ href='https://www.bentley.com/en/terms-of-use-and-select-online-agreement'>
+          Terms of use
+        </Anchor_>
       </li>
       <li class='iui-legal-footer-separator'></li>
       <li class='iui-legal-footer-item'>
-        <a href='https://www.bentley.com/en/cookie-policy' target='_blank' class='iui-anchor'>
-          Cookies
-        </a>
+        <Anchor_ href='https://www.bentley.com/en/cookie-policy'>Cookies</Anchor_>
       </li>
       <li class='iui-legal-footer-separator'></li>
       <li class='iui-legal-footer-item'>
-        <a href='https://connect.bentley.com/Legal' target='_blank' class='iui-anchor'
-          >Legal notices</a
-        >
+        <Anchor_ href='https://connect.bentley.com/Legal'>Legal notices</Anchor_>
       </li>
     </ul>
 

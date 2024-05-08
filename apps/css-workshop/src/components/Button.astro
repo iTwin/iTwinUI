@@ -1,11 +1,13 @@
 ---
+import type { HTMLTag } from 'astro/types';
+
 type Props = {
   variant?: 'high-visibility' | 'borderless' | 'cta';
   size?: 'small' | 'large';
   isActive?: boolean;
   dropdown?: boolean;
   idea?: boolean;
-  as?: string;
+  as?: HTMLTag;
 } & astroHTML.JSX.ButtonHTMLAttributes;
 
 const {
