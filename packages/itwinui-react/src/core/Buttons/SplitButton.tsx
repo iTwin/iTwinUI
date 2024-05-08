@@ -20,7 +20,6 @@ import type {
 } from '../../utils/index.js';
 import { useFloatingNodeId, type Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
-import { useListNavigationProps } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -95,14 +94,11 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const listNavigationProps = useListNavigationProps();
-
   const popoverProps = {
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement: menuPlacement,
     matchWidth: true,
-    interactions: { listNavigation: listNavigationProps },
   } satisfies Parameters<typeof Menu>[0]['popoverProps'];
 
   const labelId = useId();
