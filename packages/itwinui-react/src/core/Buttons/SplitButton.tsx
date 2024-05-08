@@ -18,9 +18,9 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import type { Placement } from '@floating-ui/react';
-import { Menu, MenuContext } from '../Menu/Menu.js';
-import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
+import { useFloatingNodeId, type Placement } from '@floating-ui/react';
+import { Menu } from '../Menu/Menu.js';
+import { useListNavigationProps } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -97,20 +97,38 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
 
   const listNavigationProps = useListNavigationProps();
 
-  const popover = usePopover({
+  const popoverProps = {
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement: menuPlacement,
     matchWidth: true,
     interactions: { listNavigation: listNavigationProps },
-  });
+  } satisfies Parameters<typeof Menu>[0]['popoverProps'];
 
   const labelId = useId();
+  const nodeId = useFloatingNodeId();
+
+  const trigger = (
+    <IconButton
+      styleType={styleType}
+      size={size}
+      disabled={props.disabled}
+      aria-labelledby={props.labelProps?.id || labelId}
+      {...menuButtonProps}
+    >
+      {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
+    </IconButton>
+  );
+
+  // const positionReferenceRef = React.useRef<HTMLDivElement | null>(null);
+  const [positionReference, setPositionReference] =
+    React.useState<HTMLDivElement | null>(null);
 
   return (
     <Box
+      as='div'
       {...wrapperProps}
-      ref={popover.refs.setPositionReference}
+      ref={setPositionReference}
       className={cx(
         'iui-button-split',
         {
@@ -130,29 +148,20 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Button>
-      <IconButton
-        styleType={styleType}
-        size={size}
-        disabled={props.disabled}
-        aria-labelledby={props.labelProps?.id || labelId}
-        aria-expanded={popover.open}
-        ref={popover.refs.setReference}
-        {...popover.getReferenceProps(menuButtonProps)}
+      <Menu
+        nodeId={nodeId}
+        popoverProps={popoverProps}
+        trigger={trigger}
+        portal={portal}
+        positionReference={positionReference}
+        onKeyDown={({ key }) => {
+          if (key === 'Tab') {
+            close();
+          }
+        }}
       >
-        {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
-      </IconButton>
-
-      <MenuContext.Provider value={{ popover, portal, listNavigationProps }}>
-        <Menu
-          onKeyDown={({ key }) => {
-            if (key === 'Tab') {
-              close();
-            }
-          }}
-        >
-          {menuContent}
-        </Menu>
-      </MenuContext.Provider>
+        {menuContent}
+      </Menu>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;

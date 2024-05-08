@@ -31,6 +31,10 @@ type MenuProps = {
   children: React.ReactNode;
 
   trigger: React.ReactNode;
+  positionReference?: Parameters<
+    ReturnType<typeof usePopover>['refs']['setPositionReference']
+  >[0];
+
   portal?: PortalProps['portal'];
   popoverProps?: Parameters<typeof usePopover>[0];
   nodeId: string;
@@ -52,6 +56,7 @@ export const Menu = React.forwardRef((props, ref) => {
   const {
     className,
     trigger,
+    positionReference,
     portal = true,
     popoverProps: popoverPropsProp,
     nodeId,
@@ -88,6 +93,12 @@ export const Menu = React.forwardRef((props, ref) => {
   } satisfies Parameters<typeof usePopover>[0];
 
   const popover = usePopover(popoverProps);
+
+  React.useEffect(() => {
+    if (positionReference !== undefined) {
+      popover.refs.setPositionReference(positionReference);
+    }
+  }, [popover.refs, positionReference]);
 
   const menuRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(menuRef, ref, popover.refs.setFloating);
