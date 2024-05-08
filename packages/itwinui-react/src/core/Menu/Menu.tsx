@@ -36,7 +36,17 @@ type MenuProps = {
   >[0];
 
   portal?: PortalProps['portal'];
-  popoverProps?: Parameters<typeof usePopover>[0];
+
+  // Since Menu always enables listNavigation, the type for the listNavigation interaction
+  // does not need to include boolean for enabling/disabling it.
+  popoverProps?: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
+    interactions?: Omit<
+      NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
+      'listNavigation'
+    > & {
+      listNavigation?: Parameters<typeof useListNavigationProps>[0];
+    };
+  };
   nodeId: string;
 };
 
