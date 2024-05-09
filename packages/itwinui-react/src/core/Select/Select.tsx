@@ -816,7 +816,6 @@ const SelectListbox = React.forwardRef((props, forwardedRef) => {
       render={<List as='div' className={cx('iui-menu', className)} />}
       orientation='vertical'
       role='listbox'
-      aria-orientation={undefined}
       activeIndex={focusedIndex}
       onNavigate={setFocusedIndex}
       ref={useMergedRefs(forwardedRef, autoFocus ? autoFocusRef : undefined)}
