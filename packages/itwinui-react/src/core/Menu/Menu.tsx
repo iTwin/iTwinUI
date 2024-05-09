@@ -19,7 +19,11 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
-import { FloatingNode, type UseListNavigationProps } from '@floating-ui/react';
+import {
+  FloatingNode,
+  useFloatingParentNodeId,
+  useFloatingTree,
+} from '@floating-ui/react';
 
 type MenuProps = {
   /**
@@ -90,8 +94,14 @@ export const Menu = React.forwardRef((props, ref) => {
     portal = true,
     popoverProps: popoverPropsProp,
     nodeId,
+    children,
     ...rest
   } = props;
+
+  const parent = React.useContext(MenuContext);
+
+  const tree = useFloatingTree();
+  const parentId = useFloatingParentNodeId();
 
   const {
     interactions: interactionsProp,
@@ -110,11 +120,19 @@ export const Menu = React.forwardRef((props, ref) => {
     onVisibleChangeProp,
   );
 
+  const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
+    React.useState(false);
+
+  const isHoverEnabled = !hasFocusedNodeInSubmenu && !!parent;
+
   const popoverProps = {
     nodeId,
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     interactions: {
+      hover: {
+        enabled: isHoverEnabled,
+      },
       listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
@@ -207,6 +225,59 @@ export const Menu = React.forwardRef((props, ref) => {
     () => undefined,
   );
 
+  useSyncExternalStore(
+    React.useCallback(() => {
+      const closeUnrelatedMenus = (event: TreeEvent) => {
+        if (
+          // When a node "X" is focused, close "X"'s siblings' submenus
+          // i.e. only one submenu in each menu can be open at a time
+          (parentId === event.parentId && nodeId !== event.nodeId) ||
+          // Consider a node "X" with its submenu "Y".
+          // Focusing "X" should close all submenus of "Y".
+          parentId === event.nodeId
+        ) {
+          setVisible(false);
+          setHasFocusedNodeInSubmenu(false);
+        }
+      };
+
+      tree?.events.on('onNodeFocused', closeUnrelatedMenus);
+
+      return () => {
+        tree?.events.off('onNodeFocused', closeUnrelatedMenus);
+      };
+    }, [nodeId, parentId, tree?.events, setVisible]),
+    () => undefined,
+    () => undefined,
+  );
+
+  const menuContent = React.useMemo(() => {
+    // Clone each child in children and add onFocus
+    return React.Children.map(children, (child) => {
+      return cloneElementWithRef(
+        child,
+        (child) =>
+          ({
+            onFocus: (e) => {
+              child.props.onFocus?.(e);
+              console.log('onFocus', e);
+              setHasFocusedNodeInSubmenu(true);
+
+              tree?.events.emit('onNodeFocused', {
+                nodeId: nodeId,
+                parentId: parentId,
+              });
+            },
+            // onBlur: (e) => {
+            //   child.props.onBlur?.(e);
+            //   console.log('onBlur', e);
+            //   parent?.setHasFocusedNodeInSubmenu(false);
+            // },
+          }) satisfies React.HTMLProps<HTMLElement>,
+      );
+    });
+  }, [children, nodeId, parentId, tree?.events]);
+
   const reference = cloneElementWithRef(trigger, (triggerChild) => ({
     ...popover.getReferenceProps(triggerChild.props),
     'aria-expanded': popover.open,
@@ -223,34 +294,44 @@ export const Menu = React.forwardRef((props, ref) => {
           role: 'menu',
           ...rest,
         })}
-      />
+      >
+        {menuContent}
+      </Box>
     </Portal>
   );
 
   return (
-    <>
+    <MenuContext.Provider
+      value={{
+        hasFocusedNodeInSubmenu,
+        setHasFocusedNodeInSubmenu,
+      }}
+    >
+      <p>{`${hasFocusedNodeInSubmenu},${isHoverEnabled},${nodeId},${parentId}`}</p>
       {reference}
       {nodeId != null ? (
         <FloatingNode id={nodeId}>{floating}</FloatingNode>
       ) : (
         floating
       )}
-    </>
+    </MenuContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
 
 // ----------------------------------------------------------------------------
 
 /**
- * Must wrap all uses of `Menu` with this context.
  *
- * @private
  */
-export const MenuContext = React.createContext<
+const MenuContext = React.createContext<
   | {
-      popover: ReturnType<typeof usePopover>;
-      portal?: PortalProps['portal'];
-      listNavigationProps?: UseListNavigationProps;
+      hasFocusedNodeInSubmenu: boolean;
+      setHasFocusedNodeInSubmenu: (value: boolean) => void;
     }
   | undefined
 >(undefined);
+
+export type TreeEvent = {
+  nodeId: string;
+  parentId: string | null;
+};

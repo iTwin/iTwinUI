@@ -7,7 +7,7 @@ import {
   SvgCaretRightSmall,
   useMergedRefs,
   useId,
-  useSyncExternalStore,
+  // useSyncExternalStore,
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -16,20 +16,20 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import {
   useFloatingNodeId,
-  useFloatingParentNodeId,
-  useFloatingTree,
+  // useFloatingParentNodeId,
+  // useFloatingTree,
 } from '@floating-ui/react';
 
 const logWarningInDev = createWarningLogger();
 
-/**
- * Should be wrapped around the `Menu` containing the `MenuItem`s.
- */
-export const MenuItemContext = React.createContext<{
-  setHasFocusedNodeInSubmenu?: React.Dispatch<React.SetStateAction<boolean>>;
-}>({
-  setHasFocusedNodeInSubmenu: undefined,
-});
+// /**
+//  * Should be wrapped around the `Menu` containing the `MenuItem`s.
+//  */
+// export const MenuItemContext = React.createContext<{
+//   setHasFocusedNodeInSubmenu?: React.Dispatch<React.SetStateAction<boolean>>;
+// }>({
+//   setHasFocusedNodeInSubmenu: undefined,
+// });
 
 export type MenuItemProps = {
   /**
@@ -119,68 +119,74 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  const parentMenuItem = React.useContext(MenuItemContext);
+  // const parentMenuItem = React.useContext(MenuItemContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
 
-  const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  const [
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isSubmenuVisible,
+    setIsSubmenuVisible,
+  ] = React.useState(false);
 
-  const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
-    React.useState(false);
+  // const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
+  //   React.useState(false);
 
+  // TODO: Remove the need to pass floatingNodeId to Menu. Maybe it can be a prop in Menu called shouldHaveNodeId
+  // or shouldRegisterInFloatingTree
   const nodeId = useFloatingNodeId();
-  const tree = useFloatingTree();
-  const parentId = useFloatingParentNodeId();
+  // const tree = useFloatingTree();
+  // const parentId = useFloatingParentNodeId();
 
-  useSyncExternalStore(
-    React.useCallback(() => {
-      const closeUnrelatedMenus = (event: TreeEvent) => {
-        if (
-          // When a node "X" is focused, close "X"'s siblings' submenus
-          // i.e. only one submenu in each menu can be open at a time
-          (parentId === event.parentId && nodeId !== event.nodeId) ||
-          // Consider a node "X" with its submenu "Y".
-          // Focusing "X" should close all submenus of "Y".
-          parentId === event.nodeId
-        ) {
-          setIsSubmenuVisible(false);
-          setHasFocusedNodeInSubmenu(false);
-        }
-      };
+  // useSyncExternalStore(
+  //   React.useCallback(() => {
+  //     const closeUnrelatedMenus = (event: TreeEvent) => {
+  //       if (
+  //         // When a node "X" is focused, close "X"'s siblings' submenus
+  //         // i.e. only one submenu in each menu can be open at a time
+  //         (parentId === event.parentId && nodeId !== event.nodeId) ||
+  //         // Consider a node "X" with its submenu "Y".
+  //         // Focusing "X" should close all submenus of "Y".
+  //         parentId === event.nodeId
+  //       ) {
+  //         setIsSubmenuVisible(false);
+  //         // setHasFocusedNodeInSubmenu(false);
+  //       }
+  //     };
 
-      tree?.events.on('onNodeFocused', closeUnrelatedMenus);
+  //     tree?.events.on('onNodeFocused', closeUnrelatedMenus);
 
-      return () => {
-        tree?.events.off('onNodeFocused', closeUnrelatedMenus);
-      };
-    }, [nodeId, parentId, tree?.events]),
-    () => undefined,
-    () => undefined,
-  );
+  //     return () => {
+  //       tree?.events.off('onNodeFocused', closeUnrelatedMenus);
+  //     };
+  //   }, [nodeId, parentId, tree?.events]),
+  //   () => undefined,
+  //   () => undefined,
+  // );
 
   const popoverProps = React.useMemo(() => {
     return {
-      visible: isSubmenuVisible,
-      onVisibleChange: (visible) => {
-        if (!visible) {
-          setHasFocusedNodeInSubmenu(false);
-        }
-        setIsSubmenuVisible(visible);
-      },
+      // visible: isSubmenuVisible,
+      // onVisibleChange: (visible) => {
+      //   if (!visible) {
+      //     setHasFocusedNodeInSubmenu(false);
+      //   }
+      //   setIsSubmenuVisible(visible);
+      // },
       placement: 'right-start',
       interactions: {
         click: false,
-        hover: {
-          enabled: !hasFocusedNodeInSubmenu,
-        },
+        // hover: {
+        //   // enabled: !hasFocusedNodeInSubmenu,
+        // },
         listNavigation: {
           nested: subMenuItems.length > 0,
           openOnArrowKeyDown: true,
         },
       },
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
-  }, [hasFocusedNodeInSubmenu, isSubmenuVisible, subMenuItems.length]);
+  }, [subMenuItems.length]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -207,19 +213,20 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const onFocus = () => {
-    // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
-    // E.g. Even when hovering into it rapidly.
-    queueMicrotask(() => {
-      parentMenuItem.setHasFocusedNodeInSubmenu?.(true);
-    });
+  // const onFocus = () => {
+  //   // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+  //   // E.g. Even when hovering into it rapidly.
+  //   queueMicrotask(() => {
+  //     parentMenuItem.setHasFocusedNodeInSubmenu?.(true);
+  //   });
 
-    tree?.events.emit('onNodeFocused', {
-      nodeId,
-      parentId,
-    } satisfies TreeEvent);
-  };
+  //   tree?.events.emit('onNodeFocused', {
+  //     nodeId,
+  //     parentId,
+  //   } satisfies TreeEvent);
+  // };
 
+  // TODO: Optional: Try moving to Menu?
   const onClick = () => {
     onClickProp?.(value);
     setIsSubmenuVisible((prev) => !prev);
@@ -230,7 +237,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         onClick,
         onKeyDown,
         onMouseEnter,
-        onFocus,
+        // onFocus,
       }
     : {};
 
@@ -276,20 +283,20 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}>
-        {subMenuItems.length > 0 && !disabled ? (
-          <Menu
-            nodeId={nodeId}
-            id={submenuId}
-            trigger={trigger}
-            popoverProps={popoverProps}
-          >
-            {subMenuItems}
-          </Menu>
-        ) : (
-          trigger
-        )}
-      </MenuItemContext.Provider>
+      {/* <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}> */}
+      {subMenuItems.length > 0 && !disabled ? (
+        <Menu
+          nodeId={nodeId}
+          id={submenuId}
+          trigger={trigger}
+          popoverProps={popoverProps}
+        >
+          {subMenuItems}
+        </Menu>
+      ) : (
+        trigger
+      )}
+      {/* </MenuItemContext.Provider> */}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
