@@ -7,27 +7,14 @@ import {
   SvgCaretRightSmall,
   useMergedRefs,
   useId,
-  // useSyncExternalStore,
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-import {} from // useFloatingParentNodeId,
-// useFloatingTree,
-'@floating-ui/react';
 
 const logWarningInDev = createWarningLogger();
-
-// /**
-//  * Should be wrapped around the `Menu` containing the `MenuItem`s.
-//  */
-// export const MenuItemContext = React.createContext<{
-//   setHasFocusedNodeInSubmenu?: React.Dispatch<React.SetStateAction<boolean>>;
-// }>({
-//   setHasFocusedNodeInSubmenu: undefined,
-// });
 
 export type MenuItemProps = {
   /**
@@ -117,8 +104,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  // const parentMenuItem = React.useContext(MenuItemContext);
-
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
 
@@ -128,56 +113,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     setIsSubmenuVisible,
   ] = React.useState(false);
 
-  // const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
-  //   React.useState(false);
-
-  // TODO: Remove the need to pass floatingNodeId to Menu. Maybe it can be a prop in Menu called shouldHaveNodeId
-  // or shouldRegisterInFloatingTree
-  // const nodeId = useFloatingNodeId();
-  // const tree = useFloatingTree();
-  // const parentId = useFloatingParentNodeId();
-
-  // useSyncExternalStore(
-  //   React.useCallback(() => {
-  //     const closeUnrelatedMenus = (event: TreeEvent) => {
-  //       if (
-  //         // When a node "X" is focused, close "X"'s siblings' submenus
-  //         // i.e. only one submenu in each menu can be open at a time
-  //         (parentId === event.parentId && nodeId !== event.nodeId) ||
-  //         // Consider a node "X" with its submenu "Y".
-  //         // Focusing "X" should close all submenus of "Y".
-  //         parentId === event.nodeId
-  //       ) {
-  //         setIsSubmenuVisible(false);
-  //         // setHasFocusedNodeInSubmenu(false);
-  //       }
-  //     };
-
-  //     tree?.events.on('onNodeFocused', closeUnrelatedMenus);
-
-  //     return () => {
-  //       tree?.events.off('onNodeFocused', closeUnrelatedMenus);
-  //     };
-  //   }, [nodeId, parentId, tree?.events]),
-  //   () => undefined,
-  //   () => undefined,
-  // );
-
   const popoverProps = React.useMemo(() => {
     return {
-      // visible: isSubmenuVisible,
-      // onVisibleChange: (visible) => {
-      //   if (!visible) {
-      //     setHasFocusedNodeInSubmenu(false);
-      //   }
-      //   setIsSubmenuVisible(visible);
-      // },
       placement: 'right-start',
       interactions: {
         click: false,
-        // hover: {
-        //   // enabled: !hasFocusedNodeInSubmenu,
-        // },
+
         listNavigation: {
           nested: subMenuItems.length > 0,
           openOnArrowKeyDown: true,
@@ -210,19 +151,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       menuItemRef.current?.focus();
     }
   };
-
-  // const onFocus = () => {
-  //   // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
-  //   // E.g. Even when hovering into it rapidly.
-  //   queueMicrotask(() => {
-  //     parentMenuItem.setHasFocusedNodeInSubmenu?.(true);
-  //   });
-
-  //   tree?.events.emit('onNodeFocused', {
-  //     nodeId,
-  //     parentId,
-  //   } satisfies TreeEvent);
-  // };
 
   // TODO: Optional: Try moving to Menu?
   const onClick = () => {
@@ -281,20 +209,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {/* <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}> */}
       {subMenuItems.length > 0 && !disabled ? (
-        <Menu
-          // nodeId={nodeId}
-          id={submenuId}
-          trigger={trigger}
-          popoverProps={popoverProps}
-        >
+        <Menu id={submenuId} trigger={trigger} popoverProps={popoverProps}>
           {subMenuItems}
         </Menu>
       ) : (
         trigger
       )}
-      {/* </MenuItemContext.Provider> */}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;

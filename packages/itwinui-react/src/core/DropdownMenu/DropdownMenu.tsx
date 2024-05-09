@@ -91,12 +91,9 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, setVisible]);
 
-  // const nodeId = useFloatingNodeId();
-
   return (
     <>
       <Menu
-        // nodeId={nodeId}
         trigger={children}
         onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
           if (e.defaultPrevented) {
