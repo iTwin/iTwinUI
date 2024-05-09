@@ -186,30 +186,6 @@ export const Menu = React.forwardRef((props, ref) => {
     ) {
       listNavigationProps.listRef.current = newFocusableNodes;
     }
-
-    // If the menu is not open or there are no focusable nodes, nothing to focus
-    if (newFocusableNodes.length === 0 || !popover.open) {
-      return;
-    }
-
-    // Handle focus, but only when no other item is already focused
-    if (
-      listNavigationProps?.activeIndex == null ||
-      listNavigationProps.activeIndex < 0
-    ) {
-      const selectedIndex = newFocusableNodes.findIndex(
-        (el) => el.getAttribute('aria-selected') === 'true',
-      );
-
-      // If an item is selected, focus it
-      if (selectedIndex >= 0) {
-        listNavigationProps?.onNavigate?.(selectedIndex);
-      }
-      // Else, focus the first item
-      // else {
-      //   listNavigationProps?.onNavigate?.(0);
-      // }
-    }
   }, [getFocusableNodes, listNavigationProps, popover.open]);
 
   useSyncExternalStore(
@@ -218,7 +194,6 @@ export const Menu = React.forwardRef((props, ref) => {
         { length: listNavigationProps.listRef.current.length },
         (_, index) => {
           return () => {
-            console.log('navigateToItemFunctions', index);
             listNavigationProps.onNavigate?.(index);
           };
         },
