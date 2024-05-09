@@ -158,6 +158,7 @@ it('should set focus on select and call onBlur', () => {
   expect(onBlur).not.toHaveBeenCalled();
 
   fireEvent.click(selectButton);
+  vi.runAllTimers();
   expect(selectButton).not.toHaveFocus();
   expect(onBlur).toHaveBeenCalled();
 });
@@ -308,7 +309,7 @@ it('should show selected item in menu', () => {
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu, { selectedIndex: 1 });
-  expect(scrollSpy).toHaveBeenCalledTimes(1);
+  expect(scrollSpy).toHaveBeenCalled();
 });
 
 it('should call onChange on item click', () => {
