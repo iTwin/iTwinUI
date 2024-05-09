@@ -68,10 +68,10 @@ type MenuProps = {
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
  *
- * All default interactions of usePopover are respected. Exceptions:
- * - `click` interaction is handled manually instead of relying on `usePopover`
- * - `hover` interaction has the same default value as `usePopover`. However, if a submenu has focus,
- * the hover interaction is disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
+ * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exceptions:
+ * - `click`: handled manually instead of relying on `usePopover`.
+ * - `hover`: When the `Menu` is within a `FloatingTree`, if a submenu has focus, the hover interaction is automatically
+ * disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
  *
  * @example
  * const trigger = <Button>Menu</Button>;
@@ -104,8 +104,6 @@ export const Menu = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const parent = React.useContext(MenuContext);
-
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
   const parentId = useFloatingParentNodeId();
@@ -134,18 +132,22 @@ export const Menu = React.forwardRef((props, ref) => {
   const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
     React.useState(false);
 
-  const isHoverEnabled = !hasFocusedNodeInSubmenu && !!parent;
-
   const popover = usePopover({
     nodeId,
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     interactions: {
       hover: {
-        enabled: !!hoverProp && isHoverEnabled,
+        // Hover interaction is allowed if:
+        // - Hover interaction is enabled
+        // - Submenu does not have focus
+        // - `Menu` is within `FloatingTree`
+        enabled: !!hoverProp && !hasFocusedNodeInSubmenu && !!tree,
         ...(hoverProp as UseHoverProps<ReferenceType>),
       },
-      click: false, // Click interaction is handled manually
+      // Click interaction is handled manually
+      click: false,
+
       listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
@@ -263,7 +265,6 @@ export const Menu = React.forwardRef((props, ref) => {
   );
 
   const menuContent = React.useMemo(() => {
-    // Clone each child in children and add onFocus
     return React.Children.map(children, (child) => {
       return cloneElementWithRef(
         child,
@@ -271,7 +272,6 @@ export const Menu = React.forwardRef((props, ref) => {
           ({
             onFocus: (e) => {
               child.props.onFocus?.(e);
-              console.log('onFocus', e);
 
               // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
               // E.g. Even when hovering into it rapidly.
@@ -284,11 +284,6 @@ export const Menu = React.forwardRef((props, ref) => {
                 parentId: parentId,
               });
             },
-            // onBlur: (e) => {
-            //   child.props.onBlur?.(e);
-            //   console.log('onBlur', e);
-            //   parent?.setHasFocusedNodeInSubmenu(false);
-            // },
           }) satisfies React.HTMLProps<HTMLElement>,
       );
     });
@@ -332,35 +327,18 @@ export const Menu = React.forwardRef((props, ref) => {
   );
 
   return (
-    <MenuContext.Provider
-      value={{
-        hasFocusedNodeInSubmenu,
-        setHasFocusedNodeInSubmenu,
-      }}
-    >
-      <p>{`${hasFocusedNodeInSubmenu},${isHoverEnabled},${nodeId},${parentId}`}</p>
+    <>
       {reference}
       {tree != null ? (
         <FloatingNode id={nodeId}>{floating}</FloatingNode>
       ) : (
         floating
       )}
-    </MenuContext.Provider>
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
 
 // ----------------------------------------------------------------------------
-
-/**
- *
- */
-const MenuContext = React.createContext<
-  | {
-      hasFocusedNodeInSubmenu: boolean;
-      setHasFocusedNodeInSubmenu: (value: boolean) => void;
-    }
-  | undefined
->(undefined);
 
 export type TreeEvent = {
   nodeId: string;
