@@ -261,7 +261,12 @@ export const Menu = React.forwardRef((props, ref) => {
             onFocus: (e) => {
               child.props.onFocus?.(e);
               console.log('onFocus', e);
-              setHasFocusedNodeInSubmenu(true);
+
+              // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+              // E.g. Even when hovering into it rapidly.
+              queueMicrotask(() => {
+                setHasFocusedNodeInSubmenu(true);
+              });
 
               tree?.events.emit('onNodeFocused', {
                 nodeId: nodeId,
