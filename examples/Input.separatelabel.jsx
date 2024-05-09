@@ -8,16 +8,12 @@ import { Input, Label } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div className='demo-container'>
-      <div className='demo-labels-container'>
-        <Label htmlFor='first-name'>First name</Label>
-        <Label htmlFor='middle-initial'>Middle initial</Label>
-        <Label htmlFor='last-name'>Last name</Label>
-      </div>
-      <div className='demo-inputs-container'>
-        <Input id='first-name' />
-        <Input id='middle-initial' maxlength='1' />
-        <Input id='last-name' />
-      </div>
+      <Label htmlFor='first-name'>First name</Label>
+      <Input id='first-name' />
+      <Label htmlFor='middle-initial'>Middle initial</Label>
+      <Input id='middle-initial' maxlength='1' />
+      <Label htmlFor='last-name'>Last name</Label>
+      <Input id='last-name' />
     </div>
   );
 };
