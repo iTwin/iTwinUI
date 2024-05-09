@@ -139,15 +139,15 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const onClick = () => {
-    onClickProp?.(value);
-  };
-
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     // Focus the item when hovered.
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
     }
+  };
+
+  const onClick = () => {
+    onClickProp?.(value);
   };
 
   const handlers = !disabled
