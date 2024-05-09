@@ -107,18 +107,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
 
-  const [
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    isSubmenuVisible,
-    setIsSubmenuVisible,
-  ] = React.useState(false);
-
   const popoverProps = React.useMemo(() => {
     return {
       placement: 'right-start',
       interactions: {
-        click: false,
-
+        click: true,
+        hover: true,
         listNavigation: {
           nested: subMenuItems.length > 0,
           openOnArrowKeyDown: true,
@@ -136,7 +130,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        onClick();
+        onClickProp?.(value);
         event.preventDefault();
         break;
       }
@@ -152,18 +146,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  // TODO: Optional: Try moving to Menu?
-  const onClick = () => {
-    onClickProp?.(value);
-    setIsSubmenuVisible((prev) => !prev);
-  };
-
   const handlers = !disabled
     ? {
-        onClick,
         onKeyDown,
         onMouseEnter,
-        // onFocus,
       }
     : {};
 

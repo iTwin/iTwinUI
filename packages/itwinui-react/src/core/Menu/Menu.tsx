@@ -24,6 +24,8 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
+  type ReferenceType,
+  type UseHoverProps,
 } from '@floating-ui/react';
 
 type MenuProps = {
@@ -65,6 +67,11 @@ type MenuProps = {
  * - setting the refs: use the optional`positionReference` prop to set the position reference
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
+ *
+ * All default interactions of usePopover are respected. Exceptions:
+ * - `click` interaction is handled manually instead of relying on `usePopover`
+ * - `hover` interaction has the same default value as `usePopover`. However, if a submenu has focus,
+ * the hover interaction is disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
  *
  * @example
  * const trigger = <Button>Menu</Button>;
@@ -109,8 +116,12 @@ export const Menu = React.forwardRef((props, ref) => {
     onVisibleChange: onVisibleChangeProp,
     ...restPopoverProps
   } = popoverPropsProp ?? {};
-  const { listNavigation: listNavigationPropsProp, ...restInteractionsProps } =
-    interactionsProp ?? {};
+  const {
+    listNavigation: listNavigationPropsProp,
+    click: clickProp = true,
+    hover: hoverProp,
+    ...restInteractionsProps
+  } = interactionsProp ?? {};
 
   const listNavigationProps = useListNavigationProps(listNavigationPropsProp);
 
@@ -125,22 +136,22 @@ export const Menu = React.forwardRef((props, ref) => {
 
   const isHoverEnabled = !hasFocusedNodeInSubmenu && !!parent;
 
-  const popoverProps = {
+  const popover = usePopover({
     nodeId,
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     interactions: {
       hover: {
-        enabled: isHoverEnabled,
+        enabled: !!hoverProp && isHoverEnabled,
+        ...(hoverProp as UseHoverProps<ReferenceType>),
       },
+      click: false, // Click interaction is handled manually
       listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
     // TODO: Confirm what defaults to set and see which components need to override them
     ...restPopoverProps,
-  } satisfies Parameters<typeof usePopover>[0];
-
-  const popover = usePopover(popoverProps);
+  });
 
   React.useEffect(() => {
     if (positionReference !== undefined) {
@@ -283,11 +294,26 @@ export const Menu = React.forwardRef((props, ref) => {
     });
   }, [children, nodeId, parentId, tree?.events]);
 
-  const reference = cloneElementWithRef(trigger, (triggerChild) => ({
-    ...popover.getReferenceProps(triggerChild.props),
-    'aria-expanded': popover.open,
-    ref: mergeRefs(triggerRef, popover.refs.setReference),
-  }));
+  const reference = cloneElementWithRef(
+    trigger,
+    (triggerChild) =>
+      ({
+        ...popover.getReferenceProps(triggerChild.props),
+        'aria-expanded': popover.open,
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
+        onClick: (e) => {
+          triggerChild.props.onClick?.(e);
+
+          // If the click interaction is enabled, manually toggle the menu instead of relying on usePopover
+          if (
+            clickProp === true ||
+            (typeof clickProp === 'object' && !!clickProp.enabled)
+          ) {
+            setVisible((prev) => !prev);
+          }
+        },
+      }) satisfies React.HTMLProps<HTMLElement>,
+  );
 
   const floating = popover.open && (
     <Portal portal={portal}>
