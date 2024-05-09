@@ -8,7 +8,6 @@ import {
   useSafeContext,
   useMergedRefs,
   SvgCheckmark,
-  mergeEventHandlers,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext } from './helpers.js';
@@ -42,24 +41,6 @@ export const ComboBoxMenuItem = React.memo(
       }
     };
 
-    const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-      if (event.altKey) {
-        return;
-      }
-
-      switch (event.key) {
-        case 'Enter':
-        case ' ':
-        case 'Spacebar': {
-          onClick?.();
-          event.preventDefault();
-          break;
-        }
-        default:
-          break;
-      }
-    };
-
     const refs = useMergedRefs(forwardedRef, focusRef);
 
     return (
@@ -77,7 +58,6 @@ export const ComboBoxMenuItem = React.memo(
         aria-selected={isSelected}
         aria-disabled={disabled}
         data-iui-index={index}
-        onKeyDown={mergeEventHandlers(onKeyDown, rest.onKeyDown)}
         {...rest}
       >
         {startIcon && (

@@ -15,6 +15,7 @@ import {
   AutoclearingHiddenLiveRegion,
   useId,
 } from '../../utils/index.js';
+import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../../utils/index.js';
 import {
   ComboBoxActionContext,
@@ -27,7 +28,6 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
-import type { Menu } from '../Menu/Menu.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -521,47 +521,13 @@ export const ComboBox = React.forwardRef(
       [emptyStateMessage],
     );
 
-    const popoverProps = {
+    const popover = usePopover({
       visible: isOpen,
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
       closeOnOutsideClick: true,
       interactions: { click: false, focus: true },
-    } satisfies Parameters<typeof Menu>[0]['popoverProps'];
-
-    const trigger = (
-      <ComboBoxInputContainer
-        ref={forwardedRef}
-        disabled={inputProps?.disabled}
-        {...rest}
-      >
-        <>
-          <ComboBoxInput
-            value={inputValue}
-            disabled={inputProps?.disabled}
-            {...inputProps}
-            onChange={handleOnInput}
-            selectTags={
-              isMultipleEnabled(selected, multiple)
-                ? selected.map((index) => {
-                    const item = optionsRef.current[index];
-                    return <SelectTag key={item.label} label={item.label} />;
-                  })
-                : undefined
-            }
-          />
-        </>
-        <ComboBoxEndIcon
-          {...endIconProps}
-          disabled={inputProps?.disabled}
-          isOpen={isOpen}
-        />
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-        ) : null}
-      </ComboBoxInputContainer>
-    );
+    });
 
     return (
       <ComboBoxRefsContext.Provider
@@ -578,12 +544,45 @@ export const ComboBox = React.forwardRef(
               filteredOptions,
               getMenuItem,
               multiple,
-              popoverProps,
+              popover,
               show,
               hide,
             }}
           >
-            <ComboBoxMenu as='div' trigger={trigger} {...dropdownMenuProps}>
+            <ComboBoxInputContainer
+              ref={forwardedRef}
+              disabled={inputProps?.disabled}
+              {...rest}
+            >
+              <>
+                <ComboBoxInput
+                  value={inputValue}
+                  disabled={inputProps?.disabled}
+                  {...inputProps}
+                  onChange={handleOnInput}
+                  selectTags={
+                    isMultipleEnabled(selected, multiple)
+                      ? selected.map((index) => {
+                          const item = optionsRef.current[index];
+                          return (
+                            <SelectTag key={item.label} label={item.label} />
+                          );
+                        })
+                      : undefined
+                  }
+                />
+              </>
+              <ComboBoxEndIcon
+                {...endIconProps}
+                disabled={inputProps?.disabled}
+                isOpen={isOpen}
+              />
+
+              {multiple ? (
+                <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+              ) : null}
+            </ComboBoxInputContainer>
+            <ComboBoxMenu as='div' {...dropdownMenuProps}>
               {filteredOptions.length > 0 && !enableVirtualization
                 ? filteredOptions.map(getMenuItem)
                 : emptyContent}
