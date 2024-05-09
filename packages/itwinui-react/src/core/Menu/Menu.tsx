@@ -21,6 +21,7 @@ import type {
 import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
+  useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
 } from '@floating-ui/react';
@@ -50,7 +51,6 @@ type MenuProps = {
       listNavigation?: Parameters<typeof useListNavigationProps>[0];
     };
   };
-  nodeId?: Parameters<typeof usePopover>[0]['nodeId'];
 };
 
 /**
@@ -64,7 +64,7 @@ type MenuProps = {
  * - spreading the popover props (`getFloatingProps`, `getReferenceProps`)
  * - setting the refs: use the optional`positionReference` prop to set the position reference
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
- * - register a `FloatingNode` in the `FloatingTree` if `nodeId` is provided
+ * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
  *
  * @example
  * const trigger = <Button>Menu</Button>;
@@ -93,7 +93,6 @@ export const Menu = React.forwardRef((props, ref) => {
     positionReference,
     portal = true,
     popoverProps: popoverPropsProp,
-    nodeId,
     children,
     ...rest
   } = props;
@@ -101,6 +100,7 @@ export const Menu = React.forwardRef((props, ref) => {
   const parent = React.useContext(MenuContext);
 
   const tree = useFloatingTree();
+  const nodeId = useFloatingNodeId();
   const parentId = useFloatingParentNodeId();
 
   const {
@@ -314,7 +314,7 @@ export const Menu = React.forwardRef((props, ref) => {
     >
       <p>{`${hasFocusedNodeInSubmenu},${isHoverEnabled},${nodeId},${parentId}`}</p>
       {reference}
-      {nodeId != null ? (
+      {tree != null ? (
         <FloatingNode id={nodeId}>{floating}</FloatingNode>
       ) : (
         floating

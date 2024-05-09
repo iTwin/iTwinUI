@@ -10,7 +10,7 @@ import type {
 } from '../../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
-import { FloatingTree, useFloatingNodeId } from '@floating-ui/react';
+import { FloatingTree } from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -91,12 +91,12 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, setVisible]);
 
-  const nodeId = useFloatingNodeId();
+  // const nodeId = useFloatingNodeId();
 
   return (
     <>
       <Menu
-        nodeId={nodeId}
+        // nodeId={nodeId}
         trigger={children}
         onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
           if (e.defaultPrevented) {

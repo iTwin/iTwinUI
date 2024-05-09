@@ -14,11 +14,9 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-import {
-  useFloatingNodeId,
-  // useFloatingParentNodeId,
-  // useFloatingTree,
-} from '@floating-ui/react';
+import {} from // useFloatingParentNodeId,
+// useFloatingTree,
+'@floating-ui/react';
 
 const logWarningInDev = createWarningLogger();
 
@@ -135,7 +133,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   // TODO: Remove the need to pass floatingNodeId to Menu. Maybe it can be a prop in Menu called shouldHaveNodeId
   // or shouldRegisterInFloatingTree
-  const nodeId = useFloatingNodeId();
+  // const nodeId = useFloatingNodeId();
   // const tree = useFloatingTree();
   // const parentId = useFloatingParentNodeId();
 
@@ -286,7 +284,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {/* <MenuItemContext.Provider value={{ setHasFocusedNodeInSubmenu }}> */}
       {subMenuItems.length > 0 && !disabled ? (
         <Menu
-          nodeId={nodeId}
+          // nodeId={nodeId}
           id={submenuId}
           trigger={trigger}
           popoverProps={popoverProps}
