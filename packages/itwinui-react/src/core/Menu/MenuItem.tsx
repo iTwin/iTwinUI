@@ -139,6 +139,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
+  const onClick = () => {
+    onClickProp?.(value);
+  };
+
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     // Focus the item when hovered.
     if (e.target === e.currentTarget) {
@@ -148,6 +152,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const handlers = !disabled
     ? {
+        onClick,
         onKeyDown,
         onMouseEnter,
       }
@@ -167,7 +172,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-disabled={disabled}
-      // TODO: maybe can merge handlers and rest. i.e. don't need separate handlers
       {...handlers}
       {...rest}
     >
