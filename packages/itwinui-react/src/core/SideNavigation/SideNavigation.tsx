@@ -4,10 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { WithCSSTransition, SvgChevronRight, Box } from '../../utils/index.js';
+import {
+  WithCSSTransition,
+  SvgChevronRight,
+  Box,
+  useControlledState,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
-import { Tooltip } from '../Tooltip/Tooltip.js';
+
+// ----------------------------------------------------------------------------
+
+export const SidenavExpandedContext = React.createContext<boolean | undefined>(
+  undefined,
+);
+
+// ----------------------------------------------------------------------------
 
 type SideNavigationProps = {
   /**
@@ -95,7 +107,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     secondaryItems,
     expanderPlacement = 'top',
     className,
-    isExpanded = false,
+    isExpanded: isExpandedProp,
     onExpanderClick,
     submenu,
     isSubmenuOpen = false,
@@ -106,101 +118,77 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [_isExpanded, _setIsExpanded] = React.useState(isExpanded);
-  React.useEffect(() => {
-    _setIsExpanded(isExpanded);
-  }, [isExpanded]);
+  const [isExpanded, setIsExpanded] = useControlledState(false, isExpandedProp);
 
   const ExpandButton = (
     <IconButton
       label='Toggle icon labels'
-      aria-expanded={_isExpanded}
+      aria-expanded={isExpanded}
       className='iui-sidenav-button iui-expand'
       size='small'
       onClick={React.useCallback(() => {
-        _setIsExpanded((expanded) => !expanded);
+        setIsExpanded((expanded) => !expanded);
         onExpanderClick?.();
-      }, [onExpanderClick])}
+      }, [onExpanderClick, setIsExpanded])}
     >
       <SvgChevronRight />
     </IconButton>
   );
 
   return (
-    <Box
-      {...wrapperProps}
-      className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
-      ref={forwardedRef}
-    >
+    <SidenavExpandedContext.Provider value={isExpanded}>
       <Box
-        as='div'
-        className={cx(
-          'iui-side-navigation',
-          {
-            'iui-expanded': _isExpanded,
-            'iui-collapsed': !_isExpanded,
-          },
-          className,
-        )}
-        {...rest}
+        {...wrapperProps}
+        className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
+        ref={forwardedRef}
       >
-        {expanderPlacement === 'top' && ExpandButton}
         <Box
           as='div'
-          {...contentProps}
-          className={cx('iui-sidenav-content', contentProps?.className)}
+          className={cx(
+            'iui-side-navigation',
+            {
+              'iui-expanded': isExpanded,
+              'iui-collapsed': !isExpanded,
+            },
+            className,
+          )}
+          {...rest}
         >
+          {expanderPlacement === 'top' && ExpandButton}
           <Box
             as='div'
-            {...topProps}
-            className={cx('iui-top', topProps?.className)}
+            {...contentProps}
+            className={cx('iui-sidenav-content', contentProps?.className)}
           >
-            {items.map((sidenavButton: JSX.Element, index) =>
-              !_isExpanded ? (
-                <Tooltip
-                  content={sidenavButton.props.children}
-                  placement='right'
-                  key={index}
-                >
-                  {sidenavButton}
-                </Tooltip>
-              ) : (
-                sidenavButton
-              ),
-            )}
+            <Box
+              as='div'
+              {...topProps}
+              className={cx('iui-top', topProps?.className)}
+            >
+              {items}
+            </Box>
+            <Box
+              as='div'
+              {...bottomProps}
+              className={cx('iui-bottom', bottomProps?.className)}
+            >
+              {secondaryItems}
+            </Box>
           </Box>
-          <Box
-            as='div'
-            {...bottomProps}
-            className={cx('iui-bottom', bottomProps?.className)}
-          >
-            {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
-              !_isExpanded ? (
-                <Tooltip
-                  content={sidenavButton.props.children}
-                  placement='right'
-                  key={index}
-                >
-                  {sidenavButton}
-                </Tooltip>
-              ) : (
-                sidenavButton
-              ),
-            )}
-          </Box>
+          {expanderPlacement === 'bottom' && ExpandButton}
         </Box>
-        {expanderPlacement === 'bottom' && ExpandButton}
+
+        {submenu && (
+          <WithCSSTransition
+            in={isSubmenuOpen}
+            dimension='width'
+            timeout={200}
+            classNames='iui'
+          >
+            {submenu}
+          </WithCSSTransition>
+        )}
       </Box>
-      {submenu && (
-        <WithCSSTransition
-          in={isSubmenuOpen}
-          dimension='width'
-          timeout={200}
-          classNames='iui'
-        >
-          {submenu}
-        </WithCSSTransition>
-      )}
-    </Box>
+    </SidenavExpandedContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', SideNavigationProps>;

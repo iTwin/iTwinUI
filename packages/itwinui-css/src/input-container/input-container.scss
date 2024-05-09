@@ -125,7 +125,7 @@
     position: absolute;
     inset: 0;
     border: 1px solid var(--_iui-input-border-color);
-    border-radius: var(--iui-border-radius-1);
+    border-radius: inherit;
     transition: border-color var(--iui-duration-1) ease-out;
   }
 

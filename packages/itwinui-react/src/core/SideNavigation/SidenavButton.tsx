@@ -8,6 +8,8 @@ import * as React from 'react';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import type { ButtonProps } from '../Buttons/Button.js';
+import { Tooltip } from '../Tooltip/Tooltip.js';
+import { SidenavExpandedContext } from './SideNavigation.js';
 
 type SidenavButtonProps = {
   /**
@@ -36,7 +38,9 @@ export const SidenavButton = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  return (
+  const isExpanded = React.useContext(SidenavExpandedContext) === true;
+
+  const sidenavButton = (
     <Button
       className={cx(
         'iui-sidenav-button',
@@ -51,5 +55,13 @@ export const SidenavButton = React.forwardRef((props, ref) => {
     >
       {children}
     </Button>
+  );
+
+  return !isExpanded ? (
+    <Tooltip content={children} placement='right' ariaStrategy='none'>
+      {sidenavButton}
+    </Tooltip>
+  ) : (
+    sidenavButton
   );
 }) as PolymorphicForwardRefComponent<'button', SidenavButtonProps>;

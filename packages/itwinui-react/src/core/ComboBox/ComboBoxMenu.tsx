@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import { Menu } from '../Menu/Menu.js';
 import {
   useSafeContext,
@@ -13,6 +14,7 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
+import { List } from '../List/List.js';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
@@ -65,7 +67,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 };
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
-  const { children, style, ...rest } = props;
+  const { className, children, style, ...rest } = props;
   const { id, enableVirtualization, popover } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
@@ -75,9 +77,10 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
   return (
     popover.open && (
       <Portal portal>
-        <Menu
+        <List
+          as='div'
+          className={cx('iui-menu', className)}
           id={`${id}-list`}
-          setFocus={false}
           role='listbox'
           ref={refs}
           {...popover.getFloatingProps({
@@ -97,7 +100,7 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
           ) : (
             <VirtualizedComboBoxMenu>{children}</VirtualizedComboBoxMenu>
           )}
-        </Menu>
+        </List>
       </Portal>
     )
   );

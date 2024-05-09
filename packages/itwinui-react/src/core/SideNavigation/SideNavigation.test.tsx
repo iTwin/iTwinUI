@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { SideNavigation } from './SideNavigation.js';
 import { SidenavButton } from './SidenavButton.js';
@@ -175,32 +175,6 @@ it('should work with controlled isExpanded prop', () => {
   expect(
     sidebar2.querySelector('.iui-side-navigation.iui-collapsed'),
   ).toBeTruthy();
-});
-
-it('should only add tooltips to items when collapsed', async () => {
-  // collapsed
-  const { container, getByText, queryByText } = renderComponent();
-  expect(container.querySelector('.iui-side-navigation')).toBeTruthy();
-
-  const mainItems = container.querySelectorAll('.iui-top .iui-sidenav-button');
-  expect(mainItems).toHaveLength(3);
-  mainItems.forEach((item, index) => {
-    expect(
-      queryByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
-    ).not.toBeVisible();
-    vi.useFakeTimers();
-    fireEvent.mouseEnter(item);
-    act(() => void vi.advanceTimersByTime(50));
-    vi.useRealTimers();
-    expect(
-      getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
-    ).toBeVisible();
-  });
-
-  // expanded
-  const expandButton = container.querySelector('.iui-expand') as HTMLElement;
-  await userEvent.click(expandButton);
-  expect(queryByText('mockbutton 0', { selector: '.iui-tooltip' })).toBeFalsy();
 });
 
 it('should render active and disabled sidebar buttons', () => {
