@@ -6,12 +6,16 @@ import * as path from 'node:path';
 
 export const itwinuiReactAliases =
   process.env.NODE_ENV === 'development'
-    ? {
-        '@itwin/itwinui-react/styles.css': path.resolve(
-          '../../packages/itwinui-react/styles.css',
-        ),
-        '@itwin/itwinui-react': path.resolve(
-          '../../packages/itwinui-react/src',
-        ),
-      }
-    : {};
+    ? [
+        {
+          find: /^@itwin\/itwinui-react\/(.*)/,
+          replacement: path.resolve('../../packages/itwinui-react/$1'),
+        },
+        {
+          find: '@itwin/itwinui-react',
+          replacement: path.resolve(
+            '../../packages/itwinui-react/src/index.ts',
+          ),
+        },
+      ]
+    : [];
