@@ -371,8 +371,7 @@
   > .iui-table-empty {
     text-align: center;
     position: sticky;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
+    margin-inline: auto;
     padding: var(--iui-size-xl);
     display: flex;
     flex-direction: column;
