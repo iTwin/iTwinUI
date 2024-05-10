@@ -20,6 +20,12 @@ export const itwinuiReactAliases =
           ),
         },
         {
+          find: /^@itwin\/itwinui-react\/react-table$/,
+          replacement: path.resolve(
+            '../../packages/itwinui-react/react-table.d.ts',
+          ),
+        },
+        {
           find: /^@itwin\/itwinui-react\/(.*)$/,
           replacement: path.resolve('../../packages/itwinui-react/src/$1'),
         },
