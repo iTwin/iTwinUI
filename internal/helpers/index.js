@@ -8,21 +8,13 @@ export const itwinuiReactAliases =
   process.env.NODE_ENV === 'development'
     ? [
         {
-          find: /^@itwin\/itwinui-react$/,
+          find: /^@itwin\/itwinui-react\/(.*)/,
+          replacement: path.resolve('../../packages/itwinui-react/$1'),
+        },
+        {
+          find: '@itwin/itwinui-react',
           replacement: path.resolve(
             '../../packages/itwinui-react/src/index.ts',
-          ),
-        },
-        {
-          find: /^@itwin\/itwinui-react\/styles.css(.*)$/,
-          replacement: path.resolve(
-            '../../packages/itwinui-react/styles.css$1',
-          ),
-        },
-        {
-          find: /^@itwin\/itwinui-react\/react-table$/,
-          replacement: path.resolve(
-            '../../packages/itwinui-react/react-table.d.ts',
           ),
         },
       ]
