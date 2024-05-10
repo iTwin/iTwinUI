@@ -38,6 +38,7 @@ import {
   ShadowRoot,
   LineClamp,
   useMergedRefs,
+  useLatestRef,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import {
@@ -440,13 +441,8 @@ export const Table = <
     [],
   );
 
-  // useRef prevents from rerendering when one of these callbacks changes
-  const onBottomReachedRef = React.useRef(onBottomReached);
-  const onRowInViewportRef = React.useRef(onRowInViewport);
-  React.useEffect(() => {
-    onBottomReachedRef.current = onBottomReached;
-    onRowInViewportRef.current = onRowInViewport;
-  }, [onBottomReached, onRowInViewport]);
+  const onBottomReachedRef = useLatestRef(onBottomReached);
+  const onRowInViewportRef = useLatestRef(onRowInViewport);
 
   const hasManualSelectionColumn = React.useMemo(() => {
     const flatColumns = flattenColumns(columns);
@@ -861,6 +857,8 @@ export const Table = <
       enableVirtualization,
       tableRowRef,
       density,
+      onBottomReachedRef,
+      onRowInViewportRef,
     ],
   );
 
