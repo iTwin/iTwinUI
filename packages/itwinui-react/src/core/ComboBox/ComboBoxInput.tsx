@@ -9,6 +9,7 @@ import {
   useMergedRefs,
   useContainerWidth,
   mergeEventHandlers,
+  useLatestRef,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
@@ -41,10 +42,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     useSafeContext(ComboBoxRefsContext);
   const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
 
-  const focusedIndexRef = React.useRef(focusedIndex ?? -1);
-  React.useEffect(() => {
-    focusedIndexRef.current = focusedIndex ?? -1;
-  }, [focusedIndex]);
+  const focusedIndexRef = useLatestRef(focusedIndex ?? -1);
 
   const getIdFromIndex = (index: number) => {
     return (
@@ -177,6 +175,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     [
       dispatch,
       enableVirtualization,
+      focusedIndexRef,
       isOpen,
       menuRef,
       onClickHandler,
