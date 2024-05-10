@@ -2,9 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 @use '../text/muted';
-@use '../button/base';
-@use '../button/borderless';
-@use '../button/default';
 
 @mixin iui-table-paginator {
   @include mixins.iui-reset;
@@ -64,18 +61,8 @@
 }
 
 @mixin iui-table-paginator-page-button {
-  @include base.iui-button;
-  @include borderless.iui-button-borderless;
-
-  &-small {
-    @include base.iui-button-size(small);
-  }
-
   &[data-iui-active='true'] {
-    @include default.iui-button-default-active;
-    @include borderless.iui-button-borderless-active;
-
-    // Adds stripe above active button
+    // Adds stripe below active button
     --_iui-button-active-stripe-inset-block: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)};
     --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
   }

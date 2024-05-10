@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../surface/base' as surface;
-@use '../button/borderless';
 @use '../mixins';
 
 $iui-color-picker-content-width: calc(var(--iui-size-l) * 9 + var(--iui-size-xs) * 8); // (9 swatches per row) + (gaps)

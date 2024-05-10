@@ -3,51 +3,24 @@
 @use '../mixins';
 
 @mixin iui-input {
-  --_iui-input-background-color: var(--iui-color-background);
-  --_iui-input-border-color: var(--iui-color-border-foreground);
-  --_iui-input-text-color: var(--iui-color-text);
-
-  @include mixins.iui-reset;
-  @include mixins.iui-focus($offset: -2px, $thickness: 2px);
   inline-size: 100%;
-  font-family: inherit;
-  font-size: var(--iui-font-size-1);
-  font-weight: var(--iui-font-weight-normal);
   line-height: var(--iui-size-l);
-  border-radius: var(--iui-border-radius-1);
   appearance: none;
-  min-block-size: var(--_iui-input-min-height);
   padding-block: var(--_iui-input-padding-block);
   padding-inline: var(--iui-size-s);
-  color: var(--_iui-input-text-color);
-  background-color: var(--_iui-input-background-color);
-  border: 1px solid var(--_iui-input-border-color);
-  transition: border-color var(--iui-duration-1) ease-out;
   @include iui-input-size;
 
   &::placeholder {
-    --_iui-input-text-color: var(--iui-color-text-placeholder);
+    color: var(--iui-color-text-placeholder);
     font-weight: var(--iui-font-weight-light);
     opacity: 1;
     user-select: none;
-    color: var(--_iui-input-text-color);
   }
 
   &:autofill {
-    --_iui-input-background-color: var(--iui-color-background-accent-muted);
-    --_iui-input-border-color: var(--iui-color-border-accent);
-    --_iui-input-text-color: var(--iui-color-text-accent);
-  }
-
-  &:hover {
-    --_iui-input-border-color: var(--iui-color-border-foreground-hover);
-  }
-
-  &[disabled] {
-    --_iui-input-background-color: var(--iui-color-background-disabled);
-    --_iui-input-border-color: var(--iui-color-border-disabled);
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
-    cursor: not-allowed;
+    background-color: var(--iui-color-background-accent-muted);
+    border-color: var(--iui-color-border-accent);
+    color: var(--iui-color-text-accent);
   }
 
   &:where(textarea) {
@@ -60,17 +33,14 @@
 @mixin iui-input-size($size: medium) {
   @if $size == small {
     --_iui-input-padding-block: 0;
-    --_iui-input-min-height: var(--iui-component-height-small);
   }
 
   @if $size == medium {
     --_iui-input-padding-block: var(--iui-size-2xs);
-    --_iui-input-min-height: var(--iui-component-height);
   }
 
   @if $size == large {
     --_iui-input-padding-block: var(--iui-size-xs);
-    --_iui-input-min-height: var(--iui-component-height-large);
     font-size: var(--iui-font-size-2);
   }
 }
@@ -118,21 +88,6 @@
       &:not(:only-child) {
         padding-inline-end: var(--iui-component-height); // Width of the end-icon button
       }
-    }
-  }
-
-  &:focus-within {
-    > :first-child {
-      // --_iui-input-with-icon-focus-color can be used to control this from outside
-      outline: 2px solid var(--_iui-input-with-icon-focus-color, var(--iui-color-border-accent));
-      outline-offset: -2px;
-    }
-  }
-
-  &:hover {
-    > :first-child {
-      // --_iui-input-with-icon-hover-border-color can be used to control this from outside
-      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-border-foreground-hover));
     }
   }
 

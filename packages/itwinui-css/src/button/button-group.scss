@@ -15,16 +15,12 @@
     max-block-size: 100%;
   }
 
-  $childZindexSelector: '&:where(.iui-input-flex-container, .iui-button, .iui-input)';
-  $childBorderSelector: '&:where(.iui-input-flex-container, .iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))), &:where(.iui-input-flex-container)::before';
-  $disabledSelector: '&:where(:disabled, .iui-disabled, [aria-disabled="true"])';
-
   // specificity hack
   > [class] {
     pointer-events: all;
     position: relative;
 
-    #{$childZindexSelector} {
+    &:where(.iui-field, .iui-input-flex-container) {
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
         --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
@@ -38,7 +34,7 @@
         z-index: 1;
       }
 
-      &:is(#{$disabledSelector}) {
+      &:is(:disabled, [aria-disabled='true']) {
         z-index: -1;
       }
 
@@ -51,7 +47,7 @@
       }
     }
 
-    #{$childBorderSelector} {
+    &:where(.iui-field:not([data-iui-variant='borderless']), .iui-input-flex-container) {
       // Reset border radius
       border-radius: 0;
 
@@ -63,43 +59,38 @@
       }
     }
 
-    // Add rounded corners to first and last items
-    &:where(:first-child) {
-      #{$childBorderSelector} {
-        border-start-start-radius: var(--iui-border-radius-1);
+    // Add rounded corners to first item
+    &:where(:nth-child(1 of :where(.iui-field, .iui-input-flex-container))) {
+      border-start-start-radius: var(--iui-border-radius-1);
 
-        @if $orientation == 'horizontal' {
-          border-end-start-radius: var(--iui-border-radius-1);
-        } @else {
-          border-start-end-radius: var(--iui-border-radius-1);
-        }
+      @if $orientation == 'horizontal' {
+        border-end-start-radius: var(--iui-border-radius-1);
+      } @else {
+        border-start-end-radius: var(--iui-border-radius-1);
       }
     }
 
-    &:where(:last-child) {
-      #{$childBorderSelector} {
-        border-end-end-radius: var(--iui-border-radius-1);
+    // Add rounded corners to last item
+    &:where(:nth-last-child(1 of :where(.iui-field, .iui-input-flex-container))) {
+      border-end-end-radius: var(--iui-border-radius-1);
 
-        @if $orientation == 'horizontal' {
-          border-start-end-radius: var(--iui-border-radius-1);
-        } @else {
-          border-end-start-radius: var(--iui-border-radius-1);
-        }
+      @if $orientation == 'horizontal' {
+        border-start-end-radius: var(--iui-border-radius-1);
+      } @else {
+        border-end-start-radius: var(--iui-border-radius-1);
       }
     }
 
     // Use negative margin to make adjacent borders overlap
-    + * {
+    ~ :where(.iui-field, .iui-input-flex-container) {
       @if $orientation == 'horizontal' {
         margin-inline-start: -1px;
       } @else {
         margin-block-start: -1px;
       }
-    }
 
-    // Add slight border between disabled items
-    &:where(:not(:first-child):not([data-iui-variant='borderless'])) {
-      #{$disabledSelector} {
+      // Add slight border between disabled items
+      &:where(:disabled, [aria-disabled='true']):where(:not([data-iui-variant='borderless'])) {
         @if $orientation == 'horizontal' {
           border-inline-start-color: var(--iui-color-border-subtle);
         } @else {

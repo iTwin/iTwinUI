@@ -8,23 +8,37 @@ import {
   // Portal,
   useMergedRefs,
   useId,
+  useSyncExternalStore,
+  createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 // import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-import { flushSync } from 'react-dom';
 import { usePopover } from '../Popover/Popover.js';
-import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
-// import { DropdownMenuContext } from '../DropdownMenu/DropdownMenu.js';
+import {
+  FloatingNode,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useFloatingTree,
+} from '@floating-ui/react';
+
+const logWarningInDev = createWarningLogger();
 
 /**
- * Context used to provide menu item ref to sub-menu items.
+ * Should be wrapped around the `Menu` containing the `MenuItem`s.
  */
-const MenuItemContext = React.createContext<{
-  ref: React.RefObject<HTMLElement> | undefined;
-  setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}>({ ref: undefined, setIsNestedSubmenuVisible: () => {} });
+export const MenuItemContext = React.createContext<{
+  setCurrentFocusedNodeIndex: React.Dispatch<
+    React.SetStateAction<number | null>
+  >;
+  focusableNodes: React.MutableRefObject<(HTMLElement | null)[]>;
+  setHasFocusedNodeInSubmenu?: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+  setCurrentFocusedNodeIndex: () => {},
+  focusableNodes: { current: [] },
+  setHasFocusedNodeInSubmenu: undefined,
+});
 
 export type MenuItemProps = {
   /**
@@ -96,7 +110,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     isSelected,
     disabled,
     value,
-    onClick,
+    onClick: onClickProp,
     sublabel,
     size = !!sublabel ? 'large' : 'default',
     icon,
@@ -108,56 +122,85 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const dropdownMenuContext = React.useContext(DropdownMenuContext);
+  if (onClickProp != null && subMenuItems.length > 0) {
+    logWarningInDev(
+      'Passing a non-empty submenuItems array and onClick to MenuItem at the same time is not supported. This is because when a non empty submenuItems array is passed, clicking the MenuItem toggles the submenu visibility.',
+    );
+  }
+
+  const parent = React.useContext(MenuItemContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
+  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+    number | null
+  >(null);
+
+  const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
     React.useState(false);
-  const parent = React.useContext(MenuItemContext);
 
-  const onVisibleChange = (open: boolean) => {
-    setIsSubmenuVisible(open);
+  const nodeId = useFloatingNodeId();
+  const tree = useFloatingTree();
+  const parentId = useFloatingParentNodeId();
 
-    // we don't want parent to close when mouse goes into a nested submenu,
-    // so we need to let the parent know whether the submenu is still open.
-    parent.setIsNestedSubmenuVisible(open);
-  };
+  const focusableNodeIndexInParentTree =
+    parent.focusableNodes.current.findIndex((el) => el === menuItemRef.current);
 
-  // const popover = dropdownMenuContext.layered
-  //   ? undefined
-  //   : usePopover({
-  //       visible: isSubmenuVisible || isNestedSubmenuVisible,
-  //       onVisibleChange,
-  //       placement: 'right-start',
-  //       trigger: { hover: true, focus: true },
-  //     });
-  // const shouldShowSubmenu =
-  //   subMenuItems.length > 0 && !dropdownMenuContext.layered && popover != null;
+  useSyncExternalStore(
+    React.useCallback(() => {
+      const closeUnrelatedMenus = (event: TreeEvent) => {
+        if (
+          // When a node "X" is focused, close "X"'s siblings' submenus
+          // i.e. only one submenu in each menu can be open at a time
+          (parentId === event.parentId && nodeId !== event.nodeId) ||
+          // Consider a node "X" with its submenu "Y".
+          // Focusing "X" should close all submenus of "Y".
+          parentId === event.nodeId
+        ) {
+          setIsSubmenuVisible(false);
+          setHasFocusedNodeInSubmenu(false);
+        }
+      };
+
+      tree?.events.on('onNodeFocused', closeUnrelatedMenus);
+
+      return () => {
+        tree?.events.off('onNodeFocused', closeUnrelatedMenus);
+      };
+    }, [nodeId, parentId, tree?.events]),
+    () => undefined,
+    () => undefined,
+  );
+
+  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
   const popover = usePopover({
-    visible: isSubmenuVisible || isNestedSubmenuVisible,
-    onVisibleChange,
-    placement: 'right-start',
-    trigger: { hover: true, focus: true },
-  });
-  const shouldShowSubmenu =
-    subMenuItems.length > 0 && !dropdownMenuContext.layered;
-
-  const onActivate = () => {
-    if (!disabled) {
-      onClick?.(value);
-
-      if (menuHierarchyIndex != null && subMenuItems.length > 0) {
-        dropdownMenuContext.menuChildOnClick?.(menuHierarchyIndex);
+    nodeId,
+    visible: isSubmenuVisible,
+    onVisibleChange: React.useCallback((visible: boolean) => {
+      if (!visible) {
+        setHasFocusedNodeInSubmenu(false);
       }
-    }
-  };
+      setIsSubmenuVisible(visible);
+    }, []),
+    placement: 'right-start',
+    interactions: !disabled
+      ? {
+          click: false,
+          hover: {
+            enabled: !hasFocusedNodeInSubmenu, // If focus is still inside submenu, don't close the submenu upon hovering out.
+          },
+          listNavigation: {
+            listRef: focusableNodes,
+            activeIndex: currentFocusedNodeIndex,
+            nested: subMenuItems.length > 0,
+            onNavigate: setCurrentFocusedNodeIndex,
+          },
+        }
+      : {},
+  });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     console.log(
@@ -185,55 +228,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        onActivate();
-
+        onClick();
         event.preventDefault();
-        break;
-      }
-      case 'ArrowRight': {
-        if (subMenuItems.length > 0) {
-          if (dropdownMenuContext.layered) {
-            if (menuHierarchyIndex != null) {
-              dropdownMenuContext.menuChildOnClick?.(menuHierarchyIndex);
-            }
-          } else {
-            setIsSubmenuVisible(true);
-
-            // flush and reset state so we are ready to focus again next time
-            flushSync(() => setFocusOnSubmenu(true));
-            setFocusOnSubmenu(false);
-          }
-
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        break;
-      }
-      case 'ArrowLeft': {
-        if (dropdownMenuContext.layered) {
-          dropdownMenuContext.backButtonOnClick?.();
-        } else {
-          if (parent.ref) {
-            parent.ref.current?.focus();
-            parent.setIsNestedSubmenuVisible(false);
-          }
-        }
-
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      }
-      case 'Escape': {
-        console.log('HERE');
-        if (dropdownMenuContext.layered) {
-          // dropdownMenuContext.backButtonOnClick?.();
-        } else {
-          // focus might get lost if submenu closes so move it back to parent
-          parent.ref?.current?.focus();
-          event.stopPropagation();
-          event.preventDefault();
-        }
-
         break;
       }
       default:
@@ -241,83 +237,119 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const menuHierarchyIndex =
-    menuItemRef.current?.dataset['menuHierarchyIndex'] != null
-      ? Number(menuItemRef.current?.dataset['menuHierarchyIndex'])
-      : undefined;
+  const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    // Focus the item when hovered.
+    if (e.target === e.currentTarget) {
+      menuItemRef.current?.focus();
 
-  const handlers = {
-    onClick: onActivate,
-    onKeyDown,
+      // Since we manually focus the MenuItem on hover, we need to manually update the active index for
+      // Floating UI's keyboard navigation to work correctly.
+      if (parent != null && focusableNodeIndexInParentTree != null) {
+        parent.setCurrentFocusedNodeIndex(focusableNodeIndexInParentTree);
+      }
+    }
   };
 
-  return (
-    <ListItem
-      as='div'
-      actionable
-      size={size}
-      active={isSelected}
-      disabled={disabled}
-      ref={useMergedRefs(
-        menuItemRef,
-        forwardedRef,
-        shouldShowSubmenu ? popover.refs.setReference : null,
-      )}
-      role={role}
-      tabIndex={disabled || role === 'presentation' ? undefined : -1}
-      aria-selected={isSelected}
-      aria-haspopup={shouldShowSubmenu ? 'true' : undefined}
-      aria-controls={shouldShowSubmenu ? submenuId : undefined}
-      aria-expanded={shouldShowSubmenu ? popover.open : undefined}
-      aria-disabled={disabled}
-      {...(shouldShowSubmenu
-        ? popover.getReferenceProps({ ...handlers, ...rest })
-        : { ...handlers, ...rest })}
-    >
-      {startIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {startIcon}
-        </ListItem.Icon>
-      )}
-      <ListItem.Content>
-        <div>{children}</div>
-        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
-      </ListItem.Content>
-      {!endIcon && subMenuItems.length > 0 && (
-        <ListItem.Icon as='span' aria-hidden>
-          <SvgCaretRightSmall />
-        </ListItem.Icon>
-      )}
-      {endIcon && (
-        <ListItem.Icon as='span' aria-hidden>
-          {endIcon}
-        </ListItem.Icon>
-      )}
+  const onFocus = () => {
+    // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+    // E.g. Even when hovering into it rapidly.
+    queueMicrotask(() => {
+      parent.setHasFocusedNodeInSubmenu?.(true);
+    });
 
-      {/* {subMenuItems.length > 0 && popover.open && (
-        <Portal>
-          <MenuItemContext.Provider
-            value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
-          >
-            <Menu
-              setFocus={focusOnSubmenu}
-              ref={popover.refs.setFloating}
-              {...popover.getFloatingProps({
-                id: submenuId,
-                onPointerMove: () => {
-                  // pointer might move into a nested submenu and set isSubmenuVisible to false,
-                  // so we need to flip it back to true when pointer re-enters this submenu.
-                  setIsSubmenuVisible(true);
-                },
-              })}
+    tree?.events.emit('onNodeFocused', {
+      nodeId,
+      parentId,
+    } satisfies TreeEvent);
+  };
+
+  const onClick = () => {
+    onClickProp?.(value);
+    setIsSubmenuVisible((prev) => !prev);
+  };
+
+  const handlers = !disabled
+    ? {
+        onClick,
+        onKeyDown,
+        onMouseEnter,
+        onFocus,
+      }
+    : {};
+
+  return (
+    <>
+      <ListItem
+        as='div'
+        actionable
+        size={size}
+        active={isSelected}
+        disabled={disabled}
+        ref={useMergedRefs(
+          menuItemRef,
+          forwardedRef,
+          subMenuItems.length > 0 ? popover.refs.setReference : null,
+        )}
+        role={role}
+        tabIndex={disabled || role === 'presentation' ? undefined : -1}
+        aria-selected={isSelected}
+        aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
+        aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+        aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
+        aria-disabled={disabled}
+        {...(subMenuItems.length === 0
+          ? { ...handlers, ...rest }
+          : popover.getReferenceProps({ ...handlers, ...rest }))}
+      >
+        {startIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {startIcon}
+          </ListItem.Icon>
+        )}
+        <ListItem.Content>
+          <div>{children}</div>
+          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+        </ListItem.Content>
+        {!endIcon && subMenuItems.length > 0 && (
+          <ListItem.Icon as='span' aria-hidden>
+            <SvgCaretRightSmall />
+          </ListItem.Icon>
+        )}
+        {endIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {endIcon}
+          </ListItem.Icon>
+        )}
+      </ListItem>
+
+      {subMenuItems.length > 0 && !disabled && popover.open && (
+        <FloatingNode id={nodeId}>
+          <Portal>
+            <MenuItemContext.Provider
+              value={{
+                setCurrentFocusedNodeIndex,
+                focusableNodes,
+                setHasFocusedNodeInSubmenu,
+              }}
             >
-              {subMenuItems}
-            </Menu>
-          </MenuItemContext.Provider>
-        </Portal>
-      )} */}
-    </ListItem>
+              <Menu
+                setFocus={false}
+                ref={popover.refs.setFloating}
+                {...popover.getFloatingProps({ id: submenuId })}
+              >
+                {subMenuItems}
+              </Menu>
+            </MenuItemContext.Provider>
+          </Portal>
+        </FloatingNode>
+      )}
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 
-MenuItem.displayName = 'MenuItem';
+// ----------------------------------------------------------------------------
+
+export type TreeEvent = {
+  nodeId: string;
+  parentId: string | null;
+};

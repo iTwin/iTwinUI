@@ -47,7 +47,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' id='demo-default-singular'>
       <div class='iui-input-label iui-required'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button iui-placeholder' id='test-select-1'>
+        <div tabindex='0' class='iui-select-button iui-field iui-placeholder' id='test-select-1'>
           <span class='iui-content'>Placeholder…</span>
         </div>
         <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -61,7 +61,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>Select native label</div>
       <div class='iui-input-with-icon'>
-        <select class='iui-select-button'>
+        <select class='iui-select-button iui-field'>
           <option value='' selected disabled> Placeholder…</option>
           <option value='one'>Option one</option>
           <option value='two' disabled>Option two</option>
@@ -78,7 +78,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>ComboBox label</div>
       <div class='iui-input-with-icon'>
-        <input class='iui-input' placeholder='Placeholder…' />
+        <input class='iui-input iui-field' placeholder='Placeholder…' />
         <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
         ></svg-caret-down-small>
       </div>
@@ -91,7 +91,7 @@ import Button_ from '../components/Button.astro';
       <div class='iui-input-label'>ComboBox multiselect label</div>
       <div class='iui-input-with-icon'>
         <input
-          class='iui-input'
+          class='iui-input iui-field'
           placeholder='Placeholder…'
           style='padding-left: min(414px, calc(70% + 20px))'
         />
@@ -110,21 +110,9 @@ import Button_ from '../components/Button.astro';
     </label>
 
     <label class='iui-input-grid'>
-      <div class='iui-input-label' data-iui-disabled='true'>Disabled ComboBox label</div>
-      <div class='iui-input-with-icon'>
-        <input class='iui-input iui-disabled' placeholder='Placeholder…' disabled />
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-        ></svg-caret-down-small>
-      </div>
-      <div class='iui-status-message'>
-        <div>Help message.</div>
-      </div>
-    </label>
-
-    <label class='iui-input-grid'>
       <div class='iui-input-label'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button'>
+        <div tabindex='0' class='iui-select-button iui-field'>
           <span class='iui-content'></span>
         </div>
         <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -138,7 +126,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button'>
+        <div tabindex='0' class='iui-select-button iui-field'>
           <svg-placeholder class='iui-icon' aria-hidden='true'></svg-placeholder>
           <span class='iui-content'
             >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -160,7 +148,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid'>
       <div class='iui-input-label'>Select native label</div>
       <div class='iui-input-with-icon'>
-        <select class='iui-select-button'>
+        <select class='iui-select-button iui-field'>
           <option value='one'
             >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -183,21 +171,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid iui-disabled'>
       <div class='iui-input-label'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div class='iui-select-button iui-disabled iui-placeholder'>
-          <span class='iui-content'>Placeholder…</span>
-        </div>
-        <svg-caret-down-small class='iui-svg-icon iui-end-icon iui-disabled' aria-hidden='true'
-        ></svg-caret-down-small>
-      </div>
-      <div class='iui-status-message'>
-        <div>Help message.</div>
-      </div>
-    </label>
-
-    <label class='iui-input-grid iui-disabled'>
-      <div class='iui-input-label'>Select label</div>
-      <div class='iui-input-with-icon'>
-        <div class='iui-select-button iui-disabled'>
+        <div class='iui-select-button iui-field' data-iui-disabled='true'>
           <span class='iui-content'
             >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -218,7 +192,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid iui-disabled'>
       <div class='iui-input-label'>Select native label</div>
       <div class='iui-input-with-icon'>
-        <select class='iui-select-button' disabled>
+        <select class='iui-select-button iui-field' disabled>
           <option value='small'>Small native</option>
           <option value='default' selected
             >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -244,7 +218,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' data-iui-status='positive'>
       <div class='iui-input-label'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button iui-placeholder'>
+        <div tabindex='0' class='iui-select-button iui-field iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
         <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -259,7 +233,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' data-iui-status='warning'>
       <div class='iui-input-label'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button iui-placeholder'>
+        <div tabindex='0' class='iui-select-button iui-field iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
         <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -274,7 +248,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' data-iui-status='negative'>
       <div class='iui-input-label'>Select label</div>
       <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button iui-placeholder'>
+        <div tabindex='0' class='iui-select-button iui-field iui-placeholder'>
           <span class='iui-content'>Placeholder…</span>
         </div>
         <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'>
@@ -289,7 +263,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' data-iui-status='positive'>
       <div class='iui-input-label'>Select native label</div>
       <div class='iui-input-with-icon'>
-        <select class='iui-select-button'>
+        <select class='iui-select-button iui-field'>
           <option value='one'>Option one</option>
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
@@ -306,7 +280,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' data-iui-status='warning'>
       <div class='iui-input-label'>Select native label</div>
       <div class='iui-input-with-icon'>
-        <select class='iui-select-button'>
+        <select class='iui-select-button iui-field'>
           <option value='one'>Option one</option>
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
@@ -323,7 +297,7 @@ import Button_ from '../components/Button.astro';
     <label class='iui-input-grid' data-iui-status='negative'>
       <div class='iui-input-label'>Select native label</div>
       <div class='iui-input-with-icon'>
-        <select class='iui-select-button'>
+        <select class='iui-select-button iui-field'>
           <option value='one'>Option one</option>
           <option value='two'>Option two</option>
           <option value='three'>Option three</option>
@@ -345,7 +319,7 @@ import Button_ from '../components/Button.astro';
   <h2>Borderless</h2>
   <section id='demo-borderless'>
     <div class='iui-input-with-icon' id='demo-borderless-singular'>
-      <select class='iui-select-button' data-iui-variant='borderless' id='test-select-2'>
+      <select class='iui-select-button iui-field' data-iui-variant='borderless' id='test-select-2'>
         <option value='one'
           >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -362,7 +336,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button' data-iui-variant='borderless' disabled>
+      <select class='iui-select-button iui-field' data-iui-variant='borderless' disabled>
         <option value='small'>Small native</option>
         <option value='default' selected
           >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -379,7 +353,11 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button' data-iui-variant='borderless' data-iui-status='positive'>
+      <select
+        class='iui-select-button iui-field'
+        data-iui-variant='borderless'
+        data-iui-status='positive'
+      >
         <option value='one'>Option one</option>
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
@@ -389,7 +367,11 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button' data-iui-variant='borderless' data-iui-status='warning'>
+      <select
+        class='iui-select-button iui-field'
+        data-iui-variant='borderless'
+        data-iui-status='warning'
+      >
         <option value='one'>Option one</option>
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
@@ -399,7 +381,11 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button' data-iui-variant='borderless' data-iui-status='negative'>
+      <select
+        class='iui-select-button iui-field'
+        data-iui-variant='borderless'
+        data-iui-status='negative'
+      >
         <option value='one'>Option one</option>
         <option value='two'>Option two</option>
         <option value='three'>Option three</option>
@@ -417,7 +403,7 @@ import Button_ from '../components/Button.astro';
 
   <section id='demo-sizes'>
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button' data-iui-size='small'>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='small'>
         <span class='iui-content'>Small</span>
       </div>
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -425,13 +411,15 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button'><span class='iui-content'>Default</span></div>
+      <div tabindex='0' class='iui-select-button iui-field'>
+        <span class='iui-content'>Default</span>
+      </div>
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
       ></svg-caret-down-small>
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button' data-iui-size='large'>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large'>
         <span class='iui-content'>Large</span>
       </div>
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -439,7 +427,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button' data-iui-size='small'>
+      <select class='iui-select-button iui-field' data-iui-size='small'>
         <option value='small' selected> Small native</option>
         <option value='default'>Default native</option>
         <option value='large'>Large native</option>
@@ -449,7 +437,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button'>
+      <select class='iui-select-button iui-field'>
         <option value='small'>Small native</option>
         <option value='default' selected>Default native</option>
         <option value='large'>Large native</option>
@@ -459,7 +447,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <select class='iui-select-button' data-iui-size='large'>
+      <select class='iui-select-button iui-field' data-iui-size='large'>
         <option value='small'>Small native</option>
         <option value='default'>Default native</option>
         <option value='large' selected> Large native</option>
@@ -480,7 +468,11 @@ import Button_ from '../components/Button.astro';
     <!-- Status styling from iui-select-button -->
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button iui-placeholder' data-iui-status='positive'>
+      <div
+        tabindex='0'
+        class='iui-select-button iui-field iui-placeholder'
+        data-iui-status='positive'
+      >
         <span class='iui-content'>Placeholder…</span>
       </div>
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -488,7 +480,11 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button iui-placeholder' data-iui-status='warning'>
+      <div
+        tabindex='0'
+        class='iui-select-button iui-field iui-placeholder'
+        data-iui-status='warning'
+      >
         <span class='iui-content'>Placeholder…</span>
       </div>
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
@@ -496,7 +492,11 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button iui-placeholder' data-iui-status='negative'>
+      <div
+        tabindex='0'
+        class='iui-select-button iui-field iui-placeholder'
+        data-iui-status='negative'
+      >
         <span class='iui-content'>Placeholder…</span>
       </div>
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'>
@@ -514,7 +514,7 @@ import Button_ from '../components/Button.astro';
 
   <section id='demo-inline-combo'>
     <div class='iui-input-with-icon' id='demo-in-context'>
-      <div tabindex='0' class='iui-select-button'>
+      <div tabindex='0' class='iui-select-button iui-field'>
         <span class='iui-content'
           >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -527,9 +527,7 @@ import Button_ from '../components/Button.astro';
       <svg-caret-down-small class='iui-svg-icon iui-end-icon' aria-hidden='true'
       ></svg-caret-down-small>
     </div>
-    <Button_>
-      <span>Add</span>
-    </Button_>
+    <Button_>Add</Button_>
   </section>
 
   <hr />
@@ -538,7 +536,7 @@ import Button_ from '../components/Button.astro';
 
   <section id='demo-multi'>
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button' data-iui-size='small'>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='small'>
         <span class='iui-content'>
           <div class='iui-select-tag-container'>
             <multi-select-tag value='Option 1' dismissible></multi-select-tag>
@@ -552,7 +550,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button'>
+      <div tabindex='0' class='iui-select-button iui-field'>
         <span class='iui-content'>
           <div class='iui-select-tag-container'>
             <multi-select-tag value='Option 1' dismissible></multi-select-tag>
@@ -566,7 +564,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button' data-iui-size='large'>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large'>
         <span class='iui-content'>
           <div class='iui-select-tag-container'>
             <multi-select-tag value='Option 1' dismissible></multi-select-tag>
@@ -580,7 +578,7 @@ import Button_ from '../components/Button.astro';
     </div>
 
     <div class='iui-input-with-icon' style='width: 480px'>
-      <div tabindex='0' class='iui-select-button' data-iui-size='large'>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large'>
         <span class='iui-content'>
           <div class='iui-select-tag-container'>
             <multi-select-tag value='Option 1' dismissible></multi-select-tag>

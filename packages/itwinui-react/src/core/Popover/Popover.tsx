@@ -24,8 +24,20 @@ import {
   safePolygon,
   useRole,
   FloatingPortal,
+  useFloatingTree,
+  useListNavigation,
 } from '@floating-ui/react';
-import type { SizeOptions, Placement } from '@floating-ui/react';
+import type {
+  SizeOptions,
+  Placement,
+  UseListNavigationProps,
+  ReferenceType,
+  UseFloatingOptions,
+  UseHoverProps,
+  UseClickProps,
+  UseFocusProps,
+  UseDismissProps,
+} from '@floating-ui/react';
 import {
   Box,
   ShadowRoot,
@@ -50,7 +62,6 @@ type PopoverOptions = {
    * Controlled flag for whether the popover is visible.
    */
   visible?: boolean;
-
   /**
    * Callback invoked every time the popover visibility changes as a result
    * of internal logic. Should be used alongside `visible` prop.
@@ -100,16 +111,39 @@ type PopoverInternalProps = {
     layoutShift?: boolean;
   };
   /**
-   * By default, the popover will only open on click.
-   * `hover` and `focus` can be manually specified as triggers.
+   * By default, only the click and dismiss interactions/triggers are enabled.
+   * Explicitly pass `false` to disable the defaults.
+   *
+   * Pass a boolean to enable/disable any of the supported interactions.
+   * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
+   *
+   * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
+   * Booleans will not be allowed in this case.
+   *
+   * @example
+   * <Popover
+   *   interactions={{
+   *     click: false,
+   *     focus: true,
+   *     hover: { move: false },
+   *     listNavigation: { … },
+   *   }}
+   *   // …
+   * >…</Popover>
    */
-  trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
+  interactions?: {
+    click?: boolean | UseClickProps;
+    dismiss?: boolean | UseDismissProps;
+    hover?: boolean | UseHoverProps<ReferenceType>;
+    focus?: boolean | UseFocusProps;
+    listNavigation?: UseListNavigationProps;
+  };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
-};
+} & Omit<UseFloatingOptions, 'middleware' | 'placement'>;
 
 // ----------------------------------------------------------------------------
 
@@ -121,9 +155,23 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     matchWidth,
-    trigger = { click: true, hover: false, focus: false },
+    interactions: interactionsProp,
     role,
+    ...rest
   } = options;
+
+  const mergedInteractions = {
+    ...{
+      click: true,
+      dismiss: true,
+      hover: false,
+      focus: false,
+      listNavigation: undefined,
+    },
+    ...interactionsProp,
+  };
+
+  const tree = useFloatingTree();
 
   const middleware = React.useMemo(
     () => ({ flip: true, shift: true, ...options.middleware }),
@@ -146,6 +194,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         open ? (...args) => autoUpdate(...args, autoUpdateOptions) : undefined,
       [autoUpdateOptions, open],
     ),
+    ...rest,
     middleware: React.useMemo(
       () =>
         [
@@ -167,18 +216,35 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   });
 
   const interactions = useInteractions([
-    useClick(floating.context, { enabled: !!trigger.click }),
+    useClick(floating.context, {
+      enabled: !!mergedInteractions.click,
+      ...(mergedInteractions.click as object),
+    }),
     useDismiss(floating.context, {
+      enabled: !!mergedInteractions.dismiss,
       outsidePress: closeOnOutsideClick,
-      escapeKey: false,
+      bubbles: tree != null, // Only bubble when inside a FloatingTree
+      ...(mergedInteractions.dismiss as object),
     }),
     useHover(floating.context, {
-      enabled: !!trigger.hover,
+      enabled: !!mergedInteractions.hover,
       delay: 100,
-      handleClose: safePolygon({ buffer: 1 }),
+      handleClose: safePolygon({
+        buffer: 1,
+        blockPointerEvents: true,
+      }),
+      move: false,
+      ...(mergedInteractions.hover as object),
     }),
-    useFocus(floating.context, { enabled: !!trigger.focus }),
+    useFocus(floating.context, {
+      enabled: !!mergedInteractions.focus,
+      ...(mergedInteractions.focus as object),
+    }),
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
+    useListNavigation(floating.context, {
+      enabled: !!mergedInteractions.listNavigation,
+      ...(mergedInteractions.listNavigation as UseListNavigationProps),
+    }),
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();

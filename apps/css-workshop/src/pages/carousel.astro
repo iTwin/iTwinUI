@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
-import Button_ from '../components/Button.astro';
+import Anchor_ from '../components/Anchor.astro';
+import IconButton_ from '../components/IconButton.astro';
 ---
 
 <Layout title='Carousel'>
@@ -78,28 +79,26 @@ import Button_ from '../components/Button.astro';
     >
       <div class='iui-carousel-navigation'>
         <div class='iui-carousel-navigation-left'>
-          <Button_
+          <IconButton_
             class='iui-carousel-navigation-button'
             variant='borderless'
             size='small'
-            type='button'
             aria-controls='myCarousel-items'
             aria-label='Previous slide'
             tabindex='-1'
           >
-            <svg-chevron-left class='iui-button-icon' aria-hidden='true'></svg-chevron-left>
-          </Button_>
-          <Button_
+            <svg-chevron-left></svg-chevron-left>
+          </IconButton_>
+          <IconButton_
             class='iui-carousel-navigation-animation-button'
             variant='borderless'
             size='small'
-            type='button'
             aria-label='Play animation'
             data-action='play'
             tabindex='-1'
           >
-            <svg-play class='iui-button-icon' aria-hidden='true'></svg-play>
-          </Button_>
+            <svg-play></svg-play>
+          </IconButton_>
         </div>
 
         <div class='iui-carousel-navigation-dots' role='tablist' aria-label='Slides' tabindex='-1'>
@@ -196,17 +195,16 @@ import Button_ from '../components/Button.astro';
         </div>
 
         <div class='iui-carousel-navigation-right'>
-          <Button_
+          <IconButton_
             class='iui-carousel-navigation-button'
             variant='borderless'
             size='small'
-            type='button'
             aria-controls='myCarousel-items'
             aria-label='Next slide'
             tabindex='-1'
           >
-            <svg-chevron-right class='iui-button-icon' aria-hidden='true'></svg-chevron-right>
-          </Button_>
+            <svg-chevron-right></svg-chevron-right>
+          </IconButton_>
         </div>
       </div>
 
@@ -219,12 +217,9 @@ import Button_ from '../components/Button.astro';
           aria-label='1 of 11'
           id='demo-slide-1'
         >
-          <a
-            href='#'
-            class='iui-anchor'
-            style='padding: 12px; background-color: var(--iui-color-background);'
-            >Focus will target the navigation before slide content.</a
-          >
+          <Anchor_ href='#' style='padding: 12px; background-color: var(--iui-color-background);'>
+            Focus will target the navigation before slide content.
+          </Anchor_>
         </div>
 
         <div
@@ -444,12 +439,12 @@ import Button_ from '../components/Button.astro';
           startAutoPlay();
           playbackButton.dataset.action = 'pause';
           playbackButton.ariaLabel = 'Pause animation';
-          playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          playbackButton.innerHTML = `<svg-pause></svg-pause>`;
         } else {
           stopAutoPlay();
           playbackButton.dataset.action = 'play';
           playbackButton.ariaLabel = 'Play animation';
-          playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
+          playbackButton.innerHTML = `<svg-play></svg-play>`;
         }
       };
       playbackButton.addEventListener('click', () => togglePlaybackState());

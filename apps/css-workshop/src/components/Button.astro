@@ -1,22 +1,61 @@
 ---
+import type { HTMLTag } from 'astro/types';
+
 type Props = {
   variant?: 'high-visibility' | 'borderless' | 'cta';
   size?: 'small' | 'large';
-  active?: boolean;
-  shift?: 'left' | 'right';
-  iuiType?: 'feedback' | 'dropdown';
+  isActive?: boolean;
+  dropdown?: boolean;
+  idea?: boolean;
+  as?: HTMLTag;
 } & astroHTML.JSX.ButtonHTMLAttributes;
 
-const { class: className, variant, size, active, shift, iuiType, ...props } = Astro.props;
+const {
+  as: Element = 'button',
+  class: className,
+  variant,
+  size,
+  isActive,
+  dropdown,
+  idea,
+  ...props
+} = Astro.props;
 ---
 
-<button
-  class:list={['iui-button', { 'iui-button-dropdown': iuiType === 'dropdown' }, className]}
-  data-iui-variant={iuiType === 'feedback' ? 'idea' : variant}
+<Element
+  class:list={[
+    'iui-button',
+    'iui-button-base',
+    'iui-field',
+    { 'iui-button-dropdown': dropdown },
+    { 'iui-button-idea': idea },
+    className,
+  ]}
+  type={Element === 'button' ? 'button' : undefined}
   data-iui-size={size}
-  data-iui-active={active ? 'true' : undefined}
-  data-iui-shift={shift}
+  data-iui-variant={idea ? 'high-visibility' : variant}
+  data-iui-active={isActive ? 'true' : undefined}
   {...props}
 >
-  <slot />
-</button>
+  {
+    Astro.slots.has('start-icon') && (
+      <span class='iui-button-icon' aria-hidden='true'>
+        <slot name='start-icon' />
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('default') && (
+      <span>
+        <slot />
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('end-icon') && (
+      <span class='iui-button-icon' aria-hidden='true'>
+        <slot name='end-icon' />
+      </span>
+    )
+  }
+</Element>
