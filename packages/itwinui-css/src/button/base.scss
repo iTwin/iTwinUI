@@ -19,7 +19,6 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   padding-block: var(--_iui-button-padding-block);
   padding-inline: var(--_iui-button-padding-inline);
   text-decoration: none;
-  touch-action: manipulation;
   @include iui-button-size;
 
   &:where(#{$disabledButtonSelectors}) {
