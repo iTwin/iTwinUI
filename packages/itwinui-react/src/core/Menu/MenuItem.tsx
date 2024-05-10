@@ -5,14 +5,14 @@
 import * as React from 'react';
 import {
   SvgCaretRightSmall,
-  // Portal,
+  Portal,
   useMergedRefs,
   useId,
   useSyncExternalStore,
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-// import { Menu } from './Menu.js';
+import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { usePopover } from '../Popover/Popover.js';
@@ -203,23 +203,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    console.log(
-      'onKeyDown',
-      event.key,
-      event.code,
-      event.keyCode,
-      event.charCode,
-      event.which,
-      event.altKey,
-      event.ctrlKey,
-      event.shiftKey,
-      event.metaKey,
-      event.getModifierState('Alt'),
-      event.getModifierState('Control'),
-      event.getModifierState('Shift'),
-      event.getModifierState('Meta'),
-    );
-
     if (event.altKey) {
       return;
     }

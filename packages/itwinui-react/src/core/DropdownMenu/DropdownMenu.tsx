@@ -10,13 +10,12 @@ import {
   useControlledState,
   mergeRefs,
   mergeEventHandlers,
-  SvgChevronLeft,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-// import { Menu } from '../Menu/Menu.js';
+import { Menu } from '../Menu/Menu.js';
 import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
@@ -43,12 +42,6 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-  /**
-   * Whether the DropdownMenu is layered.
-   *
-   * @default false
-   */
-  layered?: boolean;
 } & Pick<
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
@@ -95,7 +88,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     matchWidth = false,
     onVisibleChange,
     portal = true,
-    layered = false,
     ...rest
   } = props;
 
@@ -108,22 +100,12 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   const triggerRef = React.useRef<HTMLElement>(null);
 
   const close = React.useCallback(() => {
-    // console.log('close');
     setVisible(false);
-    setCurrentMenuHierarchyItem(undefined);
     triggerRef.current?.focus({ preventScroll: true });
   }, [setVisible]);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      // console.log(menuItems(close));
-
-      // menuItems(close).forEach((item) => {
-      //   // console.log(item.type.displayName);
-
-      //   console.log(item);
-      // });
-
       return menuItems(close);
     }
     return menuItems;
@@ -139,14 +121,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     nodeId,
     visible,
-    onVisibleChange: (open) => {
-      // Always start from the beginning of the menu hierarchy
-      if (open) {
-        setCurrentMenuHierarchyItem(undefined);
-      }
-
-      open ? setVisible(true) : close();
-    },
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
     matchWidth,
     interactions: {
@@ -160,56 +135,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   });
 
   const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
-
-  const backButtonOnClick = React.useCallback(() => {
-    if (currentMenuHierarchyItem == undefined) {
-      return undefined;
-    }
-
-    flushSync(() => {
-      setCurrentMenuHierarchyItem((prev) => {
-        if (prev == undefined) {
-          return undefined;
-        }
-        return menuHierarchy[prev].parent;
-      });
-    });
-
-    // if (menuHierarchy[currentMenuHierarchyItem].parent != null) {
-    itemRefs.current[currentMenuHierarchyItem]?.focus();
-    // }
-  }, [
-    menuHierarchy,
-    // itemRefs,
-    currentMenuHierarchyItem,
-  ]);
-
-  const menuChildOnClick = React.useCallback(
-    (index: number) => {
-      // console.log('menuChildOnClick', index);
-      if (popover.open) {
-        setCurrentMenuHierarchyItem(index);
-
-        // flush and reset state so we are ready to focus again next time
-        flushSync(() => setFocusOnMenu(false));
-        setFocusOnMenu(true);
-      }
-    },
-    [
-      popover.open,
-      setCurrentMenuHierarchyItem,
-      // menuHierarchy,
-    ],
-  );
-
-  // React.useEffect(() => {
-  //   console.log(
-  //     'filteredMenuHierarchy',
-  //     menuHierarchy.filter((item) => item.parent === currentMenuHierarchyItem),
-  //   );
-  // }, [currentMenuHierarchyItem, menuHierarchy]);
-
-  const itemRefs = React.useRef<HTMLElement[]>([]);
 
   return (
     <>
@@ -252,20 +177,3 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
-
-// ----------------------------------------------------------------------------
-
-export const DropdownMenuContext = React.createContext<{
-  layered: DropdownMenuProps['layered'];
-  menuChildOnClick: (index: number) => void;
-  backButtonOnClick: () => void;
-}>({
-  layered: false,
-  menuChildOnClick: () => {},
-  backButtonOnClick: () => {},
-});
-
-type MenuHierarchyItem = {
-  item: JSX.Element;
-  parent: number | undefined;
-};
