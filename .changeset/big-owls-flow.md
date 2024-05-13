@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Fix table empty state horizontal spacing when table is very narrow.
+Fix table empty state horizontal alignment when table is very narrow.
