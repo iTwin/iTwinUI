@@ -217,7 +217,7 @@ export const ComboBox = React.forwardRef(
     }
 
     const [value, setValue] = useControlledState<typeof valueProp>(
-      multiple ? [] : undefined,
+      valueProp,
       valueProp !== undefined ? valueProp : undefined,
 
       // we call onChangeProp manually after calling setSelected
