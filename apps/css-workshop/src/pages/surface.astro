@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Anchor_ from '../components/Anchor.astro';
 import Button_ from '../components/Button.astro';
 import Icon_ from '../components/Icon.astro';
 import IconButton_ from '../components/IconButton.astro';
@@ -82,7 +83,7 @@ import IconButton_ from '../components/IconButton.astro';
       <div class='iui-surface-header'>
         <div class='demo-flex-component'>
           <h2 class='iui-text-subheading'>Default surface</h2>
-          <IconButton_ variant='borderless'>
+          <IconButton_ variant='borderless' shift='right'>
             <svg-settings></svg-settings>
           </IconButton_>
         </div>
@@ -129,22 +130,22 @@ import IconButton_ from '../components/IconButton.astro';
       <div class='iui-surface-body' data-iui-padded='false'>
         <ul class='demo-surface-list'>
           <li>
-            <a class='iui-anchor' href='#'>Daily log</a>
+            <Anchor_ href='#'>Daily log</Anchor_>
           </li>
           <li>
-            <a class='iui-anchor' href='#'>Inspections</a>
+            <Anchor_ href='#'>Inspections</Anchor_>
           </li>
           <li>
-            <a class='iui-anchor' href='#'>Issues</a>
+            <Anchor_ href='#'>Issues</Anchor_>
           </li>
           <li>
-            <a class='iui-anchor' href='#'>Observations</a>
+            <Anchor_ href='#'>Observations</Anchor_>
           </li>
           <li>
-            <a class='iui-anchor' href='#'>RFIs</a>
+            <Anchor_ href='#'>RFIs</Anchor_>
           </li>
           <li>
-            <a class='iui-anchor' href='#'>Weather delay notices</a>
+            <Anchor_ href='#'>Weather delay notices</Anchor_>
           </li>
         </ul>
       </div>

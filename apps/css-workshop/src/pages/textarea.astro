@@ -29,7 +29,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
       <div class='iui-input-label iui-required'>Textarea label</div>
       <textarea
         placeholder='Placeholder…'
-        class='iui-input'
+        class='iui-input iui-field'
         rows='3'
         id='test-default-singular'
         required></textarea>
@@ -40,7 +40,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 
     <label class='iui-input-grid iui-with-message'>
       <div class='iui-input-label'>Textarea label</div>
-      <textarea class='iui-input' rows='3' spellcheck='false'>{lorem}</textarea>
+      <textarea class='iui-input iui-field' rows='3' spellcheck='false'>{lorem}</textarea>
       <div class='iui-status-message'>
         <div>Help message.</div>
       </div>
@@ -48,15 +48,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 
     <label class='iui-input-grid iui-with-message iui-disabled'>
       <div class='iui-input-label' data-iui-disabled='true'>Textarea label</div>
-      <textarea disabled placeholder='Placeholder…' class='iui-input' rows='3'></textarea>
-      <div class='iui-status-message'>
-        <div>Help message.</div>
-      </div>
-    </label>
-
-    <label class='iui-input-grid iui-with-message iui-disabled'>
-      <div class='iui-input-label' data-iui-disabled='true'>Textarea label</div>
-      <textarea disabled class='iui-input' rows='3'>{lorem}</textarea>
+      <textarea disabled class='iui-input iui-field' rows='3'>{lorem}</textarea>
       <div class='iui-status-message'>
         <div>Help message.</div>
       </div>
@@ -66,7 +58,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
       <div class='iui-input-label'>Textarea label</div>
       <textarea
         placeholder='Placeholder…'
-        class='iui-input'
+        class='iui-input iui-field'
         rows='3'
         id='test-status-singular'
         data-iui-status='positive'></textarea>
@@ -78,8 +70,11 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 
     <label class='iui-input-grid iui-with-message iui-warning'>
       <div class='iui-input-label'>Textarea label</div>
-      <textarea placeholder='Placeholder…' class='iui-input' rows='3' data-iui-status='warning'
-      ></textarea>
+      <textarea
+        placeholder='Placeholder…'
+        class='iui-input iui-field'
+        rows='3'
+        data-iui-status='warning'></textarea>
       <div class='iui-status-message' data-iui-status='warning'>
         <Icon_ svg='status-warning' fill='warning' />
         <div>Warning message.</div>
@@ -88,8 +83,11 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 
     <label class='iui-input-grid iui-with-message iui-negative'>
       <div class='iui-input-label'>Textarea label</div>
-      <textarea placeholder='Placeholder…' class='iui-input' rows='3' data-iui-status='negative'
-      ></textarea>
+      <textarea
+        placeholder='Placeholder…'
+        class='iui-input iui-field'
+        rows='3'
+        data-iui-status='negative'></textarea>
       <div class='iui-status-message' data-iui-status='negative'>
         <Icon_ svg='status-error' fill='negative' />
         <div>Negative message.</div>
@@ -106,7 +104,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
       data-iui-label-placement='inline'
     >
       <div class='iui-input-label iui-required'>Textarea label</div>
-      <textarea placeholder='Placeholder…' class='iui-input' rows='3' required></textarea>
+      <textarea placeholder='Placeholder…' class='iui-input iui-field' rows='3' required></textarea>
     </label>
 
     <label
@@ -114,7 +112,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
       data-iui-label-placement='inline'
     >
       <div class='iui-input-label'>Textarea label</div>
-      <textarea class='iui-input' rows='3' spellcheck='false'>{lorem}</textarea>
+      <textarea class='iui-input iui-field' rows='3' spellcheck='false'>{lorem}</textarea>
     </label>
 
     <label
@@ -122,15 +120,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
       data-iui-label-placement='inline'
     >
       <div class='iui-input-label' data-iui-disabled='true'>Textarea label</div>
-      <textarea disabled placeholder='Placeholder…' class='iui-input' rows='3'></textarea>
-    </label>
-
-    <label
-      class='iui-input-grid iui-with-message iui-inline-label iui-disabled'
-      data-iui-label-placement='inline'
-    >
-      <div class='iui-input-label' data-iui-disabled='true'>Textarea label</div>
-      <textarea disabled class='iui-input' rows='3'>{lorem}</textarea>
+      <textarea disabled class='iui-input iui-field' rows='3'>{lorem}</textarea>
     </label>
 
     <label
@@ -140,7 +130,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
     >
       <div class='iui-input-label'>Textarea label</div>
       <div class='iui-input-with-icon'>
-        <textarea class='iui-input' placeholder='Placeholder…' rows='3'></textarea>
+        <textarea class='iui-input iui-field' placeholder='Placeholder…' rows='3'></textarea>
         <Icon_
           svg='status-success'
           fill='positive'
@@ -156,7 +146,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
     >
       <div class='iui-input-label'>Textarea label</div>
       <div class='iui-input-with-icon'>
-        <textarea class='iui-input' placeholder='Placeholder…' rows='3'></textarea>
+        <textarea class='iui-input iui-field' placeholder='Placeholder…' rows='3'></textarea>
         <Icon_
           svg='status-warning'
           fill='warning'
@@ -172,7 +162,7 @@ const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
     >
       <div class='iui-input-label'>Textarea label</div>
       <div class='iui-input-with-icon'>
-        <textarea class='iui-input' placeholder='Placeholder…' rows='3'></textarea>
+        <textarea class='iui-input iui-field' placeholder='Placeholder…' rows='3'></textarea>
         <Icon_
           svg='status-error'
           fill='negative'
