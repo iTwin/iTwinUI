@@ -1040,7 +1040,7 @@ it('should update live region when selection changes', async () => {
     <ComboBox
       options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
       multiple
-      value={[0]}
+      defaultValue={[0]}
     />,
   );
 
