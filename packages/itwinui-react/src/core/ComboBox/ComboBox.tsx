@@ -287,23 +287,23 @@ export const ComboBox = React.forwardRef(
     // Update filtered options to the latest value options according to input value
     const [filteredOptions, setFilteredOptions] = React.useState(options);
 
-    // To reconfigure internal state whenever the options change
+    // To reconfigure internals whenever the options change
     React.useEffect(() => {
-      if (inputValue) {
-        setFilteredOptions(
-          filterFunction?.(options, inputValue) ??
-            options.filter((option) =>
-              option.label.toLowerCase().includes(inputValue.toLowerCase()),
-            ),
-        );
-      } else {
-        setFilteredOptions(options);
-      }
-      // TODO: Should this focus the first selected item?
-      setFocusedIndex(-1);
+      // Remove the filter so that all of the new options are shown.
+      setFilteredOptions(options);
 
-      // Reset/update the input value if not multiple
+      // If multiple=false, refocus the selected option.
+      // If no option is selected (i.e. selectedIndices === -1), reset the focus to the input.
       if (!isMultipleEnabled(selectedIndices, multiple)) {
+        setFocusedIndex(selectedIndices as number);
+      }
+      // If multiple=true, reset the focus to the input.
+      else {
+        setFocusedIndex(-1);
+      }
+
+      // Reset/update the input value if multiple=false and if the dropdown is closed (i.e. don't override user input when dropdown is open)
+      if (!isMultipleEnabled(selectedIndices, multiple) && !isOpen) {
         setInputValue(
           selectedIndices >= 0
             ? optionsRef.current[selectedIndices]?.label
