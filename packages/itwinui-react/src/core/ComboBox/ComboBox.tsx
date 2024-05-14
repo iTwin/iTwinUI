@@ -14,12 +14,13 @@ import {
   useLayoutEffect,
   AutoclearingHiddenLiveRegion,
   useId,
+  useControlledState,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../../utils/index.js';
 import {
-  ComboBoxActionContext,
-  comboBoxReducer,
+  // ComboBoxActionContext,
+  // comboBoxReducer,
   ComboBoxRefsContext,
   ComboBoxStateContext,
 } from './helpers.js';
@@ -219,43 +220,73 @@ export const ComboBox = React.forwardRef(
     }
 
     // Get indices of selected elements in options array when we have selected values.
-    const getSelectedIndexes = React.useCallback(() => {
-      if (isMultipleEnabled(valueProp, multiple)) {
-        const indexArray: number[] = [];
-        valueProp?.forEach((value) => {
-          const indexToAdd = options.findIndex(
-            (option) => option.value === value,
-          );
-          if (indexToAdd > -1) {
-            indexArray.push(indexToAdd);
-          }
-        });
-        return indexArray;
-      } else {
-        return options.findIndex((option) => option.value === valueProp);
-      }
-    }, [multiple, options, valueProp]);
+    const getSelectedIndexes = React.useCallback(
+      (value: typeof valueProp) => {
+        if (isMultipleEnabled(value, multiple)) {
+          const indexArray: number[] = [];
+          value?.forEach((value) => {
+            const indexToAdd = options.findIndex(
+              (option) => option.value === value,
+            );
+            if (indexToAdd > -1) {
+              indexArray.push(indexToAdd);
+            }
+          });
+          return indexArray;
+        } else {
+          return options.findIndex((option) => option.value === value);
+        }
+      },
+      [multiple, options],
+    );
 
-    // Reducer where all the component-wide state is stored
-    const [{ isOpen, selected, focusedIndex }, dispatch] = React.useReducer(
-      comboBoxReducer,
-      {
-        isOpen: false,
-        selected: getSelectedIndexes(),
-        focusedIndex: -1,
+    const [value, setValue] = useControlledState(
+      multiple ? [] : undefined,
+      getSelectedIndexes(valueProp),
+      (newValue) => {
+        console.log('newValue', `${newValue}`);
+        // if (isSingleOnChange(onChange, multiple)) {
+        //   onChange?.(newValue);
+        // const q : React.SetStateAction<T>;
+        // }
       },
     );
+
+    // React.useEffect(() => {
+    //   setValue(valueProp);
+    // }, [valueProp, setValue]);
+
+    // Reducer where all the component-wide state is stored
+    // const [{ isOpen, selected, focusedIndex }, dispatch] = React.useReducer(
+    //   comboBoxReducer,
+    //   {
+    //     isOpen: false,
+    //     selected: getSelectedIndexes(),
+    //     focusedIndex: -1,
+    //   },
+    // );
+
+    const selected = value;
+
+    // const selected = getSelectedIndexes(value);
+
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
 
     const onShowRef = useLatestRef(onShowProp);
     const onHideRef = useLatestRef(onHideProp);
 
     const show = React.useCallback(() => {
-      dispatch({ type: 'open' });
+      // dispatch({ type: 'open' });
+      setIsOpen(true);
+
       onShowRef.current?.();
     }, [onShowRef]);
 
     const hide = React.useCallback(() => {
-      dispatch({ type: 'close' });
+      // dispatch({ type: 'close' });
+      setIsOpen(false);
+
       onHideRef.current?.();
     }, [onHideRef]);
 
@@ -266,13 +297,16 @@ export const ComboBox = React.forwardRef(
         // Reset the filtered list (does not reset when multiple enabled)
         if (!multiple) {
           setFilteredOptions(optionsRef.current);
-          dispatch({ type: 'focus', value: undefined });
+          // dispatch({ type: 'focus', value: undefined });
+          setFocusedIndex(-1);
         }
       }
       // When the dropdown closes
       else {
         // Reset the focused index
-        dispatch({ type: 'focus', value: undefined });
+        // dispatch({ type: 'focus', value: undefined });
+        setFocusedIndex(-1);
+
         // Reset the input value if not multiple
         if (!isMultipleEnabled(selected, multiple)) {
           setInputValue(
@@ -297,7 +331,9 @@ export const ComboBox = React.forwardRef(
       } else {
         setFilteredOptions(options);
       }
-      dispatch({ type: 'focus', value: undefined });
+      // dispatch({ type: 'focus', value: undefined });
+      setFocusedIndex(-1);
+
       // Only need to call on options update
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [options]);
@@ -321,44 +357,45 @@ export const ComboBox = React.forwardRef(
             ),
         );
         if (focusedIndex != -1) {
-          dispatch({ type: 'focus', value: -1 });
+          // dispatch({ type: 'focus', value: -1 });
+          setFocusedIndex(-1);
         }
         inputProps?.onChange?.(event);
       },
       [filterFunction, focusedIndex, inputProps, optionsRef, show],
     );
 
-    // When the value prop changes, update the selected index/indices
-    React.useEffect(() => {
-      if (isMultipleEnabled(valueProp, multiple)) {
-        if (valueProp) {
-          // If user provided array of selected values
-          const indexes = valueProp.map((value) => {
-            return options.findIndex((option) => option.value === value);
-          });
-          dispatch({
-            type: 'multiselect',
-            value: indexes.filter((index) => index !== -1), // Add available options
-          });
-        } else {
-          // if user provided one value or undefined
-          dispatch({
-            type: 'multiselect',
-            value: [], // Add empty list
-          });
-        }
-      } else {
-        dispatch({
-          type: 'select',
-          value: options.findIndex((option) => option.value === valueProp),
-        });
-      }
-    }, [valueProp, options, multiple]);
+    // // When the value prop changes, update the selected index/indices
+    // React.useEffect(() => {
+    //   if (isMultipleEnabled(valueProp, multiple)) {
+    //     if (valueProp) {
+    //       // If user provided array of selected values
+    //       const indexes = valueProp.map((value) => {
+    //         return options.findIndex((option) => option.value === value);
+    //       });
+    //       dispatch({
+    //         type: 'multiselect',
+    //         value: indexes.filter((index) => index !== -1), // Add available options
+    //       });
+    //     } else {
+    //       // if user provided one value or undefined
+    //       dispatch({
+    //         type: 'multiselect',
+    //         value: [], // Add empty list
+    //       });
+    //     }
+    //   } else {
+    //     dispatch({
+    //       type: 'select',
+    //       value: options.findIndex((option) => option.value === valueProp),
+    //     });
+    //   }
+    // }, [valueProp, options, multiple]);
 
     const isMenuItemSelected = React.useCallback(
       (index: number) => {
         if (isMultipleEnabled(selected, multiple)) {
-          return !!selected.includes(index as number);
+          return !!selected?.includes(index as number);
         } else {
           return selected === index;
         }
@@ -417,7 +454,10 @@ export const ComboBox = React.forwardRef(
             ? 'removed'
             : 'added';
           const newArray = selectedChangeHandler(__originalIndex, actionType);
-          dispatch({ type: 'multiselect', value: newArray });
+
+          // dispatch({ type: 'multiselect', value: newArray });
+          setValue(newArray);
+
           onChangeHandler(__originalIndex, actionType, newArray);
 
           // update live region
@@ -428,12 +468,15 @@ export const ComboBox = React.forwardRef(
               .join(', '),
           );
         } else {
-          dispatch({ type: 'select', value: __originalIndex });
+          // dispatch({ type: 'select', value: __originalIndex });
+          setValue(__originalIndex);
+
           hide();
           onChangeHandler(__originalIndex);
         }
       },
       [
+        setValue,
         selectedChangeHandler,
         isMenuItemSelected,
         multiple,
@@ -533,62 +576,63 @@ export const ComboBox = React.forwardRef(
       <ComboBoxRefsContext.Provider
         value={{ inputRef, menuRef, optionsExtraInfoRef }}
       >
-        <ComboBoxActionContext.Provider value={dispatch}>
-          <ComboBoxStateContext.Provider
-            value={{
-              id,
-              isOpen,
-              focusedIndex,
-              onClickHandler,
-              enableVirtualization,
-              filteredOptions,
-              getMenuItem,
-              multiple,
-              popover,
-              show,
-              hide,
-            }}
+        {/* <ComboBoxActionContext.Provider value={dispatch}> */}
+        <ComboBoxStateContext.Provider
+          value={{
+            id,
+            isOpen,
+            focusedIndex,
+            setFocusedIndex,
+            onClickHandler,
+            enableVirtualization,
+            filteredOptions,
+            getMenuItem,
+            multiple,
+            popover,
+            show,
+            hide,
+          }}
+        >
+          <ComboBoxInputContainer
+            ref={forwardedRef}
+            disabled={inputProps?.disabled}
+            {...rest}
           >
-            <ComboBoxInputContainer
-              ref={forwardedRef}
-              disabled={inputProps?.disabled}
-              {...rest}
-            >
-              <>
-                <ComboBoxInput
-                  value={inputValue}
-                  disabled={inputProps?.disabled}
-                  {...inputProps}
-                  onChange={handleOnInput}
-                  selectTags={
-                    isMultipleEnabled(selected, multiple)
-                      ? selected.map((index) => {
-                          const item = optionsRef.current[index];
-                          return (
-                            <SelectTag key={item.label} label={item.label} />
-                          );
-                        })
-                      : undefined
-                  }
-                />
-              </>
-              <ComboBoxEndIcon
-                {...endIconProps}
+            <>
+              <ComboBoxInput
+                value={inputValue}
                 disabled={inputProps?.disabled}
-                isOpen={isOpen}
+                {...inputProps}
+                onChange={handleOnInput}
+                selectTags={
+                  isMultipleEnabled(selected, multiple)
+                    ? selected?.map((index) => {
+                        const item = optionsRef.current[index];
+                        return (
+                          <SelectTag key={item.label} label={item.label} />
+                        );
+                      })
+                    : undefined
+                }
               />
+            </>
+            <ComboBoxEndIcon
+              {...endIconProps}
+              disabled={inputProps?.disabled}
+              isOpen={isOpen}
+            />
 
-              {multiple ? (
-                <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-              ) : null}
-            </ComboBoxInputContainer>
-            <ComboBoxMenu as='div' {...dropdownMenuProps}>
-              {filteredOptions.length > 0 && !enableVirtualization
-                ? filteredOptions.map(getMenuItem)
-                : emptyContent}
-            </ComboBoxMenu>
-          </ComboBoxStateContext.Provider>
-        </ComboBoxActionContext.Provider>
+            {multiple ? (
+              <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+            ) : null}
+          </ComboBoxInputContainer>
+          <ComboBoxMenu as='div' {...dropdownMenuProps}>
+            {filteredOptions.length > 0 && !enableVirtualization
+              ? filteredOptions.map(getMenuItem)
+              : emptyContent}
+          </ComboBoxMenu>
+        </ComboBoxStateContext.Provider>
+        {/* </ComboBoxActionContext.Provider> */}
       </ComboBoxRefsContext.Provider>
     );
   },
