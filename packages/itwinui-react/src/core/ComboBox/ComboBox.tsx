@@ -214,28 +214,6 @@ export const ComboBox = React.forwardRef(
       });
     }
 
-    // Get indices of selected elements in options array when we have selected values.
-    const getSelectedIndexes = React.useCallback(
-      (value: typeof valueProp) => {
-        if (isMultipleEnabled(value, multiple)) {
-          // TODO: Maybe this code be simplified using .map()?
-          const indexArray: number[] = [];
-          value?.forEach((value) => {
-            const indexToAdd = options.findIndex(
-              (option) => option.value === value,
-            );
-            if (indexToAdd > -1) {
-              indexArray.push(indexToAdd);
-            }
-          });
-          return indexArray;
-        } else {
-          return options.findIndex((option) => option.value === value);
-        }
-      },
-      [multiple, options],
-    );
-
     const [value, setValue] = useControlledState<typeof valueProp>(
       multiple ? [] : undefined,
       valueProp !== undefined ? valueProp : undefined,
@@ -244,10 +222,26 @@ export const ComboBox = React.forwardRef(
       () => {},
     );
 
-    const selectedIndices = React.useMemo(
-      () => getSelectedIndexes(value),
-      [getSelectedIndexes, value],
-    );
+    /**
+     * - When multiple is enabled, it is an array of indices.
+     * - When multiple is disabled, it is a single index; -1 if no item is selected.
+     */
+    const selectedIndices = React.useMemo(() => {
+      if (isMultipleEnabled(value, multiple)) {
+        const indexArray: number[] = [];
+        value?.forEach((value) => {
+          const indexToAdd = options.findIndex(
+            (option) => option.value === value,
+          );
+          if (indexToAdd > -1) {
+            indexArray.push(indexToAdd);
+          }
+        });
+        return indexArray;
+      } else {
+        return options.findIndex((option) => option.value === value);
+      }
+    }, [multiple, options, value]);
 
     const [isOpen, setIsOpen] = React.useState(false);
     const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
