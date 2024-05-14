@@ -77,6 +77,11 @@ export type ComboboxMultipleTypeProps<T> =
 
 export type ComboBoxProps<T> = {
   /**
+   * Default value of `value` that is set on initial render. This is useful when you don't want to
+   * maintain your own state but still want to control the initial `value`.
+   */
+  defaultValue?: T | T[] | null;
+  /**
    * Array of options that populate the dropdown list.
    */
   options: SelectOption<T>[];
@@ -95,7 +100,7 @@ export type ComboBoxProps<T> = {
   /**
    * Native input element props.
    */
-  inputProps?: React.ComponentProps<typeof Input>;
+  inputProps?: Omit<React.ComponentProps<typeof Input>, 'defaultValue'>;
   /**
    * Props to customize dropdown menu behavior.
    */
@@ -185,6 +190,7 @@ export const ComboBox = React.forwardRef(
       onShow: onShowProp,
       onHide: onHideProp,
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
+      defaultValue,
       ...rest
     } = props;
 
@@ -217,7 +223,7 @@ export const ComboBox = React.forwardRef(
     }
 
     const [value, setValue] = useControlledState<typeof valueProp>(
-      valueProp,
+      valueProp !== undefined ? valueProp : defaultValue,
       valueProp !== undefined ? valueProp : undefined,
 
       // we call onChangeProp manually after calling setSelected
