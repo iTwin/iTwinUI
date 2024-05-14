@@ -418,7 +418,14 @@ export const ComboBox = React.forwardRef(
           onChangeHandler(__originalIndex, actionType, newArray);
 
           // update live region
-          setLiveRegionSelection(newArray.join(', '));
+          setLiveRegionSelection(
+            newArray
+              .map(
+                (item) =>
+                  optionsRef.current.find((o) => o.value === item)?.label,
+              )
+              .join(', '),
+          );
         } else {
           setValue(optionsRef.current[__originalIndex]?.value);
           hide();
