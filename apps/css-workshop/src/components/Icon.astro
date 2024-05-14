@@ -2,20 +2,11 @@
 type Props = {
   svg: string;
   size?: 's' | 'm' | 'l' | 'auto';
-  wrapperProps?: astroHTML.JSX.HTMLAttributes;
   padded?: boolean;
   fill?: string;
 } & astroHTML.JSX.HTMLAttributes;
 
-const {
-  svg,
-  size = 'm',
-  class: className,
-  wrapperProps,
-  padded,
-  fill = 'default',
-  ...rest
-} = Astro.props;
+const { svg, size = 'm', class: className, padded, fill = 'default', ...rest } = Astro.props;
 
 const iconProps = {
   ['class:list']: ['iui-svg-icon', className],
@@ -25,16 +16,7 @@ const iconProps = {
   ...rest,
 };
 
-const basic = !Astro.slots.has('default');
 const Element = `svg-${svg}`;
 ---
 
-{basic && <Element {...iconProps} aria-hidden='true' />}
-{
-  !basic && (
-    <div class:list={['iui-text-spacing', wrapperProps?.class]} {...wrapperProps}>
-      <Element {...iconProps} />
-      <slot />
-    </div>
-  )
-}
+<Element {...iconProps} aria-hidden='true' />
