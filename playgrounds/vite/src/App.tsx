@@ -1,9 +1,17 @@
-import { Button } from '@itwin/itwinui-react';
+import { ComboBox } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <Button>Hello world</Button>
+      <ComboBox
+        options={[
+          { label: 'Afghanistan', value: 'AF' },
+          { label: 'Åland', sublabel: 'AX', value: 'AX' },
+          { label: 'Albania', value: 'AL' },
+          { label: 'Algeria', value: 'DZ' },
+        ]}
+        enableVirtualization={true}
+      />
     </>
   );
 };

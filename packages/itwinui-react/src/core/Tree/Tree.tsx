@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   getFocusableElements,
-  useVirtualization,
   mergeRefs,
   Box,
   polymorphic,
@@ -13,6 +12,7 @@ import {
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
   /**
@@ -380,11 +380,29 @@ const VirtualizedTree = React.forwardRef(
     }: VirtualizedTreeProps<T>,
     ref: React.ForwardedRef<HTMLUListElement>,
   ) => {
-    const { outerProps, innerProps, visibleChildren } = useVirtualization({
-      itemsLength: flatNodesList.length,
-      itemRenderer: itemRenderer,
-      scrollToIndex,
+    const parentRef = React.useRef(null);
+    const virtualizer = useVirtualizer({
+      count: flatNodesList.length,
+      getScrollElement: () => parentRef.current,
+      estimateSize: () => 40,
     });
+
+    const outerProps = {
+      style: {
+        minBlockSize: virtualizer.getTotalSize(),
+        minInlineSize: '100%',
+        ...style,
+      },
+      ...rest,
+    } as React.HTMLAttributes<HTMLElement>;
+
+    const innerProps = {
+      style: { willChange: 'transform' },
+    } as const;
+
+    if (scrollToIndex) {
+      virtualizer.scrollToIndex(scrollToIndex);
+    }
 
     return (
       <Box
@@ -394,12 +412,10 @@ const VirtualizedTree = React.forwardRef(
           style: { ...style, ...outerProps.style },
         }}
       >
-        <TreeElement
-          {...innerProps}
-          {...rest}
-          ref={mergeRefs(ref, innerProps.ref)}
-        >
-          {visibleChildren}
+        <TreeElement {...innerProps} {...rest} ref={mergeRefs(ref, parentRef)}>
+          {virtualizer
+            .getVirtualItems()
+            .map((virtualItem, index) => itemRenderer(index))}
         </TreeElement>
       </Box>
     );

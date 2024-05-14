@@ -8,13 +8,13 @@ import { Menu } from '../Menu/Menu.js';
 import {
   useSafeContext,
   useMergedRefs,
-  useVirtualization,
   Portal,
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 import { List } from '../List/List.js';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
@@ -49,18 +49,51 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     );
   }, [focusedIndex, menuRef]);
 
-  const { outerProps, innerProps, visibleChildren } = useVirtualization({
+  const parentRef = React.useRef(null);
+
+  const virtualizer = useVirtualizer({
     // 'Fool' VirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
-    itemsLength: filteredOptions.length || 1,
-    itemRenderer: virtualItemRenderer,
-    scrollToIndex: focusedVisibleIndex,
+    count: filteredOptions.length || 1,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 48,
   });
 
+  if (focusedVisibleIndex) {
+    virtualizer.scrollToIndex(focusedVisibleIndex);
+  }
+
+  const outerProps = {
+    style: {
+      minBlockSize: virtualizer.getTotalSize(),
+      minInlineSize: '100%',
+    },
+  } as React.HTMLAttributes<HTMLElement>;
+
+  const innerProps = {
+    style: { willChange: 'transform' },
+  } as const;
+
   return (
-    <Box as='div' {...outerProps} {...rest}>
-      <div {...innerProps} ref={innerProps.ref}>
-        {visibleChildren}
+    <Box as='div' {...outerProps} {...rest} ref={parentRef}>
+      <div {...innerProps}>
+        {virtualizer.getVirtualItems().map((virtualItem) => (
+          <div
+            key={virtualItem.key}
+            data-index={virtualItem.index}
+            ref={virtualizer.measureElement}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: `${virtualItem.size}px`,
+              transform: `translateY(${virtualItem.start}px)`,
+            }}
+          >
+            {virtualItemRenderer(virtualItem.index)}
+          </div>
+        ))}
       </div>
     </Box>
   );
