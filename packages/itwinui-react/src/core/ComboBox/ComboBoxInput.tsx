@@ -121,7 +121,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             return;
           }
 
-          // If virtualization is enabled, dont let round scrolling
+          // If virtualization is enabled, don't let round scrolling
           if (
             enableVirtualization &&
             !menuRef.current?.querySelector(
