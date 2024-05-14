@@ -60,8 +60,10 @@ export type ComboboxMultipleTypeProps<T> =
       /**
        * Controlled value of ComboBox.
        * If `multiple` is enabled, it is an array of values.
+       *
+       * Pass `null` to reset the value.
        */
-      value?: T;
+      value?: T | null;
       /**
        * Callback fired when selected value changes.
        */
@@ -69,7 +71,7 @@ export type ComboboxMultipleTypeProps<T> =
     }
   | {
       multiple: true;
-      value?: T[];
+      value?: T[] | null;
       onChange?: (value: T[], event: MultipleOnChangeProps<T>) => void;
     };
 
