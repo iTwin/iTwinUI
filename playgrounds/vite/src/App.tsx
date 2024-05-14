@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <>
-      <ComboBox
+      {/* <ComboBox
         options={options}
         value={value}
         onChange={(v) => {
@@ -47,6 +47,10 @@ export default function App() {
         options={options}
         multiple
         onChange={(value, event) => console.log(value, event)}
+      /> */}
+      <ComboBox
+        options={options}
+        onChange={(value) => console.log('onChange', value)}
       />
       {/* <Select options={options} value='C' /> */}
     </>

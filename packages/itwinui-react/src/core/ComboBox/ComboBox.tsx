@@ -242,7 +242,7 @@ export const ComboBox = React.forwardRef(
 
     const [value, setValue] = useControlledState(
       multiple ? [] : undefined,
-      getSelectedIndexes(valueProp),
+      valueProp !== undefined ? getSelectedIndexes(valueProp) : undefined,
       (newValue) => {
         console.log('newValue', `${newValue}`);
         // if (isSingleOnChange(onChange, multiple)) {
@@ -250,6 +250,7 @@ export const ComboBox = React.forwardRef(
         // const q : React.SetStateAction<T>;
         // }
       },
+      // 'ComboBox',
     );
 
     // React.useEffect(() => {
@@ -469,6 +470,7 @@ export const ComboBox = React.forwardRef(
           );
         } else {
           // dispatch({ type: 'select', value: __originalIndex });
+          // console.log('setting value to', __originalIndex);
           setValue(__originalIndex);
 
           hide();
