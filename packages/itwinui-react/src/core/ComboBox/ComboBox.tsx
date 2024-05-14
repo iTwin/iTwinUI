@@ -448,13 +448,6 @@ export const ComboBox = React.forwardRef(
 
         const startIcon = startIconProp ?? icon;
 
-        console.log(
-          'selectedIndices',
-          selectedIndices,
-          __originalIndex,
-          selectedIndices === __originalIndex,
-        );
-
         const customItem = itemRenderer
           ? itemRenderer(option, {
               isFocused: focusedIndex === __originalIndex,

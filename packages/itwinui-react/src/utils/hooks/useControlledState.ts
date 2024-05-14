@@ -19,22 +19,12 @@ export const useControlledState = <T>(
   initialValue: T,
   controlledState: T,
   setControlledState?: React.Dispatch<React.SetStateAction<T>>,
-  // outputPrefix?: string,
 ) => {
   const [uncontrolledState, setUncontrolledState] =
     React.useState<T>(initialValue);
 
   const state =
     controlledState !== undefined ? controlledState : uncontrolledState;
-
-  // if (outputPrefix === 'ComboBox') {
-  //   console.log(
-  //     `useControlledState${outputPrefix}`,
-  //     state,
-  //     controlledState,
-  //     uncontrolledState,
-  //   );
-  // }
 
   const setState = React.useCallback(
     (value) => {
