@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Anchor_ from '../components/Anchor.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Icon'>
@@ -35,92 +36,67 @@ import Anchor_ from '../components/Anchor.astro';
 
   <h2>Non-actionable icons</h2>
   <section id='demo-icons'>
-    <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='s' aria-hidden='true'
-    ></svg-imodel-hollow>
-    <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='m' aria-hidden='true'
-    ></svg-imodel-hollow>
-    <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='l' aria-hidden='true'
-    ></svg-imodel-hollow>
+    <Icon_ svg='imodel-hollow' size='s' />
+    <Icon_ svg='imodel-hollow' size='m' />
+    <Icon_ svg='imodel-hollow' size='l' />
   </section>
 
   <h2>Actionable icons</h2>
   <section>
     <p class='iui-text-small iui-text-muted'>
-      Use&nbsp;
+      Use
       <Anchor_ href='button.html#demo-borderless'>borderless buttons</Anchor_>
-       &nbsp;if an icon is actionable!
+       if an icon is actionable!
     </p>
   </section>
 
   <h2>Icons with padding</h2>
   <section id='demo-padded'>
-    <svg-imodel-hollow
-      class='iui-svg-icon'
-      data-iui-icon-size='s'
-      data-iui-padded='true'
-      aria-hidden='true'></svg-imodel-hollow>
-    <svg-imodel-hollow
-      class='iui-svg-icon'
-      data-iui-icon-size='m'
-      data-iui-padded='true'
-      aria-hidden='true'></svg-imodel-hollow>
-    <svg-imodel-hollow
-      class='iui-svg-icon'
-      data-iui-icon-size='l'
-      data-iui-padded='true'
-      aria-hidden='true'></svg-imodel-hollow>
+    <Icon_ svg='imodel-hollow' size='s' padded />
+    <Icon_ svg='imodel-hollow' size='m' padded />
+    <Icon_ svg='imodel-hollow' size='l' padded />
   </section>
 
   <h2>Icons with status</h2>
   <section id='demo-status'>
-    <svg-info-circular class='iui-svg-icon' data-iui-icon-color='informational' aria-hidden='true'
-    ></svg-info-circular>
+    <Icon_ svg='info-circular' fill='informational' />
 
-    <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-    ></svg-status-success>
+    <Icon_ svg='status-success ' fill='positive' />
 
-    <svg-status-warning class='iui-svg-icon' data-iui-icon-color='warning' aria-hidden='true'
-    ></svg-status-warning>
+    <Icon_ svg='status-warning' fill='warning' />
 
-    <svg-status-error class='iui-svg-icon' data-iui-icon-color='negative' aria-hidden='true'
-    ></svg-status-error>
+    <Icon_ svg='status-error' fill='negative' />
   </section>
 
   <h2>Auto scale with text</h2>
   <section id='demo-typography'>
     <div class='iui-text-headline iui-text-spacing'>
-      <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='auto' aria-hidden='true'
-      ></svg-imodel-hollow>
+      <Icon_ svg='imodel-hollow' size='auto' />
        Headline
     </div>
 
     <div class='iui-text-title iui-text-spacing'>
-      <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='auto' aria-hidden='true'
-      ></svg-imodel-hollow>
+      <Icon_ svg='imodel-hollow' size='auto' />
        Title
     </div>
 
     <div class='iui-text-subheading iui-text-spacing'>
-      <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='auto' aria-hidden='true'
-      ></svg-imodel-hollow>
+      <Icon_ svg='imodel-hollow' size='auto' />
        Subheading
     </div>
 
     <div class='iui-text-leading iui-text-spacing'>
-      <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='auto' aria-hidden='true'
-      ></svg-imodel-hollow>
+      <Icon_ svg='imodel-hollow' size='auto' />
        Leading
     </div>
 
     <div class='iui-text-block iui-text-spacing'>
-      <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='auto' aria-hidden='true'
-      ></svg-imodel-hollow>
+      <Icon_ svg='imodel-hollow' size='auto' />
        Body
     </div>
 
     <div class='iui-text-small iui-text-spacing'>
-      <svg-imodel-hollow class='iui-svg-icon' data-iui-icon-size='auto' aria-hidden='true'
-      ></svg-imodel-hollow>
+      <Icon_ svg='imodel-hollow' size='auto' />
        Small
     </div>
   </section>
