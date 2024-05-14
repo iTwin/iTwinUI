@@ -299,7 +299,7 @@ export const ComboBox = React.forwardRef(
         if (!multiple) {
           setFilteredOptions(optionsRef.current);
           // dispatch({ type: 'focus', value: undefined });
-          setFocusedIndex(-1);
+          setFocusedIndex((selected as number | undefined) ?? -1);
         }
       }
       // When the dropdown closes
@@ -359,7 +359,7 @@ export const ComboBox = React.forwardRef(
         );
         if (focusedIndex != -1) {
           // dispatch({ type: 'focus', value: -1 });
-          // setFocusedIndex(-1);
+          setFocusedIndex(-1);
           // TODO: Should this focus the selected index? Or this is already handled elsewhere?
         }
         inputProps?.onChange?.(event);
