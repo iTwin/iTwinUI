@@ -9,7 +9,6 @@ type Props = {
 const { svg, size = 'm', class: className, padded, fill = 'default', ...rest } = Astro.props;
 
 const iconProps = {
-  ['class:list']: ['iui-svg-icon', className],
   ['data-iui-icon-size']: size,
   ['data-iui-padded']: `${padded}`,
   ['data-iui-icon-color']: fill,
@@ -19,4 +18,4 @@ const iconProps = {
 const Element = `svg-${svg}`;
 ---
 
-<Element {...iconProps} aria-hidden='true' />
+<Element class:list={['iui-svg-icon', className]} {...iconProps} aria-hidden='true' />
