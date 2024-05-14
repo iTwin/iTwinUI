@@ -13,11 +13,7 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
-import {
-  ComboBoxStateContext,
-  // ComboBoxActionContext,
-  ComboBoxRefsContext,
-} from './helpers.js';
+import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
   typeof Input
@@ -38,7 +34,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     show,
     hide,
   } = useSafeContext(ComboBoxStateContext);
-  // const dispatch = useSafeContext(ComboBoxActionContext);
   const { inputRef, menuRef, optionsExtraInfoRef } =
     useSafeContext(ComboBoxRefsContext);
   const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
@@ -73,12 +68,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           if (focusedIndexRef.current === -1) {
             const currentElement =
               menuRef.current?.querySelector('[data-iui-index]');
-            // return dispatch({
-            //   type: 'focus',
-            //   value: Number(
-            //     currentElement?.getAttribute('data-iui-index') ?? 0,
-            //   ),
-            // });
             return setFocusedIndex(
               Number(currentElement?.getAttribute('data-iui-index') ?? 0),
             );
@@ -105,7 +94,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
             if (nextElement) {
-              // return dispatch({ type: 'focus', value: nextIndex });
               return setFocusedIndex(nextIndex);
             }
           } while (nextIndex !== focusedIndexRef.current);
@@ -132,12 +120,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           }
 
           if (focusedIndexRef.current === -1) {
-            // return dispatch({
-            //   type: 'focus',
-            //   value:
-            //     Object.values(optionsExtraInfoRef.current)?.[length - 1]
-            //       .__originalIndex ?? -1,
-            // });
             return setFocusedIndex(
               Object.values(optionsExtraInfoRef.current)?.[length - 1]
                 .__originalIndex ?? -1,
@@ -155,7 +137,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
             if (prevElement) {
-              // return dispatch({ type: 'focus', value: prevIndex });
               return setFocusedIndex(prevIndex);
             }
           } while (prevIndex !== focusedIndexRef.current);
@@ -183,7 +164,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       }
     },
     [
-      // dispatch,
       setFocusedIndex,
       enableVirtualization,
       focusedIndexRef,
