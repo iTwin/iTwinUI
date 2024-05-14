@@ -448,10 +448,19 @@ export const ComboBox = React.forwardRef(
 
         const startIcon = startIconProp ?? icon;
 
+        console.log(
+          'selectedIndices',
+          selectedIndices,
+          __originalIndex,
+          selectedIndices === __originalIndex,
+        );
+
         const customItem = itemRenderer
           ? itemRenderer(option, {
               isFocused: focusedIndex === __originalIndex,
-              isSelected: selectedIndices === __originalIndex, // TODO: Does this also work for multiple?
+              isSelected: Array.isArray(selectedIndices)
+                ? selectedIndices.includes(__originalIndex)
+                : selectedIndices === __originalIndex,
               index: __originalIndex,
               id: optionId,
             })
