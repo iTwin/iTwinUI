@@ -249,23 +249,6 @@ export const ComboBox = React.forwardRef(
       [getSelectedIndexes, value],
     );
 
-    console.log(
-      'value',
-      value,
-      options,
-      selectedIndices,
-      optionsExtraInfoRef.current,
-    );
-
-    // const [selected, setSelected] = React.useState<
-    //   number | number[] | undefined
-    // >(getSelectedIndexes(value));
-    // React.useEffect(() => {
-    //   setSelected(getSelectedIndexes(value));
-    // }, [value]);
-
-    // const selected = getSelectedIndexes(value);
-
     const [isOpen, setIsOpen] = React.useState(false);
     const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
 
@@ -274,13 +257,11 @@ export const ComboBox = React.forwardRef(
 
     const show = React.useCallback(() => {
       setIsOpen(true);
-
       onShowRef.current?.();
     }, [onShowRef]);
 
     const hide = React.useCallback(() => {
       setIsOpen(false);
-
       onHideRef.current?.();
     }, [onHideRef]);
 
@@ -298,8 +279,7 @@ export const ComboBox = React.forwardRef(
       else {
         // Reset the focused index
         setFocusedIndex(-1);
-
-        // Reset the input value if not multiple
+        // Reset/update the input value if not multiple
         if (!isMultipleEnabled(selectedIndices, multiple)) {
           setInputValue(
             selectedIndices >= 0
@@ -312,6 +292,8 @@ export const ComboBox = React.forwardRef(
 
     // Update filtered options to the latest value options according to input value
     const [filteredOptions, setFilteredOptions] = React.useState(options);
+
+    // To reconfigure internal state whenever the options change
     React.useEffect(() => {
       if (inputValue) {
         setFilteredOptions(
@@ -326,6 +308,7 @@ export const ComboBox = React.forwardRef(
       // TODO: Should this focus the first selected item?
       setFocusedIndex(-1);
 
+      // Reset/update the input value if not multiple
       if (!isMultipleEnabled(selectedIndices, multiple)) {
         setInputValue(
           selectedIndices >= 0
@@ -380,17 +363,9 @@ export const ComboBox = React.forwardRef(
      */
     const selectedChangeHandler = React.useCallback(
       (__originalIndex: number, action: ActionType, value: T[] | undefined) => {
-        // if (!isMultipleEnabled(value, multiple)) {
-        //   return value;
-        // }
-
         if (action === 'added') {
-          // return [...(selectedIndices as number[]), __originalIndex];
           return [...(value ?? []), optionsRef.current[__originalIndex]?.value];
         } else {
-          // return (selectedIndices as number[]).filter(
-          //   (index) => index !== __originalIndex,
-          // );
           return (value ?? []).filter(
             (item) => item !== optionsRef.current[__originalIndex]?.value,
           );
@@ -413,14 +388,10 @@ export const ComboBox = React.forwardRef(
         } else {
           actionType &&
             newArray &&
-            onChangeProp.current?.(
-              // newArray?.map((item) => optionsRef.current[item]?.value),
-              newArray,
-              {
-                value: optionsRef.current[__originalIndex]?.value,
-                type: actionType,
-              },
-            );
+            onChangeProp.current?.(newArray, {
+              value: optionsRef.current[__originalIndex]?.value,
+              type: actionType,
+            });
         }
       },
       [multiple, onChangeProp, optionsRef],
@@ -447,27 +418,19 @@ export const ComboBox = React.forwardRef(
           onChangeHandler(__originalIndex, actionType, newArray);
 
           // update live region
-          setLiveRegionSelection(
-            newArray
-              // .map((item) => optionsRef.current[item]?.label)
-              // .filter(Boolean)
-              .join(', '),
-          );
+          setLiveRegionSelection(newArray.join(', '));
         } else {
-          // setSelected(__originalIndex);
           setValue(optionsRef.current[__originalIndex]?.value);
           hide();
           onChangeHandler(__originalIndex);
         }
       },
       [
-        // setSelected,
         setValue,
         selectedChangeHandler,
         isMenuItemSelected,
         multiple,
         onChangeHandler,
-        // selected,
         value,
         optionsRef,
         hide,
@@ -597,10 +560,6 @@ export const ComboBox = React.forwardRef(
                   isMultipleEnabled(value, multiple)
                     ? (value
                         ?.map((optionValue) => {
-                          // const index = options.findIndex(
-                          //   (option) => option.value === optionValue,
-                          // );
-                          // const item = optionsRef.current[index];
                           const option = optionsRef.current.find(
                             (o) => o.value === optionValue,
                           );
