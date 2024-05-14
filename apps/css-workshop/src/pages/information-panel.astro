@@ -3,6 +3,7 @@ import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
 import Checkbox_ from '../components/Checkbox.astro';
 import IconButton_ from '../components/IconButton.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Information panel'>
@@ -838,9 +839,7 @@ import IconButton_ from '../components/IconButton.astro';
                 value='Dubstep'
                 aria-expanded='false'
               />
-              <span class='iui-svg-icon iui-end-icon'>
-                <svg-caret-down-small aria-hidden='true'></svg-caret-down-small>
-              </span>
+              <Icon_ svg='caret-down-small' class='iui-end-icon' />
             </div>
 
             <label class='iui-input-label' for='year-recorded-2'> Year recorded</label>

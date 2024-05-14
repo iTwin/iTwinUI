@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Radio'>
@@ -104,9 +105,7 @@ import Layout from './_layout.astro';
       </div>
 
       <div class='iui-status-message' data-iui-status='positive'>
-        <div class='iui-svg-icon'>
-          <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
-        </div>
+        <Icon_ svg='status-success' />
         <div>Positive message.</div>
       </div>
     </div>
@@ -133,9 +132,7 @@ import Layout from './_layout.astro';
       </div>
 
       <div class='iui-status-message' data-iui-status='warning'>
-        <div class='iui-svg-icon'>
-          <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
-        </div>
+        <Icon_ svg='status-warning' />
         <div>Warning message.</div>
       </div>
     </div>
@@ -162,9 +159,7 @@ import Layout from './_layout.astro';
       </div>
 
       <div class='iui-status-message' data-iui-status='negative'>
-        <div class='iui-svg-icon'>
-          <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
-        </div>
+        <Icon_ svg='status-error' />
         <div>Negative message.</div>
       </div>
     </div>
@@ -282,7 +277,7 @@ import Layout from './_layout.astro';
         </label>
       </div>
       <div class='iui-status-message' data-iui-status='positive'>
-        <svg-status-success class='iui-svg-icon' aria-hidden='true'></svg-status-success>
+        <Icon_ svg='status-success' />
       </div>
     </div>
 
@@ -310,7 +305,7 @@ import Layout from './_layout.astro';
         </label>
       </div>
       <div class='iui-status-message' data-iui-status='warning'>
-        <svg-status-warning class='iui-svg-icon' aria-hidden='true'></svg-status-warning>
+        <Icon_ svg='status-warning' />
       </div>
     </div>
 
@@ -338,7 +333,7 @@ import Layout from './_layout.astro';
         </label>
       </div>
       <div class='iui-status-message' data-iui-status='negative'>
-        <svg-status-error class='iui-svg-icon' aria-hidden='true'></svg-status-error>
+        <Icon_ svg='status-error' />
       </div>
     </div>
   </section>
