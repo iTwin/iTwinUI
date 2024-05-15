@@ -26,6 +26,11 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background</span></label>
             <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background backdrop</span></label>
           </fieldset>
+
+          <fieldset>
+            <legend>Accent hue</legend>
+            <input type="range" min='0' max='360' value='256' style='width: 100%;' oninput="document.documentElement.style.setProperty('--accent-hue', this.value);">
+          </fieldset>
         </article>
       </div>
     `;

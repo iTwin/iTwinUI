@@ -6,6 +6,7 @@ import Layout from './_layout.astro';
   <script>
     import '@itwin/itwinui-icons-elements/add-circular';
     import '@itwin/itwinui-icons-elements/bentley-systems';
+    import '@itwin/itwinui-icons-elements/info';
     import '@itwin/itwinui-icons-elements/info-circular';
     import '@itwin/itwinui-icons-elements/status-success';
     import '@itwin/itwinui-icons-elements/status-warning';
@@ -118,6 +119,15 @@ import Layout from './_layout.astro';
       color: var(--iui-color-text-placeholder);
       font-weight: var(--iui-font-weight-light);
     }
+    .demo-text-accent {
+      color: var(--iui-color-text-accent);
+    }
+    .demo-text-accent:hover {
+      color: var(--iui-color-text-accent-hover);
+    }
+    .demo-text-accent::selection {
+      background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
+    }
     .demo-text-informational {
       color: var(--iui-color-text-informational);
     }
@@ -157,6 +167,7 @@ import Layout from './_layout.astro';
     .demo-text-disabled {
       color: var(--iui-color-text-disabled);
     }
+    .demo-text-accent,
     .demo-text-informational,
     .demo-text-positive,
     .demo-text-warning,
@@ -169,6 +180,9 @@ import Layout from './_layout.astro';
     }
     .demo-icon-muted {
       color: var(--iui-color-icon-muted);
+    }
+    .demo-icon-accent {
+      color: var(--iui-color-icon-accent);
     }
     .demo-icon-informational {
       color: var(--iui-color-icon-informational);
@@ -207,6 +221,7 @@ import Layout from './_layout.astro';
           <li class='iui-text-block'>Normal text</li>
           <li class='iui-text-block iui-text-muted'>Muted text</li>
           <li class='demo-text-placeholder'>Placeholder text</li>
+          <li class='demo-text-accent'>Accent text</li>
           <li class='demo-text-informational'>Informational text</li>
           <li class='demo-text-positive'>Positive text</li>
           <li class='demo-text-warning'>Warning text</li>
@@ -220,8 +235,12 @@ import Layout from './_layout.astro';
             <span>Actionable icon</span>
           </li>
           <li class='demo-icon-muted'>
-            <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+            <svg-info aria-hidden='true'></svg-info>
             <span>Muted icon</span>
+          </li>
+          <li class='demo-icon-accent'>
+            <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+            <span>Accent icon</span>
           </li>
           <li class='demo-icon-informational'>
             <svg-info-circular aria-hidden='true'></svg-info-circular>
@@ -258,6 +277,7 @@ import Layout from './_layout.astro';
         <ul>
           <li class='iui-text-block'>Normal text</li>
           <li class='iui-text-block iui-text-muted'>Muted text</li>
+          <li class='demo-text-accent'>Accent text</li>
           <li class='demo-text-informational'>Informational text</li>
           <li class='demo-text-positive'>Positive text</li>
           <li class='demo-text-warning'>Warning text</li>
@@ -271,8 +291,12 @@ import Layout from './_layout.astro';
             <span>Actionable icon</span>
           </li>
           <li class='demo-icon-muted'>
-            <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+            <svg-info aria-hidden='true'></svg-info>
             <span>Muted icon</span>
+          </li>
+          <li class='demo-icon-accent'>
+            <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+            <span>Accent icon</span>
           </li>
           <li class='demo-icon-informational'>
             <svg-info-circular aria-hidden='true'></svg-info-circular>
@@ -377,32 +401,59 @@ import Layout from './_layout.astro';
       </ul>
     </div>
 
+    <div class='demo-background-accent-muted'>
+      <h2 class='iui-text-title iui-text-spacing'>Background accent muted</h2>
+      <ul>
+        <li class='iui-text-block'>Text</li>
+        <li class='demo-text-accent'>Accent text</li>
+        <li class='demo-icon-accent'>
+          <svg-bentley-systems aria-hidden='true'></svg-bentley-systems>
+          <span>Accent icon</span>
+        </li>
+      </ul>
+    </div>
     <div class='demo-background-informational-muted'>
       <h2 class='iui-text-title iui-text-spacing'>Background informational muted</h2>
       <ul>
         <li class='iui-text-block'>Text</li>
-        <li class='demo-text-informational'>Informational</li>
+        <li class='demo-text-informational'>Informational text</li>
+        <li class='demo-icon-informational'>
+          <svg-info-circular aria-hidden='true'></svg-info-circular>
+          <span>Informational icon</span>
+        </li>
       </ul>
     </div>
     <div class='demo-background-positive-muted'>
       <h2 class='iui-text-title iui-text-spacing'>Background positive muted</h2>
       <ul>
         <li class='iui-text-block'>Text</li>
-        <li class='demo-text-positive'>Positive</li>
+        <li class='demo-text-positive'>Positive text</li>
+        <li class='demo-icon-positive'>
+          <svg-status-success aria-hidden='true'></svg-status-success>
+          <span>Positive icon</span>
+        </li>
       </ul>
     </div>
     <div class='demo-background-warning-muted'>
       <h2 class='iui-text-title iui-text-spacing'>Background warning muted</h2>
       <ul>
         <li class='iui-text-block'>Text</li>
-        <li class='demo-text-warning'>Warning</li>
+        <li class='demo-text-warning'>Warning text</li>
+        <li class='demo-icon-warning'>
+          <svg-status-warning aria-hidden='true'></svg-status-warning>
+          <span>Warning icon</span>
+        </li>
       </ul>
     </div>
     <div class='demo-background-negative-muted'>
       <h2 class='iui-text-title iui-text-spacing'>Background negative muted</h2>
       <ul>
         <li class='iui-text-block'>Text</li>
-        <li class='demo-text-negative'>Negative</li>
+        <li class='demo-text-negative'>Negative text</li>
+        <li class='demo-icon-negative'>
+          <svg-status-error aria-hidden='true'></svg-status-error>
+          <span>Negative icon</span>
+        </li>
       </ul>
     </div>
   </section>
