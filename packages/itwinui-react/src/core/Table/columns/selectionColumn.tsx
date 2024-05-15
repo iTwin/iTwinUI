@@ -27,7 +27,9 @@ export const SELECTION_CELL_ID = 'iui-table-checkbox-selector';
  */
 export const SelectionColumn = <T extends Record<string, unknown>>(
   props: {
-    /** Function that returns whether row checkbox should be disabled. */
+    /**
+     * Function that returns whether row checkbox should be disabled.
+     */
     isDisabled?: (rowData: T) => boolean;
     density?: 'default' | 'condensed' | 'extra-condensed';
   } = {},

@@ -39,9 +39,13 @@ export const EXPANDER_CELL_ID = 'iui-table-expander';
  */
 export const ExpanderColumn = <T extends Record<string, unknown>>(
   props: {
-    /** Function that returns expanded content. If row doesn't have it, then should return `false`/`null`. */
+    /**
+     * Function that returns expanded content. If row doesn't have it, then should return `false`/`null`.
+     */
     subComponent?: (row: Row<T>) => React.ReactNode;
-    /** Function that returns whether expander is disabled */
+    /**
+     * Function that returns whether expander is disabled
+     */
     isDisabled?: (rowData: T) => boolean;
   } = {},
 ) => {
