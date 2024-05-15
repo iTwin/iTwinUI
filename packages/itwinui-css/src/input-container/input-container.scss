@@ -13,6 +13,10 @@
     grid-template-rows: 1fr auto;
     grid-template-columns: auto 1fr;
 
+    &:not(:has(.iui-status-message)) {
+      row-gap: unset;
+    }
+
     .iui-input-label {
       margin: 0 var(--iui-size-m) 0 0;
 
