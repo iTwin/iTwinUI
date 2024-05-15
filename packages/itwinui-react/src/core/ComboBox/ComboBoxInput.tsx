@@ -13,7 +13,11 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
-import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
+import {
+  ComboBoxStateContext,
+  ComboBoxActionContext,
+  ComboBoxRefsContext,
+} from './helpers.js';
 
 type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
   typeof Input
@@ -26,7 +30,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     isOpen,
     id,
     focusedIndex,
-    setFocusedIndex,
     enableVirtualization,
     multiple,
     onClickHandler,
@@ -34,6 +37,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     show,
     hide,
   } = useSafeContext(ComboBoxStateContext);
+  const dispatch = useSafeContext(ComboBoxActionContext);
   const { inputRef, menuRef, optionsExtraInfoRef } =
     useSafeContext(ComboBoxRefsContext);
   const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
@@ -68,9 +72,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           if (focusedIndexRef.current === -1) {
             const currentElement =
               menuRef.current?.querySelector('[data-iui-index]');
-            return setFocusedIndex(
-              Number(currentElement?.getAttribute('data-iui-index') ?? 0),
-            );
+            return dispatch({
+              type: 'focus',
+              value: Number(
+                currentElement?.getAttribute('data-iui-index') ?? 0,
+              ),
+            });
           }
 
           // If virtualization is enabled, dont let round scrolling
@@ -94,7 +101,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
             if (nextElement) {
-              return setFocusedIndex(nextIndex);
+              return dispatch({ type: 'focus', value: nextIndex });
             }
           } while (nextIndex !== focusedIndexRef.current);
           break;
@@ -109,7 +116,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             return;
           }
 
-          // If virtualization is enabled, don't let round scrolling
+          // If virtualization is enabled, dont let round scrolling
           if (
             enableVirtualization &&
             !menuRef.current?.querySelector(
@@ -120,10 +127,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           }
 
           if (focusedIndexRef.current === -1) {
-            return setFocusedIndex(
-              Object.values(optionsExtraInfoRef.current)?.[length - 1]
-                .__originalIndex ?? -1,
-            );
+            return dispatch({
+              type: 'focus',
+              value:
+                Object.values(optionsExtraInfoRef.current)?.[length - 1]
+                  .__originalIndex ?? -1,
+            });
           }
 
           let prevIndex = focusedIndexRef.current;
@@ -137,7 +146,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
             if (prevElement) {
-              return setFocusedIndex(prevIndex);
+              return dispatch({ type: 'focus', value: prevIndex });
             }
           } while (prevIndex !== focusedIndexRef.current);
           break;
@@ -164,7 +173,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       }
     },
     [
-      setFocusedIndex,
+      dispatch,
       enableVirtualization,
       focusedIndexRef,
       isOpen,
