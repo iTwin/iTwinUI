@@ -421,6 +421,7 @@ export const ComboBox = React.forwardRef(
           onChangeHandler(__originalIndex, actionType, newArray);
 
           // update live region
+          // TODO: Confirm if need to show live region when controlled state and the onChangeProp does not update the value
           setLiveRegionSelection(
             newArray
               .map(
@@ -428,6 +429,7 @@ export const ComboBox = React.forwardRef(
                   optionsRef.current.find((option) => option.value === item)
                     ?.label,
               )
+              .filter(Boolean)
               .join(', '),
           );
         } else {
