@@ -101,7 +101,7 @@ export type ComboBoxProps<T> = {
   /**
    * Native input element props.
    */
-  inputProps?: Omit<React.ComponentProps<typeof Input>, 'defaultValue'>;
+  inputProps?: React.ComponentProps<typeof Input>;
   /**
    * Props to customize dropdown menu behavior.
    */
