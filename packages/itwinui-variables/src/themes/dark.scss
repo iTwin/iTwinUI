@@ -121,7 +121,7 @@ $opacities: (
   --iui-color-border: #{hex($bg-1200)};
   --iui-color-border-foreground: #{hex($fg-800)};
   --iui-color-border-foreground-hover: #{hex($fg-600)};
-  --iui-color-border-disabled: #{hex($bg-1000)};
+  --iui-color-border-disabled: #{hex($fg-900)};
   --iui-color-border-accent: var(--iui-color-border-informational);
   --iui-color-border-informational: #{hex($fg-informational-1)};
   --iui-color-border-positive: #{hex($fg-positive-1)};
