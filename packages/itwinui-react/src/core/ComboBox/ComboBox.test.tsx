@@ -488,6 +488,12 @@ it('should accept inputProps', () => {
   );
 });
 
+it('should use the defaultValue when passed', () => {
+  const { container } = renderComponent({ defaultValue: 1 });
+  const input = assertBaseElement(container);
+  expect(input).toHaveValue('Item 1');
+});
+
 it('should work with custom itemRenderer', async () => {
   const mockOnChange = vi.fn();
   const { container, getByText } = renderComponent({
@@ -688,6 +694,27 @@ it('should accept ReactNode in emptyStateMessage', async () => {
 });
 
 it('should programmatically clear value', async () => {
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { container, rerender } = render(
+    <ComboBox options={options} value={1} />,
+  );
+
+  const input = container.querySelector('.iui-input') as HTMLInputElement;
+  expect(input).toHaveValue('Item 1');
+
+  rerender(<ComboBox options={options} value={undefined} />);
+
+  // value={undefined} = uncontrolled state. Thus, the value should not be reset
+  expect(input).toHaveValue('Item 1');
+
+  rerender(<ComboBox options={options} value={null} />);
+
+  // value={null} = no selected value in controlled state. Thus, the value should be reset
+  expect(input).toHaveValue('');
+});
+
+it('should respect controlled state', async () => {
   const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
@@ -699,12 +726,21 @@ it('should programmatically clear value', async () => {
   await userEvent.click(screen.getByText('Item 2'));
   const input = container.querySelector('.iui-input') as HTMLInputElement;
   expect(mockOnChange).toHaveBeenCalledWith(2);
-  expect(input).toHaveValue('Item 2');
+
+  // In controlled state, passed value should take priority
+  expect(input).toHaveValue('Item 1');
 
   rerender(
     <ComboBox options={options} onChange={mockOnChange} value={undefined} />,
   );
   expect(mockOnChange).not.toHaveBeenCalledTimes(2);
+
+  // value={undefined} = uncontrolled state. Thus, the value should be the selected value
+  expect(input).toHaveValue('Item 2');
+
+  rerender(<ComboBox options={options} onChange={mockOnChange} value={null} />);
+
+  // value={null} = no selected value in controlled state. Thus, no value should be selected
   expect(input).toHaveValue('');
 });
 
@@ -757,6 +793,41 @@ it('should update options (does not have selected option in new options list)', 
 
   rerender(<ComboBox options={options2} onChange={mockOnChange} value={2} />);
   expect(input).toHaveValue('');
+});
+
+it('should clear filter when options change', async () => {
+  const mockOnChange = vi.fn();
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { container, rerender } = render(
+    <ComboBox defaultValue={1} options={options} onChange={mockOnChange} />,
+  );
+
+  const input = container.querySelector('.iui-input') as HTMLInputElement;
+  expect(input).toHaveValue('Item 1');
+
+  await userEvent.tab();
+  await userEvent.type(input, '{backspace}2');
+  expect(input).toHaveValue('Item 2');
+
+  const getComboBoxListItems = () =>
+    container.querySelectorAll('[role="listbox"] > *');
+
+  let menuItems = getComboBoxListItems();
+  expect(menuItems.length).toBe(1);
+
+  const options2 = [6, 7, 8].map((value) => ({
+    value,
+    label: `Item ${value}`,
+  }));
+
+  rerender(
+    <ComboBox defaultValue={1} options={options2} onChange={mockOnChange} />,
+  );
+  expect(input).toHaveValue('Item 2');
+
+  menuItems = getComboBoxListItems();
+  expect(menuItems.length).toBe(3);
 });
 
 it('should select multiple options', async () => {
@@ -1010,7 +1081,7 @@ it('should update live region when selection changes', async () => {
     <ComboBox
       options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
       multiple
-      value={[0]}
+      defaultValue={[0]}
     />,
   );
 
