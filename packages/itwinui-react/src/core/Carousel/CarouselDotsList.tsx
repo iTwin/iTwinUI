@@ -16,17 +16,11 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { CarouselDot } from './CarouselDot.js';
 
 type CarouselDotsListProps = {
-  /**
-   * Number of total dots/slides in the carousel. Will be inferred from Carousel context or children. Otherwise, it is required to be passed.
-   */
+  /** Number of total dots/slides in the carousel. Will be inferred from Carousel context or children. Otherwise, it is required to be passed. */
   length?: number;
-  /**
-   * Index of currently active dot. Will be inferred from Carousel context, or else default to 0.
-   */
+  /** Index of currently active dot. Will be inferred from Carousel context, or else default to 0. */
   currentIndex?: number;
-  /**
-   * Callback fired when any of the dots are clicked.
-   */
+  /** Callback fired when any of the dots are clicked. */
   onSlideChange?: (index: number) => void;
 };
 

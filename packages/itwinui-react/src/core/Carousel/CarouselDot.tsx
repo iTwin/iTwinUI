@@ -8,17 +8,11 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ButtonBase } from '../../utils/index.js';
 
 type CarouselDotProps = {
-  /**
-   * Is this dot currently active?
-   */
+  /** Is this dot currently active? */
   isActive?: boolean;
-  /**
-   * Should be set to true for dots that are one spot from the edge of truncation. The dot size becomes small.
-   */
+  /** Should be set to true for dots that are one spot from the edge of truncation. The dot size becomes small.  */
   isSmall?: boolean;
-  /**
-   * Should be set to true for dots that are at the edge of truncation. The dot size becomes even smaller.
-   */
+  /** Should be set to true for dots that are at the edge of truncation. The dot size becomes even smaller.  */
   isSmaller?: boolean;
 };
 
