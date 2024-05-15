@@ -5,21 +5,21 @@ test.describe('Table sorting', () => {
     await page.goto('/Table');
 
     const firstColumnCells = page.locator('[role="cell"]:first-child');
-    expect(firstColumnCells).toHaveText(['1', '2', '3']);
+    await expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
     await page.keyboard.press('Tab');
 
     // ascending
     await page.keyboard.press('Enter');
-    expect(firstColumnCells).toHaveText(['1', '2', '3']);
+    await expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
     // descending
     await page.keyboard.press('Enter');
-    expect(firstColumnCells).toHaveText(['3', '2', '1']);
+    await expect(firstColumnCells).toHaveText(['3', '2', '1']);
 
     // ascending again
     await page.keyboard.press('Enter');
-    expect(firstColumnCells).toHaveText(['1', '2', '3']);
+    await expect(firstColumnCells).toHaveText(['1', '2', '3']);
   });
 });
 
