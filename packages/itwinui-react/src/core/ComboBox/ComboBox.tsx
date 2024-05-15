@@ -222,7 +222,7 @@ export const ComboBox = React.forwardRef(
       });
     }
 
-    const [value, setValue] = useControlledState<typeof valueProp>(
+    const [value, setValue] = useControlledState(
       valueProp !== undefined ? valueProp : defaultValue,
       valueProp !== undefined ? valueProp : undefined,
 
@@ -424,7 +424,8 @@ export const ComboBox = React.forwardRef(
             newArray
               .map(
                 (item) =>
-                  optionsRef.current.find((o) => o.value === item)?.label,
+                  optionsRef.current.find((option) => option.value === item)
+                    ?.label,
               )
               .join(', '),
           );
@@ -450,7 +451,9 @@ export const ComboBox = React.forwardRef(
       (option: SelectOption<T>, filteredIndex?: number) => {
         const optionId = getOptionId(option, id);
         const { __originalIndex } = optionsExtraInfoRef.current[optionId] ?? {
-          __originalIndex: options.findIndex((o) => o.value === option.value),
+          __originalIndex: options.findIndex(
+            (option) => option.value === option.value,
+          ),
         };
         const { icon, startIcon: startIconProp, ...restOptions } = option;
 

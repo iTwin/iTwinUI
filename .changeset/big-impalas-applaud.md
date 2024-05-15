@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Fixed a bug in `ComboBox` where the `isSelected` passed to `itemRenderer` was always `false` when `multiple` was `true`.
+Fixed a bug in `ComboBox` where the `isSelected` passed to `itemRenderer` was always `false` whenever `multiple` was `true`.
