@@ -576,7 +576,7 @@ export const ComboBox = React.forwardRef(
                     ? (value
                         ?.map((optionValue) => {
                           const option = optionsRef.current.find(
-                            (o) => o.value === optionValue,
+                            (_option) => _option.value === optionValue,
                           );
                           if (option == null) {
                             return undefined;
