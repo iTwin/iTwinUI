@@ -65,6 +65,11 @@ export type ComboboxMultipleTypeProps<T> =
        */
       value?: T | null;
       /**
+       * Default value of `value` that is set on initial render. This is useful when you don't want to
+       * maintain your own state but still want to control the initial `value`.
+       */
+      defaultValue?: T | null;
+      /**
        * Callback fired when selected value changes.
        */
       onChange?: (value: T) => void;
@@ -72,15 +77,11 @@ export type ComboboxMultipleTypeProps<T> =
   | {
       multiple: true;
       value?: T[] | null;
+      defaultValue?: T[] | null;
       onChange?: (value: T[], event: MultipleOnChangeProps<T>) => void;
     };
 
 export type ComboBoxProps<T> = {
-  /**
-   * Default value of `value` that is set on initial render. This is useful when you don't want to
-   * maintain your own state but still want to control the initial `value`.
-   */
-  defaultValue?: T | T[] | null;
   /**
    * Array of options that populate the dropdown list.
    */
