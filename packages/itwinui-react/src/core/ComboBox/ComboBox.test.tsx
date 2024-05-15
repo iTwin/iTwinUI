@@ -488,6 +488,12 @@ it('should accept inputProps', () => {
   );
 });
 
+it('should use the defaultValue when passed', () => {
+  const { container } = renderComponent({ defaultValue: 1 });
+  const input = assertBaseElement(container);
+  expect(input).toHaveValue('Item 1');
+});
+
 it('should work with custom itemRenderer', async () => {
   const mockOnChange = vi.fn();
   const { container, getByText } = renderComponent({
