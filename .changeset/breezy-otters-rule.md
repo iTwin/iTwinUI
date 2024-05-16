@@ -2,4 +2,4 @@
 "@itwin/itwinui-react": patch
 ---
 
-Remove row gap from inline input grid when no secondary line is present.
+Remove unnecessary gap below the inline `<InputGrid>` when no secondary line (`StatusMessage`) is present. Some other affected components: `LabeledInput`, `LabeledSelect`, `LabeledTextarea`.
