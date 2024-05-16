@@ -10,6 +10,7 @@ import {
   useMergedRefs,
   Portal,
   Box,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
@@ -27,6 +28,14 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   const { filteredOptions, getMenuItem, focusedIndex } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
+
+  const virtualizer = useVirtualizer({
+    // 'Fool' VirtualScroll by passing length 1
+    // whenever there is no elements, to show empty state message
+    count: filteredOptions.length || 1,
+    getScrollElement: () => menuRef.current,
+    estimateSize: () => 48,
+  });
 
   const virtualItemRenderer = React.useCallback(
     (index: number) =>
@@ -49,19 +58,11 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     );
   }, [focusedIndex, menuRef]);
 
-  const parentRef = React.useRef(null);
-
-  const virtualizer = useVirtualizer({
-    // 'Fool' VirtualScroll by passing length 1
-    // whenever there is no elements, to show empty state message
-    count: filteredOptions.length || 1,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 48,
-  });
-
-  if (focusedVisibleIndex) {
-    virtualizer.scrollToIndex(focusedVisibleIndex);
-  }
+  useLayoutEffect(() => {
+    if (focusedVisibleIndex) {
+      virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'start' });
+    }
+  }, [focusedVisibleIndex, virtualizer]);
 
   const outerProps = {
     style: {
@@ -75,7 +76,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   } as const;
 
   return (
-    <Box as='div' {...outerProps} {...rest} ref={parentRef}>
+    <Box as='div' {...outerProps} {...rest}>
       <div {...innerProps}>
         {virtualizer.getVirtualItems().map((virtualItem) => (
           <div
@@ -87,7 +88,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
               top: 0,
               left: 0,
               width: '100%',
-              height: `${virtualItem.size}px`,
+              //height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >

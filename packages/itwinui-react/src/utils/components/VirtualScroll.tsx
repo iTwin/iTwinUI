@@ -18,6 +18,10 @@ export type VirtualScrollProps = {
    */
   itemRenderer: (index: number) => JSX.Element;
   /**
+   * Ref for scrollable parent container.
+   */
+  scrollContainerRef: React.RefObject<Element>;
+  /**
    * Number of items to be rendered at the start and the end.
    * Not recommended to go lower than the visible items in viewport.
    * @default 10
@@ -44,10 +48,13 @@ export type VirtualScrollProps = {
  *    This is my item #{index}
  *  </div>
  * ), [])
+ * <div style={{overflow: 'auto'}} ref={ref}>
  * <VirtualScroll
  *  itemsLength={1000}
  *  itemRenderer={itemRenderer}
+ *  scrollableContainerRef={ref}
  * />
+ * </div>
  * @private
  */
 export const VirtualScroll = React.forwardRef<
@@ -59,14 +66,14 @@ export const VirtualScroll = React.forwardRef<
     itemRenderer,
     bufferSize = 10,
     scrollToIndex,
+    scrollContainerRef,
     style,
     ...rest
   } = props;
-  const parentRef = React.useRef(null);
   const virtualizer = useVirtualizer({
     count: itemsLength,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 40,
+    getScrollElement: () => scrollContainerRef.current,
+    estimateSize: () => 62,
     overscan: bufferSize,
   });
 
@@ -88,18 +95,22 @@ export const VirtualScroll = React.forwardRef<
 
   return (
     <div {...outerProps}>
-      <div {...innerProps} ref={mergeRefs(ref, parentRef)}>
+      <div {...innerProps} ref={mergeRefs(ref)}>
         {virtualizer.getVirtualItems().map((virtualRow, index) => (
           <div
             key={virtualRow.key}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: `${virtualRow.size}px`,
-              transform: `translateY(${virtualRow.start}px)`,
-            }}
+            data-index={virtualRow.index}
+            ref={virtualizer.measureElement}
+            style={
+              {
+                //position: 'absolute',
+                //top: 0,
+                //left: 0,
+                //width: '100%',
+                //height: `${virtualRow.size}px`,
+                //transform: `translateY(${virtualRow.start}px)`,
+              }
+            }
           >
             {itemRenderer(index)}
           </div>

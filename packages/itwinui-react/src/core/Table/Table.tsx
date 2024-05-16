@@ -1117,6 +1117,7 @@ export const Table = <
                 <VirtualScroll
                   itemsLength={page.length}
                   itemRenderer={virtualizedItemRenderer}
+                  scrollContainerRef={tableRef}
                   scrollToIndex={scrollToIndex}
                 />
               ) : (
