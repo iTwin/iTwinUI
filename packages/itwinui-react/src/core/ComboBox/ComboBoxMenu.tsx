@@ -64,19 +64,19 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     }
   }, [focusedVisibleIndex, virtualizer]);
 
-  const outerProps = {
-    style: {
-      minBlockSize: virtualizer.getTotalSize(),
-      minInlineSize: '100%',
-    },
-  } as React.HTMLAttributes<HTMLElement>;
-
   const innerProps = {
     style: { willChange: 'transform' },
   } as const;
 
   return (
-    <Box as='div' {...outerProps} {...rest}>
+    <Box
+      as='div'
+      style={{
+        minBlockSize: virtualizer.getTotalSize(),
+        minInlineSize: '100%',
+      }}
+      {...rest}
+    >
       <div {...innerProps}>
         {virtualizer.getVirtualItems().map((virtualItem) => (
           <div
@@ -88,7 +88,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
               top: 0,
               left: 0,
               width: '100%',
-              //height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >
