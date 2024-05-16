@@ -101,6 +101,7 @@ export const WithCombinedTime = () => {
             setFocus
             showTime
             useCombinedRenderer
+            minuteStep={30}
             use12Hours
             showDatesOutsideMonth={false}
           />
