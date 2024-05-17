@@ -328,7 +328,7 @@ export const ComboBox = React.forwardRef(
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
-    React.useLayoutEffect(() => {
+    React.useEffect(() => {
       if (options !== previousOptions.current) {
         previousOptions.current = options;
         onOptionsChange();
