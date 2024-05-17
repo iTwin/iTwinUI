@@ -223,10 +223,7 @@ export const ComboBox = React.forwardRef(
       });
     }
 
-    const [value, setValue] = useControlledState(
-      valueProp !== undefined ? valueProp : defaultValue,
-      valueProp !== undefined ? valueProp : undefined,
-    );
+    const [value, setValue] = useControlledState(defaultValue, valueProp);
 
     /**
      * - When multiple is enabled, it is an array of indices.
