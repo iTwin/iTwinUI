@@ -2,4 +2,4 @@
 "@itwin/itwinui-css": patch
 ---
 
-Remove unnecessary gap below the inline `<InputGrid>` when no secondary line (`StatusMessage`) is present. Some other affected components: `LabeledInput`, `LabeledSelect`, `LabeledTextarea`.
+Remove unnecessary gap below `.iui-input-grid` when `data-iui-label-placement='inline'` and no secondary line (`iui-status-message`) is present.
