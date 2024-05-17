@@ -229,8 +229,8 @@ export const ComboBox = React.forwardRef(
     const previousValue = React.useRef(valueProp);
     React.useLayoutEffect(() => {
       if (valueProp !== previousValue.current && valueProp === undefined) {
-        setValue(undefined);
         previousValue.current = valueProp;
+        setValue(undefined);
       }
     }, [valueProp, setValue]);
 
@@ -299,8 +299,10 @@ export const ComboBox = React.forwardRef(
     // Update filtered options to the latest value options according to input value
     const [filteredOptions, setFilteredOptions] = React.useState(options);
 
-    // To reconfigure internals whenever the options change
-    React.useEffect(() => {
+    /**
+     * Should be called internally whenever the options change.
+     */
+    const onOptionsChange = React.useCallback(() => {
       // Remove the filter so that all of the new options are shown.
       setFilteredOptions(options);
 
@@ -322,10 +324,16 @@ export const ComboBox = React.forwardRef(
             : '',
         );
       }
+    }, [isOpen, multiple, options, optionsRef, selectedIndices]);
 
-      // Only need to call on options update
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [options]);
+    // To reconfigure internal state whenever the options change
+    const previousOptions = React.useRef(options);
+    React.useEffect(() => {
+      if (options !== previousOptions.current) {
+        previousOptions.current = options;
+        onOptionsChange();
+      }
+    }, [onOptionsChange, options]);
 
     // Filter options based on input value
     const [inputValue, setInputValue] = React.useState<string>(
