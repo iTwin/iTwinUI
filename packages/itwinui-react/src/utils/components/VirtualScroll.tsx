@@ -20,7 +20,7 @@ export type VirtualScrollProps = {
   /**
    * Ref for scrollable parent container.
    */
-  scrollContainerRef: React.RefObject<Element>;
+  scrollContainerRef: HTMLDivElement | null;
   /**
    * Number of items to be rendered at the start and the end.
    * Not recommended to go lower than the visible items in viewport.
@@ -72,7 +72,7 @@ export const VirtualScroll = React.forwardRef<
   } = props;
   const virtualizer = useVirtualizer({
     count: itemsLength,
-    getScrollElement: () => scrollContainerRef.current,
+    getScrollElement: () => scrollContainerRef,
     estimateSize: () => 62,
     overscan: bufferSize,
   });
@@ -96,23 +96,21 @@ export const VirtualScroll = React.forwardRef<
   return (
     <div {...outerProps}>
       <div {...innerProps} ref={mergeRefs(ref)}>
-        {virtualizer.getVirtualItems().map((virtualRow, index) => (
+        {virtualizer.getVirtualItems().map((virtualRow) => (
           <div
             key={virtualRow.key}
             data-index={virtualRow.index}
             ref={virtualizer.measureElement}
-            style={
-              {
-                //position: 'absolute',
-                //top: 0,
-                //left: 0,
-                //width: '100%',
-                //height: `${virtualRow.size}px`,
-                //transform: `translateY(${virtualRow.start}px)`,
-              }
-            }
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: `${virtualRow.size}px`,
+              transform: `translateY(${virtualRow.start}px)`,
+            }}
           >
-            {itemRenderer(index)}
+            {itemRenderer(virtualRow.index)}
           </div>
         ))}
       </div>
