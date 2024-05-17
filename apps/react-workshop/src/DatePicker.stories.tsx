@@ -80,7 +80,7 @@ export const WithTime = () => {
 export const WithCombinedTime = () => {
   const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
-    new Date(2021, 4, 11, 14, 55, 22),
+    new Date(2021, 4, 11, 14, 30, 0),
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
@@ -101,6 +101,7 @@ export const WithCombinedTime = () => {
             setFocus
             showTime
             useCombinedRenderer
+            minuteStep={30}
             use12Hours
             showDatesOutsideMonth={false}
           />
