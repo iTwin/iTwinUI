@@ -227,12 +227,10 @@ export const ComboBox = React.forwardRef(
 
     // Passing value={undefined} resets the value (needed to prevent a breaking change)
     const previousValue = React.useRef(valueProp);
-    React.useLayoutEffect(() => {
-      if (valueProp !== previousValue.current && valueProp === undefined) {
-        previousValue.current = valueProp;
-        setValue(undefined);
-      }
-    }, [valueProp, setValue]);
+    if (valueProp !== previousValue.current && valueProp === undefined) {
+      previousValue.current = valueProp;
+      setValue(undefined);
+    }
 
     /**
      * - When multiple is enabled, it is an array of indices.
@@ -328,12 +326,10 @@ export const ComboBox = React.forwardRef(
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
-    React.useEffect(() => {
-      if (options !== previousOptions.current) {
-        previousOptions.current = options;
-        onOptionsChange();
-      }
-    }, [onOptionsChange, options]);
+    if (options !== previousOptions.current) {
+      previousOptions.current = options;
+      onOptionsChange();
+    }
 
     // Filter options based on input value
     const [inputValue, setInputValue] = React.useState<string>(
