@@ -705,20 +705,28 @@ it('should programmatically clear value', async () => {
 
   rerender(<ComboBox options={options} value={undefined} />);
 
-  // value={undefined} = uncontrolled state. Thus, the value should not be reset
-  expect(input).toHaveValue('Item 1');
+  // value={undefined} = reset value + uncontrolled state.
+  expect(input).toHaveValue(''); // should be reset
+
+  await userEvent.tab();
+  await userEvent.click(screen.getByText('Item 2'));
+  expect(input).toHaveValue('Item 2'); // uncontrolled state should work
 
   rerender(<ComboBox options={options} value={null} />);
 
-  // value={null} = no selected value in controlled state. Thus, the value should be reset
-  expect(input).toHaveValue('');
+  // value={null} = reset value + controlled state.
+  expect(input).toHaveValue(''); // should be reset
+
+  await userEvent.click(input);
+  await userEvent.click(screen.getByText('Item 0'));
+  expect(input).toHaveValue(''); // should not change since controlled state
 });
 
 it('should respect controlled state', async () => {
   const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
-  const { container, rerender } = render(
+  const { container } = render(
     <ComboBox options={options} onChange={mockOnChange} value={1} />,
   );
 
@@ -729,19 +737,6 @@ it('should respect controlled state', async () => {
 
   // In controlled state, passed value should take priority
   expect(input).toHaveValue('Item 1');
-
-  rerender(
-    <ComboBox options={options} onChange={mockOnChange} value={undefined} />,
-  );
-  expect(mockOnChange).not.toHaveBeenCalledTimes(2);
-
-  // value={undefined} = uncontrolled state. Thus, the value should be the selected value
-  expect(input).toHaveValue('Item 2');
-
-  rerender(<ComboBox options={options} onChange={mockOnChange} value={null} />);
-
-  // value={null} = no selected value in controlled state. Thus, no value should be selected
-  expect(input).toHaveValue('');
 });
 
 it('should update options (have selected option in new options list)', async () => {

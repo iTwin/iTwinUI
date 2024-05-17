@@ -61,9 +61,9 @@ export type ComboboxMultipleTypeProps<T> =
        * Controlled value of ComboBox.
        * If `multiple` is enabled, it is an array of values.
        *
-       * Pass `null` to reset the value.
+       * Pass `null` or `undefined` to reset the value.
        */
-      value?: T | null;
+      value?: T | null | undefined;
       /**
        * Default value of `value` that is set on initial render. This is useful when you don't want to
        * maintain your own state but still want to control the initial `value`.
@@ -76,7 +76,7 @@ export type ComboboxMultipleTypeProps<T> =
     }
   | {
       multiple: true;
-      value?: T[] | null;
+      value?: T[] | null | undefined;
       defaultValue?: T[] | null;
       onChange?: (value: T[], event: MultipleOnChangeProps<T>) => void;
     };
@@ -224,6 +224,15 @@ export const ComboBox = React.forwardRef(
     }
 
     const [value, setValue] = useControlledState(defaultValue, valueProp);
+
+    // Passing value={undefined} resets the value (needed to prevent a breaking change)
+    const previousValue = React.useRef(valueProp);
+    React.useLayoutEffect(() => {
+      if (valueProp !== previousValue.current && valueProp === undefined) {
+        setValue(undefined);
+        previousValue.current = valueProp;
+      }
+    }, [valueProp, setValue]);
 
     /**
      * - When multiple is enabled, it is an array of indices.
