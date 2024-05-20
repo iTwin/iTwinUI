@@ -1,18 +1,7 @@
 .demo-container {
-  display: flex;
+  display: grid;
   gap: var(--iui-size-xs);
-}
-
-.demo-labels-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--iui-size-m);
-}
-
-.demo-inputs-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--iui-size-xs);
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-items: end;
 }

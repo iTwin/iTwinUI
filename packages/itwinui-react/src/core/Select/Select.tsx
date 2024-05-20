@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Menu } from '../Menu/Menu.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
@@ -27,6 +26,8 @@ import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';
 import { usePopover } from '../Popover/Popover.js';
+import { List } from '../List/List.js';
+import { Composite, CompositeItem } from '@floating-ui/react';
 
 // ----------------------------------------------------------------------------
 
@@ -396,6 +397,16 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
       : options.find((option) => option.value === value);
   }, [multiple, options, value]);
 
+  const defaultFocusedIndex = React.useMemo(() => {
+    let index = 0;
+    if (Array.isArray(value) && value.length > 0) {
+      index = options.findIndex((option) => option.value === value[0]);
+    } else if (value) {
+      index = options.findIndex((option) => option.value === value);
+    }
+    return index >= 0 ? index : 0;
+  }, [options, value]);
+
   const tagRenderer = React.useCallback((item: SelectOption<unknown>) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
@@ -476,8 +487,8 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
 
       {popover.open && (
         <Portal>
-          <Menu
-            role='listbox'
+          <SelectListbox
+            defaultFocusedIndex={defaultFocusedIndex}
             className={menuClassName}
             id={`${uid}-menu`}
             key={`${uid}-menu`}
@@ -492,7 +503,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             ref={popover.refs.setFloating}
           >
             {menuItems}
-          </Menu>
+          </SelectListbox>
         </Portal>
       )}
     </>
@@ -763,3 +774,54 @@ type MultipleSelectButtonProps<T> = {
   selectedItemsRenderer?: (options: SelectOption<T>[]) => JSX.Element;
   tagRenderer: (item: SelectOption<T>) => JSX.Element;
 };
+
+// ----------------------------------------------------------------------------
+
+const SelectListbox = React.forwardRef((props, forwardedRef) => {
+  const {
+    defaultFocusedIndex = 0,
+    autoFocus = true,
+    children: childrenProp,
+    className,
+    ...rest
+  } = props;
+
+  const [focusedIndex, setFocusedIndex] = React.useState(defaultFocusedIndex);
+
+  const autoFocusRef = React.useCallback((element: HTMLElement | null) => {
+    queueMicrotask(() => {
+      const firstFocusable = element?.querySelector(
+        '[tabindex="0"]',
+      ) as HTMLElement | null;
+      firstFocusable?.focus();
+    });
+  }, []);
+
+  const children = React.useMemo(() => {
+    return React.Children.map(childrenProp, (child, index) =>
+      React.isValidElement(child) ? (
+        <CompositeItem
+          key={index}
+          render={child}
+          ref={child.props.ref || (child as any).ref}
+        />
+      ) : (
+        child
+      ),
+    );
+  }, [childrenProp]);
+
+  return (
+    <Composite
+      render={<List as='div' className={cx('iui-menu', className)} />}
+      orientation='vertical'
+      role='listbox'
+      activeIndex={focusedIndex}
+      onNavigate={setFocusedIndex}
+      ref={useMergedRefs(forwardedRef, autoFocus ? autoFocusRef : undefined)}
+      {...rest}
+    >
+      {children}
+    </Composite>
+  );
+}) as PolymorphicForwardRefComponent<'div', { defaultFocusedIndex?: number }>;

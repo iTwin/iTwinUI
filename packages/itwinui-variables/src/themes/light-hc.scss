@@ -33,12 +33,12 @@ $bg-positive-1: hsl(118 81% 21%);
 $bg-positive-2: hsl(118 86% 14%);
 
 $bg-warning-0: hsl(32 35% 93%);
-$bg-warning-1: hsl(33 94% 25%);
-$bg-warning-2: hsl(33 98% 17%);
+$bg-warning-1: hsl(42 100% 21%);
+$bg-warning-2: hsl(41 100% 15%);
 
 $bg-negative-0: hsl(0 100% 96%);
-$bg-negative-1: hsl(0 94% 34%);
-$bg-negative-2: hsl(0 97% 23%);
+$bg-negative-1: hsl(357 100% 31%);
+$bg-negative-2: hsl(358 100% 22%);
 // #endregion
 
 // #region Foreground colors
@@ -119,7 +119,7 @@ $opacities: (
   --iui-color-border: #{hex($bg-900)};
   --iui-color-border-foreground: #{hex($fg-800)};
   --iui-color-border-foreground-hover: #{hex($fg-600)};
-  --iui-color-border-disabled: #{hex($bg-700)};
+  --iui-color-border-disabled: #{hex($fg-900)};
   --iui-color-border-accent: var(--iui-color-border-informational);
   --iui-color-border-informational: #{hex($fg-informational-1)};
   --iui-color-border-positive: #{hex($fg-positive-1)};

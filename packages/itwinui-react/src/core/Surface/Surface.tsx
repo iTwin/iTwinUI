@@ -25,7 +25,7 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
     case 5:
       return 'var(--iui-shadow-5)';
     default:
-      return '';
+      return undefined;
   }
 };
 
@@ -39,7 +39,7 @@ const getBorderValue = (border: boolean | string | undefined) => {
     return 'none';
   }
 
-  return '';
+  return undefined;
 };
 
 // ----------------------------------------------------------------------------
