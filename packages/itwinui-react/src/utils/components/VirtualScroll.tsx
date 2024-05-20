@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { mergeRefs } from '../hooks/index.js';
+import { mergeRefs, useLayoutEffect } from '../hooks/index.js';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 export type VirtualScrollProps = {
@@ -89,9 +89,11 @@ export const VirtualScroll = React.forwardRef<
     style: { willChange: 'transform' },
   } as const;
 
-  if (scrollToIndex) {
-    virtualizer.scrollToIndex(scrollToIndex);
-  }
+  useLayoutEffect(() => {
+    if (scrollToIndex) {
+      virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
+    }
+  }, [scrollToIndex, virtualizer]);
 
   return (
     <div {...outerProps}>

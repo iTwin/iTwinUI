@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getFocusableElements, Box, polymorphic } from '../../utils/index.js';
+import {
+  getFocusableElements,
+  Box,
+  polymorphic,
+  useLayoutEffect,
+} from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
@@ -399,9 +404,11 @@ const VirtualizedTree = React.forwardRef(
       },
     } as const;
 
-    if (scrollToIndex) {
-      virtualizer.scrollToIndex(scrollToIndex);
-    }
+    useLayoutEffect(() => {
+      if (scrollToIndex) {
+        virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
+      }
+    }, [scrollToIndex, virtualizer]);
 
     return (
       <Box
