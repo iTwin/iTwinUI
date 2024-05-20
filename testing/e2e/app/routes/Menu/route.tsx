@@ -1,12 +1,6 @@
 import { useSearchParams } from '@remix-run/react';
-import {
-  useListNavigationProps,
-  usePopover,
-} from 'node_modules/@itwin/itwinui-react/esm/core/Popover/Popover.js';
-import {
-  Menu,
-  MenuContext,
-} from 'node_modules/@itwin/itwinui-react/esm/core/Menu/Menu.js';
+import { useListNavigationProps } from 'node_modules/@itwin/itwinui-react/esm/core/Popover/Popover.js';
+import { Menu } from 'node_modules/@itwin/itwinui-react/esm/core/Menu/Menu.js';
 import {
   Button,
   Checkbox,
@@ -70,34 +64,32 @@ export default () => {
 
   const [visible, setVisible] = React.useState(initialVisibility);
 
-  const popover = usePopover({
+  const popoverProps = {
     visible: visible,
     interactions: {
       listNavigation: listNavigationProps,
     },
-  });
+  };
+
+  const trigger = (
+    <Button
+      data-testid='toggle-menu-button'
+      onClick={() => setVisible((v) => !v)}
+    >
+      Open menu
+    </Button>
+  );
 
   return (
     <>
-      <Button
-        data-testid='toggle-menu-button'
-        ref={popover.refs.setPositionReference}
-        {...popover.getReferenceProps({
-          onClick: () => setVisible((v) => !v),
-        })}
+      <Menu
+        trigger={trigger}
+        className='Menu'
+        role={role != null ? role : undefined}
+        popoverProps={popoverProps}
       >
-        Open menu
-      </Button>
-      <MenuContext.Provider
-        value={{
-          popover,
-          listNavigationProps: listNavigationProps,
-        }}
-      >
-        <Menu className='Menu' role={role != null ? role : undefined}>
-          {children}
-        </Menu>
-      </MenuContext.Provider>
+        {children}
+      </Menu>
     </>
   );
 };

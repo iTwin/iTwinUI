@@ -43,28 +43,30 @@ test.describe('Menu', () => {
     await page.waitForTimeout(50);
   });
 
-  test('should focus selected item', async ({ page }) => {
-    await page.goto('/Menu?selectedIndex=1&listNavigation=true');
-
-    expect(page.getByTestId('MenuItem-0')).not.toBeFocused();
-    expect(page.getByTestId('MenuItem-1')).toBeFocused();
-    expect(page.getByTestId('MenuItem-2')).not.toBeFocused();
-
-    await page.waitForTimeout(50);
-  });
-
   test('should handle keyboard navigation', async ({ page }) => {
     await page.goto('/Menu?children=complex&visible=false&listNavigation=true');
 
     const menu = page.locator('.Menu');
     await expect(menu).not.toBeVisible();
 
+    // Click the trigger
     const button = page.getByTestId('toggle-menu-button');
     await button.click();
-
     await expect(menu).toBeVisible();
 
-    // The first item should be automatically focused.
+    // Opening the menu with a mouse click should keep the focus on the trigger itself.
+    await expect(page.getByTestId('toggle-menu-button')).toBeFocused();
+
+    // Close the menu
+    await button.click();
+    await expect(menu).not.toBeVisible();
+
+    // Focus the trigger and press Enter
+    await button.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
+    await expect(menu).toBeVisible();
+
+    // Opening the menu with a keyboard press should focus the first focusable item.
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
 
     // Should not loop around when navigating past the first or the last item.
