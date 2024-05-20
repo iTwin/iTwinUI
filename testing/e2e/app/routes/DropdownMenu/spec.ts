@@ -8,29 +8,29 @@ test.describe('DropdownMenu', () => {
     const trigger = page.getByTestId('trigger');
     await trigger.click();
 
-    expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
     // Go to the deepest level using keyboard
     await page.keyboard.press('ArrowRight', keyboardPressOptions);
-    expect(page.getByTestId('Item 2_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeFocused();
 
     await page.keyboard.press('ArrowDown', keyboardPressOptions);
-    expect(page.getByTestId('Item 2_2')).toBeFocused();
+    await expect(page.getByTestId('Item 2_2')).toBeFocused();
 
     await page.keyboard.press('ArrowDown', keyboardPressOptions);
-    expect(page.getByTestId('Item 2_3')).toBeFocused();
+    await expect(page.getByTestId('Item 2_3')).toBeFocused();
 
     await page.keyboard.press('ArrowRight', keyboardPressOptions);
-    expect(page.getByTestId('Item 3_1')).toBeFocused();
+    await expect(page.getByTestId('Item 3_1')).toBeFocused();
 
     await page.keyboard.press('ArrowDown', keyboardPressOptions);
-    expect(page.getByTestId('Item 3_2')).toBeFocused();
+    await expect(page.getByTestId('Item 3_2')).toBeFocused();
 
     await page.keyboard.press('ArrowDown', keyboardPressOptions);
-    expect(page.getByTestId('Item 3_3')).toBeFocused();
+    await expect(page.getByTestId('Item 3_3')).toBeFocused();
 
     await page.keyboard.press('ArrowRight', keyboardPressOptions);
-    expect(page.getByTestId('Item 3_3_1')).toBeFocused();
+    await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     // Hovering out of a submenu should not close the entire menu tree
     await moveMouseWithRespectToComponent({
@@ -42,7 +42,7 @@ test.describe('DropdownMenu', () => {
 
     // If the last menu item of the tree is visible, the whole tree is visible.
     // So just checking for the last item is enough.
-    expect(page.getByTestId('Item 3_3_1')).toBeFocused();
+    await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     // Hovering an ancestor "X" that has a submenu "Y" should close all submenus of "Y"
     await moveMouseWithRespectToComponent({
@@ -52,12 +52,12 @@ test.describe('DropdownMenu', () => {
       page,
     });
 
-    expect(page.getByTestId('Item 2_1')).toBeVisible();
-    expect(page.getByTestId('Item 2_2')).toBeVisible();
-    expect(page.getByTestId('Item 2_3')).toBeVisible();
-    expect(page.getByTestId('Item 3_1')).toBeHidden();
-    expect(page.getByTestId('Item 3_2')).toBeHidden();
-    expect(page.getByTestId('Item 3_3')).toBeHidden();
+    await expect(page.getByTestId('Item 2_1')).toBeVisible();
+    await expect(page.getByTestId('Item 2_2')).toBeVisible();
+    await expect(page.getByTestId('Item 2_3')).toBeVisible();
+    await expect(page.getByTestId('Item 3_1')).toBeHidden();
+    await expect(page.getByTestId('Item 3_2')).toBeHidden();
+    await expect(page.getByTestId('Item 3_3')).toBeHidden();
 
     // Go to the deepest level using mouse.
     // Hovering an element should focus it.
@@ -67,7 +67,7 @@ test.describe('DropdownMenu', () => {
       componentTestId: 'Item 2_3',
       page,
     });
-    expect(page.getByTestId('Item 2_3')).toBeFocused();
+    await expect(page.getByTestId('Item 2_3')).toBeFocused();
 
     await moveMouseWithRespectToComponent({
       side: 'left',
@@ -75,7 +75,7 @@ test.describe('DropdownMenu', () => {
       componentTestId: 'Item 3_3',
       page,
     });
-    expect(page.getByTestId('Item 3_3')).toBeFocused();
+    await expect(page.getByTestId('Item 3_3')).toBeFocused();
 
     await moveMouseWithRespectToComponent({
       side: 'left',
@@ -83,7 +83,7 @@ test.describe('DropdownMenu', () => {
       componentTestId: 'Item 3_3_1',
       page,
     });
-    expect(page.getByTestId('Item 3_3_1')).toBeFocused();
+    await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     // When a node "X" is focused, should close "X"'s siblings' submenus
     // i.e. only one submenu in each menu should be open at a time
@@ -100,8 +100,8 @@ test.describe('DropdownMenu', () => {
       page,
     });
 
-    expect(page.getByTestId('Item 3_2_1')).toBeVisible();
-    expect(page.getByTestId('Item 3_3_1')).toBeHidden();
+    await expect(page.getByTestId('Item 3_2_1')).toBeVisible();
+    await expect(page.getByTestId('Item 3_3_1')).toBeHidden();
 
     await page.waitForTimeout(100);
   });
@@ -114,27 +114,27 @@ test.describe('DropdownMenu', () => {
     const trigger = page.getByTestId('trigger');
     await trigger.click();
 
-    expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
     await page.getByTestId('Item 1_1').click();
-    expect(page.getByTestId('Item 1_1')).toBeFocused();
-    expect(page.getByTestId('Item 2_1')).toBeVisible();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeVisible();
 
     await page.getByTestId('Item 1_1').click();
-    expect(page.getByTestId('Item 1_1')).toBeFocused();
-    expect(page.getByTestId('Item 2_1')).toBeHidden();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeHidden();
 
     await page.keyboard.press('Enter', keyboardPressOptions);
-    expect(page.getByTestId('Item 2_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeFocused();
 
     await page.keyboard.press('ArrowLeft', keyboardPressOptions);
-    expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
     await page.keyboard.press('Space', keyboardPressOptions);
-    expect(page.getByTestId('Item 2_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeFocused();
 
     await page.keyboard.press('ArrowLeft', keyboardPressOptions);
-    expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
   });
 
   test('should close entire menu on pressing escape or tab key', async ({
@@ -165,7 +165,7 @@ test.describe('DropdownMenu', () => {
     await trigger.click();
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
-    goToTheDeepestLevel();
+    await goToTheDeepestLevel();
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     await page.keyboard.press('Tab', keyboardPressOptions);
@@ -178,13 +178,13 @@ test.describe('DropdownMenu', () => {
     const trigger = page.getByTestId('trigger');
 
     await page.keyboard.press('Tab', keyboardPressOptions);
-    expect(trigger).toBeFocused();
+    await expect(trigger).toBeFocused();
 
     await trigger.click();
-    expect(trigger).not.toBeFocused();
+    await expect(trigger).not.toBeFocused();
 
     await trigger.click();
-    expect(trigger).toBeFocused();
+    await expect(trigger).toBeFocused();
   });
 });
 

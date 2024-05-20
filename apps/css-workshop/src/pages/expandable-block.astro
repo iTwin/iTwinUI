@@ -1,5 +1,6 @@
 ---
 import Layout from './_layout.astro';
+import Icon_ from '../components/Icon.astro';
 ---
 
 <Layout title='Expandable block'>
@@ -31,13 +32,11 @@ import Layout from './_layout.astro';
   <section id='demo-default'>
     <div class='iui-expandable-block'>
       <button aria-expanded='false' class='iui-expandable-header' tabindex='0'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>Expandable block title</div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
     </div>
 
@@ -45,8 +44,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-expandable-block' data-iui-expanded='true'>
       <button aria-expanded='true' class='iui-expandable-header' tabindex='0' role='button'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -72,8 +70,7 @@ import Layout from './_layout.astro';
   <section id='demo-captions'>
     <div class='iui-expandable-block'>
       <button aria-expanded='false' class='iui-expandable-header' tabindex='0' role='button'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>Expandable block title</div>
           <div class='iui-expandable-block-caption'>Collapsed block caption</div>
@@ -85,8 +82,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-expandable-block' data-iui-expanded='true'>
       <button aria-expanded='true' class='iui-expandable-header' tabindex='0'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -105,8 +101,7 @@ import Layout from './_layout.astro';
             mollit anim id est laborum.
           </div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
       <div class='iui-expandable-content'>
         <div>
@@ -124,8 +119,7 @@ import Layout from './_layout.astro';
         aria-disabled='true'
         role='button'
       >
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -144,8 +138,7 @@ import Layout from './_layout.astro';
             mollit anim id est laborum.
           </div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
     </div>
   </section>
@@ -156,13 +149,11 @@ import Layout from './_layout.astro';
   <section id='demo-small'>
     <div class='iui-expandable-block' data-iui-size='small'>
       <button aria-expanded='false' class='iui-expandable-header' tabindex='0' role='button'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>Expandable block title</div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
     </div>
 
@@ -170,8 +161,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-expandable-block' data-iui-expanded='true' data-iui-size='small'>
       <button aria-expanded='true' class='iui-expandable-header' tabindex='0' role='button'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -182,8 +172,7 @@ import Layout from './_layout.astro';
             mollit anim id est laborum.
           </div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
       <div class='iui-expandable-content'>
         <div>
@@ -198,13 +187,11 @@ import Layout from './_layout.astro';
   <section id='demo-borderless'>
     <div class='iui-expandable-block' data-iui-variant='borderless'>
       <button aria-expanded='false' class='iui-expandable-header' tabindex='0' role='button'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>Expandable block title</div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
     </div>
 
@@ -212,8 +199,7 @@ import Layout from './_layout.astro';
 
     <div class='iui-expandable-block' data-iui-expanded='true' data-iui-variant='borderless'>
       <button aria-expanded='true' class='iui-expandable-header' tabindex='0' role='button'>
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -224,8 +210,7 @@ import Layout from './_layout.astro';
             mollit anim id est laborum.
           </div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
       <div class='iui-expandable-content'>
         <div>
@@ -243,8 +228,7 @@ import Layout from './_layout.astro';
         role='button'
         aria-expanded='false'
       >
-        <svg-chevron-right class='iui-expandable-block-icon iui-svg-icon' aria-hidden='true'
-        ></svg-chevron-right>
+        <Icon_ svg='chevron-right' class='iui-expandable-block-icon' />
         <span class='iui-expandable-block-label'>
           <div class='iui-expandable-block-title'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -255,8 +239,7 @@ import Layout from './_layout.astro';
             mollit anim id est laborum.
           </div>
         </span>
-        <svg-status-success class='iui-svg-icon' data-iui-icon-color='positive' aria-hidden='true'
-        ></svg-status-success>
+        <Icon_ svg='status-success' fill='positive' />
       </button>
     </div>
   </section>
