@@ -105,10 +105,12 @@ it('should render breadcrumbs item links according to the polymorphic `as` prop 
     </Breadcrumbs.Item>,
   );
 
-  expect(container.querySelector('a'))
-    .toHaveClass('iui-breadcrumbs-content') // Should have iTwinUI breadcrumbs styling
-    .toHaveClass('iui-anchor') // Should have iTwinUI anchor styling
-    .toHaveClass('fake-router-link'); // Should be the custom component;
+  const link = container.querySelector('a');
+  expect(link).toBeTruthy();
+
+  expect(link).toHaveClass('iui-breadcrumbs-content'); // Should have iTwinUI breadcrumbs styling
+  expect(link).toHaveClass('iui-anchor'); // Should have iTwinUI anchor styling
+  expect(link).toHaveClass('fake-router-link'); // Should be the custom component;
 });
 
 it('should render breadcrumbs item as button elements', () => {
