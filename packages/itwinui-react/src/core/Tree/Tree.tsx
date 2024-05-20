@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  getFocusableElements,
-  mergeRefs,
-  Box,
-  polymorphic,
-} from '../../utils/index.js';
+import { getFocusableElements, Box, polymorphic } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
@@ -384,12 +379,13 @@ const VirtualizedTree = React.forwardRef(
     const virtualizer = useVirtualizer({
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
-      estimateSize: () => 40,
+      estimateSize: () => 39,
+      overscan: 10,
     });
 
     const outerProps = {
       style: {
-        minBlockSize: virtualizer.getTotalSize(),
+        //minBlockSize: virtualizer.getTotalSize(),
         minInlineSize: '100%',
         ...style,
       },
@@ -397,7 +393,10 @@ const VirtualizedTree = React.forwardRef(
     } as React.HTMLAttributes<HTMLElement>;
 
     const innerProps = {
-      style: { willChange: 'transform' },
+      style: {
+        minBlockSize: virtualizer.getTotalSize(),
+        willChange: 'transform',
+      },
     } as const;
 
     if (scrollToIndex) {
@@ -409,13 +408,30 @@ const VirtualizedTree = React.forwardRef(
         {...{
           ...outerProps,
           className: cx(className, outerProps.className),
-          style: { ...style, ...outerProps.style },
+          style: {
+            ...style,
+            ...outerProps.style,
+          },
         }}
+        ref={parentRef}
       >
-        <TreeElement {...innerProps} {...rest} ref={mergeRefs(ref, parentRef)}>
-          {virtualizer
-            .getVirtualItems()
-            .map((virtualItem, index) => itemRenderer(index))}
+        <TreeElement {...innerProps} {...rest} ref={ref}>
+          {virtualizer.getVirtualItems().map((virtualItem) => (
+            <div
+              key={virtualItem.key}
+              data-index={virtualItem.index}
+              ref={virtualizer.measureElement}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                transform: `translateY(${virtualItem.start}px)`,
+              }}
+            >
+              {itemRenderer(virtualItem.index)}
+            </div>
+          ))}
         </TreeElement>
       </Box>
     );

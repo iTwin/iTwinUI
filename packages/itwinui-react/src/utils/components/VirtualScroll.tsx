@@ -96,21 +96,20 @@ export const VirtualScroll = React.forwardRef<
   return (
     <div {...outerProps}>
       <div {...innerProps} ref={mergeRefs(ref)}>
-        {virtualizer.getVirtualItems().map((virtualRow) => (
+        {virtualizer.getVirtualItems().map((virtualItem) => (
           <div
-            key={virtualRow.key}
-            data-index={virtualRow.index}
+            key={virtualItem.key}
+            data-index={virtualItem.index}
             ref={virtualizer.measureElement}
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
-              height: `${virtualRow.size}px`,
-              transform: `translateY(${virtualRow.start}px)`,
+              transform: `translateY(${virtualItem.start}px)`,
             }}
           >
-            {itemRenderer(virtualRow.index)}
+            {itemRenderer(virtualItem.index)}
           </div>
         ))}
       </div>
