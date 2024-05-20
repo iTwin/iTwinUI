@@ -6,7 +6,8 @@ test.describe('DropdownMenu', () => {
     await page.goto('/DropdownMenu');
 
     const trigger = page.getByTestId('trigger');
-    await trigger.click();
+    await trigger.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
@@ -112,7 +113,8 @@ test.describe('DropdownMenu', () => {
     await page.goto('/DropdownMenu');
 
     const trigger = page.getByTestId('trigger');
-    await trigger.click();
+    await trigger.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
@@ -130,7 +132,7 @@ test.describe('DropdownMenu', () => {
     await page.keyboard.press('ArrowLeft', keyboardPressOptions);
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
-    await page.keyboard.press('Space', keyboardPressOptions);
+    await page.keyboard.press('Enter', keyboardPressOptions);
     await expect(page.getByTestId('Item 2_1')).toBeFocused();
 
     await page.keyboard.press('ArrowLeft', keyboardPressOptions);
@@ -153,7 +155,8 @@ test.describe('DropdownMenu', () => {
     await page.goto('/DropdownMenu');
 
     const trigger = page.getByTestId('trigger');
-    await trigger.click();
+    await trigger.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await goToTheDeepestLevel();
@@ -162,7 +165,8 @@ test.describe('DropdownMenu', () => {
     await page.keyboard.press('Escape', keyboardPressOptions);
     await expect(page.locator('.iui-menu')).not.toBeVisible();
 
-    await trigger.click();
+    await trigger.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await goToTheDeepestLevel();
@@ -172,7 +176,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.locator('.iui-menu')).not.toBeVisible();
   });
 
-  test('should focus target after hide', async ({ page }) => {
+  test('should focus target after closing the Menu', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
     const trigger = page.getByTestId('trigger');
@@ -180,7 +184,7 @@ test.describe('DropdownMenu', () => {
     await page.keyboard.press('Tab', keyboardPressOptions);
     await expect(trigger).toBeFocused();
 
-    await trigger.click();
+    await page.keyboard.press('Enter', keyboardPressOptions);
     await expect(trigger).not.toBeFocused();
 
     await trigger.click();
