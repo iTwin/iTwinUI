@@ -11,6 +11,7 @@ import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
+import cx from 'classnames';
 
 const renderComponent = (
   props?: Partial<React.ComponentProps<typeof Breadcrumbs>>,
@@ -89,6 +90,25 @@ it('should render breadcrumbs item as anchor elements', () => {
     <Breadcrumbs.Item href='https://www.example.com/'>Anchor</Breadcrumbs.Item>,
   );
   expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
+});
+
+it('should render breadcrumbs item links according to the polymorphic `as` prop (e.g. router `Link`)', () => {
+  const FakeRouterLink = ({ children, ...props }: any) => (
+    <a {...props} className={cx('fake-router-link', props.className)}>
+      {children}
+    </a>
+  );
+
+  const { container } = render(
+    <Breadcrumbs.Item as={FakeRouterLink} href='/'>
+      Router Link
+    </Breadcrumbs.Item>,
+  );
+
+  expect(container.querySelector('a'))
+    .toHaveClass('iui-breadcrumbs-content') // Should have iTwinUI breadcrumbs styling
+    .toHaveClass('iui-anchor') // Should have iTwinUI anchor styling
+    .toHaveClass('fake-router-link'); // Should be the custom component;
 });
 
 it('should render breadcrumbs item as button elements', () => {
