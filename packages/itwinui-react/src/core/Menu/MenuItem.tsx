@@ -128,8 +128,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
     switch (event.key) {
       case 'Enter':
-      case ' ':
-      case 'Spacebar': {
+      case ' ': {
         onClickProp?.(value);
         event.preventDefault();
         break;

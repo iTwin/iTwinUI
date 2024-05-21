@@ -163,16 +163,19 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ...rest
   } = options;
 
-  const mergedInteractions = {
-    ...{
-      click: true,
-      dismiss: true,
-      hover: false,
-      focus: false,
-      listNavigation: undefined,
-    },
-    ...interactionsProp,
-  };
+  const mergedInteractions = React.useMemo(
+    () => ({
+      ...{
+        click: true,
+        dismiss: true,
+        hover: false,
+        focus: false,
+        listNavigation: undefined,
+      },
+      ...interactionsProp,
+    }),
+    [interactionsProp],
+  );
 
   const tree = useFloatingTree();
 
@@ -218,19 +221,31 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
+  const interactionsEnabledStates = React.useMemo(
+    () => ({
+      click: mergedInteractions.click !== false,
+      dismiss: mergedInteractions.dismiss !== false,
+      hover: mergedInteractions.hover !== false,
+      focus: mergedInteractions.focus !== false,
+      role: !!role,
+      listNavigation: !!mergedInteractions.listNavigation,
+    }),
+    [mergedInteractions, role],
+  );
+
   const interactions = useInteractions([
     useClick(floating.context, {
-      enabled: !!mergedInteractions.click,
+      enabled: interactionsEnabledStates.click,
       ...(mergedInteractions.click as object),
     }),
     useDismiss(floating.context, {
-      enabled: !!mergedInteractions.dismiss,
+      enabled: interactionsEnabledStates.dismiss,
       outsidePress: closeOnOutsideClick,
       bubbles: tree != null, // Only bubble when inside a FloatingTree
       ...(mergedInteractions.dismiss as object),
     }),
     useHover(floating.context, {
-      enabled: !!mergedInteractions.hover,
+      enabled: interactionsEnabledStates.hover,
       delay: 100,
       handleClose: safePolygon({
         buffer: 1,
@@ -240,12 +255,15 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       ...(mergedInteractions.hover as object),
     }),
     useFocus(floating.context, {
-      enabled: !!mergedInteractions.focus,
+      enabled: interactionsEnabledStates.focus,
       ...(mergedInteractions.focus as object),
     }),
-    useRole(floating.context, { role: 'dialog', enabled: !!role }),
+    useRole(floating.context, {
+      role: 'dialog',
+      enabled: interactionsEnabledStates.role,
+    }),
     useListNavigation(floating.context, {
-      enabled: !!mergedInteractions.listNavigation,
+      enabled: interactionsEnabledStates.listNavigation,
       ...(mergedInteractions.listNavigation as UseListNavigationProps),
     }),
   ]);
@@ -278,8 +296,16 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       ...interactions,
       getFloatingProps,
       ...floating,
+      interactionsEnabledStates,
     }),
-    [open, onOpenChange, interactions, getFloatingProps, floating],
+    [
+      open,
+      onOpenChange,
+      interactions,
+      getFloatingProps,
+      floating,
+      interactionsEnabledStates,
+    ],
   );
 };
 

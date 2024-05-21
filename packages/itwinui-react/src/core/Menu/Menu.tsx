@@ -68,8 +68,7 @@ type MenuProps = {
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
  *
- * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exceptions:
- * - `click`: handled manually instead of relying on `usePopover`.
+ * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exception:
  * - `hover`: When the `Menu` is within a `FloatingTree`, if a submenu has focus, the hover interaction is automatically
  * disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
  *
@@ -116,7 +115,6 @@ export const Menu = React.forwardRef((props, ref) => {
   } = popoverPropsProp ?? {};
   const {
     listNavigation: listNavigationPropsProp,
-    click: clickProp = true,
     hover: hoverProp,
     ...restInteractionsProps
   } = interactionsProp ?? {};
@@ -145,9 +143,6 @@ export const Menu = React.forwardRef((props, ref) => {
         enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
         ...(hoverProp as UseHoverProps<ReferenceType>),
       },
-      // Click interaction is handled manually
-      click: false,
-
       listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
@@ -268,20 +263,26 @@ export const Menu = React.forwardRef((props, ref) => {
     trigger,
     (triggerChild) =>
       ({
-        ...popover.getReferenceProps(triggerChild.props),
-        'aria-expanded': popover.open,
-        ref: mergeRefs(triggerRef, popover.refs.setReference),
-        onClick: (e) => {
-          triggerChild.props.onClick?.(e);
+        ...popover.getReferenceProps({
+          ...popover.getItemProps({
+            ...triggerChild.props,
+            'aria-expanded': popover.open,
+            ref: mergeRefs(triggerRef, popover.refs.setReference),
+            onClick: (e) => {
+              triggerChild.props.onClick?.(e);
+              // If the click interaction is disabled, do nothing
+              if (!popover.interactionsEnabledStates.click) {
+                return;
+              }
 
-          // If the click interaction is enabled, manually toggle the menu instead of relying on usePopover
-          if (
-            clickProp === true ||
-            (typeof clickProp === 'object' && !!clickProp.enabled)
-          ) {
-            setVisible((prev) => !prev);
-          }
-        },
+              // This is needed because FloatingUI's useClick does not close the floating content on the first click.
+              // @see: https://redirect.github.com/floating-ui/floating-ui/issues/1893#issuecomment-1250161220
+              if (visible) {
+                close();
+              }
+            },
+          }),
+        }),
       }) satisfies React.HTMLProps<HTMLElement>,
   );
 
