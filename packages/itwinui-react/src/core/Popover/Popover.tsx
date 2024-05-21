@@ -351,6 +351,9 @@ export const useListNavigationProps = (
     },
     listRef: focusableNodes,
     openOnArrowKeyDown: false,
+
+    // Items should focus themselves on hover since FloatingUI focus on hover is not working for us.
+    focusItemOnHover: false,
     ...rest,
   };
 };

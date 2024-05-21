@@ -162,8 +162,13 @@ export const Menu = React.forwardRef((props, ref) => {
   const triggerRef = React.useRef<HTMLElement>(null);
   const close = React.useCallback(() => {
     setVisible(false);
-    triggerRef.current?.focus({ preventScroll: true });
-  }, [setVisible]);
+
+    // If not in a FloatingTree, focus the trigger when the menu is closed
+    // If in a FloatingTree, the FloatingTree will handle focus
+    if (tree == null) {
+      triggerRef.current?.focus({ preventScroll: true });
+    }
+  }, [setVisible, tree]);
 
   const getFocusableNodes = React.useCallback(() => {
     const focusableItems = getFocusableElements(menuRef.current);
