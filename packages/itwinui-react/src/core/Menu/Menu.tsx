@@ -200,12 +200,12 @@ export const Menu = React.forwardRef((props, ref) => {
       );
 
       listNavigationProps.listRef.current.forEach((el, index) => {
-        el?.addEventListener('hover', navigateToItemFunctions[index]);
+        el?.addEventListener('mouseenter', navigateToItemFunctions[index]);
       });
 
       return () => {
         listNavigationProps.listRef.current.forEach((el, index) => {
-          el?.removeEventListener('hover', navigateToItemFunctions[index]);
+          el?.removeEventListener('mouseenter', navigateToItemFunctions[index]);
         });
       };
     }, [listNavigationProps]),
