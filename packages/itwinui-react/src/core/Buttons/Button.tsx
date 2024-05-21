@@ -128,7 +128,7 @@ export const Button = React.forwardRef((props, ref) => {
 
       {loading && (
         <ProgressRadial
-          size='small'
+          size={size === 'small' ? 'x-small' : 'small'}
           className='iui-button-spinner'
           aria-hidden
         />
