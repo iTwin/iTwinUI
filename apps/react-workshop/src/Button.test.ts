@@ -14,6 +14,7 @@ describe('Button', () => {
     'Call To Action',
     'As Link',
     'Stretch',
+    'Loading',
   ];
 
   tests.forEach((testName) => {
