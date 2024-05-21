@@ -124,3 +124,7 @@ Stretch.decorators = [
     </div>
   ),
 ];
+
+export const Loading = () => {
+  return <Button loading>Click me</Button>;
+};
