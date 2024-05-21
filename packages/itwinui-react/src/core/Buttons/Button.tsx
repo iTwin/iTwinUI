@@ -105,7 +105,15 @@ export const Button = React.forwardRef((props, ref) => {
         </Box>
       )}
 
-      {children && <span {...labelProps}>{children}</span>}
+      {children && (
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-button-label', labelProps?.className)}
+        >
+          {children}
+        </Box>
+      )}
 
       {endIcon && (
         <Box

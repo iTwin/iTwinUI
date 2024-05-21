@@ -26,6 +26,7 @@ it('renders default button correctly', () => {
   expect(onClickMock).toHaveBeenCalled();
 
   const label = container.querySelector('span') as HTMLSpanElement;
+  expect(label).toHaveClass('iui-button-label');
   expect(label.textContent).toEqual('Click me!');
 });
 

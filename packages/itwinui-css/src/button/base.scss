@@ -34,7 +34,7 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   }
 
   &:is([data-iui-loading='true']) {
-    > :where(span) {
+    > :where(.iui-button-label) {
       opacity: 0;
     }
 
