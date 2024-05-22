@@ -1,0 +1,21 @@
+---
+type Props = {
+  svg: string;
+  size?: 's' | 'm' | 'l' | 'auto';
+  padded?: boolean;
+  fill?: string;
+} & astroHTML.JSX.HTMLAttributes;
+
+const { svg, size = 'm', class: className, padded, fill = 'default', ...props } = Astro.props;
+
+const Element = `svg-${svg}`;
+---
+
+<Element
+  class:list={['iui-svg-icon', className]}
+  data-iui-icon-color={fill}
+  data-iui-icon-size={size}
+  data-iui-padded={padded ? 'true' : undefined}
+  aria-hidden='true'
+  {...props}
+/>

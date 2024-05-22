@@ -47,6 +47,9 @@ importers:
       e2e:
         specifier: workspace:*
         version: link:testing/e2e
+      examples:
+        specifier: workspace:*
+        version: link:examples
       execa:
         specifier: ^8.0.1
         version: 8.0.1

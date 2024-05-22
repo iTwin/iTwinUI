@@ -7,7 +7,9 @@ import { DatePicker, Popover, IconButton } from '@itwin/itwinui-react';
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [currentDate, setCurrentDate] = React.useState(
+    new Date(2021, 4, 11, 14, 30, 0),
+  );
   const [visible, setVisible] = React.useState(false);
   return (
     <div className='demo-container'>
@@ -21,6 +23,7 @@ export default () => {
             }}
             showTime={true}
             useCombinedRenderer={true}
+            minuteStep={30}
             use12Hours={true}
             setFocus
           />

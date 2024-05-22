@@ -54,6 +54,7 @@
     "configs": "workspace:*",
     "cypress": "13.8.1",
     "e2e": "workspace:*",
+    "examples": "workspace:*",
     "execa": "^8.0.1",
     "helpers": "workspace:*",
     "husky": "^9.0.10",

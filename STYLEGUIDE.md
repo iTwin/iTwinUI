@@ -29,7 +29,7 @@ export type AlertProps = { ... };
 export interface IAlertProps {}
 ```
 
-### Comment all props in multiline using jsdoc
+### Add JSDocs to all props
 
 ```jsx
 // Good
@@ -43,16 +43,7 @@ export type AlertProps = {
 ```
 
 ```jsx
-
-// Bad (single line)
-export type AlertProps = {
-  /** Type of the alert. */
-  type?: 'positive' | 'warning' | 'negative' | 'informational';
-  ...
-```
-
-```jsx
-// Bad (no comment at all)
+// Bad (no comment)
 export type AlertProps = {
   type?: 'positive' | 'warning' | 'negative' | 'informational';
   ...
