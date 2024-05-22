@@ -29,7 +29,6 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
-  useLatestRef,
   useMergedRefs,
 } from '../../utils/index.js';
 import type {
@@ -122,7 +121,7 @@ type TooltipOwnProps = {
 
 // TODO: Remove this when types are available
 type HTMLElementWithPopover = HTMLElement & {
-  togglePopover: (force?: boolean) => void;
+  togglePopover?: (force?: boolean) => void;
 };
 
 // ----------------------------------------------------------------------------
@@ -131,8 +130,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
   const uniqueId = useId();
   const {
     placement = 'top',
-    visible: visibleProp,
-    onVisibleChange: onVisibleChangeProp,
+    visible,
+    onVisibleChange,
     middleware = { flip: true, shift: true },
     autoUpdateOptions = {},
     reference,
@@ -141,30 +140,15 @@ const useTooltip = (options: TooltipOptions = {}) => {
     ...props
   } = options;
 
-  const tooltipRef = React.useRef<HTMLElementWithPopover | null>(null);
-  const latestOnVisibleChange = useLatestRef(onVisibleChangeProp);
-
-  const syncWithControlledState = React.useCallback(
-    (element: HTMLElementWithPopover | null) => {
-      if (element && visibleProp !== undefined) {
-        element?.togglePopover?.(visibleProp);
-      }
-    },
-    [visibleProp],
-  );
-
-  const onVisibleChange = React.useCallback(
-    (visible: boolean) => {
-      tooltipRef.current?.togglePopover?.(visible);
-      latestOnVisibleChange.current?.(visible);
-    },
-    [latestOnVisibleChange],
-  );
-
   const [open, onOpenChange] = useControlledState(
     false,
-    visibleProp,
+    visible,
     onVisibleChange,
+  );
+
+  const syncWithControlledState = React.useCallback(
+    (element: HTMLElementWithPopover | null) => element?.togglePopover?.(open),
+    [open],
   );
 
   const floating = useFloating({
@@ -292,9 +276,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
       refs: {
         ...floating.refs,
         setFloating: (element: HTMLElement | null) => {
-          tooltipRef.current = element as HTMLElementWithPopover;
-          syncWithControlledState(element as HTMLElementWithPopover);
           floating.refs.setFloating(element);
+          syncWithControlledState(element);
         },
       },
       // styles are not relevant when tooltip is not open
