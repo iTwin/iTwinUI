@@ -260,11 +260,6 @@ export const Menu = React.forwardRef((props, ref) => {
             onMouseEnter: (e) => {
               child.props.onMouseEnter?.(e);
 
-              // If the hover interaction is disabled, do nothing
-              if (!popover.interactionsEnabledStates.hover) {
-                return;
-              }
-
               // Focus the item when hovered.
               if (e.target === e.currentTarget) {
                 e.currentTarget.focus();
@@ -285,7 +280,7 @@ export const Menu = React.forwardRef((props, ref) => {
           }) satisfies React.HTMLProps<HTMLElement>,
       );
     });
-  }, [children, nodeId, parentId, tree?.events, popover]);
+  }, [children, nodeId, parentId, tree?.events]);
 
   const reference = cloneElementWithRef(
     trigger,
