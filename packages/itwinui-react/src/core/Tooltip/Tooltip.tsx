@@ -29,6 +29,7 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
+  useLayoutEffect,
   useMergedRefs,
 } from '../../utils/index.js';
 import type {
@@ -121,6 +122,7 @@ type TooltipOwnProps = {
 
 // TODO: Remove this when types are available
 type HTMLElementWithPopover = HTMLElement & {
+  /** @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover */
   togglePopover?: (force?: boolean) => void;
 };
 
@@ -140,23 +142,23 @@ const useTooltip = (options: TooltipOptions = {}) => {
     ...props
   } = options;
 
+  const tooltipRef = React.useRef<HTMLElementWithPopover>();
+
   const [open, onOpenChange] = useControlledState(
     false,
     visible,
     onVisibleChange,
   );
 
-  const syncWithControlledState = React.useCallback(
-    (element: HTMLElementWithPopover | null) => {
-      try {
-        queueMicrotask(() => element?.togglePopover?.(open));
-      } catch {
-        // This try-catch is a way to fail silently, because popover will otherwise
-        // throw if it fails for any reason (e.g. the element is not currently mounted)
-      }
-    },
-    [open],
-  );
+  // Synchronize popover visibility (DOM) with open state (React)
+  useLayoutEffect(() => {
+    try {
+      tooltipRef.current?.togglePopover?.(open);
+    } catch {
+      // This try-catch is a way to fail silently, because popover will otherwise
+      // throw if it fails for any reason (e.g. the element is not currently mounted)
+    }
+  }, [open]);
 
   const floating = useFloating({
     placement,
@@ -284,13 +286,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
         ...floating.refs,
         setFloating: (element: HTMLElement | null) => {
           floating.refs.setFloating(element);
-          syncWithControlledState(element);
+          tooltipRef.current = element as HTMLElementWithPopover;
         },
       },
       // styles are not relevant when tooltip is not open
       floatingStyles: floating.context.open ? floating.floatingStyles : {},
     }),
-    [getReferenceProps, floatingProps, floating, syncWithControlledState],
+    [getReferenceProps, floatingProps, floating],
   );
 };
 
