@@ -120,6 +120,11 @@ type TooltipOwnProps = {
   children?: React.ReactNode;
 } & PortalProps;
 
+// TODO: Remove this when types are available
+type HTMLElementWithPopover = HTMLElement & {
+  togglePopover: (force?: boolean) => void;
+};
+
 // ----------------------------------------------------------------------------
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -136,13 +141,12 @@ const useTooltip = (options: TooltipOptions = {}) => {
     ...props
   } = options;
 
-  const tooltipRef = React.useRef<HTMLElement | null>(null);
+  const tooltipRef = React.useRef<HTMLElementWithPopover | null>(null);
   const latestOnVisibleChange = useLatestRef(onVisibleChangeProp);
 
   const syncWithControlledState = React.useCallback(
-    (element: HTMLElement | null) => {
+    (element: HTMLElementWithPopover | null) => {
       if (element && visibleProp !== undefined) {
-        // @ts-expect-error -- types not available yet
         element?.togglePopover?.(visibleProp);
       }
     },
@@ -151,7 +155,6 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const onVisibleChange = React.useCallback(
     (visible: boolean) => {
-      // @ts-expect-error -- types not available yet
       tooltipRef.current?.togglePopover?.(visible);
       latestOnVisibleChange.current?.(visible);
     },
@@ -289,8 +292,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
       refs: {
         ...floating.refs,
         setFloating: (element: HTMLElement | null) => {
-          tooltipRef.current = element;
-          syncWithControlledState(element);
+          tooltipRef.current = element as HTMLElementWithPopover;
+          syncWithControlledState(element as HTMLElementWithPopover);
           floating.refs.setFloating(element);
         },
       },
