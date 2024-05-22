@@ -39,11 +39,6 @@ import type {
 
 // ----------------------------------------------------------------------------
 
-const isPopoverSupported = () =>
-  typeof HTMLElement !== 'undefined' && 'popover' in HTMLElement.prototype;
-
-// ----------------------------------------------------------------------------
-
 type TooltipOptions = {
   /**
    * Placement of the Tooltip
@@ -143,28 +138,24 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const tooltipRef = React.useRef<HTMLElement | null>(null);
   const latestOnVisibleChange = useLatestRef(onVisibleChangeProp);
-  const supportsPopover = React.useMemo(() => isPopoverSupported(), []);
 
   const syncWithControlledState = React.useCallback(
     (element: HTMLElement | null) => {
-      // Toggle popover visibility when visibleProp changes
-      if (element && visibleProp !== undefined && supportsPopover) {
+      if (element && visibleProp !== undefined) {
         // @ts-expect-error -- types not available yet
         element?.togglePopover?.(visibleProp);
       }
     },
-    [visibleProp, supportsPopover],
+    [visibleProp],
   );
 
   const onVisibleChange = React.useCallback(
     (visible: boolean) => {
-      if (supportsPopover) {
-        // @ts-expect-error -- types not available yet
-        tooltipRef.current?.togglePopover?.(visible);
-      }
+      // @ts-expect-error -- types not available yet
+      tooltipRef.current?.togglePopover?.(visible);
       latestOnVisibleChange.current?.(visible);
     },
-    [latestOnVisibleChange, supportsPopover],
+    [latestOnVisibleChange],
   );
 
   const [open, onOpenChange] = useControlledState(
@@ -285,9 +276,9 @@ const useTooltip = (options: TooltipOptions = {}) => {
         ...props,
         id,
       }),
-      popover: supportsPopover ? 'manual' : undefined,
+      popover: 'manual',
     }),
-    [interactions, props, id, open, supportsPopover],
+    [interactions, props, id, open],
   );
 
   return React.useMemo(
