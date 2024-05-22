@@ -63,14 +63,19 @@ type MenuProps = {
  * This handles lots of the setup for a menu component:
  * - the portaling: use the optional `portal` prop for more customization
  * - conditional rendering based on the popover's open state
- * - spreading the popover props (`getFloatingProps`, `getReferenceProps`)
+ * - spreading the popover props (`getFloatingProps`, `getReferenceProps`, `getItemProps`)
  * - setting the refs: use the optional`positionReference` prop to set the position reference
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
+ * - focus management: if *not* in a `FloatingTree`, focus moves to the trigger when the menu is closed. If in a `FloatingTree`, focus does not move back to the trigger since `MenuItem`s handle the focus.
+ * - setting `aria-expanded` accordingly depending on the menu open state
  *
  * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exception:
  * - `hover`: When the `Menu` is within a `FloatingTree`, if a submenu has focus, the hover interaction is automatically
  * disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
+ * - `click`: The default behavior is slightly modified to overcome a FloatingUI behavior where two clicks are needed
+ * to close the Menu for the first time (@see: [floating-ui/floating-ui#1893 (comment)](https://github.com/floating-ui/floating-ui/issues/1893#issuecomment-1250161220).
+ * With that modification, only one click is sufficient to close the Menu.
  *
  * @example
  * const trigger = <Button>Menu</Button>;
@@ -164,7 +169,7 @@ export const Menu = React.forwardRef((props, ref) => {
     setVisible(false);
 
     // If not in a FloatingTree, focus the trigger when the menu is closed
-    // If in a FloatingTree, the FloatingTree will handle focus
+    // If in a `FloatingTree`, focus should not move back to the trigger since `MenuItem`s handle the focus.
     if (tree == null) {
       triggerRef.current?.focus({ preventScroll: true });
     }
