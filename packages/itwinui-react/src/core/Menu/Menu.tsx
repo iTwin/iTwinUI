@@ -36,24 +36,30 @@ type MenuProps = {
    * and selected item should have `aria-selected={true}`.
    */
   children: React.ReactNode;
-
+  /**
+   * The trigger that opens the menu.
+   */
   trigger: React.ReactNode;
+  /**
+   * You can use this optional prop when the position reference is not the trigger.
+   * (Equivalent to using FloatingUI's `floating.refs.setPositionReference`)
+   */
   positionReference?: Parameters<
     ReturnType<typeof usePopover>['refs']['setPositionReference']
   >[0];
-
-  portal?: PortalProps['portal'];
-
-  // Since Menu handles the required listNavigation props, it only needs to accept the optional ones.
+  /**
+   * Use this prop to override the default props passed to `usePopover`.
+   */
   popoverProps?: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
     interactions?: Omit<
       NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
       'listNavigation'
     > & {
+      // Since Menu handles the required listNavigation props, it only needs to accept the optional ones.
       listNavigation?: Parameters<typeof useListNavigationProps>[0];
     };
   };
-};
+} & Pick<PortalProps, 'portal'>;
 
 /**
  * @private
@@ -250,13 +256,11 @@ export const Menu = React.forwardRef((props, ref) => {
         popover.getItemProps({
           onFocus: (e) => {
             child.props.onFocus?.(e);
-
             // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
             // E.g. Even when hovering into it rapidly.
             queueMicrotask(() => {
               setHasFocusedNodeInSubmenu(true);
             });
-
             tree?.events.emit('onNodeFocused', {
               nodeId: nodeId,
               parentId: parentId,
