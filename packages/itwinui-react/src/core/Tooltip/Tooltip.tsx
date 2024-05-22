@@ -155,8 +155,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
     try {
       tooltipRef.current?.togglePopover?.(open);
     } catch {
-      // This try-catch is a way to fail silently, because popover will otherwise
-      // throw if it fails for any reason (e.g. the element is not currently mounted)
+      // Fail silently, to avoid crashing the page
     }
   }, [open]);
 
