@@ -82,7 +82,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
           <div
             key={virtualItem.key}
             data-index={virtualItem.index}
-            data-iui-index={virtualItem.index}
             ref={virtualizer.measureElement}
             style={{
               position: 'absolute',

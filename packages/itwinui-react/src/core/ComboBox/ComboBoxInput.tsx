@@ -85,7 +85,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             enableVirtualization &&
             !menuRef.current?.querySelector(
               `[data-iui-index="${focusedIndexRef.current}"]`,
-            )?.nextElementSibling
+            )?.parentElement?.nextElementSibling
           ) {
             return;
           }
@@ -95,9 +95,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             const currentElement = menuRef.current?.querySelector(
               `[data-iui-index="${nextIndex}"]`,
             );
-            const nextElement =
-              currentElement?.nextElementSibling ??
-              menuRef.current?.querySelector('[data-iui-index]');
+            const nextElement = enableVirtualization
+              ? currentElement?.parentElement?.nextElementSibling?.querySelector(
+                  `[data-iui-index]`,
+                )
+              : currentElement?.nextElementSibling ??
+                menuRef.current?.querySelector('[data-iui-index]');
             nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
             if (nextElement) {
@@ -121,7 +124,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             enableVirtualization &&
             !menuRef.current?.querySelector(
               `[data-iui-index="${focusedIndexRef.current}"]`,
-            )?.previousElementSibling
+            )?.parentElement?.previousElementSibling
           ) {
             return;
           }
@@ -140,9 +143,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             const currentElement = menuRef.current?.querySelector(
               `[data-iui-index="${prevIndex}"]`,
             );
-            const prevElement =
-              currentElement?.previousElementSibling ??
-              menuRef.current?.querySelector('[data-iui-index]:last-of-type');
+            const prevElement = enableVirtualization
+              ? currentElement?.parentElement?.previousElementSibling?.querySelector(
+                  `[data-iui-index]`,
+                )
+              : currentElement?.previousElementSibling ??
+                menuRef.current?.querySelector('[data-iui-index]:last-of-type');
             prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
             if (prevElement) {
