@@ -141,25 +141,25 @@ const useTooltip = (options: TooltipOptions = {}) => {
     ...props
   } = options;
 
-  const tooltipRef = React.useRef<HTMLElementWithPopover>();
-
   const [open, onOpenChange] = useControlledState(
     false,
     visible,
     onVisibleChange,
   );
 
-  // Synchronize popover visibility (DOM) with open state (React)
-  React.useEffect(() => {
-    // Using a microtask ensures that the popover is mounted before calling togglePopover
-    queueMicrotask(() => {
-      try {
-        tooltipRef.current?.togglePopover?.(open);
-      } catch {
-        // Fail silently, to avoid crashing the page
-      }
-    });
-  }, [open]);
+  const syncWithControlledState = React.useCallback(
+    (element: HTMLElementWithPopover | null) => {
+      // Using a microtask ensures that the popover is mounted before calling togglePopover
+      queueMicrotask(() => {
+        try {
+          element?.togglePopover?.(open);
+        } catch {
+          // Fail silently, to avoid crashing the page
+        }
+      });
+    },
+    [open],
+  );
 
   const floating = useFloating({
     placement,
@@ -287,13 +287,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
         ...floating.refs,
         setFloating: (element: HTMLElement | null) => {
           floating.refs.setFloating(element);
-          tooltipRef.current = element as HTMLElementWithPopover;
+          syncWithControlledState(element);
         },
       },
       // styles are not relevant when tooltip is not open
       floatingStyles: floating.context.open ? floating.floatingStyles : {},
     }),
-    [getReferenceProps, floatingProps, floating],
+    [getReferenceProps, floatingProps, floating, syncWithControlledState],
   );
 };
 
