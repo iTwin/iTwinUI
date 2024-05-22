@@ -146,14 +146,14 @@ export const Menu = React.forwardRef((props, ref) => {
     visible,
     onVisibleChange: (open) => (open ? setVisible(true) : close()),
     interactions: {
-      hover: {
-        // Hover interaction is allowed if all conditions are met:
-        // - Hover interaction is enabled
-        // - Submenu does not have focus
-        // TODO: Should being inside a FloatingTree also be a requirement?
-        enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
-        ...(hoverProp as UseHoverProps<ReferenceType>),
-      },
+      hover:
+        tree == null
+          ? hoverProp
+          : {
+              // If in a FloatingTree, the hover interaction is automatically disabled if a submenu has focus.
+              enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
+              ...(hoverProp as UseHoverProps<ReferenceType>),
+            },
       listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
