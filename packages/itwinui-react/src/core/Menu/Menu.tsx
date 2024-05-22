@@ -246,52 +246,48 @@ export const Menu = React.forwardRef((props, ref) => {
 
   const menuContent = React.useMemo(() => {
     return React.Children.map(children, (child) => {
-      return cloneElementWithRef(
-        child,
-        (child) =>
-          ({
-            onFocus: (e) => {
-              child.props.onFocus?.(e);
+      return cloneElementWithRef(child, (child) =>
+        popover.getItemProps({
+          onFocus: (e) => {
+            child.props.onFocus?.(e);
 
-              // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
-              // E.g. Even when hovering into it rapidly.
-              queueMicrotask(() => {
-                setHasFocusedNodeInSubmenu(true);
-              });
+            // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+            // E.g. Even when hovering into it rapidly.
+            queueMicrotask(() => {
+              setHasFocusedNodeInSubmenu(true);
+            });
 
-              tree?.events.emit('onNodeFocused', {
-                nodeId: nodeId,
-                parentId: parentId,
-              });
-            },
-          }) satisfies React.HTMLProps<HTMLElement>,
+            tree?.events.emit('onNodeFocused', {
+              nodeId: nodeId,
+              parentId: parentId,
+            });
+          },
+        }),
       );
     });
-  }, [children, nodeId, parentId, tree?.events]);
+  }, [children, nodeId, parentId, tree?.events, popover]);
 
   const reference = cloneElementWithRef(
     trigger,
     (triggerChild) =>
       ({
         ...popover.getReferenceProps({
-          ...popover.getItemProps({
-            ...triggerChild.props,
-            'aria-expanded': popover.open,
-            ref: mergeRefs(triggerRef, popover.refs.setReference),
-            onClick: (e) => {
-              triggerChild.props.onClick?.(e);
-              // If the click interaction is disabled, do nothing
-              if (!popover.interactionsEnabledStates.click) {
-                return;
-              }
+          ...triggerChild.props,
+          'aria-expanded': popover.open,
+          ref: mergeRefs(triggerRef, popover.refs.setReference),
+          onClick: (e) => {
+            triggerChild.props.onClick?.(e);
+            // If the click interaction is disabled, do nothing
+            if (!popover.interactionsEnabledStates.click) {
+              return;
+            }
 
-              // This is needed because FloatingUI's useClick does not close the floating content on the first click.
-              // @see: https://redirect.github.com/floating-ui/floating-ui/issues/1893#issuecomment-1250161220
-              if (visible) {
-                close();
-              }
-            },
-          }),
+            // This is needed because FloatingUI's useClick does not close the floating content on the first click.
+            // @see: https://redirect.github.com/floating-ui/floating-ui/issues/1893#issuecomment-1250161220
+            if (visible) {
+              close();
+            }
+          },
         }),
       }) satisfies React.HTMLProps<HTMLElement>,
   );
