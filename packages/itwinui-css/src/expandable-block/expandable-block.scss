@@ -187,5 +187,6 @@
   :where(.iui-expandable-block:not([data-iui-expanded='true'])) & {
     opacity: 0;
     transform: translateY(-1rem);
+    transform: translateY(Round(-1rem, 1px));
   }
 }
