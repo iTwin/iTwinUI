@@ -9,6 +9,7 @@ import {
   useResizeObserver,
   useLayoutEffect,
 } from '../hooks/index.js';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 const unstable_batchedUpdates =
   ReactDOM.unstable_batchedUpdates ?? ((cb: () => void) => void cb());
@@ -92,6 +93,10 @@ export type VirtualScrollProps = {
    */
   itemRenderer: (index: number) => JSX.Element;
   /**
+   * Ref for scrollable parent container.
+   */
+  scrollContainerRef: HTMLDivElement | null;
+  /**
    * Number of items to be rendered at the start and the end.
    * Not recommended to go lower than the visible items in viewport.
    * @default 10
@@ -118,21 +123,74 @@ export type VirtualScrollProps = {
  *    This is my item #{index}
  *  </div>
  * ), [])
+ * <div style={{overflow: 'auto'}} ref={ref}>
  * <VirtualScroll
  *  itemsLength={1000}
  *  itemRenderer={itemRenderer}
+ *  scrollableContainerRef={ref}
  * />
+ * </div>
  * @private
  */
 export const VirtualScroll = React.forwardRef<
   HTMLDivElement,
   VirtualScrollProps
 >((props, ref) => {
-  const { innerProps, outerProps, visibleChildren } = useVirtualization(props);
+  const {
+    itemsLength,
+    itemRenderer,
+    bufferSize = 10,
+    scrollToIndex,
+    scrollContainerRef,
+    style,
+    ...rest
+  } = props;
+
+  const virtualizer = useVirtualizer({
+    count: itemsLength,
+    getScrollElement: () => scrollContainerRef,
+    estimateSize: () => 62,
+    overscan: bufferSize,
+  });
+
+  const outerProps = {
+    style: {
+      minBlockSize: virtualizer.getTotalSize(),
+      minInlineSize: '100%',
+      ...style,
+    },
+    ...rest,
+  } as React.HTMLAttributes<HTMLElement>;
+  const innerProps = {
+    style: { willChange: 'transform' },
+  } as const;
+
+  useLayoutEffect(() => {
+    if (scrollToIndex) {
+      virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
+    }
+  }, [scrollToIndex, virtualizer]);
 
   return (
     <div {...outerProps} ref={ref}>
-      <div {...innerProps}>{visibleChildren}</div>
+      <div {...innerProps}>
+        {virtualizer.getVirtualItems().map((virtualItem) => (
+          <div
+            key={virtualItem.key}
+            data-index={virtualItem.index}
+            ref={virtualizer.measureElement}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              transform: `translateY(${virtualItem.start}px)`,
+            }}
+          >
+            {itemRenderer(virtualItem.index)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 });
