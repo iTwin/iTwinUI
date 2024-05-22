@@ -607,7 +607,7 @@ export const Virtualized = () => {
   );
 
   return (
-    <div>
+    <div style={{ height: 'min(400px, 90vh)', overflow: 'auto' }}>
       <Tree<StoryData>
         data={data}
         getNode={getNode}
@@ -628,7 +628,6 @@ export const Virtualized = () => {
           ),
           [onNodeExpanded, onSelectedNodeChange],
         )}
-        style={{ height: 'min(400px, 90vh)', overflow: 'auto' }}
       />
     </div>
   );
