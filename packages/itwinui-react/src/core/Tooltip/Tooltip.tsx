@@ -29,7 +29,6 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
-  useLayoutEffect,
   useMergedRefs,
 } from '../../utils/index.js';
 import type {
@@ -151,12 +150,15 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   // Synchronize popover visibility (DOM) with open state (React)
-  useLayoutEffect(() => {
-    try {
-      tooltipRef.current?.togglePopover?.(open);
-    } catch {
-      // Fail silently, to avoid crashing the page
-    }
+  React.useEffect(() => {
+    // Using a microtask ensures that the popover is mounted before calling togglePopover
+    queueMicrotask(() => {
+      try {
+        tooltipRef.current?.togglePopover?.(open);
+      } catch {
+        // Fail silently, to avoid crashing the page
+      }
+    });
   }, [open]);
 
   const floating = useFloating({
