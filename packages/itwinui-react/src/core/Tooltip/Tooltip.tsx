@@ -147,7 +147,14 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   const syncWithControlledState = React.useCallback(
-    (element: HTMLElementWithPopover | null) => element?.togglePopover?.(open),
+    (element: HTMLElementWithPopover | null) => {
+      try {
+        queueMicrotask(() => element?.togglePopover?.(open));
+      } catch {
+        // This try-catch is a way to fail silently, because popover will otherwise
+        // throw if it fails for any reason (e.g. the element is not currently mounted)
+      }
+    },
     [open],
   );
 
