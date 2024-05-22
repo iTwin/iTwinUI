@@ -141,37 +141,30 @@ const useTooltip = (options: TooltipOptions = {}) => {
     ...props
   } = options;
 
-  const [tooltipElement, setTooltipElement] =
-    React.useState<HTMLElement | null>(null);
+  const tooltipRef = React.useRef<HTMLElement | null>(null);
   const latestOnVisibleChange = useLatestRef(onVisibleChangeProp);
   const supportsPopover = React.useMemo(() => isPopoverSupported(), []);
 
-  const isInitialized = React.useRef(false);
-  const initializeTooltip = React.useCallback(
+  const syncWithControlledState = React.useCallback(
     (element: HTMLElement | null) => {
-      setTooltipElement(element);
-
-      // This only runs once to synchronize `popover` state with `visible` prop
-      if (element && visibleProp && !isInitialized.current) {
+      // Toggle popover visibility when visibleProp changes
+      if (element && visibleProp !== undefined && supportsPopover) {
         // @ts-expect-error -- types not available yet
-        element?.showPopover?.();
-        isInitialized.current = true;
-      } else if (!element) {
-        isInitialized.current = false;
+        element?.togglePopover?.(visibleProp);
       }
     },
-    [visibleProp],
+    [visibleProp, supportsPopover],
   );
 
   const onVisibleChange = React.useCallback(
     (visible: boolean) => {
       if (supportsPopover) {
         // @ts-expect-error -- types not available yet
-        tooltipElement?.togglePopover?.(visibleProp ?? visible);
+        tooltipRef.current?.togglePopover?.(visible);
       }
       latestOnVisibleChange.current?.(visible);
     },
-    [latestOnVisibleChange, supportsPopover, tooltipElement, visibleProp],
+    [latestOnVisibleChange, supportsPopover],
   );
 
   const [open, onOpenChange] = useControlledState(
@@ -305,14 +298,15 @@ const useTooltip = (options: TooltipOptions = {}) => {
       refs: {
         ...floating.refs,
         setFloating: (element: HTMLElement | null) => {
-          initializeTooltip(element);
+          tooltipRef.current = element;
+          syncWithControlledState(element);
           floating.refs.setFloating(element);
         },
       },
       // styles are not relevant when tooltip is not open
       floatingStyles: floating.context.open ? floating.floatingStyles : {},
     }),
-    [getReferenceProps, floatingProps, floating, initializeTooltip],
+    [getReferenceProps, floatingProps, floating, syncWithControlledState],
   );
 };
 
