@@ -88,9 +88,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
               top: 0,
               left: 0,
               width: '100%',
-              transform: `translateY(${
-                virtualItem.start - 1 * virtualItem.index //Calculated this way to replicate the spacing on the older virtualized menu.
-              }px)`,
+              transform: `translateY(${virtualItem.start}px)`,
             }}
           >
             {virtualItemRenderer(virtualItem.index)}
