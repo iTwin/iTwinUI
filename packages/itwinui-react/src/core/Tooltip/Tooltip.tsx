@@ -29,12 +29,20 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
+  useLatestRef,
   useMergedRefs,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
+
+// ----------------------------------------------------------------------------
+
+const isPopoverSupported = () =>
+  typeof HTMLElement !== 'undefined' && 'popover' in HTMLElement.prototype;
+
+// ----------------------------------------------------------------------------
 
 type TooltipOptions = {
   /**
@@ -117,12 +125,14 @@ type TooltipOwnProps = {
   children?: React.ReactNode;
 } & PortalProps;
 
+// ----------------------------------------------------------------------------
+
 const useTooltip = (options: TooltipOptions = {}) => {
   const uniqueId = useId();
   const {
     placement = 'top',
-    visible,
-    onVisibleChange,
+    visible: visibleProp,
+    onVisibleChange: onVisibleChangeProp,
     middleware = { flip: true, shift: true },
     autoUpdateOptions = {},
     reference,
@@ -131,9 +141,42 @@ const useTooltip = (options: TooltipOptions = {}) => {
     ...props
   } = options;
 
+  const [tooltipElement, setTooltipElement] =
+    React.useState<HTMLElement | null>(null);
+  const latestOnVisibleChange = useLatestRef(onVisibleChangeProp);
+  const supportsPopover = React.useMemo(() => isPopoverSupported(), []);
+
+  const isInitialized = React.useRef(false);
+  const initializeTooltip = React.useCallback(
+    (element: HTMLElement | null) => {
+      setTooltipElement(element);
+
+      // This only runs once to synchronize `popover` state with `visible` prop
+      if (element && visibleProp && !isInitialized.current) {
+        // @ts-expect-error -- types not available yet
+        element?.showPopover?.();
+        isInitialized.current = true;
+      } else if (!element) {
+        isInitialized.current = false;
+      }
+    },
+    [visibleProp],
+  );
+
+  const onVisibleChange = React.useCallback(
+    (visible: boolean) => {
+      if (supportsPopover) {
+        // @ts-expect-error -- types not available yet
+        tooltipElement?.togglePopover?.(visibleProp ?? visible);
+      }
+      latestOnVisibleChange.current?.(visible);
+    },
+    [latestOnVisibleChange, supportsPopover, tooltipElement, visibleProp],
+  );
+
   const [open, onOpenChange] = useControlledState(
     false,
-    visible,
+    visibleProp,
     onVisibleChange,
   );
 
@@ -242,14 +285,16 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   const floatingProps = React.useMemo(
-    () =>
-      interactions.getFloatingProps({
+    () => ({
+      ...interactions.getFloatingProps({
         hidden: !open,
         'aria-hidden': 'true',
         ...props,
         id,
       }),
-    [interactions, props, id, open],
+      popover: supportsPopover ? 'manual' : undefined,
+    }),
+    [interactions, props, id, open, supportsPopover],
   );
 
   return React.useMemo(
@@ -257,10 +302,17 @@ const useTooltip = (options: TooltipOptions = {}) => {
       getReferenceProps,
       floatingProps,
       ...floating,
+      refs: {
+        ...floating.refs,
+        setFloating: (element: HTMLElement | null) => {
+          initializeTooltip(element);
+          floating.refs.setFloating(element);
+        },
+      },
       // styles are not relevant when tooltip is not open
       floatingStyles: floating.context.open ? floating.floatingStyles : {},
     }),
-    [getReferenceProps, floatingProps, floating],
+    [getReferenceProps, floatingProps, floating, initializeTooltip],
   );
 };
 
