@@ -73,7 +73,9 @@ type MenuProps = {
  * - setting the refs: use the optional`positionReference` prop to set the position reference
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
- * - focus management: if *not* in a `FloatingTree`, focus moves to the trigger when the menu is closed. If in a `FloatingTree`, focus does not move back to the trigger since `MenuItem`s handle the focus.
+ * - focus management:
+ *   - focuses items on hover.
+ *   - if *not* in a `FloatingTree`, focus moves to the trigger when the menu is closed. If in a `FloatingTree`, focus does not move back to the trigger since `MenuItem`s handle the focus.
  * - setting `aria-expanded` accordingly depending on the menu open state
  *
  * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exception:
@@ -251,21 +253,36 @@ export const Menu = React.forwardRef((props, ref) => {
 
   const menuContent = React.useMemo(() => {
     return React.Children.map(children, (child) => {
-      return cloneElementWithRef(child, (child) =>
-        popover.getItemProps({
-          onFocus: (e) => {
-            child.props.onFocus?.(e);
-            // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
-            // E.g. Even when hovering into it rapidly.
-            queueMicrotask(() => {
-              setHasFocusedNodeInSubmenu(true);
-            });
-            tree?.events.emit('onNodeFocused', {
-              nodeId: nodeId,
-              parentId: parentId,
-            });
-          },
-        }),
+      return cloneElementWithRef(
+        child,
+        (child) =>
+          ({
+            onMouseEnter: (e) => {
+              child.props.onMouseEnter?.(e);
+
+              // If the hover interaction is disabled, do nothing
+              if (!popover.interactionsEnabledStates.hover) {
+                return;
+              }
+
+              // Focus the item when hovered.
+              if (e.target === e.currentTarget) {
+                e.currentTarget.focus();
+              }
+            },
+            onFocus: (e) => {
+              child.props.onFocus?.(e);
+              // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+              // E.g. Even when hovering into it rapidly.
+              queueMicrotask(() => {
+                setHasFocusedNodeInSubmenu(true);
+              });
+              tree?.events.emit('onNodeFocused', {
+                nodeId: nodeId,
+                parentId: parentId,
+              });
+            },
+          }) satisfies React.HTMLProps<HTMLElement>,
       );
     });
   }, [children, nodeId, parentId, tree?.events, popover]);
