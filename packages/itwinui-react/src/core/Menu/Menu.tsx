@@ -157,7 +157,6 @@ export const Menu = React.forwardRef((props, ref) => {
       listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
-    // TODO: Confirm what defaults to set and see which components need to override them
     ...restPopoverProps,
   });
 
