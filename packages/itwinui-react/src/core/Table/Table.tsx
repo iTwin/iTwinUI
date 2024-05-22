@@ -760,8 +760,6 @@ export const Table = <
   );
 
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const [stateTableRef, setStateTableRef] =
-    React.useState<HTMLDivElement | null>(null);
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -905,7 +903,6 @@ export const Table = <
         ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
           resizeRef(element);
-          setStateTableRef(element);
         })}
         id={id}
         {...getTableProps({
@@ -1120,7 +1117,6 @@ export const Table = <
                 <VirtualScroll
                   itemsLength={page.length}
                   itemRenderer={virtualizedItemRenderer}
-                  scrollContainerRef={stateTableRef}
                   scrollToIndex={scrollToIndex}
                 />
               ) : (

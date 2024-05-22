@@ -7,7 +7,7 @@ import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
 import { VirtualScroll } from './VirtualScroll.js';
 import * as UseResizeObserver from '../hooks/useResizeObserver.js';
-import { useVirtualizer } from '@tanstack/react-virtual';
+import { useVirtualization } from './index.js';
 
 // to return correct values for container 'scroller' and children
 const heightsMock = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
@@ -37,33 +37,20 @@ it('should render only few elements out of big list', () => {
     return { height: 40 } as DOMRect;
   });
   const data = generateDataArray(1000);
-  const TestComponent = () => {
-    const [parentRef, setParentRef] = React.useState<HTMLDivElement | null>(
-      null,
-    );
-    return (
-      <div
-        style={{ overflow: 'auto', height: 400 }}
-        id='scroller'
-        ref={(element) => {
-          setParentRef(element);
-        }}
-      >
-        <VirtualScroll
-          itemsLength={data.length}
-          itemRenderer={(index) => (
-            <div
-              key={index}
-              className='element'
-              style={{ height: 40 }}
-            >{`Element${data[index]}`}</div>
-          )}
-          scrollContainerRef={parentRef}
-        />
-      </div>
-    );
-  };
-  const { container } = render(<TestComponent />);
+  const { container } = render(
+    <div style={{ overflow: 'auto', height: 400 }} id='scroller'>
+      <VirtualScroll
+        itemsLength={data.length}
+        itemRenderer={(index) => (
+          <div
+            key={index}
+            className='element'
+            style={{ height: 40 }}
+          >{`Element${data[index]}`}</div>
+        )}
+      />
+    </div>,
+  );
   act(() => triggerResize({ height: 400 } as DOMRectReadOnly));
 
   let allVisibleElements = container.querySelectorAll('.element');
@@ -115,27 +102,14 @@ it('should not crash with empty list items', () => {
     return { height: 0 } as DOMRect;
   });
   const data = generateDataArray(1000);
-  const TestComponent = () => {
-    const [parentRef, setParentRef] = React.useState<HTMLDivElement | null>(
-      null,
-    );
-    return (
-      <div
-        style={{ overflow: 'auto', height: 400 }}
-        id='scroller'
-        ref={(element) => {
-          setParentRef(element);
-        }}
-      >
-        <VirtualScroll
-          itemsLength={data.length}
-          itemRenderer={(index) => <div key={index} className='element' />}
-          scrollContainerRef={parentRef}
-        />
-      </div>
-    );
-  };
-  const { container } = render(<TestComponent />);
+  const { container } = render(
+    <div style={{ overflow: 'auto', height: 400 }} id='scroller'>
+      <VirtualScroll
+        itemsLength={data.length}
+        itemRenderer={(index) => <div key={index} className='element' />}
+      />
+    </div>,
+  );
   act(() => triggerResize({ height: 400 } as DOMRectReadOnly));
 
   expect(container.querySelectorAll('.element').length).toBe(20);
@@ -149,31 +123,18 @@ it('should render 1 item', () => {
     return { height: 40 } as DOMRect;
   });
   const data = generateDataArray(1);
-  const TestComponent = () => {
-    const [parentRef, setParentRef] = React.useState<HTMLDivElement | null>(
-      null,
-    );
-    return (
-      <div
-        style={{ overflow: 'auto', height: 400 }}
-        id='scroller'
-        ref={(element) => {
-          setParentRef(element);
-        }}
-      >
-        <VirtualScroll
-          itemsLength={data.length}
-          itemRenderer={(index) => (
-            <div key={index} className='element'>
-              {data[index]}
-            </div>
-          )}
-          scrollContainerRef={parentRef}
-        />
-      </div>
-    );
-  };
-  const { container } = render(<TestComponent />);
+  const { container } = render(
+    <div style={{ overflow: 'auto', maxHeight: 400 }} id='scroller'>
+      <VirtualScroll
+        itemsLength={data.length}
+        itemRenderer={(index) => (
+          <div key={index} className='element'>
+            {data[index]}
+          </div>
+        )}
+      />
+    </div>,
+  );
   act(() => triggerResize({ height: 40 } as DOMRectReadOnly));
 
   expect(container.querySelectorAll('.element').length).toBe(1);
@@ -197,34 +158,21 @@ it('should show provided index on first render', () => {
     });
   });
   const data = generateDataArray(1000);
-  const TestComponent = () => {
-    const [parentRef, setParentRef] = React.useState<HTMLDivElement | null>(
-      null,
-    );
-    return (
-      <div
-        style={{ overflow: 'auto', height: 400 }}
-        id='scroller'
-        ref={(element) => {
-          setParentRef(element);
-        }}
-      >
-        <VirtualScroll
-          itemsLength={data.length}
-          itemRenderer={(index) => (
-            <div
-              key={index}
-              className='element'
-              style={{ height: 40 }}
-            >{`Element${data[index]}`}</div>
-          )}
-          scrollToIndex={50}
-          scrollContainerRef={parentRef}
-        />
-      </div>
-    );
-  };
-  const { container } = render(<TestComponent />);
+  const { container } = render(
+    <div style={{ overflow: 'auto', height: 400 }} id='scroller'>
+      <VirtualScroll
+        itemsLength={data.length}
+        itemRenderer={(index) => (
+          <div
+            key={index}
+            className='element'
+            style={{ height: 40 }}
+          >{`Element${data[index]}`}</div>
+        )}
+        scrollToIndex={50}
+      />
+    </div>,
+  );
   act(() => triggerResize({ height: 400 } as DOMRectReadOnly));
 
   const allVisibleElements = container.querySelectorAll('.element');
@@ -252,52 +200,22 @@ it('should render parent as ul', () => {
   });
   const data = generateDataArray(4000);
   const MyComponentToRender = () => {
-    const parentRef = React.useRef(null);
-    const virtualizer = useVirtualizer({
-      count: data.length,
-      getScrollElement: () => parentRef.current,
-      estimateSize: () => 40,
+    const { outerProps, innerProps, visibleChildren } = useVirtualization({
+      itemsLength: data.length,
+      itemRenderer: (index) => (
+        <li
+          key={index}
+          className='element'
+          style={{ height: 40 }}
+        >{`Element${data[index]}`}</li>
+      ),
     });
-    const itemRenderer = (index: number) => (
-      <li
-        key={index}
-        className='element'
-        style={{ height: 40 }}
-      >{`Element${data[index]}`}</li>
-    );
-    const innerProps = {
-      style: { willChange: 'transform' },
-    } as const;
 
     return (
-      <div
-        style={{ overflow: 'auto', height: 400 }}
-        id='scroller'
-        ref={parentRef}
-      >
-        <div
-          style={{
-            minBlockSize: virtualizer.getTotalSize(),
-            minInlineSize: '100%',
-          }}
-        >
+      <div style={{ overflow: 'auto', height: 400 }} id='scroller'>
+        <div {...outerProps}>
           <ul {...innerProps} className='customClass'>
-            {virtualizer.getVirtualItems().map((virtualItem) => (
-              <div
-                key={virtualItem.key}
-                data-index={virtualItem.index}
-                ref={virtualizer.measureElement}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  transform: `translateY(${virtualItem.start}px)`,
-                }}
-              >
-                {itemRenderer(virtualItem.index)}
-              </div>
-            ))}
+            {visibleChildren}
           </ul>
         </div>
       </div>

@@ -5,14 +5,14 @@
 import * as React from 'react';
 import {
   getFocusableElements,
+  useVirtualization,
+  mergeRefs,
   Box,
   polymorphic,
-  useLayoutEffect,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
-import { useVirtualizer } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
   /**
@@ -380,65 +380,26 @@ const VirtualizedTree = React.forwardRef(
     }: VirtualizedTreeProps<T>,
     ref: React.ForwardedRef<HTMLUListElement>,
   ) => {
-    const parentRef = React.useRef(null);
-    const virtualizer = useVirtualizer({
-      count: flatNodesList.length,
-      getScrollElement: () => parentRef.current,
-      estimateSize: () => 39,
-      overscan: 10,
+    const { outerProps, innerProps, visibleChildren } = useVirtualization({
+      itemsLength: flatNodesList.length,
+      itemRenderer: itemRenderer,
+      scrollToIndex,
     });
-
-    const outerProps = {
-      style: {
-        //minBlockSize: virtualizer.getTotalSize(),
-        minInlineSize: '100%',
-        ...style,
-      },
-      ...rest,
-    } as React.HTMLAttributes<HTMLElement>;
-
-    const innerProps = {
-      style: {
-        minBlockSize: virtualizer.getTotalSize(),
-        willChange: 'transform',
-      },
-    } as const;
-
-    useLayoutEffect(() => {
-      if (scrollToIndex) {
-        virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
-      }
-    }, [scrollToIndex, virtualizer]);
 
     return (
       <Box
         {...{
           ...outerProps,
           className: cx(className, outerProps.className),
-          style: {
-            ...style,
-            ...outerProps.style,
-          },
+          style: { ...style, ...outerProps.style },
         }}
-        ref={parentRef}
       >
-        <TreeElement {...innerProps} {...rest} ref={ref}>
-          {virtualizer.getVirtualItems().map((virtualItem) => (
-            <div
-              key={virtualItem.key}
-              data-index={virtualItem.index}
-              ref={virtualizer.measureElement}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                transform: `translateY(${virtualItem.start}px)`,
-              }}
-            >
-              {itemRenderer(virtualItem.index)}
-            </div>
-          ))}
+        <TreeElement
+          {...innerProps}
+          {...rest}
+          ref={mergeRefs(ref, innerProps.ref)}
+        >
+          {visibleChildren}
         </TreeElement>
       </Box>
     );
