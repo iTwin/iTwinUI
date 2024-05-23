@@ -39,7 +39,6 @@ export const Left = () => {
         id='tooltip-target'
         style={{
           marginLeft: 100,
-          width: 'fit-content',
         }}
       >
         Please, try to hover me!
