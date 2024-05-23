@@ -208,31 +208,6 @@ export const Menu = React.forwardRef((props, ref) => {
 
   useSyncExternalStore(
     React.useCallback(() => {
-      const navigateToItemFunctions = Array.from(
-        { length: listNavigationProps.listRef.current.length },
-        (_, index) => {
-          return () => {
-            listNavigationProps.onNavigate?.(index);
-          };
-        },
-      );
-
-      listNavigationProps.listRef.current.forEach((el, index) => {
-        el?.addEventListener('mouseenter', navigateToItemFunctions[index]);
-      });
-
-      return () => {
-        listNavigationProps.listRef.current.forEach((el, index) => {
-          el?.removeEventListener('mouseenter', navigateToItemFunctions[index]);
-        });
-      };
-    }, [listNavigationProps]),
-    () => undefined,
-    () => undefined,
-  );
-
-  useSyncExternalStore(
-    React.useCallback(() => {
       const closeUnrelatedMenus = (event: TreeEvent) => {
         if (
           // When a node "X" is focused, close "X"'s siblings' submenus
