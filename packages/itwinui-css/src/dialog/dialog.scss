@@ -67,11 +67,14 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
   &:not([data-iui-placement]) {
     inset-inline-start: 50%;
-    inset-inline-start: Round(50%, 1px);
     inset-block-start: 33%;
-    inset-block-start: Round(33%, 1px);
     transform: translate(-50%, -33%);
-    transform: translate(Round(-50%, 1px), Round(-33%, 1px));
+
+    @supports (--round: Round(1px, 1px)) {
+      inset-inline-start: Round(50%, 1px);
+      inset-block-start: Round(33%, 1px);
+      transform: translate(Round(-50%, 1px), Round(-33%, 1px));
+    }
   }
 
   &[data-iui-placement='top-left'] {
