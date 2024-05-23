@@ -1,5 +1,20 @@
 # @itwin/itwinui-variables
 
+## 3.2.0
+
+### Minor Changes
+
+- [#2057](https://github.com/iTwin/iTwinUI/pull/2057): Updated warning and negative background colors to better match the rest of the color palette.
+
+  - `--iui-color-background-warning`
+  - `--iui-color-background-warning-hover`
+  - `--iui-color-background-negative`
+  - `--iui-color-background-negative-hover`
+
+### Patch Changes
+
+- [#2049](https://github.com/iTwin/iTwinUI/pull/2049): The color contrast of disabled controls' borders (`--iui-color-border-disabled`) has been slightly increased.
+
 ## 3.1.0
 
 ### Minor Changes
