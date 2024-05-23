@@ -20,7 +20,7 @@ it('should toggle the visibility of tooltip on hover', () => {
 
   const tooltip = getByText('some text');
   expect(tooltip).not.toBeVisible();
-  expect(tooltip).toHaveAttribute('popover');
+  expect(tooltip).toHaveAttribute('popover', 'manual');
 
   fireEvent.mouseEnter(trigger);
   expect(tooltip).toBeVisible();
@@ -46,7 +46,7 @@ it('should toggle the visibility of tooltip on focus', async () => {
 
   const tooltip = getByText('some text');
   expect(tooltip).not.toBeVisible();
-  expect(tooltip).toHaveAttribute('popover');
+  expect(tooltip).toHaveAttribute('popover', 'manual');
 
   fireEvent.focus(trigger);
   act(() => void vi.advanceTimersByTime(50));
