@@ -65,23 +65,24 @@ type MenuProps = {
 /**
  * @private
  *
- * Used for dropdown components. E.g. `DropdownMenu`, `SplitButton`. The children must be `MenuItem`s.
+ * Used for dropdown components. E.g. `DropdownMenu`, `SplitButton`.
  *
  * What needs to be handled **manually**:
- * - `MenuItem` needs to spread `MenuContext.popover.getItemProps()`.
- * - `MenuItem` needs to focus itself on hover.
+ * - Menu items need to spread `MenuContext.popover.getItemProps()`.
+ * - Menu items need to focus itself on hover.
  *
  * What is handled automatically:
  * - the portaling: use the optional `portal` prop for more customization
  * - conditional rendering based on the popover's open state
  * - spreading the popover props `getFloatingProps` and `getReferenceProps`.
- *   - As mentioned above, `getItemProps` need to be spread **manually** in `MenuItem`.
+ *   - As mentioned above, `getItemProps` need to be spread **manually** in the menu item.
  * - setting the refs: use the optional`positionReference` prop to set the position reference
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
  * - focus management:
  *   - focuses items on hover.
- *   - if *not* in a `FloatingTree`, focus moves to the trigger when the menu is closed. If in a `FloatingTree`, focus does not move back to the trigger since `MenuItem`s handle the focus.
+ *   - if *not* in a `FloatingTree`, focus moves to the trigger when the menu is closed.
+ *     If in a `FloatingTree`, focus does not move back to the trigger since menu items handle the focus.
  * - setting `aria-expanded` accordingly depending on the menu open state
  *
  * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exception:
