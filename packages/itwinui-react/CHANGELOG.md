@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.11.0
+
+### Minor Changes
+
+- [#2022](https://github.com/iTwin/iTwinUI/pull/2022): Added optional props to `TreeNode` for customization: `nodeProps`, `contentProps`, `labelProps`, `titleProps`, `sublabelProps`, `checkboxProps`, `iconProps`, `expanderProps` and `subTreeProps`.
+- [#2058](https://github.com/iTwin/iTwinUI/pull/2058): Added new `loading` prop to `Button`. This is useful when you want to display a brief loading state after the user clicks the button.
+
+  ```jsx
+  <Button loading={isProcessing}>Click me</Button>
+  ```
+
+- [#2057](https://github.com/iTwin/iTwinUI/pull/2057): Updated warning and negative background colors to better match the rest of the color palette.
+- [#2060](https://github.com/iTwin/iTwinUI/pull/2060): `Tooltip` will now automatically use the [`popover` API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) in supported browsers. This ensures that tooltips appear in the top layer, avoiding stacking context issues.
+
+### Patch Changes
+
+- [#2042](https://github.com/iTwin/iTwinUI/pull/2042): Fix table empty state horizontal alignment when table is very narrow.
+- [#2054](https://github.com/iTwin/iTwinUI/pull/2054): Remove unnecessary gap below the inline `<InputGrid>` when no secondary line (`StatusMessage`) is present. Some other affected components: `LabeledInput`, `LabeledSelect`, `LabeledTextarea`.
+- [#2049](https://github.com/iTwin/iTwinUI/pull/2049): The color contrast of disabled controls' borders (`--iui-color-border-disabled`) has been slightly increased.
+- [#2043](https://github.com/iTwin/iTwinUI/pull/2043): Adjusted the behavior of buttons so that double tapping them doesn't zoom the viewport on iOS.
+- [#2044](https://github.com/iTwin/iTwinUI/pull/2044): Fixed a rare hydration error in `Surface` caused by using an empty string inside the `style` attribute.
+
 ## 3.10.1
 
 ### Patch Changes
