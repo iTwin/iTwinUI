@@ -43,13 +43,19 @@
     text-overflow: ellipsis;
   }
 
-  &:where(a):focus {
+  &:where(:any-link) {
     outline-offset: -1px;
+
+    &:hover {
+      color: var(--iui-color-text-accent-hover);
+      text-decoration: underline;
+    }
   }
 
-  &:where(button) {
+  &:where(button, :any-link) {
     @include base.iui-button;
     @include borderless.iui-button-borderless;
+    @include base.iui-button-size(medium, borderless);
     color: var(--iui-color-text-accent);
 
     &[aria-current] {
