@@ -69,6 +69,7 @@ type MenuProps = {
  *
  * What needs to be handled **manually**:
  * - `MenuItem` needs to spread `MenuContext.popover.getItemProps()`.
+ * - `MenuItem` needs to focus itself on hover.
  *
  * What is handled automatically:
  * - the portaling: use the optional `portal` prop for more customization
@@ -270,12 +271,6 @@ export const Menu = React.forwardRef((props, ref) => {
           parentId: parentId,
         });
       }),
-      onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, (e) => {
-        // Focus the item when hovered.
-        if (e.target === e.currentTarget) {
-          e.currentTarget.focus();
-        }
-      }),
     });
   };
 
@@ -287,8 +282,7 @@ export const Menu = React.forwardRef((props, ref) => {
           ...triggerChild.props,
           'aria-expanded': popover.open,
           ref: mergeRefs(triggerRef, popover.refs.setReference),
-          onClick: (e) => {
-            triggerChild.props.onClick?.(e);
+          onClick: mergeEventHandlers(triggerChild.props.onClick, () => {
             // If the click interaction is disabled, do nothing
             if (!popover.interactionsEnabledStates.click) {
               return;
@@ -299,7 +293,7 @@ export const Menu = React.forwardRef((props, ref) => {
             if (visible) {
               close();
             }
-          },
+          }),
         }),
       }) satisfies React.HTMLProps<HTMLElement>,
   );

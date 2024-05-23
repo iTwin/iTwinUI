@@ -141,8 +141,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
+  const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    // Focus the item when hovered.
+    if (e.target === e.currentTarget) {
+      menuItemRef.current?.focus();
+    }
+  };
+
   const onClick = () => {
-    console.log('onClick called', value);
     onClickProp?.(value);
   };
 
@@ -150,6 +156,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ? {
         onClick,
         onKeyDown,
+        onMouseEnter,
       }
     : {};
 
@@ -167,7 +174,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-disabled={disabled}
-      {...parentMenu?.popoverGetItemProps(handlers)}
+      {...(parentMenu?.popoverGetItemProps != null
+        ? parentMenu.popoverGetItemProps(handlers)
+        : handlers)}
       {...rest}
     >
       {startIcon && (
