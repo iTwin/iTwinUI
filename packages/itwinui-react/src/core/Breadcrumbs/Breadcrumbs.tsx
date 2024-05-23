@@ -229,7 +229,6 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const { as: asProp, children, className, ...rest } = props;
-  const resolvedAs = !!props.onClick ? 'button' : !!props.href ? 'a' : 'span';
 
   const commonProps = {
     className: cx('iui-breadcrumbs-content', className),
@@ -237,13 +236,18 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
     ...rest,
   };
 
-  if (resolvedAs === 'button') {
+  if (!!props.onClick || !!props.href || !!asProp) {
+    const resolvedAs = !!props.onClick
+      ? undefined
+      : !!props.href
+        ? Anchor
+        : asProp;
+
     return (
       <Button
+        as={resolvedAs as 'button'}
         styleType='borderless'
-        {...({ ...commonProps, ...rest } as Partial<
-          React.ComponentProps<typeof Button>
-        >)}
+        {...(commonProps as Partial<React.ComponentProps<typeof Button>>)}
       >
         {children}
       </Button>
@@ -251,11 +255,7 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   }
 
   return (
-    <Box
-      as={asProp ?? (resolvedAs === 'a' ? Anchor : 'span')}
-      {...commonProps}
-      {...rest}
-    >
+    <Box {...(commonProps as Partial<React.ComponentProps<typeof Box>>)}>
       {children}
     </Box>
   );

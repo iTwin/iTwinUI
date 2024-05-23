@@ -55,7 +55,6 @@
   &:where(button, :any-link) {
     @include base.iui-button;
     @include borderless.iui-button-borderless;
-    @include base.iui-button-size(medium, borderless);
     color: var(--iui-color-text-accent);
 
     &[aria-current] {
