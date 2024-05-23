@@ -32,6 +32,18 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   &:is(#{$disabledButtonSelectors}) {
     --_iui-button-icon-fill: var(--iui-color-icon-disabled);
   }
+
+  &:is([data-iui-loading='true']) {
+    > :where(.iui-button-label) {
+      opacity: 0;
+    }
+
+    > :where(.iui-button-spinner) {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+    }
+  }
 }
 
 @mixin iui-button-icon {
