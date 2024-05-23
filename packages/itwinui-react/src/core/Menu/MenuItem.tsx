@@ -10,7 +10,7 @@ import {
   createWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu } from './Menu.js';
+import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 
@@ -104,6 +104,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     );
   }
 
+  const parentMenu = React.useContext(MenuContext);
+
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
 
@@ -130,7 +132,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        onClickProp?.(value);
+        onClick();
         event.preventDefault();
         break;
       }
@@ -140,6 +142,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   const onClick = () => {
+    console.log('onClick called', value);
     onClickProp?.(value);
   };
 
@@ -164,7 +167,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-disabled={disabled}
-      {...handlers}
+      {...parentMenu?.popoverGetItemProps(handlers)}
       {...rest}
     >
       {startIcon && (

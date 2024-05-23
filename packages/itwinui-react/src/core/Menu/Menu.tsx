@@ -13,6 +13,7 @@ import {
   cloneElementWithRef,
   mergeRefs,
   useSyncExternalStore,
+  mergeEventHandlers,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -64,12 +65,16 @@ type MenuProps = {
 /**
  * @private
  *
- * Can be used for select or dropdown components.
+ * Used for dropdown components. E.g. `DropdownMenu`, `SplitButton`. The children must be `MenuItem`s.
  *
- * This handles lots of the setup for a menu component:
+ * What needs to be handled **manually**:
+ * - `MenuItem` needs to spread `MenuContext.popover.getItemProps()`.
+ *
+ * What is handled automatically:
  * - the portaling: use the optional `portal` prop for more customization
  * - conditional rendering based on the popover's open state
- * - spreading the popover props (`getFloatingProps`, `getReferenceProps`, `getItemProps`)
+ * - spreading the popover props `getFloatingProps` and `getReferenceProps`.
+ *   - As mentioned above, `getItemProps` need to be spread **manually** in `MenuItem`.
  * - setting the refs: use the optional`positionReference` prop to set the position reference
  * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
  * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
@@ -251,36 +256,28 @@ export const Menu = React.forwardRef((props, ref) => {
     () => undefined,
   );
 
-  const menuContent = React.useMemo(() => {
-    return React.Children.map(children, (child) => {
-      return cloneElementWithRef(
-        child,
-        (child) =>
-          ({
-            onMouseEnter: (e) => {
-              child.props.onMouseEnter?.(e);
-
-              // Focus the item when hovered.
-              if (e.target === e.currentTarget) {
-                e.currentTarget.focus();
-              }
-            },
-            onFocus: (e) => {
-              child.props.onFocus?.(e);
-              // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
-              // E.g. Even when hovering into it rapidly.
-              queueMicrotask(() => {
-                setHasFocusedNodeInSubmenu(true);
-              });
-              tree?.events.emit('onNodeFocused', {
-                nodeId: nodeId,
-                parentId: parentId,
-              });
-            },
-          }) satisfies React.HTMLProps<HTMLElement>,
-      );
+  const popoverGetItemProps: typeof popover.getItemProps = (userProps) => {
+    return popover.getItemProps({
+      ...userProps,
+      onFocus: mergeEventHandlers(userProps?.onFocus, () => {
+        // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+        // E.g. Even when hovering into it rapidly.
+        queueMicrotask(() => {
+          setHasFocusedNodeInSubmenu(true);
+        });
+        tree?.events.emit('onNodeFocused', {
+          nodeId: nodeId,
+          parentId: parentId,
+        });
+      }),
+      onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, (e) => {
+        // Focus the item when hovered.
+        if (e.target === e.currentTarget) {
+          e.currentTarget.focus();
+        }
+      }),
     });
-  }, [children, nodeId, parentId, tree?.events]);
+  };
 
   const reference = cloneElementWithRef(
     trigger,
@@ -318,19 +315,21 @@ export const Menu = React.forwardRef((props, ref) => {
           ...rest,
         })}
       >
-        {menuContent}
+        {children}
       </Box>
     </Portal>
   );
 
   return (
     <>
-      {reference}
-      {tree != null ? (
-        <FloatingNode id={nodeId}>{floating}</FloatingNode>
-      ) : (
-        floating
-      )}
+      <MenuContext.Provider value={{ popoverGetItemProps }}>
+        {reference}
+        {tree != null ? (
+          <FloatingNode id={nodeId}>{floating}</FloatingNode>
+        ) : (
+          floating
+        )}
+      </MenuContext.Provider>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
@@ -341,3 +340,10 @@ export type TreeEvent = {
   nodeId: string;
   parentId: string | null;
 };
+
+export const MenuContext = React.createContext<
+  | {
+      popoverGetItemProps: ReturnType<typeof usePopover>['getItemProps'];
+    }
+  | undefined
+>(undefined);
