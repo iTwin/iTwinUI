@@ -186,7 +186,7 @@
 
   :where(.iui-expandable-block:not([data-iui-expanded='true'])) & {
     opacity: 0;
-    @supports not (--round: Round(1px, 1px)) {
+    @supports not (top: Round(1px, 1px)) {
       transform: translateY(-1rem);
     }
     transform: translateY(Round(-1rem, 1px));
