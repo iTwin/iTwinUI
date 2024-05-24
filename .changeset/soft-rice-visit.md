@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': minor
+'@itwin/itwinui-react': patch
 ---
 
-The hover styling of the `Breadcrumbs.Item` as anchors that was added in `v3.10.0` is now removed to fix the styling issues when using the polymorphic `as` prop.
+Fixed a regression from `v3.10.0` where non-button and non-link `Breadcrumbs.Item`s were getting a hover styling as if it were a button. 
