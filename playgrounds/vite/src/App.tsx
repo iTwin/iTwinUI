@@ -1,10 +1,9 @@
-import { Breadcrumbs, Button } from '@itwin/itwinui-react';
+import { Button } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      {/* <Button>Hello world</Button> */}
-      <Breadcrumbs.Item>Span 1</Breadcrumbs.Item>
+      <Button>Hello world</Button>
     </>
   );
 };
