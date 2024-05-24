@@ -159,6 +159,10 @@ test.describe('ComboBox', () => {
 
     let totalItemsHeight = 0;
     for (const item of await items.all()) {
+      if (totalItemsHeight > 0) {
+        // accounts for height lost due to custom measure element function
+        totalItemsHeight = totalItemsHeight - 1;
+      }
       totalItemsHeight += (await item.boundingBox())?.height ?? 0;
     }
 
