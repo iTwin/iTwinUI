@@ -64,10 +64,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     }
   }, [focusedVisibleIndex, virtualizer]);
 
-  const innerProps = {
-    style: { willChange: 'transform' },
-  } as const;
-
   return (
     <Box
       as='div'
@@ -77,22 +73,20 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
       }}
       {...rest}
     >
-      <div {...innerProps}>
-        {virtualizer.getVirtualItems().map((virtualItem) => {
-          return React.cloneElement(virtualItemRenderer(virtualItem.index), {
-            key: virtualItem.key,
-            'data-index': virtualItem.index,
-            ref: virtualizer.measureElement,
-            style: {
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              transform: `translateY(${virtualItem.start}px)`,
-            },
-          });
-        })}
-      </div>
+      {virtualizer.getVirtualItems().map((virtualItem) => {
+        return React.cloneElement(virtualItemRenderer(virtualItem.index), {
+          key: virtualItem.key,
+          'data-index': virtualItem.index,
+          ref: virtualizer.measureElement,
+          style: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            transform: `translateY(${virtualItem.start}px)`,
+          },
+        });
+      })}
     </Box>
   );
 };
