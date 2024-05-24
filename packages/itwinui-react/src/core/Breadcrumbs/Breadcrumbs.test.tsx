@@ -11,7 +11,6 @@ import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
-import cx from 'classnames';
 
 const renderComponent = (
   props?: Partial<React.ComponentProps<typeof Breadcrumbs>>,
@@ -96,7 +95,11 @@ it('should render breadcrumbs item as anchor elements', () => {
     href: string;
     className?: string;
   }) => (
-    <a className={cx('fake-router-link', className)} href={href} {...rest}>
+    <a
+      className={['fake-router-link', className].filter(Boolean).join(' ')}
+      href={href}
+      {...rest}
+    >
       {children}
     </a>
   );
@@ -112,7 +115,9 @@ it('should render breadcrumbs item as anchor elements', () => {
     className?: string;
   }) => (
     <a
-      className={cx('fake-router-link-without-href', className)}
+      className={['fake-router-link-without-href', className]
+        .filter(Boolean)
+        .join(' ')}
       href={to}
       {...rest}
     >
