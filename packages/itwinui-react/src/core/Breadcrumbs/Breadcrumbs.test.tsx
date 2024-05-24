@@ -90,12 +90,13 @@ it('should render breadcrumbs item as anchor elements', () => {
     children,
     href,
     className,
+    ...rest
   }: {
     children: React.ReactNode;
     href: string;
     className?: string;
   }) => (
-    <a className={cx('fake-router-link', className)} href={href}>
+    <a className={cx('fake-router-link', className)} href={href} {...rest}>
       {children}
     </a>
   );
@@ -104,12 +105,17 @@ it('should render breadcrumbs item as anchor elements', () => {
     children,
     to,
     className,
+    ...rest
   }: {
     children: React.ReactNode;
     to: string;
     className?: string;
   }) => (
-    <a className={cx('fake-router-link-without-href', className)} href={to}>
+    <a
+      className={cx('fake-router-link-without-href', className)}
+      href={to}
+      {...rest}
+    >
       {children}
     </a>
   );
@@ -133,6 +139,7 @@ it('should render breadcrumbs item as anchor elements', () => {
   expect(anchors.length).toEqual(3);
   anchors.forEach((anchor) => {
     expect(anchor).toHaveClass('iui-breadcrumbs-content');
+    expect(anchor).toHaveAttribute('data-iui-variant', 'borderless');
   });
 });
 
