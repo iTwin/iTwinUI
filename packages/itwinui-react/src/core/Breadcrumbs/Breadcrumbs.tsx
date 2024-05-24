@@ -228,39 +228,27 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
 // ----------------------------------------------------------------------------
 
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
-  const { as: asProp, children, className, ...rest } = props;
+  const { as: asProp, ...rest } = props;
 
   const commonProps = {
-    className: cx('iui-breadcrumbs-content', className),
-    ref: forwardedRef,
     ...rest,
+    className: cx('iui-breadcrumbs-content', props.className),
+    ref: forwardedRef,
   };
 
-  if (!!props.onClick || !!props.href || !!asProp) {
-    const resolvedAs = !!props.onClick
-      ? undefined
-      : !!props.href
-        ? Anchor
-        : asProp;
-
-    return (
-      <Button
-        as={resolvedAs as 'button'}
-        styleType='borderless'
-        {...(commonProps as Partial<React.ComponentProps<typeof Button>>)}
-      >
-        {children}
-      </Button>
-    );
+  if (
+    asProp === 'span' ||
+    (props.href == null && props.onClick == null && asProp == null)
+  ) {
+    return <Box as='span' {...commonProps} />;
   }
 
   return (
-    <Box
-      as='span'
-      {...(commonProps as Partial<React.ComponentProps<typeof Box>>)}
-    >
-      {children}
-    </Box>
+    <Button
+      as={(asProp === 'a' || !!props.href ? Anchor : asProp) as any}
+      styleType='borderless'
+      {...commonProps}
+    />
   );
 }) as PolymorphicForwardRefComponent<'a'>;
 BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
