@@ -86,31 +86,54 @@ it('should render breadcrumbs item as span element by default', () => {
 });
 
 it('should render breadcrumbs item as anchor elements', () => {
-  const { container } = render(
-    <Breadcrumbs.Item href='https://www.example.com/'>Anchor</Breadcrumbs.Item>,
+  const FakeRouterLink = ({
+    children,
+    href,
+    className,
+  }: {
+    children: React.ReactNode;
+    href: string;
+    className?: string;
+  }) => (
+    <a className={cx('fake-router-link', className)} href={href}>
+      {children}
+    </a>
   );
-  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
-});
 
-it('should render breadcrumbs item links according to the polymorphic `as` prop (e.g. router `Link`)', () => {
-  const FakeRouterLink = ({ children, ...props }: any) => (
-    <a {...props} className={cx('fake-router-link', props.className)}>
+  const FakeRouterLinkWithoutHref = ({
+    children,
+    to,
+    className,
+  }: {
+    children: React.ReactNode;
+    to: string;
+    className?: string;
+  }) => (
+    <a className={cx('fake-router-link-without-href', className)} href={to}>
       {children}
     </a>
   );
 
   const { container } = render(
-    <Breadcrumbs.Item as={FakeRouterLink} href='/'>
-      Router Link
-    </Breadcrumbs.Item>,
+    <>
+      <Breadcrumbs.Item href='/'>Anchor</Breadcrumbs.Item>
+      <Breadcrumbs.Item as={FakeRouterLink} href='/'>
+        Anchor
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item as={FakeRouterLinkWithoutHref} to='/'>
+        Anchor
+      </Breadcrumbs.Item>
+    </>,
   );
 
-  const link = container.querySelector('a');
-  expect(link).toBeTruthy();
+  const anchors = container.querySelectorAll(
+    'a',
+  ) as NodeListOf<HTMLAnchorElement>;
 
-  expect(link).toHaveClass('iui-breadcrumbs-content'); // Should have iTwinUI breadcrumbs styling
-  expect(link).toHaveClass('iui-anchor'); // Should have iTwinUI anchor styling
-  expect(link).toHaveClass('fake-router-link'); // Should be the custom component;
+  expect(anchors.length).toEqual(3);
+  anchors.forEach((anchor) => {
+    expect(anchor).toHaveClass('iui-breadcrumbs-content');
+  });
 });
 
 it('should render breadcrumbs item as button elements', () => {

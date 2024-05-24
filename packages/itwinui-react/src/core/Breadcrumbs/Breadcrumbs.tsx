@@ -255,7 +255,10 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   }
 
   return (
-    <Box {...(commonProps as Partial<React.ComponentProps<typeof Box>>)}>
+    <Box
+      as='span'
+      {...(commonProps as Partial<React.ComponentProps<typeof Box>>)}
+    >
       {children}
     </Box>
   );
