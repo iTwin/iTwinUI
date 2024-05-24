@@ -43,7 +43,7 @@
     text-overflow: ellipsis;
   }
 
-  &:where(:any-link) {
+  &:is(:any-link) {
     outline-offset: -1px;
 
     &:hover {
