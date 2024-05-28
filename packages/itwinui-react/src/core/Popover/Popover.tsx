@@ -111,25 +111,19 @@ type PopoverInternalProps = {
     layoutShift?: boolean;
   };
   /**
-   * By default, only the click and dismiss interactions/triggers are enabled.
+   * By default, only the click, dismiss, and listNavigation interactions/triggers are enabled.
    * Explicitly pass `false` to disable the defaults.
    *
    * Pass a boolean to enable/disable any of the supported interactions.
    * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
    *
-   * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
-   * Booleans will not be allowed in this case.
-   *
-   * When trying to add `listNavigation`, consider using `useListNavigationProps` to generate the necessary props.
-   *
    * @example
-   * const listNavigationProps = useListNavigationProps({ nested: subMenuItems.length > 0 });
    * const popover = usePopover({
    *   interactions: {
    *     click: false,
    *     focus: true,
    *     hover: { move: false },
-   *     listNavigation: listNavigationProps,
+   *     listNavigation: { nested: subMenuItems.length > 0 },
    *   }
    *   // …
    * });
@@ -139,7 +133,7 @@ type PopoverInternalProps = {
     dismiss?: boolean | UseDismissProps;
     hover?: boolean | UseHoverProps<ReferenceType>;
     focus?: boolean | UseFocusProps;
-    listNavigation?: UseListNavigationProps;
+    listNavigation?: boolean | Parameters<typeof useListNavigationProps>[0];
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
@@ -170,7 +164,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         dismiss: true,
         hover: false,
         focus: false,
-        listNavigation: undefined,
+        listNavigation: true,
       },
       ...interactionsProp,
     }),
@@ -228,9 +222,15 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       hover: mergedInteractions.hover !== false,
       focus: mergedInteractions.focus !== false,
       role: !!role,
-      listNavigation: !!mergedInteractions.listNavigation,
+      listNavigation: mergedInteractions.listNavigation !== false,
     }),
     [mergedInteractions, role],
+  );
+
+  const listNavigationProps = useListNavigationProps(
+    typeof mergedInteractions.listNavigation === 'object'
+      ? mergedInteractions.listNavigation
+      : undefined,
   );
 
   const interactions = useInteractions([
@@ -264,7 +264,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     }),
     useListNavigation(floating.context, {
       enabled: interactionsEnabledStates.listNavigation,
-      ...(mergedInteractions.listNavigation as UseListNavigationProps),
+      ...listNavigationProps,
     }),
   ]);
 
@@ -297,6 +297,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getFloatingProps,
       ...floating,
       interactionsEnabledStates,
+      listNavigationProps,
     }),
     [
       open,
@@ -305,6 +306,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getFloatingProps,
       floating,
       interactionsEnabledStates,
+      listNavigationProps,
     ],
   );
 };
@@ -326,7 +328,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
  * const listNavigationProps = useListNavigationProps({ nested: subMenuItems.length > 0 });
  * const popover = usePopover({ interactions: { listNavigation: listNavigationProps })
  */
-export const useListNavigationProps = (
+const useListNavigationProps = (
   props?: Partial<Omit<UseListNavigationProps, 'activeIndex' | 'listRef'>>,
 ): UseListNavigationProps => {
   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<

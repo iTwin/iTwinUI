@@ -19,7 +19,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
+import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   useFloatingNodeId,
@@ -51,15 +51,7 @@ type MenuProps = {
   /**
    * Use this prop to override the default props passed to `usePopover`.
    */
-  popoverProps?: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
-    interactions?: Omit<
-      NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
-      'listNavigation'
-    > & {
-      // Since Menu handles the required listNavigation props, it only needs to accept the optional ones.
-      listNavigation?: Parameters<typeof useListNavigationProps>[0];
-    };
-  };
+  popoverProps?: Parameters<typeof usePopover>[0];
 } & Pick<PortalProps, 'portal'>;
 
 /**
@@ -139,8 +131,6 @@ export const Menu = React.forwardRef((props, ref) => {
     ...restInteractionsProps
   } = interactionsProp ?? {};
 
-  const listNavigationProps = useListNavigationProps(listNavigationPropsProp);
-
   const [visible, setVisible] = useControlledState(
     false,
     visibleProp,
@@ -163,7 +153,7 @@ export const Menu = React.forwardRef((props, ref) => {
               enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
               ...(hoverProp as UseHoverProps<ReferenceType>),
             },
-      listNavigation: listNavigationProps,
+      listNavigation: listNavigationPropsProp,
       ...restInteractionsProps,
     },
     ...restPopoverProps,
@@ -200,12 +190,12 @@ export const Menu = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     const newFocusableNodes = getFocusableNodes();
     if (
-      listNavigationProps?.listRef != null &&
-      listNavigationProps.listRef.current !== newFocusableNodes
+      popover.listNavigationProps?.listRef != null &&
+      popover.listNavigationProps.listRef.current !== newFocusableNodes
     ) {
-      listNavigationProps.listRef.current = newFocusableNodes;
+      popover.listNavigationProps.listRef.current = newFocusableNodes;
     }
-  }, [getFocusableNodes, listNavigationProps, popover.open]);
+  }, [getFocusableNodes, popover.listNavigationProps, popover.open]);
 
   useSyncExternalStore(
     React.useCallback(() => {
