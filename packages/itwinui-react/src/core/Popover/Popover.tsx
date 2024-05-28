@@ -334,14 +334,7 @@ export const useListNavigationProps = (
   >(null);
   const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
 
-  const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    activeIndex: activeIndexProp,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    listRef: listRefProp,
-    onNavigate: onNavigateProp,
-    ...rest
-  } = (props ?? {}) as UseListNavigationProps;
+  const { onNavigate: onNavigateProp, ...rest } = props || {};
 
   return {
     activeIndex: currentFocusedNodeIndex,
