@@ -111,11 +111,12 @@ type PopoverInternalProps = {
     layoutShift?: boolean;
   };
   /**
-   * By default, only the click, dismiss, and listNavigation interactions/triggers are enabled.
+   * By default, only the click and dismiss interactions/triggers are enabled.
    * Explicitly pass `false` to disable the defaults.
    *
    * Pass a boolean to enable/disable any of the supported interactions.
    * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
+   * Passing an object automatically enables the interaction/trigger.
    *
    * @example
    * const popover = usePopover({
@@ -164,7 +165,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         dismiss: true,
         hover: false,
         focus: false,
-        listNavigation: true,
+        listNavigation: false,
       },
       ...interactionsProp,
     }),
