@@ -34,7 +34,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
-    estimateSize: () => 48,
+    estimateSize: () => 36,
     gap: -1,
   });
 
@@ -75,7 +75,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 
   useLayoutEffect(() => {
     if (focusedVisibleIndex) {
-      virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'start' });
+      virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'auto' });
     }
   }, [focusedVisibleIndex, virtualizer]);
 
