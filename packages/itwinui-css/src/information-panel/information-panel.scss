@@ -152,9 +152,12 @@
 
   &.iui-right {
     @include iui-information-panel-vertical;
-    transform: translateX(100%); // hide off screen
     box-shadow: -1px 0 10px var(--iui-shadow-color);
     clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
+
+    &:where(:not(.iui-visible)) {
+      transform: translateX(100%); // hide off screen
+    }
 
     > .iui-resizer {
       inset-inline-start: calc(var(--iui-size-m) * -0.5);
@@ -163,9 +166,12 @@
 
   &.iui-bottom {
     @include iui-information-panel-horizontal;
-    transform: translateY(100%); // hide off screen
     box-shadow: 0 -1px 10px var(--iui-shadow-color);
     clip-path: inset(-15px 0 0 0); // show box-shadow only on top
+
+    &:where(:not(.iui-visible)) {
+      transform: translateY(100%); // hide off screen
+    }
 
     > .iui-resizer {
       inset-block-start: calc(var(--iui-size-m) * -0.5);
@@ -175,7 +181,6 @@
   &.iui-visible {
     opacity: 1;
     visibility: visible;
-    transform: translate(0);
 
     @media (prefers-reduced-motion: no-preference) {
       transition:
