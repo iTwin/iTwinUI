@@ -35,10 +35,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
     estimateSize: () => 48,
-    measureElement: (element) =>
-      element.getAttribute('data-index') !== '0'
-        ? element.getBoundingClientRect().height - 1
-        : element.getBoundingClientRect().height,
+    gap: -1,
   });
 
   const virtualItemRenderer = React.useCallback(
