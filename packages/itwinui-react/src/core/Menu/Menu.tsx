@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergedRefs,
-  getFocusableElements,
   Box,
   Portal,
   useControlledState,
@@ -165,8 +164,7 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   }, [popover.refs, positionReference]);
 
-  const menuRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(menuRef, ref, popover.refs.setFloating);
+  const refs = useMergedRefs(ref, popover.refs.setFloating);
 
   const triggerRef = React.useRef<HTMLElement>(null);
   const close = React.useCallback(() => {
@@ -178,24 +176,6 @@ export const Menu = React.forwardRef((props, ref) => {
       triggerRef.current?.focus({ preventScroll: true });
     }
   }, [setVisible, tree]);
-
-  const getFocusableNodes = React.useCallback(() => {
-    const focusableItems = getFocusableElements(menuRef.current);
-    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    return focusableItems.filter(
-      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-    ) as HTMLElement[];
-  }, []);
-
-  React.useEffect(() => {
-    const newFocusableNodes = getFocusableNodes();
-    if (
-      popover.listNavigationProps?.listRef != null &&
-      popover.listNavigationProps.listRef.current !== newFocusableNodes
-    ) {
-      popover.listNavigationProps.listRef.current = newFocusableNodes;
-    }
-  }, [getFocusableNodes, popover.listNavigationProps, popover.open]);
 
   useSyncExternalStore(
     React.useCallback(() => {

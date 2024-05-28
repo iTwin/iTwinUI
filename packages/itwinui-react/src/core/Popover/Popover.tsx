@@ -42,6 +42,7 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
+  getFocusableElements,
   useControlledState,
   useId,
   useLayoutEffect,
@@ -234,6 +235,34 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       : undefined,
   );
 
+  const getFocusableNodes = React.useCallback(() => {
+    const focusableItems = getFocusableElements(floating.refs.floating.current);
+    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+    return focusableItems.filter(
+      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
+    ) as HTMLElement[];
+  }, [floating.refs.floating]);
+
+  React.useEffect(() => {
+    // If listNavigation is not enabled, don't update the listRef
+    if (!interactionsEnabledStates.listNavigation) {
+      return;
+    }
+
+    const newFocusableNodes = getFocusableNodes();
+    if (
+      listNavigationProps?.listRef != null &&
+      listNavigationProps.listRef.current !== newFocusableNodes
+    ) {
+      listNavigationProps.listRef.current = newFocusableNodes;
+    }
+  }, [
+    getFocusableNodes,
+    listNavigationProps,
+    open,
+    interactionsEnabledStates.listNavigation,
+  ]);
+
   const interactions = useInteractions([
     useClick(floating.context, {
       enabled: interactionsEnabledStates.click,
@@ -298,7 +327,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getFloatingProps,
       ...floating,
       interactionsEnabledStates,
-      listNavigationProps,
     }),
     [
       open,
@@ -307,7 +335,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getFloatingProps,
       floating,
       interactionsEnabledStates,
-      listNavigationProps,
     ],
   );
 };
