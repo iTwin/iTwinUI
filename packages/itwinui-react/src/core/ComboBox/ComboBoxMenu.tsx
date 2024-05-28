@@ -82,11 +82,12 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   return (
     <Box
       as='div'
+      {...rest}
       style={{
         minBlockSize: virtualizer.getTotalSize(),
         minInlineSize: '100%',
+        ...props.style,
       }}
-      {...rest}
     >
       {virtualizer.getVirtualItems().map((virtualItem) => {
         return virtualItemRenderer(virtualItem);
