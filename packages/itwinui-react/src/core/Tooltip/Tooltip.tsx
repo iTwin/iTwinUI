@@ -36,6 +36,8 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 
+// ----------------------------------------------------------------------------
+
 type TooltipOptions = {
   /**
    * Placement of the Tooltip
@@ -117,6 +119,14 @@ type TooltipOwnProps = {
   children?: React.ReactNode;
 } & PortalProps;
 
+// TODO: Remove this when types are available
+type HTMLElementWithPopover = HTMLElement & {
+  /** @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover */
+  togglePopover?: (force?: boolean) => void;
+};
+
+// ----------------------------------------------------------------------------
+
 const useTooltip = (options: TooltipOptions = {}) => {
   const uniqueId = useId();
   const {
@@ -135,6 +145,20 @@ const useTooltip = (options: TooltipOptions = {}) => {
     false,
     visible,
     onVisibleChange,
+  );
+
+  const syncWithControlledState = React.useCallback(
+    (element: HTMLElementWithPopover | null) => {
+      // Using a microtask ensures that the popover is mounted before calling togglePopover
+      queueMicrotask(() => {
+        try {
+          element?.togglePopover?.(open);
+        } catch {
+          // Fail silently, to avoid crashing the page
+        }
+      });
+    },
+    [open],
   );
 
   const floating = useFloating({
@@ -242,13 +266,15 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   const floatingProps = React.useMemo(
-    () =>
-      interactions.getFloatingProps({
+    () => ({
+      ...interactions.getFloatingProps({
         hidden: !open,
         'aria-hidden': 'true',
         ...props,
         id,
       }),
+      popover: 'manual',
+    }),
     [interactions, props, id, open],
   );
 
@@ -257,10 +283,17 @@ const useTooltip = (options: TooltipOptions = {}) => {
       getReferenceProps,
       floatingProps,
       ...floating,
+      refs: {
+        ...floating.refs,
+        setFloating: (element: HTMLElement | null) => {
+          floating.refs.setFloating(element);
+          syncWithControlledState(element);
+        },
+      },
       // styles are not relevant when tooltip is not open
       floatingStyles: floating.context.open ? floating.floatingStyles : {},
     }),
-    [getReferenceProps, floatingProps, floating],
+    [getReferenceProps, floatingProps, floating, syncWithControlledState],
   );
 };
 
