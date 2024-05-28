@@ -15,7 +15,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 import { List } from '../List/List.js';
-import { useVirtualizer } from '@tanstack/react-virtual';
+import { useVirtualizer, type VirtualItem } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
@@ -39,11 +39,25 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   });
 
   const virtualItemRenderer = React.useCallback(
-    (index: number) =>
-      filteredOptions.length > 0
-        ? getMenuItem(filteredOptions[index], index)
-        : (children as JSX.Element), // Here is expected empty state content
-    [filteredOptions, getMenuItem, children],
+    (virtualItem: VirtualItem) => {
+      const menuItem =
+        filteredOptions.length > 0
+          ? getMenuItem(filteredOptions[virtualItem.index], virtualItem.index)
+          : (children as JSX.Element); // Here is expected empty state content
+      return React.cloneElement(menuItem, {
+        key: virtualItem.key,
+        'data-index': virtualItem.index,
+        ref: virtualizer.measureElement,
+        style: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          transform: `translateY(${virtualItem.start}px)`,
+        },
+      });
+    },
+    [filteredOptions, getMenuItem, children, virtualizer.measureElement],
   );
 
   const focusedVisibleIndex = React.useMemo(() => {
@@ -75,18 +89,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
       {...rest}
     >
       {virtualizer.getVirtualItems().map((virtualItem) => {
-        return React.cloneElement(virtualItemRenderer(virtualItem.index), {
-          key: virtualItem.key,
-          'data-index': virtualItem.index,
-          ref: virtualizer.measureElement,
-          style: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            transform: `translateY(${virtualItem.start}px)`,
-          },
-        });
+        return virtualItemRenderer(virtualItem);
       })}
     </Box>
   );
