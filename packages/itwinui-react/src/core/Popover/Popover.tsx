@@ -217,17 +217,28 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
-  const interactionsEnabledStates = React.useMemo(
-    () => ({
-      click: mergedInteractions.click !== false,
-      dismiss: mergedInteractions.dismiss !== false,
-      hover: mergedInteractions.hover !== false,
-      focus: mergedInteractions.focus !== false,
+  const interactionsEnabledStates = React.useMemo(() => {
+    const userControlledInteractions = [
+      'click',
+      'dismiss',
+      'hover',
+      'focus',
+      'listNavigation',
+    ] as const;
+
+    return {
       role: !!role,
-      listNavigation: mergedInteractions.listNavigation !== false,
-    }),
-    [mergedInteractions, role],
-  );
+
+      ...(Object.fromEntries(
+        userControlledInteractions.map((key) => [
+          key,
+          mergedInteractions[key] === true ||
+            (typeof mergedInteractions[key] === 'object' &&
+              mergedInteractions[key].enabled !== false),
+        ]),
+      ) as Record<(typeof userControlledInteractions)[number], boolean>),
+    };
+  }, [mergedInteractions, role]);
 
   const listNavigationProps = useListNavigationProps(
     typeof mergedInteractions.listNavigation === 'object'
