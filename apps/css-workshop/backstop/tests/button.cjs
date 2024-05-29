@@ -20,6 +20,9 @@ module.exports = [
   scenario('With notification', {
     selectors: ['#demo-notification'],
   }),
+  scenario('Loading', {
+    selectors: ['#demo-loading'],
+  }),
   scenario('Grouped Default', {
     selectors: ['#demo-grouped-default'],
   }),
