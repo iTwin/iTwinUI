@@ -420,22 +420,20 @@ const VirtualizedTree = React.forwardRef(
         ref={parentRef}
       >
         <TreeElement {...innerProps} {...rest} ref={ref}>
-          {virtualizer.getVirtualItems().map((virtualItem) => (
-            <div
-              key={virtualItem.key}
-              data-index={virtualItem.index}
-              ref={virtualizer.measureElement}
-              style={{
+          {virtualizer.getVirtualItems().map((virtualItem) =>
+            React.cloneElement(itemRenderer(virtualItem.index), {
+              key: virtualItem.key,
+              'data-index': virtualItem.index,
+              ref: virtualizer.measureElement,
+              style: {
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
                 transform: `translateY(${virtualItem.start}px)`,
-              }}
-            >
-              {itemRenderer(virtualItem.index)}
-            </div>
-          ))}
+              },
+            }),
+          )}
         </TreeElement>
       </Box>
     );
