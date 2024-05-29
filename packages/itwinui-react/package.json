@@ -24,7 +24,8 @@
       },
       "require": {
         "types": "./cjs/react-table/react-table.d.ts"
-      }
+      },
+      "types": "./react-table.d.ts"
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
