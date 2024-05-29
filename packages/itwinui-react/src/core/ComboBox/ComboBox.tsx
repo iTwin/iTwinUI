@@ -61,7 +61,9 @@ export type ComboboxMultipleTypeProps<T> =
        * Controlled value of ComboBox.
        * If `multiple` is enabled, it is an array of values.
        *
-       * Pass `null` or `undefined` to reset the value.
+       * Pass `null` or `undefined` to reset the value. Apart from resetting the value:
+       * * `value={null}` will switch to/remain in the *controlled* state.
+       * * `value={undefined}` will switch to/remain in the *uncontrolled* state.
        */
       value?: T | null | undefined;
       /**
