@@ -42,7 +42,6 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
-  getFocusableElements,
   useControlledState,
   useId,
   useLayoutEffect,
@@ -119,13 +118,19 @@ type PopoverInternalProps = {
    * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
    * Passing an object automatically enables the interaction/trigger.
    *
+   * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
+   * Booleans will not be allowed in this case.
+   *
+   * When trying to add `listNavigation`, consider using `useListNavigationProps` to generate the necessary props.
+   *
    * @example
+   * const listNavigationProps = useListNavigationProps({ nested: subMenuItems.length > 0 });
    * const popover = usePopover({
    *   interactions: {
    *     click: false,
    *     focus: true,
    *     hover: { move: false },
-   *     listNavigation: { nested: subMenuItems.length > 0 },
+   *     listNavigation: listNavigationProps,
    *   }
    *   // …
    * });
@@ -135,7 +140,7 @@ type PopoverInternalProps = {
     dismiss?: boolean | UseDismissProps;
     hover?: boolean | UseHoverProps<ReferenceType>;
     focus?: boolean | UseFocusProps;
-    listNavigation?: boolean | Parameters<typeof useListNavigationProps>[0];
+    listNavigation?: UseListNavigationProps;
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
@@ -166,7 +171,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         dismiss: true,
         hover: false,
         focus: false,
-        listNavigation: false,
       },
       ...interactionsProp,
     }),
@@ -218,61 +222,31 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   });
 
   const interactionsEnabledStates = React.useMemo(() => {
-    const userControlledInteractions = [
+    const booleanTypeInteractions = [
       'click',
       'dismiss',
       'hover',
       'focus',
-      'listNavigation',
     ] as const;
 
     return {
       role: !!role,
+      listNavigation:
+        !!mergedInteractions.listNavigation &&
+        mergedInteractions.listNavigation.enabled !== false,
 
       ...(Object.fromEntries(
-        userControlledInteractions.map((key) => [
-          key,
-          mergedInteractions[key] === true ||
-            (typeof mergedInteractions[key] === 'object' &&
-              mergedInteractions[key].enabled !== false),
-        ]),
-      ) as Record<(typeof userControlledInteractions)[number], boolean>),
+        booleanTypeInteractions.map((key) => {
+          const value = mergedInteractions[key];
+          return [
+            key,
+            value === true ||
+              (typeof value === 'object' && value.enabled !== false),
+          ];
+        }),
+      ) as Record<(typeof booleanTypeInteractions)[number], boolean>),
     };
   }, [mergedInteractions, role]);
-
-  const listNavigationProps = useListNavigationProps(
-    typeof mergedInteractions.listNavigation === 'object'
-      ? mergedInteractions.listNavigation
-      : undefined,
-  );
-
-  const getFocusableNodes = React.useCallback(() => {
-    const focusableItems = getFocusableElements(floating.refs.floating.current);
-    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    return focusableItems.filter(
-      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-    ) as HTMLElement[];
-  }, [floating.refs.floating]);
-
-  React.useEffect(() => {
-    // If listNavigation is not enabled, don't update the listRef
-    if (!interactionsEnabledStates.listNavigation) {
-      return;
-    }
-
-    const newFocusableNodes = getFocusableNodes();
-    if (
-      listNavigationProps?.listRef != null &&
-      listNavigationProps.listRef.current !== newFocusableNodes
-    ) {
-      listNavigationProps.listRef.current = newFocusableNodes;
-    }
-  }, [
-    getFocusableNodes,
-    listNavigationProps,
-    open,
-    interactionsEnabledStates.listNavigation,
-  ]);
 
   const interactions = useInteractions([
     useClick(floating.context, {
@@ -305,7 +279,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     }),
     useListNavigation(floating.context, {
       enabled: interactionsEnabledStates.listNavigation,
-      ...listNavigationProps,
+      ...(mergedInteractions.listNavigation as UseListNavigationProps),
     }),
   ]);
 
@@ -367,7 +341,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
  * const listNavigationProps = useListNavigationProps({ nested: subMenuItems.length > 0 });
  * const popover = usePopover({ interactions: { listNavigation: listNavigationProps })
  */
-const useListNavigationProps = (
+export const useListNavigationProps = (
   props?: Partial<Omit<UseListNavigationProps, 'activeIndex' | 'listRef'>>,
 ): UseListNavigationProps => {
   const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<

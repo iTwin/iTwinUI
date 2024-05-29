@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergedRefs,
+  getFocusableElements,
   Box,
   Portal,
   useControlledState,
@@ -18,7 +19,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { usePopover } from '../Popover/Popover.js';
+import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   useFloatingNodeId,
@@ -50,7 +51,15 @@ type MenuProps = {
   /**
    * Use this prop to override the default props passed to `usePopover`.
    */
-  popoverProps?: Parameters<typeof usePopover>[0];
+  popoverProps?: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
+    interactions?: Omit<
+      NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
+      'listNavigation'
+    > & {
+      // Since Menu handles the required listNavigation props, it only needs to accept the optional ones.
+      listNavigation?: Parameters<typeof useListNavigationProps>[0];
+    };
+  };
 } & Pick<PortalProps, 'portal'>;
 
 /**
@@ -130,6 +139,8 @@ export const Menu = React.forwardRef((props, ref) => {
     ...restInteractionsProps
   } = interactionsProp ?? {};
 
+  const listNavigationProps = useListNavigationProps(listNavigationPropsProp);
+
   const [visible, setVisible] = useControlledState(
     false,
     visibleProp,
@@ -152,7 +163,7 @@ export const Menu = React.forwardRef((props, ref) => {
               enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
               ...(hoverProp as UseHoverProps<ReferenceType>),
             },
-      listNavigation: listNavigationPropsProp,
+      listNavigation: listNavigationProps,
       ...restInteractionsProps,
     },
     ...restPopoverProps,
@@ -164,7 +175,8 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   }, [popover.refs, positionReference]);
 
-  const refs = useMergedRefs(ref, popover.refs.setFloating);
+  const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
+  const refs = useMergedRefs(setMenuRef, ref, popover.refs.setFloating);
 
   const triggerRef = React.useRef<HTMLElement>(null);
   const close = React.useCallback(() => {
@@ -176,6 +188,24 @@ export const Menu = React.forwardRef((props, ref) => {
       triggerRef.current?.focus({ preventScroll: true });
     }
   }, [setVisible, tree]);
+
+  const getFocusableNodes = React.useCallback(() => {
+    const focusableItems = getFocusableElements(menuRef);
+    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+    return focusableItems.filter(
+      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
+    ) as HTMLElement[];
+  }, [menuRef]);
+
+  React.useEffect(() => {
+    const newFocusableNodes = getFocusableNodes();
+    if (
+      listNavigationProps.listRef != null &&
+      listNavigationProps.listRef.current !== newFocusableNodes
+    ) {
+      listNavigationProps.listRef.current = newFocusableNodes;
+    }
+  }, [getFocusableNodes, listNavigationProps.listRef, menuRef]);
 
   useSyncExternalStore(
     React.useCallback(() => {
