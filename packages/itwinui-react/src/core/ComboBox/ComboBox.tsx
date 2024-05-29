@@ -448,7 +448,12 @@ export const ComboBox = React.forwardRef(
       (option: SelectOption<T>, filteredIndex?: number) => {
         const optionId = getOptionId(option, id);
         const { __originalIndex } = optionsExtraInfoRef.current[optionId];
-        const { icon, startIcon: startIconProp, ...restOptions } = option;
+        const {
+          icon,
+          startIcon: startIconProp,
+          label,
+          ...restOptions
+        } = option;
 
         const startIcon = startIconProp ?? icon;
 
@@ -491,7 +496,7 @@ export const ComboBox = React.forwardRef(
             index={__originalIndex}
             data-iui-filtered-index={filteredIndex}
           >
-            {option.label}
+            {label}
           </ComboBoxMenuItem>
         );
       },
