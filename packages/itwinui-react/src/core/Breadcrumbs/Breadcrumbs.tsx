@@ -245,7 +245,11 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Button
-      as={(asProp === 'a' || !!props.href ? Anchor : asProp) as any}
+      as={
+        (asProp === 'a' || (asProp == null && !!props.href)
+          ? Anchor
+          : asProp) as any
+      }
       styleType='borderless'
       {...commonProps}
     />
