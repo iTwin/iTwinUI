@@ -23,6 +23,10 @@ describe('DropdownMenu', () => {
         cy.get('button').first().click();
       });
 
+      if (testName === 'Submenu') {
+        cy.get('[role=menuitem][aria-expanded=false]').click();
+      }
+
       cy.compareSnapshot(`${testName} (Open)`);
     });
   });
