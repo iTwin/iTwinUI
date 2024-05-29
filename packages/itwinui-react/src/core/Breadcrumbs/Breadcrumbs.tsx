@@ -237,7 +237,7 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   };
 
   if (
-    asProp === 'span' ||
+    String(asProp) === 'span' ||
     (props.href == null && props.onClick == null && asProp == null)
   ) {
     return <Box as='span' {...commonProps} />;
