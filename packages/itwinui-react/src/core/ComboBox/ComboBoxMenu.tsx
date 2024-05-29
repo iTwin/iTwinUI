@@ -29,12 +29,23 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
+  //Checks the first five (or all, if there are less than 5) filtered options. If at least three (or all, if there are less than 3 options) have sub labels, sets estimate to 48 instead of 36.
+  const mostlySubLabeled = React.useMemo(() => {
+    let numberOfSubLabels = 0;
+    for (let i = 0; i < Math.min(5, filteredOptions.length); i++) {
+      if (filteredOptions[i].sublabel) {
+        numberOfSubLabels++;
+      }
+    }
+    return numberOfSubLabels >= Math.min(3, filteredOptions.length);
+  }, [filteredOptions]);
+
   const virtualizer = useVirtualizer({
     // 'Fool' VirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
-    estimateSize: () => 36,
+    estimateSize: () => (mostlySubLabeled ? 48 : 36),
     gap: -1,
   });
 
@@ -74,9 +85,11 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   }, [focusedIndex, menuRef]);
 
   useLayoutEffect(() => {
-    if (focusedVisibleIndex) {
-      virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'auto' });
-    }
+    setTimeout(() => {
+      if (focusedVisibleIndex) {
+        virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'auto' });
+      }
+    });
   }, [focusedVisibleIndex, virtualizer]);
 
   return (
