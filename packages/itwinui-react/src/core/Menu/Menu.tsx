@@ -198,6 +198,11 @@ export const Menu = React.forwardRef((props, ref) => {
   }, [menuRef]);
 
   React.useEffect(() => {
+    // No need to update the listRef if the listNavigation interaction is disabled
+    if (!popover.interactionsEnabledStates.listNavigation) {
+      return;
+    }
+
     const newFocusableNodes = getFocusableNodes();
     if (
       listNavigationProps.listRef != null &&
@@ -205,7 +210,12 @@ export const Menu = React.forwardRef((props, ref) => {
     ) {
       listNavigationProps.listRef.current = newFocusableNodes;
     }
-  }, [getFocusableNodes, listNavigationProps.listRef, menuRef]);
+  }, [
+    getFocusableNodes,
+    listNavigationProps.listRef,
+    menuRef,
+    popover.interactionsEnabledStates.listNavigation,
+  ]);
 
   useSyncExternalStore(
     React.useCallback(() => {
