@@ -84,7 +84,7 @@ it('should render breadcrumbs item as span element by default', () => {
   );
 });
 
-it('should render breadcrumbs item as anchor elements', () => {
+it('should render breadcrumbs item as anchor elements (& should respect the as prop)', () => {
   const FakeRouterLink = ({
     children,
     href,
@@ -146,6 +146,10 @@ it('should render breadcrumbs item as anchor elements', () => {
     expect(anchor).toHaveClass('iui-breadcrumbs-content');
     expect(anchor).toHaveAttribute('data-iui-variant', 'borderless');
   });
+
+  // When as={…} is passed, it should be used
+  expect(anchors[1]).toHaveClass('fake-router-link');
+  expect(anchors[2]).toHaveClass('fake-router-link-without-href');
 });
 
 it('should render breadcrumbs item as button elements', () => {
