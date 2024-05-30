@@ -394,7 +394,6 @@ const VirtualizedTree = React.forwardRef(
         minInlineSize: '100%',
         ...style,
       },
-      ...rest,
     } as React.HTMLAttributes<HTMLElement>;
 
     const innerProps = {
