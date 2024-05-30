@@ -19,6 +19,12 @@
       }
     },
     "./react-table": {
+      "import": {
+        "types": "./esm/react-table/react-table.d.ts"
+      },
+      "require": {
+        "types": "./cjs/react-table/react-table.d.ts"
+      },
       "types": "./react-table.d.ts"
     },
     "./styles.css": "./styles.css",
