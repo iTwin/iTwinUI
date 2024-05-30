@@ -84,11 +84,72 @@ it('should render breadcrumbs item as span element by default', () => {
   );
 });
 
-it('should render breadcrumbs item as anchor elements', () => {
-  const { container } = render(
-    <Breadcrumbs.Item href='https://www.example.com/'>Anchor</Breadcrumbs.Item>,
+it('should render breadcrumbs item as anchor elements (& should respect the as prop)', () => {
+  const FakeRouterLink = ({
+    children,
+    href,
+    className,
+    ...rest
+  }: {
+    children: React.ReactNode;
+    href: string;
+    className?: string;
+  }) => (
+    <a
+      className={['fake-router-link', className].filter(Boolean).join(' ')}
+      href={href}
+      {...rest}
+    >
+      {children}
+    </a>
   );
-  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
+
+  const FakeRouterLinkWithoutHref = ({
+    children,
+    to,
+    className,
+    ...rest
+  }: {
+    children: React.ReactNode;
+    to: string;
+    className?: string;
+  }) => (
+    <a
+      className={['fake-router-link-without-href', className]
+        .filter(Boolean)
+        .join(' ')}
+      href={to}
+      {...rest}
+    >
+      {children}
+    </a>
+  );
+
+  const { container } = render(
+    <>
+      <Breadcrumbs.Item href='/'>Anchor</Breadcrumbs.Item>
+      <Breadcrumbs.Item as={FakeRouterLink} href='/'>
+        Anchor
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item as={FakeRouterLinkWithoutHref} to='/'>
+        Anchor
+      </Breadcrumbs.Item>
+    </>,
+  );
+
+  const anchors = container.querySelectorAll(
+    'a',
+  ) as NodeListOf<HTMLAnchorElement>;
+
+  expect(anchors.length).toEqual(3);
+  anchors.forEach((anchor) => {
+    expect(anchor).toHaveClass('iui-breadcrumbs-content');
+    expect(anchor).toHaveAttribute('data-iui-variant', 'borderless');
+  });
+
+  // When as={…} is passed, it should be used
+  expect(anchors[1]).toHaveClass('fake-router-link');
+  expect(anchors[2]).toHaveClass('fake-router-link-without-href');
 });
 
 it('should render breadcrumbs item as button elements', () => {
