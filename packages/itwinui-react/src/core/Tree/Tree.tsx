@@ -12,7 +12,11 @@ import {
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
-import { useVirtualizer } from '@tanstack/react-virtual';
+import {
+  useVirtualizer,
+  Virtualizer,
+  type VirtualItem,
+} from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
   /**
@@ -290,6 +294,51 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     [firstLevelNodesList.length, flatNodesList, nodeRenderer, size],
   );
 
+  const virtualItemRenderer = React.useCallback(
+    (virtualItem: VirtualItem, virtualizer: Virtualizer<Element, Element>) => {
+      const node = flatNodesList[virtualItem.index];
+      return (
+        <TreeContext.Provider
+          key={node.nodeProps.nodeId}
+          value={{
+            nodeDepth: node.depth,
+            subNodeIds: node.subNodeIds,
+            groupSize:
+              node.depth === 0
+                ? firstLevelNodesList.length
+                : node.parentNode?.subNodeIds?.length ?? 0,
+            indexInGroup: node.indexInGroup,
+            parentNodeId: node.parentNode?.nodeProps.nodeId,
+            scrollToParent: node.parentNode
+              ? () => {
+                  const parentNodeId = node.parentNode?.nodeProps.nodeId;
+                  const parentNodeIndex = flatNodesList.findIndex(
+                    (n) => n.nodeProps.nodeId === parentNodeId,
+                  );
+                  setScrollToIndex(parentNodeIndex);
+                }
+              : undefined,
+            size,
+          }}
+        >
+          {React.cloneElement(nodeRenderer(node.nodeProps), {
+            key: virtualItem.key,
+            'data-index': virtualItem.index,
+            ref: virtualizer.measureElement,
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              transform: `translateY(${virtualItem.start}px)`,
+            },
+          })}
+        </TreeContext.Provider>
+      );
+    },
+    [firstLevelNodesList.length, flatNodesList, nodeRenderer, size],
+  );
+
   const [scrollToIndex, setScrollToIndex] = React.useState<number>();
   const flatNodesListRef = React.useRef<FlatNode<T>[]>(flatNodesList);
   React.useEffect(() => {
@@ -328,7 +377,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
       {enableVirtualization ? (
         <VirtualizedTree
           flatNodesList={flatNodesList}
-          itemRenderer={itemRenderer}
+          itemRenderer={virtualItemRenderer}
           scrollToIndex={scrollToIndex}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
@@ -361,7 +410,10 @@ const TreeElement = polymorphic.ul('iui-tree', {
 
 type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
-  itemRenderer: (index: number) => JSX.Element;
+  itemRenderer: (
+    virtualItem: VirtualItem,
+    virtualizer: Virtualizer<Element, Element>,
+  ) => JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
   onFocus: React.FocusEventHandler<HTMLUListElement>;
@@ -419,20 +471,9 @@ const VirtualizedTree = React.forwardRef(
         ref={parentRef}
       >
         <TreeElement {...innerProps} {...rest} ref={ref}>
-          {virtualizer.getVirtualItems().map((virtualItem) =>
-            React.cloneElement(itemRenderer(virtualItem.index), {
-              key: virtualItem.key,
-              'data-index': virtualItem.index,
-              ref: virtualizer.measureElement,
-              style: {
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                transform: `translateY(${virtualItem.start}px)`,
-              },
-            }),
-          )}
+          {virtualizer
+            .getVirtualItems()
+            .map((virtualItem) => itemRenderer(virtualItem, virtualizer))}
         </TreeElement>
       </Box>
     );
