@@ -32,10 +32,13 @@ import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
-  variable: (T | undefined) | (T[] | undefined),
+  variable: (T | null | undefined) | (T[] | null | undefined),
   multiple: boolean,
-): variable is T[] | undefined => {
-  return multiple && (Array.isArray(variable) || variable === undefined);
+): variable is T[] | null | undefined => {
+  return (
+    multiple &&
+    (Array.isArray(variable) || variable === null || variable === undefined)
+  );
 };
 
 // Type guard for user onChange
@@ -202,8 +205,8 @@ export const ComboBox = React.forwardRef(
       ...rest
     } = props;
 
-    // TODO: Use defaultValue in the correct place. This console.log is just to prevent the unused variable eslint error
-    console.log(defaultValue);
+    // TODO: Use defaultValue in the correct place. This line is just to prevent the unused variable eslint error
+    defaultValue;
 
     // Refs get set in subcomponents
     const inputRef = React.useRef<HTMLInputElement>(null);
@@ -236,6 +239,10 @@ export const ComboBox = React.forwardRef(
     // Get indices of selected elements in options array when we have selected values.
     const getSelectedIndexes = React.useCallback(() => {
       if (isMultipleEnabled(valueProp, multiple)) {
+        if (valueProp == null) {
+          return valueProp;
+        }
+
         const indexArray: number[] = [];
         valueProp?.forEach((value) => {
           const indexToAdd = options.findIndex(
@@ -254,13 +261,13 @@ export const ComboBox = React.forwardRef(
               ? undefined
               : options.findIndex((option) => option.value === valueProp);
 
-        console.log(
-          'getSelectedIndexes',
-          returnValue,
-          valueProp,
-          valueProp === null,
-          valueProp === undefined,
-        );
+        // console.log(
+        //   'getSelectedIndexes',
+        //   returnValue,
+        //   valueProp,
+        //   valueProp === null,
+        //   valueProp === undefined,
+        // );
 
         return returnValue;
       }
@@ -276,7 +283,7 @@ export const ComboBox = React.forwardRef(
       },
     );
 
-    console.log('selected', selected, valueProp);
+    // console.log('selected', selected, valueProp);
 
     // const [value, setValue] = useControlledState(defaultValue, valueProp);
 
@@ -407,34 +414,44 @@ export const ComboBox = React.forwardRef(
     React.useEffect(() => {
       const selectedIndexes = getSelectedIndexes();
 
-      console.log(
-        'value prop changed to ',
-        valueProp,
-        selectedIndexes,
-        multiple,
-      );
+      // console.log(
+      //   'value prop changed to ',
+      //   valueProp,
+      //   selectedIndexes,
+      //   multiple,
+      // );
 
       if (isMultipleEnabled(selectedIndexes, multiple)) {
-        if (valueProp) {
-          // // If user provided array of selected values
-          // const indexes = valueProp.map((value) => {
-          //   return options.findIndex((option) => option.value === value);
-          // });
-          // dispatch({
-          //   type: 'multiselect',
-          //   value: indexes.filter((index) => index !== -1), // Add available options
-          // });
-          dispatch({
-            type: 'multiselect',
-            value: selectedIndexes,
-          });
-        } else {
-          // if user provided one value or undefined
-          dispatch({
-            type: 'multiselect',
-            value: [], // Add empty list
-          });
-        }
+        // if (valueProp) {
+        //   // // If user provided array of selected values
+        //   // const indexes = valueProp.map((value) => {
+        //   //   return options.findIndex((option) => option.value === value);
+        //   // });
+        //   // dispatch({
+        //   //   type: 'multiselect',
+        //   //   value: indexes.filter((index) => index !== -1), // Add available options
+        //   // });
+        //   dispatch({
+        //     type: 'multiselect',
+        //     value: selectedIndexes,
+        //     valueProp: selectedIndexes,
+        //   });
+        // } else {
+        //   // if user provided one value or undefined
+        //   dispatch({
+        //     type: 'multiselect',
+        //     value: [], // Add empty list
+        //     valueProp: selectedIndexes,
+        //   });
+        // }
+
+        console.log('value prop changed', selectedIndexes, valueProp);
+
+        dispatch({
+          type: 'multiselect',
+          value: selectedIndexes,
+          valueProp: selectedIndexes,
+        });
       } else {
         dispatch({
           type: 'select',
@@ -505,12 +522,21 @@ export const ComboBox = React.forwardRef(
           return;
         }
 
-        if (isMultipleEnabled(selected, multiple)) {
+        const selectedIndices = getSelectedIndexes();
+
+        if (
+          isMultipleEnabled(selected, multiple) &&
+          isMultipleEnabled(selectedIndices, multiple)
+        ) {
           const actionType = isMenuItemSelected(__originalIndex)
             ? 'removed'
             : 'added';
           const newArray = selectedChangeHandler(__originalIndex, actionType);
-          dispatch({ type: 'multiselect', value: newArray });
+          dispatch({
+            type: 'multiselect',
+            value: newArray,
+            valueProp: selectedIndices,
+          });
           // setValue(newArray);
           onChangeHandler(__originalIndex, actionType, newArray);
 
@@ -521,13 +547,13 @@ export const ComboBox = React.forwardRef(
               .filter(Boolean)
               .join(', '),
           );
-        } else {
+        } else if (!isMultipleEnabled(selectedIndices, multiple)) {
           console.log('onClick', __originalIndex, getSelectedIndexes());
 
           dispatch({
             type: 'select',
             value: __originalIndex,
-            valueProp: getSelectedIndexes() as number,
+            valueProp: selectedIndices,
           });
           // setValue(optionsRef.current[__originalIndex]?.value);
           hide();

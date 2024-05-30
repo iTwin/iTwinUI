@@ -3,6 +3,7 @@ import {
   Button,
   ComboBox,
   Divider,
+  Fieldset,
   Flex,
   InputGrid,
   Label,
@@ -36,6 +37,14 @@ export default function App() {
 
   const [value, setValue] = React.useState('Does not exist');
   const [valueMultiple, setValueMultiple] = React.useState(['Does not exist']);
+
+  const optionsMultipleControlled = [0, 1, 2, 3, 4, 5, 6, 7].map((value) => ({
+    value: `${value}`,
+    label: `Item ${value}`,
+  }));
+  const [valueMultipleControlled, setValueMultipleControlled] = React.useState<
+    string[] | null | undefined
+  >(['1']);
 
   // // Every 5 seconds, cycle the value
   // React.useEffect(() => {
@@ -151,21 +160,43 @@ export default function App() {
 
       <Text variant='leading'>Reset state</Text>
       <Flex flexDirection='column' alignItems='flex-start'>
-        <Flex>
-          <Button onClick={() => setValueUnitTest(null)}>Set value=null</Button>
-          <Button onClick={() => setValueUnitTest(undefined)}>
-            Set value=undefined
-          </Button>
-        </Flex>
-        <InputGrid>
-          <Label>ComboBox</Label>
-          <ComboBox options={optionsUnitTest} value={valueUnitTest} />
-        </InputGrid>
+        {/* <Fieldset legend='Single'>
+          <Flex>
+            <Button onClick={() => setValueUnitTest(null)}>
+              Set value=null
+            </Button>
+            <Button onClick={() => setValueUnitTest(undefined)}>
+              Set value=undefined
+            </Button>
+          </Flex>
+          <InputGrid>
+            <Label>ComboBox</Label>
+            <ComboBox options={optionsUnitTest} value={valueUnitTest} />
+          </InputGrid> */}
         {/* <LabeledSelect
           label='Select'
           options={optionsUnitTest}
           value={valueUnitTest}
         /> */}
+        {/* </Fieldset> */}
+        <Fieldset legend='Multiple'>
+          <Flex>
+            <Button onClick={() => setValueMultipleControlled(null)}>
+              Set value=null
+            </Button>
+            <Button onClick={() => setValueMultipleControlled(undefined)}>
+              Set value=undefined
+            </Button>
+          </Flex>
+          <InputGrid>
+            <Label>ComboBox</Label>
+            <ComboBox
+              options={optionsMultipleControlled}
+              value={valueMultipleControlled}
+              multiple
+            />
+          </InputGrid>
+        </Fieldset>
       </Flex>
 
       {/* <CustomDivider />

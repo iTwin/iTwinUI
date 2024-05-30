@@ -7,7 +7,11 @@ import type { SelectOption } from '../Select/Select.js';
 import type { usePopover } from '../Popover/Popover.js';
 
 type ComboBoxAction =
-  | { type: 'multiselect'; value: number[] | null | undefined }
+  | {
+      type: 'multiselect';
+      value: number[] | null | undefined;
+      valueProp: number[] | null | undefined;
+    }
   | { type: 'open' }
   | { type: 'close' }
   | {
@@ -73,7 +77,17 @@ export const comboBoxReducer = (
       if (!Array.isArray(state.selected)) {
         return { ...state };
       }
-      return { ...state, selected: action.value };
+
+      const selected =
+        action.valueProp === null
+          ? []
+          : action.valueProp === undefined
+            ? action.value ?? []
+            : action.valueProp;
+
+      console.log('HERE multiple', selected, action.valueProp, action.value);
+
+      return { ...state, selected: selected };
     }
     case 'focus': {
       if (Array.isArray(state.selected)) {
