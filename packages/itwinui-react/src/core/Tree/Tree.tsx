@@ -442,7 +442,6 @@ const VirtualizedTree = React.forwardRef(
 
     const outerProps = {
       style: {
-        //minBlockSize: virtualizer.getTotalSize(),
         minInlineSize: '100%',
         ...style,
       },
@@ -456,9 +455,11 @@ const VirtualizedTree = React.forwardRef(
     } as const;
 
     useLayoutEffect(() => {
-      if (scrollToIndex) {
-        virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
-      }
+      setTimeout(() => {
+        if (scrollToIndex) {
+          virtualizer.scrollToIndex(scrollToIndex, { align: 'auto' });
+        }
+      });
     }, [scrollToIndex, virtualizer]);
 
     return (
