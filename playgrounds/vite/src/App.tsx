@@ -160,7 +160,7 @@ export default function App() {
 
       <Text variant='leading'>Reset state</Text>
       <Flex flexDirection='column' alignItems='flex-start'>
-        {/* <Fieldset legend='Single'>
+        <Fieldset legend='Single'>
           <Flex>
             <Button onClick={() => setValueUnitTest(null)}>
               Set value=null
@@ -172,13 +172,13 @@ export default function App() {
           <InputGrid>
             <Label>ComboBox</Label>
             <ComboBox options={optionsUnitTest} value={valueUnitTest} />
-          </InputGrid> */}
-        {/* <LabeledSelect
-          label='Select'
-          options={optionsUnitTest}
-          value={valueUnitTest}
-        /> */}
-        {/* </Fieldset> */}
+          </InputGrid>
+          {/* <LabeledSelect
+            label='Select'
+            options={optionsUnitTest}
+            value={valueUnitTest}
+          /> */}
+        </Fieldset>
         <Fieldset legend='Multiple'>
           <Flex>
             <Button onClick={() => setValueMultipleControlled(null)}>

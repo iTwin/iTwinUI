@@ -30,7 +30,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     isOpen,
     id,
     focusedIndex,
-    // setFocusedIndex,
     enableVirtualization,
     multiple,
     onClickHandler,
@@ -79,9 +78,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
                 currentElement?.getAttribute('data-iui-index') ?? 0,
               ),
             });
-            // return setFocusedIndex(
-            //   Number(currentElement?.getAttribute('data-iui-index') ?? 0),
-            // );
           }
 
           // If virtualization is enabled, dont let round scrolling
@@ -106,7 +102,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
 
             if (nextElement) {
               return dispatch({ type: 'focus', value: nextIndex });
-              // return setFocusedIndex(nextIndex);
             }
           } while (nextIndex !== focusedIndexRef.current);
           break;
