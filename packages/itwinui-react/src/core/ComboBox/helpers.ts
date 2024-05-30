@@ -5,6 +5,13 @@
 import * as React from 'react';
 import type { SelectOption } from '../Select/Select.js';
 import type { usePopover } from '../Popover/Popover.js';
+import { getControlledState } from '../../utils/index.js';
+
+type ComboBoxState = {
+  isOpen: boolean;
+  selected: number | number[];
+  focusedIndex: number;
+};
 
 type ComboBoxAction =
   | {
@@ -22,13 +29,9 @@ type ComboBoxAction =
   | { type: 'focus'; value: number | undefined };
 
 export const comboBoxReducer = (
-  state: {
-    isOpen: boolean;
-    selected: number | number[] | null | undefined;
-    focusedIndex: number;
-  },
+  state: ComboBoxState,
   action: ComboBoxAction,
-) => {
+): ComboBoxState => {
   switch (action.type) {
     case 'open': {
       return { ...state, isOpen: true };
@@ -41,35 +44,9 @@ export const comboBoxReducer = (
         return { ...state };
       }
 
-      const selected =
-        action.valueProp === null
-          ? -1
-          : action.valueProp === undefined || action.valueProp < 0
-            ? action.value == null || action.value < 0
-              ? -1
-              : action.value
-            : action.valueProp;
-
-      console.log(
-        'HERE',
-        action.valueProp,
-        action.value,
-        state.selected,
-        selected,
-      );
-
       return {
         ...state,
-        selected: selected,
-        // action.valueProp === null
-        //   ? -1
-        //   : action.valueProp === undefined || action.valueProp < 0
-        //     ? action.value ?? state.selected
-        //     : action.valueProp,
-
-        // action.valueProp != null && action.valueProp >= 0
-        //   ? action.valueProp
-        //   : action.value ?? state.selected,
+        selected: getControlledState(action.valueProp, action.value) ?? -1,
         focusedIndex: action.value ?? state.focusedIndex,
       };
     }
@@ -78,16 +55,10 @@ export const comboBoxReducer = (
         return { ...state };
       }
 
-      const selected =
-        action.valueProp === null
-          ? []
-          : action.valueProp === undefined
-            ? action.value ?? []
-            : action.valueProp;
-
-      console.log('HERE multiple', selected, action.valueProp, action.value);
-
-      return { ...state, selected: selected };
+      return {
+        ...state,
+        selected: getControlledState(action.valueProp, action.value) ?? [],
+      };
     }
     case 'focus': {
       if (Array.isArray(state.selected)) {

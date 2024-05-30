@@ -42,9 +42,10 @@ export default function App() {
     value: `${value}`,
     label: `Item ${value}`,
   }));
+  const valueMultipleControlledInitial = ['1'];
   const [valueMultipleControlled, setValueMultipleControlled] = React.useState<
     string[] | null | undefined
-  >(['1']);
+  >(valueMultipleControlledInitial);
 
   // // Every 5 seconds, cycle the value
   // React.useEffect(() => {
@@ -72,6 +73,7 @@ export default function App() {
     value,
     label: `Item ${value}`,
   }));
+  const valueUnitTestInitial = 1;
   const [valueUnitTest, setValueUnitTest] = React.useState<
     number | null | undefined
   >(1);
@@ -161,6 +163,7 @@ export default function App() {
       <Text variant='leading'>Reset state</Text>
       <Flex flexDirection='column' alignItems='flex-start'>
         <Fieldset legend='Single'>
+          <Text>value = {`${valueUnitTest}`}</Text>
           <Flex>
             <Button onClick={() => setValueUnitTest(null)}>
               Set value=null
@@ -168,24 +171,35 @@ export default function App() {
             <Button onClick={() => setValueUnitTest(undefined)}>
               Set value=undefined
             </Button>
+            <Button onClick={() => setValueUnitTest(valueUnitTestInitial)}>
+              Set value=initialValue
+            </Button>
           </Flex>
           <InputGrid>
             <Label>ComboBox</Label>
             <ComboBox options={optionsUnitTest} value={valueUnitTest} />
           </InputGrid>
-          {/* <LabeledSelect
+          <LabeledSelect
             label='Select'
             options={optionsUnitTest}
             value={valueUnitTest}
-          /> */}
+          />
         </Fieldset>
         <Fieldset legend='Multiple'>
+          <Text>value = {`${valueMultipleControlled}`}</Text>
           <Flex>
             <Button onClick={() => setValueMultipleControlled(null)}>
               Set value=null
             </Button>
             <Button onClick={() => setValueMultipleControlled(undefined)}>
               Set value=undefined
+            </Button>
+            <Button
+              onClick={() =>
+                setValueMultipleControlled(valueMultipleControlledInitial)
+              }
+            >
+              Set value=initialValue
             </Button>
           </Flex>
           <InputGrid>

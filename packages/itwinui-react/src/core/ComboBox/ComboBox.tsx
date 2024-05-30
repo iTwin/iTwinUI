@@ -262,7 +262,9 @@ export const ComboBox = React.forwardRef(
       comboBoxReducer,
       {
         isOpen: false,
-        selected: getSelectedIndexesFromValueProp(),
+        selected:
+          getSelectedIndexesFromValueProp() ??
+          (isMultipleEnabled(valueProp, multiple) ? [] : -1),
         focusedIndex: -1,
       },
     );
@@ -407,15 +409,17 @@ export const ComboBox = React.forwardRef(
      */
     const selectedChangeHandler = React.useCallback(
       (__originalIndex: number, action: ActionType) => {
+        if (!isMultipleEnabled(selected, multiple)) {
+          return;
+        }
+
         if (action === 'added') {
-          return [...(selected as number[]), __originalIndex];
+          return [...(selected ?? []), __originalIndex];
         } else {
-          return (selected as number[]).filter(
-            (index) => index !== __originalIndex,
-          );
+          return selected?.filter((index) => index !== __originalIndex);
         }
       },
-      [selected],
+      [selected, multiple],
     );
 
     /**
@@ -472,9 +476,9 @@ export const ComboBox = React.forwardRef(
           // update live region
           setLiveRegionSelection(
             newArray
-              .map((item) => optionsRef.current[item]?.label)
+              ?.map((item) => optionsRef.current[item]?.label)
               .filter(Boolean)
-              .join(', '),
+              .join(', ') ?? '',
           );
         } else if (!isMultipleEnabled(selectedIndicesFromValueProp, multiple)) {
           dispatch({
