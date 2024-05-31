@@ -68,7 +68,6 @@ export const WithTime = () => {
             showDatesOutsideMonth={false}
           />
         }
-        middleware={{ offset: 4 }}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -104,7 +103,6 @@ export const WithCombinedTime = () => {
             showDatesOutsideMonth={false}
           />
         }
-        middleware={{ offset: 4 }}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -137,7 +135,6 @@ export const Localized = () => {
             showDatesOutsideMonth={false}
           />
         }
-        middleware={{ offset: 4 }}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -167,7 +164,6 @@ export const WithYear = () => {
             setFocus
           />
         }
-        middleware={{ offset: 4 }}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -210,7 +206,6 @@ export const Range = () => {
             showDatesOutsideMonth={false}
           />
         }
-        middleware={{ offset: 4 }}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -265,7 +260,6 @@ export const SomeDatesDisabled = () => {
             showDatesOutsideMonth={false}
           />
         }
-        middleware={{ offset: 4 }}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
