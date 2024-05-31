@@ -16,10 +16,23 @@
   --_iui-field-focus-outline-width: 2px;
   --_iui-field-font-size: var(--iui-font-size-1);
 
-  background-color: var(--_iui-field-color-background);
-  border: 1px solid var(--_iui-field-color-border);
+  // Cyclic toggles for default/hover/disabled states. See https://kizu.dev/cyclic-toggles/
+  --_iui-field-state: var(--_iui-field-state--default);
+  --_iui-field-state--default: var(--_iui-field-state,);
+  --_iui-field-state--hover: var(--_iui-field-state,);
+  --_iui-field-state--disabled: var(--_iui-field-state,);
+
+  background-color: var(--_iui-field-state--default, var(--_iui-field-color-background))
+    var(--_iui-field-state--hover, var(--_iui-field-color-background-hover))
+    var(--_iui-field-state--disabled, var(--_iui-field-color-background-disabled));
+  border: 1px solid;
+  border-color: var(--_iui-field-state--default, var(--_iui-field-color-border))
+    var(--_iui-field-state--hover, var(--_iui-field-color-border-hover))
+    var(--_iui-field-state--disabled, var(--_iui-field-color-border-disabled));
   border-radius: var(--iui-border-radius-1);
-  color: var(--_iui-field-color-text);
+  color: var(--_iui-field-state--default, var(--_iui-field-color-text))
+    var(--_iui-field-state--hover, var(--_iui-field-color-text-hover))
+    var(--_iui-field-state--disabled, var(--_iui-field-color-text-disabled));
   font: inherit;
   font-size: var(--_iui-field-font-size);
   font-weight: var(--iui-font-weight-normal);
@@ -32,9 +45,7 @@
     color var(--iui-duration-1) ease-out;
 
   &:where(:hover, :active) {
-    background-color: var(--_iui-field-color-background-hover);
-    border-color: var(--_iui-field-color-border-hover);
-    color: var(--_iui-field-color-text-hover);
+    --_iui-field-state: var(--_iui-field-state--hover);
   }
 
   &:where(:focus-visible) {
@@ -43,9 +54,7 @@
   }
 
   &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
-    background-color: var(--_iui-field-color-background-disabled);
-    border-color: var(--_iui-field-color-border-disabled);
-    color: var(--_iui-field-color-text-disabled);
+    --_iui-field-state: var(--_iui-field-state--disabled);
     cursor: not-allowed;
   }
 
