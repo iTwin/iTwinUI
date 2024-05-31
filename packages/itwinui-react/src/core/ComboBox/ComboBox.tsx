@@ -14,7 +14,6 @@ import {
   useLayoutEffect,
   AutoclearingHiddenLiveRegion,
   useId,
-  getControlledState,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../../utils/index.js';
@@ -267,8 +266,9 @@ export const ComboBox = React.forwardRef(
       {
         isOpen: false,
         selected:
-          getSelectedIndexes(getControlledState(valueProp, defaultValue)) ??
-          (isMultipleEnabled(valueProp, multiple) ? [] : -1),
+          getSelectedIndexes(
+            valueProp !== undefined ? valueProp : defaultValue,
+          ) ?? (isMultipleEnabled(valueProp, multiple) ? [] : -1),
         focusedIndex: -1,
       },
     );

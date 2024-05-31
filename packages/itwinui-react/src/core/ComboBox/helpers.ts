@@ -5,7 +5,6 @@
 import * as React from 'react';
 import type { SelectOption } from '../Select/Select.js';
 import type { usePopover } from '../Popover/Popover.js';
-import { getControlledState } from '../../utils/index.js';
 
 type ComboBoxState = {
   isOpen: boolean;
@@ -46,7 +45,9 @@ export const comboBoxReducer = (
 
       return {
         ...state,
-        selected: getControlledState(action.valueProp, action.value) ?? -1,
+        selected:
+          (action.valueProp !== undefined ? action.valueProp : action.value) ??
+          -1,
         focusedIndex: action.value ?? state.focusedIndex,
       };
     }
@@ -57,7 +58,9 @@ export const comboBoxReducer = (
 
       return {
         ...state,
-        selected: getControlledState(action.valueProp, action.value) ?? [],
+        selected:
+          (action.valueProp !== undefined ? action.valueProp : action.value) ??
+          [],
       };
     }
     case 'focus': {

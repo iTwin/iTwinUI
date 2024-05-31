@@ -5,25 +5,6 @@
 import * as React from 'react';
 
 /**
- * Get the controlled state if it is defined, otherwise return the uncontrolled state.
- *
- * @example
- * const value = getControlledState(props.value, props.defaultValue);
- *
- * @example
- * const onClickHandler = (clickedValue) => {
- *   const newState = getControlledState(props.value, clickedValue);
- *   setState(newState);
- * };
- */
-export const getControlledState = <T>(
-  controlledState: T,
-  uncontrolledState: T,
-) => {
-  return controlledState !== undefined ? controlledState : uncontrolledState;
-};
-
-/**
  * Wrapper over `useState` that always gives preference to the
  * controlled state (which often comes from a prop).
  *
@@ -42,7 +23,8 @@ export const useControlledState = <T>(
   const [uncontrolledState, setUncontrolledState] =
     React.useState<T>(initialValue);
 
-  const state = getControlledState(controlledState, uncontrolledState);
+  const state =
+    controlledState !== undefined ? controlledState : uncontrolledState;
 
   const setState = React.useCallback(
     (value) => {
