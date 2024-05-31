@@ -145,7 +145,7 @@ export default function App() {
         />
       </InputGrid>
 
-      <CustomDivider />
+      <CustomDivider /> */}
 
       <InputGrid>
         <Label>Using defaultValue</Label>
@@ -156,9 +156,17 @@ export default function App() {
           }}
           defaultValue={2}
         />
+        <ComboBox
+          options={optionsUnitTest}
+          multiple
+          onChange={(val) => {
+            console.log('onChange unit test called', val);
+          }}
+          defaultValue={[1, 2]}
+        />
       </InputGrid>
 
-      <CustomDivider /> */}
+      <CustomDivider />
 
       <Text variant='leading'>Reset state</Text>
       <Flex flexDirection='column' alignItems='flex-start'>
