@@ -58,21 +58,24 @@ export const WithTime = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={
+          <div style={{ marginTop: 4 }}>
+            <DatePicker
+              date={currentDate}
+              onChange={onChange}
+              setFocus
+              showTime
+              showDatesOutsideMonth={false}
+            />
+          </div>
+        }
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker
-            date={currentDate}
-            onChange={onChange}
-            setFocus
-            showTime
-            showDatesOutsideMonth={false}
-          />
-        </div>
-      )}
     </>
   );
 };
@@ -89,24 +92,27 @@ export const WithCombinedTime = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={
+          <div style={{ marginTop: 4 }}>
+            <DatePicker
+              date={currentDate}
+              onChange={onChange}
+              setFocus
+              showTime
+              useCombinedRenderer
+              minuteStep={30}
+              use12Hours
+              showDatesOutsideMonth={false}
+            />
+          </div>
+        }
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker
-            date={currentDate}
-            onChange={onChange}
-            setFocus
-            showTime
-            useCombinedRenderer
-            minuteStep={30}
-            use12Hours
-            showDatesOutsideMonth={false}
-          />
-        </div>
-      )}
     </>
   );
 };
@@ -123,21 +129,24 @@ export const Localized = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={
+          <div style={{ marginTop: 4 }}>
+            <DatePicker
+              date={currentDate}
+              onChange={onChange}
+              localizedNames={generateLocalizedStrings('ja')}
+              setFocus
+              showDatesOutsideMonth={false}
+            />
+          </div>
+        }
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker
-            date={currentDate}
-            onChange={onChange}
-            localizedNames={generateLocalizedStrings('ja')}
-            setFocus
-            showDatesOutsideMonth={false}
-          />
-        </div>
-      )}
     </>
   );
 };
@@ -152,20 +161,23 @@ export const WithYear = () => {
   };
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={
+          <div style={{ marginTop: 4 }}>
+            <DatePicker
+              showYearSelection
+              date={currentDate}
+              onChange={onChange}
+              setFocus
+            />
+          </div>
+        }
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker
-            showYearSelection
-            date={currentDate}
-            onChange={onChange}
-            setFocus
-          />
-        </div>
-      )}
     </>
   );
 };
@@ -191,27 +203,30 @@ export const Range = () => {
   };
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={
+          <div style={{ marginTop: 4 }}>
+            <DatePicker
+              enableRangeSelect
+              startDate={currentStartDate}
+              endDate={currentEndDate}
+              onChange={onChange}
+              setFocus
+              showDatesOutsideMonth={false}
+            />
+          </div>
+        }
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>
         Start Date: {currentStartDate.toString()}
       </span>
       <span style={{ marginLeft: 16 }}>
         End Date: {currentEndDate.toString()}
       </span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker
-            enableRangeSelect
-            startDate={currentStartDate}
-            endDate={currentEndDate}
-            onChange={onChange}
-            setFocus
-            showDatesOutsideMonth={false}
-          />
-        </div>
-      )}
     </>
   );
 };
@@ -243,28 +258,31 @@ export const SomeDatesDisabled = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={
+          <div style={{ marginTop: 4 }}>
+            <DatePicker
+              enableRangeSelect
+              startDate={currentStartDate}
+              endDate={currentEndDate}
+              onChange={onChange}
+              setFocus
+              isDateDisabled={isDateDisabled}
+              showDatesOutsideMonth={false}
+            />
+          </div>
+        }
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>
         Start Date: {currentStartDate.toLocaleDateString()}
       </span>
       <span style={{ marginLeft: 16 }}>
         End Date: {currentEndDate.toLocaleDateString()}
       </span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker
-            enableRangeSelect
-            startDate={currentStartDate}
-            endDate={currentEndDate}
-            onChange={onChange}
-            setFocus
-            isDateDisabled={isDateDisabled}
-            showDatesOutsideMonth={false}
-          />
-        </div>
-      )}
     </>
   );
 };
