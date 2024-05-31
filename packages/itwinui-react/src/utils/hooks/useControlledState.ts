@@ -8,6 +8,9 @@ import * as React from 'react';
  * Get the controlled state if it is defined, otherwise return the uncontrolled state.
  *
  * @example
+ * const value = getControlledState(props.value, props.defaultValue);
+ *
+ * @example
  * const onClickHandler = (clickedValue) => {
  *   const newState = getControlledState(props.value, clickedValue);
  *   setState(newState);
