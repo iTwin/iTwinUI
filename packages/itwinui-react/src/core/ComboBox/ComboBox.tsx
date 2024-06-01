@@ -211,64 +211,26 @@ export const ComboBox = React.forwardRef(
     const optionsRef = useLatestRef(options);
 
     // Record to store all extra information (e.g. original indexes), where the key is the id of the option
-    // const optionsExtraInfoRef = React.useRef<
-    //   Record<string, { __originalIndex: number }>
-    // >({});
-
-    // // Clear the extra info when the options change so that it can be reinitialized below
-    // React.useEffect(() => {
-    //   optionsExtraInfoRef.current = {};
-    // }, [options]);
-
-    // const optionsExtraInfoRef = {
-    //   // options.forEach((option, index) => {
-    //   //   optionsExtraInfoRef.current[getOptionId(option, id)] = {
-    //   //     __originalIndex: index,
-    //   //   };
-    //   // });
-
-    //   current: options.reduce(
-    //     (acc, option, index) => {
-    //       acc[getOptionId(option, id)] = { __originalIndex: index };
-    //       return acc;
-    //     },
-    //     {} as Record<string, { __originalIndex: number }>,
-    //   ),
-    // };
-
-    // console.log(
-    //   'optionsExtraInfoRef is set',
-    //   Object.keys(optionsExtraInfoRef.current).length,
-    // );
-
-    const [optionsExtraInfoRef, setOptionsExtraInfoRef] = React.useState<
+    const optionsExtraInfoRef = React.useRef<
       Record<string, { __originalIndex: number }>
-    >(
-      options.reduce(
-        (acc, option, index) => {
-          acc[getOptionId(option, id)] = { __originalIndex: index };
-          return acc;
-        },
-        {} as Record<string, { __originalIndex: number }>,
-      ),
-    );
+    >({});
 
-    // // Clear the extra info when the options change so that it can be reinitialized below
-    // React.useEffect(() => {
-    //   optionsExtraInfoRef.current = {};
-    // }, [options]);
+    // Clear the extra info when the options change so that it can be reinitialized below
+    React.useEffect(() => {
+      optionsExtraInfoRef.current = {};
+    }, [options]);
 
-    // // Initialize the extra info only if it is not already initialized
-    // if (
-    //   options.length > 0 &&
-    //   Object.keys(optionsExtraInfoRef.current).length === 0
-    // ) {
-    //   options.forEach((option, index) => {
-    //     optionsExtraInfoRef.current[getOptionId(option, id)] = {
-    //       __originalIndex: index,
-    //     };
-    //   });
-    // }
+    // Initialize the extra info only if it is not already initialized
+    if (
+      options.length > 0 &&
+      Object.keys(optionsExtraInfoRef.current).length === 0
+    ) {
+      options.forEach((option, index) => {
+        optionsExtraInfoRef.current[getOptionId(option, id)] = {
+          __originalIndex: index,
+        };
+      });
+    }
 
     /**
      * - If `values` is `null` or `undefined`, it returns the same.
@@ -352,6 +314,44 @@ export const ComboBox = React.forwardRef(
     // Update filtered options to the latest value options according to input value
     const [filteredOptions, setFilteredOptions] = React.useState(options);
 
+    /**
+     * Should be called internally whenever the options change.
+     */
+    const onOptionsChange = React.useCallback(() => {
+      // Remove the filter so that all of the new options are shown.
+      setFilteredOptions(options);
+
+      // If multiple=false, refocus the selected option.
+      // If no option is selected (i.e. selected === -1), reset the focus to the input.
+      if (!isMultipleEnabled(selected, multiple)) {
+        // setFocusedIndex(selected as number);
+        dispatch({ type: 'focus', value: selected as number });
+      }
+      // If multiple=true, reset the focus to the input.
+      else {
+        // setFocusedIndex(-1);
+        dispatch({ type: 'focus', value: -1 });
+      }
+
+      // Reset/update the input value if multiple=false and if the dropdown is closed (i.e. don't override user input when dropdown is open)
+      if (!isMultipleEnabled(selected, multiple) && !isOpen) {
+        setInputValue(
+          selected != null && selected >= 0
+            ? optionsRef.current[selected]?.label
+            : '',
+        );
+      }
+    }, [isOpen, multiple, options, optionsRef, selected]);
+
+    // To reconfigure internal state whenever the options change
+    const previousOptions = React.useRef(options);
+    React.useEffect(() => {
+      if (options !== previousOptions.current) {
+        previousOptions.current = options;
+        onOptionsChange();
+      }
+    }, [onOptionsChange, options]);
+
     // Filter options based on input value
     const [inputValue, setInputValue] = React.useState<string>(
       inputProps?.value?.toString() ?? '',
@@ -377,6 +377,33 @@ export const ComboBox = React.forwardRef(
       },
       [filterFunction, focusedIndex, inputProps, optionsRef, show],
     );
+
+    const onValuePropChange = React.useCallback(() => {
+      const selectedIndexesFromValueProp = getSelectedIndexes(valueProp);
+
+      if (isMultipleEnabled(selectedIndexesFromValueProp, multiple)) {
+        dispatch({
+          type: 'multiselect',
+          value: selectedIndexesFromValueProp,
+          valueProp: selectedIndexesFromValueProp,
+        });
+      } else {
+        dispatch({
+          type: 'select',
+          value: selectedIndexesFromValueProp,
+          valueProp: selectedIndexesFromValueProp,
+        });
+      }
+    }, [getSelectedIndexes, multiple, valueProp]);
+
+    // When the value prop changes, update the selected index/indices
+    const previousValueProp = React.useRef(valueProp);
+    React.useEffect(() => {
+      if (valueProp !== previousValueProp.current) {
+        previousValueProp.current = valueProp;
+        onValuePropChange();
+      }
+    }, [getSelectedIndexes, multiple, onValuePropChange, valueProp]);
 
     const isMenuItemSelected = React.useCallback(
       (index: number) => {
@@ -490,24 +517,8 @@ export const ComboBox = React.forwardRef(
 
     const getMenuItem = React.useCallback(
       (option: SelectOption<T>, filteredIndex?: number) => {
-        console.log('getMenuItem');
-
         const optionId = getOptionId(option, id);
-
-        try {
-          const { __originalIndex } = optionsExtraInfoRef[optionId];
-        } catch (e) {
-          console.log(
-            'optionId',
-            optionId,
-            'optionsExtraInfoRef',
-            optionsExtraInfoRef,
-            'optionsExtraInfoRef[optionId]',
-            optionsExtraInfoRef[optionId],
-          );
-        }
-
-        const { __originalIndex } = optionsExtraInfoRef[optionId];
+        const { __originalIndex } = optionsExtraInfoRef.current[optionId];
         const {
           icon,
           startIcon: startIconProp,
@@ -595,94 +606,6 @@ export const ComboBox = React.forwardRef(
       closeOnOutsideClick: true,
       interactions: { click: false, focus: true },
     });
-
-    /**
-     * Should be called internally whenever the options change.
-     */
-    const onOptionsChange = React.useCallback(() => {
-      // Remove the filter so that all of the new options are shown.
-      setFilteredOptions(options);
-
-      // If multiple=false, refocus the selected option.
-      // If no option is selected (i.e. selected === -1), reset the focus to the input.
-      if (!isMultipleEnabled(selected, multiple)) {
-        // setFocusedIndex(selected as number);
-        dispatch({ type: 'focus', value: selected as number });
-      }
-      // If multiple=true, reset the focus to the input.
-      else {
-        // setFocusedIndex(-1);
-        dispatch({ type: 'focus', value: -1 });
-      }
-
-      // Reset/update the input value if multiple=false and if the dropdown is closed (i.e. don't override user input when dropdown is open)
-      if (!isMultipleEnabled(selected, multiple) && !isOpen) {
-        setInputValue(
-          selected != null && selected >= 0
-            ? optionsRef.current[selected]?.label
-            : '',
-        );
-      }
-    }, [isOpen, multiple, options, optionsRef, selected]);
-
-    const onValuePropChange = React.useCallback(() => {
-      const selectedIndexesFromValueProp = getSelectedIndexes(valueProp);
-
-      if (isMultipleEnabled(selectedIndexesFromValueProp, multiple)) {
-        dispatch({
-          type: 'multiselect',
-          value: selectedIndexesFromValueProp,
-          valueProp: selectedIndexesFromValueProp,
-        });
-      } else {
-        dispatch({
-          type: 'select',
-          value: selectedIndexesFromValueProp,
-          valueProp: selectedIndexesFromValueProp,
-        });
-      }
-    }, [getSelectedIndexes, multiple, valueProp]);
-
-    // #region Runtime error prevention
-    // Render function code not in a hook MUST be at the end of the render function to prevent runtime errors.
-    // E.g. "cannot access variable before initialization"
-    // Also, be very careful of the order of the code in this region.
-    // Incorrect order may lead to runtime errors even through there would be no development time errors.
-
-    // When the options changes:
-    const [previousOptions, setPreviousOptions] = React.useState(options);
-    if (options !== previousOptions) {
-      setPreviousOptions(options);
-
-      // // Clear the extra info when the options change so that it can be reinitialized below
-      // optionsExtraInfoRef.current = {};
-      setOptionsExtraInfoRef({});
-
-      // To reconfigure internal state whenever the options change
-      onOptionsChange();
-    }
-
-    // Initialize the extra info only if it is not already initialized
-    if (options.length > 0 && Object.keys(optionsExtraInfoRef).length === 0) {
-      const newOptionsExtraInfoRef: typeof optionsExtraInfoRef = {};
-
-      options.forEach((option, index) => {
-        newOptionsExtraInfoRef[getOptionId(option, id)] = {
-          __originalIndex: index,
-        };
-      });
-
-      setOptionsExtraInfoRef(newOptionsExtraInfoRef);
-    }
-
-    // When the value prop changes, update the selected index/indices
-    const [previousValueProp, setPreviousValueProp] = React.useState(valueProp);
-    if (valueProp !== previousValueProp) {
-      setPreviousValueProp(valueProp);
-      onValuePropChange();
-    }
-
-    // #endregion
 
     return (
       <ComboBoxRefsContext.Provider
