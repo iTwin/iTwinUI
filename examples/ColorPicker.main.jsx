@@ -8,6 +8,9 @@ import {
   ColorInputPanel,
   ColorPicker,
   ColorValue,
+  IconButton,
+  ColorSwatch,
+  Popover,
 } from '@itwin/itwinui-react';
 
 export default () => {
@@ -20,9 +23,20 @@ export default () => {
   };
 
   return (
-    <ColorPicker selectedColor={activeColor} onChangeComplete={onColorChanged}>
-      <ColorBuilder />
-      <ColorInputPanel defaultColorFormat={'hsl'} />
-    </ColorPicker>
+    <Popover
+      content={
+        <ColorPicker
+          selectedColor={activeColor}
+          onChangeComplete={onColorChanged}
+        >
+          <ColorBuilder />
+          <ColorInputPanel defaultColorFormat={'hsl'} />
+        </ColorPicker>
+      }
+    >
+      <IconButton>
+        <ColorSwatch style={{ pointerEvents: 'none' }} color={activeColor} />
+      </IconButton>
+    </Popover>
   );
 };

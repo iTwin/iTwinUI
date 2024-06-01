@@ -86,7 +86,7 @@ export const Basic = () => {
       >
         <IconButton>
           <ColorSwatch
-            style={{ pointerEvents: 'none', margin: 0 }}
+            style={{ pointerEvents: 'none' }}
             color={activeColor.color}
           />
         </IconButton>
@@ -153,7 +153,7 @@ export const Advanced = () => {
         >
           <IconButton>
             <ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
+              style={{ pointerEvents: 'none' }}
               color={selectedColor}
             />
           </IconButton>
@@ -230,7 +230,7 @@ export const WithAlpha = () => {
         >
           <IconButton>
             <ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
+              style={{ pointerEvents: 'none' }}
               color={selectedColor}
             />
           </IconButton>
