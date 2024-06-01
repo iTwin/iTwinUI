@@ -130,7 +130,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             return dispatch({
               type: 'focus',
               value:
-                Object.values(optionsExtraInfoRef.current)?.[length - 1]
+                Object.values(optionsExtraInfoRef)?.[length - 1]
                   .__originalIndex ?? -1,
             });
           }
