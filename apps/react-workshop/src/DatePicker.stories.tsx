@@ -16,7 +16,6 @@ export default {
 };
 
 export const Basic = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -37,7 +36,7 @@ export const Basic = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -47,7 +46,6 @@ export const Basic = () => {
 };
 
 export const WithTime = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -69,7 +67,7 @@ export const WithTime = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -79,7 +77,6 @@ export const WithTime = () => {
 };
 
 export const WithCombinedTime = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 30, 0),
   );
@@ -104,7 +101,7 @@ export const WithCombinedTime = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -114,7 +111,6 @@ export const WithCombinedTime = () => {
 };
 
 export const Localized = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -136,7 +132,7 @@ export const Localized = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -145,7 +141,6 @@ export const Localized = () => {
   );
 };
 export const WithYear = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -165,7 +160,7 @@ export const WithYear = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -175,7 +170,6 @@ export const WithYear = () => {
 };
 
 export const Range = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentStartDate, setCurrentStartDate] = React.useState(
     new Date(2022, 6, 13, 14, 55, 22),
   );
@@ -207,7 +201,7 @@ export const Range = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -222,7 +216,6 @@ export const Range = () => {
 };
 
 export const SomeDatesDisabled = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentStartDate, setCurrentStartDate] = React.useState(
     new Date(2022, 6, 13, 14, 55, 22),
   );
@@ -261,7 +254,7 @@ export const SomeDatesDisabled = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
