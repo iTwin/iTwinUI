@@ -63,7 +63,7 @@ export default function TreeTest() {
 
   const [expandedIds, setExpandedIds] = React.useState(['Node-3', 'Node-3-1']);
   const disabledIds = ['Node-2', 'Node-3-1-1'];
-  const selectedIds = ['Node-3'];
+  const [selectedIds, setSelectedIds] = React.useState(['Node-3']);
 
   const [searchParams] = useSearchParams();
   const enableVirtualization = searchParams.get('virtualization') === 'true';
@@ -91,6 +91,13 @@ export default function TreeTest() {
                 setExpandedIds([...expandedIds, nodeId]);
               } else {
                 setExpandedIds(expandedIds.filter((value) => value !== nodeId));
+              }
+            }}
+            onSelected={(nodeId, isSelected) => {
+              if (isSelected) {
+                setSelectedIds([...selectedIds, nodeId]);
+              } else {
+                setSelectedIds(selectedIds.filter((value) => value !== nodeId));
               }
             }}
             checkbox={

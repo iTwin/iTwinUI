@@ -9,7 +9,9 @@ test.describe('Tree keyboard navigation', () => {
     const tree = page.getByRole('tree');
     const treeNodes = page.getByRole('treeitem');
     const focusedElement = page.locator('*:focus');
+    const node3 = page.locator('#Node-3');
     const node31 = page.locator('#Node-3-1');
+    const node312 = page.locator('#Node-3-1-2');
 
     expect((await treeNodes.all()).length).toBe(6);
 
@@ -71,5 +73,27 @@ test.describe('Tree keyboard navigation', () => {
 
     // Press Enter: Select Node-3-1-2
     await page.keyboard.press('Enter');
+    await expect(node312).toHaveAttribute('aria-selected', 'true');
+
+    // Go Up: Node-3-1-2 -> Node-3
+    await page.keyboard.press('ArrowUp');
+    await page.keyboard.press('ArrowUp');
+
+    // Press Enter: Deselect Node-3
+    await page.keyboard.press('Enter');
+    await expect(node3).not.toHaveAttribute('aria-selected', 'true');
+
+    // Go to last focusable element inside node - expander button
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
+    expect(await focusedElement.getAttribute('type')).toBe('button');
+
+    // Go Left: Focus checkbox
+    await page.keyboard.press('ArrowLeft');
+    expect(await focusedElement.getAttribute('type')).toBe('checkbox');
+
+    // Go Left: Focus Node-3
+    await page.keyboard.press('ArrowLeft');
+    expect(await focusedElement.getAttribute('id')).toBe('Node-3');
   });
 });
