@@ -320,8 +320,7 @@ const PortalContainer = React.memo(
     isInheritingTheme: boolean;
   }) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const [portalContainer, setPortalContainer] =
-      useScopedAtom(portalContainerAtom);
+    const setPortalContainer = useScopedSetAtom(portalContainerAtom);
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
@@ -346,18 +345,29 @@ const PortalContainer = React.memo(
       );
     }
 
-    const portalTarget = portalContainerProp || portalContainerFromParent;
-
-    // Synchronize atom with the correct portal container if necessary.
-    if (portalTarget && portalTarget !== portalContainer) {
-      setPortalContainer(portalTarget);
-    }
-
-    return portalTarget
-      ? ReactDOM.createPortal(<Toaster />, portalTarget)
-      : null;
+    return (
+      <PortaledToaster
+        target={portalContainerProp || portalContainerFromParent}
+      />
+    );
   },
 );
+
+// ----------------------------------------------------------------------------
+
+const PortaledToaster = React.memo(({ target }: { target?: HTMLElement }) => {
+  const [portalContainer, setPortalContainer] =
+    useScopedAtom(portalContainerAtom);
+
+  // Synchronize atom with the correct portal target if necessary.
+  React.useEffect(() => {
+    if (target && target !== portalContainer) {
+      setPortalContainer(target);
+    }
+  }, [portalContainer, target, setPortalContainer]);
+
+  return target ? ReactDOM.createPortal(<Toaster />, target) : null;
+});
 
 // ----------------------------------------------------------------------------
 
