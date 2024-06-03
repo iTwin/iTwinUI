@@ -5,6 +5,8 @@ import {
   TreeNode,
   Checkbox,
 } from '@itwin/itwinui-react';
+import { useSearchParams } from '@remix-run/react';
+import React from 'react';
 
 type TestData = {
   id: string;
@@ -59,9 +61,12 @@ export default function TreeTest() {
     },
   ];
 
-  const expandedIds = ['Node-3', 'Node-3-1'];
+  const [expandedIds, setExpandedIds] = React.useState(['Node-3', 'Node-3-1']);
   const disabledIds = ['Node-2', 'Node-3-1-1'];
   const selectedIds = ['Node-3'];
+
+  const [searchParams] = useSearchParams();
+  const enableVirtualization = searchParams.get('virtualization') === 'true';
 
   return (
     <>
@@ -81,13 +86,20 @@ export default function TreeTest() {
         nodeRenderer={({ node, ...rest }: NodeRenderProps<TestData>) => (
           <TreeNode
             label={node.label}
-            onExpanded={(nodeId, isNodeExpanded) => {}}
+            onExpanded={(nodeId, isNodeExpanded) => {
+              if (isNodeExpanded) {
+                setExpandedIds([...expandedIds, nodeId]);
+              } else {
+                setExpandedIds(expandedIds.filter((value) => value !== nodeId));
+              }
+            }}
             checkbox={
               <Checkbox id={`Checkbox-${node.id}`} disabled={rest.isDisabled} />
             }
             {...rest}
           />
         )}
+        enableVirtualization={enableVirtualization}
       />
     </>
   );
