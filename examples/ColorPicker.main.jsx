@@ -34,7 +34,7 @@ export default () => {
         </ColorPicker>
       }
     >
-      <IconButton>
+      <IconButton label='Show color picker'>
         <ColorSwatch style={{ pointerEvents: 'none' }} color={activeColor} />
       </IconButton>
     </Popover>
