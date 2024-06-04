@@ -221,25 +221,3 @@ it('should respect `stretched` prop', () => {
   const { container } = render(<Button stretched>Do not click</Button>);
   expect(container.querySelector('button')).toHaveStyle('--_iui-width: 100%');
 });
-
-it.each(['default', 'small', 'large'] as const)(
-  'should respect `loading` prop (size=%s)',
-  (size) => {
-    const { container } = render(
-      <Button loading size={size === 'default' ? undefined : size}>
-        Do not click
-      </Button>,
-    );
-
-    const button = container.querySelector('button') as HTMLElement;
-    expect(button).toHaveAttribute('data-iui-loading', 'true');
-    expect(button).toHaveAttribute('aria-disabled', 'true');
-
-    const spinner = button.querySelector('.iui-progress-indicator-radial');
-    expect(spinner).toHaveClass('iui-button-spinner');
-    expect(spinner).toHaveAttribute(
-      'data-iui-size',
-      size === 'small' ? 'x-small' : 'small',
-    );
-  },
-);

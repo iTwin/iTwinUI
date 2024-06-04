@@ -50,7 +50,6 @@ export const IconButton = React.forwardRef((props, ref) => {
     isActive,
     children,
     styleType = 'default',
-    size,
     className,
     label,
     iconProps,
@@ -65,7 +64,6 @@ export const IconButton = React.forwardRef((props, ref) => {
       ref={ref}
       className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
-      data-iui-size={size}
       data-iui-active={isActive}
       aria-pressed={isActive}
       {...rest}
