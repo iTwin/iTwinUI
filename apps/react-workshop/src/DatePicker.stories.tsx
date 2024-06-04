@@ -16,7 +16,6 @@ export default {
 };
 
 export const Basic = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -37,7 +36,7 @@ export const Basic = () => {
           />
         }
       >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <IconButton id='picker-button'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -47,7 +46,6 @@ export const Basic = () => {
 };
 
 export const WithTime = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -58,12 +56,8 @@ export const WithTime = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             date={currentDate}
             onChange={onChange}
@@ -71,14 +65,18 @@ export const WithTime = () => {
             showTime
             showDatesOutsideMonth={false}
           />
-        </div>
-      )}
+        }
+      >
+        <IconButton id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
     </>
   );
 };
 
 export const WithCombinedTime = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 30, 0),
   );
@@ -89,12 +87,8 @@ export const WithCombinedTime = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             date={currentDate}
             onChange={onChange}
@@ -105,14 +99,18 @@ export const WithCombinedTime = () => {
             use12Hours
             showDatesOutsideMonth={false}
           />
-        </div>
-      )}
+        }
+      >
+        <IconButton id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
     </>
   );
 };
 
 export const Localized = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -123,12 +121,8 @@ export const Localized = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             date={currentDate}
             onChange={onChange}
@@ -136,13 +130,17 @@ export const Localized = () => {
             setFocus
             showDatesOutsideMonth={false}
           />
-        </div>
-      )}
+        }
+      >
+        <IconButton id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
     </>
   );
 };
 export const WithYear = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
@@ -152,26 +150,26 @@ export const WithYear = () => {
   };
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             showYearSelection
             date={currentDate}
             onChange={onChange}
             setFocus
           />
-        </div>
-      )}
+        }
+      >
+        <IconButton id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
     </>
   );
 };
 
 export const Range = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentStartDate, setCurrentStartDate] = React.useState(
     new Date(2022, 6, 13, 14, 55, 22),
   );
@@ -191,17 +189,8 @@ export const Range = () => {
   };
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>
-        Start Date: {currentStartDate.toString()}
-      </span>
-      <span style={{ marginLeft: 16 }}>
-        End Date: {currentEndDate.toString()}
-      </span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             enableRangeSelect
             startDate={currentStartDate}
@@ -210,14 +199,23 @@ export const Range = () => {
             setFocus
             showDatesOutsideMonth={false}
           />
-        </div>
-      )}
+        }
+      >
+        <IconButton id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>
+        Start Date: {currentStartDate.toString()}
+      </span>
+      <span style={{ marginLeft: 16 }}>
+        End Date: {currentEndDate.toString()}
+      </span>
     </>
   );
 };
 
 export const SomeDatesDisabled = () => {
-  const [opened, setOpened] = React.useState(false);
   const [currentStartDate, setCurrentStartDate] = React.useState(
     new Date(2022, 6, 13, 14, 55, 22),
   );
@@ -243,17 +241,8 @@ export const SomeDatesDisabled = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>
-        Start Date: {currentStartDate.toLocaleDateString()}
-      </span>
-      <span style={{ marginLeft: 16 }}>
-        End Date: {currentEndDate.toLocaleDateString()}
-      </span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             enableRangeSelect
             startDate={currentStartDate}
@@ -263,8 +252,18 @@ export const SomeDatesDisabled = () => {
             isDateDisabled={isDateDisabled}
             showDatesOutsideMonth={false}
           />
-        </div>
-      )}
+        }
+      >
+        <IconButton id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>
+        Start Date: {currentStartDate.toLocaleDateString()}
+      </span>
+      <span style={{ marginLeft: 16 }}>
+        End Date: {currentEndDate.toLocaleDateString()}
+      </span>
     </>
   );
 };
