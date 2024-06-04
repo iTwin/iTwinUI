@@ -380,10 +380,15 @@ const VirtualizedTree = React.forwardRef(
     }: VirtualizedTreeProps<T>,
     ref: React.ForwardedRef<HTMLUListElement>,
   ) => {
+    const [parentRef, setParentRef] = React.useState<HTMLDivElement | null>(
+      null,
+    );
+
     const { outerProps, innerProps, visibleChildren } = useVirtualization({
       itemsLength: flatNodesList.length,
       itemRenderer: itemRenderer,
       scrollToIndex,
+      scrollContainerRef: parentRef,
     });
 
     return (
@@ -392,6 +397,9 @@ const VirtualizedTree = React.forwardRef(
           ...outerProps,
           className: cx(className, outerProps.className),
           style: { ...style, ...outerProps.style },
+        }}
+        ref={(element) => {
+          setParentRef(element);
         }}
       >
         <TreeElement

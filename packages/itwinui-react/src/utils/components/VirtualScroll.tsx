@@ -95,7 +95,7 @@ export type VirtualScrollProps = {
   /**
    * Ref for scrollable parent container.
    */
-  scrollContainerRef: HTMLDivElement | null;
+  scrollContainerRef: HTMLElement | null;
   /**
    * Number of items to be rendered at the start and the end.
    * Not recommended to go lower than the visible items in viewport.
