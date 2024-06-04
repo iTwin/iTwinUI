@@ -26,11 +26,11 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   }
 
   &:where(:hover, :active) {
-    --_iui-button-icon-fill: var(--iui-color-icon-hover);
+    --_iui-button-icon-fill: var(--_iui-field-color-icon-hover);
   }
 
   &:is(#{$disabledButtonSelectors}) {
-    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-button-icon-fill: var(--_iui-field-color-icon-disabled);
   }
 
   &:is([data-iui-loading='true']) {
@@ -52,7 +52,7 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   svg {
     @include mixins.iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
-    fill: var(--_iui-button-icon-fill, var(--iui-color-icon));
+    fill: var(--_iui-button-icon-fill, var(--_iui-field-color-icon));
   }
 }
 
@@ -73,8 +73,8 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   }
 
   &:is(#{$disabledButtonSelectors}) {
-    --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
-    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-button-active-stripe-background: var(--_iui-field-color-icon-disabled);
+    --_iui-button-icon-fill: var(--_iui-field-color-icon-disabled);
   }
 }
 

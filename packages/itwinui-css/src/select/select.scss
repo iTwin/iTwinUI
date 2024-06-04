@@ -35,7 +35,7 @@
   }
 
   &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
-    --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-list-item-icon-fill: var(--_iui-field-color-icon-disabled);
     opacity: 1;
     cursor: not-allowed;
   }
