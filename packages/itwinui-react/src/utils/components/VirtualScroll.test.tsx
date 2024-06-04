@@ -59,6 +59,7 @@ it('should render only few elements out of big list', () => {
             >{`Element${data[index]}`}</div>
           )}
           scrollContainerRef={parentRef}
+          bufferSize={20}
         />
       </div>
     );
@@ -131,6 +132,7 @@ it('should not crash with empty list items', () => {
           itemsLength={data.length}
           itemRenderer={(index) => <div key={index} className='element' />}
           scrollContainerRef={parentRef}
+          bufferSize={20}
         />
       </div>
     );
@@ -169,6 +171,7 @@ it('should render 1 item', () => {
             </div>
           )}
           scrollContainerRef={parentRef}
+          bufferSize={20}
         />
       </div>
     );
@@ -220,6 +223,7 @@ it('should show provided index on first render', () => {
           )}
           scrollToIndex={50}
           scrollContainerRef={parentRef}
+          bufferSize={20}
         />
       </div>
     );

@@ -905,7 +905,9 @@ export const Table = <
         ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
           resizeRef(element);
-          setStateTableRef(element);
+          if (enableVirtualization) {
+            setStateTableRef(element);
+          }
         })}
         id={id}
         {...getTableProps({
