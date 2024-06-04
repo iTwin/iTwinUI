@@ -351,7 +351,7 @@ const PortalContainer = React.memo(
 
 // ----------------------------------------------------------------------------
 
-const PortaledToaster = React.memo(({ target }: { target?: HTMLElement }) => {
+const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
   const [portalContainer, setPortalContainer] =
     useScopedAtom(portalContainerAtom);
 
@@ -363,7 +363,7 @@ const PortaledToaster = React.memo(({ target }: { target?: HTMLElement }) => {
   }, [portalContainer, target, setPortalContainer]);
 
   return target ? ReactDOM.createPortal(<Toaster />, target) : null;
-});
+};
 
 // ----------------------------------------------------------------------------
 
