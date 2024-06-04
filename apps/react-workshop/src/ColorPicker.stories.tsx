@@ -84,9 +84,9 @@ export const Basic = () => {
         onVisibleChange={setIsOpen}
         placement='bottom-start'
       >
-        <IconButton>
+        <IconButton label='Show color picker'>
           <ColorSwatch
-            style={{ pointerEvents: 'none', margin: 0 }}
+            style={{ pointerEvents: 'none' }}
             color={activeColor.color}
           />
         </IconButton>
@@ -151,9 +151,9 @@ export const Advanced = () => {
           onVisibleChange={setIsOpen}
           placement='bottom-start'
         >
-          <IconButton>
+          <IconButton label='Show color picker'>
             <ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
+              style={{ pointerEvents: 'none' }}
               color={selectedColor}
             />
           </IconButton>
@@ -228,9 +228,9 @@ export const WithAlpha = () => {
           onVisibleChange={setIsOpen}
           placement='bottom-start'
         >
-          <IconButton>
+          <IconButton label='Show color picker'>
             <ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
+              style={{ pointerEvents: 'none' }}
               color={selectedColor}
             />
           </IconButton>
