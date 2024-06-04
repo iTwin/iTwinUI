@@ -7,8 +7,13 @@ import * as React from 'react';
 
 import { Box, ButtonBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 
 export type ButtonProps = {
+  /**
+   * Modify size of the button.
+   */
+  size?: 'small' | 'large';
   /**
    * Style of the button.
    * Use 'borderless' to hide outline.
@@ -41,10 +46,11 @@ export type ButtonProps = {
    * This is useful on narrow containers and mobile views.
    */
   stretched?: boolean;
-} & Pick<
-  React.ComponentProps<typeof ButtonBase>,
-  'htmlDisabled' | 'size' | 'loading'
->;
+  /**
+   * Specify a loading state for the button.
+   */
+  loading?: boolean;
+} & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
  * Generic button component
@@ -59,6 +65,7 @@ export const Button = React.forwardRef((props, ref) => {
   const {
     children,
     className,
+    size,
     styleType = 'default',
     startIcon,
     endIcon,
@@ -66,6 +73,8 @@ export const Button = React.forwardRef((props, ref) => {
     startIconProps,
     endIconProps,
     stretched,
+    loading: loading,
+    disabled: disabledProp,
     ...rest
   } = props;
 
@@ -74,6 +83,9 @@ export const Button = React.forwardRef((props, ref) => {
       ref={ref}
       className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
+      data-iui-size={size}
+      data-iui-loading={loading ? 'true' : undefined}
+      disabled={disabledProp || loading}
       {...rest}
       style={
         {
@@ -112,6 +124,14 @@ export const Button = React.forwardRef((props, ref) => {
         >
           {endIcon}
         </Box>
+      )}
+
+      {loading && (
+        <ProgressRadial
+          size={size === 'small' ? 'x-small' : 'small'}
+          className='iui-button-spinner'
+          aria-hidden
+        />
       )}
     </ButtonBase>
   );
