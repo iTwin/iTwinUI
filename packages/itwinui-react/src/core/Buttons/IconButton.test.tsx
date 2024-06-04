@@ -129,29 +129,20 @@ it('should not leave behind tooltip in DOM when not visible', async () => {
 });
 
 it.each(['default', 'small', 'large'] as const)(
-  'should respect `loading` and `size` props (size=%s)',
+  'should respect `size` prop (size=%s)',
   (size) => {
     const { container } = render(
-      <IconButton loading size={size === 'default' ? undefined : size}>
-        Do not click
+      <IconButton size={size === 'default' ? undefined : size}>
+        Click me
       </IconButton>,
     );
 
     const button = container.querySelector('button') as HTMLElement;
-    expect(button).toHaveAttribute('data-iui-loading', 'true');
-    expect(button).toHaveAttribute('aria-disabled', 'true');
 
     if (size === 'default') {
       expect(button).not.toHaveAttribute('data-iui-size');
     } else {
       expect(button).toHaveAttribute('data-iui-size', size);
     }
-
-    const spinner = button.querySelector('.iui-progress-indicator-radial');
-    expect(spinner).toHaveClass('iui-button-spinner');
-    expect(spinner).toHaveAttribute(
-      'data-iui-size',
-      size === 'small' ? 'x-small' : 'small',
-    );
   },
 );

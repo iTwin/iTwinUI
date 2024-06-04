@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-`IconButton` now respects the `loading` prop.
+Removed the no-op `loading` prop from `IconButton`.

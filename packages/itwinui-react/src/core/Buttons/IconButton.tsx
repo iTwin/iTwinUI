@@ -10,7 +10,6 @@ import type { ButtonProps } from './Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 import { ButtonGroupContext } from '../ButtonGroup/ButtonGroup.js';
-import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 
 export type IconButtonProps = {
   /**
@@ -36,7 +35,12 @@ export type IconButtonProps = {
   iconProps?: React.ComponentProps<'span'>;
 } & Omit<
   ButtonProps,
-  'startIcon' | 'endIcon' | 'startIconProps' | 'endIconProps' | 'labelProps'
+  | 'startIcon'
+  | 'endIcon'
+  | 'startIconProps'
+  | 'endIconProps'
+  | 'labelProps'
+  | 'loading'
 >;
 
 /**
@@ -52,8 +56,6 @@ export const IconButton = React.forwardRef((props, ref) => {
     children,
     styleType = 'default',
     size,
-    loading,
-    disabled: disabledProp,
     className,
     label,
     iconProps,
@@ -69,9 +71,7 @@ export const IconButton = React.forwardRef((props, ref) => {
       className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
-      data-iui-loading={loading ? 'true' : undefined}
       data-iui-active={isActive}
-      disabled={disabledProp || loading}
       aria-pressed={isActive}
       {...rest}
     >
@@ -84,14 +84,6 @@ export const IconButton = React.forwardRef((props, ref) => {
         {children}
       </Box>
       {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
-
-      {loading && (
-        <ProgressRadial
-          size={size === 'small' ? 'x-small' : 'small'}
-          className='iui-button-spinner'
-          aria-hidden
-        />
-      )}
     </ButtonBase>
   );
 
