@@ -166,9 +166,11 @@ export const VirtualScroll = React.forwardRef<
   } as const;
 
   useLayoutEffect(() => {
-    if (scrollToIndex) {
-      virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
-    }
+    setTimeout(() => {
+      if (scrollToIndex) {
+        virtualizer.scrollToIndex(scrollToIndex, { align: 'auto' });
+      }
+    });
   }, [scrollToIndex, virtualizer]);
 
   return (

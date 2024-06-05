@@ -13,17 +13,20 @@ export default function Resizing() {
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
   const enableVirtualization = searchParams.get('virtualization') === 'true';
+  const empty = searchParams.get('empty') === 'true';
 
   const virtualizedData = React.useMemo(() => {
     const size = 100000;
     const arr = new Array(size);
-    for (let i = 0; i < size; ++i) {
-      arr[i] = {
-        index: i,
-        name: `Name${i}`,
-        description: `Description${i}`,
-        id: i,
-      };
+    if (!empty) {
+      for (let i = 0; i < size; ++i) {
+        arr[i] = {
+          index: i,
+          name: `Name${i}`,
+          description: `Description${i}`,
+          id: i,
+        };
+      }
     }
     return arr;
   }, []);

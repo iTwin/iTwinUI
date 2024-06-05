@@ -130,9 +130,11 @@ it('should not crash with empty list items', () => {
       >
         <VirtualScroll
           itemsLength={data.length}
-          itemRenderer={(index) => <div key={index} className='element' />}
+          itemRenderer={(index) => (
+            <div key={index} className='element' style={{ height: 40 }} />
+          )}
           scrollContainerRef={parentRef}
-          bufferSize={20}
+          //bufferSize={20}
         />
       </div>
     );
