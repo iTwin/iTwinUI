@@ -94,7 +94,7 @@ export default function App() {
 
   return (
     <Flex flexDirection='column' alignItems='stretch'>
-      <InputGrid>
+      {/* <InputGrid>
         <Label>Controlled state (no onChange passed)</Label>
         <ComboBox options={options} value={value} />
       </InputGrid>
@@ -129,7 +129,7 @@ export default function App() {
         />
       </InputGrid>
 
-      {/* <CustomDivider />
+      <CustomDivider />
 
       <InputGrid>
         <Label>Uncontrolled state</Label>
@@ -168,7 +168,7 @@ export default function App() {
         />
       </InputGrid>
 
-      <CustomDivider />
+      <CustomDivider /> */}
 
       <Text variant='leading'>Reset state</Text>
       <Flex flexDirection='column' alignItems='flex-start'>
@@ -195,7 +195,7 @@ export default function App() {
             value={valueUnitTest}
           />
         </Fieldset>
-        <Fieldset legend='Multiple'>
+        {/* <Fieldset legend='Multiple'>
           <Text>value = {`${valueMultipleControlled}`}</Text>
           <Flex>
             <Button onClick={() => setValueMultipleControlled(null)}>
@@ -220,10 +220,10 @@ export default function App() {
               multiple
             />
           </InputGrid>
-        </Fieldset>
+        </Fieldset> */}
       </Flex>
 
-      <CustomDivider />
+      {/* <CustomDivider />
 
       <InputGrid>
         <Label>Controlled state (no onChange passed) + Virtualized</Label>

@@ -251,8 +251,24 @@ export const ComboBox = React.forwardRef(
 
     const [selectedIndexes, setSelectedIndexes] = useControlledState(
       getSelectedIndexes(defaultValue),
-      getSelectedIndexes(valueProp),
+      valueProp !== undefined ? getSelectedIndexes(valueProp) : undefined,
     );
+
+    const previousValue = React.useRef(valueProp);
+    React.useLayoutEffect(() => {
+      if (valueProp !== previousValue.current) {
+        previousValue.current = valueProp;
+
+        // Passing value={undefined} resets the value (needed to prevent a breaking change)
+        if (valueProp === undefined) {
+          if (isMultipleEnabled(selectedIndexes, multiple)) {
+            setSelectedIndexes([]);
+          } else {
+            setSelectedIndexes(-1);
+          }
+        }
+      }
+    }, [multiple, selectedIndexes, setSelectedIndexes, valueProp]);
 
     // console.log(
     //   'selectedIndexes: ',
