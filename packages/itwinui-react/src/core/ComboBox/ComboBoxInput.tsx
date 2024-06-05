@@ -34,7 +34,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     show,
     hide,
   } = useSafeContext(ComboBoxStateContext);
-  const { inputRef, menuRef, optionsExtraInfoRef } =
+  const { inputRef, menuRef, optionsExtraInfo } =
     useSafeContext(ComboBoxRefsContext);
   const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
 
@@ -48,7 +48,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      const length = Object.keys(optionsExtraInfoRef).length ?? 0;
+      const length = Object.keys(optionsExtraInfo).length ?? 0;
 
       if (event.altKey) {
         return;
@@ -134,8 +134,8 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             //       .__originalIndex ?? -1,
             // });
             return setFocusedIndex(
-              Object.values(optionsExtraInfoRef)?.[length - 1]
-                .__originalIndex ?? -1,
+              Object.values(optionsExtraInfo)?.[length - 1].__originalIndex ??
+                -1,
             );
           }
 
@@ -185,7 +185,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       isOpen,
       menuRef,
       onClickHandler,
-      optionsExtraInfoRef,
+      optionsExtraInfo,
       show,
       hide,
     ],
