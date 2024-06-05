@@ -214,13 +214,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
-  const setOwnerDocument = useScopedSetAtom(ownerDocumentAtom);
-  const findOwnerDocumentFromRef = React.useCallback(
-    (el: HTMLElement | null): void => {
-      setOwnerDocument(el?.ownerDocument);
-    },
-    [setOwnerDocument],
-  );
+  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
 
   return (
     <Box
@@ -231,7 +225,11 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
+      ref={useMergedRefs(forwardedRef, (el) => {
+        if (el && el.ownerDocument !== ownerDocument) {
+          setOwnerDocument(el.ownerDocument);
+        }
+      })}
       {...rest}
     >
       {children}
@@ -339,7 +337,8 @@ const PortalContainer = React.memo(
     if (
       !isInheritingTheme ||
       !portalContainerFromParent ||
-      portalContainerFromParent.ownerDocument !== ownerDocument
+      (!!ownerDocument &&
+        portalContainerFromParent.ownerDocument !== ownerDocument)
     ) {
       return (
         <div style={{ display: 'contents' }} ref={setPortalContainer}>
