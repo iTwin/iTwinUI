@@ -156,6 +156,11 @@ export type ComboBoxProps<T> = {
   Pick<InputContainerProps, 'status'> &
   CommonProps;
 
+/** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
+const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
+  return option.id ?? `${idPrefix}-option-${option.label.replace(/\s/g, '-')}`;
+};
+
 /**
  * ComboBox component that allows typing a value to filter the options in dropdown list.
  * Values can be selected either using mouse clicks or using the Enter key.
@@ -201,10 +206,23 @@ export const ComboBox = React.forwardRef(
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
 
+    const getOptionsExtraInfo = React.useCallback(() => {
+      const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
+        {};
+
+      options.forEach((option, index) => {
+        newOptionsExtraInfo[getOptionId(option, id)] = {
+          __originalIndex: index,
+        };
+      });
+
+      return newOptionsExtraInfo;
+    }, [id, options]);
+
     // Record to store all extra information (e.g. original indexes), where the key is the id of the option
     const [optionsExtraInfo, setOptionsExtraInfo] = React.useState<
       ReturnType<typeof getOptionsExtraInfo>
-    >(getOptionsExtraInfo(options, id));
+    >(getOptionsExtraInfo());
 
     /**
      * - When multiple is enabled, it is an array of indices.
@@ -299,7 +317,7 @@ export const ComboBox = React.forwardRef(
      * Should be called internally whenever the options change.
      */
     const onOptionsChange = React.useCallback(() => {
-      setOptionsExtraInfo(getOptionsExtraInfo(options, id));
+      setOptionsExtraInfo(getOptionsExtraInfo());
 
       // Remove the filter so that all of the new options are shown.
       setFilteredOptions(options);
@@ -322,7 +340,14 @@ export const ComboBox = React.forwardRef(
             : '',
         );
       }
-    }, [id, isOpen, multiple, options, optionsRef, selectedIndexes]);
+    }, [
+      isOpen,
+      multiple,
+      options,
+      optionsRef,
+      selectedIndexes,
+      getOptionsExtraInfo,
+    ]);
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
@@ -626,25 +651,3 @@ export const ComboBox = React.forwardRef(
 ) as <T>(
   props: ComboBoxProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
-
-// ----------------------------------------------------------------------------
-
-/** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
-const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
-  return option.id ?? `${idPrefix}-option-${option.label.replace(/\s/g, '-')}`;
-};
-
-const getOptionsExtraInfo = <T,>(
-  options: ComboBoxProps<T>['options'],
-  id: NonNullable<ComboBoxProps<T>['id']>,
-) => {
-  const newOptionsExtraInfo: Record<string, { __originalIndex: number }> = {};
-
-  options.forEach((option, index) => {
-    newOptionsExtraInfo[getOptionId(option, id)] = {
-      __originalIndex: index,
-    };
-  });
-
-  return newOptionsExtraInfo;
-};
