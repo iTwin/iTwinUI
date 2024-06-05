@@ -312,7 +312,7 @@ export const ComboBox = React.forwardRef(
         if (!isMultipleEnabled(selectedIndexes, multiple)) {
           setInputValue(
             selectedIndexes >= 0
-              ? optionsRef.current[selectedIndexes]?.label
+              ? optionsRef.current[selectedIndexes]?.label ?? ''
               : '',
           );
         }

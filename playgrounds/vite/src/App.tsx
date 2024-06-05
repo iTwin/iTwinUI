@@ -60,16 +60,16 @@ export default function App() {
   //   return () => clearInterval(interval);
   // }, [options]);
 
-  // // Every 5 seconds, cycle the options
-  // React.useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     // options = options === countriesList ? countriesList2 : countriesList;
-  //     setOptions((prev) =>
-  //       prev === countriesList ? countriesList2 : countriesList,
-  //     );
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, [options]);
+  // Every 5 seconds, cycle the options
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      // options = options === countriesList ? countriesList2 : countriesList;
+      setOptions((prev) =>
+        prev === countriesList ? countriesList2 : countriesList,
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [options]);
 
   const optionsUnitTest = [0, 1, 2].map((value) => ({
     value,
@@ -92,12 +92,14 @@ export default function App() {
     value: `${i}`,
   }));
 
+  console.log('value', value);
+
   return (
     <Flex flexDirection='column' alignItems='stretch'>
       {/* <InputGrid>
         <Label>Controlled state (no onChange passed)</Label>
         <ComboBox options={options} value={value} />
-      </InputGrid>
+      </InputGrid> */}
       <InputGrid>
         <Label>Controlled state (onChange passed)</Label>
         <ComboBox
@@ -110,7 +112,7 @@ export default function App() {
         />
       </InputGrid>
 
-      <CustomDivider />
+      {/* <CustomDivider />
 
       <InputGrid>
         <Label>Controlled state (no onChange passed) + Multiselect</Label>
@@ -168,7 +170,7 @@ export default function App() {
         />
       </InputGrid>
 
-      <CustomDivider /> */}
+      <CustomDivider />
 
       <Text variant='leading'>Reset state</Text>
       <Flex flexDirection='column' alignItems='flex-start'>
@@ -195,7 +197,7 @@ export default function App() {
             value={valueUnitTest}
           />
         </Fieldset>
-        {/* <Fieldset legend='Multiple'>
+        <Fieldset legend='Multiple'>
           <Text>value = {`${valueMultipleControlled}`}</Text>
           <Flex>
             <Button onClick={() => setValueMultipleControlled(null)}>
@@ -220,10 +222,10 @@ export default function App() {
               multiple
             />
           </InputGrid>
-        </Fieldset> */}
+        </Fieldset>
       </Flex>
 
-      {/* <CustomDivider />
+      <CustomDivider />
 
       <InputGrid>
         <Label>Controlled state (no onChange passed) + Virtualized</Label>
