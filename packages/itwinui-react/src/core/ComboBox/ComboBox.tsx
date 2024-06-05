@@ -225,6 +225,11 @@ export const ComboBox = React.forwardRef(
      */
     const getSelectedIndexes = React.useCallback(
       (value: typeof valueProp) => {
+        // If value is undefined, use uncontrolled state
+        if (value === undefined) {
+          return undefined;
+        }
+
         if (isMultipleEnabled(value, multiple)) {
           const indexArray: number[] = [];
           value?.forEach((value) => {
@@ -244,8 +249,8 @@ export const ComboBox = React.forwardRef(
     );
 
     const [selectedIndexes, setSelectedIndexes] = useControlledState(
-      getSelectedIndexes(defaultValue),
-      valueProp !== undefined ? getSelectedIndexes(valueProp) : undefined,
+      getSelectedIndexes(defaultValue) ?? (multiple ? [] : -1),
+      getSelectedIndexes(valueProp),
     );
 
     const previousValue = React.useRef(valueProp);
