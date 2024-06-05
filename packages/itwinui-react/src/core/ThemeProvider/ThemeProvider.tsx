@@ -215,6 +215,12 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyBackground = themeOptions?.applyBackground;
 
   const setOwnerDocument = useScopedSetAtom(ownerDocumentAtom);
+  const findOwnerDocumentFromRef = React.useCallback(
+    (el: HTMLElement | null): void => {
+      setOwnerDocument(el?.ownerDocument);
+    },
+    [setOwnerDocument],
+  );
 
   return (
     <Box
@@ -225,9 +231,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, (el) => {
-        setOwnerDocument(el?.ownerDocument);
-      })}
+      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
       {...rest}
     >
       {children}
@@ -324,15 +328,18 @@ const PortalContainer = React.memo(
       return null;
     }
 
+    if (portalContainerProp) {
+      return <PortaledToaster target={portalContainerProp} />;
+    }
+
     // Create a new portal container only if necessary:
     // - not inheriting theme
     // - no parent portal container to portal into
     // - parent portal container is in a different window (#2006)
     if (
-      !portalContainerProp && // bail if portalContainerProp is set, because it takes precedence
-      (!isInheritingTheme ||
-        !portalContainerFromParent ||
-        portalContainerFromParent.ownerDocument !== ownerDocument)
+      !isInheritingTheme ||
+      !portalContainerFromParent ||
+      portalContainerFromParent.ownerDocument !== ownerDocument
     ) {
       return (
         <div style={{ display: 'contents' }} ref={setPortalContainer}>
@@ -341,11 +348,7 @@ const PortalContainer = React.memo(
       );
     }
 
-    return (
-      <PortaledToaster
-        target={portalContainerProp || portalContainerFromParent}
-      />
-    );
+    return <PortaledToaster target={portalContainerFromParent} />;
   },
 );
 
@@ -360,7 +363,7 @@ const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
     if (target && target !== portalContainer) {
       setPortalContainer(target);
     }
-  }, [portalContainer, target, setPortalContainer]);
+  });
 
   return target ? ReactDOM.createPortal(<Toaster />, target) : null;
 };
