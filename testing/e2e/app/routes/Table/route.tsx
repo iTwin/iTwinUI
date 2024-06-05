@@ -12,6 +12,21 @@ export default function Resizing() {
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
+  const enableVirtualization = searchParams.get('virtualization') === 'true';
+
+  const virtualizedData = React.useMemo(() => {
+    const size = 100000;
+    const arr = new Array(size);
+    for (let i = 0; i < size; ++i) {
+      arr[i] = {
+        index: i,
+        name: `Name${i}`,
+        description: `Description${i}`,
+        id: i,
+      };
+    }
+    return arr;
+  }, []);
 
   const data = subRows
     ? [
@@ -120,13 +135,15 @@ export default function Resizing() {
             width: '8rem',
           },
         ]}
-        data={data}
+        data={enableVirtualization ? virtualizedData : data}
         emptyTableContent='No data.'
         isResizable
         isRowDisabled={isRowDisabled}
         isSelectable={isSelectable}
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
+        enableVirtualization={enableVirtualization}
+        style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
       />
     </>
   );

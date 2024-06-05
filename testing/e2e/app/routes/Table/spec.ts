@@ -347,3 +347,34 @@ test.describe('Table row selection', () => {
   };
   //#endregion
 });
+test.describe('Virtual Scroll Tests', () => {
+  test('should render only a few elements out of a big list', async ({
+    page,
+  }) => {
+    await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(21);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(20)).toContainText('Name20');
+
+    //scroll a little
+    await page.mouse.move(100, 300);
+    await page.mouse.wheel(0, 620);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(30)).toContainText('Name30');
+    expect((await rows.all()).length).toBe(31);
+
+    //scroll back up
+    await page.mouse.wheel(0, -620);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(20)).toContainText('Name20');
+    expect((await rows.all()).length).toBe(21);
+
+    //scroll to end
+    await page.mouse.wheel(0, 6200000);
+    await expect(rows.nth(0)).toContainText('Name99980');
+    await expect(rows.nth(19)).toContainText('Name99999');
+    expect((await rows.all()).length).toBe(20);
+  });
+});
