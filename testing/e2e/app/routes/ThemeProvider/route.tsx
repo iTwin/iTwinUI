@@ -10,6 +10,7 @@ export default function ThemeProviderExample() {
   const popout = searchParams.get('popout') === 'true';
   const withPortalContainer =
     searchParams.get('withPortalContainer') === 'true';
+  const portaled = searchParams.get('portaled') === 'true';
 
   const [portalContainer, setPortalContainer] = React.useState<
     HTMLElement | undefined
@@ -35,6 +36,12 @@ export default function ThemeProviderExample() {
       setPopoutDocumentBody(childWindow.document.body);
     });
   };
+
+  const [portaledTarget, setPortaledTarget] = React.useState<HTMLElement>();
+  React.useEffect(() => {
+    if (!portaled) return;
+    setPortaledTarget(document.querySelector('[data-portaled]') as HTMLElement);
+  }, [portaled]);
 
   return (
     <ThemeProvider
@@ -72,6 +79,19 @@ export default function ThemeProviderExample() {
           </ThemeProvider>,
           popoutDocumentBody,
         )}
+
+      {portaled && (
+        <>
+          <div data-portaled></div>
+          {portaledTarget &&
+            ReactDOM.createPortal(
+              <ThemeProvider>
+                <div>hello (portaled)</div>
+              </ThemeProvider>,
+              portaledTarget,
+            )}
+        </>
+      )}
     </ThemeProvider>
   );
 }
