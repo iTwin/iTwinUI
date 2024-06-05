@@ -35,13 +35,17 @@
   }
 
   &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
-    --_iui-list-item-icon-fill: var(--_iui-field-color-icon-disabled);
     opacity: 1;
     cursor: not-allowed;
   }
 
-  .iui-icon svg {
-    @include menu.iui-menu-icon;
+  .iui-icon {
+    flex: 0 0 auto;
+
+    svg {
+      @include mixins.iui-icon-style('m');
+      fill: inherit;
+    }
   }
 
   .iui-content {
