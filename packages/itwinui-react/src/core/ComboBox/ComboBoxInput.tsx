@@ -48,7 +48,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      const length = Object.keys(optionsExtraInfoRef.current).length ?? 0;
+      const length = Object.keys(optionsExtraInfoRef).length ?? 0;
 
       if (event.altKey) {
         return;

@@ -96,10 +96,10 @@ export default function App() {
 
   return (
     <Flex flexDirection='column' alignItems='stretch'>
-      {/* <InputGrid>
+      <InputGrid>
         <Label>Controlled state (no onChange passed)</Label>
         <ComboBox options={options} value={value} />
-      </InputGrid> */}
+      </InputGrid>
       <InputGrid>
         <Label>Controlled state (onChange passed)</Label>
         <ComboBox
@@ -112,7 +112,7 @@ export default function App() {
         />
       </InputGrid>
 
-      {/* <CustomDivider />
+      <CustomDivider />
 
       <InputGrid>
         <Label>Controlled state (no onChange passed) + Multiselect</Label>
@@ -246,7 +246,7 @@ export default function App() {
             setValue(val);
           }}
         />
-      </InputGrid> */}
+      </InputGrid>
     </Flex>
   );
 }
