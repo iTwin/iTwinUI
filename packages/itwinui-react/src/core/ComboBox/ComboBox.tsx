@@ -206,23 +206,18 @@ export const ComboBox = React.forwardRef(
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
 
-    const getOptionsExtraInfo = React.useCallback(() => {
-      const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
-        {};
+    /* Record to store all extra information (e.g. original indexes), where the key is the id of the option */
+    const optionsExtraInfo = React.useMemo(() => {
+      const returnValue: Record<string, { __originalIndex: number }> = {};
 
       options.forEach((option, index) => {
-        newOptionsExtraInfo[getOptionId(option, id)] = {
+        returnValue[getOptionId(option, id)] = {
           __originalIndex: index,
         };
       });
 
-      return newOptionsExtraInfo;
+      return returnValue;
     }, [id, options]);
-
-    // Record to store all extra information (e.g. original indexes), where the key is the id of the option
-    const [optionsExtraInfo, setOptionsExtraInfo] = React.useState<
-      ReturnType<typeof getOptionsExtraInfo>
-    >(getOptionsExtraInfo());
 
     /**
      * - When multiple is enabled, it is an array of indices.
@@ -317,8 +312,6 @@ export const ComboBox = React.forwardRef(
      * Should be called internally whenever the options change.
      */
     const onOptionsChange = React.useCallback(() => {
-      setOptionsExtraInfo(getOptionsExtraInfo());
-
       // Remove the filter so that all of the new options are shown.
       setFilteredOptions(options);
 
@@ -340,14 +333,7 @@ export const ComboBox = React.forwardRef(
             : '',
         );
       }
-    }, [
-      isOpen,
-      multiple,
-      options,
-      optionsRef,
-      selectedIndexes,
-      getOptionsExtraInfo,
-    ]);
+    }, [isOpen, multiple, options, optionsRef, selectedIndexes]);
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
