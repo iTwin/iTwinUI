@@ -156,11 +156,6 @@ export type ComboBoxProps<T> = {
   Pick<InputContainerProps, 'status'> &
   CommonProps;
 
-/** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
-const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
-  return option.id ?? `${idPrefix}-option-${option.label.replace(/\s/g, '-')}`;
-};
-
 /**
  * ComboBox component that allows typing a value to filter the options in dropdown list.
  * Values can be selected either using mouse clicks or using the Enter key.
@@ -210,10 +205,6 @@ export const ComboBox = React.forwardRef(
     const [optionsExtraInfoRef, setOptionsExtraInfoRef] = React.useState<
       ReturnType<typeof getOptionsExtraInfoRef>
     >(getOptionsExtraInfoRef(options, id));
-
-    React.useEffect(() => {
-      setOptionsExtraInfoRef(getOptionsExtraInfoRef(options, id));
-    }, [options, id]);
 
     // // Clear the extra info when the options change so that it can be reinitialized below
     // React.useEffect(() => {
@@ -326,6 +317,8 @@ export const ComboBox = React.forwardRef(
      * Should be called internally whenever the options change.
      */
     const onOptionsChange = React.useCallback(() => {
+      setOptionsExtraInfoRef(getOptionsExtraInfoRef(options, id));
+
       // Remove the filter so that all of the new options are shown.
       setFilteredOptions(options);
 
@@ -349,7 +342,7 @@ export const ComboBox = React.forwardRef(
             : '',
         );
       }
-    }, [isOpen, multiple, options, optionsRef, selectedIndexes]);
+    }, [id, isOpen, multiple, options, optionsRef, selectedIndexes]);
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
@@ -723,6 +716,11 @@ export const ComboBox = React.forwardRef(
 
 //   return cache.current;
 // }
+
+/** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
+const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
+  return option.id ?? `${idPrefix}-option-${option.label.replace(/\s/g, '-')}`;
+};
 
 const getOptionsExtraInfoRef = <T,>(
   options: ComboBoxProps<T>['options'],
