@@ -215,6 +215,14 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyBackground = themeOptions?.applyBackground;
 
   const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const findOwnerDocumentFromRef = React.useCallback(
+    (el: HTMLElement | null): void => {
+      if (el && el.ownerDocument !== ownerDocument) {
+        setOwnerDocument(el.ownerDocument);
+      }
+    },
+    [ownerDocument, setOwnerDocument],
+  );
 
   return (
     <Box
@@ -225,11 +233,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, (el) => {
-        if (el && el.ownerDocument !== ownerDocument) {
-          setOwnerDocument(el.ownerDocument);
-        }
-      })}
+      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
       {...rest}
     >
       {children}
