@@ -23,8 +23,10 @@ export const useControlledState = <T>(
   const [uncontrolledState, setUncontrolledState] =
     React.useState<T>(initialValue);
 
-  const state =
-    controlledState !== undefined ? controlledState : uncontrolledState;
+  const state = React.useMemo(
+    () => (controlledState !== undefined ? controlledState : uncontrolledState),
+    [controlledState, uncontrolledState],
+  );
 
   const setState = React.useCallback(
     (value) => {
