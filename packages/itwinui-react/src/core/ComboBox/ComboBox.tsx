@@ -305,7 +305,6 @@ export const ComboBox = React.forwardRef(
       }
     }, [isOpen, multiple, optionsRef, selectedIndexes]);
 
-    // Update filtered options to the latest value options according to input value
     const [filteredOptions, setFilteredOptions] = React.useState(options);
 
     /**
