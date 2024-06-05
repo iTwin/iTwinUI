@@ -17,7 +17,7 @@ import * as React from 'react';
  */
 export const useControlledState = <T>(
   initialValue: T,
-  controlledState: T,
+  controlledState: T | undefined,
   setControlledState?: React.Dispatch<React.SetStateAction<T>>,
 ) => {
   const [uncontrolledState, setUncontrolledState] =
