@@ -35,7 +35,12 @@ export type IconButtonProps = {
   iconProps?: React.ComponentProps<'span'>;
 } & Omit<
   ButtonProps,
-  'startIcon' | 'endIcon' | 'startIconProps' | 'endIconProps' | 'labelProps'
+  | 'startIcon'
+  | 'endIcon'
+  | 'startIconProps'
+  | 'endIconProps'
+  | 'labelProps'
+  | 'loading'
 >;
 
 /**

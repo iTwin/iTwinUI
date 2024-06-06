@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Button, NotificationMarker } from '@itwin/itwinui-react';
-import { SvgAdd, SvgEmail } from '@itwin/itwinui-icons-react';
+import { SvgAdd, SvgEmail, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Button',
@@ -126,5 +126,9 @@ Stretch.decorators = [
 ];
 
 export const Loading = () => {
-  return <Button loading>Click me</Button>;
+  return (
+    <Button loading startIcon={<SvgPlaceholder />}>
+      Click me
+    </Button>
+  );
 };
