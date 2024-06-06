@@ -206,18 +206,30 @@ export const ComboBox = React.forwardRef(
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
 
-    /* Record to store all extra information (e.g. original indexes), where the key is the id of the option */
-    const optionsExtraInfo = React.useMemo(() => {
-      const returnValue: Record<string, { __originalIndex: number }> = {};
+    const getOptionsExtraInfo = React.useCallback(() => {
+      const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
+        {};
 
       options.forEach((option, index) => {
-        returnValue[getOptionId(option, id)] = {
+        newOptionsExtraInfo[getOptionId(option, id)] = {
           __originalIndex: index,
         };
       });
 
-      return returnValue;
+      return newOptionsExtraInfo;
     }, [id, options]);
+
+    /*
+     * optionsExtraInfo is a record to store all extra information (e.g. original indexes),
+     * where the key is the id of the option.
+     *
+     * To keep optionsExtraInfo in-sync with the state used in the current pass of the render function,
+     * optionsExtraInfo should be a useState and its value updated in a useEffect/useCallback and not directly in the
+     * render function.
+     */
+    const [optionsExtraInfo, setOptionsExtraInfo] = React.useState<
+      ReturnType<typeof getOptionsExtraInfo>
+    >(getOptionsExtraInfo());
 
     /**
      * - When multiple is enabled, it is an array of indices.
@@ -316,6 +328,8 @@ export const ComboBox = React.forwardRef(
      * Should be called internally whenever the options change.
      */
     const onOptionsChange = React.useCallback(() => {
+      setOptionsExtraInfo(getOptionsExtraInfo());
+
       // Remove the filter so that all of the new options are shown.
       setFilteredOptions(options);
 
@@ -337,7 +351,14 @@ export const ComboBox = React.forwardRef(
             : '',
         );
       }
-    }, [isOpen, multiple, options, optionsRef, selectedIndexes]);
+    }, [
+      isOpen,
+      multiple,
+      options,
+      optionsRef,
+      selectedIndexes,
+      getOptionsExtraInfo,
+    ]);
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
