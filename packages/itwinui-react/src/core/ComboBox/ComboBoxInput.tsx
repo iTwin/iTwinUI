@@ -164,7 +164,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       }
     },
     [
-      // dispatch,
       setFocusedIndex,
       enableVirtualization,
       focusedIndexRef,
