@@ -386,4 +386,15 @@ test.describe('Virtual Scroll Tests', () => {
     const rows = page.getByRole('rowgroup').getByRole('row');
     expect((await rows.all()).length).toBe(0);
   });
+
+  test('virtualized table should scroll to provided row', async ({ page }) => {
+    await page.goto('/Table?virtualization=true&scroll=true', {
+      waitUntil: 'networkidle',
+    }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(31);
+    await expect(rows.nth(0)).toContainText('Name30');
+    await expect(rows.nth(30)).toContainText('Name60');
+  });
 });

@@ -263,6 +263,7 @@ it('should render parent as ul', () => {
       count: data.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 40,
+      overscan: 20,
     });
     const itemRenderer = (index: number) => (
       <li

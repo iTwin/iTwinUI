@@ -14,6 +14,7 @@ export default function Resizing() {
   const filter = searchParams.get('filter') === 'true';
   const enableVirtualization = searchParams.get('virtualization') === 'true';
   const empty = searchParams.get('empty') === 'true';
+  const scroll = searchParams.get('scroll') === 'true';
 
   const virtualizedData = React.useMemo(() => {
     const size = 100000;
@@ -147,6 +148,11 @@ export default function Resizing() {
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
         enableVirtualization={enableVirtualization}
         style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
+        scrollToRow={
+          scroll
+            ? (rows, data) => rows.findIndex((row) => row.original === data[50])
+            : undefined
+        }
       />
     </>
   );
