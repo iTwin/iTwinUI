@@ -254,7 +254,7 @@ export const ComboBox = React.forwardRef(
     );
 
     const previousValue = React.useRef(valueProp);
-    React.useLayoutEffect(() => {
+    useLayoutEffect(() => {
       if (valueProp !== previousValue.current) {
         previousValue.current = valueProp;
 
