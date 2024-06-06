@@ -206,27 +206,30 @@ export const ComboBox = React.forwardRef(
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
 
-    // Record to store all extra information (e.g. original indexes), where the key is the id of the option
-    const optionsExtraInfoRef = React.useRef<
-      Record<string, { __originalIndex: number }>
-    >({});
+    const getOptionsExtraInfo = React.useCallback(() => {
+      const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
+        {};
 
-    // Clear the extra info when the options change so that it can be reinitialized below
-    React.useEffect(() => {
-      optionsExtraInfoRef.current = {};
-    }, [options]);
-
-    // Initialize the extra info only if it is not already initialized
-    if (
-      options.length > 0 &&
-      Object.keys(optionsExtraInfoRef.current).length === 0
-    ) {
       options.forEach((option, index) => {
-        optionsExtraInfoRef.current[getOptionId(option, id)] = {
+        newOptionsExtraInfo[getOptionId(option, id)] = {
           __originalIndex: index,
         };
       });
-    }
+
+      return newOptionsExtraInfo;
+    }, [id, options]);
+
+    /*
+     * optionsExtraInfo is a record to store all extra information (e.g. original indexes),
+     * where the key is the id of the option.
+     *
+     * To keep optionsExtraInfo in-sync with the state used in the current pass of the render function,
+     * optionsExtraInfo should be a useState and its value updated in a useEffect/useCallback instead of directly in the
+     * render function or in a useMemo.
+     */
+    const [optionsExtraInfo, setOptionsExtraInfo] = React.useState<
+      ReturnType<typeof getOptionsExtraInfo>
+    >(getOptionsExtraInfo());
 
     /**
      * - When multiple is enabled, it is an array of indices.
@@ -300,6 +303,7 @@ export const ComboBox = React.forwardRef(
         inputRef.current?.focus(); // Focus the input
         // Reset the filtered list (does not reset when multiple enabled)
         if (!isMultipleEnabled(selectedIndexes, multiple)) {
+          setFilteredOptions(optionsRef.current);
           setFocusedIndex(selectedIndexes ?? -1);
         }
       }
@@ -318,12 +322,16 @@ export const ComboBox = React.forwardRef(
       }
     }, [isOpen, multiple, optionsRef, selectedIndexes]);
 
+    const [filteredOptions, setFilteredOptions] = React.useState(options);
+
     /**
      * Should be called internally whenever the options change.
      */
     const onOptionsChange = React.useCallback(() => {
+      setOptionsExtraInfo(getOptionsExtraInfo());
+
       // Remove the filter so that all of the new options are shown.
-      setShouldResetFilter(true);
+      setFilteredOptions(options);
 
       // If multiple=false, refocus the selected option.
       // If no option is selected (i.e. selected === -1), reset the focus to the input.
@@ -343,7 +351,14 @@ export const ComboBox = React.forwardRef(
             : '',
         );
       }
-    }, [isOpen, multiple, optionsRef, selectedIndexes]);
+    }, [
+      isOpen,
+      multiple,
+      options,
+      optionsRef,
+      selectedIndexes,
+      getOptionsExtraInfo,
+    ]);
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
@@ -366,14 +381,18 @@ export const ComboBox = React.forwardRef(
         const { value } = event.currentTarget;
         setInputValue(value);
         show(); // reopen when typing
-        setShouldResetFilter(false);
-
+        setFilteredOptions(
+          filterFunction?.(optionsRef.current, value) ??
+            optionsRef.current.filter((option) =>
+              option.label.toLowerCase().includes(value.toLowerCase()),
+            ),
+        );
         if (focusedIndex != -1) {
           setFocusedIndex(-1);
         }
         inputProps?.onChange?.(event);
       },
-      [focusedIndex, inputProps, show],
+      [filterFunction, focusedIndex, inputProps, optionsRef, show],
     );
 
     const isMenuItemSelected = React.useCallback(
@@ -483,7 +502,7 @@ export const ComboBox = React.forwardRef(
     const getMenuItem = React.useCallback(
       (option: SelectOption<T>, filteredIndex?: number) => {
         const optionId = getOptionId(option, id);
-        const { __originalIndex } = optionsExtraInfoRef.current[optionId];
+        const { __originalIndex } = optionsExtraInfo[optionId];
         const {
           icon,
           startIcon: startIconProp,
@@ -543,7 +562,7 @@ export const ComboBox = React.forwardRef(
         isMenuItemSelected,
         itemRenderer,
         onClickHandler,
-        optionsExtraInfoRef,
+        optionsExtraInfo,
       ],
     );
 
@@ -570,19 +589,9 @@ export const ComboBox = React.forwardRef(
       interactions: { click: false, focus: true },
     });
 
-    const [shouldResetFilter, setShouldResetFilter] = React.useState(false);
-    const filteredOptions = React.useMemo(() => {
-      return shouldResetFilter
-        ? optionsRef.current
-        : filterFunction?.(optionsRef.current, inputValue) ??
-            optionsRef.current.filter((option) =>
-              option.label.toLowerCase().includes(inputValue.toLowerCase()),
-            );
-    }, [filterFunction, inputValue, optionsRef, shouldResetFilter]);
-
     return (
       <ComboBoxRefsContext.Provider
-        value={{ inputRef, menuRef, optionsExtraInfoRef }}
+        value={{ inputRef, menuRef, optionsExtraInfo }}
       >
         <ComboBoxStateContext.Provider
           value={{
