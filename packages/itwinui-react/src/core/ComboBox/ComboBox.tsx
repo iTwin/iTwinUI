@@ -603,12 +603,7 @@ export const ComboBox = React.forwardRef(
                   isMultipleEnabled(selectedIndexes, multiple)
                     ? (selectedIndexes
                         ?.map((index) => {
-                          const item: SelectOption<T> | undefined =
-                            optionsRef.current[index];
-
-                          if (item == null) {
-                            return undefined;
-                          }
+                          const item = options[index];
 
                           return (
                             <SelectTag key={item.label} label={item.label} />
