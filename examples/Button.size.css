@@ -1,4 +1,5 @@
 .demo-container {
   display: flex;
   gap: var(--iui-size-xs);
+  align-items: center;
 }

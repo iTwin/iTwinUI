@@ -92,13 +92,7 @@ export const Basic = () => {
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode
-            label={node.label}
-            sublabel={node.sublabel}
-            onExpanded={onNodeExpanded}
-            icon={<SvgPlaceholder />}
-            {...rest}
-          />
+          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
         ),
         [onNodeExpanded],
       )}

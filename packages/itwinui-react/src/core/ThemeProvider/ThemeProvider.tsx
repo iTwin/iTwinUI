@@ -214,7 +214,15 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
-  const setOwnerDocument = useScopedSetAtom(ownerDocumentAtom);
+  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const findOwnerDocumentFromRef = React.useCallback(
+    (el: HTMLElement | null): void => {
+      if (el && el.ownerDocument !== ownerDocument) {
+        setOwnerDocument(el.ownerDocument);
+      }
+    },
+    [ownerDocument, setOwnerDocument],
+  );
 
   return (
     <Box
@@ -225,9 +233,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, (el) => {
-        setOwnerDocument(el?.ownerDocument);
-      })}
+      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
       {...rest}
     >
       {children}
@@ -316,8 +322,7 @@ const PortalContainer = React.memo(
     isInheritingTheme: boolean;
   }) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const [portalContainer, setPortalContainer] =
-      useScopedAtom(portalContainerAtom);
+    const setPortalContainer = useScopedSetAtom(portalContainerAtom);
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
@@ -325,14 +330,18 @@ const PortalContainer = React.memo(
       return null;
     }
 
+    if (portalContainerProp) {
+      return <PortaledToaster target={portalContainerProp} />;
+    }
+
     // Create a new portal container only if necessary:
     // - not inheriting theme
     // - no parent portal container to portal into
     // - parent portal container is in a different window (#2006)
     if (
-      !portalContainerProp && // bail if portalContainerProp is set, because it takes precedence
-      (!isInheritingTheme ||
-        !portalContainerFromParent ||
+      !isInheritingTheme ||
+      !portalContainerFromParent ||
+      (!!ownerDocument &&
         portalContainerFromParent.ownerDocument !== ownerDocument)
     ) {
       return (
@@ -342,18 +351,25 @@ const PortalContainer = React.memo(
       );
     }
 
-    const portalTarget = portalContainerProp || portalContainerFromParent;
-
-    // Synchronize atom with the correct portal container if necessary.
-    if (portalTarget && portalTarget !== portalContainer) {
-      setPortalContainer(portalTarget);
-    }
-
-    return portalTarget
-      ? ReactDOM.createPortal(<Toaster />, portalTarget)
-      : null;
+    return <PortaledToaster target={portalContainerFromParent} />;
   },
 );
+
+// ----------------------------------------------------------------------------
+
+const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
+  const [portalContainer, setPortalContainer] =
+    useScopedAtom(portalContainerAtom);
+
+  // Synchronize atom with the correct portal target if necessary.
+  React.useEffect(() => {
+    if (target && target !== portalContainer) {
+      setPortalContainer(target);
+    }
+  });
+
+  return target ? ReactDOM.createPortal(<Toaster />, target) : null;
+};
 
 // ----------------------------------------------------------------------------
 
