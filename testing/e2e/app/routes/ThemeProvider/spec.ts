@@ -36,3 +36,11 @@ test('should not inherit portalContainer across different windows', async ({
     'popout tooltip',
   );
 });
+
+test('should not cause an infinite loop when portaled', async ({ page }) => {
+  await page.goto('/ThemeProvider?portaled=true');
+
+  await expect(page.locator('[data-portaled]')).toContainText(
+    'hello (portaled)',
+  );
+});
