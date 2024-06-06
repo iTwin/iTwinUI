@@ -30,10 +30,19 @@ function assertSelect(
 
 function assertMenu(
   menu: HTMLElement,
-  { hasIcon = false, selectedIndex = -1, disabledIndex = -1 } = {},
+  {
+    hasIcon = false,
+    selectedIndex = -1,
+    disabledIndex = -1,
+    multiple = false,
+  } = {},
 ) {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual('listbox');
+  if (multiple) {
+    expect(menu).toHaveAttribute('aria-multiselectable', 'true');
+  }
+
   const menuItems = menu.querySelectorAll('.iui-list-item');
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
@@ -539,44 +548,6 @@ it('should use custom render for selected item (multiple)', async () => {
   expect(selectedValues.length).toBe(2);
   expect((selectedValues[0] as HTMLElement).style.color).toEqual('green');
   expect((selectedValues[1] as HTMLElement).style.color).toEqual('red');
-});
-
-it('should update live region when selection changes', async () => {
-  const MultiSelectTest = () => {
-    const [selected, setSelected] = React.useState([0]);
-    return (
-      <Select
-        options={[0, 1, 2].map((value) => ({
-          value,
-          label: `Item ${value}`,
-        }))}
-        popoverProps={{ visible: true }}
-        multiple
-        value={selected}
-        onChange={(value, type) =>
-          setSelected((prev) =>
-            type === 'added'
-              ? [...prev, value]
-              : prev.filter((v) => v !== value),
-          )
-        }
-      />
-    );
-  };
-  const { container } = render(<MultiSelectTest />);
-
-  const liveRegion = container.querySelector('[aria-live="polite"]');
-  expect(liveRegion).toHaveTextContent('');
-  const options = document.querySelectorAll('[role="option"]');
-
-  await userEvent.click(options[1]);
-  expect(liveRegion).toHaveTextContent('Item 0, Item 1');
-
-  await userEvent.click(options[2]);
-  expect(liveRegion).toHaveTextContent('Item 0, Item 1, Item 2');
-
-  await userEvent.click(options[0]);
-  expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });
 
 it.each([true, false] as const)(

@@ -9,7 +9,6 @@ import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
   useId,
-  AutoclearingHiddenLiveRegion,
   Box,
   Portal,
   useMergedRefs,
@@ -297,7 +296,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const [uncontrolledValue, setUncontrolledValue] = React.useState<unknown>();
   const value = valueProp !== undefined ? valueProp : uncontrolledValue;
@@ -358,21 +356,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             onChangeRef.current?.(
               option.value,
               isSelected ? 'removed' : 'added',
-            );
-          }
-
-          // update live region
-          if (isMultipleEnabled(value, multiple)) {
-            const prevSelectedValue = value || [];
-            const newSelectedValue = isSelected
-              ? prevSelectedValue.filter((i) => option.value !== i)
-              : [...prevSelectedValue, option.value];
-            setLiveRegionSelection(
-              options
-                .filter((i) => newSelectedValue.includes(i.value))
-                .map((item) => item.label)
-                .filter(Boolean)
-                .join(', '),
             );
           }
         },
@@ -479,10 +462,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           )}
         </SelectButton>
         <SelectEndIcon disabled={disabled} isOpen={isOpen} />
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-        ) : null}
       </InputWithIcon>
 
       {popover.open && (
@@ -492,6 +471,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             className={menuClassName}
             id={`${uid}-menu`}
             key={`${uid}-menu`}
+            aria-multiselectable={multiple ? 'true' : undefined}
             {...popover.getFloatingProps({
               style: menuStyle,
               onKeyDown: ({ key }) => {
