@@ -66,7 +66,7 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   }
 
   &:is(#{$disabledButtonSelectors}) {
-    --_iui-button-active-stripe-background: var(--_iui-field-color-icon-disabled);
+    --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
   }
 }
 

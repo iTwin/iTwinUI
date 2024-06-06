@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-`.iui-field` now handles icon fill, used in button and select.
+- `Tile.IconButton` now requires the `.iui-tile-thumbnail-button` class, fixing a hover state icon fill bug.

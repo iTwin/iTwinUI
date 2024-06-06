@@ -352,8 +352,8 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     justify-self: end;
   }
 
-  .iui-button[data-iui-variant='borderless'] {
-    border-radius: var(--iui-border-radius-round);
+  .iui-tile-thumbnail-button {
+    border-radius: 50%;
 
     .iui-tile-thumbnail-picture ~ & {
       @include mixins.iui-blur($opacity: 5);
