@@ -224,8 +224,8 @@ export const ComboBox = React.forwardRef(
      * where the key is the id of the option.
      *
      * To keep optionsExtraInfo in-sync with the state used in the current pass of the render function,
-     * optionsExtraInfo should be a useState and its value updated in a useEffect/useCallback and not directly in the
-     * render function.
+     * optionsExtraInfo should be a useState and its value updated in a useEffect/useCallback instead of directly in the
+     * render function or in a useMemo.
      */
     const [optionsExtraInfo, setOptionsExtraInfo] = React.useState<
       ReturnType<typeof getOptionsExtraInfo>
