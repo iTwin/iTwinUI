@@ -317,30 +317,6 @@ export const ComboBox = React.forwardRef(
       }
     }, [isOpen, multiple, optionsRef, selectedIndexes]);
 
-    /**
-     * Should be called internally whenever the options change.
-     */
-    const onOptionsChange = React.useCallback(() => {
-      // If multiple=false, refocus the selected option.
-      // If no option is selected (i.e. selected === -1), reset the focus to the input.
-      if (!isMultipleEnabled(selectedIndexes, multiple)) {
-        setFocusedIndex(selectedIndexes);
-      }
-      // If multiple=true, reset the focus to the input.
-      else {
-        setFocusedIndex(-1);
-      }
-
-      // Reset/update the input value if multiple=false and if the dropdown is closed (i.e. don't override user input when dropdown is open)
-      if (!isMultipleEnabled(selectedIndexes, multiple) && !isOpen) {
-        setInputValue(
-          selectedIndexes >= 0
-            ? optionsRef.current[selectedIndexes]?.label
-            : '',
-        );
-      }
-    }, [isOpen, multiple, optionsRef, selectedIndexes]);
-
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);
     React.useEffect(() => {
@@ -348,7 +324,29 @@ export const ComboBox = React.forwardRef(
         previousOptions.current = options;
         onOptionsChange();
       }
-    }, [onOptionsChange, options]);
+
+      /**
+       * Should be called internally whenever the options change.
+       */
+      function onOptionsChange() {
+        // If multiple=false, refocus the selected option.
+        // If no option is selected (i.e. selected === -1), reset the focus to the input.
+        if (!isMultipleEnabled(selectedIndexes, multiple)) {
+          setFocusedIndex(selectedIndexes);
+        }
+        // If multiple=true, reset the focus to the input.
+        else {
+          setFocusedIndex(-1);
+        }
+
+        // Reset/update the input value if multiple=false and if the dropdown is closed (i.e. don't override user input when dropdown is open)
+        if (!isMultipleEnabled(selectedIndexes, multiple) && !isOpen) {
+          setInputValue(
+            selectedIndexes >= 0 ? options[selectedIndexes]?.label : '',
+          );
+        }
+      }
+    }, [options, isOpen, multiple, selectedIndexes]);
 
     // Filter options based on input value
     const [inputValue, setInputValue] = React.useState<string>(
@@ -358,7 +356,9 @@ export const ComboBox = React.forwardRef(
 
     const filteredOptions = React.useMemo(() => {
       // We filter the list only when the user is typing (i.e. input is "dirty")
-      if (!isInputDirty) {return options;}
+      if (!isInputDirty) {
+        return options;
+      }
 
       return filterFunction?.(options, inputValue);
     }, [filterFunction, inputValue, options, isInputDirty]);
