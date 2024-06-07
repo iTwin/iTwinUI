@@ -48,9 +48,12 @@ export const useScopedAtom = <T,>(atom: Atom<T>) => {
 
   const value = useAtomValue(atom, { store });
   const inheritedValue = useAtomValue(atom, { store: parentStore || store });
-  if (value == undefined && inheritedValue != undefined) {
-    setAtom(inheritedValue);
-  }
+
+  React.useEffect(() => {
+    if (value == undefined && inheritedValue != undefined) {
+      setAtom(inheritedValue);
+    }
+  });
 
   return [value, setAtom] as const;
 };
