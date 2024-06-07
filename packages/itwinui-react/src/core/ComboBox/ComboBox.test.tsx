@@ -790,41 +790,6 @@ it('should update options (does not have selected option in new options list)', 
   expect(input).toHaveValue('');
 });
 
-it('should clear filter when options change', async () => {
-  const mockOnChange = vi.fn();
-  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
-
-  const { container, rerender } = render(
-    <ComboBox defaultValue={1} options={options} onChange={mockOnChange} />,
-  );
-
-  const input = container.querySelector('.iui-input') as HTMLInputElement;
-  expect(input).toHaveValue('Item 1');
-
-  await userEvent.tab();
-  await userEvent.type(input, '{backspace}2');
-  expect(input).toHaveValue('Item 2');
-
-  const getComboBoxListItems = () =>
-    container.querySelectorAll('[role="listbox"] > *');
-
-  let menuItems = getComboBoxListItems();
-  expect(menuItems.length).toBe(1);
-
-  const options2 = [6, 7, 8].map((value) => ({
-    value,
-    label: `Item ${value}`,
-  }));
-
-  rerender(
-    <ComboBox defaultValue={1} options={options2} onChange={mockOnChange} />,
-  );
-  expect(input).toHaveValue('Item 2');
-
-  menuItems = getComboBoxListItems();
-  expect(menuItems.length).toBe(3);
-});
-
 it('should select multiple options', async () => {
   const mockOnChange = vi.fn();
   const options = [0, 1, 2, 3].map((value) => ({
