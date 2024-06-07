@@ -440,12 +440,12 @@ export const ComboBox = React.forwardRef(
     const onClickHandler = React.useCallback(
       (__originalIndex: number) => {
         inputRef.current?.focus({ preventScroll: true }); // return focus to input
-        setIsInputDirty(false);
 
         if (optionsRef.current[__originalIndex]?.disabled) {
           return;
         }
 
+        setIsInputDirty(false);
         if (multiple) {
           const actionType = isMenuItemSelected(__originalIndex)
             ? 'removed'
