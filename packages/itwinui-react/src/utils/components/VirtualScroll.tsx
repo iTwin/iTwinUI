@@ -9,7 +9,11 @@ import {
   useResizeObserver,
   useLayoutEffect,
 } from '../hooks/index.js';
-import { useVirtualizer } from '@tanstack/react-virtual';
+import {
+  useVirtualizer,
+  Virtualizer,
+  type VirtualItem,
+} from '@tanstack/react-virtual';
 
 const unstable_batchedUpdates =
   ReactDOM.unstable_batchedUpdates ?? ((cb: () => void) => void cb());
@@ -91,7 +95,11 @@ export type VirtualScrollProps = {
    * and expects to get the JSX of that element to render.
    * Recommended to memoize the reference of the function.
    */
-  itemRenderer: (index: number) => JSX.Element;
+  itemRenderer: (
+    index: number,
+    virtualItem?: VirtualItem,
+    virtualizer?: Virtualizer<Element, Element>,
+  ) => JSX.Element;
   /**
    * Ref for scrollable parent container.
    */
@@ -176,22 +184,11 @@ export const VirtualScroll = React.forwardRef<
   return (
     <div {...outerProps} ref={ref}>
       <div {...innerProps}>
-        {virtualizer.getVirtualItems().map((virtualItem) => (
-          <div
-            key={virtualItem.key}
-            data-index={virtualItem.index}
-            ref={virtualizer.measureElement}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              transform: `translateY(${virtualItem.start}px)`,
-            }}
-          >
-            {itemRenderer(virtualItem.index)}
-          </div>
-        ))}
+        {virtualizer
+          .getVirtualItems()
+          .map((virtualItem) =>
+            itemRenderer(virtualItem.index, virtualItem, virtualizer),
+          )}
       </div>
     </div>
   );

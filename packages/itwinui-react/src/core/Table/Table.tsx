@@ -72,6 +72,7 @@ import {
 } from './actionHandlers/index.js';
 import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -819,7 +820,11 @@ export const Table = <
   });
 
   const getPreparedRow = React.useCallback(
-    (index: number) => {
+    (
+      index: number,
+      virtualItem?: VirtualItem,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => {
       const row = page[index];
       prepareRow(row);
       return (
@@ -841,6 +846,8 @@ export const Table = <
           scrollContainerRef={tableRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
           density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
         />
       );
     },
@@ -865,7 +872,11 @@ export const Table = <
   );
 
   const virtualizedItemRenderer = React.useCallback(
-    (index: number) => getPreparedRow(index),
+    (
+      index: number,
+      virtualItem?: VirtualItem,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => getPreparedRow(index, virtualItem, virtualizer),
     [getPreparedRow],
   );
 
