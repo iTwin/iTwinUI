@@ -136,11 +136,10 @@ type PopoverInternalProps = {
    * });
    */
   interactions?: {
-    click?: boolean | UseClickProps;
-    dismiss?: boolean | UseDismissProps;
-    hover?: boolean | UseHoverProps<ReferenceType>;
-    focus?: boolean | UseFocusProps;
-    listNavigation?: UseListNavigationProps;
+    click?: boolean | Omit<UseClickProps, 'enabled'>;
+    dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
+    hover?: boolean | Omit<UseHoverProps<ReferenceType>, 'enabled'>;
+    focus?: boolean | Omit<UseFocusProps, 'enabled'>;
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
@@ -221,46 +220,19 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
-  const interactionsEnabledStates = React.useMemo(() => {
-    const booleanTypeInteractions = [
-      'click',
-      'dismiss',
-      'hover',
-      'focus',
-    ] as const;
-
-    return {
-      role: !!role,
-      listNavigation:
-        !!mergedInteractions.listNavigation &&
-        mergedInteractions.listNavigation.enabled !== false,
-
-      ...(Object.fromEntries(
-        booleanTypeInteractions.map((key) => {
-          const value = mergedInteractions[key];
-          return [
-            key,
-            value === true ||
-              (typeof value === 'object' && value.enabled !== false),
-          ];
-        }),
-      ) as Record<(typeof booleanTypeInteractions)[number], boolean>),
-    };
-  }, [mergedInteractions, role]);
-
   const interactions = useInteractions([
     useClick(floating.context, {
-      enabled: interactionsEnabledStates.click,
+      enabled: !!mergedInteractions.click,
       ...(mergedInteractions.click as object),
     }),
     useDismiss(floating.context, {
-      enabled: interactionsEnabledStates.dismiss,
+      enabled: !!mergedInteractions.dismiss,
       outsidePress: closeOnOutsideClick,
       bubbles: tree != null, // Only bubble when inside a FloatingTree
       ...(mergedInteractions.dismiss as object),
     }),
     useHover(floating.context, {
-      enabled: interactionsEnabledStates.hover,
+      enabled: !!mergedInteractions.hover,
       delay: 100,
       handleClose: safePolygon({
         buffer: 1,
@@ -270,15 +242,15 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       ...(mergedInteractions.hover as object),
     }),
     useFocus(floating.context, {
-      enabled: interactionsEnabledStates.focus,
+      enabled: !!mergedInteractions.focus,
       ...(mergedInteractions.focus as object),
     }),
     useRole(floating.context, {
       role: 'dialog',
-      enabled: interactionsEnabledStates.role,
+      enabled: !!role,
     }),
     useListNavigation(floating.context, {
-      enabled: interactionsEnabledStates.listNavigation,
+      enabled: !!mergedInteractions.listNavigation,
       ...(mergedInteractions.listNavigation as UseListNavigationProps),
     }),
   ]);
@@ -304,14 +276,31 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     [floating.floatingStyles, interactions, matchWidth, referenceWidth],
   );
 
+  const getReferenceProps = React.useCallback(
+    (userProps?: React.HTMLProps<HTMLElement>) =>
+      interactions.getReferenceProps({
+        ...userProps,
+        onClick: () => {
+          // Workaround for useHover+useClick+useDismiss bug in floating-ui.
+          // We want to close the popover when the reference is clicked the first time.
+          // @see TODO: Replace with the latest issue/discussion (to be created)
+          // TODO:
+          if (!!mergedInteractions.click && visible) {
+            close();
+          }
+        },
+      }),
+    [interactions, mergedInteractions.click, visible],
+  );
+
   return React.useMemo(
     () => ({
       open,
       onOpenChange,
       ...interactions,
+      getReferenceProps,
       getFloatingProps,
       ...floating,
-      interactionsEnabledStates,
     }),
     [
       open,
@@ -319,7 +308,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       interactions,
       getFloatingProps,
       floating,
-      interactionsEnabledStates,
+      getReferenceProps,
     ],
   );
 };

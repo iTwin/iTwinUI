@@ -268,18 +268,6 @@ export const Menu = React.forwardRef((props, ref) => {
           ...triggerChild.props,
           'aria-expanded': popover.open,
           ref: mergeRefs(triggerRef, popover.refs.setReference),
-          onClick: mergeEventHandlers(triggerChild.props.onClick, () => {
-            // If the click interaction is disabled, do nothing
-            if (!popover.interactionsEnabledStates.click) {
-              return;
-            }
-
-            // This is needed because FloatingUI's useClick does not close the floating content on the first click.
-            // @see: https://redirect.github.com/floating-ui/floating-ui/issues/1893#issuecomment-1250161220
-            if (visible) {
-              close();
-            }
-          }),
         }),
       }) satisfies React.HTMLProps<HTMLElement>,
   );
