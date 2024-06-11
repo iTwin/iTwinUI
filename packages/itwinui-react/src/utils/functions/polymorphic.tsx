@@ -26,7 +26,13 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
       // Add tabIndex to interactive elements if not already set.
       // Workaround for Safari refusing to focus links/buttons/non-text inputs.
       if (
-        Element === 'button' ||
+        (Element === 'button' &&
+          // Button should not be disabled
+          !(
+            String(props['aria-disabled']) === 'true' ||
+            String((props as any)['data-iui-disabled']) === 'true' ||
+            (props as React.ComponentPropsWithRef<'button'>).disabled
+          )) ||
         Element === 'a' ||
         (Element === 'input' && (props as any).type === 'checkbox')
       ) {
