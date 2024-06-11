@@ -14,6 +14,7 @@ import {
   mergeRefs,
   useSyncExternalStore,
   mergeEventHandlers,
+  useLatestRef,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -166,8 +167,13 @@ export const Menu = React.forwardRef((props, ref) => {
   const focusableElementsRef = useFocusableElementsRef(
     menuElement,
     // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    (element, allElements) =>
-      !allElements.some((p) => p.contains(element.parentElement)),
+    {
+      // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+      filter: (allElements) =>
+        allElements.filter(
+          (i) => !allElements?.some((p) => p.contains(i.parentElement)),
+        ),
+    },
   );
 
   const popover = usePopover({
@@ -312,9 +318,14 @@ export const MenuContext = React.createContext<
 
 function useFocusableElementsRef(
   root: HTMLElement | null,
-  filterFn?: (element: HTMLElement, allElements: HTMLElement[]) => boolean,
+  extraOptions?: {
+    filter?: (elements: HTMLElement[]) => HTMLElement[];
+  },
 ) {
   const focusableElementsRef = React.useRef<HTMLElement[]>([]);
+  const { filter: filterProp } = extraOptions ?? {};
+
+  const filter = useLatestRef(filterProp);
 
   return useSyncExternalStore(
     React.useCallback(() => {
@@ -330,15 +341,13 @@ function useFocusableElementsRef(
 
       function updateFocusableElements() {
         let newFocusableElements = getFocusableElements(root) as HTMLElement[];
-        if (filterFn) {
-          newFocusableElements = newFocusableElements.filter((element) =>
-            filterFn(element, newFocusableElements),
-          );
+        if (filter.current) {
+          newFocusableElements = filter.current?.(newFocusableElements);
         }
 
         focusableElementsRef.current = newFocusableElements;
       }
-    }, [root, filterFn]),
+    }, [root, filter]),
     () => focusableElementsRef,
     () => focusableElementsRef,
   );
