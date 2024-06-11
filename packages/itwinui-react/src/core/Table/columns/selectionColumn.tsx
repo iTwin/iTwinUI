@@ -30,10 +30,9 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
     /** Function that returns whether row checkbox should be disabled. */
     isDisabled?: (rowData: T) => boolean;
     density?: 'default' | 'condensed' | 'extra-condensed';
-    selectSubRows?: boolean;
   } = {},
 ) => {
-  const { isDisabled, density, selectSubRows = true } = props;
+  const { isDisabled, density } = props;
   const densityWidth =
     density === 'condensed' ? 42 : density === 'extra-condensed' ? 34 : 48;
   return {
@@ -75,7 +74,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         />
       );
     },
-    Cell: ({ row }: CellProps<T>) => (
+    Cell: ({ row, selectSubRows = true }: CellProps<T>) => (
       <Checkbox
         {...row.getToggleRowSelectedProps()}
         style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
