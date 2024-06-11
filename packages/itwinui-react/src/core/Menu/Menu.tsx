@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergedRefs,
-  getFocusableElements,
   Box,
   Portal,
   useControlledState,
@@ -14,7 +13,7 @@ import {
   mergeRefs,
   useSyncExternalStore,
   mergeEventHandlers,
-  useLatestRef,
+  useFocusableElementsRef,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -164,17 +163,13 @@ export const Menu = React.forwardRef((props, ref) => {
     null,
   );
 
-  const focusableElementsRef = useFocusableElementsRef(
-    menuElement,
+  const focusableElementsRef = useFocusableElementsRef(menuElement, {
     // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    {
-      // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-      filter: (allElements) =>
-        allElements.filter(
-          (i) => !allElements?.some((p) => p.contains(i.parentElement)),
-        ),
-    },
-  );
+    filter: (allElements) =>
+      allElements.filter(
+        (i) => !allElements?.some((p) => p.contains(i.parentElement)),
+      ),
+  });
 
   const popover = usePopover({
     nodeId,
@@ -315,40 +310,3 @@ export const MenuContext = React.createContext<
     }
   | undefined
 >(undefined);
-
-function useFocusableElementsRef(
-  root: HTMLElement | null,
-  extraOptions?: {
-    filter?: (elements: HTMLElement[]) => HTMLElement[];
-  },
-) {
-  const focusableElementsRef = React.useRef<HTMLElement[]>([]);
-  const { filter: filterProp } = extraOptions ?? {};
-
-  const filter = useLatestRef(filterProp);
-
-  return useSyncExternalStore(
-    React.useCallback(() => {
-      if (!root) {
-        focusableElementsRef.current = [];
-        return () => {};
-      }
-
-      updateFocusableElements();
-      const observer = new MutationObserver(() => updateFocusableElements());
-      observer.observe(root, { childList: true, subtree: true });
-      return () => observer.disconnect();
-
-      function updateFocusableElements() {
-        let newFocusableElements = getFocusableElements(root) as HTMLElement[];
-        if (filter.current) {
-          newFocusableElements = filter.current?.(newFocusableElements);
-        }
-
-        focusableElementsRef.current = newFocusableElements;
-      }
-    }, [root, filter]),
-    () => focusableElementsRef,
-    () => focusableElementsRef,
-  );
-}
