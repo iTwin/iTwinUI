@@ -19,7 +19,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { useListNavigationProps, usePopover } from '../Popover/Popover.js';
+import { usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   useFloatingNodeId,
@@ -28,6 +28,8 @@ import {
   type ReferenceType,
   type UseHoverProps,
 } from '@floating-ui/react';
+
+type UsePopoverProps = Parameters<typeof usePopover>[0];
 
 type MenuProps = {
   /**
@@ -51,13 +53,22 @@ type MenuProps = {
   /**
    * Use this prop to override the default props passed to `usePopover`.
    */
-  popoverProps?: Omit<Parameters<typeof usePopover>[0], 'interactions'> & {
+  popoverProps?: Omit<UsePopoverProps, 'interactions'> & {
     interactions?: Omit<
-      NonNullable<Parameters<typeof usePopover>[0]['interactions']>,
+      NonNullable<UsePopoverProps['interactions']>,
       'listNavigation'
     > & {
-      // Since Menu handles the required listNavigation props, it only needs to accept the optional ones.
-      listNavigation?: Parameters<typeof useListNavigationProps>[0];
+      listNavigation?: Omit<
+        NonNullable<
+          NonNullable<UsePopoverProps['interactions']>['listNavigation']
+        >,
+        'listElements'
+      > & {
+        // Since Menu handles the required listElements prop, it only needs to accept the optional ones.
+        listElements?: NonNullable<
+          NonNullable<UsePopoverProps['interactions']>['listNavigation']
+        >['listElements'];
+      };
     };
   };
 } & Pick<PortalProps, 'portal'>;
@@ -139,8 +150,6 @@ export const Menu = React.forwardRef((props, ref) => {
     ...restInteractionsProps
   } = interactionsProp ?? {};
 
-  const listNavigationProps = useListNavigationProps(listNavigationPropsProp);
-
   const [visible, setVisible] = useControlledState(
     false,
     visibleProp,
@@ -149,6 +158,17 @@ export const Menu = React.forwardRef((props, ref) => {
 
   const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
     React.useState(false);
+
+  const [menuElement, setMenuElement] = React.useState<HTMLElement | null>(
+    null,
+  );
+
+  const allFocusableElements = useFocusableElements(menuElement);
+  const focusableElements = React.useMemo(() => {
+    return allFocusableElements.filter(
+      (i) => !allFocusableElements?.some((p) => p.contains(i.parentElement)),
+    );
+  }, [allFocusableElements]);
 
   const popover = usePopover({
     nodeId,
@@ -163,7 +183,10 @@ export const Menu = React.forwardRef((props, ref) => {
               enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
               ...(hoverProp as UseHoverProps<ReferenceType>),
             },
-      listNavigation: listNavigationProps,
+      listNavigation: {
+        listElements: focusableElements as HTMLElement[],
+        ...listNavigationPropsProp,
+      },
       ...restInteractionsProps,
     },
     ...restPopoverProps,
@@ -175,8 +198,7 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   }, [popover.refs, positionReference]);
 
-  const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
-  const refs = useMergedRefs(setMenuRef, ref, popover.refs.setFloating);
+  const refs = useMergedRefs(setMenuElement, ref, popover.refs.setFloating);
 
   const triggerRef = React.useRef<HTMLElement>(null);
   const close = React.useCallback(() => {
@@ -188,34 +210,6 @@ export const Menu = React.forwardRef((props, ref) => {
       triggerRef.current?.focus({ preventScroll: true });
     }
   }, [setVisible, tree]);
-
-  const getFocusableNodes = React.useCallback(() => {
-    const focusableItems = getFocusableElements(menuRef);
-    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    return focusableItems.filter(
-      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-    ) as HTMLElement[];
-  }, [menuRef]);
-
-  React.useEffect(() => {
-    // No need to update the listRef if the listNavigation interaction is disabled
-    if (!popover.interactionsEnabledStates.listNavigation) {
-      return;
-    }
-
-    const newFocusableNodes = getFocusableNodes();
-    if (
-      listNavigationProps.listRef != null &&
-      listNavigationProps.listRef.current !== newFocusableNodes
-    ) {
-      listNavigationProps.listRef.current = newFocusableNodes;
-    }
-  }, [
-    getFocusableNodes,
-    listNavigationProps.listRef,
-    menuRef,
-    popover.interactionsEnabledStates.listNavigation,
-  ]);
 
   useSyncExternalStore(
     React.useCallback(() => {
@@ -315,3 +309,29 @@ export const MenuContext = React.createContext<
     }
   | undefined
 >(undefined);
+
+export function useFocusableElements(root: HTMLElement | null) {
+  const [focusableElements, setFocusableElements] = React.useState<Element[]>(
+    [],
+  );
+
+  return useSyncExternalStore(
+    React.useCallback(() => {
+      if (!root) {
+        setFocusableElements([]);
+        return () => {};
+      }
+
+      updateFocusableElements();
+      const observer = new MutationObserver(() => updateFocusableElements());
+      observer.observe(root, { childList: true, subtree: true });
+      return () => observer.disconnect();
+
+      function updateFocusableElements() {
+        setFocusableElements(getFocusableElements(root));
+      }
+    }, [root]),
+    () => focusableElements,
+    () => focusableElements,
+  );
+}
