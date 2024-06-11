@@ -30,9 +30,10 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
     /** Function that returns whether row checkbox should be disabled. */
     isDisabled?: (rowData: T) => boolean;
     density?: 'default' | 'condensed' | 'extra-condensed';
+    selectSubRows?: boolean;
   } = {},
 ) => {
-  const { isDisabled, density } = props;
+  const { isDisabled, density, selectSubRows = true } = props;
   const densityWidth =
     density === 'condensed' ? 42 : density === 'extra-condensed' ? 34 : 48;
   return {
@@ -82,7 +83,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         disabled={isDisabled?.(row.original)}
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
         onChange={() => {
-          if (row.subRows.length > 0) {
+          if (row.subRows.length > 0 && selectSubRows) {
             //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
             //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
             row.toggleRowSelected(
