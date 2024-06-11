@@ -13,6 +13,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
+import cx from 'classnames';
 
 const logWarningInDev = createWarningLogger();
 
@@ -82,6 +83,7 @@ export type MenuItemProps = {
  */
 export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const {
+    className,
     children,
     isSelected,
     disabled,
@@ -123,24 +125,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
   }, [subMenuItems.length]);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        onClick();
-        event.preventDefault();
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     // Focus the item when hovered.
     if (e.target === e.currentTarget) {
@@ -152,17 +136,17 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onClickProp?.(value);
   };
 
-  const handlers = !disabled
+  const handlers: React.DOMAttributes<HTMLButtonElement> = !disabled
     ? {
         onClick,
-        onKeyDown,
         onMouseEnter,
       }
     : {};
 
   const trigger = (
     <ListItem
-      as='div'
+      as='button'
+      className={cx('iui-button-base', className)}
       actionable
       size={size}
       active={isSelected}
@@ -177,7 +161,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {...(parentMenu?.popoverGetItemProps != null
         ? parentMenu.popoverGetItemProps(handlers)
         : handlers)}
-      {...rest}
+      {...(rest as React.DOMAttributes<HTMLButtonElement>)}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
