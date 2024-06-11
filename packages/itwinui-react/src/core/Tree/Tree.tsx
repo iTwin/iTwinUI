@@ -432,10 +432,35 @@ const VirtualizedTree = React.forwardRef(
     }: VirtualizedTreeProps<T>,
     ref: React.ForwardedRef<HTMLUListElement>,
   ) => {
-    const parentRef = React.useRef(null);
+    const parentRef = React.useRef<HTMLDivElement | null>(null);
+    const getScrollableElement = (
+      element: HTMLElement | null,
+      ownerDocument: Document = document,
+    ): HTMLElement => {
+      if (!element || element === ownerDocument.body) {
+        return ownerDocument.body;
+      }
+
+      return isElementScrollable(element)
+        ? element
+        : getScrollableElement(element.parentElement, ownerDocument);
+    };
+
+    const isElementScrollable = (element: HTMLElement) => {
+      const computedStyle = getComputedStyle(element);
+      return /(auto|scroll|overlay)/.test(
+        computedStyle.getPropertyValue('overflow') +
+          computedStyle.getPropertyValue('overflow-y'),
+      );
+    };
+
     const virtualizer = useVirtualizer({
       count: flatNodesList.length,
-      getScrollElement: () => parentRef.current,
+      getScrollElement: () =>
+        getScrollableElement(
+          parentRef.current,
+          parentRef.current?.ownerDocument,
+        ),
       estimateSize: () => 39,
       overscan: 10,
     });
