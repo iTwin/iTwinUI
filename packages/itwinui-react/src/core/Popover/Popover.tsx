@@ -304,11 +304,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           // @see TODO: Replace with the latest issue/discussion (to be created)
           // TODO:
           if (!!mergedInteractions.click && visible) {
-            close();
+            onOpenChange(false);
           }
         },
       }),
-    [interactions, mergedInteractions.click, visible],
+    [interactions, mergedInteractions.click, visible, onOpenChange],
   );
 
   return React.useMemo(
