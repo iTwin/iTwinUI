@@ -62,12 +62,12 @@ type MenuProps = {
         NonNullable<
           NonNullable<UsePopoverProps['interactions']>['listNavigation']
         >,
-        'listElements'
+        'listRef'
       > & {
         // Since Menu handles the required listElements prop, it only needs to accept the optional ones.
-        listElements?: NonNullable<
+        listRef?: NonNullable<
           NonNullable<UsePopoverProps['interactions']>['listNavigation']
-        >['listElements'];
+        >['listRef'];
       };
     };
   };
@@ -163,12 +163,12 @@ export const Menu = React.forwardRef((props, ref) => {
     null,
   );
 
-  const allFocusableElements = useFocusableElements(menuElement);
-  const focusableElements = React.useMemo(() => {
-    return allFocusableElements.filter(
-      (i) => !allFocusableElements?.some((p) => p.contains(i.parentElement)),
-    );
-  }, [allFocusableElements]);
+  const focusableElementsRef = useFocusableElementsRef(
+    menuElement,
+    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+    (element, allElements) =>
+      !allElements.some((p) => p.contains(element.parentElement)),
+  );
 
   const popover = usePopover({
     nodeId,
@@ -184,7 +184,7 @@ export const Menu = React.forwardRef((props, ref) => {
               ...(hoverProp as UseHoverProps<ReferenceType>),
             },
       listNavigation: {
-        listElements: focusableElements as HTMLElement[],
+        listRef: focusableElementsRef,
         ...listNavigationPropsProp,
       },
       ...restInteractionsProps,
@@ -310,15 +310,16 @@ export const MenuContext = React.createContext<
   | undefined
 >(undefined);
 
-export function useFocusableElements(root: HTMLElement | null) {
-  const [focusableElements, setFocusableElements] = React.useState<Element[]>(
-    [],
-  );
+function useFocusableElementsRef(
+  root: HTMLElement | null,
+  filterFn?: (element: HTMLElement, allElements: HTMLElement[]) => boolean,
+) {
+  const focusableElementsRef = React.useRef<HTMLElement[]>([]);
 
   return useSyncExternalStore(
     React.useCallback(() => {
       if (!root) {
-        setFocusableElements([]);
+        focusableElementsRef.current = [];
         return () => {};
       }
 
@@ -328,10 +329,17 @@ export function useFocusableElements(root: HTMLElement | null) {
       return () => observer.disconnect();
 
       function updateFocusableElements() {
-        setFocusableElements(getFocusableElements(root));
+        let newFocusableElements = getFocusableElements(root) as HTMLElement[];
+        if (filterFn) {
+          newFocusableElements = newFocusableElements.filter((element) =>
+            filterFn(element, newFocusableElements),
+          );
+        }
+
+        focusableElementsRef.current = newFocusableElements;
       }
-    }, [root]),
-    () => focusableElements,
-    () => focusableElements,
+    }, [root, filterFn]),
+    () => focusableElementsRef,
+    () => focusableElementsRef,
   );
 }

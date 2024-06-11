@@ -137,10 +137,12 @@ type PopoverInternalProps = {
     dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
     hover?: boolean | Omit<UseHoverProps<ReferenceType>, 'enabled'>;
     focus?: boolean | Omit<UseFocusProps, 'enabled'>;
+
+    // All UseListNavigationProps are optional, except listRef
     listNavigation?: Partial<
       Omit<UseListNavigationProps, 'listRef' | 'enabled'>
     > & {
-      listElements: HTMLElement[];
+      listRef: UseListNavigationProps['listRef'];
     };
   };
   role?: 'dialog' | 'menu' | 'listbox';
@@ -177,7 +179,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     }),
     [interactionsProp],
   );
-  const { listElements, ...restMergedInteractionsListNavigation } =
+  const { listRef, ...restMergedInteractionsListNavigation } =
     mergedInteractions.listNavigation ?? {};
 
   const tree = useFloatingTree();
@@ -196,18 +198,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const floating = useFloating({
     placement,
     open,
-    onOpenChange: (open) => {
-      onOpenChange(open);
-
-      // Focus the first node when popover is opened
-      if (open) {
-        setCurrentFocusedNodeIndex(0);
-      }
-      // Reset focused node when popover is closed
-      else {
-        setCurrentFocusedNodeIndex(null);
-      }
-    },
+    onOpenChange,
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when the popover is open
@@ -273,13 +264,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       activeIndex: currentFocusedNodeIndex,
       // Items should focus themselves on hover since FloatingUI's focusItemOnHover is not working for us.
       focusItemOnHover: false,
+      listRef: listRef as UseListNavigationProps['listRef'],
       ...restMergedInteractionsListNavigation,
       onNavigate: (index) => {
         setCurrentFocusedNodeIndex(index);
         mergedInteractions.listNavigation?.onNavigate?.(index);
-      },
-      listRef: {
-        current: listElements ?? [],
       },
     }),
   ]);
