@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': minor
 ---
 
-- `.iui-field` handles icon fill, used within button and select.
+`.iui-field` handles icon fill, used within button and select.
