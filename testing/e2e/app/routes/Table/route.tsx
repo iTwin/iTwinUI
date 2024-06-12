@@ -12,6 +12,7 @@ export default function Resizing() {
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
+  const selectSubRows = !(searchParams.get('selectSubRows') === 'false');
   const enableVirtualization = searchParams.get('virtualization') === 'true';
   const empty = searchParams.get('empty') === 'true';
   const scroll = searchParams.get('scroll') === 'true';
@@ -146,6 +147,7 @@ export default function Resizing() {
         isSelectable={isSelectable}
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
+        selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
         style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
         scrollToRow={
