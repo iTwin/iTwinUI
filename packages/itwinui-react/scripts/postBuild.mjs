@@ -16,7 +16,9 @@ try {
 
 // Run prettier on all compiled output because it gets jumbled by tsc.
 try {
-  execSync('pnpm exec prettier --write "{esm,cjs}/**/*.js"');
+  execSync(
+    'npx prettier --write --ignore-path="../../.gitignore" "{esm,cjs}/**/*.js"',
+  );
 } catch (error) {
   console.error('Error when running prettier', error);
 }
