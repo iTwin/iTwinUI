@@ -330,6 +330,38 @@ test.describe('Table row selection', () => {
     await expect(row22Checkbox).toBeChecked();
   });
 
+  test('parent checkbox should have normal checkbox behavior when selectSubRows is false', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?isSelectable=true&subRows=true&selectSubRows=false',
+    );
+
+    const row2 = page
+      .getByRole('row')
+      .filter({ has: page.getByRole('cell').getByText('2', { exact: true }) });
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+
+    const row21 = page
+      .getByRole('row')
+      .filter({
+        has: page.getByRole('cell').getByText('2.1', { exact: true }),
+      });
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+
+    //Check the row
+    await row2Checkbox.click();
+    await expect(row2Checkbox).toBeChecked();
+    await expect(row21Checkbox).not.toBeChecked();
+
+    //Uncheck the row
+    await row2Checkbox.click();
+    await expect(row2Checkbox).not.toBeChecked();
+    await expect(row21Checkbox).not.toBeChecked();
+  });
+
   //#region Helpers for row selection tests
   const filter = async (page: Page) => {
     const filterButton = page.getByLabel('Filter');
