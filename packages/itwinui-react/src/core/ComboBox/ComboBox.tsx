@@ -214,6 +214,7 @@ export const ComboBox = React.forwardRef(
     const menuRef = React.useRef<HTMLElement>(null);
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
+    const filterFunctionRef = useLatestRef(filterFunction);
 
     const optionsExtraInfo = React.useMemo(() => {
       const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
@@ -360,8 +361,8 @@ export const ComboBox = React.forwardRef(
         return options;
       }
 
-      return filterFunction?.(options, inputValue);
-    }, [filterFunction, inputValue, options, isInputDirty]);
+      return filterFunctionRef.current?.(options, inputValue);
+    }, [filterFunctionRef, inputValue, options, isInputDirty]);
 
     const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
