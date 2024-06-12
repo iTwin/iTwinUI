@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.11.3
+
+### Patch Changes
+
+- [#2098](https://github.com/iTwin/iTwinUI/pull/2098): Fixed a regression in `Table` component where `selectSubRows` prop being set to `false` would cause parent rows to become uncheckable.
+
+## 3.11.2
+
+### Patch Changes
+
+- [#2084](https://github.com/iTwin/iTwinUI/pull/2084): Fixed an issue where a portaled `ThemeProvider` would try to re-render infinitely.
+- [#2083](https://github.com/iTwin/iTwinUI/pull/2083): Removed the accidentally added no-op `loading` prop in `IconButton`.
+- [#2083](https://github.com/iTwin/iTwinUI/pull/2083): Fixed a visual bug where elements like `startIcon` and `endIcon` inside the `Button` (or its derivatives) were not hidden when the button was in a loading state. Now,`loading={true}` on `Button` hides _all_ its children except the `ProgressRadial`.
+
 ## 3.11.1
 
 ### Patch Changes

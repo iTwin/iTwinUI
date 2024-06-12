@@ -225,7 +225,7 @@ it('should respect `stretched` prop', () => {
 });
 
 it.each(['default', 'small', 'large'] as const)(
-  'should respect `loading` prop (size=%s)',
+  'should respect `loading` and `size` props (size=%s)',
   (size) => {
     const { container } = render(
       <Button loading size={size === 'default' ? undefined : size}>
@@ -236,6 +236,12 @@ it.each(['default', 'small', 'large'] as const)(
     const button = container.querySelector('button') as HTMLElement;
     expect(button).toHaveAttribute('data-iui-loading', 'true');
     expect(button).toHaveAttribute('aria-disabled', 'true');
+
+    if (size === 'default') {
+      expect(button).not.toHaveAttribute('data-iui-size');
+    } else {
+      expect(button).toHaveAttribute('data-iui-size', size);
+    }
 
     const spinner = button.querySelector('.iui-progress-indicator-radial');
     expect(spinner).toHaveClass('iui-button-spinner');
