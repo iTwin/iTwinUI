@@ -55,7 +55,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     itemsLength: filteredOptions.length || 1,
     itemRenderer: virtualItemRenderer,
     scrollToIndex: focusedVisibleIndex,
-    scrollContainerRef: menuRef.current,
   });
 
   return (

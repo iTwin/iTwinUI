@@ -103,7 +103,7 @@ export type VirtualScrollProps = {
   /**
    * Ref for scrollable parent container.
    */
-  scrollContainerRef: HTMLElement | null;
+  scrollContainer?: HTMLElement | null;
   /**
    * Number of items to be rendered at the start and the end.
    * Not recommended to go lower than the visible items in viewport.
@@ -149,14 +149,14 @@ export const VirtualScroll = React.forwardRef<
     itemRenderer,
     bufferSize = 10,
     scrollToIndex,
-    scrollContainerRef,
+    scrollContainer,
     style,
     ...rest
   } = props;
 
   const virtualizer = useVirtualizer({
     count: itemsLength,
-    getScrollElement: () => scrollContainerRef,
+    getScrollElement: () => scrollContainer ?? null,
     estimateSize: () => 62,
     overscan: bufferSize,
   });

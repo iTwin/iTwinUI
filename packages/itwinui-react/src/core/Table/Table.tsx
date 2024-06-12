@@ -761,8 +761,9 @@ export const Table = <
   );
 
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const [stateTableRef, setStateTableRef] =
-    React.useState<HTMLDivElement | null>(null);
+  const [tableElement, setTableElement] = React.useState<HTMLDivElement | null>(
+    null,
+  );
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -917,7 +918,7 @@ export const Table = <
           ownerDocument.current = element?.ownerDocument;
           resizeRef(element);
           if (enableVirtualization) {
-            setStateTableRef(element);
+            setTableElement(element);
           }
         })}
         id={id}
@@ -1133,7 +1134,7 @@ export const Table = <
                 <VirtualScroll
                   itemsLength={page.length}
                   itemRenderer={virtualizedItemRenderer}
-                  scrollContainerRef={stateTableRef}
+                  scrollContainer={tableElement}
                   scrollToIndex={scrollToIndex}
                 />
               ) : (

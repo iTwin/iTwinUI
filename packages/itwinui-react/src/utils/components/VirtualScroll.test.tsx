@@ -56,7 +56,7 @@ it('should render 1 item', () => {
               {data[index]}
             </div>
           )}
-          scrollContainerRef={parentRef}
+          scrollContainer={parentRef}
           bufferSize={20}
         />
       </div>
