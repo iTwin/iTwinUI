@@ -1,5 +1,4 @@
 import { useSearchParams } from '@remix-run/react';
-import { useListNavigationProps } from 'node_modules/@itwin/itwinui-react/esm/core/Popover/Popover.js';
 import { Menu } from 'node_modules/@itwin/itwinui-react/esm/core/Menu/Menu.js';
 import {
   Button,
@@ -19,7 +18,6 @@ export default () => {
     searchParams.get('visible') === 'false' ? false : true;
   const role = searchParams.get('role');
   const selectedIndex = searchParams.get('selectedIndex');
-  const isListNavigation = searchParams.get('listNavigation') === 'true';
 
   const children =
     searchParams.get('children') === 'complex'
@@ -57,19 +55,9 @@ export default () => {
           </MenuItem>
         ));
 
-  const _listNavigationProps = useListNavigationProps();
-  const listNavigationProps = isListNavigation
-    ? _listNavigationProps
-    : undefined;
-
   const [visible, setVisible] = React.useState(initialVisibility);
 
-  const popoverProps = {
-    visible: visible,
-    interactions: {
-      listNavigation: listNavigationProps,
-    },
-  };
+  const popoverProps = { visible: visible };
 
   const trigger = (
     <Button

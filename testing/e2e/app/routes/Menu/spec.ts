@@ -73,7 +73,7 @@ test.describe('Menu', () => {
   });
 
   test('should handle keyboard navigation', async ({ page }) => {
-    await page.goto('/Menu?children=complex&visible=false&listNavigation=true');
+    await page.goto('/Menu?children=complex&visible=false');
 
     const menu = page.locator('.Menu');
     await expect(menu).not.toBeVisible();
