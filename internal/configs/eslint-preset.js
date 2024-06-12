@@ -42,5 +42,7 @@ module.exports = {
     curly: 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-restricted-imports': ['error', '..'],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
   },
 };
