@@ -240,7 +240,7 @@ const TileIconButton = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
   return (
     <IconButton
-      className={cx('iui-tile-thumbnail-button', className)}
+      className={className}
       styleType='borderless'
       size='small'
       ref={forwardedRef}
