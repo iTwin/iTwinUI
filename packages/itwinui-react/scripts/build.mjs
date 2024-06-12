@@ -18,6 +18,7 @@ const swcOptions = {
     'jsc.parser.syntax=typescript',
     'jsc.parser.tsx=true',
     'jsc.transform.react.useBuiltins=true',
+    'jsc.transform.react.runtime=automatic',
     'jsc.target=es2020',
     'jsc.minify.format.comments=false',
     'jsc.externalHelpers=true',
