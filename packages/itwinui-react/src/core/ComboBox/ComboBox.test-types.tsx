@@ -7,7 +7,7 @@
  * (e.g. react-workshop, unit tests, etc.)
  */
 
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { ComboBox } from './ComboBox.js';
 
 () => {

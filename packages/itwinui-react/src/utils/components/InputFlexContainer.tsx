@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { forwardRef } from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
@@ -21,7 +21,7 @@ export type InputFlexContainerProps = {
  * Utility component for input container with display flex abilities.
  * @private
  */
-export const InputFlexContainer = React.forwardRef((props, ref) => {
+export const InputFlexContainer = forwardRef((props, ref) => {
   const { isDisabled, status, children, className, size, style, ...rest } =
     props;
 
@@ -44,7 +44,7 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
  * Button inside InputFlexContainer that collapses the padding between the button and the input/textarea.
  * @private
  */
-export const InputFlexContainerButton = React.forwardRef((props, ref) => {
+export const InputFlexContainerButton = forwardRef((props, ref) => {
   const { className, ...rest } = props;
   return (
     <IconButton
@@ -70,7 +70,7 @@ export const InputFlexContainerButton = React.forwardRef((props, ref) => {
  * Icon inside InputFlexContainer that collapses the padding between the icon and the input/textarea.
  * @private
  */
-export const InputFlexContainerIcon = React.forwardRef((props, ref) => {
+export const InputFlexContainerIcon = forwardRef((props, ref) => {
   const { className, ...rest } = props;
   return (
     <Icon
