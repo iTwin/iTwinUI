@@ -41,11 +41,12 @@ it('should render in its most basic state', () => {
   expect(container.querySelector('.iui-button-icon')).toBeTruthy();
 });
 
-it('should update icon when menu opens or closes', async () => {
+it('should update when menu opens or closes', async () => {
   const { container } = renderComponent();
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
+  expect(button).not.toHaveAttribute('data-iui-has-popover', 'open');
 
   const {
     container: { firstChild: downArrow },
@@ -57,7 +58,10 @@ it('should update icon when menu opens or closes', async () => {
   expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
   expect(svg).toEqual(downArrow);
 
+  // Open menu
   await userEvent.click(button);
+  expect(button).toHaveAttribute('data-iui-has-popover', 'open');
+
   const {
     container: { firstChild: upArrow },
   } = render(<SvgCaretUpSmall aria-hidden />);
@@ -68,7 +72,9 @@ it('should update icon when menu opens or closes', async () => {
   expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
   expect(svg).toEqual(upArrow);
 
+  // Close menu
   await userEvent.click(button);
+  expect(button).not.toHaveAttribute('data-iui-has-popover', 'open');
 
   buttonIcon = container.querySelector('.iui-button-icon');
   svg = buttonIcon?.querySelector('svg');

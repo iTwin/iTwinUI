@@ -19,7 +19,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { usePopover } from '../Popover/Popover.js';
+import { PopoverOpenContext, usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   useFloatingNodeId,
@@ -283,7 +283,9 @@ export const Menu = React.forwardRef((props, ref) => {
   return (
     <>
       <MenuContext.Provider value={{ popoverGetItemProps }}>
-        {reference}
+        <PopoverOpenContext.Provider value={popover.open}>
+          {reference}
+        </PopoverOpenContext.Provider>
         {tree != null ? (
           <FloatingNode id={nodeId}>{floating}</FloatingNode>
         ) : (
