@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import React, { useSyncExternalStore } from 'react';
-import { useLatestRef } from '../hooks/useLatestRef.js';
+import * as React from 'react';
+import { useSyncExternalStore, useLatestRef } from '../hooks/index.js';
 
 const tabbableElementsSelector =
   'a[href], button, input, textarea, select, details, audio[controls], video[controls], [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])';
