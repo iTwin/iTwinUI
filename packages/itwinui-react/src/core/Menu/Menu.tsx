@@ -99,9 +99,6 @@ type MenuProps = {
  * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exception:
  * - `hover`: When the `Menu` is within a `FloatingTree`, if a submenu has focus, the hover interaction is automatically
  * disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
- * - `click`: The default behavior is slightly modified to overcome a FloatingUI behavior where two clicks are needed
- * to close the Menu for the first time (@see: [floating-ui/floating-ui#1893 (comment)](https://github.com/floating-ui/floating-ui/issues/1893#issuecomment-1250161220).
- * With that modification, only one click is sufficient to close the Menu.
  *
  * @example
  * const trigger = <Button>Menu</Button>;
