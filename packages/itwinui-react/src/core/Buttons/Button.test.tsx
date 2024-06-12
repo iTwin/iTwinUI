@@ -2,10 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { SvgClose as SvgPlaceholder } from '../../utils/index.js';
 import { Button } from './Button.js';
+import { Popover } from '../Popover/Popover.js';
+import { userEvent } from '@testing-library/user-event';
 
 it('renders default button correctly', () => {
   const onClickMock = vi.fn();
@@ -249,3 +251,27 @@ it.each(['default', 'small', 'large'] as const)(
     );
   },
 );
+
+it('should read popover open state', async () => {
+  render(
+    <Popover content='Popped over'>
+      <Button>Click me</Button>
+    </Popover>,
+  );
+
+  const button = screen.getByRole('button', { name: 'Click me' });
+  expect(button).not.toHaveAttribute('data-iui-has-popover', 'open');
+  expect(screen.queryByText('Popped over')).toBeNull();
+
+  // Open popover
+  await userEvent.click(button);
+  expect(button).toHaveAttribute('data-iui-has-popover', 'open');
+
+  const popover = screen.getByRole('dialog');
+  expect(popover).toBeVisible();
+  expect(popover).toHaveTextContent('Popped over');
+
+  // Close popover
+  await userEvent.click(button);
+  expect(button).not.toHaveAttribute('data-iui-has-popover', 'open');
+});
