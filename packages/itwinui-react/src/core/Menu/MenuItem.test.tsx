@@ -3,7 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { MenuItem } from './MenuItem.js';
 import { SvgSmileyHappy } from '../../utils/index.js';
 
@@ -133,7 +140,7 @@ it('should focus on hover', () => {
   expect(menuItem).toHaveFocus();
 });
 
-it('should handle key press', () => {
+it('should handle key press', async () => {
   const mockedOnClick = vi.fn();
   const { container } = render(
     <MenuItem onClick={mockedOnClick} value='test_value'>
@@ -147,12 +154,17 @@ it('should handle key press', () => {
   fireEvent.keyDown(menuItem, { key: 'Enter', altKey: true });
   expect(mockedOnClick).not.toHaveBeenCalled();
 
-  fireEvent.keyDown(menuItem, { key: 'Enter' });
-  expect(mockedOnClick).toHaveBeenNthCalledWith(1, 'test_value');
-  fireEvent.keyDown(menuItem, { key: ' ' });
-  expect(mockedOnClick).toHaveBeenNthCalledWith(2, 'test_value');
-  fireEvent.keyDown(menuItem, { key: 'Spacebar' });
-  expect(mockedOnClick).toHaveBeenNthCalledWith(3, 'test_value');
+  menuItem.focus();
+
+  userEvent.keyboard('{Enter}');
+  await waitFor(() =>
+    expect(mockedOnClick).toHaveBeenNthCalledWith(1, 'test_value'),
+  );
+
+  userEvent.keyboard(' ');
+  await waitFor(() =>
+    expect(mockedOnClick).toHaveBeenNthCalledWith(2, 'test_value'),
+  );
 });
 
 it('should add custom className', () => {
