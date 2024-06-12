@@ -42,6 +42,7 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
+  mergeEventHandlers,
   useControlledState,
   useId,
   useLayoutEffect,
@@ -298,7 +299,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     (userProps?: React.HTMLProps<HTMLElement>) =>
       interactions.getReferenceProps({
         ...userProps,
-        onClick: () => {
+        onClick: mergeEventHandlers(userProps?.onClick, () => {
           // Workaround for useHover+useClick+useDismiss bug in floating-ui.
           // We want to close the popover when the reference is clicked the first time.
           // @see TODO: Replace with the latest issue/discussion (to be created)
@@ -306,7 +307,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           if (!!mergedInteractions.click && visible) {
             onOpenChange(false);
           }
-        },
+        }),
       }),
     [interactions, mergedInteractions.click, visible, onOpenChange],
   );
