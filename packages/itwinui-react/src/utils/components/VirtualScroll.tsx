@@ -101,7 +101,7 @@ export type VirtualScrollProps = {
     virtualizer?: Virtualizer<Element, Element>,
   ) => JSX.Element;
   /**
-   * Ref for scrollable parent container.
+   * The scrollable container that the virtualization is occurring inside of.
    */
   scrollContainer?: HTMLElement | null;
   /**
