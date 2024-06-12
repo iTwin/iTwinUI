@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "files": ["src/index.ts"],
   "compilerOptions": {
-    "emitDeclarationOnly": true,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "emitDeclarationOnly": true
   }
 }
