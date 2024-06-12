@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.11.3
+
+### Patch Changes
+
+- [#2098](https://github.com/iTwin/iTwinUI/pull/2098): Fixed regression with `Table` component where `selectSubRows` property being set to `false` would cause parent rows to become unable to be unchecked.
+
 ## 3.11.2
 
 ### Patch Changes
