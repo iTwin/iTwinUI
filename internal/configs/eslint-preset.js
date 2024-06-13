@@ -19,6 +19,7 @@ module.exports = {
   plugins: [],
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
+    'plugin:react/jsx-runtime',
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:react-hooks/recommended',
     'prettier',
@@ -42,7 +43,5 @@ module.exports = {
     curly: 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-restricted-imports': ['error', '..'],
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-uses-react': 'off',
   },
 };
