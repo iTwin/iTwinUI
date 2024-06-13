@@ -8,13 +8,14 @@ import { Menu } from '../Menu/Menu.js';
 import {
   useSafeContext,
   useMergedRefs,
-  useVirtualization,
   Portal,
   Box,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 import { List } from '../List/List.js';
+import { useVirtualizer, type VirtualItem } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
@@ -28,12 +29,46 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
+  //Checks the first five (or all, if there are less than 5) filtered options. If at least three (or all, if there are less than 3 options) have sub labels, sets estimate to 48 instead of 36.
+  const mostlySubLabeled = React.useMemo(() => {
+    let numberOfSubLabels = 0;
+    for (let i = 0; i < Math.min(5, filteredOptions.length); i++) {
+      if (filteredOptions[i].sublabel) {
+        numberOfSubLabels++;
+      }
+    }
+    return numberOfSubLabels >= Math.min(3, filteredOptions.length);
+  }, [filteredOptions]);
+
+  const virtualizer = useVirtualizer({
+    // 'Fool' VirtualScroll by passing length 1
+    // whenever there is no elements, to show empty state message
+    count: filteredOptions.length || 1,
+    getScrollElement: () => menuRef.current,
+    estimateSize: () => (mostlySubLabeled ? 48 : 36),
+    gap: -1,
+  });
+
   const virtualItemRenderer = React.useCallback(
-    (index: number) =>
-      filteredOptions.length > 0
-        ? getMenuItem(filteredOptions[index], index)
-        : (children as JSX.Element), // Here is expected empty state content
-    [filteredOptions, getMenuItem, children],
+    (virtualItem: VirtualItem) => {
+      const menuItem =
+        filteredOptions.length > 0
+          ? getMenuItem(filteredOptions[virtualItem.index], virtualItem.index)
+          : (children as JSX.Element); // Here is expected empty state content
+      return React.cloneElement(menuItem, {
+        key: virtualItem.key,
+        'data-index': virtualItem.index,
+        ref: virtualizer.measureElement,
+        style: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          transform: `translateY(${virtualItem.start}px)`,
+        },
+      });
+    },
+    [filteredOptions, getMenuItem, children, virtualizer.measureElement],
   );
 
   const focusedVisibleIndex = React.useMemo(() => {
@@ -49,19 +84,27 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     );
   }, [focusedIndex, menuRef]);
 
-  const { outerProps, innerProps, visibleChildren } = useVirtualization({
-    // 'Fool' VirtualScroll by passing length 1
-    // whenever there is no elements, to show empty state message
-    itemsLength: filteredOptions.length || 1,
-    itemRenderer: virtualItemRenderer,
-    scrollToIndex: focusedVisibleIndex,
-  });
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      if (focusedVisibleIndex) {
+        virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'auto' });
+      }
+    });
+  }, [focusedVisibleIndex, virtualizer]);
 
   return (
-    <Box as='div' {...outerProps} {...rest}>
-      <div {...innerProps} ref={innerProps.ref}>
-        {visibleChildren}
-      </div>
+    <Box
+      as='div'
+      {...rest}
+      style={{
+        minBlockSize: virtualizer.getTotalSize(),
+        minInlineSize: '100%',
+        ...props.style,
+      }}
+    >
+      {virtualizer.getVirtualItems().map((virtualItem) => {
+        return virtualItemRenderer(virtualItem);
+      })}
     </Box>
   );
 };
