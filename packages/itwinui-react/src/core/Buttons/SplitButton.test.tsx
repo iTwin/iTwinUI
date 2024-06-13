@@ -57,7 +57,7 @@ it('should fire onClick callback', async () => {
   expect(onClickMock).toHaveBeenCalledTimes(1);
 });
 
-it('should update icon when menu opens or closes', async () => {
+it('should update when menu opens or closes', async () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button-split')).toBeTruthy();
   expect(container.querySelector('.iui-button')).toBeTruthy();
@@ -66,6 +66,7 @@ it('should update icon when menu opens or closes', async () => {
     '.iui-button',
   )[1] as HTMLButtonElement;
   expect(dropdownButton).toBeTruthy();
+  expect(dropdownButton).not.toHaveAttribute('data-iui-has-popover', 'open');
 
   const {
     container: { firstChild: downArrow },
@@ -77,7 +78,10 @@ it('should update icon when menu opens or closes', async () => {
   expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
   expect(svg).toEqual(downArrow);
 
+  // Open menu
   await userEvent.click(dropdownButton);
+  expect(dropdownButton).toHaveAttribute('data-iui-has-popover', 'open');
+
   const {
     container: { firstChild: upArrow },
   } = render(<SvgCaretUpSmall />);
@@ -87,7 +91,9 @@ it('should update icon when menu opens or closes', async () => {
 
   expect(svg).toEqual(upArrow);
 
+  // Close menu
   await userEvent.click(dropdownButton);
+  expect(dropdownButton).not.toHaveAttribute('data-iui-has-popover', 'open');
   expect(container.querySelector('.iui-button-icon svg')).toEqual(downArrow);
 });
 
