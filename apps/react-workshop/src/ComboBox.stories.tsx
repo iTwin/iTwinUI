@@ -395,14 +395,14 @@ export const CustomRenderer = () => {
   const itemRenderer = React.useCallback(
     ({ value, label }, { isSelected, id }) => (
       <MenuItem key={id} id={id} isSelected={isSelected} value={value}>
-        <em
+        <span
           style={{
             textTransform: 'uppercase',
             fontWeight: isSelected ? 'bold' : undefined,
           }}
         >
           {label}
-        </em>
+        </span>
       </MenuItem>
     ),
     [],
