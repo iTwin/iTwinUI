@@ -343,9 +343,11 @@ test.describe('Table row selection', () => {
     const row2SubRowExpander = row2.getByLabel('Toggle sub row');
     await row2SubRowExpander.click();
 
-    const row21 = page.getByRole('row').filter({
-      has: page.getByRole('cell').getByText('2.1', { exact: true }),
-    });
+    const row21 = page
+      .getByRole('row')
+      .filter({
+        has: page.getByRole('cell').getByText('2.1', { exact: true }),
+      });
     const row2Checkbox = row2.getByRole('checkbox');
     const row21Checkbox = row21.getByRole('checkbox');
 
