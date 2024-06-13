@@ -16,7 +16,7 @@ import type {
   PortalProps,
 } from '../../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
-import { usePopover } from '../Popover/Popover.js';
+import { PopoverOpenContext, usePopover } from '../Popover/Popover.js';
 import {
   FloatingNode,
   FloatingTree,
@@ -138,11 +138,13 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {cloneElementWithRef(children, (children) => ({
-        ...popover.getReferenceProps(children.props),
-        'aria-expanded': popover.open,
-        ref: mergeRefs(triggerRef, popover.refs.setReference),
-      }))}
+      <PopoverOpenContext.Provider value={popover.open}>
+        {cloneElementWithRef(children, (children) => ({
+          ...popover.getReferenceProps(children.props),
+          'aria-expanded': popover.open,
+          ref: mergeRefs(triggerRef, popover.refs.setReference),
+        }))}
+      </PopoverOpenContext.Provider>
       <FloatingNode id={nodeId}>
         {popover.open && (
           <Portal portal={portal}>
