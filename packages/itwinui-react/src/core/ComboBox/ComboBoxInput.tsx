@@ -13,11 +13,7 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
-import {
-  ComboBoxStateContext,
-  ComboBoxActionContext,
-  ComboBoxRefsContext,
-} from './helpers.js';
+import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
   typeof Input
@@ -30,6 +26,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     isOpen,
     id,
     focusedIndex,
+    setFocusedIndex,
     enableVirtualization,
     multiple,
     onClickHandler,
@@ -37,8 +34,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     show,
     hide,
   } = useSafeContext(ComboBoxStateContext);
-  const dispatch = useSafeContext(ComboBoxActionContext);
-  const { inputRef, menuRef, optionsExtraInfoRef } =
+  const { inputRef, menuRef, optionsExtraInfo } =
     useSafeContext(ComboBoxRefsContext);
   const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
 
@@ -52,7 +48,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      const length = Object.keys(optionsExtraInfoRef.current).length ?? 0;
+      const length = Object.keys(optionsExtraInfo).length ?? 0;
 
       if (event.altKey) {
         return;
@@ -72,12 +68,9 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           if (focusedIndexRef.current === -1) {
             const currentElement =
               menuRef.current?.querySelector('[data-iui-index]');
-            return dispatch({
-              type: 'focus',
-              value: Number(
-                currentElement?.getAttribute('data-iui-index') ?? 0,
-              ),
-            });
+            return setFocusedIndex(
+              Number(currentElement?.getAttribute('data-iui-index') ?? 0),
+            );
           }
 
           // If virtualization is enabled, dont let round scrolling
@@ -101,7 +94,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
             if (nextElement) {
-              return dispatch({ type: 'focus', value: nextIndex });
+              return setFocusedIndex(nextIndex);
             }
           } while (nextIndex !== focusedIndexRef.current);
           break;
@@ -116,7 +109,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             return;
           }
 
-          // If virtualization is enabled, dont let round scrolling
+          // If virtualization is enabled, don't let round scrolling
           if (
             enableVirtualization &&
             !menuRef.current?.querySelector(
@@ -127,12 +120,10 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           }
 
           if (focusedIndexRef.current === -1) {
-            return dispatch({
-              type: 'focus',
-              value:
-                Object.values(optionsExtraInfoRef.current)?.[length - 1]
-                  .__originalIndex ?? -1,
-            });
+            return setFocusedIndex(
+              Object.values(optionsExtraInfo)?.[length - 1].__originalIndex ??
+                -1,
+            );
           }
 
           let prevIndex = focusedIndexRef.current;
@@ -146,7 +137,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
             if (prevElement) {
-              return dispatch({ type: 'focus', value: prevIndex });
+              return setFocusedIndex(prevIndex);
             }
           } while (prevIndex !== focusedIndexRef.current);
           break;
@@ -173,13 +164,13 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       }
     },
     [
-      dispatch,
+      setFocusedIndex,
       enableVirtualization,
       focusedIndexRef,
       isOpen,
       menuRef,
       onClickHandler,
-      optionsExtraInfoRef,
+      optionsExtraInfo,
       show,
       hide,
     ],
