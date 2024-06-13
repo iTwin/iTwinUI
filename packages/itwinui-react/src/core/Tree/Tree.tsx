@@ -8,6 +8,7 @@ import {
   Box,
   polymorphic,
   useLayoutEffect,
+  cloneElementWithRef,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
@@ -321,7 +322,8 @@ export const Tree = <T,>(props: TreeProps<T>) => {
             size,
           }}
         >
-          {React.cloneElement(nodeRenderer(node.nodeProps), {
+          {cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
+            ...children.props,
             key: virtualItem.key,
             'data-index': virtualItem.index,
             ref: virtualizer.measureElement,
@@ -332,7 +334,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
               width: '100%',
               transform: `translateY(${virtualItem.start}px)`,
             },
-          })}
+          }))}
         </TreeContext.Provider>
       );
     },
