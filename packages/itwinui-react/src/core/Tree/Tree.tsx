@@ -262,7 +262,11 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   }, [data, getNode]);
 
   const itemRenderer = React.useCallback(
-    (index: number) => {
+    (
+      index: number,
+      virtualItem?: VirtualItem,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => {
       const node = flatNodesList[index];
       return (
         <TreeContext.Provider
@@ -288,53 +292,21 @@ export const Tree = <T,>(props: TreeProps<T>) => {
             size,
           }}
         >
-          {nodeRenderer(node.nodeProps)}
-        </TreeContext.Provider>
-      );
-    },
-    [firstLevelNodesList.length, flatNodesList, nodeRenderer, size],
-  );
-
-  const virtualItemRenderer = React.useCallback(
-    (virtualItem: VirtualItem, virtualizer: Virtualizer<Element, Element>) => {
-      const node = flatNodesList[virtualItem.index];
-      return (
-        <TreeContext.Provider
-          key={node.nodeProps.nodeId}
-          value={{
-            nodeDepth: node.depth,
-            subNodeIds: node.subNodeIds,
-            groupSize:
-              node.depth === 0
-                ? firstLevelNodesList.length
-                : node.parentNode?.subNodeIds?.length ?? 0,
-            indexInGroup: node.indexInGroup,
-            parentNodeId: node.parentNode?.nodeProps.nodeId,
-            scrollToParent: node.parentNode
-              ? () => {
-                  const parentNodeId = node.parentNode?.nodeProps.nodeId;
-                  const parentNodeIndex = flatNodesList.findIndex(
-                    (n) => n.nodeProps.nodeId === parentNodeId,
-                  );
-                  setScrollToIndex(parentNodeIndex);
-                }
-              : undefined,
-            size,
-          }}
-        >
-          {cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
-            ...children.props,
-            key: virtualItem.key,
-            'data-index': virtualItem.index,
-            ref: virtualizer.measureElement,
-            style: {
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              transform: `translateY(${virtualItem.start}px)`,
-            },
-          }))}
+          {virtualItem && virtualizer
+            ? cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
+                ...children.props,
+                key: virtualItem.key,
+                'data-index': virtualItem.index,
+                ref: virtualizer.measureElement,
+                style: {
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  transform: `translateY(${virtualItem.start}px)`,
+                },
+              }))
+            : nodeRenderer(node.nodeProps)}
         </TreeContext.Provider>
       );
     },
@@ -379,7 +351,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
       {enableVirtualization ? (
         <VirtualizedTree
           flatNodesList={flatNodesList}
-          itemRenderer={virtualItemRenderer}
+          itemRenderer={itemRenderer}
           scrollToIndex={scrollToIndex}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
@@ -413,8 +385,9 @@ const TreeElement = polymorphic.ul('iui-tree', {
 type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
   itemRenderer: (
-    virtualItem: VirtualItem,
-    virtualizer: Virtualizer<Element, Element>,
+    index: number,
+    virtualItem?: VirtualItem,
+    virtualizer?: Virtualizer<Element, Element>,
   ) => JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
@@ -501,7 +474,9 @@ const VirtualizedTree = React.forwardRef(
         <TreeElement {...innerProps} {...rest} ref={ref}>
           {virtualizer
             .getVirtualItems()
-            .map((virtualItem) => itemRenderer(virtualItem, virtualizer))}
+            .map((virtualItem) =>
+              itemRenderer(virtualItem.index, virtualItem, virtualizer),
+            )}
         </TreeElement>
       </Box>
     );
