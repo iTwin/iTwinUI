@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { Fragment } from 'react';
 import {
   defaultFooterElements,
   Footer,
@@ -101,9 +101,7 @@ export const CustomContent = () => {
             .filter((el) => el.key !== 'copyright')
             .flatMap((element, index) => {
               return (
-                <React.Fragment
-                  key={element.key || `${element.title}-${index}`}
-                >
+                <Fragment key={element.key || `${element.title}-${index}`}>
                   <Footer.Separator />
                   <Footer.Item>
                     {element.url ? (
@@ -114,7 +112,7 @@ export const CustomContent = () => {
                       element.title
                     )}
                   </Footer.Item>
-                </React.Fragment>
+                </Fragment>
               );
             }),
           ,

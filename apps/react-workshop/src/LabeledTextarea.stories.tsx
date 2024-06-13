@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { SvgCamera, SvgPlaceholder } from '@itwin/itwinui-icons-react';
-import React from 'react';
 import { LabeledTextarea, StatusMessage } from '@itwin/itwinui-react';
 
 export default {

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   TimePicker,
   InputWithDecorations,
@@ -16,7 +16,7 @@ export default {
 };
 
 export const Basic = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
   const onChange = (date: Date) => {
@@ -55,7 +55,7 @@ export const Basic = () => {
 };
 
 export const CustomRenderers = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
   const onChange = (date: Date) => {
@@ -107,7 +107,7 @@ export const CustomRenderers = () => {
 };
 
 export const Combined = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 30, 0),
   );
   const onChange = (date: Date) => {

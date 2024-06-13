@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "sourceMap": false,
     "allowJs": false,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "traceResolution": false,
     "forceConsistentCasingInFileNames": true,

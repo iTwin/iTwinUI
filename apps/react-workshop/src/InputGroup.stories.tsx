@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
-import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   Checkbox,
   InputGroup,
@@ -42,12 +42,12 @@ export const RadioGroup = () => {
 export const CheckboxGroup = () => {
   const option1Label = 'Football';
   const option2Label = 'Hockey';
-  const [option1, setOption1] = React.useState(true);
-  const [option2, setOption2] = React.useState(false);
-  const [allOptions, setAllOptions] = React.useState(false);
-  const [isIndeterminate, setIsIndeterminate] = React.useState(true);
+  const [option1, setOption1] = useState(true);
+  const [option2, setOption2] = useState(false);
+  const [allOptions, setAllOptions] = useState(false);
+  const [isIndeterminate, setIsIndeterminate] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (option1 && option2) {
       setAllOptions(true);
       setIsIndeterminate(false);
@@ -91,8 +91,8 @@ export const CheckboxGroup = () => {
 };
 
 export const ToggleGroup = () => {
-  const [option1, setOption1] = React.useState(true);
-  const [option2, setOption2] = React.useState(false);
+  const [option1, setOption1] = useState(true);
+  const [option2, setOption2] = useState(false);
 
   return (
     <InputGroup label='Toggle group'>

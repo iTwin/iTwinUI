@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   DropdownMenu,
   getUserColor,
@@ -50,7 +50,7 @@ const buildMenu = (menu: string) => (close: () => void) => [
 ];
 
 export const Full = () => {
-  const [userType, setUserType] = React.useState('User');
+  const [userType, setUserType] = useState('User');
 
   const avatarMenuItems = (close: () => void) => [
     <MenuExtraContent key={0}>

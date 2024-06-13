@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   Button,
   Modal,
@@ -15,7 +15,7 @@ export default {
 };
 
 export const Basic = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -68,7 +68,7 @@ export const Basic = () => {
 };
 
 export const NonDismissibleModal = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -122,7 +122,7 @@ export const NonDismissibleModal = () => {
 };
 
 export const OutsideClickAndEscDoesNotClose = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -177,7 +177,7 @@ export const OutsideClickAndEscDoesNotClose = () => {
 };
 
 export const FullPageModal = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
