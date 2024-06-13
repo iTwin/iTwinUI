@@ -127,3 +127,22 @@ it('should not leave behind tooltip in DOM when not visible', async () => {
   await userEvent.tab();
   expect(screen.queryAllByText('hello')).toHaveLength(1);
 });
+
+it.each(['default', 'small', 'large'] as const)(
+  'should respect `size` prop (size=%s)',
+  (size) => {
+    const { container } = render(
+      <IconButton size={size === 'default' ? undefined : size}>
+        Click me
+      </IconButton>,
+    );
+
+    const button = container.querySelector('button') as HTMLElement;
+
+    if (size === 'default') {
+      expect(button).not.toHaveAttribute('data-iui-size');
+    } else {
+      expect(button).toHaveAttribute('data-iui-size', size);
+    }
+  },
+);

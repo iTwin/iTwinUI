@@ -12,6 +12,7 @@ export default function Resizing() {
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
+  const selectSubRows = !(searchParams.get('selectSubRows') === 'false');
 
   const data = subRows
     ? [
@@ -127,6 +128,7 @@ export default function Resizing() {
         isSelectable={isSelectable}
         isSortable
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
+        selectSubRows={selectSubRows}
       />
     </>
   );

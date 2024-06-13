@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.11.0",
+  "version": "3.11.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -19,6 +19,12 @@
       }
     },
     "./react-table": {
+      "import": {
+        "types": "./esm/react-table/react-table.d.ts"
+      },
+      "require": {
+        "types": "./cjs/react-table/react-table.d.ts"
+      },
       "types": "./react-table.d.ts"
     },
     "./styles.css": "./styles.css",
@@ -71,8 +77,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
     "lint:fix": "pnpm lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
     "dev": "pnpm clean:build && concurrently \"pnpm dev:esm\" \"pnpm dev:cjs\" \"pnpm build:styles --watch\" \"pnpm dev:types\"",
-    "dev:esm": "swc src -d esm --watch",
-    "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
+    "dev:esm": "swc src -d esm --watch --strip-leading-paths",
+    "dev:cjs": "swc src -d cjs --watch --strip-leading-paths -C module.type=commonjs",
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.react-table.json --watch --preserveWatchOutput\"",
     "dev:styles": "pnpm build:styles --watch"
   },
@@ -87,8 +93,8 @@
     "tslib": "^2.6.0"
   },
   "devDependencies": {
-    "@swc/cli": "^0.1.62",
-    "@swc/core": "^1.3.68",
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.5.28",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.5.1",

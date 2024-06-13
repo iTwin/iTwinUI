@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.11.3
+
+### Patch Changes
+
+- [#2098](https://github.com/iTwin/iTwinUI/pull/2098): Fixed a regression in `Table` component where `selectSubRows` prop being set to `false` would cause parent rows to become uncheckable.
+
+## 3.11.2
+
+### Patch Changes
+
+- [#2084](https://github.com/iTwin/iTwinUI/pull/2084): Fixed an issue where a portaled `ThemeProvider` would try to re-render infinitely.
+- [#2083](https://github.com/iTwin/iTwinUI/pull/2083): Removed the accidentally added no-op `loading` prop in `IconButton`.
+- [#2083](https://github.com/iTwin/iTwinUI/pull/2083): Fixed a visual bug where elements like `startIcon` and `endIcon` inside the `Button` (or its derivatives) were not hidden when the button was in a loading state. Now,`loading={true}` on `Button` hides _all_ its children except the `ProgressRadial`.
+
+## 3.11.1
+
+### Patch Changes
+
+- [#2074](https://github.com/iTwin/iTwinUI/pull/2074): Fixed indentation of `Tree` nodes to be aligned regardless of the presence of expander button.
+- [#2064](https://github.com/iTwin/iTwinUI/pull/2064): Adjusted `Dialog` and `ExpandableBlock` to round some CSS `transform` values. This helps avoid blurry text on Windows in some cases.
+- [#2055](https://github.com/iTwin/iTwinUI/pull/2055): Fixed an issue in `Breadcrumbs.Item` where using a custom link component (e.g. `as={Link}` for client side routing) would break the CSS styling.
+- [#2071](https://github.com/iTwin/iTwinUI/pull/2071): Fixed a minor issue in `ComboBox` where a `label` attribute was accidentally being added to options in the DOM.
+- [#2068](https://github.com/iTwin/iTwinUI/pull/2068): Fixed `EditableCell` so that it correctly merges `className` and `style` props with the corresponding internal props.
+- [#2073](https://github.com/iTwin/iTwinUI/pull/2073): Fixed CommonJS types exports for the `/react-table` entrypoint.
+- [#2055](https://github.com/iTwin/iTwinUI/pull/2055): Fixed a regression from `v3.10.0` where non-button and non-link `Breadcrumbs.Item`s were getting a hover styling as if it were a button.
+
 ## 3.11.0
 
 ### Minor Changes

@@ -87,7 +87,7 @@ const defaultTranslations: HeaderTranslations = {
  *  appLogo={<HeaderLogo logo={<SvgImodelHollow />}>iTwin Application</HeaderLogo>}
  *  breadcrumbs={
  *   <HeaderBreadcrumbs items={[
- *    <HeaderButton key='project' name='Project A' />
+ *    <HeaderButton key='project' name='Project A' />,
  *    <HeaderButton key='imodel' name='IModel X' />
  *   ]} />
  *  }
@@ -98,9 +98,9 @@ const defaultTranslations: HeaderTranslations = {
  *     <SvgHelpCircularHollow />
  *    </IconButton>
  *   </DropdownMenu>,
- *   <DropdownMenu menuItems={...}>
+ *   <DropdownMenu menuItems={…}>
  *    <IconButton styleType='borderless'>
- *     <Avatar ... />
+ *     <Avatar … />
  *    </IconButton>
  *   </DropdownMenu>
  *  ]}
