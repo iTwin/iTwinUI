@@ -21,7 +21,6 @@ const swcOptions = {
     'jsc.target=es2020',
     'jsc.minify.format.comments=false',
     'jsc.externalHelpers=true',
-    'module.noInterop=true',
   ].join(' -C '),
 
   get esm() {
