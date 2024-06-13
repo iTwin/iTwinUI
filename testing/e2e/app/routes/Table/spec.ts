@@ -343,11 +343,9 @@ test.describe('Table row selection', () => {
     const row2SubRowExpander = row2.getByLabel('Toggle sub row');
     await row2SubRowExpander.click();
 
-    const row21 = page
-      .getByRole('row')
-      .filter({
-        has: page.getByRole('cell').getByText('2.1', { exact: true }),
-      });
+    const row21 = page.getByRole('row').filter({
+      has: page.getByRole('cell').getByText('2.1', { exact: true }),
+    });
     const row2Checkbox = row2.getByRole('checkbox');
     const row21Checkbox = row21.getByRole('checkbox');
 
@@ -378,4 +376,55 @@ test.describe('Table row selection', () => {
     await clearButton.click();
   };
   //#endregion
+});
+test.describe('Virtual Scroll Tests', () => {
+  test('should render only a few elements out of a big data set', async ({
+    page,
+  }) => {
+    await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(21);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(20)).toContainText('Name20');
+
+    //scroll a little
+    await page.mouse.move(100, 300);
+    await page.mouse.wheel(0, 620);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(30)).toContainText('Name30');
+    expect((await rows.all()).length).toBe(31);
+
+    //scroll back up
+    await page.mouse.wheel(0, -620);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(20)).toContainText('Name20');
+    expect((await rows.all()).length).toBe(21);
+
+    //scroll to end
+    await page.mouse.wheel(0, 6200000);
+    await expect(rows.nth(0)).toContainText('Name99980');
+    await expect(rows.nth(19)).toContainText('Name99999');
+    expect((await rows.all()).length).toBe(20);
+  });
+
+  test('should not crash with empty data objects', async ({ page }) => {
+    await page.goto('/Table?virtualization=true&empty=true', {
+      waitUntil: 'networkidle',
+    }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(0);
+  });
+
+  test('virtualized table should scroll to provided row', async ({ page }) => {
+    await page.goto('/Table?virtualization=true&scroll=true', {
+      waitUntil: 'networkidle',
+    }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(31);
+    await expect(rows.nth(0)).toContainText('Name30');
+    await expect(rows.nth(30)).toContainText('Name60');
+  });
 });

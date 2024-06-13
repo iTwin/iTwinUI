@@ -9,6 +9,11 @@ import {
   useResizeObserver,
   useLayoutEffect,
 } from '../hooks/index.js';
+import {
+  useVirtualizer,
+  Virtualizer,
+  type VirtualItem,
+} from '@tanstack/react-virtual';
 
 const unstable_batchedUpdates =
   ReactDOM.unstable_batchedUpdates ?? ((cb: () => void) => void cb());
@@ -90,7 +95,15 @@ export type VirtualScrollProps = {
    * and expects to get the JSX of that element to render.
    * Recommended to memoize the reference of the function.
    */
-  itemRenderer: (index: number) => JSX.Element;
+  itemRenderer: (
+    index: number,
+    virtualItem?: VirtualItem,
+    virtualizer?: Virtualizer<Element, Element>,
+  ) => JSX.Element;
+  /**
+   * The scrollable container that the virtualization is occurring inside of.
+   */
+  scrollContainer?: HTMLElement | null;
   /**
    * Number of items to be rendered at the start and the end.
    * Not recommended to go lower than the visible items in viewport.
@@ -118,21 +131,65 @@ export type VirtualScrollProps = {
  *    This is my item #{index}
  *  </div>
  * ), [])
+ * <div style={{overflow: 'auto'}} ref={ref}>
  * <VirtualScroll
  *  itemsLength={1000}
  *  itemRenderer={itemRenderer}
+ *  scrollableContainerRef={ref}
  * />
+ * </div>
  * @private
  */
 export const VirtualScroll = React.forwardRef<
   HTMLDivElement,
   VirtualScrollProps
 >((props, ref) => {
-  const { innerProps, outerProps, visibleChildren } = useVirtualization(props);
+  const {
+    itemsLength,
+    itemRenderer,
+    bufferSize = 10,
+    scrollToIndex,
+    scrollContainer,
+    style,
+    ...rest
+  } = props;
+
+  const virtualizer = useVirtualizer({
+    count: itemsLength,
+    getScrollElement: () => scrollContainer ?? null,
+    estimateSize: () => 62,
+    overscan: bufferSize,
+  });
+
+  const outerProps = {
+    style: {
+      minBlockSize: virtualizer.getTotalSize(),
+      minInlineSize: '100%',
+      ...style,
+    },
+    ...rest,
+  } as React.HTMLAttributes<HTMLElement>;
+  const innerProps = {
+    style: { willChange: 'transform' },
+  } as const;
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      if (scrollToIndex) {
+        virtualizer.scrollToIndex(scrollToIndex, { align: 'auto' });
+      }
+    });
+  }, [scrollToIndex, virtualizer]);
 
   return (
     <div {...outerProps} ref={ref}>
-      <div {...innerProps}>{visibleChildren}</div>
+      <div {...innerProps}>
+        {virtualizer
+          .getVirtualItems()
+          .map((virtualItem) =>
+            itemRenderer(virtualItem.index, virtualItem, virtualizer),
+          )}
+      </div>
     </div>
   );
 });

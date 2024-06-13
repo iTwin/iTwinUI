@@ -72,6 +72,7 @@ import {
 } from './actionHandlers/index.js';
 import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -760,6 +761,9 @@ export const Table = <
   );
 
   const tableRef = React.useRef<HTMLDivElement>(null);
+  const [tableElement, setTableElement] = React.useState<HTMLDivElement | null>(
+    null,
+  );
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -817,7 +821,11 @@ export const Table = <
   });
 
   const getPreparedRow = React.useCallback(
-    (index: number) => {
+    (
+      index: number,
+      virtualItem?: VirtualItem,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => {
       const row = page[index];
       prepareRow(row);
       return (
@@ -839,6 +847,8 @@ export const Table = <
           scrollContainerRef={tableRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
           density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
         />
       );
     },
@@ -863,7 +873,11 @@ export const Table = <
   );
 
   const virtualizedItemRenderer = React.useCallback(
-    (index: number) => getPreparedRow(index),
+    (
+      index: number,
+      virtualItem?: VirtualItem,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => getPreparedRow(index, virtualItem, virtualizer),
     [getPreparedRow],
   );
 
@@ -903,6 +917,9 @@ export const Table = <
         ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
           resizeRef(element);
+          if (enableVirtualization) {
+            setTableElement(element);
+          }
         })}
         id={id}
         {...getTableProps({
@@ -1117,6 +1134,7 @@ export const Table = <
                 <VirtualScroll
                   itemsLength={page.length}
                   itemRenderer={virtualizedItemRenderer}
+                  scrollContainer={tableElement}
                   scrollToIndex={scrollToIndex}
                 />
               ) : (

@@ -17,6 +17,7 @@ import {
   WithCSSTransition,
 } from '../../utils/index.js';
 import { TableCell } from './TableCell.js';
+import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
@@ -44,6 +45,8 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   scrollContainerRef: HTMLDivElement | null;
   tableRowRef?: React.Ref<HTMLDivElement>;
   density?: 'default' | 'condensed' | 'extra-condensed';
+  virtualItem?: VirtualItem;
+  virtualizer?: Virtualizer<Element, Element>;
 }) => {
   const {
     row,
@@ -61,6 +64,8 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     scrollContainerRef,
     tableRowRef,
     density,
+    virtualItem,
+    virtualizer,
   } = props;
 
   const onIntersect = React.useCallback(() => {
@@ -89,7 +94,18 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   const userRowProps = rowProps?.(row) ?? {};
   const { status, isLoading, ...restUserRowProps } = userRowProps;
   const mergedProps = {
-    ...row.getRowProps({ style: { flex: `0 0 auto`, minWidth: '100%' } }),
+    ...row.getRowProps({
+      style: {
+        flex: `0 0 auto`,
+        minWidth: '100%',
+        position: virtualItem ? 'absolute' : undefined,
+        top: virtualItem ? 0 : undefined,
+        left: virtualItem ? 0 : undefined,
+        transform: virtualItem
+          ? `translateY(${virtualItem.start}px)`
+          : undefined,
+      },
+    }),
     ...restUserRowProps,
     ...{
       className: cx(
@@ -103,10 +119,16 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
       'aria-selected': row.isSelected || undefined,
       'aria-disabled': isDisabled || undefined,
       'data-iui-status': status,
+      'data-index': virtualItem?.index,
     },
   };
 
-  const refs = useMergedRefs(intersectionRef, mergedProps.ref, tableRowRef);
+  const refs = useMergedRefs(
+    intersectionRef,
+    mergedProps.ref,
+    tableRowRef,
+    virtualizer?.measureElement,
+  );
 
   return (
     <>
@@ -199,5 +221,7 @@ export const TableRowMemoized = React.memo(
       nextProp.state.sticky.isScrolledToLeft &&
     prevProp.state.sticky.isScrolledToRight ===
       nextProp.state.sticky.isScrolledToRight &&
-    prevProp.density === nextProp.density,
+    prevProp.density === nextProp.density &&
+    prevProp.virtualItem === nextProp.virtualItem &&
+    prevProp.virtualizer === nextProp.virtualizer,
 ) as typeof TableRow;

@@ -21,7 +21,7 @@ import type {
 } from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
-import { usePopover } from '../Popover/Popover.js';
+import { PopoverOpenContext, usePopover } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -128,17 +128,19 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Button>
-      <IconButton
-        styleType={styleType}
-        size={size}
-        disabled={props.disabled}
-        aria-labelledby={props.labelProps?.id || labelId}
-        aria-expanded={popover.open}
-        ref={popover.refs.setReference}
-        {...popover.getReferenceProps(menuButtonProps)}
-      >
-        {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
-      </IconButton>
+      <PopoverOpenContext.Provider value={popover.open}>
+        <IconButton
+          styleType={styleType}
+          size={size}
+          disabled={props.disabled}
+          aria-labelledby={props.labelProps?.id || labelId}
+          aria-expanded={popover.open}
+          ref={popover.refs.setReference}
+          {...popover.getReferenceProps(menuButtonProps)}
+        >
+          {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
+        </IconButton>
+      </PopoverOpenContext.Provider>
       {popover.open && (
         <Portal portal={portal}>
           <Menu
