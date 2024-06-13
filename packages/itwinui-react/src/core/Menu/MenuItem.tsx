@@ -126,22 +126,24 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }, [subMenuItems.length]);
 
   const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    // Focus the item when hovered.
+    // Focus the item when hovered, even if the item is disabled.
     if (e.target === e.currentTarget) {
       menuItemRef.current?.focus();
     }
   };
 
   const onClick = () => {
+    if (disabled) {
+      return;
+    }
+
     onClickProp?.(value);
   };
 
-  const handlers: React.DOMAttributes<HTMLButtonElement> = !disabled
-    ? {
-        onClick,
-        onMouseEnter,
-      }
-    : {};
+  const handlers: React.DOMAttributes<HTMLButtonElement> = {
+    onClick,
+    onMouseEnter,
+  };
 
   const trigger = (
     <ListItem
