@@ -8,6 +8,7 @@ import * as React from 'react';
 import { Box, ButtonBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
+import { PopoverOpenContext } from '../Popover/Popover.js';
 
 export type ButtonProps = {
   /**
@@ -78,6 +79,8 @@ export const Button = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const hasPopoverOpen = React.useContext(PopoverOpenContext);
+
   return (
     <ButtonBase
       ref={ref}
@@ -85,6 +88,7 @@ export const Button = React.forwardRef((props, ref) => {
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
       data-iui-loading={loading ? 'true' : undefined}
+      data-iui-has-popover={hasPopoverOpen ? 'open' : undefined}
       disabled={disabledProp || loading}
       {...rest}
       style={
