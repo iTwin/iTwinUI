@@ -153,7 +153,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       disabled={disabled}
       ref={useMergedRefs(menuItemRef, forwardedRef)}
       role={role}
-      tabIndex={disabled || role === 'presentation' ? undefined : -1}
+      tabIndex={isSelected ? 0 : -1}
       aria-selected={isSelected}
       aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
