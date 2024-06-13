@@ -147,6 +147,13 @@ type PopoverInternalProps = {
 
 // ----------------------------------------------------------------------------
 
+/** Stores the current open/closed state of the popover. */
+export const PopoverOpenContext = React.createContext<boolean | undefined>(
+  undefined,
+);
+
+// ----------------------------------------------------------------------------
+
 export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const {
     placement = 'bottom-start',
@@ -369,11 +376,13 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {cloneElementWithRef(children, (children) => ({
-        id: children.props.id || triggerId,
-        ...popover.getReferenceProps(children.props),
-        ref: popover.refs.setReference,
-      }))}
+      <PopoverOpenContext.Provider value={popover.open}>
+        {cloneElementWithRef(children, (children) => ({
+          id: children.props.id || triggerId,
+          ...popover.getReferenceProps(children.props),
+          ref: popover.refs.setReference,
+        }))}
+      </PopoverOpenContext.Provider>
 
       {popover.open ? (
         <PopoverPortal portal={portal}>
