@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   Badge,
   Button,
@@ -116,7 +116,7 @@ export const AllProps = () => {
   );
 };
 export const Actionable = () => {
-  const [selected, setSelected] = React.useState(false);
+  const [selected, setSelected] = useState(false);
   return (
     <Tile.Wrapper isSelected={selected}>
       <Tile.Name>

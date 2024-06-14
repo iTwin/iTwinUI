@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   getUserColor,
   Tooltip,
@@ -153,7 +153,7 @@ export const WithTooltip = () => {
   /**
    * Store the last avatar for tooltip positioning.
    */
-  const [countIcon, setCountIcon] = React.useState<HTMLElement | null>(null);
+  const [countIcon, setCountIcon] = useState<HTMLElement | null>(null);
 
   const usersSubArray = userNames.slice(5);
   const tooltipContent = usersSubArray.join(`\n`) as string;

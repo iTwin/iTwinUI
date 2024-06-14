@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { SvgStar } from '@itwin/itwinui-icons-react';
-import React from 'react';
+import { useState } from 'react';
 import { Button, Tabs, Tab } from '@itwin/itwinui-react';
 
 export default {
@@ -226,7 +226,7 @@ export const SublabelsAndIcons = () => {
 };
 
 export const HorizontalOverflow = () => {
-  const [active, setActive] = React.useState('Item 11');
+  const [active, setActive] = useState('Item 11');
 
   const tabData = [
     { name: 'Item 1', content: 'Tab Content One', disabled: false },
@@ -287,7 +287,7 @@ export const HorizontalOverflow = () => {
 };
 
 export const VerticalOverflow = () => {
-  const [active, setActive] = React.useState('Item 11');
+  const [active, setActive] = useState('Item 11');
 
   const tabData = [
     { name: 'Item 1', content: 'Tab Content One', disabled: false },
@@ -419,7 +419,7 @@ export const Vertical = () => {
 };
 
 export const LegacyTabs = () => {
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = useState(0);
   const getContent = () => {
     switch (index) {
       case 0:

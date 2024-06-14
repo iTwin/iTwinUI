@@ -488,6 +488,12 @@ it('should accept inputProps', () => {
   );
 });
 
+it('should use the defaultValue when passed', () => {
+  const { container } = renderComponent({ defaultValue: 1 });
+  const input = assertBaseElement(container);
+  expect(input).toHaveValue('Item 1');
+});
+
 it('should work with custom itemRenderer', async () => {
   const mockOnChange = vi.fn();
   const { container, getByText } = renderComponent({
@@ -688,10 +694,39 @@ it('should accept ReactNode in emptyStateMessage', async () => {
 });
 
 it('should programmatically clear value', async () => {
-  const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { container, rerender } = render(
+    <ComboBox options={options} value={1} />,
+  );
+
+  const input = container.querySelector('.iui-input') as HTMLInputElement;
+  expect(input).toHaveValue('Item 1');
+
+  rerender(<ComboBox options={options} value={undefined} />);
+
+  // value={undefined} = reset value + uncontrolled state.
+  expect(input).toHaveValue(''); // should be reset
+
+  await userEvent.tab();
+  await userEvent.click(screen.getByText('Item 2'));
+  expect(input).toHaveValue('Item 2'); // uncontrolled state should work
+
+  rerender(<ComboBox options={options} value={null} />);
+
+  // value={null} = reset value + controlled state.
+  expect(input).toHaveValue(''); // should be reset
+
+  await userEvent.click(input);
+  await userEvent.click(screen.getByText('Item 0'));
+  expect(input).toHaveValue(''); // should not change since controlled state
+});
+
+it('should respect controlled state', async () => {
+  const mockOnChange = vi.fn();
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { container } = render(
     <ComboBox options={options} onChange={mockOnChange} value={1} />,
   );
 
@@ -699,13 +734,9 @@ it('should programmatically clear value', async () => {
   await userEvent.click(screen.getByText('Item 2'));
   const input = container.querySelector('.iui-input') as HTMLInputElement;
   expect(mockOnChange).toHaveBeenCalledWith(2);
-  expect(input).toHaveValue('Item 2');
 
-  rerender(
-    <ComboBox options={options} onChange={mockOnChange} value={undefined} />,
-  );
-  expect(mockOnChange).not.toHaveBeenCalledTimes(2);
-  expect(input).toHaveValue('');
+  // In controlled state, passed value should take priority
+  expect(input).toHaveValue('Item 1');
 });
 
 it('should update options (have selected option in new options list)', async () => {
@@ -1010,7 +1041,7 @@ it('should update live region when selection changes', async () => {
     <ComboBox
       options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
       multiple
-      value={[0]}
+      defaultValue={[0]}
     />,
   );
 

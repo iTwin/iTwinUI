@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import * as React from 'react';
 import { EditableCell } from './EditableCell.js';
 
 it('should merge className/style with cellElementProps', () => {
