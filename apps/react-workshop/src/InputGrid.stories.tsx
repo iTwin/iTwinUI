@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   Input,
   InputGrid,
@@ -55,7 +55,7 @@ export const WithSelect = () => {
     { value: 2, label: 'Hawaii' },
     { value: 3, label: 'Madagascar' },
   ];
-  const [value, setValue] = React.useState<number | undefined>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
 
   return (
     <InputGrid>

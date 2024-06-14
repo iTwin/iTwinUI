@@ -2,8 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Tooltip } from '@itwin/itwinui-react';
+import { Button, Tooltip } from '@itwin/itwinui-react';
 export default {
   title: 'Tooltip',
 };
@@ -11,16 +10,7 @@ export default {
 export const Top = () => {
   return (
     <Tooltip placement='top' content='Here I am!'>
-      <div
-        id='tooltip-target'
-        style={{
-          marginTop: 40,
-          marginLeft: 100,
-          width: 'fit-content',
-        }}
-      >
-        Please, try to hover me!
-      </div>
+      <Button id='tooltip-target'>Please, try to hover me!</Button>
     </Tooltip>
   );
 };
@@ -28,16 +18,7 @@ export const Top = () => {
 export const Right = () => {
   return (
     <Tooltip placement='right' content='Here I am!'>
-      <div
-        id='tooltip-target'
-        style={{
-          marginTop: 40,
-          marginLeft: 100,
-          width: 'fit-content',
-        }}
-      >
-        Please, try to hover me!
-      </div>
+      <Button id='tooltip-target'>Please, try to hover me!</Button>
     </Tooltip>
   );
 };
@@ -45,16 +26,7 @@ export const Right = () => {
 export const Bottom = () => {
   return (
     <Tooltip placement='bottom' content='Here I am!'>
-      <div
-        id='tooltip-target'
-        style={{
-          marginTop: 40,
-          marginLeft: 100,
-          width: 'fit-content',
-        }}
-      >
-        Please, try to hover me!
-      </div>
+      <Button id='tooltip-target'>Please, try to hover me!</Button>
     </Tooltip>
   );
 };
@@ -62,16 +34,14 @@ export const Bottom = () => {
 export const Left = () => {
   return (
     <Tooltip placement='left' content='Here I am!'>
-      <div
+      <Button
         id='tooltip-target'
         style={{
-          marginTop: 40,
           marginLeft: 100,
-          width: 'fit-content',
         }}
       >
         Please, try to hover me!
-      </div>
+      </Button>
     </Tooltip>
   );
 };
@@ -79,15 +49,7 @@ export const Left = () => {
 export const Controlled = () => {
   return (
     <Tooltip visible placement='left' content='Here I am!'>
-      <div
-        style={{
-          marginTop: 40,
-          marginLeft: 100,
-          width: 'fit-content',
-        }}
-      >
-        No need to hover me
-      </div>
+      <Button id='tooltip-target'>No need to hover me</Button>
     </Tooltip>
   );
 };

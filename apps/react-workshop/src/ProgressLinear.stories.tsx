@@ -7,7 +7,6 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
-import React from 'react';
 import { ProgressLinear, Icon } from '@itwin/itwinui-react';
 
 export default {

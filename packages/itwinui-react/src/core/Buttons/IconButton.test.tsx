@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import * as React from 'react';
 import { SvgMore } from '../../utils/index.js';
 
 import { IconButton } from './IconButton.js';
@@ -127,3 +126,22 @@ it('should not leave behind tooltip in DOM when not visible', async () => {
   await userEvent.tab();
   expect(screen.queryAllByText('hello')).toHaveLength(1);
 });
+
+it.each(['default', 'small', 'large'] as const)(
+  'should respect `size` prop (size=%s)',
+  (size) => {
+    const { container } = render(
+      <IconButton size={size === 'default' ? undefined : size}>
+        Click me
+      </IconButton>,
+    );
+
+    const button = container.querySelector('button') as HTMLElement;
+
+    if (size === 'default') {
+      expect(button).not.toHaveAttribute('data-iui-size');
+    } else {
+      expect(button).toHaveAttribute('data-iui-size', size);
+    }
+  },
+);

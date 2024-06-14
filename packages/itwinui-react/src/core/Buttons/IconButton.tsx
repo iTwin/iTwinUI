@@ -10,6 +10,7 @@ import type { ButtonProps } from './Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 import { ButtonGroupContext } from '../ButtonGroup/ButtonGroup.js';
+import { PopoverOpenContext } from '../Popover/Popover.js';
 
 export type IconButtonProps = {
   /**
@@ -35,7 +36,12 @@ export type IconButtonProps = {
   iconProps?: React.ComponentProps<'span'>;
 } & Omit<
   ButtonProps,
-  'startIcon' | 'endIcon' | 'startIconProps' | 'endIconProps' | 'labelProps'
+  | 'startIcon'
+  | 'endIcon'
+  | 'startIconProps'
+  | 'endIconProps'
+  | 'labelProps'
+  | 'loading'
 >;
 
 /**
@@ -59,6 +65,7 @@ export const IconButton = React.forwardRef((props, ref) => {
   } = props;
 
   const buttonGroupOrientation = React.useContext(ButtonGroupContext);
+  const hasPopoverOpen = React.useContext(PopoverOpenContext);
 
   const button = (
     <ButtonBase
@@ -67,6 +74,7 @@ export const IconButton = React.forwardRef((props, ref) => {
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
       data-iui-active={isActive}
+      data-iui-has-popover={hasPopoverOpen ? 'open' : undefined}
       aria-pressed={isActive}
       {...rest}
     >

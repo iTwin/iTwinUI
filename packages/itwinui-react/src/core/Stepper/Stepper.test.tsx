@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { screen, render, fireEvent, act } from '@testing-library/react';
-import * as React from 'react';
 import { Stepper } from './Stepper.js';
 
 it('should render all step names and numbers in default stepper', () => {

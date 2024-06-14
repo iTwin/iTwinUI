@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/swcrc",
   "jsc": {
     "parser": { "syntax": "typescript" },
-    "transform": { "react": { "useBuiltins": true } },
+    "transform": { "react": { "useBuiltins": true, "runtime": "automatic" } },
     "target": "es2022"
   },
   "module": {
