@@ -19,6 +19,7 @@ module.exports = {
   plugins: [],
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
+    'plugin:react/jsx-runtime',
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:react-hooks/recommended',
     'prettier',

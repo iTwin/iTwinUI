@@ -62,9 +62,10 @@
     "ux"
   ],
   "scripts": {
-    "build": "pnpm clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json && pnpm build:styles && pnpm build:post",
+    "build": "pnpm clean:build && pnpm build:js && pnpm build:styles && pnpm build:types && pnpm build:post",
+    "build:js": "node ./scripts/build.mjs",
+    "build:types": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json",
     "build:styles": "vite build src/styles.js",
-    "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
     "build:post": "node ./scripts/postBuild.mjs",
     "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
     "clean:coverage": "rimraf coverage",
@@ -85,12 +86,12 @@
   "dependencies": {
     "@floating-ui/react": "^0.26.10",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
+    "@swc/helpers": "^0.5.11",
     "@tanstack/react-virtual": "^3.5.0",
     "classnames": "^2.3.2",
     "jotai": "^2.8.0",
     "react-table": "^7.8.0",
-    "react-transition-group": "^4.4.5",
-    "tslib": "^2.6.0"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@swc/cli": "^0.3.12",

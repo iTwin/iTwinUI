@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import * as React from 'react';
 import { SvgClose as SvgPlaceholder } from '../../utils/index.js';
 import { Button } from './Button.js';
 import { Popover } from '../Popover/Popover.js';

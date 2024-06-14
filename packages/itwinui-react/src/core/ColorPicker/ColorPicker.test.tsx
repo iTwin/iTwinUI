@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { getColorValue, ColorPicker } from './ColorPicker.js';
 import { ColorPalette } from './ColorPalette.js';

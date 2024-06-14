@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useRef } from 'react';
 import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
 
 export default {
@@ -206,7 +206,7 @@ export const PositionChanged = () => {
 export const AnchorToButton = () => {
   const toaster = useToaster();
 
-  const buttonRef = React.useRef(null);
+  const buttonRef = useRef(null);
   const displayPositiveToast = () => {
     toaster.setSettings({
       placement: 'top',
