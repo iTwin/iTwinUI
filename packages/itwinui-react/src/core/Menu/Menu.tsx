@@ -64,7 +64,7 @@ type MenuProps = {
         >,
         'listRef'
       > & {
-        // Since Menu handles the required listElements prop, it only needs to accept the optional ones.
+        // Since Menu handles the required listRef prop, it only needs to accept the optional ones.
         listRef?: NonNullable<
           NonNullable<UsePopoverProps['interactions']>['listNavigation']
         >['listRef'];
@@ -190,6 +190,8 @@ export const Menu = React.forwardRef((props, ref) => {
     ...restPopoverProps,
   });
 
+  const listNavigationState = popover.interactionsState.listNavigation;
+
   React.useEffect(() => {
     if (positionReference !== undefined) {
       popover.refs.setPositionReference(positionReference);
@@ -235,9 +237,21 @@ export const Menu = React.forwardRef((props, ref) => {
     () => undefined,
   );
 
-  const popoverGetItemProps: typeof popover.getItemProps = (userProps) => {
+  const popoverGetItemProps: PopoverGetItemProps = ({
+    focusableItemIndex,
+    userProps,
+  }) => {
     return popover.getItemProps({
       ...userProps,
+      // Roving tabIndex
+      tabIndex:
+        listNavigationState.activeIndex != null &&
+        listNavigationState.activeIndex >= 0 &&
+        focusableItemIndex != null &&
+        focusableItemIndex >= 0 &&
+        listNavigationState.activeIndex === focusableItemIndex
+          ? 0
+          : -1,
       onFocus: mergeEventHandlers(userProps?.onFocus, () => {
         // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
         // E.g. Even when hovering into it rapidly.
@@ -249,6 +263,16 @@ export const Menu = React.forwardRef((props, ref) => {
           parentId: parentId,
         });
       }),
+
+      // usePopover disables FloatingUI's focusItemOnHover since it doesn't work for us.
+      // Thus, we need to update the activeIndex manually on hover.
+      onMouseEnter: mergeEventHandlers(
+        userProps?.onMouseEnter,
+        () =>
+          focusableItemIndex != null &&
+          focusableItemIndex >= 0 &&
+          listNavigationState.onNavigate(focusableItemIndex),
+      ),
     });
   };
 
@@ -282,7 +306,9 @@ export const Menu = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <MenuContext.Provider value={{ popoverGetItemProps }}>
+      <MenuContext.Provider
+        value={{ popoverGetItemProps, focusableElementsRef }}
+      >
         <PopoverOpenContext.Provider value={popover.open}>
           {reference}
         </PopoverOpenContext.Provider>
@@ -303,9 +329,23 @@ export type TreeEvent = {
   parentId: string | null;
 };
 
+type PopoverGetItemProps = ({
+  focusableItemIndex,
+  userProps,
+}: {
+  /**
+   * Index of this item out of all the focusable items in the parent `Menu`
+   */
+  focusableItemIndex: number | undefined;
+  userProps?: Parameters<
+    NonNullable<ReturnType<typeof usePopover>['getItemProps']>
+  >[0];
+}) => ReturnType<ReturnType<typeof usePopover>['getItemProps']>;
+
 export const MenuContext = React.createContext<
   | {
-      popoverGetItemProps: ReturnType<typeof usePopover>['getItemProps'];
+      popoverGetItemProps: PopoverGetItemProps;
+      focusableElementsRef: ReturnType<typeof useFocusableElementsRef>;
     }
   | undefined
 >(undefined);

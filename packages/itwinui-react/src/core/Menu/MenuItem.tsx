@@ -145,6 +145,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     onMouseEnter,
   };
 
+  /** Index of this item out of all the focusable items in the parent `Menu` */
+  const focusableItemIndex = parentMenu?.focusableElementsRef.current.findIndex(
+    (el) => el === menuItemRef.current,
+  );
+
   const trigger = (
     <ListItem
       as='button'
@@ -161,7 +166,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-disabled={disabled}
       {...(parentMenu?.popoverGetItemProps != null
-        ? parentMenu.popoverGetItemProps(handlers)
+        ? parentMenu.popoverGetItemProps({
+            focusableItemIndex,
+            userProps: handlers,
+          })
         : handlers)}
       {...(rest as React.DOMAttributes<HTMLButtonElement>)}
     >

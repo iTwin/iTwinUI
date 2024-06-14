@@ -238,6 +238,16 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     number | null
   >(null);
 
+  const onNavigate = React.useCallback<
+    NonNullable<UseListNavigationProps['onNavigate']>
+  >(
+    (index) => {
+      setCurrentFocusedNodeIndex(index);
+      mergedInteractions.listNavigation?.onNavigate?.(index);
+    },
+    [mergedInteractions.listNavigation],
+  );
+
   const interactions = useInteractions([
     useClick(floating.context, {
       enabled: !!mergedInteractions.click,
@@ -274,10 +284,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       focusItemOnHover: false,
       listRef: listRef as UseListNavigationProps['listRef'],
       ...restMergedInteractionsListNavigation,
-      onNavigate: (index) => {
-        setCurrentFocusedNodeIndex(index);
-        mergedInteractions.listNavigation?.onNavigate?.(index);
-      },
+      onNavigate,
     }),
   ]);
 
@@ -327,6 +334,12 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getReferenceProps,
       getFloatingProps,
       ...floating,
+      interactionsState: {
+        listNavigation: {
+          activeIndex: currentFocusedNodeIndex,
+          onNavigate,
+        },
+      },
     }),
     [
       open,
@@ -335,6 +348,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getFloatingProps,
       floating,
       getReferenceProps,
+      currentFocusedNodeIndex,
+      onNavigate,
     ],
   );
 };
