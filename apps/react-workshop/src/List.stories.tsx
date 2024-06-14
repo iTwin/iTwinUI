@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
 import { List, ListItem } from '@itwin/itwinui-react';
 import { SvgCheckmark, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import type { StoryDefault } from '@ladle/react';

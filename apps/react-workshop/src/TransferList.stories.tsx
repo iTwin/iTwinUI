@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import { TransferList, IconButton } from '@itwin/itwinui-react';
 import {
   SvgChevronLeft,
@@ -21,7 +21,7 @@ export const Basic = () => {
     active: boolean;
   };
 
-  const [optionData, setOptionData] = React.useState([
+  const [optionData, setOptionData] = useState([
     { name: 'Option 1', active: false },
     { name: 'Option 2', active: false },
     { name: 'Option 3', active: false },
@@ -30,7 +30,7 @@ export const Basic = () => {
     { name: 'Option 6', active: false },
   ]);
 
-  const [appliedData, setAppliedData] = React.useState([
+  const [appliedData, setAppliedData] = useState([
     { name: 'Option 7', active: false },
   ]);
 
@@ -155,7 +155,7 @@ export const WithLabel = () => {
     active: boolean;
   };
 
-  const [optionData, setOptionData] = React.useState([
+  const [optionData, setOptionData] = useState([
     { name: 'Option 1', active: false },
     { name: 'Option 2', active: false },
     { name: 'Option 3', active: false },
@@ -164,7 +164,7 @@ export const WithLabel = () => {
     { name: 'Option 6', active: false },
   ]);
 
-  const [appliedData, setAppliedData] = React.useState([
+  const [appliedData, setAppliedData] = useState([
     { name: 'Option 7', active: false },
   ]);
 

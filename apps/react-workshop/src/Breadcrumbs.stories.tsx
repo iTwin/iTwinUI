@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useMemo, useState } from 'react';
 import {
   IconButton,
   Breadcrumbs,
@@ -193,15 +193,15 @@ export const CustomOverflowDropdown = () => {
 };
 
 export const FolderNavigation = () => {
-  const items = React.useMemo(
+  const items = useMemo(
     () => ['Root', 'Level 1', 'Level 2', 'Level 3', 'Level 4'],
     [],
   );
 
-  const [lastIndex, setLastIndex] = React.useState(items.length - 1);
-  const [isEditing, setIsEditing] = React.useState(false);
+  const [lastIndex, setLastIndex] = useState(items.length - 1);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const breadcrumbItems = React.useMemo(
+  const breadcrumbItems = useMemo(
     () =>
       items.slice(0, lastIndex + 1).map((item, index) => (
         <Breadcrumbs.Item
