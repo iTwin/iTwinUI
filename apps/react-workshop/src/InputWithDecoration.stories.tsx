@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
 import { InputWithDecorations } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 

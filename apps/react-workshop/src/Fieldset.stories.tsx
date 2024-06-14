@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   Fieldset,
   InputGroup,
@@ -16,7 +16,7 @@ export default {
 };
 
 export const Basic = () => {
-  const [value, setValue] = React.useState<number | undefined>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
 
   return (
     <Fieldset
@@ -52,7 +52,7 @@ export const Basic = () => {
 };
 
 export const Disabled = () => {
-  const [value, setValue] = React.useState<number | undefined>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
 
   return (
     <Fieldset

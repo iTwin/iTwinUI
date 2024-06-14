@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import * as React from 'react';
 import type { HeaderGroup } from '../../../../react-table/react-table.js';
 import {
   DateRangeFilter,

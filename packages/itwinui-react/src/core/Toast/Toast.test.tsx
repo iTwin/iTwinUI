@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, render, type RenderResult } from '@testing-library/react';
-import * as React from 'react';
 import { Toast, type ToastCategory } from './Toast.js';
 import {
   SvgInfoCircular,
