@@ -70,9 +70,12 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
+import {
+  useVirtualizer,
+  type VirtualItem,
+  Virtualizer,
+} from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -820,6 +823,34 @@ export const Table = <
     }
   });
 
+  const virtualizer = useVirtualizer({
+    count: page.length,
+    getScrollElement: () => tableElement ?? null,
+    estimateSize: () => 62,
+    overscan: 10,
+  });
+
+  const outerProps = {
+    style: {
+      minBlockSize: virtualizer.getTotalSize(),
+      minInlineSize: '100%',
+      ...style,
+    },
+    ...rest,
+  } as React.HTMLAttributes<HTMLElement>;
+
+  const innerProps = {
+    style: { willChange: 'transform' },
+  } as const;
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      if (scrollToIndex) {
+        virtualizer.scrollToIndex(scrollToIndex, { align: 'auto' });
+      }
+    });
+  }, [scrollToIndex, virtualizer]);
+
   const getPreparedRow = React.useCallback(
     (
       index: number,
@@ -1131,12 +1162,19 @@ export const Table = <
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
-                <VirtualScroll
-                  itemsLength={page.length}
-                  itemRenderer={virtualizedItemRenderer}
-                  scrollContainer={tableElement}
-                  scrollToIndex={scrollToIndex}
-                />
+                <div {...outerProps}>
+                  <div {...innerProps}>
+                    {virtualizer
+                      .getVirtualItems()
+                      .map((virtualItem) =>
+                        virtualizedItemRenderer(
+                          virtualItem.index,
+                          virtualItem,
+                          virtualizer,
+                        ),
+                      )}
+                  </div>
+                </div>
               ) : (
                 page.map((_, index) => getPreparedRow(index))
               )}
