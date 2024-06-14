@@ -16,9 +16,10 @@ export default function Resizing() {
   const enableVirtualization = searchParams.get('virtualization') === 'true';
   const empty = searchParams.get('empty') === 'true';
   const scroll = searchParams.get('scroll') === 'true';
+  const oneRow = searchParams.get('oneRow') === 'true';
 
   const virtualizedData = React.useMemo(() => {
-    const size = 100000;
+    const size = oneRow ? 1 : 100000;
     const arr = new Array(size);
     if (!empty) {
       for (let i = 0; i < size; ++i) {
