@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   DatePicker,
   IconButton,
@@ -16,7 +16,7 @@ export default {
 };
 
 export const Basic = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
   const onChange = (date: Date) => {
@@ -46,7 +46,7 @@ export const Basic = () => {
 };
 
 export const WithTime = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
   const onChange = (date: Date) => {
@@ -77,7 +77,7 @@ export const WithTime = () => {
 };
 
 export const WithCombinedTime = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 30, 0),
   );
   const onChange = (date: Date) => {
@@ -111,7 +111,7 @@ export const WithCombinedTime = () => {
 };
 
 export const Localized = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
   const onChange = (date: Date) => {
@@ -141,7 +141,7 @@ export const Localized = () => {
   );
 };
 export const WithYear = () => {
-  const [currentDate, setCurrentDate] = React.useState(
+  const [currentDate, setCurrentDate] = useState(
     new Date(2021, 4, 11, 14, 55, 22),
   );
   const onChange = (date: Date) => {
@@ -170,10 +170,10 @@ export const WithYear = () => {
 };
 
 export const Range = () => {
-  const [currentStartDate, setCurrentStartDate] = React.useState(
+  const [currentStartDate, setCurrentStartDate] = useState(
     new Date(2022, 6, 13, 14, 55, 22),
   );
-  const [currentEndDate, setCurrentEndDate] = React.useState(
+  const [currentEndDate, setCurrentEndDate] = useState(
     new Date(2022, 6, 27, 14, 55, 22),
   );
   const onChange = (startDate: Date, endDate?: Date) => {
@@ -216,10 +216,10 @@ export const Range = () => {
 };
 
 export const SomeDatesDisabled = () => {
-  const [currentStartDate, setCurrentStartDate] = React.useState(
+  const [currentStartDate, setCurrentStartDate] = useState(
     new Date(2022, 6, 13, 14, 55, 22),
   );
-  const [currentEndDate, setCurrentEndDate] = React.useState(
+  const [currentEndDate, setCurrentEndDate] = useState(
     new Date(2022, 6, 17, 14, 55, 22),
   );
 

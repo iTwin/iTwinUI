@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain.js';
 import { DialogTitleBar } from './DialogTitleBar.js';

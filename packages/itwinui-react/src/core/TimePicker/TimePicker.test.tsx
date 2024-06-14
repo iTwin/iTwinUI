@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import * as React from 'react';
 import { type MeridiemType, TimePicker } from './TimePicker.js';
 
 it('should display passed time', () => {

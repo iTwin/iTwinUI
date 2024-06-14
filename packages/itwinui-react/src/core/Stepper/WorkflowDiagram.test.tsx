@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { screen, render, fireEvent, act } from '@testing-library/react';
-import * as React from 'react';
 import { WorkflowDiagram } from './WorkflowDiagram.js';
 
 it('should display all step names in default workflow diagram', () => {

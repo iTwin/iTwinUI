@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { Button, NotificationMarker } from '@itwin/itwinui-react';
 import { SvgAdd, SvgEmail, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 

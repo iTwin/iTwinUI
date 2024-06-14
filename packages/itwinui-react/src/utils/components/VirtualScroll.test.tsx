@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { act, fireEvent, render } from '@testing-library/react';
-import * as React from 'react';
 import * as UseResizeObserver from '../hooks/useResizeObserver.js';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
