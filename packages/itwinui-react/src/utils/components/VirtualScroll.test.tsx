@@ -6,6 +6,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import * as UseResizeObserver from '../hooks/useResizeObserver.js';
 import { useVirtualizer } from '@tanstack/react-virtual';
+import React from 'react';
 
 // to return correct values for container 'scroller' and children
 const heightsMock = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
