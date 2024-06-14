@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render, act } from '@testing-library/react';
+import { render, act, screen } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
@@ -187,4 +187,29 @@ it('should not stay in the DOM when isOpen=false', () => {
 
   dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
   expect(dialogWrapper).toBeFalsy();
+});
+
+it('should expose show() and close() methods', () => {
+  vi.useFakeTimers();
+
+  let dialog: ReturnType<typeof Dialog.useInstance>;
+
+  const DialogTest = () => {
+    dialog = Dialog.useInstance();
+    return (
+      <Dialog instance={dialog}>
+        <Dialog.Main>Hello</Dialog.Main>
+      </Dialog>
+    );
+  };
+
+  render(<DialogTest />);
+
+  act(() => dialog.show());
+  const dialogElement = screen.getByRole('dialog');
+  expect(dialogElement).toBeVisible();
+
+  act(() => dialog.close());
+  act(() => vi.runAllTimers());
+  expect(dialogElement).not.toBeVisible();
 });

@@ -9,50 +9,25 @@ export default {
   title: 'Dialog',
 };
 
+const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+
 export const Basic = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const closeDialog = () => {
-    setIsOpen(false);
-  };
-
-  const onClose = () => {
-    console.log('onClose');
-    closeDialog();
-  };
-
-  const primaryButtonHandle = () => {
-    console.log('Primary button');
-    closeDialog();
-  };
-
-  const secondaryButtonHandle = () => {
-    console.log('Secondary button');
-    closeDialog();
-  };
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => dialog.show()}>
         Open Dialog
       </Button>
-      <Dialog isOpen={isOpen} onClose={onClose} closeOnEsc isDismissible>
+      <Dialog instance={dialog}>
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
-          <Dialog.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Dialog.Content>
+          <Dialog.Content>{lorem}</Dialog.Content>
           <Dialog.ButtonBar>
-            <Button styleType='high-visibility' onClick={primaryButtonHandle}>
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Primary
             </Button>
-            <Button onClick={secondaryButtonHandle}>Secondary</Button>
+            <Button onClick={() => dialog.close()}>Secondary</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>
@@ -61,59 +36,29 @@ export const Basic = () => {
 };
 
 export const Modal = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const closeDialog = () => {
-    setIsOpen(false);
-  };
-
-  const onClose = () => {
-    console.log('onClose');
-    closeDialog();
-  };
-
-  const primaryButtonHandle = () => {
-    console.log('Primary button');
-    closeDialog();
-  };
-
-  const secondaryButtonHandle = () => {
-    console.log('Secondary button');
-    closeDialog();
-  };
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => dialog.show()}>
         Open Dialog
       </Button>
       <Dialog
-        isOpen={isOpen}
-        onClose={onClose}
-        closeOnEsc
+        instance={dialog}
         closeOnExternalClick
         preventDocumentScroll
         trapFocus
         setFocus
-        isDismissible
       >
-        <Dialog.Backdrop onKeyDown={() => console.log('onKeyDown')} />
+        <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
-          <Dialog.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Dialog.Content>
+          <Dialog.Content>{lorem}</Dialog.Content>
           <Dialog.ButtonBar>
-            <Button styleType='high-visibility' onClick={primaryButtonHandle}>
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Primary
             </Button>
-            <Button onClick={secondaryButtonHandle}>Secondary</Button>
+            <Button onClick={() => dialog.close()}>Secondary</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>
@@ -158,15 +103,7 @@ export const DraggableAndResizable = () => {
       >
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
-          <Dialog.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Dialog.Content>
+          <Dialog.Content>{lorem}</Dialog.Content>
           <Dialog.ButtonBar>
             <Button styleType='high-visibility' onClick={primaryButtonHandle}>
               Primary
@@ -230,15 +167,7 @@ export const DraggableRelativeToContainer = () => {
       >
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
-          <Dialog.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Dialog.Content>
+          <Dialog.Content>{lorem}</Dialog.Content>
           <Dialog.ButtonBar>
             <Button styleType='high-visibility' onClick={primaryButtonHandle}>
               Primary
@@ -287,15 +216,7 @@ export const Placement = () => {
       >
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
-          <Dialog.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Dialog.Content>
+          <Dialog.Content>{lorem}</Dialog.Content>
           <Dialog.ButtonBar>
             <Button styleType='high-visibility' onClick={primaryButtonHandle}>
               Primary

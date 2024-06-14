@@ -46,8 +46,9 @@ export const DialogBackdrop = React.forwardRef((props, ref) => {
     if (event.target !== backdropRef.current) {
       return;
     }
-    if (isDismissible && closeOnExternalClick && onClose) {
-      onClose(event);
+    if (isDismissible && closeOnExternalClick) {
+      dialogContext.setIsOpen?.(false);
+      onClose?.(event);
     }
     onMouseDown?.(event);
   };

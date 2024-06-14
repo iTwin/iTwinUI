@@ -3,24 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => dialog.show()}>
         Open non-dismissible dialog
       </Button>
-      <Dialog
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        setFocus={false}
-        isDismissible={false}
-        portal
-      >
+      <Dialog instance={dialog} setFocus={false} isDismissible={false} portal>
         <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Empty trash' />
@@ -29,13 +22,10 @@ export default () => {
             You can't undo this action.
           </Dialog.Content>
           <Dialog.ButtonBar>
-            <Button
-              styleType='high-visibility'
-              onClick={() => setIsOpen(false)}
-            >
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Empty trash
             </Button>
-            <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+            <Button onClick={() => dialog.close()}>Cancel</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

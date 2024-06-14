@@ -30,7 +30,10 @@ export type DialogMainProps = {
    * Content of the dialog.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'closeOnExternalClick' | 'dialogRootRef'>;
+} & Omit<
+  DialogContextProps,
+  'closeOnExternalClick' | 'dialogRootRef' | 'setIsOpen'
+>;
 
 /**
  * Dialog component which can wrap any content.
@@ -115,8 +118,9 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }
     // Prevents React from resetting its properties
     event.persist();
-    if (isDismissible && closeOnEsc && event.key === 'Escape' && onClose) {
-      onClose(event);
+    if (isDismissible && closeOnEsc && event.key === 'Escape') {
+      dialogContext.setIsOpen?.(false);
+      onClose?.(event);
     }
     onKeyDown?.(event);
   };

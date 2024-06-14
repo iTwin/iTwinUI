@@ -15,6 +15,8 @@ export type DialogContextProps = {
    * @default false
    */
   isOpen?: boolean;
+  /** @private */
+  setIsOpen?: (isOpen: boolean) => void;
   /**
    * Handler that is called when dialog is closed.
    */
@@ -84,7 +86,7 @@ export type DialogContextProps = {
   /**
    * Dialog root ref. For internal use.
    */
-  dialogRootRef?: React.RefObject<HTMLDivElement>;
+  dialogRootRef?: React.RefObject<HTMLElement>;
   /**
    * Determines the positioning of Dialog on page.
    */

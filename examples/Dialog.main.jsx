@@ -3,26 +3,22 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const dialog = Dialog.useInstance();
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => dialog.show()}>
         Open dialog
       </Button>
       <Dialog
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        closeOnEsc
+        instance={dialog}
         closeOnExternalClick
         preventDocumentScroll
         trapFocus
         setFocus
-        isDismissible
         portal
       >
         <Dialog.Backdrop />
@@ -35,13 +31,10 @@ export default () => {
             ask for a decision.
           </Dialog.Content>
           <Dialog.ButtonBar>
-            <Button
-              styleType='high-visibility'
-              onClick={() => setIsOpen(false)}
-            >
+            <Button styleType='high-visibility' onClick={() => dialog.close()}>
               Primary
             </Button>
-            <Button onClick={() => setIsOpen(false)}>Secondary</Button>
+            <Button onClick={() => dialog.close()}>Secondary</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>
