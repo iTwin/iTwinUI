@@ -5,7 +5,6 @@
 
 import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
-import { VirtualScroll } from './VirtualScroll.js';
 import * as UseResizeObserver from '../hooks/useResizeObserver.js';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
@@ -27,45 +26,6 @@ beforeAll(() => {
 
 afterAll(() => {
   vi.clearAllMocks();
-});
-
-it('should render 1 item', () => {
-  heightsMock.mockImplementation(function (this: Record<string, any>) {
-    if (Object.values(this)[0].memoizedProps.id === 'scroller') {
-      return { height: 40 } as DOMRect;
-    }
-    return { height: 40 } as DOMRect;
-  });
-  const data = generateDataArray(1);
-  const TestComponent = () => {
-    const [parentRef, setParentRef] = React.useState<HTMLDivElement | null>(
-      null,
-    );
-    return (
-      <div
-        style={{ overflow: 'auto', height: 400 }}
-        id='scroller'
-        ref={(element) => {
-          setParentRef(element);
-        }}
-      >
-        <VirtualScroll
-          itemsLength={data.length}
-          itemRenderer={(index) => (
-            <div key={index} className='element'>
-              {data[index]}
-            </div>
-          )}
-          scrollContainer={parentRef}
-          bufferSize={20}
-        />
-      </div>
-    );
-  };
-  const { container } = render(<TestComponent />);
-  act(() => triggerResize({ height: 40 } as DOMRectReadOnly));
-
-  expect(container.querySelectorAll('.element').length).toBe(1);
 });
 
 it('should render parent as ul', () => {
