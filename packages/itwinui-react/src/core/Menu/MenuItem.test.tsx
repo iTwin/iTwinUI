@@ -130,15 +130,6 @@ it('should not be clickable with disabled', () => {
   expect(mockedOnClick).not.toHaveBeenCalled();
 });
 
-it('should focus on hover', () => {
-  render(<MenuItem data-testid='item'>Item</MenuItem>);
-
-  const menuItem = screen.getByTestId('item');
-  expect(menuItem).not.toHaveFocus();
-  fireEvent.mouseEnter(menuItem);
-  expect(menuItem).toHaveFocus();
-});
-
 it('should handle key press', async () => {
   const mockedOnClick = vi.fn();
   const { container } = render(

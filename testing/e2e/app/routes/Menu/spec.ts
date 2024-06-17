@@ -13,6 +13,17 @@ test.describe('Menu', () => {
     await page.waitForTimeout(50);
   });
 
+  test('should focus MenuItem on hover', async ({ page }) => {
+    await page.goto('/Menu');
+
+    const menuItem2 = page.getByTestId('MenuItem-2');
+    expect(menuItem2).not.toBeFocused();
+
+    await menuItem2.hover();
+
+    await expect(menuItem2).toBeFocused();
+  });
+
   test('should automatically handle conditional rendering', async ({
     page,
   }) => {
