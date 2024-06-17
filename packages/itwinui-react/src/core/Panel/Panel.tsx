@@ -140,20 +140,20 @@ type PanelTriggerProps = {
   children: React.ReactElement;
 };
 
+// TODO: Should it be a like a DOM node? Or it is just a wrapper around a DOM node that adds properties to the DOM node?
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
-  const triggerFallbackId = React.useId();
-
   const panelWrapperContext = React.useContext(PanelWrapperContext);
   const panelContext = React.useContext(PanelContext);
+
+  // TODO: Should we have an idProp and use useId only as a fallback?
+  const triggerId = React.useId();
 
   // const children = React.Children.only(childrenProp);
   if (!React.isValidElement(children)) {
     return null;
   }
-
-  const triggerId = children?.props?.id || triggerFallbackId;
 
   // const [expandedId, setExpandedId] = useAtom(expandedIdAtom);
   // const [triggers, setTriggers] = useAtom(triggersAtom);
