@@ -269,13 +269,12 @@ export const Menu = React.forwardRef((props, ref) => {
 
       // usePopover disables FloatingUI's focusItemOnHover since it doesn't work for us.
       // Thus, we need to update the activeIndex manually on hover.
-      onMouseEnter: mergeEventHandlers(
-        userProps?.onMouseEnter,
-        () =>
-          focusableItemIndex != null &&
+      // Additionally, we need to focus the item on hover.
+      onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, () => {
+        focusableItemIndex != null &&
           focusableItemIndex >= 0 &&
-          listNavigationState.onNavigate(focusableItemIndex),
-      ),
+          listNavigationState.onNavigate(focusableItemIndex); // onNavigate updates activeIndex and focuses the item
+      }),
     });
   };
 
