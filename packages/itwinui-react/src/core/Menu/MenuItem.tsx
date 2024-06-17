@@ -125,6 +125,13 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
   }, [subMenuItems.length]);
 
+  const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    // Focus the item when hovered, even if the item is disabled.
+    if (e.target === e.currentTarget) {
+      menuItemRef.current?.focus();
+    }
+  };
+
   const onClick = () => {
     if (disabled) {
       return;
@@ -135,6 +142,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const handlers: React.DOMAttributes<HTMLButtonElement> = {
     onClick,
+    onMouseEnter,
   };
 
   /** Index of this item out of all the focusable items in the parent `Menu` */
