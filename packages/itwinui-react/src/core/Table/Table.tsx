@@ -826,7 +826,7 @@ export const Table = <
   const virtualizer = useVirtualizer({
     count: page.length,
     getScrollElement: () => tableElement ?? null,
-    estimateSize: () => 62,
+    estimateSize: () => 62, //Set to 62px since that is the default height of a table row.
     overscan: 10,
     indexAttribute: 'data-iui-index',
   });
