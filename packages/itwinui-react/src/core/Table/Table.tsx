@@ -828,6 +828,7 @@ export const Table = <
     getScrollElement: () => tableElement ?? null,
     estimateSize: () => 62,
     overscan: 10,
+    indexAttribute: 'data-iui-index',
   });
 
   const outerProps = {
