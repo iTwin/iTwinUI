@@ -436,7 +436,7 @@ const VirtualizedTree = React.forwardRef(
           parentRef.current,
           parentRef.current?.ownerDocument,
         ),
-      estimateSize: () => 39,
+      estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
       overscan: 10,
       indexAttribute: 'data-iui-index',
     });
