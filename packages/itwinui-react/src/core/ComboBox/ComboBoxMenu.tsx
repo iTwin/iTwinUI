@@ -47,6 +47,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     getScrollElement: () => menuRef.current,
     estimateSize: () => (mostlySubLabeled ? 48 : 36),
     gap: -1,
+    indexAttribute: 'data-iui-index',
   });
 
   const virtualItemRenderer = React.useCallback(
@@ -57,7 +58,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
           : (children as JSX.Element); // Here is expected empty state content
       return React.cloneElement(menuItem, {
         key: virtualItem.key,
-        'data-index': virtualItem.index,
         ref: virtualizer.measureElement,
         style: {
           position: 'absolute',
