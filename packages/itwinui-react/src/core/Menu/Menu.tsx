@@ -13,7 +13,7 @@ import {
   mergeRefs,
   useSyncExternalStore,
   mergeEventHandlers,
-  useFocusableElementsRef,
+  useFocusableElements,
 } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -160,13 +160,16 @@ export const Menu = React.forwardRef((props, ref) => {
     null,
   );
 
-  const focusableElementsRef = useFocusableElementsRef(menuElement, {
-    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    filter: (allElements) =>
-      allElements.filter(
-        (i) => !allElements?.some((p) => p.contains(i.parentElement)),
-      ),
-  });
+  const { focusableElementsRef, focusableElements } = useFocusableElements(
+    menuElement,
+    {
+      // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+      filter: (allElements) =>
+        allElements.filter(
+          (i) => !allElements?.some((p) => p.contains(i.parentElement)),
+        ),
+    },
+  );
 
   const popover = usePopover({
     nodeId,
@@ -306,9 +309,7 @@ export const Menu = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <MenuContext.Provider
-        value={{ popoverGetItemProps, focusableElementsRef }}
-      >
+      <MenuContext.Provider value={{ popoverGetItemProps, focusableElements }}>
         <PopoverOpenContext.Provider value={popover.open}>
           {reference}
         </PopoverOpenContext.Provider>
@@ -345,7 +346,7 @@ type PopoverGetItemProps = ({
 export const MenuContext = React.createContext<
   | {
       popoverGetItemProps: PopoverGetItemProps;
-      focusableElementsRef: ReturnType<typeof useFocusableElementsRef>;
+      focusableElements: HTMLElement[];
     }
   | undefined
 >(undefined);

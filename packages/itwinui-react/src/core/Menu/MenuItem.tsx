@@ -146,7 +146,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   };
 
   /** Index of this item out of all the focusable items in the parent `Menu` */
-  const focusableItemIndex = parentMenu?.focusableElementsRef.current.findIndex(
+  const focusableItemIndex = parentMenu?.focusableElements.findIndex(
     (el) => el === menuItemRef.current,
   );
 

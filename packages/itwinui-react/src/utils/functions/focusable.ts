@@ -52,33 +52,54 @@ export const getFocusableElements = (
 };
 
 /**
- * Returns a ref of the latest focusable elements in the `root` element.
+ * Returns the latest focusable elements in the `root` element.
+ * This is returned as a ref and a state. Choose which one to use according to the use case. E.g.:
+ * - ref: since FloatingUI needs a ref ([`listRef`](https://floating-ui.com/docs/useListNavigation#listref)).
+ * - state: when reading this value in a render.
  *
  * Pass `extraOptions.filter` to filter the elements.
  *
  * @example
- * const focusableElementsRef = useFocusableElementsRef(root, {
+ * const {focusableElementsRef, focusableElements} = useFocusableElements(root, {
  *   // Filter out focusable elements that are inside other focusable elements.
  *   filter: (allElements) => allElements.filter(
  *     (i) => !allElements?.some((p) => p.contains(i.parentElement)),
  *   ),
  * });
  */
-export function useFocusableElementsRef(
+export function useFocusableElements(
   root: HTMLElement | null,
   extraOptions?: {
     filter?: (elements: HTMLElement[]) => HTMLElement[];
   },
 ) {
   const focusableElementsRef = React.useRef<HTMLElement[]>([]);
+  const [focusableElements, setFocusableElements] = React.useState(
+    focusableElementsRef.current,
+  );
+
+  const setFocusableElementsRefAndState = (
+    newFocusableElements: HTMLElement[],
+  ) => {
+    focusableElementsRef.current = newFocusableElements;
+    setFocusableElements(newFocusableElements);
+  };
+
   const { filter: filterProp } = extraOptions ?? {};
 
   const filter = useLatestRef(filterProp);
 
+  const returnValue = React.useMemo(() => {
+    return {
+      focusableElementsRef,
+      focusableElements,
+    };
+  }, [focusableElementsRef, focusableElements]);
+
   return useSyncExternalStore(
     React.useCallback(() => {
       if (!root) {
-        focusableElementsRef.current = [];
+        setFocusableElementsRefAndState([]);
         return () => {};
       }
 
@@ -93,10 +114,10 @@ export function useFocusableElementsRef(
           newFocusableElements = filter.current?.(newFocusableElements);
         }
 
-        focusableElementsRef.current = newFocusableElements;
+        setFocusableElementsRefAndState(newFocusableElements);
       }
     }, [root, filter]),
-    () => focusableElementsRef,
-    () => focusableElementsRef,
+    () => returnValue,
+    () => returnValue,
   );
 }
