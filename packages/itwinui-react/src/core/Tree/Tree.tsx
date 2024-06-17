@@ -296,7 +296,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
             ? cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
                 ...children.props,
                 key: virtualItem.key,
-                'data-index': virtualItem.index,
+                'data-iui-index': virtualItem.index,
                 ref: virtualizer.measureElement,
                 style: {
                   position: 'absolute',
@@ -438,6 +438,7 @@ const VirtualizedTree = React.forwardRef(
         ),
       estimateSize: () => 39,
       overscan: 10,
+      indexAttribute: 'data-iui-index',
     });
 
     const outerProps = {
