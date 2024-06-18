@@ -352,7 +352,8 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     justify-self: end;
   }
 
-  .iui-tile-thumbnail-button {
+  .iui-tile-thumbnail-button,
+  &:is(button) {
     border-radius: 50%;
 
     .iui-tile-thumbnail-picture ~ & {
