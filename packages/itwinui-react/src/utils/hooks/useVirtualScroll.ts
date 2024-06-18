@@ -26,6 +26,7 @@ export const useVirtualScroll = (
     estimateSize,
     gap,
     indexAttribute: 'data-iui-index',
+    overscan: 10,
   });
   useLayoutEffect(() => {
     setTimeout(() => {
