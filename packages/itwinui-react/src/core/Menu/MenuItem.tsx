@@ -143,6 +143,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const trigger = (
     <ListItem
       as='button'
+      type='button'
       className={cx('iui-button-base', className)}
       actionable
       size={size}
