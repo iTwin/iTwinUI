@@ -10,12 +10,12 @@ import {
   useMergedRefs,
   Portal,
   Box,
-  useLayoutEffect,
+  useVirtualScroll,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 import { List } from '../List/List.js';
-import { useVirtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import { type VirtualItem } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
@@ -40,15 +40,28 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     return numberOfSubLabels >= Math.min(3, filteredOptions.length);
   }, [filteredOptions]);
 
-  const virtualizer = useVirtualizer({
+  const focusedVisibleIndex = React.useMemo(() => {
+    const currentElement = menuRef.current?.querySelector(
+      `[data-iui-index="${focusedIndex}"]`,
+    );
+    if (!currentElement) {
+      return focusedIndex;
+    }
+
+    return Number(
+      currentElement.getAttribute('data-iui-filtered-index') ?? focusedIndex,
+    );
+  }, [focusedIndex, menuRef]);
+
+  const virtualizer = useVirtualScroll(
     // 'Fool' VirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
-    count: filteredOptions.length || 1,
-    getScrollElement: () => menuRef.current,
-    estimateSize: () => (mostlySubLabeled ? 48 : 36),
-    gap: -1,
-    indexAttribute: 'data-iui-index',
-  });
+    filteredOptions.length || 1,
+    () => menuRef.current,
+    () => (mostlySubLabeled ? 48 : 36),
+    focusedVisibleIndex,
+    -1,
+  );
 
   const virtualItemRenderer = React.useCallback(
     (virtualItem: VirtualItem) => {
@@ -70,27 +83,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     },
     [filteredOptions, getMenuItem, children, virtualizer.measureElement],
   );
-
-  const focusedVisibleIndex = React.useMemo(() => {
-    const currentElement = menuRef.current?.querySelector(
-      `[data-iui-index="${focusedIndex}"]`,
-    );
-    if (!currentElement) {
-      return focusedIndex;
-    }
-
-    return Number(
-      currentElement.getAttribute('data-iui-filtered-index') ?? focusedIndex,
-    );
-  }, [focusedIndex, menuRef]);
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      if (focusedVisibleIndex) {
-        virtualizer.scrollToIndex(focusedVisibleIndex, { align: 'auto' });
-      }
-    });
-  }, [focusedVisibleIndex, virtualizer]);
 
   return (
     <Box
