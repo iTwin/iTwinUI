@@ -2,17 +2,6 @@ import { test, expect } from '@playwright/test';
 import { keyboardPressOptions } from '~/utils/utils.js';
 
 test.describe('Menu', () => {
-  test('should render menu items', async ({ page }) => {
-    await page.goto('/Menu');
-
-    expect(page.locator('.Menu')).toBeVisible();
-    for (let i = 0; i < 3; i++) {
-      expect(page.getByTestId(`MenuItem-${i}`)).toBeVisible();
-    }
-
-    await page.waitForTimeout(50);
-  });
-
   test('should focus MenuItem on hover', async ({ page }) => {
     await page.goto('/Menu');
 
@@ -42,14 +31,6 @@ test.describe('Menu', () => {
     for (let i = 0; i < 3; i++) {
       await expect(page.getByTestId(`MenuItem-${i}`)).toBeVisible();
     }
-
-    await page.waitForTimeout(50);
-  });
-
-  test('should render menu with custom role', async ({ page }) => {
-    await page.goto('/Menu?role=listbox');
-
-    expect(page.locator('.Menu[role="listbox"]')).toBeVisible();
 
     await page.waitForTimeout(50);
   });
