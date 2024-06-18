@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
-import React from 'react';
 import { LabeledInput, StatusMessage } from '@itwin/itwinui-react';
 
 export default {

@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { SvgMore, SvgClose as SvgPlaceholder } from '../../utils/index.js';
 import { fireEvent, render } from '@testing-library/react';
-import * as React from 'react';
 import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 
 import { ButtonGroup } from './ButtonGroup.js';

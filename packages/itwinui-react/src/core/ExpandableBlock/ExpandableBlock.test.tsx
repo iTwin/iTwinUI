@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import * as React from 'react';
 import { StatusIconMap, SvgMore as SvgPlaceholder } from '../../utils/index.js';
 import * as UseId from '../../utils/hooks/useId.js';
 

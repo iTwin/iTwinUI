@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import { Button, Code, Dialog } from '@itwin/itwinui-react';
 
 export default {
@@ -10,7 +10,7 @@ export default {
 };
 
 export const Basic = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeDialog = () => {
     setIsOpen(false);
@@ -61,7 +61,7 @@ export const Basic = () => {
 };
 
 export const Modal = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeDialog = () => {
     setIsOpen(false);
@@ -122,7 +122,7 @@ export const Modal = () => {
 };
 
 export const DraggableAndResizable = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeDialog = () => {
     setIsOpen(false);
@@ -180,7 +180,7 @@ export const DraggableAndResizable = () => {
 };
 
 export const DraggableRelativeToContainer = () => {
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const closeDialog = () => {
     setIsDialogOpen(false);
@@ -252,7 +252,7 @@ export const DraggableRelativeToContainer = () => {
 };
 
 export const Placement = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeDialog = () => {
     setIsOpen(false);

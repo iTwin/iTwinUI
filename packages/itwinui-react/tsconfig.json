@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "sourceMap": false,
     "allowJs": false,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "NodeNext",
     "traceResolution": false,
     "forceConsistentCasingInFileNames": true,
@@ -21,10 +21,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom/vitest"
-    ],
+    "types": ["vitest/globals", "@testing-library/jest-dom/vitest"],
     "baseUrl": ".",
     "paths": {
       // This is only to avoid the missing types error when importing non-types from `react-table`
