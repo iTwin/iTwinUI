@@ -7,17 +7,13 @@ import {
   getFocusableElements,
   Box,
   polymorphic,
-  useLayoutEffect,
   cloneElementWithRef,
+  useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
-import {
-  useVirtualizer,
-  Virtualizer,
-  type VirtualItem,
-} from '@tanstack/react-virtual';
+import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
   /**
@@ -409,13 +405,12 @@ const VirtualizedTree = React.forwardRef(
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
 
-    const virtualizer = useVirtualizer({
-      count: flatNodesList.length,
-      getScrollElement: () => parentRef.current,
-      estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
-      overscan: 10,
-      indexAttribute: 'data-iui-index',
-    });
+    const virtualizer = useVirtualScroll(
+      flatNodesList.length,
+      () => parentRef.current,
+      () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
+      scrollToIndex,
+    );
 
     const outerProps = {
       style: {
@@ -431,14 +426,6 @@ const VirtualizedTree = React.forwardRef(
         willChange: 'transform',
       },
     } as const;
-
-    useLayoutEffect(() => {
-      setTimeout(() => {
-        if (scrollToIndex) {
-          virtualizer.scrollToIndex(scrollToIndex, { align: 'auto' });
-        }
-      });
-    }, [scrollToIndex, virtualizer]);
 
     return (
       <Box
