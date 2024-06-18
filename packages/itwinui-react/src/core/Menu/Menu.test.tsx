@@ -64,7 +64,11 @@ function renderComponent(
 
   return render(
     <Menu
-      trigger={<Button data-testid='trigger'>Trigger</Button>}
+      trigger={
+        <Button id='trigger' data-testid='trigger'>
+          Trigger
+        </Button>
+      }
       {...props}
     />,
   );
@@ -198,4 +202,28 @@ it('should keep focus on the trigger when opening the menu using the mouse', asy
   const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(trigger).toHaveFocus();
+});
+
+it('should automatically handle conditional rendering', async () => {
+  const { container } = render(
+    <Menu trigger={<Button data-testid='trigger'>Trigger</Button>}>
+      <MenuItem id='item-0'>Test0</MenuItem>
+      <MenuItem id='item-1'>Test1</MenuItem>
+      <MenuItem id='item-2'>Test2</MenuItem>
+    </Menu>,
+  );
+
+  expect(container.querySelector('.iui-menu')).toBeFalsy();
+  for (let i = 0; i < 3; i++) {
+    expect(container.querySelector(`#item-${i}`)).toBeFalsy();
+  }
+
+  await clickTrigger();
+
+  await waitFor(() =>
+    expect(container.querySelector('.iui-menu')).toBeVisible(),
+  );
+  for (let i = 0; i < 3; i++) {
+    expect(container.querySelector(`#item-${i}`)).toBeVisible();
+  }
 });

@@ -12,6 +12,8 @@ import {
 import { userEvent } from '@testing-library/user-event';
 import { MenuItem } from './MenuItem.js';
 import { SvgSmileyHappy } from '../../utils/index.js';
+import { Menu } from './Menu.js';
+import { Button } from '../Buttons/Button.js';
 
 function assertBaseElement(
   menuItem: HTMLElement,
@@ -128,6 +130,22 @@ it('should not be clickable with disabled', () => {
 
   fireEvent.click(menuItem);
   expect(mockedOnClick).not.toHaveBeenCalled();
+});
+
+it('should focus on hover (when MenuItem is in a Menu)', async () => {
+  render(
+    <Menu trigger={<Button data-testid='trigger'>Trigger</Button>}>
+      <MenuItem data-testid='item'>Test item</MenuItem>
+    </Menu>,
+  );
+
+  const trigger = screen.getByTestId('trigger');
+  await act(async () => trigger.click());
+
+  const menuItem = screen.getByTestId('item');
+  expect(menuItem).not.toHaveFocus();
+  fireEvent.mouseEnter(menuItem);
+  expect(menuItem).toHaveFocus();
 });
 
 it('should handle key press', async () => {
