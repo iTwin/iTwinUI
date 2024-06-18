@@ -17,7 +17,7 @@ export const useVirtualScroll = (
   count: number,
   getScrollElement: () => HTMLElement | null,
   estimateSize: (index: number) => number,
-  scrollToIndex: number,
+  scrollToIndex?: number,
   gap?: number,
 ): Virtualizer<HTMLElement, Element> => {
   const virtualizer = useVirtualizer({
