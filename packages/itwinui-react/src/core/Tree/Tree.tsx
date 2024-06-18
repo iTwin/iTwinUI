@@ -408,34 +408,10 @@ const VirtualizedTree = React.forwardRef(
     ref: React.ForwardedRef<HTMLUListElement>,
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
-    const getScrollableElement = (
-      element: HTMLElement | null,
-      ownerDocument: Document = document,
-    ): HTMLElement => {
-      if (!element || element === ownerDocument.body) {
-        return ownerDocument.body;
-      }
-
-      return isElementScrollable(element)
-        ? element
-        : getScrollableElement(element.parentElement, ownerDocument);
-    };
-
-    const isElementScrollable = (element: HTMLElement) => {
-      const computedStyle = getComputedStyle(element);
-      return /(auto|scroll|overlay)/.test(
-        computedStyle.getPropertyValue('overflow') +
-          computedStyle.getPropertyValue('overflow-y'),
-      );
-    };
 
     const virtualizer = useVirtualizer({
       count: flatNodesList.length,
-      getScrollElement: () =>
-        getScrollableElement(
-          parentRef.current,
-          parentRef.current?.ownerDocument,
-        ),
+      getScrollElement: () => parentRef.current,
       estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
       overscan: 10,
       indexAttribute: 'data-iui-index',
@@ -444,6 +420,7 @@ const VirtualizedTree = React.forwardRef(
     const outerProps = {
       style: {
         minInlineSize: '100%',
+        overflow: 'auto',
         ...style,
       },
     } as React.HTMLAttributes<HTMLElement>;
