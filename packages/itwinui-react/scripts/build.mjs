@@ -29,7 +29,7 @@ const swcOptions = {
       this.shared,
       this.compilerOptions,
       '-C module.type=es6',
-      `-C jsc.transform.optimizer.globals.vars.__module=\\'ESM\\'`,
+      `-C jsc.transform.optimizer.globals.vars.__module="\'ESM\'"`,
     ].join(' ');
   },
 
@@ -38,7 +38,7 @@ const swcOptions = {
       this.shared,
       this.compilerOptions,
       '-C module.type=commonjs',
-      `-C jsc.transform.optimizer.globals.vars.__module=\\'CJS\\'`,
+      `-C jsc.transform.optimizer.globals.vars.__module="\'CJS\'"`,
     ].join(' ');
   },
 };
