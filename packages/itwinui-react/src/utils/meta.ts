@@ -9,7 +9,7 @@ const module = (__module || 'DEV') as 'ESM' | 'CJS';
 
 /** Meta information about the package. */
 export const meta = {
-  /** The exact version of @itwin/itwinui-react. */
+  /** The exact version of `@itwin/itwinui-react`. */
   version,
   /** The current module format (i.e. "ESM" vs "CJS"). */
   module,
