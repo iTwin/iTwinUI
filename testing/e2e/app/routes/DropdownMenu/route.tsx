@@ -1,9 +1,17 @@
-import { Button, DropdownMenu, MenuItem } from '@itwin/itwinui-react';
+import {
+  Button,
+  Checkbox,
+  DropdownMenu,
+  MenuDivider,
+  MenuExtraContent,
+  MenuItem,
+} from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <>
       <DropdownMenu
+        className='DropdownMenu1'
         menuItems={(close) => [
           <MenuItem
             key='Item 1_1'
@@ -65,11 +73,42 @@ export default () => {
           >
             Item 1_1
           </MenuItem>,
+          <MenuItem key='Item 1_2' data-testid='Item 1_2' onClick={close}>
+            Item 1_2
+          </MenuItem>,
+          <MenuItem key='Item 1_3' data-testid='Item 1_3' onClick={close}>
+            Item 1_3
+          </MenuItem>,
         ]}
       >
-        <Button data-testid='trigger'>Menu</Button>
+        <Button data-testid='trigger1'>Menu 1</Button>
       </DropdownMenu>
-      <Button>Outside</Button>
+
+      <DropdownMenu
+        className='DropdownMenu2'
+        menuItems={() => [
+          <MenuExtraContent key={0}>Test content</MenuExtraContent>,
+          <MenuItem data-testid={`FocusTarget-0`} key={1}>
+            Test0
+          </MenuItem>,
+          <MenuItem data-testid={`FocusTarget-1`} key={2}>
+            <Checkbox />
+            Test1
+          </MenuItem>,
+          <MenuDivider key={3} />,
+          <MenuItem key={4} disabled>
+            Test2
+          </MenuItem>,
+          <MenuItem data-testid={`FocusTarget-2`} key={5}>
+            Test3
+          </MenuItem>,
+          <MenuExtraContent key={6}>
+            <Button data-testid={`FocusTarget-3`}>Test4</Button>
+          </MenuExtraContent>,
+        ]}
+      >
+        <Button data-testid='trigger2'>Menu 2</Button>
+      </DropdownMenu>
     </>
   );
 };

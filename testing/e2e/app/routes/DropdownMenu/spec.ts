@@ -2,10 +2,25 @@ import { test, expect, Page } from '@playwright/test';
 import { keyboardPressOptions } from '~/utils/utils.js';
 
 test.describe('DropdownMenu', () => {
+  test('should render menu items', async ({ page }) => {
+    await page.goto('/DropdownMenu');
+
+    const trigger = page.getByTestId('trigger1');
+    await trigger.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
+
+    expect(page.locator('.DropdownMenu1')).toBeVisible();
+    expect(page.getByTestId(`Item 1_1`)).toBeVisible();
+    expect(page.getByTestId(`Item 1_2`)).toBeVisible();
+    expect(page.getByTestId(`Item 1_3`)).toBeVisible();
+
+    await page.waitForTimeout(50);
+  });
+
   test('should support deep level submenus', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
+    const trigger = page.getByTestId('trigger1');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -107,12 +122,54 @@ test.describe('DropdownMenu', () => {
     await page.waitForTimeout(100);
   });
 
+  test('should handle keyboard navigation even with non MenuItems', async ({
+    page,
+  }) => {
+    await page.goto('/DropdownMenu');
+
+    const menu = page.locator('.DropdownMenu2');
+    await expect(menu).not.toBeVisible();
+
+    const trigger = page.getByTestId('trigger2');
+    await trigger.focus();
+    await page.keyboard.press('Enter', keyboardPressOptions);
+
+    await expect(menu).toBeVisible();
+    await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
+
+    // Should not loop around when navigating past the first or the last item.
+    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
+
+    // Should skip all checkboxes, disabled items, and separators.
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-1')).toBeFocused();
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-2')).toBeFocused();
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-3')).toBeFocused();
+
+    // Should not loop around when navigating past the first or the last item.
+    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-3')).toBeFocused();
+
+    // ArrowUp should also work similar to ArrowDown
+    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-2')).toBeFocused();
+    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-1')).toBeFocused();
+    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
+
+    await page.waitForTimeout(50);
+  });
+
   test('should respect click and keyboard enter/space triggers', async ({
     page,
   }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
+    const trigger = page.getByTestId('trigger1');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -154,7 +211,7 @@ test.describe('DropdownMenu', () => {
 
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
+    const trigger = page.getByTestId('trigger1');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -176,19 +233,33 @@ test.describe('DropdownMenu', () => {
     await expect(page.locator('.iui-menu')).not.toBeVisible();
   });
 
-  test('should focus target after closing the Menu', async ({ page }) => {
+  test('should move focus appropriately upon DropdownMenu open and close', async ({
+    page,
+  }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
+    const menu = page.locator('.DropdownMenu2');
+    await expect(menu).not.toBeVisible();
 
-    await page.keyboard.press('Tab', keyboardPressOptions);
-    await expect(trigger).toBeFocused();
-
-    await page.keyboard.press('Enter', keyboardPressOptions);
-    await expect(trigger).not.toBeFocused();
-
+    // Click the trigger
+    const trigger = page.getByTestId('trigger2');
     await trigger.click();
+    await expect(menu).toBeVisible();
+
+    // Opening the menu with a mouse click should keep the focus on the trigger itself.
     await expect(trigger).toBeFocused();
+
+    // Close the menu
+    await trigger.click();
+    await expect(menu).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+
+    // Focus the trigger and press Enter
+    await page.keyboard.press('Enter', keyboardPressOptions);
+    await expect(menu).toBeVisible();
+
+    // Opening the menu with a keyboard press should focus the first focusable item.
+    await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
   });
 });
 
