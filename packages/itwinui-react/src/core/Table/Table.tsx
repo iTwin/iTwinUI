@@ -39,6 +39,7 @@ import {
   LineClamp,
   useMergedRefs,
   useLatestRef,
+  useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import {
@@ -71,11 +72,7 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import {
-  useVirtualizer,
-  type VirtualItem,
-  Virtualizer,
-} from '@tanstack/react-virtual';
+import { type VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -823,13 +820,12 @@ export const Table = <
     }
   });
 
-  const virtualizer = useVirtualizer({
-    count: page.length,
-    getScrollElement: () => tableElement ?? null,
-    estimateSize: () => 62, //Set to 62px since that is the default height of a table row.
-    overscan: 10,
-    indexAttribute: 'data-iui-index',
-  });
+  const virtualizer = useVirtualScroll(
+    page.length,
+    () => tableElement ?? null,
+    () => 62, //Set to 62px since that is the default height of a table row.
+    scrollToIndex,
+  );
 
   const outerProps = {
     style: {
@@ -843,14 +839,6 @@ export const Table = <
   const innerProps = {
     style: { willChange: 'transform' },
   } as const;
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      if (scrollToIndex) {
-        virtualizer.scrollToIndex(scrollToIndex, { align: 'auto' });
-      }
-    });
-  }, [scrollToIndex, virtualizer]);
 
   const getPreparedRow = React.useCallback(
     (
