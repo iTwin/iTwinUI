@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import { version } from '../../package.json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -43,7 +44,7 @@ export default defineConfig({
     modules: {
       // TODO: use proper hash in v4
       generateScopedName: (name) => {
-        return `_iui3-${name.replace('iui-', '')}`;
+        return `_iui${version.replace(/./g, '')}-${name.replace('iui-', '')}`;
       },
     },
     postcss: {
