@@ -44,7 +44,7 @@ export default defineConfig({
     modules: {
       // TODO: use proper hash in v4
       generateScopedName: (name) => {
-        return `_iui${version.replace(/./g, '')}-${name.replace('iui-', '')}`;
+        return `_iui${version.replace(/\./g, '')}-${name.replace('iui-', '')}`;
       },
     },
     postcss: {
