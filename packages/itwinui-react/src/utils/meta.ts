@@ -2,17 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export const styles = new Proxy(
-  {},
-  {
-    get: (target, prop) => {
-      // instead of returning scoped css modules, we will preserve the original classes
-      if (typeof prop === 'string' && prop.startsWith('iui')) {
-        return prop;
-      }
-      return Reflect.get(target, prop);
-    },
-  },
-);
 
-export const version = 'DEV';
+import { version } from '../styles.js';
+
+// @ts-expect-error: __module gets injected by SWC
+const module = (__module || 'DEV') as 'ESM' | 'CJS';
+
+/** Meta information about the package. */
+export const meta = {
+  /** The exact version of @itwin/itwinui-react. */
+  version,
+  /** The current module format (e.g. esm vs cjs). */
+  module,
+};
