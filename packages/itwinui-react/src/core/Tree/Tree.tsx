@@ -425,7 +425,7 @@ const VirtualizedTree = React.forwardRef(
         minBlockSize: virtualizer.getTotalSize(),
         willChange: 'transform',
       },
-    } as const;
+    } as React.HTMLAttributes<HTMLElement>;
 
     return (
       <Box
