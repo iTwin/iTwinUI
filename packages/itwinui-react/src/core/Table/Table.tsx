@@ -838,14 +838,11 @@ export const Table = <
     style: {
       minBlockSize: virtualizer.getTotalSize(),
       minInlineSize: '100%',
+      willChange: 'transform',
       ...style,
     },
     ...rest,
   } as React.HTMLAttributes<HTMLElement>;
-
-  const innerProps = {
-    style: { willChange: 'transform' },
-  } as const;
 
   const getPreparedRow = React.useCallback(
     (
@@ -1159,17 +1156,15 @@ export const Table = <
             <>
               {enableVirtualization ? (
                 <div {...outerProps}>
-                  <div {...innerProps}>
-                    {virtualizer
-                      .getVirtualItems()
-                      .map((virtualItem) =>
-                        virtualizedItemRenderer(
-                          virtualItem.index,
-                          virtualItem,
-                          virtualizer,
-                        ),
-                      )}
-                  </div>
+                  {virtualizer
+                    .getVirtualItems()
+                    .map((virtualItem) =>
+                      virtualizedItemRenderer(
+                        virtualItem.index,
+                        virtualItem,
+                        virtualizer,
+                      ),
+                    )}
                 </div>
               ) : (
                 page.map((_, index) => getPreparedRow(index))
