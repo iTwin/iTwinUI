@@ -5,6 +5,7 @@
 
 import { useVirtualizer, type Virtualizer } from '@tanstack/react-virtual';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import * as React from 'react';
 
 /**
  * Wrapper over `useVirtualizer` from `@tanstack/react-virtual` that sets the index attribute to
@@ -13,18 +14,29 @@ import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
  * @example
  * const virtualizer = useVirtualScroll(item.length, () => parentRef.current, () => 30, scrollToIndex);
  */
-export const useVirtualScroll = (
-  count: number,
-  getScrollElement: () => HTMLElement | null,
-  estimateSize: (index: number) => number,
-  scrollToIndex?: number,
-  gap?: number,
-): Virtualizer<HTMLElement, Element> => {
+export const useVirtualScroll = (params: {
+  count: number;
+  getScrollElement: () => HTMLElement | null;
+  estimateSize: (index: number) => number;
+  scrollToIndex?: number;
+  gap?: number;
+  getItemKey?: (index: number) => React.Key;
+}): Virtualizer<HTMLElement, Element> => {
+  const {
+    count,
+    getScrollElement,
+    estimateSize,
+    scrollToIndex,
+    gap,
+    getItemKey,
+  } = params;
+
   const virtualizer = useVirtualizer({
     count,
     getScrollElement,
     estimateSize,
     gap,
+    getItemKey,
     indexAttribute: 'data-iui-index',
     overscan: 10,
   });
