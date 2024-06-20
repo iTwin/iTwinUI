@@ -11,7 +11,6 @@ import {
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
 import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
 
@@ -413,10 +412,11 @@ const VirtualizedTree = React.forwardRef(
     );
 
     const outerProps = {
+      className: className,
       style: {
+        ...style,
         minInlineSize: '100%',
         overflow: 'auto',
-        ...style,
       },
     } as React.HTMLAttributes<HTMLElement>;
 
@@ -431,8 +431,6 @@ const VirtualizedTree = React.forwardRef(
       <Box
         {...{
           ...outerProps,
-          className: cx(className, outerProps.className),
-          style: { ...style, ...outerProps.style },
         }}
         ref={parentRef}
       >
