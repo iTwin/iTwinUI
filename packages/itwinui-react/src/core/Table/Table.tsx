@@ -820,12 +820,12 @@ export const Table = <
     }
   });
 
-  const virtualizer = useVirtualScroll(
-    page.length,
-    () => tableElement ?? null,
-    () => 62, //Set to 62px since that is the default height of a table row.
+  const virtualizer = useVirtualScroll({
+    count: page.length,
+    getScrollElement: () => tableElement ?? null,
+    estimateSize: () => 62, //Set to 62px since that is the default height of a table row.
     scrollToIndex,
-  );
+  });
 
   const outerProps = {
     style: {
