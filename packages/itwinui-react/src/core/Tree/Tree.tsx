@@ -404,12 +404,20 @@ const VirtualizedTree = React.forwardRef(
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
 
-    const virtualizer = useVirtualScroll(
-      flatNodesList.length,
-      () => parentRef.current,
-      () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
-      scrollToIndex,
+    const getItemKey = React.useCallback(
+      (index: number) => {
+        return flatNodesList[index].nodeProps.nodeId;
+      },
+      [flatNodesList],
     );
+
+    const virtualizer = useVirtualScroll({
+      count: flatNodesList.length,
+      getScrollElement: () => parentRef.current,
+      estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
+      scrollToIndex,
+      getItemKey,
+    });
 
     const outerProps = {
       className: className,
