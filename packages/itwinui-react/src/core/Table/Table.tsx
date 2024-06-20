@@ -823,7 +823,14 @@ export const Table = <
   const virtualizer = useVirtualScroll({
     count: page.length,
     getScrollElement: () => tableElement ?? null,
-    estimateSize: () => 62, //Set to 62px since that is the default height of a table row.
+    estimateSize: () => {
+      if (density === 'condensed') {
+        return 50;
+      } else if (density === 'extra-condensed') {
+        return 38;
+      }
+      return 62;
+    }, //Set to the height of the table row based on the value of the density prop.
     scrollToIndex,
   });
 
