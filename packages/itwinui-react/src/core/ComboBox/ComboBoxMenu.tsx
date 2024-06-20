@@ -53,15 +53,15 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     );
   }, [focusedIndex, menuRef]);
 
-  const virtualizer = useVirtualScroll(
+  const virtualizer = useVirtualScroll({
     // 'Fool' VirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
-    filteredOptions.length || 1,
-    () => menuRef.current,
-    () => (mostlySubLabeled ? 48 : 36),
-    focusedVisibleIndex,
-    -1,
-  );
+    count: filteredOptions.length || 1,
+    getScrollElement: () => menuRef.current,
+    estimateSize: () => (mostlySubLabeled ? 48 : 36),
+    scrollToIndex: focusedVisibleIndex,
+    gap: -1,
+  });
 
   const virtualItemRenderer = React.useCallback(
     (virtualItem: VirtualItem) => {
