@@ -823,7 +823,14 @@ export const Table = <
   const virtualizer = useVirtualScroll({
     count: page.length,
     getScrollElement: () => tableElement ?? null,
-    estimateSize: () => 62, //Set to 62px since that is the default height of a table row.
+    estimateSize: () => {
+      if (density === 'condensed') {
+        return 50;
+      } else if (density === 'extra-condensed') {
+        return 38;
+      }
+      return 62;
+    }, //Set to the height of the table row based on the value of the density prop.
     scrollToIndex,
   });
 
@@ -831,14 +838,11 @@ export const Table = <
     style: {
       minBlockSize: virtualizer.getTotalSize(),
       minInlineSize: '100%',
+      willChange: 'transform',
       ...style,
     },
     ...rest,
   } as React.HTMLAttributes<HTMLElement>;
-
-  const innerProps = {
-    style: { willChange: 'transform' },
-  } as const;
 
   const getPreparedRow = React.useCallback(
     (
@@ -1152,17 +1156,15 @@ export const Table = <
             <>
               {enableVirtualization ? (
                 <div {...outerProps}>
-                  <div {...innerProps}>
-                    {virtualizer
-                      .getVirtualItems()
-                      .map((virtualItem) =>
-                        virtualizedItemRenderer(
-                          virtualItem.index,
-                          virtualItem,
-                          virtualizer,
-                        ),
-                      )}
-                  </div>
+                  {virtualizer
+                    .getVirtualItems()
+                    .map((virtualItem) =>
+                      virtualizedItemRenderer(
+                        virtualItem.index,
+                        virtualItem,
+                        virtualizer,
+                      ),
+                    )}
                 </div>
               ) : (
                 page.map((_, index) => getPreparedRow(index))
