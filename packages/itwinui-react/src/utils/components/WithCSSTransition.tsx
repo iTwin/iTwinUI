@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
-import styles from '../../styles.js';
+import { styles } from '../../styles.js';
 
 export const WithCSSTransition = (
   props: Partial<React.ComponentPropsWithoutRef<typeof CSSTransition>> & {
