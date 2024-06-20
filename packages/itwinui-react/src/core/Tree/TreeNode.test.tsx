@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, getByTestId, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { TreeNode } from './TreeNode.js';
 import { type TreeContextProps, TreeContext } from './TreeContext.js';
@@ -221,9 +221,15 @@ it('should render selected node', () => {
   expect(onSelected).toHaveBeenCalledWith('testId', false);
 });
 
-it('should render treeNode with  [x]Props correctly', () => {
+it('should render treeNode with [x]Props correctly', () => {
+  const onClick = vi.fn();
+  const onKeyDown = vi.fn();
+
   const { container } = renderComponent({
     props: {
+      className: 'testClass',
+      onClick,
+      onKeyDown,
       checkbox: <Checkbox variant='eyeball' className='testClass' />,
       checkboxProps: {
         style: { color: 'green' },
@@ -263,6 +269,16 @@ it('should render treeNode with  [x]Props correctly', () => {
       },
     },
   });
+
+  const treeItem = container.querySelector('li') as HTMLElement;
+  expect(treeItem).toBeTruthy();
+  expect(treeItem).toHaveClass('testClass');
+
+  fireEvent.click(treeItem);
+  expect(onClick).toHaveBeenCalled();
+
+  fireEvent.keyDown(treeItem, { key: 'Enter' });
+  expect(onKeyDown).toHaveBeenCalled();
 
   const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
 
@@ -319,33 +335,4 @@ it('should render treeNode with  [x]Props correctly', () => {
   expect(expanderIcon).toBeTruthy();
   expect(expanderIcon).toHaveClass('iui-tree-node-content-expander-icon');
   expect(expanderIcon?.style.color).toBe('white');
-});
-
-it('should allow passing event handlers', () => {
-  const onClick = vi.fn();
-  const onKeyDown = vi.fn();
-
-  const { container } = renderComponent(
-    <TreeContext.Provider
-      value={{ nodeDepth: 0, groupSize: 1, indexInGroup: 0 }}
-    >
-      <TreeNode
-        data-testid='test-node'
-        nodeId='testId'
-        label='label'
-        onExpanded={vi.fn()}
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-      />
-    </TreeContext.Provider>,
-  );
-
-  const treeNode = getByTestId(container, 'test-node');
-  expect(treeNode).toBeTruthy();
-
-  fireEvent.click(treeNode);
-  expect(onClick).toHaveBeenCalled();
-
-  fireEvent.keyDown(treeNode, { key: 'Enter' });
-  expect(onKeyDown).toHaveBeenCalled();
 });
