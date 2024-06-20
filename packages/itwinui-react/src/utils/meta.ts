@@ -4,8 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { version } from '../styles.js';
 
-// @ts-expect-error: __module gets injected by SWC
-const module = (__module || 'DEV') as 'ESM' | 'CJS';
+const module: 'ESM' | 'CJS' =
+  // @ts-expect-error: __module gets injected by SWC
+  typeof __module !== 'undefined' ? __module : 'DEV';
 
 /** Meta information about the package. */
 export const meta = {
