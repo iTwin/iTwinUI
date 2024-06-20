@@ -422,9 +422,9 @@ const VirtualizedTree = React.forwardRef(
     const outerProps = {
       className: className,
       style: {
-        ...style,
         minInlineSize: '100%',
         overflow: 'auto',
+        ...style,
       },
     } as React.HTMLAttributes<HTMLElement>;
 
@@ -436,12 +436,7 @@ const VirtualizedTree = React.forwardRef(
     } as React.HTMLAttributes<HTMLElement>;
 
     return (
-      <Box
-        {...{
-          ...outerProps,
-        }}
-        ref={parentRef}
-      >
+      <Box {...outerProps} ref={parentRef}>
         <TreeElement {...innerProps} {...rest} ref={ref}>
           {virtualizer
             .getVirtualItems()
