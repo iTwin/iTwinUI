@@ -25,13 +25,21 @@ const swcOptions = {
   ].join(' -C '),
 
   get esm() {
-    return [this.shared, this.compilerOptions, '-C module.type=es6'].join(' ');
+    return [
+      this.shared,
+      this.compilerOptions,
+      '-C module.type=es6',
+      `-C jsc.transform.optimizer.globals.vars.__module="\'ESM\'"`,
+    ].join(' ');
   },
 
   get cjs() {
-    return [this.shared, this.compilerOptions, '-C module.type=commonjs'].join(
-      ' ',
-    );
+    return [
+      this.shared,
+      this.compilerOptions,
+      '-C module.type=commonjs',
+      `-C jsc.transform.optimizer.globals.vars.__module="\'CJS\'"`,
+    ].join(' ');
   },
 };
 
