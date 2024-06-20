@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, getByTestId, render } from '@testing-library/react';
 
 import { TreeNode } from './TreeNode.js';
 import { type TreeContextProps, TreeContext } from './TreeContext.js';
@@ -319,4 +319,33 @@ it('should render treeNode with  [x]Props correctly', () => {
   expect(expanderIcon).toBeTruthy();
   expect(expanderIcon).toHaveClass('iui-tree-node-content-expander-icon');
   expect(expanderIcon?.style.color).toBe('white');
+});
+
+it('should allow passing event handlers', () => {
+  const onClick = vi.fn();
+  const onKeyDown = vi.fn();
+
+  const { container } = renderComponent(
+    <TreeContext.Provider
+      value={{ nodeDepth: 0, groupSize: 1, indexInGroup: 0 }}
+    >
+      <TreeNode
+        data-testid='test-node'
+        nodeId='testId'
+        label='label'
+        onExpanded={vi.fn()}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      />
+    </TreeContext.Provider>,
+  );
+
+  const treeNode = getByTestId(container, 'test-node');
+  expect(treeNode).toBeTruthy();
+
+  fireEvent.click(treeNode);
+  expect(onClick).toHaveBeenCalled();
+
+  fireEvent.keyDown(treeNode, { key: 'Enter' });
+  expect(onKeyDown).toHaveBeenCalled();
 });
