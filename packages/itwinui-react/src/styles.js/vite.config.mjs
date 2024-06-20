@@ -16,7 +16,7 @@ export default defineConfig({
     minify: true,
     cssMinify: false,
     lib: {
-      entry: path.resolve(__dirname, './classes.mjs'),
+      entry: path.resolve(__dirname, './index.mjs'),
       fileName: (format) => `${format}/styles.js`,
       formats: ['esm', 'cjs'],
     },

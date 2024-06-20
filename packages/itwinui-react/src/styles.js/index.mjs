@@ -9,7 +9,7 @@ import './styles.module.css';
 
 // This proxy converts `iui-` to `_iui3-` in class names with very little code.
 // This is more efficient than exporting the entire mapping of original-to-transformed classes.
-export default new Proxy(
+const styles = new Proxy(
   {},
   {
     get(_, prop) {
@@ -22,3 +22,5 @@ export default new Proxy(
     },
   },
 );
+
+export { styles, version };
