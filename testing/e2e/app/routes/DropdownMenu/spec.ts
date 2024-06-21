@@ -5,11 +5,11 @@ test.describe('DropdownMenu', () => {
   test('should render menu items', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger1');
+    const trigger = page.getByTestId('trigger');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
-    expect(page.locator('.DropdownMenu1')).toBeVisible();
+    expect(page.locator('.DropdownMenu')).toBeVisible();
     expect(page.getByTestId(`Item 1_1`)).toBeVisible();
     expect(page.getByTestId(`Item 1_2`)).toBeVisible();
     expect(page.getByTestId(`Item 1_3`)).toBeVisible();
@@ -20,7 +20,7 @@ test.describe('DropdownMenu', () => {
   test('should support deep level submenus', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger1');
+    const trigger = page.getByTestId('trigger');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -125,12 +125,12 @@ test.describe('DropdownMenu', () => {
   test('should handle keyboard navigation even with non MenuItems', async ({
     page,
   }) => {
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withExtraContent');
 
-    const menu = page.locator('.DropdownMenu2');
+    const menu = page.locator('.DropdownMenu');
     await expect(menu).not.toBeVisible();
 
-    const trigger = page.getByTestId('trigger2');
+    const trigger = page.getByTestId('trigger');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -169,7 +169,7 @@ test.describe('DropdownMenu', () => {
   }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger1');
+    const trigger = page.getByTestId('trigger');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -211,7 +211,7 @@ test.describe('DropdownMenu', () => {
 
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger1');
+    const trigger = page.getByTestId('trigger');
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
@@ -236,13 +236,13 @@ test.describe('DropdownMenu', () => {
   test('should move focus appropriately upon DropdownMenu open and close', async ({
     page,
   }) => {
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withExtraContent');
 
-    const menu = page.locator('.DropdownMenu2');
+    const menu = page.locator('.DropdownMenu');
     await expect(menu).not.toBeVisible();
 
     // Click the trigger
-    const trigger = page.getByTestId('trigger2');
+    const trigger = page.getByTestId('trigger');
     await trigger.click();
     await expect(menu).toBeVisible();
 
