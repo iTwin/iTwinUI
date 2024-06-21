@@ -1,13 +1,11 @@
 import { test, expect, Page } from '@playwright/test';
-import { keyboardPressOptions } from '~/utils/utils.js';
 
 test.describe('DropdownMenu', () => {
   test('should render menu items', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
-    await trigger.focus();
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
 
     await expect(page.locator('.DropdownMenu')).toBeVisible();
     await expect(page.getByTestId(`Item 1_1`)).toBeVisible();
@@ -20,8 +18,7 @@ test.describe('DropdownMenu', () => {
   test('should support deep level submenus', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
-    await trigger.focus();
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
@@ -130,8 +127,7 @@ test.describe('DropdownMenu', () => {
     const menu = page.locator('.DropdownMenu');
     await expect(menu).not.toBeVisible();
 
-    const trigger = page.getByTestId('trigger');
-    await trigger.focus();
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
 
     await expect(menu).toBeVisible();
