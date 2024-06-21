@@ -22,30 +22,30 @@ test.describe('DropdownMenu', () => {
 
     const trigger = page.getByTestId('trigger');
     await trigger.focus();
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await page.keyboard.press('Enter');
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
 
     // Go to the deepest level using keyboard
-    await page.keyboard.press('ArrowRight', keyboardPressOptions);
+    await page.keyboard.press('ArrowRight');
     await expect(page.getByTestId('Item 2_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('Item 2_2')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('Item 2_3')).toBeFocused();
 
-    await page.keyboard.press('ArrowRight', keyboardPressOptions);
+    await page.keyboard.press('ArrowRight');
     await expect(page.getByTestId('Item 3_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('Item 3_2')).toBeFocused();
 
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('Item 3_3')).toBeFocused();
 
-    await page.keyboard.press('ArrowRight', keyboardPressOptions);
+    await page.keyboard.press('ArrowRight');
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     // Hovering out of a submenu should not close the entire menu tree
@@ -132,33 +132,33 @@ test.describe('DropdownMenu', () => {
 
     const trigger = page.getByTestId('trigger');
     await trigger.focus();
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await page.keyboard.press('Enter');
 
     await expect(menu).toBeVisible();
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
 
     // Should not loop around when navigating past the first or the last item.
-    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await page.keyboard.press('ArrowUp');
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
 
     // Should skip all checkboxes, disabled items, and separators.
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('FocusTarget-1')).toBeFocused();
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('FocusTarget-2')).toBeFocused();
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('FocusTarget-3')).toBeFocused();
 
     // Should not loop around when navigating past the first or the last item.
-    await page.keyboard.press('ArrowDown', keyboardPressOptions);
+    await page.keyboard.press('ArrowDown');
     await expect(page.getByTestId('FocusTarget-3')).toBeFocused();
 
     // ArrowUp should also work similar to ArrowDown
-    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await page.keyboard.press('ArrowUp');
     await expect(page.getByTestId('FocusTarget-2')).toBeFocused();
-    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await page.keyboard.press('ArrowUp');
     await expect(page.getByTestId('FocusTarget-1')).toBeFocused();
-    await page.keyboard.press('ArrowUp', keyboardPressOptions);
+    await page.keyboard.press('ArrowUp');
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
 
     await page.waitForTimeout(50);
@@ -232,36 +232,36 @@ test.describe('DropdownMenu', () => {
     page,
   }) => {
     const goToTheDeepestLevel = async () => {
-      await page.keyboard.press('ArrowRight', keyboardPressOptions);
-      await page.keyboard.press('ArrowDown', keyboardPressOptions);
-      await page.keyboard.press('ArrowDown', keyboardPressOptions);
-      await page.keyboard.press('ArrowRight', keyboardPressOptions);
-      await page.keyboard.press('ArrowDown', keyboardPressOptions);
-      await page.keyboard.press('ArrowDown', keyboardPressOptions);
-      await page.keyboard.press('ArrowRight', keyboardPressOptions);
+      await page.keyboard.press('ArrowRight', { delay: 30 });
+      await page.keyboard.press('ArrowDown', { delay: 30 });
+      await page.keyboard.press('ArrowDown', { delay: 30 });
+      await page.keyboard.press('ArrowRight', { delay: 30 });
+      await page.keyboard.press('ArrowDown', { delay: 30 });
+      await page.keyboard.press('ArrowDown', { delay: 30 });
+      await page.keyboard.press('ArrowRight', { delay: 30 });
     };
 
     await page.goto('/DropdownMenu');
 
     const trigger = page.getByTestId('trigger');
     await trigger.focus();
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await page.keyboard.press('Enter');
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await goToTheDeepestLevel();
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
-    await page.keyboard.press('Escape', keyboardPressOptions);
+    await page.keyboard.press('Escape');
     await expect(page.locator('.iui-menu')).not.toBeVisible();
 
     await trigger.focus();
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await page.keyboard.press('Enter');
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await goToTheDeepestLevel();
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
-    await page.keyboard.press('Tab', keyboardPressOptions);
+    await page.keyboard.press('Tab');
     await expect(page.locator('.iui-menu')).not.toBeVisible();
   });
 
@@ -287,7 +287,7 @@ test.describe('DropdownMenu', () => {
     await expect(trigger).toBeFocused();
 
     // Focus the trigger and press Enter
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await page.keyboard.press('Enter');
     await expect(menu).toBeVisible();
 
     // Opening the menu with a keyboard press should focus the first focusable item.
