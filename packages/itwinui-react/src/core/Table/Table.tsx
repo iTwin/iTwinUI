@@ -938,13 +938,14 @@ export const Table = <
   return (
     <TableColumnsContext.Provider value={columns}>
       <Box
-        ref={useMergedRefs(tableRef, (element) => {
-          ownerDocument.current = element?.ownerDocument;
-          resizeRef(element);
-          if (enableVirtualization) {
-            setTableElement(element);
-          }
-        })}
+        ref={useMergedRefs<HTMLDivElement>(
+          tableRef,
+          setTableElement,
+          (element) => {
+            ownerDocument.current = element?.ownerDocument;
+            resizeRef(element);
+          },
+        )}
         id={id}
         {...getTableProps({
           className: cx('iui-table', className),
