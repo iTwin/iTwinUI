@@ -174,7 +174,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await expect(page.getByTestId('Item 2_1')).toBeVisible();
 
-    // toggle on and off
+    // toggle off and on
     await page.getByTestId('Item 1_1').click();
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await expect(page.getByTestId('Item 2_1')).toBeHidden();
@@ -187,7 +187,7 @@ test.describe('DropdownMenu', () => {
     await outside.click();
     await expect(page.getByTestId('Item 1_1')).toBeHidden();
 
-    // click again to open
+    // click again to open whole menu
     await trigger.click();
 
     await expect(page.getByTestId('Item 1_1')).toBeVisible();
@@ -196,9 +196,7 @@ test.describe('DropdownMenu', () => {
   test('should respect the keyboard enter/space triggers', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
-
-    // open the whole menu
+    // open the whole menu (using Enter)
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
@@ -210,10 +208,9 @@ test.describe('DropdownMenu', () => {
 
     // close and start over
     await page.keyboard.press('Escape');
-    await expect(trigger).toBeFocused();
     await expect(page.getByTestId('Item 1_1')).not.toBeVisible();
 
-    // open the menu (using Space)
+    // open the whole menu (using Space)
     await page.keyboard.press('Space', { delay: 30 });
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await expect(page.getByTestId('Item 2_1')).not.toBeVisible();
@@ -224,7 +221,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 2_1')).toBeVisible();
   });
 
-  test('should close entire menu on pressing escape or tab key', async ({
+  test('should close entire menu on pressing escape or tab key and move focus back to the trigger', async ({
     page,
   }) => {
     const goToTheDeepestLevel = async () => {
@@ -239,8 +236,7 @@ test.describe('DropdownMenu', () => {
 
     await page.goto('/DropdownMenu');
 
-    const trigger = page.getByTestId('trigger');
-    await trigger.focus();
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
@@ -248,9 +244,11 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     await page.keyboard.press('Escape');
+
+    const trigger = page.getByTestId('trigger');
+    await expect(trigger).toBeFocused();
     await expect(page.locator('.DropdownMenu')).not.toBeVisible();
 
-    await trigger.focus();
     await page.keyboard.press('Enter');
 
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
@@ -258,6 +256,8 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     await page.keyboard.press('Tab');
+
+    await expect(trigger).toBeFocused();
     await expect(page.locator('.DropdownMenu')).not.toBeVisible();
   });
 
@@ -277,7 +277,7 @@ test.describe('DropdownMenu', () => {
     // Opening the menu with a mouse click should keep the focus on the trigger itself.
     await expect(trigger).toBeFocused();
 
-    // Close the menu
+    // Close the menu by clicking trigger
     await trigger.click();
     await expect(menu).not.toBeVisible();
     await expect(trigger).toBeFocused();
@@ -288,6 +288,8 @@ test.describe('DropdownMenu', () => {
 
     // Opening the menu with a keyboard press should focus the first focusable item.
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
+
+    // Close the menu with Tab
   });
 });
 
