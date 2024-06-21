@@ -207,12 +207,12 @@ export const Menu = React.forwardRef((props, ref) => {
   const close = React.useCallback(() => {
     setVisible(false);
 
-    // If not in a FloatingTree, focus the trigger when the menu is closed
-    // If in a `FloatingTree`, focus should not move back to the trigger since `MenuItem`s handle the focus.
-    if (tree == null) {
+    // Focus back the trigger when not in a FloatingTree submenu
+    // Since focusing the trigger when in a submenu causes abrupt focus jumps when moving between siblings with submenus
+    if (parentId == null) {
       triggerRef.current?.focus({ preventScroll: true });
     }
-  }, [setVisible, tree]);
+  }, [parentId, setVisible]);
 
   useSyncExternalStore(
     React.useCallback(() => {
