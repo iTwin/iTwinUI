@@ -938,13 +938,14 @@ export const Table = <
   return (
     <TableColumnsContext.Provider value={columns}>
       <Box
-        ref={useMergedRefs(tableRef, (element) => {
-          ownerDocument.current = element?.ownerDocument;
-          resizeRef(element);
-          if (enableVirtualization) {
-            setTableElement(element);
-          }
-        })}
+        ref={useMergedRefs<HTMLDivElement>(
+          tableRef,
+          setTableElement,
+          (element) => {
+            ownerDocument.current = element?.ownerDocument;
+            resizeRef(element);
+          },
+        )}
         id={id}
         {...getTableProps({
           className: cx('iui-table', className),
@@ -1152,11 +1153,19 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <ShadowRoot>
+            {enableVirtualization ? (
+              <div {...outerProps}>
+                <slot />
+              </div>
+            ) : (
+              <slot />
+            )}
+          </ShadowRoot>
           {data.length !== 0 && (
             <>
-              {enableVirtualization ? (
-                <div {...outerProps}>
-                  {virtualizer
+              {enableVirtualization
+                ? virtualizer
                     .getVirtualItems()
                     .map((virtualItem) =>
                       virtualizedItemRenderer(
@@ -1164,11 +1173,8 @@ export const Table = <
                         virtualItem,
                         virtualizer,
                       ),
-                    )}
-                </div>
-              ) : (
-                page.map((_, index) => getPreparedRow(index))
-              )}
+                    )
+                : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
           {isLoading && data.length === 0 && (
