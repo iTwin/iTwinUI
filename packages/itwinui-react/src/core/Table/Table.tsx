@@ -1156,17 +1156,22 @@ export const Table = <
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
-                <div {...outerProps}>
-                  {virtualizer
-                    .getVirtualItems()
-                    .map((virtualItem) =>
-                      virtualizedItemRenderer(
-                        virtualItem.index,
-                        virtualItem,
-                        virtualizer,
-                      ),
-                    )}
-                </div>
+                <>
+                  <ShadowRoot>
+                    <slot />
+                  </ShadowRoot>
+                  <div {...outerProps}>
+                    {virtualizer
+                      .getVirtualItems()
+                      .map((virtualItem) =>
+                        virtualizedItemRenderer(
+                          virtualItem.index,
+                          virtualItem,
+                          virtualizer,
+                        ),
+                      )}
+                  </div>
+                </>
               ) : (
                 page.map((_, index) => getPreparedRow(index))
               )}
