@@ -164,36 +164,68 @@ test.describe('DropdownMenu', () => {
     await page.waitForTimeout(50);
   });
 
-  test('should respect click and keyboard enter/space triggers', async ({
-    page,
-  }) => {
+  test('should respect the click trigger', async ({ page }) => {
     await page.goto('/DropdownMenu');
 
+    // open the whole menu
     const trigger = page.getByTestId('trigger');
-    await trigger.focus();
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    await trigger.click();
 
-    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 1_1')).toBeVisible();
 
+    // open the sub-menu
     await page.getByTestId('Item 1_1').click();
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await expect(page.getByTestId('Item 2_1')).toBeVisible();
 
+    // toggle on and off
     await page.getByTestId('Item 1_1').click();
     await expect(page.getByTestId('Item 1_1')).toBeFocused();
     await expect(page.getByTestId('Item 2_1')).toBeHidden();
+    await page.getByTestId('Item 1_1').click();
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeVisible();
 
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    // click outside to close
+    const outside = page.getByTestId('outside');
+    await outside.click();
+    await expect(page.getByTestId('Item 1_1')).toBeHidden();
+
+    // click again to open
+    await trigger.click();
+
+    await expect(page.getByTestId('Item 1_1')).toBeVisible();
+  });
+
+  test('should respect the keyboard enter/space triggers', async ({ page }) => {
+    await page.goto('/DropdownMenu');
+
+    const trigger = page.getByTestId('trigger');
+
+    // open the whole menu
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).not.toBeVisible();
+
+    // open the sub-menu (using Enter)
+    await page.keyboard.press('Enter');
     await expect(page.getByTestId('Item 2_1')).toBeFocused();
 
-    await page.keyboard.press('ArrowLeft', keyboardPressOptions);
-    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    // close and start over
+    await page.keyboard.press('Escape');
+    await expect(trigger).toBeFocused();
+    await expect(page.getByTestId('Item 1_1')).not.toBeVisible();
 
-    await page.keyboard.press('Enter', keyboardPressOptions);
+    // open the menu (using Space)
+    await page.keyboard.press('Space', { delay: 30 });
+    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).not.toBeVisible();
+
+    // open the sub-menu (using Space)
+    await page.keyboard.press('Space');
     await expect(page.getByTestId('Item 2_1')).toBeFocused();
-
-    await page.keyboard.press('ArrowLeft', keyboardPressOptions);
-    await expect(page.getByTestId('Item 1_1')).toBeFocused();
+    await expect(page.getByTestId('Item 2_1')).toBeVisible();
   });
 
   test('should close entire menu on pressing escape or tab key', async ({
