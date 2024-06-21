@@ -9,6 +9,7 @@ import {
   getFocusableElements,
   mergeEventHandlers,
   SvgChevronLeft,
+  useControlledState,
   useMergedRefs,
   type PolymorphicForwardRefComponent,
 } from '../../utils/index.js';
@@ -19,8 +20,14 @@ import { Text } from '../Typography/Text.js';
 
 type PanelWrapperProps = {
   defaultActiveId: string;
+  /** Useful for controlled mode */
+  activeId?: string;
+  /** Useful for controlled mode */
+  onActiveIdChange?: (newActiveId: string) => void;
   children: React.ReactNode;
 };
+
+type TriggerMapEntry = { triggerId: string; panelId: string };
 
 /**
  * TODO: Proper JSDocs
@@ -32,16 +39,21 @@ type PanelWrapperProps = {
  * Example usages go here!
  */
 const PanelWrapper = React.forwardRef((props, forwardedRef) => {
-  const { defaultActiveId, children, ...rest } = props;
+  const { defaultActiveId, children, activeId, onActiveIdChange, ...rest } =
+    props;
 
-  const [expandedId, setExpandedId] = React.useState(defaultActiveId);
-  const triggers = React.useRef(
-    new Map<string, { triggerId: string; panelId: string }>(),
+  // const [expandedId, setExpandedId] = React.useState(defaultActiveId);
+  const [expandedId, setExpandedId] = useControlledState(
+    defaultActiveId,
+    activeId,
+    onActiveIdChange,
   );
 
-  if (expandedId === undefined) {
-    setExpandedId(defaultActiveId);
-  }
+  const triggers = React.useRef(new Map<string, TriggerMapEntry>());
+
+  // if (expandedId === undefined) {
+  //   setExpandedId(defaultActiveId);
+  // }
 
   return (
     <PanelWrapperContext.Provider
@@ -89,7 +101,9 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
 
-  const { expandedId } = React.useContext(PanelWrapperContext) || {};
+  const { expandedId, triggers } = React.useContext(PanelWrapperContext) || {};
+
+  const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
   // React.useEffect(() => {
   //   // Every 1 second, focus itself
@@ -107,6 +121,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     <PanelContext.Provider
       value={{
         id,
+        associatedTrigger,
       }}
     >
       <Box
@@ -129,6 +144,7 @@ Panel.displayName = 'Panel';
 const PanelContext = React.createContext<
   | {
       id: string;
+      associatedTrigger: TriggerMapEntry | undefined;
     }
   | undefined
 >(undefined);
@@ -209,9 +225,12 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
 
+  const { associatedTrigger: panelAssociatedTrigger } =
+    React.useContext(PanelContext) || {};
+
   return (
     <Flex ref={forwardedRef} {...rest}>
-      <PanelBackButton />
+      {panelAssociatedTrigger && <PanelBackButton />}
       <Text
         as='h2'
         tabIndex={-1}
@@ -220,7 +239,8 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
         // When a screen-reader user triggers the panel, they should hear the name of the panel announced.
         //
         // Alternate idea: maybe the Panel itself could be focused. But then the panel needs a role and a label.
-        ref={React.useCallback((el: HTMLElement | null) => el?.focus(), [])}
+        // ref={React.useCallback((el: HTMLElement | null) => el?.focus(), [])}
+        // TODO: This focusing should not happen when the Header is set on the Base menu. This should only happen when moving from one menu to another
       >
         {children}
       </Text>
@@ -242,10 +262,9 @@ const PanelBackButton = () => {
   const trigger = !!panelId ? triggers?.current?.get(panelId) : undefined;
 
   const goBack = () => {
-    flushSync(() => setExpandedId?.(trigger?.panelId));
-
-    if (trigger?.triggerId) {
-      document.getElementById(trigger?.triggerId)?.focus();
+    if (trigger?.triggerId != null) {
+      flushSync(() => setExpandedId?.(trigger.panelId));
+      document.getElementById(trigger.triggerId)?.focus();
     }
   };
 

@@ -1,7 +1,20 @@
-import { List, ListItem, Panels, Surface } from '@itwin/itwinui-react';
+import {
+  Divider,
+  Flex,
+  List,
+  ListItem,
+  Panels,
+  Surface,
+  Text,
+} from '@itwin/itwinui-react';
 import React from 'react';
+import { SvgShare } from '@itwin/itwinui-icons-react';
 
 export default function Home() {
+  return <MultiPanelInformationPanel />;
+}
+
+const BasicDemo = () => {
   const basePanelId = React.useId();
   const repeatId = React.useId();
   const qualityPanelId = React.useId();
@@ -76,4 +89,79 @@ export default function Home() {
       </Panels.Wrapper>
     </>
   );
-}
+};
+
+const MultiPanelInformationPanel = () => {
+  const basePanelId = React.useId();
+
+  const pages = Array.from(Array(10).keys()).map((i) => ({
+    id: i,
+    label: `Page ${i}`,
+  }));
+
+  const [activeId, onActiveIdChange] = React.useState(basePanelId);
+
+  return (
+    <Panels.Wrapper
+      defaultActiveId={basePanelId}
+      as={Surface}
+      activeId={activeId}
+      onActiveIdChange={onActiveIdChange}
+      style={{
+        inlineSize: '300px',
+        blockSize: '500px',
+        position: 'relative',
+      }}
+    >
+      <Panels.Panel
+        id={basePanelId}
+        className='HERE'
+        as={List}
+        // TODO: Try having the arrow keys navigation like Tree to allow focusing the share icon button
+        role='tree'
+        style={{}}
+      >
+        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        {pages.map((page) => (
+          <ListItem>
+            <ListItem.Content>
+              <Panels.Trigger for={`${page.id}`}>
+                <ListItem.Action>{page.label}</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem.Content>
+            {/* TODO: Make it to something like an IconButton */}
+            <ListItem.Icon>
+              <SvgShare />
+            </ListItem.Icon>
+          </ListItem>
+        ))}
+      </Panels.Panel>
+
+      {pages.map((page) => (
+        <Panels.Panel
+          id={`${page.id}`}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          style={{
+            blockSize: '100%',
+            display: activeId === `${page.id}` ? undefined : 'none',
+          }}
+        >
+          <Surface.Header as={Panels.Header}>{page.label}</Surface.Header>
+          <Surface.Body
+            as={Flex}
+            flexDirection='column'
+            style={{
+              height: '100%',
+            }}
+          >
+            <Flex.Spacer />
+            <Divider />
+            <Text>{`Footer for page ${page.id}`}</Text>
+          </Surface.Body>
+        </Panels.Panel>
+      ))}
+    </Panels.Wrapper>
+  );
+};
