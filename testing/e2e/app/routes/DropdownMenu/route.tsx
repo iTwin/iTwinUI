@@ -22,6 +22,7 @@ export default () => {
       ) : (
         <DropdownMenuWithSubmenus />
       )}
+      <div data-testid='outside'>Outside</div>
     </>
   );
 };
