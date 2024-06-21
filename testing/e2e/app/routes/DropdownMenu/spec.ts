@@ -248,7 +248,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     await page.keyboard.press('Escape');
-    await expect(page.locator('.iui-menu')).not.toBeVisible();
+    await expect(page.locator('.DropdownMenu')).not.toBeVisible();
 
     await trigger.focus();
     await page.keyboard.press('Enter');
@@ -258,7 +258,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 3_3_1')).toBeFocused();
 
     await page.keyboard.press('Tab');
-    await expect(page.locator('.iui-menu')).not.toBeVisible();
+    await expect(page.locator('.DropdownMenu')).not.toBeVisible();
   });
 
   test('should move focus appropriately upon DropdownMenu open and close', async ({
