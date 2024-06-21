@@ -1153,28 +1153,28 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <ShadowRoot>
+            {enableVirtualization ? (
+              <div {...outerProps}>
+                <slot />
+              </div>
+            ) : (
+              <slot />
+            )}
+          </ShadowRoot>
           {data.length !== 0 && (
             <>
-              {enableVirtualization ? (
-                <>
-                  <ShadowRoot>
-                    <slot />
-                  </ShadowRoot>
-                  <div {...outerProps}>
-                    {virtualizer
-                      .getVirtualItems()
-                      .map((virtualItem) =>
-                        virtualizedItemRenderer(
-                          virtualItem.index,
-                          virtualItem,
-                          virtualizer,
-                        ),
-                      )}
-                  </div>
-                </>
-              ) : (
-                page.map((_, index) => getPreparedRow(index))
-              )}
+              {enableVirtualization
+                ? virtualizer
+                    .getVirtualItems()
+                    .map((virtualItem) =>
+                      virtualizedItemRenderer(
+                        virtualItem.index,
+                        virtualItem,
+                        virtualizer,
+                      ),
+                    )
+                : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
           {isLoading && data.length === 0 && (
