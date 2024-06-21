@@ -9,10 +9,10 @@ test.describe('DropdownMenu', () => {
     await trigger.focus();
     await page.keyboard.press('Enter', keyboardPressOptions);
 
-    expect(page.locator('.DropdownMenu')).toBeVisible();
-    expect(page.getByTestId(`Item 1_1`)).toBeVisible();
-    expect(page.getByTestId(`Item 1_2`)).toBeVisible();
-    expect(page.getByTestId(`Item 1_3`)).toBeVisible();
+    await expect(page.locator('.DropdownMenu')).toBeVisible();
+    await expect(page.getByTestId(`Item 1_1`)).toBeVisible();
+    await expect(page.getByTestId(`Item 1_2`)).toBeVisible();
+    await expect(page.getByTestId(`Item 1_3`)).toBeVisible();
 
     await page.waitForTimeout(50);
   });
