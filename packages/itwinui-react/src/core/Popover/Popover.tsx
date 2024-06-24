@@ -426,12 +426,12 @@ const PopoverPortal = ({
 }: React.PropsWithChildren<PortalProps>) => {
   const portalTo = usePortalTo(portal);
 
-  return portalTo ? (
-    <FloatingPortal key={portalTo.id} root={portalTo}>
+  return (
+    <FloatingPortal key={portalTo?.id} root={portalTo}>
       <DisplayContents />
       {children}
     </FloatingPortal>
-  ) : null;
+  );
 };
 
 // ----------------------------------------------------------------------------
