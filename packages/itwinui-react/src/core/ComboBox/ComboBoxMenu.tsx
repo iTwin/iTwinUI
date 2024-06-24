@@ -30,7 +30,10 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-  //Checks the first five (or all, if there are less than 5) filtered options. If at least three (or all, if there are less than 3 options) have sub labels, sets estimate to 48 instead of 36.
+  /**
+   * Checks the first five (or all, if there are less than 5) filtered options. If at least three (or all, if there are
+   * less than 3 options) have sub labels, returns true.
+   */
   const mostlySubLabeled = React.useMemo(() => {
     let numberOfSubLabels = 0;
     for (let i = 0; i < Math.min(5, filteredOptions.length); i++) {
@@ -59,7 +62,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
-    estimateSize: () => (mostlySubLabeled ? 48 : 36),
+    estimateSize: () => (mostlySubLabeled ? 48 : 36), // Sets estimate to 48 is mostlySubLabeled returns true, else sets estimate to 36.
     scrollToIndex: focusedVisibleIndex,
     gap: -1,
   });
