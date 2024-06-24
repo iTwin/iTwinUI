@@ -168,9 +168,9 @@ export const TreeNode = (props: TreeNodeProps) => {
   } = useTreeContext();
 
   const [isFocused, setIsFocused] = React.useState(false);
-  const nodeRef = React.useRef<HTMLLIElement>(null);
+  const nodeRef = React.useRef<HTMLDivElement>(null);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
       return;
     }
@@ -252,7 +252,7 @@ export const TreeNode = (props: TreeNodeProps) => {
 
   return (
     <Box
-      as='li'
+      as='div'
       role='treeitem'
       className={cx('iui-tree-item', className)}
       id={nodeId}

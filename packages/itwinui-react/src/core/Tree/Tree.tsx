@@ -5,10 +5,11 @@
 import * as React from 'react';
 import {
   getFocusableElements,
-  Box,
   polymorphic,
   cloneElementWithRef,
   useVirtualScroll,
+  ShadowRoot,
+  useMergedRefs,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TreeContext } from './TreeContext.js';
@@ -171,7 +172,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     ...rest
   } = props;
 
-  const treeRef = React.useRef<HTMLUListElement>(null);
+  const treeRef = React.useRef<HTMLDivElement>(null);
 
   const focusedIndex = React.useRef<number>(0);
   React.useEffect(() => {
@@ -186,7 +187,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     ) as HTMLElement[];
   }, []);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
       return;
     }
@@ -372,7 +373,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   );
 };
 
-const TreeElement = polymorphic.ul('iui-tree', {
+const TreeElement = polymorphic.div('iui-tree', {
   role: 'tree',
   tabIndex: 0,
 });
@@ -385,8 +386,8 @@ type VirtualizedTreeProps<T> = {
     virtualizer?: Virtualizer<Element, Element>,
   ) => JSX.Element;
   scrollToIndex?: number;
-  onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
-  onFocus: React.FocusEventHandler<HTMLUListElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
+  onFocus: React.FocusEventHandler<HTMLDivElement>;
 } & CommonProps;
 
 // Having virtualized tree separately prevents from running all virtualization logic
@@ -400,7 +401,7 @@ const VirtualizedTree = React.forwardRef(
       style,
       ...rest
     }: VirtualizedTreeProps<T>,
-    ref: React.ForwardedRef<HTMLUListElement>,
+    ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -436,15 +437,24 @@ const VirtualizedTree = React.forwardRef(
     } as React.HTMLAttributes<HTMLElement>;
 
     return (
-      <Box {...outerProps} ref={parentRef}>
-        <TreeElement {...innerProps} {...rest} ref={ref}>
+      <TreeElement
+        {...outerProps}
+        {...rest}
+        ref={useMergedRefs(ref, parentRef)}
+      >
+        <ShadowRoot>
+          <div {...innerProps}>
+            <slot />
+          </div>
+        </ShadowRoot>
+        <>
           {virtualizer
             .getVirtualItems()
             .map((virtualItem) =>
               itemRenderer(virtualItem.index, virtualItem, virtualizer),
             )}
-        </TreeElement>
-      </Box>
+        </>
+      </TreeElement>
     );
   },
 );
