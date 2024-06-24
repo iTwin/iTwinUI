@@ -11,6 +11,7 @@ import {
   Portal,
   Box,
   useVirtualScroll,
+  ShadowRoot,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
@@ -85,19 +86,26 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   );
 
   return (
-    <Box
-      as='div'
-      {...rest}
-      style={{
-        minBlockSize: virtualizer.getTotalSize(),
-        minInlineSize: '100%',
-        ...props.style,
-      }}
-    >
-      {virtualizer.getVirtualItems().map((virtualItem) => {
-        return virtualItemRenderer(virtualItem);
-      })}
-    </Box>
+    <>
+      <ShadowRoot>
+        <Box
+          as='div'
+          {...rest}
+          style={{
+            minBlockSize: virtualizer.getTotalSize(),
+            minInlineSize: '100%',
+            ...props.style,
+          }}
+        >
+          <slot />
+        </Box>
+      </ShadowRoot>
+      <>
+        {virtualizer.getVirtualItems().map((virtualItem) => {
+          return virtualItemRenderer(virtualItem);
+        })}
+      </>
+    </>
   );
 };
 
