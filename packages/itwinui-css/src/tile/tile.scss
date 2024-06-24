@@ -355,19 +355,21 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-thumbnail-button {
   border-radius: 50%;
 
-  @include mixins.iui-blur($opacity: 5);
-  --_iui-field-color-icon: var(--iui-color-white);
-  --_iui-field-color-icon-hover: var(--iui-color-white);
+  .iui-tile-thumbnail-picture ~ & {
+    @include mixins.iui-blur($opacity: 5);
+    --_iui-field-color-icon: var(--iui-color-white);
+    --_iui-field-color-icon-hover: var(--iui-color-white);
 
-  > .iui-button-icon {
-    filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
-  }
+    > .iui-button-icon {
+      filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
+    }
 
-  &:hover,
-  &[data-iui-active='true']:enabled,
-  &[data-iui-active='true']:enabled:hover,
-  &[data-iui-active='true']:active {
-    background-color: rgba(0, 0, 0, var(--iui-opacity-4));
+    &:hover,
+    &[data-iui-active='true']:enabled,
+    &[data-iui-active='true']:enabled:hover,
+    &[data-iui-active='true']:active {
+      background-color: rgba(0, 0, 0, var(--iui-opacity-4));
+    }
   }
 }
 
