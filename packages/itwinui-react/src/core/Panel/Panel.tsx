@@ -8,15 +8,18 @@ import {
   cloneElementWithRef,
   getFocusableElements,
   mergeEventHandlers,
+  mergeRefs,
   SvgChevronLeft,
   useControlledState,
   useMergedRefs,
+  useResizeObserver,
   type PolymorphicForwardRefComponent,
 } from '../../utils/index.js';
 import { flushSync } from 'react-dom';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
+import cx from 'classnames';
 
 type PanelWrapperProps = {
   defaultActiveId: string;
@@ -39,8 +42,15 @@ type TriggerMapEntry = { triggerId: string; panelId: string };
  * Example usages go here!
  */
 const PanelWrapper = React.forwardRef((props, forwardedRef) => {
-  const { defaultActiveId, children, activeId, onActiveIdChange, ...rest } =
-    props;
+  const {
+    defaultActiveId,
+    children,
+    activeId,
+    className,
+    onActiveIdChange,
+    style,
+    ...rest
+  } = props;
 
   // const [expandedId, setExpandedId] = React.useState(defaultActiveId);
   const [expandedId, setExpandedId] = useControlledState(
@@ -48,6 +58,10 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
     activeId,
     onActiveIdChange,
   );
+
+  const [history, setHistory] = React.useState([defaultActiveId]);
+  const [width, setWidth] = React.useState(0); // TODO: Start off with real width
+  const [resizeObserverRef] = useResizeObserver((size) => setWidth(size.width));
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
@@ -62,9 +76,21 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
         setExpandedId,
         triggers,
         // setTriggers,
+        history,
+        setHistory,
+        width,
       }}
     >
-      <Box ref={forwardedRef} {...rest}>
+      <div>{history}</div>
+      <Box
+        ref={mergeRefs(forwardedRef, resizeObserverRef)}
+        {...rest}
+        className={cx('iui-panel-wrapper', className)}
+        style={{
+          transitionDuration: '200ms',
+          ...style,
+        }}
+      >
         {children}
       </Box>
     </PanelWrapperContext.Provider>
@@ -85,6 +111,9 @@ const PanelWrapperContext = React.createContext<
       //     Map<string, { triggerId: string; panelId: string }>
       //   >
       // >;
+      history: string[];
+      setHistory: React.Dispatch<React.SetStateAction<string[]>>;
+      width: number;
     }
   | undefined
 >(undefined);
@@ -96,12 +125,21 @@ type PanelProps = {
 };
 
 const Panel = React.forwardRef((props, forwardedRef) => {
-  const { id: idProp, ...rest } = props;
+  const { id: idProp, children, className, style, ...rest } = props;
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
 
-  const { expandedId, triggers } = React.useContext(PanelWrapperContext) || {};
+  const {
+    expandedId,
+    triggers,
+    history,
+    width: panelWrapperWidth,
+  } = React.useContext(PanelWrapperContext) || {};
+
+  panelWrapperWidth;
+
+  console.log('style', style);
 
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
@@ -117,6 +155,17 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   //   return () => clearInterval(interval);
   // }, [id, expandedId]);
 
+  const historyIndex =
+    history != null
+      ? history?.findIndex((historyItemId) => historyItemId === id)
+      : -1;
+  const historyOffset =
+    historyIndex !== -1 && history != null
+      ? historyIndex - (history.length - 1)
+      : null;
+
+  historyOffset;
+
   return (
     <PanelContext.Provider
       value={{
@@ -124,6 +173,12 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         associatedTrigger,
       }}
     >
+      {/* <Transition
+        in={id === expandedId}
+        timeout={{ exit: 400 }}
+        // mountOnEnter
+        // unmountOnExit
+      > */}
       <Box
         ref={useMergedRefs(
           forwardedRef,
@@ -135,7 +190,24 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         id={id}
         hidden={id !== expandedId}
         {...rest}
-      />
+        className={cx('iui-panel', className, {
+          'iui-panel-visible': id === expandedId,
+        })}
+        // className='HERE'
+        style={{
+          // transform: id === history?.[-1] ? 'translate(100px)' : undefined,
+          // transform:
+          //   historyOffset != null
+          //     ? `translate(${(panelWrapperWidth ?? 0) * historyOffset}px`
+          //     : undefined,
+          // display: history?.includes(id) ? undefined : 'none',
+          ...style,
+        }}
+      >
+        <div>{id}</div>
+        {children}
+      </Box>
+      {/* </Transition> */}
     </PanelContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelProps>;
@@ -192,6 +264,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     // This prevents empty panels with no way to go back.
     if (!!document.getElementById(forProp)) {
       flushSync(() => panelWrapperContext?.setExpandedId(forProp));
+      panelWrapperContext?.setHistory((prev) => [...prev, forProp]);
 
       // Focus the first focusable element in the panel.
       // This is useful for screen-reader users.
@@ -264,6 +337,9 @@ const PanelBackButton = () => {
   const goBack = () => {
     if (trigger?.triggerId != null) {
       flushSync(() => setExpandedId?.(trigger.panelId));
+      panelWrapperContext?.setHistory((prev) =>
+        [...prev].slice(0, prev.length - 1),
+      );
       document.getElementById(trigger.triggerId)?.focus();
     }
   };

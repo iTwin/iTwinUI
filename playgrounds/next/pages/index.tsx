@@ -143,10 +143,12 @@ const MultiPanelInformationPanel = () => {
           as={Flex}
           flexDirection='column'
           alignItems='stretch'
-          style={{
-            blockSize: '100%',
-            display: activeId === `${page.id}` ? undefined : 'none',
-          }}
+          style={
+            {
+              // blockSize: '100%',
+              // display: activeId === `${page.id}` ? undefined : 'none',
+            }
+          }
         >
           <Surface.Header as={Panels.Header}>{page.label}</Surface.Header>
           <Surface.Body

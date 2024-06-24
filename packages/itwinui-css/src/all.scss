@@ -31,6 +31,7 @@
   @include meta.load-css('menu/menu');
   @include meta.load-css('non-ideal-state/non-ideal-state');
   @include meta.load-css('overlay/overlay');
+  @include meta.load-css('panel/panel');
   @include meta.load-css('progress-indicator/progress-indicator');
   @include meta.load-css('radio/radio');
   @include meta.load-css('radio-tile/radio-tile');
