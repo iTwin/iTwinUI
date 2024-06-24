@@ -13,7 +13,7 @@ import type {
   TableKeyedProps,
   TableState,
 } from '../../../react-table/react-table.js';
-import styles from '../../../styles.js';
+import { styles } from '../../../styles.js';
 
 const REORDER_ACTIONS = {
   columnDragStart: 'columnDragStart',

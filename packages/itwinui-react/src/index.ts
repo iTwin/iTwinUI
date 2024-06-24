@@ -213,3 +213,5 @@ export { Flex } from './core/Flex/Flex.js';
 export { Popover } from './core/Popover/Popover.js';
 
 export { Divider } from './core/Divider/Divider.js';
+
+export { meta } from './utils/meta.js';

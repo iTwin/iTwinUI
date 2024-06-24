@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState } from 'react';
 import {
   ColorPicker,
   IconButton,
@@ -55,9 +55,9 @@ const ColorsList = [
 ];
 
 export const Basic = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [activeColor, setActiveColor] = React.useState(ColorsList[5]);
-  const [colorName, setColorName] = React.useState(ColorsList[5].name);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeColor, setActiveColor] = useState(ColorsList[5]);
+  const [colorName, setColorName] = useState(ColorsList[5].name);
 
   const onColorChanged = (color: ColorValue) => {
     const hexString = color.toHexString();
@@ -97,15 +97,15 @@ export const Basic = () => {
 };
 
 export const Advanced = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedColor, setSelectedColor] = React.useState<ColorValue>(
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<ColorValue>(
     ColorValue.create({ h: 0, s: 100, l: 50 }),
   );
 
   const formats = ['hsl', 'rgb', 'hex'] as const;
-  const [currentFormat, setCurrentFormat] = React.useState<
-    (typeof formats)[number]
-  >(formats[0]);
+  const [currentFormat, setCurrentFormat] = useState<(typeof formats)[number]>(
+    formats[0],
+  );
 
   const onColorChanged = (color: ColorValue) => {
     setSelectedColor(color);
@@ -176,15 +176,15 @@ export const Advanced = () => {
 };
 
 export const WithAlpha = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedColor, setSelectedColor] = React.useState<ColorValue>(
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<ColorValue>(
     ColorValue.create({ r: 90, g: 105, b: 115, a: 0.4 }),
   );
 
   const formats = ['hsl', 'rgb', 'hex'] as const;
-  const [currentFormat, setCurrentFormat] = React.useState<
-    (typeof formats)[number]
-  >(formats[0]);
+  const [currentFormat, setCurrentFormat] = useState<(typeof formats)[number]>(
+    formats[0],
+  );
 
   const onColorChanged = (color: ColorValue) => {
     setSelectedColor(color);
