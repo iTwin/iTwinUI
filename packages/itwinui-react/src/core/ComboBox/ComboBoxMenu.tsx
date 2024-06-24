@@ -18,7 +18,7 @@ import { List } from '../List/List.js';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
-  'onClick'
+  'onClick' | 'trigger'
 > &
   React.ComponentPropsWithoutRef<'div'>;
 
