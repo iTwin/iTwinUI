@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': minor
+'@itwin/itwinui-react': patch
 ---
 
-`Tile.IconButton` now has the `.iui-tile-thumbnail-button` class, fixing a hover state icon fill bug.
+Fixed a small visual bug in `Tile.IconButton` where the hover state wasn't working.
