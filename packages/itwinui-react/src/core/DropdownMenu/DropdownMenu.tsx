@@ -3,14 +3,26 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { mergeEventHandlers, useControlledState } from '../../utils/index.js';
+import {
+  useMergedRefs,
+  Portal,
+  cloneElementWithRef,
+  useControlledState,
+  mergeRefs,
+  mergeEventHandlers,
+} from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
-import { usePopover } from '../Popover/Popover.js';
-import { FloatingTree } from '@floating-ui/react';
+import { PopoverOpenContext, usePopover } from '../Popover/Popover.js';
+import {
+  FloatingNode,
+  FloatingTree,
+  useFloatingNodeId,
+} from '@floating-ui/react';
+import { MenuItemContext } from '../Menu/MenuItem.js';
 
 export type DropdownMenuProps = {
   /**
@@ -34,6 +46,7 @@ export type DropdownMenuProps = {
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
 > &
+  React.ComponentPropsWithoutRef<'ul'> &
   Pick<PortalProps, 'portal'>;
 
 /**
@@ -84,38 +97,85 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
   );
 
+  const triggerRef = React.useRef<HTMLElement>(null);
+
+  const close = React.useCallback(() => {
+    setVisible(false);
+    triggerRef.current?.focus({ preventScroll: true });
+  }, [setVisible]);
+
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      return menuItems(() => setVisible(false));
+      return menuItems(close);
     }
     return menuItems;
-  }, [menuItems, setVisible]);
+  }, [menuItems, close]);
+
+  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
+    number | null
+  >(null);
+  const focusableNodes = React.useRef<Array<HTMLElement | null>>([]);
+
+  const nodeId = useFloatingNodeId();
+
+  const popover = usePopover({
+    nodeId,
+    visible,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
+    placement,
+    matchWidth,
+    interactions: {
+      listNavigation: {
+        activeIndex: currentFocusedNodeIndex,
+        onNavigate: setCurrentFocusedNodeIndex,
+        listRef: focusableNodes,
+        focusItemOnOpen: true,
+      },
+    },
+  });
+
+  const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
   return (
     <>
-      <Menu
-        trigger={children}
-        onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
-          if (e.defaultPrevented) {
-            return;
-          }
-          if (e.key === 'Tab') {
-            setVisible(false);
-          }
-        })}
-        role={role}
-        ref={forwardedRef}
-        portal={portal}
-        popoverProps={{
-          placement,
-          matchWidth,
-          visible,
-          onVisibleChange: setVisible,
-        }}
-        {...rest}
-      >
-        {menuContent}
-      </Menu>
+      <PopoverOpenContext.Provider value={popover.open}>
+        {cloneElementWithRef(children, (children) => ({
+          ...popover.getReferenceProps(children.props),
+          'aria-expanded': popover.open,
+          ref: mergeRefs(triggerRef, popover.refs.setReference),
+        }))}
+      </PopoverOpenContext.Provider>
+      <FloatingNode id={nodeId}>
+        {popover.open && (
+          <Portal portal={portal}>
+            <MenuItemContext.Provider
+              value={{
+                setCurrentFocusedNodeIndex,
+                focusableNodes,
+              }}
+            >
+              <Menu
+                setFocus={false}
+                {...popover.getFloatingProps({
+                  role,
+                  ...rest,
+                  onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                    if (e.defaultPrevented) {
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      close();
+                    }
+                  }),
+                })}
+                ref={popoverRef}
+              >
+                {menuContent}
+              </Menu>
+            </MenuItemContext.Provider>
+          </Portal>
+        )}
+      </FloatingNode>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;

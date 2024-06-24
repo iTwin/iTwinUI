@@ -7,6 +7,7 @@ import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
 import { SvgColumnManager } from '../../../utils/index.js';
 import { DropdownMenu } from '../../DropdownMenu/DropdownMenu.js';
+import type { DropdownMenuProps } from '../../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../../Buttons/IconButton.js';
 import { MenuItem } from '../../Menu/MenuItem.js';
 import { tableResizeStartAction } from '../Table.js';
@@ -18,12 +19,7 @@ const ACTION_CELL_ID = 'iui-table-action';
 type ActionColumnProps = {
   columnManager?:
     | boolean
-    | {
-        dropdownMenuProps: Omit<
-          React.ComponentPropsWithoutRef<typeof DropdownMenu>,
-          'menuItems' | 'children'
-        >;
-      };
+    | { dropdownMenuProps: Omit<DropdownMenuProps, 'menuItems' | 'children'> };
 };
 
 /**

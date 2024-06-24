@@ -3,13 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { MenuItem } from './MenuItem.js';
 import { Menu } from './Menu.js';
 import { MenuDivider } from './MenuDivider.js';
@@ -19,34 +13,18 @@ import { Button } from '../Buttons/Button.js';
 
 const testLabels = ['Test0', 'Test1', 'Test2'];
 
-async function assertBaseElement(
+function assertBaseElement(
   menu: HTMLElement,
-  {
-    role = 'menu',
-    focusedIndex,
-    labels = testLabels,
-  }: {
-    role?: string;
-    focusedIndex?: number;
-    labels?: string[];
-  } = {},
+  { role = 'menu', focusedIndex = 0, labels = testLabels } = {},
 ) {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual(role);
   const menuItems = menu.querySelectorAll(`[role=${role}] > *`);
   expect(menuItems.length).toBe(labels.length);
-
-  await Promise.all(
-    Array.from(menuItems).map(async (item, index) => {
-      expect(item.textContent).toContain(labels[index]);
-
-      if (focusedIndex != null) {
-        await waitFor(() =>
-          expect(document.activeElement === item).toBe(focusedIndex === index),
-        );
-      }
-    }),
-  );
+  menuItems.forEach((item, index) => {
+    expect(item.textContent).toContain(labels[index]);
+    expect(document.activeElement === item).toBe(focusedIndex === index);
+  });
 }
 
 function renderComponent(
@@ -61,44 +39,31 @@ function renderComponent(
     )),
     ...initialProps,
   };
-
-  return render(
-    <Menu
-      trigger={
-        <Button id='trigger' data-testid='trigger'>
-          Trigger
-        </Button>
-      }
-      {...props}
-    />,
-  );
+  return render(<Menu {...props} />);
 }
 
-/**
- * Toggles the menu by clicking the trigger button.
- */
-const clickTrigger = async () => {
-  const trigger = screen.getByTestId('trigger');
-  await act(async () => trigger.click());
-};
-
-it('should render menu items', async () => {
+it('should render menu items', () => {
   const { container } = renderComponent();
-  await clickTrigger();
 
   const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 });
 
-it('should render menu with custom role', async () => {
+it('should render menu with custom role', () => {
   const { container } = renderComponent({ role: 'listbox' });
-  await clickTrigger();
 
   const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu, { role: 'listbox' });
 });
 
-it('should handle keyboard navigation', async () => {
+it('should focus selected item', () => {
+  const { container } = renderComponent(undefined, 1);
+
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
+  assertBaseElement(menu, { focusedIndex: 1 });
+});
+
+it('should handle keyboard navigation', () => {
   const { container } = renderComponent({
     children: [
       <MenuExtraContent key={0}>Test content</MenuExtraContent>,
@@ -113,15 +78,10 @@ it('should handle keyboard navigation', async () => {
       </MenuItem>,
       <MenuItem key={5}>Test3</MenuItem>,
       <MenuExtraContent key={6}>
-        <Button data-testid='inner-button'>Test4</Button>
+        <Button>Test4</Button>
       </MenuExtraContent>,
     ],
   });
-  const trigger = screen.getByTestId('trigger');
-  trigger.focus();
-  expect(trigger).toHaveFocus();
-  await clickTrigger();
-
   const labels = [
     'Test content',
     'Test0',
@@ -133,97 +93,52 @@ it('should handle keyboard navigation', async () => {
   ];
 
   const menu = container.querySelector('.iui-menu') as HTMLElement;
-  expect(trigger).toHaveFocus();
-  await assertBaseElement(menu, { labels });
-
-  fireEvent.keyDown(menu, { key: 'ArrowDown' });
-
-  await assertBaseElement(menu, { labels, focusedIndex: 1 });
+  assertBaseElement(menu, { labels, focusedIndex: 1 });
 
   // Test0 -> Test1
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
-  await assertBaseElement(menu, { labels, focusedIndex: 2 });
+  assertBaseElement(menu, { labels, focusedIndex: 2 });
   // Test1 -> Test3
   // Should skip checkbox, separator and disabled item
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
-  await assertBaseElement(menu, { labels, focusedIndex: 5 });
+  assertBaseElement(menu, { labels, focusedIndex: 5 });
   // Test3 -> Test4
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
   // Extra content li element is not focused, therefore setting focusedIndex to -1
-  await assertBaseElement(menu, { labels, focusedIndex: -1 });
-  expect(screen.getByTestId('inner-button')).toHaveFocus();
+  assertBaseElement(menu, { labels, focusedIndex: -1 });
+  expect(container.querySelector('.iui-button')).toHaveFocus();
   // Should stay on Test4
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
-  await assertBaseElement(menu, { labels, focusedIndex: -1 });
-  expect(screen.getByTestId('inner-button')).toHaveFocus();
+  assertBaseElement(menu, { labels, focusedIndex: -1 });
+  expect(container.querySelector('.iui-button')).toHaveFocus();
 
   // Test4 -> Test3
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  await assertBaseElement(menu, { labels, focusedIndex: 5 });
+  assertBaseElement(menu, { labels, focusedIndex: 5 });
   // Test3 -> Test1
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  await assertBaseElement(menu, { labels, focusedIndex: 2 });
+  assertBaseElement(menu, { labels, focusedIndex: 2 });
   // Test1 -> Test0
   // Should skip separator and disabled item
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  await assertBaseElement(menu, { labels, focusedIndex: 1 });
+  assertBaseElement(menu, { labels, focusedIndex: 1 });
   // Should stay on Test0
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  await assertBaseElement(menu, { labels, focusedIndex: 1 });
+  assertBaseElement(menu, { labels, focusedIndex: 1 });
 });
 
-it('should add custom className', async () => {
+it('should add custom className', () => {
   const { container } = renderComponent({ className: 'test-className' });
-  await clickTrigger();
 
   const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.classList).toContain('test-className');
 });
 
-it('should add custom style', async () => {
+it('should add custom style', () => {
   const { container } = renderComponent({ style: { color: 'red' } });
-  await clickTrigger();
 
   const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.style.color).toEqual('red');
-});
-
-it('should keep focus on the trigger when opening the menu using the mouse', async () => {
-  const { container } = renderComponent();
-
-  const trigger = screen.getByTestId('trigger');
-  trigger.focus();
-  expect(trigger).toHaveFocus();
-
-  await clickTrigger();
-
-  const menu = container.querySelector('.iui-menu') as HTMLElement;
-  assertBaseElement(menu);
-  expect(trigger).toHaveFocus();
-});
-
-it('should automatically handle conditional rendering', async () => {
-  const { container } = render(
-    <Menu trigger={<Button data-testid='trigger'>Trigger</Button>}>
-      <MenuItem id='item-0'>Test0</MenuItem>
-      <MenuItem id='item-1'>Test1</MenuItem>
-      <MenuItem id='item-2'>Test2</MenuItem>
-    </Menu>,
-  );
-
-  expect(container.querySelector('.iui-menu')).toBeFalsy();
-  for (let i = 0; i < 3; i++) {
-    expect(container.querySelector(`#item-${i}`)).toBeFalsy();
-  }
-
-  await clickTrigger();
-
-  await waitFor(() =>
-    expect(container.querySelector('.iui-menu')).toBeVisible(),
-  );
-  for (let i = 0; i < 3; i++) {
-    expect(container.querySelector(`#item-${i}`)).toBeVisible();
-  }
 });

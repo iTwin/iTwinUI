@@ -44,8 +44,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   border-radius: var(--iui-border-radius-1);
   list-style-type: none;
   position: relative;
-  inline-size: 100%;
-  text-align: start;
 
   + #{&} {
     margin-block-start: -1px;
