@@ -16,7 +16,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 import { List } from '../List/List.js';
-import { type VirtualItem } from '@tanstack/react-virtual';
+import type { VirtualItem } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
