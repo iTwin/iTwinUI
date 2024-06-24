@@ -111,6 +111,8 @@ export { NotificationMarker } from './core/NotificationMarker/NotificationMarker
 
 export { Overlay } from './core/Overlay/Overlay.js';
 
+export { Panels } from './core/Panel/Panel.js';
+
 export { ProgressLinear } from './core/ProgressIndicators/ProgressLinear.js';
 export { ProgressRadial } from './core/ProgressIndicators/ProgressRadial.js';
 

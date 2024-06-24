@@ -173,4 +173,14 @@ $iui-icon-sizes: (
       opacity: 1;
     }
   }
+
+  @keyframes iui-slide-left {
+    from {
+      transform: translateX(10%);
+    }
+
+    to {
+      transform: translateX(0%);
+    }
+  }
 }
