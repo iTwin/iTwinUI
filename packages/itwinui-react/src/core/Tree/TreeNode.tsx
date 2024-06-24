@@ -21,7 +21,10 @@ type TreeNodeProps = {
    */
   nodeId: string;
   /**
-   * Props for treeNode
+   * Props for main node inside the treeitem (excluding the sub-tree).
+   *
+   * If you need to customize the root node instead, pass top-level props
+   * directly to the `TreeNode` component.
    */
   nodeProps?: React.ComponentProps<'div'>;
   /**
