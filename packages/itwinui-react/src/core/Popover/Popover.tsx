@@ -29,7 +29,6 @@ import {
 import type {
   SizeOptions,
   Placement,
-  ReferenceType,
   UseFloatingOptions,
   UseHoverProps,
   UseClickProps,
@@ -129,7 +128,7 @@ type PopoverInternalProps = {
   interactions?: {
     click?: boolean | Omit<UseClickProps, 'enabled'>;
     dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
-    hover?: boolean | Omit<UseHoverProps<ReferenceType>, 'enabled'>;
+    hover?: boolean | Omit<UseHoverProps, 'enabled'>;
     focus?: boolean | Omit<UseFocusProps, 'enabled'>;
   };
   role?: 'dialog' | 'menu' | 'listbox';
