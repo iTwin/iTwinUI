@@ -65,7 +65,13 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             return;
           }
 
-          if (focusedIndexRef.current === -1) {
+          if (
+            focusedIndexRef.current === -1 ||
+            (enableVirtualization &&
+              !menuRef.current?.querySelector(
+                `[data-iui-index="${focusedIndexRef.current}"]`,
+              ))
+          ) {
             const currentElement =
               menuRef.current?.querySelector('[data-iui-index]');
             return setFocusedIndex(
@@ -106,6 +112,26 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           }
 
           if (length === 0) {
+            return;
+          }
+
+          if (
+            enableVirtualization &&
+            !menuRef.current?.querySelector(
+              `[data-iui-index="${focusedIndexRef.current}"]`,
+            )
+          ) {
+            const renderedOptions =
+              menuRef.current?.querySelectorAll('[data-iui-index]');
+            if (renderedOptions && renderedOptions.length > 0) {
+              return setFocusedIndex(
+                Number(
+                  renderedOptions[renderedOptions.length - 1].getAttribute(
+                    'data-iui-index',
+                  ),
+                ),
+              );
+            }
             return;
           }
 
