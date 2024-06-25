@@ -43,8 +43,7 @@
     "esm",
     "styles.css",
     "CHANGELOG.md",
-    "LICENSE.md",
-    "react-table.d.ts"
+    "LICENSE.md"
   ],
   "description": "A react component library for iTwinUI",
   "homepage": "https://github.com/iTwin/iTwinUI",
