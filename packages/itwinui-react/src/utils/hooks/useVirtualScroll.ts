@@ -3,7 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { useVirtualizer, type Virtualizer } from '@tanstack/react-virtual';
+import { useVirtualizer } from '@tanstack/react-virtual';
+import type { Virtualizer } from '@tanstack/react-virtual';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import * as React from 'react';
 
@@ -12,7 +13,7 @@ import * as React from 'react';
  * `data-iui-index` and adds a `useLayoutEffect` for scrolling to a provided index on render.
  *
  * @example
- * const virtualizer = useVirtualScroll(item.length, () => parentRef.current, () => 30, scrollToIndex);
+ * const virtualizer = useVirtualScroll({count: item.length, getScrollElement: () => parentRef.current, estimateSize: () => 30, scrollToIndex});
  */
 export const useVirtualScroll = (params: {
   count: number;

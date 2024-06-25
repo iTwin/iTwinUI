@@ -154,7 +154,9 @@ test.describe('ComboBox', () => {
 
     await page.keyboard.press('Tab');
     const comboBoxList = page.getByRole('listbox');
-    const outerVirtualizedContainer = comboBoxList.locator('div').first();
+    const outerVirtualizedContainer = comboBoxList.locator('>div', {
+      has: page.locator('slot'),
+    });
     const items = page.getByRole('option');
 
     let totalItemsHeight = 0;
