@@ -335,8 +335,8 @@ importers:
   packages/itwinui-react:
     dependencies:
       '@floating-ui/react':
-        specifier: ^0.26.10
-        version: 0.26.10(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^0.26.18
+        version: 0.26.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@itwin/itwinui-illustrations-react':
         specifier: ^2.1.0
         version: 2.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -2172,28 +2172,28 @@ packages:
         integrity: sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==,
       }
 
-  '@floating-ui/react-dom@2.0.8':
+  '@floating-ui/react-dom@2.1.1':
     resolution:
       {
-        integrity: sha512-HOdqOt3R3OGeTKidaLvJKcgg75S6tibQ3Tif4eyd91QnIJWr0NLvoXFpJA/j8HqkFSL68GDca9AuyWEHlhyClw==,
+        integrity: sha512-4h84MJt3CHrtG18mGsXuLCHMrug49d7DFkU0RMIyshRveBeyV2hmV/pDaF2Uxtu8kgq5r46llp5E5FQiR0K2Yg==,
       }
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/react@0.26.10':
+  '@floating-ui/react@0.26.18':
     resolution:
       {
-        integrity: sha512-sh6f9gVvWQdEzLObrWbJ97c0clJObiALsFe0LiR/kb3tDRKwEhObASEH2QyfdoO/ZBPzwxa9j+nYFo+sqgbioA==,
+        integrity: sha512-enDDX09Jpi3kmhcXXpvs+fvRXOfBj1jUV2KF6uDMf5HjS+SOZJzNTFUW71lKbFcxz0BkmQqwbvqdmHIxMq/fyQ==,
       }
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/utils@0.2.1':
+  '@floating-ui/utils@0.2.3':
     resolution:
       {
-        integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==,
+        integrity: sha512-XGndio0l5/Gvd6CLIABvsav9HHezgDFFhDfHk1bvLfr9ni8dojqLSvBbotJEjmIwNHL7vK4QzBJTdBRoB+c1ww==,
       }
 
   '@fontsource/noto-sans-mono@5.0.18':
@@ -15040,28 +15040,28 @@ snapshots:
 
   '@floating-ui/core@1.6.0':
     dependencies:
-      '@floating-ui/utils': 0.2.1
+      '@floating-ui/utils': 0.2.3
 
   '@floating-ui/dom@1.6.3':
     dependencies:
       '@floating-ui/core': 1.6.0
-      '@floating-ui/utils': 0.2.1
+      '@floating-ui/utils': 0.2.3
 
-  '@floating-ui/react-dom@2.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@floating-ui/react-dom@2.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@floating-ui/dom': 1.6.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@floating-ui/react@0.26.10(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@floating-ui/react@0.26.18(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@floating-ui/utils': 0.2.1
+      '@floating-ui/react-dom': 2.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@floating-ui/utils': 0.2.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tabbable: 6.2.0
 
-  '@floating-ui/utils@0.2.1': {}
+  '@floating-ui/utils@0.2.3': {}
 
   '@fontsource/noto-sans-mono@5.0.18': {}
 

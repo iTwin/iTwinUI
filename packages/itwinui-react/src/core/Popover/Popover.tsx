@@ -25,13 +25,10 @@ import {
   useRole,
   FloatingPortal,
   useFloatingTree,
-  useListNavigation,
 } from '@floating-ui/react';
 import type {
   SizeOptions,
   Placement,
-  UseListNavigationProps,
-  ReferenceType,
   UseFloatingOptions,
   UseHoverProps,
   UseClickProps,
@@ -118,17 +115,12 @@ type PopoverInternalProps = {
    * Pass a boolean or an object to enable/disable any of the supported interactions.
    * The passed objects can be used to override the default props that the Popover sets for an interaction/trigger.
    *
-   * The only exceptions are interactions that have required parameters. E.g. `listNavigation`.
-   * Here, only an object with the required parameters is allowed to be passed to enable the interaction.
-   * Booleans will not be allowed in this case.
-   *
    * @example
    * const popover = usePopover({
    *   interactions: {
    *     click: false,
    *     focus: true,
    *     hover: { move: false },
-   *     listNavigation: { nested: subMenuItems.length > 0 },
    *   }
    *   // …
    * });
@@ -136,15 +128,8 @@ type PopoverInternalProps = {
   interactions?: {
     click?: boolean | Omit<UseClickProps, 'enabled'>;
     dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
-    hover?: boolean | Omit<UseHoverProps<ReferenceType>, 'enabled'>;
+    hover?: boolean | Omit<UseHoverProps, 'enabled'>;
     focus?: boolean | Omit<UseFocusProps, 'enabled'>;
-
-    // All UseListNavigationProps are optional, except listRef
-    listNavigation?: Partial<
-      Omit<UseListNavigationProps, 'listRef' | 'enabled'>
-    > & {
-      listRef: UseListNavigationProps['listRef'];
-    };
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
@@ -187,8 +172,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     }),
     [interactionsProp],
   );
-  const { listRef, ...restMergedInteractionsListNavigation } =
-    mergedInteractions.listNavigation ?? {};
 
   const tree = useFloatingTree();
 
@@ -234,20 +217,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ),
   });
 
-  const [currentFocusedNodeIndex, setCurrentFocusedNodeIndex] = React.useState<
-    number | null
-  >(null);
-
-  const onNavigate = React.useCallback<
-    NonNullable<UseListNavigationProps['onNavigate']>
-  >(
-    (index) => {
-      setCurrentFocusedNodeIndex(index);
-      mergedInteractions.listNavigation?.onNavigate?.(index);
-    },
-    [mergedInteractions.listNavigation],
-  );
-
   const interactions = useInteractions([
     useClick(floating.context, {
       enabled: !!mergedInteractions.click,
@@ -276,15 +245,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useRole(floating.context, {
       role: 'dialog',
       enabled: !!role,
-    }),
-    useListNavigation(floating.context, {
-      enabled: !!mergedInteractions.listNavigation,
-      activeIndex: currentFocusedNodeIndex,
-      // Items should focus themselves on hover since FloatingUI's focusItemOnHover is not working for us.
-      focusItemOnHover: false,
-      listRef: listRef as UseListNavigationProps['listRef'],
-      ...restMergedInteractionsListNavigation,
-      onNavigate,
     }),
   ]);
 
@@ -330,27 +290,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     () => ({
       open,
       onOpenChange,
-      ...interactions,
       getReferenceProps,
       getFloatingProps,
       ...floating,
-      interactionsState: {
-        listNavigation: {
-          activeIndex: currentFocusedNodeIndex,
-          onNavigate,
-        },
-      },
     }),
-    [
-      open,
-      onOpenChange,
-      interactions,
-      getFloatingProps,
-      floating,
-      getReferenceProps,
-      currentFocusedNodeIndex,
-      onNavigate,
-    ],
+    [open, onOpenChange, getFloatingProps, floating, getReferenceProps],
   );
 };
 
