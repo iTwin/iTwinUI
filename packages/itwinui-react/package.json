@@ -32,6 +32,13 @@
     "./esm": "./esm/index.js",
     "./package.json": "./package.json"
   },
+  "typesVersions": {
+    "*": {
+      "react-table": [
+        "./esm/react-table/react-table.d.ts"
+      ]
+    }
+  },
   "files": [
     "cjs",
     "esm",
@@ -64,7 +71,7 @@
   "scripts": {
     "build": "pnpm clean:build && pnpm build:js && pnpm build:styles && pnpm build:types && pnpm build:post",
     "build:js": "node ./scripts/build.mjs",
-    "build:types": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json",
+    "build:types": "tsc -p tsconfig.build.json --outDir esm && tsc -p tsconfig.build.json --outDir cjs",
     "build:styles": "vite build src/styles.js",
     "build:post": "node ./scripts/postBuild.mjs",
     "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
@@ -80,7 +87,7 @@
     "dev": "pnpm clean:build && concurrently \"pnpm dev:esm\" \"pnpm dev:cjs\" \"pnpm build:styles --watch\" \"pnpm dev:types\"",
     "dev:esm": "swc src -d esm --watch --strip-leading-paths",
     "dev:cjs": "swc src -d cjs --watch --strip-leading-paths -C module.type=commonjs",
-    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.react-table.json --watch --preserveWatchOutput\"",
+    "dev:types": "concurrently \"tsc -p tsconfig.build.json --outDir esm --watch --preserveWatchOutput\" \"tsc -p tsconfig.build.json --outDir cjs --watch --preserveWatchOutput\"",
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
