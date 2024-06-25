@@ -31,7 +31,6 @@ import type {
   SizeOptions,
   Placement,
   UseListNavigationProps,
-  ReferenceType,
   UseFloatingOptions,
   UseHoverProps,
   UseClickProps,
@@ -136,7 +135,7 @@ type PopoverInternalProps = {
   interactions?: {
     click?: boolean | Omit<UseClickProps, 'enabled'>;
     dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
-    hover?: boolean | Omit<UseHoverProps<ReferenceType>, 'enabled'>;
+    hover?: boolean | Omit<UseHoverProps, 'enabled'>;
     focus?: boolean | Omit<UseFocusProps, 'enabled'>;
 
     // All UseListNavigationProps are optional, except listRef
