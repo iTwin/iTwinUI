@@ -19,6 +19,7 @@ import {
   portalContainerAtom,
   useScopedAtom,
   useScopedSetAtom,
+  useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -324,6 +325,8 @@ const PortalContainer = React.memo(
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
     const setPortalContainer = useScopedSetAtom(portalContainerAtom);
 
+    const id = useId();
+
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
     if (!isHydrated) {
@@ -345,7 +348,7 @@ const PortalContainer = React.memo(
         portalContainerFromParent.ownerDocument !== ownerDocument)
     ) {
       return (
-        <div style={{ display: 'contents' }} ref={setPortalContainer}>
+        <div style={{ display: 'contents' }} ref={setPortalContainer} id={id}>
           <Toaster />
         </div>
       );

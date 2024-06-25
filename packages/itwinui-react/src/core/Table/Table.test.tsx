@@ -2949,7 +2949,6 @@ it('should render action column with column manager', async () => {
     },
     {
       ...ActionColumn({ columnManager: true }),
-      id: 'view',
       Cell: () => <>View</>,
     },
   ];
