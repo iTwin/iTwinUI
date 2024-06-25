@@ -20,7 +20,7 @@ import type { VirtualItem } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
-  'onClick'
+  'onClick' | 'trigger'
 > &
   React.ComponentPropsWithoutRef<'div'>;
 
