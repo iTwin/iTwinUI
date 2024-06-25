@@ -84,7 +84,7 @@
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.18",
+    "@floating-ui/react": "^0.26.10",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@swc/helpers": "^0.5.11",
     "classnames": "^2.3.2",
