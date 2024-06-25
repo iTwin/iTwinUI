@@ -290,19 +290,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     () => ({
       open,
       onOpenChange,
-      ...interactions,
       getReferenceProps,
       getFloatingProps,
       ...floating,
     }),
-    [
-      open,
-      onOpenChange,
-      interactions,
-      getFloatingProps,
-      floating,
-      getReferenceProps,
-    ],
+    [open, onOpenChange, getFloatingProps, floating, getReferenceProps],
   );
 };
 

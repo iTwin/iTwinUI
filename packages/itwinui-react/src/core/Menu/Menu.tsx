@@ -345,9 +345,9 @@ type PopoverGetItemProps = ({
    */
   focusableItemIndex: number | undefined;
   userProps?: Parameters<
-    NonNullable<ReturnType<typeof usePopover>['getItemProps']>
+    NonNullable<ReturnType<typeof useInteractions>['getItemProps']>
   >[0];
-}) => ReturnType<ReturnType<typeof usePopover>['getItemProps']>;
+}) => ReturnType<ReturnType<typeof useInteractions>['getItemProps']>;
 
 export const MenuContext = React.createContext<
   | {
