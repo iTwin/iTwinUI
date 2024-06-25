@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-css': minor
+'@itwin/itwinui-css': major
 ---
 
 `.iui-tile-thumbnail-type-indicator` and `.iui-tile-thumbnail-quick-action` should now be applied on wrapper element, and the button inside should have the new `.iui-tile-thumbnail-button` class. This reduces code complexity and fixes a visual bug with the hover state.
