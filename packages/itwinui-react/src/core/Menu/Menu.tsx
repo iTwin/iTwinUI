@@ -26,6 +26,9 @@ import {
   useFloatingParentNodeId,
   useFloatingTree,
   type UseHoverProps,
+  useListNavigation,
+  useInteractions,
+  type UseListNavigationProps,
 } from '@floating-ui/react';
 
 type UsePopoverProps = Parameters<typeof usePopover>[0];
@@ -50,24 +53,11 @@ type MenuProps = {
     ReturnType<typeof usePopover>['refs']['setPositionReference']
   >[0];
   /**
-   * Use this prop to override the default props passed to `usePopover`.
+   * Use this prop to override the default props passed to `usePopover` and `useListNavigation`.
    */
   popoverProps?: Omit<UsePopoverProps, 'interactions'> & {
-    interactions?: Omit<
-      NonNullable<UsePopoverProps['interactions']>,
-      'listNavigation'
-    > & {
-      listNavigation?: Omit<
-        NonNullable<
-          NonNullable<UsePopoverProps['interactions']>['listNavigation']
-        >,
-        'listRef'
-      > & {
-        // Since Menu handles the required listRef prop, it only needs to accept the optional ones.
-        listRef?: NonNullable<
-          NonNullable<UsePopoverProps['interactions']>['listNavigation']
-        >['listRef'];
-      };
+    interactions?: UsePopoverProps['interactions'] & {
+      listNavigation?: Partial<UseListNavigationProps>;
     };
   };
 } & Pick<PortalProps, 'portal'>;
@@ -140,6 +130,7 @@ export const Menu = React.forwardRef((props, ref) => {
     onVisibleChange: onVisibleChangeProp,
     ...restPopoverProps
   } = popoverPropsProp ?? {};
+
   const {
     listNavigation: listNavigationPropsProp,
     hover: hoverProp,
@@ -170,6 +161,8 @@ export const Menu = React.forwardRef((props, ref) => {
     },
   );
 
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+
   const popover = usePopover({
     nodeId,
     visible,
@@ -183,16 +176,23 @@ export const Menu = React.forwardRef((props, ref) => {
               enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
               ...(hoverProp as UseHoverProps),
             },
-      listNavigation: {
-        listRef: focusableElementsRef,
-        ...listNavigationPropsProp,
-      },
       ...restInteractionsProps,
     },
     ...restPopoverProps,
   });
 
-  const listNavigationState = popover.interactionsState.listNavigation;
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [
+      useListNavigation(popover.context, {
+        activeIndex,
+        // Items should focus themselves on hover since FloatingUI's focusItemOnHover is not working for us.
+        focusItemOnHover: false,
+        listRef: focusableElementsRef,
+        onNavigate: setActiveIndex,
+        ...listNavigationPropsProp,
+      }),
+    ],
+  );
 
   React.useEffect(() => {
     if (positionReference !== undefined) {
@@ -243,15 +243,15 @@ export const Menu = React.forwardRef((props, ref) => {
     focusableItemIndex,
     userProps,
   }) => {
-    return popover.getItemProps({
+    return getItemProps({
       ...userProps,
       // Roving tabIndex
       tabIndex:
-        listNavigationState.activeIndex != null &&
-        listNavigationState.activeIndex >= 0 &&
+        activeIndex != null &&
+        activeIndex >= 0 &&
         focusableItemIndex != null &&
         focusableItemIndex >= 0 &&
-        listNavigationState.activeIndex === focusableItemIndex
+        activeIndex === focusableItemIndex
           ? 0
           : -1,
       onFocus: mergeEventHandlers(userProps?.onFocus, () => {
@@ -272,7 +272,7 @@ export const Menu = React.forwardRef((props, ref) => {
       onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, (event) => {
         focusableItemIndex != null &&
           focusableItemIndex >= 0 &&
-          listNavigationState.onNavigate(focusableItemIndex);
+          setActiveIndex(focusableItemIndex);
 
         // onNavigate also focuses the item, but only when the activeIndex changes.
         // So, if we re-hover the open MenuItem in the parent of the submenu, the activeIndex won't change,
@@ -285,16 +285,14 @@ export const Menu = React.forwardRef((props, ref) => {
     });
   };
 
-  const reference = cloneElementWithRef(
-    trigger,
-    (triggerChild) =>
-      ({
-        ...popover.getReferenceProps({
-          ...triggerChild.props,
-          'aria-expanded': popover.open,
-          ref: mergeRefs(triggerRef, popover.refs.setReference),
-        }),
-      }) satisfies React.HTMLProps<HTMLElement>,
+  const reference = cloneElementWithRef(trigger, (triggerChild) =>
+    getReferenceProps(
+      popover.getReferenceProps({
+        ...triggerChild.props,
+        'aria-expanded': popover.open,
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
+      }),
+    ),
   );
 
   const floating = popover.open && (
@@ -303,10 +301,12 @@ export const Menu = React.forwardRef((props, ref) => {
         as='div'
         className={cx('iui-menu', className)}
         ref={refs}
-        {...popover.getFloatingProps({
-          role: 'menu',
-          ...rest,
-        })}
+        {...getFloatingProps(
+          popover.getFloatingProps({
+            role: 'menu',
+            ...rest,
+          }),
+        )}
       >
         {children}
       </Box>
