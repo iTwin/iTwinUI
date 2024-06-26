@@ -382,4 +382,4 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'li', TreeNodeProps>;
+}) as PolymorphicForwardRefComponent<'div', TreeNodeProps>;
