@@ -11,15 +11,16 @@ import {
   Portal,
   Box,
   useVirtualScroll,
+  ShadowRoot,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 import { List } from '../List/List.js';
-import { type VirtualItem } from '@tanstack/react-virtual';
+import type { VirtualItem } from '@tanstack/react-virtual';
 
 type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
-  'onClick'
+  'onClick' | 'trigger'
 > &
   React.ComponentPropsWithoutRef<'div'>;
 
@@ -29,7 +30,10 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-  //Checks the first five (or all, if there are less than 5) filtered options. If at least three (or all, if there are less than 3 options) have sub labels, sets estimate to 48 instead of 36.
+  /**
+   * Checks the first five (or all, if there are less than 5) filtered options. If at least three (or all, if there are
+   * less than 3 options) have sub labels, returns true.
+   */
   const mostlySubLabeled = React.useMemo(() => {
     let numberOfSubLabels = 0;
     for (let i = 0; i < Math.min(5, filteredOptions.length); i++) {
@@ -58,7 +62,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
-    estimateSize: () => (mostlySubLabeled ? 48 : 36),
+    estimateSize: () => (mostlySubLabeled ? 48 : 36), // Sets estimate to 48 if mostlySubLabeled returns true, else sets estimate to 36.
     scrollToIndex: focusedVisibleIndex,
     gap: -1,
   });
@@ -85,19 +89,26 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   );
 
   return (
-    <Box
-      as='div'
-      {...rest}
-      style={{
-        minBlockSize: virtualizer.getTotalSize(),
-        minInlineSize: '100%',
-        ...props.style,
-      }}
-    >
-      {virtualizer.getVirtualItems().map((virtualItem) => {
-        return virtualItemRenderer(virtualItem);
-      })}
-    </Box>
+    <>
+      <ShadowRoot>
+        <Box
+          as='div'
+          {...rest}
+          style={{
+            minBlockSize: virtualizer.getTotalSize(),
+            minInlineSize: '100%',
+            ...props.style,
+          }}
+        >
+          <slot />
+        </Box>
+      </ShadowRoot>
+      <>
+        {virtualizer.getVirtualItems().map((virtualItem) => {
+          return virtualItemRenderer(virtualItem);
+        })}
+      </>
+    </>
   );
 };
 

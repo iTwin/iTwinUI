@@ -24,7 +24,7 @@ describe('DropdownMenu', () => {
       });
 
       if (testName === 'Submenu') {
-        cy.get('[role=menuitem][aria-expanded=false]').trigger('mouseenter');
+        cy.get('[role=menuitem][aria-expanded=false]').click();
       }
 
       cy.compareSnapshot(`${testName} (Open)`);

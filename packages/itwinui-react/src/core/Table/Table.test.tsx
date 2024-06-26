@@ -2723,11 +2723,12 @@ it.each([
     vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(100);
 
     const mockColumns = columns();
+    const data = mockedData();
 
     const { container, rerender } = render(
       <Table
         columns={mockColumns}
-        data={mockedData()}
+        data={data}
         emptyTableContent='Empty table'
         emptyFilteredTableContent='No results. Clear filter.'
         enableColumnReordering
@@ -2777,7 +2778,7 @@ it.each([
       <Table
         // Passing any new columns array contents (e.g. reverse of columns) should reset columnOrder
         columns={mockColumnsReverse}
-        data={mockedData()}
+        data={data}
         emptyTableContent='Empty table'
         emptyFilteredTableContent='No results. Clear filter.'
         enableColumnReordering
@@ -2949,7 +2950,6 @@ it('should render action column with column manager', async () => {
     },
     {
       ...ActionColumn({ columnManager: true }),
-      id: 'view',
       Cell: () => <>View</>,
     },
   ];

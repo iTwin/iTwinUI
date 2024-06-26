@@ -360,14 +360,15 @@ it('should support Tile with legacy props', () => {
           <Badge backgroundColor='blue'>Badge label</Badge>
         </Tile.BadgeContainer>
         <Tile.TypeIndicator>
-          <Tile.IconButton>
+          {/* Note: Tile.IconButton is the new API, but we also support IconButton to match legacy API. */}
+          <IconButton size='small' styleType='borderless'>
             <svg className='info' />
-          </Tile.IconButton>
+          </IconButton>
         </Tile.TypeIndicator>
         <Tile.QuickAction>
-          <Tile.IconButton>
+          <IconButton size='small' styleType='borderless'>
             <svg className='star' />
-          </Tile.IconButton>
+          </IconButton>
         </Tile.QuickAction>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
