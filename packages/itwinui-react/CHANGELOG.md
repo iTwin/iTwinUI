@@ -1,5 +1,46 @@
 # Changelog
 
+## 3.12.0
+
+### Minor Changes
+
+- [#2116](https://github.com/iTwin/iTwinUI/pull/2116): Bumped the minimum required version of `@floating-ui/react` to `0.26.18`.
+- [#2102](https://github.com/iTwin/iTwinUI/pull/2102): The build output now uses the [new JSX transform](https://react.dev/link/new-jsx-transform) instead of `React.createElement`.
+- [#2048](https://github.com/iTwin/iTwinUI/pull/2048): Fixed a bug in `ComboBox` where the controlled state (`value` prop) was not given priority over the uncontrolled state.
+
+  As a result:
+
+  - Setting the default value using `value={myDefaultValue}` will no longer work. Instead, use the new `defaultValue` prop.
+  - Resetting the value using `value={null}` will now force the ComboBox to be in _controlled_ mode. If you want to reset the value but be in _uncontrolled_ mode, then use `value={undefined}` instead.
+
+- [#2111](https://github.com/iTwin/iTwinUI/pull/2111): Added the ability to pass arbitrary DOM props to `TreeNode`.
+- [#2107](https://github.com/iTwin/iTwinUI/pull/2107): A new `meta` object is exported, containing meta information about the package.
+
+  ```ts
+  import { meta } from '@itwin/itwinui-react';
+
+  console.log(meta.version, meta.module); // 3.12.0, ESM
+  ```
+
+- [#2100](https://github.com/iTwin/iTwinUI/pull/2100): Replaced dependency on `tslib` with `@swc/helpers`. This is used mainly by the CommonJS build.
+- [#2076](https://github.com/iTwin/iTwinUI/pull/2076): Added open popover styling to `Button` (and `IconButton`). When an associated `Popover` or `DropdownMenu` is open, the button will now get a subtle visual indication.
+- [#2101](https://github.com/iTwin/iTwinUI/pull/2101): Passing an `IconButton` to `Tile.QuickAction` and `Tile.TypeIndicator` is now deprecated. Use `Tile.IconButton` instead.
+- [#2021](https://github.com/iTwin/iTwinUI/pull/2021): In menu-like components (`DropdownMenu`, `SplitButton`, `Table`'s column manager), using the _mouse_ to operate the menu will no longer move focus like it does when using the _keyboard_.
+- [#2021](https://github.com/iTwin/iTwinUI/pull/2021): `MenuItem`'s `tabIndex` now is `0` when it's selected and `-1` when it's not. Additionally, `MenuItem` passed inside most menu type components (e.g. `DropdownMenu`, `SplitButton`, `Table`'s column manager, etc.) have roving `tabIndex`.
+- [#2048](https://github.com/iTwin/iTwinUI/pull/2048): Added a new `defaultValue` prop to `ComboBox`. This is useful when you don't want to maintain your own state but still want to control the initial `value`.
+
+### Patch Changes
+
+- [#2048](https://github.com/iTwin/iTwinUI/pull/2048): Fixed a bug in `ComboBox` where the `isSelected` passed to `itemRenderer` was always `false` whenever `multiple` was `true`.
+- [#2118](https://github.com/iTwin/iTwinUI/pull/2118): Type declarations are now generated using TypeScript 5.5 with `"module": "NodeNext"`.
+- [#2101](https://github.com/iTwin/iTwinUI/pull/2101): Fixed a small visual bug in `Tile.IconButton` where the hover state wasn't working.
+- [#2117](https://github.com/iTwin/iTwinUI/pull/2117): Fixed an error in `Select` caused by updating `@floating-ui/react` to `0.26.18`.
+- [#2021](https://github.com/iTwin/iTwinUI/pull/2021): `MenuItem` now renders as a `<button type="button">` instead of a `div`.
+- [#2113](https://github.com/iTwin/iTwinUI/pull/2113): Fixed an issue where a portaled `Popover` was sometimes showing up in the wrong window during the first render.
+- [#2100](https://github.com/iTwin/iTwinUI/pull/2100): The build output is now (again) formatted using `prettier` for easier debugging.
+- [#2118](https://github.com/iTwin/iTwinUI/pull/2118): The `"exports"` fallback for `/react-table` types is now handled using [`typesVersions`](https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions).
+- [#2100](https://github.com/iTwin/iTwinUI/pull/2100): Removed all code comments from the build output.
+
 ## 3.11.3
 
 ### Patch Changes
