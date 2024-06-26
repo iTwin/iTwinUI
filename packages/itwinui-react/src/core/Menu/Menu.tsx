@@ -25,7 +25,6 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   useFloatingTree,
-  type ReferenceType,
   type UseHoverProps,
   useListNavigation,
   useInteractions,
@@ -175,7 +174,7 @@ export const Menu = React.forwardRef((props, ref) => {
           : {
               // If in a FloatingTree, the hover interaction is automatically disabled if a submenu has focus.
               enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
-              ...(hoverProp as UseHoverProps<ReferenceType>),
+              ...(hoverProp as UseHoverProps),
             },
       ...restInteractionsProps,
     },
