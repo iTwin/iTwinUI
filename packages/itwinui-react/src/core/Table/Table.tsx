@@ -936,7 +936,9 @@ export const Table = <
   const isHeaderDirectClick = React.useRef(false);
 
   return (
-    <TableColumnsContext.Provider value={columns}>
+    <TableColumnsContext.Provider
+      value={columns as Column<Record<string, unknown>>[]}
+    >
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,

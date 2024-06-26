@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.11.3",
+  "version": "3.12.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -24,21 +24,26 @@
       },
       "require": {
         "types": "./cjs/react-table/react-table.d.ts"
-      },
-      "types": "./react-table.d.ts"
+      }
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
     "./esm": "./esm/index.js",
     "./package.json": "./package.json"
   },
+  "typesVersions": {
+    "*": {
+      "react-table": [
+        "./esm/react-table/react-table.d.ts"
+      ]
+    }
+  },
   "files": [
     "cjs",
     "esm",
     "styles.css",
     "CHANGELOG.md",
-    "LICENSE.md",
-    "react-table.d.ts"
+    "LICENSE.md"
   ],
   "description": "A react component library for iTwinUI",
   "homepage": "https://github.com/iTwin/iTwinUI",
@@ -64,7 +69,7 @@
   "scripts": {
     "build": "pnpm clean:build && pnpm build:js && pnpm build:styles && pnpm build:types && pnpm build:post",
     "build:js": "node ./scripts/build.mjs",
-    "build:types": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json",
+    "build:types": "tsc -p tsconfig.build.json --outDir esm && tsc -p tsconfig.build.json --outDir cjs",
     "build:styles": "vite build src/styles.js",
     "build:post": "node ./scripts/postBuild.mjs",
     "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
@@ -80,11 +85,11 @@
     "dev": "pnpm clean:build && concurrently \"pnpm dev:esm\" \"pnpm dev:cjs\" \"pnpm build:styles --watch\" \"pnpm dev:types\"",
     "dev:esm": "swc src -d esm --watch --strip-leading-paths",
     "dev:cjs": "swc src -d cjs --watch --strip-leading-paths -C module.type=commonjs",
-    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.react-table.json --watch --preserveWatchOutput\"",
+    "dev:types": "concurrently \"tsc -p tsconfig.build.json --outDir esm --watch --preserveWatchOutput\" \"tsc -p tsconfig.build.json --outDir cjs --watch --preserveWatchOutput\"",
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.10",
+    "@floating-ui/react": "^0.26.18",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@swc/helpers": "^0.5.11",
     "@tanstack/react-virtual": "^3.5.0",
@@ -110,7 +115,7 @@
     "jsdom": "^24.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "typescript": "~5.1.6",
+    "typescript": "5",
     "vite": "^5.1.7",
     "vitest": "^1.2.1"
   },

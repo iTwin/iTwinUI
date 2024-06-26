@@ -29,7 +29,6 @@ import {
 import type {
   SizeOptions,
   Placement,
-  ReferenceType,
   UseFloatingOptions,
   UseHoverProps,
   UseClickProps,
@@ -129,7 +128,7 @@ type PopoverInternalProps = {
   interactions?: {
     click?: boolean | Omit<UseClickProps, 'enabled'>;
     dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
-    hover?: boolean | Omit<UseHoverProps<ReferenceType>, 'enabled'>;
+    hover?: boolean | Omit<UseHoverProps, 'enabled'>;
     focus?: boolean | Omit<UseFocusProps, 'enabled'>;
   };
   role?: 'dialog' | 'menu' | 'listbox';
@@ -439,7 +438,10 @@ const PopoverPortal = ({
   const portalTo = usePortalTo(portal);
 
   return (
-    <FloatingPortal root={portalTo}>
+    <FloatingPortal
+      key={portalTo?.id} // workaround to force remount when `root` changes (see #2093)
+      root={portalTo}
+    >
       <DisplayContents />
       {children}
     </FloatingPortal>
