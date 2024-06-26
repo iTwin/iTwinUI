@@ -62,7 +62,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
-    estimateSize: () => (mostlySubLabeled ? 48 : 36), // Sets estimate to 48 is mostlySubLabeled returns true, else sets estimate to 36.
+    estimateSize: () => (mostlySubLabeled ? 48 : 36), // Sets estimate to 48 if mostlySubLabeled returns true, else sets estimate to 36.
     scrollToIndex: focusedVisibleIndex,
     gap: -1,
   });
