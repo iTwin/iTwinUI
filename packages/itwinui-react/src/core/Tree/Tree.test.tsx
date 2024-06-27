@@ -90,7 +90,7 @@ it('should render in its most basic state', () => {
   expect(tree).toHaveAttribute('role', 'tree');
 
   //Only render nodes with expanded parents
-  const treeNodes = container.querySelectorAll('li');
+  const treeNodes = container.querySelectorAll('[role="treeitem"]');
   expect(treeNodes).toHaveLength(4);
   const visibleNodeIds = ['Node-1', 'Node-1-1', 'Node-1-2', 'Node-2'];
   treeNodes.forEach((item, index) => {
@@ -134,7 +134,7 @@ it('should not render node if any parent above is not expanded', () => {
     expandedIds: ['Node-1-1'],
   });
 
-  const treeNodes = container.querySelectorAll('li');
+  const treeNodes = container.querySelectorAll('[role="treeitem"]');
   expect(treeNodes.length).toBe(1);
   expect(treeNodes[0].id).toBe('Node-1');
 });
@@ -332,7 +332,7 @@ it('should set correct computed aria attributes to nodes', () => {
 
   const tree = container.querySelector('.iui-tree') as HTMLElement;
   expect(tree).toBeTruthy();
-  const treeNodes = container.querySelectorAll('li');
+  const treeNodes = container.querySelectorAll('[role="treeitem"]');
   expect(treeNodes.length).toBe(5);
 
   // Node-3
