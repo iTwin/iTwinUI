@@ -63,7 +63,7 @@ type TreeNodeProps = {
   /**
    * Props for subTree list(affects all subnodes of this node).
    */
-  subTreeProps?: React.ComponentProps<'ul'>;
+  subTreeProps?: React.ComponentProps<'div'>;
   /**
    * Flag whether the node is disabled.
    * @default false
@@ -373,7 +373,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
 
       {hasSubNodes && (
         <Box
-          as='ul'
+          as='div'
           role='group'
           aria-owns={subNodeIds.join(' ')}
           {...subTreeProps}
