@@ -397,7 +397,6 @@ const VirtualizedTree = React.forwardRef(
       flatNodesList,
       itemRenderer,
       scrollToIndex,
-      className,
       style,
       ...rest
     }: VirtualizedTreeProps<T>,
@@ -421,7 +420,6 @@ const VirtualizedTree = React.forwardRef(
     });
 
     const outerProps = {
-      className: className,
       style: {
         minInlineSize: '100%',
         overflow: 'auto',
