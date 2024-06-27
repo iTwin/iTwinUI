@@ -9,6 +9,8 @@ import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import usePrevious from './usePrevious.js';
 import { useLatestRef } from './useLatestRef.js';
 
+type GuessRange = [number, number] | null;
+
 /** First guess of the number of items that overflows. We refine this guess with subsequent renders */
 const STARTING_MAX_ITEMS_COUNT = 32;
 
@@ -59,9 +61,8 @@ export const useOverflow = <T extends HTMLElement>(
   const resizeObserverRef = useLatestRef(observer);
   resizeObserverRef;
 
-  const [visibleCountGuessRange, setVisibleCountGuessRange] = React.useState<
-    [number, number] | null
-  >([0, initialVisibleCount]);
+  const [visibleCountGuessRange, setVisibleCountGuessRange] =
+    React.useState<GuessRange>([0, initialVisibleCount]);
 
   // TODO: Replace eslint-disable with proper listening to containerRef resize
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,9 +71,15 @@ export const useOverflow = <T extends HTMLElement>(
     // if (searchIndexes == null) {
     //   setSearchIndexes
     // }
-
+    // (() => {
     // Already stabilized
     if (visibleCountGuessRange == null) {
+      return;
+    }
+
+    // We have already found the correct visibleCount
+    if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
+      setVisibleCountGuessRange(null);
       return;
     }
 
@@ -88,23 +95,39 @@ export const useOverflow = <T extends HTMLElement>(
       visibleCount,
     });
 
-    const newGuess = Math.floor(
-      (visibleCountGuessRange[0] + visibleCountGuessRange[1]) / 2,
-    );
-    setVisibleCount(newGuess);
+    let newVisibleCountGuessRange = visibleCountGuessRange;
 
-    // We have found the correct visibleCount
-    if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
-      setVisibleCountGuessRange(null);
-    }
     // overflowing = we guessed too high. So, new max guess = half the current guess
-    else if (isOverflowing) {
-      setVisibleCountGuessRange([visibleCountGuessRange[0], newGuess]);
+    if (isOverflowing) {
+      newVisibleCountGuessRange = [visibleCountGuessRange[0], visibleCount];
     }
     // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
     else {
-      setVisibleCountGuessRange([newGuess, visibleCountGuessRange[1]]);
+      newVisibleCountGuessRange = [visibleCount, visibleCountGuessRange[1]];
     }
+
+    setVisibleCountGuessRange(newVisibleCountGuessRange);
+
+    // Always guess that the correct visibleCount is in the middle of the range
+    setVisibleCount(
+      Math.floor(
+        (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
+      ),
+    );
+
+    // // We have found the correct visibleCount
+    // if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
+    //   setVisibleCountGuessRange(null);
+    // }
+    // // overflowing = we guessed too high. So, new max guess = half the current guess
+    // else if (isOverflowing) {
+    //   setVisibleCountGuessRange([visibleCountGuessRange[0], newGuess]);
+    // }
+    // // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
+    // else {
+    //   setVisibleCountGuessRange([newGuess, visibleCountGuessRange[1]]);
+    // }
+    // })();
   });
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
