@@ -12,7 +12,12 @@ import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
  * `data-iui-index` and adds a `useLayoutEffect` for scrolling to a provided index on render.
  *
  * @example
- * const virtualizer = useVirtualScroll({count: item.length, getScrollElement: () => parentRef.current, estimateSize: () => 30, scrollToIndex});
+ * const virtualizer = useVirtualScroll({
+ *  count: item.length,
+ *  getScrollElement: () => parentRef.current,
+ *  estimateSize: () => 30,
+ *  scrollToIndex
+ * });
  */
 export const useVirtualScroll = (
   params: Parameters<typeof useVirtualizer>[0] & { scrollToIndex?: number },
