@@ -8,10 +8,12 @@ test.describe('ComboBox', () => {
 
     await page.keyboard.press('Tab');
     const comboBoxInput = page.locator('#test-component').locator('input');
+    const comboBoxMenu = page.getByRole('listbox');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toHaveCount(1);
 
     const items = page.getByRole('option');
 
@@ -64,6 +66,7 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toHaveCount(0);
     await expect(comboBoxInput).toHaveAttribute('value', 'Item 11');
 
     //reopen menu
@@ -120,6 +123,7 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toHaveCount(0);
     await expect(comboBoxInput).toHaveAttribute('value', 'Item 11');
 
     //reopen menu
@@ -133,6 +137,7 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toHaveCount(0);
 
     //reopen and close menu
     await page.keyboard.press('X');
@@ -140,11 +145,13 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toHaveCount(1);
     await page.keyboard.press('Tab');
     await expect(comboBoxInput).not.toHaveAttribute(
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toHaveCount(0);
   });
 
   test('virtualized ComboBox should support dynamic sizing', async ({
