@@ -7,7 +7,6 @@ import { useMergedRefs } from './useMergedRefs.js';
 import { useResizeObserver } from './useResizeObserver.js';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import usePrevious from './usePrevious.js';
-import { useLatestRef } from './useLatestRef.js';
 
 type GuessRange = [number, number] | null;
 
@@ -47,7 +46,7 @@ export const useOverflow = <T extends HTMLElement>(
     disabled ? items.length : initialVisibleCount,
   );
 
-  const [containerSize, setContainerSize] = React.useState<number>(0);
+  const [containerSize, setContainerSize] = React.useState<number>(-1);
   const previousContainerSize = usePrevious(containerSize);
   previousContainerSize;
 
@@ -58,20 +57,12 @@ export const useOverflow = <T extends HTMLElement>(
   );
 
   const [resizeRef, observer] = useResizeObserver<T>(updateContainerSize);
-  const resizeObserverRef = useLatestRef(observer);
-  resizeObserverRef;
+  const resizeObserverRef = React.useRef(observer);
 
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
     React.useState<GuessRange>([0, initialVisibleCount]);
 
-  // TODO: Replace eslint-disable with proper listening to containerRef resize
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useLayoutEffect(() => {
-    // TODO: Handle the case where there is a resize after we've stabilized on a visibleCount
-    // if (searchIndexes == null) {
-    //   setSearchIndexes
-    // }
-    // (() => {
+  const guessVisibleCount = React.useCallback(() => {
     // Already stabilized
     if (visibleCountGuessRange == null) {
       return;
@@ -79,6 +70,7 @@ export const useOverflow = <T extends HTMLElement>(
 
     // We have already found the correct visibleCount
     if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
+      console.log('STABILIZED');
       setVisibleCountGuessRange(null);
       return;
     }
@@ -95,14 +87,23 @@ export const useOverflow = <T extends HTMLElement>(
       visibleCount,
     });
 
+    // // Firstly, the highest guess MUST be above the correct visibleCount value. If not, double the highest guess
+    if (visibleCountGuessRange[1] === visibleCount && !isOverflowing) {
+      setVisibleCountGuessRange([
+        visibleCountGuessRange[0],
+        visibleCountGuessRange[1] * 2,
+      ]);
+      setVisibleCount(visibleCountGuessRange[1] * 2);
+      return;
+    }
+
     let newVisibleCountGuessRange = visibleCountGuessRange;
 
     // overflowing = we guessed too high. So, new max guess = half the current guess
     if (isOverflowing) {
       newVisibleCountGuessRange = [visibleCountGuessRange[0], visibleCount];
-    }
-    // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
-    else {
+    } else {
+      // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
       newVisibleCountGuessRange = [visibleCount, visibleCountGuessRange[1]];
     }
 
@@ -114,21 +115,56 @@ export const useOverflow = <T extends HTMLElement>(
         (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
       ),
     );
+  }, [orientation, visibleCount, visibleCountGuessRange]);
 
-    // // We have found the correct visibleCount
-    // if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
-    //   setVisibleCountGuessRange(null);
-    // }
-    // // overflowing = we guessed too high. So, new max guess = half the current guess
-    // else if (isOverflowing) {
-    //   setVisibleCountGuessRange([visibleCountGuessRange[0], newGuess]);
-    // }
-    // // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
-    // else {
-    //   setVisibleCountGuessRange([newGuess, visibleCountGuessRange[1]]);
-    // }
-    // })();
+  // TODO: Replace eslint-disable with proper listening to containerRef resize
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useLayoutEffect(() => {
+    console.log('IN FIRST LOOP');
+
+    if (!containerRef.current || disabled) {
+      resizeObserverRef.current?.disconnect();
+      return;
+    }
+
+    guessVisibleCount();
   });
+
+  useLayoutEffect(() => {
+    if (visibleCountGuessRange != null) {
+      // No need to listen to resizes since we're already in the process of finding the correct visibleCount
+      return;
+    }
+
+    // Only start re-guessing if containerSize changes *after* the containerSize is first set.
+    // This prevents unnecessary renders
+    if (
+      containerSize === previousContainerSize ||
+      previousContainerSize === -1
+    ) {
+      return;
+    }
+
+    console.log('containerSize changed', {
+      containerSize,
+      previousContainerSize,
+    });
+
+    // Set the visibleCountGuessRange to again find the correct visibleCount;
+    setVisibleCountGuessRange([0, visibleCount]);
+    // const growing = containerSize > (previousContainerSize ?? 0);
+    // if (growing) {
+    // } else {
+    //   setVisibleCountGuessRange([0, visibleCount]);
+    // }
+    // guessVisibleCount();
+  }, [
+    containerSize,
+    guessVisibleCount,
+    previousContainerSize,
+    visibleCount,
+    visibleCountGuessRange,
+  ]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
