@@ -8,9 +8,10 @@ import { useResizeObserver } from './useResizeObserver.js';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import usePrevious from './usePrevious.js';
 
+/** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
 type GuessRange = [number, number] | null;
 
-/** First guess of the number of items that overflows. We refine this guess with subsequent renders */
+/** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
 const STARTING_MAX_ITEMS_COUNT = 32;
 
 /**
@@ -62,6 +63,10 @@ export const useOverflow = <T extends HTMLElement>(
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
     React.useState<GuessRange>([0, initialVisibleCount]);
 
+  /**
+   * Call this function to guess the new `visibleCount`.
+   * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
+   */
   const guessVisibleCount = React.useCallback(() => {
     // Already stabilized
     if (visibleCountGuessRange == null) {
@@ -87,7 +92,8 @@ export const useOverflow = <T extends HTMLElement>(
       visibleCount,
     });
 
-    // // Firstly, the highest guess MUST be above the correct visibleCount value. If not, double the highest guess
+    // Firstly, the highest guess MUST be above the correct visibleCount value. If not, double the highest guess.
+    // i.e. the container should overflow when visibleCount = max guess.
     if (visibleCountGuessRange[1] === visibleCount && !isOverflowing) {
       setVisibleCountGuessRange([
         visibleCountGuessRange[0],
@@ -109,7 +115,7 @@ export const useOverflow = <T extends HTMLElement>(
 
     setVisibleCountGuessRange(newVisibleCountGuessRange);
 
-    // Always guess that the correct visibleCount is in the middle of the range
+    // Always guess that the correct visibleCount is in the middle of the new range
     setVisibleCount(
       Math.floor(
         (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
@@ -120,8 +126,6 @@ export const useOverflow = <T extends HTMLElement>(
   // TODO: Replace eslint-disable with proper listening to containerRef resize
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
-    console.log('IN FIRST LOOP');
-
     if (!containerRef.current || disabled) {
       resizeObserverRef.current?.disconnect();
       return;
@@ -130,32 +134,28 @@ export const useOverflow = <T extends HTMLElement>(
     guessVisibleCount();
   });
 
+  // TODO: Better way to listen to containerSize changes instead of having containerSize in dep array.
   useLayoutEffect(() => {
-    if (visibleCountGuessRange != null) {
-      // No need to listen to resizes since we're already in the process of finding the correct visibleCount
-      return;
-    }
-
-    // Only start re-guessing if containerSize changes *after* the containerSize is first set.
-    // This prevents unnecessary renders
     if (
+      // No need to listen to resizes since we're already in the process of finding the correct visibleCount
+      visibleCountGuessRange != null ||
+      // Only start re-guessing if containerSize changes *after* the containerSize is first set.
+      // This prevents unnecessary renders
       containerSize === previousContainerSize ||
       previousContainerSize === -1
     ) {
       return;
     }
 
-    console.log('containerSize changed', {
-      containerSize,
-      previousContainerSize,
-    });
-
     // Set the visibleCountGuessRange to again find the correct visibleCount;
     setVisibleCountGuessRange([0, visibleCount]);
+
+    // TODO: Have better optimizations on resizing.
     // const growing = containerSize > (previousContainerSize ?? 0);
     // if (growing) {
+    //  setVisibleCountGuessRange([visibleCount, visibleCount + 1]);
     // } else {
-    //   setVisibleCountGuessRange([0, visibleCount]);
+    //  setVisibleCountGuessRange([visibleCount - 2, visibleCount]);
     // }
     // guessVisibleCount();
   }, [
