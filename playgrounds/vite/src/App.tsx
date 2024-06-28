@@ -13,10 +13,15 @@ export default function App() {
   const pageRefs: Array<React.RefObject<HTMLDivElement>> = [];
 
   const [visiblePageIndexes, setVisiblePageIndexes] = React.useState<
-    [number, number] | [number] | null
+    [null, number, number] | [number, number, null] | null
   >(null);
 
   const nextPage = async () => {
+    // Page transition already in progress
+    if (visiblePageIndexes !== null) {
+      return;
+    }
+
     const currentPage = pageRefs[currentPageIndex];
     const nextPage = pageRefs[currentPageIndex + 1];
 
@@ -26,48 +31,52 @@ export default function App() {
       easing: 'ease-out',
     };
 
-    setVisiblePageIndexes([currentPageIndex, currentPageIndex + 1]);
+    setVisiblePageIndexes([null, currentPageIndex, currentPageIndex + 1]);
 
-    const onFinish = (pageIndex: number) => {
-      setVisiblePageIndexes((prev) => {
-        if (prev.length === 2) {
-          return prev.filter((i) => i != pageIndex) as [number];
-        } else if (prev.length === 1) {
-          return null;
-        } else {
-          return null;
-        }
-      });
-    };
+    // const onFinish = (pageIndex: number) => {
+    //   setVisiblePageIndexes((prev) => {
+    //     if (prev.length === 2) {
+    //       return prev.filter((i) => i != pageIndex) as [number];
+    //     } else if (prev.length === 1) {
+    //       return null;
+    //     } else {
+    //       return null;
+    //     }
+    //   });
+    // };
 
     const animationsData = [
       {
         element: currentPage.current,
         keyframes: [
-          { transform: 'translateX(0%)' },
+          { transform: 'translateX(0)' },
           { transform: 'translateX(-100%)', display: 'none' },
         ],
       },
       {
         element: nextPage.current,
         keyframes: [
-          { transform: 'translateX(0%)' },
-          { transform: 'translateX(-100%)', display: 'none' },
+          { transform: 'translateX(100%)' },
+          { transform: 'translateX(0)' },
         ],
       },
     ];
 
     await Promise.all(
       animationsData.map(
-        (animationData) =>
+        (animationData, index) =>
           new Promise((resolve, reject) => {
-            const animation = animationData.element.animate(
+            const animation = animationData.element?.animate(
               animationData.keyframes,
               animationOptions,
             );
-            animation.onfinish = () => {
-              resolve(null);
-            };
+
+            if (animation) {
+              animation.onfinish = () => {
+                // onFinish(currentPageIndex + index);
+                resolve(null);
+              };
+            }
           }),
       ),
     );
@@ -85,7 +94,10 @@ export default function App() {
     //   animationOptions
     // );
 
+    console.log("J'suis là");
+
     setCurrentPageIndex((prev) => prev + 1);
+    // setVisiblePageIndexes(null);
   };
 
   return (
@@ -168,7 +180,14 @@ const Page = ({
       //   console.log(event);
       // }}
     >
-      {index}
+      <span
+        style={{
+          display: 'block',
+          transform: 'translateX(100px)',
+        }}
+      >
+        {index}
+      </span>
     </div>
   );
 };
