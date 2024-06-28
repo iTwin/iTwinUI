@@ -172,7 +172,7 @@ test.describe('ComboBox', () => {
     }
 
     // accounts for height lost due to gap
-    totalItemsHeight = totalItemsHeight - ((await items.all()).length - 1);
+    totalItemsHeight -= (await items.all()).length - 1;
 
     expect((await outerVirtualizedContainer.boundingBox())?.height).toBe(
       totalItemsHeight,
