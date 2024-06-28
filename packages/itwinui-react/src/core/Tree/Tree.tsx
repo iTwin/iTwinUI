@@ -10,7 +10,6 @@ import {
   useVirtualScroll,
   ShadowRoot,
   useMergedRefs,
-  mergeRefs,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TreeContext } from './TreeContext.js';
@@ -263,7 +262,6 @@ export const Tree = <T,>(props: TreeProps<T>) => {
       index: number,
       virtualItem?: VirtualItem,
       virtualizer?: Virtualizer<Element, Element>,
-      firstItemRef?: React.MutableRefObject<HTMLDivElement | null>,
     ) => {
       const node = flatNodesList[index];
       return (
@@ -295,10 +293,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                 ...children.props,
                 key: virtualItem.key,
                 'data-iui-index': virtualItem.index,
-                ref:
-                  firstItemRef && index === 0
-                    ? mergeRefs(firstItemRef, virtualizer.measureElement)
-                    : virtualizer.measureElement,
+                ref: virtualizer.measureElement,
                 style: {
                   position: 'absolute',
                   top: 0,
@@ -389,7 +384,6 @@ type VirtualizedTreeProps<T> = {
     index: number,
     virtualItem?: VirtualItem,
     virtualizer?: Virtualizer<Element, Element>,
-    firstItemRef?: React.MutableRefObject<HTMLDivElement | null>,
   ) => JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
@@ -409,7 +403,6 @@ const VirtualizedTree = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
-    const firstItemRef = React.useRef<HTMLDivElement | null>(null);
 
     const getItemKey = React.useCallback(
       (index: number) => {
@@ -421,10 +414,7 @@ const VirtualizedTree = React.forwardRef(
     const virtualizer = useVirtualScroll({
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
-      estimateSize: () =>
-        firstItemRef.current
-          ? firstItemRef.current.getBoundingClientRect().height
-          : 39, //Measures the height of the first item and returns that as the estimate. Defaults to 39px if the first element is not available.
+      estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
       scrollToIndex,
       getItemKey,
     });
@@ -459,12 +449,7 @@ const VirtualizedTree = React.forwardRef(
           {virtualizer
             .getVirtualItems()
             .map((virtualItem) =>
-              itemRenderer(
-                virtualItem.index,
-                virtualItem,
-                virtualizer,
-                firstItemRef,
-              ),
+              itemRenderer(virtualItem.index, virtualItem, virtualizer),
             )}
         </>
       </TreeElement>
