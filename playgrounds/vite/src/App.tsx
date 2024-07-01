@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { Button, ButtonGroup, Text } from '@itwin/itwinui-react';
 
+type VisiblePageIndices = [number, number];
+// | [null, number, number]
+// | [number, number, null]
+// | null;
+
 export default function App() {
   // const [addClass, setAddClass] = React.useState(false);
 
-  const [currentPageIndex, setCurrentPageIndex] = React.useState(0);
+  // const [currentPageIndex, setCurrentPageIndex] = React.useState(0);
 
   const pagesIndexes = React.useMemo(
     () => [...Array(10)].map((_, index) => index),
@@ -12,18 +17,36 @@ export default function App() {
   );
   const pageRefs: Array<React.RefObject<HTMLDivElement>> = [];
 
-  const [visiblePageIndexes, setVisiblePageIndexes] = React.useState<
-    [null, number, number] | [number, number, null] | null
-  >(null);
+  // const [visiblePageIndexes, setVisiblePageIndexes] =
+  //   React.useState<VisiblePageIndices>(null);
 
-  const nextPage = async () => {
-    // Page transition already in progress
-    if (visiblePageIndexes !== null) {
-      return;
-    }
+  // const [animationData, setAnimationData] = React.useState<
+  //   [React.CSSProperties, React.CSSProperties][] | null
+  // >(null);
+
+  // Reducer where all the component-wide state is stored
+  const [
+    { currentPageId, animations, animatingToPageId, animationDirection },
+    dispatch,
+  ] = React.useReducer(pageAnimationReducer, {
+    currentPageId: 'page-0',
+    animations: null,
+    animationDirection: null,
+    animatingToPageId: null,
+  } as PageAnimationState);
+
+  const goToPage = async (direction: 'prev' | 'next') => {
+    // // Page transition already in progress
+    // if (visiblePageIndexes !== null) {
+    //   return;
+    // }
+
+    const currentPageIndex = Number(currentPageId.slice('page-'.length));
+    const otherPageIndex =
+      direction === 'next' ? currentPageIndex + 1 : currentPageIndex - 1;
 
     const currentPage = pageRefs[currentPageIndex];
-    const nextPage = pageRefs[currentPageIndex + 1];
+    const otherPage = pageRefs[otherPageIndex];
 
     const animationOptions = {
       duration: 1000,
@@ -31,34 +54,46 @@ export default function App() {
       easing: 'ease-out',
     };
 
-    setVisiblePageIndexes([null, currentPageIndex, currentPageIndex + 1]);
+    // setVisiblePageIndexes(
+    //   direction === 'next'
+    //     ? [null, currentPageIndex, otherPageIndex]
+    //     : [otherPageIndex, currentPageIndex, null],
+    // );
 
-    // const onFinish = (pageIndex: number) => {
-    //   setVisiblePageIndexes((prev) => {
-    //     if (prev.length === 2) {
-    //       return prev.filter((i) => i != pageIndex) as [number];
-    //     } else if (prev.length === 1) {
-    //       return null;
-    //     } else {
-    //       return null;
-    //     }
-    //   });
-    // };
+    dispatch({
+      type: (direction === 'prev' ? 'left' : 'right') as 'left',
+      animatingToPageId: `page-${otherPageIndex}`,
+    });
 
-    const animationsData = [
+    const animationsData: {
+      element: HTMLElement | null;
+      keyframes: Keyframe[];
+    }[] = [
       {
         element: currentPage.current,
-        keyframes: [
-          { transform: 'translateX(0)' },
-          { transform: 'translateX(-100%)', display: 'none' },
-        ],
+        keyframes:
+          direction === 'next'
+            ? [
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-100%)', display: 'none' },
+              ]
+            : [
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(100%)', display: 'none' },
+              ],
       },
       {
-        element: nextPage.current,
-        keyframes: [
-          { transform: 'translateX(100%)' },
-          { transform: 'translateX(0)' },
-        ],
+        element: otherPage.current,
+        keyframes:
+          direction === 'next'
+            ? [
+                { transform: 'translateX(100%)' },
+                { transform: 'translateX(0)' },
+              ]
+            : [
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(100%)' },
+              ],
       },
     ];
 
@@ -94,10 +129,13 @@ export default function App() {
     //   animationOptions
     // );
 
-    console.log("J'suis là");
+    setTimeout(() => {
+      console.log("J'suis là");
 
-    setCurrentPageIndex((prev) => prev + 1);
-    // setVisiblePageIndexes(null);
+      // setCurrentPageIndex(otherPageIndex);
+      // // setCurrentPageIndex((prev) => prev + 1);
+      // setVisiblePageIndexes(null);
+    }, 3000);
   };
 
   return (
@@ -116,10 +154,8 @@ export default function App() {
       >
         <Text>currentPage = {currentPageIndex}</Text>
         <ButtonGroup>
-          <Button onClick={() => setCurrentPageIndex((prev) => prev - 1)}>
-            -1
-          </Button>
-          <Button onClick={nextPage}>+1</Button>
+          <Button onClick={() => goToPage('prev')}>-1</Button>
+          <Button onClick={() => goToPage('next')}>+1</Button>
         </ButtonGroup>
 
         <div
@@ -153,7 +189,7 @@ const Page = ({
 }: {
   index: number;
   currentIndex: number;
-  visiblePageIndexes: [number, number] | [number] | null;
+  visiblePageIndexes: VisiblePageIndices;
   pageRefs: React.RefObject<HTMLDivElement>[];
 }) => {
   const ref = React.useRef(null);
@@ -174,6 +210,13 @@ const Page = ({
         // display: index === currentIndex ? 'flex' : undefined,
         // alignItems: 'center',
         // justifyContent: 'center',
+        // display:
+        //   visiblePageIndexes?.[0] === currentIndex ||
+        //   (visiblePageIndexes?.[1] === currentIndex &&
+        //     visiblePageIndexes?.[2] != null)
+        //     ? 'none'
+        //     : undefined,
+
         border: '1px solid hotpink',
       }}
       // onAnimationEnd={(event) => {
@@ -190,6 +233,85 @@ const Page = ({
       </span>
     </div>
   );
+};
+
+// type AnimationData = {
+//   element: HTMLElement | null;
+//   keyframes: React.CSSProperties[];
+// };
+
+type PageAnimationState = {
+  currentPageId: string;
+  animatingToPageId: string | null;
+  animationDirection: 'left' | 'right' | null;
+  animations: Record<string, React.CSSProperties[]> | null;
+};
+
+type PageAnimationAction =
+  | { type: 'left'; animatingToPageId: string }
+  | { type: 'right'; animatingToPageId: string }
+  | { type: 'endAnimation' };
+
+export const pageAnimationReducer = (
+  state: PageAnimationState,
+  action: PageAnimationAction,
+): PageAnimationState => {
+  switch (action.type) {
+    case 'left':
+    case 'right': {
+      // Animation already in progress or other page doesn't exist
+      if (
+        state.animatingToPageId != null ||
+        document.querySelector(action.animatingToPageId)
+      ) {
+        return state;
+      }
+
+      return {
+        ...state,
+        animatingToPageId: action.animatingToPageId,
+        animationDirection: action.type,
+        animations: {
+          [state.currentPageId]:
+            action.type === 'right'
+              ? [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(-100%)', display: 'none' },
+                ]
+              : [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(100%)', display: 'none' },
+                ],
+          [action.animatingToPageId]:
+            action.type === 'right'
+              ? [
+                  { transform: 'translateX(100%)' },
+                  { transform: 'translateX(0)' },
+                ]
+              : [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(100%)' },
+                ],
+        },
+      };
+    }
+    case 'endAnimation': {
+      // No animation in progress
+      if (state.animatingToPageId == null) {
+        return state;
+      }
+
+      return {
+        ...state,
+        animatingToPageId: null,
+        animationDirection: null,
+        animations: null,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
 };
 
 // ----------------------------------------------------------------------------
