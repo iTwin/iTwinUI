@@ -8,10 +8,12 @@ test.describe('ComboBox', () => {
 
     await page.keyboard.press('Tab');
     const comboBoxInput = page.locator('#test-component').locator('input');
+    const comboBoxMenu = page.getByRole('listbox');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toBeVisible();
 
     const items = page.getByRole('option');
 
@@ -64,6 +66,7 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).not.toBeVisible();
     await expect(comboBoxInput).toHaveAttribute('value', 'Item 11');
 
     //reopen menu
@@ -120,6 +123,7 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).not.toBeVisible();
     await expect(comboBoxInput).toHaveAttribute('value', 'Item 11');
 
     //reopen menu
@@ -133,6 +137,7 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).not.toBeVisible();
 
     //reopen and close menu
     await page.keyboard.press('X');
@@ -140,11 +145,13 @@ test.describe('ComboBox', () => {
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).toBeVisible();
     await page.keyboard.press('Tab');
     await expect(comboBoxInput).not.toHaveAttribute(
       'aria-controls',
       'test-component-list',
     );
+    await expect(comboBoxMenu).not.toBeVisible();
   });
 
   test('virtualized ComboBox should support dynamic sizing', async ({
@@ -161,12 +168,11 @@ test.describe('ComboBox', () => {
 
     let totalItemsHeight = 0;
     for (const item of await items.all()) {
-      if (totalItemsHeight > 0) {
-        // accounts for height lost due to custom measure element function
-        totalItemsHeight = totalItemsHeight - 1;
-      }
       totalItemsHeight += (await item.boundingBox())?.height ?? 0;
     }
+
+    // accounts for height lost due to gap
+    totalItemsHeight -= (await items.all()).length - 1;
 
     expect((await outerVirtualizedContainer.boundingBox())?.height).toBe(
       totalItemsHeight,

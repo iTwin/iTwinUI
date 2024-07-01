@@ -1,5 +1,254 @@
 # Changelog
 
+## 3.0.0-dev.0
+
+### Major Changes
+
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): `.iui-breadcrumbs-content` now requires `.iui-button .iui-field` and `data-iui-variant="borderless"`.
+
+  ```diff
+    <button
+  -   class="iui-breadcrumbs-content"
+  +   class="iui-button iui-button-base iui-field iui-breadcrumbs-content"
+  +   data-iui-variant="borderless"
+    >
+  ```
+
+  When used with `<a>`, the same button classes must be used, and the content must be wrapped in a `<span>`. As a result, the anchor's hover state will now be more consistent with the button's hover state.
+
+  ```diff
+    <a
+  -   class="iui-anchor iui-breadcrumbs-content"
+  +   class="iui-anchor iui-button-base iui-button iui-field iui-breadcrumbs-content"
+  +   data-iui-variant="borderless"
+    >
+  +   <span>
+        …
+  +   </span>
+    </a>
+  ```
+
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): `.iui-select-tag-button` now requires `.iui-button .iui-field` and `data-iui-variant="borderless"`.
+
+  ```diff
+    <button
+  -   class="iui-select-tag-button"
+  +   class="iui-button iui-field iui-select-tag-button"
+  +   data-iui-variant="borderless"
+    >
+  ```
+
+  Similarly, `.iui-select-tag-button-icon` also requires `.iui-button-icon`.
+
+  ```diff
+  -  <span class="iui-select-tag-button-icon">
+  +  <span class="iui-select-tag-button-icon iui-button-icon">
+  ```
+
+- [#1891](https://github.com/iTwin/iTwinUI/pull/1891): `.iui-table-row[data-iui-loading]` has been replaced with a new `iui-table-body-extra` class, which must be set on an element _outside_ the table-body.
+
+  ```diff
+   <div class="iui-table">
+    …
+    <div class="iui-table-body">
+      …
+  -   <div class="iui-table-row" data-iui-loading="true">
+  -     <div class="iui-table-cell">
+  -       <div class="iui-progress-indicator-radial"></div>
+  -     </div>
+  -   </div>
+    </div>
+  + <div class="iui-table-body-extra" data-iui-loading="true">
+  +   <div class="iui-progress-indicator-radial"></div>
+  + </div>
+   </div>
+  ```
+
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): `.iui-table-paginator-page-button` now requires the same markup as borderless buttons. The `.iui-table-paginator-page-button-small` modifier class has been removed.
+
+  ```diff
+    <button
+  -   class="iui-table-paginator-page-button iui-table-paginator-page-button-small"
+  +   class="iui-table-paginator-page-button iui-button iui-button-base iui-field"
+  +   data-iui-variant="borderless"
+  +   data-iui-size="small"
+    >
+  ```
+
+  As a result, the small paginator will now have a smaller width than before.
+
+- [#1963](https://github.com/iTwin/iTwinUI/pull/1963): All styles have been wrapped in a cascade layer named `itwinui`.
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): `.iui-sidenav-button.iui-expand` now requires `.iui-button .iui-field` and `data-iui-size="small"`.
+
+  ```diff
+    <button
+  -   class="iui-button iui-button-base iui-sidenav-button iui-expand"
+  +   class="iui-button iui-button-base iui-sidenav-button iui-field iui-expand"
+  +   data-iui-size="small"
+    >
+  ```
+
+- [#1915](https://github.com/iTwin/iTwinUI/pull/1915): `iui-anchor` must now be explicitly added to `<a>` elements, in addition to the previous `iui-alert-link`, `iui-breadcrumbs-content`, `iui-tag-basic`, and `iui-toast-anchor` classes.
+
+  ```diff
+  -<a class="iui-alert-link">
+  +<a class="iui-anchor iui-alert-link">
+  ```
+
+  ```diff
+  -<a class="iui-breadcrumbs-content">
+  +<a class="iui-anchor iui-breadcrumbs-content">
+  ```
+
+  ```diff
+  -<a class="iui-tag-basic">
+  +<a class="iui-anchor iui-tag-basic">
+  ```
+
+  ```diff
+  -<a class="iui-toast-anchor">
+  +<a class="iui-anchor iui-toast-anchor">
+  ```
+
+  Additionally, all `<a>` elements within `iui-legal-footer` elements will need the `iui-anchor` class.
+
+  ```diff
+  <li class="iui-legal-footer-item">
+  - <a>...</a>
+  + <a class="iui-anchor>...</a>
+  </li>
+  ```
+
+- [#1932](https://github.com/iTwin/iTwinUI/pull/1932): All individual component CSS files have been removed. Instead, import `all.css` (the root export).
+
+  ```diff
+  - @import "@itwin/itwinui-css/css/anchor.css";
+  - @import "@itwin/itwinui-css/css/button.css";
+    …
+  + @import "@itwin/itwinui-css";
+  ```
+
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): Added `.iui-field` class to be used with `.iui-button`, `.iui-input`, and `.iui-select-button`. These components now have consistent styling for base, hover and disabled states.
+
+  ```diff
+    <button
+  -   class="iui-button iui-button-base"
+  +   class="iui-button iui-button-base iui-field"
+    >
+  ```
+
+  ```diff
+    <input
+  -   class="iui-input"
+  +   class="iui-input iui-field"
+    >
+  ```
+
+  ```diff
+    <div
+  -   class="iui-select-button"
+  +   class="iui-select-button iui-field"
+    >
+  ```
+
+- [#1919](https://github.com/iTwin/iTwinUI/pull/1919): Ideas button now requires `.iui-button-idea` and `data-iui-variant="high-visibility"` instead of `data-iui-variant="idea"`.
+
+  ```diff
+   <button
+  -  class="iui-button iui-button-base"
+  +  class="iui-button iui-button-base iui-field iui-button-idea"
+  -  data-iui-variant="idea"
+  +  data-iui-variant="high-visibility"
+   >
+  ```
+
+- [#2101](https://github.com/iTwin/iTwinUI/pull/2101): `.iui-tile-thumbnail-type-indicator` and `.iui-tile-thumbnail-quick-action` should now be applied on wrapper element, and the button inside should have the new `.iui-tile-thumbnail-button` class. This reduces code complexity and fixes a visual bug with the hover state.
+
+  ```diff
+  + <div class="iui-tile-thumbnail-quick-action">
+     <button
+  -    class="iui-field iui-button-base iui-button iui-tile-thumbnail-quick-action"
+  +    class="iui-field iui-button-base iui-button iui-tile-thumbnail-button"
+       data-iui-variant="borderless"
+       data-iui-size="small"
+     >
+       …
+     </button>
+  + </div>
+  ```
+
+- [#1935](https://github.com/iTwin/iTwinUI/pull/1935): Replaces the size classes for `iui-avatar` with a new `data-iui-size` attribute.
+
+  ```diff
+  - <div class="iui-avatar iui-small">
+  + <div class="iui-avatar" data-iui-size="small">
+  ```
+
+  Possible values include: `"small"`, `"medium"`, `"large"`, and `"x-large"`. Defaults to `"medium"`.
+
+- [#1938](https://github.com/iTwin/iTwinUI/pull/1938): `iui-breadcrumbs` will need to be added to the classes of all `iui-header-breadcrumbs` elements. `iui-breadcrumbs-list` will also need to be added to the classes of all `iui-header-breadcrumbs-list` elements.
+
+  ```diff
+  - <nav class="iui-header-breadcrumbs">
+  - <ol class="iui-header-breadcrumbs-list">
+  + <nav class="iui-breadcrumbs iui-header-breadcrumbs">
+  + <ol class="iui-breadcrumbs-list iui-header-breadcrumbs-list">
+  ```
+
+### Minor Changes
+
+- [#1863](https://github.com/iTwin/iTwinUI/pull/1863): The filter button inside a Table will now always be visible, instead of only being shown on hover/focus.
+- [#1915](https://github.com/iTwin/iTwinUI/pull/1915): `iui-anchor` can now be styled with status colors using a new `data-iui-status` attribute.
+
+  ```html
+  <a class="iui-anchor" data-iui-status="negative">...</a>
+  ```
+
+  Possible values include: `"positive"`, `"negative"`, `"informational"`, and `"warning"`.
+
+- [#2058](https://github.com/iTwin/iTwinUI/pull/2058): Added loading state to `iui-button`, via the `data-iui-loading` attribute and the `iui-button-spinner` class.
+
+  ```html
+  <button class="iui-button" data-iui-loading="true" aria-disabled="true">
+    <span>Click me</span>
+    <div class="iui-progress-indicator-radial iui-button-spinner" data-iui-indeterminate="true"></div>
+  </button>
+  ```
+
+- [#2058](https://github.com/iTwin/iTwinUI/pull/2058): Added `iui-button-label` class to be used on the `<span>` containing the text inside a button.
+- [#2060](https://github.com/iTwin/iTwinUI/pull/2060): Added support for `popover` attribute in `iui-tooltip`.
+- [#2076](https://github.com/iTwin/iTwinUI/pull/2076): Added a new `data-iui-has-popover` attribute to `iui-button` to be applied when the button has an associated popover/dropdown-menu that is currently open.
+
+  ```html
+  <button class="iui-button" data-iui-has-popover="open"></button>
+  ```
+
+- [#2088](https://github.com/iTwin/iTwinUI/pull/2088): `.iui-field` handles icon fill, used within button and select.
+- [#1935](https://github.com/iTwin/iTwinUI/pull/1935): The default size for an `iui-avatar` element that appears inside of an `iui-tile` is now the same default size as all other `iui-avatar` elements. Setting `data-iui-size` to `"x-large"` will give the `iui-avatar` the size of the old default.
+
+  ```diff
+  <div class="iui-tile-thumbnail-icon">
+  - <span class="iui-avatar"></span>
+  + <span class="iui-avatar" data-iui-size="x-large"></span>
+  </div>
+  ```
+
+### Patch Changes
+
+- [#2064](https://github.com/iTwin/iTwinUI/pull/2064): `transform` values in dialog and expandable-block have been rounded to help avoid blurry text on Windows.
+- [#1916](https://github.com/iTwin/iTwinUI/pull/1916): Fixed the hover background for default tabs.
+- [#2042](https://github.com/iTwin/iTwinUI/pull/2042): Fix table empty state horizontal alignment when table is very narrow.
+- [#2074](https://github.com/iTwin/iTwinUI/pull/2074): Fix indentation of tree node without expander button.
+- [#2021](https://github.com/iTwin/iTwinUI/pull/2021): `.iui-menu-item` also handles `button` elements.
+- [#1955](https://github.com/iTwin/iTwinUI/pull/1955): Fixed a regression in `iui-tabs` where the panel content was not occupying the full width of the container.
+- [#1943](https://github.com/iTwin/iTwinUI/pull/1943): Fixed a z-index issue in `Table` where the `iui-table-resizer` appeared above the sticky header cells.
+- [#2030](https://github.com/iTwin/iTwinUI/pull/2030): Updated selectors in `button-group` to only consider `iui-field` and `iui-input-flex-container` children.
+- [#2083](https://github.com/iTwin/iTwinUI/pull/2083): Fixed a visual bug where elements like `iui-button-icon` inside the `iui-button` were not hidden when the button was in a loading state. Now, `data-iui-loading="true"` on `iui-button` hides _all_ its children except `iui-button-spinner`.
+- [#2054](https://github.com/iTwin/iTwinUI/pull/2054): Remove unnecessary gap below `.iui-input-grid` when `data-iui-label-placement='inline'` and when no secondary line (`iui-status-message`) is present.
+- [#1921](https://github.com/iTwin/iTwinUI/pull/1921): Fixed carousel dot button's incorrect height.
+- [#2043](https://github.com/iTwin/iTwinUI/pull/2043): Adjusted the behavior of buttons so that double tapping them doesn't zoom the viewport on iOS.
+- [#1909](https://github.com/iTwin/iTwinUI/pull/1909): Remove `margin-block` from badge.
+
 ## 2.5.0
 
 ### Minor Changes

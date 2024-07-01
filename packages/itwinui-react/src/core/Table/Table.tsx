@@ -838,7 +838,7 @@ export const Table = <
     style: {
       minBlockSize: virtualizer.getTotalSize(),
       minInlineSize: '100%',
-      willChange: 'transform',
+      contain: 'strict',
       ...style,
     },
     ...rest,
