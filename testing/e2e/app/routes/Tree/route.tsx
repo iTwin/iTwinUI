@@ -107,6 +107,7 @@ export default function TreeTest() {
           />
         )}
         enableVirtualization={enableVirtualization}
+        style={{ height: 'min(400px, 90vh)' }}
       />
     </>
   );
