@@ -834,6 +834,7 @@ export const Table = <
     getScrollElement: () => tableElement ?? null,
     estimateSize: () => rowHeight, //Set to the height of the table row based on the value of the density prop.
     scrollToIndex,
+    getItemKey: (index) => rows[index].id,
   });
 
   const outerProps = {
