@@ -1,0 +1,1 @@
+import{r as n,j as u,B as c,c as o}from"./index-DpqXKVD_.js";const b=n.forwardRef((e,i)=>{const{displayStyle:a="block",required:r,disabled:s,className:l,children:t,...d}=e;return u.jsx(c,{as:"label",className:o("iui-input-label",{"iui-inline":a==="inline","iui-required":r},l),"data-iui-disabled":s?!0:void 0,ref:i,...d,children:t})});export{b as L};

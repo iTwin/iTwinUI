@@ -1,0 +1,1 @@
+import{r as i,B as n,c as t,p as e}from"./index-CwFMGc_c.js";const c=i.forwardRef((a,o)=>{const{as:s=a.href?"a":"button"}=a;return i.createElement(n,{...a,as:s,className:t("iui-link-action",a.className),ref:o})});c.displayName="LinkAction";const r=e.div("iui-link-box");r.displayName="LinkBox";export{r as L,c as a};

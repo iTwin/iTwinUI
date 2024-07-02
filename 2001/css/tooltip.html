@@ -1,0 +1,33 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Tooltip | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Tooltip"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/tooltip.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/tooltip.html"><link rel="stylesheet" href="./_astro/alert.D-iG9BiM.css" />
+<link rel="stylesheet" href="./_astro/tooltip.Dp8zbcYG.css" /><script type="module" src="./_astro/hoisted.Dj2e2qZ5.js"></script></head> <body class="iui-root" data-iui-theme> <theme-button></theme-button>   <h1>Tooltip</h1> <hr> <br> <section id="demo-tooltip"> <div class="demo-tooltip-container">
+Hover here (top)
+<span class="iui-tooltip top" hidden>Hello, I'm a tooltip!</span> </div> <div class="demo-tooltip-container">
+Hover here (right)
+<span class="iui-tooltip right" hidden>Hello, I'm a tooltip!</span> </div> <div class="demo-tooltip-container">
+Hover here (bottom)
+<span class="iui-tooltip bottom" hidden>Hello, I'm a tooltip!</span> </div> <div class="demo-tooltip-container">
+Hover here (left)
+<span class="iui-tooltip left" hidden>Hello, I'm a tooltip!</span> </div> <div class="demo-tooltip-container">
+Hover here (Lorem ipsum)
+<span class="iui-tooltip top" hidden>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</span> </div> <div class="demo-tooltip-container">
+Hover here (permanent)
+<span class="iui-tooltip bottom"> This tooltip will not disappear.</span> </div> </section> <script>
+    document.querySelectorAll('.demo-tooltip-container:not(:last-child)').forEach((container) => {
+      const tooltip = container.querySelector('.iui-tooltip');
+      container.addEventListener('mouseenter', () => {
+        tooltip.hidden = false;
+      });
+      container.addEventListener('mouseleave', () => {
+        tooltip.hidden = true;
+      });
+    });
+  </script>  </body></html>

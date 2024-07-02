@@ -1,0 +1,1 @@
+import{r as s,d as f,j as p,B as x,c as d}from"./index-CcFRcIgA.js";const m=s.forwardRef((t,e)=>{const{size:a,htmlSize:i,status:r,className:u,...n}=t,o=s.useRef(null),c=f(o,e);return p.jsx(x,{as:"input",className:d("iui-input","iui-field",u),"data-iui-size":a,"data-iui-status":r,size:i,ref:c,...n})});export{m as I};
