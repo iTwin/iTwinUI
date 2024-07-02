@@ -902,8 +902,8 @@ export const Table = <
   const virtualizedItemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem,
-      virtualizer?: Virtualizer<Element, Element>,
+      virtualItem: VirtualItem,
+      virtualizer: Virtualizer<Element, Element>,
     ) => getPreparedRow(index, virtualItem, virtualizer),
     [getPreparedRow],
   );
