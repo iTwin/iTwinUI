@@ -15,7 +15,7 @@ export default function App() {
     () => [...Array(10)].map((_, index) => index),
     [],
   );
-  const pageRefs: Array<React.RefObject<HTMLDivElement>> = [];
+  const pageRefs = React.useRef<Record<string, HTMLElement | null>>({});
 
   // const [visiblePageIndexes, setVisiblePageIndexes] =
   //   React.useState<VisiblePageIndices>(null);
@@ -25,15 +25,15 @@ export default function App() {
   // >(null);
 
   // Reducer where all the component-wide state is stored
-  const [
-    { currentPageId, animations, animatingToPageId, animationDirection },
-    dispatch,
-  ] = React.useReducer(pageAnimationReducer, {
-    currentPageId: 'page-0',
-    animations: null,
-    animationDirection: null,
-    animatingToPageId: null,
-  } as PageAnimationState);
+  const [{ currentPageId, animations }, dispatch] = React.useReducer(
+    pageAnimationReducer,
+    {
+      currentPageId: 'page-8',
+      animations: null,
+      animationDirection: null,
+      animatingToPageId: null,
+    } as PageAnimationState,
+  );
 
   const goToPage = async (direction: 'prev' | 'next') => {
     // // Page transition already in progress
@@ -41,12 +41,18 @@ export default function App() {
     //   return;
     // }
 
+    // Page transition already in progress
+    if (animations != null) {
+      return;
+    }
+
     const currentPageIndex = Number(currentPageId.slice('page-'.length));
     const otherPageIndex =
       direction === 'next' ? currentPageIndex + 1 : currentPageIndex - 1;
+    const otherPageId = `page-${otherPageIndex}`;
 
-    const currentPage = pageRefs[currentPageIndex];
-    const otherPage = pageRefs[otherPageIndex];
+    // const currentPage = pageRefs[currentPageIndex];
+    // const otherPage = pageRefs[otherPageIndex];
 
     const animationOptions = {
       duration: 1000,
@@ -60,60 +66,48 @@ export default function App() {
     //     : [otherPageIndex, currentPageIndex, null],
     // );
 
+    const animationsData = {
+      [currentPageId]:
+        direction === 'next'
+          ? [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }]
+          : [{ transform: 'translateX(0)' }, { transform: 'translateX(100%)' }],
+      [otherPageId]:
+        direction === 'next'
+          ? [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }]
+          : [
+              { transform: 'translateX(0)', display: 'block' },
+              { transform: 'translateX(100%)', display: 'block' },
+            ],
+    };
+
     dispatch({
       type: (direction === 'prev' ? 'left' : 'right') as 'left',
       animatingToPageId: `page-${otherPageIndex}`,
+      animations: animationsData,
     });
 
-    const animationsData: {
-      element: HTMLElement | null;
-      keyframes: Keyframe[];
-    }[] = [
-      {
-        element: currentPage.current,
-        keyframes:
-          direction === 'next'
-            ? [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(-100%)', display: 'none' },
-              ]
-            : [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(100%)', display: 'none' },
-              ],
-      },
-      {
-        element: otherPage.current,
-        keyframes:
-          direction === 'next'
-            ? [
-                { transform: 'translateX(100%)' },
-                { transform: 'translateX(0)' },
-              ]
-            : [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(100%)' },
-              ],
-      },
-    ];
-
     await Promise.all(
-      animationsData.map(
-        (animationData, index) =>
-          new Promise((resolve, reject) => {
-            const animation = animationData.element?.animate(
-              animationData.keyframes,
-              animationOptions,
-            );
+      Object.entries(animationsData).map(([pageId, keyframes], index) => {
+        const element = pageRefs.current[pageId];
 
-            if (animation) {
-              animation.onfinish = () => {
-                // onFinish(currentPageIndex + index);
-                resolve(null);
-              };
-            }
-          }),
-      ),
+        return new Promise((resolve, reject) => {
+          if (element == null) {
+            resolve(null);
+            return;
+          }
+
+          // console.log('animating', pageId);
+
+          const animation = element.animate(keyframes, animationOptions);
+
+          if (animation) {
+            animation.onfinish = () => {
+              // onFinish(currentPageIndex + index);
+              resolve(null);
+            };
+          }
+        });
+      }),
     );
 
     // const currentPageAnimation = currentPage.current.animate(
@@ -129,13 +123,14 @@ export default function App() {
     //   animationOptions
     // );
 
-    setTimeout(() => {
-      console.log("J'suis là");
+    // setTimeout(() => {
+    dispatch({ type: 'endAnimation' });
+    //   console.log("J'suis là");
 
-      // setCurrentPageIndex(otherPageIndex);
-      // // setCurrentPageIndex((prev) => prev + 1);
-      // setVisiblePageIndexes(null);
-    }, 3000);
+    //   // setCurrentPageIndex(otherPageIndex);
+    //   // // setCurrentPageIndex((prev) => prev + 1);
+    //   // setVisiblePageIndexes(null);
+    // }, 3000);
   };
 
   return (
@@ -152,7 +147,7 @@ export default function App() {
         //   console.log(event);
         // }}
       >
-        <Text>currentPage = {currentPageIndex}</Text>
+        <Text>currentPage = {currentPageId}</Text>
         <ButtonGroup>
           <Button onClick={() => goToPage('prev')}>-1</Button>
           <Button onClick={() => goToPage('next')}>+1</Button>
@@ -168,8 +163,8 @@ export default function App() {
             <Page
               key={index}
               index={index}
-              visiblePageIndexes={visiblePageIndexes}
-              currentIndex={currentPageIndex}
+              currentPageId={currentPageId}
+              animations={animations}
               pageRefs={pageRefs}
             />
           ))}
@@ -183,27 +178,39 @@ export default function App() {
 
 const Page = ({
   index,
-  currentIndex,
-  visiblePageIndexes,
+  currentPageId,
+  animations,
   pageRefs,
 }: {
   index: number;
-  currentIndex: number;
-  visiblePageIndexes: VisiblePageIndices;
-  pageRefs: React.RefObject<HTMLDivElement>[];
+  currentPageId: PageAnimationState['currentPageId'];
+  animations: PageAnimationState['animations'];
+  pageRefs: React.RefObject<Record<string, HTMLElement | null>>;
 }) => {
+  const pageId = `page-${index}`;
+
   const ref = React.useRef(null);
-  pageRefs[index] = ref;
+  if (pageRefs.current) {
+    pageRefs.current[`page-${index}`] = ref.current;
+  }
+
+  if (pageId === 'page-5') {
+    console.log(
+      animations == null
+        ? pageId !== currentPageId
+        : !Object.keys(animations).includes(pageId),
+    );
+  }
 
   return (
     <div
       ref={ref}
-      id={`page-${index}`}
+      id={pageId}
       className='page'
       hidden={
-        visiblePageIndexes == null
-          ? index !== currentIndex
-          : !visiblePageIndexes.includes(index)
+        animations == null
+          ? pageId !== currentPageId
+          : !Object.keys(animations).includes(pageId)
       }
       style={{
         inlineSize: '100%',
@@ -218,6 +225,12 @@ const Page = ({
         //     : undefined,
 
         border: '1px solid hotpink',
+
+        ...(pageId === currentPageId &&
+        animations != null &&
+        animations[pageId] != null
+          ? animations[pageId][animations[pageId].length - 1]
+          : {}),
       }}
       // onAnimationEnd={(event) => {
       //   console.log(event);
@@ -248,8 +261,16 @@ type PageAnimationState = {
 };
 
 type PageAnimationAction =
-  | { type: 'left'; animatingToPageId: string }
-  | { type: 'right'; animatingToPageId: string }
+  | {
+      type: 'left';
+      animatingToPageId: string;
+      animations: PageAnimationState['animations'];
+    }
+  | {
+      type: 'right';
+      animatingToPageId: string;
+      animations: PageAnimationState['animations'];
+    }
   | { type: 'endAnimation' };
 
 export const pageAnimationReducer = (
@@ -271,28 +292,7 @@ export const pageAnimationReducer = (
         ...state,
         animatingToPageId: action.animatingToPageId,
         animationDirection: action.type,
-        animations: {
-          [state.currentPageId]:
-            action.type === 'right'
-              ? [
-                  { transform: 'translateX(0)' },
-                  { transform: 'translateX(-100%)', display: 'none' },
-                ]
-              : [
-                  { transform: 'translateX(0)' },
-                  { transform: 'translateX(100%)', display: 'none' },
-                ],
-          [action.animatingToPageId]:
-            action.type === 'right'
-              ? [
-                  { transform: 'translateX(100%)' },
-                  { transform: 'translateX(0)' },
-                ]
-              : [
-                  { transform: 'translateX(0)' },
-                  { transform: 'translateX(100%)' },
-                ],
-        },
+        animations: action.animations,
       };
     }
     case 'endAnimation': {
@@ -303,6 +303,7 @@ export const pageAnimationReducer = (
 
       return {
         ...state,
+        currentPageId: state.animatingToPageId,
         animatingToPageId: null,
         animationDirection: null,
         animations: null,
