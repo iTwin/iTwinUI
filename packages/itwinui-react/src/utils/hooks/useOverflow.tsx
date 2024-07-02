@@ -6,8 +6,13 @@ import * as React from 'react';
 import { useMergedRefs } from './useMergedRefs.js';
 import { useResizeObserver } from './useResizeObserver.js';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import usePrevious from './usePrevious.js';
 
-const STARTING_MAX_ITEMS_COUNT = 20;
+/** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
+type GuessRange = [number, number] | null;
+
+/** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
+const STARTING_MAX_ITEMS_COUNT = 32;
 
 /**
  * Hook that observes the size of an element and returns the number of items
@@ -37,73 +42,131 @@ export const useOverflow = <T extends HTMLElement>(
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
   const containerRef = React.useRef<T>(null);
-
+  const initialVisibleCount = Math.min(items.length, STARTING_MAX_ITEMS_COUNT);
   const [visibleCount, setVisibleCount] = React.useState(() =>
-    disabled ? items.length : Math.min(items.length, STARTING_MAX_ITEMS_COUNT),
+    disabled ? items.length : initialVisibleCount,
   );
 
-  const needsFullRerender = React.useRef(true);
+  const [containerSize, setContainerSize] = React.useState<number>(-1);
+  const previousContainerSize = usePrevious(containerSize);
+  previousContainerSize;
 
-  const [containerSize, setContainerSize] = React.useState<number>(0);
-  const previousContainerSize = React.useRef<number>(0);
   const updateContainerSize = React.useCallback(
     ({ width, height }: DOMRectReadOnly) =>
       setContainerSize(orientation === 'horizontal' ? width : height),
     [orientation],
   );
+
   const [resizeRef, observer] = useResizeObserver<T>(updateContainerSize);
   const resizeObserverRef = React.useRef(observer);
 
-  useLayoutEffect(() => {
-    if (disabled) {
-      setVisibleCount(items.length);
-    } else {
-      setVisibleCount(Math.min(items.length, STARTING_MAX_ITEMS_COUNT));
-      needsFullRerender.current = true;
+  const [visibleCountGuessRange, setVisibleCountGuessRange] =
+    React.useState<GuessRange>([0, initialVisibleCount]);
+
+  /**
+   * Call this function to guess the new `visibleCount`.
+   * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
+   */
+  const guessVisibleCount = React.useCallback(() => {
+    // Already stabilized
+    if (visibleCountGuessRange == null) {
+      return;
     }
-  }, [containerSize, disabled, items]);
 
-  const mergedRefs = useMergedRefs(containerRef, resizeRef);
+    // We have already found the correct visibleCount
+    if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
+      console.log('STABILIZED');
+      setVisibleCountGuessRange(null);
+      return;
+    }
 
+    const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
+    const availableSize = containerRef.current?.[`offset${dimension}`] ?? 0;
+    const requiredSize = containerRef.current?.[`scroll${dimension}`] ?? 0;
+
+    const isOverflowing = availableSize < requiredSize;
+
+    console.log('RUNNING', {
+      visibleCountGuessRange: visibleCountGuessRange.toString(),
+      isOverflowing,
+      visibleCount,
+    });
+
+    // Firstly, the highest guess MUST be above the correct visibleCount value. If not, double the highest guess.
+    // i.e. the container should overflow when visibleCount = max guess.
+    if (visibleCountGuessRange[1] === visibleCount && !isOverflowing) {
+      setVisibleCountGuessRange([
+        visibleCountGuessRange[0],
+        visibleCountGuessRange[1] * 2,
+      ]);
+      setVisibleCount(visibleCountGuessRange[1] * 2);
+      return;
+    }
+
+    let newVisibleCountGuessRange = visibleCountGuessRange;
+
+    // overflowing = we guessed too high. So, new max guess = half the current guess
+    if (isOverflowing) {
+      newVisibleCountGuessRange = [visibleCountGuessRange[0], visibleCount];
+    } else {
+      // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
+      newVisibleCountGuessRange = [visibleCount, visibleCountGuessRange[1]];
+    }
+
+    setVisibleCountGuessRange(newVisibleCountGuessRange);
+
+    // Always guess that the correct visibleCount is in the middle of the new range
+    setVisibleCount(
+      Math.floor(
+        (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
+      ),
+    );
+  }, [orientation, visibleCount, visibleCountGuessRange]);
+
+  // TODO: Replace eslint-disable with proper listening to containerRef resize
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
     if (!containerRef.current || disabled) {
       resizeObserverRef.current?.disconnect();
       return;
     }
-    const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
 
-    const availableSize = containerRef.current[`offset${dimension}`];
-    const requiredSize = containerRef.current[`scroll${dimension}`];
+    guessVisibleCount();
+  });
 
-    if (availableSize < requiredSize) {
-      const avgItemSize = requiredSize / visibleCount;
-      const visibleItems = Math.floor(availableSize / avgItemSize);
-      /* When first item is larger than the container - visibleItems count is 0, 
-      We can assume that at least some part of the first item is visible and return 1. */
-      setVisibleCount(visibleItems > 0 ? visibleItems : 1);
-    } else if (needsFullRerender.current) {
-      const childrenSize = Array.from(containerRef.current.children).reduce(
-        (sum: number, child: HTMLElement) => sum + child[`offset${dimension}`],
-        0,
-      );
-      // Previous `useEffect` might have updated visible count, but we still have old one
-      // If it is 0, lets try to update it with items length.
-      const currentVisibleCount =
-        visibleCount || Math.min(items.length, STARTING_MAX_ITEMS_COUNT);
-      const avgItemSize = childrenSize / currentVisibleCount;
-      const visibleItems = Math.floor(availableSize / avgItemSize);
-
-      if (!isNaN(visibleItems)) {
-        // Doubling the visible items to overflow the container. Just to be safe.
-        setVisibleCount(Math.min(items.length, visibleItems * 2));
-      }
-    }
-    needsFullRerender.current = false;
-  }, [containerSize, visibleCount, disabled, items.length, orientation]);
-
+  // TODO: Better way to listen to containerSize changes instead of having containerSize in dep array.
   useLayoutEffect(() => {
-    previousContainerSize.current = containerSize;
-  }, [containerSize]);
+    if (
+      // No need to listen to resizes since we're already in the process of finding the correct visibleCount
+      visibleCountGuessRange != null ||
+      // Only start re-guessing if containerSize changes *after* the containerSize is first set.
+      // This prevents unnecessary renders
+      containerSize === previousContainerSize ||
+      previousContainerSize === -1
+    ) {
+      return;
+    }
+
+    // Set the visibleCountGuessRange to again find the correct visibleCount;
+    setVisibleCountGuessRange([0, visibleCount]);
+
+    // TODO: Have better optimizations on resizing.
+    // const growing = containerSize > (previousContainerSize ?? 0);
+    // if (growing) {
+    //  setVisibleCountGuessRange([visibleCount, visibleCount + 1]);
+    // } else {
+    //  setVisibleCountGuessRange([visibleCount - 2, visibleCount]);
+    // }
+    // guessVisibleCount();
+  }, [
+    containerSize,
+    guessVisibleCount,
+    previousContainerSize,
+    visibleCount,
+    visibleCountGuessRange,
+  ]);
+
+  const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
   return [mergedRefs, visibleCount] as const;
 };
