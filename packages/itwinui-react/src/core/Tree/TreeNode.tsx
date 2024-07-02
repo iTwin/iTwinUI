@@ -63,7 +63,7 @@ type TreeNodeProps = {
   /**
    * Props for subTree list(affects all subnodes of this node).
    */
-  subTreeProps?: React.ComponentProps<'ul'>;
+  subTreeProps?: React.ComponentProps<'div'>;
   /**
    * Flag whether the node is disabled.
    * @default false
@@ -180,9 +180,9 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
   } = useTreeContext();
 
   const [isFocused, setIsFocused] = React.useState(false);
-  const nodeRef = React.useRef<HTMLLIElement>(null);
+  const nodeRef = React.useRef<HTMLDivElement>(null);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
       return;
     }
@@ -264,7 +264,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      as='li'
+      as='div'
       role='treeitem'
       className={cx('iui-tree-item', className)}
       aria-expanded={hasSubNodes ? isExpanded : undefined}
@@ -373,7 +373,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
 
       {hasSubNodes && (
         <Box
-          as='ul'
+          as='div'
           role='group'
           aria-owns={subNodeIds.join(' ')}
           {...subTreeProps}
@@ -382,4 +382,4 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'li', TreeNodeProps>;
+}) as PolymorphicForwardRefComponent<'div', TreeNodeProps>;
