@@ -95,6 +95,9 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   const { status, isLoading, ...restUserRowProps } = userRowProps;
   const mergedProps = {
     ...row.getRowProps({
+      style: {
+        flex: `0 0 auto`,
+        minWidth: '100%',
         ...(virtualItem != null
           ? {
               position: 'absolute',
@@ -103,6 +106,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
               transform: `translateY(${virtualItem.start}px)`,
             }
           : {}),
+      },
     }),
     ...restUserRowProps,
     ...{
