@@ -1,0 +1,1 @@
+import{r as t,j as c,B as x,c as l}from"./index-U9KIH1pP.js";const f=t.forwardRef((e,s)=>{const{className:a,children:o,overflow:r,background:n="none",...i}=e;return c.jsx(x,{className:l("iui-tag-container",{[`iui-${r}`]:!!r,"iui-visible":n!=="none"},a),ref:s,...i,children:o})});export{f as T};
