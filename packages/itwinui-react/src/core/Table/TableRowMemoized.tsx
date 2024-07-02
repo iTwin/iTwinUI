@@ -17,7 +17,7 @@ import {
   WithCSSTransition,
 } from '../../utils/index.js';
 import { TableCell } from './TableCell.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
