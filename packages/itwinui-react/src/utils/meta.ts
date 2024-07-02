@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { version } from '../styles.js';
 
-const module: 'ESM' | 'CJS' =
+const _moduleType: 'ESM' | 'CJS' =
   // @ts-expect-error: __module gets injected by SWC
   typeof __module !== 'undefined' ? __module : 'DEV';
 
@@ -13,5 +13,5 @@ export const meta = {
   /** The exact version of `@itwin/itwinui-react`. */
   version,
   /** The current module format (i.e. "ESM" vs "CJS"). */
-  module,
+  module: _moduleType,
 };
