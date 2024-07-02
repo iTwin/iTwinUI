@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { useOverflow } from '../hooks/useOverflow.js';
 import type { CommonProps } from '../props.js';
+import { mergeRefs } from '../hooks/useMergedRefs.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -46,7 +47,7 @@ export type MiddleTextTruncationProps = {
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
 
-  const [ref, visibleCount] = useOverflow(text);
+  const [ref, visibleCount] = useOverflow(text.length);
 
   const truncatedText = React.useMemo(() => {
     if (visibleCount < text.length) {
@@ -68,7 +69,7 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
         whiteSpace: 'nowrap',
         ...style,
       }}
-      ref={ref}
+      ref={mergeRefs(ref)}
       {...rest}
     >
       {textRenderer?.(truncatedText, text) ?? truncatedText}

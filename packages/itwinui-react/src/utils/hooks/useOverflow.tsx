@@ -37,14 +37,16 @@ const STARTING_MAX_ITEMS_COUNT = 32;
  * );
  */
 export const useOverflow = <T extends HTMLElement>(
-  items: React.ReactNode[] | string,
+  // TODO: Try more to remove this prop, if possible.
+  itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
   const containerRef = React.useRef<T>(null);
-  const initialVisibleCount = Math.min(items.length, STARTING_MAX_ITEMS_COUNT);
-  const [visibleCount, setVisibleCount] = React.useState(() =>
-    disabled ? items.length : initialVisibleCount,
+  const initialVisibleCount = Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT);
+
+  const [visibleCount, setVisibleCount] = React.useState<number>(() =>
+    disabled ? itemsLength : initialVisibleCount,
   );
 
   const [containerSize, setContainerSize] = React.useState<number>(-1);
@@ -61,15 +63,15 @@ export const useOverflow = <T extends HTMLElement>(
   const resizeObserverRef = React.useRef(observer);
 
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
-    React.useState<GuessRange>([0, initialVisibleCount]);
+    React.useState<GuessRange>(disabled ? null : [0, initialVisibleCount]);
 
   /**
    * Call this function to guess the new `visibleCount`.
    * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
    */
   const guessVisibleCount = React.useCallback(() => {
-    // Already stabilized
-    if (visibleCountGuessRange == null) {
+    // If disabled or already stabilized
+    if (disabled || visibleCountGuessRange == null) {
       return;
     }
 
@@ -121,12 +123,12 @@ export const useOverflow = <T extends HTMLElement>(
         (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
       ),
     );
-  }, [orientation, visibleCount, visibleCountGuessRange]);
+  }, [disabled, orientation, visibleCount, visibleCountGuessRange]);
 
   // TODO: Replace eslint-disable with proper listening to containerRef resize
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
-    if (!containerRef.current || disabled) {
+    if (disabled || !containerRef.current) {
       resizeObserverRef.current?.disconnect();
       return;
     }
