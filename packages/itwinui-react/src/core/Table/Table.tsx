@@ -844,7 +844,6 @@ export const Table = <
       contain: 'strict',
       ...style,
     },
-    ...rest,
   } as React.HTMLAttributes<HTMLElement>;
 
   const getPreparedRow = React.useCallback(
