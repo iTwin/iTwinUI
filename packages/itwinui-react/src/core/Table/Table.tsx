@@ -442,6 +442,15 @@ export const Table = <
     [],
   );
 
+  const rowHeight = React.useMemo(() => {
+    if (density === 'condensed') {
+      return 50;
+    } else if (density === 'extra-condensed') {
+      return 38;
+    }
+    return 62;
+  }, [density]);
+
   const onBottomReachedRef = useLatestRef(onBottomReached);
   const onRowInViewportRef = useLatestRef(onRowInViewport);
 
@@ -823,14 +832,7 @@ export const Table = <
   const virtualizer = useVirtualScroll({
     count: page.length,
     getScrollElement: () => tableElement ?? null,
-    estimateSize: () => {
-      if (density === 'condensed') {
-        return 50;
-      } else if (density === 'extra-condensed') {
-        return 38;
-      }
-      return 62;
-    }, //Set to the height of the table row based on the value of the density prop.
+    estimateSize: () => rowHeight, //Set to the height of the table row based on the value of the density prop.
     scrollToIndex,
   });
 
