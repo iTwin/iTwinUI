@@ -45,8 +45,23 @@ export const useOverflow = <T extends HTMLElement>(
   const containerRef = React.useRef<T>(null);
   const initialVisibleCount = Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT);
 
-  const [visibleCount, setVisibleCount] = React.useState<number>(() =>
+  const [visibleCount, _setVisibleCount] = React.useState<number>(() =>
     disabled ? itemsLength : initialVisibleCount,
+  );
+  const setVisibleCount = React.useCallback(
+    (newVisibleCount: React.SetStateAction<typeof visibleCount>) => {
+      _setVisibleCount((prev) => {
+        const safeVisibleCount = Math.min(
+          typeof newVisibleCount === 'function'
+            ? newVisibleCount(prev)
+            : newVisibleCount,
+          itemsLength,
+        );
+
+        return safeVisibleCount;
+      });
+    },
+    [itemsLength],
   );
 
   const [containerSize, setContainerSize] = React.useState<number>(-1);
@@ -75,13 +90,6 @@ export const useOverflow = <T extends HTMLElement>(
       return;
     }
 
-    // We have already found the correct visibleCount
-    if (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1) {
-      console.log('STABILIZED');
-      setVisibleCountGuessRange(null);
-      return;
-    }
-
     const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
     const availableSize = containerRef.current?.[`offset${dimension}`] ?? 0;
     const requiredSize = containerRef.current?.[`scroll${dimension}`] ?? 0;
@@ -92,16 +100,27 @@ export const useOverflow = <T extends HTMLElement>(
       visibleCountGuessRange: visibleCountGuessRange.toString(),
       isOverflowing,
       visibleCount,
+      availableSize,
+      requiredSize,
     });
+
+    // We have already found the correct visibleCount
+    if (
+      (visibleCount === itemsLength && !isOverflowing) ||
+      visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1
+    ) {
+      console.log('STABILIZED');
+      setVisibleCountGuessRange(null);
+      return;
+    }
 
     // Firstly, the highest guess MUST be above the correct visibleCount value. If not, double the highest guess.
     // i.e. the container should overflow when visibleCount = max guess.
     if (visibleCountGuessRange[1] === visibleCount && !isOverflowing) {
-      setVisibleCountGuessRange([
-        visibleCountGuessRange[0],
-        visibleCountGuessRange[1] * 2,
-      ]);
-      setVisibleCount(visibleCountGuessRange[1] * 2);
+      const doubleOfMaxGuess = visibleCountGuessRange[1] * 2;
+
+      setVisibleCountGuessRange([visibleCountGuessRange[0], doubleOfMaxGuess]);
+      setVisibleCount(doubleOfMaxGuess);
       return;
     }
 
@@ -123,7 +142,14 @@ export const useOverflow = <T extends HTMLElement>(
         (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
       ),
     );
-  }, [disabled, orientation, visibleCount, visibleCountGuessRange]);
+  }, [
+    disabled,
+    itemsLength,
+    orientation,
+    setVisibleCount,
+    visibleCount,
+    visibleCountGuessRange,
+  ]);
 
   // TODO: Replace eslint-disable with proper listening to containerRef resize
   // eslint-disable-next-line react-hooks/exhaustive-deps
