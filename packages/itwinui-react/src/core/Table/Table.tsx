@@ -39,6 +39,7 @@ import {
   LineClamp,
   useMergedRefs,
   useLatestRef,
+  useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import {
@@ -70,8 +71,8 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -441,6 +442,15 @@ export const Table = <
     [],
   );
 
+  const rowHeight = React.useMemo(() => {
+    if (density === 'condensed') {
+      return 50;
+    } else if (density === 'extra-condensed') {
+      return 38;
+    }
+    return 62;
+  }, [density]);
+
   const onBottomReachedRef = useLatestRef(onBottomReached);
   const onRowInViewportRef = useLatestRef(onRowInViewport);
 
@@ -760,6 +770,9 @@ export const Table = <
   );
 
   const tableRef = React.useRef<HTMLDivElement>(null);
+  const [tableElement, setTableElement] = React.useState<HTMLDivElement | null>(
+    null,
+  );
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -816,8 +829,29 @@ export const Table = <
     }
   });
 
+  const virtualizer = useVirtualScroll({
+    count: page.length,
+    getScrollElement: () => tableElement ?? null,
+    estimateSize: () => rowHeight, //Set to the height of the table row based on the value of the density prop.
+    scrollToIndex,
+    getItemKey: (index) => page[index].id,
+  });
+
+  const outerProps = {
+    style: {
+      minBlockSize: virtualizer.getTotalSize(),
+      minInlineSize: '100%',
+      contain: 'strict',
+      ...style,
+    },
+  } as React.HTMLAttributes<HTMLElement>;
+
   const getPreparedRow = React.useCallback(
-    (index: number) => {
+    (
+      index: number,
+      virtualItem?: VirtualItem,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => {
       const row = page[index];
       prepareRow(row);
       return (
@@ -839,6 +873,8 @@ export const Table = <
           scrollContainerRef={tableRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
           density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
         />
       );
     },
@@ -863,7 +899,11 @@ export const Table = <
   );
 
   const virtualizedItemRenderer = React.useCallback(
-    (index: number) => getPreparedRow(index),
+    (
+      index: number,
+      virtualItem: VirtualItem,
+      virtualizer: Virtualizer<Element, Element>,
+    ) => getPreparedRow(index, virtualItem, virtualizer),
     [getPreparedRow],
   );
 
@@ -902,10 +942,14 @@ export const Table = <
       value={columns as Column<Record<string, unknown>>[]}
     >
       <Box
-        ref={useMergedRefs(tableRef, (element) => {
-          ownerDocument.current = element?.ownerDocument;
-          resizeRef(element);
-        })}
+        ref={useMergedRefs<HTMLDivElement>(
+          tableRef,
+          setTableElement,
+          (element) => {
+            ownerDocument.current = element?.ownerDocument;
+            resizeRef(element);
+          },
+        )}
         id={id}
         {...getTableProps({
           className: cx('iui-table', className),
@@ -1113,17 +1157,28 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <ShadowRoot>
+            {enableVirtualization ? (
+              <div {...outerProps}>
+                <slot />
+              </div>
+            ) : (
+              <slot />
+            )}
+          </ShadowRoot>
           {data.length !== 0 && (
             <>
-              {enableVirtualization ? (
-                <VirtualScroll
-                  itemsLength={page.length}
-                  itemRenderer={virtualizedItemRenderer}
-                  scrollToIndex={scrollToIndex}
-                />
-              ) : (
-                page.map((_, index) => getPreparedRow(index))
-              )}
+              {enableVirtualization
+                ? virtualizer
+                    .getVirtualItems()
+                    .map((virtualItem) =>
+                      virtualizedItemRenderer(
+                        virtualItem.index,
+                        virtualItem,
+                        virtualizer,
+                      ),
+                    )
+                : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
           {isLoading && data.length === 0 && (
