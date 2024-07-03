@@ -60,6 +60,42 @@ export const Overflow = () => {
   ));
 
   return (
+    <ButtonGroup
+      orientation='horizontal'
+      overflowButton={(overflowStart) => {
+        return (
+          <DropdownMenu
+            menuItems={(close) => {
+              const length = items.length - overflowStart;
+
+              return Array.from({ length }, (_, _index) => {
+                const index = overflowStart + _index;
+
+                return (
+                  <MenuItem
+                    key={index}
+                    onClick={close}
+                    icon={<SvgPlaceholder />}
+                  >
+                    Item #{index}
+                  </MenuItem>
+                );
+              });
+            }}
+          >
+            <IconButton label='More'>
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        );
+      }}
+    >
+      {items}
+    </ButtonGroup>
+  );
+};
+Overflow.decorators = [
+  (Story) => (
     <>
       <Text variant='small' as='small' isMuted>
         Resize the container to see overflow behavior.
@@ -73,42 +109,11 @@ export const Overflow = () => {
           resize: 'inline',
         }}
       >
-        <ButtonGroup
-          orientation='horizontal'
-          overflowButton={(overflowStart) => {
-            return (
-              <DropdownMenu
-                menuItems={(close) => {
-                  const length = items.length - overflowStart;
-
-                  return Array.from({ length }, (_, _index) => {
-                    const index = overflowStart + _index;
-
-                    return (
-                      <MenuItem
-                        key={index}
-                        onClick={close}
-                        icon={<SvgPlaceholder />}
-                      >
-                        Item #{index}
-                      </MenuItem>
-                    );
-                  });
-                }}
-              >
-                <IconButton label='More'>
-                  <SvgMore />
-                </IconButton>
-              </DropdownMenu>
-            );
-          }}
-        >
-          {items}
-        </ButtonGroup>
+        <Story />
       </div>
     </>
-  );
-};
+  ),
+] satisfies StoryDecorator[];
 
 export const InputButtonCombo = () => {
   return (
