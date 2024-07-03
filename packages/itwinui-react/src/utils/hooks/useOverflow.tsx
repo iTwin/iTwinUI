@@ -107,7 +107,7 @@ export const useOverflow = <T extends HTMLElement>(
     // We have already found the correct visibleCount
     if (
       (visibleCount === itemsLength && !isOverflowing) ||
-      visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1
+      visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1 // TODO: I think this causes issue when item count is 1 and so the initial range is [0, 1]
     ) {
       console.log('STABILIZED');
       setVisibleCountGuessRange(null);
