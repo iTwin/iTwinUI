@@ -18,7 +18,6 @@ import {
   SvgFolder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
-import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Breadcrumbs',
@@ -85,7 +84,7 @@ export const Overflow = () => {
   return <Breadcrumbs>{items}</Breadcrumbs>;
 };
 Overflow.decorators = [
-  (Story) => (
+  (Story: () => React.ReactNode) => (
     <>
       <Text variant='small' as='small' isMuted>
         Resize the container to see overflow behavior.
@@ -103,7 +102,7 @@ Overflow.decorators = [
       </div>
     </>
   ),
-] satisfies StoryDecorator[];
+];
 
 export const CustomOverflowBackButton = () => {
   const items = Array(10)

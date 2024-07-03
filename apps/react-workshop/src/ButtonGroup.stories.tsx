@@ -19,7 +19,6 @@ import {
   SvgPlaceholder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
-import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'ButtonGroup',
@@ -95,7 +94,7 @@ export const Overflow = () => {
   );
 };
 Overflow.decorators = [
-  (Story) => (
+  (Story: () => React.ReactNode) => (
     <>
       <Text variant='small' as='small' isMuted>
         Resize the container to see overflow behavior.
@@ -113,7 +112,7 @@ Overflow.decorators = [
       </div>
     </>
   ),
-] satisfies StoryDecorator[];
+];
 
 export const InputButtonCombo = () => {
   return (
@@ -215,7 +214,7 @@ export const VerticalOverflow = () => {
   );
 };
 VerticalOverflow.decorators = [
-  (Story) => (
+  (Story: () => React.ReactNode) => (
     <>
       <Text variant='small' as='small' isMuted>
         Resize the container to see overflow behavior.
@@ -234,4 +233,4 @@ VerticalOverflow.decorators = [
       </div>
     </>
   ),
-] satisfies StoryDecorator[];
+];
