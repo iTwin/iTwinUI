@@ -62,11 +62,11 @@ export const Overflow = () => {
   return (
     <>
       <Text variant='small' as='small' isMuted>
-        Resize the viewport to see overflow behavior.
+        Resize the container to see overflow behavior.
       </Text>
       <div
         style={{
-          maxWidth: 'clamp(300px, 50%, 100%)',
+          width: 'min(30rem, 100%)',
           border: '1px solid hotpink',
           padding: 8,
           overflow: 'hidden',

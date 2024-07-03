@@ -11,6 +11,7 @@ import {
   MenuItem,
   Input,
   Tooltip,
+  Text,
 } from '@itwin/itwinui-react';
 import {
   SvgChevronRightDouble,
@@ -81,17 +82,22 @@ export const Overflow = () => {
     ));
 
   return (
-    <div
-      style={{
-        width: '50%',
-        border: '1px solid lightpink',
-        padding: 8,
-        resize: 'inline',
-        overflow: 'hidden',
-      }}
-    >
-      <Breadcrumbs>{items}</Breadcrumbs>
-    </div>
+    <>
+      <Text variant='small' as='small' isMuted>
+        Resize the container to see overflow behavior.
+      </Text>
+      <div
+        style={{
+          width: 'min(30rem, 100%)',
+          border: '1px solid lightpink',
+          padding: 8,
+          resize: 'inline',
+          overflow: 'hidden',
+        }}
+      >
+        <Breadcrumbs>{items}</Breadcrumbs>
+      </div>
+    </>
   );
 };
 
