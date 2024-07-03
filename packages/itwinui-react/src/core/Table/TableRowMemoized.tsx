@@ -17,7 +17,7 @@ import {
   WithCSSTransition,
 } from '../../utils/index.js';
 import { TableCell } from './TableCell.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
@@ -98,12 +98,14 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
       style: {
         flex: `0 0 auto`,
         minWidth: '100%',
-        position: virtualItem ? 'absolute' : undefined,
-        top: virtualItem ? 0 : undefined,
-        left: virtualItem ? 0 : undefined,
-        transform: virtualItem
-          ? `translateY(${virtualItem.start}px)`
-          : undefined,
+        ...(virtualItem != null
+          ? {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              transform: `translateY(${virtualItem.start}px)`,
+            }
+          : {}),
       },
     }),
     ...restUserRowProps,

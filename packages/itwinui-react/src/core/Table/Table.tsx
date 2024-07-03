@@ -72,7 +72,7 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import { type VirtualItem, Virtualizer } from '@tanstack/react-virtual';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -441,6 +441,16 @@ export const Table = <
     }),
     [],
   );
+
+  const rowHeight = React.useMemo(() => {
+    //Set to the height of the table row based on the value of the density prop.
+    if (density === 'condensed') {
+      return 50;
+    } else if (density === 'extra-condensed') {
+      return 38;
+    }
+    return 62;
+  }, [density]);
 
   const onBottomReachedRef = useLatestRef(onBottomReached);
   const onRowInViewportRef = useLatestRef(onRowInViewport);
@@ -823,26 +833,10 @@ export const Table = <
   const virtualizer = useVirtualScroll({
     count: page.length,
     getScrollElement: () => tableElement ?? null,
-    estimateSize: () => {
-      if (density === 'condensed') {
-        return 50;
-      } else if (density === 'extra-condensed') {
-        return 38;
-      }
-      return 62;
-    }, //Set to the height of the table row based on the value of the density prop.
+    estimateSize: () => rowHeight,
     scrollToIndex,
+    getItemKey: (index) => page[index].id,
   });
-
-  const outerProps = {
-    style: {
-      minBlockSize: virtualizer.getTotalSize(),
-      minInlineSize: '100%',
-      contain: 'strict',
-      ...style,
-    },
-    ...rest,
-  } as React.HTMLAttributes<HTMLElement>;
 
   const getPreparedRow = React.useCallback(
     (
@@ -899,8 +893,8 @@ export const Table = <
   const virtualizedItemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem,
-      virtualizer?: Virtualizer<Element, Element>,
+      virtualItem: VirtualItem,
+      virtualizer: Virtualizer<Element, Element>,
     ) => getPreparedRow(index, virtualItem, virtualizer),
     [getPreparedRow],
   );
@@ -1155,9 +1149,23 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot>
+          <ShadowRoot
+            css={`
+              div,
+              slot {
+                border-radius: inherit;
+              }
+            `}
+          >
             {enableVirtualization ? (
-              <div {...outerProps}>
+              <div
+                style={{
+                  minBlockSize: virtualizer.getTotalSize(),
+                  minInlineSize: '100%',
+                  contain: 'strict',
+                  ...style,
+                }}
+              >
                 <slot />
               </div>
             ) : (
