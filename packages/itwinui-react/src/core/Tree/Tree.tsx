@@ -419,29 +419,19 @@ const VirtualizedTree = React.forwardRef(
       getItemKey,
     });
 
-    const outerProps = {
-      style: {
-        minInlineSize: '100%',
-        overflow: 'auto',
-        ...style,
-      },
-    } as React.HTMLAttributes<HTMLElement>;
-
-    const innerProps = {
-      style: {
-        minBlockSize: virtualizer.getTotalSize(),
-        contain: 'strict',
-      },
-    } as React.HTMLAttributes<HTMLElement>;
-
     return (
       <TreeElement
-        {...outerProps}
+        style={{ minInlineSize: '100%', overflow: 'auto', ...style }}
         {...rest}
         ref={useMergedRefs(ref, parentRef)}
       >
         <ShadowRoot>
-          <div {...innerProps}>
+          <div
+            style={{
+              minBlockSize: virtualizer.getTotalSize(),
+              contain: 'strict',
+            }}
+          >
             <slot />
           </div>
         </ShadowRoot>
