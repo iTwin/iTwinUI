@@ -1159,9 +1159,12 @@ export const Table = <
           }
         >
           <ShadowRoot
-            css='div,slot{
-            border-radius: inherit;
-          }'
+            css={`
+              div,
+              slot {
+                border-radius: inherit;
+              }
+            `}
           >
             {enableVirtualization ? (
               <div {...outerProps}>
