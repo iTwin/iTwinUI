@@ -1159,9 +1159,8 @@ export const Table = <
           }
         >
           <ShadowRoot
-            css=':last-child {
-            border-end-end-radius: var(--iui-border-radius-1);
-            border-end-start-radius: var(--iui-border-radius-1);
+            css='div,slot{
+            border-radius: inherit;
           }'
           >
             {enableVirtualization ? (
