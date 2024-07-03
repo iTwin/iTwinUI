@@ -1157,7 +1157,12 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot>
+          <ShadowRoot
+            css=':last-child {
+            border-end-end-radius: var(--iui-border-radius-1);
+            border-end-start-radius: var(--iui-border-radius-1);
+          }'
+          >
             {enableVirtualization ? (
               <div {...outerProps}>
                 <slot />
