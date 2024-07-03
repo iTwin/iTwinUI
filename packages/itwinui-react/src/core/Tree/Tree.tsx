@@ -423,7 +423,6 @@ const VirtualizedTree = React.forwardRef(
       style: {
         minInlineSize: '100%',
         overflow: 'auto',
-        contain: 'strict',
         ...style,
       },
     } as React.HTMLAttributes<HTMLElement>;
@@ -431,6 +430,7 @@ const VirtualizedTree = React.forwardRef(
     const innerProps = {
       style: {
         minBlockSize: virtualizer.getTotalSize(),
+        contain: 'strict',
       },
     } as React.HTMLAttributes<HTMLElement>;
 
