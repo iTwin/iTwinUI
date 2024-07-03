@@ -81,7 +81,15 @@ export const Overflow = () => {
     ));
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '50%',
+        border: '1px solid lightpink',
+        padding: 8,
+        resize: 'inline',
+        overflow: 'hidden',
+      }}
+    >
       <Breadcrumbs>{items}</Breadcrumbs>
     </div>
   );

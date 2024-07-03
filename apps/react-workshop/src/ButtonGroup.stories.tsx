@@ -69,6 +69,8 @@ export const Overflow = () => {
           maxWidth: 'clamp(300px, 50%, 100%)',
           border: '1px solid hotpink',
           padding: 8,
+          overflow: 'hidden',
+          resize: 'inline',
         }}
       >
         <ButtonGroup
