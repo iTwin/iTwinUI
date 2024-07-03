@@ -12,7 +12,7 @@ import usePrevious from './usePrevious.js';
 type GuessRange = [number, number] | null;
 
 /** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
-const STARTING_MAX_ITEMS_COUNT = 32;
+const STARTING_MAX_ITEMS_COUNT = 2;
 
 /**
  * Hook that observes the size of an element and returns the number of items
@@ -114,29 +114,31 @@ export const useOverflow = <T extends HTMLElement>(
       return;
     }
 
-    // Firstly, the highest guess MUST be above the correct visibleCount value. If not, double the highest guess.
-    // i.e. the container should overflow when visibleCount = max guess.
+    // Before the main logic, the max guess MUST be above the correct visibleCount for the algorithm to work.
+    // If not:
+    // - double the max guess and visibleCount: since we need to overflow.
+    // - set min guess to current visibleCount: since underflow means correct visibleCount >= current visibleCount.
     if (visibleCountGuessRange[1] === visibleCount && !isOverflowing) {
       const doubleOfMaxGuess = visibleCountGuessRange[1] * 2;
 
-      setVisibleCountGuessRange([visibleCountGuessRange[0], doubleOfMaxGuess]);
+      setVisibleCountGuessRange([visibleCount, doubleOfMaxGuess]);
       setVisibleCount(doubleOfMaxGuess);
       return;
     }
 
     let newVisibleCountGuessRange = visibleCountGuessRange;
 
-    // overflowing = we guessed too high. So, new max guess = half the current guess
     if (isOverflowing) {
+      // overflowing = we guessed too high. So, new max guess = half the current guess
       newVisibleCountGuessRange = [visibleCountGuessRange[0], visibleCount];
     } else {
-      // not overflowing = maybe we guessed too low. So, new min guess = half of current guess
+      // not overflowing = maybe we guessed too low? So, new min guess = half of current guess
       newVisibleCountGuessRange = [visibleCount, visibleCountGuessRange[1]];
     }
 
     setVisibleCountGuessRange(newVisibleCountGuessRange);
 
-    // Always guess that the correct visibleCount is in the middle of the new range
+    // Next guess is always the middle of the new guess range
     setVisibleCount(
       Math.floor(
         (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
