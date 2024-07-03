@@ -19,6 +19,10 @@ describe('Breadcrumbs', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
 
+      if (testName.includes('Overflow')) {
+        cy.get('small').hide();
+      }
+
       cy.compareSnapshot(testName);
     });
   });

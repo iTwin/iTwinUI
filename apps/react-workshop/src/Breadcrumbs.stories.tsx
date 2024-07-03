@@ -11,6 +11,7 @@ import {
   MenuItem,
   Input,
   Tooltip,
+  Text,
 } from '@itwin/itwinui-react';
 import {
   SvgChevronRightDouble,
@@ -80,12 +81,28 @@ export const Overflow = () => {
       </Breadcrumbs.Item>
     ));
 
-  return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
-      <Breadcrumbs>{items}</Breadcrumbs>
-    </div>
-  );
+  return <Breadcrumbs>{items}</Breadcrumbs>;
 };
+Overflow.decorators = [
+  (Story: () => React.ReactNode) => (
+    <>
+      <Text variant='small' as='small' isMuted>
+        Resize the container to see overflow behavior.
+      </Text>
+      <div
+        style={{
+          width: 'min(30rem, 100%)',
+          border: '1px solid lightpink',
+          padding: 8,
+          resize: 'inline',
+          overflow: 'hidden',
+        }}
+      >
+        <Story />
+      </div>
+    </>
+  ),
+];
 
 export const CustomOverflowBackButton = () => {
   const items = Array(10)
