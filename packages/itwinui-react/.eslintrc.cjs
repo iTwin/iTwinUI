@@ -13,5 +13,8 @@ module.exports = {
   rules: {
     ...preset.rules,
     '@typescript-eslint/no-explicit-any': 'off',
+    'react/jsx-uses-react': 1,
+    'react/react-in-jsx-scope': 1,
   },
+  ignorePatterns: ['**/esm/**', '**/cjs/**', '**.test.*', '**.types-test.*'],
 };
