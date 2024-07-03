@@ -80,6 +80,14 @@ export const useOverflow = <T extends HTMLElement>(
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
     React.useState<GuessRange>(disabled ? null : [0, initialVisibleCount]);
 
+  const getIsOverflowing = React.useCallback(() => {
+    const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
+    const availableSize = containerRef.current?.[`offset${dimension}`] ?? 0;
+    const requiredSize = containerRef.current?.[`scroll${dimension}`] ?? 0;
+
+    return availableSize < requiredSize;
+  }, [orientation]);
+
   /**
    * Call this function to guess the new `visibleCount`.
    * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
@@ -90,11 +98,11 @@ export const useOverflow = <T extends HTMLElement>(
       return;
     }
 
+    const isOverflowing = getIsOverflowing();
+
     const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
     const availableSize = containerRef.current?.[`offset${dimension}`] ?? 0;
     const requiredSize = containerRef.current?.[`scroll${dimension}`] ?? 0;
-
-    const isOverflowing = availableSize < requiredSize;
 
     console.log('RUNNING', {
       visibleCountGuessRange: visibleCountGuessRange.toString(),
@@ -146,6 +154,7 @@ export const useOverflow = <T extends HTMLElement>(
     );
   }, [
     disabled,
+    getIsOverflowing,
     itemsLength,
     orientation,
     setVisibleCount,
@@ -167,6 +176,7 @@ export const useOverflow = <T extends HTMLElement>(
   // TODO: Better way to listen to containerSize changes instead of having containerSize in dep array.
   useLayoutEffect(() => {
     if (
+      disabled ||
       // No need to listen to resizes if we're already in the process of finding the correct visibleCount
       visibleCountGuessRange != null ||
       // Only start re-guessing if containerSize changes AFTER the containerSize is first set.
@@ -177,13 +187,26 @@ export const useOverflow = <T extends HTMLElement>(
       return;
     }
 
+    const isOverflowing = getIsOverflowing();
+
+    // If we're showing all the items in the list and still not overflowing, no need to do anything
+    if (visibleCount === itemsLength && !isOverflowing) {
+      return;
+    }
+
     // Reset the guess range to again start finding the correct visibleCount;
     setVisibleCountGuessRange([0, initialVisibleCount]);
+    setVisibleCount(initialVisibleCount);
   }, [
     containerSize,
+    disabled,
+    getIsOverflowing,
     guessVisibleCount,
     initialVisibleCount,
+    itemsLength,
+    orientation,
     previousContainerSize,
+    setVisibleCount,
     visibleCount,
     visibleCountGuessRange,
   ]);
