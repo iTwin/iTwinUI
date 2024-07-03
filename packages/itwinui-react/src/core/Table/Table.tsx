@@ -838,15 +838,6 @@ export const Table = <
     getItemKey: (index) => page[index].id,
   });
 
-  const outerProps = {
-    style: {
-      minBlockSize: virtualizer.getTotalSize(),
-      minInlineSize: '100%',
-      contain: 'strict',
-      ...style,
-    },
-  } as React.HTMLAttributes<HTMLElement>;
-
   const getPreparedRow = React.useCallback(
     (
       index: number,
@@ -1167,7 +1158,14 @@ export const Table = <
             `}
           >
             {enableVirtualization ? (
-              <div {...outerProps}>
+              <div
+                style={{
+                  minBlockSize: virtualizer.getTotalSize(),
+                  minInlineSize: '100%',
+                  contain: 'strict',
+                  ...style,
+                }}
+              >
                 <slot />
               </div>
             ) : (
