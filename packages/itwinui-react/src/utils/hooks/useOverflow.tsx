@@ -178,10 +178,11 @@ export const useOverflow = <T extends HTMLElement>(
     }
 
     // Reset the guess range to again start finding the correct visibleCount;
-    setVisibleCountGuessRange([0, visibleCount]);
+    setVisibleCountGuessRange([0, initialVisibleCount]);
   }, [
     containerSize,
     guessVisibleCount,
+    initialVisibleCount,
     previousContainerSize,
     visibleCount,
     visibleCountGuessRange,
