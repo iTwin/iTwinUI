@@ -443,6 +443,7 @@ export const Table = <
   );
 
   const rowHeight = React.useMemo(() => {
+    //Set to the height of the table row based on the value of the density prop.
     if (density === 'condensed') {
       return 50;
     } else if (density === 'extra-condensed') {
@@ -832,7 +833,7 @@ export const Table = <
   const virtualizer = useVirtualScroll({
     count: page.length,
     getScrollElement: () => tableElement ?? null,
-    estimateSize: () => rowHeight, //Set to the height of the table row based on the value of the density prop.
+    estimateSize: () => rowHeight,
     scrollToIndex,
     getItemKey: (index) => page[index].id,
   });
