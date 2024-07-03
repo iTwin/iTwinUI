@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.12.2
+
+### Patch Changes
+
+- [#2127](https://github.com/iTwin/iTwinUI/pull/2127): Fixed an issue in `Dialog` and `Modal`, where long titles were not wrapping properly.
+
 ## 3.12.1
 
 ### Patch Changes
