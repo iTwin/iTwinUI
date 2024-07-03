@@ -213,9 +213,18 @@ VerticalOverflow.decorators = [
   (Story) => (
     <>
       <Text variant='small' as='small' isMuted>
-        Resize the viewport to see overflow behavior.
+        Resize the container to see overflow behavior.
       </Text>
-      <div style={{ border: '1px solid hotpink', padding: 8 }}>
+      <div
+        style={{
+          blockSize: 'min(20rem, 100vh)',
+          inlineSize: 'min(20rem, 100vw)',
+          border: '1px solid hotpink',
+          padding: 8,
+          resize: 'block',
+          overflow: 'hidden',
+        }}
+      >
         <Story />
       </div>
     </>
