@@ -167,27 +167,18 @@ export const useOverflow = <T extends HTMLElement>(
   // TODO: Better way to listen to containerSize changes instead of having containerSize in dep array.
   useLayoutEffect(() => {
     if (
-      // No need to listen to resizes since we're already in the process of finding the correct visibleCount
+      // No need to listen to resizes if we're already in the process of finding the correct visibleCount
       visibleCountGuessRange != null ||
-      // Only start re-guessing if containerSize changes *after* the containerSize is first set.
-      // This prevents unnecessary renders
+      // Only start re-guessing if containerSize changes AFTER the containerSize is first set.
+      // This prevents unnecessary renders.
       containerSize === previousContainerSize ||
       previousContainerSize === -1
     ) {
       return;
     }
 
-    // Set the visibleCountGuessRange to again find the correct visibleCount;
+    // Reset the guess range to again start finding the correct visibleCount;
     setVisibleCountGuessRange([0, visibleCount]);
-
-    // TODO: Have better optimizations on resizing.
-    // const growing = containerSize > (previousContainerSize ?? 0);
-    // if (growing) {
-    //  setVisibleCountGuessRange([visibleCount, visibleCount + 1]);
-    // } else {
-    //  setVisibleCountGuessRange([visibleCount - 2, visibleCount]);
-    // }
-    // guessVisibleCount();
   }, [
     containerSize,
     guessVisibleCount,
