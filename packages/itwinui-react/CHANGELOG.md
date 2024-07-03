@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.12.1
+
+### Patch Changes
+
+- [#2124](https://github.com/iTwin/iTwinUI/pull/2124): Fixed a CommonJS-related error where an internal variable was accidentally trying to override the [`module`](https://nodejs.org/api/modules.html#the-module-object) object.
+- [#2122](https://github.com/iTwin/iTwinUI/pull/2122): The new JSX transform added in [v3.12.0](https://github.com/iTwin/iTwinUI/releases/tag/%40itwin%2Fitwinui-react%403.12.0) has been reverted, because React 17 [doesn't properly support it](https://github.com/facebook/react/issues/20235).
+
 ## 3.12.0
 
 ### Minor Changes
@@ -8,6 +15,7 @@
 - [#2076](https://github.com/iTwin/iTwinUI/pull/2076): Added open popover styling to `Button` (and `IconButton`). When an associated `Popover` or `DropdownMenu` is open, the button will now get a subtle visual indication.
 - [#2111](https://github.com/iTwin/iTwinUI/pull/2111): Added the ability to pass arbitrary DOM props to `TreeNode`.
 - [#2107](https://github.com/iTwin/iTwinUI/pull/2107): A new `meta` object is exported, containing meta information about the package.
+
   ```ts
   import { meta } from '@itwin/itwinui-react';
 
@@ -15,6 +23,7 @@
   ```
 
 - [#2048](https://github.com/iTwin/iTwinUI/pull/2048): Fixed a bug in `ComboBox` where the controlled state (`value` prop) was not given priority over the uncontrolled state. As a result:
+
   - Setting the default value using `value={myDefaultValue}` will no longer work. Instead, use the new `defaultValue` prop.
   - Resetting the value using `value={null}` will now force the ComboBox to be in _controlled_ mode. If you want to reset the value but be in _uncontrolled_ mode, then use `value={undefined}` instead.
 
