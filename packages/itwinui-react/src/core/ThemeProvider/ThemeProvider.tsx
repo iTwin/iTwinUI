@@ -25,9 +25,9 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 import { atom } from 'jotai';
-import { version } from '../../styles.js';
+import { meta } from '../../utils/meta.js';
 
-const versionWithoutDots = version.replace(/\./g, '');
+const versionWithoutDots = meta.version.replace(/\./g, '');
 
 // ----------------------------------------------------------------------------
 
