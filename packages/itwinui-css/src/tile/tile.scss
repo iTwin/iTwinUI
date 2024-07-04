@@ -341,26 +341,24 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 }
 
-/// @arg $variant Can be either: type-indicator, quick-action
-@mixin iui-tile-thumbnail-button($variant) {
+@mixin iui-tile-thumbnail-quadrants {
   z-index: 2;
-  border-radius: 50%;
   margin-block-start: calc(var(--iui-size-s) * 0.5);
   margin-inline: var(--iui-size-xs);
   place-self: start;
 
-  @if $variant == quick-action {
+  &:is(.iui-tile-thumbnail-quick-action) {
     justify-self: end;
   }
+}
 
-  .iui-tile-thumbnail-picture ~ &,
-  .iui-tile-thumbnail-picture ~ & > .iui-button {
-    --_iui-field-color-icon: var(--iui-color-white);
-    --_iui-field-color-icon-hover: var(--iui-color-white);
-  }
+@mixin iui-tile-thumbnail-button {
+  border-radius: var(--iui-border-radius-round);
 
   .iui-tile-thumbnail-picture ~ & {
     @include mixins.iui-blur($opacity: 5);
+    --_iui-field-color-icon: var(--iui-color-white);
+    --_iui-field-color-icon-hover: var(--iui-color-white);
 
     > .iui-button-icon {
       filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
@@ -492,12 +490,14 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 }
 
-.iui-tile-thumbnail-type-indicator {
-  @include iui-tile-thumbnail-button(type-indicator);
+.iui-tile-thumbnail-type-indicator,
+.iui-tile-thumbnail-quick-action {
+  @include iui-tile-thumbnail-quadrants;
 }
 
-.iui-tile-thumbnail-quick-action {
-  @include iui-tile-thumbnail-button(quick-action);
+.iui-tile-thumbnail-button,
+:is(.iui-tile-thumbnail-type-indicator, .iui-tile-thumbnail-quick-action) button {
+  @include iui-tile-thumbnail-button;
 }
 
 .iui-tile-thumbnail-badge-container {

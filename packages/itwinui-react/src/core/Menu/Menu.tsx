@@ -6,12 +6,32 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergedRefs,
-  getFocusableElements,
   Box,
+  Portal,
+  useControlledState,
+  cloneElementWithRef,
+  mergeRefs,
+  useSyncExternalStore,
   mergeEventHandlers,
+  useFocusableElements,
 } from '../../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { MenuItemContext } from './MenuItem.js';
+import type {
+  PolymorphicForwardRefComponent,
+  PortalProps,
+} from '../../utils/index.js';
+import { PopoverOpenContext, usePopover } from '../Popover/Popover.js';
+import {
+  FloatingNode,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useFloatingTree,
+  type UseHoverProps,
+  useListNavigation,
+  useInteractions,
+  type UseListNavigationProps,
+} from '@floating-ui/react';
+
+type UsePopoverProps = Parameters<typeof usePopover>[0];
 
 type MenuProps = {
   /**
@@ -22,94 +42,317 @@ type MenuProps = {
    */
   children: React.ReactNode;
   /**
-   * If true, the first selected or enabled menu item will be focused automatically.
-   * @default true
+   * The trigger that opens the menu.
    */
-  setFocus?: boolean;
-};
+  trigger: React.ReactNode;
+  /**
+   * You can use this optional prop when the position reference is not the trigger.
+   * (Equivalent to using FloatingUI's `floating.refs.setPositionReference`)
+   */
+  positionReference?: Parameters<
+    ReturnType<typeof usePopover>['refs']['setPositionReference']
+  >[0];
+  /**
+   * Use this prop to override the default props passed to `usePopover` and `useListNavigation`.
+   */
+  popoverProps?: Omit<UsePopoverProps, 'interactions'> & {
+    interactions?: UsePopoverProps['interactions'] & {
+      listNavigation?: Partial<UseListNavigationProps>;
+    };
+  };
+} & Pick<PortalProps, 'portal'>;
 
 /**
- * Basic menu component. Can be used for select or dropdown components.
+ * @private
+ *
+ * Used for dropdown components. E.g. `DropdownMenu`, `SplitButton`.
+ *
+ * What needs to be handled **manually**:
+ * - Menu items need to spread `MenuContext.popover.getItemProps()`.
+ * - Menu items need to focus itself on hover.
+ *
+ * What is handled automatically:
+ * - the portaling: use the optional `portal` prop for more customization
+ * - conditional rendering based on the popover's open state
+ * - spreading the popover props `getFloatingProps` and `getReferenceProps`.
+ *   - As mentioned above, `getItemProps` need to be spread **manually** in the menu item.
+ * - setting the refs: use the optional`positionReference` prop to set the position reference
+ * - keyboard navigation: use the `interactions.listNavigation` prop for more customization
+ * - registering a `FloatingNode` in the `FloatingTree` if an ancestral `FloatingTree` is found
+ * - focus management:
+ *   - focuses items on hover.
+ *   - if *not* in a `FloatingTree`, focus moves to the trigger when the menu is closed.
+ *     If in a `FloatingTree`, focus does not move back to the trigger since menu items handle the focus.
+ * - setting `aria-expanded` accordingly depending on the menu open state
+ *
+ * All `Menu` popover interactions are identical to `usePopover`'s interactions. Exception:
+ * - `hover`: When the `Menu` is within a `FloatingTree`, if a submenu has focus, the hover interaction is automatically
+ * disabled. This helps to keep the last hovered/focused submenu open even upon hovering out.
+ *
+ * @example
+ * const trigger = <Button>Menu</Button>;
+ * const [positionReference, setPositionReference] = React.useState<HTMLDivElement | null>(null);
+ * const popoverProps = { matchWidth: true };
+ * const nodeId = useFloatingNodeId();
+ *
+ * return (
+ *   <Box ref={setPositionReference}>
+ *     <Menu
+ *       trigger={trigger}
+ *       positionReference={positionReference}
+ *       nodeId={nodeId}
+ *       popoverProps={popoverProps}
+ *     >
+ *       <MenuItem>Item 1</MenuItem>
+ *       <MenuItem>Item 2</MenuItem>
+ *     </Menu>
+ *   </Box>
+ * );
  */
 export const Menu = React.forwardRef((props, ref) => {
-  const { setFocus = true, className, ...rest } = props;
+  const {
+    className,
+    trigger,
+    positionReference,
+    portal = true,
+    popoverProps: popoverPropsProp,
+    children,
+    ...rest
+  } = props;
 
-  const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
-  const menuRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(menuRef, ref);
+  const tree = useFloatingTree();
+  const nodeId = useFloatingNodeId();
+  const parentId = useFloatingParentNodeId();
 
-  const menuItemContext = React.useContext(MenuItemContext);
+  const {
+    interactions: interactionsProp,
+    visible: visibleProp,
+    onVisibleChange: onVisibleChangeProp,
+    ...restPopoverProps
+  } = popoverPropsProp ?? {};
 
-  const getFocusableNodes = React.useCallback(() => {
-    const focusableItems = getFocusableElements(menuRef.current);
-    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-    return focusableItems.filter(
-      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-    ) as HTMLElement[];
-  }, []);
+  const {
+    listNavigation: listNavigationPropsProp,
+    hover: hoverProp,
+    ...restInteractionsProps
+  } = interactionsProp ?? {};
+
+  const [visible, setVisible] = useControlledState(
+    false,
+    visibleProp,
+    onVisibleChangeProp,
+  );
+
+  const [hasFocusedNodeInSubmenu, setHasFocusedNodeInSubmenu] =
+    React.useState(false);
+
+  const [menuElement, setMenuElement] = React.useState<HTMLElement | null>(
+    null,
+  );
+
+  const { focusableElementsRef, focusableElements } = useFocusableElements(
+    menuElement,
+    {
+      // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+      filter: (allElements) =>
+        allElements.filter(
+          (i) => !allElements?.some((p) => p.contains(i.parentElement)),
+        ),
+    },
+  );
+
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+
+  const popover = usePopover({
+    nodeId,
+    visible,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
+    interactions: {
+      hover:
+        tree == null
+          ? hoverProp
+          : {
+              // If in a FloatingTree, the hover interaction is automatically disabled if a submenu has focus.
+              enabled: !!hoverProp && !hasFocusedNodeInSubmenu,
+              ...(hoverProp as UseHoverProps),
+            },
+      ...restInteractionsProps,
+    },
+    ...restPopoverProps,
+  });
+
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [
+      useListNavigation(popover.context, {
+        activeIndex,
+        // Items should focus themselves on hover since FloatingUI's focusItemOnHover is not working for us.
+        focusItemOnHover: false,
+        listRef: focusableElementsRef,
+        onNavigate: setActiveIndex,
+        ...listNavigationPropsProp,
+      }),
+    ],
+  );
 
   React.useEffect(() => {
-    const focusableNodes = getFocusableNodes();
-    if (
-      menuItemContext != null &&
-      menuItemContext.focusableNodes.current !== focusableNodes
-    ) {
-      menuItemContext.focusableNodes.current = focusableNodes;
+    if (positionReference !== undefined) {
+      popover.refs.setPositionReference(positionReference);
     }
-  }, [getFocusableNodes, menuItemContext]);
+  }, [popover.refs, positionReference]);
 
-  React.useEffect(() => {
-    const items = getFocusableNodes();
-    if (focusedIndex != null) {
-      (items?.[focusedIndex] as HTMLElement)?.focus();
-      return;
-    }
+  const refs = useMergedRefs(setMenuElement, ref, popover.refs.setFloating);
 
-    const selectedIndex = items.findIndex(
-      (el) => el.getAttribute('aria-selected') === 'true',
-    );
-    if (setFocus) {
-      setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
-    }
-  }, [setFocus, focusedIndex, getFocusableNodes]);
+  const triggerRef = React.useRef<HTMLElement>(null);
+  const close = React.useCallback(() => {
+    setVisible(false);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.altKey) {
-      return;
+    // Focus back the trigger when not in a FloatingTree submenu
+    // Since focusing the trigger when in a submenu causes abrupt focus jumps when moving between siblings with submenus
+    if (parentId == null) {
+      triggerRef.current?.focus({ preventScroll: true });
     }
+  }, [parentId, setVisible]);
 
-    const items = getFocusableNodes();
-    if (!items?.length) {
-      return;
-    }
+  useSyncExternalStore(
+    React.useCallback(() => {
+      const closeUnrelatedMenus = (event: TreeEvent) => {
+        if (
+          // When a node "X" is focused, close "X"'s siblings' submenus
+          // i.e. only one submenu in each menu can be open at a time
+          (parentId === event.parentId && nodeId !== event.nodeId) ||
+          // Consider a node "X" with its submenu "Y".
+          // Focusing "X" should close all submenus of "Y".
+          parentId === event.nodeId
+        ) {
+          setVisible(false);
+          setHasFocusedNodeInSubmenu(false);
+        }
+      };
 
-    const currentIndex = focusedIndex ?? 0;
-    switch (event.key) {
-      case 'ArrowDown': {
-        setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      }
-      case 'ArrowUp': {
-        setFocusedIndex(Math.max(currentIndex - 1, 0));
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      }
-      default:
-        break;
-    }
+      tree?.events.on('onNodeFocused', closeUnrelatedMenus);
+
+      return () => {
+        tree?.events.off('onNodeFocused', closeUnrelatedMenus);
+      };
+    }, [nodeId, parentId, tree?.events, setVisible]),
+    () => undefined,
+    () => undefined,
+  );
+
+  const popoverGetItemProps: PopoverGetItemProps = ({
+    focusableItemIndex,
+    userProps,
+  }) => {
+    return getItemProps({
+      ...userProps,
+      // Roving tabIndex
+      tabIndex:
+        activeIndex != null &&
+        activeIndex >= 0 &&
+        focusableItemIndex != null &&
+        focusableItemIndex >= 0 &&
+        activeIndex === focusableItemIndex
+          ? 0
+          : -1,
+      onFocus: mergeEventHandlers(userProps?.onFocus, () => {
+        // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+        // E.g. Even when hovering into it rapidly.
+        queueMicrotask(() => {
+          setHasFocusedNodeInSubmenu(true);
+        });
+        tree?.events.emit('onNodeFocused', {
+          nodeId: nodeId,
+          parentId: parentId,
+        });
+      }),
+
+      // useListNavigation sets focusItemOnHover to false, since it doesn't work for us.
+      // Thus, we need to manually emulate the "focus on hover" behavior.
+      onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, (event) => {
+        // Updating the activeIndex will result in useListNavigation focusing the item.
+        if (focusableItemIndex != null && focusableItemIndex >= 0) {
+          setActiveIndex(focusableItemIndex);
+        }
+
+        // However, useListNavigation only focuses the item when the activeIndex changes.
+        // So, if we re-hover the parent MenuItem of an open submenu, the activeIndex won't change,
+        // and thus the hovered MenuItem won't be focused.
+        // As a result, we need to explicitly focus the item manually.
+        if (event.target === event.currentTarget) {
+          event.currentTarget.focus();
+        }
+      }),
+    });
   };
 
+  const reference = cloneElementWithRef(trigger, (triggerChild) =>
+    getReferenceProps(
+      popover.getReferenceProps({
+        ...triggerChild.props,
+        'aria-expanded': popover.open,
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
+      }),
+    ),
+  );
+
+  const floating = popover.open && (
+    <Portal portal={portal}>
+      <Box
+        as='div'
+        className={cx('iui-menu', className)}
+        ref={refs}
+        {...getFloatingProps(
+          popover.getFloatingProps({
+            role: 'menu',
+            ...rest,
+          }),
+        )}
+      >
+        {children}
+      </Box>
+    </Portal>
+  );
+
   return (
-    <Box
-      as='div'
-      className={cx('iui-menu', className)}
-      role='menu'
-      ref={refs}
-      {...rest}
-      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
-    />
+    <>
+      <MenuContext.Provider value={{ popoverGetItemProps, focusableElements }}>
+        <PopoverOpenContext.Provider value={popover.open}>
+          {reference}
+        </PopoverOpenContext.Provider>
+        {tree != null ? (
+          <FloatingNode id={nodeId}>{floating}</FloatingNode>
+        ) : (
+          floating
+        )}
+      </MenuContext.Provider>
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
+
+// ----------------------------------------------------------------------------
+
+export type TreeEvent = {
+  nodeId: string;
+  parentId: string | null;
+};
+
+type PopoverGetItemProps = ({
+  focusableItemIndex,
+  userProps,
+}: {
+  /**
+   * Index of this item out of all the focusable items in the parent `Menu`
+   */
+  focusableItemIndex: number | undefined;
+  userProps?: Parameters<
+    NonNullable<ReturnType<typeof useInteractions>['getItemProps']>
+  >[0];
+}) => ReturnType<ReturnType<typeof useInteractions>['getItemProps']>;
+
+export const MenuContext = React.createContext<
+  | {
+      popoverGetItemProps: PopoverGetItemProps;
+      focusableElements: HTMLElement[];
+    }
+  | undefined
+>(undefined);

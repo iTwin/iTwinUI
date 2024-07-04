@@ -25,13 +25,10 @@ import {
   useRole,
   FloatingPortal,
   useFloatingTree,
-  useListNavigation,
 } from '@floating-ui/react';
 import type {
   SizeOptions,
   Placement,
-  UseListNavigationProps,
-  ReferenceType,
   UseFloatingOptions,
   UseHoverProps,
   UseClickProps,
@@ -42,6 +39,7 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
+  mergeEventHandlers,
   useControlledState,
   useId,
   useLayoutEffect,
@@ -114,29 +112,24 @@ type PopoverInternalProps = {
    * By default, only the click and dismiss interactions/triggers are enabled.
    * Explicitly pass `false` to disable the defaults.
    *
-   * Pass a boolean to enable/disable any of the supported interactions.
-   * Alternatively, pass an object to override the default props that the Popover sets for an interaction/trigger.
-   *
-   * When additional parameters are _required_ for an interaction/trigger, an object must be passed to enable it.
-   * Booleans will not be allowed in this case.
+   * Pass a boolean or an object to enable/disable any of the supported interactions.
+   * The passed objects can be used to override the default props that the Popover sets for an interaction/trigger.
    *
    * @example
-   * <Popover
-   *   interactions={{
+   * const popover = usePopover({
+   *   interactions: {
    *     click: false,
    *     focus: true,
    *     hover: { move: false },
-   *     listNavigation: { … },
-   *   }}
+   *   }
    *   // …
-   * >…</Popover>
+   * });
    */
   interactions?: {
-    click?: boolean | UseClickProps;
-    dismiss?: boolean | UseDismissProps;
-    hover?: boolean | UseHoverProps<ReferenceType>;
-    focus?: boolean | UseFocusProps;
-    listNavigation?: UseListNavigationProps;
+    click?: boolean | Omit<UseClickProps, 'enabled'>;
+    dismiss?: boolean | Omit<UseDismissProps, 'enabled'>;
+    hover?: boolean | Omit<UseHoverProps, 'enabled'>;
+    focus?: boolean | Omit<UseFocusProps, 'enabled'>;
   };
   role?: 'dialog' | 'menu' | 'listbox';
   /**
@@ -167,16 +160,18 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     ...rest
   } = options;
 
-  const mergedInteractions = {
-    ...{
-      click: true,
-      dismiss: true,
-      hover: false,
-      focus: false,
-      listNavigation: undefined,
-    },
-    ...interactionsProp,
-  };
+  const mergedInteractions = React.useMemo(
+    () => ({
+      ...{
+        click: true,
+        dismiss: true,
+        hover: false,
+        focus: false,
+      },
+      ...interactionsProp,
+    }),
+    [interactionsProp],
+  );
 
   const tree = useFloatingTree();
 
@@ -247,10 +242,9 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       enabled: !!mergedInteractions.focus,
       ...(mergedInteractions.focus as object),
     }),
-    useRole(floating.context, { role: 'dialog', enabled: !!role }),
-    useListNavigation(floating.context, {
-      enabled: !!mergedInteractions.listNavigation,
-      ...(mergedInteractions.listNavigation as UseListNavigationProps),
+    useRole(floating.context, {
+      role: 'dialog',
+      enabled: !!role,
     }),
   ]);
 
@@ -275,15 +269,32 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     [floating.floatingStyles, interactions, matchWidth, referenceWidth],
   );
 
+  const getReferenceProps = React.useCallback(
+    (userProps?: React.HTMLProps<HTMLElement>) =>
+      interactions.getReferenceProps({
+        ...userProps,
+        onClick: mergeEventHandlers(userProps?.onClick, () => {
+          // Workaround for useHover+useClick+useDismiss bug in floating-ui.
+          // We want to close the popover when the reference is clicked the first time.
+          // @see https://github.com/floating-ui/floating-ui/issues/1893
+          // @see https://github.com/floating-ui/floating-ui/discussions/2936
+          if (!!mergedInteractions.click && visible) {
+            onOpenChange(false);
+          }
+        }),
+      }),
+    [interactions, mergedInteractions.click, visible, onOpenChange],
+  );
+
   return React.useMemo(
     () => ({
       open,
       onOpenChange,
-      ...interactions,
+      getReferenceProps,
       getFloatingProps,
       ...floating,
     }),
-    [open, onOpenChange, interactions, getFloatingProps, floating],
+    [open, onOpenChange, getFloatingProps, floating, getReferenceProps],
   );
 };
 
@@ -427,7 +438,10 @@ const PopoverPortal = ({
   const portalTo = usePortalTo(portal);
 
   return (
-    <FloatingPortal root={portalTo}>
+    <FloatingPortal
+      key={portalTo?.id} // workaround to force remount when `root` changes (see #2093)
+      root={portalTo}
+    >
       <DisplayContents />
       {children}
     </FloatingPortal>

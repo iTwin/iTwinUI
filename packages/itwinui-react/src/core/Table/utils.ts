@@ -82,4 +82,6 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
   } satisfies React.CSSProperties;
 };
 
-export const TableColumnsContext = React.createContext<Column[]>([]);
+export const TableColumnsContext = React.createContext<
+  Column<Record<string, unknown>>[]
+>([]);

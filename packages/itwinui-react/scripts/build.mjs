@@ -18,7 +18,11 @@ const swcOptions = {
     'jsc.parser.syntax=typescript',
     'jsc.parser.tsx=true',
     'jsc.transform.react.useBuiltins=true',
-    'jsc.transform.react.runtime=automatic',
+
+    // We cannot (currently) use the new JSX transform, because it relies on ESM exports
+    // which are not available in React 17. See https://github.com/facebook/react/issues/20235
+    // 'jsc.transform.react.runtime=automatic',
+
     'jsc.target=es2020',
     'jsc.minify.format.comments=false',
     'jsc.externalHelpers=true',
