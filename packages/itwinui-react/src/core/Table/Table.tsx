@@ -635,9 +635,11 @@ export const Table = <
 
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
-    logWarningInDev(
-      `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
-    );
+    if (process.env.NODE_ENV === 'development') {
+      logWarningInDev(
+        `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+      );
+    }
   }
 
   const ariaDataAttributes = Object.entries(rest).reduce(

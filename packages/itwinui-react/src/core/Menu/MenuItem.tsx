@@ -100,7 +100,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  if (onClickProp != null && subMenuItems.length > 0) {
+  if (
+    process.env.NODE_ENV === 'development' &&
+    onClickProp != null &&
+    subMenuItems.length > 0
+  ) {
     logWarningInDev(
       'Passing a non-empty submenuItems array and onClick to MenuItem at the same time is not supported. This is because when a non empty submenuItems array is passed, clicking the MenuItem toggles the submenu visibility.',
     );

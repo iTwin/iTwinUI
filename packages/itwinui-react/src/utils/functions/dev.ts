@@ -14,30 +14,27 @@ const isVitest = typeof (globalThis as any).__vitest_index__ !== 'undefined';
 
 const isUnitTest = isJest || isVitest || isMocha;
 
-let isDev = false;
-
-// wrapping in try-catch because process might be undefined
-try {
-  isDev = process.env.NODE_ENV !== 'production' && !isUnitTest;
-} catch {}
-
 /**
  * Logs message one time only in dev environments.
  *
  * @example
  * const logWarningInDev = createWarningLogger();
- * logWarningInDev("please don't use this")
+ *
+ * if (process.env.NODE_ENV === 'development') {
+ *  logWarningInDev("please don't use this")
+ * }
  */
-const createWarningLogger = !isDev
-  ? () => () => {}
-  : () => {
-      let logged = false;
-      return (message: string) => {
-        if (!logged) {
-          console.warn(message);
-          logged = true;
-        }
-      };
-    };
+const createWarningLogger =
+  process.env.NODE_ENV === 'development'
+    ? () => {
+        let logged = false;
+        return (message: string) => {
+          if (!logged) {
+            console.warn(message);
+            logged = true;
+          }
+        };
+      }
+    : () => () => {};
 
-export { isUnitTest, isDev, createWarningLogger };
+export { isUnitTest, createWarningLogger };

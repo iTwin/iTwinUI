@@ -11,10 +11,12 @@
     ".": {
       "import": {
         "types": "./esm/index.d.ts",
+        "development": "./DEV-esm/index.js",
         "default": "./esm/index.js"
       },
       "require": {
         "types": "./cjs/index.d.ts",
+        "development": "./DEV-cjs/index.js",
         "default": "./cjs/index.js"
       }
     },
@@ -72,7 +74,7 @@
     "build:types": "tsc -p tsconfig.build.json --outDir esm && tsc -p tsconfig.build.json --outDir cjs",
     "build:styles": "vite build src/styles.js",
     "build:post": "node ./scripts/postBuild.mjs",
-    "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
+    "clean:build": "rimraf esm && rimraf cjs && rimraf DEV-esm && rimraf DEV-cjs && rimraf react-table.d.ts",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && pnpm clean:coverage && pnpm clean:build && rimraf node_modules",
     "test": "pnpm test:types && pnpm test:unit",
