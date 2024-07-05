@@ -26,6 +26,9 @@ const swcOptions = {
     'jsc.target=es2020',
     'jsc.minify.format.comments=false',
     'jsc.externalHelpers=true',
+
+    'jsc.minify.compress.defaults=false', // Disable default compress options
+    'jsc.minify.compress.dead_code=true', // Remove dead code (useful for removing NODE_ENV checks in production)
   ].join(' -C '),
 
   get esm() {
@@ -47,8 +50,24 @@ const swcOptions = {
   },
 };
 
-execSync(`pnpm swc src -d esm ${swcOptions.esm}`);
+// ----------------------------------------------------------------------------
+
+execSync(`pnpm swc src -d DEV-esm ${swcOptions.esm}`, {
+  env: { ...process.env, NODE_ENV: 'development' },
+});
+console.log('✓ Built esm (DEV).');
+
+execSync(`pnpm swc src -d DEV-cjs ${swcOptions.cjs}`, {
+  env: { ...process.env, NODE_ENV: 'development' },
+});
+console.log('✓ Built cjs (DEV).');
+
+execSync(`pnpm swc src -d esm ${swcOptions.esm}`, {
+  env: { ...process.env, NODE_ENV: 'production' },
+});
 console.log('✓ Built esm.');
 
-execSync(`pnpm swc src -d cjs ${swcOptions.cjs}`);
+execSync(`pnpm swc src -d cjs ${swcOptions.cjs}`, {
+  env: { ...process.env, NODE_ENV: 'production' },
+});
 console.log('✓ Built cjs.');
