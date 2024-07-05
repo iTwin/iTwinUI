@@ -29,8 +29,16 @@
       }
     },
     "./styles.css": "./styles.css",
-    "./cjs": "./cjs/index.js",
-    "./esm": "./esm/index.js",
+    "./cjs": {
+      "types": "./cjs/index.d.ts",
+      "development": "./DEV-cjs/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./esm": {
+      "types": "./esm/index.d.ts",
+      "development": "./DEV-esm/index.js",
+      "default": "./esm/index.js"
+    },
     "./package.json": "./package.json"
   },
   "typesVersions": {
