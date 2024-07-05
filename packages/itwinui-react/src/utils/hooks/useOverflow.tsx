@@ -43,8 +43,11 @@ export const useOverflow = <T extends HTMLElement>(
   itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
+  containerRefProp?: React.RefObject<HTMLElement>,
 ) => {
-  const containerRef = React.useRef<T>(null);
+  const fallbackContainerRef = React.useRef<T>(null);
+  const containerRef = containerRefProp ?? fallbackContainerRef;
+
   const initialVisibleCount = Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT);
 
   const [visibleCount, _setVisibleCount] = React.useState<number>(() =>
@@ -88,7 +91,7 @@ export const useOverflow = <T extends HTMLElement>(
     const requiredSize = containerRef.current?.[`scroll${dimension}`] ?? 0;
 
     return availableSize < requiredSize;
-  }, [orientation]);
+  }, [containerRef, orientation]);
 
   /**
    * Call this function to guess the new `visibleCount`.
@@ -155,6 +158,7 @@ export const useOverflow = <T extends HTMLElement>(
       ),
     );
   }, [
+    containerRef,
     disabled,
     getIsOverflowing,
     itemsLength,
@@ -230,35 +234,71 @@ type OverflowContainerProps = {
    */
   overflowTagLocation?: 'center' | 'end';
   children: React.ReactNode[];
+  /**
+   * Use this optional prop when the `OverflowContainer` is not the overflowing container.
+   */
+  containerRef?: React.RefObject<HTMLElement>;
 };
 
 export const OverflowContainer = React.forwardRef((props, ref) => {
-  const { overflowTag, overflowTagLocation = 'end', children, ...rest } = props;
+  const {
+    overflowTag,
+    overflowTagLocation = 'end',
+    children,
+    containerRef,
+    ...rest
+  } = props;
 
-  const [containerRef, visibleCount] = useOverflow(children.length);
+  // TODO: Should this be children.length + 1?
+  // Because if there are 10 items and visibleCount is 10,
+  // how do we know whether to display 10 items vs 9 items and 1 overflow tag?
+  const [overflowContainerRef, visibleCount] = useOverflow(
+    children.length,
+    undefined,
+    undefined,
+    containerRef,
+  );
 
   console.log('children', children.length, visibleCount);
 
   const itemsToRender = React.useMemo(() => {
-    if (overflowTagLocation === 'center') {
-      return [overflowTag(visibleCount), children.slice(visibleCount - 1)];
+    if (visibleCount >= children.length) {
+      return [children, [], []];
     }
-    return visibleCount < children.length
-      ? [children.slice(0, visibleCount - 1), overflowTag(visibleCount)]
-      : [children, []];
+
+    // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
+    if (overflowTagLocation === 'center') {
+      return visibleCount >= 3
+        ? [
+            children[0],
+            overflowTag(visibleCount),
+            children.slice(
+              visibleCount > 1
+                ? children.length - visibleCount + 1
+                : children.length - 1,
+            ),
+          ]
+        : [
+            [],
+            overflowTag(visibleCount - 1),
+            children.slice(
+              visibleCount > 1
+                ? children.length - visibleCount + 1
+                : children.length - 1,
+            ),
+          ];
+    }
+    return [children.slice(0, visibleCount - 1), [], overflowTag(visibleCount)];
   }, [children, overflowTag, overflowTagLocation, visibleCount]);
 
   return (
-    <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
+    <Box
+      ref={useMergedRefs(ref, containerRef ?? overflowContainerRef)}
+      {...rest}
+    >
       {itemsToRender[0]}
       {itemsToRender[1]}
-      {/* {visibleCount < children.length
-        ? children.slice(0, visibleCount - 1)
-        : children}
-      {visibleCount < children.length &&
-        overflowTagLocation === 'end' &&
-        // <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
-        overflowTag(visibleCount)} */}
+      {itemsToRender[2]}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;

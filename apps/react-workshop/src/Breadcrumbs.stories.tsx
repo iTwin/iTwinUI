@@ -167,8 +167,10 @@ export const CustomOverflowDropdown = () => {
     <div
       style={{
         width: '50%',
-        maxWidth: 725,
-        minWidth: 150,
+        // maxWidth: 725,
+        // minWidth: 150,
+        resize: 'inline',
+        overflow: 'hidden',
         border: '1px solid lightpink',
         padding: 8,
       }}

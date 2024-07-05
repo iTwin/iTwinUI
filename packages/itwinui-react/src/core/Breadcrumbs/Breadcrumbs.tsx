@@ -6,10 +6,11 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergedRefs,
-  useOverflow,
   SvgChevronRight,
   Box,
   createWarningLogger,
+  OverflowContainer,
+  useResizeObserver,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
@@ -124,8 +125,12 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [overflowRef, visibleCount] = useOverflow(items.length);
-  const refs = useMergedRefs(overflowRef, ref);
+  // const [overflowRef, visibleCount] = useOverflow(items.length);
+  const [containerSize, setContainerSize] = React.useState<number>(-1);
+  const [resizeRef] = useResizeObserver((size) => setContainerSize(size.width));
+
+  const overflowContainerRef = React.useRef(null);
+  const refs = useMergedRefs(ref, overflowContainerRef, resizeRef);
 
   return (
     <Box
@@ -135,14 +140,13 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
-      <Box as='ol' className='iui-breadcrumbs-list'>
-        {visibleCount > 1 && (
-          <>
-            <ListItem item={items[0]} isActive={currentIndex === 0} />
-            <Separator separator={separator} />
-          </>
-        )}
-        {items.length - visibleCount > 0 && (
+      <OverflowContainer
+        key={containerSize}
+        as='ol'
+        overflowTagLocation='center'
+        containerRef={overflowContainerRef}
+        className='iui-breadcrumbs-list'
+        overflowTag={(visibleCount) => (
           <>
             <Box as='li' className='iui-breadcrumbs-item'>
               {overflowButton ? (
@@ -156,30 +160,16 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
             <Separator separator={separator} />
           </>
         )}
-        {items
-          .slice(
-            visibleCount > 1
-              ? items.length - visibleCount + 1
-              : items.length - 1,
-          )
-          .map((_, _index) => {
-            const index =
-              visibleCount > 1
-                ? 1 + (items.length - visibleCount) + _index
-                : items.length - 1;
-            return (
-              <React.Fragment key={index}>
-                <ListItem
-                  item={items[index]}
-                  isActive={currentIndex === index}
-                />
-                {index < items.length - 1 && (
-                  <Separator separator={separator} />
-                )}
-              </React.Fragment>
-            );
-          })}
-      </Box>
+      >
+        {items.map((_, index) => {
+          return (
+            <React.Fragment key={index}>
+              <ListItem item={items[index]} isActive={currentIndex === index} />
+              {index < items.length - 1 && <Separator separator={separator} />}
+            </React.Fragment>
+          );
+        })}
+      </OverflowContainer>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', BreadcrumbsProps>;
