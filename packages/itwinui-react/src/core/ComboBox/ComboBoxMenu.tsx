@@ -12,6 +12,7 @@ import {
   Box,
   useVirtualScroll,
   ShadowRoot,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
@@ -63,9 +64,12 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
     estimateSize: () => (mostlySubLabeled ? 48 : 36), // Sets estimate to 48 if mostlySubLabeled returns true, else sets estimate to 36.
-    scrollToIndex: focusedVisibleIndex,
     gap: -1,
   });
+
+  useLayoutEffect(() => {
+    virtualizer.scrollToIndex(focusedVisibleIndex);
+  }, [virtualizer, focusedVisibleIndex]);
 
   const virtualItemRenderer = React.useCallback(
     (virtualItem: VirtualItem) => {

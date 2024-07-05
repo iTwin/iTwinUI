@@ -423,9 +423,13 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
-    expect((await rows.all()).length).toBe(31);
-    await expect(rows.nth(0)).toContainText('Name30');
-    await expect(rows.nth(30)).toContainText('Name60');
+    const row50NameCell = page.getByText('Name50');
+    expect((await rows.all()).length).toBe(32);
+    await expect(rows.nth(0)).toContainText('Name34');
+    await expect(rows.nth(16)).toContainText('Name50');
+    await expect(rows.nth(31)).toContainText('Name65');
+
+    await expect(row50NameCell).toBeVisible();
   });
 
   test('virtualized table should render 1 item', async ({ page }) => {
