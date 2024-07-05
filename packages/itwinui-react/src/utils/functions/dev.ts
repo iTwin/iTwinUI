@@ -29,7 +29,7 @@ const isUnitTest = isJest || isVitest || isMocha;
  * }
  */
 const createWarningLogger =
-  process.env.NODE_ENV === 'development'
+  process.env.NODE_ENV === 'development' && !isUnitTest
     ? () => {
         let logged = false;
         return (message: string) => {

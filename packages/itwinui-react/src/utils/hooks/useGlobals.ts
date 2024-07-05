@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ThemeContext } from '../../core/ThemeProvider/ThemeContext.js';
+import { isUnitTest } from '../functions/dev.js';
 
 const didLogWarning = {
   fontSize: false,
@@ -32,6 +33,7 @@ export const useThemeProviderWarning = (
   React.useEffect(() => {
     if (
       process.env.NODE_ENV === 'development' &&
+      !isUnitTest &&
       !didLogWarning.themeProvider &&
       !themeContext
     ) {
@@ -48,7 +50,11 @@ export const useThemeProviderWarning = (
 /** Shows console error if the page changes the root font size */
 const useRootFontSizeWarning = () => {
   React.useEffect(() => {
-    if (process.env.NODE_ENV === 'development' && !didLogWarning.fontSize) {
+    if (
+      process.env.NODE_ENV === 'development' &&
+      !isUnitTest &&
+      !didLogWarning.fontSize
+    ) {
       const rootFontSize = parseInt(
         getComputedStyle(document.documentElement).fontSize,
       );
