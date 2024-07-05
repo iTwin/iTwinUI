@@ -15,7 +15,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
 
-const logWarningInDev = createWarningLogger();
+const logWarning = createWarningLogger();
 
 type BreadcrumbsProps = {
   /**
@@ -201,7 +201,7 @@ const ListItem = ({
     children?.type === Button
   ) {
     if (process.env.NODE_ENV === 'development') {
-      logWarningInDev(
+      logWarning(
         'Directly using Button/a/span as Breadcrumbs children is deprecated, please use `Breadcrumbs.Item` instead.',
       );
     }

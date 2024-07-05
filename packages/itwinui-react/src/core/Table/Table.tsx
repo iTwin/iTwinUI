@@ -83,7 +83,7 @@ const COLUMN_MIN_WIDTHS = {
   withExpander: 108, // expander column should be wider to accommodate the expander icon
 };
 
-const logWarningInDev = createWarningLogger();
+const logWarning = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
   /**
@@ -636,7 +636,7 @@ export const Table = <
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
     if (process.env.NODE_ENV === 'development') {
-      logWarningInDev(
+      logWarning(
         `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
       );
     }
