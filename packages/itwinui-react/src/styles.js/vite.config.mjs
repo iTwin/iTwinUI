@@ -6,8 +6,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import { version } from '../../package.json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const versionWithoutDots = version.replace(/\./g, '');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -43,29 +46,45 @@ export default defineConfig({
     modules: {
       // TODO: use proper hash in v4
       generateScopedName: (name) => {
-        return `_iui3-${name.replace('iui-', '')}`;
+        return `_iui${versionWithoutDots}-${name.replace('iui-', '')}`;
       },
     },
     postcss: {
-      plugins: [
-        Object.assign(
-          () => ({
-            postcssPlugin: true,
-            Rule(rule) {
-              if (
-                rule.type === 'rule' &&
-                rule.selector?.startsWith(':where([data-iui-theme')
-              ) {
-                rule.selector = `:where(.iui-root)${rule.selector}`;
-              }
-            },
-          }),
-          { postcss: true },
-        ),
-      ],
+      plugins: [postcssAddIuiRoot(), postcssAddIuiVersion()],
     },
   },
 });
+
+// ----------------------------------------------------------------------------
+
+function postcssAddIuiRoot() {
+  return Object.assign(
+    () => ({
+      postcssPlugin: true,
+      Rule(rule) {
+        if (
+          rule.type === 'rule' &&
+          rule.selector?.startsWith(':where([data-iui-theme')
+        ) {
+          rule.selector = `:where(.iui-root)${rule.selector}`;
+        }
+      },
+    }),
+    { postcss: true, postcssPlugin: 'add-iui-root' },
+  );
+}
+
+function postcssAddIuiVersion() {
+  return Object.assign(
+    () => ({
+      postcssPlugin: true,
+      Once(root) {
+        root.append(`:where(:root) { --_iui-v${versionWithoutDots}: yes; }`);
+      },
+    }),
+    { postcss: true, postcssPlugin: 'add-iui-version' },
+  );
+}
 
 // ----------------------------------------------------------------------------
 

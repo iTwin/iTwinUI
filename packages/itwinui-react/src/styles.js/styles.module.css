@@ -8,12 +8,6 @@
 @import '@itwin/itwinui-variables' layer(itwinui.v3);
 @import '@itwin/itwinui-css';
 
-@layer itwinui.v3 {
-  .iui-root {
-    --_iui-v3-loaded: yes;
-  }
-}
-
 @layer itwinui {
   .iui-root * {
     /* When --_iui-width is set, inline-size will use it, otherwise it will be automatically reverted. */
