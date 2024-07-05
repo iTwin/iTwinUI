@@ -10,6 +10,7 @@ import {
   useVirtualScroll,
   ShadowRoot,
   useMergedRefs,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TreeContext } from './TreeContext.js';
@@ -415,9 +416,14 @@ const VirtualizedTree = React.forwardRef(
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
-      scrollToIndex,
       getItemKey,
     });
+
+    useLayoutEffect(() => {
+      if (scrollToIndex) {
+        virtualizer.scrollToIndex(scrollToIndex);
+      }
+    }, [virtualizer, scrollToIndex]);
 
     return (
       <TreeElement
