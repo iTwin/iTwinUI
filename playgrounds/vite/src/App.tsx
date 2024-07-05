@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <>
-      {widths.slice(0, 1).map((width) => (
+      {widths.map((width) => (
         <ComboBox
           key={width}
           style={{ width: `${width}px`, maxWidth: '80vw' }}

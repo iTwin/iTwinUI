@@ -28,7 +28,11 @@ export default {
 } satisfies StoryDefault;
 
 const countriesList = [
-  { label: 'Afghanistan', value: 'AF' },
+  {
+    label:
+      'Afghanistan awhdbvjabowndb hanwidb habnwidb awbnidb ajwbdhinb awdbnihba bwdbnhinab wbdbnianbw dnbaiwndbk hbnqbnw dbn awndj',
+    value: 'AF',
+  },
   { label: 'Åland Islands', value: 'AX' },
   { label: 'Albania', value: 'AL' },
   { label: 'Algeria', value: 'DZ' },

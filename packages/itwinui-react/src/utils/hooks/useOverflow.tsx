@@ -7,6 +7,8 @@ import { useMergedRefs } from './useMergedRefs.js';
 import { useResizeObserver } from './useResizeObserver.js';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import usePrevious from './usePrevious.js';
+import { Box } from '../components/Box.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
 
 /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
 type GuessRange = [number, number] | null;
@@ -215,3 +217,48 @@ export const useOverflow = <T extends HTMLElement>(
 
   return [mergedRefs, visibleCount] as const;
 };
+
+// ----------------------------------------------------------------------------
+
+type OverflowContainerProps = {
+  overflowTag: (visibleCount: number) => React.ReactNode;
+  /**
+   * Where the overflowTag is placed. Values:
+   * - end: At the end
+   * - center: After the first item
+   * @default 'end'
+   */
+  overflowTagLocation?: 'center' | 'end';
+  children: React.ReactNode[];
+};
+
+export const OverflowContainer = React.forwardRef((props, ref) => {
+  const { overflowTag, overflowTagLocation = 'end', children, ...rest } = props;
+
+  const [containerRef, visibleCount] = useOverflow(children.length);
+
+  console.log('children', children.length, visibleCount);
+
+  const itemsToRender = React.useMemo(() => {
+    if (overflowTagLocation === 'center') {
+      return [overflowTag(visibleCount), children.slice(visibleCount - 1)];
+    }
+    return visibleCount < children.length
+      ? [children.slice(0, visibleCount - 1), overflowTag(visibleCount)]
+      : [children, []];
+  }, [children, overflowTag, overflowTagLocation, visibleCount]);
+
+  return (
+    <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
+      {itemsToRender[0]}
+      {itemsToRender[1]}
+      {/* {visibleCount < children.length
+        ? children.slice(0, visibleCount - 1)
+        : children}
+      {visibleCount < children.length &&
+        overflowTagLocation === 'end' &&
+        // <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
+        overflowTag(visibleCount)} */}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
