@@ -51,6 +51,8 @@
   "files": [
     "cjs",
     "esm",
+    "DEV-esm",
+    "DEV-cjs",
     "styles.css",
     "CHANGELOG.md",
     "LICENSE.md"
