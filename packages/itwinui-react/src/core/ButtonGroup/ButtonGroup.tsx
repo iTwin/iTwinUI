@@ -185,6 +185,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     items.length,
     !overflowButton,
     orientation,
+    undefined,
   );
 
   return (

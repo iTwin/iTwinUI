@@ -8,6 +8,8 @@ import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import { Box } from '../components/Box.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 // import usePrevious from './usePrevious.js';
+import { useLatestRef } from './useLatestRef.js';
+// import usePrevious from './usePrevious.js';
 
 /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
 type GuessRange = [number, number] | null;
@@ -38,16 +40,17 @@ const STARTING_MAX_ITEMS_COUNT = 2;
  *   </div>
  * );
  */
-export const useOverflow = <T extends HTMLElement>(
+export const useOverflow = (
   // TODO: Try more to remove this prop, if possible.
   itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
-  containerRefProp?: React.RefObject<HTMLElement>,
+  containerRefProp: React.RefObject<HTMLElement> | undefined,
   minVisibleCount?: number,
 ) => {
-  const fallbackContainerRef = React.useRef<T>(null);
-  const containerRef = containerRefProp ?? fallbackContainerRef;
+  // const fallbackContainerRef = React.useRef<T>(null);
+  const _containerRef = containerRefProp;
+  const containerRef = useLatestRef(_containerRef?.current);
 
   const initialVisibleCount = Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT);
 
@@ -94,16 +97,22 @@ export const useOverflow = <T extends HTMLElement>(
 
     isGuessing.current = true;
 
+    // We need to wait for the ref to be attached so that we can measure available and required sizes.
+    if (containerRef?.current == null) {
+      return;
+    }
+
     try {
       const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
-      const availableSize = containerRef.current?.[`offset${dimension}`] ?? 0;
-      const requiredSize = containerRef.current?.[`scroll${dimension}`] ?? 0;
+      const availableSize = containerRef.current[`offset${dimension}`];
+      const requiredSize = containerRef.current[`scroll${dimension}`];
 
       const isOverflowing = availableSize < requiredSize;
 
       console.log('RUNNING', {
         visibleCountGuessRange: visibleCountGuessRange.toString(),
-        isOverflowing,
+        myRef: containerRef.current,
+        // isOverflowing,
         visibleCount,
         availableSize,
         requiredSize,
@@ -138,6 +147,11 @@ export const useOverflow = <T extends HTMLElement>(
         //   newRange: [visibleCount, doubleOfMaxGuess],
         //   newVisibleCount: doubleOfMaxGuess,
         // });
+        console.log(
+          'doubling',
+          [visibleCount, doubleOfMaxGuess],
+          doubleOfMaxGuess,
+        );
         return;
       }
 
@@ -175,6 +189,48 @@ export const useOverflow = <T extends HTMLElement>(
     visibleCount,
     visibleCountGuessRange,
   ]);
+
+  // const previousVisibleCount = usePrevious(visibleCount);
+  // const previousVisibleCountGuessRange = usePrevious(visibleCountGuessRange);
+  // const previousContainerRef = usePrevious(containerRef);
+
+  // useLayoutEffect(() => {
+  //   if (disabled) {
+  //     return;
+  //   }
+
+  //   console.log(
+  //     'CHECKING',
+  //     visibleCount !== previousVisibleCount,
+  //     containerRef !== previousContainerRef,
+  //     visibleCount,
+  //     previousVisibleCount,
+  //     containerRef,
+  //     previousContainerRef,
+  //   );
+
+  //   if (
+  //     visibleCount !== previousVisibleCount ||
+  //     containerRef !== previousContainerRef
+  //     // ||
+  //     // !!visibleCountGuessRange != !!previousVisibleCountGuessRange ||
+  //     // (visibleCountGuessRange != null &&
+  //     //   previousVisibleCountGuessRange != null &&
+  //     //   (visibleCountGuessRange[0] !== previousVisibleCountGuessRange[0] ||
+  //     //     visibleCountGuessRange[1] !== previousVisibleCountGuessRange[1]))
+  //   ) {
+  //     guessVisibleCount();
+  //   }
+  // }, [
+  //   containerRef,
+  //   disabled,
+  //   guessVisibleCount,
+  //   previousContainerRef,
+  //   previousVisibleCount,
+  //   previousVisibleCountGuessRange,
+  //   visibleCount,
+  //   visibleCountGuessRange,
+  // ]);
 
   // const guessVisibleCountCalled = React.useRef(false);
 
@@ -225,9 +281,12 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowTag,
     overflowTagLocation = 'end',
     children,
-    containerRef,
+    containerRef: containerRefProp,
     ...rest
   } = props;
+
+  // const containerRef = React.useContext(OverflowContainerContext)?.containerRef;
+  const containerRef = containerRefProp;
 
   // TODO: Should this be children.length + 1?
   // Because if there are 10 items and visibleCount is 10,
@@ -278,7 +337,10 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      ref={useMergedRefs(ref, containerRef ?? overflowContainerRef)}
+      ref={useMergedRefs(
+        ref,
+        containerRef == null ? overflowContainerRef : undefined,
+      )}
       {...rest}
     >
       {itemsToRender[0]}
@@ -287,3 +349,9 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
+
+// ----------------------------------------------------------------------------
+
+// export const OverflowContainerContext = React.createContext<{
+//   containerRef: React.RefObject<HTMLElement>;
+// } | null>(null);

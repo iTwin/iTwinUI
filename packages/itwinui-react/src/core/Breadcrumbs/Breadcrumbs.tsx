@@ -11,11 +11,12 @@ import {
   createWarningLogger,
   OverflowContainer,
   useResizeObserver,
+  // OverflowContainerContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
-import { useDebounce } from '../../utils/hooks/useDebounce.js';
+// import { useDebounce } from '../../utils/hooks/useDebounce.js';
 
 const logWarning = createWarningLogger();
 
@@ -127,17 +128,17 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   } = props;
 
   // const [overflowRef, visibleCount] = useOverflow(items.length);
-  const [_containerSize, setContainerSize] = React.useState<number>(-1);
-  const [containerSize, _setContainerSize] = React.useState(_containerSize);
+  const [containerSize, setContainerSize] = React.useState<number>(-1);
+  // const [containerSize, _setContainerSize] = React.useState(_containerSize);
 
-  useDebounce(
-    () => {
-      console.log('debounce', { old: containerSize, new: _containerSize });
-      _setContainerSize(_containerSize);
-    },
-    2000,
-    [_containerSize],
-  );
+  // useDebounce(
+  //   () => {
+  //     console.log('debounce', { old: containerSize, new: _containerSize });
+  //     _setContainerSize(_containerSize);
+  //   },
+  //   2000,
+  //   [_containerSize],
+  // );
 
   const [resizeRef] = useResizeObserver((size) => {
     // setTimeout(() => {
@@ -158,6 +159,11 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
+      {/* <OverflowContainerContext.Provider
+        value={{
+          containerRef: overflowContainerRef,
+        }}
+      > */}
       <OverflowContainer
         key={containerSize}
         as='ol'
@@ -188,6 +194,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
           );
         })}
       </OverflowContainer>
+      {/* </OverflowContainerContext.Provider> */}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', BreadcrumbsProps>;
