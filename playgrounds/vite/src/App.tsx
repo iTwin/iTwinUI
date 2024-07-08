@@ -4,7 +4,7 @@ export default function App() {
   const data: { label: string; value: number }[] = [];
   for (let i = 0; i < 15; i++) {
     data.push({
-      label: `option ${i} wdpokanwda jwdoman jwdoaniw jdoamnjw kdkokpainwjk dapiwnjk dkoanwjk dakomnwjk damnwj kdnamnjw kdnpmanjwk dawnjdk`,
+      label: `option ${i}`,
       value: i,
     });
   }

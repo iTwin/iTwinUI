@@ -149,8 +149,8 @@ CustomOverflowBackButton.decorators = [
       <div
         style={{
           width: 'min(30rem, 100%)',
-          border: '1px solid lightpink',
-          padding: 8,
+          // border: '1px solid lightpink',
+          // padding: 8,
           resize: 'inline',
           overflow: 'hidden',
         }}
@@ -217,8 +217,8 @@ CustomOverflowDropdown.decorators = [
       <div
         style={{
           width: 'min(30rem, 100%)',
-          border: '1px solid lightpink',
-          padding: 8,
+          // border: '1px solid lightpink',
+          // padding: 8,
           resize: 'inline',
           overflow: 'hidden',
         }}

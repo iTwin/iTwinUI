@@ -15,6 +15,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
+import { useDebounce } from '../../utils/hooks/useDebounce.js';
 
 const logWarning = createWarningLogger();
 
@@ -126,8 +127,25 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   } = props;
 
   // const [overflowRef, visibleCount] = useOverflow(items.length);
-  const [containerSize, setContainerSize] = React.useState<number>(-1);
-  const [resizeRef] = useResizeObserver((size) => setContainerSize(size.width));
+  const [_containerSize, setContainerSize] = React.useState<number>(-1);
+  const [containerSize, _setContainerSize] = React.useState(_containerSize);
+
+  useDebounce(
+    () => {
+      console.log('debounce', { old: containerSize, new: _containerSize });
+      _setContainerSize(_containerSize);
+    },
+    2000,
+    [_containerSize],
+  );
+
+  const [resizeRef] = useResizeObserver((size) => {
+    // setTimeout(() => {
+    // console.log('KEY RESET');
+    console.log('resize');
+    setContainerSize(size.width);
+    // }, 1000);
+  });
 
   const overflowContainerRef = React.useRef(null);
   const refs = useMergedRefs(ref, overflowContainerRef, resizeRef);
