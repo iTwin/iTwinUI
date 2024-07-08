@@ -306,6 +306,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     }
 
     // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
+    // I think they are fixed.
     if (overflowTagLocation === 'center') {
       return visibleCount >= 3
         ? [
@@ -313,19 +314,11 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
             overflowTag(visibleCount - 1),
             children.slice(children.length - (visibleCount - 2)),
           ]
-        : visibleCount === 2
-          ? [
-              [
-                [],
-                overflowTag(2 - 1),
-                children.slice(children.length - (visibleCount - 1)),
-              ],
-            ]
-          : [
-              [],
-              overflowTag(1 - 1),
-              children.slice(children.length - (visibleCount - 1)),
-            ];
+        : [
+            [],
+            overflowTag(visibleCount - 1),
+            children.slice(children.length - (visibleCount - 1)),
+          ];
     }
     return [children.slice(0, visibleCount - 1), [], overflowTag(visibleCount)];
   }, [children, overflowTag, overflowTagLocation, visibleCount]);
