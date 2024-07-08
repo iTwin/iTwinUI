@@ -10,7 +10,6 @@ import {
   DropdownMenu,
   MenuItem,
   Input,
-  Tooltip,
   Text,
 } from '@itwin/itwinui-react';
 import {
@@ -122,17 +121,19 @@ export const CustomOverflowBackButton = () => {
         const previousBreadcrumb =
           visibleCount > 1 ? items.length - visibleCount : items.length - 2;
         return (
-          <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
-            <IconButton
-              aria-label={`Item ${previousBreadcrumb}`}
-              onClick={() => {
-                console.log(`Visit breadcrumb ${previousBreadcrumb}`);
-              }}
-              styleType='borderless'
-            >
-              <SvgMore />
-            </IconButton>
-          </Tooltip>
+          <IconButton
+            aria-label={`Item ${previousBreadcrumb}`}
+            onClick={() => {
+              console.log(`Visit breadcrumb ${previousBreadcrumb}`);
+            }}
+            styleType='borderless'
+            label={`Item ${previousBreadcrumb}`}
+            labelProps={{
+              placement: 'bottom',
+            }}
+          >
+            <SvgMore />
+          </IconButton>
         );
       }}
     >
