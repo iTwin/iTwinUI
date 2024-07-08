@@ -46,7 +46,6 @@ export const useOverflow = (
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
   containerRefProp: React.RefObject<HTMLElement> | undefined,
-  minVisibleCount?: number,
 ) => {
   // const fallbackContainerRef = React.useRef<T>(null);
   const _containerRef = containerRefProp;
@@ -59,7 +58,7 @@ export const useOverflow = (
   );
 
   /**
-   * Ensures that `minVisibleCount <= visibleCount <= itemsLength`
+   * Ensures that `visibleCount <= itemsLength`
    */
   const setVisibleCount = React.useCallback(
     (setStateAction: React.SetStateAction<typeof visibleCount>) => {
@@ -69,16 +68,10 @@ export const useOverflow = (
             ? setStateAction(prev)
             : setStateAction;
 
-        let safeVisibleCount = Math.min(newVisibleCount, itemsLength);
-
-        if (minVisibleCount != null) {
-          safeVisibleCount = Math.max(safeVisibleCount, minVisibleCount);
-        }
-
-        return safeVisibleCount;
+        return Math.min(newVisibleCount, itemsLength);
       });
     },
-    [itemsLength, minVisibleCount],
+    [itemsLength],
   );
 
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
@@ -271,7 +264,8 @@ type OverflowContainerProps = {
    */
   containerRef?: React.RefObject<HTMLElement>;
   /**
-   * The returned `visibleCount` will be >= `minVisibleCount`
+   * The number of items will always be >= `minVisibleCount`
+   * @default 1
    */
   minVisibleCount?: number;
 };
@@ -282,6 +276,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowTagLocation = 'end',
     children,
     containerRef: containerRefProp,
+    minVisibleCount = 1,
     ...rest
   } = props;
 
@@ -297,7 +292,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     undefined,
     containerRef,
   );
-  const visibleCount = _visibleCount;
+  const visibleCount = Math.max(_visibleCount, minVisibleCount);
 
   // console.log('children', children.length, visibleCount);
 

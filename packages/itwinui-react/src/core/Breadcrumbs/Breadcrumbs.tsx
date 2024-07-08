@@ -170,6 +170,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
         overflowTagLocation='center'
         containerRef={overflowContainerRef}
         className='iui-breadcrumbs-list'
+        minVisibleCount={2}
         overflowTag={(visibleCount) => (
           <>
             <Box as='li' className='iui-breadcrumbs-item'>
