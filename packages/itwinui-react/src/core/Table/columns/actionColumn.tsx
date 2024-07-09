@@ -133,7 +133,12 @@ export const ActionColumn = <T extends Record<string, unknown>>({
             popoverProps?.onVisibleChange?.(open);
           }}
         >
-          <IconButton styleType='borderless' isActive={isOpen} ref={buttonRef}>
+          <IconButton
+            styleType='borderless'
+            isActive={isOpen}
+            ref={buttonRef}
+            label='Column manager'
+          >
             <SvgColumnManager />
           </IconButton>
         </Popover>
