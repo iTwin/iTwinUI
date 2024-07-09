@@ -84,7 +84,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
           .filter(({ id }) => !defaultColumnIds.includes(id))
           .map((column) => {
             const { checked } = column.getToggleHiddenProps();
-            const onClick = () => {
+            const onChange = () => {
               column.toggleHidden(checked);
               // If no column was resized then leave table resize handling to the flexbox
               if (Object.keys(state.columnResizing.columnWidths).length === 0) {
@@ -105,7 +105,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
                 key={column.id}
                 checked={checked}
                 disabled={column.disableToggleVisibility}
-                onChange={onClick}
+                onChange={onChange}
                 label={column.render('Header')}
               />
             );
