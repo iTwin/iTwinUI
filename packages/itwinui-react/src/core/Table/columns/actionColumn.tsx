@@ -20,10 +20,11 @@ type ActionColumnProps = {
   columnManager?:
     | boolean
     | {
-        dropdownMenuProps: Pick<
-          React.ComponentPropsWithoutRef<typeof Popover>,
-          'visible' | 'onVisibleChange' | 'placement' | 'portal'
-        > &
+        dropdownMenuProps: React.ComponentPropsWithoutRef<'div'> &
+          Pick<
+            React.ComponentPropsWithoutRef<typeof Popover>,
+            'visible' | 'onVisibleChange' | 'placement' | 'portal'
+          > &
           Pick<Parameters<typeof usePopover>[0], 'matchWidth'>;
       };
 };
