@@ -1049,7 +1049,7 @@ export const Table = <
                           }
                         }}
                       >
-                        <ShadowRoot>
+                        <ShadowRoot key={`${columnProps.key}_shadow_root`}>
                           {typeof column.Header === 'string' ? (
                             <LineClamp>
                               <slot />
@@ -1062,13 +1062,16 @@ export const Table = <
                           <slot name='shadows' />
                         </ShadowRoot>
 
-                        {column.render('Header')}
+                        {column.render('Header', {
+                          key: `${columnProps.key}_header`,
+                        })}
                         {(showFilterButton(column) ||
                           showSortButton(column)) && (
                           <Box
                             className='iui-table-header-actions-container'
                             onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
                             slot='actions'
+                            key={`${columnProps.key}_actions`}
                           >
                             {showFilterButton(column) && (
                               <FilterToggle column={column} />
@@ -1099,6 +1102,7 @@ export const Table = <
                               {...column.getResizerProps()}
                               className='iui-table-resizer'
                               slot='resizers'
+                              key={`${columnProps.key}_resizer`}
                             >
                               <Box className='iui-table-resizer-bar' />
                             </Box>
@@ -1108,6 +1112,7 @@ export const Table = <
                             <Box
                               className='iui-table-reorder-bar'
                               slot='resizers'
+                              key={`${columnProps.key}_reorder`}
                             />
                           )}
                         {column.sticky === 'left' &&
@@ -1115,6 +1120,7 @@ export const Table = <
                             <Box
                               className='iui-table-cell-shadow-right'
                               slot='shadows'
+                              key={`${columnProps.key}_shadow_right`}
                             />
                           )}
                         {column.sticky === 'right' &&
@@ -1122,6 +1128,7 @@ export const Table = <
                             <Box
                               className='iui-table-cell-shadow-left'
                               slot='shadows'
+                              key={`${columnProps.key}_shadow_left`}
                             />
                           )}
                       </Box>
