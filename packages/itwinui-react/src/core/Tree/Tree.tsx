@@ -14,7 +14,7 @@ import {
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TreeContext } from './TreeContext.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
   /**
