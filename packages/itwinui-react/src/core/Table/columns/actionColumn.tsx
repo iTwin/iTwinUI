@@ -11,6 +11,7 @@ import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
 import { Popover, usePopover } from '../../Popover/Popover.js';
+import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
 import { Surface } from '../../Surface/Surface.js';
 import { Flex } from '../../Flex/Flex.js';
 
@@ -119,8 +120,9 @@ export const ActionColumn = <T extends Record<string, unknown>>({
       return (
         <Popover
           content={
-            <Surface as={'fieldset'}>
+            <Surface as='fieldset'>
               <Flex flexDirection='column' alignItems='flex-start'>
+                <VisuallyHidden as='legend'>Show/hide columns</VisuallyHidden>
                 {headerCheckBoxes()}
               </Flex>
             </Surface>
