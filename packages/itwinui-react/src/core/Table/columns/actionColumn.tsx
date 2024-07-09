@@ -67,7 +67,6 @@ export const ActionColumn = <T extends Record<string, unknown>>({
     cellClassName: 'iui-slot',
     disableReordering: true,
     Header: ({ allColumns, dispatch, state }: HeaderProps<T>) => {
-      const [isOpen, setIsOpen] = React.useState(false);
       const buttonRef = React.useRef<HTMLButtonElement>(null);
 
       if (!columnManager) {
@@ -128,14 +127,9 @@ export const ActionColumn = <T extends Record<string, unknown>>({
             </Surface>
           }
           {...popoverProps}
-          onVisibleChange={(open) => {
-            setIsOpen(open);
-            popoverProps?.onVisibleChange?.(open);
-          }}
         >
           <IconButton
             styleType='borderless'
-            isActive={isOpen}
             ref={buttonRef}
             label='Column manager'
           >
