@@ -832,6 +832,7 @@ export const Table = <
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
     getItemKey: (index) => page[index].id,
+    overscan: 0,
   });
 
   useLayoutEffect(() => {
