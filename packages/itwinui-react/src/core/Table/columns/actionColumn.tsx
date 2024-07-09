@@ -5,7 +5,7 @@
 import * as React from 'react';
 import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
-import { SvgColumnManager, type PortalProps } from '../../../utils/index.js';
+import { SvgColumnManager } from '../../../utils/index.js';
 import { IconButton } from '../../Buttons/IconButton.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
@@ -20,17 +20,11 @@ type ActionColumnProps = {
   columnManager?:
     | boolean
     | {
-        dropdownMenuProps: React.ComponentPropsWithoutRef<'div'> & {
-          /**
-           * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
-           * @default 'menu'
-           */
-          role?: string;
-        } & Pick<
-            Parameters<typeof usePopover>[0],
-            'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
-          > &
-          Pick<PortalProps, 'portal'>;
+        dropdownMenuProps: Pick<
+          React.ComponentPropsWithoutRef<typeof Popover>,
+          'visible' | 'onVisibleChange' | 'placement' | 'portal'
+        > &
+          Pick<Parameters<typeof usePopover>[0], 'matchWidth'>;
       };
 };
 
