@@ -105,7 +105,6 @@ export const ActionColumn = <T extends Record<string, unknown>>({
                 key={column.id}
                 checked={checked}
                 disabled={column.disableToggleVisibility}
-                onClick={(e) => e.stopPropagation()}
                 onChange={onClick}
                 label={column.render('Header')}
               />
