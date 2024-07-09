@@ -12,7 +12,6 @@ import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
 import { Popover, usePopover } from '../../Popover/Popover.js';
 import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
-import { Surface } from '../../Surface/Surface.js';
 import { Flex } from '../../Flex/Flex.js';
 
 const ACTION_CELL_ID = 'iui-table-action';
@@ -119,13 +118,17 @@ export const ActionColumn = <T extends Record<string, unknown>>({
 
       return (
         <Popover
+          applyBackground
           content={
-            <Surface as='fieldset'>
-              <Flex flexDirection='column' alignItems='flex-start'>
-                <VisuallyHidden as='legend'>Show/hide columns</VisuallyHidden>
-                {headerCheckBoxes()}
-              </Flex>
-            </Surface>
+            <Flex
+              as='fieldset'
+              className='iui-fieldset-base iui-table-column-manager'
+              flexDirection='column'
+              alignItems='flex-start'
+            >
+              <VisuallyHidden as='legend'>Show/hide columns</VisuallyHidden>
+              {headerCheckBoxes()}
+            </Flex>
           }
           {...popoverProps}
         >
