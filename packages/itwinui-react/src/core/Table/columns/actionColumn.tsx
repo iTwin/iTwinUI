@@ -5,13 +5,14 @@
 import * as React from 'react';
 import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
-import { SvgColumnManager } from '../../../utils/index.js';
-import { DropdownMenu } from '../../DropdownMenu/DropdownMenu.js';
+import { SvgColumnManager, type PortalProps } from '../../../utils/index.js';
 import { IconButton } from '../../Buttons/IconButton.js';
-import { MenuItem } from '../../Menu/MenuItem.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
+import { Popover, usePopover } from '../../Popover/Popover.js';
+import { Surface } from '../../Surface/Surface.js';
+import { Flex } from '../../Flex/Flex.js';
 
 const ACTION_CELL_ID = 'iui-table-action';
 
@@ -19,10 +20,17 @@ type ActionColumnProps = {
   columnManager?:
     | boolean
     | {
-        dropdownMenuProps: Omit<
-          React.ComponentPropsWithoutRef<typeof DropdownMenu>,
-          'menuItems' | 'children'
-        >;
+        dropdownMenuProps: React.ComponentPropsWithoutRef<'div'> & {
+          /**
+           * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
+           * @default 'menu'
+           */
+          role?: string;
+        } & Pick<
+            Parameters<typeof usePopover>[0],
+            'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
+          > &
+          Pick<PortalProps, 'portal'>;
       };
 };
 
@@ -94,45 +102,41 @@ export const ActionColumn = <T extends Record<string, unknown>>({
               });
             };
             return (
-              <MenuItem
+              <Checkbox
                 key={column.id}
-                startIcon={
-                  <Checkbox
-                    checked={checked}
-                    disabled={column.disableToggleVisibility}
-                    onClick={(e) => e.stopPropagation()}
-                    onChange={onClick}
-                    aria-labelledby={`iui-column-${column.id}`}
-                  />
-                }
-                onClick={onClick}
+                checked={checked}
                 disabled={column.disableToggleVisibility}
-              >
-                <div id={`iui-column-${column.id}`}>
-                  {column.render('Header')}
-                </div>
-              </MenuItem>
+                onClick={(e) => e.stopPropagation()}
+                onChange={onClick}
+                label={column.render('Header')}
+              />
             );
           });
 
-      const dropdownMenuProps =
+      const popoverProps =
         typeof columnManager !== 'boolean'
           ? columnManager.dropdownMenuProps
           : {};
 
       return (
-        <DropdownMenu
-          {...dropdownMenuProps}
-          menuItems={headerCheckBoxes}
+        <Popover
+          content={
+            <Surface as={'fieldset'}>
+              <Flex flexDirection='column' alignItems='flex-start'>
+                {headerCheckBoxes()}
+              </Flex>
+            </Surface>
+          }
+          {...popoverProps}
           onVisibleChange={(open) => {
             setIsOpen(open);
-            dropdownMenuProps?.onVisibleChange?.(open);
+            popoverProps?.onVisibleChange?.(open);
           }}
         >
           <IconButton styleType='borderless' isActive={isOpen} ref={buttonRef}>
             <SvgColumnManager />
           </IconButton>
-        </DropdownMenu>
+        </Popover>
       );
     },
   };
