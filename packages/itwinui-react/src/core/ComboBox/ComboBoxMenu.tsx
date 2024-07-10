@@ -72,7 +72,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   }, [virtualizer, focusedVisibleIndex]);
 
   const virtualItemRenderer = React.useCallback(
-    (virtualItem: VirtualItem) => {
+    (virtualItem: VirtualItem<Element>) => {
       const menuItem =
         filteredOptions.length > 0
           ? getMenuItem(filteredOptions[virtualItem.index], virtualItem.index)
