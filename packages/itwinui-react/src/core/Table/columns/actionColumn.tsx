@@ -5,7 +5,7 @@
 import * as React from 'react';
 import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
-import { SvgColumnManager } from '../../../utils/index.js';
+import { FieldsetBase, SvgColumnManager } from '../../../utils/index.js';
 import { IconButton } from '../../Buttons/IconButton.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
@@ -114,15 +114,15 @@ export const ActionColumn = <T extends Record<string, unknown>>({
         <Popover
           applyBackground
           content={
-            <Flex
-              as='fieldset'
-              className='iui-fieldset-base iui-table-column-manager'
+            <FieldsetBase
+              as={Flex}
+              className='iui-table-column-manager'
               flexDirection='column'
               alignItems='flex-start'
             >
               <VisuallyHidden as='legend'>Show/hide columns</VisuallyHidden>
               {headerCheckBoxes()}
-            </Flex>
+            </FieldsetBase>
           }
           {...popoverProps}
         >
