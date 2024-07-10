@@ -141,6 +141,12 @@
   }
 }
 
+@mixin iui-table-column-manager {
+  padding: var(--iui-size-xs);
+  max-block-size: 17.25rem; // Show approximately 8.5 checkboxes
+  overflow-y: auto;
+}
+
 @mixin iui-table-row {
   --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
 
