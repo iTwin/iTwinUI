@@ -68,12 +68,13 @@ const SurfaceHeader = React.forwardRef((props, ref) => {
 type SurfaceBodyOwnProps = {
   /**
    * Gives padding to the surface body
+   * @default false
    */
   isPadded?: boolean;
 };
 
 const SurfaceBody = React.forwardRef((props, ref) => {
-  const { children, className, isPadded, ...rest } = props;
+  const { children, className, isPadded = false, ...rest } = props;
   const { setHasLayout } = useSafeContext(SurfaceContext);
 
   React.useEffect(() => {
