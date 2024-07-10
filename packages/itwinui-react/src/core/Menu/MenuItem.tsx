@@ -15,7 +15,7 @@ import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
 
-const logWarningInDev = createWarningLogger();
+const logWarning = createWarningLogger();
 
 export type MenuItemProps = {
   /**
@@ -100,8 +100,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  if (onClickProp != null && subMenuItems.length > 0) {
-    logWarningInDev(
+  if (
+    process.env.NODE_ENV === 'development' &&
+    onClickProp != null &&
+    subMenuItems.length > 0
+  ) {
+    logWarning(
       'Passing a non-empty submenuItems array and onClick to MenuItem at the same time is not supported. This is because when a non empty submenuItems array is passed, clicking the MenuItem toggles the submenu visibility.',
     );
   }

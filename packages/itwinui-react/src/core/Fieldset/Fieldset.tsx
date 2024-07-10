@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box } from '../../utils/index.js';
+import { FieldsetBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 import cx from 'classnames';
@@ -30,8 +30,7 @@ export const Fieldset = React.forwardRef((props, ref) => {
   const { children, className, disabled, legend, ...rest } = props;
 
   return (
-    <Box
-      as='fieldset'
+    <FieldsetBase
       className={cx('iui-fieldset', className)}
       disabled={disabled}
       ref={ref}
@@ -46,6 +45,6 @@ export const Fieldset = React.forwardRef((props, ref) => {
               : child,
           )
         : children}
-    </Box>
+    </FieldsetBase>
   );
 }) as PolymorphicForwardRefComponent<'fieldset', FieldsetProps>;

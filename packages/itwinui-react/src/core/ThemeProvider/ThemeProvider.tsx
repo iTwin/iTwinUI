@@ -25,6 +25,9 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 import { atom } from 'jotai';
+import { meta } from '../../utils/meta.js';
+
+const versionWithoutDots = meta.version.replace(/\./g, '');
 
 // ----------------------------------------------------------------------------
 
@@ -383,7 +386,11 @@ const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
 const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   useLayoutEffect(() => {
     // bail if styles are already loaded
-    if (getComputedStyle(root).getPropertyValue('--_iui-v3-loaded') === 'yes') {
+    if (
+      getComputedStyle(root).getPropertyValue(
+        `--_iui-v${versionWithoutDots}`,
+      ) === 'yes'
+    ) {
       return;
     }
 
