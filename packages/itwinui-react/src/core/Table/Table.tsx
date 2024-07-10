@@ -846,7 +846,7 @@ export const Table = <
   const getPreparedRow = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem,
+      virtualItem?: VirtualItem<Element>,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const row = page[index];
@@ -898,7 +898,7 @@ export const Table = <
   const virtualizedItemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem: VirtualItem,
+      virtualItem: VirtualItem<Element>,
       virtualizer: Virtualizer<Element, Element>,
     ) => getPreparedRow(index, virtualItem, virtualizer),
     [getPreparedRow],

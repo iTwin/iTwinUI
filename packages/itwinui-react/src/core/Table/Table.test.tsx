@@ -2928,9 +2928,9 @@ it('should render empty action column with column manager', async () => {
   expect(columnManager).toHaveAttribute('data-iui-variant', 'borderless');
   await userEvent.click(columnManager);
 
-  expect(document.querySelector('.iui-menu')).toBeTruthy();
+  expect(document.querySelector('[role="dialog"]')).toBeTruthy();
 
-  const columnManagerColumns = document.querySelectorAll('.iui-list-item');
+  const columnManagerColumns = document.querySelectorAll('label');
   expect(columnManagerColumns[0].textContent).toBe('Name');
   expect(columnManagerColumns[1].textContent).toBe('Description');
   expect(columnManagerColumns[2].textContent).toBe('View');
@@ -2979,11 +2979,11 @@ it('should render action column with column manager', async () => {
 
   await userEvent.click(columnManager);
 
-  const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
-  expect(dropdownMenu).toBeTruthy();
+  const popover = document.querySelector('[role="dialog"]') as HTMLDivElement;
+  expect(popover).toBeTruthy();
 });
 
-it('should render dropdown menu with custom style and override default style', async () => {
+it('should render popover with custom style and override default style', async () => {
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3003,6 +3003,7 @@ it('should render dropdown menu with custom style and override default style', a
     ActionColumn({
       columnManager: {
         dropdownMenuProps: {
+          id: 'popover',
           className: 'testing-classname',
           style: {
             maxHeight: '600px',
@@ -3028,12 +3029,12 @@ it('should render dropdown menu with custom style and override default style', a
 
   await userEvent.click(columnManager);
 
-  const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
-  expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
-  expect(dropdownMenu).toHaveStyle('max-height: 600px');
-  expect(dropdownMenu.style.backgroundColor).toEqual('red');
-  expect(dropdownMenu).toHaveAttribute('role', 'listbox');
+  const popover = document.querySelector('#popover') as HTMLDivElement;
+  expect(popover).toBeTruthy();
+  expect(popover.classList.contains('testing-classname')).toBeTruthy();
+  expect(popover).toHaveStyle('max-height: 600px');
+  expect(popover.style.backgroundColor).toEqual('red');
+  expect(popover).toHaveAttribute('role', 'listbox');
 });
 
 it('should hide column when deselected in column manager', async () => {
@@ -3070,8 +3071,7 @@ it('should hide column when deselected in column manager', async () => {
 
   const columnManager = container.querySelector('.iui-button') as HTMLElement;
   await userEvent.click(columnManager);
-  const columnManagerColumns =
-    document.querySelectorAll<HTMLLIElement>('.iui-list-item');
+  const columnManagerColumns = document.querySelectorAll<HTMLElement>('input');
   await userEvent.click(columnManagerColumns[1]);
 
   headerCells = container.querySelectorAll<HTMLDivElement>(
@@ -3110,14 +3110,9 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
   const columnManager = container.querySelector('.iui-button') as HTMLElement;
 
   await userEvent.click(columnManager);
-  const columnManagerColumns =
-    document.querySelectorAll<HTMLLIElement>('.iui-list-item');
-  expect(columnManagerColumns[0]).toHaveAttribute('aria-disabled', 'true');
-
-  expect(
-    (columnManagerColumns[0].querySelector('.iui-checkbox') as HTMLInputElement)
-      .disabled,
-  ).toBeTruthy();
+  const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
+  expect(columnManagerColumns[0].classList).toContain('iui-disabled');
+  expect(columnManagerColumns[0].querySelector('input')?.disabled).toBeTruthy();
 });
 
 it('should add selection column manually', () => {

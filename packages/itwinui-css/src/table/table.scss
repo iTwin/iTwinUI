@@ -18,6 +18,10 @@
   @include base.iui-table-header;
 }
 
+.iui-table-column-manager {
+  @include base.iui-table-column-manager;
+}
+
 .iui-table-row {
   @include base.iui-table-row;
 }
