@@ -8,10 +8,10 @@ import {
   // useOverflow,
   useMergedRefs,
   // Box,
-  OverflowContainer,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
+import { OverflowContainer } from 'src/utils/components/OverflowContainer.js';
 
 type SelectTagContainerProps = {
   /**

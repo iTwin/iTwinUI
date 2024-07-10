@@ -9,13 +9,13 @@ import {
   SvgChevronRight,
   Box,
   createWarningLogger,
-  OverflowContainer,
   useResizeObserver,
   // OverflowContainerContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
+import { OverflowContainer } from 'src/utils/components/OverflowContainer.js';
 // import { useDebounce } from '../../utils/hooks/useDebounce.js';
 
 const logWarning = createWarningLogger();
