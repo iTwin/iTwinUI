@@ -1056,88 +1056,83 @@ export const Table = <
                           }
                         }}
                       >
-                        <ShadowRoot key={`${columnProps.key}_shadow_root`}>
-                          {typeof column.Header === 'string' ? (
-                            <LineClamp>
+                        <>
+                          <ShadowRoot>
+                            {typeof column.Header === 'string' ? (
+                              <LineClamp>
+                                <slot />
+                              </LineClamp>
+                            ) : (
                               <slot />
-                            </LineClamp>
-                          ) : (
-                            <slot />
-                          )}
-                          <slot name='actions' />
-                          <slot name='resizers' />
-                          <slot name='shadows' />
-                        </ShadowRoot>
+                            )}
+                            <slot name='actions' />
+                            <slot name='resizers' />
+                            <slot name='shadows' />
+                          </ShadowRoot>
 
-                        {column.render('Header', {
-                          key: `${columnProps.key}_header`,
-                        })}
-                        {(showFilterButton(column) ||
-                          showSortButton(column)) && (
-                          <Box
-                            className='iui-table-header-actions-container'
-                            onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
-                            slot='actions'
-                            key={`${columnProps.key}_actions`}
-                          >
-                            {showFilterButton(column) && (
-                              <FilterToggle column={column} />
-                            )}
-                            {showSortButton(column) && (
-                              <Box className='iui-table-cell-end-icon'>
-                                {column.isSortedDesc ||
-                                (!column.isSorted && column.sortDescFirst) ? (
-                                  <SvgSortDown
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
-                                ) : (
-                                  <SvgSortUp
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
-                                )}
-                              </Box>
-                            )}
-                          </Box>
-                        )}
-                        {isResizable &&
-                          column.isResizerVisible &&
-                          (index !== headerGroup.headers.length - 1 ||
-                            columnResizeMode === 'expand') && (
+                          {column.render('Header')}
+                          {(showFilterButton(column) ||
+                            showSortButton(column)) && (
                             <Box
-                              {...column.getResizerProps()}
-                              className='iui-table-resizer'
-                              slot='resizers'
-                              key={`${columnProps.key}_resizer`}
+                              className='iui-table-header-actions-container'
+                              onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                              slot='actions'
                             >
-                              <Box className='iui-table-resizer-bar' />
+                              {showFilterButton(column) && (
+                                <FilterToggle column={column} />
+                              )}
+                              {showSortButton(column) && (
+                                <Box className='iui-table-cell-end-icon'>
+                                  {column.isSortedDesc ||
+                                  (!column.isSorted && column.sortDescFirst) ? (
+                                    <SvgSortDown
+                                      className='iui-table-sort'
+                                      aria-hidden
+                                    />
+                                  ) : (
+                                    <SvgSortUp
+                                      className='iui-table-sort'
+                                      aria-hidden
+                                    />
+                                  )}
+                                </Box>
+                              )}
                             </Box>
                           )}
-                        {enableColumnReordering &&
-                          !column.disableReordering && (
-                            <Box
-                              className='iui-table-reorder-bar'
-                              slot='resizers'
-                              key={`${columnProps.key}_reorder`}
-                            />
-                          )}
-                        {column.sticky === 'left' &&
-                          state.sticky.isScrolledToRight && (
-                            <Box
-                              className='iui-table-cell-shadow-right'
-                              slot='shadows'
-                              key={`${columnProps.key}_shadow_right`}
-                            />
-                          )}
-                        {column.sticky === 'right' &&
-                          state.sticky.isScrolledToLeft && (
-                            <Box
-                              className='iui-table-cell-shadow-left'
-                              slot='shadows'
-                              key={`${columnProps.key}_shadow_left`}
-                            />
-                          )}
+                          {isResizable &&
+                            column.isResizerVisible &&
+                            (index !== headerGroup.headers.length - 1 ||
+                              columnResizeMode === 'expand') && (
+                              <Box
+                                {...column.getResizerProps()}
+                                className='iui-table-resizer'
+                                slot='resizers'
+                              >
+                                <Box className='iui-table-resizer-bar' />
+                              </Box>
+                            )}
+                          {enableColumnReordering &&
+                            !column.disableReordering && (
+                              <Box
+                                className='iui-table-reorder-bar'
+                                slot='resizers'
+                              />
+                            )}
+                          {column.sticky === 'left' &&
+                            state.sticky.isScrolledToRight && (
+                              <Box
+                                className='iui-table-cell-shadow-right'
+                                slot='shadows'
+                              />
+                            )}
+                          {column.sticky === 'right' &&
+                            state.sticky.isScrolledToLeft && (
+                              <Box
+                                className='iui-table-cell-shadow-left'
+                                slot='shadows'
+                              />
+                            )}
+                        </>
                       </Box>
                     );
                   })}
