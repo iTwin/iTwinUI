@@ -10,7 +10,7 @@ import { IconButton } from '../../Buttons/IconButton.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
-import { Popover, usePopover } from '../../Popover/Popover.js';
+import { Popover } from '../../Popover/Popover.js';
 import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
 import { Flex } from '../../Flex/Flex.js';
 
@@ -24,8 +24,7 @@ type ActionColumnProps = {
           Pick<
             React.ComponentPropsWithoutRef<typeof Popover>,
             'visible' | 'onVisibleChange' | 'placement' | 'portal'
-          > &
-          Pick<Parameters<typeof usePopover>[0], 'matchWidth'>;
+          >;
       };
 };
 
