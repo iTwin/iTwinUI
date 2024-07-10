@@ -114,15 +114,15 @@ export const ActionColumn = <T extends Record<string, unknown>>({
         <Popover
           applyBackground
           content={
-            <FieldsetBase
-              as={Flex}
+            <Flex
+              as={FieldsetBase}
               className='iui-table-column-manager'
               flexDirection='column'
               alignItems='flex-start'
             >
               <VisuallyHidden as='legend'>Show/hide columns</VisuallyHidden>
               {headerCheckBoxes()}
-            </FieldsetBase>
+            </Flex>
           }
           {...popoverProps}
         >
