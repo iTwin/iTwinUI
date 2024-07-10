@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ThemeContext } from '../../core/ThemeProvider/ThemeContext.js';
-import { isDev } from '../functions/dev.js';
+import { isUnitTest } from '../functions/dev.js';
 
 const didLogWarning = {
   fontSize: false,
@@ -31,7 +31,12 @@ export const useThemeProviderWarning = (
   themeContext: React.ContextType<typeof ThemeContext>,
 ) => {
   React.useEffect(() => {
-    if (isDev && !didLogWarning.themeProvider && !themeContext) {
+    if (
+      process.env.NODE_ENV === 'development' &&
+      !isUnitTest &&
+      !didLogWarning.themeProvider &&
+      !themeContext
+    ) {
       console.error(
         'iTwinUI components must be used within a tree wrapped in a ThemeProvider.',
       );
@@ -45,7 +50,11 @@ export const useThemeProviderWarning = (
 /** Shows console error if the page changes the root font size */
 const useRootFontSizeWarning = () => {
   React.useEffect(() => {
-    if (isDev && !didLogWarning.fontSize) {
+    if (
+      process.env.NODE_ENV === 'development' &&
+      !isUnitTest &&
+      !didLogWarning.fontSize
+    ) {
       const rootFontSize = parseInt(
         getComputedStyle(document.documentElement).fontSize,
       );

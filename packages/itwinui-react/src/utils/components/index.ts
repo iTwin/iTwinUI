@@ -15,3 +15,4 @@ export * from './ButtonBase.js';
 export * from './Portal.js';
 export * from './ShadowRoot.js';
 export * from './LineClamp.js';
+export * from './FieldsetBase.js';

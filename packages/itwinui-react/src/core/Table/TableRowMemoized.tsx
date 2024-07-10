@@ -224,5 +224,7 @@ export const TableRowMemoized = React.memo(
     prevProp.state.sticky.isScrolledToRight ===
       nextProp.state.sticky.isScrolledToRight &&
     prevProp.density === nextProp.density &&
-    prevProp.virtualizer === nextProp.virtualizer,
+    prevProp.virtualizer === nextProp.virtualizer &&
+    prevProp.virtualItem?.index === nextProp.virtualItem?.index &&
+    prevProp.virtualItem?.start === nextProp.virtualItem?.start,
 ) as typeof TableRow;

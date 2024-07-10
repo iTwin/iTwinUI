@@ -14,7 +14,7 @@ const styles = new Proxy(
   {
     get(_, prop) {
       if (typeof prop === 'string' && prop.startsWith('iui-')) {
-        return prop.replace('iui-', '_iui3-');
+        return prop.replace('iui-', `_iui${version.replace(/\./g, '')}-`);
       }
     },
     has(_, prop) {

@@ -84,7 +84,7 @@ const COLUMN_MIN_WIDTHS = {
   withExpander: 108, // expander column should be wider to accommodate the expander icon
 };
 
-const logWarningInDev = createWarningLogger();
+const logWarning = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
   /**
@@ -646,9 +646,11 @@ export const Table = <
 
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
-    logWarningInDev(
-      `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
-    );
+    if (process.env.NODE_ENV === 'development') {
+      logWarning(
+        `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+      );
+    }
   }
 
   const ariaDataAttributes = Object.entries(rest).reduce(
@@ -832,6 +834,7 @@ export const Table = <
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
     getItemKey: (index) => page[index].id,
+    overscan: 1,
   });
 
   useLayoutEffect(() => {
@@ -931,6 +934,16 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  const columnResizeRef = React.useCallback(
+    (el: HTMLDivElement | null, column: HeaderGroup<T>) => {
+      if (el) {
+        columnRefs.current[column.id] = el;
+        column.resizeWidth = el.getBoundingClientRect().width;
+      }
+    },
+    [],
+  );
+
   return (
     <TableColumnsContext.Provider
       value={columns as Column<Record<string, unknown>>[]}
@@ -1026,11 +1039,7 @@ export const Table = <
                         key={columnProps.key}
                         title={undefined}
                         ref={(el) => {
-                          if (el) {
-                            columnRefs.current[column.id] = el;
-                            column.resizeWidth =
-                              el.getBoundingClientRect().width;
-                          }
+                          columnResizeRef(el, column);
                         }}
                         onMouseDown={() => {
                           isHeaderDirectClick.current = true;
@@ -1049,88 +1058,83 @@ export const Table = <
                           }
                         }}
                       >
-                        <ShadowRoot key={`${columnProps.key}_shadow_root`}>
-                          {typeof column.Header === 'string' ? (
-                            <LineClamp>
+                        <>
+                          <ShadowRoot>
+                            {typeof column.Header === 'string' ? (
+                              <LineClamp>
+                                <slot />
+                              </LineClamp>
+                            ) : (
                               <slot />
-                            </LineClamp>
-                          ) : (
-                            <slot />
-                          )}
-                          <slot name='actions' />
-                          <slot name='resizers' />
-                          <slot name='shadows' />
-                        </ShadowRoot>
+                            )}
+                            <slot name='actions' />
+                            <slot name='resizers' />
+                            <slot name='shadows' />
+                          </ShadowRoot>
 
-                        {column.render('Header', {
-                          key: `${columnProps.key}_header`,
-                        })}
-                        {(showFilterButton(column) ||
-                          showSortButton(column)) && (
-                          <Box
-                            className='iui-table-header-actions-container'
-                            onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
-                            slot='actions'
-                            key={`${columnProps.key}_actions`}
-                          >
-                            {showFilterButton(column) && (
-                              <FilterToggle column={column} />
-                            )}
-                            {showSortButton(column) && (
-                              <Box className='iui-table-cell-end-icon'>
-                                {column.isSortedDesc ||
-                                (!column.isSorted && column.sortDescFirst) ? (
-                                  <SvgSortDown
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
-                                ) : (
-                                  <SvgSortUp
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
-                                )}
-                              </Box>
-                            )}
-                          </Box>
-                        )}
-                        {isResizable &&
-                          column.isResizerVisible &&
-                          (index !== headerGroup.headers.length - 1 ||
-                            columnResizeMode === 'expand') && (
+                          {column.render('Header')}
+                          {(showFilterButton(column) ||
+                            showSortButton(column)) && (
                             <Box
-                              {...column.getResizerProps()}
-                              className='iui-table-resizer'
-                              slot='resizers'
-                              key={`${columnProps.key}_resizer`}
+                              className='iui-table-header-actions-container'
+                              onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                              slot='actions'
                             >
-                              <Box className='iui-table-resizer-bar' />
+                              {showFilterButton(column) && (
+                                <FilterToggle column={column} />
+                              )}
+                              {showSortButton(column) && (
+                                <Box className='iui-table-cell-end-icon'>
+                                  {column.isSortedDesc ||
+                                  (!column.isSorted && column.sortDescFirst) ? (
+                                    <SvgSortDown
+                                      className='iui-table-sort'
+                                      aria-hidden
+                                    />
+                                  ) : (
+                                    <SvgSortUp
+                                      className='iui-table-sort'
+                                      aria-hidden
+                                    />
+                                  )}
+                                </Box>
+                              )}
                             </Box>
                           )}
-                        {enableColumnReordering &&
-                          !column.disableReordering && (
-                            <Box
-                              className='iui-table-reorder-bar'
-                              slot='resizers'
-                              key={`${columnProps.key}_reorder`}
-                            />
-                          )}
-                        {column.sticky === 'left' &&
-                          state.sticky.isScrolledToRight && (
-                            <Box
-                              className='iui-table-cell-shadow-right'
-                              slot='shadows'
-                              key={`${columnProps.key}_shadow_right`}
-                            />
-                          )}
-                        {column.sticky === 'right' &&
-                          state.sticky.isScrolledToLeft && (
-                            <Box
-                              className='iui-table-cell-shadow-left'
-                              slot='shadows'
-                              key={`${columnProps.key}_shadow_left`}
-                            />
-                          )}
+                          {isResizable &&
+                            column.isResizerVisible &&
+                            (index !== headerGroup.headers.length - 1 ||
+                              columnResizeMode === 'expand') && (
+                              <Box
+                                {...column.getResizerProps()}
+                                className='iui-table-resizer'
+                                slot='resizers'
+                              >
+                                <Box className='iui-table-resizer-bar' />
+                              </Box>
+                            )}
+                          {enableColumnReordering &&
+                            !column.disableReordering && (
+                              <Box
+                                className='iui-table-reorder-bar'
+                                slot='resizers'
+                              />
+                            )}
+                          {column.sticky === 'left' &&
+                            state.sticky.isScrolledToRight && (
+                              <Box
+                                className='iui-table-cell-shadow-right'
+                                slot='shadows'
+                              />
+                            )}
+                          {column.sticky === 'right' &&
+                            state.sticky.isScrolledToLeft && (
+                              <Box
+                                className='iui-table-cell-shadow-left'
+                                slot='shadows'
+                              />
+                            )}
+                        </>
                       </Box>
                     );
                   })}
