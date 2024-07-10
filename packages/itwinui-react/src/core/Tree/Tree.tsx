@@ -261,7 +261,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   const itemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem,
+      virtualItem?: VirtualItem<Element>,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const node = flatNodesList[index];
@@ -383,7 +383,7 @@ type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
   itemRenderer: (
     index: number,
-    virtualItem?: VirtualItem,
+    virtualItem?: VirtualItem<Element>,
     virtualizer?: Virtualizer<Element, Element>,
   ) => JSX.Element;
   scrollToIndex?: number;
