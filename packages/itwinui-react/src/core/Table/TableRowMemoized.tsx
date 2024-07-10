@@ -45,7 +45,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   scrollContainerRef: HTMLDivElement | null;
   tableRowRef?: React.Ref<HTMLDivElement>;
   density?: 'default' | 'condensed' | 'extra-condensed';
-  virtualItem?: VirtualItem;
+  virtualItem?: VirtualItem<Element>;
   virtualizer?: Virtualizer<Element, Element>;
 }) => {
   const {
