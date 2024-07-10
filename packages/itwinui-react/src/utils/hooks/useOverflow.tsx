@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
-import usePrevious from './usePrevious.js';
+import { useResizeObserver } from './useResizeObserver.js';
 
 /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
 type GuessRange = [number, number] | null;
@@ -40,7 +40,14 @@ export const useOverflow = (
   orientation: 'horizontal' | 'vertical' = 'horizontal',
   container: HTMLElement | undefined,
 ) => {
-  const initialVisibleCount = Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT);
+  const initialVisibleCount = React.useMemo(
+    () => Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT),
+    [itemsLength],
+  );
+  const initialVisibleCountGuessRange = React.useMemo(
+    () => [0, initialVisibleCount] satisfies GuessRange,
+    [initialVisibleCount],
+  );
 
   const [visibleCount, _setVisibleCount] = React.useState<number>(() =>
     disabled ? itemsLength : initialVisibleCount,
@@ -63,8 +70,19 @@ export const useOverflow = (
     [itemsLength],
   );
 
+  const [resizeRef] = useResizeObserver(
+    React.useCallback(
+      (size) => {
+        console.log('RESET', size.width);
+        setVisibleCount(initialVisibleCount);
+        setVisibleCountGuessRange(initialVisibleCountGuessRange);
+      },
+      [initialVisibleCount, initialVisibleCountGuessRange, setVisibleCount],
+    ),
+  );
+
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
-    React.useState<GuessRange>(disabled ? null : [0, initialVisibleCount]);
+    React.useState<GuessRange>(disabled ? null : initialVisibleCountGuessRange);
   const isStabilized = visibleCountGuessRange == null;
 
   /**
@@ -73,6 +91,15 @@ export const useOverflow = (
    */
   const isGuessing = React.useRef(false);
   const guessVisibleCount = React.useCallback(() => {
+    console.log('RUNNING', {
+      visibleCountGuessRange: visibleCountGuessRange?.toString(),
+      myRef: container,
+      // isOverflowing,
+      visibleCount,
+      // availableSize,
+      // requiredSize,
+    });
+
     // If disabled or already stabilized
     if (disabled || isStabilized || isGuessing.current) {
       return;
@@ -91,15 +118,6 @@ export const useOverflow = (
       const requiredSize = container[`scroll${dimension}`];
 
       const isOverflowing = availableSize < requiredSize;
-
-      console.log('RUNNING', {
-        visibleCountGuessRange: visibleCountGuessRange.toString(),
-        myRef: container,
-        // isOverflowing,
-        visibleCount,
-        availableSize,
-        requiredSize,
-      });
 
       // We have already found the correct visibleCount
       if (
@@ -156,20 +174,26 @@ export const useOverflow = (
     visibleCountGuessRange,
   ]);
 
-  const previousVisibleCount = usePrevious(visibleCount);
-  const previousVisibleCountGuessRange = usePrevious(visibleCountGuessRange);
-  const previousContainerRef = usePrevious(container);
+  const previousVisibleCount = React.useRef(visibleCount);
+  const previousVisibleCountGuessRange = React.useRef(visibleCountGuessRange);
+  const previousContainer = React.useRef(container);
 
   useLayoutEffect(() => {
-    if (disabled) {
+    if (disabled || isStabilized) {
       return;
     }
 
     if (
-      visibleCount !== previousVisibleCount ||
-      container !== previousContainerRef ||
-      isStabilized
+      visibleCount !== previousVisibleCount.current ||
+      // TODO: Better list value comparison
+      visibleCountGuessRange.toString() !==
+        previousVisibleCountGuessRange.current?.toString() ||
+      container !== previousContainer.current
     ) {
+      previousVisibleCount.current = visibleCount;
+      previousVisibleCountGuessRange.current = visibleCountGuessRange;
+      previousContainer.current = container;
+
       guessVisibleCount();
     }
   }, [
@@ -177,12 +201,24 @@ export const useOverflow = (
     disabled,
     guessVisibleCount,
     isStabilized,
-    previousContainerRef,
     previousVisibleCount,
     previousVisibleCountGuessRange,
     visibleCount,
     visibleCountGuessRange,
   ]);
+
+  // React.useEffect(() => {
+  //   console.log('size', containerSize, previousContainerSize);
+
+  //   if (containerSize != previousContainerSize) {
+  //     setVisibleCountGuessRange(initialVisibleCountGuessRange);
+  //   }
+  // }, [
+  //   containerSize,
+  //   initialVisibleCount,
+  //   initialVisibleCountGuessRange,
+  //   previousContainerSize,
+  // ]);
 
   // const guessVisibleCountCalled = React.useRef(false);
 
@@ -203,5 +239,5 @@ export const useOverflow = (
 
   // const mergedRefs = useMergedRefs(containerRef);
 
-  return [React.useRef(container), visibleCount] as const;
+  return [resizeRef, visibleCount] as const;
 };

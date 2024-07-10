@@ -47,7 +47,6 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     undefined,
     container,
   );
-  overflowContainerRef;
 
   const visibleCount = Math.max(_visibleCount, minVisibleCount);
 
@@ -84,6 +83,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     <Box
       ref={useMergedRefs(
         ref,
+        overflowContainerRef,
         // containerRef == null ? overflowContainerRef : undefined,
       )}
       {...rest}
