@@ -32,7 +32,7 @@ export default function Resizing() {
       }
     }
     return arr;
-  }, []);
+  }, [oneRow, empty]);
 
   const data = subRows
     ? [
