@@ -14,10 +14,11 @@ type OverflowContainerProps = {
    */
   overflowTagLocation?: 'center' | 'end';
   children: React.ReactNode[];
-  /**
-   * Use this optional prop when the `OverflowContainer` is not the overflowing container.
-   */
-  container: HTMLElement | undefined;
+  // /**
+  //  * Use this optional prop when the `OverflowContainer` is not the overflowing container.
+  //  */
+  // container: HTMLElement | undefined;
+  setContainerRef: (containerRef: ReturnType<typeof useOverflow>[0]) => void;
   /**
    * The number of items will always be >= `minVisibleCount`
    * @default 1
@@ -30,13 +31,14 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowTag,
     overflowTagLocation = 'end',
     children,
-    container: containerProp,
+    // container: containerProp,
+    setContainerRef,
     minVisibleCount = 1,
     ...rest
   } = props;
 
   // const containerRef = React.useContext(OverflowContainerContext)?.containerRef;
-  const container = containerProp;
+  // const container = containerProp;
 
   // TODO: Should this be children.length + 1?
   // Because if there are 10 items and visibleCount is 10,
@@ -45,8 +47,12 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     children.length + 1,
     undefined,
     undefined,
-    container,
   );
+
+  React.useEffect(() => {
+    console.log('useEffect');
+    setContainerRef(overflowContainerRef);
+  }, [overflowContainerRef, setContainerRef]);
 
   const visibleCount = Math.max(_visibleCount, minVisibleCount);
 

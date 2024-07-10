@@ -9,7 +9,6 @@ import {
   SvgChevronRight,
   Box,
   createWarningLogger,
-  useResizeObserver,
   // OverflowContainerContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -127,29 +126,14 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  // const [overflowRef, visibleCount] = useOverflow(items.length);
-  const [containerSize, setContainerSize] = React.useState<number>(-1);
-  // const [containerSize, _setContainerSize] = React.useState(_containerSize);
+  const [overflowContainer, setOverflowContainer] =
+    React.useState<React.RefCallback<HTMLElement>>();
 
-  // useDebounce(
-  //   () => {
-  //     console.log('debounce', { old: containerSize, new: _containerSize });
-  //     _setContainerSize(_containerSize);
-  //   },
-  //   2000,
-  //   [_containerSize],
-  // );
+  const [myNum, setMyNum] = React.useState(0);
 
-  const [resizeRef] = useResizeObserver((size) => {
-    // setTimeout(() => {
-    // console.log('KEY RESET');
-    console.log('resize');
-    setContainerSize(size.width);
-    // }, 1000);
-  });
+  console.log('overflowContainer', myNum, overflowContainer);
 
-  const overflowContainerRef = React.useRef(null);
-  const refs = useMergedRefs(ref, overflowContainerRef, resizeRef);
+  const refs = useMergedRefs(ref, overflowContainer);
 
   return (
     <Box
@@ -165,10 +149,14 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
         }}
       > */}
       <OverflowContainer
-        key={containerSize}
         as='ol'
         overflowTagLocation='center'
-        containerRef={overflowContainerRef}
+        setContainerRef={React.useCallback((ref) => {
+          console.log('called', ref);
+          setOverflowContainer(() => ref);
+          setMyNum((prev) => prev + 1);
+        }, [])}
+        // setContainerRef={setOverflowContainer}
         className='iui-breadcrumbs-list'
         minVisibleCount={2}
         overflowTag={(visibleCount) => (

@@ -5,6 +5,8 @@
 import * as React from 'react';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import { useResizeObserver } from './useResizeObserver.js';
+import { useLatestRef } from './useLatestRef.js';
+import { useMergedRefs } from './useMergedRefs.js';
 
 /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
 type GuessRange = [number, number] | null;
@@ -33,13 +35,15 @@ const STARTING_MAX_ITEMS_COUNT = 2;
  *   </div>
  * );
  */
-export const useOverflow = (
+export const useOverflow = <T extends HTMLElement>(
   // TODO: Try more to remove this prop, if possible.
   itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
-  container: HTMLElement | undefined,
+  // container: HTMLElement | undefined,
 ) => {
+  const containerRef = React.useRef<T>(null);
+
   const initialVisibleCount = React.useMemo(
     () => Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT),
     [itemsLength],
@@ -93,7 +97,7 @@ export const useOverflow = (
   const guessVisibleCount = React.useCallback(() => {
     console.log('RUNNING', {
       visibleCountGuessRange: visibleCountGuessRange?.toString(),
-      myRef: container,
+      myRef: containerRef,
       // isOverflowing,
       visibleCount,
       // availableSize,
@@ -106,7 +110,7 @@ export const useOverflow = (
     }
 
     // We need to wait for the ref to be attached so that we can measure available and required sizes.
-    if (container == null) {
+    if (containerRef.current == null) {
       return;
     }
 
@@ -114,8 +118,8 @@ export const useOverflow = (
       isGuessing.current = true;
 
       const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
-      const availableSize = container[`offset${dimension}`];
-      const requiredSize = container[`scroll${dimension}`];
+      const availableSize = containerRef.current[`offset${dimension}`];
+      const requiredSize = containerRef.current[`scroll${dimension}`];
 
       const isOverflowing = availableSize < requiredSize;
 
@@ -164,7 +168,7 @@ export const useOverflow = (
       isGuessing.current = false;
     }
   }, [
-    container,
+    containerRef,
     disabled,
     isStabilized,
     itemsLength,
@@ -174,33 +178,46 @@ export const useOverflow = (
     visibleCountGuessRange,
   ]);
 
-  const previousVisibleCount = React.useRef(visibleCount);
-  const previousVisibleCountGuessRange = React.useRef(visibleCountGuessRange);
-  const previousContainer = React.useRef(container);
+  const isGuessCalledAtLeastOnce = React.useRef(false);
+
+  const previousVisibleCount = useLatestRef(visibleCount);
+  const previousVisibleCountGuessRange = useLatestRef(visibleCountGuessRange);
+  const previousContainer = useLatestRef(containerRef.current);
 
   useLayoutEffect(() => {
     if (disabled || isStabilized) {
       return;
     }
 
+    console.log(
+      'TRYING',
+      containerRef,
+      // visibleCount !== previousVisibleCount.current,
+      // // TODO: Better list value comparison
+      // visibleCountGuessRange.toString() !==
+      //   previousVisibleCountGuessRange.current?.toString(),
+      // containerRef.current !== previousContainer.current,
+    );
     if (
+      !isGuessCalledAtLeastOnce.current ||
       visibleCount !== previousVisibleCount.current ||
       // TODO: Better list value comparison
       visibleCountGuessRange.toString() !==
         previousVisibleCountGuessRange.current?.toString() ||
-      container !== previousContainer.current
+      containerRef.current !== previousContainer.current
     ) {
+      isGuessCalledAtLeastOnce.current = true;
       previousVisibleCount.current = visibleCount;
       previousVisibleCountGuessRange.current = visibleCountGuessRange;
-      previousContainer.current = container;
+      previousContainer.current = containerRef.current;
 
       guessVisibleCount();
     }
   }, [
-    container,
     disabled,
     guessVisibleCount,
     isStabilized,
+    previousContainer,
     previousVisibleCount,
     previousVisibleCountGuessRange,
     visibleCount,
@@ -237,7 +254,7 @@ export const useOverflow = (
   //   // }, [disabled, guessVisibleCount]);
   // });
 
-  // const mergedRefs = useMergedRefs(containerRef);
+  const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
-  return [resizeRef, visibleCount] as const;
+  return [mergedRefs, visibleCount] as const;
 };
