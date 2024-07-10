@@ -142,18 +142,8 @@
 }
 
 @mixin iui-table-column-manager {
-  --_iui-table-column-manager-padding: var(--iui-size-xs);
-  --_iui-table-column-manager-gap: var(--iui-size-xs);
-  --_iui-table-column-manager-checkbox-height: var(--iui-size-l);
-
-  // Show 8.5 checkboxes
-  --_iui-table-column-manager-max-height: calc(
-    var(--_iui-table-column-manager-checkbox-height) * 8.5 + var(--_iui-table-column-manager-gap) * 8 +
-      var(--_iui-table-column-manager-padding)
-  );
-
-  padding: var(--_iui-table-column-manager-padding);
-  max-block-size: var(--_iui-table-column-manager-max-height);
+  padding: var(--iui-size-xs);
+  max-block-size: 17.25rem; // Show approximately 8.5 checkboxes
   overflow-y: auto;
 }
 
