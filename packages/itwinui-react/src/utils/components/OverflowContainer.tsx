@@ -49,7 +49,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     undefined,
   );
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     setContainerRef(overflowContainerRef);
   }, [overflowContainerRef, setContainerRef]);
 
