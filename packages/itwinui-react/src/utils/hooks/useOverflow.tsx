@@ -75,14 +75,10 @@ export const useOverflow = <T extends HTMLElement>(
   );
 
   const [resizeRef] = useResizeObserver(
-    React.useCallback(
-      (size) => {
-        console.log('RESET', size.width);
-        setVisibleCount(initialVisibleCount);
-        setVisibleCountGuessRange(initialVisibleCountGuessRange);
-      },
-      [initialVisibleCount, initialVisibleCountGuessRange, setVisibleCount],
-    ),
+    React.useCallback(() => {
+      setVisibleCount(initialVisibleCount);
+      setVisibleCountGuessRange(initialVisibleCountGuessRange);
+    }, [initialVisibleCount, initialVisibleCountGuessRange, setVisibleCount]),
   );
 
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
@@ -178,8 +174,6 @@ export const useOverflow = <T extends HTMLElement>(
     visibleCountGuessRange,
   ]);
 
-  const isGuessCalledAtLeastOnce = React.useRef(false);
-
   const previousVisibleCount = useLatestRef(visibleCount);
   const previousVisibleCountGuessRange = useLatestRef(visibleCountGuessRange);
   const previousContainer = useLatestRef(containerRef.current);
@@ -189,24 +183,13 @@ export const useOverflow = <T extends HTMLElement>(
       return;
     }
 
-    console.log(
-      'TRYING',
-      containerRef,
-      // visibleCount !== previousVisibleCount.current,
-      // // TODO: Better list value comparison
-      // visibleCountGuessRange.toString() !==
-      //   previousVisibleCountGuessRange.current?.toString(),
-      // containerRef.current !== previousContainer.current,
-    );
     if (
-      !isGuessCalledAtLeastOnce.current ||
       visibleCount !== previousVisibleCount.current ||
       // TODO: Better list value comparison
       visibleCountGuessRange.toString() !==
         previousVisibleCountGuessRange.current?.toString() ||
       containerRef.current !== previousContainer.current
     ) {
-      isGuessCalledAtLeastOnce.current = true;
       previousVisibleCount.current = visibleCount;
       previousVisibleCountGuessRange.current = visibleCountGuessRange;
       previousContainer.current = containerRef.current;
@@ -224,37 +207,6 @@ export const useOverflow = <T extends HTMLElement>(
     visibleCountGuessRange,
   ]);
 
-  // React.useEffect(() => {
-  //   console.log('size', containerSize, previousContainerSize);
-
-  //   if (containerSize != previousContainerSize) {
-  //     setVisibleCountGuessRange(initialVisibleCountGuessRange);
-  //   }
-  // }, [
-  //   containerSize,
-  //   initialVisibleCount,
-  //   initialVisibleCountGuessRange,
-  //   previousContainerSize,
-  // ]);
-
-  // const guessVisibleCountCalled = React.useRef(false);
-
-  // TODO: Replace eslint-disable with proper listening to containerRef resize
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // useLayoutEffect(() => {
-  //   // if (disabled || guessVisibleCountCalled.current) {
-  //   //   return;
-  //   // }
-  //   // guessVisibleCountCalled.current = true;
-  //   if (disabled) {
-  //     return;
-  //   }
-
-  //   guessVisibleCount();
-  //   // }, [disabled, guessVisibleCount]);
-  // });
-
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
-
   return [mergedRefs, visibleCount] as const;
 };

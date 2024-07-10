@@ -129,10 +129,6 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   const [overflowContainer, setOverflowContainer] =
     React.useState<React.RefCallback<HTMLElement>>();
 
-  const [myNum, setMyNum] = React.useState(0);
-
-  console.log('overflowContainer', myNum, overflowContainer);
-
   const refs = useMergedRefs(ref, overflowContainer);
 
   return (
@@ -152,9 +148,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
         as='ol'
         overflowTagLocation='center'
         setContainerRef={React.useCallback((ref) => {
-          console.log('called', ref);
           setOverflowContainer(() => ref);
-          setMyNum((prev) => prev + 1);
         }, [])}
         // setContainerRef={setOverflowContainer}
         className='iui-breadcrumbs-list'
