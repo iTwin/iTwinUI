@@ -384,28 +384,28 @@ test.describe('Virtual Scroll Tests', () => {
     await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
-    expect((await rows.all()).length).toBe(11);
+    expect((await rows.all()).length).toBe(12);
     await expect(rows.nth(0)).toContainText('Name0');
-    await expect(rows.nth(10)).toContainText('Name10');
+    await expect(rows.nth(11)).toContainText('Name11');
 
     //scroll a little
     await page.mouse.move(100, 300);
     await page.mouse.wheel(0, 620);
-    await expect(rows.nth(0)).toContainText('Name10');
-    await expect(rows.nth(10)).toContainText('Name20');
-    expect((await rows.all()).length).toBe(11);
+    await expect(rows.nth(0)).toContainText('Name9');
+    await expect(rows.nth(12)).toContainText('Name21');
+    expect((await rows.all()).length).toBe(13);
 
     //scroll back up
     await page.mouse.wheel(0, -620);
     await expect(rows.nth(0)).toContainText('Name0');
-    await expect(rows.nth(10)).toContainText('Name10');
-    expect((await rows.all()).length).toBe(11);
+    await expect(rows.nth(11)).toContainText('Name11');
+    expect((await rows.all()).length).toBe(12);
 
     //scroll to end
     await page.mouse.wheel(0, 6200000);
-    await expect(rows.nth(0)).toContainText('Name99990');
-    await expect(rows.nth(9)).toContainText('Name99999');
-    expect((await rows.all()).length).toBe(10);
+    await expect(rows.nth(0)).toContainText('Name99989');
+    await expect(rows.nth(10)).toContainText('Name99999');
+    expect((await rows.all()).length).toBe(11);
   });
 
   test('should not crash with empty data objects', async ({ page }) => {
@@ -424,10 +424,10 @@ test.describe('Virtual Scroll Tests', () => {
 
     const rows = page.getByRole('rowgroup').getByRole('row');
     const row50NameCell = page.getByText('Name50');
-    expect((await rows.all()).length).toBe(12);
-    await expect(rows.nth(0)).toContainText('Name44');
-    await expect(rows.nth(6)).toContainText('Name50');
-    await expect(rows.nth(11)).toContainText('Name55');
+    expect((await rows.all()).length).toBe(14);
+    await expect(rows.nth(0)).toContainText('Name43');
+    await expect(rows.nth(7)).toContainText('Name50');
+    await expect(rows.nth(13)).toContainText('Name56');
 
     await expect(row50NameCell).toBeVisible();
   });

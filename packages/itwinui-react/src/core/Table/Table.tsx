@@ -832,7 +832,7 @@ export const Table = <
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
     getItemKey: (index) => page[index].id,
-    overscan: 0,
+    overscan: 1,
   });
 
   useLayoutEffect(() => {
@@ -932,6 +932,16 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  const columnResizeRef = React.useCallback(
+    (el: HTMLDivElement | null, column: HeaderGroup<T>) => {
+      if (el) {
+        columnRefs.current[column.id] = el;
+        column.resizeWidth = el.getBoundingClientRect().width;
+      }
+    },
+    [],
+  );
+
   return (
     <TableColumnsContext.Provider
       value={columns as Column<Record<string, unknown>>[]}
@@ -1027,11 +1037,7 @@ export const Table = <
                         key={columnProps.key}
                         title={undefined}
                         ref={(el) => {
-                          if (el) {
-                            columnRefs.current[column.id] = el;
-                            column.resizeWidth =
-                              el.getBoundingClientRect().width;
-                          }
+                          columnResizeRef(el, column);
                         }}
                         onMouseDown={() => {
                           isHeaderDirectClick.current = true;
