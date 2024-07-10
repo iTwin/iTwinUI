@@ -26,10 +26,12 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
   const { tags, className, ...rest } = props;
 
   // const [containerRef, visibleCount] = useOverflow(tags.length);
-  const refs = useMergedRefs(ref);
+  const [container, setContainer] = React.useState<HTMLElement>();
+  const refs = useMergedRefs(ref, setContainer);
 
   return (
     <OverflowContainer
+      container={container}
       overflowTag={(visibleCount) => (
         <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
       )}

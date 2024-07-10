@@ -3,10 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useMergedRefs } from './useMergedRefs.js';
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
-import { useLatestRef } from './useLatestRef.js';
-// import usePrevious from './usePrevious.js';
+import usePrevious from './usePrevious.js';
 
 /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
 type GuessRange = [number, number] | null;
@@ -18,8 +16,6 @@ const STARTING_MAX_ITEMS_COUNT = 2;
  * Hook that returns the number of items that should be visible based on the size of the container element.
  *
  * The returned number should be used to render the element with fewer items.
- *
- * This hook does not observe the size of an element. To listen to container size changes, consider `OverflowContainer`.
  *
  * @private
  * @param items Items that this element contains.
@@ -42,12 +38,8 @@ export const useOverflow = (
   itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
-  containerRefProp: React.RefObject<HTMLElement> | undefined,
+  container: HTMLElement | undefined,
 ) => {
-  // const fallbackContainerRef = React.useRef<T>(null);
-  const _containerRef = containerRefProp;
-  const containerRef = useLatestRef(_containerRef?.current);
-
   const initialVisibleCount = Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT);
 
   const [visibleCount, _setVisibleCount] = React.useState<number>(() =>
@@ -73,6 +65,7 @@ export const useOverflow = (
 
   const [visibleCountGuessRange, setVisibleCountGuessRange] =
     React.useState<GuessRange>(disabled ? null : [0, initialVisibleCount]);
+  const isStabilized = visibleCountGuessRange == null;
 
   /**
    * Call this function to guess the new `visibleCount`.
@@ -81,27 +74,27 @@ export const useOverflow = (
   const isGuessing = React.useRef(false);
   const guessVisibleCount = React.useCallback(() => {
     // If disabled or already stabilized
-    if (disabled || visibleCountGuessRange == null || isGuessing.current) {
+    if (disabled || isStabilized || isGuessing.current) {
       return;
     }
 
-    isGuessing.current = true;
-
     // We need to wait for the ref to be attached so that we can measure available and required sizes.
-    if (containerRef?.current == null) {
+    if (container == null) {
       return;
     }
 
     try {
+      isGuessing.current = true;
+
       const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
-      const availableSize = containerRef.current[`offset${dimension}`];
-      const requiredSize = containerRef.current[`scroll${dimension}`];
+      const availableSize = container[`offset${dimension}`];
+      const requiredSize = container[`scroll${dimension}`];
 
       const isOverflowing = availableSize < requiredSize;
 
       console.log('RUNNING', {
         visibleCountGuessRange: visibleCountGuessRange.toString(),
-        myRef: containerRef.current,
+        myRef: container,
         // isOverflowing,
         visibleCount,
         availableSize,
@@ -128,20 +121,6 @@ export const useOverflow = (
         setVisibleCountGuessRange([visibleCount, doubleOfMaxGuess]);
         setVisibleCount(doubleOfMaxGuess);
 
-        // console.log('DOUBLING', {
-        //   visibleCountGuessRange: visibleCountGuessRange.toString(),
-        //   isOverflowing,
-        //   visibleCount,
-        //   availableSize,
-        //   requiredSize,
-        //   newRange: [visibleCount, doubleOfMaxGuess],
-        //   newVisibleCount: doubleOfMaxGuess,
-        // });
-        console.log(
-          'doubling',
-          [visibleCount, doubleOfMaxGuess],
-          doubleOfMaxGuess,
-        );
         return;
       }
 
@@ -166,13 +145,10 @@ export const useOverflow = (
     } finally {
       isGuessing.current = false;
     }
-
-    // queueMicrotask(() => {
-    //   guessVisibleCount();
-    // })
   }, [
-    containerRef,
+    container,
     disabled,
+    isStabilized,
     itemsLength,
     orientation,
     setVisibleCount,
@@ -180,66 +156,52 @@ export const useOverflow = (
     visibleCountGuessRange,
   ]);
 
-  // const previousVisibleCount = usePrevious(visibleCount);
-  // const previousVisibleCountGuessRange = usePrevious(visibleCountGuessRange);
-  // const previousContainerRef = usePrevious(containerRef);
+  const previousVisibleCount = usePrevious(visibleCount);
+  const previousVisibleCountGuessRange = usePrevious(visibleCountGuessRange);
+  const previousContainerRef = usePrevious(container);
 
-  // useLayoutEffect(() => {
-  //   if (disabled) {
-  //     return;
-  //   }
+  useLayoutEffect(() => {
+    if (disabled) {
+      return;
+    }
 
-  //   console.log(
-  //     'CHECKING',
-  //     visibleCount !== previousVisibleCount,
-  //     containerRef !== previousContainerRef,
-  //     visibleCount,
-  //     previousVisibleCount,
-  //     containerRef,
-  //     previousContainerRef,
-  //   );
-
-  //   if (
-  //     visibleCount !== previousVisibleCount ||
-  //     containerRef !== previousContainerRef
-  //     // ||
-  //     // !!visibleCountGuessRange != !!previousVisibleCountGuessRange ||
-  //     // (visibleCountGuessRange != null &&
-  //     //   previousVisibleCountGuessRange != null &&
-  //     //   (visibleCountGuessRange[0] !== previousVisibleCountGuessRange[0] ||
-  //     //     visibleCountGuessRange[1] !== previousVisibleCountGuessRange[1]))
-  //   ) {
-  //     guessVisibleCount();
-  //   }
-  // }, [
-  //   containerRef,
-  //   disabled,
-  //   guessVisibleCount,
-  //   previousContainerRef,
-  //   previousVisibleCount,
-  //   previousVisibleCountGuessRange,
-  //   visibleCount,
-  //   visibleCountGuessRange,
-  // ]);
+    if (
+      visibleCount !== previousVisibleCount ||
+      container !== previousContainerRef ||
+      isStabilized
+    ) {
+      guessVisibleCount();
+    }
+  }, [
+    container,
+    disabled,
+    guessVisibleCount,
+    isStabilized,
+    previousContainerRef,
+    previousVisibleCount,
+    previousVisibleCountGuessRange,
+    visibleCount,
+    visibleCountGuessRange,
+  ]);
 
   // const guessVisibleCountCalled = React.useRef(false);
 
   // TODO: Replace eslint-disable with proper listening to containerRef resize
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useLayoutEffect(() => {
-    // if (disabled || guessVisibleCountCalled.current) {
-    //   return;
-    // }
-    // guessVisibleCountCalled.current = true;
-    if (disabled) {
-      return;
-    }
+  // useLayoutEffect(() => {
+  //   // if (disabled || guessVisibleCountCalled.current) {
+  //   //   return;
+  //   // }
+  //   // guessVisibleCountCalled.current = true;
+  //   if (disabled) {
+  //     return;
+  //   }
 
-    guessVisibleCount();
-    // }, [disabled, guessVisibleCount]);
-  });
+  //   guessVisibleCount();
+  //   // }, [disabled, guessVisibleCount]);
+  // });
 
-  const mergedRefs = useMergedRefs(containerRef);
+  // const mergedRefs = useMergedRefs(containerRef);
 
-  return [mergedRefs, visibleCount] as const;
+  return [React.useRef(container), visibleCount] as const;
 };

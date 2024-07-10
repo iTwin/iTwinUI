@@ -17,7 +17,7 @@ type OverflowContainerProps = {
   /**
    * Use this optional prop when the `OverflowContainer` is not the overflowing container.
    */
-  containerRef?: React.RefObject<HTMLElement>;
+  container: HTMLElement | undefined;
   /**
    * The number of items will always be >= `minVisibleCount`
    * @default 1
@@ -30,13 +30,13 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowTag,
     overflowTagLocation = 'end',
     children,
-    containerRef: containerRefProp,
+    container: containerProp,
     minVisibleCount = 1,
     ...rest
   } = props;
 
   // const containerRef = React.useContext(OverflowContainerContext)?.containerRef;
-  const containerRef = containerRefProp;
+  const container = containerProp;
 
   // TODO: Should this be children.length + 1?
   // Because if there are 10 items and visibleCount is 10,
@@ -45,8 +45,10 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     children.length + 1,
     undefined,
     undefined,
-    containerRef,
+    container,
   );
+  overflowContainerRef;
+
   const visibleCount = Math.max(_visibleCount, minVisibleCount);
 
   // console.log('children', children.length, visibleCount);
@@ -82,7 +84,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     <Box
       ref={useMergedRefs(
         ref,
-        containerRef == null ? overflowContainerRef : undefined,
+        // containerRef == null ? overflowContainerRef : undefined,
       )}
       {...rest}
     >
