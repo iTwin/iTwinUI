@@ -188,7 +188,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
             <Root
               theme={theme}
               themeOptions={themeOptions}
-              ref={useMergedRefs(forwardedRef, setRootElement)}
+              ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
               {...rest}
             >
               {children}
@@ -418,4 +418,49 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   }, [root]);
 
   return <></>;
+};
+
+// ----------------------------------------------------------------------------
+
+/**
+ * This function stores a list of iTwinUI versions in the window object
+ * and displays development-only warnings when multiple versions are detected.
+ */
+const useIuiDebugRef = () => {
+  (globalThis as any).__iui ||= { versions: new Set() };
+
+  if (process.env.NODE_ENV === 'development' && !isUnitTest) {
+    // Override the `add` method to automatically detect multiple versions as they're added
+    (globalThis as any).__iui.versions.add = (version: string) => {
+      Set.prototype.add.call((globalThis as any).__iui.versions, version);
+
+      if ((globalThis as any).__iui.versions.size > 1) {
+        (globalThis as any).__iui._shouldWarn = true;
+
+        if ((globalThis as any).__iui._warnTimeout) {
+          clearTimeout((globalThis as any).__iui._warnTimeout);
+        }
+
+        // Warn after 3 seconds, but only once
+        (globalThis as any).__iui._warnTimeout = setTimeout(() => {
+          if ((globalThis as any).__iui._shouldWarn) {
+            console.warn(
+              `Found multiple versions of iTwinUI in the same app. This can lead to unexpected behavior and duplicated code in the bundle. ` +
+                `Make sure you're using a single iTwinUI instance across your app. https://github.com/iTwin/iTwinUI/wiki/Version-conflicts`,
+            );
+            console.groupCollapsed('iTwinUI versions detected:');
+            const versionsTable: any[] = [];
+            (globalThis as any).__iui.versions.forEach((version: string) => {
+              versionsTable.push(JSON.parse(version));
+            });
+            console.table(versionsTable);
+            console.groupEnd();
+            (globalThis as any).__iui._shouldWarn = false;
+          }
+        }, 3000);
+      }
+    };
+  }
+
+  (globalThis as any).__iui.versions.add(JSON.stringify(meta));
 };
