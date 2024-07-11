@@ -398,7 +398,6 @@ const VirtualizedTree = React.forwardRef(
       flatNodesList,
       itemRenderer,
       scrollToIndex,
-      style,
       ...rest
     }: VirtualizedTreeProps<T>,
     ref: React.ForwardedRef<HTMLDivElement>,
@@ -426,11 +425,7 @@ const VirtualizedTree = React.forwardRef(
     }, [virtualizer, scrollToIndex]);
 
     return (
-      <TreeElement
-        style={{ overflow: 'auto', ...style }}
-        {...rest}
-        ref={useMergedRefs(ref, parentRef)}
-      >
+      <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
         <ShadowRoot>
           <div
             style={{

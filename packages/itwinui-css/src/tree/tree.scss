@@ -20,6 +20,8 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
     --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
   }
+
+  overflow: auto;
 }
 
 .iui-sub-tree {
