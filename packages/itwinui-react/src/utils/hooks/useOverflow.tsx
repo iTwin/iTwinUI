@@ -91,15 +91,6 @@ export const useOverflow = <T extends HTMLElement>(
    */
   const isGuessing = React.useRef(false);
   const guessVisibleCount = React.useCallback(() => {
-    console.log('RUNNING', {
-      visibleCountGuessRange: visibleCountGuessRange?.toString(),
-      myRef: containerRef,
-      // isOverflowing,
-      visibleCount,
-      // availableSize,
-      // requiredSize,
-    });
-
     // If disabled or already stabilized
     if (disabled || isStabilized || isGuessing.current) {
       return;
@@ -118,6 +109,15 @@ export const useOverflow = <T extends HTMLElement>(
       const requiredSize = containerRef.current[`scroll${dimension}`];
 
       const isOverflowing = availableSize < requiredSize;
+
+      console.log('RUNNING', {
+        visibleCountGuessRange: visibleCountGuessRange?.toString(),
+        containerRefNotNull: containerRef.current != null,
+        // isOverflowing,
+        visibleCount,
+        availableSize,
+        requiredSize,
+      });
 
       // We have already found the correct visibleCount
       if (
@@ -208,5 +208,7 @@ export const useOverflow = <T extends HTMLElement>(
   ]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
+
+  // return [containerRef, resizeRef, visibleCount] as const;
   return [mergedRefs, visibleCount] as const;
 };

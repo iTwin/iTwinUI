@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useMergedRefs,
   SvgChevronRight,
   Box,
   createWarningLogger,
@@ -126,16 +125,11 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [overflowContainer, setOverflowContainer] =
-    React.useState<React.RefCallback<HTMLElement>>();
-
-  const refs = useMergedRefs(ref, overflowContainer);
-
   return (
     <Box
       as='nav'
       className={cx('iui-breadcrumbs', className)}
-      ref={refs}
+      ref={ref}
       aria-label='Breadcrumb'
       {...rest}
     >
@@ -147,10 +141,6 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       <OverflowContainer
         as='ol'
         overflowTagLocation='center'
-        setContainerRef={React.useCallback((ref) => {
-          setOverflowContainer(() => ref);
-        }, [])}
-        // setContainerRef={setOverflowContainer}
         className='iui-breadcrumbs-list'
         minVisibleCount={2}
         overflowTag={(visibleCount) => (

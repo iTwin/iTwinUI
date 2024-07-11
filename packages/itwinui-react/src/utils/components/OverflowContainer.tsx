@@ -14,11 +14,6 @@ type OverflowContainerProps = {
    */
   overflowTagLocation?: 'center' | 'end';
   children: React.ReactNode[];
-  // /**
-  //  * Use this optional prop when the `OverflowContainer` is not the overflowing container.
-  //  */
-  // container: HTMLElement | undefined;
-  setContainerRef: (containerRef: ReturnType<typeof useOverflow>[0]) => void;
   /**
    * The number of items will always be >= `minVisibleCount`
    * @default 1
@@ -31,8 +26,6 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowTag,
     overflowTagLocation = 'end',
     children,
-    // container: containerProp,
-    setContainerRef,
     minVisibleCount = 1,
     ...rest
   } = props;
@@ -43,15 +36,11 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
   // TODO: Should this be children.length + 1?
   // Because if there are 10 items and visibleCount is 10,
   // how do we know whether to display 10 items vs 9 items and 1 overflow tag?
-  const [overflowContainerRef, _visibleCount] = useOverflow(
+  const [containerRef, _visibleCount] = useOverflow(
     children.length + 1,
     undefined,
     undefined,
   );
-
-  React.useLayoutEffect(() => {
-    setContainerRef(overflowContainerRef);
-  }, [overflowContainerRef, setContainerRef]);
 
   const visibleCount = Math.max(_visibleCount, minVisibleCount);
 
@@ -85,14 +74,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
   }, [children, overflowTag, overflowTagLocation, visibleCount]);
 
   return (
-    <Box
-      ref={useMergedRefs(
-        ref,
-        overflowContainerRef,
-        // containerRef == null ? overflowContainerRef : undefined,
-      )}
-      {...rest}
-    >
+    <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
       {itemsToRender[0]}
       {itemsToRender[1]}
       {itemsToRender[2]}
