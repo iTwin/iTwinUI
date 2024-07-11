@@ -17,6 +17,7 @@ export default function Resizing() {
   const empty = searchParams.get('empty') === 'true';
   const scroll = searchParams.get('scroll') === 'true';
   const oneRow = searchParams.get('oneRow') === 'true';
+  const scrollRow = Number(searchParams.get('scrollRow'));
 
   const virtualizedData = React.useMemo(() => {
     const size = oneRow ? 1 : 100000;
@@ -153,7 +154,8 @@ export default function Resizing() {
         style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
         scrollToRow={
           scroll
-            ? (rows, data) => rows.findIndex((row) => row.original === data[50])
+            ? (rows, data) =>
+                rows.findIndex((row) => row.original === data[scrollRow])
             : undefined
         }
       />

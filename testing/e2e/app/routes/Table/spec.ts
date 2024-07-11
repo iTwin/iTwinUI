@@ -418,7 +418,7 @@ test.describe('Virtual Scroll Tests', () => {
   });
 
   test('virtualized table should scroll to provided row', async ({ page }) => {
-    await page.goto('/Table?virtualization=true&scroll=true', {
+    await page.goto('/Table?virtualization=true&scroll=true&scrollRow=50', {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
