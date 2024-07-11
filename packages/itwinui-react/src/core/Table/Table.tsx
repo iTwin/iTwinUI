@@ -895,15 +895,6 @@ export const Table = <
     ],
   );
 
-  const virtualizedItemRenderer = React.useCallback(
-    (
-      index: number,
-      virtualItem: VirtualItem<Element>,
-      virtualizer: Virtualizer<Element, Element>,
-    ) => getPreparedRow(index, virtualItem, virtualizer),
-    [getPreparedRow],
-  );
-
   const updateStickyState = () => {
     if (!tableRef.current || flatHeaders.every((header) => !header.sticky)) {
       return;
@@ -1189,7 +1180,7 @@ export const Table = <
                 ? virtualizer
                     .getVirtualItems()
                     .map((virtualItem) =>
-                      virtualizedItemRenderer(
+                      getPreparedRow(
                         virtualItem.index,
                         virtualItem,
                         virtualizer,
