@@ -61,7 +61,10 @@ export const Overflow = () => {
   return (
     <ButtonGroup
       orientation='horizontal'
+      overflowPlacement='start'
       overflowButton={(overflowStart) => {
+        console.log('overflowStart', overflowStart);
+
         return (
           <DropdownMenu
             menuItems={(close) => {

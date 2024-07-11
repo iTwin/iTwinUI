@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useOverflow, useMergedRefs, Box } from '../../utils/index.js';
+import { useMergedRefs, Box } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -14,6 +14,7 @@ import {
   CompositeItem,
   FloatingDelayGroup,
 } from '@floating-ui/react';
+import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 
 // ----------------------------------------------------------------------------
 
@@ -181,15 +182,16 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  const [overflowRef, visibleCount] = useOverflow(
-    items.length,
-    !overflowButton,
-    orientation,
-    undefined,
-  );
+  // TODO: Add disabled (and maybe orientation) to OverflowContainer
+  // const [overflowRef, visibleCount] = useOverflow(
+  //   items.length,
+  //   !overflowButton,
+  //   orientation,
+  // );
 
   return (
-    <BaseGroup
+    <OverflowContainer
+      as={BaseGroup}
       orientation={orientation}
       {...rest}
       className={cx(
@@ -199,9 +201,24 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         },
         props.className,
       )}
-      ref={useMergedRefs(forwardedRef, overflowRef)}
+      ref={useMergedRefs(forwardedRef)}
+      overflowTag={
+        overflowButton != null
+          ? (visibleCount) => {
+              const firstOverflowingIndex =
+                overflowPlacement === 'start'
+                  ? items.length - visibleCount - 2
+                  : visibleCount - 1;
+
+              return overflowButton(firstOverflowingIndex);
+            }
+          : undefined
+      }
+      overflowPlacement={'start'}
+      itemsLength={undefined} // TODO: Why's it's forcing to add itemsLength?
     >
-      {(() => {
+      {items as React.ReactNode[]}
+      {/* {(() => {
         if (!(visibleCount < items.length)) {
           return items;
         }
@@ -226,8 +243,8 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
               overflowButton(overflowStart)}
           </>
         );
-      })()}
-    </BaseGroup>
+      })()} */}
+    </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<
   'div',

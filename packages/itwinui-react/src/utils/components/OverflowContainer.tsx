@@ -5,6 +5,7 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 
 type OverflowContainerProps = {
+  // TODO: Confirm what happens when overflowTag === undefined. Maybe some off by 1 errors?
   overflowTag?: (visibleCount: number) => React.ReactNode;
   /**
    * Where the overflowTag is placed. Values:
@@ -12,7 +13,7 @@ type OverflowContainerProps = {
    * - center: After the first item
    * @default 'end'
    */
-  overflowTagLocation?: 'center' | 'end';
+  overflowPlacement?: 'start' | 'center' | 'end';
   /**
    * The number of items will always be >= `minVisibleCount`
    * @default 1
@@ -21,7 +22,7 @@ type OverflowContainerProps = {
 } & (
   | {
       children: React.ReactNode[];
-      itemsLength: undefined;
+      itemsLength?: undefined;
     }
   | {
       children: (visibleCount: number) => React.ReactNode;
@@ -32,7 +33,7 @@ type OverflowContainerProps = {
 export const OverflowContainer = React.forwardRef((props, ref) => {
   const {
     overflowTag,
-    overflowTagLocation = 'end',
+    overflowPlacement = 'end',
     children,
     itemsLength,
     minVisibleCount = 1,
@@ -76,7 +77,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
 
       // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
       // I think they are fixed.
-      if (overflowTagLocation === 'center') {
+      if (overflowPlacement === 'center') {
         throw visibleCount >= 3
           ? [
               children[0],
@@ -89,16 +90,23 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
               children.slice(children.length - (visibleCount - 1)),
             ];
       }
+
+      if (overflowPlacement === 'start') {
+        throw [
+          overflowTag?.(visibleCount - 2),
+          children.slice(children.length - visibleCount + 1),
+        ];
+      }
+
       throw [
         children.slice(0, visibleCount - 1),
         [],
         overflowTag?.(visibleCount),
       ];
     } catch (returnValue) {
-      console.log('returnValue', returnValue);
       return returnValue?.filter(Boolean);
     }
-  }, [children, overflowTag, overflowTagLocation, visibleCount]);
+  }, [children, overflowTag, overflowPlacement, visibleCount]);
 
   return (
     <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
