@@ -445,7 +445,7 @@ const useIuiDebugRef = () => {
         (globalThis as any).__iui._warnTimeout = setTimeout(() => {
           if ((globalThis as any).__iui._shouldWarn) {
             console.warn(
-              `Found multiple versions of iTwinUI in the same app. This can lead to unexpected behavior and duplicated code in the bundle. ` +
+              `Multiple versions of iTwinUI were detected on this page. This can lead to unexpected behavior and duplicated code in the bundle. ` +
                 `Make sure you're using a single iTwinUI instance across your app. https://github.com/iTwin/iTwinUI/wiki/Version-conflicts`,
             );
             console.groupCollapsed('iTwinUI versions detected:');
