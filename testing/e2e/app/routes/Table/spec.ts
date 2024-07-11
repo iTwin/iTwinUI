@@ -429,7 +429,7 @@ test.describe('Virtual Scroll Tests', () => {
     await expect(rows.nth(7)).toContainText('Name50');
     await expect(rows.nth(13)).toContainText('Name56');
 
-    await expect(row50NameCell).toBeVisible();
+    await expect(row50NameCell).toBeInViewport();
   });
 
   test('virtualized table should render 1 item', async ({ page }) => {
