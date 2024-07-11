@@ -427,7 +427,7 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement
-        style={{ minInlineSize: '100%', overflow: 'auto', ...style }}
+        style={{ overflow: 'auto', ...style }}
         {...rest}
         ref={useMergedRefs(ref, parentRef)}
       >
