@@ -5,7 +5,7 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 
 type OverflowContainerProps = {
-  overflowTag: (visibleCount: number) => React.ReactNode;
+  overflowTag?: (visibleCount: number) => React.ReactNode;
   /**
    * Where the overflowTag is placed. Values:
    * - end: At the end
@@ -13,19 +13,28 @@ type OverflowContainerProps = {
    * @default 'end'
    */
   overflowTagLocation?: 'center' | 'end';
-  children: React.ReactNode[];
   /**
    * The number of items will always be >= `minVisibleCount`
    * @default 1
    */
   minVisibleCount?: number;
-};
+} & (
+  | {
+      children: React.ReactNode[];
+      itemsLength: undefined;
+    }
+  | {
+      children: (visibleCount: number) => React.ReactNode;
+      itemsLength: number;
+    }
+);
 
 export const OverflowContainer = React.forwardRef((props, ref) => {
   const {
     overflowTag,
     overflowTagLocation = 'end',
     children,
+    itemsLength,
     minVisibleCount = 1,
     ...rest
   } = props;
@@ -37,7 +46,9 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
   // Because if there are 10 items and visibleCount is 10,
   // how do we know whether to display 10 items vs 9 items and 1 overflow tag?
   const [containerRef, _visibleCount] = useOverflow(
-    children.length + 1,
+    // TODO: Remove eslint-disable
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    typeof children === 'function' ? itemsLength! : children.length + 1,
     undefined,
     undefined,
   );
@@ -51,33 +62,55 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
    * - `visibleCount <= children.length` means that we show visibleCount - 1 children and 1 overflow tag.
    */
   const itemsToRender = React.useMemo(() => {
-    if (visibleCount > children.length) {
-      return [children, [], []];
-    }
+    // let returnValue: React.ReactNode[] | null = null;
 
-    // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
-    // I think they are fixed.
-    if (overflowTagLocation === 'center') {
-      return visibleCount >= 3
-        ? [
-            children[0],
-            overflowTag(visibleCount - 1),
-            children.slice(children.length - (visibleCount - 2)),
-          ]
-        : [
-            [],
-            overflowTag(visibleCount - 1),
-            children.slice(children.length - (visibleCount - 1)),
-          ];
+    // TODO: Is this try-catch needed?
+    try {
+      if (typeof children === 'function') {
+        throw null;
+      }
+
+      if (visibleCount > children.length) {
+        throw [children, [], []];
+      }
+
+      // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
+      // I think they are fixed.
+      if (overflowTagLocation === 'center') {
+        throw visibleCount >= 3
+          ? [
+              children[0],
+              overflowTag?.(visibleCount - 1),
+              children.slice(children.length - (visibleCount - 2)),
+            ]
+          : [
+              [],
+              overflowTag?.(visibleCount - 1),
+              children.slice(children.length - (visibleCount - 1)),
+            ];
+      }
+      throw [
+        children.slice(0, visibleCount - 1),
+        [],
+        overflowTag?.(visibleCount),
+      ];
+    } catch (returnValue) {
+      console.log('returnValue', returnValue);
+      return returnValue?.filter(Boolean);
     }
-    return [children.slice(0, visibleCount - 1), [], overflowTag(visibleCount)];
   }, [children, overflowTag, overflowTagLocation, visibleCount]);
 
   return (
     <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
-      {itemsToRender[0]}
-      {itemsToRender[1]}
-      {itemsToRender[2]}
+      {typeof children === 'function' ? (
+        children(visibleCount)
+      ) : (
+        <>
+          {itemsToRender?.[0]}
+          {itemsToRender?.[1]}
+          {itemsToRender?.[2]}
+        </>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;

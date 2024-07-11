@@ -199,6 +199,10 @@ export const TruncateMiddleText = () => {
       value={selectedValue}
       onChange={setSelectedValue}
       placeholder='Placeholder text'
+      style={{
+        resize: 'inline',
+        overflow: 'hidden',
+      }}
       itemRenderer={(option) => (
         <MenuItem>
           <MiddleTextTruncation

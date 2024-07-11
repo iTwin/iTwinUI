@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useOverflow } from '../hooks/useOverflow.js';
 import type { CommonProps } from '../props.js';
-import { mergeRefs } from '../hooks/useMergedRefs.js';
+import { OverflowContainer } from './OverflowContainer.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -44,29 +43,32 @@ export type MiddleTextTruncationProps = {
  *   )}
  * />
  */
+// TODO: Add React.forwardRef
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
 
-  const [ref, visibleCount] = useOverflow(
-    text.length,
-    undefined,
-    undefined,
-    undefined,
+  // const [ref, visibleCount] = useOverflow(text.length, undefined, undefined);
+  // console.log('visibleCount', visibleCount);
+
+  console.log('RENDER');
+
+  const truncatedText = React.useCallback(
+    (visibleCount: number) => {
+      if (visibleCount < text.length) {
+        return `${text.substring(
+          0,
+          visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
+        )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
+      } else {
+        return text;
+      }
+    },
+    [endCharsCount, text],
   );
 
-  const truncatedText = React.useMemo(() => {
-    if (visibleCount < text.length) {
-      return `${text.substring(
-        0,
-        visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
-      )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
-    } else {
-      return text;
-    }
-  }, [endCharsCount, text, visibleCount]);
-
   return (
-    <span
+    <OverflowContainer
+      as='span'
       style={{
         display: 'flex',
         minWidth: 0,
@@ -74,10 +76,14 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
         whiteSpace: 'nowrap',
         ...style,
       }}
-      ref={mergeRefs(ref)}
+      // ref={mergeRefs(ref)}
+      itemsLength={text.length}
       {...rest}
     >
-      {textRenderer?.(truncatedText, text) ?? truncatedText}
-    </span>
+      {(visibleCount) =>
+        textRenderer?.(truncatedText(visibleCount), text) ??
+        truncatedText(visibleCount)
+      }
+    </OverflowContainer>
   );
 };
