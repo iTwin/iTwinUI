@@ -85,7 +85,10 @@ export const Overflow = () => {
               });
             }}
           >
-            <IconButton label='More'>
+            <IconButton
+              label='More'
+              onClick={() => console.log('Clicked on overflow icon')}
+            >
               <SvgMore />
             </IconButton>
           </DropdownMenu>
@@ -173,6 +176,7 @@ export const VerticalOverflow = () => {
     .map((_, index) => (
       <IconButton
         key={index}
+        label={`Item #${index}`}
         onClick={() => console.log(`Clicked on button ${index + 1}`)}
       >
         <SvgPlaceholder />
@@ -185,6 +189,7 @@ export const VerticalOverflow = () => {
       style={{ height: 'clamp(100px, 40vmax, 80vh)' }}
       overflowButton={(overflowStart) => (
         <DropdownMenu
+          placement='right-start'
           menuItems={(close) =>
             Array(buttons.length - overflowStart + 1)
               .fill(null)
@@ -206,7 +211,10 @@ export const VerticalOverflow = () => {
               })
           }
         >
-          <IconButton onClick={() => console.log('Clicked on overflow icon')}>
+          <IconButton
+            label='More'
+            onClick={() => console.log('Clicked on overflow icon')}
+          >
             <SvgMore />
           </IconButton>
         </DropdownMenu>

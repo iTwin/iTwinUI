@@ -182,16 +182,11 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  // TODO: Add disabled (and maybe orientation) to OverflowContainer
-  // const [overflowRef, visibleCount] = useOverflow(
-  //   items.length,
-  //   !overflowButton,
-  //   orientation,
-  // );
-
   return (
     <OverflowContainer
       as={BaseGroup}
+      overflowDisabled={!overflowButton}
+      overflowOrientation={orientation}
       orientation={orientation}
       {...rest}
       className={cx(
@@ -217,33 +212,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
       overflowPlacement={'start'}
       itemsLength={undefined} // TODO: Why's it's forcing to add itemsLength?
     >
-      {items as React.ReactNode[]}
-      {/* {(() => {
-        if (!(visibleCount < items.length)) {
-          return items;
-        }
-
-        const overflowStart =
-          overflowPlacement === 'start'
-            ? items.length - visibleCount
-            : visibleCount - 1;
-
-        return (
-          <>
-            {overflowButton &&
-              overflowPlacement === 'start' &&
-              overflowButton(overflowStart)}
-
-            {overflowPlacement === 'start'
-              ? items.slice(overflowStart + 1)
-              : items.slice(0, Math.max(0, overflowStart))}
-
-            {overflowButton &&
-              overflowPlacement === 'end' &&
-              overflowButton(overflowStart)}
-          </>
-        );
-      })()} */}
+      {items}
     </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<

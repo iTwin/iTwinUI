@@ -19,6 +19,16 @@ type OverflowContainerProps = {
    * @default 1
    */
   minVisibleCount?: number;
+  /**
+   * If the overflow detection is disabled, the children will be returned as-is.
+   * @default true
+   */
+  overflowDisabled?: boolean;
+  /**
+   * The orientation of the overflow in container.
+   * @default 'horizontal'
+   */
+  overflowOrientation?: 'horizontal' | 'vertical';
 } & (
   | {
       children: React.ReactNode[];
@@ -36,6 +46,8 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowPlacement = 'end',
     children,
     itemsLength,
+    overflowDisabled,
+    overflowOrientation,
     minVisibleCount = 1,
     ...rest
   } = props;
@@ -50,8 +62,8 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     // TODO: Remove eslint-disable
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     typeof children === 'function' ? itemsLength! : children.length + 1,
-    undefined,
-    undefined,
+    overflowDisabled,
+    overflowOrientation,
   );
 
   const visibleCount = Math.max(_visibleCount, minVisibleCount);
