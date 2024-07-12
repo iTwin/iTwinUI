@@ -6,11 +6,6 @@ import { Box } from './Box.js';
 
 type OverflowContainerProps = {
   /**
-   * The number of items (including the `overflowTag`, if passed) will always be `>= minVisibleCount`.
-   * @default 1
-   */
-  minVisibleCount?: number;
-  /**
    * // TODO: What happens with overflowDisabled=true and children=function?
    * If the overflow detection is disabled, visibleCount stays.
    * @default false
@@ -41,10 +36,9 @@ type OverflowContainerProps = {
        * Where the overflowTag is placed. Values:
        * - start: At the start
        * - end: At the end
-       * - center: After the first item and before all other items // TODO: Maybe remove this Breadcrumbs specific loc?
        * @default 'end'
        */
-      overflowLocation?: 'start' | 'center' | 'end';
+      overflowLocation?: 'start' | 'end';
     }
   | {
       children: (visibleCount: number) => React.ReactNode;
@@ -100,26 +94,22 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     itemsLength,
     overflowDisabled = false,
     overflowOrientation,
-    minVisibleCount = 1,
     ...rest
   } = props;
 
-  const [containerRef, _visibleCount] = useOverflow(
-    // TODO: Remove eslint-disable
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    typeof children === 'function' ? itemsLength! : children.length + 1,
+  const [containerRef, visibleCount] = useOverflow(
+    typeof children === 'function' ? itemsLength ?? 0 : children.length + 1,
     overflowDisabled,
     overflowOrientation,
   );
-
-  const visibleCount = Math.max(_visibleCount, minVisibleCount);
 
   /**
    * - `visibleCount === children.length + 1` means that we show all children and no overflow tag.
    * - `visibleCount <= children.length` means that we show visibleCount - 1 children and 1 overflow tag.
    */
   const itemsToRender = React.useMemo(() => {
-    if (typeof children === 'function') {
+    // User wants complete control over what items are rendered.
+    if (typeof children === 'function' || overflowTag == null) {
       return null;
     }
 
@@ -127,37 +117,21 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
       return children;
     }
 
-    // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
-    // I think they are fixed.
-    if (overflowLocation === 'center') {
-      return visibleCount >= 3 ? (
+    if (overflowLocation === 'start') {
+      return (
         <>
-          {children[0]}
-          {overflowTag?.(visibleCount - 1)}
-          {children.slice(children.length - (visibleCount - 2))}
-        </>
-      ) : (
-        <>
-          {overflowTag?.(visibleCount - 1)}
+          {overflowTag(visibleCount - 2)}
           {children.slice(children.length - (visibleCount - 1))}
         </>
       );
     }
 
-    if (overflowLocation === 'start') {
-      return (
-        <>
-          {overflowTag?.(visibleCount - 2)}
-          {children.slice(children.length - visibleCount + 1)}
-        </>
-      );
-    }
-
-    throw [
-      children.slice(0, visibleCount - 1),
-      [],
-      overflowTag?.(visibleCount),
-    ];
+    return (
+      <>
+        {children.slice(0, visibleCount - 1)}
+        {overflowTag(visibleCount)}
+      </>
+    );
   }, [children, overflowTag, overflowLocation, visibleCount]);
 
   return (
