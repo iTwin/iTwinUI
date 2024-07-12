@@ -5,14 +5,16 @@
 import * as React from 'react';
 import {
   getFocusableElements,
-  useVirtualization,
-  mergeRefs,
-  Box,
   polymorphic,
+  cloneElementWithRef,
+  useVirtualScroll,
+  ShadowRoot,
+  useMergedRefs,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
+import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
   /**
@@ -171,7 +173,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     ...rest
   } = props;
 
-  const treeRef = React.useRef<HTMLUListElement>(null);
+  const treeRef = React.useRef<HTMLDivElement>(null);
 
   const focusedIndex = React.useRef<number>(0);
   React.useEffect(() => {
@@ -186,7 +188,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     ) as HTMLElement[];
   }, []);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
       return;
     }
@@ -257,7 +259,11 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   }, [data, getNode]);
 
   const itemRenderer = React.useCallback(
-    (index: number) => {
+    (
+      index: number,
+      virtualItem?: VirtualItem<Element>,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => {
       const node = flatNodesList[index];
       return (
         <TreeContext.Provider
@@ -283,7 +289,21 @@ export const Tree = <T,>(props: TreeProps<T>) => {
             size,
           }}
         >
-          {nodeRenderer(node.nodeProps)}
+          {virtualItem && virtualizer
+            ? cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
+                ...children.props,
+                key: virtualItem.key,
+                'data-iui-index': virtualItem.index,
+                ref: virtualizer.measureElement,
+                style: {
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  transform: `translateY(${virtualItem.start}px)`,
+                },
+              }))
+            : nodeRenderer(node.nodeProps)}
         </TreeContext.Provider>
       );
     },
@@ -354,17 +374,21 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   );
 };
 
-const TreeElement = polymorphic.ul('iui-tree', {
+const TreeElement = polymorphic.div('iui-tree', {
   role: 'tree',
   tabIndex: 0,
 });
 
 type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
-  itemRenderer: (index: number) => JSX.Element;
+  itemRenderer: (
+    index: number,
+    virtualItem?: VirtualItem<Element>,
+    virtualizer?: Virtualizer<Element, Element>,
+  ) => JSX.Element;
   scrollToIndex?: number;
-  onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
-  onFocus: React.FocusEventHandler<HTMLUListElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
+  onFocus: React.FocusEventHandler<HTMLDivElement>;
 } & CommonProps;
 
 // Having virtualized tree separately prevents from running all virtualization logic
@@ -374,34 +398,52 @@ const VirtualizedTree = React.forwardRef(
       flatNodesList,
       itemRenderer,
       scrollToIndex,
-      className,
-      style,
       ...rest
     }: VirtualizedTreeProps<T>,
-    ref: React.ForwardedRef<HTMLUListElement>,
+    ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
-    const { outerProps, innerProps, visibleChildren } = useVirtualization({
-      itemsLength: flatNodesList.length,
-      itemRenderer: itemRenderer,
-      scrollToIndex,
+    const parentRef = React.useRef<HTMLDivElement | null>(null);
+
+    const getItemKey = React.useCallback(
+      (index: number) => {
+        return flatNodesList[index].nodeProps.nodeId;
+      },
+      [flatNodesList],
+    );
+
+    const virtualizer = useVirtualScroll({
+      count: flatNodesList.length,
+      getScrollElement: () => parentRef.current,
+      estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
+      getItemKey,
     });
 
+    useLayoutEffect(() => {
+      if (scrollToIndex) {
+        virtualizer.scrollToIndex(scrollToIndex);
+      }
+    }, [virtualizer, scrollToIndex]);
+
     return (
-      <Box
-        {...{
-          ...outerProps,
-          className: cx(className, outerProps.className),
-          style: { ...style, ...outerProps.style },
-        }}
-      >
-        <TreeElement
-          {...innerProps}
-          {...rest}
-          ref={mergeRefs(ref, innerProps.ref)}
-        >
-          {visibleChildren}
-        </TreeElement>
-      </Box>
+      <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
+        <ShadowRoot>
+          <div
+            style={{
+              minBlockSize: virtualizer.getTotalSize(),
+              contain: 'strict',
+            }}
+          >
+            <slot />
+          </div>
+        </ShadowRoot>
+        <>
+          {virtualizer
+            .getVirtualItems()
+            .map((virtualItem) =>
+              itemRenderer(virtualItem.index, virtualItem, virtualizer),
+            )}
+        </>
+      </TreeElement>
     );
   },
 );
