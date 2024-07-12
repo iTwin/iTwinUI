@@ -39,6 +39,7 @@ import {
   LineClamp,
   useMergedRefs,
   useLatestRef,
+  useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import {
@@ -70,8 +71,8 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import { VirtualScroll } from '../../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
+import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -440,6 +441,16 @@ export const Table = <
     }),
     [],
   );
+
+  const rowHeight = React.useMemo(() => {
+    //Set to the height of the table row based on the value of the density prop.
+    if (density === 'condensed') {
+      return 50;
+    } else if (density === 'extra-condensed') {
+      return 38;
+    }
+    return 62;
+  }, [density]);
 
   const onBottomReachedRef = useLatestRef(onBottomReached);
   const onRowInViewportRef = useLatestRef(onRowInViewport);
@@ -818,8 +829,26 @@ export const Table = <
     }
   });
 
+  const virtualizer = useVirtualScroll({
+    count: page.length,
+    getScrollElement: () => tableRef.current,
+    estimateSize: () => rowHeight,
+    getItemKey: (index) => page[index].id,
+    overscan: 1,
+  });
+
+  useLayoutEffect(() => {
+    if (scrollToIndex) {
+      virtualizer.scrollToIndex(scrollToIndex, { align: 'center' });
+    }
+  }, [virtualizer, scrollToIndex]);
+
   const getPreparedRow = React.useCallback(
-    (index: number) => {
+    (
+      index: number,
+      virtualItem?: VirtualItem<Element>,
+      virtualizer?: Virtualizer<Element, Element>,
+    ) => {
       const row = page[index];
       prepareRow(row);
       return (
@@ -841,6 +870,8 @@ export const Table = <
           scrollContainerRef={tableRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
           density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
         />
       );
     },
@@ -862,11 +893,6 @@ export const Table = <
       onBottomReachedRef,
       onRowInViewportRef,
     ],
-  );
-
-  const virtualizedItemRenderer = React.useCallback(
-    (index: number) => getPreparedRow(index),
-    [getPreparedRow],
   );
 
   const updateStickyState = () => {
@@ -899,15 +925,28 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  const columnResizeRef = React.useCallback(
+    (el: HTMLDivElement | null, column: HeaderGroup<T>) => {
+      if (el) {
+        columnRefs.current[column.id] = el;
+        column.resizeWidth = el.getBoundingClientRect().width;
+      }
+    },
+    [],
+  );
+
   return (
     <TableColumnsContext.Provider
       value={columns as Column<Record<string, unknown>>[]}
     >
       <Box
-        ref={useMergedRefs(tableRef, (element) => {
-          ownerDocument.current = element?.ownerDocument;
-          resizeRef(element);
-        })}
+        ref={useMergedRefs<HTMLDivElement>(
+          tableRef,
+          resizeRef,
+          React.useCallback((element: HTMLDivElement) => {
+            ownerDocument.current = element?.ownerDocument;
+          }, []),
+        )}
         id={id}
         {...getTableProps({
           className: cx('iui-table', className),
@@ -999,11 +1038,7 @@ export const Table = <
                         key={columnProps.key}
                         title={undefined}
                         ref={(el) => {
-                          if (el) {
-                            columnRefs.current[column.id] = el;
-                            column.resizeWidth =
-                              el.getBoundingClientRect().width;
-                          }
+                          columnResizeRef(el, column);
                         }}
                         onMouseDown={() => {
                           isHeaderDirectClick.current = true;
@@ -1022,81 +1057,83 @@ export const Table = <
                           }
                         }}
                       >
-                        <ShadowRoot>
-                          {typeof column.Header === 'string' ? (
-                            <LineClamp>
+                        <>
+                          <ShadowRoot>
+                            {typeof column.Header === 'string' ? (
+                              <LineClamp>
+                                <slot />
+                              </LineClamp>
+                            ) : (
                               <slot />
-                            </LineClamp>
-                          ) : (
-                            <slot />
-                          )}
-                          <slot name='actions' />
-                          <slot name='resizers' />
-                          <slot name='shadows' />
-                        </ShadowRoot>
+                            )}
+                            <slot name='actions' />
+                            <slot name='resizers' />
+                            <slot name='shadows' />
+                          </ShadowRoot>
 
-                        {column.render('Header')}
-                        {(showFilterButton(column) ||
-                          showSortButton(column)) && (
-                          <Box
-                            className='iui-table-header-actions-container'
-                            onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
-                            slot='actions'
-                          >
-                            {showFilterButton(column) && (
-                              <FilterToggle column={column} />
-                            )}
-                            {showSortButton(column) && (
-                              <Box className='iui-table-cell-end-icon'>
-                                {column.isSortedDesc ||
-                                (!column.isSorted && column.sortDescFirst) ? (
-                                  <SvgSortDown
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
-                                ) : (
-                                  <SvgSortUp
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
-                                )}
-                              </Box>
-                            )}
-                          </Box>
-                        )}
-                        {isResizable &&
-                          column.isResizerVisible &&
-                          (index !== headerGroup.headers.length - 1 ||
-                            columnResizeMode === 'expand') && (
+                          {column.render('Header')}
+                          {(showFilterButton(column) ||
+                            showSortButton(column)) && (
                             <Box
-                              {...column.getResizerProps()}
-                              className='iui-table-resizer'
-                              slot='resizers'
+                              className='iui-table-header-actions-container'
+                              onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                              slot='actions'
                             >
-                              <Box className='iui-table-resizer-bar' />
+                              {showFilterButton(column) && (
+                                <FilterToggle column={column} />
+                              )}
+                              {showSortButton(column) && (
+                                <Box className='iui-table-cell-end-icon'>
+                                  {column.isSortedDesc ||
+                                  (!column.isSorted && column.sortDescFirst) ? (
+                                    <SvgSortDown
+                                      className='iui-table-sort'
+                                      aria-hidden
+                                    />
+                                  ) : (
+                                    <SvgSortUp
+                                      className='iui-table-sort'
+                                      aria-hidden
+                                    />
+                                  )}
+                                </Box>
+                              )}
                             </Box>
                           )}
-                        {enableColumnReordering &&
-                          !column.disableReordering && (
-                            <Box
-                              className='iui-table-reorder-bar'
-                              slot='resizers'
-                            />
-                          )}
-                        {column.sticky === 'left' &&
-                          state.sticky.isScrolledToRight && (
-                            <Box
-                              className='iui-table-cell-shadow-right'
-                              slot='shadows'
-                            />
-                          )}
-                        {column.sticky === 'right' &&
-                          state.sticky.isScrolledToLeft && (
-                            <Box
-                              className='iui-table-cell-shadow-left'
-                              slot='shadows'
-                            />
-                          )}
+                          {isResizable &&
+                            column.isResizerVisible &&
+                            (index !== headerGroup.headers.length - 1 ||
+                              columnResizeMode === 'expand') && (
+                              <Box
+                                {...column.getResizerProps()}
+                                className='iui-table-resizer'
+                                slot='resizers'
+                              >
+                                <Box className='iui-table-resizer-bar' />
+                              </Box>
+                            )}
+                          {enableColumnReordering &&
+                            !column.disableReordering && (
+                              <Box
+                                className='iui-table-reorder-bar'
+                                slot='resizers'
+                              />
+                            )}
+                          {column.sticky === 'left' &&
+                            state.sticky.isScrolledToRight && (
+                              <Box
+                                className='iui-table-cell-shadow-right'
+                                slot='shadows'
+                              />
+                            )}
+                          {column.sticky === 'right' &&
+                            state.sticky.isScrolledToLeft && (
+                              <Box
+                                className='iui-table-cell-shadow-left'
+                                slot='shadows'
+                              />
+                            )}
+                        </>
                       </Box>
                     );
                   })}
@@ -1123,17 +1160,41 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <ShadowRoot
+            css={`
+              div,
+              slot {
+                border-radius: inherit;
+              }
+            `}
+          >
+            {enableVirtualization ? (
+              <div
+                style={{
+                  minBlockSize: virtualizer.getTotalSize(),
+                  minInlineSize: '100%',
+                  contain: 'strict',
+                }}
+              >
+                <slot />
+              </div>
+            ) : (
+              <slot />
+            )}
+          </ShadowRoot>
           {data.length !== 0 && (
             <>
-              {enableVirtualization ? (
-                <VirtualScroll
-                  itemsLength={page.length}
-                  itemRenderer={virtualizedItemRenderer}
-                  scrollToIndex={scrollToIndex}
-                />
-              ) : (
-                page.map((_, index) => getPreparedRow(index))
-              )}
+              {enableVirtualization
+                ? virtualizer
+                    .getVirtualItems()
+                    .map((virtualItem) =>
+                      getPreparedRow(
+                        virtualItem.index,
+                        virtualItem,
+                        virtualizer,
+                      ),
+                    )
+                : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
           {isLoading && data.length === 0 && (

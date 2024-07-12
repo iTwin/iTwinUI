@@ -104,6 +104,7 @@
     "@floating-ui/react": "^0.26.18",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@swc/helpers": "^0.5.11",
+    "@tanstack/react-virtual": "^3.8.2",
     "classnames": "^2.3.2",
     "jotai": "^2.8.0",
     "react-table": "^7.8.0",
