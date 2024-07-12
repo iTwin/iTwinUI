@@ -6,8 +6,7 @@ import { Box } from './Box.js';
 
 type OverflowContainerProps = {
   /**
-   * // TODO: What happens with overflowDisabled=true and children=function?
-   * If the overflow detection is disabled, visibleCount stays.
+   * If the overflow detection is disabled, all items will be displayed.
    * @default false
    */
   overflowDisabled?: boolean;

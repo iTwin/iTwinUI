@@ -5,10 +5,10 @@
 import {
   Button,
   ButtonGroup,
-  // DropdownMenu,
+  DropdownMenu,
   IconButton,
   Input,
-  // MenuItem,
+  MenuItem,
   Text,
 } from '@itwin/itwinui-react';
 import {
@@ -17,7 +17,7 @@ import {
   SvgEdit,
   SvgUndo,
   SvgPlaceholder,
-  // SvgMore,
+  SvgMore,
 } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -188,42 +188,42 @@ export const VerticalOverflow = () => {
       orientation='vertical'
       overflowPlacement='start'
       style={{ height: 'clamp(100px, 40vmax, 80vh)' }}
-      // overflowButton={(overflowStart) => {
-      //   console.log('overflowStart', overflowStart);
+      overflowButton={(overflowStart) => {
+        console.log('overflowStart', overflowStart);
 
-      //   return (
-      //     <DropdownMenu
-      //       placement='right-start'
-      //       menuItems={(close) =>
-      //         Array(buttons.length - overflowStart + 1)
-      //           .fill(null)
-      //           .map((_, _index) => {
-      //             const index = overflowStart + _index;
-      //             const onClick = () => {
-      //               console.log(`Clicked button ${index} (overflow)`);
-      //               close();
-      //             };
-      //             return (
-      //               <MenuItem
-      //                 key={index}
-      //                 onClick={onClick}
-      //                 icon={<SvgPlaceholder />}
-      //               >
-      //                 Button #{index}
-      //               </MenuItem>
-      //             );
-      //           })
-      //       }
-      //     >
-      //       <IconButton
-      //         label='More'
-      //         onClick={() => console.log('Clicked on overflow icon')}
-      //       >
-      //         <SvgMore />
-      //       </IconButton>
-      //     </DropdownMenu>
-      //   );
-      // }}
+        return (
+          <DropdownMenu
+            placement='right-start'
+            menuItems={(close) =>
+              Array(buttons.length - overflowStart + 1)
+                .fill(null)
+                .map((_, _index) => {
+                  const index = overflowStart + _index;
+                  const onClick = () => {
+                    console.log(`Clicked button ${index} (overflow)`);
+                    close();
+                  };
+                  return (
+                    <MenuItem
+                      key={index}
+                      onClick={onClick}
+                      icon={<SvgPlaceholder />}
+                    >
+                      Button #{index}
+                    </MenuItem>
+                  );
+                })
+            }
+          >
+            <IconButton
+              label='More'
+              onClick={() => console.log('Clicked on overflow icon')}
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        );
+      }}
     >
       {buttons}
     </ButtonGroup>
