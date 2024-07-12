@@ -962,6 +962,14 @@ export const Table = <
                       column.minWidth = columnHasExpanders
                         ? COLUMN_MIN_WIDTHS.withExpander
                         : COLUMN_MIN_WIDTHS.default;
+
+                      if (
+                        column.width &&
+                        typeof column.width === 'number' &&
+                        column.minWidth > column.width
+                      ) {
+                        column.width = column.minWidth;
+                      }
                     }
 
                     const columnProps = column.getHeaderProps({
