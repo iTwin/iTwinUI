@@ -12,7 +12,6 @@ import { MenuItem } from '../Menu/MenuItem.js';
 import {
   getBoundedValue,
   useGlobals,
-  useOverflow,
   useContainerWidth,
   SvgChevronLeft,
   SvgChevronRight,
@@ -20,6 +19,7 @@ import {
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
+import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 
 const defaultLocalization = {
   pageSizeLabel: (size: number) => `${size} per page`,
@@ -197,11 +197,6 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         .map((_, index) => pageButton(index)),
     [pageButton, totalPagesCount],
   );
-  const [overflowRef, visibleCount] = useOverflow(
-    pageList.length,
-    undefined,
-    undefined,
-  );
 
   const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
 
@@ -250,18 +245,6 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     }
   };
 
-  const halfVisibleCount = Math.floor(visibleCount / 2);
-  let startPage = focusedIndex - halfVisibleCount;
-  let endPage = focusedIndex + halfVisibleCount + 1;
-  if (startPage < 0) {
-    endPage = Math.min(totalPagesCount, endPage + Math.abs(startPage)); // If no room at the beginning, show extra pages at the end
-    startPage = 0;
-  }
-  if (endPage > totalPagesCount) {
-    startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
-    endPage = totalPagesCount;
-  }
-
   const hasNoRows = totalPagesCount === 0;
   const showPagesList = totalPagesCount > 1 || isLoading;
   const showPageSizeList =
@@ -306,64 +289,85 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         )}
       </Box>
       {showPagesList && (
-        <Box className='iui-center' ref={overflowRef}>
-          <IconButton
-            styleType='borderless'
-            disabled={currentPage === 0}
-            onClick={() => onPageChange(currentPage - 1)}
-            size={buttonSize}
-            aria-label={localization.previousPage}
-          >
-            <SvgChevronLeft />
-          </IconButton>
-          <Box
-            as='span'
-            className='iui-table-paginator-pages-group'
-            onKeyDown={onKeyDown}
-            ref={pageListRef}
-          >
-            {(() => {
-              if (hasNoRows) {
-                return noRowsContent;
-              }
-              if (visibleCount === 1) {
-                return pageButton(focusedIndex);
-              }
-              return (
-                <>
-                  {startPage !== 0 && (
-                    <>
-                      {pageButton(0, 0)}
-                      {ellipsis}
-                    </>
-                  )}
-                  {pageList.slice(startPage, endPage)}
-                  {endPage !== totalPagesCount && !isLoading && (
-                    <>
-                      {ellipsis}
-                      {pageButton(totalPagesCount - 1, 0)}
-                    </>
-                  )}
-                  {isLoading && (
-                    <>
-                      {ellipsis}
-                      <ProgressRadial indeterminate size='small' />
-                    </>
-                  )}
-                </>
-              );
-            })()}
-          </Box>
-          <IconButton
-            styleType='borderless'
-            disabled={currentPage === totalPagesCount - 1 || hasNoRows}
-            onClick={() => onPageChange(currentPage + 1)}
-            size={buttonSize}
-            aria-label={localization.nextPage}
-          >
-            <SvgChevronRight />
-          </IconButton>
-        </Box>
+        <OverflowContainer className='iui-center' itemsLength={pageList.length}>
+          {(visibleCount) => {
+            const halfVisibleCount = Math.floor(visibleCount / 2);
+            let startPage = focusedIndex - halfVisibleCount;
+            let endPage = focusedIndex + halfVisibleCount + 1;
+            if (startPage < 0) {
+              endPage = Math.min(
+                totalPagesCount,
+                endPage + Math.abs(startPage),
+              ); // If no room at the beginning, show extra pages at the end
+              startPage = 0;
+            }
+            if (endPage > totalPagesCount) {
+              startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
+              endPage = totalPagesCount;
+            }
+
+            return (
+              <>
+                <IconButton
+                  styleType='borderless'
+                  disabled={currentPage === 0}
+                  onClick={() => onPageChange(currentPage - 1)}
+                  size={buttonSize}
+                  aria-label={localization.previousPage}
+                >
+                  <SvgChevronLeft />
+                </IconButton>
+                <Box
+                  as='span'
+                  className='iui-table-paginator-pages-group'
+                  onKeyDown={onKeyDown}
+                  ref={pageListRef}
+                >
+                  {(() => {
+                    if (hasNoRows) {
+                      return noRowsContent;
+                    }
+                    if (visibleCount === 1) {
+                      return pageButton(focusedIndex);
+                    }
+                    return (
+                      <>
+                        {startPage !== 0 && (
+                          <>
+                            {pageButton(0, 0)}
+                            {ellipsis}
+                          </>
+                        )}
+                        {pageList.slice(startPage, endPage)}
+                        {endPage !== totalPagesCount && !isLoading && (
+                          <>
+                            {ellipsis}
+                            {pageButton(totalPagesCount - 1, 0)}
+                          </>
+                        )}
+                        {isLoading && (
+                          <>
+                            {ellipsis}
+                            <ProgressRadial indeterminate size='small' />
+                          </>
+                        )}
+                      </>
+                    );
+                  })()}
+                </Box>
+                <IconButton
+                  styleType='borderless'
+                  disabled={currentPage === totalPagesCount - 1 || hasNoRows}
+                  onClick={() => onPageChange(currentPage + 1)}
+                  size={buttonSize}
+                  aria-label={localization.nextPage}
+                >
+                  <SvgChevronRight />
+                </IconButton>
+              </>
+            );
+          }}
+        </OverflowContainer>
       )}
       <Box className='iui-right'>
         {showPageSizeList && (
