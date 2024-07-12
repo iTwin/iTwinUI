@@ -187,6 +187,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
       as={BaseGroup}
       overflowDisabled={!overflowButton}
       overflowOrientation={orientation}
+      overflowLocation={overflowPlacement}
       orientation={orientation}
       {...rest}
       className={cx(
@@ -205,11 +206,18 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
                   ? items.length - visibleCount - 2
                   : visibleCount - 1;
 
+              console.log(
+                'firstOverflowingIndex',
+                overflowPlacement === 'start',
+                firstOverflowingIndex,
+                items.length,
+                visibleCount,
+              );
+
               return overflowButton(firstOverflowingIndex);
             }
           : undefined
       }
-      overflowPlacement={'start'}
       itemsLength={undefined} // TODO: Why's it's forcing to add itemsLength?
     >
       {items}

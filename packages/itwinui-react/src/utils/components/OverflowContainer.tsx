@@ -13,7 +13,7 @@ type OverflowContainerProps = {
    * - center: After the first item
    * @default 'end'
    */
-  overflowPlacement?: 'start' | 'center' | 'end';
+  overflowLocation?: 'start' | 'center' | 'end';
   /**
    * The number of items will always be >= `minVisibleCount`
    * @default 1
@@ -43,7 +43,7 @@ type OverflowContainerProps = {
 export const OverflowContainer = React.forwardRef((props, ref) => {
   const {
     overflowTag,
-    overflowPlacement = 'end',
+    overflowLocation = 'end',
     children,
     itemsLength,
     overflowDisabled,
@@ -83,13 +83,15 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
         throw null;
       }
 
+      console.log('visibleCount', visibleCount);
+
       if (visibleCount > children.length) {
         throw [children, [], []];
       }
 
       // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
       // I think they are fixed.
-      if (overflowPlacement === 'center') {
+      if (overflowLocation === 'center') {
         throw visibleCount >= 3
           ? [
               children[0],
@@ -103,7 +105,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
             ];
       }
 
-      if (overflowPlacement === 'start') {
+      if (overflowLocation === 'start') {
         throw [
           overflowTag?.(visibleCount - 2),
           children.slice(children.length - visibleCount + 1),
@@ -118,7 +120,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     } catch (returnValue) {
       return returnValue?.filter(Boolean);
     }
-  }, [children, overflowTag, overflowPlacement, visibleCount]);
+  }, [children, overflowTag, overflowLocation, visibleCount]);
 
   return (
     <Box ref={useMergedRefs(ref, containerRef)} {...rest}>

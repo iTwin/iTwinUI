@@ -140,7 +140,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       > */}
       <OverflowContainer
         as='ol'
-        overflowPlacement='center'
+        overflowLocation='center'
         className='iui-breadcrumbs-list'
         minVisibleCount={2}
         overflowTag={(visibleCount) => (

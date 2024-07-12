@@ -201,7 +201,6 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     pageList.length,
     undefined,
     undefined,
-    undefined,
   );
 
   const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
