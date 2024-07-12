@@ -23,7 +23,7 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
   return (
     <OverflowContainer
       overflowTag={(visibleCount) => (
-        <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
+        <SelectTag label={`+${tags.length - (visibleCount - 1)} item(s)`} /> // -1 to account for the overflowTag
       )}
       className={cx('iui-select-tag-container', className)}
       ref={ref}
