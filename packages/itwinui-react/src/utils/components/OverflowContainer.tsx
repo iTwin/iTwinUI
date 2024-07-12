@@ -104,12 +104,6 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  // const containerRef = React.useContext(OverflowContainerContext)?.containerRef;
-  // const container = containerProp;
-
-  // TODO: Should this be children.length + 1?
-  // Because if there are 10 items and visibleCount is 10,
-  // how do we know whether to display 10 items vs 9 items and 1 overflow tag?
   const [containerRef, _visibleCount] = useOverflow(
     // TODO: Remove eslint-disable
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -120,71 +114,55 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
 
   const visibleCount = Math.max(_visibleCount, minVisibleCount);
 
-  // console.log('children', children.length, visibleCount);
-
   /**
    * - `visibleCount === children.length + 1` means that we show all children and no overflow tag.
    * - `visibleCount <= children.length` means that we show visibleCount - 1 children and 1 overflow tag.
    */
   const itemsToRender = React.useMemo(() => {
-    // let returnValue: React.ReactNode[] | null = null;
-
-    // TODO: Is this try-catch needed?
-    try {
-      if (typeof children === 'function') {
-        throw null;
-      }
-
-      console.log('visibleCount', visibleCount);
-
-      if (visibleCount > children.length) {
-        throw [children, [], []];
-      }
-
-      // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
-      // I think they are fixed.
-      if (overflowLocation === 'center') {
-        throw visibleCount >= 3
-          ? [
-              children[0],
-              overflowTag?.(visibleCount - 1),
-              children.slice(children.length - (visibleCount - 2)),
-            ]
-          : [
-              [],
-              overflowTag?.(visibleCount - 1),
-              children.slice(children.length - (visibleCount - 1)),
-            ];
-      }
-
-      if (overflowLocation === 'start') {
-        throw [
-          overflowTag?.(visibleCount - 2),
-          children.slice(children.length - visibleCount + 1),
-        ];
-      }
-
-      throw [
-        children.slice(0, visibleCount - 1),
-        [],
-        overflowTag?.(visibleCount),
-      ];
-    } catch (returnValue) {
-      return returnValue?.filter(Boolean);
+    if (typeof children === 'function') {
+      return null;
     }
+
+    if (visibleCount > children.length) {
+      return children;
+    }
+
+    // TODO: Fix some off by one errors. It is visible when visibleCount = children.length - 1
+    // I think they are fixed.
+    if (overflowLocation === 'center') {
+      return visibleCount >= 3 ? (
+        <>
+          {children[0]}
+          {overflowTag?.(visibleCount - 1)}
+          {children.slice(children.length - (visibleCount - 2))}
+        </>
+      ) : (
+        <>
+          {overflowTag?.(visibleCount - 1)}
+          {children.slice(children.length - (visibleCount - 1))}
+        </>
+      );
+    }
+
+    if (overflowLocation === 'start') {
+      return (
+        <>
+          {overflowTag?.(visibleCount - 2)}
+          {children.slice(children.length - visibleCount + 1)}
+        </>
+      );
+    }
+
+    throw [
+      children.slice(0, visibleCount - 1),
+      [],
+      overflowTag?.(visibleCount),
+    ];
   }, [children, overflowTag, overflowLocation, visibleCount]);
 
   return (
     <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
-      {typeof children === 'function' ? (
-        children(visibleCount)
-      ) : (
-        <>
-          {itemsToRender?.[0]}
-          {itemsToRender?.[1]}
-          {itemsToRender?.[2]}
-        </>
-      )}
+      {typeof children === 'function' ? children(visibleCount) : itemsToRender}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
