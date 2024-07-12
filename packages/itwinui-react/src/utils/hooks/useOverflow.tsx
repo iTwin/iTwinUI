@@ -40,22 +40,25 @@ export const useOverflow = <T extends HTMLElement>(
   itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
-  // container: HTMLElement | undefined,
 ) => {
   const containerRef = React.useRef<T>(null);
 
   const initialVisibleCount = React.useMemo(
-    () => Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT),
-    [itemsLength],
+    () =>
+      disabled ? itemsLength : Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT),
+    [disabled, itemsLength],
   );
   const initialVisibleCountGuessRange = React.useMemo(
-    () => [0, initialVisibleCount] satisfies GuessRange,
-    [initialVisibleCount],
+    () => (disabled ? null : ([0, initialVisibleCount] satisfies GuessRange)),
+    [disabled, initialVisibleCount],
   );
 
-  const [visibleCount, _setVisibleCount] = React.useState<number>(() =>
-    disabled ? itemsLength : initialVisibleCount,
-  );
+  const [visibleCount, _setVisibleCount] =
+    React.useState<number>(initialVisibleCount);
+  const [visibleCountGuessRange, setVisibleCountGuessRange] =
+    React.useState<GuessRange>(initialVisibleCountGuessRange);
+
+  const isStabilized = visibleCountGuessRange == null;
 
   /**
    * Ensures that `visibleCount <= itemsLength`
@@ -80,10 +83,6 @@ export const useOverflow = <T extends HTMLElement>(
       setVisibleCountGuessRange(initialVisibleCountGuessRange);
     }, [initialVisibleCount, initialVisibleCountGuessRange, setVisibleCount]),
   );
-
-  const [visibleCountGuessRange, setVisibleCountGuessRange] =
-    React.useState<GuessRange>(disabled ? null : initialVisibleCountGuessRange);
-  const isStabilized = visibleCountGuessRange == null;
 
   /**
    * Call this function to guess the new `visibleCount`.
