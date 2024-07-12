@@ -5,17 +5,8 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 
 type OverflowContainerProps = {
-  // TODO: Confirm what happens when overflowTag === undefined. Maybe some off by 1 errors?
-  overflowTag?: (visibleCount: number) => React.ReactNode;
   /**
-   * Where the overflowTag is placed. Values:
-   * - end: At the end
-   * - center: After the first item
-   * @default 'end'
-   */
-  overflowLocation?: 'start' | 'center' | 'end';
-  /**
-   * The number of items will always be >= `minVisibleCount`
+   * The number of items (including the `overflowTag`, if passed) will always be `>= minVisibleCount`.
    * @default 1
    */
   minVisibleCount?: number;
@@ -33,10 +24,21 @@ type OverflowContainerProps = {
   | {
       children: React.ReactNode[];
       itemsLength?: undefined;
+      // TODO: Confirm what happens when overflowTag === undefined. Maybe some off by 1 errors?
+      overflowTag: (visibleCount: number) => React.ReactNode;
+      /**
+       * Where the overflowTag is placed. Values:
+       * - end: At the end
+       * - center: After the first item
+       * @default 'end'
+       */
+      overflowLocation?: 'start' | 'center' | 'end';
     }
   | {
       children: (visibleCount: number) => React.ReactNode;
       itemsLength: number;
+      overflowTag?: undefined;
+      overflowLocation?: undefined;
     }
 );
 

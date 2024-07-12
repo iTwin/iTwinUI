@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useMergedRefs, Box } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -168,6 +168,7 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
 
 // ----------------------------------------------------------------------------
 
+/** Note: If `overflowButton == null`, it behaves like a `BaseGroup`. */
 const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   const {
     children: childrenProp,
@@ -182,7 +183,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  return (
+  return overflowButton != null ? (
     <OverflowContainer
       as={BaseGroup}
       overflowDisabled={!overflowButton}
@@ -197,31 +198,30 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         },
         props.className,
       )}
-      ref={useMergedRefs(forwardedRef)}
-      overflowTag={
-        overflowButton != null
-          ? (visibleCount) => {
-              const firstOverflowingIndex =
-                overflowPlacement === 'start'
-                  ? items.length - visibleCount - 2
-                  : visibleCount - 1;
+      ref={forwardedRef}
+      overflowTag={(visibleCount) => {
+        const firstOverflowingIndex =
+          overflowPlacement === 'start'
+            ? items.length - visibleCount - 2
+            : visibleCount - 1;
 
-              console.log(
-                'firstOverflowingIndex',
-                overflowPlacement === 'start',
-                firstOverflowingIndex,
-                items.length,
-                visibleCount,
-              );
+        console.log(
+          'firstOverflowingIndex',
+          overflowPlacement === 'start',
+          firstOverflowingIndex,
+          items.length,
+          visibleCount,
+        );
 
-              return overflowButton(firstOverflowingIndex);
-            }
-          : undefined
-      }
-      itemsLength={undefined} // TODO: Why's it's forcing to add itemsLength?
+        return overflowButton(firstOverflowingIndex);
+      }}
     >
       {items}
     </OverflowContainer>
+  ) : (
+    <BaseGroup orientation={orientation} ref={forwardedRef} {...rest}>
+      {childrenProp}
+    </BaseGroup>
   );
 }) as PolymorphicForwardRefComponent<
   'div',
