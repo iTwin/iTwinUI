@@ -575,29 +575,26 @@ export const Virtualized = () => {
   );
 
   return (
-    <div style={{ height: 'min(400px, 90vh)', overflow: 'auto' }}>
-      <Tree<StoryData>
-        data={data}
-        getNode={getNode}
-        enableVirtualization
-        nodeRenderer={useCallback(
-          ({ node, ...rest }) => (
-            <TreeNode
-              label={node.label}
-              sublabel={node.sublabel}
-              onExpanded={onNodeExpanded}
-              onSelected={onSelectedNodeChange}
-              checkbox={
-                <Checkbox variant='eyeball' disabled={rest.isDisabled} />
-              }
-              icon={<SvgPlaceholder />}
-              {...rest}
-            />
-          ),
-          [onNodeExpanded, onSelectedNodeChange],
-        )}
-      />
-    </div>
+    <Tree<StoryData>
+      data={data}
+      getNode={getNode}
+      enableVirtualization
+      nodeRenderer={useCallback(
+        ({ node, ...rest }) => (
+          <TreeNode
+            label={node.label}
+            sublabel={node.sublabel}
+            onExpanded={onNodeExpanded}
+            onSelected={onSelectedNodeChange}
+            checkbox={<Checkbox variant='eyeball' disabled={rest.isDisabled} />}
+            icon={<SvgPlaceholder />}
+            {...rest}
+          />
+        ),
+        [onNodeExpanded, onSelectedNodeChange],
+      )}
+      style={{ height: 'min(400px, 90vh)' }}
+    />
   );
 };
 
