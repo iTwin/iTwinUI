@@ -20,11 +20,8 @@ type SelectTagContainerProps = {
 export const SelectTagContainer = React.forwardRef((props, ref) => {
   const { tags, className, ...rest } = props;
 
-  // const [containerRef, visibleCount] = useOverflow(tags.length);
-
   return (
     <OverflowContainer
-      // container={container}
       overflowTag={(visibleCount) => (
         <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
       )}
@@ -32,13 +29,7 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {/* <> */}
       {tags}
-      {/* {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
-        {visibleCount < tags.length && (
-          <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
-        )} */}
-      {/* </> */}
     </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<'div', SelectTagContainerProps>;

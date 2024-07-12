@@ -43,14 +43,9 @@ export type MiddleTextTruncationProps = {
  *   )}
  * />
  */
-// TODO: Add React.forwardRef
+// TODO: Add React.forwardRef?
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
-
-  // const [ref, visibleCount] = useOverflow(text.length, undefined, undefined);
-  // console.log('visibleCount', visibleCount);
-
-  console.log('RENDER');
 
   const truncatedText = React.useCallback(
     (visibleCount: number) => {
@@ -76,7 +71,6 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
         whiteSpace: 'nowrap',
         ...style,
       }}
-      // ref={mergeRefs(ref)}
       itemsLength={text.length}
       {...rest}
     >
