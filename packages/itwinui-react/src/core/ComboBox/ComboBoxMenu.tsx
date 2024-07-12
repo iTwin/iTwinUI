@@ -59,7 +59,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   }, [focusedIndex, menuRef]);
 
   const virtualizer = useVirtualScroll({
-    // 'Fool' VirtualScroll by passing length 1
+    // 'Fool' useVirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
     getScrollElement: () => menuRef.current,
