@@ -35,7 +35,7 @@ const renderComponent = ({
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
 
-  const treeItem = container.querySelector('[role="treeitem"]');
+  const treeItem = container.querySelector('li');
   expect(treeItem).toBeTruthy();
   expect(treeItem).toHaveAttribute('role', 'treeitem');
   expect(treeItem).toHaveAttribute('id', 'testId');
@@ -128,7 +128,7 @@ it.each([true, false])(
       contextProps: { subNodeIds: ['subNode1', 'subNode2'] },
     });
 
-    const treeItem = container.querySelector('[role="treeitem"]');
+    const treeItem = container.querySelector('li');
     expect(treeItem).toBeTruthy();
     expect(treeItem).toHaveAttribute('aria-expanded', isExpanded.toString());
 
@@ -172,7 +172,7 @@ it('should render disabled node', () => {
     },
   });
 
-  expect(container.querySelector('[role="treeitem"]')).toHaveAttribute(
+  expect(container.querySelector('li')).toHaveAttribute(
     'aria-disabled',
     'true',
   );
@@ -207,7 +207,7 @@ it('should render selected node', () => {
     },
   });
 
-  expect(container.querySelector('[role="treeitem"]')).toHaveAttribute(
+  expect(container.querySelector('li')).toHaveAttribute(
     'aria-selected',
     'true',
   );
