@@ -3474,3 +3474,57 @@ export const StatusAndCellIcons = () => {
     />
   );
 };
+
+export const CustomHeader = () => {
+  const onClickHandler = (
+    props: CellProps<{ name: string; description: string }>,
+  ) => console.log(props.row.original.name);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
+        },
+      },
+    ],
+    [],
+  ) satisfies Column[];
+
+  const data = React.useMemo(
+    () => [
+      { name: 'Name1', description: 'Description1' },
+      { name: 'Name2', description: 'Description2' },
+      { name: 'Name3', description: 'Description3' },
+    ],
+    [],
+  ) as Record<string, unknown>[];
+
+  return (
+    <Table
+      columns={columns}
+      data={data}
+      headerProps={{ style: { border: '1px solid var(--iui-color-border)' } }}
+      emptyTableContent='No data.'
+    />
+  );
+};
