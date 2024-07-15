@@ -33,7 +33,9 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
-ListItemComponent.displayName = 'ListItem';
+if (process.env.NODE_ENV === 'development') {
+  ListItemComponent.displayName = 'ListItem';
+}
 
 export type ListItemOwnProps = {
   /**
@@ -67,7 +69,9 @@ export type ListItemOwnProps = {
 // ----------------------------------------------------------------------------
 
 const ListItemIcon = polymorphic('iui-list-item-icon');
-ListItemIcon.displayName = 'ListItem.Icon';
+if (process.env.NODE_ENV === 'development') {
+  ListItemIcon.displayName = 'ListItem.Icon';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -77,12 +81,16 @@ ListItemContent.displayName = 'ListItem.Content';
 // ----------------------------------------------------------------------------
 
 const ListItemDescription = polymorphic('iui-list-item-description');
-ListItemDescription.displayName = 'ListItem.Description';
+if (process.env.NODE_ENV === 'development') {
+  ListItemDescription.displayName = 'ListItem.Description';
+}
 
 // ----------------------------------------------------------------------------
 
 const ListItemAction = LinkAction;
-ListItemAction.displayName = 'ListItem.Action';
+if (process.env.NODE_ENV === 'development') {
+  ListItemAction.displayName = 'ListItem.Action';
+}
 
 // ----------------------------------------------------------------------------
 // Exported compound component

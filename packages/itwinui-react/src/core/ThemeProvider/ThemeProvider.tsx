@@ -205,7 +205,9 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     </ScopeProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
-ThemeProvider.displayName = 'ThemeProvider';
+if (process.env.NODE_ENV === 'development') {
+  ThemeProvider.displayName = 'ThemeProvider';
+}
 
 // ----------------------------------------------------------------------------
 

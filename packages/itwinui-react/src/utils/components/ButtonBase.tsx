@@ -49,7 +49,9 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'button', ButtonBaseProps>;
-ButtonBase.displayName = 'ButtonBase';
+if (process.env.NODE_ENV === 'development') {
+  ButtonBase.displayName = 'ButtonBase';
+}
 
 type ButtonBaseProps = {
   /**

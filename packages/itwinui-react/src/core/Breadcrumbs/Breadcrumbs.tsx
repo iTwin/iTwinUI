@@ -257,7 +257,9 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'a'>;
-BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
+if (process.env.NODE_ENV === 'development') {
+  BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
+}
 
 // ----------------------------------------------------------------------------
 

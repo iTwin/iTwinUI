@@ -21,7 +21,9 @@ import {
 export const ButtonGroupContext = React.createContext<string | undefined>(
   undefined,
 );
-ButtonGroupContext.displayName = 'ButtonGroupContext';
+if (process.env.NODE_ENV === 'development') {
+  ButtonGroupContext.displayName = 'ButtonGroupContext';
+}
 
 // ----------------------------------------------------------------------------
 

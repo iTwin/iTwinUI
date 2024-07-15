@@ -55,7 +55,9 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'input', InputProps>;
-InputWithDecorationsInput.displayName = 'InputWithDecorations.Input';
+if (process.env.NODE_ENV === 'development') {
+  InputWithDecorationsInput.displayName = 'InputWithDecorations.Input';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -79,12 +81,16 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   'button',
   React.ComponentProps<typeof InputFlexContainerButton>
 >;
-InputWithDecorationsButton.displayName = 'InputWithDecorations.Button';
+if (process.env.NODE_ENV === 'development') {
+  InputWithDecorationsButton.displayName = 'InputWithDecorations.Button';
+}
 
 // ----------------------------------------------------------------------------
 
 const InputWithDecorationsIcon = InputFlexContainerIcon;
-InputWithDecorationsIcon.displayName = 'InputWithDecorations.Icon';
+if (process.env.NODE_ENV === 'development') {
+  InputWithDecorationsIcon.displayName = 'InputWithDecorations.Icon';
+}
 
 // ----------------------------------------------------------------------------
 
