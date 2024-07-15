@@ -39,6 +39,7 @@
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
   border-block-end: 1px solid var(--iui-color-border);
+  border-radius: inherit;
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
