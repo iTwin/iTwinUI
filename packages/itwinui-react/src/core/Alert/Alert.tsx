@@ -131,7 +131,9 @@ if (process.env.NODE_ENV === 'development') {
 // Alert.Message component
 
 const AlertMessage = polymorphic.span('iui-alert-message');
-AlertMessage.displayName = 'Alert.Message';
+if (process.env.NODE_ENV === 'development') {
+  AlertMessage.displayName = 'Alert.Message';
+}
 
 // ----------------------------------------------------------------------------
 // Alert.Action component

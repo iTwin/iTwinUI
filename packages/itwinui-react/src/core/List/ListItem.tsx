@@ -76,7 +76,9 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 
 const ListItemContent = polymorphic('iui-list-item-content');
-ListItemContent.displayName = 'ListItem.Content';
+if (process.env.NODE_ENV === 'development') {
+  ListItemContent.displayName = 'ListItem.Content';
+}
 
 // ----------------------------------------------------------------------------
 
