@@ -831,6 +831,9 @@ const TabsContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  TabsContext.displayName = 'TabsContext';
+}
 
 const TabListContext = React.createContext<
   | {
@@ -839,6 +842,10 @@ const TabListContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  TabListContext.displayName = 'TabListContext';
+}
+
 // ----------------------------------------------------------------------------
 
 /**

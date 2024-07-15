@@ -145,3 +145,6 @@ export const Stepper = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StepperProps>;
+if (process.env.NODE_ENV === 'development') {
+  Stepper.displayName = 'Stepper';
+}

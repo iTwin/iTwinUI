@@ -522,6 +522,9 @@ export const TimePicker = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TimePickerProps>;
+if (process.env.NODE_ENV === 'development') {
+  TimePicker.displayName = 'TimePicker';
+}
 
 type TimePickerColumnProps<T = Date> = {
   /**

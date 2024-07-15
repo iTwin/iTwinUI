@@ -285,3 +285,6 @@ export const TransferListContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  TransferListContext.displayName = 'TransferListContext';
+}

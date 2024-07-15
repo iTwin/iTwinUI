@@ -16,6 +16,9 @@ import type { InputProps } from '../Input/Input.js';
 const InputWithDecorationsContext = React.createContext<
   React.ComponentProps<typeof InputFlexContainer> | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  InputWithDecorationsContext.displayName = 'InputWithDecorationsContext';
+}
 
 const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
   const { children, size, isDisabled, ...rest } = props;
@@ -35,6 +38,9 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
   'div',
   React.ComponentProps<typeof InputFlexContainer>
 >;
+if (process.env.NODE_ENV === 'development') {
+  InputWithDecorationsComponent.displayName = 'InputWithDecorations';
+}
 
 // ----------------------------------------------------------------------------
 

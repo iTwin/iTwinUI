@@ -1238,3 +1238,6 @@ export const Table = <
     </TableColumnsContext.Provider>
   );
 };
+if (process.env.NODE_ENV === 'development') {
+  Table.displayName = 'Table';
+}

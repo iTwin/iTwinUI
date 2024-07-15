@@ -318,3 +318,6 @@ export const FileUploadCardContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardContext.displayName = 'FileUploadCardContext';
+}

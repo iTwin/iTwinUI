@@ -16,3 +16,6 @@ import { polymorphic } from '../../utils/index.js';
 export const InformationPanelWrapper = polymorphic.div(
   'iui-information-panel-wrapper',
 );
+if (process.env.NODE_ENV === 'development') {
+  InformationPanelWrapper.displayName = 'InformationPanelWrapper';
+}

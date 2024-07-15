@@ -117,3 +117,6 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', TagProps>;
+if (process.env.NODE_ENV === 'development') {
+  Tag.displayName = 'Tag';
+}
