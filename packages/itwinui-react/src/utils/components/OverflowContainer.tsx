@@ -96,11 +96,14 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [containerRef, visibleCount] = useOverflow(
+  const [containerRef, _visibleCount] = useOverflow(
     typeof children === 'function' ? itemsLength ?? 0 : children.length + 1,
     overflowDisabled,
     overflowOrientation,
   );
+
+  // Minimum visibleCount of 1 since we always at least show the `overflowTag` in small sizes.
+  const visibleCount = Math.max(_visibleCount, 1);
 
   /**
    * - `visibleCount === children.length + 1` means that we show all children and no overflow tag.

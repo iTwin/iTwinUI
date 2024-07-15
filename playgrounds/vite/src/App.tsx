@@ -1,4 +1,5 @@
-import { ComboBox } from '@itwin/itwinui-react';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import { ButtonGroup, ComboBox, IconButton } from '@itwin/itwinui-react';
 
 export default function App() {
   const data: { label: string; value: number }[] = [];
@@ -15,7 +16,7 @@ export default function App() {
 
   return (
     <>
-      {widths.slice(0, 1).map((width) => (
+      {/* {widths.slice(0, 1).map((width) => (
         <ComboBox
           key={width}
           style={{ width: `${width}px`, maxWidth: '80vw' }}
@@ -28,7 +29,30 @@ export default function App() {
             placeholder: 'Placeholder',
           }}
         />
-      ))}
+      ))} */}
+      <div
+        id='container'
+        style={{ resize: 'block', overflow: 'hidden', padding: '5px' }}
+      >
+        <ButtonGroup
+          role='toolbar'
+          orientation={'vertical'}
+          style={{ height: '100%' }}
+          overflowButton={(firstOverflowingIndex) => {
+            return <IconButton>{firstOverflowingIndex}</IconButton>;
+          }}
+        >
+          <IconButton label='Button 1'>
+            <SvgPlaceholder />
+          </IconButton>
+          <IconButton label='Button 2' isActive>
+            <SvgPlaceholder />
+          </IconButton>
+          <IconButton label='Button 3'>
+            <SvgPlaceholder />
+          </IconButton>
+        </ButtonGroup>
+      </div>
     </>
   );
 }

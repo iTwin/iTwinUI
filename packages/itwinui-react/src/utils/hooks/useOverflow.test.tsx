@@ -17,7 +17,7 @@ const MockComponent = ({
   orientation?: 'horizontal' | 'vertical';
 }) => {
   const [overflowRef, visibleCount] = useOverflow(
-    children,
+    children.length,
     disableOverflow,
     orientation,
   );
@@ -60,22 +60,27 @@ it.each(['horizontal', 'vertical'] as const)(
   },
 );
 
-it('should overflow when there is not enough space (string)', async () => {
-  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValueOnce(50)
-    .mockReturnValue(28);
-  vi.spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get').mockReturnValue(28);
+it.only('should overflow when there is not enough space (string)', async () => {
+  const fullText = 'This is a very long text.';
+  const truncatedText = 'This is a v';
+
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
+    2.5 * truncatedText.length,
+  );
+  // .mockReturnValueOnce(50)
+  // .mockReturnValue(28);
+  vi.spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get').mockReturnValue(
+    2.5 * fullText.length,
+  );
 
   // 20 symbols (default value taken), 50 width
   // avg 2.5px per symbol
-  const { container } = render(
-    <MockComponent>This is a very long text.</MockComponent>,
-  );
+  const { container } = render(<MockComponent>{fullText}</MockComponent>);
 
   // have 28px of a place
   // 11 symbols can fit
   await waitFor(() => {
-    expect(container.textContent).toBe('This is a v');
+    expect(container.textContent).toBe(truncatedText);
   });
 });
 

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React, { useCallback } from 'react';
+import React from 'react';
 import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
 import {
   SvgSmileyHappy,
@@ -184,7 +184,7 @@ export const TruncateMiddleText = () => {
     options[0].value,
   );
 
-  const textRenderer = useCallback(
+  const textRenderer = React.useCallback(
     (truncatedText: string, originalText: string) => (
       <span title={truncatedText !== originalText ? originalText : undefined}>
         {truncatedText}
