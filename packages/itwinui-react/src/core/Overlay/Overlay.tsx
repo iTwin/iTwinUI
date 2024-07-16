@@ -117,7 +117,7 @@ const useInertPolyfill = () => {
         !loaded.current &&
         !isUnitTest
       ) {
-        await new Function(`return import("${modulePath}")`)();
+        await new Function('url', 'return import(url)')(modulePath);
         loaded.current = true;
       }
     })();
