@@ -429,8 +429,7 @@ test.describe('Table Paginator', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    // TODO: Fix the problem where browser paints before the visibleCount has been set
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 11,
@@ -438,7 +437,7 @@ test.describe('Table Paginator', () => {
     });
 
     await setContainerSize('750px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 6,
@@ -447,7 +446,7 @@ test.describe('Table Paginator', () => {
 
     // should restore hidden items when space is available again
     await setContainerSize(undefined);
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 11,
@@ -461,7 +460,7 @@ test.describe('Table Paginator', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 11,
@@ -469,7 +468,7 @@ test.describe('Table Paginator', () => {
     });
 
     await setContainerSize('10px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,
@@ -485,7 +484,7 @@ test.describe('Table Paginator', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 11,
@@ -493,7 +492,7 @@ test.describe('Table Paginator', () => {
     });
 
     await setContainerSize('10px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,

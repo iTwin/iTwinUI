@@ -100,7 +100,7 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(2.5);
-      await page.waitForTimeout(100); // TODO: Try removing all timeouts
+      await page.waitForTimeout(30); // TODO: Try removing all timeouts
 
       await expectOverflowState({
         expectedButtonLength: 2,
@@ -108,7 +108,7 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(1.5);
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 1,
@@ -117,7 +117,7 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(0.5);
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
 
       // should return 1 overflowTag when item is bigger than the container
       await expectOverflowState({
@@ -126,11 +126,11 @@ test.describe('ButtonGroup', () => {
           overflowPlacement === 'end' ? 0 : 2,
       });
 
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
 
       // should restore hidden items when space is available again
       await setContainerSize(1.5);
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 1,
@@ -139,7 +139,7 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(2.5);
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 2,
@@ -147,14 +147,14 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(undefined);
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 3,
         expectedOverflowTagFirstOverflowingIndex: undefined,
       });
 
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(30);
     });
   });
 
@@ -172,7 +172,7 @@ test.describe('ButtonGroup', () => {
     });
 
     await setContainerSize(2.5);
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedButtonLength: 3,

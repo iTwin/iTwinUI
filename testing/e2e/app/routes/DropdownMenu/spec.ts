@@ -116,7 +116,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 3_2_1')).toBeVisible();
     await expect(page.getByTestId('Item 3_3_1')).toBeHidden();
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
   });
 
   test('should handle keyboard navigation even with non MenuItems', async ({

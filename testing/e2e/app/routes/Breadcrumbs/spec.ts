@@ -15,7 +15,7 @@ test.describe('Breadcrumbs', () => {
     });
 
     await setContainerSize('200px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 2,
@@ -24,7 +24,7 @@ test.describe('Breadcrumbs', () => {
 
     // should restore hidden items when space is available again
     await setContainerSize(undefined);
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 5,
@@ -46,7 +46,7 @@ test.describe('Breadcrumbs', () => {
     });
 
     await setContainerSize('10px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,

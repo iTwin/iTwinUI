@@ -11,7 +11,7 @@ test.describe('MiddleTextTruncation', () => {
 
     const setContainerSize = getSetContainerSize(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     const middleTextTruncation = page.getByTestId('root');
     expect(await middleTextTruncation.first().textContent()).toHaveLength(
@@ -19,14 +19,14 @@ test.describe('MiddleTextTruncation', () => {
     );
 
     await setContainerSize('200px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     expect(await middleTextTruncation.first().textContent()).toHaveLength(
       'MyFileWithAReallyLon…2.html'.length,
     );
 
     await setContainerSize(undefined);
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     // should restore hidden items when space is available again
     expect(await middleTextTruncation.first().textContent()).toHaveLength(
@@ -42,7 +42,7 @@ test.describe('MiddleTextTruncation', () => {
     const endCharsCount = 6;
     const setContainerSize = getSetContainerSize(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     const middleTextTruncation = page.getByTestId('root');
     expect(await middleTextTruncation.first().textContent()).toHaveLength(
@@ -50,14 +50,14 @@ test.describe('MiddleTextTruncation', () => {
     );
 
     await setContainerSize('20px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     expect(await middleTextTruncation.first().textContent()).toHaveLength(
       endCharsCount + 1, // +1 for the ellipses
     );
 
     await setContainerSize(undefined);
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     // should restore hidden items when space is available again
     expect(await middleTextTruncation.first().textContent()).toHaveLength(

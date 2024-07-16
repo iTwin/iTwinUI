@@ -9,7 +9,7 @@ test.describe('ComboBox', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 10,
@@ -17,7 +17,7 @@ test.describe('ComboBox', () => {
     });
 
     await setContainerSize('600px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 5,
@@ -31,7 +31,7 @@ test.describe('ComboBox', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 10,
@@ -39,7 +39,7 @@ test.describe('ComboBox', () => {
     });
 
     await setContainerSize('10px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,
@@ -55,7 +55,7 @@ test.describe('ComboBox', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,
@@ -63,7 +63,7 @@ test.describe('ComboBox', () => {
     });
 
     await setContainerSize('80px');
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,

@@ -43,7 +43,6 @@ export type MiddleTextTruncationProps = {
  *   )}
  * />
  */
-// TODO: Add React.forwardRef?
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
 
