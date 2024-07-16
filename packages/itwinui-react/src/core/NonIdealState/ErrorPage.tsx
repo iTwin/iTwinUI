@@ -285,3 +285,6 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', ErrorPageProps>;
+if (process.env.NODE_ENV === 'development') {
+  ErrorPage.displayName = 'ErrorPage';
+}

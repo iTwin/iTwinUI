@@ -48,3 +48,6 @@ export const WorkflowDiagram = React.forwardRef(
     );
   },
 ) as PolymorphicForwardRefComponent<'ol', WorkflowDiagramProps>;
+if (process.env.NODE_ENV === 'development') {
+  WorkflowDiagram.displayName = 'WorkflowDiagram';
+}

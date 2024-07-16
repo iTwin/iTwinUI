@@ -488,3 +488,6 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ColorInputPanelProps>;
+if (process.env.NODE_ENV === 'development') {
+  ColorInputPanel.displayName = 'ColorInputPanel';
+}

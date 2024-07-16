@@ -192,3 +192,6 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     </SidenavExpandedContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', SideNavigationProps>;
+if (process.env.NODE_ENV === 'development') {
+  SideNavigation.displayName = 'SideNavigation';
+}

@@ -46,3 +46,6 @@ export const Input = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'input', InputProps>;
+if (process.env.NODE_ENV === 'development') {
+  Input.displayName = 'Input';
+}

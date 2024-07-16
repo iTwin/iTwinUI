@@ -31,3 +31,6 @@ export const Divider = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'hr', DividerProps>;
+if (process.env.NODE_ENV === 'development') {
+  Divider.displayName = 'Divider';
+}

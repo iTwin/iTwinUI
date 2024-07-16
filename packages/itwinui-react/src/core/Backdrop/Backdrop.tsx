@@ -30,3 +30,6 @@ export const Backdrop = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', BackdropProps>;
+if (process.env.NODE_ENV === 'development') {
+  Backdrop.displayName = 'Backdrop';
+}

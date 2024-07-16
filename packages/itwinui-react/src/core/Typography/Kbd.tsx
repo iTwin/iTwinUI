@@ -53,3 +53,6 @@ export const Kbd = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'kbd', KbdProps>;
+if (process.env.NODE_ENV === 'development') {
+  Kbd.displayName = 'Kbd';
+}

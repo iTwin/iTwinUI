@@ -183,6 +183,9 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', BreadcrumbsProps>;
+if (process.env.NODE_ENV === 'development') {
+  BreadcrumbsComponent.displayName = 'Breadcrumbs';
+}
 
 // ----------------------------------------------------------------------------
 

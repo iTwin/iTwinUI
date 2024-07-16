@@ -234,3 +234,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
     </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
+if (process.env.NODE_ENV === 'development') {
+  DialogMain.displayName = 'Dialog.Main';
+}
