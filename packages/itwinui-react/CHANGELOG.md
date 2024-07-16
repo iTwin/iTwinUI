@@ -7,7 +7,7 @@
 - [#2106](https://github.com/iTwin/iTwinUI/pull/2106): All internal CSS class prefixes have been changed to prevent style conflicts across minor versions.
   - While this is _not_ considered a breaking change according to our [support policy](https://github.com/iTwin/iTwinUI/wiki/Support-policy), this change might affect you if you ignore our pleas to not rely on these internal class names. The recommendation is to pass your own custom `className` through props.
 
-- [#2131](https://github.com/iTwin/iTwinUI/pull/2131): Development-only warnings will now only be properly excluded from the production build. This is done using a separate `"development"` entrypoint listed in `package.json#exports`.
+- [#2131](https://github.com/iTwin/iTwinUI/pull/2131): Development-only warnings will now be properly excluded from the production build. This is done using a separate `"development"` entrypoint listed in `package.json#exports`.
 
 - [#2135](https://github.com/iTwin/iTwinUI/pull/2135): Changed the column manager from a `DropdownMenu` to a `Popover` to fix invalid markup and accessibility issues.
 
