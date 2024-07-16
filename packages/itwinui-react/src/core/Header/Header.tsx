@@ -151,3 +151,6 @@ export const Header = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'header', HeaderProps>;
+if (process.env.NODE_ENV === 'development') {
+  Header.displayName = 'Header';
+}

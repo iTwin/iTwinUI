@@ -333,3 +333,6 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+if (process.env.NODE_ENV === 'development') {
+  ColorBuilder.displayName = 'ColorBuilder';
+}

@@ -111,3 +111,6 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressLinearProps>;
+if (process.env.NODE_ENV === 'development') {
+  ProgressLinear.displayName = 'ProgressLinear';
+}

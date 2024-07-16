@@ -13,3 +13,6 @@ import { polymorphic } from '../../utils/index.js';
  * </Dialog.ButtonBar>
  */
 export const DialogButtonBar = polymorphic.div('iui-dialog-button-bar');
+if (process.env.NODE_ENV === 'development') {
+  DialogButtonBar.displayName = 'Dialog.ButtonBar';
+}

@@ -74,6 +74,9 @@ const DialogComponent = React.forwardRef((props, ref) => {
     </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogProps>;
+if (process.env.NODE_ENV === 'development') {
+  DialogComponent.displayName = 'Dialog';
+}
 
 /**
  * Dialog component.

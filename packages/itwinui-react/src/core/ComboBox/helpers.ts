@@ -14,7 +14,9 @@ export const ComboBoxRefsContext = React.createContext<
     }
   | undefined
 >(undefined);
-ComboBoxRefsContext.displayName = 'ComboBoxRefsContext';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxRefsContext.displayName = 'ComboBoxRefsContext';
+}
 
 type ComboBoxStateContextProps<T = unknown> = {
   isOpen: boolean;
@@ -34,4 +36,6 @@ type ComboBoxStateContextProps<T = unknown> = {
 export const ComboBoxStateContext = React.createContext<
   ComboBoxStateContextProps | undefined
 >(undefined);
-ComboBoxStateContext.displayName = 'ComboBoxStateContext';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxStateContext.displayName = 'ComboBoxStateContext';
+}

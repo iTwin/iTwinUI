@@ -29,7 +29,9 @@ export const LinkAction = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'a'>;
-LinkAction.displayName = 'LinkAction';
+if (process.env.NODE_ENV === 'development') {
+  LinkAction.displayName = 'LinkAction';
+}
 
 /**
  * Polymorphic link box component.
@@ -43,4 +45,6 @@ LinkAction.displayName = 'LinkAction';
  * </LinkBox>
  */
 export const LinkBox = polymorphic.div('iui-link-box');
-LinkBox.displayName = 'LinkBox';
+if (process.env.NODE_ENV === 'development') {
+  LinkBox.displayName = 'LinkBox';
+}

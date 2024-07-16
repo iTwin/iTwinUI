@@ -62,6 +62,9 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     </FloatingTree>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
+if (process.env.NODE_ENV === 'development') {
+  DropdownMenu.displayName = 'DropdownMenu';
+}
 
 // ----------------------------------------------------------------------------
 

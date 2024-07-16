@@ -31,7 +31,9 @@ const OverlayComponent = React.forwardRef((props, forwardedRef) => {
     </OverlayWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', OverlayComponentProps>;
-OverlayComponent.displayName = 'Overlay';
+if (process.env.NODE_ENV === 'development') {
+  OverlayComponent.displayName = 'Overlay';
+}
 
 // --------------------------------------------------------------------------------
 
@@ -44,17 +46,23 @@ const OverlayHiddenContent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
-OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
+if (process.env.NODE_ENV === 'development') {
+  OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
+}
 
 // --------------------------------------------------------------------------------
 
 const OverlayOverlay = polymorphic('iui-overlay');
-OverlayOverlay.displayName = 'Overlay.Overlay';
+if (process.env.NODE_ENV === 'development') {
+  OverlayOverlay.displayName = 'Overlay.Overlay';
+}
 
 // --------------------------------------------------------------------------------
 
 const OverlayWrapper = polymorphic('iui-overlay-wrapper');
-OverlayWrapper.displayName = 'Overlay.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  OverlayWrapper.displayName = 'Overlay.Wrapper';
+}
 
 // --------------------------------------------------------------------------------
 

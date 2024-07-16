@@ -35,6 +35,9 @@ const CarouselNavigationComponent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+if (process.env.NODE_ENV === 'development') {
+  CarouselNavigationComponent.displayName = 'Carousel.Navigation';
+}
 
 /** Button for switching to previous slide */
 const PreviousButton = React.forwardRef((props, ref) => {
@@ -67,6 +70,9 @@ const PreviousButton = React.forwardRef((props, ref) => {
   'button',
   React.ComponentProps<typeof IconButton>
 >;
+if (process.env.NODE_ENV === 'development') {
+  PreviousButton.displayName = 'Carousel.Navigation.PreviousButton';
+}
 
 /** Button for switching to next slide */
 const NextButton = React.forwardRef((props, ref) => {
@@ -99,6 +105,9 @@ const NextButton = React.forwardRef((props, ref) => {
   'button',
   React.ComponentProps<typeof IconButton>
 >;
+if (process.env.NODE_ENV === 'development') {
+  NextButton.displayName = 'Carousel.Navigation.NextButton';
+}
 
 /**
  * The `CarouselNavigation` component by default consists of the `PreviousButton` and `NextButton`

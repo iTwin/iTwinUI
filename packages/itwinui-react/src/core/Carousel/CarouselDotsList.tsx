@@ -209,3 +209,6 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', CarouselDotsListProps>;
+if (process.env.NODE_ENV === 'development') {
+  CarouselDotsList.displayName = 'Carousel.DotsList';
+}

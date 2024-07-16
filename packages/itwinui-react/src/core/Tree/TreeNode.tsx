@@ -383,3 +383,6 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TreeNodeProps>;
+if (process.env.NODE_ENV === 'development') {
+  TreeNode.displayName = 'TreeNode';
+}

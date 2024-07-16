@@ -428,6 +428,9 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
+if (process.env.NODE_ENV === 'development') {
+  Popover.displayName = 'Popover';
+}
 
 // ----------------------------------------------------------------------------
 

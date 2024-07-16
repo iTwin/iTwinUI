@@ -22,3 +22,6 @@ import { polymorphic } from '../../utils/index.js';
 export const MenuDivider = polymorphic('iui-menu-divider', {
   role: 'separator',
 });
+if (process.env.NODE_ENV === 'development') {
+  MenuDivider.displayName = 'MenuDivider';
+}
