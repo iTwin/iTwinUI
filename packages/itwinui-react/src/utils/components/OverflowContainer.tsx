@@ -147,12 +147,6 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
 
 // ----------------------------------------------------------------------------
 
-/** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
-type GuessRange = [number, number] | null;
-
-/** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
-const STARTING_MAX_ITEMS_COUNT = 2;
-
 /**
  * Hook that returns the number of items that should be visible based on the size of the container element.
  *
@@ -179,6 +173,12 @@ const useOverflow = <T extends HTMLElement>(
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
+  /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
+  type GuessRange = [number, number] | null;
+
+  /** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
+  const STARTING_MAX_ITEMS_COUNT = 32;
+
   const containerRef = React.useRef<T>(null);
 
   const initialVisibleCount = React.useMemo(
