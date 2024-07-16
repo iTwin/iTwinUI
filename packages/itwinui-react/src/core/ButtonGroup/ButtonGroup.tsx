@@ -210,14 +210,6 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
             ? items.length - visibleCount - 2
             : visibleCount - 1;
 
-        console.log(
-          'firstOverflowingIndex',
-          overflowPlacement === 'start',
-          firstOverflowingIndex,
-          items.length,
-          visibleCount,
-        );
-
         return overflowButton(firstOverflowingIndex);
       }}
     >
