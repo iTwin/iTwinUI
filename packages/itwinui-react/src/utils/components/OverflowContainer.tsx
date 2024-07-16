@@ -222,11 +222,12 @@ const useOverflow = <T extends HTMLElement>(
     }, [initialVisibleCount, initialVisibleCountGuessRange, setVisibleCount]),
   );
 
+  const isGuessing = React.useRef(false);
+
   /**
    * Call this function to guess the new `visibleCount`.
    * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
    */
-  const isGuessing = React.useRef(false);
   const guessVisibleCount = React.useCallback(() => {
     // If disabled or already stabilized
     if (disabled || isStabilized || isGuessing.current) {
@@ -247,15 +248,6 @@ const useOverflow = <T extends HTMLElement>(
 
       const isOverflowing = availableSize < requiredSize;
 
-      console.log('RUNNING', {
-        visibleCountGuessRange: visibleCountGuessRange?.toString(),
-        containerRefNotNull: containerRef.current != null,
-        // isOverflowing,
-        visibleCount,
-        availableSize,
-        requiredSize,
-      });
-
       // We have already found the correct visibleCount
       if (
         (visibleCount === itemsLength && !isOverflowing) ||
@@ -263,7 +255,6 @@ const useOverflow = <T extends HTMLElement>(
         (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1 &&
           visibleCount === visibleCountGuessRange[0])
       ) {
-        console.log('STABILIZED');
         setVisibleCountGuessRange(null);
         return;
       }
