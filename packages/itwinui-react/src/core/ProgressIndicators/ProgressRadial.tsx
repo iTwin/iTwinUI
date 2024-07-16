@@ -100,3 +100,6 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
+if (process.env.NODE_ENV === 'development') {
+  ProgressRadial.displayName = 'ProgressRadial';
+}

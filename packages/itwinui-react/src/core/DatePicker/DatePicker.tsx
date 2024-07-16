@@ -757,3 +757,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', DatePickerProps>;
+if (process.env.NODE_ENV === 'development') {
+  DatePicker.displayName = 'DatePicker';
+}

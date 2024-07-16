@@ -21,7 +21,9 @@ import { Label } from '../Label/Label.js';
 // TransferListComponent
 
 const TransferListComponent = polymorphic('iui-transfer-list-wrapper');
-TransferListComponent.displayName = 'TransferList';
+if (process.env.NODE_ENV === 'development') {
+  TransferListComponent.displayName = 'TransferList';
+}
 
 // ----------------------------------------------------------------------------
 // TransferList.ListboxWrapper component
@@ -47,7 +49,9 @@ const TransferListListboxWrapper = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListListboxWrapperOwnProps>;
-TransferListListboxWrapper.displayName = 'TransferList.ListboxWrapper';
+if (process.env.NODE_ENV === 'development') {
+  TransferListListboxWrapper.displayName = 'TransferList.ListboxWrapper';
+}
 
 // ----------------------------------------------------------------------------
 // TransferList.Listbox component
@@ -124,7 +128,9 @@ const TransferListListbox = React.forwardRef((props, ref) => {
     </List>
   );
 }) as PolymorphicForwardRefComponent<'ul', TransferListListboxOwnProps>;
-TransferListListbox.displayName = 'TransferList.Listbox';
+if (process.env.NODE_ENV === 'development') {
+  TransferListListbox.displayName = 'TransferList.Listbox';
+}
 
 // ----------------------------------------------------------------------------
 // TransferList.Item component
@@ -182,7 +188,9 @@ const TransferListItem = React.forwardRef((props, ref) => {
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'li', TransferListItemOwnProps>;
-TransferListItem.displayName = 'TransferList.Item';
+if (process.env.NODE_ENV === 'development') {
+  TransferListItem.displayName = 'TransferList.Item';
+}
 
 // ----------------------------------------------------------------------------
 // TransferList.ListboxLabel component
@@ -211,7 +219,9 @@ const TransferListListboxLabel = React.forwardRef((props, ref) => {
     </Label>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListListboxLabelOwnProps>;
-TransferListListboxLabel.displayName = 'TransferList.ListboxLabel';
+if (process.env.NODE_ENV === 'development') {
+  TransferListListboxLabel.displayName = 'TransferList.ListboxLabel';
+}
 
 // ----------------------------------------------------------------------------
 // TransferList.Toolbar component
@@ -219,7 +229,9 @@ TransferListListboxLabel.displayName = 'TransferList.ListboxLabel';
 const TransferListToolbar = polymorphic('iui-transfer-list-toolbar', {
   role: 'toolbar',
 });
-TransferListToolbar.displayName = 'TransferList.Toolbar';
+if (process.env.NODE_ENV === 'development') {
+  TransferListToolbar.displayName = 'TransferList.Toolbar';
+}
 
 /**
  * The TransferList component is used to display a list within a box
@@ -273,3 +285,6 @@ export const TransferListContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  TransferListContext.displayName = 'TransferListContext';
+}

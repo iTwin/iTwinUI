@@ -88,6 +88,9 @@ const CarouselComponent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'section', CarouselProps>;
+if (process.env.NODE_ENV === 'development') {
+  CarouselComponent.displayName = 'Carousel';
+}
 
 /**
  * The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is

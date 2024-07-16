@@ -103,3 +103,6 @@ export const IconButton = React.forwardRef((props, ref) => {
     button
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+if (process.env.NODE_ENV === 'development') {
+  IconButton.displayName = 'IconButton';
+}

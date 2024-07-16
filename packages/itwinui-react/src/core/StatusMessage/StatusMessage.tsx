@@ -72,3 +72,6 @@ export const StatusMessage = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;
+if (process.env.NODE_ENV === 'development') {
+  StatusMessage.displayName = 'StatusMessage';
+}

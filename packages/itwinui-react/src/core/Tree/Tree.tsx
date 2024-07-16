@@ -373,6 +373,9 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     </>
   );
 };
+if (process.env.NODE_ENV === 'development') {
+  Tree.displayName = 'Tree';
+}
 
 const TreeElement = polymorphic.div('iui-tree', {
   role: 'tree',

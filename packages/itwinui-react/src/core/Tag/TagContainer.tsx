@@ -51,3 +51,6 @@ export const TagContainer = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TagContainerProps>;
+if (process.env.NODE_ENV === 'development') {
+  TagContainer.displayName = 'TagContainer';
+}

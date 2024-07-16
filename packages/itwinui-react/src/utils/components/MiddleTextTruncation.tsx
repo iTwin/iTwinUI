@@ -80,3 +80,6 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
     </OverflowContainer>
   );
 };
+if (process.env.NODE_ENV === 'development') {
+  MiddleTextTruncation.displayName = 'MiddleTextTruncation';
+}

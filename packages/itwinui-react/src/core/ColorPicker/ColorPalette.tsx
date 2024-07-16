@@ -73,3 +73,6 @@ export const ColorPalette = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ColorPaletteProps>;
+if (process.env.NODE_ENV === 'development') {
+  ColorPalette.displayName = 'ColorPalette';
+}

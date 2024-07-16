@@ -106,3 +106,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', RadioTileProps>;
+if (process.env.NODE_ENV === 'development') {
+  RadioTile.displayName = 'RadioTile';
+}

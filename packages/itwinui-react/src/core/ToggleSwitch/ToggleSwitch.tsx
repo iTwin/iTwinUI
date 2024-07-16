@@ -117,3 +117,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', ToggleSwitchProps>;
+if (process.env.NODE_ENV === 'development') {
+  ToggleSwitch.displayName = 'ToggleSwitch';
+}
