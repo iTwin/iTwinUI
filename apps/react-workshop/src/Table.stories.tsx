@@ -1887,12 +1887,11 @@ export const WithPaginator = () => {
         emptyTableContent='No data.'
         isSelectable
         isSortable
-        // isLoading
         columns={columns}
         data={data}
         pageSize={50}
         paginatorRenderer={paginator}
-        style={{ height: '100%', resize: 'inline', overflow: 'hidden' }}
+        style={{ height: '100%' }}
       />
     </>
   );

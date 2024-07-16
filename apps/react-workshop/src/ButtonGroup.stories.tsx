@@ -61,39 +61,33 @@ export const Overflow = () => {
   return (
     <ButtonGroup
       orientation='horizontal'
-      overflowPlacement='start'
-      // overflowButton={(overflowStart) => {
-      //   console.log('overflowStart', overflowStart);
+      overflowButton={(overflowStart) => {
+        return (
+          <DropdownMenu
+            menuItems={(close) => {
+              const length = items.length - overflowStart;
 
-      //   return (
-      //     <DropdownMenu
-      //       menuItems={(close) => {
-      //         const length = items.length - overflowStart;
+              return Array.from({ length }, (_, _index) => {
+                const index = overflowStart + _index;
 
-      //         return Array.from({ length }, (_, _index) => {
-      //           const index = overflowStart + _index;
-
-      //           return (
-      //             <MenuItem
-      //               key={index}
-      //               onClick={close}
-      //               icon={<SvgPlaceholder />}
-      //             >
-      //               Item #{index}
-      //             </MenuItem>
-      //           );
-      //         });
-      //       }}
-      //     >
-      //       <IconButton
-      //         label='More'
-      //         onClick={() => console.log('Clicked on overflow icon')}
-      //       >
-      //         <SvgMore />
-      //       </IconButton>
-      //     </DropdownMenu>
-      //   );
-      // }}
+                return (
+                  <MenuItem
+                    key={index}
+                    onClick={close}
+                    icon={<SvgPlaceholder />}
+                  >
+                    Item #{index}
+                  </MenuItem>
+                );
+              });
+            }}
+          >
+            <IconButton label='More'>
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        );
+      }}
     >
       {items}
     </ButtonGroup>
@@ -176,7 +170,6 @@ export const VerticalOverflow = () => {
     .map((_, index) => (
       <IconButton
         key={index}
-        label={`Item #${index}`}
         onClick={() => console.log(`Clicked on button ${index + 1}`)}
       >
         <SvgPlaceholder />
@@ -186,44 +179,35 @@ export const VerticalOverflow = () => {
   return (
     <ButtonGroup
       orientation='vertical'
-      overflowPlacement='start'
       style={{ height: 'clamp(100px, 40vmax, 80vh)' }}
-      overflowButton={(overflowStart) => {
-        console.log('overflowStart', overflowStart);
-
-        return (
-          <DropdownMenu
-            placement='right-start'
-            menuItems={(close) =>
-              Array(buttons.length - overflowStart + 1)
-                .fill(null)
-                .map((_, _index) => {
-                  const index = overflowStart + _index;
-                  const onClick = () => {
-                    console.log(`Clicked button ${index} (overflow)`);
-                    close();
-                  };
-                  return (
-                    <MenuItem
-                      key={index}
-                      onClick={onClick}
-                      icon={<SvgPlaceholder />}
-                    >
-                      Button #{index}
-                    </MenuItem>
-                  );
-                })
-            }
-          >
-            <IconButton
-              label='More'
-              onClick={() => console.log('Clicked on overflow icon')}
-            >
-              <SvgMore />
-            </IconButton>
-          </DropdownMenu>
-        );
-      }}
+      overflowButton={(overflowStart) => (
+        <DropdownMenu
+          menuItems={(close) =>
+            Array(buttons.length - overflowStart + 1)
+              .fill(null)
+              .map((_, _index) => {
+                const index = overflowStart + _index;
+                const onClick = () => {
+                  console.log(`Clicked button ${index} (overflow)`);
+                  close();
+                };
+                return (
+                  <MenuItem
+                    key={index}
+                    onClick={onClick}
+                    icon={<SvgPlaceholder />}
+                  >
+                    Button #{index}
+                  </MenuItem>
+                );
+              })
+          }
+        >
+          <IconButton onClick={() => console.log('Clicked on overflow icon')}>
+            <SvgMore />
+          </IconButton>
+        </DropdownMenu>
+      )}
     >
       {buttons}
     </ButtonGroup>

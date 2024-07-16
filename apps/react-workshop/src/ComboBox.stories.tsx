@@ -29,11 +29,7 @@ export default {
 } satisfies StoryDefault;
 
 const countriesList = [
-  {
-    label:
-      'Afghanistan awhdbvjabowndb hanwidb habnwidb awbnidb ajwbdhinb awdbnihba bwdbnhinab wbdbnianbw dnbaiwndbk hbnqbnw dbn awndj',
-    value: 'AF',
-  },
+  { label: 'Afghanistan', value: 'AF' },
   { label: 'Åland Islands', value: 'AX' },
   { label: 'Albania', value: 'AL' },
   { label: 'Algeria', value: 'DZ' },
@@ -520,13 +516,8 @@ export const Virtualized = () => {
 export const MultipleSelect = () => {
   const options = React.useMemo(() => countriesList, []);
   const [selectedOptions, setSelectedOptions] = React.useState<string[]>([
+    'CA',
     'AX',
-    'AL',
-    'DZ',
-    'AS',
-    'AD',
-    'AO',
-    'AI',
   ]);
 
   return (
@@ -551,8 +542,6 @@ MultipleSelect.decorators = [
       <div
         style={{
           width: '70vw',
-          // border: '1px solid lightpink',
-          // padding: 8,
           resize: 'inline',
           overflow: 'hidden',
         }}

@@ -150,8 +150,8 @@ CustomOverflowBackButton.decorators = [
       <div
         style={{
           width: 'min(30rem, 100%)',
-          // border: '1px solid lightpink',
-          // padding: 8,
+          border: '1px solid lightpink',
+          padding: 8,
           resize: 'inline',
           overflow: 'hidden',
         }}
@@ -176,38 +176,34 @@ export const CustomOverflowDropdown = () => {
 
   return (
     <Breadcrumbs
-      overflowButton={(visibleCount: number) => {
-        console.log(visibleCount);
-
-        return (
-          <DropdownMenu
-            menuItems={(close) =>
-              Array(items.length - visibleCount)
-                .fill(null)
-                .map((_, _index) => {
-                  const index = visibleCount > 1 ? _index + 1 : _index;
-                  const onClick = () => {
-                    console.log(`Visit breadcrumb ${index}`);
-                    close();
-                  };
-                  return (
-                    <MenuItem key={index} onClick={onClick}>
-                      Item {index}
-                    </MenuItem>
-                  );
-                })
-            }
+      overflowButton={(visibleCount: number) => (
+        <DropdownMenu
+          menuItems={(close) =>
+            Array(items.length - visibleCount)
+              .fill(null)
+              .map((_, _index) => {
+                const index = visibleCount > 1 ? _index + 1 : _index;
+                const onClick = () => {
+                  console.log(`Visit breadcrumb ${index}`);
+                  close();
+                };
+                return (
+                  <MenuItem key={index} onClick={onClick}>
+                    Item {index}
+                  </MenuItem>
+                );
+              })
+          }
+        >
+          <IconButton
+            aria-label='Dropdown with more breadcrumbs'
+            onClick={() => console.log('Clicked on overflow icon')}
+            styleType='borderless'
           >
-            <IconButton
-              aria-label='Dropdown with more breadcrumbs'
-              onClick={() => console.log('Clicked on overflow icon')}
-              styleType='borderless'
-            >
-              <SvgMore />
-            </IconButton>
-          </DropdownMenu>
-        );
-      }}
+            <SvgMore />
+          </IconButton>
+        </DropdownMenu>
+      )}
     >
       {items}
     </Breadcrumbs>
@@ -222,8 +218,8 @@ CustomOverflowDropdown.decorators = [
       <div
         style={{
           width: 'min(30rem, 100%)',
-          // border: '1px solid lightpink',
-          // padding: 8,
+          border: '1px solid lightpink',
+          padding: 8,
           resize: 'inline',
           overflow: 'hidden',
         }}
