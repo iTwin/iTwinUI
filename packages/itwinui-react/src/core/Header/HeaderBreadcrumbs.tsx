@@ -65,3 +65,6 @@ export const HeaderBreadcrumbs = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', HeaderBreadcrumbsProps>;
+if (process.env.NODE_ENV === 'development') {
+  HeaderBreadcrumbs.displayName = 'HeaderBreadcrumbs';
+}

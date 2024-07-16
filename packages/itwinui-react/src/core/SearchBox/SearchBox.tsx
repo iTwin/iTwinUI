@@ -198,7 +198,9 @@ const SearchBoxCollapsedState = ({
 
   return <>{children ?? <SearchBoxExpandButton />}</>;
 };
-SearchBoxCollapsedState.displayName = 'SearchBox.CollapsedState';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxCollapsedState.displayName = 'SearchBox.CollapsedState';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -215,7 +217,9 @@ const SearchBoxExpandedState = ({
 
   return <>{children}</>;
 };
-SearchBoxExpandedState.displayName = 'SearchBox.ExpandedState';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxExpandedState.displayName = 'SearchBox.ExpandedState';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -233,7 +237,9 @@ const SearchBoxIcon = React.forwardRef((props, ref) => {
     </InputFlexContainerIcon>
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
-SearchBoxIcon.displayName = 'SearchBox.Icon';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxIcon.displayName = 'SearchBox.Icon';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -262,7 +268,9 @@ const SearchBoxInput = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'input'>;
-SearchBoxInput.displayName = 'SearchBox.Input';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxInput.displayName = 'SearchBox.Input';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -281,7 +289,9 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
     </InputFlexContainerButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
-SearchBoxButton.displayName = 'SearchBox.Button';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxButton.displayName = 'SearchBox.Button';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -307,7 +317,9 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
     </SearchBoxButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
-SearchBoxCollapseButton.displayName = 'SearchBox.CollapseButton';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxCollapseButton.displayName = 'SearchBox.CollapseButton';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -335,7 +347,9 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
     </SearchBoxButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
-SearchBoxExpandButton.displayName = 'SearchBox.ExpandButton';
+if (process.env.NODE_ENV === 'development') {
+  SearchBoxExpandButton.displayName = 'SearchBox.ExpandButton';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -390,4 +404,6 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
   CollapsedState: SearchBoxCollapsedState,
 });
 
-SearchBox.displayName = 'SearchBox';
+if (process.env.NODE_ENV === 'development') {
+  SearchBox.displayName = 'SearchBox';
+}

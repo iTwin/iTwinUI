@@ -202,6 +202,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
+if (process.env.NODE_ENV === 'development') {
+  MenuItem.displayName = 'MenuItem';
+}
 
 // ----------------------------------------------------------------------------
 

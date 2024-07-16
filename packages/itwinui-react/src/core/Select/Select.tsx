@@ -107,6 +107,9 @@ export const Select = React.forwardRef((props, forwardedRef) => {
 }) as <T>(
   props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
+if (process.env.NODE_ENV === 'development') {
+  (Select as any).displayName = 'Select';
+}
 
 export type SelectProps<T> = Omit<
   React.ComponentPropsWithoutRef<'div'>,

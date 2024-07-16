@@ -29,3 +29,6 @@ export const RadioTileGroup = React.forwardRef((props, forwardedRef) => {
     </InputGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', RadioTileGroupProps>;
+if (process.env.NODE_ENV === 'development') {
+  RadioTileGroup.displayName = 'RadioTileGroup';
+}

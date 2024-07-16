@@ -160,3 +160,6 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ColorPickerProps>;
+if (process.env.NODE_ENV === 'development') {
+  ColorPicker.displayName = 'ColorPicker';
+}

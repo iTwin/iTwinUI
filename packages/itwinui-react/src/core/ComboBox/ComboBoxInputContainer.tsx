@@ -47,4 +47,6 @@ export const ComboBoxInputContainer = React.forwardRef(
     );
   },
 ) as PolymorphicForwardRefComponent<'div', ComboBoxInputContainerProps>;
-ComboBoxInputContainer.displayName = 'ComboBoxInputContainer';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxInputContainer.displayName = 'ComboBoxInputContainer';
+}

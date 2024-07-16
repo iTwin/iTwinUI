@@ -41,3 +41,6 @@ export const CarouselContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  CarouselContext.displayName = 'CarouselContext';
+}

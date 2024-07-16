@@ -152,7 +152,9 @@ const toastReducer = (state: ToasterState, action: ToasterAction) => {
 export const ToasterStateContext = React.createContext<
   ToasterState | undefined
 >(undefined);
-ToasterStateContext.displayName = 'ToasterStateContext';
+if (process.env.NODE_ENV === 'development') {
+  ToasterStateContext.displayName = 'ToasterStateContext';
+}
 
 type ToasterState = { toasts: ToastProps[]; settings: ToasterSettings };
 
@@ -161,7 +163,9 @@ type ToasterState = { toasts: ToastProps[]; settings: ToasterSettings };
 const ToasterDispatchContext = React.createContext<
   React.Dispatch<ToasterAction> | undefined
 >(undefined);
-ToasterDispatchContext.displayName = 'ToasterDispatchContext';
+if (process.env.NODE_ENV === 'development') {
+  ToasterDispatchContext.displayName = 'ToasterDispatchContext';
+}
 
 type ToasterAction =
   | { type: 'add'; toast: ToastProps }

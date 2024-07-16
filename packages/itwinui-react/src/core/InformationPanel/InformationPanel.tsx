@@ -136,3 +136,6 @@ export const InformationPanel = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', InformationPanelProps>;
+if (process.env.NODE_ENV === 'development') {
+  InformationPanel.displayName = 'InformationPanel';
+}

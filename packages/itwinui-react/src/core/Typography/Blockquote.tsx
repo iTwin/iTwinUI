@@ -37,3 +37,6 @@ export const Blockquote = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'blockquote', BlockquoteProps>;
+if (process.env.NODE_ENV === 'development') {
+  Blockquote.displayName = 'Blockquote';
+}

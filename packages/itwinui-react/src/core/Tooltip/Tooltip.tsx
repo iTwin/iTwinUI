@@ -339,3 +339,6 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
+if (process.env.NODE_ENV === 'development') {
+  Tooltip.displayName = 'Tooltip';
+}

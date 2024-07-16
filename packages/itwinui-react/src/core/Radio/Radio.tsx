@@ -89,3 +89,6 @@ export const Radio = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', RadioProps>;
+if (process.env.NODE_ENV === 'development') {
+  Radio.displayName = 'Radio';
+}
