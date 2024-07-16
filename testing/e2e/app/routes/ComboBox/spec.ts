@@ -39,7 +39,7 @@ test.describe('ComboBox', () => {
     });
 
     await setContainerSize('10px');
-    await page.waitForTimeout(30);
+    await page.waitForTimeout(60);
 
     await expectOverflowState({
       expectedItemLength: 1,
