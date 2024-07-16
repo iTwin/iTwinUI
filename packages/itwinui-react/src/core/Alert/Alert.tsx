@@ -75,7 +75,9 @@ const AlertComponent = React.forwardRef((props, forwardedRef) => {
     </Alert.Wrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps & AlertLegacyProps>;
-AlertComponent.displayName = 'Alert';
+if (process.env.NODE_ENV === 'development') {
+  AlertComponent.displayName = 'Alert';
+}
 
 // ----------------------------------------------------------------------------
 // Alert.Wrapper component
@@ -101,7 +103,9 @@ const AlertWrapper = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
-AlertWrapper.displayName = 'Alert.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  AlertWrapper.displayName = 'Alert.Wrapper';
+}
 
 // ----------------------------------------------------------------------------
 // Alert.Icon component
@@ -119,13 +123,17 @@ const AlertIcon = React.forwardRef((props, ref) => {
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Icon>>;
-AlertIcon.displayName = 'Alert.Icon';
+if (process.env.NODE_ENV === 'development') {
+  AlertIcon.displayName = 'Alert.Icon';
+}
 
 // ----------------------------------------------------------------------------
 // Alert.Message component
 
 const AlertMessage = polymorphic.span('iui-alert-message');
-AlertMessage.displayName = 'Alert.Message';
+if (process.env.NODE_ENV === 'development') {
+  AlertMessage.displayName = 'Alert.Message';
+}
 
 // ----------------------------------------------------------------------------
 // Alert.Action component
@@ -147,7 +155,9 @@ const AlertAction = React.forwardRef((props, ref) => {
     </Anchor>
   );
 }) as PolymorphicForwardRefComponent<'a'>;
-AlertAction.displayName = 'Alert.Action';
+if (process.env.NODE_ENV === 'development') {
+  AlertAction.displayName = 'Alert.Action';
+}
 
 // ----------------------------------------------------------------------------
 // Alert.CloseButton component
@@ -167,7 +177,9 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
     </IconButton>
   );
 }) as PolymorphicForwardRefComponent<'button'>;
-AlertCloseButton.displayName = 'Alert.CloseButton';
+if (process.env.NODE_ENV === 'development') {
+  AlertCloseButton.displayName = 'Alert.CloseButton';
+}
 
 /**
  * A small box to quickly grab user attention and communicate a brief message
