@@ -19,6 +19,27 @@ export default function Resizing() {
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
   const selectSubRows = !(searchParams.get('selectSubRows') === 'false');
+  const enableVirtualization = searchParams.get('virtualization') === 'true';
+  const empty = searchParams.get('empty') === 'true';
+  const scroll = searchParams.get('scroll') === 'true';
+  const oneRow = searchParams.get('oneRow') === 'true';
+  const scrollRow = Number(searchParams.get('scrollRow'));
+
+  const virtualizedData = React.useMemo(() => {
+    const size = oneRow ? 1 : 100000;
+    const arr = new Array(size);
+    if (!empty) {
+      for (let i = 0; i < size; ++i) {
+        arr[i] = {
+          index: i,
+          name: `Name${i}`,
+          description: `Description${i}`,
+          id: i,
+        };
+      }
+    }
+    return arr;
+  }, [oneRow, empty]);
 
   const Default = () => {
     const data = subRows
@@ -129,7 +150,7 @@ export default function Resizing() {
                 width: '8rem',
               },
             ]}
-            data={data}
+            data={enableVirtualization ? virtualizedData : data}
             emptyTableContent='No data.'
             isResizable
             isRowDisabled={isRowDisabled}
@@ -137,6 +158,14 @@ export default function Resizing() {
             isSortable
             columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
             selectSubRows={selectSubRows}
+            enableVirtualization={enableVirtualization}
+            style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
+            scrollToRow={
+              scroll
+                ? (rows, data) =>
+                    rows.findIndex((row) => row.original === data[scrollRow])
+                : undefined
+            }
           />
         </div>
       </>

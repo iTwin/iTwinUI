@@ -1,23 +1,20 @@
 import { ComboBox } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
 
-export default function BreadcrumbsTest() {
+export default function ComboBoxTest() {
   const [searchParams] = useSearchParams();
 
+  const virtualization = searchParams.get('virtualization') === 'true';
+
   const options = [
-    ...Array(9)
-      .fill(null)
-      .map((_, index) => {
-        return {
-          label: `option ${index}`,
-          value: index,
-        };
-      }),
-    {
-      label: 'Very long option',
-      value: 9,
-    },
+    { label: 'Item 0', value: 0 },
+    { label: 'Item 1', value: 1, subLabel: 'sub label' },
+    { label: 'Item 2', value: 2 },
+    { label: 'Item 3', value: 3 },
+    { label: 'Item 4', value: 4 },
+    { label: 'Item 10', value: 10 },
+    { label: 'Item 11', value: 11 },
+    { label: 'Very long option', value: 9 },
   ];
 
   const valueSearchParam = searchParams.get('value');
@@ -27,15 +24,13 @@ export default function BreadcrumbsTest() {
       : options.map((option) => option.value);
 
   return (
-    <>
-      <div id='container' style={{ overflow: 'hidden' }}>
-        <ComboBox
-          options={options}
-          value={value}
-          defaultValue={options.map((option) => option.value)}
-          multiple
-        />
-      </div>
-    </>
+    <div id='container' style={{ overflow: 'hidden' }}>
+      <ComboBox
+        options={options}
+        id='test-component'
+        value={value}
+        enableVirtualization={virtualization}
+      />
+    </div>
   );
 }
