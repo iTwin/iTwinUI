@@ -67,7 +67,9 @@ const FlexComponent = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', FlexOwnProps>;
-FlexComponent.displayName = 'Flex';
+if (process.env.NODE_ENV === 'development') {
+  FlexComponent.displayName = 'Flex';
+}
 
 type FlexOwnProps = {
   /**
@@ -125,7 +127,9 @@ const FlexSpacer = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', FlexSpacerOwnProps>;
-FlexSpacer.displayName = 'Flex.Spacer';
+if (process.env.NODE_ENV === 'development') {
+  FlexSpacer.displayName = 'Flex.Spacer';
+}
 
 type FlexSpacerOwnProps = {
   /**
@@ -169,7 +173,9 @@ const FlexItem = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', FlexItemOwnProps>;
-FlexItem.displayName = 'Flex.Item';
+if (process.env.NODE_ENV === 'development') {
+  FlexItem.displayName = 'Flex.Item';
+}
 
 type FlexItemOwnProps = {
   /**

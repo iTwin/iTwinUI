@@ -15,4 +15,6 @@ export const ComboBoxMultipleContainer = React.forwardRef((props, ref) => {
   return <SelectTagContainer ref={ref} tags={selectedItems} {...rest} />;
 }) as PolymorphicForwardRefComponent<'div', ComboBoxMultipleContainerProps>;
 
-ComboBoxMultipleContainer.displayName = 'ComboBoxMultipleContainer';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxMultipleContainer.displayName = 'ComboBoxMultipleContainer';
+}

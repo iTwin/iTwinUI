@@ -14,11 +14,17 @@ import { FileUploadCard } from './FileUploadCard.js';
 const FileEmptyCardIcon = polymorphic.span('iui-file-card-empty-icon', {
   children: <SvgUpload />,
 });
+if (process.env.NODE_ENV === 'development') {
+  FileEmptyCardIcon.displayName = 'FileEmptyCard.Icon';
+}
 
 // ----------------------------------------------------------------------------
 // FileEmptyCard.Text component
 
 const FileEmptyCardText = polymorphic.span('iui-file-card-empty-action');
+if (process.env.NODE_ENV === 'development') {
+  FileEmptyCardText.displayName = 'FileEmptyCard.Text';
+}
 
 // ----------------------------------------------------------------------------
 // FileEmptyCard component
@@ -40,6 +46,9 @@ const FileEmptyCardComponent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+if (process.env.NODE_ENV === 'development') {
+  FileEmptyCardComponent.displayName = 'FileEmptyCard';
+}
 
 /**
  * Empty file card to be used with the `FileUploadCard` component when no file has been uploaded.

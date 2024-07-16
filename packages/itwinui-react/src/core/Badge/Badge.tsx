@@ -92,3 +92,6 @@ export const Badge = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', BadgeProps>;
+if (process.env.NODE_ENV === 'development') {
+  Badge.displayName = 'Badge';
+}

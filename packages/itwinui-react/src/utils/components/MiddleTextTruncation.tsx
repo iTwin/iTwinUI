@@ -75,3 +75,6 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
     </span>
   );
 };
+if (process.env.NODE_ENV === 'development') {
+  MiddleTextTruncation.displayName = 'MiddleTextTruncation';
+}

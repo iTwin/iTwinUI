@@ -61,7 +61,9 @@ const TileContext = React.createContext<
     }
   | undefined
 >(undefined);
-TileContext.displayName = 'TileContext';
+if (process.env.NODE_ENV === 'development') {
+  TileContext.displayName = 'TileContext';
+}
 
 // ----------------------------------------------------------------------------
 // Main Tile component
@@ -148,7 +150,9 @@ const TileWrapper = React.forwardRef((props, forwardedRef) => {
     </TileContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TileWrapperOwnProps>;
-TileWrapper.displayName = 'Tile.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  TileWrapper.displayName = 'Tile.Wrapper';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.Action component
@@ -175,13 +179,17 @@ const TileAction = React.forwardRef((props, forwardedRef) => {
     </LinkAction>
   );
 }) as PolymorphicForwardRefComponent<'a'>;
-TileAction.displayName = 'Tile.Action';
+if (process.env.NODE_ENV === 'development') {
+  TileAction.displayName = 'Tile.Action';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
 
 const TileThumbnailArea = polymorphic('iui-tile-thumbnail');
-TileThumbnailArea.displayName = 'Tile.ThumbnailArea';
+if (process.env.NODE_ENV === 'development') {
+  TileThumbnailArea.displayName = 'Tile.ThumbnailArea';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailPicture component
@@ -219,19 +227,25 @@ const TileThumbnailPicture = React.forwardRef((props, forwardedRef) => {
   );
 }) as PolymorphicForwardRefComponent<'div', TileThumbnailPictureOwnProps>;
 
-TileThumbnailPicture.displayName = 'Tile.TileThumbnailPicture';
+if (process.env.NODE_ENV === 'development') {
+  TileThumbnailPicture.displayName = 'Tile.TileThumbnailPicture';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
 
 const TileQuickAction = polymorphic('iui-tile-thumbnail-quick-action');
-TileQuickAction.displayName = 'Tile.QuickAction';
+if (process.env.NODE_ENV === 'development') {
+  TileQuickAction.displayName = 'Tile.QuickAction';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.TypeIndicator component
 
 const TileTypeIndicator = polymorphic('iui-tile-thumbnail-type-indicator');
-TileTypeIndicator.displayName = 'Tile.TypeIndicator';
+if (process.env.NODE_ENV === 'development') {
+  TileTypeIndicator.displayName = 'Tile.TypeIndicator';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.IconButton component
@@ -253,13 +267,17 @@ const TileIconButton = React.forwardRef((props, forwardedRef) => {
   'button',
   React.ComponentPropsWithoutRef<typeof IconButton>
 >;
-TileIconButton.displayName = 'Tile.IconButton';
+if (process.env.NODE_ENV === 'development') {
+  TileIconButton.displayName = 'Tile.IconButton';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.BadgeContainer component
 
 const TileBadgeContainer = polymorphic('iui-tile-thumbnail-badge-container');
-TileBadgeContainer.displayName = 'Tile.BadgeContainer';
+if (process.env.NODE_ENV === 'development') {
+  TileBadgeContainer.displayName = 'Tile.BadgeContainer';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.Name component
@@ -279,7 +297,9 @@ const TileName = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
-TileBadgeContainer.displayName = 'Tile.Name';
+if (process.env.NODE_ENV === 'development') {
+  TileBadgeContainer.displayName = 'Tile.Name';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.NameIcon component
@@ -314,31 +334,41 @@ const TileNameIcon = React.forwardRef((props, forwardedRef) => {
     </Box>
   ) : null;
 }) as PolymorphicForwardRefComponent<'div'>;
-TileNameIcon.displayName = 'Tile.NameIcon';
+if (process.env.NODE_ENV === 'development') {
+  TileNameIcon.displayName = 'Tile.NameIcon';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.NameLabel component
 
 const TileNameLabel = polymorphic.span('iui-tile-name-label');
-TileNameLabel.displayName = 'Tile.NameLabel';
+if (process.env.NODE_ENV === 'development') {
+  TileNameLabel.displayName = 'Tile.NameLabel';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
 
 const TileContentArea = polymorphic('iui-tile-content');
-TileContentArea.displayName = 'Tile.ContentArea';
+if (process.env.NODE_ENV === 'development') {
+  TileContentArea.displayName = 'Tile.ContentArea';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.Description component
 
 const TileDescription = polymorphic('iui-tile-description');
-TileDescription.displayName = 'Tile.Description';
+if (process.env.NODE_ENV === 'development') {
+  TileDescription.displayName = 'Tile.Description';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.Metadata component
 
 const TileMetadata = polymorphic('iui-tile-metadata');
-TileMetadata.displayName = 'Tile.Metadata';
+if (process.env.NODE_ENV === 'development') {
+  TileMetadata.displayName = 'Tile.Metadata';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
@@ -388,13 +418,17 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
-TileMoreOptions.displayName = 'Tile.MoreOptions';
+if (process.env.NODE_ENV === 'development') {
+  TileMoreOptions.displayName = 'Tile.MoreOptions';
+}
 
 // ----------------------------------------------------------------------------
 // Tile.Buttons component
 
 const TileButtons = polymorphic('iui-tile-buttons');
-TileButtons.displayName = 'Tile.Buttons';
+if (process.env.NODE_ENV === 'development') {
+  TileButtons.displayName = 'Tile.Buttons';
+}
 
 // ----------------------------------------------------------------------------
 type TileLegacyProps = {
@@ -576,7 +610,9 @@ const TileComponent = React.forwardRef((props, forwardedRef) => {
     </TileWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', TileLegacyProps>;
-TileComponent.displayName = 'Tile';
+if (process.env.NODE_ENV === 'development') {
+  TileComponent.displayName = 'Tile';
+}
 
 /**
  * Tile with customizable Thumbnail, Name, Content and Buttons subcomponents

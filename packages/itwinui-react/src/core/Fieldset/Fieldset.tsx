@@ -48,3 +48,6 @@ export const Fieldset = React.forwardRef((props, ref) => {
     </FieldsetBase>
   );
 }) as PolymorphicForwardRefComponent<'fieldset', FieldsetProps>;
+if (process.env.NODE_ENV === 'development') {
+  Fieldset.displayName = 'Fieldset';
+}

@@ -65,3 +65,6 @@ export const SidenavButton = React.forwardRef((props, ref) => {
     sidenavButton
   );
 }) as PolymorphicForwardRefComponent<'button', SidenavButtonProps>;
+if (process.env.NODE_ENV === 'development') {
+  SidenavButton.displayName = 'SidenavButton';
+}

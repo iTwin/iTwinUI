@@ -85,3 +85,6 @@ export const FileUploadTemplate = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', FileUploadTemplateProps>;
+if (process.env.NODE_ENV === 'development') {
+  FileUploadTemplate.displayName = 'FileUploadTemplate';
+}

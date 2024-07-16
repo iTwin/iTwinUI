@@ -79,4 +79,6 @@ export const ComboBoxMenuItem = React.memo(
     );
   }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuItemProps>,
 );
-ComboBoxMenuItem.displayName = 'ComboBoxMenuItem';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxMenuItem.displayName = 'ComboBoxMenuItem';
+}

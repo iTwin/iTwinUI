@@ -8,3 +8,6 @@ import { DialogButtonBar } from '../Dialog/DialogButtonBar.js';
  * Container for Buttons in modal.
  */
 export const ModalButtonBar = Object.assign({}, DialogButtonBar);
+if (process.env.NODE_ENV === 'development') {
+  ModalButtonBar.displayName = 'ModalButtonBar';
+}

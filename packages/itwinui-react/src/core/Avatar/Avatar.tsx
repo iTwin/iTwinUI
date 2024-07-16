@@ -113,3 +113,6 @@ export const Avatar = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', AvatarProps>;
+if (process.env.NODE_ENV === 'development') {
+  Avatar.displayName = 'Avatar';
+}
