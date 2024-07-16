@@ -7,7 +7,7 @@ export default function ButtonGroupTest() {
   const [searchParams] = useSearchParams();
 
   const initialProvideOverflowButton =
-    (searchParams.get('provideOverflowButton') ?? 'true') !== 'false';
+    searchParams.get('provideOverflowButton') !== 'false';
   const orientation =
     (searchParams.get('orientation') as 'horizontal' | 'vertical') ||
     'horizontal';
@@ -24,8 +24,7 @@ export default function ButtonGroupTest() {
         data-testid='toggle-provide-overflow-container'
         onClick={() => setProvideOverflowButton((prev) => !prev)}
       >
-        Toggle provide overflow container (current ={' '}
-        {`${provideOverflowButton}`})
+        {`Toggle provide overflow container (current =${provideOverflowButton})`}
       </Button>
 
       <div id='container'>

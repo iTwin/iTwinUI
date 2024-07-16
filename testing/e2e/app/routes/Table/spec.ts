@@ -379,9 +379,79 @@ test.describe('Table row selection', () => {
 });
 
 test.describe('Table Paginator', () => {
+  test(`should overflow whenever there is not enough space`, async ({
+    page,
+  }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    const expectOverflowState = getExpectOverflowState(page);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize('750px');
+
+    await expectOverflowState({
+      expectedItemLength: 6,
+      expectedOverflowingEllipsisVisibleCount: 1,
+    });
+
+    // should restore hidden items when space is available again
+    await setContainerSize(undefined);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
+
+  test(`should at minimum always show one page`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    const expectOverflowState = getExpectOverflowState(page);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize('10px');
+
+    await expectOverflowState({
+      expectedItemLength: 1,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
+
+  test(`should show first and last page when on a middle page`, async ({
+    page,
+  }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    const expectOverflowState = getExpectOverflowState(page);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize('10px');
+
+    await expectOverflowState({
+      expectedItemLength: 1,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
+
+  //#region Helpers for table paginator tests
   const getSetContainerSize = (page: Page) => {
     return async (dimension: string | undefined) => {
-      await page.locator('[role="table"]').evaluate(
+      await page.locator('#container').evaluate(
         (element, args) => {
           if (args.dimension != null) {
             element.style.setProperty(
@@ -396,6 +466,7 @@ test.describe('Table Paginator', () => {
           dimension,
         },
       );
+      await page.waitForTimeout(30);
     };
   };
 
@@ -420,85 +491,7 @@ test.describe('Table Paginator', () => {
       );
     };
   };
-
-  test(`should overflow whenever there is not enough space`, async ({
-    page,
-  }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-
-    await setContainerSize('750px');
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 6,
-      expectedOverflowingEllipsisVisibleCount: 1,
-    });
-
-    // should restore hidden items when space is available again
-    await setContainerSize(undefined);
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-  });
-
-  test(`should at minimum always show one page`, async ({ page }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-
-    await setContainerSize('10px');
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-  });
-
-  test(`should show first and last page when on a middle page`, async ({
-    page,
-  }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-
-    await setContainerSize('10px');
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-  });
+  //#endregion
 });
 
 test.describe('Virtual Scroll Tests', () => {

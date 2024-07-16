@@ -17,7 +17,6 @@ test.describe('Select', () => {
     });
 
     await setContainerSize('600px');
-    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 6,
@@ -39,7 +38,6 @@ test.describe('Select', () => {
     });
 
     await setContainerSize('10px');
-    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,
@@ -63,7 +61,6 @@ test.describe('Select', () => {
     });
 
     await setContainerSize('160px');
-    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedItemLength: 1,
@@ -86,6 +83,7 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
+    await page.waitForTimeout(30);
   };
 };
 

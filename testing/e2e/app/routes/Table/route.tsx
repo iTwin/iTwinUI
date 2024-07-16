@@ -121,53 +121,51 @@ export default function Resizing() {
 
     return (
       <>
-        <div id='root'>
-          <Table
-            columns={[
-              {
-                Header: '#',
-                accessor: 'index',
-                width: 100,
-                maxWidth: parseInt(maxWidths[0]) || undefined,
-                minWidth: parseInt(minWidths[0]) || undefined,
-              },
-              {
-                Header: 'Name',
-                accessor: 'name',
-                maxWidth: parseInt(maxWidths[1]) || undefined,
-                minWidth: parseInt(minWidths[1]) || undefined,
-                disableResizing,
-                Filter: filter ? tableFilters.TextFilter() : undefined,
-              },
-              {
-                Header: 'Description',
-                accessor: 'description',
-                width: '200px',
-              },
-              {
-                Header: 'ID',
-                accessor: 'id',
-                width: '8rem',
-              },
-            ]}
-            data={enableVirtualization ? virtualizedData : data}
-            emptyTableContent='No data.'
-            isResizable
-            isRowDisabled={isRowDisabled}
-            isSelectable={isSelectable}
-            isSortable
-            columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
-            selectSubRows={selectSubRows}
-            enableVirtualization={enableVirtualization}
-            style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
-            scrollToRow={
-              scroll
-                ? (rows, data) =>
-                    rows.findIndex((row) => row.original === data[scrollRow])
-                : undefined
-            }
-          />
-        </div>
+        <Table
+          columns={[
+            {
+              Header: '#',
+              accessor: 'index',
+              width: 100,
+              maxWidth: parseInt(maxWidths[0]) || undefined,
+              minWidth: parseInt(minWidths[0]) || undefined,
+            },
+            {
+              Header: 'Name',
+              accessor: 'name',
+              maxWidth: parseInt(maxWidths[1]) || undefined,
+              minWidth: parseInt(minWidths[1]) || undefined,
+              disableResizing,
+              Filter: filter ? tableFilters.TextFilter() : undefined,
+            },
+            {
+              Header: 'Description',
+              accessor: 'description',
+              width: '200px',
+            },
+            {
+              Header: 'ID',
+              accessor: 'id',
+              width: '8rem',
+            },
+          ]}
+          data={enableVirtualization ? virtualizedData : data}
+          emptyTableContent='No data.'
+          isResizable
+          isRowDisabled={isRowDisabled}
+          isSelectable={isSelectable}
+          isSortable
+          columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
+          selectSubRows={selectSubRows}
+          enableVirtualization={enableVirtualization}
+          style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
+          scrollToRow={
+            scroll
+              ? (rows, data) =>
+                  rows.findIndex((row) => row.original === data[scrollRow])
+              : undefined
+          }
+        />
       </>
     );
   };
@@ -192,35 +190,15 @@ export default function Resizing() {
       [],
     );
 
-    type TableDataType = {
-      name: string;
-      description: string;
-      subRows: TableDataType[];
-    };
-
-    const generateItem = React.useCallback(
-      (index: number, parentRow = '', depth = 0): TableDataType => {
-        const keyValue = parentRow ? `${parentRow}.${index}` : `${index}`;
-        return {
-          name: `Name ${keyValue}`,
-          description: `Description ${keyValue}`,
-          subRows:
-            depth < 2
-              ? Array(Math.round(index % 5))
-                  .fill(null)
-                  .map((_, index) => generateItem(index, keyValue, depth + 1))
-              : [],
-        };
-      },
-      [],
-    );
-
     const data = React.useMemo(
       () =>
         Array(505)
           .fill(null)
-          .map((_, index) => generateItem(index)),
-      [generateItem],
+          .map((_, index) => ({
+            name: `Name ${index}`,
+            description: `Description ${index}`,
+          })),
+      [],
     );
 
     const paginator = React.useCallback(
@@ -232,17 +210,15 @@ export default function Resizing() {
 
     return (
       <>
-        <Table
-          emptyTableContent='No data.'
-          isSelectable
-          isSortable
-          // isLoading
-          columns={columns}
-          data={data}
-          pageSize={50}
-          paginatorRenderer={paginator}
-          style={{ height: '100%', resize: 'inline', overflow: 'hidden' }}
-        />
+        <div id='container'>
+          <Table
+            emptyTableContent='No data.'
+            columns={columns}
+            data={data}
+            pageSize={50}
+            paginatorRenderer={paginator}
+          />
+        </div>
       </>
     );
   };

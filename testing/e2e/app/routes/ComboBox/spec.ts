@@ -191,38 +191,33 @@ test.describe('ComboBox', () => {
     test(`should overflow whenever there is not enough space`, async ({
       page,
     }) => {
-      await page.goto(`/ComboBox`);
+      await page.goto(`/ComboBox?multiple=true&value=all`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
 
-      await page.waitForTimeout(30);
-
       await expectOverflowState({
-        expectedItemLength: 10,
-        expectedLastTagTextContent: 'Very long option',
+        expectedItemLength: 7,
+        expectedLastTagTextContent: 'Item 11',
       });
 
-      await setContainerSize('600px');
-      await page.waitForTimeout(30);
+      await setContainerSize('500px');
 
       await expectOverflowState({
-        expectedItemLength: 5,
-        expectedLastTagTextContent: '+6 item(s)',
+        expectedItemLength: 4,
+        expectedLastTagTextContent: '+4 item(s)',
       });
     });
 
     test(`should at minimum always show one overflow tag`, async ({ page }) => {
-      await page.goto(`/ComboBox`);
+      await page.goto(`/ComboBox?multiple=true&value=all`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
 
-      await page.waitForTimeout(30);
-
       await expectOverflowState({
-        expectedItemLength: 10,
-        expectedLastTagTextContent: 'Very long option',
+        expectedItemLength: 7,
+        expectedLastTagTextContent: 'Item 11',
       });
 
       await setContainerSize('10px');
@@ -230,31 +225,28 @@ test.describe('ComboBox', () => {
 
       await expectOverflowState({
         expectedItemLength: 1,
-        expectedLastTagTextContent: '+10 item(s)',
+        expectedLastTagTextContent: '+7 item(s)',
       });
     });
 
     test(`should always show the selected tag and no overflow tag when only one item is selected`, async ({
       page,
     }) => {
-      await page.goto(`/ComboBox?value=[9]`);
+      await page.goto(`/ComboBox?multiple=true&value=[11]`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
 
-      await page.waitForTimeout(30);
-
       await expectOverflowState({
         expectedItemLength: 1,
-        expectedLastTagTextContent: 'Very long option',
+        expectedLastTagTextContent: 'Item 11',
       });
 
-      await setContainerSize('80px');
-      await page.waitForTimeout(30);
+      await setContainerSize('50px');
 
       await expectOverflowState({
         expectedItemLength: 1,
-        expectedLastTagTextContent: 'Very long option',
+        expectedLastTagTextContent: 'Item 11',
       });
     });
   });
@@ -264,7 +256,7 @@ test.describe('ComboBox', () => {
 
 const getSetContainerSize = (page: Page) => {
   return async (dimension: string | undefined) => {
-    await page.locator('#container').evaluate(
+    await page.getByTestId('container').evaluate(
       (element, args) => {
         if (args.dimension != null) {
           element.style.setProperty('width', args.dimension);
@@ -274,6 +266,7 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
+    await page.waitForTimeout(30);
   };
 };
 

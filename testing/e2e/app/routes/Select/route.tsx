@@ -1,6 +1,5 @@
 import { Select } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
 
 export default function BreadcrumbsTest() {
   const [searchParams] = useSearchParams();
@@ -28,7 +27,7 @@ export default function BreadcrumbsTest() {
 
   return (
     <>
-      <div id='container' style={{ overflow: 'hidden' }}>
+      <div id='container'>
         <Select
           options={options}
           value={value}

@@ -100,7 +100,6 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(2.5);
-      await page.waitForTimeout(30); // TODO: Try removing all timeouts
 
       await expectOverflowState({
         expectedButtonLength: 2,
@@ -108,7 +107,6 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(1.5);
-      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 1,
@@ -117,7 +115,6 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(0.5);
-      await page.waitForTimeout(30);
 
       // should return 1 overflowTag when item is bigger than the container
       await expectOverflowState({
@@ -126,11 +123,8 @@ test.describe('ButtonGroup', () => {
           overflowPlacement === 'end' ? 0 : 2,
       });
 
-      await page.waitForTimeout(30);
-
       // should restore hidden items when space is available again
       await setContainerSize(1.5);
-      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 1,
@@ -139,7 +133,6 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(2.5);
-      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 2,
@@ -147,14 +140,11 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(undefined);
-      await page.waitForTimeout(30);
 
       await expectOverflowState({
         expectedButtonLength: 3,
         expectedOverflowTagFirstOverflowingIndex: undefined,
       });
-
-      await page.waitForTimeout(30);
     });
   });
 
@@ -172,7 +162,6 @@ test.describe('ButtonGroup', () => {
     });
 
     await setContainerSize(2.5);
-    await page.waitForTimeout(30);
 
     await expectOverflowState({
       expectedButtonLength: 3,
@@ -222,6 +211,7 @@ const getSetContainerSize = (
       },
       { orientation, multiplier },
     );
+    await page.waitForTimeout(30);
   };
 };
 
@@ -237,16 +227,16 @@ const getExpectOverflowState = (
     expectedOverflowTagFirstOverflowingIndex: number | undefined;
   }) => {
     const buttons = await page.locator('#container button').all();
-    expect(buttons.length).toBe(expectedButtonLength);
+    await expect(buttons.length).toBe(expectedButtonLength);
 
     if (expectedOverflowTagFirstOverflowingIndex != null) {
-      expect(
+      await expect(
         await buttons[
           overflowPlacement === 'end' ? buttons.length - 1 : 0
         ].textContent(),
       ).toBe(`${expectedOverflowTagFirstOverflowingIndex}`);
     } else {
-      expect(page.getByTestId('overflow-button')).toHaveCount(0);
+      await expect(page.getByTestId('overflow-button')).toHaveCount(0);
     }
   };
 };
