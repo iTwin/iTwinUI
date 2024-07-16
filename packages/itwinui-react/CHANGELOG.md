@@ -1,5 +1,37 @@
 # Changelog
 
+## 3.13.0
+
+### Minor Changes
+
+- [#2061](https://github.com/iTwin/iTwinUI/pull/2061): Updates `ComboBox` virtualization to support dynamic sizing. This change fixes an issue where having options both with and without `subLabel` values would cause `ComboBox` components with virtualization enabled to be sized incorrectly.
+- [#2131](https://github.com/iTwin/iTwinUI/pull/2131): DEV-only warnings will now only be properly excluded from the PROD bundle. This is done using a separate `"development"` entrypoint listed in `package.json#exports`.
+- [#2106](https://github.com/iTwin/iTwinUI/pull/2106): All internal CSS class prefixes have been changed to prevent style conflicts across minor versions. While this is not considered a breaking change according to our [support policy](https://github.com/iTwin/iTwinUI/wiki/Support-policy), this change might affect you if you ignore our pleas to not rely on these internal class names. The recommendation is to pass your own custom `className` through props.
+- [#2139](https://github.com/iTwin/iTwinUI/pull/2139): Replaced old virtualization implementation with `@tanstack/react-virtual` for the `Tree` component. Also adds `overflow: 'auto'` to the style of the outer `Tree` div when the `Tree` is virtualized, removing the need for a wrapping scrollable element.
+
+  ```diff
+  - <div style={{overflow: 'auto', height: 'min(400px, 90vh)'}}>
+      <Tree
+        enableVirtualization
+  +     style={{height: 'min(400px, 90vh)'}}
+      />
+  - </div>
+  ```
+
+- [#2135](https://github.com/iTwin/iTwinUI/pull/2135): Changed the column manager from a `DropdownMenu` to a `Popover` to fix invalid markup and accessibility issues.
+- [#2092](https://github.com/iTwin/iTwinUI/pull/2092): Replaced old virtualization implementation with `@tanstack/react-virtual` for the `Table` component. This change also fixed some issues with `Table` virtualization, including the issue where scrolling would jump when rows are scrolled past in some cases.
+- [#2061](https://github.com/iTwin/iTwinUI/pull/2061): Added dependency on `@tanstack/react-virtual`.
+
+### Patch Changes
+
+- [#2137](https://github.com/iTwin/iTwinUI/pull/2137): Development-only warnings will now be displayed when multiple versions of iTwinUI are detected.
+- [#2145](https://github.com/iTwin/iTwinUI/pull/2145): Fixed an issue where the `Overlay` component was causing bundler warnings about a non-analyzable expression used in a dependency.
+- [#2135](https://github.com/iTwin/iTwinUI/pull/2135): The `Table` column manager button's open state no longer has the `Button`'s blue active color.
+- [#2141](https://github.com/iTwin/iTwinUI/pull/2141): Component `displayName`s have been eliminiated from the prod build.
+- [#2142](https://github.com/iTwin/iTwinUI/pull/2142): Added `displayName`s to all components that were previously missing them.
+- [#2135](https://github.com/iTwin/iTwinUI/pull/2135): `ActionColumn`'s `dropdownMenuProps` no longer exposes the unnecessary `matchWidth` prop.
+- [#2139](https://github.com/iTwin/iTwinUI/pull/2139): Added `overflow: auto` to `Tree` component to provide more consistent styling across components.
+
 ## 3.12.2
 
 ### Patch Changes
