@@ -40,10 +40,7 @@ export const useResizeObserver = <T extends HTMLElement>(
             }
 
             const [{ contentRect }] = entries;
-
-            // setTimeout(() => {
             return onResize(contentRect);
-            // }, 1000);
           });
         });
         resizeObserver.current?.observe?.(element);
