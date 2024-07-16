@@ -40,11 +40,6 @@ test.describe('Breadcrumbs', () => {
     const setContainerSize = getSetContainerSize(page);
     const expectOverflowState = getExpectOverflowState(page);
 
-    await page.locator('#container').evaluate((element) => {
-      element.style.overflow = 'hidden';
-    });
-    await page.waitForTimeout(100);
-
     await expectOverflowState({
       expectedItemLength: 5,
       expectedOverflowButtonVisibleCount: undefined,
@@ -66,11 +61,13 @@ const getSetContainerSize = (page: Page) => {
   return async (dimension: string | undefined) => {
     await page.locator('#container').evaluate(
       (element, args) => {
-        element.style.width = args.dimension ? args.dimension : `999px`;
+        if (args.dimension != null) {
+          element.style.setProperty('width', args.dimension);
+        } else {
+          element.style.removeProperty('width');
+        }
       },
-      {
-        dimension,
-      },
+      { dimension },
     );
   };
 };

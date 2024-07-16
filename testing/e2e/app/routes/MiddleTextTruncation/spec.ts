@@ -72,11 +72,13 @@ const getSetContainerSize = (page: Page) => {
   return async (dimension: string | undefined) => {
     await page.getByTestId('root').evaluate(
       (element, args) => {
-        element.style.width = args.dimension != null ? args.dimension : `999px`;
+        if (args.dimension != null) {
+          element.style.setProperty('width', args.dimension);
+        } else {
+          element.style.removeProperty('width');
+        }
       },
-      {
-        dimension,
-      },
+      { dimension },
     );
   };
 };

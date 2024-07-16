@@ -343,11 +343,9 @@ test.describe('Table row selection', () => {
     const row2SubRowExpander = row2.getByLabel('Toggle sub row');
     await row2SubRowExpander.click();
 
-    const row21 = page
-      .getByRole('row')
-      .filter({
-        has: page.getByRole('cell').getByText('2.1', { exact: true }),
-      });
+    const row21 = page.getByRole('row').filter({
+      has: page.getByRole('cell').getByText('2.1', { exact: true }),
+    });
     const row2Checkbox = row2.getByRole('checkbox');
     const row21Checkbox = row21.getByRole('checkbox');
 
@@ -378,4 +376,128 @@ test.describe('Table row selection', () => {
     await clearButton.click();
   };
   //#endregion
+});
+
+test.describe('Table Paginator', () => {
+  const getSetContainerSize = (page: Page) => {
+    return async (dimension: string | undefined) => {
+      await page.locator('[role="table"]').evaluate(
+        (element, args) => {
+          if (args.dimension != null) {
+            element.style.setProperty(
+              'width',
+              args.dimension ? args.dimension : `999px`,
+            );
+          } else {
+            element.style.removeProperty('width');
+          }
+        },
+        {
+          dimension,
+        },
+      );
+    };
+  };
+
+  const getExpectOverflowState = (page: Page) => {
+    return async ({
+      expectedItemLength,
+      expectedOverflowingEllipsisVisibleCount,
+    }: {
+      expectedItemLength: number;
+      expectedOverflowingEllipsisVisibleCount: number;
+    }) => {
+      const allItems = await page.locator('#paginator button').all();
+      const items =
+        allItems.length >= 2
+          ? allItems.slice(1, allItems.length - 1) // since the first and last button and to toggle pages
+          : [];
+      expect(items).toHaveLength(expectedItemLength);
+
+      const overflowingEllipsis = page.getByText('…');
+      expect(overflowingEllipsis).toHaveCount(
+        expectedOverflowingEllipsisVisibleCount,
+      );
+    };
+  };
+
+  test(`should overflow whenever there is not enough space`, async ({
+    page,
+  }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    const expectOverflowState = getExpectOverflowState(page);
+
+    // TODO: Fix the problem where browser paints before the visibleCount has been set
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize('750px');
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 6,
+      expectedOverflowingEllipsisVisibleCount: 1,
+    });
+
+    // should restore hidden items when space is available again
+    await setContainerSize(undefined);
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
+
+  test(`should at minimum always show one page`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    const expectOverflowState = getExpectOverflowState(page);
+
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize('10px');
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 1,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
+
+  test(`should show first and last page when on a middle page`, async ({
+    page,
+  }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    const expectOverflowState = getExpectOverflowState(page);
+
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize('10px');
+    await page.waitForTimeout(100);
+
+    await expectOverflowState({
+      expectedItemLength: 1,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
 });

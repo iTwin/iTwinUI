@@ -100,7 +100,7 @@ test.describe('ButtonGroup', () => {
       });
 
       await setContainerSize(2.5);
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(100); // TODO: Try removing all timeouts
 
       await expectOverflowState({
         expectedButtonLength: 2,
@@ -207,17 +207,20 @@ const getSetContainerSize = (
     await page.locator('#container').evaluate(
       (element, args) => {
         if (args.orientation === 'horizontal') {
-          element.style.width =
-            args.multiplier != null ? `${50 * args.multiplier}px` : `999px`;
+          if (args.multiplier != null) {
+            element.style.setProperty('width', `${50 * args.multiplier}px`);
+          } else {
+            element.style.removeProperty('width');
+          }
         } else {
-          element.style.height =
-            args.multiplier != null ? `${36 * args.multiplier}px` : `999px`;
+          if (args.multiplier != null) {
+            element.style.setProperty('height', `${36 * args.multiplier}px`);
+          } else {
+            element.style.removeProperty('height');
+          }
         }
       },
-      {
-        orientation,
-        multiplier,
-      },
+      { orientation, multiplier },
     );
   };
 };
