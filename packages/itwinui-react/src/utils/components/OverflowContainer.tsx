@@ -175,7 +175,6 @@ const STARTING_MAX_ITEMS_COUNT = 2;
  * );
  */
 const useOverflow = <T extends HTMLElement>(
-  // TODO: Try more to remove this prop, if possible.
   itemsLength: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
@@ -260,7 +259,9 @@ const useOverflow = <T extends HTMLElement>(
       // We have already found the correct visibleCount
       if (
         (visibleCount === itemsLength && !isOverflowing) ||
-        visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1 // TODO: I think this causes issue when item count is 1 and so the initial range is [0, 1]
+        // if the new average of visibleCountGuessRange will never change the visibleCount anymore (infinite loop)
+        (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1 &&
+          visibleCount === visibleCountGuessRange[0])
       ) {
         console.log('STABILIZED');
         setVisibleCountGuessRange(null);
@@ -323,9 +324,10 @@ const useOverflow = <T extends HTMLElement>(
 
     if (
       visibleCount !== previousVisibleCount.current ||
-      // TODO: Better list value comparison
-      visibleCountGuessRange.toString() !==
-        previousVisibleCountGuessRange.current?.toString() ||
+      JSON.stringify(visibleCountGuessRange) !==
+        (previousVisibleCountGuessRange.current != null
+          ? JSON.stringify(previousVisibleCountGuessRange.current)
+          : undefined) ||
       containerRef.current !== previousContainer.current
     ) {
       previousVisibleCount.current = visibleCount;
@@ -346,7 +348,5 @@ const useOverflow = <T extends HTMLElement>(
   ]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
-
-  // return [containerRef, resizeRef, visibleCount] as const;
   return [mergedRefs, visibleCount] as const;
 };
