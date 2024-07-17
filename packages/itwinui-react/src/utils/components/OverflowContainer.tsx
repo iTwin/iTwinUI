@@ -111,7 +111,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
    * - `visibleCount === children.length + 1` means that we show all children and no overflow tag.
    * - `visibleCount <= children.length` means that we show visibleCount - 1 children and 1 overflow tag.
    */
-  const itemsToRender = React.useMemo(() => {
+  const visibleItems = React.useMemo(() => {
     // User wants complete control over what items are rendered.
     if (typeof children === 'function' || overflowTag == null) {
       return null;
@@ -140,7 +140,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
 
   return (
     <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
-      {typeof children === 'function' ? children(visibleCount) : itemsToRender}
+      {typeof children === 'function' ? children(visibleCount) : visibleItems}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
@@ -308,6 +308,10 @@ const useOverflow = <T extends HTMLElement>(
   const previousVisibleCountGuessRange = useLatestRef(visibleCountGuessRange);
   const previousContainer = useLatestRef(containerRef.current);
 
+  // Guess each time any of the following changes:
+  // - `visibleCount`
+  // - `visibleCountGuessRange`
+  // - `containerRef`
   useLayoutEffect(() => {
     if (disabled || isStabilized) {
       return;

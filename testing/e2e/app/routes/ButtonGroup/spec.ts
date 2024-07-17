@@ -337,7 +337,12 @@ const getSetContainerSize = (
   page: Page,
   orientation: 'horizontal' | 'vertical',
 ) => {
-  return async (multiplier: number | undefined) => {
+  return async (
+    /**
+     * Set container size relative to the item size.
+     */
+    multiplier: number | undefined,
+  ) => {
     await page.locator('#container').evaluate(
       (element, args) => {
         if (args.multiplier != null) {
