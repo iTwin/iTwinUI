@@ -1,70 +1,102 @@
 import { test, expect, Page } from '@playwright/test';
 
 test.describe('Select', () => {
-  test(`should overflow whenever there is not enough space`, async ({
-    page,
-  }) => {
-    await page.goto(`/Select`);
+  test.describe('General', () => {
+    [true, false].forEach((multiple) => {
+      test(`should work in uncontrolled mode (multiple=${multiple})`, async ({
+        page,
+      }) => {
+        await page.goto(`/Select?multiple=${multiple}`);
 
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
+        await page.waitForTimeout(30);
 
-    await page.waitForTimeout(30);
+        await page.keyboard.press('Tab');
+        await page.keyboard.press('Space');
 
-    await expectOverflowState({
-      expectedItemLength: 10,
-      expectedLastTagTextContent: 'Very long option',
-    });
+        await page.getByRole('option').first().click();
+        expect(page.getByRole('combobox')).toHaveText('option 0');
 
-    await setContainerSize('600px');
+        if (!multiple) {
+          await page.getByRole('combobox').click();
+        }
 
-    await expectOverflowState({
-      expectedItemLength: 6,
-      expectedLastTagTextContent: '+5 item(s)',
-    });
-  });
+        await page.getByRole('option').nth(1).click();
 
-  test(`should at minimum always show one overflow tag`, async ({ page }) => {
-    await page.goto(`/Select`);
+        if (multiple) {
+          await page.getByRole('option').first().click();
+        }
 
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
-    await page.waitForTimeout(30);
-
-    await expectOverflowState({
-      expectedItemLength: 10,
-      expectedLastTagTextContent: 'Very long option',
-    });
-
-    await setContainerSize('10px');
-
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedLastTagTextContent: '+10 item(s)',
+        expect(page.getByRole('combobox')).toHaveText('option 1');
+      });
     });
   });
 
-  test(`should always show the selected tag and no overflow tag when only one item is selected`, async ({
-    page,
-  }) => {
-    await page.goto(`/Select?value=[9]`);
+  test.describe('Overflow', () => {
+    test(`should overflow whenever there is not enough space`, async ({
+      page,
+    }) => {
+      await page.goto(`/Select?multiple=true&value=all`);
 
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
+      const setContainerSize = getSetContainerSize(page);
+      const expectOverflowState = getExpectOverflowState(page);
 
-    await page.waitForTimeout(30);
+      await page.waitForTimeout(30);
 
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedLastTagTextContent: 'Very long option',
+      await expectOverflowState({
+        expectedItemLength: 10,
+        expectedLastTagTextContent: 'Very long option',
+      });
+
+      await setContainerSize('600px');
+
+      await expectOverflowState({
+        expectedItemLength: 6,
+        expectedLastTagTextContent: '+5 item(s)',
+      });
     });
 
-    await setContainerSize('160px');
+    test(`should at minimum always show one overflow tag`, async ({ page }) => {
+      await page.goto(`/Select?multiple=true&value=all`);
 
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedLastTagTextContent: 'Very long option',
+      const setContainerSize = getSetContainerSize(page);
+      const expectOverflowState = getExpectOverflowState(page);
+
+      await page.waitForTimeout(30);
+
+      await expectOverflowState({
+        expectedItemLength: 10,
+        expectedLastTagTextContent: 'Very long option',
+      });
+
+      await setContainerSize('10px');
+
+      await expectOverflowState({
+        expectedItemLength: 1,
+        expectedLastTagTextContent: '+10 item(s)',
+      });
+    });
+
+    test(`should always show the selected tag and no overflow tag when only one item is selected`, async ({
+      page,
+    }) => {
+      await page.goto(`/Select?multiple=true&value=[9]`);
+
+      const setContainerSize = getSetContainerSize(page);
+      const expectOverflowState = getExpectOverflowState(page);
+
+      await page.waitForTimeout(30);
+
+      await expectOverflowState({
+        expectedItemLength: 1,
+        expectedLastTagTextContent: 'Very long option',
+      });
+
+      await setContainerSize('160px');
+
+      await expectOverflowState({
+        expectedItemLength: 1,
+        expectedLastTagTextContent: 'Very long option',
+      });
     });
   });
 });

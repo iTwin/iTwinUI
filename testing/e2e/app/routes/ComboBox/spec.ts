@@ -1,6 +1,92 @@
 import { test, expect, Page } from '@playwright/test';
 
+const defaultOptions = [
+  { label: 'Item 0', value: 0 },
+  { label: 'Item 1', value: 1, subLabel: 'sub label' },
+  { label: 'Item 2', value: 2 },
+  { label: 'Item 3', value: 3 },
+  { label: 'Item 4', value: 4 },
+  { label: 'Item 10', value: 10 },
+  { label: 'Item 11', value: 11 },
+];
+
 test.describe('ComboBox', () => {
+  test.describe('General', () => {
+    test('should select multiple options', async ({ page }) => {
+      await page.goto('/ComboBox?multiple=true');
+
+      await page.keyboard.press('Tab');
+
+      const options = await page.locator('[role="option"]').all();
+      for (const option of options) {
+        await option.click();
+      }
+
+      const tags = await page
+        .locator('#test-component-selected-live > span')
+        .all();
+      expect(tags).toHaveLength(options.length);
+
+      for (let i = 0; i < tags.length; i++) {
+        await expect(tags[i]).toHaveText(
+          (await options[i].textContent()) ?? '',
+        );
+      }
+    });
+
+    [true, false].forEach((multiple) => {
+      test(`should respect the value prop (${multiple})`, async ({ page }) => {
+        await page.goto(
+          `/ComboBox?multiple=${multiple}&initialValue=${
+            multiple ? 'all' : 11
+          }`,
+        );
+
+        await page.waitForTimeout(30);
+
+        // Should change internal state when the value prop changes
+        if (multiple) {
+          let tags = await page
+            .locator('#test-component-selected-live > span')
+            .all();
+          expect(tags).toHaveLength(defaultOptions.length);
+
+          for (let i = 0; i < tags.length; i++) {
+            await expect(tags[i]).toHaveText(defaultOptions[i].label);
+          }
+
+          await page.getByTestId('change-value-to-first-option-button').click();
+          tags = await page
+            .locator('#test-component-selected-live > span')
+            .all();
+
+          expect(tags).toHaveLength(1);
+          await expect(tags[0]).toHaveText(defaultOptions[0].label);
+        } else {
+          await expect(page.locator('input')).toHaveValue('Item 11');
+          await page.getByTestId('change-value-to-first-option-button').click();
+          await expect(page.locator('input')).toHaveValue('Item 0');
+        }
+
+        // Should not allow to select other options
+        await page.keyboard.press('Tab');
+
+        page.getByRole('option').nth(3).click();
+
+        if (multiple) {
+          const tags = await page
+            .locator('#test-component-selected-live > span')
+            .all();
+
+          expect(tags).toHaveLength(1);
+          await expect(tags[0]).toHaveText(defaultOptions[0].label);
+        } else {
+          await expect(page.locator('input')).toHaveValue('Item 0');
+        }
+      });
+    });
+  });
+
   test.describe('Virtualization', () => {
     test('should support keyboard navigation when virtualization is enabled', async ({
       page,
@@ -80,7 +166,7 @@ test.describe('ComboBox', () => {
 
       //Filter and focus first
       await comboBoxInput.fill('1');
-      expect((await items.all()).length).toBe(3);
+      expect(items).toHaveCount(3);
       await page.keyboard.press('ArrowDown');
       await expect(comboBoxInput).toHaveAttribute(
         'aria-activedescendant',
@@ -191,7 +277,7 @@ test.describe('ComboBox', () => {
     test(`should overflow whenever there is not enough space`, async ({
       page,
     }) => {
-      await page.goto(`/ComboBox?multiple=true&value=all`);
+      await page.goto(`/ComboBox?multiple=true&initialValue=all`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
@@ -210,7 +296,7 @@ test.describe('ComboBox', () => {
     });
 
     test(`should at minimum always show one overflow tag`, async ({ page }) => {
-      await page.goto(`/ComboBox?multiple=true&value=all`);
+      await page.goto(`/ComboBox?multiple=true&initialValue=all`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
@@ -229,10 +315,10 @@ test.describe('ComboBox', () => {
       });
     });
 
-    test(`should always show the selected tag and no overflow tag when only one item is selected`, async ({
+    test('should always show the selected tag and no overflow tag when only one item is selected', async ({
       page,
     }) => {
-      await page.goto(`/ComboBox?multiple=true&value=[11]`);
+      await page.goto(`/ComboBox?multiple=true&initialValue=[11]`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
@@ -284,7 +370,7 @@ const getExpectOverflowState = (page: Page) => {
     const lastTag = tags[tags.length - 1];
 
     if (expectedLastTagTextContent != null) {
-      expect(await lastTag.textContent()).toBe(expectedLastTagTextContent);
+      expect(lastTag).toHaveText(expectedLastTagTextContent);
     } else {
       expect(tags).toHaveLength(0);
     }

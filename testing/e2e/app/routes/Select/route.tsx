@@ -10,7 +10,7 @@ export default function SelectTest() {
       .map((_, index) => {
         return {
           label: `option ${index}`,
-          value: `index`,
+          value: index,
         };
       }),
     {
@@ -19,21 +19,28 @@ export default function SelectTest() {
     },
   ];
 
-  const valueSearchParam = searchParams.get('value');
+  /**
+   * `value`/`defaultValue` can be a:
+   * - `"all"`
+   * - a single value (when multiple=false)
+   * - an array of values (when multiple=false)
+   */
+  const searchParamValue = searchParams.get('value') as
+    | ('all' & string & {})
+    | null;
   const value =
-    valueSearchParam != null
-      ? JSON.parse(valueSearchParam)
-      : options.map((option) => option.value);
+    searchParamValue != null
+      ? searchParamValue === 'all'
+        ? options.map((option) => option.value)
+        : (JSON.parse(searchParamValue) as number | number[])
+      : undefined;
+
+  const multiple = searchParams.get('multiple') === 'true';
 
   return (
     <>
       <div id='container'>
-        <Select
-          options={options}
-          value={value}
-          defaultValue={options.map((option) => `${option.value}`)}
-          multiple
-        />
+        <Select options={options} value={value as any} multiple={multiple} />
       </div>
     </>
   );
