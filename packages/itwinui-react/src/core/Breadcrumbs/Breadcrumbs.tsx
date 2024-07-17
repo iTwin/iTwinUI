@@ -137,7 +137,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
         itemsLength={items.length}
       >
         {(visibleCount: number) => (
-          <Box as='ol' className='iui-breadcrumbs-list'>
+          <>
             {visibleCount > 1 && (
               <>
                 <ListItem item={items[0]} isActive={currentIndex === 0} />
@@ -181,7 +181,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
                   </React.Fragment>
                 );
               })}
-          </Box>
+          </>
         )}
       </OverflowContainer>
     </Box>
