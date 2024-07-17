@@ -227,6 +227,18 @@ const useOverflow = <T extends HTMLElement>(
   /**
    * Call this function to guess the new `visibleCount`.
    * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
+   *
+   * Logic:
+   * - Have a guess range for `visibleCount`. e.g. `[0, 32]` (32 is an arbitrary choice).
+   * - Keep doubling the max guess until the container overflows.
+   *   i.e. the max guess should always be `≥` the correct `visibleCount`.
+   *   - With each such doubling, the new min guess is the current max guess (since underflow = we guessed low).
+   * - Set `visibleCount` to the `maxGuess`.
+   * - Repeat the following by calling `guessVisibleCount()` (keep re-rendering but not painting):
+   *   - Each time the container overflows, new max guess is the average of the two guesses.
+   *   - Each time the container does not overflow, new min guess is the average of the two guesses.
+   * - Stop when the average of the two guesses is the min guess itself. i.e. no more averaging possible.
+   * - The min guess is then the correct `visibleCount`.
    */
   const guessVisibleCount = React.useCallback(() => {
     // If disabled or already stabilized
