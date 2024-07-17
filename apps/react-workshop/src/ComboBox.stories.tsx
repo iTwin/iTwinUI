@@ -11,7 +11,6 @@ import {
   SelectOption,
   MenuItemSkeleton,
   InputGrid,
-  Text,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 import { StoryDefault } from '@ladle/react';
@@ -533,21 +532,3 @@ export const MultipleSelect = () => {
     />
   );
 };
-MultipleSelect.decorators = [
-  (Story: () => React.ReactNode) => (
-    <>
-      <Text variant='small' as='small' isMuted>
-        Resize the container to see overflow behavior.
-      </Text>
-      <div
-        style={{
-          width: '70vw',
-          resize: 'inline',
-          overflow: 'hidden',
-        }}
-      >
-        <Story />
-      </div>
-    </>
-  ),
-];
