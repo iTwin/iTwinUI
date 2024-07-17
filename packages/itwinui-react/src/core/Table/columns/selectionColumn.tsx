@@ -91,7 +91,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
               ),
             );
           } else {
-            row.toggleRowSelected();
+            row.toggleRowSelected(!row.isSelected);
           }
         }}
       />
