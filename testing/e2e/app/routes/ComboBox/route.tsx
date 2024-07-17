@@ -1,6 +1,5 @@
-import { Button, ComboBox } from '@itwin/itwinui-react';
+import { ComboBox } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
 
 export default function ComboBoxTest() {
   const [searchParams] = useSearchParams();
@@ -18,27 +17,18 @@ export default function ComboBoxTest() {
     { label: 'Item 11', value: 11 },
   ];
 
-  const initialValueSearchParam = searchParams.get('initialValue') as
+  const valueSearchParam = searchParams.get('initialValue') as
     | ('all' & string & {})
     | null;
-  const initialValue =
-    initialValueSearchParam != null
-      ? initialValueSearchParam === 'all'
+  const value =
+    valueSearchParam != null
+      ? valueSearchParam === 'all'
         ? options.map((option) => option.value)
-        : (JSON.parse(initialValueSearchParam) as number | number[])
+        : (JSON.parse(valueSearchParam) as number | number[])
       : undefined;
-
-  const [value, setValue] = React.useState(initialValue);
 
   return (
     <div data-testid='container'>
-      <Button
-        data-testid='change-value-to-first-option-button'
-        onClick={() => setValue(multiple ? [0] : 0)}
-      >
-        Change value to just the first option
-      </Button>
-
       <ComboBox
         options={options}
         id='test-component'
