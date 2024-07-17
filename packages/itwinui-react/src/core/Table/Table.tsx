@@ -1007,7 +1007,7 @@ export const Table = <
                         typeof column.width === 'number' &&
                         column.minWidth > column.width
                       ) {
-                        column.width = column.minWidth;
+                        column.minWidth = column.width;
                       }
                     }
 
