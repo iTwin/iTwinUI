@@ -379,6 +379,23 @@ test.describe('Table row selection', () => {
 });
 
 test.describe('Table Paginator', () => {
+  test(`should render data in pages`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
+    expect(page.locator(`[role="cell"]`).last()).toHaveText('Description 49');
+
+    await page
+      .locator('button', {
+        hasText: '6',
+      })
+      .first()
+      .click();
+
+    expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
+    expect(page.locator(`[role="cell"]`).last()).toHaveText('Description 299');
+  });
+
   test(`should overflow whenever there is not enough space`, async ({
     page,
   }) => {

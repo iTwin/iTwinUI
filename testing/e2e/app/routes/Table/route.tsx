@@ -7,7 +7,7 @@ import {
 import { useSearchParams } from '@remix-run/react';
 import React from 'react';
 
-export default function Resizing() {
+export default function TableTest() {
   const [searchParams] = useSearchParams();
 
   const exampleType = searchParams.get('exampleType') || 'default';
@@ -210,8 +210,9 @@ export default function Resizing() {
 
     return (
       <>
-        <div id='container'>
+        <div id='container' style={{ height: '80vh' }}>
           <Table
+            style={{ height: '100%' }}
             emptyTableContent='No data.'
             columns={columns}
             data={data}

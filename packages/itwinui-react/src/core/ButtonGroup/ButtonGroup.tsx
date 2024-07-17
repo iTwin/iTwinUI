@@ -191,7 +191,6 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   return overflowButton != null ? (
     <OverflowContainer
       as={BaseGroup}
-      overflowDisabled={!overflowButton}
       overflowOrientation={orientation}
       overflowLocation={overflowPlacement}
       orientation={orientation}

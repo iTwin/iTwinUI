@@ -1,7 +1,7 @@
 import { Select } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
 
-export default function BreadcrumbsTest() {
+export default function SelectTest() {
   const [searchParams] = useSearchParams();
 
   const options = [
