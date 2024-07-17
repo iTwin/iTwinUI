@@ -385,15 +385,40 @@ test.describe('Table Paginator', () => {
     expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
     expect(page.locator(`[role="cell"]`).last()).toHaveText('Description 49');
 
-    await page
-      .locator('button', {
-        hasText: '6',
-      })
-      .first()
-      .click();
+    // Go to the 6th page
+    await page.locator('button').last().click({ clickCount: 5 });
 
     expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
     expect(page.locator(`[role="cell"]`).last()).toHaveText('Description 299');
+  });
+
+  test('should render truncated pages list', async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    const setContainerSize = getSetContainerSize(page);
+    setContainerSize('800px');
+
+    // Go to the 6th page
+    await page.locator('button').last().click({ clickCount: 5 });
+
+    const paginatorButtons = page.locator('#paginator button', {
+      hasText: /[0-9]+/,
+    });
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '11',
+    ]);
+    await expect(paginatorButtons.nth(3)).toHaveAttribute(
+      'data-iui-active',
+      'true',
+    );
+
+    await expect(page.getByText('…')).toHaveCount(2);
   });
 
   test(`should overflow whenever there is not enough space`, async ({
@@ -436,33 +461,34 @@ test.describe('Table Paginator', () => {
       expectedOverflowingEllipsisVisibleCount: 0,
     });
 
-    await setContainerSize('10px');
+    await setContainerSize('100px');
 
     await expectOverflowState({
       expectedItemLength: 1,
       expectedOverflowingEllipsisVisibleCount: 0,
     });
+
+    expect(page.locator('#paginator button', { hasText: /1/ })).toHaveAttribute(
+      'data-iui-active',
+      'true',
+    );
   });
 
-  test(`should show first and last page when on a middle page`, async ({
-    page,
-  }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
+  test(`should render elements in small size`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator&density=condensed`);
 
     const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
+    await setContainerSize('500px');
 
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
+    (await page.locator('#paginator button').all()).forEach(async (button) => {
+      await expect(button).toHaveAttribute('data-iui-size', 'small');
     });
 
-    await setContainerSize('10px');
+    await expect(page.getByText('…')).toHaveClass(
+      /_iui[0-9]+-table-paginator-ellipsis-small/,
+    );
 
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
+    await page.waitForTimeout(300);
   });
 
   //#region Helpers for table paginator tests
@@ -483,7 +509,7 @@ test.describe('Table Paginator', () => {
           dimension,
         },
       );
-      await page.waitForTimeout(30);
+      await page.waitForTimeout(60);
     };
   };
 

@@ -15,6 +15,11 @@ export default function TableTest() {
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
+  const density = (searchParams.get('density') || undefined) as
+    | 'default'
+    | 'condensed'
+    | 'extra-condensed'
+    | undefined;
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
@@ -155,6 +160,7 @@ export default function TableTest() {
           isRowDisabled={isRowDisabled}
           isSelectable={isSelectable}
           isSortable
+          density={density}
           columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
           selectSubRows={selectSubRows}
           enableVirtualization={enableVirtualization}
@@ -217,6 +223,7 @@ export default function TableTest() {
             columns={columns}
             data={data}
             pageSize={50}
+            density={density}
             paginatorRenderer={paginator}
           />
         </div>

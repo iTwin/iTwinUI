@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TablePaginator, type TablePaginatorProps } from './TablePaginator.js';
-import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import * as UseContainerWidth from '../../utils/hooks/useContainerWidth.js';
 import { userEvent } from '@testing-library/user-event';
 
@@ -20,13 +19,6 @@ const renderComponent = (props?: Partial<TablePaginatorProps>) => {
     />,
   );
 };
-
-beforeEach(() => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((items) => [
-    vi.fn(),
-    items.length,
-  ]);
-});
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -190,38 +182,6 @@ it('should handle clicks', async () => {
   expect(onPageChange).toHaveBeenCalledWith(6);
 });
 
-it('should render truncated pages list', () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 5]);
-  const { container } = renderComponent({ currentPage: 10 });
-
-  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
-  expect(pages).toHaveLength(7);
-  expect(pages[0].textContent).toEqual('1');
-  expect(pages[1].textContent).toEqual('9');
-  expect(pages[2].textContent).toEqual('10');
-  expect(pages[3].textContent).toEqual('11');
-  expect(pages[3]).toHaveAttribute('data-iui-active', 'true');
-  expect(pages[4].textContent).toEqual('12');
-  expect(pages[5].textContent).toEqual('13');
-  expect(pages[6].textContent).toEqual('20');
-
-  const ellipsis = container.querySelectorAll('.iui-table-paginator-ellipsis');
-  expect(ellipsis).toHaveLength(2);
-});
-
-it('should render only the current page when screen is very small', () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 1]);
-  const { container } = renderComponent({ currentPage: 10 });
-
-  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
-  expect(pages).toHaveLength(1);
-  expect(pages[0].textContent).toEqual('11');
-  expect(pages[0]).toHaveAttribute('data-iui-active', 'true');
-
-  const ellipsis = container.querySelectorAll('.iui-table-paginator-ellipsis');
-  expect(ellipsis).toHaveLength(0);
-});
-
 it('should handle keyboard navigation when focusActivationMode is auto', () => {
   const onPageChange = vi.fn();
   const { container } = renderComponent({
@@ -270,33 +230,6 @@ it('should handle keyboard navigation when focusActivationMode is manual', () =>
   fireEvent.keyDown(buttonGroup, { key: 'Enter' });
   expect(onPageChange).toHaveBeenCalledTimes(1);
   expect(onPageChange).toHaveBeenCalledWith(0);
-});
-
-it('should render elements in small size', () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 5]);
-  const { container } = renderComponent({
-    size: 'small',
-    pageSizeList: [10, 25, 50],
-    currentPage: 10,
-    onPageSizeChange: vi.fn(),
-  });
-
-  const pageSwitchers = container.querySelectorAll('.iui-button');
-  expect(
-    Array.from(pageSwitchers).every(
-      (p) => p.getAttribute('data-iui-size') === 'small',
-    ),
-  ).toBe(true);
-
-  const pages = container.querySelectorAll(
-    '.iui-table-paginator-page-button[data-iui-size="small"]',
-  );
-  expect(pages).toHaveLength(7);
-
-  const ellipsis = container.querySelectorAll(
-    '.iui-table-paginator-ellipsis-small',
-  );
-  expect(ellipsis).toHaveLength(2);
 });
 
 it('should render with custom localization', async () => {

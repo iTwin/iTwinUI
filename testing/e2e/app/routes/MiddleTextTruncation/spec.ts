@@ -56,6 +56,19 @@ test.describe('MiddleTextTruncation', () => {
       longItem.length,
     );
   });
+
+  test('should render custom text', async ({ page }) => {
+    await page.goto(`/MiddleTextTruncation?shouldUseCustomRenderer=true`);
+
+    const setContainerSize = getSetContainerSize(page);
+    await setContainerSize('500px');
+
+    await expect(page.getByTestId('custom-text')).toHaveText(
+      'MyFileWithAReallyLongNameThatWillBeTruncat…2.html - some additional text',
+    );
+
+    await page.waitForTimeout(100);
+  });
 });
 
 // ----------------------------------------------------------------------------
@@ -72,6 +85,6 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(30);
   };
 };
