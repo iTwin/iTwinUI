@@ -17,7 +17,7 @@ export default function ComboBoxTest() {
     { label: 'Item 11', value: 11 },
   ];
 
-  const valueSearchParam = searchParams.get('initialValue') as
+  const valueSearchParam = searchParams.get('value') as
     | ('all' & string & {})
     | null;
   const value =
