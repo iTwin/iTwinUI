@@ -360,6 +360,42 @@ test.describe('Table row selection', () => {
     await expect(row21Checkbox).not.toBeChecked();
   });
 
+  test('action object for row selection in state reducer should have a defined value when selectSubRows is set to false', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?isSelectable=true&subRows=true&selectSubRows=false&stateReducer=true',
+    );
+
+    const row2 = page
+      .getByRole('row')
+      .filter({ has: page.getByRole('cell').getByText('2', { exact: true }) });
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+
+    const row21 = page.getByRole('row').filter({
+      has: page.getByRole('cell').getByText('2.1', { exact: true }),
+    });
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+
+    //Works correctly for sub row
+    const firstSubRowMessage = page.waitForEvent('console');
+    await row21Checkbox.click();
+    expect((await firstSubRowMessage).text()).toBe('true');
+    const secondSubRowMessage = page.waitForEvent('console');
+    await row21Checkbox.click();
+    expect((await secondSubRowMessage).text()).toBe('false');
+
+    //Works correctly for parent row
+    const firstParentRowMessage = page.waitForEvent('console');
+    await row2Checkbox.click();
+    expect((await firstParentRowMessage).text()).toBe('true');
+    const secondParentRowMessage = page.waitForEvent('console');
+    await row2Checkbox.click();
+    expect((await secondParentRowMessage).text()).toBe('false');
+  });
+
   //#region Helpers for row selection tests
   const filter = async (page: Page) => {
     const filterButton = page.getByLabel('Filter');

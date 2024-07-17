@@ -28,6 +28,7 @@ export default function TableTest() {
   const empty = searchParams.get('empty') === 'true';
   const scroll = searchParams.get('scroll') === 'true';
   const oneRow = searchParams.get('oneRow') === 'true';
+  const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
 
   const virtualizedData = React.useMemo(() => {
@@ -169,6 +170,16 @@ export default function TableTest() {
             scroll
               ? (rows, data) =>
                   rows.findIndex((row) => row.original === data[scrollRow])
+              : undefined
+          }
+          stateReducer={
+            stateReducer
+              ? (newState, action, previousState, instance) => {
+                  if (action.type === 'toggleRowSelected') {
+                    console.log(action.value);
+                  }
+                  return newState;
+                }
               : undefined
           }
         />

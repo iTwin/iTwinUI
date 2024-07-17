@@ -1,10 +1,18 @@
 # Changelog
 
+## 3.13.1
+
+### Patch Changes
+
+- [#2147](https://github.com/iTwin/iTwinUI/pull/2147): Fixed a CSS issue in `ExpandableBlock` where its content wouldn't stay constrained by the width of the parent.
+- [#2148](https://github.com/iTwin/iTwinUI/pull/2148): Fixed regression where the value of the `toggleRowSelected` action for the `Table` would be undefined when `selectSubRows` was set to `false`.
+
 ## 3.13.0
 
 ### Minor Changes
 
 - [#2106](https://github.com/iTwin/iTwinUI/pull/2106): All internal CSS class prefixes have been changed to prevent style conflicts across minor versions.
+
   - While this is _not_ considered a breaking change according to our [support policy](https://github.com/iTwin/iTwinUI/wiki/Support-policy), this change might affect you if you ignore our pleas to not rely on these internal class names. The recommendation is to pass your own custom `className` through props.
 
 - [#2131](https://github.com/iTwin/iTwinUI/pull/2131): Development-only warnings will now be properly excluded from the production build. This is done using a separate `"development"` entrypoint listed in `package.json#exports`.
@@ -12,20 +20,22 @@
 - [#2135](https://github.com/iTwin/iTwinUI/pull/2135): Changed the column manager from a `DropdownMenu` to a `Popover` to fix invalid markup and accessibility issues.
 
 - Added dependency on `@tanstack/react-virtual` to replace the custom virtual-scroll implementation. This affects the `enableVirtualization` prop in `ComboBox`, `Table`, and `Tree`.
+
   - [#2061](https://github.com/iTwin/iTwinUI/pull/2061): Virtualized `ComboBox` now correctly supports dynamic sizing, e.g. when options both with and without `subLabel` are present.
   - [#2092](https://github.com/iTwin/iTwinUI/pull/2092): Virtualized `Table` has been improved so that scrolling no longer jumps when rows are scrolled past.
   - [#2139](https://github.com/iTwin/iTwinUI/pull/2139): Virtualized `Tree` no longer requires a wrapping scrollable element, since the tree itself is scrollable now.
     <details>
       <summary>Diff</summary>
 
-      ```diff
-      - <div style={{overflow: 'auto', height: 'min(400px, 90vh)'}}>
-          <Tree
-            enableVirtualization
-      +     style={{height: 'min(400px, 90vh)'}}
-          />
-      - </div>
-      ```
+    ```diff
+    - <div style={{overflow: 'auto', height: 'min(400px, 90vh)'}}>
+        <Tree
+          enableVirtualization
+    +     style={{height: 'min(400px, 90vh)'}}
+        />
+    - </div>
+    ```
+
     </details>
 
 ### Patch Changes
