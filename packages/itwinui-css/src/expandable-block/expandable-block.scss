@@ -157,6 +157,7 @@
   // using transition technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
   display: grid;
   grid-template-rows: 0fr;
+  grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
   transition: all var(--iui-duration-1) ease-out;
   transition-property: opacity;
