@@ -82,3 +82,6 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
     </DropdownMenu>
   );
 }) as PolymorphicForwardRefComponent<'button', DropdownButtonProps>;
+if (process.env.NODE_ENV === 'development') {
+  DropdownButton.displayName = 'DropdownButton';
+}

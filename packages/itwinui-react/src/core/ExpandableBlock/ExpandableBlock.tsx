@@ -28,7 +28,9 @@ const ExpandableBlockContext = React.createContext<
     } & ExpandableBlockOwnProps)
   | undefined
 >(undefined);
-ExpandableBlockContext.displayName = 'ExpandableBlockContext';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockContext.displayName = 'ExpandableBlockContext';
+}
 
 // ----------------------------------------------------------------------------
 // Main ExpandableBlock component
@@ -90,7 +92,9 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
   'div',
   ExpandableBlockOwnProps & ExpandableBlockLegacyProps
 >;
-ExpandableBlockComponent.displayName = 'ExpandableBlock';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockComponent.displayName = 'ExpandableBlock';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -144,7 +148,9 @@ const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
     </ExpandableBlockContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
-ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Trigger component
@@ -184,7 +190,9 @@ const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
     </LinkBox>
   );
 }) as PolymorphicForwardRefComponent<'div', ExpandableBlockTriggerOwnProps>;
-ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.ExpandIcon component
@@ -201,13 +209,17 @@ const ExpandableBlockExpandIcon = React.forwardRef((props, forwardedRef) => {
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span'>;
-ExpandableBlockExpandIcon.displayName = 'ExpandableBlock.ExpandIcon';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockExpandIcon.displayName = 'ExpandableBlock.ExpandIcon';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.LabelArea component
 
 const ExpandableBlockLabelArea = polymorphic.span('iui-expandable-block-label');
-ExpandableBlockLabelArea.displayName = 'ExpandableBlock.LabelArea';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockLabelArea.displayName = 'ExpandableBlock.LabelArea';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Title component
@@ -238,7 +250,9 @@ const ExpandableBlockTitle = React.forwardRef((props, forwardedRef) => {
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button'>;
-ExpandableBlockTitle.displayName = 'ExpandableBlock.Title';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockTitle.displayName = 'ExpandableBlock.Title';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Caption component
@@ -262,7 +276,9 @@ const ExpandableBlockCaption = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div'>;
-ExpandableBlockCaption.displayName = 'ExpandableBlock.Caption';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockCaption.displayName = 'ExpandableBlock.Caption';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.EndIcon component
@@ -281,7 +297,9 @@ const ExpandableBlockEndIcon = React.forwardRef((props, forwardedRef) => {
   'span',
   React.ComponentPropsWithoutRef<typeof Icon>
 >;
-ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
+}
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Content component
@@ -302,7 +320,9 @@ const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
-ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
+if (process.env.NODE_ENV === 'development') {
+  ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
+}
 
 /**
  * Expandable block with customizable Title, Caption, Content and EndIcon subcomponents.

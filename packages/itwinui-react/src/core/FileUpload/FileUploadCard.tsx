@@ -41,13 +41,17 @@ const toDate = (dateNumber: number) => {
 const FileUploadCardIcon = polymorphic.span('iui-file-card-icon', {
   children: <SvgDocument />,
 });
-FileUploadCardIcon.displayName = 'FileUploadCard.Icon';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardIcon.displayName = 'FileUploadCard.Icon';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Info component
 
 const FileUploadCardInfo = polymorphic.span('iui-file-card-text');
-FileUploadCardInfo.displayName = 'FileUploadCard.Info';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardInfo.displayName = 'FileUploadCard.Info';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Title component
@@ -68,7 +72,9 @@ const FileUploadCardTitle = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span'>;
-FileUploadCardTitle.displayName = 'FileUploadCard.Title';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardTitle.displayName = 'FileUploadCard.Title';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Description component
@@ -97,13 +103,17 @@ const FileUploadCardDescription = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span'>;
-FileUploadCardDescription.displayName = 'FileUploadCard.Description';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardDescription.displayName = 'FileUploadCard.Description';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Action component
 
 const FileUploadCardAction = polymorphic.div('iui-file-card-action');
-FileUploadCardAction.displayName = 'FileUploadCard.Action';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardAction.displayName = 'FileUploadCard.Action';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.InputLabel component
@@ -117,7 +127,9 @@ const FileUploadCardInputLabel = React.forwardRef((props, ref) => {
     </Anchor>
   );
 }) as PolymorphicForwardRefComponent<'label'>;
-FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Input component
@@ -168,7 +180,9 @@ const FileUploadCardInput = React.forwardRef((props, ref) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'input'>;
-FileUploadCardInput.displayName = 'FileUploadCard.Input';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardInput.displayName = 'FileUploadCard.Input';
+}
 
 // ----------------------------------------------------------------------------
 // FileUploadCard component
@@ -277,7 +291,9 @@ export const FileUploadCard = Object.assign(FileUploadCardComponent, {
   InputLabel: FileUploadCardInputLabel,
   Input: FileUploadCardInput,
 });
-FileUploadCard.displayName = 'FileUploadCard';
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCard.displayName = 'FileUploadCard';
+}
 
 export const FileUploadCardContext = React.createContext<
   | {
@@ -302,3 +318,6 @@ export const FileUploadCardContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  FileUploadCardContext.displayName = 'FileUploadCardContext';
+}

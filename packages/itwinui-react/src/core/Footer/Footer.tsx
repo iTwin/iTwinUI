@@ -172,3 +172,6 @@ export const Footer = Object.assign(
     Separator: FooterSeparator,
   },
 );
+if (process.env.NODE_ENV === 'development') {
+  (Footer as any).displayName = 'Footer';
+}

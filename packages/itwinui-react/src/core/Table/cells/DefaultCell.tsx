@@ -108,3 +108,6 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     </Box>
   );
 };
+if (process.env.NODE_ENV === 'development') {
+  DefaultCell.displayName = 'DefaultCell';
+}

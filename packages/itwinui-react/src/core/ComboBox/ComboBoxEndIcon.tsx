@@ -34,4 +34,6 @@ export const ComboBoxEndIcon = React.forwardRef((props, forwardedRef) => {
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span', ComboBoxEndIconProps>;
-ComboBoxEndIcon.displayName = 'ComboBoxEndIcon';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxEndIcon.displayName = 'ComboBoxEndIcon';
+}

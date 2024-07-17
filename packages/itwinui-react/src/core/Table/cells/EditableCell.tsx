@@ -126,3 +126,6 @@ export const EditableCell = <T extends Record<string, unknown>>(
     </Box>
   );
 };
+if (process.env.NODE_ENV === 'development') {
+  EditableCell.displayName = 'EditableCell';
+}

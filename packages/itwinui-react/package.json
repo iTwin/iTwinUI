@@ -140,9 +140,7 @@
       "prettier --write",
       "node ../../scripts/copyrightLinter.js --fix"
     ],
-    "*.{tsx,ts}": [
-      "eslint --max-warnings=0 --fix"
-    ]
+    "!(*.test){.tsx,.ts}": "eslint --max-warnings=0 --fix"
   },
   "prettier": "configs/prettier-config",
   "sideEffects": [

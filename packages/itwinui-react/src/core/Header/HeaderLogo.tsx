@@ -61,3 +61,6 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', HeaderLogoOwnProps>;
+if (process.env.NODE_ENV === 'development') {
+  HeaderLogo.displayName = 'HeaderLogo';
+}

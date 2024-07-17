@@ -132,3 +132,6 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', NonIdealStateProps>;
+if (process.env.NODE_ENV === 'development') {
+  NonIdealState.displayName = 'NonIdealState';
+}

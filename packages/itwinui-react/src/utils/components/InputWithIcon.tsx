@@ -6,4 +6,6 @@ import { polymorphic } from '../functions/polymorphic.js';
 
 /** @private */
 export const InputWithIcon = polymorphic.div('iui-input-with-icon');
-InputWithIcon.displayName = 'InputWithIcon';
+if (process.env.NODE_ENV === 'development') {
+  InputWithIcon.displayName = 'InputWithIcon';
+}

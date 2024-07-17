@@ -65,6 +65,9 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', VisuallyHiddenOwnProps>;
+if (process.env.NODE_ENV === 'development') {
+  VisuallyHidden.displayName = 'VisuallyHidden';
+}
 
 // ----------------------------------------------------------------------------
 

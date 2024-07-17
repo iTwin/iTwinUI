@@ -241,4 +241,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'input', ComboBoxInputProps>;
-ComboBoxInput.displayName = 'ComboBoxInput';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxInput.displayName = 'ComboBoxInput';
+}

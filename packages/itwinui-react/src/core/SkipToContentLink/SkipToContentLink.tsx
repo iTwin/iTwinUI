@@ -41,3 +41,6 @@ export const SkipToContentLink = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'a', SkipToContentLinkProps>;
+if (process.env.NODE_ENV === 'development') {
+  SkipToContentLink.displayName = 'SkipToContentLink';
+}

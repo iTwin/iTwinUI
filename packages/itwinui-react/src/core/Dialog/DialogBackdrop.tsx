@@ -69,3 +69,6 @@ export const DialogBackdrop = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', DialogBackdropProps>;
+if (process.env.NODE_ENV === 'development') {
+  DialogBackdrop.displayName = 'Dialog.Backdrop';
+}

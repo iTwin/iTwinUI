@@ -8,3 +8,6 @@ import { polymorphic } from '../../utils/index.js';
  * Body of the `InformationPanel` containing the main content.
  */
 export const InformationPanelBody = polymorphic.div('iui-information-body');
+if (process.env.NODE_ENV === 'development') {
+  InformationPanelBody.displayName = 'InformationPanel.Body';
+}

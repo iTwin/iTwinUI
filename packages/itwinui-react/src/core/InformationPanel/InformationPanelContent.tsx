@@ -64,3 +64,6 @@ export const InformationPanelContent = React.forwardRef(
     );
   },
 ) as PolymorphicForwardRefComponent<'div', InformationPanelContentProps>;
+if (process.env.NODE_ENV === 'development') {
+  InformationPanelContent.displayName = 'InformationPanelContent';
+}

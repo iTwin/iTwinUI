@@ -21,7 +21,9 @@ import {
 export const ButtonGroupContext = React.createContext<string | undefined>(
   undefined,
 );
-ButtonGroupContext.displayName = 'ButtonGroupContext';
+if (process.env.NODE_ENV === 'development') {
+  ButtonGroupContext.displayName = 'ButtonGroupContext';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -144,6 +146,9 @@ export const ButtonGroup = React.forwardRef((props, forwardedRef) => {
     </FloatingDelayGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', ButtonGroupProps>;
+if (process.env.NODE_ENV === 'development') {
+  ButtonGroup.displayName = 'ButtonGroup';
+}
 
 // ----------------------------------------------------------------------------
 

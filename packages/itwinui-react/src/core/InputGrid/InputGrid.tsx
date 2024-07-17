@@ -67,6 +67,9 @@ export const InputGrid = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGridOwnProps>;
+if (process.env.NODE_ENV === 'development') {
+  InputGrid.displayName = 'InputGrid';
+}
 
 //-------------------------------------------------------------------------------
 

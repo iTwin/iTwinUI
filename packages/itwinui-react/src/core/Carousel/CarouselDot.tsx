@@ -42,3 +42,6 @@ export const CarouselDot = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'button', CarouselDotProps>;
+if (process.env.NODE_ENV === 'development') {
+  CarouselDot.displayName = 'Carousel.Dot';
+}

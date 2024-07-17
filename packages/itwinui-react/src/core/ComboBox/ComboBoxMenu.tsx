@@ -156,4 +156,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
     )
   );
 }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuProps>;
-ComboBoxMenu.displayName = 'ComboBoxMenu';
+if (process.env.NODE_ENV === 'development') {
+  ComboBoxMenu.displayName = 'ComboBoxMenu';
+}

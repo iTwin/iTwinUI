@@ -74,6 +74,9 @@ export const Text = React.forwardRef((props, ref) => {
     </TextContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TextProps>;
+if (process.env.NODE_ENV === 'development') {
+  Text.displayName = 'Text';
+}
 
 // ----------------------------------------------------------------------------
 

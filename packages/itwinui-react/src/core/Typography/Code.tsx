@@ -10,3 +10,6 @@ import { polymorphic } from '../../utils/index.js';
  * <p>Some <Code>inline code</Code> in a paragraph</p>
  */
 export const Code = polymorphic.code('iui-code');
+if (process.env.NODE_ENV === 'development') {
+  Code.displayName = 'Code';
+}

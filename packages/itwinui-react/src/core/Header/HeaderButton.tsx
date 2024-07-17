@@ -101,3 +101,6 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', HeaderButtonProps>;
+if (process.env.NODE_ENV === 'development') {
+  HeaderButton.displayName = 'HeaderButton';
+}
