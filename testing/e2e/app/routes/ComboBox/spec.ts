@@ -37,10 +37,12 @@ test.describe('ComboBox', () => {
     [true, false].forEach((multiple) => {
       test(`should respect the value prop (${multiple})`, async ({ page }) => {
         await page.goto(
-          `/ComboBox?multiple=${multiple}&value=${multiple ? 'all' : 11}`,
+          `/ComboBox?multiple=${multiple}&initialValue=${
+            multiple ? 'all' : 11
+          }`,
         );
 
-        await page.waitForTimeout(30);
+        await page.waitForTimeout(60);
 
         // Should change internal state when the value prop changes
         if (multiple) {
@@ -69,7 +71,7 @@ test.describe('ComboBox', () => {
         // Should not allow to select other options
         await page.keyboard.press('Tab');
 
-        page.getByRole('option').nth(3).click();
+        await page.getByRole('option').nth(3).click();
 
         if (multiple) {
           const tags = await page
@@ -92,6 +94,8 @@ test.describe('ComboBox', () => {
       await page.goto('/ComboBox?virtualization=true');
 
       await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+
       const comboBoxInput = page.locator('#test-component').locator('input');
       const comboBoxMenu = page.getByRole('listbox');
       await expect(comboBoxInput).toHaveAttribute(
@@ -251,6 +255,8 @@ test.describe('ComboBox', () => {
       await page.goto('/ComboBox?virtualization=true');
 
       await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+
       const comboBoxList = page.getByRole('listbox');
       const outerVirtualizedContainer = comboBoxList.locator('>div', {
         has: page.locator('slot'),
@@ -275,7 +281,7 @@ test.describe('ComboBox', () => {
     test(`should overflow whenever there is not enough space`, async ({
       page,
     }) => {
-      await page.goto(`/ComboBox?multiple=true&value=all`);
+      await page.goto(`/ComboBox?multiple=true&initialValue=all`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
@@ -294,7 +300,7 @@ test.describe('ComboBox', () => {
     });
 
     test(`should at minimum always show one overflow tag`, async ({ page }) => {
-      await page.goto(`/ComboBox?multiple=true&value=all`);
+      await page.goto(`/ComboBox?multiple=true&initialValue=all`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
@@ -316,7 +322,7 @@ test.describe('ComboBox', () => {
     test('should always show the selected tag and no overflow tag when only one item is selected', async ({
       page,
     }) => {
-      await page.goto(`/ComboBox?multiple=true&value=[11]`);
+      await page.goto(`/ComboBox?multiple=true&initialValue=[11]`);
 
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
@@ -368,7 +374,7 @@ const getExpectOverflowState = (page: Page) => {
     const lastTag = tags[tags.length - 1];
 
     if (expectedLastTagTextContent != null) {
-      expect(lastTag).toHaveText(expectedLastTagTextContent);
+      await expect(lastTag).toHaveText(expectedLastTagTextContent);
     } else {
       expect(tags).toHaveLength(0);
     }

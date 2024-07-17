@@ -418,21 +418,25 @@ test.describe('Table Paginator', () => {
   test(`should render data in pages`, async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
-    expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
-    expect(page.locator(`[role="cell"]`).last()).toHaveText('Description 49');
+    await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
+    await expect(page.locator(`[role="cell"]`).last()).toHaveText(
+      'Description 49',
+    );
 
     // Go to the 6th page
     await page.locator('button').last().click({ clickCount: 5 });
 
-    expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
-    expect(page.locator(`[role="cell"]`).last()).toHaveText('Description 299');
+    await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
+    await expect(page.locator(`[role="cell"]`).last()).toHaveText(
+      'Description 299',
+    );
   });
 
   test('should render truncated pages list', async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
     const setContainerSize = getSetContainerSize(page);
-    setContainerSize('800px');
+    await setContainerSize('800px');
 
     // Go to the 6th page
     await page.locator('button').last().click({ clickCount: 5 });
@@ -504,10 +508,9 @@ test.describe('Table Paginator', () => {
       expectedOverflowingEllipsisVisibleCount: 0,
     });
 
-    expect(page.locator('#paginator button', { hasText: /1/ })).toHaveAttribute(
-      'data-iui-active',
-      'true',
-    );
+    await expect(
+      page.locator('#paginator button', { hasText: /1/ }),
+    ).toHaveAttribute('data-iui-active', 'true');
   });
 
   test(`should render elements in small size`, async ({ page }) => {
@@ -565,7 +568,7 @@ test.describe('Table Paginator', () => {
       expect(items).toHaveLength(expectedItemLength);
 
       const overflowingEllipsis = page.getByText('…');
-      expect(overflowingEllipsis).toHaveCount(
+      await expect(overflowingEllipsis).toHaveCount(
         expectedOverflowingEllipsisVisibleCount,
       );
     };

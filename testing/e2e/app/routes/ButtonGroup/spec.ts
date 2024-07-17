@@ -308,8 +308,6 @@ test.describe('ButtonGroup', () => {
             `/ButtonGroup?exampleType=overflow&containerSize${containerSize}&overflowPlacement=${overflowPlacement}`,
           );
 
-          await page.waitForTimeout(60);
-
           const setContainerSize = getSetContainerSize(page, 'horizontal');
           await setContainerSize(
             visibleCount === 10 ? visibleCount : visibleCount + 0.5,
@@ -323,7 +321,7 @@ test.describe('ButtonGroup', () => {
             overflowPlacement === 'end' ? -1 : undefined,
           );
 
-          expect(overflowButton).toHaveText(`${overflowStart}`);
+          await expect(overflowButton).toHaveText(`${overflowStart}`);
           expect(buttonGroupButtons).toHaveLength(visibleCount - 1);
         });
       },
