@@ -10,7 +10,6 @@ describe('Table', () => {
     'Condensed',
     'Controlled State',
     'Custom Filter',
-    'Custom Header',
     'Customized Columns',
     'Disabled Rows',
     'Draggable Columns',

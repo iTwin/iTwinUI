@@ -10,6 +10,7 @@
   overflow: auto;
   scrollbar-gutter: stable;
   background-color: var(--iui-color-background);
+  border-radius: var(--iui-border-radius-1);
 
   @include iui-table-cell-icon;
 
@@ -28,8 +29,6 @@
 
   display: flex;
   flex-shrink: 0;
-  border-start-start-radius: var(--iui-border-radius-1);
-  border-start-end-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-table-header {
@@ -39,7 +38,6 @@
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
   border-block-end: 1px solid var(--iui-color-border);
-  border-radius: inherit;
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -155,7 +153,8 @@
   display: flex;
 
   &:last-of-type {
-    border-radius: inherit;
+    border-end-start-radius: var(--iui-border-radius-1);
+    border-end-end-radius: var(--iui-border-radius-1);
   }
 
   .iui-table-header & {
@@ -359,11 +358,6 @@
     .iui-table-row {
       scroll-snap-align: start none;
     }
-  }
-
-  &:last-child {
-    border-end-start-radius: var(--iui-border-radius-1);
-    border-end-end-radius: var(--iui-border-radius-1);
   }
 
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
