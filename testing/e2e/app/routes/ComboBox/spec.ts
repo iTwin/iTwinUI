@@ -269,17 +269,16 @@ test.describe('ComboBox (virtualization)', () => {
     }) => {
       await page.goto(`/ComboBox?multiple=true&initialValue=all`);
 
-      const setContainerSize = getSetContainerSize(page);
-      const expectOverflowState = getExpectOverflowState(page);
-
       await expectOverflowState({
+        page,
         expectedItemLength: 7,
         expectedLastTagTextContent: 'Item 11',
       });
 
-      await setContainerSize('500px');
+      await setContainerSize(page, '500px');
 
       await expectOverflowState({
+        page,
         expectedItemLength: 4,
         expectedLastTagTextContent: '+4 item(s)',
       });
@@ -288,18 +287,17 @@ test.describe('ComboBox (virtualization)', () => {
     test(`should at minimum always show one overflow tag`, async ({ page }) => {
       await page.goto(`/ComboBox?multiple=true&initialValue=all`);
 
-      const setContainerSize = getSetContainerSize(page);
-      const expectOverflowState = getExpectOverflowState(page);
-
       await expectOverflowState({
+        page,
         expectedItemLength: 7,
         expectedLastTagTextContent: 'Item 11',
       });
 
-      await setContainerSize('10px');
+      await setContainerSize(page, '10px');
       await page.waitForTimeout(200);
 
       await expectOverflowState({
+        page,
         expectedItemLength: 1,
         expectedLastTagTextContent: '+7 item(s)',
       });
@@ -310,17 +308,16 @@ test.describe('ComboBox (virtualization)', () => {
     }) => {
       await page.goto(`/ComboBox?multiple=true&initialValue=[11]`);
 
-      const setContainerSize = getSetContainerSize(page);
-      const expectOverflowState = getExpectOverflowState(page);
-
       await expectOverflowState({
+        page,
         expectedItemLength: 1,
         expectedLastTagTextContent: 'Item 11',
       });
 
-      await setContainerSize('50px');
+      await setContainerSize(page, '50px');
 
       await expectOverflowState({
+        page,
         expectedItemLength: 1,
         expectedLastTagTextContent: 'Item 11',
       });
@@ -330,39 +327,37 @@ test.describe('ComboBox (virtualization)', () => {
 
 // ----------------------------------------------------------------------------
 
-const getSetContainerSize = (page: Page) => {
-  return async (dimension: string | undefined) => {
-    await page.getByTestId('container').evaluate(
-      (element, args) => {
-        if (args.dimension != null) {
-          element.style.setProperty('width', args.dimension);
-        } else {
-          element.style.removeProperty('width');
-        }
-      },
-      { dimension },
-    );
-    await page.waitForTimeout(200);
-  };
+const setContainerSize = async (page: Page, value: string | undefined) => {
+  await page.getByTestId('container').evaluate(
+    (element, args) => {
+      if (args.value != null) {
+        element.style.setProperty('width', args.value);
+      } else {
+        element.style.removeProperty('width');
+      }
+    },
+    { value },
+  );
+  await page.waitForTimeout(200);
 };
 
-const getExpectOverflowState = (page: Page) => {
-  return async ({
-    expectedItemLength,
-    expectedLastTagTextContent,
-  }: {
-    expectedItemLength: number;
-    expectedLastTagTextContent: string | undefined;
-  }) => {
-    const tags = await page.locator('div[id$="-selected-live"] > span').all();
-    expect(tags).toHaveLength(expectedItemLength);
+const expectOverflowState = async ({
+  page,
+  expectedItemLength,
+  expectedLastTagTextContent,
+}: {
+  page: Page;
+  expectedItemLength: number;
+  expectedLastTagTextContent: string | undefined;
+}) => {
+  const tags = await page.locator('div[id$="-selected-live"] > span').all();
+  expect(tags).toHaveLength(expectedItemLength);
 
-    const lastTag = tags[tags.length - 1];
+  const lastTag = tags[tags.length - 1];
 
-    if (expectedLastTagTextContent != null) {
-      await expect(lastTag).toHaveText(expectedLastTagTextContent);
-    } else {
-      expect(tags).toHaveLength(0);
-    }
-  };
+  if (expectedLastTagTextContent != null) {
+    await expect(lastTag).toHaveText(expectedLastTagTextContent);
+  } else {
+    expect(tags).toHaveLength(0);
+  }
 };

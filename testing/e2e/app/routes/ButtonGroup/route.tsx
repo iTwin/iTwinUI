@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, Flex, IconButton } from '@itwin/itwinui-react';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
+import * as React from 'react';
 
 export default function ButtonGroupTest() {
   const [searchParams] = useSearchParams();

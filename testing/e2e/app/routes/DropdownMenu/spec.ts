@@ -12,7 +12,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId(`Item 1_2`)).toBeVisible();
     await expect(page.getByTestId(`Item 1_3`)).toBeVisible();
 
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(50);
   });
 
   test('should support deep level submenus', async ({ page }) => {
@@ -116,7 +116,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 3_2_1')).toBeVisible();
     await expect(page.getByTestId('Item 3_3_1')).toBeHidden();
 
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(100);
   });
 
   test('should handle keyboard navigation even with non MenuItems', async ({
@@ -157,7 +157,7 @@ test.describe('DropdownMenu', () => {
     await page.keyboard.press('ArrowUp');
     await expect(page.getByTestId('FocusTarget-0')).toBeFocused();
 
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(50);
   });
 
   test('should respect the click trigger', async ({ page }) => {

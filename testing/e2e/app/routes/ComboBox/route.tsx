@@ -1,6 +1,6 @@
 import { Button, ComboBox } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
+import * as React from 'react';
 
 export default function ComboBoxTest() {
   const [searchParams] = useSearchParams();
