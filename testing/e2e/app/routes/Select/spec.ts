@@ -8,7 +8,7 @@ test.describe('Select', () => {
       }) => {
         await page.goto(`/Select?multiple=${multiple}`);
 
-        await page.waitForTimeout(30);
+        await page.waitForTimeout(200);
 
         await page.keyboard.press('Tab');
         await page.keyboard.press('Space');
@@ -40,7 +40,7 @@ test.describe('Select', () => {
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
 
-      await page.waitForTimeout(30);
+      await page.waitForTimeout(200);
 
       await expectOverflowState({
         expectedItemLength: 10,
@@ -61,7 +61,7 @@ test.describe('Select', () => {
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
 
-      await page.waitForTimeout(30);
+      await page.waitForTimeout(200);
 
       await expectOverflowState({
         expectedItemLength: 10,
@@ -84,7 +84,7 @@ test.describe('Select', () => {
       const setContainerSize = getSetContainerSize(page);
       const expectOverflowState = getExpectOverflowState(page);
 
-      await page.waitForTimeout(30);
+      await page.waitForTimeout(200);
 
       await expectOverflowState({
         expectedItemLength: 1,
@@ -115,7 +115,7 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
-    await page.waitForTimeout(30);
+    await page.waitForTimeout(200);
   };
 };
 

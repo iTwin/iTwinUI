@@ -341,7 +341,7 @@ const getSetContainerSize = (
       },
       { orientation, multiplier },
     );
-    await page.waitForTimeout(30);
+    await page.waitForTimeout(300);
   };
 };
 

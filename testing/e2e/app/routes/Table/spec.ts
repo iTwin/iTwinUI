@@ -540,7 +540,7 @@ test.describe('Table Paginator', () => {
           dimension,
         },
       );
-      await page.waitForTimeout(60);
+      await page.waitForTimeout(200);
     };
   };
 

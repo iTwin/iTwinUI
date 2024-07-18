@@ -67,7 +67,7 @@ test.describe('MiddleTextTruncation', () => {
       'MyFileWithAReallyLongNameThatWillBeTruncat…2.html - some additional text',
     );
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(200);
   });
 });
 
@@ -85,6 +85,6 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
-    await page.waitForTimeout(30);
+    await page.waitForTimeout(200);
   };
 };

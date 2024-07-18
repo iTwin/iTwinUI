@@ -66,7 +66,7 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
-    await page.waitForTimeout(30);
+    await page.waitForTimeout(200);
   };
 };
 

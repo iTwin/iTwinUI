@@ -42,7 +42,7 @@ test.describe('ComboBox', () => {
           }`,
         );
 
-        await page.waitForTimeout(60);
+        await page.waitForTimeout(200);
 
         // Should change internal state when the value prop changes
         if (multiple) {
@@ -311,7 +311,7 @@ test.describe('ComboBox', () => {
       });
 
       await setContainerSize('10px');
-      await page.waitForTimeout(60);
+      await page.waitForTimeout(200);
 
       await expectOverflowState({
         expectedItemLength: 1,
@@ -356,7 +356,7 @@ const getSetContainerSize = (page: Page) => {
       },
       { dimension },
     );
-    await page.waitForTimeout(30);
+    await page.waitForTimeout(200);
   };
 };
 
