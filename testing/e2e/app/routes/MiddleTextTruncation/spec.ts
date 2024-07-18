@@ -12,22 +12,18 @@ test.describe('MiddleTextTruncation', () => {
     const setContainerSize = getSetContainerSize(page);
 
     const middleTextTruncation = page.getByTestId('middleTextTruncation');
-    expect(await middleTextTruncation.first().textContent()).toHaveLength(
-      longItem.length,
-    );
+    await expect(middleTextTruncation.first()).toHaveText(longItem);
 
     await setContainerSize('200px');
 
-    expect(await middleTextTruncation.first().textContent()).toHaveLength(
-      'MyFileWithAReallyLon…2.html'.length,
+    await expect(middleTextTruncation.first()).toHaveText(
+      'MyFileWithAReallyLon…2.html',
     );
 
     await setContainerSize(undefined);
 
     // should restore hidden items when space is available again
-    expect(await middleTextTruncation.first().textContent()).toHaveLength(
-      longItem.length,
-    );
+    expect(middleTextTruncation.first()).toHaveText(longItem);
   });
 
   test(`should at minimum always show ellipses and endCharsCount number of characters`, async ({
@@ -39,22 +35,18 @@ test.describe('MiddleTextTruncation', () => {
     const setContainerSize = getSetContainerSize(page);
 
     const middleTextTruncation = page.getByTestId('container');
-    expect(await middleTextTruncation.first().textContent()).toHaveLength(
-      longItem.length,
-    );
+    await expect(middleTextTruncation.first()).toHaveText(longItem);
 
     await setContainerSize('20px');
 
-    expect(await middleTextTruncation.first().textContent()).toHaveLength(
-      endCharsCount + 1, // +1 for the ellipses
+    await expect(middleTextTruncation.first()).toHaveText(
+      `…${longItem.slice(-endCharsCount)}`,
     );
 
     await setContainerSize(undefined);
 
     // should restore hidden items when space is available again
-    expect(await middleTextTruncation.first().textContent()).toHaveLength(
-      longItem.length,
-    );
+    await expect(middleTextTruncation.first()).toHaveText(longItem);
   });
 
   test('should render custom text', async ({ page }) => {

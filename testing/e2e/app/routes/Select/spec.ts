@@ -135,7 +135,7 @@ const getExpectOverflowState = (page: Page) => {
     const lastTag = tags[tags.length - 1];
 
     if (expectedLastTagTextContent != null) {
-      expect(await lastTag.textContent()).toBe(expectedLastTagTextContent);
+      await expect(lastTag).toHaveText(expectedLastTagTextContent);
     } else {
       expect(tags).toHaveLength(0);
     }

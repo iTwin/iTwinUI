@@ -357,14 +357,12 @@ const getExpectOverflowState = (
     expectedOverflowTagFirstOverflowingIndex: number | undefined;
   }) => {
     const buttons = await page.locator('#container button').all();
-    await expect(buttons.length).toBe(expectedButtonLength);
+    expect(buttons).toHaveLength(expectedButtonLength);
 
     if (expectedOverflowTagFirstOverflowingIndex != null) {
       await expect(
-        await buttons[
-          overflowPlacement === 'end' ? buttons.length - 1 : 0
-        ].textContent(),
-      ).toBe(`${expectedOverflowTagFirstOverflowingIndex}`);
+        buttons[overflowPlacement === 'end' ? buttons.length - 1 : 0],
+      ).toHaveText(`${expectedOverflowTagFirstOverflowingIndex}`);
     } else {
       await expect(page.getByTestId('overflow-button')).toHaveCount(0);
     }
