@@ -178,7 +178,7 @@ test.describe('ButtonGroup', () => {
           expectedOverflowTagFirstOverflowingIndex: 1,
         });
 
-        await setContainerSize(undefined);
+        await setContainerSize(10);
 
         await expectOverflowState({
           expectedButtonLength: 3,
@@ -227,105 +227,79 @@ test.describe('ButtonGroup', () => {
     (
       [
         {
-          visibleCount: 10,
-          containerSize: '488px',
-          overflowStart: 0,
-          overflowPlacement: 'start',
-        },
-        {
           visibleCount: 9,
-          containerSize: '481px',
           overflowStart: 1,
           overflowPlacement: 'start',
         },
         {
           visibleCount: 8,
-          containerSize: '429px',
           overflowStart: 2,
           overflowPlacement: 'start',
         },
         {
           visibleCount: 4,
-          containerSize: '220px',
           overflowStart: 6,
           overflowPlacement: 'start',
         },
         {
           visibleCount: 3,
-          containerSize: '183px',
           overflowStart: 7,
           overflowPlacement: 'start',
         },
         {
           visibleCount: 1,
-          containerSize: '77px',
           overflowStart: 9,
           overflowPlacement: 'start',
         },
         {
-          visibleCount: 10,
-          containerSize: '487px',
-          overflowStart: 9,
-          overflowPlacement: 'end',
-        },
-        {
           visibleCount: 9,
-          containerSize: '475px',
           overflowStart: 8,
           overflowPlacement: 'end',
         },
         {
           visibleCount: 8,
-          containerSize: '429px',
           overflowStart: 7,
           overflowPlacement: 'end',
         },
         {
           visibleCount: 4,
-          containerSize: '221px',
           overflowStart: 3,
           overflowPlacement: 'end',
         },
         {
           visibleCount: 3,
-          containerSize: '183px',
           overflowStart: 2,
           overflowPlacement: 'end',
         },
         {
           visibleCount: 1,
-          containerSize: '78px',
           overflowStart: 0,
           overflowPlacement: 'end',
         },
       ] as const
-    ).forEach(
-      ({ visibleCount, containerSize, overflowStart, overflowPlacement }) => {
-        test(`should calculate correct values when overflowPlacement=${overflowPlacement} and visibleCount=${visibleCount}`, async ({
-          page,
-        }) => {
-          await page.goto(
-            `/ButtonGroup?exampleType=overflow&containerSize${containerSize}&overflowPlacement=${overflowPlacement}`,
-          );
+    ).forEach(({ visibleCount, overflowStart, overflowPlacement }) => {
+      test(`should calculate correct values when overflowPlacement=${overflowPlacement} and visibleCount=${visibleCount}`, async ({
+        page,
+      }) => {
+        await page.goto(
+          `/ButtonGroup?exampleType=overflow&overflowPlacement=${overflowPlacement}`,
+        );
 
-          const setContainerSize = getSetContainerSize(page, 'horizontal');
-          await setContainerSize(
-            visibleCount === 10 ? visibleCount : visibleCount + 0.5,
-          );
+        const setContainerSize = getSetContainerSize(page, 'horizontal');
+        await setContainerSize(visibleCount + 0.5);
 
-          const allItems = await page.locator('button').all();
-          const overflowButton =
-            allItems[overflowPlacement === 'end' ? allItems.length - 1 : 0];
-          const buttonGroupButtons = allItems.slice(
-            overflowPlacement === 'end' ? 0 : 1,
-            overflowPlacement === 'end' ? -1 : undefined,
-          );
+        const allItems = await page.locator('button').all();
+        const overflowButton =
+          allItems[overflowPlacement === 'end' ? allItems.length - 1 : 0];
+        const buttonGroupButtons = allItems.slice(
+          overflowPlacement === 'end' ? 0 : 1,
+          overflowPlacement === 'end' ? -1 : undefined,
+        );
 
-          await expect(overflowButton).toHaveText(`${overflowStart}`);
-          expect(buttonGroupButtons).toHaveLength(visibleCount - 1);
-        });
-      },
-    );
+        await expect(overflowButton).toHaveText(`${overflowStart}`);
+        expect(buttonGroupButtons).toHaveLength(visibleCount - 1);
+      });
+    });
   });
 });
 

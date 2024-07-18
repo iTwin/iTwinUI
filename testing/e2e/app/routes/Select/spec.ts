@@ -26,7 +26,7 @@ test.describe('Select', () => {
           await page.getByRole('option').first().click();
         }
 
-        expect(page.getByRole('combobox')).toHaveText('option 1');
+        await expect(page.getByRole('combobox')).toHaveText('option 1');
       });
     });
   });
