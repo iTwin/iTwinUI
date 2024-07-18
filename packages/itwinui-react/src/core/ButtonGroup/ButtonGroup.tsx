@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useOverflow, useMergedRefs, Box } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -14,6 +14,7 @@ import {
   CompositeItem,
   FloatingDelayGroup,
 } from '@floating-ui/react';
+import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 
 // ----------------------------------------------------------------------------
 
@@ -172,6 +173,7 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
 
 // ----------------------------------------------------------------------------
 
+/** Note: If `overflowButton == null`, it behaves like a `BaseGroup`. */
 const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   const {
     children: childrenProp,
@@ -186,14 +188,12 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  const [overflowRef, visibleCount] = useOverflow(
-    items,
-    !overflowButton,
-    orientation,
-  );
-
-  return (
-    <BaseGroup
+  return overflowButton != null ? (
+    <OverflowContainer
+      as={BaseGroup}
+      items={items}
+      overflowOrientation={orientation}
+      overflowLocation={overflowPlacement}
       orientation={orientation}
       {...rest}
       className={cx(
@@ -203,34 +203,21 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         },
         props.className,
       )}
-      ref={useMergedRefs(forwardedRef, overflowRef)}
-    >
-      {(() => {
-        if (!(visibleCount < items.length)) {
-          return items;
-        }
-
-        const overflowStart =
+      ref={forwardedRef}
+      overflowTag={(visibleCount) => {
+        const firstOverflowingIndex =
           overflowPlacement === 'start'
-            ? items.length - visibleCount
+            ? items.length - visibleCount - 2
             : visibleCount - 1;
 
-        return (
-          <>
-            {overflowButton &&
-              overflowPlacement === 'start' &&
-              overflowButton(overflowStart)}
-
-            {overflowPlacement === 'start'
-              ? items.slice(overflowStart + 1)
-              : items.slice(0, Math.max(0, overflowStart))}
-
-            {overflowButton &&
-              overflowPlacement === 'end' &&
-              overflowButton(overflowStart)}
-          </>
-        );
-      })()}
+        return overflowButton(firstOverflowingIndex);
+      }}
+    >
+      {items}
+    </OverflowContainer>
+  ) : (
+    <BaseGroup orientation={orientation} ref={forwardedRef} {...rest}>
+      {childrenProp}
     </BaseGroup>
   );
 }) as PolymorphicForwardRefComponent<

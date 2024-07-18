@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useOverflow, useMergedRefs, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
+import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 
 type SelectTagContainerProps = {
   /**
@@ -20,21 +20,16 @@ type SelectTagContainerProps = {
 export const SelectTagContainer = React.forwardRef((props, ref) => {
   const { tags, className, ...rest } = props;
 
-  const [containerRef, visibleCount] = useOverflow(tags);
-  const refs = useMergedRefs(ref, containerRef);
-
   return (
-    <Box
+    <OverflowContainer
+      overflowTag={(visibleCount) => (
+        <SelectTag label={`+${tags.length - (visibleCount - 1)} item(s)`} /> // -1 to account for the overflowTag
+      )}
       className={cx('iui-select-tag-container', className)}
-      ref={refs}
+      ref={ref}
       {...rest}
     >
-      <>
-        {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
-        {visibleCount < tags.length && (
-          <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
-        )}
-      </>
-    </Box>
+      {tags}
+    </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<'div', SelectTagContainerProps>;
