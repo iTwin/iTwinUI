@@ -23,7 +23,7 @@ test.describe('MiddleTextTruncation', () => {
     await setContainerSize(undefined);
 
     // should restore hidden items when space is available again
-    expect(middleTextTruncation.first()).toHaveText(longItem);
+    await expect(middleTextTruncation.first()).toHaveText(longItem);
   });
 
   test(`should at minimum always show ellipses and endCharsCount number of characters`, async ({
