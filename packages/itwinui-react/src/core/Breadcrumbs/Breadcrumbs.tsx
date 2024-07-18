@@ -131,11 +131,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
-      <OverflowContainer
-        as='ol'
-        className='iui-breadcrumbs-list'
-        itemsLength={items.length}
-      >
+      <OverflowContainer as='ol' className='iui-breadcrumbs-list' items={items}>
         {(visibleCount: number) => (
           <>
             {visibleCount > 1 && (

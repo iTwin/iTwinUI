@@ -22,6 +22,7 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
 
   return (
     <OverflowContainer
+      items={tags}
       overflowTag={(visibleCount) => (
         <SelectTag label={`+${tags.length - (visibleCount - 1)} item(s)`} /> // -1 to account for the overflowTag
       )}

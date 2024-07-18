@@ -289,7 +289,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         )}
       </Box>
       {showPagesList && (
-        <OverflowContainer className='iui-center' itemsLength={pageList.length}>
+        <OverflowContainer className='iui-center' items={pageList}>
           {(visibleCount) => {
             const halfVisibleCount = Math.floor(visibleCount / 2);
             let startPage = focusedIndex - halfVisibleCount;

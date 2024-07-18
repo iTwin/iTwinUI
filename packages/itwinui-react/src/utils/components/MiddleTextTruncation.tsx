@@ -70,7 +70,7 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
         whiteSpace: 'nowrap',
         ...style,
       }}
-      itemsLength={text.length}
+      items={text}
       {...rest}
     >
       {(visibleCount) =>
