@@ -10,11 +10,6 @@ import { useOverflow } from '../hooks/useOverflow.js';
 
 type OverflowContainerProps = {
   /**
-   * If the overflow detection is disabled, all items will be displayed.
-   * @default false
-   */
-  overflowDisabled?: boolean;
-  /**
    * The orientation of the overflow in container.
    * @default 'horizontal'
    */
@@ -91,14 +86,13 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     overflowLocation = 'end',
     items,
     children,
-    overflowDisabled = false,
     overflowOrientation,
     ...rest
   } = props;
 
   const [containerRef, visibleCount] = useOverflow(
     items,
-    overflowDisabled,
+    false,
     overflowOrientation,
   );
 
@@ -127,7 +121,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
 
     return (
       <>
-        {children.slice(0, visibleCount - 1)}
+        {React.Children.toArray(children).slice(0, visibleCount - 1)}
         {overflowTag(visibleCount)}
       </>
     );
