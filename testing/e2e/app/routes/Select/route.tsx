@@ -28,13 +28,16 @@ export default function SelectTest() {
   const searchParamValue = searchParams.get('value') as
     | ('all' & string & {})
     | null;
-  const value =
-    searchParamValue != null
-      ? searchParamValue === 'all'
-        ? options.map((option) => option.value)
-        : (JSON.parse(searchParamValue) as number | number[])
-      : undefined;
+  const value = (() => {
+    if (searchParamValue == null) {
+      return undefined;
+    }
 
+    if (searchParamValue === 'all') {
+      return options.map((option) => option.value);
+    }
+    return JSON.parse(searchParamValue) as number | number[];
+  })();
   const multiple = searchParams.get('multiple') === 'true';
 
   return (

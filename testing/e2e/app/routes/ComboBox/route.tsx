@@ -1,12 +1,14 @@
 import { Button, ComboBox } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
+import * as React from 'react';
 
 export default function ComboBoxTest() {
   const [searchParams] = useSearchParams();
 
   const virtualization = searchParams.get('virtualization') === 'true';
   const multiple = searchParams.get('multiple') === 'true';
+  const showChangeValueButton =
+    searchParams.get('showChangeValueButton') === 'true';
 
   const options = [
     { label: 'Item 0', value: 0 },
@@ -32,12 +34,14 @@ export default function ComboBoxTest() {
 
   return (
     <div data-testid='container'>
-      <Button
-        data-testid='change-value-to-first-option-button'
-        onClick={() => setValue(multiple ? [0] : 0)}
-      >
-        Change value to just the first option
-      </Button>
+      {showChangeValueButton && (
+        <Button
+          data-testid='change-value-to-first-option-button'
+          onClick={() => setValue(multiple ? [0] : 0)}
+        >
+          Change value to just the first option
+        </Button>
+      )}
 
       <ComboBox
         options={options}

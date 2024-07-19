@@ -435,8 +435,7 @@ test.describe('Table Paginator', () => {
   test('should render truncated pages list', async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
-    const setContainerSize = getSetContainerSize(page);
-    await setContainerSize('800px');
+    await setContainerSize(page, '800px');
 
     // Go to the 6th page
     await page.locator('button').last().click({ clickCount: 5 });
@@ -458,25 +457,25 @@ test.describe('Table Paginator', () => {
   }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
     await expectOverflowState({
+      page,
       expectedItemLength: 11,
       expectedOverflowingEllipsisVisibleCount: 0,
     });
 
-    await setContainerSize('750px');
+    await setContainerSize(page, '750px');
 
     await expectOverflowState({
+      page,
       expectedItemLength: 6,
       expectedOverflowingEllipsisVisibleCount: 1,
     });
 
     // should restore hidden items when space is available again
-    await setContainerSize(undefined);
+    await setContainerSize(page, undefined);
 
     await expectOverflowState({
+      page,
       expectedItemLength: 11,
       expectedOverflowingEllipsisVisibleCount: 0,
     });
@@ -485,17 +484,16 @@ test.describe('Table Paginator', () => {
   test(`should at minimum always show one page`, async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
     await expectOverflowState({
+      page,
       expectedItemLength: 11,
       expectedOverflowingEllipsisVisibleCount: 0,
     });
 
-    await setContainerSize('100px');
+    await setContainerSize(page, '100px');
 
     await expectOverflowState({
+      page,
       expectedItemLength: 1,
       expectedOverflowingEllipsisVisibleCount: 0,
     });
@@ -508,8 +506,7 @@ test.describe('Table Paginator', () => {
   test(`should render elements in small size`, async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator&density=condensed`);
 
-    const setContainerSize = getSetContainerSize(page);
-    await setContainerSize('500px');
+    await setContainerSize(page, '500px');
 
     (await page.locator('#paginator button').all()).forEach(async (button) => {
       await expect(button).toHaveAttribute('data-iui-size', 'small');
@@ -523,47 +520,42 @@ test.describe('Table Paginator', () => {
   });
 
   //#region Helpers for table paginator tests
-  const getSetContainerSize = (page: Page) => {
-    return async (dimension: string | undefined) => {
-      await page.locator('#container').evaluate(
-        (element, args) => {
-          if (args.dimension != null) {
-            element.style.setProperty(
-              'width',
-              args.dimension ? args.dimension : `999px`,
-            );
-          } else {
-            element.style.removeProperty('width');
-          }
-        },
-        {
-          dimension,
-        },
-      );
-      await page.waitForTimeout(200);
-    };
+  const setContainerSize = async (page: Page, value: string | undefined) => {
+    await page.locator('#container').evaluate(
+      (element, args) => {
+        if (args.value != null) {
+          element.style.setProperty('width', args.value ? args.value : `999px`);
+        } else {
+          element.style.removeProperty('width');
+        }
+      },
+      {
+        value,
+      },
+    );
+    await page.waitForTimeout(200);
   };
 
-  const getExpectOverflowState = (page: Page) => {
-    return async ({
-      expectedItemLength,
-      expectedOverflowingEllipsisVisibleCount,
-    }: {
-      expectedItemLength: number;
-      expectedOverflowingEllipsisVisibleCount: number;
-    }) => {
-      const allItems = await page.locator('#paginator button').all();
-      const items =
-        allItems.length >= 2
-          ? allItems.slice(1, allItems.length - 1) // since the first and last button and to toggle pages
-          : [];
-      expect(items).toHaveLength(expectedItemLength);
+  const expectOverflowState = async ({
+    page,
+    expectedItemLength,
+    expectedOverflowingEllipsisVisibleCount,
+  }: {
+    page: Page;
+    expectedItemLength: number;
+    expectedOverflowingEllipsisVisibleCount: number;
+  }) => {
+    const allItems = await page.locator('#paginator button').all();
+    const items =
+      allItems.length >= 2
+        ? allItems.slice(1, allItems.length - 1) // since the first and last button and to toggle pages
+        : [];
+    expect(items).toHaveLength(expectedItemLength);
 
-      const overflowingEllipsis = page.getByText('…');
-      await expect(overflowingEllipsis).toHaveCount(
-        expectedOverflowingEllipsisVisibleCount,
-      );
-    };
+    const overflowingEllipsis = page.getByText('…');
+    await expect(overflowingEllipsis).toHaveCount(
+      expectedOverflowingEllipsisVisibleCount,
+    );
   };
   //#endregion
 });

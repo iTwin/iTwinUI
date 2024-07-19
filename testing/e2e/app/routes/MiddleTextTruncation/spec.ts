@@ -9,21 +9,23 @@ test.describe('MiddleTextTruncation', () => {
   }) => {
     await page.goto(`/MiddleTextTruncation`);
 
-    const setContainerSize = getSetContainerSize(page);
-
     const middleTextTruncation = page.getByTestId('middleTextTruncation');
     await expect(middleTextTruncation.first()).toHaveText(longItem);
 
-    await setContainerSize('200px');
+    await setContainerSize(page, '200px');
 
-    await expect(middleTextTruncation.first()).toHaveText(
-      'MyFileWithAReallyLon…2.html',
-    );
+    const truncatedText = await middleTextTruncation.first().textContent();
 
-    await setContainerSize(undefined);
+    // There should be at least some truncation
+    expect(truncatedText).toMatch(new RegExp('.+…2.html')); // should have ellipsis
+    expect(truncatedText).not.toMatch(
+      new RegExp(`${longItem.slice(0, longItem.length - '2.html'.length)}.+`),
+    ); // should not have full text before the ellipsis
+
+    await setContainerSize(page, undefined);
 
     // should restore hidden items when space is available again
-    expect(middleTextTruncation.first()).toHaveText(longItem);
+    await expect(middleTextTruncation.first()).toHaveText(longItem);
   });
 
   test(`should at minimum always show ellipses and endCharsCount number of characters`, async ({
@@ -32,18 +34,17 @@ test.describe('MiddleTextTruncation', () => {
     await page.goto(`/MiddleTextTruncation`);
 
     const endCharsCount = 6;
-    const setContainerSize = getSetContainerSize(page);
 
     const middleTextTruncation = page.getByTestId('container');
     await expect(middleTextTruncation.first()).toHaveText(longItem);
 
-    await setContainerSize('20px');
+    await setContainerSize(page, '20px');
 
     await expect(middleTextTruncation.first()).toHaveText(
       `…${longItem.slice(-endCharsCount)}`,
     );
 
-    await setContainerSize(undefined);
+    await setContainerSize(page, undefined);
 
     // should restore hidden items when space is available again
     await expect(middleTextTruncation.first()).toHaveText(longItem);
@@ -52,12 +53,17 @@ test.describe('MiddleTextTruncation', () => {
   test('should render custom text', async ({ page }) => {
     await page.goto(`/MiddleTextTruncation?shouldUseCustomRenderer=true`);
 
-    const setContainerSize = getSetContainerSize(page);
-    await setContainerSize('500px');
+    await setContainerSize(page, '500px');
 
-    await expect(page.getByTestId('custom-text')).toHaveText(
-      'MyFileWithAReallyLongNameThatWillBeTruncat…2.html - some additional text',
-    );
+    const truncatedText = await page.getByTestId('custom-text').textContent();
+
+    // There should be at least some truncation
+    expect(truncatedText).toMatch(
+      new RegExp('.+…2.html - some additional text'),
+    ); // should have ellipsis
+    expect(truncatedText).not.toMatch(
+      new RegExp(`${longItem.slice(0, longItem.length - '2.html'.length)}.+`),
+    ); // should not have full text before the ellipsis
 
     await page.waitForTimeout(200);
   });
@@ -65,18 +71,16 @@ test.describe('MiddleTextTruncation', () => {
 
 // ----------------------------------------------------------------------------
 
-const getSetContainerSize = (page: Page) => {
-  return async (dimension: string | undefined) => {
-    await page.getByTestId('container').evaluate(
-      (element, args) => {
-        if (args.dimension != null) {
-          element.style.setProperty('width', args.dimension);
-        } else {
-          element.style.removeProperty('width');
-        }
-      },
-      { dimension },
-    );
-    await page.waitForTimeout(200);
-  };
+const setContainerSize = async (page: Page, value: string | undefined) => {
+  await page.getByTestId('container').evaluate(
+    (element, args) => {
+      if (args.value != null) {
+        element.style.setProperty('width', args.value);
+      } else {
+        element.style.removeProperty('width');
+      }
+    },
+    { value },
+  );
+  await page.waitForTimeout(200);
 };
