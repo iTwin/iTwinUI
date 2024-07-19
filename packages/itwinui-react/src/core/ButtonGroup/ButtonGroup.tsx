@@ -14,7 +14,10 @@ import {
   CompositeItem,
   FloatingDelayGroup,
 } from '@floating-ui/react';
-import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
+import {
+  OverflowContainer,
+  OverflowContainerContext,
+} from '../../utils/components/OverflowContainer.js';
 
 // ----------------------------------------------------------------------------
 
@@ -173,6 +176,11 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
 
 // ----------------------------------------------------------------------------
 
+type OverflowGroupProps = Pick<
+  ButtonGroupProps,
+  'children' | 'orientation' | 'overflowButton' | 'overflowPlacement'
+>;
+
 /** Note: If `overflowButton == null`, it behaves like a `BaseGroup`. */
 const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   const {
@@ -193,7 +201,6 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
       as={BaseGroup}
       items={items}
       overflowOrientation={orientation}
-      overflowLocation={overflowPlacement}
       orientation={orientation}
       {...rest}
       className={cx(
@@ -204,26 +211,58 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         props.className,
       )}
       ref={forwardedRef}
-      overflowTag={(visibleCount) => {
-        const firstOverflowingIndex =
-          overflowPlacement === 'start'
-            ? items.length - visibleCount
-            : visibleCount - 1;
-
-        return overflowButton(firstOverflowingIndex);
-      }}
     >
-      {items}
+      <OverflowGroupContent
+        overflowButton={overflowButton}
+        overflowPlacement={overflowPlacement}
+        items={items}
+      />
     </OverflowContainer>
   ) : (
     <BaseGroup orientation={orientation} ref={forwardedRef} {...rest}>
       {childrenProp}
     </BaseGroup>
   );
-}) as PolymorphicForwardRefComponent<
-  'div',
-  Pick<
-    ButtonGroupProps,
-    'children' | 'orientation' | 'overflowButton' | 'overflowPlacement'
-  >
->;
+}) as PolymorphicForwardRefComponent<'div', OverflowGroupProps>;
+
+// ----------------------------------------------------------------------------
+
+const OverflowGroupContent = ({
+  overflowButton,
+  overflowPlacement,
+  items,
+}: Pick<OverflowGroupProps, 'overflowButton' | 'overflowPlacement'> & {
+  items: Array<Exclude<React.ReactNode, boolean | null | undefined>>;
+}) => {
+  const overflowGroupContext = React.useContext(OverflowContainerContext);
+
+  const overflowStart = (() => {
+    if (overflowGroupContext == null) {
+      return undefined;
+    }
+
+    return overflowPlacement === 'start'
+      ? items.length - overflowGroupContext.visibleCount
+      : overflowGroupContext.visibleCount - 1;
+  })();
+
+  console.log('overflowStart', overflowStart);
+
+  return overflowStart != null ? (
+    <>
+      {overflowButton &&
+        overflowPlacement === 'start' &&
+        overflowButton(overflowStart)}
+
+      {overflowPlacement === 'start'
+        ? items.slice(overflowStart + 1)
+        : items.slice(0, Math.max(0, overflowStart))}
+
+      {overflowButton &&
+        overflowPlacement === 'end' &&
+        overflowButton(overflowStart)}
+    </>
+  ) : (
+    <></>
+  );
+};
