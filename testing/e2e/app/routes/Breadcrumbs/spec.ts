@@ -82,10 +82,10 @@ const expectOverflowState = async ({
   const overflowButton = page.locator('button');
 
   if (expectedOverflowButtonVisibleCount != null) {
-    expect(await overflowButton.textContent()).toBe(
+    await expect(overflowButton).toHaveText(
       `${expectedOverflowButtonVisibleCount}`,
     );
   } else {
-    expect(overflowButton).toHaveCount(0);
+    expect(overflowButton).not.toBeVisible();
   }
 };
