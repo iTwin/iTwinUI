@@ -10,6 +10,16 @@ import * as React from 'react';
 export default function TableTest() {
   const [searchParams] = useSearchParams();
 
+  const config = getConfigFromSearchParams(searchParams);
+
+  return config.exampleType === 'withTablePaginator' ? (
+    <WithTablePaginator config={config} />
+  ) : (
+    <Default config={config} />
+  );
+}
+
+const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const exampleType = searchParams.get('exampleType') || 'default';
   const disableResizing = searchParams.get('disableResizing') === 'true';
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
@@ -31,10 +41,112 @@ export default function TableTest() {
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
 
+  return {
+    exampleType,
+    disableResizing,
+    columnResizeMode,
+    maxWidths,
+    minWidths,
+    density,
+    isSelectable,
+    subRows,
+    filter,
+    selectSubRows,
+    enableVirtualization,
+    empty,
+    scroll,
+    oneRow,
+    stateReducer,
+    scrollRow,
+  };
+};
+
+const Default = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const data = config.subRows
+    ? [
+        {
+          index: 1,
+          name: 'Name1',
+          description: 'Description1',
+          id: '111',
+        },
+        {
+          index: 2,
+          name: 'Name2',
+          description: 'Description2',
+          subRows: [
+            {
+              index: 2.1,
+              name: 'Name2.1',
+              description: 'Description2.1',
+              id: '223',
+            },
+            {
+              index: 2.2,
+              name: 'Name2.2',
+              description: 'Description2.2',
+              id: '224',
+            },
+          ],
+          id: '222',
+        },
+        {
+          index: 3,
+          name: 'Name3',
+          description: 'Description3',
+          subRows: [
+            {
+              index: 3.1,
+              name: 'Name3.1',
+              description: 'Description3.1',
+              id: '334',
+            },
+            {
+              index: 3.2,
+              name: 'Name3.2',
+              description: 'Description3.2',
+              id: '335',
+            },
+          ],
+          id: '333',
+        },
+      ]
+    : [
+        {
+          index: 1,
+          name: 'Name1',
+          description: 'Description1',
+          id: '111',
+        },
+        {
+          index: 2,
+          name: 'Name2',
+          description: 'Description2',
+          id: '222',
+        },
+        {
+          index: 3,
+          name: 'Name3',
+          description: 'Description3',
+          id: '333',
+        },
+      ];
+
+  const isRowDisabled = React.useCallback(
+    (rowData: Record<string, unknown>) => {
+      return rowData.name === 'Name3.2';
+    },
+    [],
+  );
+
   const virtualizedData = React.useMemo(() => {
-    const size = oneRow ? 1 : 100000;
+    const size = config.oneRow ? 1 : 100000;
     const arr = new Array(size);
-    if (!empty) {
+    if (!config.empty) {
       for (let i = 0; i < size; ++i) {
         arr[i] = {
           index: i,
@@ -45,206 +157,127 @@ export default function TableTest() {
       }
     }
     return arr;
-  }, [oneRow, empty]);
+  }, [config.oneRow, config.empty]);
 
-  const Default = () => {
-    const data = subRows
-      ? [
+  return (
+    <>
+      <Table
+        columns={[
           {
-            index: 1,
-            name: 'Name1',
-            description: 'Description1',
-            id: '111',
+            Header: '#',
+            accessor: 'index',
+            width: 100,
+            maxWidth: parseInt(config.maxWidths[0]) || undefined,
+            minWidth: parseInt(config.minWidths[0]) || undefined,
           },
           {
-            index: 2,
-            name: 'Name2',
-            description: 'Description2',
-            subRows: [
-              {
-                index: 2.1,
-                name: 'Name2.1',
-                description: 'Description2.1',
-                id: '223',
-              },
-              {
-                index: 2.2,
-                name: 'Name2.2',
-                description: 'Description2.2',
-                id: '224',
-              },
-            ],
-            id: '222',
+            Header: 'Name',
+            accessor: 'name',
+            maxWidth: parseInt(config.maxWidths[1]) || undefined,
+            minWidth: parseInt(config.minWidths[1]) || undefined,
+            disableResizing: config.disableResizing,
+            Filter: config.filter ? tableFilters.TextFilter() : undefined,
           },
           {
-            index: 3,
-            name: 'Name3',
-            description: 'Description3',
-            subRows: [
-              {
-                index: 3.1,
-                name: 'Name3.1',
-                description: 'Description3.1',
-                id: '334',
-              },
-              {
-                index: 3.2,
-                name: 'Name3.2',
-                description: 'Description3.2',
-                id: '335',
-              },
-            ],
-            id: '333',
-          },
-        ]
-      : [
-          {
-            index: 1,
-            name: 'Name1',
-            description: 'Description1',
-            id: '111',
+            Header: 'Description',
+            accessor: 'description',
+            width: '200px',
           },
           {
-            index: 2,
-            name: 'Name2',
-            description: 'Description2',
-            id: '222',
+            Header: 'ID',
+            accessor: 'id',
+            width: '8rem',
           },
-          {
-            index: 3,
-            name: 'Name3',
-            description: 'Description3',
-            id: '333',
-          },
-        ];
-
-    const isRowDisabled = React.useCallback(
-      (rowData: Record<string, unknown>) => {
-        return rowData.name === 'Name3.2';
-      },
-      [],
-    );
-
-    return (
-      <>
-        <Table
-          columns={[
-            {
-              Header: '#',
-              accessor: 'index',
-              width: 100,
-              maxWidth: parseInt(maxWidths[0]) || undefined,
-              minWidth: parseInt(minWidths[0]) || undefined,
-            },
-            {
-              Header: 'Name',
-              accessor: 'name',
-              maxWidth: parseInt(maxWidths[1]) || undefined,
-              minWidth: parseInt(minWidths[1]) || undefined,
-              disableResizing,
-              Filter: filter ? tableFilters.TextFilter() : undefined,
-            },
-            {
-              Header: 'Description',
-              accessor: 'description',
-              width: '200px',
-            },
-            {
-              Header: 'ID',
-              accessor: 'id',
-              width: '8rem',
-            },
-          ]}
-          data={enableVirtualization ? virtualizedData : data}
-          emptyTableContent='No data.'
-          isResizable
-          isRowDisabled={isRowDisabled}
-          isSelectable={isSelectable}
-          isSortable
-          density={density}
-          columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
-          selectSubRows={selectSubRows}
-          enableVirtualization={enableVirtualization}
-          style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
-          scrollToRow={
-            scroll
-              ? (rows, data) =>
-                  rows.findIndex((row) => row.original === data[scrollRow])
-              : undefined
-          }
-          stateReducer={
-            stateReducer
-              ? (newState, action, previousState, instance) => {
-                  if (action.type === 'toggleRowSelected') {
-                    console.log(action.value);
-                  }
-                  return newState;
+        ]}
+        data={config.enableVirtualization ? virtualizedData : data}
+        emptyTableContent='No data.'
+        isResizable
+        isRowDisabled={isRowDisabled}
+        isSelectable={config.isSelectable}
+        isSortable
+        density={config.density}
+        columnResizeMode={
+          config.columnResizeMode as 'fit' | 'expand' | undefined
+        }
+        selectSubRows={config.selectSubRows}
+        enableVirtualization={config.enableVirtualization}
+        style={config.enableVirtualization ? { maxHeight: '90vh' } : undefined}
+        scrollToRow={
+          config.scroll
+            ? (rows, data) =>
+                rows.findIndex((row) => row.original === data[config.scrollRow])
+            : undefined
+        }
+        stateReducer={
+          config.stateReducer
+            ? (newState, action, previousState, instance) => {
+                if (action.type === 'toggleRowSelected') {
+                  console.log(action.value);
                 }
-              : undefined
-          }
-        />
-      </>
-    );
-  };
-
-  const WithTablePaginator = () => {
-    const columns = React.useMemo(
-      () => [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-          maxWidth: 200,
-          Filter: tableFilters.TextFilter(),
-        },
-      ],
-      [],
-    );
-
-    const data = React.useMemo(
-      () =>
-        Array(505)
-          .fill(null)
-          .map((_, index) => ({
-            name: `Name ${index}`,
-            description: `Description ${index}`,
-          })),
-      [],
-    );
-
-    const paginator = React.useCallback(
-      (props: TablePaginatorRendererProps) => (
-        <TablePaginator id='paginator' {...props} />
-      ),
-      [],
-    );
-
-    return (
-      <>
-        <div id='container' style={{ height: '80vh' }}>
-          <Table
-            style={{ height: '100%' }}
-            emptyTableContent='No data.'
-            columns={columns}
-            data={data}
-            pageSize={50}
-            density={density}
-            paginatorRenderer={paginator}
-          />
-        </div>
-      </>
-    );
-  };
-
-  return exampleType === 'withTablePaginator' ? (
-    <WithTablePaginator />
-  ) : (
-    <Default />
+                return newState;
+              }
+            : undefined
+        }
+      />
+    </>
   );
-}
+};
+
+const WithTablePaginator = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const columns = React.useMemo(
+    () => [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
+      },
+    ],
+    [],
+  );
+
+  const data = React.useMemo(
+    () =>
+      Array(505)
+        .fill(null)
+        .map((_, index) => ({
+          name: `Name ${index}`,
+          description: `Description ${index}`,
+        })),
+    [],
+  );
+
+  const paginator = React.useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator id='paginator' {...props} />
+    ),
+    [],
+  );
+
+  return (
+    <>
+      <div id='container' style={{ height: '80vh' }}>
+        <Table
+          style={{ height: '100%' }}
+          emptyTableContent='No data.'
+          columns={columns}
+          data={data}
+          pageSize={50}
+          density={config.density}
+          paginatorRenderer={paginator}
+        />
+      </div>
+    </>
+  );
+};
