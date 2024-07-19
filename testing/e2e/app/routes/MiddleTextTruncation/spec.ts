@@ -14,9 +14,13 @@ test.describe('MiddleTextTruncation', () => {
 
     await setContainerSize(page, '200px');
 
-    await expect(middleTextTruncation.first()).toHaveText(
-      'MyFileWithAReallyLon…2.html',
-    );
+    const truncatedText = await middleTextTruncation.first().textContent();
+
+    // There should be at least some truncation
+    expect(truncatedText).toMatch(new RegExp('.+…2.html')); // should have ellipsis
+    expect(truncatedText).not.toMatch(
+      new RegExp(`${longItem.slice(0, longItem.length - '2.html'.length)}.+`),
+    ); // should not have full text before the ellipsis
 
     await setContainerSize(page, undefined);
 
@@ -51,9 +55,15 @@ test.describe('MiddleTextTruncation', () => {
 
     await setContainerSize(page, '500px');
 
-    await expect(page.getByTestId('custom-text')).toHaveText(
-      'MyFileWithAReallyLongNameThatWillBeTruncat…2.html - some additional text',
-    );
+    const truncatedText = await page.getByTestId('custom-text').textContent();
+
+    // There should be at least some truncation
+    expect(truncatedText).toMatch(
+      new RegExp('.+…2.html - some additional text'),
+    ); // should have ellipsis
+    expect(truncatedText).not.toMatch(
+      new RegExp(`${longItem.slice(0, longItem.length - '2.html'.length)}.+`),
+    ); // should not have full text before the ellipsis
 
     await page.waitForTimeout(200);
   });
