@@ -152,11 +152,6 @@
   min-inline-size: 100%;
   display: flex;
 
-  &:last-of-type {
-    border-end-start-radius: var(--iui-border-radius-1);
-    border-end-end-radius: var(--iui-border-radius-1);
-  }
-
   .iui-table-header & {
     flex-grow: 1;
   }
@@ -308,6 +303,13 @@
     }
     // #endregion Statuses & states
   }
+
+  .iui-table-body:not(:has(+ .iui-table-paginator)) & {
+    &:last-of-type {
+      border-end-start-radius: var(--iui-border-radius-1);
+      border-end-end-radius: var(--iui-border-radius-1);
+    }
+  }
 }
 
 // For content placed after the table body and before the paginator
@@ -394,7 +396,7 @@
 
   &:first-of-type {
     border-inline-start: solid 1px transparent;
-    border-end-start-radius: inherit;
+    border-end-start-radius: var(--iui-border-radius-1);
   }
 
   &:last-of-type {
