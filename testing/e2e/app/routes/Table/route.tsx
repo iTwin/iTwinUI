@@ -11,8 +11,9 @@ export default function TableTest() {
   const [searchParams] = useSearchParams();
 
   const config = getConfigFromSearchParams(searchParams);
+  const { exampleType } = config;
 
-  return config.exampleType === 'withTablePaginator' ? (
+  return exampleType === 'withTablePaginator' ? (
     <WithTablePaginator config={config} />
   ) : (
     <Default config={config} />
@@ -66,7 +67,25 @@ const Default = ({
 }: {
   config: ReturnType<typeof getConfigFromSearchParams>;
 }) => {
-  const data = config.subRows
+  const {
+    subRows,
+    oneRow,
+    empty,
+    columnResizeMode,
+    density,
+    disableResizing,
+    enableVirtualization,
+    filter,
+    isSelectable,
+    maxWidths,
+    minWidths,
+    scroll,
+    scrollRow,
+    selectSubRows,
+    stateReducer,
+  } = config;
+
+  const data = subRows
     ? [
         {
           index: 1,
@@ -144,9 +163,9 @@ const Default = ({
   );
 
   const virtualizedData = React.useMemo(() => {
-    const size = config.oneRow ? 1 : 100000;
+    const size = oneRow ? 1 : 100000;
     const arr = new Array(size);
-    if (!config.empty) {
+    if (!empty) {
       for (let i = 0; i < size; ++i) {
         arr[i] = {
           index: i,
@@ -157,7 +176,7 @@ const Default = ({
       }
     }
     return arr;
-  }, [config.oneRow, config.empty]);
+  }, [oneRow, empty]);
 
   return (
     <>
@@ -167,16 +186,16 @@ const Default = ({
             Header: '#',
             accessor: 'index',
             width: 100,
-            maxWidth: parseInt(config.maxWidths[0]) || undefined,
-            minWidth: parseInt(config.minWidths[0]) || undefined,
+            maxWidth: parseInt(maxWidths[0]) || undefined,
+            minWidth: parseInt(minWidths[0]) || undefined,
           },
           {
             Header: 'Name',
             accessor: 'name',
-            maxWidth: parseInt(config.maxWidths[1]) || undefined,
-            minWidth: parseInt(config.minWidths[1]) || undefined,
-            disableResizing: config.disableResizing,
-            Filter: config.filter ? tableFilters.TextFilter() : undefined,
+            maxWidth: parseInt(maxWidths[1]) || undefined,
+            minWidth: parseInt(minWidths[1]) || undefined,
+            disableResizing: disableResizing,
+            Filter: filter ? tableFilters.TextFilter() : undefined,
           },
           {
             Header: 'Description',
@@ -189,27 +208,25 @@ const Default = ({
             width: '8rem',
           },
         ]}
-        data={config.enableVirtualization ? virtualizedData : data}
+        data={enableVirtualization ? virtualizedData : data}
         emptyTableContent='No data.'
         isResizable
         isRowDisabled={isRowDisabled}
-        isSelectable={config.isSelectable}
+        isSelectable={isSelectable}
         isSortable
-        density={config.density}
-        columnResizeMode={
-          config.columnResizeMode as 'fit' | 'expand' | undefined
-        }
-        selectSubRows={config.selectSubRows}
-        enableVirtualization={config.enableVirtualization}
-        style={config.enableVirtualization ? { maxHeight: '90vh' } : undefined}
+        density={density}
+        columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
+        selectSubRows={selectSubRows}
+        enableVirtualization={enableVirtualization}
+        style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
         scrollToRow={
-          config.scroll
+          scroll
             ? (rows, data) =>
-                rows.findIndex((row) => row.original === data[config.scrollRow])
+                rows.findIndex((row) => row.original === data[scrollRow])
             : undefined
         }
         stateReducer={
-          config.stateReducer
+          stateReducer
             ? (newState, action, previousState, instance) => {
                 if (action.type === 'toggleRowSelected') {
                   console.log(action.value);
@@ -228,6 +245,8 @@ const WithTablePaginator = ({
 }: {
   config: ReturnType<typeof getConfigFromSearchParams>;
 }) => {
+  const { density } = config;
+
   const columns = React.useMemo(
     () => [
       {
@@ -274,7 +293,7 @@ const WithTablePaginator = ({
           columns={columns}
           data={data}
           pageSize={50}
-          density={config.density}
+          density={density}
           paginatorRenderer={paginator}
         />
       </div>

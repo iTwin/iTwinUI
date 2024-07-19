@@ -6,8 +6,9 @@ import * as React from 'react';
 export default function ButtonGroupTest() {
   const [searchParams] = useSearchParams();
   const config = getConfigFromSearchParams(searchParams);
+  const { exampleType } = config;
 
-  return config.exampleType === 'default' ? (
+  return exampleType === 'default' ? (
     <Default config={config} />
   ) : (
     <Overflow config={config} />
@@ -42,13 +43,20 @@ const Default = ({
 }: {
   config: ReturnType<typeof getConfigFromSearchParams>;
 }) => {
+  const {
+    initialProvideOverflowButton,
+    showToggleProvideOverflowButton,
+    orientation,
+    overflowPlacement,
+  } = config;
+
   const [provideOverflowButton, setProvideOverflowButton] = React.useState(
-    config.initialProvideOverflowButton,
+    initialProvideOverflowButton,
   );
 
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      {config.showToggleProvideOverflowButton && (
+      {showToggleProvideOverflowButton && (
         <Button
           data-testid='toggle-provide-overflow-container'
           onClick={() => setProvideOverflowButton((prev) => !prev)}
@@ -60,12 +68,12 @@ const Default = ({
       <div id='container' style={{ background: 'hotpink' }}>
         <ButtonGroup
           role='toolbar'
-          orientation={config.orientation as any}
+          orientation={orientation as any}
           style={{
-            width: config.orientation === 'horizontal' ? '100%' : undefined,
-            height: config.orientation === 'vertical' ? '100%' : undefined,
+            width: orientation === 'horizontal' ? '100%' : undefined,
+            height: orientation === 'vertical' ? '100%' : undefined,
           }}
-          overflowPlacement={config.overflowPlacement}
+          overflowPlacement={overflowPlacement}
           overflowButton={
             provideOverflowButton
               ? (firstOverflowingIndex) => {
@@ -98,6 +106,8 @@ const Overflow = ({
 }: {
   config: ReturnType<typeof getConfigFromSearchParams>;
 }) => {
+  const { overflowPlacement } = config;
+
   const buttons = [...Array(10)].map((_, index) => (
     <IconButton key={index}>
       <SvgPlaceholder />
@@ -108,7 +118,7 @@ const Overflow = ({
     <div id='container' style={{ background: 'hotpink' }}>
       <ButtonGroup
         overflowButton={(startIndex) => <IconButton>{startIndex}</IconButton>}
-        overflowPlacement={config.overflowPlacement}
+        overflowPlacement={overflowPlacement}
       >
         {buttons}
       </ButtonGroup>
