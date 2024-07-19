@@ -7,8 +7,6 @@ test.describe('ButtonGroup (toolbar)', () => {
     await page.goto('/ButtonGroup');
 
     await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-
     await expect(page.getByRole('button', { name: 'Button 1' })).toBeFocused();
 
     await page.keyboard.press('ArrowRight');
@@ -39,8 +37,6 @@ test.describe('ButtonGroup (toolbar)', () => {
     await page.goto('/ButtonGroup?orientation=vertical');
 
     await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-
     await expect(page.getByRole('button', { name: 'Button 1' })).toBeFocused();
 
     await page.keyboard.press('ArrowDown');
@@ -157,7 +153,9 @@ test.describe('ButtonGroup (overflow)', () => {
   test(`should handle overflow only whenever overflowButton is passed`, async ({
     page,
   }) => {
-    await page.goto(`/ButtonGroup?provideOverflowButton=false`);
+    await page.goto(
+      `/ButtonGroup?provideOverflowButton=false&showToggleProvideOverflowButton=true`,
+    );
 
     const setContainerSize = getSetContainerSize(page, 'horizontal');
     const expectOverflowState = getExpectOverflowState(page, 'end');

@@ -25,12 +25,15 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     'horizontal';
   const overflowPlacement =
     (searchParams.get('overflowPlacement') as 'start' | 'end') || undefined;
+  const showToggleProvideOverflowButton =
+    searchParams.get('showToggleProvideOverflowButton') === 'true';
 
   return {
     exampleType,
     initialProvideOverflowButton,
     orientation,
     overflowPlacement,
+    showToggleProvideOverflowButton,
   };
 };
 
@@ -45,17 +48,19 @@ const Default = ({
 
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      <Button
-        data-testid='toggle-provide-overflow-container'
-        onClick={() => setProvideOverflowButton((prev) => !prev)}
-      >
-        {`Toggle provide overflow container (current =${provideOverflowButton})`}
-      </Button>
+      {config.showToggleProvideOverflowButton && (
+        <Button
+          data-testid='toggle-provide-overflow-container'
+          onClick={() => setProvideOverflowButton((prev) => !prev)}
+        >
+          {`Toggle provide overflow container (current = ${provideOverflowButton})`}
+        </Button>
+      )}
 
       <div id='container' style={{ background: 'hotpink' }}>
         <ButtonGroup
           role='toolbar'
-          orientation={orientation as any}
+          orientation={config.orientation as any}
           style={{
             width: config.orientation === 'horizontal' ? '100%' : undefined,
             height: config.orientation === 'vertical' ? '100%' : undefined,
