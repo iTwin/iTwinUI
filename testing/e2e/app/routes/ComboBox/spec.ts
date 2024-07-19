@@ -21,9 +21,7 @@ test.describe('ComboBox (general)', () => {
       await option.click();
     }
 
-    const tags = await page
-      .locator('#test-component-selected-live > span')
-      .all();
+    const tags = await getSelectTagContainerTags(page);
     expect(tags).toHaveLength(options.length);
 
     for (let i = 0; i < tags.length; i++) {
@@ -34,16 +32,16 @@ test.describe('ComboBox (general)', () => {
   [true, false].forEach((multiple) => {
     test(`should respect the value prop (${multiple})`, async ({ page }) => {
       await page.goto(
-        `/ComboBox?multiple=${multiple}&initialValue=${multiple ? 'all' : 11}`,
+        `/ComboBox?multiple=${multiple}&initialValue=${
+          multiple ? 'all' : 11
+        }&showChangeValueButton=true`,
       );
 
       await page.waitForTimeout(200);
 
       // Should change internal state when the value prop changes
       if (multiple) {
-        let tags = await page
-          .locator('#test-component-selected-live > span')
-          .all();
+        let tags = await getSelectTagContainerTags(page);
         expect(tags).toHaveLength(defaultOptions.length);
 
         for (let i = 0; i < tags.length; i++) {
@@ -51,7 +49,7 @@ test.describe('ComboBox (general)', () => {
         }
 
         await page.getByTestId('change-value-to-first-option-button').click();
-        tags = await page.locator('#test-component-selected-live > span').all();
+        tags = await getSelectTagContainerTags(page);
 
         expect(tags).toHaveLength(1);
         await expect(tags[0]).toHaveText(defaultOptions[0].label);
@@ -67,9 +65,7 @@ test.describe('ComboBox (general)', () => {
       await page.getByRole('option').nth(3).click();
 
       if (multiple) {
-        const tags = await page
-          .locator('#test-component-selected-live > span')
-          .all();
+        const tags = await getSelectTagContainerTags(page);
 
         expect(tags).toHaveLength(1);
         await expect(tags[0]).toHaveText(defaultOptions[0].label);
@@ -87,8 +83,6 @@ test.describe('ComboBox (virtualization)', () => {
     await page.goto('/ComboBox?virtualization=true');
 
     await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-
     const comboBoxInput = page.locator('#test-component').locator('input');
     const comboBoxMenu = page.getByRole('listbox');
     await expect(comboBoxInput).toHaveAttribute(
@@ -242,8 +236,6 @@ test.describe('ComboBox (virtualization)', () => {
     await page.goto('/ComboBox?virtualization=true');
 
     await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
-
     const comboBoxList = page.getByRole('listbox');
     const outerVirtualizedContainer = comboBoxList.locator('>div', {
       has: page.locator('slot'),
@@ -350,7 +342,7 @@ const expectOverflowState = async ({
   expectedItemLength: number;
   expectedLastTagTextContent: string | undefined;
 }) => {
-  const tags = await page.locator('div[id$="-selected-live"] > span').all();
+  const tags = await getSelectTagContainerTags(page);
   expect(tags).toHaveLength(expectedItemLength);
 
   const lastTag = tags[tags.length - 1];
@@ -360,4 +352,8 @@ const expectOverflowState = async ({
   } else {
     expect(tags).toHaveLength(0);
   }
+};
+
+const getSelectTagContainerTags = async (page: Page) => {
+  return await page.locator('span[class$="-select-tag"]').all();
 };

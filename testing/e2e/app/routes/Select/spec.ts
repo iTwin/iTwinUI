@@ -121,9 +121,7 @@ const expectOverflowState = async ({
   expectedItemLength: number;
   expectedLastTagTextContent: string | undefined;
 }) => {
-  const tags = await page
-    .locator('div[class$="-select-tag-container"] > span')
-    .all();
+  const tags = await getSelectTagContainerTags(page);
   expect(tags).toHaveLength(expectedItemLength);
 
   const lastTag = tags[tags.length - 1];
@@ -133,4 +131,8 @@ const expectOverflowState = async ({
   } else {
     expect(tags).toHaveLength(0);
   }
+};
+
+const getSelectTagContainerTags = async (page: Page) => {
+  return await page.locator('span[class$="-select-tag"]').all();
 };
