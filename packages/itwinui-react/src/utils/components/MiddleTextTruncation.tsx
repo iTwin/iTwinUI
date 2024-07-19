@@ -44,20 +44,18 @@ export type MiddleTextTruncationProps = {
  * />
  */
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
-  const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
+  const { text, style, endCharsCount = 6, textRenderer, ...rest } = props;
 
-  const truncatedText = React.useCallback(
-    (visibleCount: number) => {
-      if (visibleCount < text.length) {
-        return `${text.substring(
-          0,
-          visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
-        )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
-      } else {
-        return text;
-      }
-    },
-    [endCharsCount, text],
+  const children = React.useCallback(
+    (visibleCount: number) => (
+      <MiddleTextTruncationContent
+        visibleCount={visibleCount}
+        endCharsCount={endCharsCount}
+        text={text}
+        textRenderer={textRenderer}
+      />
+    ),
+    [endCharsCount, text, textRenderer],
   );
 
   return (
@@ -73,13 +71,35 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
       items={text}
       {...rest}
     >
-      {(visibleCount) =>
-        textRenderer?.(truncatedText(visibleCount), text) ??
-        truncatedText(visibleCount)
-      }
+      {children}
     </OverflowContainer>
   );
 };
 if (process.env.NODE_ENV === 'development') {
   MiddleTextTruncation.displayName = 'MiddleTextTruncation';
 }
+
+// ----------------------------------------------------------------------------
+
+const MiddleTextTruncationContent = ({
+  visibleCount,
+  text,
+  endCharsCount,
+  textRenderer,
+}: Required<Pick<MiddleTextTruncationProps, 'endCharsCount'>> &
+  Pick<MiddleTextTruncationProps, 'text' | 'textRenderer'> & {
+    visibleCount: number;
+  }) => {
+  const truncatedText = React.useMemo(() => {
+    if (visibleCount < text.length) {
+      return `${text.substring(
+        0,
+        visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
+      )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
+    } else {
+      return text;
+    }
+  }, [endCharsCount, text, visibleCount]);
+
+  return textRenderer?.(truncatedText, text) ?? truncatedText;
+};
