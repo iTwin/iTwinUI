@@ -103,8 +103,8 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
   );
 
   /**
-   * - `visibleCount === children.length + 1` means that we show all children and no overflow tag.
-   * - `visibleCount <= children.length` means that we show visibleCount - 1 children and 1 overflow tag.
+   * - `visibleCount === children.length` means that we show all children and no overflow tag.
+   * - `visibleCount < children.length` means that we show visibleCount - 1 children and 1 overflow tag.
    */
   const visibleItems = React.useMemo(() => {
     // Consumer wants complete control over what items are rendered.
@@ -119,7 +119,7 @@ export const OverflowContainer = React.forwardRef((props, ref) => {
     if (overflowLocation === 'start') {
       return (
         <>
-          {overflowTag(visibleCount - 2)}
+          {overflowTag(visibleCount)}
           {children.slice(children.length - (visibleCount - 1))}
         </>
       );
