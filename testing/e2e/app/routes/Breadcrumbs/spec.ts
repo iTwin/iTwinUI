@@ -86,6 +86,6 @@ const expectOverflowState = async ({
       `${expectedOverflowButtonVisibleCount}`,
     );
   } else {
-    expect(overflowButton).not.toBeVisible();
+    await expect(overflowButton).not.toBeVisible();
   }
 };
