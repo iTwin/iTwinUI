@@ -98,6 +98,11 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     },
   });
 
+  // Re-use existing ToastProvider if found
+  if (React.useContext(ToasterStateContext)) {
+    return children;
+  }
+
   return (
     <ToasterDispatchContext.Provider value={dispatch}>
       <ToasterStateContext.Provider value={toasterState}>

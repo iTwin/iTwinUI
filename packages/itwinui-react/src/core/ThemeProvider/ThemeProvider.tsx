@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   useMediaQuery,
@@ -18,7 +17,6 @@ import {
   ScopeProvider,
   portalContainerAtom,
   useScopedAtom,
-  useScopedSetAtom,
   useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -328,9 +326,33 @@ const PortalContainer = React.memo(
     isInheritingTheme: boolean;
   }) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const setPortalContainer = useScopedSetAtom(portalContainerAtom);
+    const [portalContainer, setPortalContainer] =
+      useScopedAtom(portalContainerAtom);
+
+    // Create a new portal container only if necessary:
+    // - not inheriting theme
+    // - no parent portal container to portal into
+    // - parent portal container is in a different window (#2006)
+    const shouldSetupPortalContainer =
+      !isInheritingTheme ||
+      !portalContainerFromParent ||
+      (!!ownerDocument &&
+        portalContainerFromParent.ownerDocument !== ownerDocument);
 
     const id = useId();
+
+    // Synchronize atom with the correct portal target if necessary.
+    React.useEffect(() => {
+      if (shouldSetupPortalContainer) {
+        return;
+      }
+
+      const portalTarget = portalContainerProp || portalContainerFromParent;
+
+      if (portalContainerProp && portalTarget !== portalContainer) {
+        setPortalContainer(portalTarget);
+      }
+    });
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
@@ -338,20 +360,7 @@ const PortalContainer = React.memo(
       return null;
     }
 
-    if (portalContainerProp) {
-      return <PortaledToaster target={portalContainerProp} />;
-    }
-
-    // Create a new portal container only if necessary:
-    // - not inheriting theme
-    // - no parent portal container to portal into
-    // - parent portal container is in a different window (#2006)
-    if (
-      !isInheritingTheme ||
-      !portalContainerFromParent ||
-      (!!ownerDocument &&
-        portalContainerFromParent.ownerDocument !== ownerDocument)
-    ) {
+    if (shouldSetupPortalContainer) {
       return (
         <div style={{ display: 'contents' }} ref={setPortalContainer} id={id}>
           <Toaster />
@@ -359,25 +368,9 @@ const PortalContainer = React.memo(
       );
     }
 
-    return <PortaledToaster target={portalContainerFromParent} />;
+    return null;
   },
 );
-
-// ----------------------------------------------------------------------------
-
-const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
-  const [portalContainer, setPortalContainer] =
-    useScopedAtom(portalContainerAtom);
-
-  // Synchronize atom with the correct portal target if necessary.
-  React.useEffect(() => {
-    if (target && target !== portalContainer) {
-      setPortalContainer(target);
-    }
-  });
-
-  return target ? ReactDOM.createPortal(<Toaster />, target) : null;
-};
 
 // ----------------------------------------------------------------------------
 
