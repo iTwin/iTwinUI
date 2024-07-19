@@ -330,14 +330,16 @@ const PortalContainer = React.memo(
       useScopedAtom(portalContainerAtom);
 
     // Create a new portal container only if necessary:
+    // - no explicit portalContainer prop
     // - not inheriting theme
     // - no parent portal container to portal into
     // - parent portal container is in a different window (#2006)
     const shouldSetupPortalContainer =
-      !isInheritingTheme ||
-      !portalContainerFromParent ||
-      (!!ownerDocument &&
-        portalContainerFromParent.ownerDocument !== ownerDocument);
+      !portalContainerProp &&
+      (!isInheritingTheme ||
+        !portalContainerFromParent ||
+        (!!ownerDocument &&
+          portalContainerFromParent.ownerDocument !== ownerDocument));
 
     const id = useId();
 
