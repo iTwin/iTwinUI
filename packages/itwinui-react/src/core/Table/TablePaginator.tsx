@@ -17,9 +17,9 @@ import {
   SvgChevronRight,
   Box,
 } from '../../utils/index.js';
+import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
-import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 
 const defaultLocalization = {
   pageSizeLabel: (size: number) => `${size} per page`,
