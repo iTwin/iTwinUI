@@ -12,7 +12,10 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
-import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
+import {
+  OverflowContainer,
+  OverflowContainerContext,
+} from '../../utils/components/OverflowContainer.js';
 
 const logWarning = createWarningLogger();
 
@@ -132,53 +135,13 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       {...rest}
     >
       <OverflowContainer as='ol' className='iui-breadcrumbs-list' items={items}>
-        {(visibleCount) => (
-          <>
-            {visibleCount > 1 && (
-              <>
-                <ListItem item={items[0]} isActive={currentIndex === 0} />
-                <Separator separator={separator} />
-              </>
-            )}
-            {items.length - visibleCount > 0 && (
-              <>
-                <Box as='li' className='iui-breadcrumbs-item'>
-                  {overflowButton ? (
-                    overflowButton(visibleCount)
-                  ) : (
-                    <Box as='span' className='iui-breadcrumbs-content'>
-                      …
-                    </Box>
-                  )}
-                </Box>
-                <Separator separator={separator} />
-              </>
-            )}
-            {items
-              .slice(
-                visibleCount > 1
-                  ? items.length - visibleCount + 1
-                  : items.length - 1,
-              )
-              .map((_, _index) => {
-                const index =
-                  visibleCount > 1
-                    ? 1 + (items.length - visibleCount) + _index
-                    : items.length - 1;
-                return (
-                  <React.Fragment key={index}>
-                    <ListItem
-                      item={items[index]}
-                      isActive={currentIndex === index}
-                    />
-                    {index < items.length - 1 && (
-                      <Separator separator={separator} />
-                    )}
-                  </React.Fragment>
-                );
-              })}
-          </>
-        )}
+        <BreadcrumbContent
+          currentIndex={currentIndex}
+          overflowButton={overflowButton}
+          separator={separator}
+        >
+          {items}
+        </BreadcrumbContent>
       </OverflowContainer>
     </Box>
   );
@@ -186,6 +149,60 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
 if (process.env.NODE_ENV === 'development') {
   BreadcrumbsComponent.displayName = 'Breadcrumbs';
 }
+
+// ----------------------------------------------------------------------------
+
+const BreadcrumbContent = (props: BreadcrumbsProps) => {
+  const {
+    children: items,
+    currentIndex = items.length - 1,
+    overflowButton,
+    separator,
+  } = props;
+  const visibleCount =
+    React.useContext(OverflowContainerContext)?.visibleCount ?? 0;
+
+  return (
+    <>
+      {visibleCount > 1 && (
+        <>
+          <ListItem item={items[0]} isActive={currentIndex === 0} />
+          <Separator separator={separator} />
+        </>
+      )}
+      {items.length - visibleCount > 0 && (
+        <>
+          <Box as='li' className='iui-breadcrumbs-item'>
+            {overflowButton ? (
+              overflowButton(visibleCount)
+            ) : (
+              <Box as='span' className='iui-breadcrumbs-content'>
+                …
+              </Box>
+            )}
+          </Box>
+          <Separator separator={separator} />
+        </>
+      )}
+      {items
+        .slice(
+          visibleCount > 1 ? items.length - visibleCount + 1 : items.length - 1,
+        )
+        .map((_, _index) => {
+          const index =
+            visibleCount > 1
+              ? 1 + (items.length - visibleCount) + _index
+              : items.length - 1;
+          return (
+            <React.Fragment key={index}>
+              <ListItem item={items[index]} isActive={currentIndex === index} />
+              {index < items.length - 1 && <Separator separator={separator} />}
+            </React.Fragment>
+          );
+        })}
+    </>
+  );
+};
 
 // ----------------------------------------------------------------------------
 

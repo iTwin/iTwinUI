@@ -17,7 +17,10 @@ import {
   SvgChevronRight,
   Box,
 } from '../../utils/index.js';
-import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
+import {
+  OverflowContainer,
+  OverflowContainerContext,
+} from '../../utils/components/OverflowContainer.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
 
@@ -200,51 +203,6 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    // alt + arrow keys are used by browser/assistive technologies
-    if (event.altKey) {
-      return;
-    }
-
-    const focusPage = (delta: number) => {
-      const newFocusedIndex = getBoundedValue(
-        focusedIndex + delta,
-        0,
-        totalPagesCount - 1,
-      );
-
-      needFocus.current = true;
-      if (focusActivationMode === 'auto') {
-        onPageChange(newFocusedIndex);
-      } else {
-        setFocusedIndex(newFocusedIndex);
-      }
-    };
-
-    switch (event.key) {
-      case 'ArrowRight': {
-        focusPage(+1);
-        event.preventDefault();
-        break;
-      }
-      case 'ArrowLeft': {
-        focusPage(-1);
-        event.preventDefault();
-        break;
-      }
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        if (focusActivationMode === 'manual') {
-          onPageChange(focusedIndex);
-        }
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
   const hasNoRows = totalPagesCount === 0;
   const showPagesList = totalPagesCount > 1 || isLoading;
   const showPageSizeList =
@@ -290,83 +248,24 @@ export const TablePaginator = (props: TablePaginatorProps) => {
       </Box>
       {showPagesList && (
         <OverflowContainer className='iui-center' items={pageList}>
-          {(visibleCount) => {
-            const halfVisibleCount = Math.floor(visibleCount / 2);
-            let startPage = focusedIndex - halfVisibleCount;
-            let endPage = focusedIndex + halfVisibleCount + 1;
-            if (startPage < 0) {
-              endPage = Math.min(
-                totalPagesCount,
-                endPage + Math.abs(startPage),
-              ); // If no room at the beginning, show extra pages at the end
-              startPage = 0;
-            }
-            if (endPage > totalPagesCount) {
-              startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
-              endPage = totalPagesCount;
-            }
-
-            return (
-              <>
-                <IconButton
-                  styleType='borderless'
-                  disabled={currentPage === 0}
-                  onClick={() => onPageChange(currentPage - 1)}
-                  size={buttonSize}
-                  aria-label={localization.previousPage}
-                >
-                  <SvgChevronLeft />
-                </IconButton>
-                <Box
-                  as='span'
-                  className='iui-table-paginator-pages-group'
-                  onKeyDown={onKeyDown}
-                  ref={pageListRef}
-                >
-                  {(() => {
-                    if (hasNoRows) {
-                      return noRowsContent;
-                    }
-                    if (visibleCount === 1) {
-                      return pageButton(focusedIndex);
-                    }
-                    return (
-                      <>
-                        {startPage !== 0 && (
-                          <>
-                            {pageButton(0, 0)}
-                            {ellipsis}
-                          </>
-                        )}
-                        {pageList.slice(startPage, endPage)}
-                        {endPage !== totalPagesCount && !isLoading && (
-                          <>
-                            {ellipsis}
-                            {pageButton(totalPagesCount - 1, 0)}
-                          </>
-                        )}
-                        {isLoading && (
-                          <>
-                            {ellipsis}
-                            <ProgressRadial indeterminate size='small' />
-                          </>
-                        )}
-                      </>
-                    );
-                  })()}
-                </Box>
-                <IconButton
-                  styleType='borderless'
-                  disabled={currentPage === totalPagesCount - 1 || hasNoRows}
-                  onClick={() => onPageChange(currentPage + 1)}
-                  size={buttonSize}
-                  aria-label={localization.nextPage}
-                >
-                  <SvgChevronRight />
-                </IconButton>
-              </>
-            );
-          }}
+          <TablePaginatorCenterContent
+            focusedIndex={focusedIndex}
+            focusActivationMode={focusActivationMode}
+            totalPagesCount={totalPagesCount}
+            needFocus={needFocus}
+            onPageChange={onPageChange}
+            setFocusedIndex={setFocusedIndex}
+            currentPage={currentPage}
+            localization={localization}
+            buttonSize={buttonSize}
+            pageListRef={pageListRef}
+            hasNoRows={hasNoRows}
+            noRowsContent={noRowsContent}
+            pageButton={pageButton}
+            ellipsis={ellipsis}
+            pageList={pageList}
+            isLoading={isLoading}
+          />
         </OverflowContainer>
       )}
       <Box className='iui-right'>
@@ -407,5 +306,168 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         )}
       </Box>
     </Box>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+type TablePaginatorCenterContentProps = Pick<
+  TablePaginatorProps,
+  'focusActivationMode' | 'onPageChange' | 'isLoading'
+> &
+  Required<Pick<TablePaginatorProps, 'localization'>> & {
+    focusedIndex: number;
+    totalPagesCount: number;
+    needFocus: React.MutableRefObject<boolean>;
+    setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
+    currentPage: number;
+    buttonSize: 'small' | undefined;
+    pageListRef: React.MutableRefObject<HTMLDivElement | null>;
+    hasNoRows: boolean;
+    noRowsContent: React.ReactNode;
+    pageButton: (index: number, tabIndex?: number) => React.ReactNode;
+    ellipsis: React.ReactNode;
+    pageList: React.ReactNode[];
+  };
+
+const TablePaginatorCenterContent = (
+  props: TablePaginatorCenterContentProps,
+) => {
+  const {
+    focusedIndex,
+    focusActivationMode,
+    totalPagesCount,
+    needFocus,
+    onPageChange,
+    setFocusedIndex,
+    currentPage,
+    localization,
+    buttonSize,
+    pageListRef,
+    hasNoRows,
+    noRowsContent,
+    pageButton,
+    ellipsis,
+    pageList,
+    isLoading,
+  } = props;
+  const visibleCount =
+    React.useContext(OverflowContainerContext)?.visibleCount ?? 1;
+  const halfVisibleCount = Math.floor(visibleCount / 2);
+  let startPage = focusedIndex - halfVisibleCount;
+  let endPage = focusedIndex + halfVisibleCount + 1;
+  if (startPage < 0) {
+    endPage = Math.min(totalPagesCount, endPage + Math.abs(startPage)); // If no room at the beginning, show extra pages at the end
+    startPage = 0;
+  }
+  if (endPage > totalPagesCount) {
+    startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
+    endPage = totalPagesCount;
+  }
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // alt + arrow keys are used by browser/assistive technologies
+    if (event.altKey) {
+      return;
+    }
+
+    const focusPage = (delta: number) => {
+      const newFocusedIndex = getBoundedValue(
+        focusedIndex + delta,
+        0,
+        totalPagesCount - 1,
+      );
+
+      needFocus.current = true;
+      if (focusActivationMode === 'auto') {
+        onPageChange(newFocusedIndex);
+      } else {
+        setFocusedIndex(newFocusedIndex);
+      }
+    };
+
+    switch (event.key) {
+      case 'ArrowRight': {
+        focusPage(+1);
+        event.preventDefault();
+        break;
+      }
+      case 'ArrowLeft': {
+        focusPage(-1);
+        event.preventDefault();
+        break;
+      }
+      case 'Enter':
+      case ' ':
+      case 'Spacebar': {
+        if (focusActivationMode === 'manual') {
+          onPageChange(focusedIndex);
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  return (
+    <>
+      <IconButton
+        styleType='borderless'
+        disabled={currentPage === 0}
+        onClick={() => onPageChange(currentPage - 1)}
+        size={buttonSize}
+        aria-label={localization.previousPage}
+      >
+        <SvgChevronLeft />
+      </IconButton>
+      <Box
+        as='span'
+        className='iui-table-paginator-pages-group'
+        onKeyDown={onKeyDown}
+        ref={pageListRef}
+      >
+        {(() => {
+          if (hasNoRows) {
+            return noRowsContent;
+          }
+          if (visibleCount === 1) {
+            return pageButton(focusedIndex);
+          }
+          return (
+            <>
+              {startPage !== 0 && (
+                <>
+                  {pageButton(0, 0)}
+                  {ellipsis}
+                </>
+              )}
+              {pageList.slice(startPage, endPage)}
+              {endPage !== totalPagesCount && !isLoading && (
+                <>
+                  {ellipsis}
+                  {pageButton(totalPagesCount - 1, 0)}
+                </>
+              )}
+              {isLoading && (
+                <>
+                  {ellipsis}
+                  <ProgressRadial indeterminate size='small' />
+                </>
+              )}
+            </>
+          );
+        })()}
+      </Box>
+      <IconButton
+        styleType='borderless'
+        disabled={currentPage === totalPagesCount - 1 || hasNoRows}
+        onClick={() => onPageChange(currentPage + 1)}
+        size={buttonSize}
+        aria-label={localization.nextPage}
+      >
+        <SvgChevronRight />
+      </IconButton>
+    </>
   );
 };

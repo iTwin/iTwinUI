@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { mergeRefs, useMergedRefs } from '../hooks/useMergedRefs.js';
+import { useMergedRefs } from '../hooks/useMergedRefs.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 import { useOverflow } from '../hooks/useOverflow.js';
@@ -80,14 +80,22 @@ const OverflowContainerComponent = React.forwardRef((props, ref) => {
 
 // ----------------------------------------------------------------------------
 
-const OverflowContainerOverflowNode = React.forwardRef((props, ref) => {
+type OverflowContainerOverflowNodeProps = {
+  children: React.ReactNode;
+};
+
+const OverflowContainerOverflowNode = (
+  props: OverflowContainerOverflowNodeProps,
+) => {
+  const { children } = props;
+
   const overflowContainerContext = React.useContext(OverflowContainerContext);
   const isOverflowing =
     overflowContainerContext != null &&
     overflowContainerContext.visibleCount < overflowContainerContext.itemCount;
 
-  return isOverflowing && <Box ref={mergeRefs(ref)} {...props} />;
-});
+  return isOverflowing && children;
+};
 
 // ----------------------------------------------------------------------------
 

@@ -4,7 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { CommonProps } from '../props.js';
-import { OverflowContainer } from './OverflowContainer.js';
+import {
+  OverflowContainer,
+  OverflowContainerContext,
+} from './OverflowContainer.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -44,19 +47,7 @@ export type MiddleTextTruncationProps = {
  * />
  */
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
-  const { text, style, endCharsCount = 6, textRenderer, ...rest } = props;
-
-  const children = React.useCallback(
-    (visibleCount: number) => (
-      <MiddleTextTruncationContent
-        visibleCount={visibleCount}
-        endCharsCount={endCharsCount}
-        text={text}
-        textRenderer={textRenderer}
-      />
-    ),
-    [endCharsCount, text, textRenderer],
-  );
+  const { text, style, ...rest } = props;
 
   return (
     <OverflowContainer
@@ -71,7 +62,7 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
       items={text}
       {...rest}
     >
-      {children}
+      <MiddleTextTruncationContent {...props} />
     </OverflowContainer>
   );
 };
@@ -81,15 +72,11 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const MiddleTextTruncationContent = ({
-  visibleCount,
-  text,
-  endCharsCount,
-  textRenderer,
-}: Required<Pick<MiddleTextTruncationProps, 'endCharsCount'>> &
-  Pick<MiddleTextTruncationProps, 'text' | 'textRenderer'> & {
-    visibleCount: number;
-  }) => {
+const MiddleTextTruncationContent = (props: MiddleTextTruncationProps) => {
+  const { text, endCharsCount = 6, textRenderer } = props;
+  const visibleCount =
+    React.useContext(OverflowContainerContext)?.visibleCount ?? text.length;
+
   const truncatedText = React.useMemo(() => {
     if (visibleCount < text.length) {
       return `${text.substring(
