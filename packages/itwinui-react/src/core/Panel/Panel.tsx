@@ -48,7 +48,6 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
     activeId,
     className,
     onActiveIdChange,
-    style,
     ...rest
   } = props;
 
@@ -133,17 +132,12 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
     setCurrentPanelId(toPanelId);
   };
 
-  // if (expandedId === undefined) {
-  //   setExpandedId(defaultActiveId);
-  // }
-
   return (
     <PanelWrapperContext.Provider
       value={{
         currentPanelId,
         setCurrentPanelId,
         triggers,
-        // setTriggers,
         history,
         setHistory,
         width,
@@ -152,15 +146,10 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
         animateToPanel,
       }}
     >
-      {/* <div>{history}</div> */}
       <Box
         ref={mergeRefs(forwardedRef, resizeObserverRef)}
         {...rest}
         className={cx('iui-panel-wrapper', className)}
-        style={{
-          position: 'relative',
-          ...style,
-        }}
       >
         {children}
       </Box>
@@ -178,12 +167,7 @@ const PanelWrapperContext = React.createContext<
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>
       >;
-      // triggers: Map<string, { triggerId: string; panelId: string }>;
-      // setTriggers: React.Dispatch<
-      //   React.SetStateAction<
-      //     Map<string, { triggerId: string; panelId: string }>
-      //   >
-      // >;
+
       history: string[];
       setHistory: React.Dispatch<React.SetStateAction<string[]>>;
       width: number;
@@ -232,18 +216,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
-  // React.useEffect(() => {
-  //   // Every 1 second, focus itself
-  //   const interval = setInterval(() => {
-  //     if (id === expandedId) {
-  //       console.log('focused', id, document.getElementById(id));
-  //       document.getElementById(id)?.focus();
-  //     }
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [id, expandedId]);
-
   const historyIndex =
     history != null
       ? history?.findIndex((historyItemId) => historyItemId === id)
@@ -255,23 +227,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   historyOffset;
 
-  if (id === 'base') {
-    console.log('panel', {
-      id,
-      1: id === currentPanelId,
-      2: animations != null,
-      3: animations != null ? animations[id] != null : "it's null",
-      4:
-        animations != null
-          ? animations[id][animations[id].length - 1]
-          : "it's null",
-      5:
-        animations != null
-          ? animations[id][animations[id].length - 1]
-          : "it's null",
-    });
-  }
-
   return (
     <PanelContext.Provider
       value={{
@@ -279,12 +234,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         associatedTrigger,
       }}
     >
-      {/* <Transition
-        in={id === expandedId}
-        timeout={{ exit: 400 }}
-        // mountOnEnter
-        // unmountOnExit
-      > */}
       <Box
         ref={useMergedRefs(
           ref,
@@ -295,28 +244,12 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           ) as React.RefCallback<HTMLElement>,
         )}
         id={id}
-        // hidden={id !== expandedId}
+        hidden={isHidden}
         {...rest}
         className={cx('iui-panel', className, {
           'iui-panel-visible': id === currentPanelId,
         })}
-        // // className='HERE'
-        // style={{
-        //   // transform: id === history?.[-1] ? 'translate(100px)' : undefined,
-        //   // transform:
-        //   //   historyOffset != null
-        //   //     ? `translate(${(panelWrapperWidth ?? 0) * historyOffset}px`
-        //   //     : undefined,
-        //   // display: history?.includes(id) ? undefined : 'none',
-        //   ...style,
-        // }}
-
-        hidden={isHidden}
         style={{
-          position: 'absolute',
-          inset: 0,
-
-          // inlineSize: '100%',
           display: isHidden ? 'none' : undefined,
 
           // Add the last keyframe styles to the current panel to avoid flickering
@@ -330,10 +263,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           ...style,
         }}
       >
-        {/* <div>{id}</div> */}
         {children}
       </Box>
-      {/* </Transition> */}
     </PanelContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelProps>;
@@ -364,14 +295,9 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   // TODO: Should we have an idProp and use useId only as a fallback?
   const triggerId = React.useId();
 
-  // const children = React.Children.only(childrenProp);
   if (!React.isValidElement(children)) {
     return null;
   }
-
-  // const [expandedId, setExpandedId] = useAtom(expandedIdAtom);
-  // const [triggers, setTriggers] = useAtom(triggersAtom);
-  // const panelId = React.useContext(PanelIdContext);
 
   const triggersMatch = panelWrapperContext?.triggers.current?.get(forProp);
   if (
@@ -391,20 +317,12 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     if (!!document.getElementById(forProp)) {
       // flushSync(() => panelWrapperContext?.setExpandedId(forProp));
 
-      console.log('triggerId', triggerId, forProp);
-
       await panelWrapperContext?.animateToPanel(forProp, 'next');
+
+      panelWrapperContext?.setHistory((prev) => [...prev, forProp]);
 
       // Focus the first focusable element in the panel.
       // This is useful for screen-reader users.
-
-      // Wait for the panel to be expanded before focusing. i.e. since setExpandedId triggers a re-render.
-      // setTimeout(() => {
-      //   console.log('focus', forProp, document.getElementById(forProp));
-      //   document.getElementById(forProp)?.focus();
-      // }, 1000);
-
-      panelWrapperContext?.setHistory((prev) => [...prev, forProp]);
       const firstFocusable = getFocusableElements(
         document.getElementById(forProp),
       )?.[0] as HTMLElement | undefined;
@@ -452,10 +370,6 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'div'>;
 
 const PanelBackButton = () => {
-  // const setExpandedId = useSetAtom(expandedIdAtom);
-  // const panelId = React.useContext(PanelIdContext);
-  // const trigger = useAtomValue(triggersAtom).get(panelId);
-
   const panelWrapperContext = React.useContext(PanelWrapperContext);
   const panelContext = React.useContext(PanelContext);
 
@@ -466,7 +380,6 @@ const PanelBackButton = () => {
 
   const goBack = () => {
     if (trigger?.triggerId != null) {
-      // flushSync(() => setExpandedId?.(trigger.panelId));
       flushSync(
         () => panelWrapperContext?.animateToPanel(trigger.panelId, 'prev'),
       );
@@ -508,7 +421,6 @@ type PanelAnimationState = {
   currentPanelId: string | undefined;
   setCurrentPanelId: React.Dispatch<React.SetStateAction<string | undefined>>;
   animatingToPanelId?: string;
-  animationDirection?: 'prev' | 'next';
   animations?: Record<string, React.CSSProperties[]>;
 };
 
@@ -526,8 +438,6 @@ const panelAnimationReducer = (
   state: PanelAnimationState,
   action: PanelAnimationAction,
 ): PanelAnimationState => {
-  console.log('reducer', state, action);
-
   switch (action.type) {
     case 'prev':
     case 'next': {
@@ -542,7 +452,6 @@ const panelAnimationReducer = (
       return {
         ...state,
         animatingToPanelId: action.animatingToPanelId,
-        animationDirection: action.type,
         animations: action.animations,
       };
     }
@@ -555,7 +464,6 @@ const panelAnimationReducer = (
       return {
         ...state,
         animatingToPanelId: undefined,
-        animationDirection: undefined,
         animations: undefined,
       };
     }

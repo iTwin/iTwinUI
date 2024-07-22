@@ -1,237 +1,422 @@
-import * as React from 'react';
-import { Button, ButtonGroup, Text } from '@itwin/itwinui-react';
+import {
+  Divider,
+  Flex,
+  List,
+  ListItem,
+  Panels,
+  Surface,
+  Text,
+} from '@itwin/itwinui-react';
+import React from 'react';
+import { SvgShare } from '@itwin/itwinui-icons-react';
 
-export default function App() {
-  const pagesIndexes = React.useMemo(
-    () => [...Array(10)].map((_, index) => index),
-    [],
-  );
-  const pageRefs = React.useRef<Record<string, HTMLElement | null>>({});
+export default function Home() {
+  return <MultiPanelInformationPanel />;
+  // return <BasicDemo />;
+}
 
-  // Reducer where all the component-wide state is stored
-  const [{ currentPageId, animations }, dispatch] = React.useReducer(
-    pageAnimationReducer,
-    {
-      currentPageId: 'page-0',
-      animations: null,
-      animationDirection: null,
-      animatingToPageId: null,
-    } as PageAnimationState,
-  );
-
-  const goToPage = async (direction: 'prev' | 'next') => {
-    // Page transition already in progress
-    if (animations != null) {
-      return;
-    }
-
-    const currentPageIndex = Number(currentPageId.slice('page-'.length));
-    const otherPageIndex =
-      direction === 'next' ? currentPageIndex + 1 : currentPageIndex - 1;
-    const otherPageId = `page-${otherPageIndex}`;
-
-    const animationOptions = {
-      duration: 1000,
-      iterations: 1,
-      easing: 'ease-out',
-    };
-
-    const animationsData = {
-      [currentPageId]:
-        direction === 'next'
-          ? [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }]
-          : [{ transform: 'translateX(0)' }, { transform: 'translateX(100%)' }],
-      [otherPageId]:
-        direction === 'next'
-          ? [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }]
-          : [
-              { transform: 'translateX(-100%)', display: 'block' },
-              { transform: 'translateX(0)', display: 'block' },
-            ],
-    };
-
-    dispatch({
-      type: direction,
-      animatingToPageId: `page-${otherPageIndex}`,
-      animations: animationsData,
-    });
-
-    await Promise.all(
-      Object.entries(animationsData).map(([pageId, keyframes]) => {
-        const element = pageRefs.current[pageId];
-
-        return new Promise((resolve) => {
-          if (element == null) {
-            resolve(null);
-            return;
-          }
-
-          const animation = element.animate(keyframes, animationOptions);
-
-          if (animation) {
-            animation.onfinish = () => {
-              resolve(null);
-            };
-          }
-        });
-      }),
-    );
-
-    dispatch({ type: 'endAnimation' });
-  };
+const BasicDemo = () => {
+  const basePanelId = React.useId();
+  const repeatId = React.useId();
+  const qualityPanelId = React.useId();
+  const speedPanelId = React.useId();
+  const accessibilityPanelId = React.useId();
 
   return (
     <>
-      <div
+      <Panels.Wrapper
+        as={Surface}
+        defaultActiveId={basePanelId}
         style={{
-          border: '1px solid red',
-          width: '300px',
-          overflow: 'hidden',
+          inlineSize: '300px',
+          blockSize: '500px',
         }}
       >
-        <Text>currentPage = {currentPageId}</Text>
-        <ButtonGroup>
-          <Button onClick={() => goToPage('prev')}>-1</Button>
-          <Button onClick={() => goToPage('next')}>+1</Button>
-        </ButtonGroup>
+        <Panels.Panel as={List} id={basePanelId}>
+          <ListItem>Repeat</ListItem>
+          <ListItem>
+            <Panels.Trigger for={qualityPanelId}>
+              <ListItem.Action>Quality</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+          <ListItem>
+            <Panels.Trigger for={speedPanelId}>
+              <ListItem.Action>Speed</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+          <ListItem>
+            <Panels.Trigger for={accessibilityPanelId}>
+              <ListItem.Action>Accessibility</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+        </Panels.Panel>
 
-        <div
-          className='page-wrapper'
-          style={{
-            height: '200px',
-          }}
-        >
-          {pagesIndexes.map((index) => (
-            <Page
-              key={index}
-              index={index}
-              currentPageId={currentPageId}
-              animations={animations}
-              pageRefs={pageRefs}
-            />
-          ))}
-        </div>
-      </div>
+        <Panels.Panel as={List} id={qualityPanelId}>
+          <Surface.Header as={Panels.Header}>Quality</Surface.Header>
+          <ListItem>240p</ListItem>
+          <ListItem>360p</ListItem>
+          <ListItem>480p</ListItem>
+          <ListItem>720p</ListItem>
+          <ListItem>1080p</ListItem>
+        </Panels.Panel>
+
+        {/* TODO: Remove the temp _iui3-menu class */}
+        <Panels.Panel as={List} id={speedPanelId}>
+          <Surface.Header as={Panels.Header}>Speed</Surface.Header>
+          <Surface.Body
+            style={{
+              maxBlockSize: '100%',
+              overflowY: 'auto',
+            }}
+          >
+            <ListItem>0.2x</ListItem>
+            <ListItem>0.3x</ListItem>
+            <ListItem>0.4x</ListItem>
+            <ListItem>0.5x</ListItem>
+            <ListItem>0.6x</ListItem>
+            <ListItem>0.7x</ListItem>
+            <ListItem>0.8x</ListItem>
+            <ListItem>0.9x</ListItem>
+            <ListItem>1.0x</ListItem>
+            <ListItem>1.1x</ListItem>
+            <ListItem>1.2x</ListItem>
+            <ListItem>1.3x</ListItem>
+            <ListItem>1.4x</ListItem>
+            <ListItem>1.5x</ListItem>
+            <ListItem>1.6x</ListItem>
+            <ListItem>1.7x</ListItem>
+            <ListItem>1.8x</ListItem>
+            <ListItem>1.9x</ListItem>
+            <ListItem>2.0x</ListItem>
+          </Surface.Body>
+        </Panels.Panel>
+
+        <Panels.Panel as={List} id={accessibilityPanelId}>
+          <Surface.Header as={Panels.Header}>Accessibility</Surface.Header>
+          <ListItem>High contrast</ListItem>
+          <ListItem>Large text</ListItem>
+          <ListItem>Screen reader</ListItem>
+        </Panels.Panel>
+      </Panels.Wrapper>
     </>
   );
-}
+};
 
-// ----------------------------------------------------------------------------
+const MultiPanelInformationPanel = () => {
+  const basePanelId = 'base';
 
-const Page = ({
-  index,
-  currentPageId,
-  animations,
-  pageRefs,
-}: {
-  index: number;
-  currentPageId: PageAnimationState['currentPageId'];
-  animations: PageAnimationState['animations'];
-  pageRefs: React.RefObject<Record<string, HTMLElement | null>>;
-}) => {
-  const pageId = `page-${index}`;
+  const pages = Array.from(Array(10).keys()).map((i) => ({
+    id: i,
+    label: `Page ${i}`,
+  }));
 
-  const ref = React.useRef(null);
-  if (pageRefs.current) {
-    pageRefs.current[`page-${index}`] = ref.current;
-  }
+  const [activeId, onActiveIdChange] = React.useState(basePanelId);
 
   return (
-    <div
-      ref={ref}
-      id={pageId}
-      className='page'
-      hidden={
-        animations == null
-          ? pageId !== currentPageId
-          : !Object.keys(animations).includes(pageId)
-      }
+    <Panels.Wrapper
+      defaultActiveId={basePanelId}
+      as={Surface}
+      activeId={activeId}
+      onActiveIdChange={onActiveIdChange}
       style={{
-        inlineSize: '100%',
-        border: '1px solid hotpink',
-
-        // Add the last keyframe styles to the current page to avoid flickering
-        // i.e. showing the current page for a split second between when the animations ends and the page is hidden
-        ...(pageId === currentPageId &&
-        animations != null &&
-        animations[pageId] != null
-          ? animations[pageId][animations[pageId].length - 1]
-          : {}),
+        inlineSize: '300px',
+        blockSize: '500px',
+        // position: 'relative',
       }}
     >
-      <span
-        style={{
-          display: 'block',
-          transform: 'translateX(100px)',
-        }}
+      <Panels.Panel
+        id={basePanelId}
+        className='HERE'
+        as={List}
+        // TODO: Try having the arrow keys navigation like Tree to allow focusing the share icon button
+        role='tree'
+        style={{}}
       >
-        {index}
-      </span>
-    </div>
+        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        {pages.map((page) => (
+          <ListItem>
+            <ListItem.Content>
+              <Panels.Trigger for={`${page.id}`}>
+                <ListItem.Action>{page.label}</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem.Content>
+            {/* TODO: Make it to something like an IconButton */}
+            <ListItem.Icon>
+              <SvgShare />
+            </ListItem.Icon>
+          </ListItem>
+        ))}
+      </Panels.Panel>
+
+      {pages.map((page) => (
+        <Panels.Panel
+          id={`${page.id}`}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          style={
+            {
+              // blockSize: '100%',
+              // display: activeId === `${page.id}` ? undefined : 'none',
+            }
+          }
+        >
+          <Surface.Header as={Panels.Header}>{page.label}</Surface.Header>
+          <Surface.Body
+            as={Flex}
+            flexDirection='column'
+            style={{
+              height: '100%',
+            }}
+          >
+            <Flex.Spacer />
+            <Divider />
+            <Text>{`Footer for page ${page.id}`}</Text>
+          </Surface.Body>
+        </Panels.Panel>
+      ))}
+    </Panels.Wrapper>
   );
 };
 
-type PageAnimationState = {
-  currentPageId: string;
-  animatingToPageId: string | null;
-  animationDirection: 'prev' | 'next' | null;
-  animations: Record<string, React.CSSProperties[]> | null;
-};
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-type PageAnimationAction =
-  | {
-      type: 'prev';
-      animatingToPageId: string;
-      animations: PageAnimationState['animations'];
-    }
-  | {
-      type: 'next';
-      animatingToPageId: string;
-      animations: PageAnimationState['animations'];
-    }
-  | { type: 'endAnimation' };
+// import * as React from 'react';
+// import { Button, ButtonGroup, Text } from '@itwin/itwinui-react';
 
-export const pageAnimationReducer = (
-  state: PageAnimationState,
-  action: PageAnimationAction,
-): PageAnimationState => {
-  switch (action.type) {
-    case 'prev':
-    case 'next': {
-      // Animation already in progress or other page doesn't exist
-      if (
-        state.animatingToPageId != null ||
-        document.querySelector(action.animatingToPageId)
-      ) {
-        return state;
-      }
+// export default function App() {
+//   const pagesIndexes = React.useMemo(
+//     () => [...Array(10)].map((_, index) => index),
+//     [],
+//   );
+//   const pageRefs = React.useRef<Record<string, HTMLElement | null>>({});
 
-      return {
-        ...state,
-        animatingToPageId: action.animatingToPageId,
-        animationDirection: action.type,
-        animations: action.animations,
-      };
-    }
-    case 'endAnimation': {
-      // No animation in progress
-      if (state.animatingToPageId == null) {
-        return state;
-      }
+//   // Reducer where all the component-wide state is stored
+//   const [{ currentPageId, animations }, dispatch] = React.useReducer(
+//     pageAnimationReducer,
+//     {
+//       currentPageId: 'page-0',
+//       animations: null,
+//       animationDirection: null,
+//       animatingToPageId: null,
+//     } as PageAnimationState,
+//   );
 
-      return {
-        ...state,
-        currentPageId: state.animatingToPageId,
-        animatingToPageId: null,
-        animationDirection: null,
-        animations: null,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+//   const goToPage = async (direction: 'prev' | 'next') => {
+//     // Page transition already in progress
+//     if (animations != null) {
+//       return;
+//     }
+
+//     const currentPageIndex = Number(currentPageId.slice('page-'.length));
+//     const otherPageIndex =
+//       direction === 'next' ? currentPageIndex + 1 : currentPageIndex - 1;
+//     const otherPageId = `page-${otherPageIndex}`;
+
+//     const animationOptions = {
+//       duration: 1000,
+//       iterations: 1,
+//       easing: 'ease-out',
+//     };
+
+//     const animationsData = {
+//       [currentPageId]:
+//         direction === 'next'
+//           ? [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }]
+//           : [{ transform: 'translateX(0)' }, { transform: 'translateX(100%)' }],
+//       [otherPageId]:
+//         direction === 'next'
+//           ? [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }]
+//           : [
+//               { transform: 'translateX(-100%)', display: 'block' },
+//               { transform: 'translateX(0)', display: 'block' },
+//             ],
+//     };
+
+//     dispatch({
+//       type: direction,
+//       animatingToPageId: `page-${otherPageIndex}`,
+//       animations: animationsData,
+//     });
+
+//     await Promise.all(
+//       Object.entries(animationsData).map(([pageId, keyframes]) => {
+//         const element = pageRefs.current[pageId];
+
+//         return new Promise((resolve) => {
+//           if (element == null) {
+//             resolve(null);
+//             return;
+//           }
+
+//           const animation = element.animate(keyframes, animationOptions);
+
+//           if (animation) {
+//             animation.onfinish = () => {
+//               resolve(null);
+//             };
+//           }
+//         });
+//       }),
+//     );
+
+//     dispatch({ type: 'endAnimation' });
+//   };
+
+//   return (
+//     <>
+//       <div
+//         style={{
+//           border: '1px solid red',
+//           width: '300px',
+//           overflow: 'hidden',
+//         }}
+//       >
+//         <Text>currentPage = {currentPageId}</Text>
+//         <ButtonGroup>
+//           <Button onClick={() => goToPage('prev')}>-1</Button>
+//           <Button onClick={() => goToPage('next')}>+1</Button>
+//         </ButtonGroup>
+
+//         <div
+//           className='page-wrapper'
+//           style={{
+//             height: '200px',
+//           }}
+//         >
+//           {pagesIndexes.map((index) => (
+//             <Page
+//               key={index}
+//               index={index}
+//               currentPageId={currentPageId}
+//               animations={animations}
+//               pageRefs={pageRefs}
+//             />
+//           ))}
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// // ----------------------------------------------------------------------------
+
+// const Page = ({
+//   index,
+//   currentPageId,
+//   animations,
+//   pageRefs,
+// }: {
+//   index: number;
+//   currentPageId: PageAnimationState['currentPageId'];
+//   animations: PageAnimationState['animations'];
+//   pageRefs: React.RefObject<Record<string, HTMLElement | null>>;
+// }) => {
+//   const pageId = `page-${index}`;
+
+//   const ref = React.useRef(null);
+//   if (pageRefs.current) {
+//     pageRefs.current[`page-${index}`] = ref.current;
+//   }
+
+//   return (
+//     <div
+//       ref={ref}
+//       id={pageId}
+//       className='page'
+//       hidden={
+//         animations == null
+//           ? pageId !== currentPageId
+//           : !Object.keys(animations).includes(pageId)
+//       }
+//       style={{
+//         inlineSize: '100%',
+//         border: '1px solid hotpink',
+
+//         // Add the last keyframe styles to the current page to avoid flickering
+//         // i.e. showing the current page for a split second between when the animations ends and the page is hidden
+//         ...(pageId === currentPageId &&
+//         animations != null &&
+//         animations[pageId] != null
+//           ? animations[pageId][animations[pageId].length - 1]
+//           : {}),
+//       }}
+//     >
+//       <span
+//         style={{
+//           display: 'block',
+//           transform: 'translateX(100px)',
+//         }}
+//       >
+//         {index}
+//       </span>
+//     </div>
+//   );
+// };
+
+// type PageAnimationState = {
+//   currentPageId: string;
+//   animatingToPageId: string | null;
+//   animationDirection: 'prev' | 'next' | null;
+//   animations: Record<string, React.CSSProperties[]> | null;
+// };
+
+// type PageAnimationAction =
+//   | {
+//       type: 'prev';
+//       animatingToPageId: string;
+//       animations: PageAnimationState['animations'];
+//     }
+//   | {
+//       type: 'next';
+//       animatingToPageId: string;
+//       animations: PageAnimationState['animations'];
+//     }
+//   | { type: 'endAnimation' };
+
+// export const pageAnimationReducer = (
+//   state: PageAnimationState,
+//   action: PageAnimationAction,
+// ): PageAnimationState => {
+//   switch (action.type) {
+//     case 'prev':
+//     case 'next': {
+//       // Animation already in progress or other page doesn't exist
+//       if (
+//         state.animatingToPageId != null ||
+//         document.querySelector(action.animatingToPageId)
+//       ) {
+//         return state;
+//       }
+
+//       return {
+//         ...state,
+//         animatingToPageId: action.animatingToPageId,
+//         animationDirection: action.type,
+//         animations: action.animations,
+//       };
+//     }
+//     case 'endAnimation': {
+//       // No animation in progress
+//       if (state.animatingToPageId == null) {
+//         return state;
+//       }
+
+//       return {
+//         ...state,
+//         currentPageId: state.animatingToPageId,
+//         animatingToPageId: null,
+//         animationDirection: null,
+//         animations: null,
+//       };
+//     }
+//     default: {
+//       return state;
+//     }
+//   }
+// };
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------

@@ -2,35 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 .iui-panel-wrapper {
+  position: relative;
   overflow: hidden;
 }
 
 .iui-panel {
-  // &:not(.iui-panel-visible) {
-  //   transform: translateX(100%);
-  // }
-
-  // &.iui-panel-visible {
-  //   animation: iui-slide-left 1s ease-out;
-  // }
-
-  // @keyframes iui-display-visible {
-  //   from {
-  //     display: block;
-  //   }
-
-  //   to {
-  //     display: block;
-  //   }
-  // }
-
-  // @keyframes iui-display-hidden {
-  //   from {
-  //     display: block;
-  //   }
-
-  //   to {
-  //     display: none;
-  //   }
-  // }
+  position: absolute;
+  inset: 0;
 }
