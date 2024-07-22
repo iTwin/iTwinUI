@@ -61,6 +61,9 @@ const SurfaceHeader = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+if (process.env.NODE_ENV === 'development') {
+  SurfaceHeader.displayName = 'Surface.Header';
+}
 
 // ----------------------------------------------------------------------------
 // Surface.Body component
@@ -68,12 +71,13 @@ const SurfaceHeader = React.forwardRef((props, ref) => {
 type SurfaceBodyOwnProps = {
   /**
    * Gives padding to the surface body
+   * @default false
    */
   isPadded?: boolean;
 };
 
 const SurfaceBody = React.forwardRef((props, ref) => {
-  const { children, className, isPadded, ...rest } = props;
+  const { children, className, isPadded = false, ...rest } = props;
   const { setHasLayout } = useSafeContext(SurfaceContext);
 
   React.useEffect(() => {
@@ -92,6 +96,9 @@ const SurfaceBody = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SurfaceBodyOwnProps>;
+if (process.env.NODE_ENV === 'development') {
+  SurfaceBody.displayName = 'Surface.Body';
+}
 
 type SurfaceProps = {
   /**
@@ -165,6 +172,9 @@ export const Surface = Object.assign(
     Body: SurfaceBody,
   },
 );
+if (process.env.NODE_ENV === 'development') {
+  Surface.displayName = 'Surface';
+}
 
 const SurfaceContext = React.createContext<
   | {
@@ -176,3 +186,6 @@ const SurfaceContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  SurfaceContext.displayName = 'SurfaceContext';
+}

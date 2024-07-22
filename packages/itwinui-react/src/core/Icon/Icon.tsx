@@ -92,3 +92,6 @@ export const Icon = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
+if (process.env.NODE_ENV === 'development') {
+  Icon.displayName = 'Icon';
+}

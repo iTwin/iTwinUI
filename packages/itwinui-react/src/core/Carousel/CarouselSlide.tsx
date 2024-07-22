@@ -72,3 +72,6 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', CarouselSlideProps>;
+if (process.env.NODE_ENV === 'development') {
+  CarouselSlide.displayName = 'Carousel.Slide';
+}

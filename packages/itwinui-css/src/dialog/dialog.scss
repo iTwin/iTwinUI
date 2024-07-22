@@ -140,6 +140,8 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
 .iui-dialog-title {
   margin-inline-end: auto;
+  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
 .iui-dialog-title-bar {

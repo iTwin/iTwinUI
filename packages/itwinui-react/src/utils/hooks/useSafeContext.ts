@@ -11,7 +11,7 @@ import * as React from 'react';
 export const useSafeContext = <T>(context: React.Context<T>) => {
   const value = React.useContext(context);
   if (!value) {
-    throw new Error(`${context.displayName} is undefined`);
+    throw new Error(`${context.displayName || 'Context'} is undefined`);
   }
   return value!; // eslint-disable-line @typescript-eslint/no-non-null-assertion -- we already checked for undefined
 };

@@ -644,3 +644,6 @@ export const ComboBox = React.forwardRef(
 ) as <T>(
   props: ComboBoxProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
+if (process.env.NODE_ENV === 'development') {
+  (ComboBox as any).displayName = 'ComboBox';
+}

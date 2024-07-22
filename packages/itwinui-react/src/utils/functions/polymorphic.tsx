@@ -38,7 +38,9 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
       return <Element ref={ref} {...props} />;
     }) as PolymorphicForwardRefComponent<NonNullable<typeof defaultElement>>;
 
-    Comp.displayName = getDisplayNameFromClass(className);
+    if (process.env.NODE_ENV === 'development') {
+      Comp.displayName = getDisplayNameFromClass(className);
+    }
 
     return Comp;
   };

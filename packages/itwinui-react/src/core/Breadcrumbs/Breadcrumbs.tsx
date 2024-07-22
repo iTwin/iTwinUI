@@ -15,7 +15,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
 
-const logWarningInDev = createWarningLogger();
+const logWarning = createWarningLogger();
 
 type BreadcrumbsProps = {
   /**
@@ -183,6 +183,9 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', BreadcrumbsProps>;
+if (process.env.NODE_ENV === 'development') {
+  BreadcrumbsComponent.displayName = 'Breadcrumbs';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -200,9 +203,11 @@ const ListItem = ({
     children?.type === 'a' ||
     children?.type === Button
   ) {
-    logWarningInDev(
-      'Directly using Button/a/span as Breadcrumbs children is deprecated, please use `Breadcrumbs.Item` instead.',
-    );
+    if (process.env.NODE_ENV === 'development') {
+      logWarning(
+        'Directly using Button/a/span as Breadcrumbs children is deprecated, please use `Breadcrumbs.Item` instead.',
+      );
+    }
     children = <BreadcrumbsItem {...children.props} />;
   }
 
@@ -255,7 +260,9 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'a'>;
-BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
+if (process.env.NODE_ENV === 'development') {
+  BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
+}
 
 // ----------------------------------------------------------------------------
 

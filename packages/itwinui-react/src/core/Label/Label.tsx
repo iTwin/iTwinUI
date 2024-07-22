@@ -63,3 +63,6 @@ export const Label = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'label', LabelOwnProps>;
+if (process.env.NODE_ENV === 'development') {
+  Label.displayName = 'Label';
+}
