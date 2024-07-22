@@ -394,6 +394,12 @@
   position: relative;
   word-break: break-word;
 
+  .iui-table-body:not(:has(+ .iui-table-paginator)) > .iui-table-row:last-of-type & {
+    &:first-of-type {
+      border-end-start-radius: var(--iui-border-radius-1);
+    }
+  }
+
   &:first-of-type {
     border-inline-start: solid 1px transparent;
   }
