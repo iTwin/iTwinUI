@@ -61,16 +61,21 @@ type OverflowContainerProps = {
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
   const { items, children, overflowOrientation, ...rest } = props;
 
+  const childrenItems = React.Children.toArray(children);
+
   const [containerRef, visibleCount] = useOverflow(
     items,
     false,
     overflowOrientation,
   );
 
+  const overflowContainerContextValue = React.useMemo(
+    () => ({ visibleCount, itemCount: childrenItems.length }),
+    [childrenItems.length, visibleCount],
+  );
+
   return (
-    <OverflowContainerContext.Provider
-      value={{ visibleCount, itemCount: items.length }}
-    >
+    <OverflowContainerContext.Provider value={overflowContainerContextValue}>
       <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
         {children}
       </Box>
