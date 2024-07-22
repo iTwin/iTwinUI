@@ -1,34 +1,18 @@
 import * as React from 'react';
 import { Button, ButtonGroup, Text } from '@itwin/itwinui-react';
 
-type VisiblePageIndices = [number, number];
-// | [null, number, number]
-// | [number, number, null]
-// | null;
-
 export default function App() {
-  // const [addClass, setAddClass] = React.useState(false);
-
-  // const [currentPageIndex, setCurrentPageIndex] = React.useState(0);
-
   const pagesIndexes = React.useMemo(
     () => [...Array(10)].map((_, index) => index),
     [],
   );
   const pageRefs = React.useRef<Record<string, HTMLElement | null>>({});
 
-  // const [visiblePageIndexes, setVisiblePageIndexes] =
-  //   React.useState<VisiblePageIndices>(null);
-
-  // const [animationData, setAnimationData] = React.useState<
-  //   [React.CSSProperties, React.CSSProperties][] | null
-  // >(null);
-
   // Reducer where all the component-wide state is stored
   const [{ currentPageId, animations }, dispatch] = React.useReducer(
     pageAnimationReducer,
     {
-      currentPageId: 'page-8',
+      currentPageId: 'page-0',
       animations: null,
       animationDirection: null,
       animatingToPageId: null,
@@ -36,11 +20,6 @@ export default function App() {
   );
 
   const goToPage = async (direction: 'prev' | 'next') => {
-    // // Page transition already in progress
-    // if (visiblePageIndexes !== null) {
-    //   return;
-    // }
-
     // Page transition already in progress
     if (animations != null) {
       return;
@@ -51,20 +30,11 @@ export default function App() {
       direction === 'next' ? currentPageIndex + 1 : currentPageIndex - 1;
     const otherPageId = `page-${otherPageIndex}`;
 
-    // const currentPage = pageRefs[currentPageIndex];
-    // const otherPage = pageRefs[otherPageIndex];
-
     const animationOptions = {
       duration: 1000,
       iterations: 1,
       easing: 'ease-out',
     };
-
-    // setVisiblePageIndexes(
-    //   direction === 'next'
-    //     ? [null, currentPageIndex, otherPageIndex]
-    //     : [otherPageIndex, currentPageIndex, null],
-    // );
 
     const animationsData = {
       [currentPageId]:
@@ -75,34 +45,31 @@ export default function App() {
         direction === 'next'
           ? [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }]
           : [
+              { transform: 'translateX(-100%)', display: 'block' },
               { transform: 'translateX(0)', display: 'block' },
-              { transform: 'translateX(100%)', display: 'block' },
             ],
     };
 
     dispatch({
-      type: (direction === 'prev' ? 'left' : 'right') as 'left',
+      type: direction,
       animatingToPageId: `page-${otherPageIndex}`,
       animations: animationsData,
     });
 
     await Promise.all(
-      Object.entries(animationsData).map(([pageId, keyframes], index) => {
+      Object.entries(animationsData).map(([pageId, keyframes]) => {
         const element = pageRefs.current[pageId];
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           if (element == null) {
             resolve(null);
             return;
           }
 
-          // console.log('animating', pageId);
-
           const animation = element.animate(keyframes, animationOptions);
 
           if (animation) {
             animation.onfinish = () => {
-              // onFinish(currentPageIndex + index);
               resolve(null);
             };
           }
@@ -110,27 +77,7 @@ export default function App() {
       }),
     );
 
-    // const currentPageAnimation = currentPage.current.animate(
-    //   [
-    //     { transform: 'translateX(0%)' },
-    //     { transform: 'translateX(-100%)', display: 'none' },
-    //   ],
-    //   animationOptions
-    // );
-
-    // const nextPageAnimation = nextPage.current.animate(
-    //   [{ transform: 'translateX(100%)' }, { transform: 'translateX(0%)' }],
-    //   animationOptions
-    // );
-
-    // setTimeout(() => {
     dispatch({ type: 'endAnimation' });
-    //   console.log("J'suis là");
-
-    //   // setCurrentPageIndex(otherPageIndex);
-    //   // // setCurrentPageIndex((prev) => prev + 1);
-    //   // setVisiblePageIndexes(null);
-    // }, 3000);
   };
 
   return (
@@ -141,11 +88,6 @@ export default function App() {
           width: '300px',
           overflow: 'hidden',
         }}
-        // onAnimationStart={(e) => console.log(e)}
-        // onAnimationStartCapture={(e) => console.log(e)}
-        // onAnimationEnd={(event) => {
-        //   console.log(event);
-        // }}
       >
         <Text>currentPage = {currentPageId}</Text>
         <ButtonGroup>
@@ -174,7 +116,7 @@ export default function App() {
   );
 }
 
-// ----
+// ----------------------------------------------------------------------------
 
 const Page = ({
   index,
@@ -194,14 +136,6 @@ const Page = ({
     pageRefs.current[`page-${index}`] = ref.current;
   }
 
-  if (pageId === 'page-5') {
-    console.log(
-      animations == null
-        ? pageId !== currentPageId
-        : !Object.keys(animations).includes(pageId),
-    );
-  }
-
   return (
     <div
       ref={ref}
@@ -214,27 +148,16 @@ const Page = ({
       }
       style={{
         inlineSize: '100%',
-        // display: index === currentIndex ? 'flex' : undefined,
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // display:
-        //   visiblePageIndexes?.[0] === currentIndex ||
-        //   (visiblePageIndexes?.[1] === currentIndex &&
-        //     visiblePageIndexes?.[2] != null)
-        //     ? 'none'
-        //     : undefined,
-
         border: '1px solid hotpink',
 
+        // Add the last keyframe styles to the current page to avoid flickering
+        // i.e. showing the current page for a split second between when the animations ends and the page is hidden
         ...(pageId === currentPageId &&
         animations != null &&
         animations[pageId] != null
           ? animations[pageId][animations[pageId].length - 1]
           : {}),
       }}
-      // onAnimationEnd={(event) => {
-      //   console.log(event);
-      // }}
     >
       <span
         style={{
@@ -248,26 +171,21 @@ const Page = ({
   );
 };
 
-// type AnimationData = {
-//   element: HTMLElement | null;
-//   keyframes: React.CSSProperties[];
-// };
-
 type PageAnimationState = {
   currentPageId: string;
   animatingToPageId: string | null;
-  animationDirection: 'left' | 'right' | null;
+  animationDirection: 'prev' | 'next' | null;
   animations: Record<string, React.CSSProperties[]> | null;
 };
 
 type PageAnimationAction =
   | {
-      type: 'left';
+      type: 'prev';
       animatingToPageId: string;
       animations: PageAnimationState['animations'];
     }
   | {
-      type: 'right';
+      type: 'next';
       animatingToPageId: string;
       animations: PageAnimationState['animations'];
     }
@@ -278,8 +196,8 @@ export const pageAnimationReducer = (
   action: PageAnimationAction,
 ): PageAnimationState => {
   switch (action.type) {
-    case 'left':
-    case 'right': {
+    case 'prev':
+    case 'next': {
       // Animation already in progress or other page doesn't exist
       if (
         state.animatingToPageId != null ||
@@ -315,6 +233,8 @@ export const pageAnimationReducer = (
   }
 };
 
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
 // import {

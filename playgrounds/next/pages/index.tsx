@@ -12,6 +12,7 @@ import { SvgShare } from '@itwin/itwinui-icons-react';
 
 export default function Home() {
   return <MultiPanelInformationPanel />;
+  // return <BasicDemo />;
 }
 
 const BasicDemo = () => {
@@ -26,7 +27,10 @@ const BasicDemo = () => {
       <Panels.Wrapper
         as={Surface}
         defaultActiveId={basePanelId}
-        style={{ display: 'inline-block' }}
+        style={{
+          inlineSize: '300px',
+          blockSize: '500px',
+        }}
       >
         <Panels.Panel as={List} id={basePanelId}>
           <ListItem>Repeat</ListItem>
@@ -57,27 +61,34 @@ const BasicDemo = () => {
         </Panels.Panel>
 
         {/* TODO: Remove the temp _iui3-menu class */}
-        <Panels.Panel as={List} id={speedPanelId} className='_iui3-menu'>
+        <Panels.Panel as={List} id={speedPanelId}>
           <Surface.Header as={Panels.Header}>Speed</Surface.Header>
-          <ListItem>0.2x</ListItem>
-          <ListItem>0.3x</ListItem>
-          <ListItem>0.4x</ListItem>
-          <ListItem>0.5x</ListItem>
-          <ListItem>0.6x</ListItem>
-          <ListItem>0.7x</ListItem>
-          <ListItem>0.8x</ListItem>
-          <ListItem>0.9x</ListItem>
-          <ListItem>1.0x</ListItem>
-          <ListItem>1.1x</ListItem>
-          <ListItem>1.2x</ListItem>
-          <ListItem>1.3x</ListItem>
-          <ListItem>1.4x</ListItem>
-          <ListItem>1.5x</ListItem>
-          <ListItem>1.6x</ListItem>
-          <ListItem>1.7x</ListItem>
-          <ListItem>1.8x</ListItem>
-          <ListItem>1.9x</ListItem>
-          <ListItem>2.0x</ListItem>
+          <Surface.Body
+            style={{
+              maxBlockSize: '100%',
+              overflowY: 'auto',
+            }}
+          >
+            <ListItem>0.2x</ListItem>
+            <ListItem>0.3x</ListItem>
+            <ListItem>0.4x</ListItem>
+            <ListItem>0.5x</ListItem>
+            <ListItem>0.6x</ListItem>
+            <ListItem>0.7x</ListItem>
+            <ListItem>0.8x</ListItem>
+            <ListItem>0.9x</ListItem>
+            <ListItem>1.0x</ListItem>
+            <ListItem>1.1x</ListItem>
+            <ListItem>1.2x</ListItem>
+            <ListItem>1.3x</ListItem>
+            <ListItem>1.4x</ListItem>
+            <ListItem>1.5x</ListItem>
+            <ListItem>1.6x</ListItem>
+            <ListItem>1.7x</ListItem>
+            <ListItem>1.8x</ListItem>
+            <ListItem>1.9x</ListItem>
+            <ListItem>2.0x</ListItem>
+          </Surface.Body>
         </Panels.Panel>
 
         <Panels.Panel as={List} id={accessibilityPanelId}>
@@ -92,7 +103,7 @@ const BasicDemo = () => {
 };
 
 const MultiPanelInformationPanel = () => {
-  const basePanelId = React.useId();
+  const basePanelId = 'base';
 
   const pages = Array.from(Array(10).keys()).map((i) => ({
     id: i,
@@ -110,7 +121,7 @@ const MultiPanelInformationPanel = () => {
       style={{
         inlineSize: '300px',
         blockSize: '500px',
-        position: 'relative',
+        // position: 'relative',
       }}
     >
       <Panels.Panel

@@ -52,8 +52,9 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  // const [expandedId, setExpandedId] = React.useState(defaultActiveId);
-  const [expandedId, setExpandedId] = useControlledState(
+  const panelRefs = React.useRef<Record<string, HTMLElement | null>>({});
+
+  const [currentPanelId, setCurrentPanelId] = useControlledState(
     defaultActiveId,
     activeId,
     onActiveIdChange,
@@ -65,6 +66,73 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
+  // Reducer where all the component-wide state is stored
+  const [{ animations }, dispatch] = React.useReducer(panelAnimationReducer, {
+    currentPanelId,
+    setCurrentPanelId,
+  } satisfies PanelAnimationState);
+
+  const animateToPanel = async (
+    toPanelId: string,
+    direction: 'prev' | 'next',
+  ) => {
+    // Page transition already in progress
+    if (animations != null) {
+      return;
+    }
+
+    const animationOptions = {
+      duration: 600,
+      iterations: 1,
+      easing: 'ease-out',
+    };
+
+    const animationsData = {
+      [currentPanelId]:
+        direction === 'next'
+          ? [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }]
+          : [{ transform: 'translateX(0)' }, { transform: 'translateX(100%)' }],
+      [toPanelId]:
+        direction === 'next'
+          ? [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }]
+          : [
+              { transform: 'translateX(-100%)', display: 'block' },
+              { transform: 'translateX(0)', display: 'block' },
+            ],
+    };
+
+    dispatch({
+      type: direction,
+      animatingToPanelId: toPanelId,
+      animations: animationsData,
+      panelRefs,
+    });
+
+    await Promise.all(
+      Object.entries(animationsData).map(([pageId, keyframes]) => {
+        const element = panelRefs.current[pageId];
+
+        return new Promise((resolve) => {
+          if (element == null) {
+            resolve(null);
+            return;
+          }
+
+          const animation = element.animate(keyframes, animationOptions);
+
+          if (animation) {
+            animation.onfinish = () => {
+              resolve(null);
+            };
+          }
+        });
+      }),
+    );
+
+    dispatch({ type: 'endAnimation' });
+    setCurrentPanelId(toPanelId);
+  };
+
   // if (expandedId === undefined) {
   //   setExpandedId(defaultActiveId);
   // }
@@ -72,22 +140,25 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
   return (
     <PanelWrapperContext.Provider
       value={{
-        expandedId,
-        setExpandedId,
+        currentPanelId,
+        setCurrentPanelId,
         triggers,
         // setTriggers,
         history,
         setHistory,
         width,
+        panelRefs,
+        animations,
+        animateToPanel,
       }}
     >
-      <div>{history}</div>
+      {/* <div>{history}</div> */}
       <Box
         ref={mergeRefs(forwardedRef, resizeObserverRef)}
         {...rest}
         className={cx('iui-panel-wrapper', className)}
         style={{
-          transitionDuration: '200ms',
+          position: 'relative',
           ...style,
         }}
       >
@@ -100,8 +171,10 @@ PanelWrapper.displayName = 'Panel.Wrapper';
 
 const PanelWrapperContext = React.createContext<
   | {
-      expandedId: string | undefined;
-      setExpandedId: React.Dispatch<React.SetStateAction<string | undefined>>;
+      currentPanelId: string | undefined;
+      setCurrentPanelId: React.Dispatch<
+        React.SetStateAction<string | undefined>
+      >;
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>
       >;
@@ -114,6 +187,12 @@ const PanelWrapperContext = React.createContext<
       history: string[];
       setHistory: React.Dispatch<React.SetStateAction<string[]>>;
       width: number;
+      panelRefs: React.RefObject<Record<string, HTMLElement | null>>;
+      animations: Record<string, React.CSSProperties[]> | undefined;
+      animateToPanel: (
+        toPanelId: string,
+        direction: 'prev' | 'next',
+      ) => Promise<void>;
     }
   | undefined
 >(undefined);
@@ -127,19 +206,29 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, style, ...rest } = props;
 
-  const fallbackId = React.useId();
-  const id = idProp || fallbackId;
-
   const {
-    expandedId,
+    currentPanelId,
     triggers,
     history,
     width: panelWrapperWidth,
+    panelRefs,
+    animations,
   } = React.useContext(PanelWrapperContext) || {};
 
-  panelWrapperWidth;
+  const fallbackId = React.useId();
+  const id = idProp || fallbackId;
 
-  console.log('style', style);
+  const ref = React.useRef<HTMLElement>(null);
+  if (panelRefs?.current != null) {
+    panelRefs.current[id] = ref.current;
+  }
+
+  const isHidden =
+    animations == null
+      ? id !== currentPanelId
+      : !Object.keys(animations).includes(id);
+
+  panelWrapperWidth;
 
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
@@ -166,6 +255,23 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   historyOffset;
 
+  if (id === 'base') {
+    console.log('panel', {
+      id,
+      1: id === currentPanelId,
+      2: animations != null,
+      3: animations != null ? animations[id] != null : "it's null",
+      4:
+        animations != null
+          ? animations[id][animations[id].length - 1]
+          : "it's null",
+      5:
+        animations != null
+          ? animations[id][animations[id].length - 1]
+          : "it's null",
+    });
+  }
+
   return (
     <PanelContext.Provider
       value={{
@@ -181,6 +287,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
       > */}
       <Box
         ref={useMergedRefs(
+          ref,
           forwardedRef,
           React.useCallback(
             (el) => el?.focus(),
@@ -188,23 +295,42 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           ) as React.RefCallback<HTMLElement>,
         )}
         id={id}
-        hidden={id !== expandedId}
+        // hidden={id !== expandedId}
         {...rest}
         className={cx('iui-panel', className, {
-          'iui-panel-visible': id === expandedId,
+          'iui-panel-visible': id === currentPanelId,
         })}
-        // className='HERE'
+        // // className='HERE'
+        // style={{
+        //   // transform: id === history?.[-1] ? 'translate(100px)' : undefined,
+        //   // transform:
+        //   //   historyOffset != null
+        //   //     ? `translate(${(panelWrapperWidth ?? 0) * historyOffset}px`
+        //   //     : undefined,
+        //   // display: history?.includes(id) ? undefined : 'none',
+        //   ...style,
+        // }}
+
+        hidden={isHidden}
         style={{
-          // transform: id === history?.[-1] ? 'translate(100px)' : undefined,
-          // transform:
-          //   historyOffset != null
-          //     ? `translate(${(panelWrapperWidth ?? 0) * historyOffset}px`
-          //     : undefined,
-          // display: history?.includes(id) ? undefined : 'none',
+          position: 'absolute',
+          inset: 0,
+
+          // inlineSize: '100%',
+          display: isHidden ? 'none' : undefined,
+
+          // Add the last keyframe styles to the current panel to avoid flickering
+          // i.e. showing the current panel for a split second between when the animations ends and the panel is hidden
+          ...(id === currentPanelId &&
+          animations != null &&
+          animations[id] != null
+            ? animations[id][animations[id].length - 1]
+            : {}),
+
           ...style,
         }}
       >
-        <div>{id}</div>
+        {/* <div>{id}</div> */}
         {children}
       </Box>
       {/* </Transition> */}
@@ -259,12 +385,15 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     });
   }
 
-  const onClick = () => {
+  const onClick = async () => {
     // Only if forProp exists in the DOM, go to the new panel.
     // This prevents empty panels with no way to go back.
     if (!!document.getElementById(forProp)) {
-      flushSync(() => panelWrapperContext?.setExpandedId(forProp));
-      panelWrapperContext?.setHistory((prev) => [...prev, forProp]);
+      // flushSync(() => panelWrapperContext?.setExpandedId(forProp));
+
+      console.log('triggerId', triggerId, forProp);
+
+      await panelWrapperContext?.animateToPanel(forProp, 'next');
 
       // Focus the first focusable element in the panel.
       // This is useful for screen-reader users.
@@ -275,6 +404,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
       //   document.getElementById(forProp)?.focus();
       // }, 1000);
 
+      panelWrapperContext?.setHistory((prev) => [...prev, forProp]);
       const firstFocusable = getFocusableElements(
         document.getElementById(forProp),
       )?.[0] as HTMLElement | undefined;
@@ -287,7 +417,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
       ...children.props,
       id: triggerId,
       onClick: mergeEventHandlers(children.props.onClick, onClick),
-      'aria-expanded': panelWrapperContext?.expandedId === forProp,
+      'aria-expanded': panelWrapperContext?.currentPanelId === forProp,
       'aria-controls': forProp,
     };
   });
@@ -329,14 +459,18 @@ const PanelBackButton = () => {
   const panelWrapperContext = React.useContext(PanelWrapperContext);
   const panelContext = React.useContext(PanelContext);
 
-  const { setExpandedId, triggers } = panelWrapperContext || {};
+  const { triggers } = panelWrapperContext || {};
   const { id: panelId } = panelContext || {};
 
   const trigger = !!panelId ? triggers?.current?.get(panelId) : undefined;
 
   const goBack = () => {
     if (trigger?.triggerId != null) {
-      flushSync(() => setExpandedId?.(trigger.panelId));
+      // flushSync(() => setExpandedId?.(trigger.panelId));
+      flushSync(
+        () => panelWrapperContext?.animateToPanel(trigger.panelId, 'prev'),
+      );
+
       panelWrapperContext?.setHistory((prev) =>
         [...prev].slice(0, prev.length - 1),
       );
@@ -365,4 +499,68 @@ export const Panels = {
   Trigger: PanelTrigger,
   Header: PanelHeader,
   BackButton: PanelBackButton,
+};
+
+// ----------------------------------------------------------------------------
+
+type PanelAnimationState = {
+  // currentPanelId: string;
+  currentPanelId: string | undefined;
+  setCurrentPanelId: React.Dispatch<React.SetStateAction<string | undefined>>;
+  animatingToPanelId?: string;
+  animationDirection?: 'prev' | 'next';
+  animations?: Record<string, React.CSSProperties[]>;
+};
+
+type PanelAnimationAction =
+  | {
+      type: 'prev' | 'next';
+      animatingToPanelId: string;
+      animations: PanelAnimationState['animations'];
+      // TODO: Or do document.querySelector each time?
+      panelRefs: React.RefObject<Record<string, HTMLElement | null>>;
+    }
+  | { type: 'endAnimation' };
+
+const panelAnimationReducer = (
+  state: PanelAnimationState,
+  action: PanelAnimationAction,
+): PanelAnimationState => {
+  console.log('reducer', state, action);
+
+  switch (action.type) {
+    case 'prev':
+    case 'next': {
+      // Animation already in progress or other panel doesn't exist
+      if (
+        state.animatingToPanelId != null ||
+        action.panelRefs.current?.[action.animatingToPanelId] == null
+      ) {
+        return state;
+      }
+
+      return {
+        ...state,
+        animatingToPanelId: action.animatingToPanelId,
+        animationDirection: action.type,
+        animations: action.animations,
+      };
+    }
+    case 'endAnimation': {
+      // No animation in progress
+      if (state.animatingToPanelId == null) {
+        return state;
+      }
+
+      return {
+        ...state,
+        animatingToPanelId: undefined,
+        animationDirection: undefined,
+        animations: undefined,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
 };
