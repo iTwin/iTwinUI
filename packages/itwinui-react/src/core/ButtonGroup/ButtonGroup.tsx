@@ -178,10 +178,10 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
 
 type OverflowGroupProps = Pick<
   ButtonGroupProps,
-  'children' | 'orientation' | 'overflowButton' | 'overflowPlacement'
->;
+  'children' | 'orientation' | 'overflowPlacement'
+> &
+  Required<Pick<ButtonGroupProps, 'overflowButton'>>;
 
-/** Note: If `overflowButton == null`, it behaves like a `BaseGroup`. */
 const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   const {
     children: childrenProp,
@@ -196,7 +196,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  return overflowButton != null ? (
+  return (
     <OverflowContainer
       as={BaseGroup}
       items={items}
@@ -218,10 +218,6 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         items={items}
       />
     </OverflowContainer>
-  ) : (
-    <BaseGroup orientation={orientation} ref={forwardedRef} {...rest}>
-      {childrenProp}
-    </BaseGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowGroupProps>;
 
