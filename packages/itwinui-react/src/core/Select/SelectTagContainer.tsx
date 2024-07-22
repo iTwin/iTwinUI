@@ -9,7 +9,7 @@ import { SelectTag } from './SelectTag.js';
 import {
   OverflowContainer,
   OverflowContainerContext,
-} from '../../utils/components/OverflowContainer.js';
+} from '../../utils/index.js';
 
 type SelectTagContainerProps = {
   /**

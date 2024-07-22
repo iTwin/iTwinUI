@@ -20,7 +20,7 @@ import {
 import {
   OverflowContainer,
   OverflowContainerContext,
-} from '../../utils/components/OverflowContainer.js';
+} from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
 

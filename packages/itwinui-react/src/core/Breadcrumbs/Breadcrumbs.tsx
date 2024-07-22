@@ -15,7 +15,7 @@ import { Anchor } from '../Typography/Anchor.js';
 import {
   OverflowContainer,
   OverflowContainerContext,
-} from '../../utils/components/OverflowContainer.js';
+} from '../../utils/index.js';
 
 const logWarning = createWarningLogger();
 
@@ -134,7 +134,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
-      <OverflowContainer as='ol' className='iui-breadcrumbs-list' items={items}>
+      <OverflowContainer as='ol' className='iui-breadcrumbs-list'>
         <BreadcrumbContent
           currentIndex={currentIndex}
           overflowButton={overflowButton}

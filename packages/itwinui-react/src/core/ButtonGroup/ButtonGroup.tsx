@@ -17,7 +17,7 @@ import {
 import {
   OverflowContainer,
   OverflowContainerContext,
-} from '../../utils/components/OverflowContainer.js';
+} from '../../utils/index.js';
 
 // ----------------------------------------------------------------------------
 
