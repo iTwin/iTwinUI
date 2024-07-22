@@ -1152,14 +1152,7 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot
-            css={`
-              div,
-              slot {
-                border-radius: inherit;
-              }
-            `}
-          >
+          <ShadowRoot>
             {enableVirtualization ? (
               <div
                 style={{
