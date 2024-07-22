@@ -394,10 +394,14 @@
   position: relative;
   word-break: break-word;
 
-  //Adds the border-radius only to the first cell in the last row of the table body when the table has no paginator.
+  //Adds the border-radius only to the first and last cells in the last row of the table body when the table has no paginator.
   .iui-table-body:not(:has(+ .iui-table-paginator)) > .iui-table-row:last-of-type & {
     &:first-of-type {
       border-end-start-radius: var(--iui-border-radius-1);
+    }
+
+    &:last-of-type {
+      border-end-end-radius: var(--iui-border-radius-1);
     }
   }
 
