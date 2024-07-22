@@ -6,7 +6,6 @@ import * as React from 'react';
 import {
   Box,
   cloneElementWithRef,
-  getFocusableElements,
   mergeEventHandlers,
   mergeRefs,
   SvgChevronLeft,
@@ -15,7 +14,6 @@ import {
   useResizeObserver,
   type PolymorphicForwardRefComponent,
 } from '../../utils/index.js';
-import { flushSync } from 'react-dom';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
@@ -60,7 +58,7 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
   );
 
   const [history, setHistory] = React.useState([defaultActiveId]);
-  const [width, setWidth] = React.useState(0); // TODO: Start off with real width
+  const [width, setWidth] = React.useState(0);
   const [resizeObserverRef] = useResizeObserver((size) => setWidth(size.width));
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
@@ -193,7 +191,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const {
     currentPanelId,
     triggers,
-    history,
     width: panelWrapperWidth,
     panelRefs,
     animations,
@@ -216,17 +213,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
-  const historyIndex =
-    history != null
-      ? history?.findIndex((historyItemId) => historyItemId === id)
-      : -1;
-  const historyOffset =
-    historyIndex !== -1 && history != null
-      ? historyIndex - (history.length - 1)
-      : null;
-
-  historyOffset;
-
   return (
     <PanelContext.Provider
       value={{
@@ -235,16 +221,11 @@ const Panel = React.forwardRef((props, forwardedRef) => {
       }}
     >
       <Box
-        ref={useMergedRefs(
-          ref,
-          forwardedRef,
-          React.useCallback(
-            (el) => el?.focus(),
-            [],
-          ) as React.RefCallback<HTMLElement>,
-        )}
+        ref={useMergedRefs(ref, forwardedRef)}
         id={id}
         hidden={isHidden}
+        aria-labelledby={`${id}-header`}
+        tabIndex={-1}
         {...rest}
         className={cx('iui-panel', className, {
           'iui-panel-visible': id === currentPanelId,
@@ -285,14 +266,12 @@ type PanelTriggerProps = {
   children: React.ReactElement;
 };
 
-// TODO: Should it be a like a DOM node? Or it is just a wrapper around a DOM node that adds properties to the DOM node?
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
   const panelWrapperContext = React.useContext(PanelWrapperContext);
   const panelContext = React.useContext(PanelContext);
 
-  // TODO: Should we have an idProp and use useId only as a fallback?
   const triggerId = React.useId();
 
   if (!React.isValidElement(children)) {
@@ -315,18 +294,9 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     // Only if forProp exists in the DOM, go to the new panel.
     // This prevents empty panels with no way to go back.
     if (!!document.getElementById(forProp)) {
-      // flushSync(() => panelWrapperContext?.setExpandedId(forProp));
-
+      // Focus the next panel once the panel animation is complete
       await panelWrapperContext?.animateToPanel(forProp, 'next');
-
-      panelWrapperContext?.setHistory((prev) => [...prev, forProp]);
-
-      // Focus the first focusable element in the panel.
-      // This is useful for screen-reader users.
-      const firstFocusable = getFocusableElements(
-        document.getElementById(forProp),
-      )?.[0] as HTMLElement | undefined;
-      firstFocusable?.focus();
+      panelWrapperContext?.panelRefs.current?.[forProp]?.focus();
     }
   };
 
@@ -346,23 +316,13 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
 
-  const { associatedTrigger: panelAssociatedTrigger } =
+  const { id: panelId, associatedTrigger: panelAssociatedTrigger } =
     React.useContext(PanelContext) || {};
 
   return (
     <Flex ref={forwardedRef} {...rest}>
       {panelAssociatedTrigger && <PanelBackButton />}
-      <Text
-        as='h2'
-        tabIndex={-1}
-        // TODO: Confirm that focus moves correctly to the Text after the next panel is opened.
-        // When a keyboard user triggers the panel, they should be able to continue tabbing into the panel.
-        // When a screen-reader user triggers the panel, they should hear the name of the panel announced.
-        //
-        // Alternate idea: maybe the Panel itself could be focused. But then the panel needs a role and a label.
-        // ref={React.useCallback((el: HTMLElement | null) => el?.focus(), [])}
-        // TODO: This focusing should not happen when the Header is set on the Base menu. This should only happen when moving from one menu to another
-      >
+      <Text id={`${panelId}-header`} as='h2'>
         {children}
       </Text>
     </Flex>
@@ -378,18 +338,13 @@ const PanelBackButton = () => {
 
   const trigger = !!panelId ? triggers?.current?.get(panelId) : undefined;
 
-  const goBack = () => {
+  const goBack = React.useCallback(async () => {
     if (trigger?.triggerId != null) {
-      flushSync(
-        () => panelWrapperContext?.animateToPanel(trigger.panelId, 'prev'),
-      );
-
-      panelWrapperContext?.setHistory((prev) =>
-        [...prev].slice(0, prev.length - 1),
-      );
+      // Focus the prev panel once the panel animation is complete
+      await panelWrapperContext?.animateToPanel(trigger.panelId, 'prev');
       document.getElementById(trigger.triggerId)?.focus();
     }
-  };
+  }, [panelWrapperContext, trigger?.panelId, trigger?.triggerId]);
 
   return (
     <IconButton
@@ -417,7 +372,6 @@ export const Panels = {
 // ----------------------------------------------------------------------------
 
 type PanelAnimationState = {
-  // currentPanelId: string;
   currentPanelId: string | undefined;
   setCurrentPanelId: React.Dispatch<React.SetStateAction<string | undefined>>;
   animatingToPanelId?: string;
@@ -429,7 +383,6 @@ type PanelAnimationAction =
       type: 'prev' | 'next';
       animatingToPanelId: string;
       animations: PanelAnimationState['animations'];
-      // TODO: Or do document.querySelector each time?
       panelRefs: React.RefObject<Record<string, HTMLElement | null>>;
     }
   | { type: 'endAnimation' };
