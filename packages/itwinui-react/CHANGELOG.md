@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.13.3
+
+### Patch Changes
+
+- [#2163](https://github.com/iTwin/iTwinUI/pull/2163): Fixed an issue in virtualized `Table` where horizontal scroll was broken.
+
 ## 3.13.2
 
 ### Patch Changes
