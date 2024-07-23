@@ -81,6 +81,12 @@ describe('Table', () => {
             cy.get('button').first().click({ force: true }); // force because the button is hidden
             break;
           }
+          case 'Full2': {
+            cy.get('[role=table]').scrollTo('right');
+            cy.compareSnapshot(`${testName} (scrolled right)`);
+            cy.get('[role=table]').scrollTo('left');
+            break;
+          }
         }
       });
 
