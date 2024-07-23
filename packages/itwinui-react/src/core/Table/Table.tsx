@@ -829,7 +829,7 @@ export const Table = <
     }
   });
 
-  const virtualizer = useVirtualScroll({
+  const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     count: page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
@@ -1152,15 +1152,11 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot>
+          <ShadowRoot css={virtualizerCss}>
             {enableVirtualization && data.length !== 0 ? (
               <div
-                style={{
-                  minBlockSize: virtualizer.getTotalSize(),
-                  minInlineSize: '100%',
-                  contain: 'layout',
-                  position: 'relative',
-                }}
+                data-iui-virtualizer='root'
+                style={{ minBlockSize: virtualizer.getTotalSize() }}
               >
                 <slot />
               </div>
