@@ -101,7 +101,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
           style={{
             minBlockSize: virtualizer.getTotalSize(),
             minInlineSize: '100%',
-            contain: 'layout size',
+            contain: 'layout',
             ...props.style,
           }}
         >

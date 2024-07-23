@@ -1158,7 +1158,7 @@ export const Table = <
                 style={{
                   minBlockSize: virtualizer.getTotalSize(),
                   minInlineSize: '100%',
-                  contain: 'layout size',
+                  contain: 'layout',
                 }}
               >
                 <slot />

@@ -433,7 +433,7 @@ const VirtualizedTree = React.forwardRef(
           <div
             style={{
               minBlockSize: virtualizer.getTotalSize(),
-              contain: 'layout size',
+              contain: 'layout',
             }}
           >
             <slot />
