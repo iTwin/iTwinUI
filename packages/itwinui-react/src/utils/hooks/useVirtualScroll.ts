@@ -8,9 +8,12 @@ import type { ScrollToOptions, Virtualizer } from '@tanstack/react-virtual';
 import React from 'react';
 
 const css = /*css*/ `
+:host {
+  contain: layout;
+  background-color: var(--iui-color-background);
+}
 [data-iui-virtualizer='root'] {
   min-inline-size: 100%;
-  contain: layout;
   position: relative;
 }
 ::slotted([data-iui-virtualizer='item']) {
