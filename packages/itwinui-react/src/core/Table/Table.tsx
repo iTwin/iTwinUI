@@ -1153,7 +1153,7 @@ export const Table = <
           }
         >
           <ShadowRoot>
-            {enableVirtualization ? (
+            {enableVirtualization && data.length !== 0 ? (
               <div
                 style={{
                   minBlockSize: virtualizer.getTotalSize(),
