@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.13.2
+
+### Patch Changes
+
+- [#2143](https://github.com/iTwin/iTwinUI/pull/2143): Added `border-radius` to the `Table` component so that the border radius is correctly applied to the `Table`'s corners.
+- [#2161](https://github.com/iTwin/iTwinUI/pull/2161): Fixed issue where `emptyTableContent` would not appear on virutalized `Table` components.
+
 ## 3.13.1
 
 ### Patch Changes
