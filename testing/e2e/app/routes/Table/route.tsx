@@ -22,16 +22,17 @@ export default function Resizing() {
 
   const virtualizedData = React.useMemo(() => {
     const size = oneRow ? 1 : 100000;
+    if (empty) {
+      return [];
+    }
     const arr = new Array(size);
-    if (!empty) {
-      for (let i = 0; i < size; ++i) {
-        arr[i] = {
-          index: i,
-          name: `Name${i}`,
-          description: `Description${i}`,
-          id: i,
-        };
-      }
+    for (let i = 0; i < size; ++i) {
+      arr[i] = {
+        index: i,
+        name: `Name${i}`,
+        description: `Description${i}`,
+        id: i,
+      };
     }
     return arr;
   }, [oneRow, empty]);
