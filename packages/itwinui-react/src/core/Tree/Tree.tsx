@@ -299,7 +299,6 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '100%',
                   transform: `translateY(${virtualItem.start}px)`,
                 },
               }))
