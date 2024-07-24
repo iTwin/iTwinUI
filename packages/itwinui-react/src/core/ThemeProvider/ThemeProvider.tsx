@@ -351,7 +351,7 @@ const PortalContainer = React.memo(
 
       const portalTarget = portalContainerProp || portalContainerFromParent;
 
-      if (portalContainerProp && portalTarget !== portalContainer) {
+      if (portalTarget && portalTarget !== portalContainer) {
         setPortalContainer(portalTarget);
       }
     });
