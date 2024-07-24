@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   useMediaQuery,
@@ -178,7 +179,9 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     <ScopeProvider>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
-          <ToastProvider>
+          <ToastProvider
+            inherit={themeProp === 'inherit' && !portalContainerProp}
+          >
             {includeCss && rootElement ? (
               <FallbackStyles root={rootElement} />
             ) : null}
@@ -368,6 +371,8 @@ const PortalContainer = React.memo(
           <Toaster />
         </div>
       );
+    } else if (portalContainerProp) {
+      return ReactDOM.createPortal(<Toaster />, portalContainerProp);
     }
 
     return null;
