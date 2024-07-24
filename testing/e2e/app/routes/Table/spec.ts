@@ -450,7 +450,11 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
+    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
+
+    //Checks empty content to make sure it appears correctly.
+    await expect(emptyContent).toBeInViewport();
   });
 
   test('virtualized table should scroll to provided row', async ({ page }) => {
