@@ -10,6 +10,7 @@
   overflow: auto;
   scrollbar-gutter: stable;
   background-color: var(--iui-color-background);
+  border-radius: var(--iui-border-radius-1);
 
   @include iui-table-cell-icon;
 
@@ -28,8 +29,6 @@
 
   display: flex;
   flex-shrink: 0;
-  border-start-start-radius: var(--iui-border-radius-1);
-  border-start-end-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-table-header {
@@ -152,10 +151,6 @@
 
   min-inline-size: 100%;
   display: flex;
-
-  &:last-of-type {
-    border-radius: inherit;
-  }
 
   .iui-table-header & {
     flex-grow: 1;
@@ -308,6 +303,13 @@
     }
     // #endregion Statuses & states
   }
+
+  .iui-table-body:not(:has(+ .iui-table-paginator)) & {
+    &:last-of-type {
+      border-end-start-radius: var(--iui-border-radius-1);
+      border-end-end-radius: var(--iui-border-radius-1);
+    }
+  }
 }
 
 // For content placed after the table body and before the paginator
@@ -360,11 +362,6 @@
     }
   }
 
-  &:last-child {
-    border-end-start-radius: var(--iui-border-radius-1);
-    border-end-end-radius: var(--iui-border-radius-1);
-  }
-
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
     background-color: var(--iui-color-background-zebra);
   }
@@ -397,9 +394,19 @@
   position: relative;
   word-break: break-word;
 
+  //Adds the border-radius only to the first and last cells in the last row when the table has no paginator.
+  .iui-table-body:not(:has(+ .iui-table-paginator)) > .iui-table-row:last-of-type & {
+    &:first-of-type {
+      border-end-start-radius: var(--iui-border-radius-1);
+    }
+
+    &:last-of-type {
+      border-end-end-radius: var(--iui-border-radius-1);
+    }
+  }
+
   &:first-of-type {
     border-inline-start: solid 1px transparent;
-    border-end-start-radius: inherit;
   }
 
   &:last-of-type {

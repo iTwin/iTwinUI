@@ -99,12 +99,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
         flex: `0 0 auto`,
         minWidth: '100%',
         ...(virtualItem != null
-          ? {
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              transform: `translateY(${virtualItem.start}px)`,
-            }
+          ? { transform: `translateY(${virtualItem.start}px)` }
           : {}),
       },
     }),
@@ -122,6 +117,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
       'aria-disabled': isDisabled || undefined,
       'data-iui-status': status,
       'data-iui-index': virtualItem?.index,
+      ...(virtualItem != null && { 'data-iui-virtualizer': 'item' }),
     },
   };
 
