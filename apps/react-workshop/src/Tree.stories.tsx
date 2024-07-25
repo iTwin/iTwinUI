@@ -588,7 +588,6 @@ export const Virtualized = () => {
             onSelected={onSelectedNodeChange}
             checkbox={<Checkbox variant='eyeball' disabled={rest.isDisabled} />}
             icon={<SvgPlaceholder />}
-            style={{ width: '100%' }}
             {...rest}
           />
         ),
@@ -785,7 +784,7 @@ export const VirtualizedWithHorizontalScroll = () => {
             onSelected={onSelectedNodeChange}
             checkbox={<Checkbox variant='eyeball' disabled={rest.isDisabled} />}
             icon={<SvgPlaceholder />}
-            style={{ minWidth: '100%' }}
+            style={{ width: 'fit-content', minWidth: '100%' }}
             {...rest}
           />
         ),
