@@ -830,6 +830,7 @@ export const Table = <
   });
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
+    enabled: enableVirtualization,
     count: page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
