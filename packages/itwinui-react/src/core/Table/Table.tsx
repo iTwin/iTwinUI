@@ -1003,7 +1003,6 @@ export const Table = <
                         : COLUMN_MIN_WIDTHS.default;
 
                       if (
-                        column.width &&
                         typeof column.width === 'number' &&
                         column.minWidth > column.width
                       ) {
