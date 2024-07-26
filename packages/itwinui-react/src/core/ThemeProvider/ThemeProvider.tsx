@@ -74,10 +74,6 @@ type RootProps = {
      */
     applyBackground?: boolean;
   };
-  /**
-   * This will be used to determine if background will be applied.
-   */
-  shouldApplyBackground?: boolean;
 };
 
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
@@ -175,6 +171,16 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     [theme, JSON.stringify(themeOptions)],
   );
 
+  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const findOwnerDocumentFromRef = React.useCallback(
+    (el: HTMLElement | null): void => {
+      if (el && el.ownerDocument !== ownerDocument) {
+        setOwnerDocument(el.ownerDocument);
+      }
+    },
+    [ownerDocument, setOwnerDocument],
+  );
+
   return (
     <ScopeProvider>
       <HydrationProvider>
@@ -189,12 +195,19 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
             <Root
               theme={theme}
               themeOptions={themeOptions}
-              ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
+              ref={useMergedRefs(
+                forwardedRef,
+                setRootElement,
+                findOwnerDocumentFromRef,
+                useIuiDebugRef,
+              )}
               {...rest}
             >
               {children}
 
               <PortalContainer
+                theme={theme}
+                themeOptions={themeOptions}
                 portalContainerProp={portalContainerProp}
                 portalContainerFromParent={portalContainerFromParent}
                 isInheritingTheme={themeProp === 'inherit'}
@@ -221,16 +234,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
-  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
-  const findOwnerDocumentFromRef = React.useCallback(
-    (el: HTMLElement | null): void => {
-      if (el && el.ownerDocument !== ownerDocument) {
-        setOwnerDocument(el.ownerDocument);
-      }
-    },
-    [ownerDocument, setOwnerDocument],
-  );
-
   return (
     <Box
       className={cx(
@@ -240,7 +243,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
@@ -323,11 +326,13 @@ const PortalContainer = React.memo(
     portalContainerProp,
     portalContainerFromParent,
     isInheritingTheme,
+    theme,
+    themeOptions,
   }: {
     portalContainerProp: HTMLElement | undefined;
     portalContainerFromParent: HTMLElement | undefined;
     isInheritingTheme: boolean;
-  }) => {
+  } & RootProps) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
     const [portalContainer, setPortalContainer] =
       useScopedAtom(portalContainerAtom);
@@ -367,9 +372,15 @@ const PortalContainer = React.memo(
 
     if (shouldSetupPortalContainer) {
       return (
-        <div style={{ display: 'contents' }} ref={setPortalContainer} id={id}>
+        <Root
+          theme={theme}
+          themeOptions={{ ...themeOptions, applyBackground: false }}
+          style={{ display: 'contents' }}
+          ref={setPortalContainer}
+          id={id}
+        >
           <Toaster />
-        </div>
+        </Root>
       );
     } else if (portalContainerProp) {
       return ReactDOM.createPortal(<Toaster />, portalContainerProp);
