@@ -37,7 +37,30 @@ type TriggerMapEntry = { triggerId: string; panelId: string };
  * E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
  * @example
- * Example usages go here!
+ * <Panels.Wrapper
+ *   baseId={panelIdRoot}
+ *   as={Surface}
+ *   style={{ inlineSize: '300px', blockSize: '500px' }}
+ * >
+ *   <Panels.Panel id={panelIdRoot} as={List}>
+ *     <Surface.Header as={Panels.Header}>Base</Surface.Header>
+ *     <ListItem>
+ *       <Panels.Trigger for={panelIdMoreInfo}>
+ *         <ListItem.Action>More details</ListItem.Action>
+ *       </Panels.Trigger>
+ *     </ListItem>
+ *   </Panels.Panel>
+ *
+ *   <Panels.Panel
+ *     id={panelIdMoreInfo}
+ *     as={Flex}
+ *     flexDirection='column'
+ *     alignItems='stretch'
+ *   >
+ *     <Surface.Header as={Panels.Header}>More details</Surface.Header>
+ *     …content
+ *   </Panels.Panel>
+ * </Panels.Wrapper>
  */
 const PanelWrapper = React.forwardRef((props, forwardedRef) => {
   const {
@@ -296,7 +319,9 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     if (!!document.getElementById(forProp)) {
       // Focus the next panel once the panel animation is complete
       await panelWrapperContext?.animateToPanel(forProp, 'next');
-      panelWrapperContext?.panelRefs.current?.[forProp]?.focus();
+      panelWrapperContext?.panelRefs.current?.[forProp]?.focus({
+        preventScroll: true,
+      });
     }
   };
 
@@ -342,7 +367,9 @@ const PanelBackButton = () => {
     if (trigger?.triggerId != null) {
       // Focus the prev panel once the panel animation is complete
       await panelWrapperContext?.animateToPanel(trigger.panelId, 'prev');
-      document.getElementById(trigger.triggerId)?.focus();
+      document
+        .getElementById(trigger.triggerId)
+        ?.focus({ preventScroll: true });
     }
   }, [panelWrapperContext, trigger?.panelId, trigger?.triggerId]);
 
