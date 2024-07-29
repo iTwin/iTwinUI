@@ -4,8 +4,8 @@
 
 ### Patch Changes
 
-- [#2138](https://github.com/iTwin/iTwinUI/pull/2138): Fixed issue with `Table` column resizing where passing in a `width` value to a column that was less than iTwinUI's default `minWidth` would cause a shift in the `Table` component when the column was resized.
-- [#2170](https://github.com/iTwin/iTwinUI/pull/2170): Fixed an issue in virtualized `Tree` where the style prop passed to `TreeNode` was not respected.
+- [#2138](https://github.com/iTwin/iTwinUI/pull/2138): Fixed an issue in `Table` column resizing where passing in a `width` value to a column that was less than the default `minWidth` would cause a shift in the `Table` component when the column was resized.
+- [#2170](https://github.com/iTwin/iTwinUI/pull/2170): Fixed an issue in virtualized `Tree` where the `style` prop passed to `TreeNode` was not respected.
 - [#2170](https://github.com/iTwin/iTwinUI/pull/2170): Fixed an issue in virtualized `Tree` where horizontal scroll was impossible to achieve.
 - [#2174](https://github.com/iTwin/iTwinUI/pull/2174): Fixed an issue in `Table` where the virtualizer was being initialized when the `enableVirtualization` prop wasn't set to `true`.
 
