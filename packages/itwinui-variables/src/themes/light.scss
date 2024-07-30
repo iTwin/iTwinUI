@@ -49,6 +49,7 @@ $fg-200: hsl(0 0% ($fg-lightness-gap * 2));
 $fg-300: hsl(0 0% ($fg-lightness-gap * 3));
 $fg-400: hsl(0 0% ($fg-lightness-gap * 4));
 $fg-500: hsl(0 0% ($fg-lightness-gap * 5));
+$fg-550: hsl(0 0% ($fg-lightness-gap * 5.5));
 $fg-600: hsl(0 0% ($fg-lightness-gap * 6));
 $fg-650: hsl(0 0% ($fg-lightness-gap * 6.5));
 $fg-700: hsl(0 0% ($fg-lightness-gap * 7));
@@ -132,6 +133,7 @@ $opacities: (
   --iui-color-icon-muted: #{hex($fg-700)};
   --iui-color-icon-muted-hover: #{hex($fg-600)};
   --iui-color-icon-disabled: #{hex($fg-900)};
+  --iui-color-icon-disabled-hover: #{hex($fg-650)};
   --iui-color-icon-accent: var(--iui-color-icon-informational);
   --iui-color-icon-informational: #{hex($fg-informational-2)};
   --iui-color-icon-positive: #{hex($fg-positive-2)};
@@ -144,6 +146,7 @@ $opacities: (
   --iui-color-text-muted: #{hex($fg-500)};
   --iui-color-text-placeholder: #{hex($fg-650)};
   --iui-color-text-disabled: #{hex($fg-900)};
+  --iui-color-text-disabled-hover: #{hex($fg-550)};
   --iui-color-text-accent: var(--iui-color-text-informational);
   --iui-color-text-accent-hover: var(--iui-color-text-informational-hover);
   --iui-color-text-informational: #{hex($fg-informational-1)};
