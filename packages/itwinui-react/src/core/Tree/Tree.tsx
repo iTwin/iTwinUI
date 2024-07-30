@@ -297,7 +297,8 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                 'data-iui-virtualizer': 'item',
                 ref: virtualizer.measureElement,
                 style: {
-                  width: '100%',
+                  ...children.props.style,
+                  '--_iui-width': '100%',
                   transform: `translateY(${virtualItem.start}px)`,
                 },
               }))
