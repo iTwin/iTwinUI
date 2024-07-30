@@ -73,6 +73,7 @@ import {
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import { ColumnHeader } from './ColumnHeader.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -926,16 +927,6 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
-  const columnResizeRef = React.useCallback(
-    (el: HTMLDivElement | null, column: HeaderGroup<T>) => {
-      if (el) {
-        columnRefs.current[column.id] = el;
-        column.resizeWidth = el.getBoundingClientRect().width;
-      }
-    },
-    [],
-  );
-
   return (
     <TableColumnsContext.Provider
       value={columns as Column<Record<string, unknown>>[]}
@@ -1033,30 +1024,15 @@ export const Table = <
                     });
 
                     return (
-                      <Box
+                      <ColumnHeader<T>
                         {...columnProps}
                         {...column.getDragAndDropProps()}
                         key={columnProps.key}
-                        title={undefined}
-                        ref={(el) => {
-                          columnResizeRef(el, column);
-                        }}
-                        onMouseDown={() => {
-                          isHeaderDirectClick.current = true;
-                        }}
-                        onClick={(e) => {
-                          // Prevents from triggering sort when resizing and mouse is released in the middle of header
-                          if (isHeaderDirectClick.current) {
-                            onClick?.(e);
-                            isHeaderDirectClick.current = false;
-                          }
-                        }}
-                        tabIndex={showSortButton(column) ? 0 : undefined}
-                        onKeyDown={(e) => {
-                          if (e.key == 'Enter' && showSortButton(column)) {
-                            column.toggleSortBy();
-                          }
-                        }}
+                        onClick={onClick}
+                        columnRefs={columnRefs}
+                        column={column}
+                        isHeaderDirectClick={isHeaderDirectClick}
+                        showSortButton={showSortButton}
                       >
                         <>
                           <ShadowRoot>
@@ -1135,7 +1111,7 @@ export const Table = <
                               />
                             )}
                         </>
-                      </Box>
+                      </ColumnHeader>
                     );
                   })}
                 </Box>
