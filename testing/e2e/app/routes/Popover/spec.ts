@@ -26,6 +26,6 @@ test.describe('Popover (focus)', () => {
   }) => {
     await page.goto('/Popover?focusInput=true&imperativeFocus=true');
     await page.click('button');
-    await expect(page.locator('heading')).toBeFocused();
+    await expect(page.getByRole('heading')).toBeFocused();
   });
 });
