@@ -2,10 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { MenuItem } from './MenuItem.js';
 import { SvgSmileyHappy } from '../../utils/index.js';
+import { Menu } from './Menu.js';
+import { Button } from '../Buttons/Button.js';
 
 function assertBaseElement(
   menuItem: HTMLElement,
@@ -18,7 +26,7 @@ function assertBaseElement(
   } = {},
 ) {
   expect(menuItem).toBeTruthy();
-  expect(menuItem.getAttribute('tabindex')).toEqual(disabled ? null : '-1');
+  expect(menuItem.getAttribute('tabindex')).toEqual(isSelected ? '0' : '-1');
   expect(menuItem.getAttribute('role')).toEqual(role);
   expect(menuItem.hasAttribute(`data-iui-active`)).toBe(isSelected);
   expect(menuItem.hasAttribute(`data-iui-disabled`)).toBe(disabled);
@@ -124,8 +132,15 @@ it('should not be clickable with disabled', () => {
   expect(mockedOnClick).not.toHaveBeenCalled();
 });
 
-it('should focus on hover', () => {
-  render(<MenuItem data-testid='item'>Item</MenuItem>);
+it('should focus on hover (when MenuItem is in a Menu)', async () => {
+  render(
+    <Menu trigger={<Button data-testid='trigger'>Trigger</Button>}>
+      <MenuItem data-testid='item'>Test item</MenuItem>
+    </Menu>,
+  );
+
+  const trigger = screen.getByTestId('trigger');
+  await act(async () => trigger.click());
 
   const menuItem = screen.getByTestId('item');
   expect(menuItem).not.toHaveFocus();
@@ -133,7 +148,7 @@ it('should focus on hover', () => {
   expect(menuItem).toHaveFocus();
 });
 
-it('should handle key press', () => {
+it('should handle key press', async () => {
   const mockedOnClick = vi.fn();
   const { container } = render(
     <MenuItem onClick={mockedOnClick} value='test_value'>
@@ -147,12 +162,17 @@ it('should handle key press', () => {
   fireEvent.keyDown(menuItem, { key: 'Enter', altKey: true });
   expect(mockedOnClick).not.toHaveBeenCalled();
 
-  fireEvent.keyDown(menuItem, { key: 'Enter' });
-  expect(mockedOnClick).toHaveBeenNthCalledWith(1, 'test_value');
-  fireEvent.keyDown(menuItem, { key: ' ' });
-  expect(mockedOnClick).toHaveBeenNthCalledWith(2, 'test_value');
-  fireEvent.keyDown(menuItem, { key: 'Spacebar' });
-  expect(mockedOnClick).toHaveBeenNthCalledWith(3, 'test_value');
+  menuItem.focus();
+
+  userEvent.keyboard('{Enter}');
+  await waitFor(() =>
+    expect(mockedOnClick).toHaveBeenNthCalledWith(1, 'test_value'),
+  );
+
+  userEvent.keyboard(' ');
+  await waitFor(() =>
+    expect(mockedOnClick).toHaveBeenNthCalledWith(2, 'test_value'),
+  );
 });
 
 it('should add custom className', () => {

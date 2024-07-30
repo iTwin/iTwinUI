@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, fireEvent, render } from '@testing-library/react';
-import * as React from 'react';
 import { Slider } from './Slider.js';
 import { userEvent } from '@testing-library/user-event';
 

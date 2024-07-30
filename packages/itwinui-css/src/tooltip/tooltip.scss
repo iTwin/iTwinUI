@@ -23,7 +23,7 @@
 
   @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
 
-  &[hidden] {
+  &:where([hidden], [popover]:not(:popover-open)) {
     display: none !important;
   }
 }

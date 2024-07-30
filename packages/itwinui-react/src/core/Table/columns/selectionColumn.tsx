@@ -74,7 +74,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         />
       );
     },
-    Cell: ({ row }: CellProps<T>) => (
+    Cell: ({ row, selectSubRows = true }: CellProps<T>) => (
       <Checkbox
         {...row.getToggleRowSelectedProps()}
         style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
@@ -82,7 +82,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         disabled={isDisabled?.(row.original)}
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
         onChange={() => {
-          if (row.subRows.length > 0) {
+          if (row.subRows.length > 0 && selectSubRows) {
             //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
             //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
             row.toggleRowSelected(
@@ -91,7 +91,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
               ),
             );
           } else {
-            row.toggleRowSelected();
+            row.toggleRowSelected(!row.isSelected);
           }
         }}
       />

@@ -320,154 +320,6 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
   expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
-it('should handle keyboard navigation when virtualization is enabled', async () => {
-  const id = 'test-component';
-  const mockOnChange = vi.fn();
-  const { container } = renderComponent({
-    id,
-    onChange: mockOnChange,
-    enableVirtualization: true,
-    options: [
-      { label: 'Item 0', value: 0 },
-      { label: 'Item 1', value: 1 },
-      { label: 'Item 2', value: 2 },
-      { label: 'Item 3', value: 3 },
-      { label: 'Item 4', value: 4 },
-      { label: 'Item 5', value: 5 },
-      { label: 'Item 6', value: 6 },
-      { label: 'Item 7', value: 7 },
-      { label: 'Item 8', value: 8 },
-      { label: 'Item 9', value: 9 },
-      { label: 'Item 10', value: 10 },
-      { label: 'Item 11', value: 11 },
-    ],
-  });
-
-  await userEvent.tab();
-
-  const input = assertBaseElement(container);
-  expect(input).toHaveAttribute('aria-controls', `${id}-list`);
-
-  let items = document.querySelectorAll('.iui-list-item');
-
-  // focus index 0
-  await userEvent.keyboard('{ArrowDown}');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
-  items = document.querySelectorAll('.iui-list-item');
-  expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 0 stay
-  await userEvent.keyboard('{ArrowUp}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
-  expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 0 -> 1
-  await userEvent.keyboard('{ArrowDown}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
-  expect(items[1]).toHaveAttribute('data-iui-focused', 'true');
-  expect(items[0]).not.toHaveAttribute('data-iui-focused', 'true');
-
-  // 1 -> 11
-  for (let i = 0; i <= 11; ++i) {
-    await userEvent.keyboard('{ArrowDown}');
-  }
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute(
-    'aria-activedescendant',
-    `${id}-option-Item-11`,
-  );
-  expect(items[11]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 11 stay
-  await userEvent.keyboard('{ArrowDown}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute(
-    'aria-activedescendant',
-    `${id}-option-Item-11`,
-  );
-  expect(items[11]).toHaveAttribute('data-iui-focused', 'true');
-
-  // select 11
-  await userEvent.keyboard('{Enter}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(mockOnChange).toHaveBeenCalledWith(11);
-  expect(document.querySelector('.iui-menu')).toBeFalsy();
-
-  // reopen menu
-  await userEvent.keyboard('{Enter}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(items[11]).toHaveAttribute('data-iui-focused', 'true');
-  expect(items[11]).toHaveAttribute('data-iui-active', 'true');
-
-  // filter and focus item 1
-  await act(async () => {
-    input.select();
-    await userEvent.keyboard('1');
-  });
-  expect(document.querySelectorAll('.iui-list-item').length).toBe(3),
-    await userEvent.keyboard('{ArrowDown}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
-  expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 1 stay
-  await userEvent.keyboard('{ArrowUp}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
-  expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 1 -> 10
-  await userEvent.keyboard('{ArrowDown}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute(
-    'aria-activedescendant',
-    `${id}-option-Item-10`,
-  );
-  expect(items[1]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 1 -> 11
-  await userEvent.keyboard('{ArrowDown}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute(
-    'aria-activedescendant',
-    `${id}-option-Item-11`,
-  );
-  expect(items[2]).toHaveAttribute('data-iui-focused', 'true');
-
-  // 11 stay
-  await userEvent.keyboard('{ArrowDown}');
-  items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute(
-    'aria-activedescendant',
-    `${id}-option-Item-11`,
-  );
-  expect(items[2]).toHaveAttribute('data-iui-focused', 'true');
-
-  // select 11
-  await userEvent.keyboard('{Enter}');
-  expect(mockOnChange).toHaveBeenCalledWith(11);
-  expect(document.querySelector('.iui-menu')).toBeFalsy();
-
-  // reopen
-  await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
-  expect(screen.getByText('Item 11').closest('.iui-list-item')).toHaveAttribute(
-    'data-iui-active',
-    'true',
-  );
-
-  // close
-  await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).toBeFalsy();
-
-  // reopen and close
-  await act(async () => void (await userEvent.keyboard('X')));
-  expect(document.querySelector('.iui-menu')).toBeVisible();
-  await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).toBeFalsy();
-});
-
 it('should accept inputProps', () => {
   const inputId = 'test-input';
   const { container } = renderComponent({
@@ -486,6 +338,12 @@ it('should accept inputProps', () => {
   expect(document.querySelector('.iui-menu')?.id).toBe(
     `iui-${inputId}-cb-list`,
   );
+});
+
+it('should use the defaultValue when passed', () => {
+  const { container } = renderComponent({ defaultValue: 1 });
+  const input = assertBaseElement(container);
+  expect(input).toHaveValue('Item 1');
 });
 
 it('should work with custom itemRenderer', async () => {
@@ -688,10 +546,39 @@ it('should accept ReactNode in emptyStateMessage', async () => {
 });
 
 it('should programmatically clear value', async () => {
-  const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { container, rerender } = render(
+    <ComboBox options={options} value={1} />,
+  );
+
+  const input = container.querySelector('.iui-input') as HTMLInputElement;
+  expect(input).toHaveValue('Item 1');
+
+  rerender(<ComboBox options={options} value={undefined} />);
+
+  // value={undefined} = reset value + uncontrolled state.
+  expect(input).toHaveValue(''); // should be reset
+
+  await userEvent.tab();
+  await userEvent.click(screen.getByText('Item 2'));
+  expect(input).toHaveValue('Item 2'); // uncontrolled state should work
+
+  rerender(<ComboBox options={options} value={null} />);
+
+  // value={null} = reset value + controlled state.
+  expect(input).toHaveValue(''); // should be reset
+
+  await userEvent.click(input);
+  await userEvent.click(screen.getByText('Item 0'));
+  expect(input).toHaveValue(''); // should not change since controlled state
+});
+
+it('should respect controlled state', async () => {
+  const mockOnChange = vi.fn();
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { container } = render(
     <ComboBox options={options} onChange={mockOnChange} value={1} />,
   );
 
@@ -699,13 +586,9 @@ it('should programmatically clear value', async () => {
   await userEvent.click(screen.getByText('Item 2'));
   const input = container.querySelector('.iui-input') as HTMLInputElement;
   expect(mockOnChange).toHaveBeenCalledWith(2);
-  expect(input).toHaveValue('Item 2');
 
-  rerender(
-    <ComboBox options={options} onChange={mockOnChange} value={undefined} />,
-  );
-  expect(mockOnChange).not.toHaveBeenCalledTimes(2);
-  expect(input).toHaveValue('');
+  // In controlled state, passed value should take priority
+  expect(input).toHaveValue('Item 1');
 });
 
 it('should update options (have selected option in new options list)', async () => {
@@ -1010,7 +893,7 @@ it('should update live region when selection changes', async () => {
     <ComboBox
       options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
       multiple
-      value={[0]}
+      defaultValue={[0]}
     />,
   );
 

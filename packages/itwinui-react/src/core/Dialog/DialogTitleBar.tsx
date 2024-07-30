@@ -90,3 +90,6 @@ export const DialogTitleBar = Object.assign(
     Title: DialogTitleBarTitle,
   },
 );
+if (process.env.NODE_ENV === 'development') {
+  DialogTitleBar.displayName = 'Dialog.TitleBar';
+}

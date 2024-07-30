@@ -157,6 +157,7 @@
   // using transition technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
   display: grid;
   grid-template-rows: 0fr;
+  grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
   transition: all var(--iui-duration-1) ease-out;
   transition-property: opacity;
@@ -186,6 +187,9 @@
 
   :where(.iui-expandable-block:not([data-iui-expanded='true'])) & {
     opacity: 0;
-    transform: translateY(-1rem);
+    @supports not (top: Round(1px, 1px)) {
+      transform: translateY(-1rem);
+    }
+    transform: translateY(Round(-1rem, 1px));
   }
 }

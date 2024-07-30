@@ -183,6 +183,10 @@ import { default as ButtonMainExampleRaw } from './Button.main';
 const ButtonMainExample = withThemeProvider(ButtonMainExampleRaw);
 export { ButtonMainExample };
 
+import { default as ButtonLoadingExampleRaw } from './Button.loading';
+const ButtonLoadingExample = withThemeProvider(ButtonLoadingExampleRaw);
+export { ButtonLoadingExample };
+
 import { default as IconButtonMainExampleRaw } from './IconButton.main';
 const IconButtonMainExample = withThemeProvider(IconButtonMainExampleRaw);
 export { IconButtonMainExample };

@@ -35,7 +35,7 @@ const renderComponent = ({
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
 
-  const treeItem = container.querySelector('li');
+  const treeItem = container.querySelector('[role="treeitem"]');
   expect(treeItem).toBeTruthy();
   expect(treeItem).toHaveAttribute('role', 'treeitem');
   expect(treeItem).toHaveAttribute('id', 'testId');
@@ -128,7 +128,7 @@ it.each([true, false])(
       contextProps: { subNodeIds: ['subNode1', 'subNode2'] },
     });
 
-    const treeItem = container.querySelector('li');
+    const treeItem = container.querySelector('[role="treeitem"]');
     expect(treeItem).toBeTruthy();
     expect(treeItem).toHaveAttribute('aria-expanded', isExpanded.toString());
 
@@ -172,7 +172,7 @@ it('should render disabled node', () => {
     },
   });
 
-  expect(container.querySelector('li')).toHaveAttribute(
+  expect(container.querySelector('[role="treeitem"]')).toHaveAttribute(
     'aria-disabled',
     'true',
   );
@@ -207,7 +207,7 @@ it('should render selected node', () => {
     },
   });
 
-  expect(container.querySelector('li')).toHaveAttribute(
+  expect(container.querySelector('[role="treeitem"]')).toHaveAttribute(
     'aria-selected',
     'true',
   );
@@ -221,10 +221,16 @@ it('should render selected node', () => {
   expect(onSelected).toHaveBeenCalledWith('testId', false);
 });
 
-it('should render treeNode with  [x]Props correctly', () => {
+it('should render treeNode with [x]Props correctly', () => {
+  const onClick = vi.fn();
+  const onKeyDown = vi.fn();
+
   const { container } = renderComponent({
     props: {
-      checkbox: <Checkbox variant='eyeball' className='testClass' />,
+      className: 'custom-class',
+      onClick,
+      onKeyDown,
+      checkbox: <Checkbox variant='eyeball' />,
       checkboxProps: {
         style: { color: 'green' },
         className: 'custom-checkbox-class',
@@ -263,6 +269,16 @@ it('should render treeNode with  [x]Props correctly', () => {
       },
     },
   });
+
+  const treeItem = container.querySelector('.iui-tree-item') as HTMLElement;
+  expect(treeItem).toBeTruthy();
+  expect(treeItem).toHaveClass('custom-class');
+
+  fireEvent.click(treeItem);
+  expect(onClick).toHaveBeenCalled();
+
+  fireEvent.keyDown(treeItem, { key: 'Enter' });
+  expect(onKeyDown).toHaveBeenCalled();
 
   const treeNode = container.querySelector('.iui-tree-node') as HTMLElement;
 

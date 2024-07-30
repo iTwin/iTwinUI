@@ -130,7 +130,9 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsWrapperOwnProps>;
-TabsWrapper.displayName = 'Tabs.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  TabsWrapper.displayName = 'Tabs.Wrapper';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.TabList component
@@ -185,7 +187,9 @@ const TabList = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TabListOwnProps>;
-TabList.displayName = 'Tabs.TabList';
+if (process.env.NODE_ENV === 'development') {
+  TabList.displayName = 'Tabs.TabList';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.Tab component
@@ -367,7 +371,9 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
-Tab.displayName = 'Tabs.Tab';
+if (process.env.NODE_ENV === 'development') {
+  Tab.displayName = 'Tabs.Tab';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.TabIcon component
@@ -381,13 +387,17 @@ const TabIcon = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Icon>>;
-TabIcon.displayName = 'Tabs.TabIcon';
+if (process.env.NODE_ENV === 'development') {
+  TabIcon.displayName = 'Tabs.TabIcon';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.TabLabel component
 
 const TabLabel = polymorphic.span('iui-tab-label');
-TabLabel.displayName = 'Tabs.TabLabel';
+if (process.env.NODE_ENV === 'development') {
+  TabLabel.displayName = 'Tabs.TabLabel';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.TabDescription component
@@ -413,7 +423,9 @@ const TabDescription = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span'>;
-TabDescription.displayName = 'Tabs.TabDescription';
+if (process.env.NODE_ENV === 'development') {
+  TabDescription.displayName = 'Tabs.TabDescription';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.Actions component
@@ -439,7 +451,9 @@ const TabsActions = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsActionsOwnProps>;
-TabsActions.displayName = 'Tabs.Actions';
+if (process.env.NODE_ENV === 'development') {
+  TabsActions.displayName = 'Tabs.Actions';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs.Panel component
@@ -474,7 +488,9 @@ const TabsPanel = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
-TabsPanel.displayName = 'Tabs.Panel';
+if (process.env.NODE_ENV === 'development') {
+  TabsPanel.displayName = 'Tabs.Panel';
+}
 
 // ----------------------------------------------------------------------------
 // Tabs legacy component
@@ -600,7 +616,9 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
     </TabsWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
-LegacyTabsComponent.displayName = 'Tabs';
+if (process.env.NODE_ENV === 'development') {
+  LegacyTabsComponent.displayName = 'Tabs';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -813,6 +831,9 @@ const TabsContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  TabsContext.displayName = 'TabsContext';
+}
 
 const TabListContext = React.createContext<
   | {
@@ -821,6 +842,10 @@ const TabListContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  TabListContext.displayName = 'TabListContext';
+}
+
 // ----------------------------------------------------------------------------
 
 /**

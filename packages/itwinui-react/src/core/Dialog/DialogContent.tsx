@@ -12,3 +12,6 @@ import { polymorphic } from '../../utils/index.js';
  * </Dialog.Content>
  */
 export const DialogContent = polymorphic.div('iui-dialog-content');
+if (process.env.NODE_ENV === 'development') {
+  DialogContent.displayName = 'Dialog.Content';
+}

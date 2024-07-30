@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Box, polymorphic } from '../../utils/index.js';
+import * as React from 'react';
+import { Box, isUnitTest, polymorphic } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type OverlayComponentProps = {
@@ -31,7 +31,9 @@ const OverlayComponent = React.forwardRef((props, forwardedRef) => {
     </OverlayWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', OverlayComponentProps>;
-OverlayComponent.displayName = 'Overlay';
+if (process.env.NODE_ENV === 'development') {
+  OverlayComponent.displayName = 'Overlay';
+}
 
 // --------------------------------------------------------------------------------
 
@@ -44,17 +46,23 @@ const OverlayHiddenContent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
-OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
+if (process.env.NODE_ENV === 'development') {
+  OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
+}
 
 // --------------------------------------------------------------------------------
 
 const OverlayOverlay = polymorphic('iui-overlay');
-OverlayOverlay.displayName = 'Overlay.Overlay';
+if (process.env.NODE_ENV === 'development') {
+  OverlayOverlay.displayName = 'Overlay.Overlay';
+}
 
 // --------------------------------------------------------------------------------
 
 const OverlayWrapper = polymorphic('iui-overlay-wrapper');
-OverlayWrapper.displayName = 'Overlay.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  OverlayWrapper.displayName = 'Overlay.Wrapper';
+}
 
 // --------------------------------------------------------------------------------
 
@@ -104,8 +112,12 @@ const useInertPolyfill = () => {
 
   React.useEffect(() => {
     (async () => {
-      if (!HTMLElement.prototype.hasOwnProperty('inert') && !loaded.current) {
-        await import(/* webpackIgnore: true */ /* @vite-ignore */ modulePath);
+      if (
+        !HTMLElement.prototype.hasOwnProperty('inert') &&
+        !loaded.current &&
+        !isUnitTest
+      ) {
+        await new Function('url', 'return import(url)')(modulePath);
         loaded.current = true;
       }
     })();

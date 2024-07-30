@@ -10,6 +10,7 @@ export default function ThemeProviderExample() {
   const popout = searchParams.get('popout') === 'true';
   const withPortalContainer =
     searchParams.get('withPortalContainer') === 'true';
+  const portaled = searchParams.get('portaled') === 'true';
 
   const [portalContainer, setPortalContainer] = React.useState<
     HTMLElement | undefined
@@ -44,9 +45,11 @@ export default function ThemeProviderExample() {
     >
       {popout && <button onClick={showPopOutWindow}>Pop out</button>}
 
-      <Tooltip content='main tooltip' visible>
-        <button>hello</button>
-      </Tooltip>
+      {!portaled && (
+        <Tooltip content='main tooltip' visible>
+          <button>hello</button>
+        </Tooltip>
+      )}
 
       {nested && (
         <ThemeProvider data-container='nested'>
@@ -72,6 +75,29 @@ export default function ThemeProviderExample() {
           </ThemeProvider>,
           popoutDocumentBody,
         )}
+
+      {portaled && <PortaledTest />}
     </ThemeProvider>
   );
 }
+
+/** https://github.com/iTwin/iTwinUI/issues/2082 */
+const PortaledTest = () => {
+  const [portaledTarget, setPortaledTarget] = React.useState<HTMLElement>();
+  React.useEffect(() => {
+    setPortaledTarget(document.querySelector('[data-portaled]') as HTMLElement);
+  }, []);
+
+  return (
+    <>
+      <div data-portaled></div>
+      {portaledTarget &&
+        ReactDOM.createPortal(
+          <ThemeProvider>
+            <div>hello (portaled)</div>
+          </ThemeProvider>,
+          portaledTarget,
+        )}
+    </>
+  );
+};

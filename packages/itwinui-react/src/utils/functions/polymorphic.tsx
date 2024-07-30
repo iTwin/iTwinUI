@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
-import styles from '../../styles.js';
+import { styles } from '../../styles.js';
 
 const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
@@ -38,7 +38,9 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
       return <Element ref={ref} {...props} />;
     }) as PolymorphicForwardRefComponent<NonNullable<typeof defaultElement>>;
 
-    Comp.displayName = getDisplayNameFromClass(className);
+    if (process.env.NODE_ENV === 'development') {
+      Comp.displayName = getDisplayNameFromClass(className);
+    }
 
     return Comp;
   };

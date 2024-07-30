@@ -15,6 +15,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   list-style: none;
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
+  overflow: auto;
 
   &[data-iui-size='small'] {
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
@@ -95,7 +96,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
       min-inline-size: 0;
 
       &:first-child {
-        margin-inline-start: $iui-expander-button-width;
+        margin-inline-start: calc($iui-expander-button-width + var(--_iui-tree-node-padding-inline));
       }
     }
 

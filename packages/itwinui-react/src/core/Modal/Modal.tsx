@@ -124,3 +124,6 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
     </Dialog>
   );
 }) as PolymorphicForwardRefComponent<'div', ModalProps>;
+if (process.env.NODE_ENV === 'development') {
+  Modal.displayName = 'Modal';
+}

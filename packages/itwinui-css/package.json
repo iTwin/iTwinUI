@@ -1,7 +1,7 @@
 {
   "name": "@itwin/itwinui-css",
   "private": true,
-  "version": "2.5.0",
+  "version": "3.0.0-dev.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -39,7 +39,7 @@
   "dependencies": {},
   "devDependencies": {
     "chokidar": "^3.5.3",
-    "lightningcss": "^1.21.5",
+    "lightningcss": "^1.25.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.31",
     "sass": "^1.63.6",

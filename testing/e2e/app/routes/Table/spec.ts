@@ -153,6 +153,26 @@ test.describe('Table resizing', () => {
     }
   });
 
+  test('should resize correctly when column width is set lower than default min width', async ({
+    page,
+  }) => {
+    await page.goto('/Table?subRows=true');
+
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +50;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1] - delta);
+      expect(newWidths[2]).toBe(initialWidths[2]); // should not change
+      expect(newWidths[3]).toBe(initialWidths[3]); // should not change
+    }
+  });
+
   // #region Helpers for column resizing tests
   const resizeColumn = async (options: {
     index: number;
@@ -330,6 +350,72 @@ test.describe('Table row selection', () => {
     await expect(row22Checkbox).toBeChecked();
   });
 
+  test('parent checkbox should have normal checkbox behavior when selectSubRows is false', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?isSelectable=true&subRows=true&selectSubRows=false',
+    );
+
+    const row2 = page
+      .getByRole('row')
+      .filter({ has: page.getByRole('cell').getByText('2', { exact: true }) });
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+
+    const row21 = page.getByRole('row').filter({
+      has: page.getByRole('cell').getByText('2.1', { exact: true }),
+    });
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+
+    //Check the row
+    await row2Checkbox.click();
+    await expect(row2Checkbox).toBeChecked();
+    await expect(row21Checkbox).not.toBeChecked();
+
+    //Uncheck the row
+    await row2Checkbox.click();
+    await expect(row2Checkbox).not.toBeChecked();
+    await expect(row21Checkbox).not.toBeChecked();
+  });
+
+  test('action object for row selection in state reducer should have a defined value when selectSubRows is set to false', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?isSelectable=true&subRows=true&selectSubRows=false&stateReducer=true',
+    );
+
+    const row2 = page
+      .getByRole('row')
+      .filter({ has: page.getByRole('cell').getByText('2', { exact: true }) });
+    const row2SubRowExpander = row2.getByLabel('Toggle sub row');
+    await row2SubRowExpander.click();
+
+    const row21 = page.getByRole('row').filter({
+      has: page.getByRole('cell').getByText('2.1', { exact: true }),
+    });
+    const row2Checkbox = row2.getByRole('checkbox');
+    const row21Checkbox = row21.getByRole('checkbox');
+
+    //Works correctly for sub row
+    const firstSubRowMessage = page.waitForEvent('console');
+    await row21Checkbox.click();
+    expect((await firstSubRowMessage).text()).toBe('true');
+    const secondSubRowMessage = page.waitForEvent('console');
+    await row21Checkbox.click();
+    expect((await secondSubRowMessage).text()).toBe('false');
+
+    //Works correctly for parent row
+    const firstParentRowMessage = page.waitForEvent('console');
+    await row2Checkbox.click();
+    expect((await firstParentRowMessage).text()).toBe('true');
+    const secondParentRowMessage = page.waitForEvent('console');
+    await row2Checkbox.click();
+    expect((await secondParentRowMessage).text()).toBe('false');
+  });
+
   //#region Helpers for row selection tests
   const filter = async (page: Page) => {
     const filterButton = page.getByLabel('Filter');
@@ -346,4 +432,71 @@ test.describe('Table row selection', () => {
     await clearButton.click();
   };
   //#endregion
+});
+test.describe('Virtual Scroll Tests', () => {
+  test('should render only a few elements out of a big data set', async ({
+    page,
+  }) => {
+    await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(12);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(11)).toContainText('Name11');
+
+    //scroll a little
+    await page.mouse.move(100, 300);
+    await page.mouse.wheel(0, 620);
+    await expect(rows.nth(0)).toContainText('Name9');
+    await expect(rows.nth(12)).toContainText('Name21');
+    expect((await rows.all()).length).toBe(13);
+
+    //scroll back up
+    await page.mouse.wheel(0, -620);
+    await expect(rows.nth(0)).toContainText('Name0');
+    await expect(rows.nth(11)).toContainText('Name11');
+    expect((await rows.all()).length).toBe(12);
+
+    //scroll to end
+    await page.mouse.wheel(0, 6200000);
+    await expect(rows.nth(0)).toContainText('Name99989');
+    await expect(rows.nth(10)).toContainText('Name99999');
+    expect((await rows.all()).length).toBe(11);
+  });
+
+  test('should not crash with empty data objects', async ({ page }) => {
+    await page.goto('/Table?virtualization=true&empty=true', {
+      waitUntil: 'networkidle',
+    }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
+    expect((await rows.all()).length).toBe(0);
+
+    //Checks empty content to make sure it appears correctly.
+    await expect(emptyContent).toBeInViewport();
+  });
+
+  test('virtualized table should scroll to provided row', async ({ page }) => {
+    await page.goto('/Table?virtualization=true&scroll=true&scrollRow=50', {
+      waitUntil: 'networkidle',
+    }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    const row50NameCell = page.getByText('Name50');
+    expect((await rows.all()).length).toBe(14);
+    await expect(rows.nth(0)).toContainText('Name43');
+    await expect(rows.nth(7)).toContainText('Name50');
+    await expect(rows.nth(13)).toContainText('Name56');
+
+    await expect(row50NameCell).toBeInViewport();
+  });
+
+  test('virtualized table should render 1 item', async ({ page }) => {
+    await page.goto('/Table?virtualization=true&oneRow=true', {
+      waitUntil: 'networkidle',
+    }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    expect((await rows.all()).length).toBe(1);
+  });
 });

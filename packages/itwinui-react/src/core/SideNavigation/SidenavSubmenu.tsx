@@ -28,3 +28,6 @@ export const SidenavSubmenu = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+if (process.env.NODE_ENV === 'development') {
+  SidenavSubmenu.displayName = 'SidenavSubmenu';
+}

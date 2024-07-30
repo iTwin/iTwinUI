@@ -6,8 +6,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import { version } from '../../package.json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const versionWithoutDots = version.replace(/\./g, '');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,7 +18,7 @@ export default defineConfig({
     minify: true,
     cssMinify: false,
     lib: {
-      entry: path.resolve(__dirname, './classes.mjs'),
+      entry: path.resolve(__dirname, './index.mjs'),
       fileName: (format) => `${format}/styles.js`,
       formats: ['esm', 'cjs'],
     },
@@ -43,29 +46,45 @@ export default defineConfig({
     modules: {
       // TODO: use proper hash in v4
       generateScopedName: (name) => {
-        return `_iui3-${name.replace('iui-', '')}`;
+        return `_iui${versionWithoutDots}-${name.replace('iui-', '')}`;
       },
     },
     postcss: {
-      plugins: [
-        Object.assign(
-          () => ({
-            postcssPlugin: true,
-            Rule(rule) {
-              if (
-                rule.type === 'rule' &&
-                rule.selector?.startsWith(':where([data-iui-theme')
-              ) {
-                rule.selector = `:where(.iui-root)${rule.selector}`;
-              }
-            },
-          }),
-          { postcss: true },
-        ),
-      ],
+      plugins: [postcssAddIuiRoot(), postcssAddIuiVersion()],
     },
   },
 });
+
+// ----------------------------------------------------------------------------
+
+function postcssAddIuiRoot() {
+  return Object.assign(
+    () => ({
+      postcssPlugin: true,
+      Rule(rule) {
+        if (
+          rule.type === 'rule' &&
+          rule.selector?.startsWith(':where([data-iui-theme')
+        ) {
+          rule.selector = `:where(.iui-root)${rule.selector}`;
+        }
+      },
+    }),
+    { postcss: true, postcssPlugin: 'add-iui-root' },
+  );
+}
+
+function postcssAddIuiVersion() {
+  return Object.assign(
+    () => ({
+      postcssPlugin: true,
+      Once(root) {
+        root.append(`:where(:root) { --_iui-v${versionWithoutDots}: yes; }`);
+      },
+    }),
+    { postcss: true, postcssPlugin: 'add-iui-version' },
+  );
+}
 
 // ----------------------------------------------------------------------------
 
@@ -76,6 +95,8 @@ const distEsmDir = path.join(distDir, 'esm');
 const distCjsDir = path.join(distDir, 'cjs');
 const outCjsDir = path.join(root, 'cjs');
 const outEsmDir = path.join(root, 'esm');
+const outEsmDevDir = path.join(root, 'DEV-esm');
+const outCjsDevDir = path.join(root, 'DEV-cjs');
 
 const copyBuildOutput = async () => {
   // create cjs/ and esm/ directories if they don't exist
@@ -86,14 +107,22 @@ const copyBuildOutput = async () => {
     await fs.promises.mkdir(outEsmDir);
   }
 
-  // copy styles.js from src/styles.js/dist/ into cjs/ and esm/
+  // copy styles.js from src/styles.js/dist/ into cjs/, esm/, DEV-cjs/, and DEV-esm/
   await fs.promises.copyFile(
     path.join(distEsmDir, 'styles.js'),
     path.join(outEsmDir, 'styles.js'),
   );
   await fs.promises.copyFile(
+    path.join(distEsmDir, 'styles.js'),
+    path.join(outEsmDevDir, 'styles.js'),
+  );
+  await fs.promises.copyFile(
     path.join(distCjsDir, 'styles.js'),
     path.join(outCjsDir, 'styles.js'),
+  );
+  await fs.promises.copyFile(
+    path.join(distCjsDir, 'styles.js'),
+    path.join(outCjsDevDir, 'styles.js'),
   );
 
   // copy styles.css from src/styles.js/dist/ into <root>/

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import {
   Tree,
   TreeNode,
@@ -25,29 +25,24 @@ export const Basic = () => {
     subItems: StoryData[];
   };
 
-  const [expandedNodes, setExpandedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
     'Node-2': true,
     'Node-2-1': true,
     'Node-3': true,
   });
-  const onNodeExpanded = React.useCallback(
-    (nodeId: string, isExpanded: boolean) => {
-      if (isExpanded) {
-        setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        console.log(`Expanded node ${nodeId}`);
-      } else {
-        setExpandedNodes((oldExpanded) => ({
-          ...oldExpanded,
-          [nodeId]: false,
-        }));
-        console.log(`Closed node ${nodeId}`);
-      }
-    },
-    [],
-  );
-  const generateItem = React.useCallback(
+  const onNodeExpanded = useCallback((nodeId: string, isExpanded: boolean) => {
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+      console.log(`Expanded node ${nodeId}`);
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+      console.log(`Closed node ${nodeId}`);
+    }
+  }, []);
+  const generateItem = useCallback(
     (index: number, parentNode = '', depth = 0): StoryData => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
@@ -65,7 +60,7 @@ export const Basic = () => {
     [],
   );
 
-  const data = React.useMemo(
+  const data = useMemo(
     () =>
       Array(8)
         .fill(null)
@@ -73,7 +68,7 @@ export const Basic = () => {
     [generateItem],
   );
 
-  const getNode = React.useCallback(
+  const getNode = useCallback(
     (node: StoryData): NodeData<StoryData> => {
       return {
         subNodes: node.subItems,
@@ -90,15 +85,9 @@ export const Basic = () => {
     <Tree<StoryData>
       data={data}
       getNode={getNode}
-      nodeRenderer={React.useCallback(
+      nodeRenderer={useCallback(
         ({ node, ...rest }) => (
-          <TreeNode
-            label={node.label}
-            sublabel={node.sublabel}
-            onExpanded={onNodeExpanded}
-            icon={<SvgPlaceholder />}
-            {...rest}
-          />
+          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
         ),
         [onNodeExpanded],
       )}
@@ -114,14 +103,12 @@ export const Full = () => {
     subItems: StoryData[];
   };
 
-  const [selectedNodes, setSelectedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [selectedNodes, setSelectedNodes] = useState<Record<string, boolean>>({
     'Node-0': true,
     'Node-3-2': true,
     'Node-22': true,
   });
-  const onSelectedNodeChange = React.useCallback(
+  const onSelectedNodeChange = useCallback(
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
@@ -137,37 +124,32 @@ export const Full = () => {
     [],
   );
 
-  const [expandedNodes, setExpandedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
     'Node-2': true,
     'Node-2-1': true,
     'Node-3': true,
   });
-  const onNodeExpanded = React.useCallback(
-    (nodeId: string, isExpanded: boolean) => {
-      if (isExpanded) {
-        setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        console.log(`Expanded node ${nodeId}`);
-      } else {
-        setExpandedNodes((oldExpanded) => ({
-          ...oldExpanded,
-          [nodeId]: false,
-        }));
-        console.log(`Closed node ${nodeId}`);
-      }
-    },
-    [],
-  );
+  const onNodeExpanded = useCallback((nodeId: string, isExpanded: boolean) => {
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+      console.log(`Expanded node ${nodeId}`);
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+      console.log(`Closed node ${nodeId}`);
+    }
+  }, []);
 
-  const [disabledNodes] = React.useState<Record<string, boolean>>({
+  const [disabledNodes] = useState<Record<string, boolean>>({
     'Node-4': true,
     'Node-3-0': true,
     'Node-6': true,
     'Node-10': true,
   });
 
-  const generateItem = React.useCallback(
+  const generateItem = useCallback(
     (index: number, parentNode = '', depth = 0): StoryData => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
@@ -185,7 +167,7 @@ export const Full = () => {
     [],
   );
 
-  const data = React.useMemo(
+  const data = useMemo(
     () =>
       Array(8)
         .fill(null)
@@ -193,7 +175,7 @@ export const Full = () => {
     [generateItem],
   );
 
-  const getNode = React.useCallback(
+  const getNode = useCallback(
     (node: StoryData): NodeData<StoryData> => {
       return {
         subNodes: node.subItems,
@@ -212,7 +194,7 @@ export const Full = () => {
     <Tree<StoryData>
       data={data}
       getNode={getNode}
-      nodeRenderer={React.useCallback(
+      nodeRenderer={useCallback(
         ({ node, ...rest }) => (
           <TreeNode
             label={node.label}
@@ -239,7 +221,7 @@ export const AsyncLoading = () => {
     isLoading?: boolean;
   };
 
-  const generateItem = React.useCallback((index: number): StoryData => {
+  const generateItem = useCallback((index: number): StoryData => {
     return {
       id: `Node-${index}`,
       label: `Node ${index}`,
@@ -248,16 +230,16 @@ export const AsyncLoading = () => {
     };
   }, []);
 
-  const [data, setData] = React.useState(() =>
+  const [data, setData] = useState(() =>
     Array(8)
       .fill(null)
       .map((_, index) => generateItem(index)),
   );
 
-  const [selectedNodes, setSelectedNodes] = React.useState<
-    Record<string, boolean>
-  >({});
-  const onSelectedNodeChange = React.useCallback(
+  const [selectedNodes, setSelectedNodes] = useState<Record<string, boolean>>(
+    {},
+  );
+  const onSelectedNodeChange = useCallback(
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
@@ -273,10 +255,10 @@ export const AsyncLoading = () => {
     [],
   );
 
-  const [expandedNodes, setExpandedNodes] = React.useState<
-    Record<string, boolean>
-  >({});
-  const onNodeExpanded = React.useCallback(
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>(
+    {},
+  );
+  const onNodeExpanded = useCallback(
     (nodeId: string, isExpanded: boolean, node: StoryData) => {
       if (isExpanded && !node.subItems.length && node.hasSubNodes) {
         // Mocking API call
@@ -308,7 +290,7 @@ export const AsyncLoading = () => {
     [],
   );
 
-  const getNode = React.useCallback(
+  const getNode = useCallback(
     (node: StoryData): NodeData<StoryData> => {
       return {
         subNodes:
@@ -336,7 +318,7 @@ export const AsyncLoading = () => {
     <Tree<StoryData>
       data={data}
       getNode={getNode}
-      nodeRenderer={React.useCallback(
+      nodeRenderer={useCallback(
         ({ node, ...rest }) => (
           <TreeNode
             label={node.isLoading ? 'Loading...' : node.label}
@@ -369,14 +351,12 @@ export const CustomizedExpander = () => {
     subItems: StoryData[];
   };
 
-  const [selectedNodes, setSelectedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [selectedNodes, setSelectedNodes] = useState<Record<string, boolean>>({
     'Node-0': true,
     'Node-3-2': true,
     'Node-22': true,
   });
-  const onSelectedNodeChange = React.useCallback(
+  const onSelectedNodeChange = useCallback(
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
@@ -392,37 +372,32 @@ export const CustomizedExpander = () => {
     [],
   );
 
-  const [expandedNodes, setExpandedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
     'Node-2': true,
     'Node-2-1': true,
     'Node-3': true,
   });
-  const onNodeExpanded = React.useCallback(
-    (nodeId: string, isExpanded: boolean) => {
-      if (isExpanded) {
-        setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        console.log(`Expanded node ${nodeId}`);
-      } else {
-        setExpandedNodes((oldExpanded) => ({
-          ...oldExpanded,
-          [nodeId]: false,
-        }));
-        console.log(`Closed node ${nodeId}`);
-      }
-    },
-    [],
-  );
+  const onNodeExpanded = useCallback((nodeId: string, isExpanded: boolean) => {
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+      console.log(`Expanded node ${nodeId}`);
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+      console.log(`Closed node ${nodeId}`);
+    }
+  }, []);
 
-  const [disabledNodes] = React.useState({
+  const [disabledNodes] = useState({
     'Node-4': true,
     'Node-3': true,
     'Node-6': true,
     'Node-10': true,
   });
 
-  const isNodeDisabled = React.useCallback(
+  const isNodeDisabled = useCallback(
     (nodeId: string) => {
       return Object.keys(disabledNodes).some(
         (id) => nodeId === id || nodeId.startsWith(`${id}-`),
@@ -431,7 +406,7 @@ export const CustomizedExpander = () => {
     [disabledNodes],
   );
 
-  const generateItem = React.useCallback(
+  const generateItem = useCallback(
     (index: number, parentNode = '', depth = 0): StoryData => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
@@ -449,7 +424,7 @@ export const CustomizedExpander = () => {
     [],
   );
 
-  const data = React.useMemo(
+  const data = useMemo(
     () =>
       Array(8)
         .fill(null)
@@ -457,7 +432,7 @@ export const CustomizedExpander = () => {
     [generateItem],
   );
 
-  const getNode = React.useCallback(
+  const getNode = useCallback(
     (node: StoryData): NodeData<StoryData> => {
       return {
         subNodes: node.subItems,
@@ -476,7 +451,7 @@ export const CustomizedExpander = () => {
     <Tree<StoryData>
       data={data}
       getNode={getNode}
-      nodeRenderer={React.useCallback(
+      nodeRenderer={useCallback(
         ({ node, ...rest }) => (
           <TreeNode
             label={node.label}
@@ -512,14 +487,12 @@ export const Virtualized = () => {
     subItems: StoryData[];
   };
 
-  const [selectedNodes, setSelectedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [selectedNodes, setSelectedNodes] = useState<Record<string, boolean>>({
     'Node-0': true,
     'Node-3-2': true,
     'Node-22': true,
   });
-  const onSelectedNodeChange = React.useCallback(
+  const onSelectedNodeChange = useCallback(
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
@@ -535,37 +508,32 @@ export const Virtualized = () => {
     [],
   );
 
-  const [expandedNodes, setExpandedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
     'Node-2': true,
     'Node-2-1': true,
     'Node-3': true,
   });
-  const onNodeExpanded = React.useCallback(
-    (nodeId: string, isExpanded: boolean) => {
-      if (isExpanded) {
-        setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        console.log(`Expanded node ${nodeId}`);
-      } else {
-        setExpandedNodes((oldExpanded) => ({
-          ...oldExpanded,
-          [nodeId]: false,
-        }));
-        console.log(`Closed node ${nodeId}`);
-      }
-    },
-    [],
-  );
+  const onNodeExpanded = useCallback((nodeId: string, isExpanded: boolean) => {
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+      console.log(`Expanded node ${nodeId}`);
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+      console.log(`Closed node ${nodeId}`);
+    }
+  }, []);
 
-  const [disabledNodes] = React.useState<Record<string, boolean>>({
+  const [disabledNodes] = useState<Record<string, boolean>>({
     'Node-4': true,
     'Node-3-0': true,
     'Node-6': true,
     'Node-10': true,
   });
 
-  const generateItem = React.useCallback(
+  const generateItem = useCallback(
     (index: number, parentNode = '', depth = 0): StoryData => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
@@ -583,7 +551,7 @@ export const Virtualized = () => {
     [],
   );
 
-  const data = React.useMemo(
+  const data = useMemo(
     () =>
       Array(100000)
         .fill(null)
@@ -591,7 +559,7 @@ export const Virtualized = () => {
     [generateItem],
   );
 
-  const getNode = React.useCallback(
+  const getNode = useCallback(
     (node: StoryData): NodeData<StoryData> => {
       return {
         subNodes: node.subItems,
@@ -607,29 +575,26 @@ export const Virtualized = () => {
   );
 
   return (
-    <div style={{ height: 'min(400px, 90vh)', overflow: 'auto' }}>
-      <Tree<StoryData>
-        data={data}
-        getNode={getNode}
-        enableVirtualization
-        nodeRenderer={React.useCallback(
-          ({ node, ...rest }) => (
-            <TreeNode
-              label={node.label}
-              sublabel={node.sublabel}
-              onExpanded={onNodeExpanded}
-              onSelected={onSelectedNodeChange}
-              checkbox={
-                <Checkbox variant='eyeball' disabled={rest.isDisabled} />
-              }
-              icon={<SvgPlaceholder />}
-              {...rest}
-            />
-          ),
-          [onNodeExpanded, onSelectedNodeChange],
-        )}
-      />
-    </div>
+    <Tree<StoryData>
+      data={data}
+      getNode={getNode}
+      enableVirtualization
+      nodeRenderer={useCallback(
+        ({ node, ...rest }) => (
+          <TreeNode
+            label={node.label}
+            sublabel={node.sublabel}
+            onExpanded={onNodeExpanded}
+            onSelected={onSelectedNodeChange}
+            checkbox={<Checkbox variant='eyeball' disabled={rest.isDisabled} />}
+            icon={<SvgPlaceholder />}
+            {...rest}
+          />
+        ),
+        [onNodeExpanded, onSelectedNodeChange],
+      )}
+      style={{ height: 'min(400px, 90vh)' }}
+    />
   );
 };
 
@@ -641,29 +606,24 @@ export const Small = () => {
     subItems: StoryData[];
   };
 
-  const [expandedNodes, setExpandedNodes] = React.useState<
-    Record<string, boolean>
-  >({
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
     'Node-2': true,
     'Node-2-1': true,
     'Node-3': true,
   });
-  const onNodeExpanded = React.useCallback(
-    (nodeId: string, isExpanded: boolean) => {
-      if (isExpanded) {
-        setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        console.log(`Expanded node ${nodeId}`);
-      } else {
-        setExpandedNodes((oldExpanded) => ({
-          ...oldExpanded,
-          [nodeId]: false,
-        }));
-        console.log(`Closed node ${nodeId}`);
-      }
-    },
-    [],
-  );
-  const generateItem = React.useCallback(
+  const onNodeExpanded = useCallback((nodeId: string, isExpanded: boolean) => {
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+      console.log(`Expanded node ${nodeId}`);
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+      console.log(`Closed node ${nodeId}`);
+    }
+  }, []);
+  const generateItem = useCallback(
     (index: number, parentNode = '', depth = 0): StoryData => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
@@ -681,7 +641,7 @@ export const Small = () => {
     [],
   );
 
-  const data = React.useMemo(
+  const data = useMemo(
     () =>
       Array(8)
         .fill(null)
@@ -689,7 +649,7 @@ export const Small = () => {
     [generateItem],
   );
 
-  const getNode = React.useCallback(
+  const getNode = useCallback(
     (node: StoryData): NodeData<StoryData> => {
       return {
         subNodes: node.subItems,
@@ -707,7 +667,7 @@ export const Small = () => {
       data={data}
       size='small'
       getNode={getNode}
-      nodeRenderer={React.useCallback(
+      nodeRenderer={useCallback(
         ({ node, ...rest }) => (
           <TreeNode
             label={node.label}
@@ -719,6 +679,118 @@ export const Small = () => {
         ),
         [onNodeExpanded],
       )}
+    />
+  );
+};
+
+export const VirtualizedWithHorizontalScroll = () => {
+  type StoryData = {
+    id: string;
+    label: string;
+    subItems: StoryData[];
+  };
+
+  const [selectedNodes, setSelectedNodes] = useState<Record<string, boolean>>({
+    'Node-0': true,
+    'Node-3-2': true,
+    'Node-22': true,
+  });
+  const onSelectedNodeChange = useCallback(
+    (nodeId: string, isSelected: boolean) => {
+      if (isSelected) {
+        setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
+        console.log(`Selected node ${nodeId}`);
+      } else {
+        setSelectedNodes((oldSelected) => ({
+          ...oldSelected,
+          [nodeId]: false,
+        }));
+        console.log(`Unselected node ${nodeId}`);
+      }
+    },
+    [],
+  );
+
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({
+    'Node-0': true,
+    'Node-0-0': true,
+    'Node-0-0-0': true,
+    'Node-0-0-0-0': true,
+    'Node-2': true,
+    'Node-2-1': true,
+    'Node-3': true,
+  });
+  const onNodeExpanded = useCallback((nodeId: string, isExpanded: boolean) => {
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+      console.log(`Expanded node ${nodeId}`);
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+      console.log(`Closed node ${nodeId}`);
+    }
+  }, []);
+  const generateItem = useCallback(
+    (index: number, parentNode = '', depth = 0): StoryData => {
+      const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
+      return {
+        id: `Node-${keyValue}`,
+        label: `Node ${keyValue}`,
+        subItems:
+          depth < 10
+            ? Array(1)
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
+      };
+    },
+    [],
+  );
+
+  const data = useMemo(
+    () =>
+      Array(100000)
+        .fill(null)
+        .map((_, index) => generateItem(index)),
+    [generateItem],
+  );
+
+  const getNode = useCallback(
+    (node: StoryData): NodeData<StoryData> => {
+      return {
+        subNodes: node.subItems,
+        nodeId: node.id,
+        node: node,
+        isExpanded: expandedNodes[node.id],
+        isSelected: selectedNodes[node.id],
+        hasSubNodes: node.subItems.length > 0,
+      };
+    },
+    [expandedNodes, selectedNodes],
+  );
+
+  return (
+    <Tree<StoryData>
+      data={data}
+      getNode={getNode}
+      enableVirtualization
+      nodeRenderer={useCallback(
+        ({ node, ...rest }) => (
+          <TreeNode
+            label={node.label}
+            onExpanded={onNodeExpanded}
+            onSelected={onSelectedNodeChange}
+            checkbox={<Checkbox variant='eyeball' disabled={rest.isDisabled} />}
+            icon={<SvgPlaceholder />}
+            style={{ width: 'fit-content', minWidth: '100%' }}
+            {...rest}
+          />
+        ),
+        [onNodeExpanded, onSelectedNodeChange],
+      )}
+      style={{ height: 'min(400px, 90vh)', width: '250px' }}
     />
   );
 };

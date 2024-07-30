@@ -61,3 +61,6 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', ColorSwatchProps>;
+if (process.env.NODE_ENV === 'development') {
+  ColorSwatch.displayName = 'ColorSwatch';
+}

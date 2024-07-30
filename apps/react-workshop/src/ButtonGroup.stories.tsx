@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
 import {
   Button,
   ButtonGroup,
@@ -20,7 +19,6 @@ import {
   SvgPlaceholder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
-import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'ButtonGroup',
@@ -61,53 +59,60 @@ export const Overflow = () => {
   ));
 
   return (
+    <ButtonGroup
+      orientation='horizontal'
+      overflowButton={(overflowStart) => {
+        return (
+          <DropdownMenu
+            menuItems={(close) => {
+              const length = items.length - overflowStart;
+
+              return Array.from({ length }, (_, _index) => {
+                const index = overflowStart + _index;
+
+                return (
+                  <MenuItem
+                    key={index}
+                    onClick={close}
+                    icon={<SvgPlaceholder />}
+                  >
+                    Item #{index}
+                  </MenuItem>
+                );
+              });
+            }}
+          >
+            <IconButton label='More'>
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        );
+      }}
+    >
+      {items}
+    </ButtonGroup>
+  );
+};
+Overflow.decorators = [
+  (Story: () => React.ReactNode) => (
     <>
       <Text variant='small' as='small' isMuted>
-        Resize the viewport to see overflow behavior.
+        Resize the container to see overflow behavior.
       </Text>
       <div
         style={{
-          maxWidth: 'clamp(300px, 50%, 100%)',
+          width: 'min(30rem, 100%)',
           border: '1px solid hotpink',
           padding: 8,
+          overflow: 'hidden',
+          resize: 'inline',
         }}
       >
-        <ButtonGroup
-          orientation='horizontal'
-          overflowButton={(overflowStart) => {
-            return (
-              <DropdownMenu
-                menuItems={(close) => {
-                  const length = items.length - overflowStart;
-
-                  return Array.from({ length }, (_, _index) => {
-                    const index = overflowStart + _index;
-
-                    return (
-                      <MenuItem
-                        key={index}
-                        onClick={close}
-                        icon={<SvgPlaceholder />}
-                      >
-                        Item #{index}
-                      </MenuItem>
-                    );
-                  });
-                }}
-              >
-                <IconButton label='More'>
-                  <SvgMore />
-                </IconButton>
-              </DropdownMenu>
-            );
-          }}
-        >
-          {items}
-        </ButtonGroup>
+        <Story />
       </div>
     </>
-  );
-};
+  ),
+];
 
 export const InputButtonCombo = () => {
   return (
@@ -209,14 +214,23 @@ export const VerticalOverflow = () => {
   );
 };
 VerticalOverflow.decorators = [
-  (Story) => (
+  (Story: () => React.ReactNode) => (
     <>
       <Text variant='small' as='small' isMuted>
-        Resize the viewport to see overflow behavior.
+        Resize the container to see overflow behavior.
       </Text>
-      <div style={{ border: '1px solid hotpink', padding: 8 }}>
+      <div
+        style={{
+          blockSize: 'min(20rem, 100vh)',
+          inlineSize: 'min(20rem, 100vw)',
+          border: '1px solid hotpink',
+          padding: 8,
+          resize: 'block',
+          overflow: 'hidden',
+        }}
+      >
         <Story />
       </div>
     </>
   ),
-] satisfies StoryDecorator[];
+];

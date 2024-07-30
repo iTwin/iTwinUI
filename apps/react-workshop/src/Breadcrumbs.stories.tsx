@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import { useMemo, useState } from 'react';
 import {
   IconButton,
   Breadcrumbs,
@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   MenuItem,
   Input,
-  Tooltip,
+  Text,
 } from '@itwin/itwinui-react';
 import {
   SvgChevronRightDouble,
@@ -80,12 +80,28 @@ export const Overflow = () => {
       </Breadcrumbs.Item>
     ));
 
-  return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
-      <Breadcrumbs>{items}</Breadcrumbs>
-    </div>
-  );
+  return <Breadcrumbs>{items}</Breadcrumbs>;
 };
+Overflow.decorators = [
+  (Story: () => React.ReactNode) => (
+    <>
+      <Text variant='small' as='small' isMuted>
+        Resize the container to see overflow behavior.
+      </Text>
+      <div
+        style={{
+          width: 'min(30rem, 100%)',
+          border: '1px solid lightpink',
+          padding: 8,
+          resize: 'inline',
+          overflow: 'hidden',
+        }}
+      >
+        <Story />
+      </div>
+    </>
+  ),
+];
 
 export const CustomOverflowBackButton = () => {
   const items = Array(10)
@@ -100,39 +116,51 @@ export const CustomOverflowBackButton = () => {
     ));
 
   return (
-    <div
-      style={{
-        width: '50%',
-        maxWidth: 725,
-        minWidth: 150,
-        border: '1px solid lightpink',
-        padding: 8,
+    <Breadcrumbs
+      overflowButton={(visibleCount: number) => {
+        const previousBreadcrumb =
+          visibleCount > 1 ? items.length - visibleCount : items.length - 2;
+        return (
+          <IconButton
+            aria-label={`Item ${previousBreadcrumb}`}
+            onClick={() => {
+              console.log(`Visit breadcrumb ${previousBreadcrumb}`);
+            }}
+            styleType='borderless'
+            label={`Item ${previousBreadcrumb}`}
+            labelProps={{
+              placement: 'bottom',
+            }}
+          >
+            <SvgMore />
+          </IconButton>
+        );
       }}
     >
-      <Breadcrumbs
-        overflowButton={(visibleCount: number) => {
-          const previousBreadcrumb =
-            visibleCount > 1 ? items.length - visibleCount : items.length - 2;
-          return (
-            <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
-              <IconButton
-                aria-label={`Item ${previousBreadcrumb}`}
-                onClick={() => {
-                  console.log(`Visit breadcrumb ${previousBreadcrumb}`);
-                }}
-                styleType='borderless'
-              >
-                <SvgMore />
-              </IconButton>
-            </Tooltip>
-          );
-        }}
-      >
-        {items}
-      </Breadcrumbs>
-    </div>
+      {items}
+    </Breadcrumbs>
   );
 };
+CustomOverflowBackButton.decorators = [
+  (Story: () => React.ReactNode) => (
+    <>
+      <Text variant='small' as='small' isMuted>
+        Resize the container to see overflow behavior.
+      </Text>
+      <div
+        style={{
+          width: 'min(30rem, 100%)',
+          border: '1px solid lightpink',
+          padding: 8,
+          resize: 'inline',
+          overflow: 'hidden',
+        }}
+      >
+        <Story />
+      </div>
+    </>
+  ),
+];
 
 export const CustomOverflowDropdown = () => {
   const items = Array(10)
@@ -147,61 +175,71 @@ export const CustomOverflowDropdown = () => {
     ));
 
   return (
-    <div
-      style={{
-        width: '50%',
-        maxWidth: 725,
-        minWidth: 150,
-        border: '1px solid lightpink',
-        padding: 8,
-      }}
-    >
-      <Breadcrumbs
-        overflowButton={(visibleCount: number) => (
-          <DropdownMenu
-            menuItems={(close) =>
-              Array(items.length - visibleCount)
-                .fill(null)
-                .map((_, _index) => {
-                  const index = visibleCount > 1 ? _index + 1 : _index;
-                  const onClick = () => {
-                    console.log(`Visit breadcrumb ${index}`);
-                    close();
-                  };
-                  return (
-                    <MenuItem key={index} onClick={onClick}>
-                      Item {index}
-                    </MenuItem>
-                  );
-                })
-            }
+    <Breadcrumbs
+      overflowButton={(visibleCount: number) => (
+        <DropdownMenu
+          menuItems={(close) =>
+            Array(items.length - visibleCount)
+              .fill(null)
+              .map((_, _index) => {
+                const index = visibleCount > 1 ? _index + 1 : _index;
+                const onClick = () => {
+                  console.log(`Visit breadcrumb ${index}`);
+                  close();
+                };
+                return (
+                  <MenuItem key={index} onClick={onClick}>
+                    Item {index}
+                  </MenuItem>
+                );
+              })
+          }
+        >
+          <IconButton
+            aria-label='Dropdown with more breadcrumbs'
+            onClick={() => console.log('Clicked on overflow icon')}
+            styleType='borderless'
           >
-            <IconButton
-              aria-label='Dropdown with more breadcrumbs'
-              onClick={() => console.log('Clicked on overflow icon')}
-              styleType='borderless'
-            >
-              <SvgMore />
-            </IconButton>
-          </DropdownMenu>
-        )}
-      >
-        {items}
-      </Breadcrumbs>
-    </div>
+            <SvgMore />
+          </IconButton>
+        </DropdownMenu>
+      )}
+    >
+      {items}
+    </Breadcrumbs>
   );
 };
+CustomOverflowDropdown.decorators = [
+  (Story: () => React.ReactNode) => (
+    <>
+      <Text variant='small' as='small' isMuted>
+        Resize the container to see overflow behavior.
+      </Text>
+      <div
+        style={{
+          width: 'min(30rem, 100%)',
+          border: '1px solid lightpink',
+          padding: 8,
+          resize: 'inline',
+          overflow: 'hidden',
+        }}
+      >
+        <Story />
+      </div>
+    </>
+  ),
+];
 
 export const FolderNavigation = () => {
-  const items = React.useMemo(
+  const items = useMemo(
     () => ['Root', 'Level 1', 'Level 2', 'Level 3', 'Level 4'],
     [],
   );
 
-  const [lastIndex, setLastIndex] = React.useState(items.length - 1);
-  const [isEditing, setIsEditing] = React.useState(false);
+  const [lastIndex, setLastIndex] = useState(items.length - 1);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const breadcrumbItems = React.useMemo(
+  const breadcrumbItems = useMemo(
     () =>
       items.slice(0, lastIndex + 1).map((item, index) => (
         <Breadcrumbs.Item

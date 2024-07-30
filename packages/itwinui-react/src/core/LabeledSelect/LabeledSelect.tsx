@@ -178,3 +178,6 @@ export const LabeledSelect = React.forwardRef(
 ) as <T>(
   props: LabeledSelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
+if (process.env.NODE_ENV === 'development') {
+  (LabeledSelect as any).displayName = 'LabeledSelect';
+}

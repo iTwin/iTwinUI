@@ -65,12 +65,10 @@ export default () => {
           }
           portal={{ to: () => document.body }}
           visible={isOpen}
+          onVisibleChange={setIsOpen}
           placement='bottom-start'
         >
-          <IconButton
-            onClick={() => setIsOpen((open) => !open)}
-            label='Show color picker'
-          >
+          <IconButton label='Show color picker'>
             <ColorSwatch color={selectedColor} className='demo-color-swatch' />
           </IconButton>
         </Popover>

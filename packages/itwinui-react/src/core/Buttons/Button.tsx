@@ -7,6 +7,8 @@ import * as React from 'react';
 
 import { Box, ButtonBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
+import { PopoverOpenContext } from '../Popover/Popover.js';
 
 export type ButtonProps = {
   /**
@@ -45,6 +47,10 @@ export type ButtonProps = {
    * This is useful on narrow containers and mobile views.
    */
   stretched?: boolean;
+  /**
+   * Specify a loading state for the button.
+   */
+  loading?: boolean;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
@@ -68,8 +74,12 @@ export const Button = React.forwardRef((props, ref) => {
     startIconProps,
     endIconProps,
     stretched,
+    loading: loading,
+    disabled: disabledProp,
     ...rest
   } = props;
+
+  const hasPopoverOpen = React.useContext(PopoverOpenContext);
 
   return (
     <ButtonBase
@@ -77,6 +87,9 @@ export const Button = React.forwardRef((props, ref) => {
       className={cx('iui-button', 'iui-field', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
+      data-iui-loading={loading ? 'true' : undefined}
+      data-iui-has-popover={hasPopoverOpen ? 'open' : undefined}
+      disabled={disabledProp || loading}
       {...rest}
       style={
         {
@@ -96,7 +109,15 @@ export const Button = React.forwardRef((props, ref) => {
         </Box>
       )}
 
-      {children && <span {...labelProps}>{children}</span>}
+      {children && (
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-button-label', labelProps?.className)}
+        >
+          {children}
+        </Box>
+      )}
 
       {endIcon && (
         <Box
@@ -108,6 +129,17 @@ export const Button = React.forwardRef((props, ref) => {
           {endIcon}
         </Box>
       )}
+
+      {loading && (
+        <ProgressRadial
+          size={size === 'small' ? 'x-small' : 'small'}
+          className='iui-button-spinner'
+          aria-hidden
+        />
+      )}
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', ButtonProps>;
+if (process.env.NODE_ENV === 'development') {
+  Button.displayName = 'Button';
+}

@@ -135,6 +135,9 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
+if (process.env.NODE_ENV === 'development') {
+  InputGroup.displayName = 'InputGroup';
+}
 
 // ------------------------------------------------------------------------------------------------
 

@@ -10,6 +10,11 @@
 .iui-button {
   @include base.iui-button;
 
+  // Reusing hover styling when an associated popover/dropdown is open.
+  &:is([data-iui-has-popover='open'], :has(+ :popover-open)) {
+    --_iui-field-state: var(--_iui-field-state--hover);
+  }
+
   &[data-iui-size='small'] {
     @include base.iui-button-size(small);
   }

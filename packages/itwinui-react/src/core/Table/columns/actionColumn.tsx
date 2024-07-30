@@ -5,21 +5,27 @@
 import * as React from 'react';
 import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
-import { SvgColumnManager } from '../../../utils/index.js';
-import { DropdownMenu } from '../../DropdownMenu/DropdownMenu.js';
-import type { DropdownMenuProps } from '../../DropdownMenu/DropdownMenu.js';
+import { FieldsetBase, SvgColumnManager } from '../../../utils/index.js';
 import { IconButton } from '../../Buttons/IconButton.js';
-import { MenuItem } from '../../Menu/MenuItem.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
+import { Popover } from '../../Popover/Popover.js';
+import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
+import { Flex } from '../../Flex/Flex.js';
 
 const ACTION_CELL_ID = 'iui-table-action';
 
 type ActionColumnProps = {
   columnManager?:
     | boolean
-    | { dropdownMenuProps: Omit<DropdownMenuProps, 'menuItems' | 'children'> };
+    | {
+        dropdownMenuProps: React.ComponentPropsWithoutRef<'div'> &
+          Pick<
+            React.ComponentPropsWithoutRef<typeof Popover>,
+            'visible' | 'onVisibleChange' | 'placement' | 'portal'
+          >;
+      };
 };
 
 /**
@@ -55,7 +61,6 @@ export const ActionColumn = <T extends Record<string, unknown>>({
     cellClassName: 'iui-slot',
     disableReordering: true,
     Header: ({ allColumns, dispatch, state }: HeaderProps<T>) => {
-      const [isOpen, setIsOpen] = React.useState(false);
       const buttonRef = React.useRef<HTMLButtonElement>(null);
 
       if (!columnManager) {
@@ -73,7 +78,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
           .filter(({ id }) => !defaultColumnIds.includes(id))
           .map((column) => {
             const { checked } = column.getToggleHiddenProps();
-            const onClick = () => {
+            const onChange = () => {
               column.toggleHidden(checked);
               // If no column was resized then leave table resize handling to the flexbox
               if (Object.keys(state.columnResizing.columnWidths).length === 0) {
@@ -90,45 +95,45 @@ export const ActionColumn = <T extends Record<string, unknown>>({
               });
             };
             return (
-              <MenuItem
+              <Checkbox
                 key={column.id}
-                startIcon={
-                  <Checkbox
-                    checked={checked}
-                    disabled={column.disableToggleVisibility}
-                    onClick={(e) => e.stopPropagation()}
-                    onChange={onClick}
-                    aria-labelledby={`iui-column-${column.id}`}
-                  />
-                }
-                onClick={onClick}
+                checked={checked}
                 disabled={column.disableToggleVisibility}
-              >
-                <div id={`iui-column-${column.id}`}>
-                  {column.render('Header')}
-                </div>
-              </MenuItem>
+                onChange={onChange}
+                label={column.render('Header')}
+              />
             );
           });
 
-      const dropdownMenuProps =
+      const popoverProps =
         typeof columnManager !== 'boolean'
           ? columnManager.dropdownMenuProps
           : {};
 
       return (
-        <DropdownMenu
-          {...dropdownMenuProps}
-          menuItems={headerCheckBoxes}
-          onVisibleChange={(open) => {
-            setIsOpen(open);
-            dropdownMenuProps?.onVisibleChange?.(open);
-          }}
+        <Popover
+          applyBackground
+          content={
+            <Flex
+              as={FieldsetBase}
+              className='iui-table-column-manager'
+              flexDirection='column'
+              alignItems='flex-start'
+            >
+              <VisuallyHidden as='legend'>Show/hide columns</VisuallyHidden>
+              {headerCheckBoxes()}
+            </Flex>
+          }
+          {...popoverProps}
         >
-          <IconButton styleType='borderless' isActive={isOpen} ref={buttonRef}>
+          <IconButton
+            styleType='borderless'
+            ref={buttonRef}
+            label='Column manager'
+          >
             <SvgColumnManager />
           </IconButton>
-        </DropdownMenu>
+        </Popover>
       );
     },
   };

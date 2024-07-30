@@ -79,3 +79,6 @@ export const NotificationMarker = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', NotificationMarkerProps>;
+if (process.env.NODE_ENV === 'development') {
+  NotificationMarker.displayName = 'NotificationMarker';
+}

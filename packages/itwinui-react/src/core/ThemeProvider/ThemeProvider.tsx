@@ -19,11 +19,15 @@ import {
   portalContainerAtom,
   useScopedAtom,
   useScopedSetAtom,
+  useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 import { atom } from 'jotai';
+import { meta } from '../../utils/meta.js';
+
+const versionWithoutDots = meta.version.replace(/\./g, '');
 
 // ----------------------------------------------------------------------------
 
@@ -184,7 +188,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
             <Root
               theme={theme}
               themeOptions={themeOptions}
-              ref={useMergedRefs(forwardedRef, setRootElement)}
+              ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
               {...rest}
             >
               {children}
@@ -201,7 +205,9 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     </ScopeProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
-ThemeProvider.displayName = 'ThemeProvider';
+if (process.env.NODE_ENV === 'development') {
+  ThemeProvider.displayName = 'ThemeProvider';
+}
 
 // ----------------------------------------------------------------------------
 
@@ -214,7 +220,15 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
-  const setOwnerDocument = useScopedSetAtom(ownerDocumentAtom);
+  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const findOwnerDocumentFromRef = React.useCallback(
+    (el: HTMLElement | null): void => {
+      if (el && el.ownerDocument !== ownerDocument) {
+        setOwnerDocument(el.ownerDocument);
+      }
+    },
+    [ownerDocument, setOwnerDocument],
+  );
 
   return (
     <Box
@@ -225,9 +239,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, (el) => {
-        setOwnerDocument(el?.ownerDocument);
-      })}
+      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
       {...rest}
     >
       {children}
@@ -316,8 +328,9 @@ const PortalContainer = React.memo(
     isInheritingTheme: boolean;
   }) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const [portalContainer, setPortalContainer] =
-      useScopedAtom(portalContainerAtom);
+    const setPortalContainer = useScopedSetAtom(portalContainerAtom);
+
+    const id = useId();
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
@@ -325,35 +338,46 @@ const PortalContainer = React.memo(
       return null;
     }
 
+    if (portalContainerProp) {
+      return <PortaledToaster target={portalContainerProp} />;
+    }
+
     // Create a new portal container only if necessary:
     // - not inheriting theme
     // - no parent portal container to portal into
     // - parent portal container is in a different window (#2006)
     if (
-      !portalContainerProp && // bail if portalContainerProp is set, because it takes precedence
-      (!isInheritingTheme ||
-        !portalContainerFromParent ||
+      !isInheritingTheme ||
+      !portalContainerFromParent ||
+      (!!ownerDocument &&
         portalContainerFromParent.ownerDocument !== ownerDocument)
     ) {
       return (
-        <div style={{ display: 'contents' }} ref={setPortalContainer}>
+        <div style={{ display: 'contents' }} ref={setPortalContainer} id={id}>
           <Toaster />
         </div>
       );
     }
 
-    const portalTarget = portalContainerProp || portalContainerFromParent;
-
-    // Synchronize atom with the correct portal container if necessary.
-    if (portalTarget && portalTarget !== portalContainer) {
-      setPortalContainer(portalTarget);
-    }
-
-    return portalTarget
-      ? ReactDOM.createPortal(<Toaster />, portalTarget)
-      : null;
+    return <PortaledToaster target={portalContainerFromParent} />;
   },
 );
+
+// ----------------------------------------------------------------------------
+
+const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
+  const [portalContainer, setPortalContainer] =
+    useScopedAtom(portalContainerAtom);
+
+  // Synchronize atom with the correct portal target if necessary.
+  React.useEffect(() => {
+    if (target && target !== portalContainer) {
+      setPortalContainer(target);
+    }
+  });
+
+  return target ? ReactDOM.createPortal(<Toaster />, target) : null;
+};
 
 // ----------------------------------------------------------------------------
 
@@ -364,7 +388,11 @@ const PortalContainer = React.memo(
 const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   useLayoutEffect(() => {
     // bail if styles are already loaded
-    if (getComputedStyle(root).getPropertyValue('--_iui-v3-loaded') === 'yes') {
+    if (
+      getComputedStyle(root).getPropertyValue(
+        `--_iui-v${versionWithoutDots}`,
+      ) === 'yes'
+    ) {
       return;
     }
 
@@ -392,4 +420,50 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   }, [root]);
 
   return <></>;
+};
+
+// ----------------------------------------------------------------------------
+
+/**
+ * This function stores a list of iTwinUI versions in the window object
+ * and displays development-only warnings when multiple versions are detected.
+ */
+const useIuiDebugRef = () => {
+  const _globalThis = globalThis as any;
+  _globalThis.__iui ||= { versions: new Set() };
+
+  if (process.env.NODE_ENV === 'development' && !isUnitTest) {
+    // Override the `add` method to automatically detect multiple versions as they're added
+    _globalThis.__iui.versions.add = (version: string) => {
+      Set.prototype.add.call(_globalThis.__iui.versions, version);
+
+      if (_globalThis.__iui.versions.size > 1) {
+        _globalThis.__iui._shouldWarn = true;
+
+        if (_globalThis.__iui._warnTimeout) {
+          clearTimeout(_globalThis.__iui._warnTimeout);
+        }
+
+        // Warn after 3 seconds, but only once
+        _globalThis.__iui._warnTimeout = setTimeout(() => {
+          if (_globalThis.__iui._shouldWarn) {
+            console.warn(
+              `Multiple versions of iTwinUI were detected on this page. This can lead to unexpected behavior and duplicated code in the bundle. ` +
+                `Make sure you're using a single iTwinUI instance across your app. https://github.com/iTwin/iTwinUI/wiki/Version-conflicts`,
+            );
+            console.groupCollapsed('iTwinUI versions detected:');
+            const versionsTable: any[] = [];
+            _globalThis.__iui.versions.forEach((version: string) => {
+              versionsTable.push(JSON.parse(version));
+            });
+            console.table(versionsTable);
+            console.groupEnd();
+            _globalThis.__iui._shouldWarn = false;
+          }
+        }, 3000);
+      }
+    };
+  }
+
+  _globalThis.__iui.versions.add(JSON.stringify(meta));
 };

@@ -10,14 +10,24 @@ describe('Breadcrumbs', () => {
     'Folder Navigation',
     'Links',
     'Overflow',
-    // 'Custom Overflow Dropdown', // excluding because these fellas keep failing in CI
-    // 'Custom Overflow Back Button',
+    'Custom Overflow Dropdown',
+    'Custom Overflow Back Button',
   ];
 
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
+
+      if (testName.includes('Overflow')) {
+        cy.get('small').hide();
+      }
+
+      if (testName === 'Custom Overflow Dropdown') {
+        cy.get('button').eq(1).click();
+      } else if (testName === 'Custom Overflow Back Button') {
+        cy.get('button').eq(1).trigger('mouseenter');
+      }
 
       cy.compareSnapshot(testName);
     });
