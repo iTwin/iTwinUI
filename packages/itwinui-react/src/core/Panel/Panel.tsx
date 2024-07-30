@@ -6,6 +6,7 @@ import * as React from 'react';
 import {
   Box,
   cloneElementWithRef,
+  getWindow,
   mergeEventHandlers,
   SvgChevronLeft,
   useMergedRefs,
@@ -21,13 +22,13 @@ type CurrentPanelId = { id: string; direction?: 'prev' | 'next' };
 
 type PanelWrapperProps = {
   /**
-   * The initialPanel that is displayed. Should be passed even if using controlled mode. (TODO: confirm)
+   * The initialPanel that is displayed.
    */
   initialActiveId: string;
   /**
    * Pass a value to enter controlled mode. The value object has a few fields:
    * - `id: string` - The panel to show.
-   * - `direction?: 'prev' | 'next'`: Pass the direction to animate to the new panel. Else, panel change is instant.
+   * - `direction?: 'prev' | 'next'`: Pass the direction to *animate* to the new panel. Else, panel change is *instant*.
    */
   activeId?: CurrentPanelId;
   /** Useful for controlled mode */
@@ -39,8 +40,7 @@ type TriggerMapEntry = { triggerId: string; panelId: string };
 
 /**
  * Component that manages the logic for layered panels.
- * It can be used anywhere to create layers.
- * E.g. `Menu`, `InformationPanel`, `Popover`, etc.
+ * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
  * @example
  * <Panels.Wrapper
@@ -68,7 +68,7 @@ type TriggerMapEntry = { triggerId: string; panelId: string };
  *   </Panels.Panel>
  * </Panels.Wrapper>
  */
-const PanelWrapper = React.forwardRef((props, forwardedRef) => {
+const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const {
     initialActiveId,
     children,
@@ -92,6 +92,14 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
 
   const animateToPanel = React.useCallback(
     async (newActiveId: CurrentPanelId) => {
+      const motionOk = getWindow()?.matchMedia(
+        '(prefers-reduced-motion: no-preference)',
+      )?.matches;
+
+      if (!motionOk) {
+        return;
+      }
+
       if (
         // Page transition already in progress
         animations != null ||
@@ -103,7 +111,6 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
 
       const animationOptions = {
         duration: 600,
-        iterations: 1,
         easing: 'ease-out',
       };
 
@@ -229,7 +236,7 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
   return (
-    <PanelWrapperContext.Provider
+    <PanelsWrapperContext.Provider
       value={{
         activeId: activeIdProp,
         currentPanelId,
@@ -246,12 +253,12 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Box>
-    </PanelWrapperContext.Provider>
+    </PanelsWrapperContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelWrapperProps>;
-PanelWrapper.displayName = 'Panels.Wrapper';
+PanelsWrapper.displayName = 'Panels.Wrapper';
 
-const PanelWrapperContext = React.createContext<
+const PanelsWrapperContext = React.createContext<
   | {
       activeId?: PanelWrapperProps['activeId'];
       currentPanelId: CurrentPanelId;
@@ -275,7 +282,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, style, ...rest } = props;
 
   const { currentPanelId, triggers, panelElements, animations } =
-    React.useContext(PanelWrapperContext) || {};
+    React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
@@ -285,10 +292,13 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     panelElements.current[id] = element;
   }
 
+  const isAnimating = animations != null;
   const isHidden =
     animations == null
       ? id !== currentPanelId?.id
       : !Object.keys(animations).includes(id);
+
+  const isInert = isHidden || isAnimating;
 
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
@@ -302,7 +312,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
       <Box
         ref={useMergedRefs(setElement, forwardedRef)}
         id={id}
-        hidden={isHidden}
         aria-labelledby={`${id}-header`}
         tabIndex={-1}
         {...rest}
@@ -322,13 +331,14 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
           ...style,
         }}
+        {...{ inert: isInert ? '' : undefined }}
       >
         {children}
       </Box>
     </PanelContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelProps>;
-Panel.displayName = 'Panel';
+Panel.displayName = 'Panels.Panel';
 
 const PanelContext = React.createContext<
   | {
@@ -348,7 +358,7 @@ type PanelTriggerProps = {
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
-  const panelWrapperContext = React.useContext(PanelWrapperContext);
+  const panelWrapperContext = React.useContext(PanelsWrapperContext);
   const panelContext = React.useContext(PanelContext);
 
   const fallbackId = React.useId();
@@ -387,9 +397,13 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     };
   });
 };
+PanelTrigger.displayName = 'Panels.Trigger';
 
 // ----------------------------------------------------------------------------
 
+/**
+ * Optional header for the panel that shows the `Panels.BackButton` if there is an associated trigger.
+ */
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
 
@@ -405,11 +419,23 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
     </Flex>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+PanelHeader.displayName = 'Panels.Header';
 
+/**
+ * Button to go back to the previous panel.
+ *
+ * @example
+ * <Panels.BackButton />
+ *
+ * @example
+ * <Panels.BackButton onClick={() => console.log('Back button clicked')}>
+ *  <CustomBackIcon />
+ * </Panels.BackButton>
+ */
 const PanelBackButton = React.forwardRef((props, forwardedRef) => {
-  const { onClick, ...rest } = props;
+  const { children, onClick, ...rest } = props;
 
-  const panelWrapperContext = React.useContext(PanelWrapperContext);
+  const panelWrapperContext = React.useContext(PanelsWrapperContext);
   const panelContext = React.useContext(PanelContext);
 
   const { triggers } = panelWrapperContext || {};
@@ -436,15 +462,16 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
       {...rest}
       onClick={mergeEventHandlers(goBack, onClick)}
     >
-      <SvgChevronLeft />
+      {children || <SvgChevronLeft />}
     </IconButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+PanelBackButton.displayName = 'Panels.BackButton';
 
 // ----------------------------------------------------------------------------
 
 export const Panels = {
-  Wrapper: PanelWrapper,
+  Wrapper: PanelsWrapper,
   Panel,
   Trigger: PanelTrigger,
   Header: PanelHeader,
