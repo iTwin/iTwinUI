@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Popover } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
 
