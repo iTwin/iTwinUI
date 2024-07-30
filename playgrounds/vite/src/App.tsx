@@ -179,6 +179,42 @@ const MultiPanelInformationPanel = () => {
   );
 };
 
+const BarebonesExample = () => {
+  const panelIdRoot = React.useId();
+  const panelIdMoreInfo = React.useId();
+
+  return (
+    <Panels.Wrapper
+      defaultActiveId={panelIdRoot}
+      as={Surface}
+      style={{
+        inlineSize: '300px',
+        blockSize: '500px',
+      }}
+    >
+      <Panels.Panel id={panelIdRoot} as={List}>
+        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+
+        <ListItem>
+          <Panels.Trigger for={panelIdMoreInfo}>
+            <ListItem.Action>More details</ListItem.Action>
+          </Panels.Trigger>
+        </ListItem>
+      </Panels.Panel>
+
+      <Panels.Panel
+        id={panelIdMoreInfo}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+      >
+        <Surface.Header as={Panels.Header}>More details</Surface.Header>
+        {/* content */}
+      </Panels.Panel>
+    </Panels.Wrapper>
+  );
+};
+
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
