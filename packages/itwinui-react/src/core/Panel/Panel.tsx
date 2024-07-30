@@ -84,26 +84,6 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
     id: initialActiveId,
   });
 
-  // const setCurrentPanelId: typeof _setCurrentPanelId = React.useCallback(
-  //   (setStateAction) => {
-  //     _setCurrentPanelId((prev) => {
-  //       const newValue =
-  //         typeof setStateAction === 'function'
-  //           ? setStateAction(prev)
-  //           : setStateAction;
-
-  //       onActiveIdChange?.(
-  //         typeof newValue === 'string' ? newValue : newValue?.id,
-  //       );
-
-  //       return newValue;
-  //     });
-  //   },
-  //   [onActiveIdChange],
-  // );
-
-  // const [history, setHistory] = React.useState([initialActiveId]);
-
   // Reducer to manage panel animations
   const [{ animations }, dispatch] = React.useReducer(panelAnimationReducer, {
     currentPanelId,
@@ -227,19 +207,24 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
     }
     setPreviousActivePanelId(activeIdProp?.id);
 
+    // Go to uncontrolled mode
     if (activeIdProp == null) {
       return;
     }
 
-    changeActivePanel(activeIdProp, true);
-  }, [activeIdProp, changeActivePanel, previousActivePanelId]);
+    if (activeIdProp.id != currentPanelId.id) {
+      changeActivePanel(activeIdProp, true);
+    }
+  }, [
+    activeIdProp,
+    changeActivePanel,
+    currentPanelId.id,
+    previousActivePanelId,
+  ]);
 
   React.useEffect(() => {
     syncControlledActiveId();
   }, [syncControlledActiveId]);
-
-  // const [width, setWidth] = React.useState(0);
-  // const [resizeObserverRef] = useResizeObserver((size) => setWidth(size.width));
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
@@ -250,15 +235,11 @@ const PanelWrapper = React.forwardRef((props, forwardedRef) => {
         currentPanelId,
         changeActivePanel,
         triggers,
-        // history,
-        // setHistory,
-        // width,
         panelElements,
         animations,
       }}
     >
       <Box
-        // ref={mergeRefs(forwardedRef, resizeObserverRef)}
         ref={forwardedRef}
         {...rest}
         className={cx('iui-panel-wrapper', className)}
@@ -278,12 +259,6 @@ const PanelWrapperContext = React.createContext<
         Map<string, { triggerId: string; panelId: string }>
       >;
       changeActivePanel: (newActiveId: CurrentPanelId) => Promise<void>;
-      // setCurrentPanelId: React.Dispatch<React.SetStateAction<CurrentPanelId>>;
-
-      // history: string[];
-      // setHistory: React.Dispatch<React.SetStateAction<string[]>>;
-
-      // width: number;
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
       animations: Record<string, React.CSSProperties[]> | undefined;
     }
@@ -299,13 +274,8 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, style, ...rest } = props;
 
-  const {
-    currentPanelId,
-    triggers,
-    // width: panelWrapperWidth,
-    panelElements,
-    animations,
-  } = React.useContext(PanelWrapperContext) || {};
+  const { currentPanelId, triggers, panelElements, animations } =
+    React.useContext(PanelWrapperContext) || {};
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
