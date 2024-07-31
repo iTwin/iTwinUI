@@ -30,13 +30,10 @@ import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
   useGlobals,
   useResizeObserver,
-  SvgSortDown,
-  SvgSortUp,
   useLayoutEffect,
   Box,
   createWarningLogger,
   ShadowRoot,
-  LineClamp,
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
@@ -44,7 +41,6 @@ import {
 import type { CommonProps } from '../../utils/index.js';
 import { TableColumnsContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
-import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
 import {
@@ -659,12 +655,6 @@ export const Table = <
       (column) => column.filterValue != null && column.filterValue !== '',
     ) || !!globalFilterValue;
 
-  const showFilterButton = (column: HeaderGroup<T>) =>
-    (data.length !== 0 || areFiltersSet) && column.canFilter && !!column.Filter;
-
-  const showSortButton = (column: HeaderGroup<T>) =>
-    data.length !== 0 && column.canSort;
-
   const onRowClickHandler = React.useCallback(
     (event: React.MouseEvent, row: Row<T>) => {
       const isDisabled = isRowDisabled?.(row.original);
@@ -973,91 +963,17 @@ export const Table = <
                         columnRefs={columnRefs}
                         column={column}
                         index={index}
+                        areFiltersSet={areFiltersSet}
                         hasAnySubRows={hasAnySubRows}
                         headers={headerGroup.headers}
-                        isTableResizing={state.isTableResizing}
+                        state={state}
+                        data={data}
+                        isResizable={isResizable}
+                        columnResizeMode={columnResizeMode}
+                        enableColumnReordering={enableColumnReordering}
                         density={density}
                         visibleColumns={visibleColumns}
-                        showSortButton={showSortButton}
-                      >
-                        <>
-                          <ShadowRoot>
-                            {typeof column.Header === 'string' ? (
-                              <LineClamp>
-                                <slot />
-                              </LineClamp>
-                            ) : (
-                              <slot />
-                            )}
-                            <slot name='actions' />
-                            <slot name='resizers' />
-                            <slot name='shadows' />
-                          </ShadowRoot>
-
-                          {column.render('Header')}
-                          {(showFilterButton(column) ||
-                            showSortButton(column)) && (
-                            <Box
-                              className='iui-table-header-actions-container'
-                              onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
-                              slot='actions'
-                            >
-                              {showFilterButton(column) && (
-                                <FilterToggle column={column} />
-                              )}
-                              {showSortButton(column) && (
-                                <Box className='iui-table-cell-end-icon'>
-                                  {column.isSortedDesc ||
-                                  (!column.isSorted && column.sortDescFirst) ? (
-                                    <SvgSortDown
-                                      className='iui-table-sort'
-                                      aria-hidden
-                                    />
-                                  ) : (
-                                    <SvgSortUp
-                                      className='iui-table-sort'
-                                      aria-hidden
-                                    />
-                                  )}
-                                </Box>
-                              )}
-                            </Box>
-                          )}
-                          {isResizable &&
-                            column.isResizerVisible &&
-                            (index !== headerGroup.headers.length - 1 ||
-                              columnResizeMode === 'expand') && (
-                              <Box
-                                {...column.getResizerProps()}
-                                className='iui-table-resizer'
-                                slot='resizers'
-                              >
-                                <Box className='iui-table-resizer-bar' />
-                              </Box>
-                            )}
-                          {enableColumnReordering &&
-                            !column.disableReordering && (
-                              <Box
-                                className='iui-table-reorder-bar'
-                                slot='resizers'
-                              />
-                            )}
-                          {column.sticky === 'left' &&
-                            state.sticky.isScrolledToRight && (
-                              <Box
-                                className='iui-table-cell-shadow-right'
-                                slot='shadows'
-                              />
-                            )}
-                          {column.sticky === 'right' &&
-                            state.sticky.isScrolledToLeft && (
-                              <Box
-                                className='iui-table-cell-shadow-left'
-                                slot='shadows'
-                              />
-                            )}
-                        </>
-                      </ColumnHeader>
+                      />
                     );
                   })}
                 </Box>

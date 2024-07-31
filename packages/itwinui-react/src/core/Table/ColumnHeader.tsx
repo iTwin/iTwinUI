@@ -3,13 +3,21 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box } from '../../utils/index.js';
+import {
+  Box,
+  ShadowRoot,
+  LineClamp,
+  SvgSortDown,
+  SvgSortUp,
+} from '../../utils/index.js';
 import type {
   ColumnInstance,
   HeaderGroup,
   TableKeyedProps,
+  TableState,
 } from '../../react-table/react-table.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
+import { FilterToggle } from './filters/FilterToggle.js';
 import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
 import cx from 'classnames';
 
@@ -19,13 +27,16 @@ type ColumnHeaderProps<
   columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
   column: HeaderGroup<T>;
   index: number;
+  areFiltersSet: boolean;
   hasAnySubRows: boolean;
   headers: HeaderGroup<T>[];
-  isTableResizing: boolean | undefined;
+  state: TableState<T>;
+  data: T[];
+  isResizable: boolean;
+  columnResizeMode: 'fit' | 'expand';
+  enableColumnReordering: boolean;
   density: string | undefined;
   visibleColumns: ColumnInstance<T>[];
-  showSortButton: (column: HeaderGroup<T>) => boolean;
-  children: React.ReactNode;
 };
 
 export const ColumnHeader = <
@@ -37,13 +48,16 @@ export const ColumnHeader = <
     columnRefs,
     column,
     index,
+    areFiltersSet,
     hasAnySubRows,
     headers,
-    isTableResizing,
+    state,
+    data,
+    isResizable,
+    columnResizeMode,
+    enableColumnReordering,
     density,
     visibleColumns,
-    showSortButton,
-    children,
     ...rest
   } = props;
 
@@ -53,6 +67,12 @@ export const ColumnHeader = <
     default: 72,
     withExpander: 108, // expander column should be wider to accommodate the expander icon
   };
+
+  const showFilterButton = (column: HeaderGroup<T>) =>
+    (data.length !== 0 || areFiltersSet) && column.canFilter && !!column.Filter;
+
+  const showSortButton = (column: HeaderGroup<T>) =>
+    data.length !== 0 && column.canSort;
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
 
@@ -87,7 +107,7 @@ export const ColumnHeader = <
       column.columnClassName,
     ),
     style: {
-      ...getCellStyle(column, !!isTableResizing),
+      ...getCellStyle(column, !!state.isTableResizing),
       ...(columnHasExpanders && getSubRowStyle({ density })),
       ...getStickyStyle(column, visibleColumns),
       flexWrap: 'wrap',
@@ -127,7 +147,61 @@ export const ColumnHeader = <
         }
       }}
     >
-      {children}
+      <>
+        <ShadowRoot>
+          {typeof column.Header === 'string' ? (
+            <LineClamp>
+              <slot />
+            </LineClamp>
+          ) : (
+            <slot />
+          )}
+          <slot name='actions' />
+          <slot name='resizers' />
+          <slot name='shadows' />
+        </ShadowRoot>
+
+        {column.render('Header')}
+        {(showFilterButton(column) || showSortButton(column)) && (
+          <Box
+            className='iui-table-header-actions-container'
+            onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+            slot='actions'
+          >
+            {showFilterButton(column) && <FilterToggle column={column} />}
+            {showSortButton(column) && (
+              <Box className='iui-table-cell-end-icon'>
+                {column.isSortedDesc ||
+                (!column.isSorted && column.sortDescFirst) ? (
+                  <SvgSortDown className='iui-table-sort' aria-hidden />
+                ) : (
+                  <SvgSortUp className='iui-table-sort' aria-hidden />
+                )}
+              </Box>
+            )}
+          </Box>
+        )}
+        {isResizable &&
+          column.isResizerVisible &&
+          (index !== headers.length - 1 || columnResizeMode === 'expand') && (
+            <Box
+              {...column.getResizerProps()}
+              className='iui-table-resizer'
+              slot='resizers'
+            >
+              <Box className='iui-table-resizer-bar' />
+            </Box>
+          )}
+        {enableColumnReordering && !column.disableReordering && (
+          <Box className='iui-table-reorder-bar' slot='resizers' />
+        )}
+        {column.sticky === 'left' && state.sticky.isScrolledToRight && (
+          <Box className='iui-table-cell-shadow-right' slot='shadows' />
+        )}
+        {column.sticky === 'right' && state.sticky.isScrolledToLeft && (
+          <Box className='iui-table-cell-shadow-left' slot='shadows' />
+        )}
+      </>
     </Box>
   );
 };
