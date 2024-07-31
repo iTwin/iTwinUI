@@ -75,11 +75,6 @@ const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
-const COLUMN_MIN_WIDTHS = {
-  default: 72,
-  withExpander: 108, // expander column should be wider to accommodate the expander icon
-};
-
 const logWarning = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
@@ -920,8 +915,6 @@ export const Table = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isHeaderDirectClick = React.useRef(false);
-
   return (
     <TableColumnsContext.Provider
       value={columns as Column<Record<string, unknown>>[]}
@@ -982,11 +975,9 @@ export const Table = <
                         index={index}
                         hasAnySubRows={hasAnySubRows}
                         headers={headerGroup.headers}
-                        columnMinWidths={COLUMN_MIN_WIDTHS}
                         isTableResizing={state.isTableResizing}
                         density={density}
                         visibleColumns={visibleColumns}
-                        isHeaderDirectClick={isHeaderDirectClick}
                         showSortButton={showSortButton}
                       >
                         <>

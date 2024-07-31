@@ -17,11 +17,9 @@ type ColumnHeaderProps<
   index: number;
   hasAnySubRows: boolean;
   headers: HeaderGroup<T>[];
-  columnMinWidths: { default: number; withExpander: number };
   isTableResizing: boolean | undefined;
   density: string | undefined;
   visibleColumns: ColumnInstance<T>[];
-  isHeaderDirectClick: React.MutableRefObject<boolean>;
   showSortButton: (column: HeaderGroup<T>) => boolean;
   children: React.ReactNode;
 };
@@ -34,11 +32,9 @@ export const ColumnHeader = <
   const {
     columnRefs,
     column,
-    isHeaderDirectClick,
     index,
     hasAnySubRows,
     headers,
-    columnMinWidths,
     isTableResizing,
     density,
     visibleColumns,
@@ -46,6 +42,13 @@ export const ColumnHeader = <
     children,
     ...rest
   } = props;
+
+  const isHeaderDirectClick = React.useRef(false);
+
+  const COLUMN_MIN_WIDTHS = {
+    default: 72,
+    withExpander: 108, // expander column should be wider to accommodate the expander icon
+  };
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
 
@@ -59,8 +62,8 @@ export const ColumnHeader = <
   if ([undefined, 0].includes(column.minWidth)) {
     // override "undefined" or zero min-width with default value
     column.minWidth = columnHasExpanders
-      ? columnMinWidths.withExpander
-      : columnMinWidths.default;
+      ? COLUMN_MIN_WIDTHS.withExpander
+      : COLUMN_MIN_WIDTHS.default;
 
     // set the minWidth to the user provided width instead if the width is less than the default minWidth
     if (typeof column.width === 'number' && column.minWidth > column.width) {
