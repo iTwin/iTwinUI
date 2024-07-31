@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Box } from '../../utils/index.js';
-import type { ColumnInstance, HeaderGroup, TableKeyedProps } from 'react-table';
+import type {
+  ColumnInstance,
+  HeaderGroup,
+  TableKeyedProps,
+} from '../../react-table/react-table.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
 import cx from 'classnames';
