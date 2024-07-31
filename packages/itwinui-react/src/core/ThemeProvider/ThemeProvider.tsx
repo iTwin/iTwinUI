@@ -171,16 +171,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     [theme, JSON.stringify(themeOptions)],
   );
 
-  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
-  const findOwnerDocumentFromRef = React.useCallback(
-    (el: HTMLElement | null): void => {
-      if (el && el.ownerDocument !== ownerDocument) {
-        setOwnerDocument(el.ownerDocument);
-      }
-    },
-    [ownerDocument, setOwnerDocument],
-  );
-
   return (
     <ScopeProvider>
       <HydrationProvider>
@@ -192,15 +182,10 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
               <FallbackStyles root={rootElement} />
             ) : null}
 
-            <Root
+            <MainRoot
               theme={theme}
               themeOptions={themeOptions}
-              ref={useMergedRefs(
-                forwardedRef,
-                setRootElement,
-                findOwnerDocumentFromRef,
-                useIuiDebugRef,
-              )}
+              ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
               {...rest}
             >
               {children}
@@ -212,7 +197,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
                 portalContainerFromParent={portalContainerFromParent}
                 isInheritingTheme={themeProp === 'inherit'}
               />
-            </Root>
+            </MainRoot>
           </ToastProvider>
         </ThemeContext.Provider>
       </HydrationProvider>
@@ -222,6 +207,27 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 if (process.env.NODE_ENV === 'development') {
   ThemeProvider.displayName = 'ThemeProvider';
 }
+
+// ----------------------------------------------------------------------------
+
+const MainRoot = React.forwardRef((props, forwardedRef) => {
+  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const findOwnerDocumentFromRef = React.useCallback(
+    (el: HTMLElement | null): void => {
+      if (el && el.ownerDocument !== ownerDocument) {
+        setOwnerDocument(el.ownerDocument);
+      }
+    },
+    [ownerDocument, setOwnerDocument],
+  );
+
+  return (
+    <Root
+      {...props}
+      ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', RootProps>;
 
 // ----------------------------------------------------------------------------
 
