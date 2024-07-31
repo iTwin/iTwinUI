@@ -830,6 +830,7 @@ export const Table = <
   });
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
+    enabled: enableVirtualization,
     count: page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
@@ -996,11 +997,19 @@ export const Table = <
                           (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
                         );
 
-                    // override "undefined" or zero min-width with default value
                     if ([undefined, 0].includes(column.minWidth)) {
+                      // override "undefined" or zero min-width with default value
                       column.minWidth = columnHasExpanders
                         ? COLUMN_MIN_WIDTHS.withExpander
                         : COLUMN_MIN_WIDTHS.default;
+
+                      // set the minWidth to the user provided width instead if the width is less than the default minWidth
+                      if (
+                        typeof column.width === 'number' &&
+                        column.minWidth > column.width
+                      ) {
+                        column.minWidth = column.width;
+                      }
                     }
 
                     const columnProps = column.getHeaderProps({
