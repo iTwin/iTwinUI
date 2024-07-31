@@ -4,23 +4,27 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Box } from '../../utils/index.js';
-import type {
-  HeaderGroup,
-  TableHeaderProps,
-  TableKeyedProps,
-} from 'react-table';
+import type { ColumnInstance, HeaderGroup, TableKeyedProps } from 'react-table';
+import { SELECTION_CELL_ID } from './columns/index.js';
+import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
+import cx from 'classnames';
 
 type ColumnHeaderProps<
   T extends Record<string, unknown> = Record<string, unknown>,
-> = TableHeaderProps &
-  TableKeyedProps & {
-    columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
-    column: HeaderGroup<T>;
-    isHeaderDirectClick: React.MutableRefObject<boolean>;
-    onClick: ((e: React.MouseEvent) => void) | undefined;
-    showSortButton: (column: HeaderGroup<T>) => boolean;
-    children: React.ReactNode;
-  };
+> = TableKeyedProps & {
+  columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
+  column: HeaderGroup<T>;
+  index: number;
+  hasAnySubRows: boolean;
+  headers: HeaderGroup<T>[];
+  columnMinWidths: { default: number; withExpander: number };
+  isTableResizing: boolean | undefined;
+  density: string | undefined;
+  visibleColumns: ColumnInstance<T>[];
+  isHeaderDirectClick: React.MutableRefObject<boolean>;
+  showSortButton: (column: HeaderGroup<T>) => boolean;
+  children: React.ReactNode;
+};
 
 export const ColumnHeader = <
   T extends Record<string, unknown> = Record<string, unknown>,
@@ -31,15 +35,64 @@ export const ColumnHeader = <
     columnRefs,
     column,
     isHeaderDirectClick,
-    onClick,
+    index,
+    hasAnySubRows,
+    headers,
+    columnMinWidths,
+    isTableResizing,
+    density,
+    visibleColumns,
     showSortButton,
     children,
     ...rest
   } = props;
 
+  const { onClick, ...restSortProps } = column.getSortByToggleProps();
+
+  const columnHasExpanders =
+    hasAnySubRows &&
+    index ===
+      headers.findIndex(
+        (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
+      );
+
+  if ([undefined, 0].includes(column.minWidth)) {
+    // override "undefined" or zero min-width with default value
+    column.minWidth = columnHasExpanders
+      ? columnMinWidths.withExpander
+      : columnMinWidths.default;
+
+    // set the minWidth to the user provided width instead if the width is less than the default minWidth
+    if (typeof column.width === 'number' && column.minWidth > column.width) {
+      column.minWidth = column.width;
+    }
+  }
+
+  const columnProps = column.getHeaderProps({
+    ...restSortProps,
+    className: cx(
+      'iui-table-cell',
+      {
+        'iui-actionable': column.canSort,
+        'iui-sorted': column.isSorted,
+        'iui-table-cell-sticky': !!column.sticky,
+      },
+      column.columnClassName,
+    ),
+    style: {
+      ...getCellStyle(column, !!isTableResizing),
+      ...(columnHasExpanders && getSubRowStyle({ density })),
+      ...getStickyStyle(column, visibleColumns),
+      flexWrap: 'wrap',
+      columnGap: 'var(--iui-size-xs)',
+    },
+  });
+
   return (
     <Box
+      {...columnProps}
       {...rest}
+      key={columnProps.key}
       title={undefined}
       ref={React.useCallback(
         (el: HTMLDivElement) => {

@@ -42,12 +42,7 @@ import {
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import {
-  TableColumnsContext,
-  getCellStyle,
-  getStickyStyle,
-  getSubRowStyle,
-} from './utils.js';
+import { TableColumnsContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
@@ -978,59 +973,19 @@ export const Table = <
               >
                 <Box {...headerGroupProps}>
                   {headerGroup.headers.map((column, index) => {
-                    const { onClick, ...restSortProps } =
-                      column.getSortByToggleProps();
-
-                    const columnHasExpanders =
-                      hasAnySubRows &&
-                      index ===
-                        headerGroup.headers.findIndex(
-                          (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
-                        );
-
-                    if ([undefined, 0].includes(column.minWidth)) {
-                      // override "undefined" or zero min-width with default value
-                      column.minWidth = columnHasExpanders
-                        ? COLUMN_MIN_WIDTHS.withExpander
-                        : COLUMN_MIN_WIDTHS.default;
-
-                      // set the minWidth to the user provided width instead if the width is less than the default minWidth
-                      if (
-                        typeof column.width === 'number' &&
-                        column.minWidth > column.width
-                      ) {
-                        column.minWidth = column.width;
-                      }
-                    }
-
-                    const columnProps = column.getHeaderProps({
-                      ...restSortProps,
-                      className: cx(
-                        'iui-table-cell',
-                        {
-                          'iui-actionable': column.canSort,
-                          'iui-sorted': column.isSorted,
-                          'iui-table-cell-sticky': !!column.sticky,
-                        },
-                        column.columnClassName,
-                      ),
-                      style: {
-                        ...getCellStyle(column, !!state.isTableResizing),
-                        ...(columnHasExpanders && getSubRowStyle({ density })),
-                        ...getStickyStyle(column, visibleColumns),
-                        flexWrap: 'wrap',
-                        columnGap: 'var(--iui-size-xs)',
-                      },
-                    });
-
                     return (
                       <ColumnHeader<T>
-                        {...columnProps}
                         {...column.getDragAndDropProps()}
-                        key={columnProps.key}
-                        onClick={onClick}
+                        key={column.getDragAndDropProps().key}
                         columnRefs={columnRefs}
                         column={column}
+                        index={index}
+                        hasAnySubRows={hasAnySubRows}
+                        headers={headerGroup.headers}
+                        columnMinWidths={COLUMN_MIN_WIDTHS}
+                        isTableResizing={state.isTableResizing}
+                        density={density}
+                        visibleColumns={visibleColumns}
                         isHeaderDirectClick={isHeaderDirectClick}
                         showSortButton={showSortButton}
                       >
