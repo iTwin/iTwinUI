@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  Button,
+  Anchor,
   Divider,
   Flex,
   List,
@@ -65,8 +65,11 @@ export const Controlled = () => {
     React.ComponentPropsWithoutRef<typeof Panels.Wrapper>['activeId']
   >({ id: panelIdRoot });
 
+  const panels = Panels.useInstance();
+
   return (
     <Panels.Wrapper
+      instance={panels}
       initialActiveId={panelIdRoot}
       activeId={activeId}
       onActiveIdChange={(newActiveId) => setActiveId(newActiveId)}
@@ -79,22 +82,30 @@ export const Controlled = () => {
       <Panels.Panel id={panelIdRoot}>
         <Surface.Header as={Panels.Header}>Base</Surface.Header>
 
-        <Flex flexDirection='column' alignItems='stretch'>
-          <Flex flexWrap='wrap' style={{ padding: 'var(--iui-size-s)' }}>
-            <Button
-              onClick={() => {
-                setActiveId({ id: panelIdMoreInfo });
-              }}
-            >
-              Next panel (without animation)
-            </Button>
-            <Button
+        <Surface.Body
+          isPadded
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+        >
+          <Text>Next panel using setState():</Text>
+          <Flex alignItems='flex-start' flexDirection='column'>
+            <Anchor
+              as='button'
               onClick={() => {
                 setActiveId({ id: panelIdMoreInfo, direction: 'next' });
               }}
             >
-              Next panel (with animation)
-            </Button>
+              With animation
+            </Anchor>
+            <Anchor
+              as='button'
+              onClick={() => {
+                setActiveId({ id: panelIdMoreInfo });
+              }}
+            >
+              Without animation
+            </Anchor>
           </Flex>
 
           <Divider />
@@ -106,7 +117,7 @@ export const Controlled = () => {
               </Panels.Trigger>
             </ListItem>
           </List>
-        </Flex>
+        </Surface.Body>
       </Panels.Panel>
 
       <Panels.Panel
@@ -116,7 +127,27 @@ export const Controlled = () => {
         alignItems='stretch'
       >
         <Surface.Header as={Panels.Header}>More details</Surface.Header>
-        <Surface.Body isPadded>
+        <Surface.Body
+          isPadded
+          as={Flex}
+          alignItems='flex-start'
+          flexDirection='column'
+        >
+          <Text>useInstance() methods:</Text>
+          <Flex alignItems='flex-start' flexDirection='column'>
+            <Anchor as='button' onClick={() => panels.goBack()}>
+              Go back (with animation)
+            </Anchor>
+            <Anchor
+              as='button'
+              onClick={() => panels.goBack({ animate: false })}
+            >
+              Go back (without animation)
+            </Anchor>
+          </Flex>
+
+          <Divider />
+
           <Text>Content</Text>
         </Surface.Body>
       </Panels.Panel>
@@ -190,6 +221,13 @@ export const MultiLevelList = () => {
   const [repeat, setRepeat] = React.useState(false);
   const [quality, setQuality] = React.useState('240p');
   const [speed, setSpeed] = React.useState('1.0x');
+  const [accessibilities, setAccessibilities] = React.useState<string[]>([]);
+
+  const [activeId, setActiveId] = React.useState<
+    React.ComponentPropsWithoutRef<typeof Panels.Wrapper>['activeId']
+  >({ id: basePanelId });
+
+  const panels = Panels.useInstance();
 
   const _Item = React.useCallback(
     ({
@@ -204,7 +242,13 @@ export const MultiLevelList = () => {
       const selected = state === content;
 
       return (
-        <ListItem active={selected} aria-selected={selected}>
+        <ListItem
+          active={selected}
+          aria-selected={selected}
+          onClick={() => {
+            panels.goBack();
+          }}
+        >
           <ListItem.Action onClick={() => setState(content)}>
             {content}
           </ListItem.Action>
@@ -212,7 +256,7 @@ export const MultiLevelList = () => {
         </ListItem>
       );
     },
-    [],
+    [panels],
   );
 
   const _ItemQuality = React.useCallback(
@@ -229,6 +273,23 @@ export const MultiLevelList = () => {
     [_Item, speed],
   );
 
+  const _ItemAccessibility = React.useCallback(
+    ({ content }: { content: string }) => (
+      <_Item
+        content={content}
+        state={accessibilities.includes(content) ? content : ''}
+        setState={() => {
+          setAccessibilities((prev) =>
+            prev.includes(content)
+              ? prev.filter((item) => item !== content)
+              : [...prev, content],
+          );
+        }}
+      />
+    ),
+    [_Item, accessibilities],
+  );
+
   const qualities = React.useMemo(
     () => ['240p', '360p', '480p', '720p', '1080p'],
     [],
@@ -242,8 +303,11 @@ export const MultiLevelList = () => {
   return (
     <>
       <Panels.Wrapper
+        instance={panels}
         as={Surface}
         initialActiveId={basePanelId}
+        activeId={activeId}
+        onActiveIdChange={setActiveId}
         style={{
           inlineSize: 'min(200px, 30vw)',
           blockSize: 'min(250px, 50vh)',
@@ -297,17 +361,52 @@ export const MultiLevelList = () => {
 
         <Panels.Panel as={List} id={accessibilityPanelId}>
           <Surface.Header as={Panels.Header}>Accessibility</Surface.Header>
-          <ListItem>
-            <ListItem.Action>High contrast</ListItem.Action>
-          </ListItem>
-          <ListItem>
-            <ListItem.Action>Large text</ListItem.Action>
-          </ListItem>
-          <ListItem>
-            <ListItem.Action>Screen reader</ListItem.Action>
-          </ListItem>
+          <_ItemAccessibility content='High contrast' />
+          <_ItemAccessibility content='Large text' />
+          <_ItemAccessibility content='Screen reader' />
         </Panels.Panel>
       </Panels.Wrapper>
     </>
+  );
+};
+
+export const CustomAnimation = () => {
+  const panelIdRoot = React.useId();
+  const panelIdMoreInfo = React.useId();
+
+  return (
+    <Panels.Wrapper
+      initialActiveId={panelIdRoot}
+      as={Surface}
+      style={{
+        inlineSize: 'min(300px, 30vw)',
+        blockSize: 'min(500px, 50vh)',
+      }}
+      animationOptions={{
+        duration: 1000,
+        easing: 'cubic-bezier(0.31, -0.6, 0.01, 1.59)',
+      }}
+    >
+      <Panels.Panel id={panelIdRoot} as={List}>
+        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        <ListItem>
+          <Panels.Trigger for={panelIdMoreInfo}>
+            <ListItem.Action>More details</ListItem.Action>
+          </Panels.Trigger>
+        </ListItem>
+      </Panels.Panel>
+
+      <Panels.Panel
+        id={panelIdMoreInfo}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+      >
+        <Surface.Header as={Panels.Header}>More details</Surface.Header>
+        <Surface.Body isPadded>
+          <Text>Content</Text>
+        </Surface.Body>
+      </Panels.Panel>
+    </Panels.Wrapper>
   );
 };

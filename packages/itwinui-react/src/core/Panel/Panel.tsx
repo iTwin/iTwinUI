@@ -9,7 +9,9 @@ import {
   getWindow,
   mergeEventHandlers,
   SvgChevronLeft,
+  useInstance,
   useMergedRefs,
+  useSynchronizeInstance,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -19,6 +21,17 @@ import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
 
 type CurrentPanelId = { id: string; direction?: 'prev' | 'next' };
+
+type PanelsInstance = {
+  /** Go back to the panel that has a trigger that points to the current panel. */
+  goBack: (options?: {
+    /**
+     * Whether to animate the transition to the previous panel.
+     * @default true
+     */
+    animate?: boolean;
+  }) => void;
+};
 
 type PanelWrapperProps = {
   /**
@@ -34,6 +47,23 @@ type PanelWrapperProps = {
   /** Useful for controlled mode */
   onActiveIdChange?: (newActiveId: CurrentPanelId) => void;
   children: React.ReactNode;
+  /**
+   * Pass an instance created by `useInstance` to control the panels imperatively.
+   *
+   * @example
+   * const panels = Panels.useInstance();
+   * <Panels instance={panels} />
+   */
+  instance?: PanelsInstance;
+  /**
+   * To customize the panel transition animations, pass one of the following:
+   * - `number`: Duration in milliseconds. Overrides the default `animationOptions`.
+   * - `object`: For more customization. Merges with the default `animationOptions`.
+   * - `null`: Disables animations completely.
+   *
+   * @see `HTMLElement.animate`
+   */
+  animationOptions?: Parameters<HTMLElement['animate']>[1] | null;
 };
 
 type TriggerMapEntry = { triggerId: string; panelId: string };
@@ -75,6 +105,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     activeId: activeIdProp,
     className,
     onActiveIdChange,
+    instance,
+    animationOptions: animationOptionsProp,
     ...rest
   } = props;
 
@@ -104,15 +136,21 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // Page transition already in progress
         animations != null ||
         // No animation to show
-        newActiveId.direction == null
+        newActiveId.direction == null ||
+        // Animations disabled
+        animationOptionsProp === null
       ) {
         return;
       }
 
-      const animationOptions = {
-        duration: 600,
-        easing: 'ease-out',
-      };
+      const animationOptions: typeof animationOptionsProp =
+        typeof animationOptionsProp === 'number'
+          ? animationOptionsProp
+          : {
+              duration: 600,
+              easing: 'ease-out',
+              ...(animationOptionsProp ?? {}),
+            };
 
       const animationsData = {
         [typeof currentPanelId === 'string'
@@ -169,13 +207,23 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       dispatch({ type: 'endAnimation' });
     },
-    [animations, currentPanelId],
+    [animationOptionsProp, animations, currentPanelId],
   );
 
   const changeActivePanel = React.useCallback(
-    async (newActiveId: CurrentPanelId, force?: boolean) => {
-      // In controlled state, users should handle all panel transitions themselves
-      if (!force && activeIdProp != null) {
+    async ({
+      newActiveId,
+      ignoreControlledMode = false,
+    }: {
+      newActiveId: CurrentPanelId;
+      /**
+       * By default, the active panel is not changed when in controlled mode.
+       * Pass `true` to change the active panel even when in controlled mode.
+       */
+      ignoreControlledMode?: boolean;
+    }) => {
+      // In controlled mode, users should set the active panel themselves.
+      if (!ignoreControlledMode && activeIdProp != null) {
         onActiveIdChange?.(newActiveId);
         return;
       }
@@ -203,6 +251,33 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     [activeIdProp, animateToPanel, onActiveIdChange],
   );
 
+  const goBack = React.useCallback(
+    async (options?: { animate?: boolean }) => {
+      const { animate = true } = options ?? {};
+
+      const trigger = triggers?.current?.get(currentPanelId.id);
+      if (trigger?.triggerId != null) {
+        changeActivePanel({
+          newActiveId: {
+            id: trigger.panelId,
+            direction: animate ? 'prev' : undefined,
+          },
+        });
+      }
+    },
+    [changeActivePanel, currentPanelId.id],
+  );
+
+  useSynchronizeInstance(
+    instance,
+    React.useMemo(
+      () => ({
+        goBack,
+      }),
+      [goBack],
+    ),
+  );
+
   // When in controlled mode, listen to activeIdProp.id changes and animate accordingly.
   const [previousActivePanelId, setPreviousActivePanelId] = React.useState<
     string | undefined
@@ -220,7 +295,10 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     }
 
     if (activeIdProp.id != currentPanelId.id) {
-      changeActivePanel(activeIdProp, true);
+      changeActivePanel({
+        newActiveId: activeIdProp,
+        ignoreControlledMode: true,
+      });
     }
   }, [
     activeIdProp,
@@ -241,6 +319,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         activeId: activeIdProp,
         currentPanelId,
         changeActivePanel,
+        goBack,
         triggers,
         panelElements,
         animations,
@@ -265,7 +344,11 @@ const PanelsWrapperContext = React.createContext<
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>
       >;
-      changeActivePanel: (newActiveId: CurrentPanelId) => Promise<void>;
+      changeActivePanel: (props: {
+        newActiveId: CurrentPanelId;
+        ignoreControlledMode?: boolean;
+      }) => Promise<void>;
+      goBack: PanelsInstance['goBack'];
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
       animations: Record<string, React.CSSProperties[]> | undefined;
     }
@@ -366,8 +449,10 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 
   const onClick = React.useCallback(() => {
     panelWrapperContext?.changeActivePanel({
-      id: forProp,
-      direction: 'next',
+      newActiveId: {
+        id: forProp,
+        direction: 'next',
+      },
     });
   }, [forProp, panelWrapperContext]);
 
@@ -425,9 +510,11 @@ PanelHeader.displayName = 'Panels.Header';
  * Button to go back to the previous panel.
  *
  * @example
+ * <caption>Default back button</caption>
  * <Panels.BackButton />
  *
  * @example
+ * <caption>Custom back button</caption>
  * <Panels.BackButton onClick={() => console.log('Back button clicked')}>
  *  <CustomBackIcon />
  * </Panels.BackButton>
@@ -436,21 +523,6 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
   const { children, onClick, ...rest } = props;
 
   const panelWrapperContext = React.useContext(PanelsWrapperContext);
-  const panelContext = React.useContext(PanelContext);
-
-  const { triggers } = panelWrapperContext || {};
-  const { id: panelId } = panelContext || {};
-
-  const trigger = !!panelId ? triggers?.current?.get(panelId) : undefined;
-
-  const goBack = React.useCallback(async () => {
-    if (trigger?.triggerId != null) {
-      panelWrapperContext?.changeActivePanel({
-        id: trigger.panelId,
-        direction: 'prev',
-      });
-    }
-  }, [panelWrapperContext, trigger]);
 
   return (
     <IconButton
@@ -460,7 +532,13 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
       size='small'
       data-iui-shift='left'
       {...rest}
-      onClick={mergeEventHandlers(goBack, onClick)}
+      onClick={mergeEventHandlers(
+        React.useCallback(
+          () => panelWrapperContext?.goBack(),
+          [panelWrapperContext],
+        ),
+        onClick,
+      )}
     >
       {children || <SvgChevronLeft />}
     </IconButton>
@@ -476,6 +554,7 @@ export const Panels = {
   Trigger: PanelTrigger,
   Header: PanelHeader,
   BackButton: PanelBackButton,
+  useInstance: useInstance as () => PanelsInstance,
 };
 
 // ----------------------------------------------------------------------------
