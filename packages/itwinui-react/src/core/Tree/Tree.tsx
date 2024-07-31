@@ -11,6 +11,7 @@ import {
   ShadowRoot,
   useMergedRefs,
   useLayoutEffect,
+  mergeRefs,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TreeContext } from './TreeContext.js';
@@ -263,6 +264,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
       index: number,
       virtualItem?: VirtualItem<Element>,
       virtualizer?: Virtualizer<Element, Element>,
+      widestChild?: React.MutableRefObject<Element | null>,
     ) => {
       const node = flatNodesList[index];
       return (
@@ -295,7 +297,18 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                 key: virtualItem.key,
                 'data-iui-index': virtualItem.index,
                 'data-iui-virtualizer': 'item',
-                ref: virtualizer.measureElement,
+                ref: mergeRefs(virtualizer.measureElement, (element) => {
+                  if (
+                    widestChild &&
+                    element &&
+                    ((widestChild.current &&
+                      element?.getBoundingClientRect().width >
+                        widestChild.current.getBoundingClientRect().width) ||
+                      !widestChild.current)
+                  ) {
+                    widestChild.current = element;
+                  }
+                }),
                 style: {
                   ...children.props.style,
                   '--_iui-width': '100%',
@@ -366,7 +379,9 @@ export const Tree = <T,>(props: TreeProps<T>) => {
           ref={treeRef}
           {...rest}
         >
-          {flatNodesList.map((_, i) => itemRenderer(i))}
+          <div style={{ minInlineSize: '100%', inlineSize: 'fit-content' }}>
+            {flatNodesList.map((_, i) => itemRenderer(i))}
+          </div>
         </TreeElement>
       )}
     </>
@@ -387,6 +402,7 @@ type VirtualizedTreeProps<T> = {
     index: number,
     virtualItem?: VirtualItem<Element>,
     virtualizer?: Virtualizer<Element, Element>,
+    widestChild?: React.MutableRefObject<Element | null>,
   ) => JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
@@ -405,6 +421,7 @@ const VirtualizedTree = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
+    const widestChild = React.useRef<Element | null>(null);
 
     const getItemKey = React.useCallback(
       (index: number) => {
@@ -431,7 +448,10 @@ const VirtualizedTree = React.forwardRef(
         <ShadowRoot css={virtualizerCss}>
           <div
             data-iui-virtualizer='root'
-            style={{ minBlockSize: virtualizer.getTotalSize() }}
+            style={{
+              minBlockSize: virtualizer.getTotalSize(),
+              inlineSize: widestChild.current?.getBoundingClientRect().width,
+            }}
           >
             <slot />
           </div>
@@ -440,7 +460,12 @@ const VirtualizedTree = React.forwardRef(
           {virtualizer
             .getVirtualItems()
             .map((virtualItem) =>
-              itemRenderer(virtualItem.index, virtualItem, virtualizer),
+              itemRenderer(
+                virtualItem.index,
+                virtualItem,
+                virtualizer,
+                widestChild,
+              ),
             )}
         </>
       </TreeElement>
