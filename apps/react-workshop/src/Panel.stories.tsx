@@ -158,7 +158,7 @@ export const Controlled = () => {
 export const MultiPanelInformationPanel = () => {
   const basePanelId = 'base';
 
-  const pages = Array.from(Array(10).keys()).map((i) => ({
+  const pages = Array.from(Array(20).keys()).map((i) => ({
     id: i,
     label: `Page ${i}`,
   }));
@@ -172,17 +172,31 @@ export const MultiPanelInformationPanel = () => {
         blockSize: 'min(500px, 50vh)',
       }}
     >
-      <Panels.Panel id={basePanelId} as={List}>
+      <Panels.Panel
+        id={basePanelId}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+        gap='0'
+      >
         <Surface.Header as={Panels.Header}>Base</Surface.Header>
-        {pages.map((page) => (
-          <ListItem key={page.id}>
-            <ListItem.Content>
-              <Panels.Trigger for={`${page.id}`}>
-                <ListItem.Action>{page.label}</ListItem.Action>
-              </Panels.Trigger>
-            </ListItem.Content>
-          </ListItem>
-        ))}
+        <Surface.Body
+          style={{
+            overflowY: 'auto',
+            flex: '1',
+          }}
+          as={List}
+        >
+          {pages.map((page) => (
+            <ListItem key={page.id}>
+              <ListItem.Content>
+                <Panels.Trigger for={`${page.id}`}>
+                  <ListItem.Action>{page.label}</ListItem.Action>
+                </Panels.Trigger>
+              </ListItem.Content>
+            </ListItem>
+          ))}
+        </Surface.Body>
       </Panels.Panel>
 
       {pages.map((page) => (
@@ -221,7 +235,9 @@ export const MultiLevelList = () => {
   const [repeat, setRepeat] = React.useState(false);
   const [quality, setQuality] = React.useState('240p');
   const [speed, setSpeed] = React.useState('1.0x');
-  const [accessibilities, setAccessibilities] = React.useState<string[]>([]);
+  const [accessibilityOptions, setAccessibilityOptions] = React.useState<
+    string[]
+  >([]);
 
   const [activeId, setActiveId] = React.useState<
     React.ComponentPropsWithoutRef<typeof Panels.Wrapper>['activeId']
@@ -277,9 +293,9 @@ export const MultiLevelList = () => {
     ({ content }: { content: string }) => (
       <_Item
         content={content}
-        state={accessibilities.includes(content) ? content : ''}
+        state={accessibilityOptions.includes(content) ? content : ''}
         setState={() => {
-          setAccessibilities((prev) =>
+          setAccessibilityOptions((prev) =>
             prev.includes(content)
               ? prev.filter((item) => item !== content)
               : [...prev, content],
@@ -287,7 +303,7 @@ export const MultiLevelList = () => {
         }}
       />
     ),
-    [_Item, accessibilities],
+    [_Item, accessibilityOptions],
   );
 
   const qualities = React.useMemo(

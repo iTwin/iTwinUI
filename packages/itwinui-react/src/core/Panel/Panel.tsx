@@ -41,7 +41,9 @@ type PanelWrapperProps = {
   /**
    * Pass a value to enter controlled mode. The value object has a few fields:
    * - `id: string` - The panel to show.
-   * - `direction?: 'prev' | 'next'`: Pass the direction to *animate* to the new panel. Else, panel change is *instant*.
+   * - `direction?: 'prev' | 'next' | 'undefined'`:
+   *   - animates to the new panel in the specified direction or transitions instantly if `undefined`.
+   *   - moves focus to the new panel when `next` or `undefined` and to the trigger when `prev`.
    */
   activeId?: CurrentPanelId;
   /** Useful for controlled mode */
@@ -243,12 +245,25 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       setCurrentPanelId(newActiveId);
       onActiveIdChange?.(newActiveId);
 
-      // Focus the next panel once the panel animation is complete
-      panelElements.current?.[newActiveId.id]?.focus({
-        preventScroll: true,
-      });
+      // Move focus if a direction is specified
+      // - `prev`: Focus the trigger
+      // - `next` or undefined: Focus the new panel
+      setTimeout(() => {
+        if (newActiveId.direction === 'prev') {
+          const trigger = triggers?.current?.get(currentPanelId.id);
+          if (trigger?.triggerId != null) {
+            document
+              .getElementById(trigger.triggerId)
+              ?.focus({ preventScroll: true });
+          }
+        } else {
+          panelElements.current?.[newActiveId.id]?.focus({
+            preventScroll: true,
+          });
+        }
+      }, 0);
     },
-    [activeIdProp, animateToPanel, onActiveIdChange],
+    [activeIdProp, animateToPanel, currentPanelId.id, onActiveIdChange],
   );
 
   const goBack = React.useCallback(
