@@ -74,10 +74,6 @@ type RootProps = {
      */
     applyBackground?: boolean;
   };
-  /**
-   * This will be used to determine if background will be applied.
-   */
-  shouldApplyBackground?: boolean;
 };
 
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
@@ -186,7 +182,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
               <FallbackStyles root={rootElement} />
             ) : null}
 
-            <Root
+            <MainRoot
               theme={theme}
               themeOptions={themeOptions}
               ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
@@ -195,11 +191,13 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
               {children}
 
               <PortalContainer
+                theme={theme}
+                themeOptions={themeOptions}
                 portalContainerProp={portalContainerProp}
                 portalContainerFromParent={portalContainerFromParent}
                 isInheritingTheme={themeProp === 'inherit'}
               />
-            </Root>
+            </MainRoot>
           </ToastProvider>
         </ThemeContext.Provider>
       </HydrationProvider>
@@ -212,15 +210,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const Root = React.forwardRef((props, forwardedRef) => {
-  const { theme, children, themeOptions, className, ...rest } = props;
-
-  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
-  const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
-  const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
-  const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
-  const shouldApplyBackground = themeOptions?.applyBackground;
-
+const MainRoot = React.forwardRef((props, forwardedRef) => {
   const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
   const findOwnerDocumentFromRef = React.useCallback(
     (el: HTMLElement | null): void => {
@@ -232,6 +222,25 @@ const Root = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
+    <Root
+      {...props}
+      ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', RootProps>;
+
+// ----------------------------------------------------------------------------
+
+const Root = React.forwardRef((props, forwardedRef) => {
+  const { theme, children, themeOptions, className, ...rest } = props;
+
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
+  const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
+  const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
+  const shouldApplyBackground = themeOptions?.applyBackground;
+
+  return (
     <Box
       className={cx(
         'iui-root',
@@ -240,7 +249,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
@@ -323,11 +332,13 @@ const PortalContainer = React.memo(
     portalContainerProp,
     portalContainerFromParent,
     isInheritingTheme,
+    theme,
+    themeOptions,
   }: {
     portalContainerProp: HTMLElement | undefined;
     portalContainerFromParent: HTMLElement | undefined;
     isInheritingTheme: boolean;
-  }) => {
+  } & RootProps) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
     const [portalContainer, setPortalContainer] =
       useScopedAtom(portalContainerAtom);
@@ -367,9 +378,16 @@ const PortalContainer = React.memo(
 
     if (shouldSetupPortalContainer) {
       return (
-        <div style={{ display: 'contents' }} ref={setPortalContainer} id={id}>
+        <Root
+          theme={theme}
+          themeOptions={{ ...themeOptions, applyBackground: false }}
+          data-iui-portal
+          style={{ display: 'contents' }}
+          ref={setPortalContainer}
+          id={id}
+        >
           <Toaster />
-        </div>
+        </Root>
       );
     } else if (portalContainerProp) {
       return ReactDOM.createPortal(<Toaster />, portalContainerProp);

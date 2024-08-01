@@ -44,3 +44,45 @@ test('should not cause an infinite loop when portaled', async ({ page }) => {
     'hello (portaled)',
   );
 });
+
+test('should use the same theme for the main root and the portaled root', async ({
+  page,
+}) => {
+  await page.goto('/ThemeProvider?themeSwitch=true');
+
+  const mainRoot = page.locator('.MainRoot');
+  const portaledRoot = page.locator('[data-iui-portal]', {
+    hasText: 'tooltip',
+  });
+  const themeSwitchButton = page.getByRole('button', { name: 'Toggle theme' });
+  const contrastSwitchButton = page.getByRole('button', {
+    name: 'Toggle high contrast',
+  });
+
+  // dark, default contrast
+  await expect(mainRoot).toHaveAttribute('data-iui-theme', 'dark');
+  await expect(mainRoot).toHaveAttribute('data-iui-contrast', 'default');
+  await expect(portaledRoot).toHaveAttribute('data-iui-theme', 'dark');
+  await expect(portaledRoot).toHaveAttribute('data-iui-contrast', 'default');
+
+  // light, default contrast
+  await themeSwitchButton.click();
+  await expect(mainRoot).toHaveAttribute('data-iui-theme', 'light');
+  await expect(mainRoot).toHaveAttribute('data-iui-contrast', 'default');
+  await expect(portaledRoot).toHaveAttribute('data-iui-theme', 'light');
+  await expect(portaledRoot).toHaveAttribute('data-iui-contrast', 'default');
+
+  // light, high contrast
+  await contrastSwitchButton.click();
+  await expect(mainRoot).toHaveAttribute('data-iui-theme', 'light');
+  await expect(mainRoot).toHaveAttribute('data-iui-contrast', 'high');
+  await expect(portaledRoot).toHaveAttribute('data-iui-theme', 'light');
+  await expect(portaledRoot).toHaveAttribute('data-iui-contrast', 'high');
+
+  // dark, high contrast
+  await themeSwitchButton.click();
+  await expect(mainRoot).toHaveAttribute('data-iui-theme', 'dark');
+  await expect(mainRoot).toHaveAttribute('data-iui-contrast', 'high');
+  await expect(portaledRoot).toHaveAttribute('data-iui-theme', 'dark');
+  await expect(portaledRoot).toHaveAttribute('data-iui-contrast', 'high');
+});
