@@ -381,6 +381,7 @@ const PortalContainer = React.memo(
         <Root
           theme={theme}
           themeOptions={{ ...themeOptions, applyBackground: false }}
+          data-iui-portal
           style={{ display: 'contents' }}
           ref={setPortalContainer}
           id={id}
