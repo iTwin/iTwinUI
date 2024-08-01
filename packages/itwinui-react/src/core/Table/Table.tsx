@@ -956,10 +956,11 @@ export const Table = <
               >
                 <Box {...headerGroupProps}>
                   {headerGroup.headers.map((column, index) => {
+                    const dragAndDropProps = column.getDragAndDropProps();
                     return (
                       <ColumnHeader<T>
-                        {...column.getDragAndDropProps()}
-                        key={column.getDragAndDropProps().key}
+                        {...dragAndDropProps}
+                        key={dragAndDropProps.key}
                         columnRefs={columnRefs}
                         column={column}
                         index={index}
