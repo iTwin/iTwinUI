@@ -14,6 +14,7 @@ import {
   Text,
   ToggleSwitch,
 } from '@itwin/itwinui-react';
+import { SvgArrowLeft } from '@itwin/itwinui-icons-react';
 
 export default {
   component: Panels,
@@ -21,8 +22,8 @@ export default {
 };
 
 export const Basic = () => {
-  const panelIdRoot = React.useId();
-  const panelIdMoreInfo = React.useId();
+  const panelIdRoot = 'root';
+  const panelIdMoreInfo = 'more-info';
 
   return (
     <Panels.Wrapper
@@ -34,7 +35,7 @@ export const Basic = () => {
       }}
     >
       <Panels.Panel id={panelIdRoot} as={List}>
-        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        <Surface.Header as={Panels.Header}>Root</Surface.Header>
         <ListItem>
           <Panels.Trigger for={panelIdMoreInfo}>
             <ListItem.Action>More details</ListItem.Action>
@@ -80,7 +81,7 @@ export const Controlled = () => {
       }}
     >
       <Panels.Panel id={panelIdRoot}>
-        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        <Surface.Header as={Panels.Header}>Root</Surface.Header>
 
         <Surface.Body
           isPadded
@@ -156,16 +157,16 @@ export const Controlled = () => {
 };
 
 export const MultiPanelInformationPanel = () => {
-  const basePanelId = 'base';
+  const initialActiveId = 'root';
 
-  const pages = Array.from(Array(20).keys()).map((i) => ({
-    id: i,
-    label: `Page ${i}`,
+  const panels = Array.from(Array(20).keys()).map((i) => ({
+    id: `panel-${i}`,
+    label: `Panel ${i}`,
   }));
 
   return (
     <Panels.Wrapper
-      initialActiveId={basePanelId}
+      initialActiveId={initialActiveId}
       as={Surface}
       style={{
         inlineSize: 'min(300px, 30vw)',
@@ -173,13 +174,13 @@ export const MultiPanelInformationPanel = () => {
       }}
     >
       <Panels.Panel
-        id={basePanelId}
+        id={initialActiveId}
         as={Flex}
         flexDirection='column'
         alignItems='stretch'
         gap='0'
       >
-        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        <Surface.Header as={Panels.Header}>Root</Surface.Header>
         <Surface.Body
           style={{
             overflowY: 'auto',
@@ -187,11 +188,11 @@ export const MultiPanelInformationPanel = () => {
           }}
           as={List}
         >
-          {pages.map((page) => (
-            <ListItem key={page.id}>
+          {panels.map((panel) => (
+            <ListItem key={panel.id}>
               <ListItem.Content>
-                <Panels.Trigger for={`${page.id}`}>
-                  <ListItem.Action>{page.label}</ListItem.Action>
+                <Panels.Trigger for={`${panel.id}`}>
+                  <ListItem.Action>{panel.label}</ListItem.Action>
                 </Panels.Trigger>
               </ListItem.Content>
             </ListItem>
@@ -199,15 +200,15 @@ export const MultiPanelInformationPanel = () => {
         </Surface.Body>
       </Panels.Panel>
 
-      {pages.map((page) => (
+      {panels.map((panel) => (
         <Panels.Panel
-          key={page.id}
-          id={`${page.id}`}
+          key={panel.id}
+          id={panel.id}
           as={Flex}
           flexDirection='column'
           alignItems='stretch'
         >
-          <Surface.Header as={Panels.Header}>{page.label}</Surface.Header>
+          <Surface.Header as={Panels.Header}>{panel.label}</Surface.Header>
           <Surface.Body
             as={Flex}
             flexDirection='column'
@@ -215,10 +216,10 @@ export const MultiPanelInformationPanel = () => {
               height: '100%',
             }}
           >
-            <Text>{`Content for page ${page.id}`}</Text>
+            <Text>{`Content for panel ${panel.id}`}</Text>
             <Flex.Spacer />
             <Divider />
-            <Text>{`Footer for page ${page.id}`}</Text>
+            <Text>{`Footer for panel ${panel.id}`}</Text>
           </Surface.Body>
         </Panels.Panel>
       ))}
@@ -227,7 +228,7 @@ export const MultiPanelInformationPanel = () => {
 };
 
 export const MultiLevelList = () => {
-  const basePanelId = React.useId();
+  const initialActiveId = React.useId();
   const qualityPanelId = React.useId();
   const speedPanelId = React.useId();
   const accessibilityPanelId = React.useId();
@@ -241,7 +242,7 @@ export const MultiLevelList = () => {
 
   const [activeId, setActiveId] = React.useState<
     React.ComponentPropsWithoutRef<typeof Panels.Wrapper>['activeId']
-  >({ id: basePanelId });
+  >({ id: initialActiveId });
 
   const panels = Panels.useInstance();
 
@@ -321,7 +322,7 @@ export const MultiLevelList = () => {
       <Panels.Wrapper
         instance={panels}
         as={Surface}
-        initialActiveId={basePanelId}
+        initialActiveId={initialActiveId}
         activeId={activeId}
         onActiveIdChange={setActiveId}
         style={{
@@ -329,7 +330,7 @@ export const MultiLevelList = () => {
           blockSize: 'min(250px, 50vh)',
         }}
       >
-        <Panels.Panel as={List} id={basePanelId}>
+        <Panels.Panel as={List} id={initialActiveId}>
           <ListItem as='label'>
             <ListItem.Content>Repeat</ListItem.Content>
             <ToggleSwitch
@@ -404,7 +405,7 @@ export const CustomAnimation = () => {
       }}
     >
       <Panels.Panel id={panelIdRoot} as={List}>
-        <Surface.Header as={Panels.Header}>Base</Surface.Header>
+        <Surface.Header as={Panels.Header}>Root</Surface.Header>
         <ListItem>
           <Panels.Trigger for={panelIdMoreInfo}>
             <ListItem.Action>More details</ListItem.Action>
@@ -419,6 +420,48 @@ export const CustomAnimation = () => {
         alignItems='stretch'
       >
         <Surface.Header as={Panels.Header}>More details</Surface.Header>
+        <Surface.Body isPadded>
+          <Text>Content</Text>
+        </Surface.Body>
+      </Panels.Panel>
+    </Panels.Wrapper>
+  );
+};
+
+export const CustomBackButton = () => {
+  const panelIdRoot = React.useId();
+  const panelIdMoreInfo = React.useId();
+
+  return (
+    <Panels.Wrapper
+      initialActiveId={panelIdRoot}
+      as={Surface}
+      style={{
+        inlineSize: 'min(300px, 30vw)',
+        blockSize: 'min(500px, 50vh)',
+      }}
+    >
+      <Panels.Panel id={panelIdRoot} as={List}>
+        <Surface.Header as={Panels.Header}>Root</Surface.Header>
+        <ListItem>
+          <Panels.Trigger for={panelIdMoreInfo}>
+            <ListItem.Action>More details</ListItem.Action>
+          </Panels.Trigger>
+        </ListItem>
+      </Panels.Panel>
+
+      <Panels.Panel
+        id={panelIdMoreInfo}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+      >
+        <Surface.Header as={Flex}>
+          <Panels.BackButton label='Go back to home'>
+            <SvgArrowLeft />
+          </Panels.BackButton>
+          More details
+        </Surface.Header>
         <Surface.Body isPadded>
           <Text>Content</Text>
         </Surface.Body>

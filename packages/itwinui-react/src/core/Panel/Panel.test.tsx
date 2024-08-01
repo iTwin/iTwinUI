@@ -5,16 +5,41 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Panel } from './Panel.js';
+import { Panels } from './Panel.js';
+import { Button } from '../Buttons/Button.js';
 
 it('should render in its most basic state', () => {
-  // TODO: Make sure all required props are passed in here
-  const { container } = render(<Panel />);
-  expect(container.querySelector('div')).toBeTruthy();
+  const panelIdRoot = 'root';
+  const panelIdMoreInfo = 'more-info';
+
+  const { container } = render(
+    <Panels.Wrapper initialActiveId={panelIdRoot}>
+      <Panels.Panel id={panelIdRoot}>
+        <Panels.Header>Base</Panels.Header>
+        <Panels.Trigger for={panelIdMoreInfo}>
+          <Button>More details</Button>
+        </Panels.Trigger>
+      </Panels.Panel>
+
+      <Panels.Panel id={panelIdMoreInfo}>
+        <Panels.Header>More details</Panels.Header>
+        Content
+      </Panels.Panel>
+    </Panels.Wrapper>,
+  );
+
+  expect(container.querySelector('.iui-panel-wrapper')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-panel-wrapper > .iui-panel#root'),
+  ).toBeTruthy();
+  expect(
+    container.querySelector('.iui-panel-wrapper > .iui-panel#more-info'),
+  ).toBeTruthy();
 });
 
-// TODO: Write tests here!
+it('should allow custom children in Panels.BackButton', () => {
+  const { container } = render(<Panels.BackButton>Back</Panels.BackButton>);
 
-it('should be improved', () => {
-  expect(false).toBe(true);
+  expect(container.querySelector('.iui-panel-back-button')).toBeTruthy();
+  expect(container.querySelector('.iui-panel-back-button button')).toBeTruthy();
 });

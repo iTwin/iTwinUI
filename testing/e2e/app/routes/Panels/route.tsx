@@ -1,0 +1,198 @@
+import {
+  Divider,
+  Flex,
+  List,
+  ListItem,
+  Panels,
+  Surface,
+  Text,
+} from '@itwin/itwinui-react';
+import { SvgArrowLeft } from '@itwin/itwinui-icons-react';
+import { useSearchParams } from '@remix-run/react';
+
+export default function ButtonGroupTest() {
+  const [searchParams] = useSearchParams();
+
+  const config = getConfigFromSearchParams(searchParams);
+  const { exampleType } = config;
+
+  return exampleType === 'multi-panel-information-panel' ? (
+    <MultiPanelInformationPanel config={config} />
+  ) : (
+    <Basic config={config} />
+  );
+}
+
+const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
+  const exampleType = (searchParams.get('exampleType') ?? 'default') as
+    | 'default'
+    | 'multi-panel-information-panel';
+  const animationDuration = searchParams.get('animationDuration');
+  const disableAnimations = searchParams.get('disableAnimations') === 'true';
+  const showRootPanelBackButton =
+    searchParams.get('showRootPanelBackButton') === 'true';
+
+  const animationOptions = (() => {
+    if (disableAnimations) {
+      return null;
+    } else if (animationDuration != null) {
+      return {
+        duration: parseInt(animationDuration),
+      };
+    }
+
+    return undefined;
+  })();
+
+  console.log('animationOptions', animationOptions);
+
+  return {
+    exampleType,
+    showRootPanelBackButton,
+    animationOptions,
+  };
+};
+
+const Basic = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const { animationOptions } = config;
+
+  const initialActiveId = 'root';
+  const panelIdMoreInfo = 'more-info';
+  const panelIdDoesNotExist = 'panel-dne';
+
+  return (
+    <Panels.Wrapper
+      initialActiveId={initialActiveId}
+      animationOptions={animationOptions}
+      as={Surface}
+      style={{
+        inlineSize: 'min(300px, 30vw)',
+        blockSize: 'min(500px, 50vh)',
+      }}
+    >
+      <Panels.Panel id={initialActiveId} as={List}>
+        <Surface.Header as={Panels.Header} id='panels-header-1'>
+          Root
+        </Surface.Header>
+        <ListItem>
+          <Panels.Trigger for={panelIdMoreInfo}>
+            <ListItem.Action>More details</ListItem.Action>
+          </Panels.Trigger>
+        </ListItem>
+        <ListItem>
+          <Panels.Trigger for={panelIdDoesNotExist}>
+            <ListItem.Action id='panel-trigger-dne'>
+              Go to panel that does not exist
+            </ListItem.Action>
+          </Panels.Trigger>
+        </ListItem>
+      </Panels.Panel>
+
+      <Panels.Panel
+        id={panelIdMoreInfo}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+      >
+        <Surface.Header as={Panels.Header} id='panels-header-2'>
+          More details
+        </Surface.Header>
+        <Surface.Body isPadded>
+          <Text>Content</Text>
+        </Surface.Body>
+      </Panels.Panel>
+    </Panels.Wrapper>
+  );
+};
+
+const MultiPanelInformationPanel = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const { animationOptions, showRootPanelBackButton } = config;
+
+  const initialActiveId = 'root';
+
+  const panels = Array.from(Array(20).keys()).map((i) => ({
+    id: `panel-${i}`,
+    label: `Panel ${i}`,
+  }));
+
+  return (
+    <Panels.Wrapper
+      initialActiveId={initialActiveId}
+      animationOptions={animationOptions}
+      as={Surface}
+      style={{
+        inlineSize: 'min(300px, 30vw)',
+        blockSize: 'min(500px, 50vh)',
+      }}
+    >
+      <Panels.Panel
+        id={initialActiveId}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+        gap='0'
+      >
+        <Surface.Header as={Flex}>
+          {showRootPanelBackButton && (
+            <Panels.BackButton
+              label='Should do nothing as no prev panel'
+              id='root-panel-back-button'
+            >
+              <SvgArrowLeft />
+            </Panels.BackButton>
+          )}
+          Root
+        </Surface.Header>
+        <Surface.Body
+          style={{
+            overflowY: 'auto',
+            flex: '1',
+          }}
+          as={List}
+        >
+          {panels.map((panel) => (
+            <ListItem key={panel.id}>
+              <ListItem.Content>
+                <Panels.Trigger for={`${panel.id}`}>
+                  <ListItem.Action>{panel.label}</ListItem.Action>
+                </Panels.Trigger>
+              </ListItem.Content>
+            </ListItem>
+          ))}
+        </Surface.Body>
+      </Panels.Panel>
+
+      {panels.map((panel) => (
+        <Panels.Panel
+          key={panel.id}
+          id={panel.id}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+        >
+          <Surface.Header as={Panels.Header}>{panel.label}</Surface.Header>
+          <Surface.Body
+            as={Flex}
+            flexDirection='column'
+            style={{
+              height: '100%',
+            }}
+          >
+            <Text>{`Content for panel ${panel.id}`}</Text>
+            <Flex.Spacer />
+            <Divider />
+            <Text>{`Footer for panel ${panel.id}`}</Text>
+          </Surface.Body>
+        </Panels.Panel>
+      ))}
+    </Panels.Wrapper>
+  );
+};
