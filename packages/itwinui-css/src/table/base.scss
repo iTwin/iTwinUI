@@ -189,7 +189,7 @@
       .iui-table-cell {
         border-inline-start-color: var(--iui-color-border);
         border-inline-end-color: var(--iui-color-border);
-        border-block-end-color: transparent;
+        border-block: none;
       }
 
       .iui-table-row-expander > .iui-button-icon {
