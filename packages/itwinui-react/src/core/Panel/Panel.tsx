@@ -11,7 +11,6 @@ import {
   SvgChevronLeft,
   useInstance,
   useMergedRefs,
-  useSynchronizeInstance,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -19,19 +18,13 @@ import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
-
-type CurrentPanelId = { id: string; direction?: 'prev' | 'next' };
-
-type PanelsInstance = {
-  /** Go back to the panel that has a trigger that points to the current panel. */
-  goBack: (options?: {
-    /**
-     * Whether to animate the transition to the previous panel.
-     * @default true
-     */
-    animate?: boolean;
-  }) => void;
-};
+import { panelAnimationReducer, PanelInstanceProvider } from './helpers.js';
+import type {
+  CurrentPanelId,
+  PanelAnimationState,
+  PanelsInstance,
+  TriggerMapEntry,
+} from './helpers.js';
 
 type PanelWrapperProps = {
   /**
@@ -67,8 +60,6 @@ type PanelWrapperProps = {
    */
   animationOptions?: Parameters<HTMLElement['animate']>[1] | null;
 };
-
-type TriggerMapEntry = { triggerId: string; panelId: string };
 
 /**
  * Component that manages the logic for layered panels.
@@ -235,7 +226,11 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // This prevents empty panels with no way to go back.
         !document.getElementById(
           typeof newActiveId === 'string' ? newActiveId : newActiveId.id,
-        )
+        ) ||
+        // Animation already in progress
+        animations != null ||
+        // Same panel
+        newActiveId.id === currentPanelId.id
       ) {
         return;
       }
@@ -263,7 +258,13 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         }
       }, 0);
     },
-    [activeIdProp, animateToPanel, currentPanelId.id, onActiveIdChange],
+    [
+      activeIdProp,
+      animateToPanel,
+      animations,
+      currentPanelId.id,
+      onActiveIdChange,
+    ],
   );
 
   const goBack = React.useCallback(
@@ -281,16 +282,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       }
     },
     [changeActivePanel, currentPanelId.id],
-  );
-
-  useSynchronizeInstance(
-    instance,
-    React.useMemo(
-      () => ({
-        goBack,
-      }),
-      [goBack],
-    ),
   );
 
   // When in controlled mode, listen to activeIdProp.id changes and animate accordingly.
@@ -329,25 +320,27 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
   return (
-    <PanelsWrapperContext.Provider
-      value={{
-        activeId: activeIdProp,
-        currentPanelId,
-        changeActivePanel,
-        goBack,
-        triggers,
-        panelElements,
-        animations,
-      }}
-    >
-      <Box
-        ref={forwardedRef}
-        {...rest}
-        className={cx('iui-panel-wrapper', className)}
+    <PanelInstanceProvider instance={instance} goBack={goBack}>
+      <PanelsWrapperContext.Provider
+        value={{
+          activeId: activeIdProp,
+          currentPanelId,
+          changeActivePanel,
+          goBack,
+          triggers,
+          panelElements,
+          animations,
+        }}
       >
-        {children}
-      </Box>
-    </PanelsWrapperContext.Provider>
+        <Box
+          ref={forwardedRef}
+          {...rest}
+          className={cx('iui-panel-wrapper', className)}
+        >
+          {children}
+        </Box>
+      </PanelsWrapperContext.Provider>
+    </PanelInstanceProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelWrapperProps>;
 PanelsWrapper.displayName = 'Panels.Wrapper';
@@ -570,61 +563,4 @@ export const Panels = {
   Header: PanelHeader,
   BackButton: PanelBackButton,
   useInstance: useInstance as () => PanelsInstance,
-};
-
-// ----------------------------------------------------------------------------
-
-type PanelAnimationState = {
-  currentPanelId: CurrentPanelId;
-  setCurrentPanelId: React.Dispatch<React.SetStateAction<CurrentPanelId>>;
-  animatingToPanelId?: string;
-  animations?: Record<string, React.CSSProperties[]>;
-};
-
-type PanelAnimationAction =
-  | {
-      type: 'prev' | 'next';
-      animatingToPanelId: string;
-      animations: PanelAnimationState['animations'];
-      panelElements: React.RefObject<Record<string, HTMLElement | null>>;
-    }
-  | { type: 'endAnimation' };
-
-const panelAnimationReducer = (
-  state: PanelAnimationState,
-  action: PanelAnimationAction,
-): PanelAnimationState => {
-  switch (action.type) {
-    case 'prev':
-    case 'next': {
-      // Animation already in progress or other panel doesn't exist
-      if (
-        state.animatingToPanelId != null ||
-        action.panelElements.current?.[action.animatingToPanelId] == null
-      ) {
-        return state;
-      }
-
-      return {
-        ...state,
-        animatingToPanelId: action.animatingToPanelId,
-        animations: action.animations,
-      };
-    }
-    case 'endAnimation': {
-      // No animation in progress
-      if (state.animatingToPanelId == null) {
-        return state;
-      }
-
-      return {
-        ...state,
-        animatingToPanelId: undefined,
-        animations: undefined,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
 };

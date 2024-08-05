@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   Flex,
   List,
@@ -18,6 +19,8 @@ export default function ButtonGroupTest() {
 
   return exampleType === 'multi-panel-information-panel' ? (
     <MultiPanelInformationPanel config={config} />
+  ) : exampleType === 'nested-panels' ? (
+    <NestedPanels config={config} />
   ) : (
     <Basic config={config} />
   );
@@ -26,7 +29,8 @@ export default function ButtonGroupTest() {
 const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const exampleType = (searchParams.get('exampleType') ?? 'default') as
     | 'default'
-    | 'multi-panel-information-panel';
+    | 'multi-panel-information-panel'
+    | 'nested-panels';
   const animationDuration = searchParams.get('animationDuration');
   const disableAnimations = searchParams.get('disableAnimations') === 'true';
   const showRootPanelBackButton =
@@ -43,8 +47,6 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
 
     return undefined;
   })();
-
-  console.log('animationOptions', animationOptions);
 
   return {
     exampleType,
@@ -64,48 +66,56 @@ const Basic = ({
   const panelIdMoreInfo = 'more-info';
   const panelIdDoesNotExist = 'panel-dne';
 
-  return (
-    <Panels.Wrapper
-      initialActiveId={initialActiveId}
-      animationOptions={animationOptions}
-      as={Surface}
-      style={{
-        inlineSize: 'min(300px, 30vw)',
-        blockSize: 'min(500px, 50vh)',
-      }}
-    >
-      <Panels.Panel id={initialActiveId} as={List}>
-        <Surface.Header as={Panels.Header} id='panels-header-1'>
-          Root
-        </Surface.Header>
-        <ListItem>
-          <Panels.Trigger for={panelIdMoreInfo}>
-            <ListItem.Action>More details</ListItem.Action>
-          </Panels.Trigger>
-        </ListItem>
-        <ListItem>
-          <Panels.Trigger for={panelIdDoesNotExist}>
-            <ListItem.Action id='panel-trigger-dne'>
-              Go to panel that does not exist
-            </ListItem.Action>
-          </Panels.Trigger>
-        </ListItem>
-      </Panels.Panel>
+  const panels = Panels.useInstance();
 
-      <Panels.Panel
-        id={panelIdMoreInfo}
-        as={Flex}
-        flexDirection='column'
-        alignItems='stretch'
+  return (
+    <Flex flexDirection='column' alignItems='flex-start'>
+      <Button id='instance-go-back' onClick={() => panels.goBack()}>
+        Go Back
+      </Button>
+      <Panels.Wrapper
+        instance={panels}
+        initialActiveId={initialActiveId}
+        animationOptions={animationOptions}
+        as={Surface}
+        style={{
+          inlineSize: 'min(300px, 30vw)',
+          blockSize: 'min(500px, 50vh)',
+        }}
       >
-        <Surface.Header as={Panels.Header} id='panels-header-2'>
-          More details
-        </Surface.Header>
-        <Surface.Body isPadded>
-          <Text>Content</Text>
-        </Surface.Body>
-      </Panels.Panel>
-    </Panels.Wrapper>
+        <Panels.Panel id={initialActiveId} as={List}>
+          <Surface.Header as={Panels.Header} id='panels-header-1'>
+            Root
+          </Surface.Header>
+          <ListItem>
+            <Panels.Trigger for={panelIdMoreInfo}>
+              <ListItem.Action>More details</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+          <ListItem>
+            <Panels.Trigger for={panelIdDoesNotExist}>
+              <ListItem.Action id='panel-trigger-dne'>
+                Go to panel that does not exist
+              </ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+        </Panels.Panel>
+
+        <Panels.Panel
+          id={panelIdMoreInfo}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+        >
+          <Surface.Header as={Panels.Header} id='panels-header-2'>
+            More details
+          </Surface.Header>
+          <Surface.Body isPadded>
+            <Text>Content</Text>
+          </Surface.Body>
+        </Panels.Panel>
+      </Panels.Wrapper>
+    </Flex>
   );
 };
 
@@ -194,5 +204,57 @@ const MultiPanelInformationPanel = ({
         </Panels.Panel>
       ))}
     </Panels.Wrapper>
+  );
+};
+
+const NestedPanels = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const { animationOptions } = config;
+
+  const panels = Panels.useInstance();
+
+  const initialActiveId = 'root';
+  const panel1Id = 'panel-1';
+  const panel1_1Id = 'panel-1-1';
+  const panel1_1_1Id = 'panel-1-1-1';
+
+  const panelIds = [initialActiveId, panel1Id, panel1_1Id, panel1_1_1Id];
+
+  return (
+    <Flex flexDirection='column' alignItems='flex-start'>
+      <Button id='instance-go-back' onClick={() => panels.goBack()}>
+        Go Back
+      </Button>
+      <Panels.Wrapper
+        instance={panels}
+        initialActiveId={initialActiveId}
+        style={{
+          width: 'min(300px, 30vw)',
+          height: 'min(500px, 50vh)',
+        }}
+        as={Surface}
+      >
+        {panelIds.map((id, index) => (
+          <Panels.Panel key={id} id={id}>
+            <Surface.Header as={Panels.Header}>{id}</Surface.Header>
+            <Surface.Body
+              as={Flex}
+              flexDirection='column'
+              alignItems='flex-start'
+              isPadded
+            >
+              <Panels.Trigger for={panelIds[index + 1]}>
+                <Button>
+                  Go to {panelIds[index + 1] ?? "panel that doesn't exist"}
+                </Button>
+              </Panels.Trigger>
+            </Surface.Body>
+          </Panels.Panel>
+        ))}
+      </Panels.Wrapper>
+    </Flex>
   );
 };

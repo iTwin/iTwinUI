@@ -51,15 +51,22 @@ test('should animate to the next panel when the trigger is clicked', async ({
         await page.goto('/Panels?disableAnimations=true');
       }
 
-      await expect(page.locator('#root')).toBeVisible();
-      await expect(page.locator('#more-info')).not.toBeVisible();
+      const rootPanel = page.locator('#root').first();
+      const moreInfoPanel = page.locator('#more-info').first();
+
+      await expect(rootPanel).toBeVisible();
+      await expect(moreInfoPanel).not.toBeVisible();
 
       await page.locator('#root button').first().click();
 
-      await page.waitForTimeout(10);
+      await page.waitForTimeout(100);
 
-      expect(page.locator('#root')).not.toBeVisible();
-      expect(page.locator('#more-info')).toBeVisible();
+      // Animation should not have started
+      expect(await getComputedTransform(rootPanel)).toBe('none');
+      expect(await getComputedTransform(moreInfoPanel)).toBe('none');
+
+      await expect(rootPanel).not.toBeVisible();
+      await expect(moreInfoPanel).toBeVisible();
     });
   },
 );
@@ -153,16 +160,110 @@ test('should not show a back button in the Panels.Header if no trigger points to
 test('should support custom animation options', async ({ page }) => {
   await page.goto('/Panels?animationDuration=10');
 
-  await expect(page.locator('#root')).toBeVisible();
-  await expect(page.locator('#more-info')).not.toBeVisible();
+  const rootPanel = page.locator('#root').first();
+  const moreInfoPanel = page.locator('#more-info').first();
+
+  await expect(rootPanel).toBeVisible();
+  await expect(moreInfoPanel).not.toBeVisible();
 
   await page.locator('#root button').first().click();
 
-  await page.waitForTimeout(20);
+  await page.waitForTimeout(50);
 
   // Animation should have been finished in around 10ms instead of the default duration
-  expect(page.locator('#root')).not.toBeVisible();
-  expect(page.locator('#more-info')).toBeVisible();
+  expect(await getComputedTransform(rootPanel)).toBe('none');
+  expect(await getComputedTransform(moreInfoPanel)).toBe('none');
+
+  await expect(rootPanel).not.toBeVisible();
+  await expect(moreInfoPanel).toBeVisible();
+});
+
+test('should support panel instance methods', async ({ page }) => {
+  await page.goto('/Panels?');
+
+  // Preventing animations during testing
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+
+  const rootPanel = page.locator('#root').first();
+  const moreInfoPanel = page.locator('#more-info').first();
+
+  await expect(rootPanel).toBeVisible();
+  await expect(moreInfoPanel).not.toBeVisible();
+
+  await page.locator('#root button').first().click();
+
+  await expect(rootPanel).not.toBeVisible();
+  await expect(moreInfoPanel).toBeVisible();
+
+  // To explicitly test if animating or not
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+
+  // Should animate back when instance.goBack() is called
+  expect(await getComputedTransform(rootPanel)).toBe('none');
+  expect(await getComputedTransform(moreInfoPanel)).toBe('none');
+
+  await page.locator('#instance-go-back').first().click();
+
+  await page.waitForTimeout(100);
+
+  // Animation start
+  expect(await getComputedTransform(rootPanel)).not.toBe('none');
+  expect(await getComputedTransform(moreInfoPanel)).not.toBe('none');
+
+  await page.waitForTimeout(550);
+
+  // Animation end
+  expect(await getComputedTransform(rootPanel)).toBe('none');
+  expect(await getComputedTransform(moreInfoPanel)).toBe('none');
+
+  await expect(rootPanel).toBeVisible();
+  await expect(moreInfoPanel).not.toBeVisible();
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+
+  // Should not go back if no trigger points to the current panel
+  await page.locator('#instance-go-back').first().click();
+
+  await page.waitForTimeout(50);
+  expect(await getComputedTransform(rootPanel)).toBe('none');
+  expect(await getComputedTransform(moreInfoPanel)).toBe('none');
+
+  await expect(rootPanel).toBeVisible();
+  await expect(moreInfoPanel).not.toBeVisible();
+});
+
+test('should support nested panels', async ({ page }) => {
+  const initialActiveId = 'root';
+  const panel1Id = 'panel-1';
+  const panel1_1Id = 'panel-1-1';
+  const panel1_1_1Id = 'panel-1-1-1';
+
+  const panels = [initialActiveId, panel1Id, panel1_1Id, panel1_1_1Id];
+
+  await page.goto('/Panels?exampleType=nested-panels');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+
+  await expect(page.locator(`#${initialActiveId}`)).toBeVisible();
+  for (let i = 1; i < panels.length; i++) {
+    await expect(page.locator(`#${panels[i]}`)).not.toBeVisible();
+  }
+
+  for (let i = 0; i < panels.length; i++) {
+    await page.locator(`#${panels[i]} button`).last().click();
+
+    for (let j = 0; j < panels.length; j++) {
+      if (
+        // If the last panel has a trigger pointing nowhere, should stay at the last panel
+        (i === panels.length - 1 && i === j) ||
+        // Next panel should be visible
+        j === i + 1
+      ) {
+        await expect(page.locator(`#${panels[j]}`)).toBeVisible();
+      } else {
+        await expect(page.locator(`#${panels[j]}`)).not.toBeVisible();
+      }
+    }
+  }
 });
 
 // ----------------------------------------------------------------------------
