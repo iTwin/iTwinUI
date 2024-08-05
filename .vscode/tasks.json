@@ -1,0 +1,134 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "pnpm i",
+      "detail": "Install all dependencies using pnpm"
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "pnpm build",
+      "detail": "Build all"
+    },
+    {
+      "label": "Custom build",
+      "type": "shell",
+      "command": "pnpm build --filter=${input:monorepoName}",
+      "detail": "Build specific package or application"
+    },
+    {
+      "label": "Run tests",
+      "type": "shell",
+      "command": "pnpm test",
+      "detail": "Run all tests without filter"
+    },
+    {
+      "label": "Run tests for a specific component",
+      "type": "shell",
+      "command": "pnpm test ${input:componentName}",
+      "detail": "Run all tests for a specific component"
+    },
+    {
+      "label": "Open development servers",
+      "type": "shell",
+      "command": "pnpm dev",
+      "detail": "Open all development servers"
+    },
+    {
+      "label": "Run e2e tests",
+      "type": "shell",
+      "command": "pnpm run test --filter=e2e",
+      "detail": "Run e2e tests"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "monorepoName",
+      "description": "What monorepo would you like to build?",
+      "options": [
+        "css-workshop",
+        "react-workshop",
+        "portal",
+        "@itwin/itwinui-css",
+        "@itwin/itwinui-react",
+        "@itwin/itwinui-variables"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "componentName",
+      "description": "What component would you like to choose?",
+      "options": [
+        "Alert",
+        "Avatar",
+        "AvatarGroup",
+        "Backdrop",
+        "Badge",
+        "Breadcrumbs",
+        "ButtonGroup",
+        "Buttons",
+        "Carousel",
+        "Checkbox",
+        "ColorPicker",
+        "ComboBox",
+        "DatePicker",
+        "Dialog",
+        "Divider",
+        "DropdownMenu",
+        "ExpandableBlock",
+        "Fieldset",
+        "FileUpload",
+        "Flex",
+        "Footer",
+        "Header",
+        "Icon",
+        "InformationPanel",
+        "Input",
+        "InputGrid",
+        "InputGroup",
+        "InputWithDecorations",
+        "Label",
+        "LabeledInput",
+        "LabeledSelect",
+        "LabeledTextarea",
+        "LinkAction",
+        "List",
+        "Menu",
+        "Modal",
+        "NonIdealState",
+        "NotificationMarker",
+        "Overlay",
+        "Popover",
+        "ProgressIndicators",
+        "Radio",
+        "RadioTiles",
+        "SearchBox",
+        "Select",
+        "SideNavigation",
+        "SkipToContentLink",
+        "Slider",
+        "StatusMessage",
+        "Stepper",
+        "Surface",
+        "Table",
+        "Tabs",
+        "Tag",
+        "Textarea",
+        "ThemeProvider",
+        "Tile",
+        "TimePicker",
+        "Toast",
+        "ToggleSwitch",
+        "Tooltip",
+        "TransferList",
+        "Tree",
+        "Typography",
+        "VisuallyHidden"
+      ]
+    }
+  ]
+}
