@@ -18,7 +18,7 @@ import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
-import { panelAnimationReducer, PanelInstanceProvider } from './helpers.js';
+import { panelAnimationReducer, PanelsInstanceProvider } from './helpers.js';
 import type {
   CurrentPanelId,
   PanelAnimationState,
@@ -26,7 +26,7 @@ import type {
   TriggerMapEntry,
 } from './helpers.js';
 
-type PanelWrapperProps = {
+type PanelsWrapperProps = {
   /**
    * The initialPanel that is displayed.
    */
@@ -320,7 +320,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
   return (
-    <PanelInstanceProvider instance={instance} goBack={goBack}>
+    <PanelsInstanceProvider instance={instance} goBack={goBack}>
       <PanelsWrapperContext.Provider
         value={{
           activeId: activeIdProp,
@@ -340,14 +340,14 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           {children}
         </Box>
       </PanelsWrapperContext.Provider>
-    </PanelInstanceProvider>
+    </PanelsInstanceProvider>
   );
-}) as PolymorphicForwardRefComponent<'div', PanelWrapperProps>;
+}) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
 PanelsWrapper.displayName = 'Panels.Wrapper';
 
 const PanelsWrapperContext = React.createContext<
   | {
-      activeId?: PanelWrapperProps['activeId'];
+      activeId?: PanelsWrapperProps['activeId'];
       currentPanelId: CurrentPanelId;
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Panels } from './Panel.js';
+import { Panels } from './Panels.js';
 import { Button } from '../Buttons/Button.js';
 import { SvgStar } from '@itwin/itwinui-icons-react';
 

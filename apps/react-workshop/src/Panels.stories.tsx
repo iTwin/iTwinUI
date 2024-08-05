@@ -15,7 +15,7 @@ import {
   Text,
   ToggleSwitch,
 } from '@itwin/itwinui-react';
-import { SvgArrowLeft, SvgStar } from '@itwin/itwinui-icons-react';
+import { SvgArrowLeft } from '@itwin/itwinui-icons-react';
 
 export default {
   component: Panels,
@@ -514,13 +514,5 @@ export const NestedPanels = () => {
         ))}
       </Panels.Wrapper>
     </Flex>
-  );
-};
-
-export const ABC = () => {
-  return (
-    <Panels.BackButton>
-      <SvgStar />
-    </Panels.BackButton>
   );
 };

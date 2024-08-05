@@ -28,7 +28,7 @@ type PanelInstanceProviderProps = {
   goBack: PanelsInstance['goBack'];
 };
 
-export const PanelInstanceProvider = (props: PanelInstanceProviderProps) => {
+export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
   const { children, instance, goBack } = props;
 
   useSynchronizeInstance(
