@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useOverflow, useMergedRefs, Box } from '../../utils/index.js';
+import {
+  Box,
+  OverflowContainer,
+  OverflowContainerContext,
+} from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -172,6 +176,12 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
 
 // ----------------------------------------------------------------------------
 
+type OverflowGroupProps = Pick<
+  ButtonGroupProps,
+  'children' | 'orientation' | 'overflowPlacement'
+> &
+  Required<Pick<ButtonGroupProps, 'overflowButton'>>;
+
 const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   const {
     children: childrenProp,
@@ -186,14 +196,11 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  const [overflowRef, visibleCount] = useOverflow(
-    items,
-    !overflowButton,
-    orientation,
-  );
-
   return (
-    <BaseGroup
+    <OverflowContainer
+      as={BaseGroup}
+      items={items}
+      overflowOrientation={orientation}
       orientation={orientation}
       {...rest}
       className={cx(
@@ -203,40 +210,53 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         },
         props.className,
       )}
-      ref={useMergedRefs(forwardedRef, overflowRef)}
+      ref={forwardedRef}
     >
-      {(() => {
-        if (!(visibleCount < items.length)) {
-          return items;
-        }
-
-        const overflowStart =
-          overflowPlacement === 'start'
-            ? items.length - visibleCount
-            : visibleCount - 1;
-
-        return (
-          <>
-            {overflowButton &&
-              overflowPlacement === 'start' &&
-              overflowButton(overflowStart)}
-
-            {overflowPlacement === 'start'
-              ? items.slice(overflowStart + 1)
-              : items.slice(0, Math.max(0, overflowStart))}
-
-            {overflowButton &&
-              overflowPlacement === 'end' &&
-              overflowButton(overflowStart)}
-          </>
-        );
-      })()}
-    </BaseGroup>
+      <OverflowGroupContent
+        overflowButton={overflowButton}
+        overflowPlacement={overflowPlacement}
+        items={items}
+      />
+    </OverflowContainer>
   );
-}) as PolymorphicForwardRefComponent<
-  'div',
-  Pick<
-    ButtonGroupProps,
-    'children' | 'orientation' | 'overflowButton' | 'overflowPlacement'
-  >
->;
+}) as PolymorphicForwardRefComponent<'div', OverflowGroupProps>;
+
+// ----------------------------------------------------------------------------
+
+const OverflowGroupContent = ({
+  overflowButton,
+  overflowPlacement,
+  items,
+}: Pick<OverflowGroupProps, 'overflowButton' | 'overflowPlacement'> & {
+  items: Array<Exclude<React.ReactNode, boolean | null | undefined>>;
+}) => {
+  const overflowGroupContext = React.useContext(OverflowContainerContext);
+
+  const overflowStart = (() => {
+    if (overflowGroupContext == null) {
+      return undefined;
+    }
+
+    return overflowPlacement === 'start'
+      ? items.length - overflowGroupContext.visibleCount
+      : overflowGroupContext.visibleCount - 1;
+  })();
+
+  return overflowStart != null ? (
+    <>
+      {overflowButton &&
+        overflowPlacement === 'start' &&
+        overflowButton(overflowStart)}
+
+      {overflowPlacement === 'start'
+        ? items.slice(overflowStart + 1)
+        : items.slice(0, Math.max(0, overflowStart))}
+
+      {overflowButton &&
+        overflowPlacement === 'end' &&
+        overflowButton(overflowStart)}
+    </>
+  ) : (
+    <></>
+  );
+};

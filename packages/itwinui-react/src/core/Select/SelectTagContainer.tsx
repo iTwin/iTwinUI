@@ -4,9 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useOverflow, useMergedRefs, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
+import {
+  OverflowContainer,
+  OverflowContainerContext,
+} from '../../utils/index.js';
 
 type SelectTagContainerProps = {
   /**
@@ -18,23 +21,39 @@ type SelectTagContainerProps = {
 /**
  */
 export const SelectTagContainer = React.forwardRef((props, ref) => {
-  const { tags, className, ...rest } = props;
+  const { tags: tagsProp, className, ...rest } = props;
 
-  const [containerRef, visibleCount] = useOverflow(tags);
-  const refs = useMergedRefs(ref, containerRef);
+  const tags = React.useMemo(
+    () => React.Children.toArray(tagsProp),
+    [tagsProp],
+  );
 
   return (
-    <Box
+    <OverflowContainer
+      items={tags}
       className={cx('iui-select-tag-container', className)}
-      ref={refs}
+      ref={ref}
       {...rest}
     >
-      <>
-        {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
-        {visibleCount < tags.length && (
-          <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
-        )}
-      </>
-    </Box>
+      <SelectTagContainerContent {...props} />
+    </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<'div', SelectTagContainerProps>;
+
+// ----------------------------------------------------------------------------
+
+const SelectTagContainerContent = (props: SelectTagContainerProps) => {
+  const { tags } = props;
+  const visibleCount =
+    React.useContext(OverflowContainerContext)?.visibleCount ?? tags.length;
+
+  return (
+    <>
+      {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
+
+      <OverflowContainer.OverflowNode>
+        <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
+      </OverflowContainer.OverflowNode>
+    </>
+  );
+};
