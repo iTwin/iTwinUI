@@ -10,25 +10,25 @@
     {
       "label": "Build",
       "type": "shell",
-      "command": "pnpm build",
+      "command": "pnpm run build",
       "detail": "Build all"
     },
     {
       "label": "Custom build",
       "type": "shell",
-      "command": "pnpm build --filter=${input:monorepoName}",
+      "command": "pnpm run build --filter=${input:workspaceName}",
       "detail": "Build specific package or application"
     },
     {
       "label": "Run tests",
       "type": "shell",
-      "command": "pnpm test",
+      "command": "pnpm run test",
       "detail": "Run all tests without filter"
     },
     {
       "label": "Run tests for a specific component",
       "type": "shell",
-      "command": "pnpm test ${input:componentName}",
+      "command": "pnpm run test ${input:componentName}",
       "detail": "Run all tests for a specific component"
     },
     {
@@ -38,17 +38,17 @@
       "detail": "Open all development servers"
     },
     {
-      "label": "Run e2e tests",
+      "label": "Run tests with filter",
       "type": "shell",
-      "command": "pnpm run test --filter=e2e",
-      "detail": "Run e2e tests"
+      "command": "pnpm run test --filter=${input:testFilter}",
+      "detail": "Run different test types"
     }
   ],
   "inputs": [
     {
       "type": "pickString",
-      "id": "monorepoName",
-      "description": "What monorepo would you like to build?",
+      "id": "workspaceName",
+      "description": "Choose a worskspace",
       "options": [
         "css-workshop",
         "react-workshop",
@@ -61,7 +61,7 @@
     {
       "type": "pickString",
       "id": "componentName",
-      "description": "What component would you like to choose?",
+      "description": "Choose a component",
       "options": [
         "Alert",
         "Avatar",
@@ -128,6 +128,19 @@
         "Tree",
         "Typography",
         "VisuallyHidden"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "testFilter",
+      "description": "Choose a test type",
+      "options": [
+        "css-workshop",
+        "react-workshop",
+        "@itwin/itwinui-css",
+        "@itwin/itwinui-react",
+        "e2e",
+        "a11y"
       ]
     }
   ]
