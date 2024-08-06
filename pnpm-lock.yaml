@@ -443,9 +443,6 @@ importers:
 
   playgrounds/next:
     dependencies:
-      '@itwin/itwinui-icons-react':
-        specifier: '2'
-        version: 2.8.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@itwin/itwinui-react':
         specifier: '*'
         version: link:../../packages/itwinui-react

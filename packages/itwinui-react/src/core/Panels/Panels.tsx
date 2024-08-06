@@ -65,6 +65,10 @@ type PanelsWrapperProps = {
  * Component that manages the logic for layered panels.
  * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
+ * Notes:
+ * - There can only be one panel with triggers to a particular other panel. i.e. Panel Y should have triggers only in
+ * one particular panel X (only one clear back navigation). Panel X can have multiple triggers that point to panel Y.
+ *
  * @example
  * <Panels.Wrapper
  *   initialActiveId={panelIdRoot}
@@ -126,12 +130,12 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       }
 
       if (
+        // Animations disabled
+        animationOptionsProp === null ||
         // Page transition already in progress
         animations != null ||
         // No animation to show
-        newActiveId.direction == null ||
-        // Animations disabled
-        animationOptionsProp === null
+        newActiveId.direction == null
       ) {
         return;
       }
@@ -165,8 +169,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
                 { transform: 'translateX(0)' },
               ]
             : [
-                { transform: 'translateX(-100%)', display: 'block' },
-                { transform: 'translateX(0)', display: 'block' },
+                { transform: 'translateX(-100%)' },
+                { transform: 'translateX(0)' },
               ],
       };
 
@@ -369,6 +373,19 @@ type PanelProps = {
   id: string;
 };
 
+/**
+ * Takes an `id` and the panel content. When the wrapper's `activeId` is set to this panel id, this panel is shown.
+ *
+ * @example
+ * <Panels.Panel id={panelIdRoot} as={List}>
+ *   <Surface.Header as={Panels.Header}>Root</Surface.Header>
+ *   <ListItem>
+ *     <Panels.Trigger for={panelIdMoreInfo}>
+ *       <ListItem.Action>More details</ListItem.Action>
+ *     </Panels.Trigger>
+ *   </ListItem>
+ * </Panels.Panel>
+ */
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, style, ...rest } = props;
 
@@ -446,6 +463,21 @@ type PanelTriggerProps = {
   children: React.ReactElement;
 };
 
+/**
+ * Wraps the button to append an `onClick` that changes the `activeId` to the `for` prop.
+ * This component also creates an internal triggers map that stores a link between a <trigger + its current panel> and
+ * the panel it points to. This is useful for back navigation (see `Panels.Header`).
+ *
+ * @example
+ * <Panels.Panel id={panelIdRoot} as={List}>
+ *   <Surface.Header as={Panels.Header}>Root</Surface.Header>
+ *   <ListItem>
+ *     <Panels.Trigger for={panelIdMoreInfo}>
+ *       <ListItem.Action>More details</ListItem.Action>
+ *     </Panels.Trigger>
+ *   </ListItem>
+ * </Panels.Panel>
+ */
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
@@ -495,7 +527,8 @@ PanelTrigger.displayName = 'Panels.Trigger';
 // ----------------------------------------------------------------------------
 
 /**
- * Optional header for the panel that shows the `Panels.BackButton` if there is an associated trigger.
+ * Optional component, if added, shows a title and handles the showing of the back button depending on whether a
+ * previous panel exist.
  */
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
@@ -515,7 +548,8 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
 PanelHeader.displayName = 'Panels.Header';
 
 /**
- * Button to go back to the previous panel.
+ * Optional component, if added, sets the `activeId` to the panel that has a trigger that points to the current panel
+ * when clicked.
  *
  * @example
  * <caption>Default back button</caption>
