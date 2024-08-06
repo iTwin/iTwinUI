@@ -242,8 +242,6 @@ const OverflowGroupContent = ({
       : overflowGroupContext.visibleCount - 1;
   })();
 
-  console.log('overflowStart', overflowStart);
-
   return overflowStart != null ? (
     <>
       {overflowButton &&

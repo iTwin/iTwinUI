@@ -116,13 +116,19 @@ type BreadcrumbsProps = {
  */
 const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   const {
-    children: items,
-    currentIndex = items.length - 1,
+    children: childrenProp,
+    currentIndex: currentIndexProp,
     separator,
     overflowButton,
     className,
     ...rest
   } = props;
+
+  const items = React.useMemo(
+    () => React.Children.toArray(childrenProp),
+    [childrenProp],
+  );
+  const currentIndex = currentIndexProp || items.length - 1;
 
   return (
     <Box
@@ -132,7 +138,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
-      <OverflowContainer as='ol' className='iui-breadcrumbs-list'>
+      <OverflowContainer as='ol' items={items} className='iui-breadcrumbs-list'>
         <BreadcrumbContent
           currentIndex={currentIndex}
           overflowButton={overflowButton}

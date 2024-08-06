@@ -21,7 +21,12 @@ type SelectTagContainerProps = {
 /**
  */
 export const SelectTagContainer = React.forwardRef((props, ref) => {
-  const { tags, className, ...rest } = props;
+  const { tags: tagsProp, className, ...rest } = props;
+
+  const tags = React.useMemo(
+    () => React.Children.toArray(tagsProp),
+    [tagsProp],
+  );
 
   return (
     <OverflowContainer
