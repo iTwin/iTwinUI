@@ -10,6 +10,8 @@ describe('Tree', () => {
     'Customized Expander',
     'Async Loading',
     'Small',
+    'Virtualized',
+    'Virtualized With Horizontal Scroll',
   ];
 
   tests.forEach((testName) => {

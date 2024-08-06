@@ -85,6 +85,11 @@ describe('Table', () => {
       });
 
       cy.compareSnapshot(testName);
+
+      if (testName === 'Full2') {
+        cy.get('[role=table]').scrollTo('right');
+        cy.compareSnapshot(`${testName} (scrolled right)`);
+      }
     });
   });
 });
