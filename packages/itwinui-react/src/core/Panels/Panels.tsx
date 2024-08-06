@@ -423,9 +423,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         aria-labelledby={`${id}-header`}
         tabIndex={-1}
         {...rest}
-        className={cx('iui-panel', className, {
-          'iui-panel-visible': id === currentPanelId?.id,
-        })}
+        className={cx('iui-panel', className)}
         style={{
           display: isHidden ? 'none' : undefined,
 
