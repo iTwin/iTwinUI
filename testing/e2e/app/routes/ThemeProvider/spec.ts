@@ -13,15 +13,15 @@ test('should inherit the portalContainer if inheriting theme', async ({
 }) => {
   await page.goto('/ThemeProvider?nested=true');
 
-  await expect(page.locator('[data-container="main"]')).toContainText(
-    'main tooltip',
-  );
-  await expect(page.locator('[data-container="main"]')).toContainText(
-    'nested tooltip',
-  );
-  await expect(page.locator('[data-container="nested"]')).not.toContainText(
-    'nested tooltip',
-  );
+  const firstPortal = page.locator('[data-iui-portal]').first();
+
+  // both tooltips should be in the same container
+  await expect(firstPortal).toContainText('main tooltip');
+  await expect(firstPortal).toContainText('nested tooltip');
+
+  // main container should not have any tooltips because we portal to <body>
+  const mainContainer = page.locator('[data-container="main"]');
+  await expect(mainContainer).not.toContainText('tooltip');
 });
 
 test('should not inherit portalContainer across different windows', async ({
@@ -32,8 +32,11 @@ test('should not inherit portalContainer across different windows', async ({
   await page.click('button');
   const popout = await popoutPromise;
 
-  await expect(popout.locator('[data-container="popout"]')).toContainText(
+  await expect(popout.locator('[data-iui-portal]')).toContainText(
     'popout tooltip',
+  );
+  await expect(popout.locator('[data-container="popout"]')).not.toContainText(
+    'tooltip',
   );
 });
 
