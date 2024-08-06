@@ -16,8 +16,6 @@ import {
   SvgChevronLeft,
   SvgChevronRight,
   Box,
-} from '../../utils/index.js';
-import {
   OverflowContainer,
   OverflowContainerContext,
 } from '../../utils/index.js';

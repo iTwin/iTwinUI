@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box } from '../../utils/index.js';
+import {
+  Box,
+  OverflowContainer,
+  OverflowContainerContext,
+} from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -14,10 +18,6 @@ import {
   CompositeItem,
   FloatingDelayGroup,
 } from '@floating-ui/react';
-import {
-  OverflowContainer,
-  OverflowContainerContext,
-} from '../../utils/index.js';
 
 // ----------------------------------------------------------------------------
 

@@ -8,14 +8,12 @@ import {
   SvgChevronRight,
   Box,
   createWarningLogger,
+  OverflowContainer,
+  OverflowContainerContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
-import {
-  OverflowContainer,
-  OverflowContainerContext,
-} from '../../utils/index.js';
 
 const logWarning = createWarningLogger();
 
