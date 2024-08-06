@@ -294,12 +294,11 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                 ...children.props,
                 key: virtualItem.key,
                 'data-iui-index': virtualItem.index,
+                'data-iui-virtualizer': 'item',
                 ref: virtualizer.measureElement,
                 style: {
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
+                  ...children.props.style,
+                  '--_iui-width': '100%',
                   transform: `translateY(${virtualItem.start}px)`,
                 },
               }))
@@ -414,7 +413,7 @@ const VirtualizedTree = React.forwardRef(
       [flatNodesList],
     );
 
-    const virtualizer = useVirtualScroll({
+    const { virtualizer, css: virtualizerCss } = useVirtualScroll({
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
@@ -429,12 +428,10 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
-        <ShadowRoot>
+        <ShadowRoot css={virtualizerCss}>
           <div
-            style={{
-              minBlockSize: virtualizer.getTotalSize(),
-              contain: 'strict',
-            }}
+            data-iui-virtualizer='root'
+            style={{ minBlockSize: virtualizer.getTotalSize() }}
           >
             <slot />
           </div>
