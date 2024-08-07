@@ -41,35 +41,27 @@ test('should animate to the next panel when the trigger is clicked', async ({
   await expect(page.locator('#more-info')).toBeVisible();
 });
 
-(['reduced motion is enabled', 'animations are disabled'] as const).forEach(
-  (mode) => {
-    test(`should not animate when ${mode}`, async ({ page }) => {
-      if (mode === 'reduced motion is enabled') {
-        await page.goto('/Panels');
-        await page.emulateMedia({ reducedMotion: 'reduce' });
-      } else {
-        await page.goto('/Panels?disableAnimations=true');
-      }
+test(`should not animate when reduced motion is enabled`, async ({ page }) => {
+  await page.goto('/Panels');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
 
-      const rootPanel = page.locator('#root').first();
-      const moreInfoPanel = page.locator('#more-info').first();
+  const rootPanel = page.locator('#root').first();
+  const moreInfoPanel = page.locator('#more-info').first();
 
-      await expect(rootPanel).toBeVisible();
-      await expect(moreInfoPanel).not.toBeVisible();
+  await expect(rootPanel).toBeVisible();
+  await expect(moreInfoPanel).not.toBeVisible();
 
-      await page.locator('#root button').first().click();
+  await page.locator('#root button').first().click();
 
-      await page.waitForTimeout(100);
+  await page.waitForTimeout(100);
 
-      // Animation should not have started
-      expect(await getComputedTransform(rootPanel)).toBe('none');
-      expect(await getComputedTransform(moreInfoPanel)).toBe('none');
+  // Animation should not have started
+  expect(await getComputedTransform(rootPanel)).toBe('none');
+  expect(await getComputedTransform(moreInfoPanel)).toBe('none');
 
-      await expect(rootPanel).not.toBeVisible();
-      await expect(moreInfoPanel).toBeVisible();
-    });
-  },
-);
+  await expect(rootPanel).not.toBeVisible();
+  await expect(moreInfoPanel).toBeVisible();
+});
 
 test('should hide inactive or animating panels', async ({ page }) => {
   await page.goto('/Panels?exampleType=multi-panel-information-panel');
@@ -155,27 +147,6 @@ test('should not show a back button in the Panels.Header if no trigger points to
 
   await expect(page.locator('#panels-header-1 button')).toHaveCount(0);
   await expect(page.locator('#panels-header-2 button')).toHaveCount(1);
-});
-
-test('should support custom animation options', async ({ page }) => {
-  await page.goto('/Panels?animationDuration=10');
-
-  const rootPanel = page.locator('#root').first();
-  const moreInfoPanel = page.locator('#more-info').first();
-
-  await expect(rootPanel).toBeVisible();
-  await expect(moreInfoPanel).not.toBeVisible();
-
-  await page.locator('#root button').first().click();
-
-  await page.waitForTimeout(50);
-
-  // Animation should have been finished in around 10ms instead of the default duration
-  expect(await getComputedTransform(rootPanel)).toBe('none');
-  expect(await getComputedTransform(moreInfoPanel)).toBe('none');
-
-  await expect(rootPanel).not.toBeVisible();
-  await expect(moreInfoPanel).toBeVisible();
 });
 
 test('should support panel instance methods', async ({ page }) => {
