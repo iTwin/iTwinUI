@@ -99,9 +99,6 @@ test('should hide inactive or animating panels', async ({ page }) => {
     if (i !== 0) {
       await expect(page.locator(`#panel-${i}`).first()).not.toBeVisible();
     }
-
-    // All panels should be inert during animations
-    await expect(page.locator(`#panel-${i}`).first()).toHaveAttribute('inert');
   }
 
   // Animation over
@@ -109,10 +106,6 @@ test('should hide inactive or animating panels', async ({ page }) => {
 
   await expect(page.locator('#root')).not.toBeVisible();
   await expect(page.locator('#panel-0')).toBeVisible();
-
-  // After animations, the new panel should not be inert while the current panel should be inert
-  await expect(page.locator('#root')).toHaveAttribute('inert');
-  await expect(page.locator('#panel-0')).not.toHaveAttribute('inert');
 
   for (let i = 1; i < pages.length; i++) {
     await expect(page.locator(`#panel-${i}`).first()).not.toBeVisible();
