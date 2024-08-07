@@ -1,0 +1,147 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "pnpm i",
+      "detail": "Install all dependencies using pnpm"
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "pnpm run build",
+      "detail": "Build all"
+    },
+    {
+      "label": "Workspace build",
+      "type": "shell",
+      "command": "pnpm run build --filter=${input:workspaceName}",
+      "detail": "Build specific package or application"
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "pnpm run test",
+      "detail": "Run all tests"
+    },
+    {
+      "label": "Component test",
+      "type": "shell",
+      "command": "pnpm run test ${input:componentName}",
+      "detail": "Run all tests for a specific component"
+    },
+    {
+      "label": "Open development servers",
+      "type": "shell",
+      "command": "pnpm dev",
+      "detail": "Open all development servers"
+    },
+    {
+      "label": "Test with filter",
+      "type": "shell",
+      "command": "pnpm run test --filter=${input:testFilter}",
+      "detail": "Run different test types"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "workspaceName",
+      "description": "Choose a worskspace",
+      "options": [
+        "css-workshop",
+        "react-workshop",
+        "@itwin/itwinui-css",
+        "@itwin/itwinui-react",
+        "@itwin/itwinui-variables",
+        "vite-playground",
+        "e2e"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "componentName",
+      "description": "Choose a component",
+      "options": [
+        "Alert",
+        "Avatar",
+        "AvatarGroup",
+        "Backdrop",
+        "Badge",
+        "Breadcrumbs",
+        "ButtonGroup",
+        "Buttons",
+        "Carousel",
+        "Checkbox",
+        "ColorPicker",
+        "ComboBox",
+        "DatePicker",
+        "Dialog",
+        "Divider",
+        "DropdownMenu",
+        "ExpandableBlock",
+        "Fieldset",
+        "FileUpload",
+        "Flex",
+        "Footer",
+        "Header",
+        "Icon",
+        "InformationPanel",
+        "Input",
+        "InputGrid",
+        "InputGroup",
+        "InputWithDecorations",
+        "Label",
+        "LabeledInput",
+        "LabeledSelect",
+        "LabeledTextarea",
+        "LinkAction",
+        "List",
+        "Menu",
+        "Modal",
+        "NonIdealState",
+        "NotificationMarker",
+        "Overlay",
+        "Popover",
+        "ProgressIndicators",
+        "Radio",
+        "RadioTiles",
+        "SearchBox",
+        "Select",
+        "SideNavigation",
+        "SkipToContentLink",
+        "Slider",
+        "StatusMessage",
+        "Stepper",
+        "Surface",
+        "Table",
+        "Tabs",
+        "Tag",
+        "Textarea",
+        "ThemeProvider",
+        "Tile",
+        "TimePicker",
+        "Toast",
+        "ToggleSwitch",
+        "Tooltip",
+        "TransferList",
+        "Tree",
+        "Typography",
+        "VisuallyHidden"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "testFilter",
+      "description": "Choose a workspace to run tests for",
+      "options": [
+        { "label": "visual tests", "value": "css-workshop" },
+        { "label": "visual tests", "value": "react-workshop" },
+        { "label": "unit tests", "value": "@itwin/itwinui-react" },
+        { "label": "end-to-end tests", "value": "e2e" },
+        { "label": "accessibility tests", "value": "a11y" }
+      ]
+    }
+  ]
+}
