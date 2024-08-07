@@ -388,47 +388,6 @@ export const MultiLevelList = () => {
   );
 };
 
-export const CustomAnimation = () => {
-  const panelIdRoot = React.useId();
-  const panelIdMoreInfo = React.useId();
-
-  return (
-    <Panels.Wrapper
-      initialActiveId={panelIdRoot}
-      as={Surface}
-      style={{
-        inlineSize: 'min(300px, 30vw)',
-        blockSize: 'min(500px, 50vh)',
-      }}
-      animationOptions={{
-        duration: 1000,
-        easing: 'cubic-bezier(0.31, -0.6, 0.01, 1.59)',
-      }}
-    >
-      <Panels.Panel id={panelIdRoot} as={List}>
-        <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <ListItem>
-          <Panels.Trigger for={panelIdMoreInfo}>
-            <ListItem.Action>More details</ListItem.Action>
-          </Panels.Trigger>
-        </ListItem>
-      </Panels.Panel>
-
-      <Panels.Panel
-        id={panelIdMoreInfo}
-        as={Flex}
-        flexDirection='column'
-        alignItems='stretch'
-      >
-        <Surface.Header as={Panels.Header}>More details</Surface.Header>
-        <Surface.Body isPadded>
-          <Text>Content</Text>
-        </Surface.Body>
-      </Panels.Panel>
-    </Panels.Wrapper>
-  );
-};
-
 export const CustomBackButton = () => {
   const panelIdRoot = React.useId();
   const panelIdMoreInfo = React.useId();

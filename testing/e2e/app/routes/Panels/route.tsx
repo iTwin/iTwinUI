@@ -20,9 +20,9 @@ export default function ButtonGroupTest() {
   return exampleType === 'multi-panel-information-panel' ? (
     <MultiPanelInformationPanel config={config} />
   ) : exampleType === 'nested-panels' ? (
-    <NestedPanels config={config} />
+    <NestedPanels />
   ) : (
-    <Basic config={config} />
+    <Basic />
   );
 }
 
@@ -31,37 +31,16 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     | 'default'
     | 'multi-panel-information-panel'
     | 'nested-panels';
-  const animationDuration = searchParams.get('animationDuration');
-  const disableAnimations = searchParams.get('disableAnimations') === 'true';
   const showRootPanelBackButton =
     searchParams.get('showRootPanelBackButton') === 'true';
-
-  const animationOptions = (() => {
-    if (disableAnimations) {
-      return null;
-    } else if (animationDuration != null) {
-      return {
-        duration: parseInt(animationDuration),
-      };
-    }
-
-    return undefined;
-  })();
 
   return {
     exampleType,
     showRootPanelBackButton,
-    animationOptions,
   };
 };
 
-const Basic = ({
-  config,
-}: {
-  config: ReturnType<typeof getConfigFromSearchParams>;
-}) => {
-  const { animationOptions } = config;
-
+const Basic = () => {
   const initialActiveId = 'root';
   const panelIdMoreInfo = 'more-info';
   const panelIdDoesNotExist = 'panel-dne';
@@ -76,7 +55,6 @@ const Basic = ({
       <Panels.Wrapper
         instance={panels}
         initialActiveId={initialActiveId}
-        animationOptions={animationOptions}
         as={Surface}
         style={{
           inlineSize: 'min(300px, 30vw)',
@@ -124,7 +102,7 @@ const MultiPanelInformationPanel = ({
 }: {
   config: ReturnType<typeof getConfigFromSearchParams>;
 }) => {
-  const { animationOptions, showRootPanelBackButton } = config;
+  const { showRootPanelBackButton } = config;
 
   const initialActiveId = 'root';
 
@@ -136,7 +114,6 @@ const MultiPanelInformationPanel = ({
   return (
     <Panels.Wrapper
       initialActiveId={initialActiveId}
-      animationOptions={animationOptions}
       as={Surface}
       style={{
         inlineSize: 'min(300px, 30vw)',
@@ -207,13 +184,7 @@ const MultiPanelInformationPanel = ({
   );
 };
 
-const NestedPanels = ({
-  config,
-}: {
-  config: ReturnType<typeof getConfigFromSearchParams>;
-}) => {
-  const { animationOptions } = config;
-
+const NestedPanels = () => {
   const panels = Panels.useInstance();
 
   const initialActiveId = 'root';

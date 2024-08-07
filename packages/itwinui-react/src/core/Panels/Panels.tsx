@@ -51,15 +51,6 @@ type PanelsWrapperProps = {
    * <Panels instance={panels} />
    */
   instance?: PanelsInstance;
-  /**
-   * To customize the panel transition animations, pass one of the following:
-   * - `number`: Duration in milliseconds. Overrides the default `animationOptions`.
-   * - `object`: For more customization. Merges with the default `animationOptions`.
-   * - `null`: Disables animations completely.
-   *
-   * @see `HTMLElement.animate`
-   */
-  animationOptions?: Parameters<HTMLElement['animate']>[1] | null;
 };
 
 /**
@@ -104,7 +95,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     className,
     onActiveIdChange,
     instance,
-    animationOptions: animationOptionsProp,
     ...rest
   } = props;
 
@@ -129,8 +119,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       if (
         // Reduced motion
         !motionOk ||
-        // Animations disabled
-        animationOptionsProp === null ||
         // Page transition already in progress
         animations != null ||
         // No animation to show
@@ -139,14 +127,10 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         return;
       }
 
-      const animationOptions: typeof animationOptionsProp =
-        typeof animationOptionsProp === 'number'
-          ? animationOptionsProp
-          : {
-              duration: 600,
-              easing: 'ease-out',
-              ...(animationOptionsProp ?? {}),
-            };
+      const animationOptions = {
+        duration: 600,
+        easing: 'ease-out',
+      };
 
       const animationsData = {
         [currentPanelId.id]:
@@ -198,7 +182,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       dispatch({ type: 'endAnimation' });
     },
-    [animationOptionsProp, animations, currentPanelId],
+    [animations, currentPanelId],
   );
 
   const changeActivePanel = React.useCallback(
