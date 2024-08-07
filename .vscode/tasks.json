@@ -14,19 +14,19 @@
       "detail": "Build all"
     },
     {
-      "label": "Custom build",
+      "label": "Workspace build",
       "type": "shell",
       "command": "pnpm run build --filter=${input:workspaceName}",
       "detail": "Build specific package or application"
     },
     {
-      "label": "Run tests",
+      "label": "Test",
       "type": "shell",
       "command": "pnpm run test",
-      "detail": "Run all tests without filter"
+      "detail": "Run all tests"
     },
     {
-      "label": "Run tests for a specific component",
+      "label": "Component test",
       "type": "shell",
       "command": "pnpm run test ${input:componentName}",
       "detail": "Run all tests for a specific component"
@@ -38,7 +38,7 @@
       "detail": "Open all development servers"
     },
     {
-      "label": "Run tests with filter",
+      "label": "Test with filter",
       "type": "shell",
       "command": "pnpm run test --filter=${input:testFilter}",
       "detail": "Run different test types"
@@ -52,10 +52,11 @@
       "options": [
         "css-workshop",
         "react-workshop",
-        "portal",
         "@itwin/itwinui-css",
         "@itwin/itwinui-react",
-        "@itwin/itwinui-variables"
+        "@itwin/itwinui-variables",
+        "vite-playground",
+        "e2e"
       ]
     },
     {
@@ -133,11 +134,10 @@
     {
       "type": "pickString",
       "id": "testFilter",
-      "description": "Choose a test type",
+      "description": "Choose a workspace to run tests for",
       "options": [
         "css-workshop",
         "react-workshop",
-        "@itwin/itwinui-css",
         "@itwin/itwinui-react",
         "e2e",
         "a11y"
