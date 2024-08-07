@@ -58,7 +58,13 @@ export type PanelAnimationState = {
   currentPanelId: CurrentPanelId;
   setCurrentPanelId: React.Dispatch<React.SetStateAction<CurrentPanelId>>;
   animatingToPanelId?: string;
-  animations?: Record<string, React.CSSProperties[]>;
+  animations?: Record<
+    string,
+    {
+      isDestinationPanel: boolean;
+      keyframes: React.CSSProperties[];
+    }
+  >;
 };
 
 export type PanelAnimationAction =

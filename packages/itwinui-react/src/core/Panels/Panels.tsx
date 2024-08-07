@@ -118,31 +118,37 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       }
 
       const animationOptions = {
-        duration: 600,
+        duration: 400,
         easing: 'ease-out',
       };
 
       const animationsData = {
-        [currentPanelId.id]:
-          newActiveId.direction === 'next'
-            ? [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(-100%)' },
-              ]
-            : [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(100%)' },
-              ],
-        [newActiveId.id]:
-          newActiveId.direction === 'next'
-            ? [
-                { transform: 'translateX(100%)' },
-                { transform: 'translateX(0)' },
-              ]
-            : [
-                { transform: 'translateX(-100%)' },
-                { transform: 'translateX(0)' },
-              ],
+        [currentPanelId.id]: {
+          isDestinationPanel: false,
+          keyframes:
+            newActiveId.direction === 'next'
+              ? [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(-100%)' },
+                ]
+              : [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(100%)' },
+                ],
+        },
+        [newActiveId.id]: {
+          isDestinationPanel: true,
+          keyframes:
+            newActiveId.direction === 'next'
+              ? [
+                  { transform: 'translateX(100%)' },
+                  { transform: 'translateX(0)' },
+                ]
+              : [
+                  { transform: 'translateX(-100%)' },
+                  { transform: 'translateX(0)' },
+                ],
+        },
       };
 
       dispatch({
@@ -153,7 +159,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       });
 
       await Promise.all(
-        Object.entries(animationsData).map(([pageId, keyframes]) => {
+        Object.entries(animationsData).map(([pageId, data]) => {
           const element = panelElements.current[pageId];
 
           return new Promise((resolve) => {
@@ -162,7 +168,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
               return;
             }
 
-            const animation = element.animate(keyframes, animationOptions);
+            const animation = element.animate(data.keyframes, animationOptions);
             animation.onfinish = () => {
               resolve(null);
             };
@@ -266,7 +272,7 @@ const PanelsWrapperContext = React.createContext<
       changeActivePanel: (newActiveId: CurrentPanelId) => Promise<void>;
       goBack: PanelsInstance['goBack'];
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
-      animations: Record<string, React.CSSProperties[]> | undefined;
+      animations: PanelAnimationState['animations'];
     }
   | undefined
 >(undefined);
@@ -310,7 +316,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const isHidden = arePanelsAnimating
     ? !Object.keys(animations).includes(id)
     : id !== currentPanelId?.id;
-  const isInert = isHidden || arePanelsAnimating;
+  const isInert = id !== currentPanelId?.id && !isHidden;
 
   useInertPolyfill();
 
@@ -335,7 +341,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           // Add the last keyframe styles to the current panel to avoid flickering
           // i.e. showing the current panel for a split second between when the animations ends and the panel is hidden
           ...(id === currentPanelId?.id && isThisPanelAnimating
-            ? animations[id][animations[id].length - 1]
+            ? animations[id].keyframes[animations[id].keyframes.length - 1]
             : {}),
 
           ...style,

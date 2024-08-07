@@ -24,6 +24,9 @@ test('should animate to the next panel when the trigger is clicked', async ({
   expect(await getComputedTransform(moreInfoPanel)).toBe('none');
 
   await page.locator('#root button').first().click();
+  await expect(page.locator('#root button').first()).toBeFocused();
+
+  await page.keyboard.press('Enter');
 
   await page.waitForTimeout(100);
 
@@ -31,14 +34,20 @@ test('should animate to the next panel when the trigger is clicked', async ({
   expect(await getComputedTransform(rootPanel)).not.toBe('none');
   expect(await getComputedTransform(moreInfoPanel)).not.toBe('none');
 
+  // Focus should still be on the trigger during the animation
+  await expect(page.locator('#root button').first()).toBeFocused();
+
   await page.waitForTimeout(550);
 
   // Animation end
   expect(await getComputedTransform(rootPanel)).toBe('none');
   expect(await getComputedTransform(moreInfoPanel)).toBe('none');
 
+  // New panel should be focused after the animation
+  await expect(page.locator('#more-info')).toBeFocused();
+
   await expect(page.locator('#root')).not.toBeVisible();
-  await expect(page.locator('#more-info')).toBeVisible();
+  await expect(page.locator('#more-info').first()).toBeVisible();
 });
 
 test(`should not animate when reduced motion is enabled`, async ({ page }) => {
@@ -82,6 +91,10 @@ test('should hide inactive or animating panels', async ({ page }) => {
   await expect(page.locator('#root')).toBeVisible();
   await expect(page.locator('#panel-0')).toBeVisible();
 
+  // During animations, current panel should not be inert while the new panel should be inert
+  await expect(page.locator('#root')).not.toHaveAttribute('inert');
+  await expect(page.locator('#panel-0')).toHaveAttribute('inert');
+
   for (let i = 0; i < pages.length; i++) {
     if (i !== 0) {
       await expect(page.locator(`#panel-${i}`).first()).not.toBeVisible();
@@ -96,6 +109,10 @@ test('should hide inactive or animating panels', async ({ page }) => {
 
   await expect(page.locator('#root')).not.toBeVisible();
   await expect(page.locator('#panel-0')).toBeVisible();
+
+  // After animations, the new panel should not be inert while the current panel should be inert
+  await expect(page.locator('#root')).toHaveAttribute('inert');
+  await expect(page.locator('#panel-0')).not.toHaveAttribute('inert');
 
   for (let i = 1; i < pages.length; i++) {
     await expect(page.locator(`#panel-${i}`).first()).not.toBeVisible();
