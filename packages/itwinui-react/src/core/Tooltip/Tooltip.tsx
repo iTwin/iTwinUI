@@ -165,6 +165,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange,
+    strategy: 'fixed',
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when tooltip is open
