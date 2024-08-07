@@ -190,6 +190,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     placement,
     open,
     onOpenChange,
+    strategy: 'fixed',
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when the popover is open
