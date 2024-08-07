@@ -136,11 +136,11 @@
       "id": "testFilter",
       "description": "Choose a workspace to run tests for",
       "options": [
-        "css-workshop (visual tests)",
-        "react-workshop (visual tests)",
-        "@itwin/itwinui-react",
-        "e2e (end-to-end tests)",
-        "a11y (accessibility tests)"
+        { "label": "visual tests", "value": "css-workshop" },
+        { "label": "visual tests", "value": "react-workshop" },
+        { "label": "unit tests", "value": "@itwin/itwinui-react" },
+        { "label": "end-to-end tests", "value": "e2e" },
+        { "label": "accessibility tests", "value": "a11y" }
       ]
     }
   ]

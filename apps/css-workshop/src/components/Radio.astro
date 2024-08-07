@@ -1,0 +1,9 @@
+---
+type Props = {
+  status?: 'positive' | 'warning' | 'negative';
+} & astroHTML.JSX.HTMLAttributes;
+
+const { status = 'positive', class: className, ...props } = Astro.props;
+---
+
+<input /> class:list={['iui-radio', className]}
