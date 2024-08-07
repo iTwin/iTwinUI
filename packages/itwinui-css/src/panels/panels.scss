@@ -9,4 +9,8 @@
 .iui-panel {
   position: absolute;
   inset: 0;
+
+  &[hidden] {
+    display: none !important;
+  }
 }

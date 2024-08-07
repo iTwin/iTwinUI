@@ -19,3 +19,4 @@ export * from './useControlledState.js';
 export * from './useSyncExternalStore.js';
 export * from './useVirtualScroll.js';
 export * from './useInstance.js';
+export * from './useInertPolyfill.js';

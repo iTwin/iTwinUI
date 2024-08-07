@@ -9,6 +9,7 @@ import {
   getWindow,
   mergeEventHandlers,
   SvgChevronLeft,
+  useInertPolyfill,
   useInstance,
   useMergedRefs,
 } from '../../utils/index.js';
@@ -410,6 +411,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
+  useInertPolyfill();
+
   return (
     <PanelContext.Provider
       value={{
@@ -424,9 +427,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         tabIndex={-1}
         {...rest}
         className={cx('iui-panel', className)}
+        hidden={isHidden}
         style={{
-          display: isHidden ? 'none' : undefined,
-
           // Add the last keyframe styles to the current panel to avoid flickering
           // i.e. showing the current panel for a split second between when the animations ends and the panel is hidden
           ...(id === currentPanelId?.id &&
