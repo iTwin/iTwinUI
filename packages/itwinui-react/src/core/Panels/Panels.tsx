@@ -32,15 +32,6 @@ type PanelsWrapperProps = {
    * The initialPanel that is displayed.
    */
   initialActiveId: string;
-  /**
-   * Pass a value to enter controlled mode. The value object has a few fields:
-   * - `id: string` - The panel to show.
-   * - `direction?: 'prev' | 'next' | 'undefined'`:
-   *   - animates to the new panel in the specified direction or transitions instantly if `undefined`.
-   *   - moves focus to the new panel when `next` or `undefined` and to the trigger when `prev`.
-   */
-  activeId?: CurrentPanelId;
-  /** Useful for controlled mode */
   onActiveIdChange?: (newActiveId: CurrentPanelId) => void;
   children: React.ReactNode;
   /**
@@ -91,7 +82,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const {
     initialActiveId,
     children,
-    activeId: activeIdProp,
     className,
     onActiveIdChange,
     instance,
@@ -186,23 +176,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   );
 
   const changeActivePanel = React.useCallback(
-    async ({
-      newActiveId,
-      ignoreControlledMode = false,
-    }: {
-      newActiveId: CurrentPanelId;
-      /**
-       * By default, the active panel is not changed when in controlled mode.
-       * Pass `true` to change the active panel even when in controlled mode.
-       */
-      ignoreControlledMode?: boolean;
-    }) => {
-      // In controlled mode, users should set the active panel themselves.
-      if (!ignoreControlledMode && activeIdProp != null) {
-        onActiveIdChange?.(newActiveId);
-        return;
-      }
-
+    async (newActiveId: CurrentPanelId) => {
       if (
         // Only if forProp exists in the DOM, go to the new panel.
         // This prevents empty panels with no way to go back.
@@ -238,13 +212,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         }
       }, 0);
     },
-    [
-      activeIdProp,
-      animateToPanel,
-      animations,
-      currentPanelId.id,
-      onActiveIdChange,
-    ],
+    [animateToPanel, animations, currentPanelId.id, onActiveIdChange],
   );
 
   const goBack = React.useCallback(
@@ -254,48 +222,13 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       const trigger = triggers?.current?.get(currentPanelId.id);
       if (trigger?.triggerId != null) {
         changeActivePanel({
-          newActiveId: {
-            id: trigger.panelId,
-            direction: animate ? 'prev' : undefined,
-          },
+          id: trigger.panelId,
+          direction: animate ? 'prev' : undefined,
         });
       }
     },
     [changeActivePanel, currentPanelId.id],
   );
-
-  // When in controlled mode, listen to activeIdProp.id changes and animate accordingly.
-  const [previousActivePanelId, setPreviousActivePanelId] = React.useState<
-    string | undefined
-  >(activeIdProp?.id);
-
-  const syncControlledActiveId = React.useCallback(async () => {
-    if (activeIdProp?.id == previousActivePanelId) {
-      return;
-    }
-    setPreviousActivePanelId(activeIdProp?.id);
-
-    // Go to uncontrolled mode
-    if (activeIdProp == null) {
-      return;
-    }
-
-    if (activeIdProp.id != currentPanelId.id) {
-      changeActivePanel({
-        newActiveId: activeIdProp,
-        ignoreControlledMode: true,
-      });
-    }
-  }, [
-    activeIdProp,
-    changeActivePanel,
-    currentPanelId.id,
-    previousActivePanelId,
-  ]);
-
-  React.useEffect(() => {
-    syncControlledActiveId();
-  }, [syncControlledActiveId]);
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
@@ -303,7 +236,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     <PanelsInstanceProvider instance={instance} goBack={goBack}>
       <PanelsWrapperContext.Provider
         value={{
-          activeId: activeIdProp,
           currentPanelId,
           changeActivePanel,
           goBack,
@@ -327,15 +259,11 @@ PanelsWrapper.displayName = 'Panels.Wrapper';
 
 const PanelsWrapperContext = React.createContext<
   | {
-      activeId?: PanelsWrapperProps['activeId'];
       currentPanelId: CurrentPanelId;
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>
       >;
-      changeActivePanel: (props: {
-        newActiveId: CurrentPanelId;
-        ignoreControlledMode?: boolean;
-      }) => Promise<void>;
+      changeActivePanel: (newActiveId: CurrentPanelId) => Promise<void>;
       goBack: PanelsInstance['goBack'];
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
       animations: Record<string, React.CSSProperties[]> | undefined;
@@ -461,10 +389,8 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 
   const onClick = React.useCallback(() => {
     changeActivePanel?.({
-      newActiveId: {
-        id: forProp,
-        direction: 'next',
-      },
+      id: forProp,
+      direction: 'next',
     });
   }, [changeActivePanel, forProp]);
 

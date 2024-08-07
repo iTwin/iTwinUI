@@ -6,10 +6,8 @@ describe('Panels', () => {
   const storyPath = 'Panels';
   const tests = [
     'Basic',
-    'Controlled',
     'Multi Panel Information Panel',
     'Multi Level List',
-    'Custom Animation',
     'Custom Back Button',
     'Nested Panels',
   ];

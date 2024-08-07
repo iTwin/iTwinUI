@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  Anchor,
   Button,
   Divider,
   Flex,
@@ -52,104 +51,6 @@ export const Basic = () => {
       >
         <Surface.Header as={Panels.Header}>More details</Surface.Header>
         <Surface.Body isPadded>
-          <Text>Content</Text>
-        </Surface.Body>
-      </Panels.Panel>
-    </Panels.Wrapper>
-  );
-};
-
-export const Controlled = () => {
-  const panelIdRoot = React.useId();
-  const panelIdMoreInfo = React.useId();
-
-  const [activeId, setActiveId] = React.useState<
-    React.ComponentPropsWithoutRef<typeof Panels.Wrapper>['activeId']
-  >({ id: panelIdRoot });
-
-  const panels = Panels.useInstance();
-
-  return (
-    <Panels.Wrapper
-      instance={panels}
-      initialActiveId={panelIdRoot}
-      activeId={activeId}
-      onActiveIdChange={(newActiveId) => setActiveId(newActiveId)}
-      as={Surface}
-      style={{
-        inlineSize: 'min(300px, 30vw)',
-        blockSize: 'min(500px, 50vh)',
-      }}
-    >
-      <Panels.Panel id={panelIdRoot}>
-        <Surface.Header as={Panels.Header}>Root</Surface.Header>
-
-        <Surface.Body
-          isPadded
-          as={Flex}
-          flexDirection='column'
-          alignItems='stretch'
-        >
-          <Text>Next panel using setState():</Text>
-          <Flex alignItems='flex-start' flexDirection='column'>
-            <Anchor
-              as='button'
-              onClick={() => {
-                setActiveId({ id: panelIdMoreInfo, direction: 'next' });
-              }}
-            >
-              With animation
-            </Anchor>
-            <Anchor
-              as='button'
-              onClick={() => {
-                setActiveId({ id: panelIdMoreInfo });
-              }}
-            >
-              Without animation
-            </Anchor>
-          </Flex>
-
-          <Divider />
-
-          <List>
-            <ListItem>
-              <Panels.Trigger for={panelIdMoreInfo}>
-                <ListItem.Action>{`Next panel (using <Panels.Trigger>)`}</ListItem.Action>
-              </Panels.Trigger>
-            </ListItem>
-          </List>
-        </Surface.Body>
-      </Panels.Panel>
-
-      <Panels.Panel
-        id={panelIdMoreInfo}
-        as={Flex}
-        flexDirection='column'
-        alignItems='stretch'
-      >
-        <Surface.Header as={Panels.Header}>More details</Surface.Header>
-        <Surface.Body
-          isPadded
-          as={Flex}
-          alignItems='flex-start'
-          flexDirection='column'
-        >
-          <Text>useInstance() methods:</Text>
-          <Flex alignItems='flex-start' flexDirection='column'>
-            <Anchor as='button' onClick={() => panels.goBack()}>
-              Go back (with animation)
-            </Anchor>
-            <Anchor
-              as='button'
-              onClick={() => panels.goBack({ animate: false })}
-            >
-              Go back (without animation)
-            </Anchor>
-          </Flex>
-
-          <Divider />
-
           <Text>Content</Text>
         </Surface.Body>
       </Panels.Panel>
@@ -241,10 +142,6 @@ export const MultiLevelList = () => {
     string[]
   >([]);
 
-  const [activeId, setActiveId] = React.useState<
-    React.ComponentPropsWithoutRef<typeof Panels.Wrapper>['activeId']
-  >({ id: initialActiveId });
-
   const panels = Panels.useInstance();
 
   const _Item = React.useCallback(
@@ -324,8 +221,6 @@ export const MultiLevelList = () => {
         instance={panels}
         as={Surface}
         initialActiveId={initialActiveId}
-        activeId={activeId}
-        onActiveIdChange={setActiveId}
         style={{
           inlineSize: 'min(200px, 30vw)',
           blockSize: 'min(250px, 50vh)',
