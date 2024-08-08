@@ -19,7 +19,6 @@ import {
   autoPlacement,
   hide,
   inline,
-  useDelayGroupContext,
   useDelayGroup,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
@@ -200,9 +199,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
     [ariaStrategy, id],
   );
 
-  const { delay } = useDelayGroupContext();
-
-  useDelayGroup(floating.context, { id: useId() });
+  const { delay } = useDelayGroup(floating.context, { id: useId() });
 
   const interactions = useInteractions([
     useHover(floating.context, {
