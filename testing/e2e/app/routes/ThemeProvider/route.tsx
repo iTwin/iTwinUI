@@ -3,7 +3,18 @@ import * as ReactDOM from 'react-dom';
 import { useSearchParams } from '@remix-run/react';
 import { ThemeProvider, Tooltip } from '@itwin/itwinui-react';
 
-export default function ThemeProviderExample() {
+export default function Page() {
+  const [searchParams] = useSearchParams();
+  const themeSwitch = searchParams.get('themeSwitch') === 'true';
+
+  if (themeSwitch) {
+    return <ThemeSwitchTest />;
+  }
+
+  return <ThemeProviderTests />;
+}
+
+const ThemeProviderTests = () => {
   const [searchParams] = useSearchParams();
 
   const nested = searchParams.get('nested') === 'true';
@@ -79,7 +90,7 @@ export default function ThemeProviderExample() {
       {portaled && <PortaledTest />}
     </ThemeProvider>
   );
-}
+};
 
 /** https://github.com/iTwin/iTwinUI/issues/2082 */
 const PortaledTest = () => {
@@ -98,6 +109,39 @@ const PortaledTest = () => {
           </ThemeProvider>,
           portaledTarget,
         )}
+    </>
+  );
+};
+
+const ThemeSwitchTest = () => {
+  const [theme, setTheme] = React.useState<'dark' | 'light'>('dark');
+  const [highContrast, setHighContrast] = React.useState(false);
+
+  return (
+    <>
+      <button
+        onClick={() =>
+          setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
+        }
+      >
+        Toggle theme
+      </button>
+
+      <button onClick={() => setHighContrast((hc) => !hc)}>
+        Toggle high contrast
+      </button>
+
+      <hr />
+
+      <ThemeProvider
+        className='MainRoot'
+        theme={theme}
+        themeOptions={{ highContrast }}
+      >
+        <Tooltip content='tooltip' visible placement='bottom'>
+          <button>hello</button>
+        </Tooltip>
+      </ThemeProvider>
     </>
   );
 };

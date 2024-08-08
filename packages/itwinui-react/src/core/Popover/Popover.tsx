@@ -190,6 +190,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     placement,
     open,
     onOpenChange,
+    strategy: 'fixed',
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when the popover is open
@@ -401,11 +402,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
             portalContainer={popoverElement} // portal nested popovers into this one
           >
             <DisplayContents />
-            <FloatingFocusManager
-              context={popover.context}
-              modal={false}
-              initialFocus={popover.refs.floating}
-            >
+            <FloatingFocusManager context={popover.context} modal={false}>
               <Box
                 className={cx(
                   { 'iui-popover-surface': applyBackground },
