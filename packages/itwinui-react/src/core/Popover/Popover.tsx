@@ -206,13 +206,14 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           middleware.shift && shift({ padding: 4 }),
           matchWidth &&
             size({
+              padding: 4,
               apply: ({ rects }) => {
                 setReferenceWidth(rects.reference.width);
               },
             } as SizeOptions),
-          middleware.autoPlacement && autoPlacement(),
+          middleware.autoPlacement && autoPlacement({ padding: 4 }),
           middleware.inline && inline(),
-          middleware.hide && hide(),
+          middleware.hide && hide({ padding: 4 }),
         ].filter(Boolean),
       [matchWidth, middleware],
     ),
