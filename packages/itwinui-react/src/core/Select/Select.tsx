@@ -418,6 +418,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     visible: isOpen,
     matchWidth: true,
     closeOnOutsideClick: true,
+    middleware: { size: { maxHeight: 'var(--iui-menu-max-height)' } },
     ...popoverProps,
     onVisibleChange: (open) => (open ? show() : hide()),
   });
