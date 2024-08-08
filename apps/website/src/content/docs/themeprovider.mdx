@@ -108,7 +108,7 @@ const Application = () => {
 
 ## Portals
 
-By default, `ThemeProvider` will also be re-used as a [portal](https://react.dev/reference/react-dom/createPortal) target for floating elements (e.g. [`Tooltip`](tooltip), [`Toast`](toast), [`DropdownMenu`](dropdownmenu), [`Dialog`](dialog), etc).
+By default, `ThemeProvider` will use an element at the end of `<body>` as the [portal](https://react.dev/reference/react-dom/createPortal) target for floating elements (e.g. [`Tooltip`](tooltip), [`Toast`](toast), [`DropdownMenu`](dropdownmenu), [`Dialog`](dialog), etc).
 
 If you want to specify a different element as the portal target for all components within a tree, the `portalContainer` prop can be used.
 

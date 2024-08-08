@@ -17,9 +17,10 @@ it('should work', () => {
   );
 
   expect(document.querySelector('main')).toBeEmptyDOMElement();
-  expect(
-    screen.getByTestId('root').querySelector(':scope > div'),
-  ).toHaveTextContent('thing');
+  expect(screen.getByTestId('root')).not.toHaveTextContent('thing');
+  expect(document.querySelector('body > [data-iui-portal]')).toHaveTextContent(
+    'thing',
+  );
 });
 
 it('should allow turning off', () => {
@@ -32,9 +33,9 @@ it('should allow turning off', () => {
   );
 
   expect(document.querySelector('main')).toHaveTextContent('thing');
-  expect(
-    screen.getByTestId('root').querySelector(':scope > div'),
-  ).toHaveTextContent('');
+  expect(document.querySelector('[data-iui-portal]')).not.toHaveTextContent(
+    'thing',
+  );
 });
 
 it('should accept an element', () => {
@@ -48,6 +49,9 @@ it('should accept an element', () => {
 
   expect(document.querySelector('main')).toBeEmptyDOMElement();
   expect(screen.getByTestId('root')).toHaveTextContent('');
+  expect(
+    document.querySelector('body > [data-iui-portal]'),
+  ).not.toHaveTextContent('thing');
   expect(document.body).toHaveTextContent('thing');
 });
 
@@ -79,8 +83,9 @@ it.each([null, undefined, () => null, () => undefined])(
     );
 
     expect(document.querySelector('main')).toBeEmptyDOMElement();
+    expect(screen.getByTestId('root')).not.toHaveTextContent('thing');
     expect(
-      screen.getByTestId('root').querySelector(':scope > div'),
+      document.querySelector('body > [data-iui-portal]'),
     ).toHaveTextContent('thing');
   },
 );

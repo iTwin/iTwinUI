@@ -94,14 +94,14 @@
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
     "lint:fix": "pnpm lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
-    "dev": "pnpm clean:build && concurrently \"pnpm dev:esm\" \"pnpm dev:cjs\" \"pnpm build:styles --watch\" \"pnpm dev:types\"",
+    "dev": "pnpm clean:build && concurrently \"pnpm dev:esm\" \"pnpm dev:cjs\" \"pnpm dev:styles\" \"pnpm dev:types\"",
     "dev:esm": "swc src -d esm --watch --strip-leading-paths",
     "dev:cjs": "swc src -d cjs --watch --strip-leading-paths -C module.type=commonjs",
     "dev:types": "concurrently \"tsc -p tsconfig.build.json --outDir esm --watch --preserveWatchOutput\" \"tsc -p tsconfig.build.json --outDir cjs --watch --preserveWatchOutput\"",
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.20",
+    "@floating-ui/react": "^0.26.22",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@swc/helpers": "^0.5.11",
     "@tanstack/react-virtual": "^3.8.2",

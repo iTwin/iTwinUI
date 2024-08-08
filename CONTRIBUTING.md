@@ -58,6 +58,13 @@ _Please note this command is case sensitive. e.g. `Alert`, not `alert`._
 
 `pnpm lint`
 
+### To run commands using VSCode Tasks
+
+Commands available in this repo can be run using VSCode Tasks which can be used in two ways:
+
+- `Run task` from VSCode Search Bar: you can access the tasks using the top search bar (or press `Ctrl` + `Shift` + `P`) then search for `Run task`. A list of tasks should be displayed with the most recent used tasks on top, followed by the rest of available tasks.
+- `Tasks` VSCode Extension: otherwise, you can install the `Tasks` extension so that all available tasks appear in the bottom taskbar.
+
 ---
 
 ## Developing
