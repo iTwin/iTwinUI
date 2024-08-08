@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { useSynchronizeInstance } from '../../utils/index.js';
 
-export type CurrentPanelId = { id: string; direction?: 'prev' | 'next' };
+export type ActivePanel = { id: string; direction?: 'prev' | 'next' };
 
 export type PanelsInstance = {
   /** Go back to the panel that has a trigger that points to the current panel. */
@@ -55,8 +55,6 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
 // ----------------------------------------------------------------------------
 
 export type PanelAnimationState = {
-  currentPanelId: CurrentPanelId;
-  setCurrentPanelId: React.Dispatch<React.SetStateAction<CurrentPanelId>>;
   animatingToPanelId?: string;
   animations?: Record<
     string,

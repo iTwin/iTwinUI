@@ -21,7 +21,7 @@ import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
 import { panelAnimationReducer, PanelsInstanceProvider } from './helpers.js';
 import type {
-  CurrentPanelId,
+  ActivePanel,
   PanelAnimationState,
   PanelsInstance,
   TriggerMapEntry,
@@ -32,7 +32,7 @@ type PanelsWrapperProps = {
    * The initialPanel that is displayed.
    */
   initialActiveId: string;
-  onActiveIdChange?: (newActiveId: CurrentPanelId) => void;
+  onActiveIdChange?: (newActiveId: ActivePanel) => void;
   children: React.ReactNode;
   /**
    * Pass an instance created by `useInstance` to control the panels imperatively.
@@ -90,18 +90,18 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const panelElements = React.useRef<Record<string, HTMLElement | null>>({});
 
-  const [currentPanelId, setCurrentPanelId] = React.useState<CurrentPanelId>({
+  const [activePanel, setActivePanel] = React.useState<ActivePanel>({
     id: initialActiveId,
   });
 
-  // Reducer to manage panel animations
-  const [{ animations }, dispatch] = React.useReducer(panelAnimationReducer, {
-    currentPanelId,
-    setCurrentPanelId,
-  } satisfies PanelAnimationState);
+  // Reducer to manage panel animations state
+  const [{ animations }, dispatch] = React.useReducer(
+    panelAnimationReducer,
+    {} satisfies PanelAnimationState,
+  );
 
   const animateToPanel = React.useCallback(
-    async (newActiveId: CurrentPanelId) => {
+    async (newActivePanel: ActivePanel) => {
       const motionOk = getWindow()?.matchMedia(
         '(prefers-reduced-motion: no-preference)',
       )?.matches;
@@ -112,7 +112,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // Page transition already in progress
         animations != null ||
         // No animation to show
-        newActiveId.direction == null
+        newActivePanel.direction == null ||
+        // Same panel
+        activePanel.id === newActivePanel.id
       ) {
         return;
       }
@@ -122,8 +124,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         easing: 'ease-out',
       };
 
-      const activePanelElement = panelElements.current[currentPanelId.id];
-      const newActivePanelElement = panelElements.current[newActiveId.id];
+      const activePanelElement = panelElements.current[activePanel.id];
+      const newActivePanelElement = panelElements.current[newActivePanel.id];
       const isNewPanelPrecedingActivePanel =
         !!newActivePanelElement &&
         !!activePanelElement &&
@@ -133,7 +135,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         );
 
       const keyframes = (() => {
-        if (newActiveId.direction === 'next') {
+        if (newActivePanel.direction === 'next') {
           if (isNewPanelPrecedingActivePanel) {
             return {
               activePanel: [
@@ -185,19 +187,19 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       })();
 
       const animationsData = {
-        [currentPanelId.id]: {
+        [activePanel.id]: {
           isDestinationPanel: false,
           keyframes: keyframes.activePanel,
         },
-        [newActiveId.id]: {
+        [newActivePanel.id]: {
           isDestinationPanel: true,
           keyframes: keyframes.newActivePanel,
         },
       };
 
       dispatch({
-        type: newActiveId.direction,
-        animatingToPanelId: newActiveId.id,
+        type: newActivePanel.direction,
+        animatingToPanelId: newActivePanel.id,
         animations: animationsData,
         panelElements,
       });
@@ -222,11 +224,11 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       dispatch({ type: 'endAnimation' });
     },
-    [animations, currentPanelId.id],
+    [animations, activePanel.id],
   );
 
   const changeActivePanel = React.useCallback(
-    async (newActiveId: CurrentPanelId) => {
+    async (newActiveId: ActivePanel) => {
       if (
         // Only if forProp exists in the DOM, go to the new panel.
         // This prevents empty panels with no way to go back.
@@ -234,14 +236,14 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // Animation already in progress
         animations != null ||
         // Same panel
-        newActiveId.id === currentPanelId.id
+        newActiveId.id === activePanel.id
       ) {
         return;
       }
 
       await animateToPanel(newActiveId);
 
-      setCurrentPanelId(newActiveId);
+      setActivePanel(newActiveId);
       onActiveIdChange?.(newActiveId);
 
       // Move focus if a direction is specified
@@ -249,7 +251,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       // - `next` or undefined: Focus the new panel
       setTimeout(() => {
         if (newActiveId.direction === 'prev') {
-          const trigger = triggers?.current?.get(currentPanelId.id);
+          const trigger = triggers?.current?.get(activePanel.id);
           if (trigger?.triggerId != null) {
             document
               .getElementById(trigger.triggerId)
@@ -262,14 +264,14 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         }
       }, 0);
     },
-    [animateToPanel, animations, currentPanelId.id, onActiveIdChange],
+    [animateToPanel, animations, activePanel.id, onActiveIdChange],
   );
 
   const goBack = React.useCallback(
     async (options?: { animate?: boolean }) => {
       const { animate = true } = options ?? {};
 
-      const trigger = triggers?.current?.get(currentPanelId.id);
+      const trigger = triggers?.current?.get(activePanel.id);
       if (trigger?.triggerId != null) {
         changeActivePanel({
           id: trigger.panelId,
@@ -277,7 +279,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         });
       }
     },
-    [changeActivePanel, currentPanelId.id],
+    [changeActivePanel, activePanel.id],
   );
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
@@ -286,7 +288,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     <PanelsInstanceProvider instance={instance} goBack={goBack}>
       <PanelsWrapperContext.Provider
         value={{
-          currentPanelId,
+          activePanel,
           changeActivePanel,
           goBack,
           triggers,
@@ -309,11 +311,11 @@ PanelsWrapper.displayName = 'Panels.Wrapper';
 
 const PanelsWrapperContext = React.createContext<
   | {
-      currentPanelId: CurrentPanelId;
+      activePanel: ActivePanel;
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>
       >;
-      changeActivePanel: (newActiveId: CurrentPanelId) => Promise<void>;
+      changeActivePanel: (newActiveId: ActivePanel) => Promise<void>;
       goBack: PanelsInstance['goBack'];
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
       animations: PanelAnimationState['animations'];
@@ -343,7 +345,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, style, ...rest } = props;
 
-  const { currentPanelId, triggers, panelElements, animations } =
+  const { activePanel, triggers, panelElements, animations } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
@@ -359,8 +361,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const isHidden = arePanelsAnimating
     ? !Object.keys(animations).includes(id)
-    : id !== currentPanelId?.id;
-  const isInert = id !== currentPanelId?.id && !isHidden;
+    : id !== activePanel?.id;
+  const isInert = id !== activePanel?.id && !isHidden;
 
   useInertPolyfill();
 
@@ -384,7 +386,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         style={{
           // Add the last keyframe styles to the current panel to avoid flickering
           // i.e. showing the current panel for a split second between when the animations ends and the panel is hidden
-          ...(id === currentPanelId?.id && isThisPanelAnimating
+          ...(id === activePanel?.id && isThisPanelAnimating
             ? animations[id].keyframes[animations[id].keyframes.length - 1]
             : {}),
 
@@ -430,7 +432,7 @@ type PanelTriggerProps = {
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
-  const { changeActivePanel, triggers, currentPanelId } =
+  const { changeActivePanel, triggers, activePanel } =
     React.useContext(PanelsWrapperContext) || {};
   const { id: panelId } = React.useContext(PanelContext) || {};
 
@@ -461,7 +463,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
       ...children.props,
       id: triggerId,
       onClick: mergeEventHandlers(children.props.onClick, onClick),
-      'aria-expanded': currentPanelId?.id === forProp,
+      'aria-expanded': activePanel?.id === forProp,
       'aria-controls': forProp,
     };
   });
