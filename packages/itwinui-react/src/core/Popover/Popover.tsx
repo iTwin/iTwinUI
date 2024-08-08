@@ -74,7 +74,7 @@ type PopoverOptions = {
   /**
    * Middleware options.
    *
-   * By default, `flip` and `shift` are enabled.
+   * By default, `flip`, `shift` and `size` are enabled.
    *
    * @see https://floating-ui.com/docs/middleware
    */
@@ -86,7 +86,7 @@ type PopoverOptions = {
       | boolean
       | {
           /**
-           * Override the maximum height of the popover.
+           * Override the maximum height of the popover. Must be a CSS-compatible value.
            * @default "400px"
            */
           maxHeight?: string;
