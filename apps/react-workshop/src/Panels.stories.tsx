@@ -118,10 +118,10 @@ export const MultiPanelInformationPanel = () => {
               height: '100%',
             }}
           >
-            <Text>{`Content for panel ${panel.id}`}</Text>
+            <Text>{`Content for ${panel.id}`}</Text>
             <Flex.Spacer />
             <Divider />
-            <Text>{`Footer for panel ${panel.id}`}</Text>
+            <Text>{`Footer for ${panel.id}`}</Text>
           </Surface.Body>
         </Panels.Panel>
       ))}

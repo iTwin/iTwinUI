@@ -122,32 +122,76 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         easing: 'ease-out',
       };
 
+      const activePanelElement = panelElements.current[currentPanelId.id];
+      const newActivePanelElement = panelElements.current[newActiveId.id];
+      const isNewPanelPrecedingActivePanel =
+        !!newActivePanelElement &&
+        !!activePanelElement &&
+        !!(
+          activePanelElement.compareDocumentPosition(newActivePanelElement) &
+          Node.DOCUMENT_POSITION_PRECEDING
+        );
+
+      const keyframes = (() => {
+        if (newActiveId.direction === 'next') {
+          if (isNewPanelPrecedingActivePanel) {
+            return {
+              activePanel: [
+                { transform: 'translateX(-100%)' },
+                { transform: 'translateX(-200%)' },
+              ],
+              newActivePanel: [
+                { transform: 'translateX(100%)' },
+                { transform: 'translateX(0)' },
+              ],
+            };
+          } else {
+            return {
+              activePanel: [
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-100%)' },
+              ],
+              newActivePanel: [
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-100%)' },
+              ],
+            };
+          }
+        } else {
+          if (isNewPanelPrecedingActivePanel) {
+            return {
+              activePanel: [
+                { transform: 'translateX(-100%)' },
+                { transform: 'translateX(0)' },
+              ],
+              newActivePanel: [
+                { transform: 'translateX(-100%)' },
+                { transform: 'translateX(0)' },
+              ],
+            };
+          } else {
+            return {
+              activePanel: [
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(100%)' },
+              ],
+              newActivePanel: [
+                { transform: 'translateX(-200%)' },
+                { transform: 'translateX(-100%)' },
+              ],
+            };
+          }
+        }
+      })();
+
       const animationsData = {
         [currentPanelId.id]: {
           isDestinationPanel: false,
-          keyframes:
-            newActiveId.direction === 'next'
-              ? [
-                  { transform: 'translateX(0)' },
-                  { transform: 'translateX(-100%)' },
-                ]
-              : [
-                  { transform: 'translateX(0)' },
-                  { transform: 'translateX(100%)' },
-                ],
+          keyframes: keyframes.activePanel,
         },
         [newActiveId.id]: {
           isDestinationPanel: true,
-          keyframes:
-            newActiveId.direction === 'next'
-              ? [
-                  { transform: 'translateX(100%)' },
-                  { transform: 'translateX(0)' },
-                ]
-              : [
-                  { transform: 'translateX(-100%)' },
-                  { transform: 'translateX(0)' },
-                ],
+          keyframes: keyframes.newActivePanel,
         },
       };
 
@@ -178,7 +222,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       dispatch({ type: 'endAnimation' });
     },
-    [animations, currentPanelId],
+    [animations, currentPanelId.id],
   );
 
   const changeActivePanel = React.useCallback(
