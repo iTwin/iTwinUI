@@ -229,9 +229,9 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
                 }
               },
             } as SizeOptions),
-          middleware.autoPlacement && autoPlacement(),
+          middleware.autoPlacement && autoPlacement({ padding: 4 }),
           middleware.inline && inline(),
-          middleware.hide && hide(),
+          middleware.hide && hide({ padding: 4 }),
         ].filter(Boolean),
       [matchWidth, middleware],
     ),
