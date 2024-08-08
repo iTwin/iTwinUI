@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.14.0
+
+### Minor Changes
+
+- [#2153](https://github.com/iTwin/iTwinUI/pull/2153): Nested `ThemeProvider`s will now reuse the same toaster instead of creating new ones.
+- [#2187](https://github.com/iTwin/iTwinUI/pull/2187): Floating elements will now use `position: fixed` instead of `position: absolute`.
+  - This fixes some issues when a floating element is placed near the edge of the viewport.
+  - Some components affected: `Tooltip`, `Popover`, `Select`, `DropdownMenu`, `ComboBox`, etc.
+- [#2169](https://github.com/iTwin/iTwinUI/pull/2169): Bumped the minimum version of `@floating-ui/react` to `0.26.22`.
+
+### Patch Changes
+
+- [#2185](https://github.com/iTwin/iTwinUI/pull/2185): Portal containers will now default to a `<div>` rendered at the end of `<body>` instead of a `<div>` rendered inside the `<ThemeProvider>`.
+- [#2178](https://github.com/iTwin/iTwinUI/pull/2178): Reduced layout thrashing on `Table` component by memoizing an expensive `ref` function.
+- [#2168](https://github.com/iTwin/iTwinUI/pull/2168): Adjusted focus management in `Popover` so that it allows interactive elements inside the popover to be more easily focused. This more closely matches the behavior of the HTML `<dialog>` element, which focuses the first interactive element inside it.
+- [#2189](https://github.com/iTwin/iTwinUI/pull/2189): Floating elements will now have a few pixels of padding from the edge of the viewport.
+
 ## 3.13.4
 
 ### Patch Changes
