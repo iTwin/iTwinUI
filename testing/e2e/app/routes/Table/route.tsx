@@ -1,14 +1,36 @@
-import { Table, tableFilters } from '@itwin/itwinui-react';
+import {
+  Table,
+  tableFilters,
+  TablePaginator,
+  TablePaginatorRendererProps,
+} from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import React from 'react';
+import * as React from 'react';
 
-export default function Resizing() {
+export default function TableTest() {
   const [searchParams] = useSearchParams();
 
+  const config = getConfigFromSearchParams(searchParams);
+  const { exampleType } = config;
+
+  return exampleType === 'withTablePaginator' ? (
+    <WithTablePaginator config={config} />
+  ) : (
+    <Default config={config} />
+  );
+}
+
+const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
+  const exampleType = searchParams.get('exampleType') || 'default';
   const disableResizing = searchParams.get('disableResizing') === 'true';
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
+  const density = (searchParams.get('density') || undefined) as
+    | 'default'
+    | 'condensed'
+    | 'extra-condensed'
+    | undefined;
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const subRows = searchParams.get('subRows') === 'true';
   const filter = searchParams.get('filter') === 'true';
@@ -20,22 +42,48 @@ export default function Resizing() {
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
 
-  const virtualizedData = React.useMemo(() => {
-    const size = oneRow ? 1 : 100000;
-    if (empty) {
-      return [];
-    }
-    const arr = new Array(size);
-    for (let i = 0; i < size; ++i) {
-      arr[i] = {
-        index: i,
-        name: `Name${i}`,
-        description: `Description${i}`,
-        id: i,
-      };
-    }
-    return arr;
-  }, [oneRow, empty]);
+  return {
+    exampleType,
+    disableResizing,
+    columnResizeMode,
+    maxWidths,
+    minWidths,
+    density,
+    isSelectable,
+    subRows,
+    filter,
+    selectSubRows,
+    enableVirtualization,
+    empty,
+    scroll,
+    oneRow,
+    stateReducer,
+    scrollRow,
+  };
+};
+
+const Default = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const {
+    subRows,
+    oneRow,
+    empty,
+    columnResizeMode,
+    density,
+    disableResizing,
+    enableVirtualization,
+    filter,
+    isSelectable,
+    maxWidths,
+    minWidths,
+    scroll,
+    scrollRow,
+    selectSubRows,
+    stateReducer,
+  } = config;
 
   const data = subRows
     ? [
@@ -114,6 +162,22 @@ export default function Resizing() {
     [],
   );
 
+  const virtualizedData = React.useMemo(() => {
+    const size = oneRow ? 1 : 100000;
+    const arr = new Array(size);
+    if (!empty) {
+      for (let i = 0; i < size; ++i) {
+        arr[i] = {
+          index: i,
+          name: `Name${i}`,
+          description: `Description${i}`,
+          id: i,
+        };
+      }
+    }
+    return arr;
+  }, [oneRow, empty]);
+
   return (
     <>
       <Table
@@ -130,7 +194,7 @@ export default function Resizing() {
             accessor: 'name',
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
-            disableResizing,
+            disableResizing: disableResizing,
             Filter: filter ? tableFilters.TextFilter() : undefined,
           },
           {
@@ -150,6 +214,7 @@ export default function Resizing() {
         isRowDisabled={isRowDisabled}
         isSelectable={isSelectable}
         isSortable
+        density={density}
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
@@ -173,4 +238,65 @@ export default function Resizing() {
       />
     </>
   );
-}
+};
+
+const WithTablePaginator = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const { density } = config;
+
+  const columns = React.useMemo(
+    () => [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
+      },
+    ],
+    [],
+  );
+
+  const data = React.useMemo(
+    () =>
+      Array(505)
+        .fill(null)
+        .map((_, index) => ({
+          name: `Name ${index}`,
+          description: `Description ${index}`,
+        })),
+    [],
+  );
+
+  const paginator = React.useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator id='paginator' {...props} />
+    ),
+    [],
+  );
+
+  return (
+    <>
+      <div id='container' style={{ height: '80vh' }}>
+        <Table
+          style={{ height: '100%' }}
+          emptyTableContent='No data.'
+          columns={columns}
+          data={data}
+          pageSize={50}
+          density={density}
+          paginatorRenderer={paginator}
+        />
+      </div>
+    </>
+  );
+};
