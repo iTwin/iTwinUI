@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useOverflow } from '../hooks/useOverflow.js';
 import type { CommonProps } from '../props.js';
+import { OverflowContainer } from './OverflowContainer.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -46,21 +46,23 @@ export type MiddleTextTruncationProps = {
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
 
-  const [ref, visibleCount] = useOverflow(text);
-
-  const truncatedText = React.useMemo(() => {
-    if (visibleCount < text.length) {
-      return `${text.substring(
-        0,
-        visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
-      )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
-    } else {
-      return text;
-    }
-  }, [endCharsCount, text, visibleCount]);
+  const truncatedText = React.useCallback(
+    (visibleCount: number) => {
+      if (visibleCount < text.length) {
+        return `${text.substring(
+          0,
+          visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
+        )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
+      } else {
+        return text;
+      }
+    },
+    [endCharsCount, text],
+  );
 
   return (
-    <span
+    <OverflowContainer
+      as='span'
       style={{
         display: 'flex',
         minWidth: 0,
@@ -68,11 +70,14 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
         whiteSpace: 'nowrap',
         ...style,
       }}
-      ref={ref}
+      itemsLength={text.length}
       {...rest}
     >
-      {textRenderer?.(truncatedText, text) ?? truncatedText}
-    </span>
+      {(visibleCount) =>
+        textRenderer?.(truncatedText(visibleCount), text) ??
+        truncatedText(visibleCount)
+      }
+    </OverflowContainer>
   );
 };
 if (process.env.NODE_ENV === 'development') {

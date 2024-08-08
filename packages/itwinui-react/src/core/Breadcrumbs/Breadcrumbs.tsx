@@ -5,8 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useMergedRefs,
-  useOverflow,
   SvgChevronRight,
   Box,
   createWarningLogger,
@@ -14,6 +12,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
+import { OverflowContainer } from '../../utils/components/OverflowContainer.js';
 
 const logWarning = createWarningLogger();
 
@@ -124,62 +123,67 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [overflowRef, visibleCount] = useOverflow(items);
-  const refs = useMergedRefs(overflowRef, ref);
-
   return (
     <Box
       as='nav'
       className={cx('iui-breadcrumbs', className)}
-      ref={refs}
+      ref={ref}
       aria-label='Breadcrumb'
       {...rest}
     >
-      <Box as='ol' className='iui-breadcrumbs-list'>
-        {visibleCount > 1 && (
+      <OverflowContainer
+        as='ol'
+        className='iui-breadcrumbs-list'
+        itemsLength={items.length}
+      >
+        {(visibleCount: number) => (
           <>
-            <ListItem item={items[0]} isActive={currentIndex === 0} />
-            <Separator separator={separator} />
-          </>
-        )}
-        {items.length - visibleCount > 0 && (
-          <>
-            <Box as='li' className='iui-breadcrumbs-item'>
-              {overflowButton ? (
-                overflowButton(visibleCount)
-              ) : (
-                <Box as='span' className='iui-breadcrumbs-content'>
-                  …
+            {visibleCount > 1 && (
+              <>
+                <ListItem item={items[0]} isActive={currentIndex === 0} />
+                <Separator separator={separator} />
+              </>
+            )}
+            {items.length - visibleCount > 0 && (
+              <>
+                <Box as='li' className='iui-breadcrumbs-item'>
+                  {overflowButton ? (
+                    overflowButton(visibleCount)
+                  ) : (
+                    <Box as='span' className='iui-breadcrumbs-content'>
+                      …
+                    </Box>
+                  )}
                 </Box>
-              )}
-            </Box>
-            <Separator separator={separator} />
+                <Separator separator={separator} />
+              </>
+            )}
+            {items
+              .slice(
+                visibleCount > 1
+                  ? items.length - visibleCount + 1
+                  : items.length - 1,
+              )
+              .map((_, _index) => {
+                const index =
+                  visibleCount > 1
+                    ? 1 + (items.length - visibleCount) + _index
+                    : items.length - 1;
+                return (
+                  <React.Fragment key={index}>
+                    <ListItem
+                      item={items[index]}
+                      isActive={currentIndex === index}
+                    />
+                    {index < items.length - 1 && (
+                      <Separator separator={separator} />
+                    )}
+                  </React.Fragment>
+                );
+              })}
           </>
         )}
-        {items
-          .slice(
-            visibleCount > 1
-              ? items.length - visibleCount + 1
-              : items.length - 1,
-          )
-          .map((_, _index) => {
-            const index =
-              visibleCount > 1
-                ? 1 + (items.length - visibleCount) + _index
-                : items.length - 1;
-            return (
-              <React.Fragment key={index}>
-                <ListItem
-                  item={items[index]}
-                  isActive={currentIndex === index}
-                />
-                {index < items.length - 1 && (
-                  <Separator separator={separator} />
-                )}
-              </React.Fragment>
-            );
-          })}
-      </Box>
+      </OverflowContainer>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', BreadcrumbsProps>;
