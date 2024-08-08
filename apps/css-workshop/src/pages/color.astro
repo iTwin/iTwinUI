@@ -157,6 +157,10 @@ import Layout from './_layout.astro';
     .demo-text-disabled {
       color: var(--iui-color-text-disabled);
     }
+
+    .demo-text-disabled-hover {
+      color: var(--iui-color-text-disabled-hover);
+    }
     .demo-text-informational,
     .demo-text-positive,
     .demo-text-warning,
@@ -184,6 +188,9 @@ import Layout from './_layout.astro';
     }
     .demo-icon-disabled {
       color: var(--iui-color-icon-disabled);
+    }
+    .demo-icon-disabled-hover {
+      color: var(--iui-color-icon-disabled-hover);
     }
     [class^='demo-icon'] {
       user-select: none;
@@ -306,7 +313,10 @@ import Layout from './_layout.astro';
       <h2 class='iui-text-title iui-text-spacing'>Background disabled</h2>
       <ul>
         <li class='iui-text-block'>Text</li>
-        <li class='iui-text-block demo-text-disabled'>Disabled</li>
+        <li class='iui-text-block demo-text-disabled-hover'>Disabled text hover</li>
+        <li class='iui-text-block demo-text-disabled'>Disabled text</li>
+        <li class='iui-text-block demo-icon-disabled-hover'>Disabled icon hover</li>
+        <li class='iui-text-block demo-icon-disabled'>Disabled icon</li>
       </ul>
       <ul class='demo-hover-backgrounds'>
         <li class='demo-background-hover'>Background hover</li>
