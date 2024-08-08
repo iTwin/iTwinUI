@@ -1,0 +1,118 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Dialog | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Dialog"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/dialog.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/dialog.html"><link rel="stylesheet" href="./_astro/alert.DIQyz1En.css" />
+<link rel="stylesheet" href="./_astro/dialog.CLRAxzFP.css" /><script type="module" src="./_astro/hoisted.Nt4vdOCz.js"></script></head> <body class="iui-root" data-iui-theme> <theme-button></theme-button>    <h1>Dialog</h1> <hr> <div class="iui-input-grid iui-inline-label"> <div class="iui-input-label">Dialog Placement</div> <div class="iui-input-group"> <label class="iui-radio-wrapper"> <input class="iui-radio" type="radio" name="dialog-placement" value="" checked> <span class="iui-radio-label">Centered</span> </label> <label class="iui-radio-wrapper"> <input class="iui-radio" type="radio" name="dialog-placement" value="top-left"> <span class="iui-radio-label">Top-left</span> </label> <label class="iui-radio-wrapper"> <input class="iui-radio" type="radio" name="dialog-placement" value="top-right"> <span class="iui-radio-label">Top-right</span> </label> <label class="iui-radio-wrapper"> <input class="iui-radio" type="radio" name="dialog-placement" value="bottom-left"> <span class="iui-radio-label">Bottom-left</span> </label> <label class="iui-radio-wrapper"> <input class="iui-radio" type="radio" name="dialog-placement" value="bottom-right"> <span class="iui-radio-label">Bottom-right</span> </label> </div> </div> <button class="iui-button" aria-label="Open dialog" id="open-dialog" type="button" onclick="toggleDialog('default-dialog')"> 
+Open dialog
+ </button> <br> <button class="iui-button" aria-label="Open full page dialog" id="open-full-page-dialog" type="button" onclick="toggleDialog('full-page-dialog')"> 
+Open full page dialog
+ </button> <br> <button class="iui-button" aria-label="Toggle draggable dialog" id="toggle-draggable-dialog" type="button" onclick="toggleDialog('draggable-dialog')"> 
+Toggle draggable dialog
+ </button> <div id="default-dialog"> <div class="iui-backdrop iui-backdrop-fixed"></div> <div class="iui-dialog iui-dialog-default" id="dialog-click"> <div class="iui-dialog-title-bar"> <div class="iui-dialog-title">Title</div> <button class="iui-button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" type="button" onclick="toggleDialog('default-dialog')">  <svg-close class="iui-button-icon" aria-hidden="true"></svg-close>  </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button class="iui-button" data-iui-variant="high-visibility" onclick="toggleDialog('default-dialog')">  <span>Proceed</span>  </button> <button class="iui-button" onclick="toggleDialog('default-dialog')">  <span>Cancel</span>  </button> </div> </div> </div> <div id="full-page-dialog"> <div class="iui-backdrop iui-backdrop-fixed"></div> <div class="iui-dialog iui-dialog-full-page"> <div class="iui-dialog-title-bar"> <div class="iui-dialog-title">Title</div> <button class="iui-button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" type="button" onclick="toggleDialog('full-page-dialog')">  <svg-close class="iui-button-icon" aria-hidden="true"></svg-close>  </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button class="iui-button" data-iui-variant="high-visibility" onclick="toggleDialog('full-page-dialog')">  <span>Proceed</span>  </button> <button class="iui-button" onclick="toggleDialog('full-page-dialog')">  <span>Cancel</span>  </button> </div> </div> </div> <div id="draggable-dialog"> <div class="iui-dialog iui-dialog-default iui-dialog-draggable"> <div class="iui-dialog-title-bar iui-dialog-title-bar-filled"> <div class="iui-dialog-title">Title</div> <button class="iui-button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" type="button" onclick="toggleDialog('draggable-dialog')">  <svg-close class="iui-button-icon" aria-hidden="true"></svg-close>  </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button class="iui-button" data-iui-variant="high-visibility" onclick="toggleDialog('draggable-dialog')">  <span>Proceed</span>  </button> <button class="iui-button" onclick="toggleDialog('draggable-dialog')">  <span>Cancel</span>  </button> </div> </div> </div> <test-container-section> <div> <button class="iui-button" aria-label="Open relative to container dialog" id="open-relative-to-container-dialog" type="button" onclick="toggleDialog('draggable-dialog-relative')"> 
+Open relative to container dialog
+ </button> <div class="iui-dialog-wrapper" id="draggable-dialog-relative" data-iui-relative="true"> <div class="iui-dialog iui-dialog-default iui-dialog-draggable"> <div class="iui-dialog-title-bar iui-dialog-title-bar-filled"> <div class="iui-dialog-title">Title</div> <button class="iui-button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" type="button" onclick="toggleDialog('draggable-dialog-relative')">  <svg-close class="iui-button-icon" aria-hidden="true"></svg-close>  </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button class="iui-button" data-iui-variant="high-visibility" onclick="toggleDialog('draggable-dialog-relative')">  <span>Proceed</span>  </button> <button class="iui-button" onclick="toggleDialog('draggable-dialog-relative')">  <span>Cancel</span>  </button> </div> </div> </div> </div> <div> <button class="iui-button" aria-label="Open with backdrop relative to container dialog" id="open-with-backdrop-relative-to-container-dialog" type="button" onclick="toggleDialog('relative-dialog-with-backdrop')"> 
+Open with backdrop relative to container dialog
+ </button> <div class="iui-dialog-wrapper" id="relative-dialog-with-backdrop" data-iui-relative="true"> <div class="iui-backdrop"></div> <div class="iui-dialog iui-dialog-default"> <div class="iui-dialog-title-bar"> <div class="iui-dialog-title">Title</div> <button class="iui-button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" type="button" onclick="toggleDialog('relative-dialog-with-backdrop')">  <svg-close class="iui-button-icon" aria-hidden="true"></svg-close>  </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button class="iui-button" data-iui-variant="high-visibility" onclick="toggleDialog('relative-dialog-with-backdrop')">  <span>Proceed</span>  </button> <button class="iui-button" onclick="toggleDialog('relative-dialog-with-backdrop')">  <span>Cancel</span>  </button> </div> </div> </div> </div> </test-container-section> <script>
+    function toggleDialog(dialogId) {
+      let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`);
+      let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
+
+      _dialog.classList.toggle('iui-dialog-visible');
+
+      if (_backdrop) {
+        _backdrop.classList.toggle('iui-backdrop-visible');
+      }
+    }
+
+    const dialog = document.querySelector('#dialog-click');
+    // Clicking on menu-item should toggle selection
+    document.querySelectorAll('input').forEach((item) => {
+      item.addEventListener('click', () => {
+        dialog.setAttribute('data-iui-placement', item.value);
+        if (!item.value) {
+          dialog.removeAttribute('data-iui-placement');
+        }
+      });
+    });
+
+    const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
+    dragElement(dragItem);
+
+    const dragItemRelative = document.querySelector('#draggable-dialog-relative .iui-dialog');
+    dragElement(dragItemRelative);
+
+    function dragElement(element) {
+      const titleBar = element.querySelector('.iui-dialog-title-bar');
+      titleBar.onmousedown = dragStart;
+
+      const { width, height } = element.getBoundingClientRect();
+
+      let active = false;
+      let initialX;
+      let initialY;
+      let initialTransform;
+
+      document.addEventListener('mouseup', dragEnd, false);
+      document.addEventListener('mousemove', drag, false);
+
+      function dragStart(e) {
+        active = true;
+
+        initialX = e.clientX;
+        initialY = e.clientY;
+        intialTransform = new DOMMatrix(getComputedStyle(element).transform);
+      }
+
+      function dragEnd(e) {
+        active = false;
+      }
+
+      function drag(e) {
+        if (active) {
+          e.preventDefault();
+
+          const diffX = e.clientX - initialX;
+          const diffY = e.clientY - initialY;
+
+          const newTranslate = intialTransform.translate(diffX, diffY).transformPoint();
+
+          element.style.transform = `translate(${newTranslate.x}px, ${newTranslate.y}px)`;
+        }
+      }
+    }
+  </script>  </body></html>
