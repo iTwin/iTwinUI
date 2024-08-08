@@ -202,8 +202,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       () =>
         [
           middleware.offset !== undefined && offset(middleware.offset),
-          middleware.flip && flip(),
-          middleware.shift && shift(),
+          middleware.flip && flip({ padding: 4 }),
+          middleware.shift && shift({ padding: 4 }),
           matchWidth &&
             size({
               apply: ({ rects }) => {
