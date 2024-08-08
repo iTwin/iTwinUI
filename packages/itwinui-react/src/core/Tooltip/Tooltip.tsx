@@ -177,12 +177,12 @@ const useTooltip = (options: TooltipOptions = {}) => {
           middleware.offset !== undefined
             ? offset(middleware.offset)
             : offset(4),
-          middleware.flip && flip(),
-          middleware.shift && shift(),
-          middleware.size && size(),
-          middleware.autoPlacement && autoPlacement(),
+          middleware.flip && flip({ padding: 4 }),
+          middleware.shift && shift({ padding: 4 }),
+          middleware.size && size({ padding: 4 }),
+          middleware.autoPlacement && autoPlacement({ padding: 4 }),
           middleware.inline && inline(),
-          middleware.hide && hide(),
+          middleware.hide && hide({ padding: 4 }),
         ].filter(Boolean),
       [middleware],
     ),
