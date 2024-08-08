@@ -82,6 +82,15 @@ type PopoverOptions = {
     offset?: number;
     flip?: boolean;
     shift?: boolean;
+    size?:
+      | boolean
+      | {
+          /**
+           * Override the maximum height of the popover.
+           * @default "400px"
+           */
+          maxHeight?: string;
+        };
     autoPlacement?: boolean;
     hide?: boolean;
     inline?: boolean;
@@ -176,9 +185,12 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const tree = useFloatingTree();
 
   const middleware = React.useMemo(
-    () => ({ flip: true, shift: true, ...options.middleware }),
+    () => ({ flip: true, shift: true, size: true, ...options.middleware }),
     [options.middleware],
   );
+
+  const maxHeight =
+    typeof middleware.size === 'boolean' ? '400px' : middleware.size?.maxHeight;
 
   const [open, onOpenChange] = useControlledState(
     false,
@@ -204,10 +216,17 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           middleware.offset !== undefined && offset(middleware.offset),
           middleware.flip && flip({ padding: 4 }),
           middleware.shift && shift({ padding: 4 }),
-          matchWidth &&
+          (matchWidth || middleware.size) &&
             size({
-              apply: ({ rects }) => {
-                setReferenceWidth(rects.reference.width);
+              padding: 4,
+              apply: ({ rects, availableHeight }) => {
+                if (middleware.size) {
+                  setAvailableHeight(Math.round(availableHeight));
+                }
+
+                if (matchWidth) {
+                  setReferenceWidth(rects.reference.width);
+                }
               },
             } as SizeOptions),
           middleware.autoPlacement && autoPlacement(),
@@ -250,6 +269,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
+  const [availableHeight, setAvailableHeight] = React.useState<number>();
 
   const getFloatingProps = React.useCallback(
     (userProps?: React.HTMLProps<HTMLElement>) =>
@@ -257,6 +277,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         ...userProps,
         style: {
           ...floating.floatingStyles,
+          ...(middleware.size &&
+            availableHeight && {
+              maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
+            }),
           zIndex: 9999,
           ...(matchWidth && referenceWidth
             ? {
@@ -267,7 +291,15 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           ...userProps?.style,
         },
       }),
-    [floating.floatingStyles, interactions, matchWidth, referenceWidth],
+    [
+      floating.floatingStyles,
+      interactions,
+      matchWidth,
+      referenceWidth,
+      middleware.size,
+      availableHeight,
+      maxHeight,
+    ],
   );
 
   const getReferenceProps = React.useCallback(
