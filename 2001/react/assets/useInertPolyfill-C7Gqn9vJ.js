@@ -1,0 +1,1 @@
+import{R as e,L as n}from"./index-BZnW0JmD.js";const i=()=>{let t=e.useRef(!1),r="https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js";e.useEffect(()=>{(async()=>!HTMLElement.prototype.hasOwnProperty("inert")&&!t.current&&!n&&(await new Function("url","return import(url)")(r),t.current=!0))()},[])};export{i as u};
