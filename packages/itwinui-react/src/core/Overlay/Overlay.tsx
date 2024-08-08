@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, isUnitTest, polymorphic } from '../../utils/index.js';
+import { Box, polymorphic, useInertPolyfill } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type OverlayComponentProps = {
@@ -104,22 +104,3 @@ export const Overlay = Object.assign(OverlayComponent, {
    */
   Overlay: OverlayOverlay,
 });
-
-const useInertPolyfill = () => {
-  const loaded = React.useRef(false);
-  const modulePath =
-    'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
-
-  React.useEffect(() => {
-    (async () => {
-      if (
-        !HTMLElement.prototype.hasOwnProperty('inert') &&
-        !loaded.current &&
-        !isUnitTest
-      ) {
-        await new Function('url', 'return import(url)')(modulePath);
-        loaded.current = true;
-      }
-    })();
-  }, []);
-};
