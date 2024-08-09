@@ -1,0 +1,42 @@
+---
+type Props = {
+  status?: 'positive' | 'warning' | 'negative';
+  disabled?: boolean;
+  checked?: boolean;
+  value: string;
+  name: string;
+} & astroHTML.JSX.HTMLAttributes;
+
+const { status, class: className, disabled, name, ...props } = Astro.props;
+
+const basic = !Astro.slots.has('default');
+
+const inputProps = {
+  ['class:list']: ['iui-radio', className],
+  type: 'radio',
+  disabled,
+  name,
+  ...props,
+} as astroHTML.JSX.InputHTMLAttributes;
+---
+
+{
+  basic ? (
+    <input {...inputProps} />
+  ) : (
+    <label
+      class:list={[
+        'iui-radio-wrapper',
+        {
+          'iui-disabled': disabled,
+          [`iui-${status}`]: !!status,
+        },
+      ]}
+    >
+      <input {...inputProps} />
+      <span class='iui-radio-label'>
+        <slot />
+      </span>
+    </label>
+  )
+}

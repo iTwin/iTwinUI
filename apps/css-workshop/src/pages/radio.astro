@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Icon_ from '../components/Icon.astro';
+import Radio_ from '../components/Radio.astro';
 ---
 
 <Layout title='Radio'>
@@ -29,22 +30,10 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid'>
       <div class='iui-input-label iui-required'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-1' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-1' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-1' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-1' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-1' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-1' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-1' value='option-3' disabled>Option 3</Radio_>
+        <Radio_ name='radio-demo-1' value='option-4' disabled>Option 4</Radio_>
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -54,29 +43,10 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid iui-disabled'>
       <div class='iui-input-label' data-iui-disabled='true'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input
-            class='iui-radio'
-            type='radio'
-            name='radio-demo-2'
-            value='option-1'
-            checked
-            disabled
-          />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-2' value='option-2' disabled />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-2' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-2' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-2' checked disabled value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-2' disabled value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-2' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-2' disabled value='option-4'>Option 4</Radio_>
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -86,22 +56,10 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid iui-positive'>
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-3' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-3' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-3' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-3' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-3' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-3' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-3' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-3' disabled value='option-4'>Option 4</Radio_>
       </div>
 
       <div class='iui-status-message' data-iui-status='positive'>
@@ -113,22 +71,10 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid iui-warning'>
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-4' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-4' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-4' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-4' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-4' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-4' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-4' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-4' disabled value='option-4'>Option 4</Radio_>
       </div>
 
       <div class='iui-status-message' data-iui-status='warning'>
@@ -140,22 +86,10 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid iui-negative'>
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-5' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-5' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-5' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-5' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-5' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-5' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-5' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-5' disabled value='option-4'>Option 4</Radio_>
       </div>
 
       <div class='iui-status-message' data-iui-status='negative'>
@@ -167,30 +101,18 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid'>
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-14' value='option-1' checked />
-          <span class='iui-radio-label'>
-            <svg-smiley-happy-very aria-hidden='true'></svg-smiley-happy-very>
-          </span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-14' value='option-2' />
-          <span class='iui-radio-label'>
-            <svg-smiley-happy aria-hidden='true'></svg-smiley-happy>
-          </span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-14' value='option-3' disabled />
-          <span class='iui-radio-label'>
-            <svg-smiley-sad aria-hidden='true'></svg-smiley-sad>
-          </span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-14' value='option-4' disabled />
-          <span class='iui-radio-label'>
-            <svg-smiley-sad-very aria-hidden='true'></svg-smiley-sad-very>
-          </span>
-        </label>
+        <Radio_ name='radio-demo-14' checked value='option-1'>
+          <svg-smiley-happy-very aria-hidden='true'></svg-smiley-happy-very>
+        </Radio_>
+        <Radio_ name='radio-demo-14' value='option-2'>
+          <svg-smiley-happy aria-hidden='true'></svg-smiley-happy>
+        </Radio_>
+        <Radio_ name='radio-demo-14' disabled value='option-3'>
+          <svg-smiley-sad aria-hidden='true'></svg-smiley-sad>
+        </Radio_>
+        <Radio_ name='radio-demo-14' disabled value='option-4'>
+          <svg-smiley-sad-very aria-hidden='true'></svg-smiley-sad-very>
+        </Radio_>
       </div>
       <div class='iui-status-message'>
         <div>Help message.</div>
@@ -205,51 +127,20 @@ import Icon_ from '../components/Icon.astro';
     <div class='iui-input-grid iui-inline-label' data-iui-label-placement='inline'>
       <div class='iui-input-label iui-required'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-6' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-6' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-6' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-6' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-6' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-6' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-6' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-6' disabled value='option-4'>Option 4</Radio_>
       </div>
     </div>
 
     <div class='iui-input-grid iui-inline-label' data-iui-label-placement='inline'>
       <div class='iui-input-label' data-iui-disabled='true'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input
-            class='iui-radio'
-            type='radio'
-            name='radio-demo-7'
-            value='option-1'
-            checked
-            disabled
-          />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-7' value='option-2' disabled />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-7' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-7' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-7' checked disabled value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-7' disabled value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-7' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-7' disabled value='option-4'>Option 4</Radio_>
       </div>
     </div>
 
@@ -259,22 +150,10 @@ import Icon_ from '../components/Icon.astro';
     >
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-8' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-8' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-8' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-8' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-8' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-8' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-8' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-8' disabled value='option-4'>Option 4</Radio_>
       </div>
       <div class='iui-status-message' data-iui-status='positive'>
         <Icon_ svg='status-success' />
@@ -287,22 +166,10 @@ import Icon_ from '../components/Icon.astro';
     >
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-9' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-9' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-9' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-9' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-9' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-9' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-9' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-9' disabled value='option-4'>Option 4</Radio_>
       </div>
       <div class='iui-status-message' data-iui-status='warning'>
         <Icon_ svg='status-warning' />
@@ -315,22 +182,10 @@ import Icon_ from '../components/Icon.astro';
     >
       <div class='iui-input-label'>Radio group label</div>
       <div class='iui-input-group'>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-10' value='option-1' checked />
-          <span class='iui-radio-label'>Option 1</span>
-        </label>
-        <label class='iui-radio-wrapper'>
-          <input class='iui-radio' type='radio' name='radio-demo-10' value='option-2' />
-          <span class='iui-radio-label'>Option 2</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-10' value='option-3' disabled />
-          <span class='iui-radio-label'>Option 3</span>
-        </label>
-        <label class='iui-radio-wrapper iui-disabled'>
-          <input class='iui-radio' type='radio' name='radio-demo-10' value='option-4' disabled />
-          <span class='iui-radio-label'>Option 4</span>
-        </label>
+        <Radio_ name='radio-demo-10' checked value='option-1'>Option 1</Radio_>
+        <Radio_ name='radio-demo-10' value='option-2'>Option 2</Radio_>
+        <Radio_ name='radio-demo-10' disabled value='option-3'>Option 3</Radio_>
+        <Radio_ name='radio-demo-10' disabled value='option-4'>Option 4</Radio_>
       </div>
       <div class='iui-status-message' data-iui-status='negative'>
         <Icon_ svg='status-error' />
@@ -350,30 +205,11 @@ import Icon_ from '../components/Icon.astro';
           flex-direction: column;
           align-items: flex-start;'
     >
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='radio-demo-11' value='option-1' checked />
-        <span class='iui-radio-label'>Option 1</span>
-      </label>
-
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='radio-demo-11' value='option-2' />
-        <span class='iui-radio-label'>Option 2</span>
-      </label>
-
-      <label class='iui-radio-wrapper iui-positive'>
-        <input class='iui-radio' type='radio' name='radio-demo-11' value='option-3' />
-        <span class='iui-radio-label'>Option 3</span>
-      </label>
-
-      <label class='iui-radio-wrapper iui-warning'>
-        <input class='iui-radio' type='radio' name='radio-demo-11' value='option-4' />
-        <span class='iui-radio-label'>Option 4</span>
-      </label>
-
-      <label class='iui-radio-wrapper iui-negative'>
-        <input class='iui-radio' type='radio' name='radio-demo-11' value='option-5' />
-        <span class='iui-radio-label'>Option 5</span>
-      </label>
+      <Radio_ name='radio-demo-11' value='option-1' checked>Option 1</Radio_>
+      <Radio_ name='radio-demo-11' value='option-2'>Option 2</Radio_>
+      <Radio_ status='positive' name='radio-demo-11' value='option-3'>Option 3</Radio_>
+      <Radio_ status='warning' name='radio-demo-11' value='option-4'>Option 4</Radio_>
+      <Radio_ status='negative' name='radio-demo-11' value='option-5'>Option 5</Radio_>
     </div>
 
     <h3>Radio on right</h3>
@@ -384,49 +220,16 @@ import Icon_ from '../components/Icon.astro';
           flex-direction: column;
           align-items: flex-end;'
     >
-      <label class='iui-radio-wrapper'>
-        <span class='iui-radio-label'>Option 1</span>
-        <input class='iui-radio' type='radio' name='radio-demo-12' value='option-1' checked />
-      </label>
-
-      <label class='iui-radio-wrapper'>
-        <span class='iui-radio-label'>Option 2</span>
-        <input class='iui-radio' type='radio' name='radio-demo-12' value='option-2' />
-      </label>
-
-      <label class='iui-radio-wrapper iui-positive'>
-        <span class='iui-radio-label'>Option 3</span>
-        <input class='iui-radio' type='radio' name='radio-demo-12' value='option-3' />
-      </label>
-
-      <label class='iui-radio-wrapper iui-warning'>
-        <span class='iui-radio-label'>Option 4</span>
-        <input class='iui-radio' type='radio' name='radio-demo-12' value='option-4' />
-      </label>
-
-      <label class='iui-radio-wrapper iui-negative'>
-        <span class='iui-radio-label'>Option 5</span>
-        <input class='iui-radio' type='radio' name='radio-demo-12' value='option-5' />
-      </label>
+      <Radio_ name='radio-demo-12' value='option-1' checked>Option 1</Radio_>
+      <Radio_ name='radio-demo-12' value='option-2'>Option 2</Radio_>
+      <Radio_ status='positive' name='radio-demo-12' value='option-3'>Option 3</Radio_>
+      <Radio_ status='warning' name='radio-demo-12' value='option-4'>Option 4</Radio_>
+      <Radio_ status='negative' name='radio-demo-12' value='option-5'>Option 5</Radio_>
     </div>
 
     <div>
-      <label class='iui-radio-wrapper iui-disabled'>
-        <input class='iui-radio' type='radio' name='radio-demo-13' value='option-1' disabled />
-        <span class='iui-radio-label'>Disabled option 1</span>
-      </label>
-
-      <label class='iui-radio-wrapper iui-disabled'>
-        <input
-          class='iui-radio'
-          type='radio'
-          name='radio-demo-13'
-          value='option-2'
-          checked
-          disabled
-        />
-        <span class='iui-radio-label'>Disabled option 2</span>
-      </label>
+      <Radio_ name='radio-demo-13' value='option-1' checked disabled>Disabled option 1</Radio_>
+      <Radio_ name='radio-demo-13' value='option-2' disabled>Disabled option 2</Radio_>
     </div>
   </section>
 </Layout>
