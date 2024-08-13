@@ -92,7 +92,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
     --_iui-list-item-description-color: var(--iui-color-text-disabled);
 
-    &:where(:hover, :focus-visible) {
+    &:where([data-iui-actionable='true']:hover, [data-iui-actionable='true']:focus-visible) {
       color: var(--iui-color-icon-disabled-hover);
       --_iui-list-item-icon-fill: var(--iui-color-icon-disabled-hover);
       --_iui-list-item-description-color: var(--iui-color-text-disabled-hover);
