@@ -51,7 +51,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     margin-block-start: -1px;
   }
 
-  &:where([data-iui-actionable='true'], .iui-menu-item):where(:hover),
+  &:where([data-iui-actionable='true']:hover),
   &:where(:has(.iui-link-action):hover) {
     cursor: pointer;
     background-color: var(--iui-color-background-hover);
