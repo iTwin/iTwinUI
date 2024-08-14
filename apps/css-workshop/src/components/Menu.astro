@@ -1,0 +1,73 @@
+---
+type Props = {
+  isActive?: boolean;
+  checked?: boolean;
+  isLarge?: boolean;
+  actionable?: boolean;
+  disabled?: boolean;
+  isSkeleton?: boolean;
+} & astroHTML.JSX.HTMLAttributes;
+
+const {
+  class: className,
+  isActive,
+  checked,
+  isLarge,
+  actionable,
+  disabled,
+  isSkeleton,
+  ...props
+} = Astro.props;
+---
+
+<li
+  class:list={[
+    'iui-list-item',
+    { 'iui-active': isActive },
+    { 'iui-disabled': disabled },
+    { 'iui-large': isLarge },
+    { 'iui-menu-item-skeleton': isSkeleton },
+    className,
+  ]}
+  aria-checked={checked}
+  data-iui-actionable={actionable ? 'true' : 'false'}
+>
+  {
+    Astro.slots.has('default') && (
+      <span class='iui-list-item-content'>
+        <slot />
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('checkmark-icon') && (
+      <>
+        <span class='iui-list-item-content'>
+          <slot name='checkmark-icon' />
+        </span>
+        <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
+      </>
+    )
+  }
+  {
+    Astro.slots.has('placeholder-icon') && (
+      <>
+        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
+        <span class='iui-list-item-content'>
+          <slot name='placeholder-icon' />
+        </span>
+      </>
+    )
+  }
+  {
+    Astro.slots.has('selected-item-with-placeholder-icon') && (
+      <>
+        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
+        <span class='iui-list-item-content'>
+          <slot name='selected-item-with-placeholder-icon' />
+        </span>
+        <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
+      </>
+    )
+  }
+</li>
