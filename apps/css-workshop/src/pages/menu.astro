@@ -48,11 +48,11 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' role='menu'>
       <Menu_ isActive actionable tabindex='0' role='menuitem' checked>
-        <aside slot='checkmark-icon'>Option 1</aside>
+        <div slot='end-icon'>Option 1</div>
       </Menu_>
       <Menu_ actionable tabindex='0' role='menuitem'>Option 2</Menu_>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <aside slot='checkmark-icon'>Option 3</aside>
+        <div slot='end-icon'>Option 3</div>
       </Menu_>
     </ul>
 
@@ -60,17 +60,17 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' id='demo-scrollable'>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <aside slot='checkmark-icon'>Option 1</aside>
+        <div slot='end-icon'>Option 1</div>
       </Menu_>
       <Menu_ actionable tabindex='0' checked role='menuitem'>Option 2</Menu_>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <aside slot='checkmark-icon'>Option 3</aside>
+        <div slot='end-icon'>Option 3</div>
       </Menu_>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <aside slot='checkmark-icon'>Option 4</aside>
+        <div slot='end-icon'>Option 4</div>
       </Menu_>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <aside slot='checkmark-icon'>Option 5</aside>
+        <div slot='end-icon'>Option 5</div>
       </Menu_>
       <Menu_ actionable tabindex='0' checked role='menuitem'>Option 6</Menu_>
       <Menu_ actionable tabindex='0' checked role='menuitem'>Option 7</Menu_>
@@ -87,13 +87,13 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' role='menu'>
       <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
-        <aside slot='placeholder-icon'>Option 1</aside>
+        <aside slot='start-icon'>Option 1</aside>
       </Menu_>
       <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
-        <aside slot='placeholder-icon'>Option 2</aside>
+        <aside slot='start-icon'>Option 2</aside>
       </Menu_>
       <Menu_ actionable id='test-menu-2'>
-        <aside slot='placeholder-icon'>Option 3</aside>
+        <aside slot='start-icon'>Option 3</aside>
       </Menu_>
     </ul>
 
@@ -111,7 +111,9 @@ import Menu_ from '../components/Menu.astro';
         </aside>
       </Menu_>
       <Menu_ actionable tabindex='0' role='menuitem'>
-        <aside slot='item-with-both-end-icons'>Option 2</aside>
+        Option 2
+        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true' slot='start-icon'
+        ></svg-caret-right-small>
       </Menu_>
       <Menu_ actionable tabindex='0' role='menuitem'>
         <aside slot='item-with-both-end-icons'>Option 3</aside>
@@ -125,10 +127,10 @@ import Menu_ from '../components/Menu.astro';
         <aside slot='selected-item-with-placeholder-icon'>Alpha</aside>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0' checked role='menuitem'>
-        <aside slot='item-with-both-end-icons'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </aside>
+        <div>Beta</div>
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true' slot='start-icon'
+        ></svg-caret-right-small>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0' checked>
         <aside slot='item-with-both-end-icons'>
@@ -188,21 +190,26 @@ import Menu_ from '../components/Menu.astro';
   <h2>Skeleton</h2>
   <section id='demo-skeleton'>
     <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      />
+      <Menu_ isSkeleton role='presentation' style='max-width: 30%;'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </Menu_>
       <Menu_
         isSkeleton
         role='presentation'
         style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      />
+      >
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </Menu_>
       <Menu_
         isSkeleton
         role='presentation'
         style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      />
+      >
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </Menu_>
     </ul>
 
     <br />
@@ -353,12 +360,10 @@ import Menu_ from '../components/Menu.astro';
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
       <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <svg-placeholder class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'
-        ></svg-placeholder>
-        <span class='iui-list-item-content'>
+        <aside slot='placeholder-icon'>
           <div>Model Alpha</div>
           <div class='iui-list-item-description'>0x0987654321</div>
-        </span>
+        </aside>
       </Menu_>
       <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
         <svg-model class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'></svg-model>

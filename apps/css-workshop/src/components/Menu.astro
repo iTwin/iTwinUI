@@ -40,21 +40,21 @@ const {
     )
   }
   {
-    Astro.slots.has('checkmark-icon') && (
+    Astro.slots.has('end-icon') && (
       <>
         <span class='iui-list-item-content'>
-          <slot name='checkmark-icon' />
+          <slot name='end-icon' />
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
       </>
     )
   }
   {
-    Astro.slots.has('placeholder-icon') && (
+    Astro.slots.has('start-icon') && (
       <>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
         <span class='iui-list-item-content'>
-          <slot name='placeholder-icon' />
+          <slot name='start-icon' />
         </span>
       </>
     )
@@ -68,25 +68,6 @@ const {
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
       </>
-    )
-  }
-  {
-    Astro.slots.has('item-with-both-end-icons') && (
-      <>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
-        <span class='iui-list-item-content'>
-          <slot name='item-with-both-end-icons' />
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true' />
-      </>
-    )
-  }
-  {
-    isSkeleton && (
-      <span class='iui-content'>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true' />
-        <div class='iui-visually-hidden'>Loading...</div>
-      </span>
     )
   }
 </li>
