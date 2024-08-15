@@ -2,4 +2,5 @@
 "@itwin/itwinui-variables": minor
 ---
 
-Changed value of disabled text and disabled icon within light, light high contrast, and dark high contrast themes.
+- Changed value of disabled text and disabled icon colors.
+- Introduced new `--iui-color-text-disabled-hover` & `--iui-color-icon-disabled-hover` variables.
