@@ -6,6 +6,7 @@ type Props = {
   actionable?: boolean;
   disabled?: boolean;
   isSkeleton?: boolean;
+  style?: string;
 } & astroHTML.JSX.HTMLAttributes;
 
 const {
@@ -16,6 +17,7 @@ const {
   actionable,
   disabled,
   isSkeleton,
+  style,
   ...props
 } = Astro.props;
 ---
@@ -31,6 +33,7 @@ const {
   ]}
   aria-checked={checked}
   data-iui-actionable={actionable ? 'true' : 'false'}
+  style={style}
 >
   {
     Astro.slots.has('default') && (
@@ -67,6 +70,37 @@ const {
           <slot name='selected-item-with-placeholder-icon' />
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
+      </>
+    )
+  }
+  {
+    Astro.slots.has('both-end-icon') && (
+      <>
+        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
+        <span class='iui-list-item-content'>
+          <slot name='both-end-icon' />
+        </span>
+        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true' />
+      </>
+    )
+  }
+  {
+    Astro.slots.has('skeleton-without-icon') && (
+      <span class='iui-content'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true' />
+        <div class='iui-visually-hidden'>Loading...</div>
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('skeleton-with-icon') && (
+      <>
+        <div class='iui-icon iui-skeleton' aria-hidden='true' />
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true' />
+          <slot name='skeleton-with-icon' />
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
       </>
     )
   }
