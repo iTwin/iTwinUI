@@ -7,15 +7,7 @@ type Props = {
   name: string;
 } & astroHTML.JSX.HTMLAttributes;
 
-const { status, class: className, disabled, name, ...props } = Astro.props;
-
-const inputProps = {
-  ['class:list']: ['iui-radio', className],
-  type: 'radio',
-  disabled,
-  name,
-  ...props,
-} as astroHTML.JSX.InputHTMLAttributes;
+const { status, class: className, disabled, name, checked, ...props } = Astro.props;
 ---
 
 <label
@@ -27,7 +19,16 @@ const inputProps = {
     },
   ]}
 >
-  <input {...inputProps} />
+  <input
+    class:list={['iui-radio', className]}
+    ,
+    type='radio'
+    ,
+    disabled={disabled}
+    ,
+    name,
+    checked={checked}
+  />
   <span class='iui-radio-label'>
     <slot />
   </span>
