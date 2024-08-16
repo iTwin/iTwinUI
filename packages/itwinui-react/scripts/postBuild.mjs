@@ -12,7 +12,7 @@ try {
   fs.writeFileSync('cjs/package.json', '{ "type": "commonjs" }');
   fs.writeFileSync('DEV-cjs/package.json', '{ "type": "commonjs" }');
 } catch (e) {
-  console.error('Cannot create cjs/package.json', e);
+  console.error('Cannot create package.json', e);
 }
 
 // Run prettier on all compiled output because it gets jumbled by tsc.
