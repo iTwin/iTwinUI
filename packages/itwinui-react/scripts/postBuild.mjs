@@ -15,7 +15,7 @@ try {
   console.error('Cannot create package.json', e);
 }
 
-// Run prettier on all compiled output because it gets jumbled by tsc.
+// Run prettier on all compiled output because it gets jumbled by SWC.
 try {
   execSync(
     'npx prettier --write --ignore-path="../../.gitignore" "{esm,cjs,DEV-esm,DEV-cjs}/**/*.js"',
