@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Added hover state to disabled `.iui-field` and `.iui-list-item` to help with accessibility.
+Added hover state to disabled button, select, input, textarea, and actionable list item to help with accessibility.
