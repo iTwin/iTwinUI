@@ -220,11 +220,17 @@ import Radio_ from '../components/Radio.astro';
           flex-direction: column;
           align-items: flex-end;'
     >
-      <Radio_ name='radio-demo-12' value='option-1' checked isFlipped>Option 1</Radio_>
-      <Radio_ name='radio-demo-12' value='option-2' isFlipped>Option 2</Radio_>
-      <Radio_ status='positive' name='radio-demo-12' value='option-3' isFlipped>Option 3</Radio_>
-      <Radio_ status='warning' name='radio-demo-12' value='option-4' isFlipped>Option 4</Radio_>
-      <Radio_ status='negative' name='radio-demo-12' value='option-5' isFlipped>Option 5</Radio_>
+      <Radio_ name='radio-demo-12' value='option-1' checked labelPosition='left'>Option 1</Radio_>
+      <Radio_ name='radio-demo-12' value='option-2' labelPosition='left'>Option 2</Radio_>
+      <Radio_ status='positive' name='radio-demo-12' value='option-3' labelPosition='left'>
+        Option 3
+      </Radio_>
+      <Radio_ status='warning' name='radio-demo-12' value='option-4' labelPosition='left'>
+        Option 4
+      </Radio_>
+      <Radio_ status='negative' name='radio-demo-12' value='option-5' labelPosition='left'>
+        Option 5
+      </Radio_>
     </div>
 
     <div>

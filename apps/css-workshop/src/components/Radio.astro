@@ -3,12 +3,12 @@ type Props = {
   status?: 'positive' | 'warning' | 'negative';
   disabled?: boolean;
   checked?: boolean;
-  isFlipped?: boolean;
+  labelPosition?: 'left' | 'right';
   value: string;
   name: string;
 } & astroHTML.JSX.HTMLAttributes;
 
-const { disabled, status, class: className, isFlipped, ...props } = Astro.props;
+const { disabled, status, class: className, labelPosition, ...props } = Astro.props;
 ---
 
 <label
@@ -21,20 +21,23 @@ const { disabled, status, class: className, isFlipped, ...props } = Astro.props;
   ]}
 >
   {
-    !isFlipped ? (
-      <>
-        <input class:list={['iui-radio', className]} type='radio' disabled={disabled} {...props} />
-        <span class='iui-radio-label'>
-          <slot />
-        </span>
-      </>
-    ) : (
+    labelPosition === 'left' && (
       <>
         <span class='iui-radio-label'>
           <slot />
         </span>
-        <input class:list={['iui-radio', className]} type='radio' disabled={disabled} {...props} />
       </>
     )
+  }
+  <input class:list={['iui-radio', className]} type='radio' disabled={disabled} {...props} />
+  {
+    labelPosition === 'right' ||
+      (!labelPosition && (
+        <>
+          <span class='iui-radio-label'>
+            <slot />
+          </span>
+        </>
+      ))
   }
 </label>
