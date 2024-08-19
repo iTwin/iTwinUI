@@ -6,7 +6,6 @@ import * as React from 'react';
 import {
   Box,
   cloneElementWithRef,
-  getWindow,
   mergeEventHandlers,
   SvgChevronLeft,
   useInertPolyfill,
@@ -19,10 +18,13 @@ import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
-import { panelAnimationReducer, PanelsInstanceProvider } from './helpers.js';
+import {
+  PanelsInstanceProvider,
+  PanelsWrapperContext,
+  usePanelAnimations,
+} from './helpers.js';
 import type {
   ActivePanel,
-  PanelAnimationState,
   PanelsInstance,
   TriggerMapEntry,
 } from './helpers.js';
@@ -94,138 +96,12 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     id: initialActiveId,
   });
 
-  // Reducer to manage panel animations state
-  const [{ animations }, dispatch] = React.useReducer(
-    panelAnimationReducer,
-    {} satisfies PanelAnimationState,
-  );
-
-  const animateToPanel = React.useCallback(
-    async (newActivePanel: ActivePanel) => {
-      const motionOk = getWindow()?.matchMedia(
-        '(prefers-reduced-motion: no-preference)',
-      )?.matches;
-
-      if (
-        // Reduced motion
-        !motionOk ||
-        // Page transition already in progress
-        animations != null ||
-        // No animation to show
-        newActivePanel.direction == null ||
-        // Same panel
-        activePanel.id === newActivePanel.id
-      ) {
-        return;
-      }
-
-      const animationOptions = {
-        duration: 400,
-        easing: 'ease-out',
-      };
-
-      const activePanelElement = panelElements.current[activePanel.id];
-      const newActivePanelElement = panelElements.current[newActivePanel.id];
-      const isNewPanelPrecedingActivePanel =
-        !!newActivePanelElement &&
-        !!activePanelElement &&
-        !!(
-          activePanelElement.compareDocumentPosition(newActivePanelElement) &
-          Node.DOCUMENT_POSITION_PRECEDING
-        );
-
-      const keyframes = (() => {
-        if (newActivePanel.direction === 'next') {
-          if (isNewPanelPrecedingActivePanel) {
-            return {
-              activePanel: [
-                { transform: 'translateX(-100%)' },
-                { transform: 'translateX(-200%)' },
-              ],
-              newActivePanel: [
-                { transform: 'translateX(100%)' },
-                { transform: 'translateX(0)' },
-              ],
-            };
-          } else {
-            return {
-              activePanel: [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(-100%)' },
-              ],
-              newActivePanel: [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(-100%)' },
-              ],
-            };
-          }
-        } else {
-          if (isNewPanelPrecedingActivePanel) {
-            return {
-              activePanel: [
-                { transform: 'translateX(-100%)' },
-                { transform: 'translateX(0)' },
-              ],
-              newActivePanel: [
-                { transform: 'translateX(-100%)' },
-                { transform: 'translateX(0)' },
-              ],
-            };
-          } else {
-            return {
-              activePanel: [
-                { transform: 'translateX(0)' },
-                { transform: 'translateX(100%)' },
-              ],
-              newActivePanel: [
-                { transform: 'translateX(-200%)' },
-                { transform: 'translateX(-100%)' },
-              ],
-            };
-          }
-        }
-      })();
-
-      const animationsData = {
-        [activePanel.id]: {
-          isDestinationPanel: false,
-          keyframes: keyframes.activePanel,
-        },
-        [newActivePanel.id]: {
-          isDestinationPanel: true,
-          keyframes: keyframes.newActivePanel,
-        },
-      };
-
-      dispatch({
-        type: newActivePanel.direction,
-        animatingToPanelId: newActivePanel.id,
-        animations: animationsData,
-        panelElements,
-      });
-
-      await Promise.all(
-        Object.entries(animationsData).map(([pageId, data]) => {
-          const element = panelElements.current[pageId];
-
-          return new Promise((resolve) => {
-            if (element == null) {
-              resolve(null);
-              return;
-            }
-
-            const animation = element.animate(data.keyframes, animationOptions);
-            animation.onfinish = () => {
-              resolve(null);
-            };
-          });
-        }),
-      );
-
-      dispatch({ type: 'endAnimation' });
-    },
-    [animations, activePanel.id],
-  );
+  const {
+    animateToPanel,
+    animations,
+    arePanelsAnimating,
+    getPanelAnimationProps,
+  } = usePanelAnimations(activePanel, panelElements);
 
   const changeActivePanel = React.useCallback(
     async (newActiveId: ActivePanel) => {
@@ -234,7 +110,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // This prevents empty panels with no way to go back.
         !document.getElementById(newActiveId.id) ||
         // Animation already in progress
-        animations != null ||
+        arePanelsAnimating ||
         // Same panel
         newActiveId.id === activePanel.id
       ) {
@@ -264,7 +140,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         }
       }, 0);
     },
-    [animateToPanel, animations, activePanel.id, onActiveIdChange],
+    [arePanelsAnimating, activePanel.id, animateToPanel, onActiveIdChange],
   );
 
   const goBack = React.useCallback(
@@ -293,7 +169,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           goBack,
           triggers,
           panelElements,
+          arePanelsAnimating,
           animations,
+          getPanelAnimationProps,
         }}
       >
         <Box
@@ -308,20 +186,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   );
 }) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
 PanelsWrapper.displayName = 'Panels.Wrapper';
-
-const PanelsWrapperContext = React.createContext<
-  | {
-      activePanel: ActivePanel;
-      triggers: React.RefObject<
-        Map<string, { triggerId: string; panelId: string }>
-      >;
-      changeActivePanel: (newActiveId: ActivePanel) => Promise<void>;
-      goBack: PanelsInstance['goBack'];
-      panelElements: React.RefObject<Record<string, HTMLElement | null>>;
-      animations: PanelAnimationState['animations'];
-    }
-  | undefined
->(undefined);
 
 // ----------------------------------------------------------------------------
 
@@ -343,9 +207,9 @@ type PanelProps = {
  * </Panels.Panel>
  */
 const Panel = React.forwardRef((props, forwardedRef) => {
-  const { id: idProp, children, className, style, ...rest } = props;
+  const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, triggers, panelElements, animations } =
+  const { triggers, panelElements, getPanelAnimationProps } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
@@ -355,14 +219,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   if (panelElements?.current != null) {
     panelElements.current[id] = element;
   }
-
-  const arePanelsAnimating = animations != null;
-  const isThisPanelAnimating = animations?.[id] != null;
-
-  const isHidden = arePanelsAnimating
-    ? !Object.keys(animations).includes(id)
-    : id !== activePanel?.id;
-  const isInert = id !== activePanel?.id && !isHidden;
 
   useInertPolyfill();
 
@@ -377,22 +233,13 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     >
       <Box
         ref={useMergedRefs(setElement, forwardedRef)}
-        id={id}
-        aria-labelledby={`${id}-header`}
-        tabIndex={-1}
-        {...rest}
-        className={cx('iui-panel', className)}
-        hidden={isHidden}
-        style={{
-          // Add the last keyframe styles to the current panel to avoid flickering
-          // i.e. showing the current panel for a split second between when the animations ends and the panel is hidden
-          ...(id === activePanel?.id && isThisPanelAnimating
-            ? animations[id].keyframes[animations[id].keyframes.length - 1]
-            : {}),
-
-          ...style,
-        }}
-        {...{ inert: isInert ? '' : undefined }}
+        {...getPanelAnimationProps?.({
+          id,
+          className: cx('iui-panel', className),
+          'aria-labelledby': `${id}-header`,
+          tabIndex: -1,
+          ...rest,
+        })}
       >
         {children}
       </Box>
