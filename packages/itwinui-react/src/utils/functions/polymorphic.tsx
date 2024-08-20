@@ -49,8 +49,8 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
 /**
  * Utility to create a type-safe polymorphic component with a simple class.
  *
- * Can be called directly or as a property of the `polymorphic` object.
- * In both cases, returns a component that:
+ * Can be called as a property of the `polymorphic` object.
+ * Returns a component that:
  * - uses CSS-modules scoped classes
  * - supports `as` prop with default element
  * - forwards ref and spreads rest props
@@ -58,16 +58,12 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
  * - adds tabIndex to interactive elements (Safari workaround)
  *
  * @example
- * const MyPolyDiv = polymorphic('my-poly-div');
- * <MyPolyDiv>...</MyPolyDiv>;
- *
- * @example
  * const MyPolyButton = polymorphic.button('my-poly-button', { type: 'button' });
  * <MyPolyButton as='a' href='#'>...</MyPolyButton>;
  *
  * @private
  */
-export const polymorphic = new Proxy(_base('div'), {
+export const polymorphic = new Proxy({} as never, {
   get: (target, prop) => {
     if (typeof prop === 'string') {
       // eslint-disable-next-line -- string is as far as we can narrow it down
@@ -76,7 +72,7 @@ export const polymorphic = new Proxy(_base('div'), {
     }
     return Reflect.get(target, prop);
   },
-}) as ReturnType<typeof _base> & {
+}) as {
   [key in keyof JSX.IntrinsicElements]: ReturnType<typeof _base<key>>;
 };
 
