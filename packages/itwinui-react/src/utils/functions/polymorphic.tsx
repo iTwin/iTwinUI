@@ -8,7 +8,7 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
 import { styles } from '../../styles.js';
 
-const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
+const _elementBase = <As extends keyof JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
 ) => {
   return (className: string, attrs?: JSX.IntrinsicElements[As]) => {
@@ -20,6 +20,16 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
           cx(className, attrs?.className, props.className),
         ),
       };
+
+      useGlobals();
+
+      if (Array.isArray(as as any)) {
+        if (as.length > 1) {
+          const [Component, ...restAs] = as;
+          return <Component ref={ref} {...props} as={restAs} />;
+        }
+        (as as any) = as[0];
+      }
 
       const Element = (as as any) || 'div';
 
@@ -33,8 +43,6 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
         props.tabIndex ??= 0;
       }
 
-      useGlobals();
-
       return <Element ref={ref} {...props} />;
     }) as PolymorphicForwardRefComponent<NonNullable<typeof defaultElement>>;
 
@@ -46,10 +54,24 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
   };
 };
 
+const _componentBase = (
+  ...components: PolymorphicForwardRefComponent<any>[]
+) => {
+  const Comp = _elementBase('div')('');
+  return React.forwardRef((props, ref) => (
+    <Comp
+      ref={ref}
+      {...props}
+      as={[...components, props.as].filter(Boolean) as any}
+    />
+  )) as PolymorphicForwardRefComponent<'div'>;
+};
+
 /**
  * Utility to create a type-safe polymorphic component with a simple class.
  *
  * Can be called as a property of the `polymorphic` object.
+ *
  * Returns a component that:
  * - uses CSS-modules scoped classes
  * - supports `as` prop with default element
@@ -57,23 +79,31 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
  * - adds and merges CSS classes
  * - adds tabIndex to interactive elements (Safari workaround)
  *
+ * Alternatively, it can be called directly with multiple components to create a chain of
+ * components. This is useful for creating wrapper components that still need to support
+ * user-specified `as` prop. **Note:** All components in the chain must be polymorphic.
+ *
  * @example
  * const MyPolyButton = polymorphic.button('my-poly-button', { type: 'button' });
  * <MyPolyButton as='a' href='#'>...</MyPolyButton>;
  *
+ * @example
+ * const MyMenuButton = polymorphic(MyPolyButton, MyMenu) as PolymorphicForwardRefComponent<'button'>;
+ * <MyMenuButton as='a' href='#'>...</MyMenuButton>;
+ *
  * @private
  */
-export const polymorphic = new Proxy({} as never, {
+export const polymorphic = new Proxy(_componentBase, {
   get: (target, prop) => {
     if (typeof prop === 'string') {
       // eslint-disable-next-line -- string is as far as we can narrow it down
       // @ts-ignore
-      return _base(prop);
+      return _elementBase(prop);
     }
     return Reflect.get(target, prop);
   },
-}) as {
-  [key in keyof JSX.IntrinsicElements]: ReturnType<typeof _base<key>>;
+}) as typeof _componentBase & {
+  [key in keyof JSX.IntrinsicElements]: ReturnType<typeof _elementBase<key>>;
 };
 
 // e.g. iui-list-item-icon -> ListItemIcon
