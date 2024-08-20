@@ -31,13 +31,12 @@ const { disabled, status, class: className, labelPosition, ...props } = Astro.pr
   }
   <input class:list={['iui-radio', className]} type='radio' disabled={disabled} {...props} />
   {
-    labelPosition === 'right' ||
-      (!labelPosition && (
-        <>
-          <span class='iui-radio-label'>
-            <slot />
-          </span>
-        </>
-      ))
+    (labelPosition === 'right' || !labelPosition) && (
+      <>
+        <span class='iui-radio-label'>
+          <slot />
+        </span>
+      </>
+    )
   }
 </label>
