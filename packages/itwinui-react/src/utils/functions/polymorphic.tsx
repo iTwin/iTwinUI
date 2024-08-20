@@ -49,7 +49,7 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
 /**
  * Utility to create a type-safe polymorphic component with a simple class.
  *
- * Can be called as a property of the `polymorphic` object.
+ * Should be called as a property of the `polymorphic` object.
  * Returns a component that:
  * - uses CSS-modules scoped classes
  * - supports `as` prop with default element
