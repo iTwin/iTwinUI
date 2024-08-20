@@ -52,14 +52,14 @@ if (process.env.NODE_ENV === 'development') {
 
 // --------------------------------------------------------------------------------
 
-const OverlayOverlay = polymorphic('iui-overlay');
+const OverlayOverlay = polymorphic.div('iui-overlay');
 if (process.env.NODE_ENV === 'development') {
   OverlayOverlay.displayName = 'Overlay.Overlay';
 }
 
 // --------------------------------------------------------------------------------
 
-const OverlayWrapper = polymorphic('iui-overlay-wrapper');
+const OverlayWrapper = polymorphic.div('iui-overlay-wrapper');
 if (process.env.NODE_ENV === 'development') {
   OverlayWrapper.displayName = 'Overlay.Wrapper';
 }
