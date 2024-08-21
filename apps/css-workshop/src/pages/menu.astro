@@ -48,11 +48,16 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' role='menu'>
       <Menu_ isActive actionable tabindex='0' role='menuitem' checked>
-        <div slot='end-icon'>Option 1</div>
+        Option 1
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ actionable tabindex='0' role='menuitem'>Option 2</Menu_>
+      <Menu_ actionable tabindex='0' role='menuitem'>
+        Option 2
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </Menu_>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <div slot='end-icon'>Option 3</div>
+        Option 3
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
     </ul>
 
@@ -60,17 +65,24 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' id='demo-scrollable'>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <div slot='end-icon'>Option 1</div>
+        Option 1
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 2</Menu_>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <div slot='end-icon'>Option 3</div>
-      </Menu_>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <div slot='end-icon'>Option 4</div>
+      <Menu_ actionable tabindex='0' checked role='menuitem'>
+        Option 2
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <div slot='end-icon'>Option 5</div>
+        Option 3
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </Menu_>
+      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+        Option 4
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </Menu_>
+      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+        Option 5
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ actionable tabindex='0' checked role='menuitem'>Option 6</Menu_>
       <Menu_ actionable tabindex='0' checked role='menuitem'>Option 7</Menu_>
@@ -87,13 +99,16 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' role='menu'>
       <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
-        <div slot='start-icon'>Option 1</div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 1
       </Menu_>
       <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
-        <div slot='start-icon'>Option 2</div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 2
       </Menu_>
       <Menu_ actionable id='test-menu-2'>
-        <div slot='start-icon'>Option 3</div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 3
       </Menu_>
     </ul>
 
@@ -101,20 +116,23 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' role='menu'>
       <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>Option 2</div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 1
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <Menu_ actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>Option 2</div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 2
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
     </ul>
 
@@ -122,33 +140,35 @@ import Menu_ from '../components/Menu.astro';
 
     <ul class='iui-menu' role='menu'>
       <Menu_ isActive isLarge actionable tabindex='0' checked role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>Alpha</div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0' checked role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>Beta</div>
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0' checked>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My project</Menu_>
@@ -341,25 +361,20 @@ import Menu_ from '../components/Menu.astro';
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
       <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='start-icon'>
-          <div>Model Alpha</div>
-          <div class='iui-list-item-description'>0x0987654321</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>Model Alpha</div>
+        <div class='iui-list-item-description'>0x0987654321</div>
       </Menu_>
       <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <svg-model
-          class='iui-list-item-icon iui-header-menu-icon'
-          aria-hidden='true'
-          slot='end-icon'></svg-model>
+        <svg-model slot='start-icon'></svg-model>
         <div>Model Beta</div>
         <div class='iui-list-item-description'>0x0123456789</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div class='iui-list-item-icon iui-header-menu-icon demo-picture'></div>
-        <span class='iui-list-item-content'>
-          <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-          <div class='iui-list-item-description'>0x0192837465</div>
-        </span>
+      <Menu_ isLarge actionable tabindex='0' role='menuitem' iconStyle='width: 24px; height: 24px'>
+        <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
+        <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div class='iui-list-item-description'>0x0192837465</div>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -428,26 +443,28 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
-      <Menu_ isLarge actionable role='menuitem' tabindex='0'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Model Alpha</div>
-          <div class='iui-list-item-description'>0x0987654321</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>Model Alpha</div>
+        <div class='iui-list-item-description'>0x0987654321</div>
       </Menu_>
       <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <svg-model class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'></svg-model>
-        <span class='iui-list-item-content'>
-          <div>Model Beta</div>
-          <div class='iui-list-item-description'>0x0123456789</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
+        <svg-model slot='start-icon'></svg-model>
+        <div>Model Beta</div>
+        <div class='iui-list-item-description'>0x0123456789</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div class='iui-list-item-icon iui-header-menu-icon demo-picture'></div>
-        <span class='iui-list-item-content'>
-          <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-          <div class='iui-list-item-description'>0x0192837465</div>
-        </span>
+      <Menu_
+        isLarge
+        actionable
+        tabindex='0'
+        role='menuitem'
+        iconStyle='width: 24px; height: 24px'
+        iconClassName='iui-header-menu-icon demo-picture'
+      >
+        <div slot='start-icon'></div>
+        <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div class='iui-list-item-description'>0x0192837465</div>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -469,36 +486,36 @@ import Menu_ from '../components/Menu.astro';
     </label>
     <ul class='iui-menu' role='menu'>
       <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <Menu_ isLarge actionable checked tabindex='0'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -517,36 +534,36 @@ import Menu_ from '../components/Menu.astro';
     </label>
     <ul class='iui-menu' role='menu'>
       <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -565,36 +582,36 @@ import Menu_ from '../components/Menu.astro';
     </label>
     <ul class='iui-menu' role='menu'>
       <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
       <Menu_ isLarge actionable tabindex='0'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -610,37 +627,37 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge isActive actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -653,37 +670,37 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge isActive actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -696,37 +713,37 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge isActive actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -742,37 +759,37 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge isActive actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -785,37 +802,37 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge isActive actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
@@ -828,37 +845,37 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <div slot='selected-item-with-placeholder-icon'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge isActive actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </div>
+      <Menu_ isLarge actionable tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <div class='iui-list-item-description'>Lorem ipsum</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <div slot='both-end-icon'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
+      <Menu_ isLarge actionable checked tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
+        <div class='iui-list-item-description'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
       <li class='iui-menu-divider' role='separator'></li>
       <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>

@@ -7,6 +7,8 @@ type Props = {
   disabled?: boolean;
   isSkeleton?: boolean;
   style?: string;
+  iconStyle?: string;
+  iconClassName?: string;
 } & astroHTML.JSX.HTMLAttributes;
 
 const {
@@ -18,6 +20,8 @@ const {
   disabled,
   isSkeleton,
   style,
+  iconStyle,
+  iconClassName,
   ...props
 } = Astro.props;
 ---
@@ -36,6 +40,19 @@ const {
   style={style}
 >
   {
+    Astro.slots.has('start-icon') && (
+      <>
+        <span
+          class:list={['iui-list-item-icon', iconClassName]}
+          style={iconStyle}
+          aria-hidden='true'
+        >
+          <slot name='start-icon' />
+        </span>
+      </>
+    )
+  }
+  {
     Astro.slots.has('default') && (
       <span class='iui-list-item-content'>
         <slot />
@@ -45,42 +62,9 @@ const {
   {
     Astro.slots.has('end-icon') && (
       <>
-        <span class='iui-list-item-content'>
+        <span class='iui-list-item-icon' aria-hidden='true'>
           <slot name='end-icon' />
         </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
-      </>
-    )
-  }
-  {
-    Astro.slots.has('start-icon') && (
-      <>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
-        <span class='iui-list-item-content'>
-          <slot name='start-icon' />
-        </span>
-      </>
-    )
-  }
-  {
-    Astro.slots.has('selected-item-with-placeholder-icon') && (
-      <>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
-        <span class='iui-list-item-content'>
-          <slot name='selected-item-with-placeholder-icon' />
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true' />
-      </>
-    )
-  }
-  {
-    Astro.slots.has('both-end-icon') && (
-      <>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true' />
-        <span class='iui-list-item-content'>
-          <slot name='both-end-icon' />
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true' />
       </>
     )
   }
