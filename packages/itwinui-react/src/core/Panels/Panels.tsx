@@ -281,17 +281,20 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     });
   }, [changeActivePanel, forProp]);
 
-  const triggersMatch = triggers?.current?.get(forProp);
-  if (
-    !!panelId &&
-    (panelId !== triggersMatch?.panelId ||
-      triggerId !== triggersMatch?.triggerId)
-  ) {
-    triggers?.current?.set(forProp, {
-      triggerId,
-      panelId: panelId,
-    });
-  }
+  // Add/Update trigger in the triggers map
+  React.useEffect(() => {
+    const triggersMatch = triggers?.current?.get(forProp);
+    if (
+      !!panelId &&
+      (panelId !== triggersMatch?.panelId ||
+        triggerId !== triggersMatch?.triggerId)
+    ) {
+      triggers?.current?.set(forProp, {
+        triggerId,
+        panelId: panelId,
+      });
+    }
+  }, [forProp, panelId, triggerId, triggers]);
 
   return cloneElementWithRef(children, (children) => {
     return {
