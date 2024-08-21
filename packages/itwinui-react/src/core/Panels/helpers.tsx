@@ -29,7 +29,6 @@ export const PanelsWrapperContext = React.createContext<
         Map<string, { triggerId: string; panelId: string }>
       >;
       changeActivePanel: (newActiveId: ActivePanel) => Promise<void>;
-      goBack: PanelsInstance['goBack'];
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
       arePanelsAnimating: boolean;
       animations: PanelAnimationState['animations'];
@@ -44,18 +43,42 @@ export const PanelsWrapperContext = React.createContext<
 
 // ----------------------------------------------------------------------------
 
-export const PanelsInstanceContext = React.createContext<{
-  instance: PanelsInstance | undefined;
-}>({ instance: undefined });
+export const PanelsInstanceContext = React.createContext<
+  | {
+      instance: PanelsInstance;
+    }
+  | undefined
+>(undefined);
 
 type PanelInstanceProviderProps = {
   children: React.ReactNode;
-  instance: PanelsInstance | undefined;
-  goBack: PanelsInstance['goBack'];
+  instance: PanelsInstance;
 };
 
 export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
-  const { children, instance, goBack } = props;
+  const { children, instance } = props;
+
+  const panelsWrapperContext = React.useContext(PanelsWrapperContext);
+
+  const goBack = React.useCallback(
+    async (options?: { animate?: boolean }) => {
+      if (panelsWrapperContext == null) {
+        return;
+      }
+
+      const { activePanel, changeActivePanel, triggers } = panelsWrapperContext;
+      const { animate = true } = options ?? {};
+
+      const trigger = triggers.current?.get(activePanel.id);
+      if (trigger?.triggerId != null) {
+        changeActivePanel({
+          id: trigger.panelId,
+          direction: animate ? 'prev' : undefined,
+        });
+      }
+    },
+    [panelsWrapperContext],
+  );
 
   useSynchronizeInstance(
     instance,

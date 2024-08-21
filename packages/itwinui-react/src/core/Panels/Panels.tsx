@@ -19,6 +19,7 @@ import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
 import {
+  PanelsInstanceContext,
   PanelsInstanceProvider,
   PanelsWrapperContext,
   usePanelAnimations,
@@ -86,9 +87,12 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     children,
     className,
     onActiveIdChange,
-    instance,
+    instance: instanceProp,
     ...rest
   } = props;
+
+  const instanceBackup = Panels.useInstance();
+  const instance = instanceProp || instanceBackup;
 
   const panelElements = React.useRef<Record<string, HTMLElement | null>>({});
 
@@ -143,37 +147,21 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     [arePanelsAnimating, activePanel.id, animateToPanel, onActiveIdChange],
   );
 
-  const goBack = React.useCallback(
-    async (options?: { animate?: boolean }) => {
-      const { animate = true } = options ?? {};
-
-      const trigger = triggers?.current?.get(activePanel.id);
-      if (trigger?.triggerId != null) {
-        changeActivePanel({
-          id: trigger.panelId,
-          direction: animate ? 'prev' : undefined,
-        });
-      }
-    },
-    [changeActivePanel, activePanel.id],
-  );
-
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
   return (
-    <PanelsInstanceProvider instance={instance} goBack={goBack}>
-      <PanelsWrapperContext.Provider
-        value={{
-          activePanel,
-          changeActivePanel,
-          goBack,
-          triggers,
-          panelElements,
-          arePanelsAnimating,
-          animations,
-          getPanelAnimationProps,
-        }}
-      >
+    <PanelsWrapperContext.Provider
+      value={{
+        activePanel,
+        changeActivePanel,
+        triggers,
+        panelElements,
+        arePanelsAnimating,
+        animations,
+        getPanelAnimationProps,
+      }}
+    >
+      <PanelsInstanceProvider instance={instance}>
         <Box
           ref={forwardedRef}
           {...rest}
@@ -181,8 +169,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         >
           {children}
         </Box>
-      </PanelsWrapperContext.Provider>
-    </PanelsInstanceProvider>
+      </PanelsInstanceProvider>
+    </PanelsWrapperContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
 PanelsWrapper.displayName = 'Panels.Wrapper';
@@ -359,7 +347,8 @@ PanelHeader.displayName = 'Panels.Header';
 const PanelBackButton = React.forwardRef((props, forwardedRef) => {
   const { children, onClick, ...rest } = props;
 
-  const panelWrapperContext = React.useContext(PanelsWrapperContext);
+  const { instance: panelInstance } =
+    React.useContext(PanelsInstanceContext) || {};
 
   return (
     <IconButton
@@ -370,10 +359,7 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
       data-iui-shift='left'
       {...rest}
       onClick={mergeEventHandlers(
-        React.useCallback(
-          () => panelWrapperContext?.goBack(),
-          [panelWrapperContext],
-        ),
+        React.useCallback(() => panelInstance?.goBack(), [panelInstance]),
         onClick,
       )}
     >
