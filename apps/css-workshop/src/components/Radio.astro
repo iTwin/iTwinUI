@@ -8,7 +8,7 @@ type Props = {
   name: string;
 } & astroHTML.JSX.HTMLAttributes;
 
-const { disabled, status, class: className, labelPosition, ...props } = Astro.props;
+const { disabled, status, class: className, labelPosition = 'right', ...props } = Astro.props;
 ---
 
 <label
@@ -22,21 +22,17 @@ const { disabled, status, class: className, labelPosition, ...props } = Astro.pr
 >
   {
     labelPosition === 'left' && (
-      <>
-        <span class='iui-radio-label'>
-          <slot />
-        </span>
-      </>
+      <span class='iui-radio-label'>
+        <slot />
+      </span>
     )
   }
   <input class:list={['iui-radio', className]} type='radio' disabled={disabled} {...props} />
   {
-    (labelPosition === 'right' || !labelPosition) && (
-      <>
-        <span class='iui-radio-label'>
-          <slot />
-        </span>
-      </>
+    labelPosition === 'right' && (
+      <span class='iui-radio-label'>
+        <slot />
+      </span>
     )
   }
 </label>
