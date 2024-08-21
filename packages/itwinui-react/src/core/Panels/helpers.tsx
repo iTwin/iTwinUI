@@ -60,25 +60,21 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
 
   const panelsWrapperContext = React.useContext(PanelsWrapperContext);
 
-  const goBack = React.useCallback(
-    async (options?: { animate?: boolean }) => {
-      if (panelsWrapperContext == null) {
-        return;
-      }
+  const goBack = React.useCallback(async () => {
+    if (panelsWrapperContext == null) {
+      return;
+    }
 
-      const { activePanel, changeActivePanel, triggers } = panelsWrapperContext;
-      const { animate = true } = options ?? {};
+    const { activePanel, changeActivePanel, triggers } = panelsWrapperContext;
 
-      const trigger = triggers.current?.get(activePanel.id);
-      if (trigger?.triggerId != null) {
-        changeActivePanel({
-          id: trigger.panelId,
-          direction: animate ? 'prev' : undefined,
-        });
-      }
-    },
-    [panelsWrapperContext],
-  );
+    const trigger = triggers.current?.get(activePanel.id);
+    if (trigger?.triggerId != null) {
+      changeActivePanel({
+        id: trigger.panelId,
+        direction: 'prev',
+      });
+    }
+  }, [panelsWrapperContext]);
 
   useSynchronizeInstance(
     instance,
