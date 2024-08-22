@@ -34,20 +34,22 @@ export const Basic = () => {
         blockSize: 'min(500px, 50vh)',
       }}
     >
-      <Panels.Panel id={panelIdRoot} as={List}>
+      <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <ListItem>
-          <Panels.Trigger for={panelIdMoreInfo}>
-            <ListItem.Action>More details</ListItem.Action>
-          </Panels.Trigger>
-        </ListItem>
+        <Surface.Body as={List}>
+          <ListItem>
+            <Panels.Trigger for={panelIdMoreInfo}>
+              <ListItem.Action>More details</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+        </Surface.Body>
       </Panels.Panel>
 
       <Panels.Panel
         id={panelIdMoreInfo}
-        as={Flex}
-        flexDirection='column'
-        alignItems='stretch'
+        as={Surface}
+        border={false}
+        elevation={0}
       >
         <Surface.Header as={Panels.Header}>More details</Surface.Header>
         <Surface.Body isPadded>
@@ -77,19 +79,12 @@ export const MultiPanelInformationPanel = () => {
     >
       <Panels.Panel
         id={initialActiveId}
-        as={Flex}
-        flexDirection='column'
-        alignItems='stretch'
-        gap='0'
+        as={Surface}
+        border={false}
+        elevation={0}
       >
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <Surface.Body
-          style={{
-            overflowY: 'auto',
-            flex: '1',
-          }}
-          as={List}
-        >
+        <Surface.Body as={List}>
           {panels.map((panel) => (
             <ListItem key={panel.id}>
               <ListItem.Content>
@@ -106,18 +101,12 @@ export const MultiPanelInformationPanel = () => {
         <Panels.Panel
           key={panel.id}
           id={panel.id}
-          as={Flex}
-          flexDirection='column'
-          alignItems='stretch'
+          as={Surface}
+          border={false}
+          elevation={0}
         >
           <Surface.Header as={Panels.Header}>{panel.label}</Surface.Header>
-          <Surface.Body
-            as={Flex}
-            flexDirection='column'
-            style={{
-              height: '100%',
-            }}
-          >
+          <Surface.Body as={Flex} flexDirection='column'>
             <Text>{`Content for ${panel.id}`}</Text>
             <Flex.Spacer />
             <Divider />
@@ -251,32 +240,46 @@ export const MultiLevelList = () => {
           </ListItem>
         </Panels.Panel>
 
-        <Panels.Panel as={List} id={qualityPanelId}>
+        <Panels.Panel
+          id={qualityPanelId}
+          as={Surface}
+          border={false}
+          elevation={0}
+        >
           <Surface.Header as={Panels.Header}>Quality</Surface.Header>
-          {qualities.map((quality) => (
-            <_ItemQuality key={quality} content={quality} />
-          ))}
+          <Surface.Body as={List}>
+            {qualities.map((quality) => (
+              <_ItemQuality key={quality} content={quality} />
+            ))}
+          </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel as={List} id={speedPanelId}>
+        <Panels.Panel
+          id={speedPanelId}
+          as={Surface}
+          border={false}
+          elevation={0}
+        >
           <Surface.Header as={Panels.Header}>Speed</Surface.Header>
-          <Surface.Body
-            style={{
-              maxBlockSize: '100%',
-              overflowY: 'auto',
-            }}
-          >
+          <Surface.Body as={List}>
             {speeds.map((speed) => (
               <_ItemSpeed key={speed} content={speed} />
             ))}
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel as={List} id={accessibilityPanelId}>
+        <Panels.Panel
+          as={Surface}
+          id={accessibilityPanelId}
+          border={false}
+          elevation={0}
+        >
           <Surface.Header as={Panels.Header}>Accessibility</Surface.Header>
-          <_ItemAccessibility content='High contrast' />
-          <_ItemAccessibility content='Large text' />
-          <_ItemAccessibility content='Screen reader' />
+          <Surface.Body as={List}>
+            <_ItemAccessibility content='High contrast' />
+            <_ItemAccessibility content='Large text' />
+            <_ItemAccessibility content='Screen reader' />
+          </Surface.Body>
         </Panels.Panel>
       </Panels.Wrapper>
     </>
@@ -296,21 +299,18 @@ export const CustomBackButton = () => {
         blockSize: 'min(500px, 50vh)',
       }}
     >
-      <Panels.Panel id={panelIdRoot} as={List}>
+      <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <ListItem>
-          <Panels.Trigger for={panelIdMoreInfo}>
-            <ListItem.Action>More details</ListItem.Action>
-          </Panels.Trigger>
-        </ListItem>
+        <Surface.Body as={List}>
+          <ListItem>
+            <Panels.Trigger for={panelIdMoreInfo}>
+              <ListItem.Action>More details</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+        </Surface.Body>
       </Panels.Panel>
 
-      <Panels.Panel
-        id={panelIdMoreInfo}
-        as={Flex}
-        flexDirection='column'
-        alignItems='stretch'
-      >
+      <Panels.Panel id={panelIdMoreInfo} as={Surface}>
         <Surface.Header as={Flex}>
           <Panels.BackButton label='Go back to home'>
             <SvgArrowLeft />
@@ -350,14 +350,15 @@ export const NestedPanels = () => {
         as={Surface}
       >
         {panelIds.map((id, index) => (
-          <Panels.Panel key={id} id={id}>
+          <Panels.Panel
+            key={id}
+            id={id}
+            as={Surface}
+            border={false}
+            elevation={0}
+          >
             <Surface.Header as={Panels.Header}>{id}</Surface.Header>
-            <Surface.Body
-              as={Flex}
-              flexDirection='column'
-              alignItems='flex-start'
-              isPadded
-            >
+            <Surface.Body isPadded>
               <Panels.Trigger for={panelIds[index + 1]}>
                 <Button>
                   Go to {panelIds[index + 1] ?? "panel that doesn't exist"}
