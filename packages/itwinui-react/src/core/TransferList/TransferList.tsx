@@ -20,7 +20,7 @@ import { Label } from '../Label/Label.js';
 // ----------------------------------------------------------------------------
 // TransferListComponent
 
-const TransferListComponent = polymorphic('iui-transfer-list-wrapper');
+const TransferListComponent = polymorphic.div('iui-transfer-list-wrapper');
 if (process.env.NODE_ENV === 'development') {
   TransferListComponent.displayName = 'TransferList';
 }
@@ -226,7 +226,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // TransferList.Toolbar component
 
-const TransferListToolbar = polymorphic('iui-transfer-list-toolbar', {
+const TransferListToolbar = polymorphic.div('iui-transfer-list-toolbar', {
   role: 'toolbar',
 });
 if (process.env.NODE_ENV === 'development') {

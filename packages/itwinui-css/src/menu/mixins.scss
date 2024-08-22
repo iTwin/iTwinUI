@@ -91,6 +91,12 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     color: var(--iui-color-text-disabled);
     --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
     --_iui-list-item-description-color: var(--iui-color-text-disabled);
+
+    &:where([data-iui-actionable='true']:hover, [data-iui-actionable='true']:focus-visible) {
+      color: var(--iui-color-icon-disabled-hover);
+      --_iui-list-item-icon-fill: var(--iui-color-icon-disabled-hover);
+      --_iui-list-item-description-color: var(--iui-color-text-disabled-hover);
+    }
   }
 
   &:where(:focus-visible, .iui-focused, [data-iui-focused='true']),
