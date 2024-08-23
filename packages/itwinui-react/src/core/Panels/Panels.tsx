@@ -22,13 +22,8 @@ import {
   PanelsInstanceContext,
   PanelsInstanceProvider,
   PanelsWrapperContext,
-  usePanelAnimations,
 } from './helpers.js';
-import type {
-  ActivePanel,
-  PanelsInstance,
-  TriggerMapEntry,
-} from './helpers.js';
+import type { PanelsInstance, TriggerMapEntry } from './helpers.js';
 
 // #region PanelsWrapper
 
@@ -37,7 +32,7 @@ type PanelsWrapperProps = {
    * The initialPanel that is displayed.
    */
   initialActiveId: string;
-  onActiveIdChange?: (newActiveId: ActivePanel) => void;
+  onActiveIdChange?: (newActiveId: string) => void;
   children: React.ReactNode;
   /**
    * Pass an instance created by `useInstance` to control the panels imperatively.
@@ -109,70 +104,70 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const panelElements = React.useRef<Record<string, HTMLElement | null>>({});
 
-  const [activePanel, setActivePanel] = React.useState<ActivePanel>({
-    id: initialActiveId,
-  });
-
-  const {
-    animateToPanel,
-    animations,
-    arePanelsAnimating,
-    getPanelAnimationProps,
-  } = usePanelAnimations(activePanel, panelElements);
+  const [activePanel, setActivePanel] = React.useState<string>(initialActiveId);
+  // const [nextPanel, setNextPanel] = React.useState<string | undefined>(
+  //   undefined,
+  // );
 
   const changeActivePanel = React.useCallback(
-    async (newActiveId: ActivePanel) => {
-      if (
-        // Only if forProp exists in the DOM, go to the new panel.
-        // This prevents empty panels with no way to go back.
-        !document.getElementById(newActiveId.id) ||
-        // Animation already in progress
-        arePanelsAnimating ||
-        // Same panel
-        newActiveId.id === activePanel.id
-      ) {
-        return;
-      }
+    async (newActiveId: string) => {
+      // TODO: Is this guard needed?
+      // if (
+      //   // Only if forProp exists in the DOM, go to the new panel.
+      //   // This prevents empty panels with no way to go back.
+      //   !document.getElementById(newActiveId.id) ||
+      //   // Same panel
+      //   newActiveId.id === activePanel.id
+      // ) {
+      //   return;
+      // }
 
-      await animateToPanel(newActiveId);
+      // ReactDOM.flushSync(() => setNextPanel(newActiveId));
+
+      panelElements.current?.[newActiveId]?.scrollIntoView({
+        behavior: 'smooth',
+        // block: 'center',
+        // inline: 'center',
+      });
 
       setActivePanel(newActiveId);
       onActiveIdChange?.(newActiveId);
 
-      // Move focus if a direction is specified
-      // - `prev`: Focus the trigger
-      // - `next` or undefined: Focus the new panel
-      setTimeout(() => {
-        if (newActiveId.direction === 'prev') {
-          const trigger = triggers?.current?.get(activePanel.id);
-          if (trigger?.triggerId != null) {
-            document
-              .getElementById(trigger.triggerId)
-              ?.focus({ preventScroll: true });
-          }
-        } else {
-          panelElements.current?.[newActiveId.id]?.focus({
-            preventScroll: true,
-          });
-        }
-      }, 0);
+      // // Move focus if a direction is specified
+      // // - `prev`: Focus the trigger
+      // // - `next` or undefined: Focus the new panel
+      // setTimeout(() => {
+      //   if (newActiveId.direction === 'prev') {
+      //     const trigger = triggers?.current?.get(activePanel.id);
+      //     if (trigger?.triggerId != null) {
+      //       document
+      //         .getElementById(trigger.triggerId)
+      //         ?.focus({ preventScroll: true });
+      //     }
+      //   } else {
+      //     panelElements.current?.[newActiveId.id]?.focus({
+      //       preventScroll: true,
+      //     });
+      //   }
+      // }, 0);
     },
-    [arePanelsAnimating, activePanel.id, animateToPanel, onActiveIdChange],
+    [onActiveIdChange],
   );
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
 
   return (
     <PanelsWrapperContext.Provider
-      value={{
-        activePanel,
-        changeActivePanel,
-        triggers,
-        panelElements,
-        arePanelsAnimating,
-        animations,
-        getPanelAnimationProps,
-      }}
+      value={React.useMemo(
+        () => ({
+          activePanel,
+          // nextPanel,
+          changeActivePanel,
+          triggers,
+          panelElements,
+        }),
+        [activePanel, changeActivePanel],
+      )}
     >
       <PanelsInstanceProvider instance={instance}>
         <Box
@@ -212,12 +207,13 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { triggers, panelElements, getPanelAnimationProps } =
+  const { activePanel, triggers, panelElements } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
 
+  // TODO: Referring ref in render
   const [element, setElement] = React.useState<HTMLElement | null>(null);
   if (panelElements?.current != null) {
     panelElements.current[id] = element;
@@ -225,27 +221,36 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   useInertPolyfill();
 
+  // TODO: Referring ref in render
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
+
+  // TODO: Are these the same conditions?
+  const isHidden = idProp !== activePanel?.id;
+  const isInert = idProp !== activePanel?.id && !isHidden;
+
+  const refs = useMergedRefs(setElement, forwardedRef);
 
   return (
     <PanelContext.Provider
-      value={{
-        id,
-        associatedTrigger,
-      }}
+      value={React.useMemo(
+        () => ({ id, associatedTrigger }),
+        [associatedTrigger, id],
+      )}
     >
-      <Box
-        ref={useMergedRefs(setElement, forwardedRef)}
-        {...getPanelAnimationProps?.({
-          id,
-          className: cx('iui-panel', className),
-          'aria-labelledby': `${id}-header`,
-          tabIndex: -1,
-          ...rest,
-        })}
-      >
-        {children}
-      </Box>
+      {!isHidden && (
+        <Box
+          ref={refs}
+          id={id}
+          className={cx('iui-panel', className)}
+          aria-labelledby={`${id}-header`}
+          tabIndex={-1}
+          hidden={isHidden}
+          {...{ inert: isInert ? '' : undefined }}
+          {...rest}
+        >
+          {children}
+        </Box>
+      )}
     </PanelContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelProps>;
@@ -292,12 +297,10 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   const triggerId = children.props.id || fallbackId;
 
   const onClick = React.useCallback(() => {
-    changeActivePanel?.({
-      id: forProp,
-      direction: 'next',
-    });
+    changeActivePanel?.(forProp);
   }, [changeActivePanel, forProp]);
 
+  // TODO: Maybe simplify if possible
   // Add/Update trigger in the triggers map
   React.useEffect(() => {
     const triggersMatch = triggers?.current?.get(forProp);
@@ -318,7 +321,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
       ...children.props,
       id: triggerId,
       onClick: mergeEventHandlers(children.props.onClick, onClick),
-      'aria-expanded': activePanel?.id === forProp,
+      'aria-expanded': activePanel === forProp,
       'aria-controls': forProp,
     };
   });
