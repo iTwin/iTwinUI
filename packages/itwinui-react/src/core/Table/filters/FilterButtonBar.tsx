@@ -24,9 +24,11 @@ export type FilterButtonBarProps = {
    */
   children?: React.ReactNode;
   /**
-   * Callback used for Filter button click. Should come from `BaseFilter`.
+   * Callback used for Filter button click.
+   *
+   * @deprecated Use the onSubmit callback from `BaseFilter` instead.
    */
-  setFilter: () => void;
+  setFilter?: () => void;
   /**
    * Callback used for Clear button click. Should come from `BaseFilter`.
    */
@@ -60,7 +62,7 @@ export const FilterButtonBar = (props: FilterButtonBarProps) => {
   return (
     <Box className={cx('iui-button-bar', className)} style={style} id={id}>
       {children}
-      <Button styleType='high-visibility' onClick={setFilter}>
+      <Button type='submit' styleType='high-visibility' onClick={setFilter}>
         {translatedStrings.filter}
       </Button>
       <Button onClick={clearFilter}>{translatedStrings.clear}</Button>

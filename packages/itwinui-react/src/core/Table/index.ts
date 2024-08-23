@@ -7,7 +7,6 @@ export type { TablePaginatorRendererProps } from './Table.js';
 
 export { BaseFilter, FilterButtonBar, tableFilters } from './filters/index.js';
 export type {
-  BaseFilterProps,
   DateRangeFilterOptions,
   FilterButtonBarProps,
   FilterButtonBarTranslation,

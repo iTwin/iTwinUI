@@ -43,15 +43,15 @@ export const TextFilter = <T extends Record<string, unknown>>(
   };
 
   return (
-    <BaseFilter>
+    <BaseFilter onSubmit={() => setFilter(text)}>
       <Input
         ref={inputRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={onKeyDown}
+        required
       />
       <FilterButtonBar
-        setFilter={() => setFilter(text)}
         clearFilter={clearFilter}
         translatedLabels={translatedLabels}
       />
