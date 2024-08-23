@@ -106,6 +106,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const panelElements = React.useRef<Record<string, HTMLElement | null>>({});
 
   const [activePanel, setActivePanel] = React.useState<string>(initialActiveId);
+  const [previousPanel, setPreviousPanel] = React.useState<string | undefined>(
+    undefined,
+  );
   const [nextPanel, setNextPanel] = React.useState<string | undefined>(
     undefined,
   );
@@ -125,14 +128,16 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       ReactDOM.flushSync(() => setNextPanel(newActiveId));
 
-      // panelElements.current?.[newActiveId]?.scrollIntoView({
-      //   behavior: 'smooth',
-      //   // block: 'center',
-      //   // inline: 'center',
-      // });
-
+      // setTimeout(() => {
+      panelElements.current?.[newActiveId]?.scrollIntoView({
+        block: 'nearest',
+        inline: 'center',
+      });
+      setPreviousPanel(activePanel);
       setActivePanel(newActiveId);
+      setNextPanel(undefined);
       onActiveIdChange?.(newActiveId);
+      // });
 
       // // Move focus if a direction is specified
       // // - `prev`: Focus the trigger
@@ -152,7 +157,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       //   }
       // }, 0);
     },
-    [onActiveIdChange],
+    [activePanel, onActiveIdChange],
   );
 
   const triggers = React.useRef(new Map<string, TriggerMapEntry>());
@@ -163,11 +168,12 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         () => ({
           activePanel,
           nextPanel,
+          previousPanel,
           changeActivePanel,
           triggers,
           panelElements,
         }),
-        [activePanel, nextPanel, changeActivePanel],
+        [activePanel, nextPanel, previousPanel, changeActivePanel],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -208,7 +214,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, nextPanel, triggers, panelElements } =
+  const { activePanel, nextPanel, previousPanel, triggers, panelElements } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
@@ -225,7 +231,9 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   // TODO: Referring ref in render
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
-  const isMounted = [activePanel, nextPanel].includes(idProp);
+  const isMounted = [activePanel, nextPanel, previousPanel].includes(id);
+  const isActive = id === activePanel;
+  const isInert = [nextPanel, previousPanel].includes(id);
 
   const refs = useMergedRefs(setElement, forwardedRef);
 
@@ -243,8 +251,9 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header`}
           tabIndex={-1}
+          data-iui-active={isActive ? 'true' : undefined}
           // hidden={isMounted}
-          // {...{ inert: isInert ? '' : undefined }}
+          {...{ inert: isInert ? '' : undefined }}
           {...rest}
         >
           {children}

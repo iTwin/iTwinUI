@@ -3,6 +3,10 @@
 
 .iui-panel-wrapper {
   overflow: hidden;
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 // Intentional selector to increase specificity
