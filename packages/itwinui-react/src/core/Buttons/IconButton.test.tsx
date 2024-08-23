@@ -145,3 +145,16 @@ it.each(['default', 'small', 'large'] as const)(
     }
   },
 );
+
+it('should reroute title to label', () => {
+  const { container } = render(
+    <IconButton title='Add'>
+      <SvgMore />
+    </IconButton>,
+  );
+
+  const button = container.querySelector('button') as HTMLElement;
+  expect(button).toHaveAccessibleName('Add');
+  expect(button).toHaveTextContent('Add');
+  expect(button).not.toHaveAttribute('title');
+});
