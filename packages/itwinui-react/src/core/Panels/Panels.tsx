@@ -128,34 +128,32 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       ReactDOM.flushSync(() => setNextPanel(newActiveId));
 
-      // setTimeout(() => {
       panelElements.current?.[newActiveId]?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
       });
-      setPreviousPanel(activePanel);
-      setActivePanel(newActiveId);
-      setNextPanel(undefined);
-      onActiveIdChange?.(newActiveId);
-      // });
+      // TODO: focus
+      // const triggerId = triggers?.current?.get(newActiveId)?.triggerId;
+      // if (triggerId) {
+      //   const trigger = document.getElementById(triggerId);
+      //   console.log(triggers?.current?.get(newActiveId));
+      //   const isTriggerFocused = document.activeElement === trigger;
+      //   const elementToFocus = isTriggerFocused
+      //     ? panelElements.current?.[newActiveId]
+      //     : trigger;
+      //   elementToFocus?.focus({ preventScroll: true });
+      // }
 
-      // // Move focus if a direction is specified
-      // // - `prev`: Focus the trigger
-      // // - `next` or undefined: Focus the new panel
-      // setTimeout(() => {
-      //   if (newActiveId.direction === 'prev') {
-      //     const trigger = triggers?.current?.get(activePanel.id);
-      //     if (trigger?.triggerId != null) {
-      //       document
-      //         .getElementById(trigger.triggerId)
-      //         ?.focus({ preventScroll: true });
-      //     }
-      //   } else {
-      //     panelElements.current?.[newActiveId.id]?.focus({
-      //       preventScroll: true,
-      //     });
-      //   }
-      // }, 0);
+      ReactDOM.flushSync(() => {
+        setActivePanel(newActiveId);
+        setNextPanel(undefined);
+      });
+
+      ReactDOM.flushSync(() => setPreviousPanel(activePanel));
+      // TODO: DOM cleanup
+      // setTimeout(() => setPreviousPanel(undefined), 1000);
+
+      onActiveIdChange?.(newActiveId);
     },
     [activePanel, onActiveIdChange],
   );
@@ -249,10 +247,9 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           ref={refs}
           id={id}
           className={cx('iui-panel', className)}
-          aria-labelledby={`${id}-header`}
+          aria-labelledby={`${id}-header`} // TODO:
           tabIndex={-1}
           data-iui-active={isActive ? 'true' : undefined}
-          // hidden={isMounted}
           {...{ inert: isInert ? '' : undefined }}
           {...rest}
         >
@@ -341,6 +338,7 @@ PanelTrigger.displayName = 'Panels.Trigger';
 // #region PanelHeader
 
 /**
+ * TODO: Make it required.
  * Optional component, if added, shows a title and handles the showing of the back button depending on whether a
  * previous panel exist.
  */
@@ -366,6 +364,7 @@ PanelHeader.displayName = 'Panels.Header';
 // #region PanelBackButton
 
 /**
+ * // TODO: See use cases
  * Optional component, if added, sets the `activeId` to the panel that has a trigger that points to the current panel
  * when clicked.
  *
@@ -376,7 +375,7 @@ PanelHeader.displayName = 'Panels.Header';
  * @example
  * <caption>Custom back button</caption>
  * <Panels.BackButton onClick={() => console.log('Back button clicked')}>
- *  <CustomBackIcon />
+ *   <CustomBackIcon />
  * </Panels.BackButton>
  */
 const PanelBackButton = React.forwardRef((props, forwardedRef) => {

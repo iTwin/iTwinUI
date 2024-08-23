@@ -19,6 +19,7 @@ export const PanelsWrapperContext = React.createContext<
       // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
       activePanel: string;
       nextPanel?: string;
+      previousPanel?: string;
       triggers: React.RefObject<
         Map<string, { triggerId: string; panelId: string }>
       >;
