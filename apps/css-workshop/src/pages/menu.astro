@@ -6,914 +6,927 @@ import Menu_ from '../components/Menu.astro';
 ---
 
 <Layout title='Menu'>
-  <script>
-    import '@itwin/itwinui-icons-elements/checkmark';
-    import '@itwin/itwinui-icons-elements/placeholder';
-    import '@itwin/itwinui-icons-elements/caret-right-small';
-    import '@itwin/itwinui-icons-elements/imodel-hollow';
-    import '@itwin/itwinui-icons-elements/caret-down-small';
-    import '@itwin/itwinui-icons-elements/chevron-right';
-    import '@itwin/itwinui-icons-elements/model';
-    import '@itwin/itwinui-icons-elements/caret-down-small';
-  </script>
-  <style is:global>
-    section[id^='demo'] {
-      width: auto;
-      padding: 12px;
-    }
+<script>
+  import '@itwin/itwinui-icons-elements/checkmark';
+  import '@itwin/itwinui-icons-elements/placeholder';
+  import '@itwin/itwinui-icons-elements/caret-right-small';
+  import '@itwin/itwinui-icons-elements/imodel-hollow';
+  import '@itwin/itwinui-icons-elements/caret-down-small';
+  import '@itwin/itwinui-icons-elements/chevron-right';
+  import '@itwin/itwinui-icons-elements/model';
+  import '@itwin/itwinui-icons-elements/caret-down-small';
+</script>
+<style is:global>
+  section[id^='demo'] {
+    width: auto;
+    padding: 12px;
+  }
 
-    #demo-header {
-      position: relative;
-    }
+  #demo-header {
+    position: relative;
+  }
 
-    div.demo-picture {
-      background-image: url('/assets/image-test.jpg');
-      background-position: center;
-      background-size: cover;
-    }
-  </style>
+  div.demo-picture {
+    background-image: url('/assets/image-test.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+</style>
 
-  <h1>Menu</h1>
-  <hr />
+<h1>Menu</h1>
+<hr />
 
-  <h2>Default</h2>
-  <section id='demo-default'>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ actionable tabindex='0' id='test-menu-1' role='menuitem'>Option 1</Menu_>
-      <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>Option 2</Menu_>
-      <Menu_ disabled actionable>Option 3</Menu_>
-    </ul>
+<h2>Default</h2>
+<section id='demo-default'>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ actionable tabindex='0' id='test-menu-1' role='menuitem'>Option 1</Menu_>
+    <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>Option 2</Menu_>
+    <Menu_ disabled actionable>Option 3</Menu_>
+  </ul>
 
-    <br />
+  <br />
 
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isActive actionable tabindex='0' role='menuitem' checked>
-        Option 1
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ actionable tabindex='0' role='menuitem'>
-        Option 2
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        Option 3
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-    </ul>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isActive actionable tabindex='0' role='menuitem' checked>
+      Option 1
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ actionable tabindex='0' role='menuitem'>
+      Option 2
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+      Option 3
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+  </ul>
 
-    <br />
+  <br />
 
-    <ul class='iui-menu' id='demo-scrollable'>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        Option 1
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>
-        Option 2
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        Option 3
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        Option 4
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        Option 5
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 6</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 7</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 8</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 9</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 10</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 11</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 12</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 13</Menu_>
-      <Menu_ actionable tabindex='0' checked role='menuitem'>Option 14</Menu_>
-    </ul>
+  <ul class='iui-menu' id='demo-scrollable'>
+    <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+      Option 1
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>
+      Option 2
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+      Option 3
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+      Option 4
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+      Option 5
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 6</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 7</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 8</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 9</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 10</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 11</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 12</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 13</Menu_>
+    <Menu_ actionable tabindex='0' checked role='menuitem'>Option 14</Menu_>
+  </ul>
 
-    <br />
+  <br />
 
-    <ul class='iui-menu' role='menu'>
-      <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Option 1
-      </Menu_>
-      <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Option 2
-      </Menu_>
-      <Menu_ actionable id='test-menu-2'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Option 3
-      </Menu_>
-    </ul>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Option 1
+    </Menu_>
+    <Menu_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Option 2
+    </Menu_>
+    <Menu_ actionable id='test-menu-2'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Option 3
+    </Menu_>
+  </ul>
 
-    <br />
+  <br />
 
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isActive actionable tabindex='0' checked role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ actionable tabindex='0' role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Option 1
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ actionable tabindex='0' role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Option 2
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+  </ul>
+
+  <br />
+
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isActive isLarge actionable tabindex='0' checked role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0' checked role='menuitem'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>Beta</div>
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0' checked>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ actionable tabindex='0' role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Option 1
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ actionable tabindex='0' role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Option 2
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-    </ul>
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My project</Menu_>
+  </ul>
 
-    <br />
+  <br />
 
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isActive isLarge actionable tabindex='0' checked role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0' checked role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>Beta</div>
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0' checked>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My project</Menu_>
-    </ul>
-
-    <br />
-
-    <ul class='iui-menu' role='menu'>
-      <li class='iui-menu-content' role='presentation'>
-        <div class='iui-text-leading'>Terry Rivers</div>
-        <div class='iui-text-muted' style='margin-bottom: 8px;'>terry.rivers@email.com</div>
-        <label class='iui-input-grid'>
-          <div class='iui-input-with-icon'>
-            <div tabindex='0' class='iui-select-button iui-field'>
-              <span class='iui-list-item-content'>Administrator</span>
-            </div>
-            <Icon_ svg='caret-down-small' class='iui-end-icon' />
+  <ul class='iui-menu' role='menu'>
+    <li class='iui-menu-content' role='presentation'>
+      <div class='iui-text-leading'>Terry Rivers</div>
+      <div class='iui-text-muted' style='margin-bottom: 8px;'>terry.rivers@email.com</div>
+      <label class='iui-input-grid'>
+        <div class='iui-input-with-icon'>
+          <div tabindex='0' class='iui-select-button iui-field'>
+            <span class='iui-list-item-content'>Administrator</span>
           </div>
-        </label>
-      </li>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>View profile</Menu_>
-      <Menu_ actionable tabindex='0' role='menuitem'>Sign out</Menu_>
-    </ul>
-
-    <br />
-
-    <ul class='iui-menu' role='menu'>
-      <li class='iui-menu-content' role='presentation'>
-        <div class='iui-text-muted'>No results, try refining your search&mldr;</div>
-      </li>
-    </ul>
-  </section>
-
-  <hr />
-
-  <h2>Skeleton</h2>
-  <section id='demo-skeleton'>
-    <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      >
-        <div slot='skeleton-without-icon'></div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      >
-        <div slot='skeleton-without-icon'></div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      >
-        <div slot='skeleton-without-icon'></div>
-      </Menu_>
-    </ul>
-
-    <br />
-
-    <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      >
-        <div slot='skeleton-with-icon'></div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      >
-        <div slot='skeleton-with-icon'></div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      >
-        <div slot='skeleton-with-icon'></div>
-      </Menu_>
-    </ul>
-
-    <br />
-
-    <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        isLarge
-        role='presentation'
-        id='test-menu-item-skeleton'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      >
-        <div slot='skeleton-with-icon'>
-          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+          <Icon_ svg='caret-down-small' class='iui-end-icon' />
         </div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        isLarge
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      >
-        <div slot='skeleton-with-icon'>
-          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-        </div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        isLarge
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      >
-        <div slot='skeleton-with-icon'>
-          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-        </div>
-      </Menu_>
-    </ul>
-  </section>
+      </label>
+    </li>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>View profile</Menu_>
+    <Menu_ actionable tabindex='0' role='menuitem'>Sign out</Menu_>
+  </ul>
 
-  <hr />
+  <br />
 
-  <h2>In context</h2>
-  <h3>Header</h3>
-  <section id='demo-header'>
-    <header class='iui-page-header'>
-      <div class='iui-page-header-left'>
-        <!-- Application Button -->
-        <div class='iui-header-brand' role='button' aria-label='App name' tabindex='0'>
-          <svg-imodel-hollow class='iui-header-brand-icon' aria-hidden='true'></svg-imodel-hollow>
-          <span class='iui-header-brand-label'>App name</span>
-        </div>
+  <ul class='iui-menu' role='menu'>
+    <li class='iui-menu-content' role='presentation'>
+      <div class='iui-text-muted'>No results, try refining your search&mldr;</div>
+    </li>
+  </ul>
+</section>
 
-        <div class='iui-page-header-divider'></div>
+<hr />
 
-        <nav class='iui-breadcrumbs iui-header-breadcrumbs' aria-label='Breadcrumbs'>
-          <ol class='iui-breadcrumbs-list iui-header-breadcrumbs-list'>
-            <li class='iui-header-breadcrumb-item'>
-              <button
-                class='iui-header-breadcrumb-button'
-                type='button'
-                aria-label='Project picker'
-                aria-expanded='false'
-                id='test-button-1'
-              >
-                <span class='iui-header-breadcrumb-button-icon'>
-                  <img src='/assets/image-test.jpg' draggable='false' />
-                </span>
-                <span class='iui-header-breadcrumb-button-text'>
-                  <span class='iui-header-breadcrumb-button-text-label'>Project Alpha</span>
-                  <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
-                </span>
-                <svg-caret-down-small
-                  class='iui-header-breadcrumb-button-dropdown-icon'
-                  aria-hidden='true'></svg-caret-down-small>
-              </button>
-            </li>
-            <li class='iui-breadcrumbs-separator' aria-hidden='true'>
-              <svg-chevron-right aria-hidden='true'></svg-chevron-right>
-            </li>
-            <li
-              class='iui-header-breadcrumb-item'
-              aria-current='location'
-              id='demo-header-imodel-button'
+<h2>Skeleton</h2>
+<section id='demo-skeleton'>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isSkeleton role='presentation' style='--iui-menu-item-content-skeleton-max-width: 30%;'>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </div>
+    </Menu_>
+    <Menu_ isSkeleton role='presentation' style='--iui-menu-item-content-skeleton-max-width: 25%;'>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </div>
+    </Menu_>
+    <Menu_ isSkeleton role='presentation' style='--iui-menu-item-content-skeleton-max-width: 35%;'>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </div>
+    </Menu_>
+  </ul>
+
+  <br />
+
+  <ul class='iui-menu' role='menu'>
+    <Menu_
+      isSkeleton
+      role='presentation'
+      style='--iui-menu-item-content-skeleton-max-width: 30%;'
+      iconClassName='iui-skeleton'
+    >
+      <div slot='start-icon'></div>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </div>
+    </Menu_>
+    <Menu_
+      isSkeleton
+      role='presentation'
+      style='--iui-menu-item-content-skeleton-max-width: 25%;'
+      iconClassName='iui-skeleton'
+    >
+      <div slot='start-icon'></div>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </div>
+    </Menu_>
+    <Menu_
+      isSkeleton
+      role='presentation'
+      style='--iui-menu-item-content-skeleton-max-width: 35%;'
+      iconClassName='iui-skeleton'
+    >
+      <div slot='start-icon'></div>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </div>
+    </Menu_>
+  </ul>
+
+  <br />
+
+  <ul class='iui-menu' role='menu'>
+    <Menu_
+      isSkeleton
+      isLarge
+      role='presentation'
+      id='test-menu-item-skeleton'
+      style='--iui-menu-item-content-skeleton-max-width: 30%;'
+      iconClassName='iui-skeleton'
+    >
+      <div slot='start-icon'></div>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+      </div>
+    </Menu_>
+
+    <Menu_
+      isSkeleton
+      isLarge
+      role='presentation'
+      style='--iui-menu-item-content-skeleton-max-width: 25%;'
+      iconClassName='iui-skeleton'
+    >
+      <div slot='start-icon'></div>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+      </div>
+    </Menu_>
+    <Menu_
+      isSkeleton
+      isLarge
+      role='presentation'
+      style='--iui-menu-item-content-skeleton-max-width: 35%;'
+      iconClassName='iui-skeleton'
+    >
+      <div slot='start-icon'></div>
+      <div slot='skeleton'>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+      </div>
+    </Menu_>
+  </ul>
+</section>
+
+<hr />
+
+<h2>In context</h2>
+<h3>Header</h3>
+<section id='demo-header'>
+  <header class='iui-page-header'>
+    <div class='iui-page-header-left'>
+      <!-- Application Button -->
+      <div class='iui-header-brand' role='button' aria-label='App name' tabindex='0'>
+        <svg-imodel-hollow class='iui-header-brand-icon' aria-hidden='true'></svg-imodel-hollow>
+        <span class='iui-header-brand-label'>App name</span>
+      </div>
+
+      <div class='iui-page-header-divider'></div>
+
+      <nav class='iui-breadcrumbs iui-header-breadcrumbs' aria-label='Breadcrumbs'>
+        <ol class='iui-breadcrumbs-list iui-header-breadcrumbs-list'>
+          <li class='iui-header-breadcrumb-item'>
+            <button
+              class='iui-header-breadcrumb-button'
+              type='button'
+              aria-label='Project picker'
+              aria-expanded='false'
+              id='test-button-1'
             >
-              <button
-                class='iui-header-breadcrumb-button'
-                type='button'
-                aria-label='Model picker'
-                aria-expanded='false'
-              >
-                <svg-model class='iui-header-breadcrumb-button-icon' aria-hidden='true'></svg-model>
-                <span class='iui-header-breadcrumb-button-text'>
-                  <span class='iui-header-breadcrumb-button-text-label'>Model Beta</span>
-                  <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
-                </span>
-                <svg-caret-down-small
-                  class='iui-header-breadcrumb-button-dropdown-icon'
-                  aria-hidden='true'></svg-caret-down-small>
-              </button>
-            </li>
-          </ol>
-        </nav>
-      </div>
-    </header>
-    <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>Model Alpha</div>
-        <div class='iui-list-item-description'>0x0987654321</div>
-      </Menu_>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <svg-model slot='start-icon'></svg-model>
-        <div>Model Beta</div>
-        <div class='iui-list-item-description'>0x0123456789</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem' iconStyle='width: 24px; height: 24px'>
-        <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
-        <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-        <div class='iui-list-item-description'>0x0192837465</div>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-
-    <br />
-
-    <header class='iui-page-header' data-iui-size='slim'>
-      <div class='iui-page-header-left'>
-        <!-- Application Button -->
-        <div class='iui-header-brand' role='button' aria-label='App name' tabindex='0'>
-          <svg-imodel-hollow class='iui-header-brand-icon' aria-hidden='true'></svg-imodel-hollow>
-          <span class='iui-header-brand-label'>App name</span>
-        </div>
-
-        <div class='iui-page-header-divider'></div>
-
-        <nav class='iui-breadcrumbs iui-header-breadcrumbs' aria-label='Breadcrumbs'>
-          <ol class='iui-breadcrumbs-list iui-header-breadcrumbs-list'>
-            <li class='iui-header-breadcrumb-item'>
-              <button
-                class='iui-header-breadcrumb-button'
-                type='button'
-                aria-label='Project picker'
-                aria-expanded='false'
-                id='test-button-1'
-              >
-                <span class='iui-header-breadcrumb-button-icon'>
-                  <img src='/assets/image-test.jpg' draggable='false' />
-                </span>
-                <span class='iui-header-breadcrumb-button-text'>
-                  <span class='iui-header-breadcrumb-button-text-label'>Project Alpha</span>
-                  <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
-                </span>
-                <svg-caret-down-small
-                  class='iui-header-breadcrumb-button-dropdown-icon'
-                  aria-hidden='true'></svg-caret-down-small>
-              </button>
-            </li>
-            <li class='iui-breadcrumbs-separator' aria-hidden='true'>
-              <svg-chevron-right aria-hidden='true'></svg-chevron-right>
-            </li>
-            <li
-              class='iui-header-breadcrumb-item'
-              aria-current='location'
-              id='demo-header-slim-imodel-button'
+              <span class='iui-header-breadcrumb-button-icon'>
+                <img src='/assets/image-test.jpg' draggable='false' />
+              </span>
+              <span class='iui-header-breadcrumb-button-text'>
+                <span class='iui-header-breadcrumb-button-text-label'>Project Alpha</span>
+                <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
+              </span>
+              <svg-caret-down-small
+                class='iui-header-breadcrumb-button-dropdown-icon'
+                aria-hidden='true'></svg-caret-down-small>
+            </button>
+          </li>
+          <li class='iui-breadcrumbs-separator' aria-hidden='true'>
+            <svg-chevron-right aria-hidden='true'></svg-chevron-right>
+          </li>
+          <li
+            class='iui-header-breadcrumb-item'
+            aria-current='location'
+            id='demo-header-imodel-button'
+          >
+            <button
+              class='iui-header-breadcrumb-button'
+              type='button'
+              aria-label='Model picker'
+              aria-expanded='false'
             >
-              <button
-                class='iui-header-breadcrumb-button'
-                type='button'
-                aria-label='Model picker'
-                aria-expanded='false'
-              >
-                <svg-model class='iui-header-breadcrumb-button-icon' aria-hidden='true'></svg-model>
-                <span class='iui-header-breadcrumb-button-text'>
-                  <span class='iui-header-breadcrumb-button-text-label'>Model Beta</span>
-                  <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
-                </span>
-                <svg-caret-down-small
-                  class='iui-header-breadcrumb-button-dropdown-icon'
-                  aria-hidden='true'></svg-caret-down-small>
-              </button>
-            </li>
-          </ol>
-        </nav>
-      </div>
-    </header>
-    <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
-      <Menu_ isLarge actionable tabindex='0' role='menuitem'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>Model Alpha</div>
-        <div class='iui-list-item-description'>0x0987654321</div>
-      </Menu_>
-      <Menu_ isLarge isActive actionable checked tabindex='0' role='menuitem'>
-        <svg-model slot='start-icon'></svg-model>
-        <div>Model Beta</div>
-        <div class='iui-list-item-description'>0x0123456789</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_
-        isLarge
-        actionable
-        tabindex='0'
-        role='menuitem'
-        iconStyle='width: 24px; height: 24px'
-        iconClassName='iui-header-menu-icon demo-picture'
-      >
-        <div slot='start-icon'></div>
-        <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-        <div class='iui-list-item-description'>0x0192837465</div>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-  </section>
+              <svg-model class='iui-header-breadcrumb-button-icon' aria-hidden='true'></svg-model>
+              <span class='iui-header-breadcrumb-button-text'>
+                <span class='iui-header-breadcrumb-button-text-label'>Model Beta</span>
+                <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
+              </span>
+              <svg-caret-down-small
+                class='iui-header-breadcrumb-button-dropdown-icon'
+                aria-hidden='true'></svg-caret-down-small>
+            </button>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </header>
+  <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
+    <Menu_ isLarge actionable tabindex='0' role='menuitem' iconClassName='iui-header-menu-icon'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>Model Alpha</div>
+      <div class='iui-list-item-description'>0x0987654321</div>
+    </Menu_>
+    <Menu_
+      isLarge
+      isActive
+      actionable
+      checked
+      tabindex='0'
+      role='menuitem'
+      iconClassName='iui-header-menu-icon'
+    >
+      <svg-model slot='start-icon'></svg-model>
+      <div>Model Beta</div>
+      <div class='iui-list-item-description'>0x0123456789</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0' role='menuitem' iconStyle='width: 24px; height: 24px'>
+      <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
+      <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+      <div class='iui-list-item-description'>0x0192837465</div>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+
   <br />
 
-  <h3>Select</h3>
-  <section id='demo-select'>
-    <label class='iui-input-grid'>
-      <div class='iui-input-label'>Small select label</div>
-      <div class='iui-input-with-icon iui-small'>
-        <div tabindex='0' class='iui-select-button iui-field iui-active'>
-          <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-          <span class='iui-list-item-content'>Alpha</span>
-        </div>
-        <Icon_ svg='caret-down-small' class='iui-end-icon' />
+  <header class='iui-page-header' data-iui-size='slim'>
+    <div class='iui-page-header-left'>
+      <!-- Application Button -->
+      <div class='iui-header-brand' role='button' aria-label='App name' tabindex='0'>
+        <svg-imodel-hollow class='iui-header-brand-icon' aria-hidden='true'></svg-imodel-hollow>
+        <span class='iui-header-brand-label'>App name</span>
       </div>
-    </label>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-    <br />
 
-    <label class='iui-input-grid'>
-      <div class='iui-input-label'>Default select label</div>
-      <div class='iui-input-with-icon'>
-        <div tabindex='0' class='iui-select-button iui-field iui-active'>
-          <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-          <span class='iui-list-item-content'>Alpha</span>
-        </div>
-        <Icon_ svg='caret-down-small' class='iui-end-icon iui-open' />
-      </div>
-    </label>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-    <br />
+      <div class='iui-page-header-divider'></div>
 
-    <label class='iui-input-grid'>
-      <div class='iui-input-label'>Large select label</div>
-      <div class='iui-input-with-icon iui-large'>
-        <div tabindex='0' class='iui-select-button iui-field iui-active'>
-          <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-          <span class='iui-list-item-content'>Alpha</span>
-        </div>
-        <Icon_ svg='caret-down-small' class='iui-end-icon iui-open' />
+      <nav class='iui-breadcrumbs iui-header-breadcrumbs' aria-label='Breadcrumbs'>
+        <ol class='iui-breadcrumbs-list iui-header-breadcrumbs-list'>
+          <li class='iui-header-breadcrumb-item'>
+            <button
+              class='iui-header-breadcrumb-button'
+              type='button'
+              aria-label='Project picker'
+              aria-expanded='false'
+              id='test-button-1'
+            >
+              <span class='iui-header-breadcrumb-button-icon'>
+                <img src='/assets/image-test.jpg' draggable='false' />
+              </span>
+              <span class='iui-header-breadcrumb-button-text'>
+                <span class='iui-header-breadcrumb-button-text-label'>Project Alpha</span>
+                <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
+              </span>
+              <svg-caret-down-small
+                class='iui-header-breadcrumb-button-dropdown-icon'
+                aria-hidden='true'></svg-caret-down-small>
+            </button>
+          </li>
+          <li class='iui-breadcrumbs-separator' aria-hidden='true'>
+            <svg-chevron-right aria-hidden='true'></svg-chevron-right>
+          </li>
+          <li
+            class='iui-header-breadcrumb-item'
+            aria-current='location'
+            id='demo-header-slim-imodel-button'
+          >
+            <button
+              class='iui-header-breadcrumb-button'
+              type='button'
+              aria-label='Model picker'
+              aria-expanded='false'
+            >
+              <svg-model class='iui-header-breadcrumb-button-icon' aria-hidden='true'></svg-model>
+              <span class='iui-header-breadcrumb-button-text'>
+                <span class='iui-header-breadcrumb-button-text-label'>Model Beta</span>
+                <span class='iui-header-breadcrumb-button-text-sublabel'>0x0123456789</span>
+              </span>
+              <svg-caret-down-small
+                class='iui-header-breadcrumb-button-dropdown-icon'
+                aria-hidden='true'></svg-caret-down-small>
+            </button>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </header>
+  <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
+    <Menu_ isLarge actionable tabindex='0' role='menuitem' iconClassName='iui-header-menu-icon'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>Model Alpha</div>
+      <div class='iui-list-item-description'>0x0987654321</div>
+    </Menu_>
+    <Menu_
+      isLarge
+      isActive
+      actionable
+      checked
+      tabindex='0'
+      role='menuitem'
+      iconClassName='iui-header-menu-icon'
+    >
+      <svg-model slot='start-icon'></svg-model>
+      <div>Model Beta</div>
+      <div class='iui-list-item-description'>0x0123456789</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0' role='menuitem' iconStyle='width: 24px; height: 24px'>
+      <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
+      <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+      <div class='iui-list-item-description'>0x0192837465</div>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+</section>
+<br />
+
+<h3>Select</h3>
+<section id='demo-select'>
+  <label class='iui-input-grid'>
+    <div class='iui-input-label'>Small select label</div>
+    <div class='iui-input-with-icon iui-small'>
+      <div tabindex='0' class='iui-select-button iui-field iui-active'>
+        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
+        <span class='iui-list-item-content'>Alpha</span>
       </div>
-    </label>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-  </section>
+      <Icon_ svg='caret-down-small' class='iui-end-icon' />
+    </div>
+  </label>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
   <br />
 
-  <h3>Default button</h3>
-  <section id='demo-button'>
-    <Button_ dropdown size='small'>
-      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
-       Small dropdown
-      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
-    </Button_>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-    <br />
-
-    <Button_ dropdown>
-      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
-       Default dropdown
-      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
-    </Button_>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-    <br />
-
-    <Button_ dropdown size='large'>
-      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
-       Large dropdown
-      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
-    </Button_>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-  </section>
+  <label class='iui-input-grid'>
+    <div class='iui-input-label'>Default select label</div>
+    <div class='iui-input-with-icon'>
+      <div tabindex='0' class='iui-select-button iui-field iui-active'>
+        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
+        <span class='iui-list-item-content'>Alpha</span>
+      </div>
+      <Icon_ svg='caret-down-small' class='iui-end-icon iui-open' />
+    </div>
+  </label>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
   <br />
 
-  <h3>Borderless button</h3>
-  <section id='demo-borderless-button'>
-    <Button_ dropdown variant='borderless' size='small'>
-      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
-       Small dropdown
-      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
-    </Button_>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-    <br />
+  <label class='iui-input-grid'>
+    <div class='iui-input-label'>Large select label</div>
+    <div class='iui-input-with-icon iui-large'>
+      <div tabindex='0' class='iui-select-button iui-field iui-active'>
+        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
+        <span class='iui-list-item-content'>Alpha</span>
+      </div>
+      <Icon_ svg='caret-down-small' class='iui-end-icon iui-open' />
+    </div>
+  </label>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+</section>
+<br />
 
-    <Button_ dropdown variant='borderless'>
-      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
-       Default dropdown
-      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
-    </Button_>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-    <br />
+<h3>Default button</h3>
+<section id='demo-button'>
+  <Button_ dropdown size='small'>
+    <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+     Small dropdown
+    <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+  </Button_>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+  <br />
 
-    <Button_ dropdown variant='borderless' size='large'>
-      <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
-       Large dropdown
-      <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
-    </Button_>
-    <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge actionable tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-         Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge actionable checked tabindex='0'>
-        <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
-    </ul>
-  </section>
-  <script is:inline>
-    window.onload = () => {
-      const sectionPadding = parseInt(
-        getComputedStyle(document.querySelector('#demo-header')).paddingLeft,
-      );
+  <Button_ dropdown>
+    <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+     Default dropdown
+    <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+  </Button_>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+  <br />
 
-      // Menu is placed differently based on the user screen, so need to set margin-left dynamically
-      const headerButton = document.querySelector('#demo-header-imodel-button');
-      const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
-      headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
+  <Button_ dropdown size='large'>
+    <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+     Large dropdown
+    <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+  </Button_>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+</section>
+<br />
 
-      const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
-      const slimHeaderButtonMenu = document.querySelector('#demo-header-slim-imodel-menu');
-      slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
+<h3>Borderless button</h3>
+<section id='demo-borderless-button'>
+  <Button_ dropdown variant='borderless' size='small'>
+    <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+     Small dropdown
+    <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+  </Button_>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+  <br />
 
-      // Clicking on menu-item should toggle selection
-      document.querySelectorAll('.iui-menu-item:not(.iui-menu-item-skeleton)').forEach((item) => {
-        item.addEventListener('click', () => {
-          if (item.classList.contains('iui-active')) {
-            item.lastElementChild.remove();
+  <Button_ dropdown variant='borderless'>
+    <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+     Default dropdown
+    <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+  </Button_>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+  <br />
+
+  <Button_ dropdown variant='borderless' size='large'>
+    <svg-placeholder aria-hidden='true' slot='start-icon'></svg-placeholder>
+     Large dropdown
+    <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
+  </Button_>
+  <ul class='iui-menu' role='menu'>
+    <Menu_ isLarge isActive actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Alpha
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-checkmark slot='end-icon'></svg-checkmark>
+    </Menu_>
+    <Menu_ isLarge actionable tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+       Beta
+      <div class='iui-list-item-description'>Lorem ipsum</div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <Menu_ isLarge actionable checked tabindex='0'>
+      <svg-placeholder slot='start-icon'></svg-placeholder>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div class='iui-list-item-description'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+    </Menu_>
+    <li class='iui-menu-divider' role='separator'></li>
+    <Menu_ actionable tabindex='0' role='menuitem'>My projects</Menu_>
+  </ul>
+</section>
+<script is:inline>
+  window.onload = () => {
+    const sectionPadding = parseInt(
+      getComputedStyle(document.querySelector('#demo-header')).paddingLeft,
+    );
+
+    // Menu is placed differently based on the user screen, so need to set margin-left dynamically
+    const headerButton = document.querySelector('#demo-header-imodel-button');
+    const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
+    headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
+
+    const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
+    const slimHeaderButtonMenu = document.querySelector('#demo-header-slim-imodel-menu');
+    slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
+
+    // Clicking on menu-item should toggle selection
+    document.querySelectorAll('.iui-menu-item:not(.iui-menu-item-skeleton)').forEach((item) => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('iui-active')) {
+          item.lastElementChild.remove();
+        } else {
+          const checkmarkSvg = document.createElement('svg-checkmark');
+          checkmarkSvg.classList.add('iui-list-item-icon');
+          checkmarkSvg.toggleAttribute('aria-hidden', true);
+          if (item.lastElementChild.classList.contains('iui-list-item-icon')) {
+            item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
           } else {
-            const checkmarkSvg = document.createElement('svg-checkmark');
-            checkmarkSvg.classList.add('iui-list-item-icon');
-            checkmarkSvg.toggleAttribute('aria-hidden', true);
-            if (item.lastElementChild.classList.contains('iui-list-item-icon')) {
-              item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
-            } else {
-              item.appendChild(checkmarkSvg);
-            }
+            item.appendChild(checkmarkSvg);
           }
-          item.classList.toggle('iui-active');
-        });
+        }
+        item.classList.toggle('iui-active');
       });
-    };
-  </script>
-</Layout>
+    });
+  };
+</script>

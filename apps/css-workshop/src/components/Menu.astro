@@ -22,7 +22,6 @@ const {
   style,
   iconStyle,
   iconClassName,
-  ...props
 } = Astro.props;
 ---
 
@@ -53,6 +52,13 @@ const {
     )
   }
   {
+    Astro.slots.has('skeleton') && (
+      <span class='iui-content'>
+        <slot name='skeleton' />
+      </span>
+    )
+  }
+  {
     Astro.slots.has('default') && (
       <span class='iui-list-item-content'>
         <slot />
@@ -64,26 +70,6 @@ const {
       <>
         <span class='iui-list-item-icon' aria-hidden='true'>
           <slot name='end-icon' />
-        </span>
-      </>
-    )
-  }
-  {
-    Astro.slots.has('skeleton-without-icon') && (
-      <span class='iui-content'>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true' />
-        <div class='iui-visually-hidden'>Loading...</div>
-      </span>
-    )
-  }
-  {
-    Astro.slots.has('skeleton-with-icon') && (
-      <>
-        <div class='iui-icon iui-skeleton' aria-hidden='true' />
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true' />
-          <slot name='skeleton-with-icon' />
-          <div class='iui-visually-hidden'>Loading...</div>
         </span>
       </>
     )
