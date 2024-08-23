@@ -1,6 +1,7 @@
 ---
 import Layout from './_layout.astro';
 import Icon_ from '../components/Icon.astro';
+import Radio_ from '../components/Radio.astro';
 ---
 
 <Layout title='Fieldset'>
@@ -37,24 +38,9 @@ import Icon_ from '../components/Icon.astro';
       <div class='iui-input-grid' data-iui-label-placement='inline'>
         <div class='iui-input-label'>Color theme</div>
         <div class='iui-input-group'>
-          <label class='iui-radio-wrapper'>
-            <input class='iui-radio' type='radio' name='radio-demo-1' value='light' />
-            <span class='iui-radio-label'>Light</span>
-          </label>
-          <label class='iui-radio-wrapper'>
-            <input class='iui-radio' type='radio' name='radio-demo-1' value='dark' />
-            <span class='iui-radio-label'>Dark</span>
-          </label>
-          <label class='iui-radio-wrapper'>
-            <input
-              class='iui-radio'
-              type='radio'
-              name='radio-demo-1'
-              value='match-device'
-              checked
-            />
-            <span class='iui-radio-label'>Match device</span>
-          </label>
+          <Radio_ name='radio-demo-1' value='light'>Light</Radio_>
+          <Radio_ name='radio-demo-1' value='Dark'>Dark</Radio_>
+          <Radio_ name='radio-demo-1' checked value='match-device'>Match device</Radio_>
         </div>
       </div>
 
