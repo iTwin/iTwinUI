@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {
   Box,
   cloneElementWithRef,
@@ -105,9 +106,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const panelElements = React.useRef<Record<string, HTMLElement | null>>({});
 
   const [activePanel, setActivePanel] = React.useState<string>(initialActiveId);
-  // const [nextPanel, setNextPanel] = React.useState<string | undefined>(
-  //   undefined,
-  // );
+  const [nextPanel, setNextPanel] = React.useState<string | undefined>(
+    undefined,
+  );
 
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
@@ -122,13 +123,13 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       //   return;
       // }
 
-      // ReactDOM.flushSync(() => setNextPanel(newActiveId));
+      ReactDOM.flushSync(() => setNextPanel(newActiveId));
 
-      panelElements.current?.[newActiveId]?.scrollIntoView({
-        behavior: 'smooth',
-        // block: 'center',
-        // inline: 'center',
-      });
+      // panelElements.current?.[newActiveId]?.scrollIntoView({
+      //   behavior: 'smooth',
+      //   // block: 'center',
+      //   // inline: 'center',
+      // });
 
       setActivePanel(newActiveId);
       onActiveIdChange?.(newActiveId);
@@ -161,12 +162,12 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       value={React.useMemo(
         () => ({
           activePanel,
-          // nextPanel,
+          nextPanel,
           changeActivePanel,
           triggers,
           panelElements,
         }),
-        [activePanel, changeActivePanel],
+        [activePanel, nextPanel, changeActivePanel],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -207,7 +208,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, triggers, panelElements } =
+  const { activePanel, nextPanel, triggers, panelElements } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
@@ -224,9 +225,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   // TODO: Referring ref in render
   const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
 
-  // TODO: Are these the same conditions?
-  const isHidden = idProp !== activePanel?.id;
-  const isInert = idProp !== activePanel?.id && !isHidden;
+  const isMounted = [activePanel, nextPanel].includes(idProp);
 
   const refs = useMergedRefs(setElement, forwardedRef);
 
@@ -237,15 +236,15 @@ const Panel = React.forwardRef((props, forwardedRef) => {
         [associatedTrigger, id],
       )}
     >
-      {!isHidden && (
+      {isMounted && (
         <Box
           ref={refs}
           id={id}
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header`}
           tabIndex={-1}
-          hidden={isHidden}
-          {...{ inert: isInert ? '' : undefined }}
+          // hidden={isMounted}
+          // {...{ inert: isInert ? '' : undefined }}
           {...rest}
         >
           {children}

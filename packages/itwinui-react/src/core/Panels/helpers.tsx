@@ -58,7 +58,7 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
 
     const trigger = triggers.current?.get(activePanel);
     if (trigger?.triggerId != null) {
-      changeActivePanel(trigger.triggerId);
+      changeActivePanel(trigger.panelId);
     }
   }, [panelsWrapperContext]);
 
