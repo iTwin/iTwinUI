@@ -30,6 +30,8 @@ import type {
   TriggerMapEntry,
 } from './helpers.js';
 
+// #region PanelsWrapper
+
 type PanelsWrapperProps = {
   /**
    * The initialPanel that is displayed.
@@ -52,8 +54,10 @@ type PanelsWrapperProps = {
  * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
  * Notes:
- * - There can only be one panel with triggers to a particular other panel. i.e. Panel Y should have triggers only in
- * one particular panel X (only one clear back navigation). Panel X can have multiple triggers that point to panel Y.
+ * - There can only be one panel with triggers to a particular other panel. In other words:
+ *   - Triggers to a particular Panel Y can only exist in a particular Panel X.
+ *   - In a particular navigation path, a panel cannot appear twice. E.g. Panel X → Panel Y → Panel X is not allowed.
+ * Panel X can have multiple triggers that point to panel Y.
  *
  * @example
  * <Panels.Wrapper
@@ -61,23 +65,32 @@ type PanelsWrapperProps = {
  *   as={Surface}
  *   style={{ inlineSize: '300px', blockSize: '500px' }}
  * >
- *   <Panels.Panel id={panelIdRoot} as={List}>
- *     <Surface.Header as={Panels.Header}>Base</Surface.Header>
- *     <ListItem>
- *       <Panels.Trigger for={panelIdMoreInfo}>
- *         <ListItem.Action>More details</ListItem.Action>
- *       </Panels.Trigger>
- *     </ListItem>
+ *   <Panels.Panel
+ *     id={panelIdRoot}
+ *     as={Surface}
+ *     border={false}
+ *     elevation={0}
+ *   >
+ *     <Surface.Header as={Panels.Header}>Root</Surface.Header>
+ *     <Surface.Body as={List}>
+ *       <ListItem>
+ *         <Panels.Trigger for={panelIdMoreInfo}>
+ *           <ListItem.Action>More details</ListItem.Action>
+ *         </Panels.Trigger>
+ *       </ListItem>
+ *     </Surface.Body>
  *   </Panels.Panel>
  *
  *   <Panels.Panel
  *     id={panelIdMoreInfo}
- *     as={Flex}
- *     flexDirection='column'
- *     alignItems='stretch'
+ *     as={Surface}
+ *     border={false}
+ *     elevation={0}
  *   >
  *     <Surface.Header as={Panels.Header}>More details</Surface.Header>
- *     …content
+ *     <Surface.Body isPadded>
+ *       <Text>Content</Text>
+ *     </Surface.Body>
  *   </Panels.Panel>
  * </Panels.Wrapper>
  */
@@ -175,7 +188,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
 PanelsWrapper.displayName = 'Panels.Wrapper';
 
+// #endregion PanelsWrapper
 // ----------------------------------------------------------------------------
+// #region Panel
 
 type PanelProps = {
   id: string;
@@ -244,7 +259,9 @@ const PanelContext = React.createContext<
   | undefined
 >(undefined);
 
+// #endregion Panel
 // ----------------------------------------------------------------------------
+// #region PanelTrigger
 
 type PanelTriggerProps = {
   for: string;
@@ -308,7 +325,9 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 };
 PanelTrigger.displayName = 'Panels.Trigger';
 
+// #endregion PanelTrigger
 // ----------------------------------------------------------------------------
+// #region PanelHeader
 
 /**
  * Optional component, if added, shows a title and handles the showing of the back button depending on whether a
@@ -331,7 +350,9 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'div'>;
 PanelHeader.displayName = 'Panels.Header';
 
+// #endregion PanelHeader
 // ----------------------------------------------------------------------------
+// #region PanelBackButton
 
 /**
  * Optional component, if added, sets the `activeId` to the panel that has a trigger that points to the current panel
@@ -372,6 +393,7 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 PanelBackButton.displayName = 'Panels.BackButton';
 
+// #endregion PanelBackButton
 // ----------------------------------------------------------------------------
 
 export const Panels = {
