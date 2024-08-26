@@ -3,10 +3,8 @@ type Props = {
   isActive?: boolean;
   checked?: boolean;
   isLarge?: boolean;
-  actionable?: boolean;
   disabled?: boolean;
   isSkeleton?: boolean;
-  style?: string;
   iconStyle?: string;
   iconClassName?: string;
 } & astroHTML.JSX.HTMLAttributes;
@@ -16,27 +14,27 @@ const {
   isActive,
   checked,
   isLarge,
-  actionable,
   disabled,
   isSkeleton,
-  style,
   iconStyle,
   iconClassName,
+  ...props
 } = Astro.props;
 ---
 
 <li
   class:list={[
-    'iui-list-item',
+    { 'iui-list-item': !isSkeleton },
+    { 'iui-menu-item': isSkeleton },
     { 'iui-active': isActive },
     { 'iui-disabled': disabled },
-    { 'iui-large': isLarge },
     { 'iui-menu-item-skeleton': isSkeleton },
+    { 'iui-large': isLarge },
     className,
   ]}
   aria-checked={checked}
-  data-iui-actionable={actionable ? 'true' : 'false'}
-  style={style}
+  data-iui-actionable={isSkeleton ? undefined : 'true'}
+  {...props}
 >
   {
     Astro.slots.has('start-icon') && (
@@ -52,15 +50,8 @@ const {
     )
   }
   {
-    Astro.slots.has('skeleton') && (
-      <span class='iui-content'>
-        <slot name='skeleton' />
-      </span>
-    )
-  }
-  {
     Astro.slots.has('default') && (
-      <span class='iui-list-item-content'>
+      <span class={!isSkeleton ? 'iui-list-item-content' : 'iui-content'}>
         <slot />
       </span>
     )
