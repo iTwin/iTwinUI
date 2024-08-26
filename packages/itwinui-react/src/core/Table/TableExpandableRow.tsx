@@ -23,7 +23,6 @@ export const TableExpandableRow = <T extends Record<string, unknown>>(props: {
   const mergedProps = {
     ...row.getRowProps({
       style: {
-        flex: `0 0 auto`,
         minWidth: '100%',
         ...(virtualItem != null
           ? { transform: `translateY(${virtualItem.start}px)` }

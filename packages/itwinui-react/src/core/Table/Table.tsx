@@ -592,7 +592,6 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      //getSubRows,
       getSubRows: (originalRow: T, relativeIndex: number): T[] => {
         if (subComponent && !originalRow.hasParent) {
           const newSubRow = {
@@ -830,7 +829,7 @@ export const Table = <
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
     getItemKey: (index) => page[index].id,
-    overscan: 5,
+    overscan: 1,
   });
 
   useLayoutEffect(() => {
@@ -848,6 +847,7 @@ export const Table = <
       const row = page[index];
       prepareRow(row);
 
+      // Only sub-row that is used as sub-component contains the id under "index.0" format
       if (!page[index].id.includes('.')) {
         return (
           <TableRowMemoized
