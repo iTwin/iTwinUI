@@ -21,7 +21,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='li'
+      role='listitem'
       className={cx('iui-list-item', className)}
       data-iui-active={active ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
@@ -32,7 +32,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', ListItemOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   ListItemComponent.displayName = 'ListItem';
 }
