@@ -41,7 +41,7 @@ import Menu_ from '../components/Menu.astro';
     <ul class='iui-menu' role='menu'>
       <Menu_ tabindex='0' id='test-menu-1' role='menuitem'>Option 1</Menu_>
       <Menu_ tabindex='0' role='menuitem'>Option 2</Menu_>
-      <Menu_ disabled>Option 3</Menu_>
+      <Menu_ tabindex='0' disabled role='menuitem'>Option 3</Menu_>
     </ul>
 
     <br />
@@ -51,7 +51,7 @@ import Menu_ from '../components/Menu.astro';
         Option 1
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ tabindex='0' role='menuitem' role='menuitem'>Option 2</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 2</Menu_>
       <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         Option 3
         <svg-checkmark slot='end-icon'></svg-checkmark>
