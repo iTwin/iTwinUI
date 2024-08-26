@@ -47,12 +47,12 @@ import Menu_ from '../components/Menu.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ isActive tabindex='0' role='menuitem' checked>
+      <Menu_ isActive tabindex='0' role='menuitem' aria-checked='true'>
         Option 1
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 2</Menu_>
-      <Menu_ isActive tabindex='0' checked role='menuitem'>
+      <Menu_ tabindex='0' role='menuitem' role='menuitem'>Option 2</Menu_>
+      <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         Option 3
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
@@ -61,32 +61,32 @@ import Menu_ from '../components/Menu.astro';
     <br />
 
     <ul class='iui-menu' id='demo-scrollable'>
-      <Menu_ isActive tabindex='0' checked role='menuitem'>
+      <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         Option 1
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 2</Menu_>
-      <Menu_ isActive tabindex='0' checked role='menuitem'>
+      <Menu_ tabindex='0' aria-checked='true' role='menuitem'>Option 2</Menu_>
+      <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         Option 3
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isActive tabindex='0' checked role='menuitem'>
+      <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         Option 4
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isActive tabindex='0' checked role='menuitem'>
+      <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         Option 5
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 6</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 7</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 8</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 9</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 10</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 11</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 12</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 13</Menu_>
-      <Menu_ tabindex='0' checked role='menuitem'>Option 14</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 6</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 7</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 8</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 9</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 10</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 11</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 12</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 13</Menu_>
+      <Menu_ tabindex='0' role='menuitem'>Option 14</Menu_>
     </ul>
 
     <br />
@@ -109,7 +109,7 @@ import Menu_ from '../components/Menu.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ isActive tabindex='0' checked role='menuitem'>
+      <Menu_ isActive tabindex='0' aria-checked='true' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -133,19 +133,19 @@ import Menu_ from '../components/Menu.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ isActive isLarge tabindex='0' checked role='menuitem'>
+      <Menu_ isActive isLarge tabindex='0' aria-checked='true' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </Menu_>
-      <Menu_ isLarge tabindex='0' checked role='menuitem'>
+      <Menu_ isLarge tabindex='0' aria-checked='true' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>Beta</div>
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge tabindex='0' checked>
+      <Menu_ isLarge tabindex='0' aria-checked='true'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -382,7 +382,7 @@ import Menu_ from '../components/Menu.astro';
       <Menu_
         isLarge
         isActive
-        checked
+        aria-checked='true'
         tabindex='0'
         role='menuitem'
         iconClassName='iui-header-menu-icon'
@@ -472,7 +472,7 @@ import Menu_ from '../components/Menu.astro';
       <Menu_
         isLarge
         isActive
-        checked
+        aria-checked='true'
         tabindex='0'
         role='menuitem'
         iconClassName='iui-header-menu-icon'
@@ -506,7 +506,7 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -518,7 +518,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -554,7 +554,7 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -566,7 +566,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -602,7 +602,7 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -614,7 +614,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -648,7 +648,7 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -660,7 +660,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -691,7 +691,7 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -703,7 +703,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -734,7 +734,7 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -746,7 +746,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -780,7 +780,7 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -792,7 +792,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -823,7 +823,7 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -835,7 +835,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -866,7 +866,7 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive checked tabindex='0'>
+      <Menu_ isLarge isActive aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
@@ -878,7 +878,7 @@ import Menu_ from '../components/Menu.astro';
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </Menu_>
-      <Menu_ isLarge checked tabindex='0'>
+      <Menu_ isLarge aria-checked='true' tabindex='0'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
