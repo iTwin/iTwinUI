@@ -58,7 +58,7 @@
     "execa": "^8.0.1",
     "helpers": "workspace:*",
     "husky": "^9.0.10",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^15.2.9",
     "octokit": "^3.1.2",
     "prettier": "~3.1.0",
     "rimraf": "^5.0.5",
