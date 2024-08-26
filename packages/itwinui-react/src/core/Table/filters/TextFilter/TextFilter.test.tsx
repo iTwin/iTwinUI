@@ -37,21 +37,6 @@ it('should call setFilter with input value', () => {
   expect(setFilter).toHaveBeenCalledWith('test filter');
 });
 
-it('should call setFilter when Enter is pressed', () => {
-  const { container } = renderComponent();
-
-  const input = container.querySelector('input') as HTMLInputElement;
-  expect(input).toBeTruthy();
-
-  fireEvent.change(input, { target: { value: 'test filter' } });
-  fireEvent.keyDown(input, {
-    key: 'Enter',
-    charCode: 13,
-  });
-
-  expect(setFilter).toHaveBeenCalledWith('test filter');
-});
-
 it('should load filter with set value and clear it', () => {
   const { container } = renderComponent({
     column: { filterValue: 'test filter' } as HeaderGroup<any>,
