@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
 import type { Row } from '../../react-table/react-table.js';
