@@ -3,11 +3,21 @@ type Props = {
   isActive?: boolean;
   size?: string;
   disabled?: boolean;
-  iconProps?: astroHTML.JSX.HTMLAttributes;
+  startIconProps?: astroHTML.JSX.HTMLAttributes;
+  endIconProps?: astroHTML.JSX.HTMLAttributes;
   actionable?: boolean;
 } & astroHTML.JSX.HTMLAttributes;
 
-const { class: className, isActive, size, disabled, iconProps, actionable, ...props } = Astro.props;
+const {
+  class: className,
+  isActive,
+  size,
+  disabled,
+  startIconProps,
+  endIconProps,
+  actionable,
+  ...props
+} = Astro.props;
 ---
 
 <li
@@ -25,8 +35,8 @@ const { class: className, isActive, size, disabled, iconProps, actionable, ...pr
     Astro.slots.has('start-icon') && (
       <>
         <span
-          class:list={['iui-list-item-icon', iconProps?.class]}
-          style={iconProps?.style}
+          class:list={['iui-list-item-icon', startIconProps?.class]}
+          style={startIconProps?.style}
           aria-hidden='true'
         >
           <slot name='start-icon' />
@@ -43,7 +53,11 @@ const { class: className, isActive, size, disabled, iconProps, actionable, ...pr
   }
   {
     Astro.slots.has('end-icon') && (
-      <span class='iui-list-item-icon' aria-hidden='true'>
+      <span
+        class:list={['iui-list-item-icon', endIconProps?.class]}
+        style={endIconProps?.style}
+        aria-hidden='true'
+      >
         <slot name='end-icon' />
       </span>
     )
