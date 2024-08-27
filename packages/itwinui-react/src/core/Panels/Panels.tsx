@@ -113,18 +113,20 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     undefined,
   );
 
+  const [triggers, setTriggers] = React.useState<
+    Record<string, TriggerMapEntry>
+  >({});
+
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
-      // TODO: Is this guard needed?
-      // if (
-      //   // Only if forProp exists in the DOM, go to the new panel.
-      //   // This prevents empty panels with no way to go back.
-      //   !document.getElementById(newActiveId.id) ||
-      //   // Same panel
-      //   newActiveId.id === activePanel.id
-      // ) {
-      //   return;
-      // }
+      if (
+        // Only if forProp is a panel, go to the new panel.
+        !Object.keys(panelElements.current).includes(newActiveId) ||
+        // Same panel
+        newActiveId === activePanel
+      ) {
+        return;
+      }
 
       ReactDOM.flushSync(() => setNextPanel(newActiveId));
 
@@ -132,6 +134,40 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         block: 'nearest',
         inline: 'center',
       });
+
+      // WIP Focus
+      // const activePanelElement = document.getElementById(activePanel);
+      // const newActiveElement = document.getElementById(newActiveId);
+
+      // await new Promise((resolve) => {
+      //   setTimeout(() => {
+      //     if (activePanelElement != null && newActiveElement != null) {
+      //       const isNewActivePanelAfterCurrentActivePanelInDom =
+      //         activePanelElement?.compareDocumentPosition(newActiveElement) &
+      //         Node.DOCUMENT_POSITION_FOLLOWING;
+
+      //       // Going forward = Focus new panel
+      //       if (isNewActivePanelAfterCurrentActivePanelInDom) {
+      //         const panel = document.getElementById(newActiveId);
+      //         console.log('1', panel);
+      //         panel?.focus({ preventScroll: true });
+      //       }
+      //       // Going backward = Focus trigger that had opened the current panel
+      //       else {
+      //         console.log('2');
+
+      //         const trigger = document.getElementById(
+      //           triggers[activePanel].triggerId,
+      //         );
+      //         console.log('2', trigger);
+      //         trigger?.focus({ preventScroll: true });
+      //       }
+      //     }
+
+      //     resolve(null);
+      //   }, 10);
+      // });
+
       // TODO: focus
       // const triggerId = triggers?.current?.get(newActiveId)?.triggerId;
       // if (triggerId) {
@@ -158,7 +194,22 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     [activePanel, onActiveIdChange],
   );
 
-  const triggers = React.useRef(new Map<string, TriggerMapEntry>());
+  // const divRef = React.useRef<HTMLDivElement | null>(null);
+  // React.useEffect(() => {
+  //   const divRefCurrent = divRef.current;
+
+  //   const listener = () => {
+  //     console.log('scroll end');
+  //   };
+
+  //   console.log('setting event listener');
+  //   divRefCurrent?.addEventListener('onScrollEnd', listener);
+
+  //   return () => {
+  //     console.log('removing event listener');
+  //     divRefCurrent?.removeEventListener('onScrollEnd', listener);
+  //   };
+  // }, []);
 
   return (
     <PanelsWrapperContext.Provider
@@ -169,14 +220,15 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           previousPanel,
           changeActivePanel,
           triggers,
+          setTriggers,
           panelElements,
         }),
-        [activePanel, nextPanel, previousPanel, changeActivePanel],
+        [activePanel, nextPanel, previousPanel, changeActivePanel, triggers],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
         <Box
-          ref={forwardedRef}
+          ref={useMergedRefs(forwardedRef)}
           {...rest}
           className={cx('iui-panel-wrapper', className)}
         >
@@ -218,16 +270,20 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
 
-  // TODO: Referring ref in render
   const [element, setElement] = React.useState<HTMLElement | null>(null);
-  if (panelElements?.current != null) {
-    panelElements.current[id] = element;
-  }
+
+  React.useEffect(() => {
+    if (panelElements?.current != null) {
+      panelElements.current[id] = element;
+    }
+  }, [element, id, panelElements]);
 
   useInertPolyfill();
 
-  // TODO: Referring ref in render
-  const associatedTrigger = !!id ? triggers?.current?.get(id) : undefined;
+  const associatedTrigger = React.useMemo(
+    () => (!!id ? triggers?.[id] : undefined),
+    [id, triggers],
+  );
 
   const isMounted = [activePanel, nextPanel, previousPanel].includes(id);
   const isActive = id === activePanel;
@@ -247,7 +303,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           ref={refs}
           id={id}
           className={cx('iui-panel', className)}
-          aria-labelledby={`${id}-header`} // TODO:
+          aria-labelledby={`${id}-header`}
           tabIndex={-1}
           data-iui-active={isActive ? 'true' : undefined}
           {...{ inert: isInert ? '' : undefined }}
@@ -294,7 +350,7 @@ type PanelTriggerProps = {
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
-  const { changeActivePanel, triggers, activePanel } =
+  const { changeActivePanel, triggers, setTriggers, activePanel } =
     React.useContext(PanelsWrapperContext) || {};
   const { id: panelId } = React.useContext(PanelContext) || {};
 
@@ -305,21 +361,32 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     changeActivePanel?.(forProp);
   }, [changeActivePanel, forProp]);
 
-  // TODO: Maybe simplify if possible
   // Add/Update trigger in the triggers map
   React.useEffect(() => {
-    const triggersMatch = triggers?.current?.get(forProp);
-    if (
-      !!panelId &&
-      (panelId !== triggersMatch?.panelId ||
-        triggerId !== triggersMatch?.triggerId)
-    ) {
-      triggers?.current?.set(forProp, {
-        triggerId,
-        panelId: panelId,
-      });
+    if (triggers == null) {
+      return;
     }
-  }, [forProp, panelId, triggerId, triggers]);
+
+    setTriggers?.((oldTriggers) => {
+      const triggersMatch = oldTriggers[forProp];
+
+      if (
+        !!panelId &&
+        (panelId !== triggersMatch?.panelId ||
+          triggerId !== triggersMatch?.triggerId)
+      ) {
+        return {
+          ...oldTriggers,
+          [forProp]: {
+            panelId,
+            triggerId,
+          },
+        };
+      }
+
+      return oldTriggers;
+    });
+  }, [forProp, panelId, setTriggers, triggerId, triggers]);
 
   return cloneElementWithRef(children, (children) => {
     return {
@@ -338,9 +405,7 @@ PanelTrigger.displayName = 'Panels.Trigger';
 // #region PanelHeader
 
 /**
- * TODO: Make it required.
- * Optional component, if added, shows a title and handles the showing of the back button depending on whether a
- * previous panel exist.
+ * Required component to add an accessible name and also a back button (depending on whether a previous panel exist).
  */
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
@@ -364,9 +429,8 @@ PanelHeader.displayName = 'Panels.Header';
 // #region PanelBackButton
 
 /**
- * // TODO: See use cases
- * Optional component, if added, sets the `activeId` to the panel that has a trigger that points to the current panel
- * when clicked.
+ * Optional component that goes to the previous panel when clicked (i.e. to the panel that has a trigger that points to
+ * the current panel)
  *
  * @example
  * <caption>Default back button</caption>

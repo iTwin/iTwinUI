@@ -20,8 +20,9 @@ export const PanelsWrapperContext = React.createContext<
       activePanel: string;
       nextPanel?: string;
       previousPanel?: string;
-      triggers: React.RefObject<
-        Map<string, { triggerId: string; panelId: string }>
+      triggers: Record<string, TriggerMapEntry>;
+      setTriggers: React.Dispatch<
+        React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
       changeActivePanel: (newActiveId: string) => Promise<void>;
       panelElements: React.RefObject<Record<string, HTMLElement | null>>;
@@ -57,8 +58,8 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
 
     const { activePanel, changeActivePanel, triggers } = panelsWrapperContext;
 
-    const trigger = triggers.current?.get(activePanel);
-    if (trigger?.triggerId != null) {
+    const trigger = triggers[activePanel];
+    if (trigger.triggerId != null) {
       changeActivePanel(trigger.panelId);
     }
   }, [panelsWrapperContext]);
