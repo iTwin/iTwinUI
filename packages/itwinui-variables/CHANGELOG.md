@@ -1,5 +1,12 @@
 # @itwin/itwinui-variables
 
+## 3.3.0
+
+### Minor Changes
+
+- [#2040](https://github.com/iTwin/iTwinUI/pull/2040): Changed values of disabled text and disabled icon colors to better contrast agaist regular text and icon colors.
+  - Introduced new `--iui-color-text-disabled-hover` & `--iui-color-icon-disabled-hover` variables.
+
 ## 3.2.0
 
 ### Minor Changes
