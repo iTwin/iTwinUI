@@ -32,26 +32,15 @@ export const TextFilter = <T extends Record<string, unknown>>(
     }
   }, []);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    if (event.key === 'Enter') {
-      setFilter(text);
-    }
-  };
-
   return (
-    <BaseFilter>
+    <BaseFilter onSubmit={() => setFilter(text)}>
       <Input
         ref={inputRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
-        onKeyDown={onKeyDown}
+        required
       />
       <FilterButtonBar
-        setFilter={() => setFilter(text)}
         clearFilter={clearFilter}
         translatedLabels={translatedLabels}
       />

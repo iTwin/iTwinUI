@@ -1,5 +1,50 @@
 # Changelog
 
+## 3.14.0
+
+### Minor Changes
+
+- [#2040](https://github.com/iTwin/iTwinUI/pull/2040): The colors of disabled controls have been adjusted make them easier to distinguish from regular controls.
+  - Also added hover state to disabled button, select, input, textarea, and actionable list item to help with accessibility.
+- [#2153](https://github.com/iTwin/iTwinUI/pull/2153): Nested `ThemeProvider`s will now reuse the same toaster instead of creating new ones.
+- [#2201](https://github.com/iTwin/iTwinUI/pull/2201): `List` and `ListItem` will now be rendered as `<div>`s instead of `<ul>`/`<li>`. This change makes these components less restrictive and less error-prone to use.
+- [#2187](https://github.com/iTwin/iTwinUI/pull/2187): Floating elements will now use `position: fixed` instead of `position: absolute`.
+  - This fixes some issues when a floating element is placed near the edge of the viewport.
+  - Some components affected: `Tooltip`, `Popover`, `Select`, `DropdownMenu`, `ComboBox`, etc.
+- [#2190](https://github.com/iTwin/iTwinUI/pull/2190): `Popover` now enables the [`size` middleware](https://floating-ui.com/docs/size) to prevent it from overflowing the viewport.
+  - This also affects other popover-like components (e.g. `Select`, `ComboBox`, `DropdownMenu`).
+  - `Popover` now also sets a default max-height of `400px` to prevent it from becoming too large. This can be customized using the `middleware.size.maxHeight` prop.
+- [#2205](https://github.com/iTwin/iTwinUI/pull/2205): `tableFilters.TextFilter` now prevents the user from applying the filter when the text input is empty.
+- [#2205](https://github.com/iTwin/iTwinUI/pull/2205): `BaseFilter` now renders as a `<form>` and `FilterButtonBar` now renders a `<button type="submit">`. Together, this enables the use of browser's built-in validation before applying filters.
+  - The `setFilter` prop in `FilterButtonBar` has been deprecated, as `onSubmit` should be used instead.
+    <details>
+      <summary>Diff</summary>
+  
+      ```diff
+        <BaseFilter
+      +   onSubmit={() => setFilter(text)}
+        >
+          …
+          <FilterButtonBar
+      -     setFilter={() => setFilter(text)}
+          />
+        </BaseFilter>
+      ```
+    </details>
+
+### Patch Changes
+
+- [#2194](https://github.com/iTwin/iTwinUI/pull/2194): Fixed an issue where CommonJS files in the development build output (`DEV-cjs/` directory) were being treated as ESM, inadvertently causing runtime errors during development.
+- [#2185](https://github.com/iTwin/iTwinUI/pull/2185): Portal containers will now default to a `<div>` rendered at the end of `<body>` instead of a `<div>` rendered inside the `<ThemeProvider>`.
+- [#2202](https://github.com/iTwin/iTwinUI/pull/2202): `IconButton` will now reroute the HTML `title` prop to its own `label` prop for better accessibility. The `title` prop has also been marked deprecated to encourage the use of `label`.
+- [#2168](https://github.com/iTwin/iTwinUI/pull/2168): Adjusted focus management in `Popover` so that it allows interactive elements inside the popover to be more easily focused. This more closely matches the behavior of the HTML `<dialog>` element, which focuses the first interactive element inside it.
+- [#2207](https://github.com/iTwin/iTwinUI/pull/2207): Fixed a bug where `pointer-events: none` was sometimes applied to the main `<body>` when a `MenuItem` was hovered in a popout window.
+- [#2189](https://github.com/iTwin/iTwinUI/pull/2189): Floating elements will now have a few pixels of padding from the edge of the viewport.
+- [#2202](https://github.com/iTwin/iTwinUI/pull/2202): `IconButton` will now display warnings during development when it's missing a label.
+- [#2178](https://github.com/iTwin/iTwinUI/pull/2178): Reduced layout thrashing on `Table` component by memoizing an expensive `ref` function.
+- [#2194](https://github.com/iTwin/iTwinUI/pull/2194): The development build output is now also formatted using `prettier` for easier debugging.
+
+
 ## 3.13.4
 
 ### Patch Changes
