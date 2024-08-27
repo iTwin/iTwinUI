@@ -598,6 +598,7 @@ export const Table = <
             ...originalRow,
             index: relativeIndex,
             hasParent: true,
+            isSubComponent: true,
           } as unknown as T;
           return [newSubRow];
         } else {
@@ -831,6 +832,7 @@ export const Table = <
     getItemKey: (index) => page[index].id,
     overscan: 1,
   });
+  console.log(page);
 
   useLayoutEffect(() => {
     if (scrollToIndex) {
@@ -848,7 +850,7 @@ export const Table = <
       prepareRow(row);
 
       // Only sub-row that is used as sub-component contains the id under "index.0" format
-      if (!page[index].id.includes('.')) {
+      if (!page[index].original.isSubComponent) {
         return (
           <TableRowMemoized
             row={row}
