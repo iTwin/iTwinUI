@@ -1,0 +1,34 @@
+---
+type Props = {
+  hasSublabel?: boolean;
+  hasIcon?: boolean;
+  loading?: string;
+  contentWidth?: string;
+} & astroHTML.JSX.HTMLAttributes;
+
+const {
+  class: className,
+  hasSublabel,
+  hasIcon,
+  loading = 'Loading...',
+  contentWidth,
+  ...props
+} = Astro.props;
+---
+
+<li
+  class='iui-menu-item iui-menu-item-skeleton'
+  style={{
+    ...{
+      '--iui-menu-item-content-skeleton-max-width': contentWidth,
+    },
+  }}
+  {...props}
+>
+  {hasIcon && <div class='iui-icon iui-skeleton' aria-hidden />}
+  <span class='iui-content'>
+    <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+    <div class='iui-visually-hidden'>{loading}</div>
+    {hasSublabel && <div class='iui-menu-description iui-skeleton' aria-hidden='true' />}
+  </span>
+</li>

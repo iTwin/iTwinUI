@@ -1,0 +1,51 @@
+---
+type Props = {
+  isActive?: boolean;
+  size?: string;
+  disabled?: boolean;
+  iconProps?: astroHTML.JSX.HTMLAttributes;
+  actionable?: boolean;
+} & astroHTML.JSX.HTMLAttributes;
+
+const { class: className, isActive, size, disabled, iconProps, actionable, ...props } = Astro.props;
+---
+
+<li
+  class:list={[
+    'iui-list-item',
+    { 'iui-active': isActive },
+    { 'iui-disabled': disabled },
+    { 'iui-large': size === 'large' },
+    className,
+  ]}
+  data-iui-actionable={actionable ? 'true' : undefined}
+  {...props}
+>
+  {
+    Astro.slots.has('start-icon') && (
+      <>
+        <span
+          class:list={['iui-list-item-icon', iconProps?.class]}
+          style={iconProps?.style}
+          aria-hidden='true'
+        >
+          <slot name='start-icon' />
+        </span>
+      </>
+    )
+  }
+  {
+    Astro.slots.has('default') && (
+      <span class={'iui-list-item-content'}>
+        <slot />
+      </span>
+    )
+  }
+  {
+    Astro.slots.has('end-icon') && (
+      <span class='iui-list-item-icon' aria-hidden='true'>
+        <slot name='end-icon' />
+      </span>
+    )
+  }
+</li>

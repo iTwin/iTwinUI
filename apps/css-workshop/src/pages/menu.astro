@@ -2,7 +2,9 @@
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
 import Icon_ from '../components/Icon.astro';
-import Menu_ from '../components/Menu.astro';
+import ListItem_ from '../components/ListItem.astro';
+import MenuItemSkeleton_ from '../components/MenuItemSkeleton.astro';
+import MenuItemSkeleton from '../components/MenuItemSkeleton.astro';
 ---
 
 <Layout title='Menu'>
@@ -39,77 +41,77 @@ import Menu_ from '../components/Menu.astro';
   <h2>Default</h2>
   <section id='demo-default'>
     <ul class='iui-menu' role='menu'>
-      <Menu_ tabindex='0' id='test-menu-1' role='menuitem'>Option 1</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 2</Menu_>
-      <Menu_ tabindex='0' disabled role='menuitem'>Option 3</Menu_>
+      <ListItem_ tabindex='0' actionable id='test-menu-1' role='menuitem'>Option 1</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 2</ListItem_>
+      <ListItem_ tabindex='0' actionable disabled role='menuitem'>Option 3</ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 1
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 2</Menu_>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 2</ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 3
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' id='demo-scrollable'>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 1
-        <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 2</Menu_>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+        <svg-checkmark slot='end-icon' aria-checked='true'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 2</ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 3
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 4
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 5
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 6</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 7</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 8</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 9</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 10</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 11</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 12</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 13</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Option 14</Menu_>
+      </ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 6</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 7</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 8</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 9</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 10</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 11</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 12</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 13</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Option 14</ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ tabindex='0' id='test-menu-2' role='menuitem'>
+      <ListItem_ tabindex='0' actionable id='test-menu-2' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 1
-      </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 2
-      </Menu_>
-      <Menu_ disabled role='menuitem'>
+      </ListItem_>
+      <ListItem_ disabled actionable role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 3
-      </Menu_>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ isActive tabindex='0' role='menuitem'>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -117,35 +119,35 @@ import Menu_ from '../components/Menu.astro';
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 2
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 3
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_ isActive isLarge tabindex='0' role='menuitem'>
+      <ListItem_ isActive actionable size='large' tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>Beta</div>
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -164,9 +166,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
 
     <br />
@@ -185,8 +187,8 @@ import Menu_ from '../components/Menu.astro';
         </label>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>View profile</Menu_>
-      <Menu_ tabindex='0' role='menuitem'>Sign out</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>View profile</ListItem_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>Sign out</ListItem_>
     </ul>
 
     <br />
@@ -203,108 +205,25 @@ import Menu_ from '../components/Menu.astro';
   <h2>Skeleton</h2>
   <section id='demo-skeleton'>
     <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      >
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      >
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      >
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-      </Menu_>
+      <MenuItemSkeleton_ role='presentation' contentWidth='30%' />
+      <MenuItemSkeleton_ role='presentation' contentWidth='25%' />
+      <MenuItemSkeleton_ role='presentation' contentWidth='35%' />
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-        iconClassName='iui-skeleton'
-      >
-        <div slot='start-icon'></div>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-        iconClassName='iui-skeleton'
-      >
-        <div slot='start-icon'></div>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-        iconClassName='iui-skeleton'
-      >
-        <div slot='start-icon'></div>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-      </Menu_>
+      <MenuItemSkeleton_ hasIcon role='presentation' contentWidth='30%' />
+      <MenuItemSkeleton_ hasIcon role='presentation' contentWidth='25%' />
+      <MenuItemSkeleton_ hasIcon role='presentation' contentWidth='35%' />
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <Menu_
-        isSkeleton
-        isLarge
-        role='presentation'
-        id='test-menu-item-skeleton'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-        iconClassName='iui-skeleton'
-      >
-        <div slot='start-icon'></div>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-      </Menu_>
-
-      <Menu_
-        isSkeleton
-        isLarge
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-        iconClassName='iui-skeleton'
-      >
-        <div slot='start-icon'></div>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-      </Menu_>
-      <Menu_
-        isSkeleton
-        isLarge
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-        iconClassName='iui-skeleton'
-      >
-        <div slot='start-icon'></div>
-        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-        <div class='iui-visually-hidden'>Loading...</div>
-        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-      </Menu_>
+      <MenuItemSkeleton_ hasIcon hasSublabel role='presentation' contentWidth='30%' />
+      <MenuItemSkeleton_ hasIcon hasSublabel role='presentation' contentWidth='25%' />
+      <MenuItemSkeleton_ hasIcon hasSublabel role='presentation' contentWidth='35%' />
     </ul>
   </section>
 
@@ -374,24 +293,43 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
-      <Menu_ isLarge tabindex='0' role='menuitem' iconClassName='iui-header-menu-icon'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        role='menuitem'
+        actionable
+        iconProps={{ class: 'iui-header-menu-icon' }}
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>Model Alpha</div>
         <div class='iui-list-item-description'>0x0987654321</div>
-      </Menu_>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem' iconClassName='iui-header-menu-icon'>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        isActive
+        tabindex='0'
+        role='menuitem'
+        actionable
+        iconProps={{ class: 'iui-header-menu-icon' }}
+      >
         <svg-model slot='start-icon'></svg-model>
         <div>Model Beta</div>
         <div class='iui-list-item-description'>0x0123456789</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem' iconStyle='width: 24px; height: 24px'>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        role='menuitem'
+        actionable
+        iconProps={{ style: 'width: 24px; height: 24px' }}
+      >
         <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
         <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
         <div class='iui-list-item-description'>0x0192837465</div>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ actionable tabindex='0' role='menuitem'>My projects</ListItem_>
     </ul>
 
     <br />
@@ -457,24 +395,43 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
-      <Menu_ isLarge tabindex='0' role='menuitem' iconClassName='iui-header-menu-icon'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        role='menuitem'
+        actionable
+        iconProps={{ class: 'iui-header-menu-icon' }}
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>Model Alpha</div>
         <div class='iui-list-item-description'>0x0987654321</div>
-      </Menu_>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem' iconClassName='iui-header-menu-icon'>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        isActive
+        tabindex='0'
+        role='menuitem'
+        actionable
+        iconProps={{ class: 'iui-header-menu-icon' }}
+      >
         <svg-model slot='start-icon'></svg-model>
         <div>Model Beta</div>
         <div class='iui-list-item-description'>0x0123456789</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem' iconStyle='width: 24px; height: 24px'>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        role='menuitem'
+        actionable
+        iconProps={{ style: 'width: 24px; height: 24px' }}
+      >
         <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
         <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
         <div class='iui-list-item-description'>0x0192837465</div>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
   </section>
   <br />
@@ -492,19 +449,19 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -523,9 +480,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -540,19 +497,19 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -571,9 +528,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -588,19 +545,19 @@ import Menu_ from '../components/Menu.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -619,9 +576,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
   </section>
   <br />
@@ -634,19 +591,19 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -665,9 +622,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -677,19 +634,19 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -708,9 +665,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -720,19 +677,19 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -751,9 +708,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
   </section>
   <br />
@@ -766,19 +723,19 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -797,9 +754,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -809,19 +766,19 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -840,9 +797,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -852,19 +809,19 @@ import Menu_ from '../components/Menu.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <Menu_ isLarge isActive tabindex='0' role='menuitem'>
+      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
         <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
-      <Menu_ isLarge tabindex='0' role='menuitem'>
+      </ListItem_>
+      <ListItem_ size='large' actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -883,9 +840,9 @@ import Menu_ from '../components/Menu.astro';
           est laborum.
         </div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
-      </Menu_>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <Menu_ tabindex='0' role='menuitem'>My projects</Menu_>
+      <ListItem_ tabindex='0' actionable role='menuitem'>My projects</ListItem_>
     </ul>
   </section>
   <script is:inline>
