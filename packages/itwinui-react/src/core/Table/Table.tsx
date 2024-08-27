@@ -849,7 +849,6 @@ export const Table = <
       const row = page[index];
       prepareRow(row);
 
-      // Only sub-row that is used as sub-component contains the id under "index.0" format
       if (!page[index].original.isSubComponent) {
         return (
           <TableRowMemoized
