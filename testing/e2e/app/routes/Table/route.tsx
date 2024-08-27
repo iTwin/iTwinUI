@@ -1,8 +1,59 @@
 import { Table, tableFilters } from '@itwin/itwinui-react';
+import type { CellProps } from '@itwin/itwinui-react/react-table';
 import { useSearchParams } from '@remix-run/react';
 import React from 'react';
 
-export default function Resizing() {
+export default function Page() {
+  const [searchParams] = useSearchParams();
+
+  if (searchParams.get('allFilters')) {
+    return <FiltersTest />;
+  }
+
+  return <EverythingElse />;
+}
+
+// ----------------------------------------------------------------------------
+
+function FiltersTest() {
+  return (
+    <Table
+      columns={React.useMemo(
+        () => [
+          {
+            Header: '#',
+            accessor: 'index',
+            fieldType: 'number',
+            Filter: tableFilters.NumberRangeFilter(),
+            filter: 'between',
+          },
+          {
+            Header: 'Name',
+            accessor: 'name',
+            fieldType: 'text',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            Header: 'Date',
+            accessor: 'date',
+            Filter: tableFilters.DateRangeFilter(),
+            filter: 'betweenDate',
+            Cell: ({ value }: CellProps<any>) => {
+              return <>{(value as Date).toLocaleDateString()}</>;
+            },
+          },
+        ],
+        [],
+      )}
+      data={baseData}
+      emptyTableContent='No data.'
+    />
+  );
+}
+
+// ----------------------------------------------------------------------------
+
+function EverythingElse() {
   const [searchParams] = useSearchParams();
 
   const disableResizing = searchParams.get('disableResizing') === 'true';
@@ -37,75 +88,7 @@ export default function Resizing() {
     return arr;
   }, [oneRow, empty]);
 
-  const data = subRows
-    ? [
-        {
-          index: 1,
-          name: 'Name1',
-          description: 'Description1',
-          id: '111',
-        },
-        {
-          index: 2,
-          name: 'Name2',
-          description: 'Description2',
-          subRows: [
-            {
-              index: 2.1,
-              name: 'Name2.1',
-              description: 'Description2.1',
-              id: '223',
-            },
-            {
-              index: 2.2,
-              name: 'Name2.2',
-              description: 'Description2.2',
-              id: '224',
-            },
-          ],
-          id: '222',
-        },
-        {
-          index: 3,
-          name: 'Name3',
-          description: 'Description3',
-          subRows: [
-            {
-              index: 3.1,
-              name: 'Name3.1',
-              description: 'Description3.1',
-              id: '334',
-            },
-            {
-              index: 3.2,
-              name: 'Name3.2',
-              description: 'Description3.2',
-              id: '335',
-            },
-          ],
-          id: '333',
-        },
-      ]
-    : [
-        {
-          index: 1,
-          name: 'Name1',
-          description: 'Description1',
-          id: '111',
-        },
-        {
-          index: 2,
-          name: 'Name2',
-          description: 'Description2',
-          id: '222',
-        },
-        {
-          index: 3,
-          name: 'Name3',
-          description: 'Description3',
-          id: '333',
-        },
-      ];
+  const data = subRows ? dataWithSubrows : baseData;
 
   const isRowDisabled = React.useCallback(
     (rowData: Record<string, unknown>) => {
@@ -174,3 +157,78 @@ export default function Resizing() {
     </>
   );
 }
+
+// ----------------------------------------------------------------------------
+
+const baseData = [
+  {
+    index: 1,
+    name: 'Name1',
+    description: 'Description1',
+    id: '111',
+    date: new Date('Aug 1, 2023'),
+  },
+  {
+    index: 2,
+    name: 'Name2',
+    description: 'Description2',
+    id: '222',
+    date: new Date('Aug 2, 2024'),
+  },
+  {
+    index: 3,
+    name: 'Name3',
+    description: 'Description3',
+    id: '333',
+    date: new Date('Aug 3, 2025'),
+  },
+];
+
+const dataWithSubrows = [
+  {
+    index: 1,
+    name: 'Name1',
+    description: 'Description1',
+    id: '111',
+  },
+  {
+    index: 2,
+    name: 'Name2',
+    description: 'Description2',
+    subRows: [
+      {
+        index: 2.1,
+        name: 'Name2.1',
+        description: 'Description2.1',
+        id: '223',
+      },
+      {
+        index: 2.2,
+        name: 'Name2.2',
+        description: 'Description2.2',
+        id: '224',
+      },
+    ],
+    id: '222',
+  },
+  {
+    index: 3,
+    name: 'Name3',
+    description: 'Description3',
+    subRows: [
+      {
+        index: 3.1,
+        name: 'Name3.1',
+        description: 'Description3.1',
+        id: '334',
+      },
+      {
+        index: 3.2,
+        name: 'Name3.2',
+        description: 'Description3.2',
+        id: '335',
+      },
+    ],
+    id: '333',
+  },
+];

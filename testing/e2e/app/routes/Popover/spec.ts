@@ -29,3 +29,23 @@ test.describe('Popover (focus)', () => {
     await expect(page.getByRole('heading')).toBeFocused();
   });
 });
+
+test.describe('Nested popovers', () => {
+  test('should work with ComboBox', async ({ page }) => {
+    await page.goto('/Popover?nestedComboBox=true');
+    await page.click('button');
+
+    const popover = page.getByRole('dialog');
+    const comboboxInput = page.getByRole('combobox');
+    const comboboxListbox = page.getByRole('listbox');
+
+    await expect(popover).toBeVisible();
+    await expect(comboboxInput).toBeVisible();
+    await expect(comboboxListbox).toBeVisible();
+
+    // close the combobox
+    await comboboxInput.click();
+    await expect(comboboxListbox).not.toBeVisible();
+    await expect(popover).toBeVisible();
+  });
+});
