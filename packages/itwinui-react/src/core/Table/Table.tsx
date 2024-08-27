@@ -574,6 +574,23 @@ export const Table = <
     [filterFunctions],
   );
 
+  const getSubRowsWithSubComponents = React.useCallback(
+    (originalRow: T): T[] => {
+      if (subComponent && !originalRow.hasParent) {
+        const newSubRow = {
+          ...originalRow,
+          hasParent: true,
+          isSubComponent: true,
+        } as unknown as T;
+        return [newSubRow];
+      } else {
+        // Otherwise, return the existing subRows or an empty array
+        return (originalRow.subRows as T[]) || [];
+      }
+    },
+    [subComponent],
+  );
+
   const hasAnySubRows = React.useMemo(() => {
     return data.some((item, index) =>
       getSubRows ? getSubRows(item, index) : item.subRows,
@@ -592,23 +609,7 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows: React.useCallback(
-        (originalRow: T, relativeIndex: number): T[] => {
-          if (subComponent && !originalRow.hasParent) {
-            const newSubRow = {
-              ...originalRow,
-              index: relativeIndex,
-              hasParent: true,
-              isSubComponent: true,
-            } as unknown as T;
-            return [newSubRow];
-          } else {
-            // Otherwise, return the existing subRows or an empty array
-            return (originalRow.subRows as T[]) || [];
-          }
-        },
-        [subComponent],
-      ),
+      getSubRows: getSubRows ?? getSubRowsWithSubComponents,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
