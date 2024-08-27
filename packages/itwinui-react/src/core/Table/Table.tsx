@@ -65,7 +65,7 @@ import {
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
-import { TableExpandableRow } from './TableExpandableRow.js';
+import { TableExpandableRowMemoized } from './TableExpandableRowMemoized.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -592,20 +592,23 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows: (originalRow: T, relativeIndex: number): T[] => {
-        if (subComponent && !originalRow.hasParent) {
-          const newSubRow = {
-            ...originalRow,
-            index: relativeIndex,
-            hasParent: true,
-            isSubComponent: true,
-          } as unknown as T;
-          return [newSubRow];
-        } else {
-          // Otherwise, return the existing subRows or an empty array
-          return (originalRow.subRows as T[]) || [];
-        }
-      },
+      getSubRows: React.useCallback(
+        (originalRow: T, relativeIndex: number): T[] => {
+          if (subComponent && !originalRow.hasParent) {
+            const newSubRow = {
+              ...originalRow,
+              index: relativeIndex,
+              hasParent: true,
+              isSubComponent: true,
+            } as unknown as T;
+            return [newSubRow];
+          } else {
+            // Otherwise, return the existing subRows or an empty array
+            return (originalRow.subRows as T[]) || [];
+          }
+        },
+        [subComponent],
+      ),
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
@@ -832,7 +835,6 @@ export const Table = <
     getItemKey: (index) => page[index].id,
     overscan: 1,
   });
-  console.log(page);
 
   useLayoutEffect(() => {
     if (scrollToIndex) {
@@ -875,14 +877,18 @@ export const Table = <
         );
       } else {
         return (
-          <TableExpandableRow
-            row={page[index]}
-            isDisabled={!!isRowDisabled?.(row.original)}
-            subComponent={subComponent}
-            virtualItem={virtualItem}
-            virtualizer={virtualizer}
-            tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
-          />
+          <>
+            {subComponent && (
+              <TableExpandableRowMemoized
+                isDisabled={!!isRowDisabled?.(row.original)}
+                virtualItem={virtualItem}
+                virtualizer={virtualizer}
+                ref={enableVirtualization ? undefined : tableRowRef(row)}
+              >
+                {subComponent(page[index])}
+              </TableExpandableRowMemoized>
+            )}
+          </>
         );
       }
     },
