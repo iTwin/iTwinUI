@@ -35,7 +35,7 @@ export const useWarningLogger =
           ReactInternals?.ReactDebugCurrentFrame?.getCurrentStack?.();
 
         // Second line in the stack is the component name.
-        const componentName = stack?.trim().split('\n')[1];
+        const componentName = stack?.trim().split('\n')[1]?.trim();
 
         const prefix = componentName
           ? `Warning (${componentName}):`
