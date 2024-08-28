@@ -48,7 +48,6 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { usePortalTo } from '../../utils/components/Portal.js';
 import type { PortalProps } from '../../utils/components/Portal.js';
-import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 type PopoverOptions = {
   /**
@@ -399,13 +398,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     middleware,
   });
 
-  const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
-
-  const popoverRef = useMergedRefs(
-    popover.refs.setFloating,
-    forwardedRef,
-    setPopoverElement,
-  );
+  const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
 
   const triggerId = `${useId()}-trigger`;
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
@@ -430,28 +423,23 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
       {popover.open ? (
         <PopoverPortal portal={portal}>
-          <ThemeProvider
-            portalContainer={popoverElement} // portal nested popovers into this one
-          >
-            <DisplayContents />
-            <FloatingFocusManager context={popover.context} modal={false}>
-              <Box
-                className={cx(
-                  { 'iui-popover-surface': applyBackground },
-                  className,
-                )}
-                aria-labelledby={
-                  !hasAriaLabel
-                    ? popover.refs.domReference.current?.id
-                    : undefined
-                }
-                {...popover.getFloatingProps(rest)}
-                ref={popoverRef}
-              >
-                {content}
-              </Box>
-            </FloatingFocusManager>
-          </ThemeProvider>
+          <FloatingFocusManager context={popover.context} modal={false}>
+            <Box
+              className={cx(
+                { 'iui-popover-surface': applyBackground },
+                className,
+              )}
+              aria-labelledby={
+                !hasAriaLabel
+                  ? popover.refs.domReference.current?.id
+                  : undefined
+              }
+              {...popover.getFloatingProps(rest)}
+              ref={popoverRef}
+            >
+              {content}
+            </Box>
+          </FloatingFocusManager>
         </PopoverPortal>
       ) : null}
     </>
