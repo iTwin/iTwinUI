@@ -205,25 +205,131 @@ import MenuItemSkeleton from '../components/MenuItemSkeleton.astro';
   <h2>Skeleton</h2>
   <section id='demo-skeleton'>
     <ul class='iui-menu' role='menu'>
-      <MenuItemSkeleton_ role='presentation' contentWidth='30%' />
-      <MenuItemSkeleton_ role='presentation' contentWidth='25%' />
-      <MenuItemSkeleton_ role='presentation' contentWidth='35%' />
+      <ListItem_
+        isSkeleton
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 30%;'
+      >
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
+      <ListItem_
+        isSkeleton
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 25%;'
+      >
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
+      <ListItem_
+        isSkeleton
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 35%;'
+      >
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <MenuItemSkeleton_ hasIcon role='presentation' contentWidth='30%' />
-      <MenuItemSkeleton_ hasIcon role='presentation' contentWidth='25%' />
-      <MenuItemSkeleton_ hasIcon role='presentation' contentWidth='35%' />
+      <ListItem_
+        isSkeleton
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 30%;'
+        startIconProps={{ class: 'iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
+      <ListItem_
+        isSkeleton
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 25%;'
+        startIconProps={{ class: 'iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
+      <ListItem_
+        isSkeleton
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 35%;'
+        startIconProps={{ class: 'iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <MenuItemSkeleton_ hasIcon hasSublabel role='presentation' contentWidth='30%' />
-      <MenuItemSkeleton_ hasIcon hasSublabel role='presentation' contentWidth='25%' />
-      <MenuItemSkeleton_ hasIcon hasSublabel role='presentation' contentWidth='35%' />
+      <ListItem_
+        isSkeleton
+        size='large'
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 30%;'
+        startIconProps={{ class: 'iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
+      <ListItem_
+        isSkeleton
+        size='large'
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 25%;'
+        startIconProps={{ class: 'iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
+      <ListItem_
+        isSkeleton
+        size='large'
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 35%;'
+        startIconProps={{ class: 'iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <span class='iui-content'>
+          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+          <div class='iui-visually-hidden'>Loading...</div>
+        </span>
+      </ListItem_>
     </ul>
   </section>
 
