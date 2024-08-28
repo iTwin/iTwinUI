@@ -5,8 +5,8 @@ type Props = {
   disabled?: boolean;
   startIconProps?: astroHTML.JSX.HTMLAttributes;
   endIconProps?: astroHTML.JSX.HTMLAttributes;
+  contentProps?: astroHTML.JSX.HTMLAttributes;
   actionable?: boolean;
-  isSkeleton?: boolean;
 } & astroHTML.JSX.HTMLAttributes;
 
 const {
@@ -17,52 +17,38 @@ const {
   startIconProps,
   endIconProps,
   actionable,
-  isSkeleton,
+  contentProps,
   ...props
 } = Astro.props;
 ---
 
 <li
   class:list={[
-    { 'iui-list-item': !isSkeleton },
-    { 'iui-menu-item iui-menu-item-skeleton': isSkeleton },
+    className,
     { 'iui-active': isActive },
     { 'iui-disabled': disabled },
     { 'iui-large': size === 'large' },
-    className,
   ]}
   data-iui-actionable={actionable ? 'true' : undefined}
   {...props}
 >
   {
     Astro.slots.has('start-icon') && (
-      <span
-        class:list={[
-          { 'iui-icon': isSkeleton },
-          { 'iui-list-item-icon': !isSkeleton },
-          startIconProps?.class,
-        ]}
-        {...startIconProps}
-        aria-hidden='true'
-      >
+      <span class={startIconProps?.class} {...startIconProps} aria-hidden='true'>
         <slot name='start-icon' />
       </span>
     )
   }
   {
     Astro.slots.has('default') && (
-      <span class={isSkeleton ? 'iui-content' : 'iui-list-item-content'}>
+      <span class={contentProps?.class} {...contentProps}>
         <slot />
       </span>
     )
   }
   {
     Astro.slots.has('end-icon') && (
-      <span
-        class:list={['iui-list-item-icon', endIconProps?.class]}
-        {...endIconProps}
-        aria-hidden='true'
-      >
+      <span class={endIconProps?.class} {...endIconProps} aria-hidden='true'>
         <slot name='end-icon' />
       </span>
     )
