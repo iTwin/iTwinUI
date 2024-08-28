@@ -24,10 +24,11 @@ const {
 
 <li
   class:list={[
-    className,
+    'iui-list-item',
     { 'iui-active': isActive },
     { 'iui-disabled': disabled },
     { 'iui-large': size === 'large' },
+    className,
   ]}
   data-iui-actionable={actionable ? 'true' : undefined}
   {...props}
