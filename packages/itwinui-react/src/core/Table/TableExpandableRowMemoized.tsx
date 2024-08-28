@@ -28,11 +28,9 @@ const TableExpandableRow = React.forwardRef(
             ? { transform: `translateY(${props.virtualItem.start}px)` }
             : {}),
         }}
-        {...{
-          'aria-disabled': props.isDisabled || undefined,
-          'data-iui-index': props.virtualItem?.index,
-          ...(props.virtualItem != null && { 'data-iui-virtualizer': 'item' }),
-        }}
+        aria-disabled={props.isDisabled || undefined}
+        data-iui-index={props.virtualItem?.index}
+        {...(props.virtualItem != null && { 'data-iui-virtualizer': 'item' })}
         ref={refs}
       >
         {props.children}
