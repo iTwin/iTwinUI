@@ -35,7 +35,11 @@ const {
 >
   {
     Astro.slots.has('start-icon') && (
-      <span class={startIconProps?.class} {...startIconProps} aria-hidden='true'>
+      <span
+        class:list={['iui-list-item-icon', startIconProps?.class]}
+        {...startIconProps}
+        aria-hidden='true'
+      >
         <slot name='start-icon' />
       </span>
     )
@@ -49,7 +53,11 @@ const {
   }
   {
     Astro.slots.has('end-icon') && (
-      <span class={endIconProps?.class} {...endIconProps} aria-hidden='true'>
+      <span
+        class:list={['iui-list-item-icon', endIconProps?.class]}
+        {...endIconProps}
+        aria-hidden='true'
+      >
         <slot name='end-icon' />
       </span>
     )
