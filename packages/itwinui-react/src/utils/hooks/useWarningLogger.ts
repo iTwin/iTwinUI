@@ -6,7 +6,9 @@
 import * as React from 'react';
 import { isUnitTest } from '../functions/dev.js';
 
-const internalsKey = '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED';
+const _React = React as any;
+const ReactInternals =
+  _React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
 /**
  * Returns a function that can be used to log one-time warnings in dev environments.
@@ -29,9 +31,8 @@ export const useWarningLogger =
         const timeoutRef = React.useRef<number | null>(null);
 
         // https://stackoverflow.com/a/71685253
-        const stack = (React as any)[
-          internalsKey
-        ]?.ReactDebugCurrentFrame?.getCurrentStack?.();
+        const stack =
+          ReactInternals?.ReactDebugCurrentFrame?.getCurrentStack?.();
 
         // Second line in the stack is the component name.
         const componentName = stack?.trim().split('\n')[1];
