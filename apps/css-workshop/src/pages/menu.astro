@@ -99,7 +99,7 @@ import ListItem_ from '../components/ListItem.astro';
         role='menuitem'
       >
         Option 1
-        <svg-checkmark slot='end-icon' aria-checked='true'></svg-checkmark>
+        <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
       <ListItem_ contentProps={{ class: 'iui-list-item-content' }} actionable role='menuitem'>
         Option 2
@@ -544,7 +544,15 @@ import ListItem_ from '../components/ListItem.astro';
         <div class='iui-list-item-description'>0x0192837465</div>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <ListItem_ actionable tabindex='0' role='menuitem'>My projects</ListItem_>
+      <ListItem_
+        contentProps={{
+          class: 'iui-list-item-content',
+        }}
+        actionable
+        role='menuitem'
+      >
+        My projects
+      </ListItem_>
     </ul>
 
     <br />
