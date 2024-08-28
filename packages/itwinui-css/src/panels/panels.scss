@@ -2,7 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 .iui-panel-wrapper {
-  overflow: hidden;
+  overflow: auto;
+  overflow-anchor: auto;
 
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
@@ -18,8 +19,4 @@
 .iui-panel {
   inline-size: 100%;
   flex-shrink: 0;
-
-  &[hidden] {
-    display: none !important;
-  }
 }

@@ -11,6 +11,7 @@ import {
   SvgChevronLeft,
   useInertPolyfill,
   useInstance,
+  useLatestRef,
   useMergedRefs,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -22,13 +23,15 @@ import cx from 'classnames';
 import {
   PanelsInstanceContext,
   PanelsInstanceProvider,
+  panelsReducer,
   PanelsWrapperContext,
 } from './helpers.js';
 import type { PanelsInstance, TriggerMapEntry } from './helpers.js';
+// import { scrollend } from 'scrollyfills';
 
 // #region PanelsWrapper
 
-type PanelsWrapperProps = {
+export type PanelsWrapperProps = {
   /**
    * The initialPanel that is displayed.
    */
@@ -103,19 +106,91 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const instanceBackup = Panels.useInstance();
   const instance = instanceProp || instanceBackup;
 
-  const panelElements = React.useRef<Record<string, HTMLElement | null>>({});
+  const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [activePanel, setActivePanel] = React.useState<string>(initialActiveId);
-  const [previousPanel, setPreviousPanel] = React.useState<string | undefined>(
-    undefined,
+  // const [activePanel, setActivePanel] = React.useState<string>(initialActiveId);
+  // const [nextPanel, setNextPanel] = React.useState<string | undefined>(
+  //   undefined,
+  // );
+
+  const [{ activePanel, nextPanel }, dispatch] = React.useReducer(
+    panelsReducer,
+    {
+      activePanel: initialActiveId,
+      nextPanel: undefined,
+      onActiveIdChange,
+    },
   );
-  const [nextPanel, setNextPanel] = React.useState<string | undefined>(
-    undefined,
-  );
+
+  React.useEffect(() => {
+    console.log('panels', activePanel, nextPanel);
+  }, [activePanel, nextPanel]);
+
+  const [_panelElements, setPanelElements] = React.useState<
+    Record<string, HTMLElement | null>
+  >({});
+  const panelElements = useLatestRef(_panelElements);
 
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
   >({});
+
+  // console.log('panelElements', panelElements.current);
+
+  // const scrollEndListener = React.useCallback(() => {
+  //   console.log('scroll end', activePanel, previousPanel, nextPanel);
+  //   setPreviousPanel(undefined);
+  // }, [activePanel, nextPanel, previousPanel]);
+  // // const scrollEndListener = useLatestRef(_scrollEndListener);
+
+  // const scrollListener = React.useCallback(() => {
+  //   clearTimeout((window as any).scrollEndTimer);
+  //   (window as any).scrollEndTimer = setTimeout(scrollEndListener, 100);
+  // }, [scrollEndListener]);
+  // const scrollListener = useLatestRef(_scrollListener);
+
+  React.useEffect(() => {
+    const refCurrent = ref.current;
+    // const scrollEndListenerCurrent = scrollEndListener;
+    // const scrollListenerCurrent = scrollListener;
+
+    const scrollEndListenerCurrent = () => {
+      console.log('scroll end');
+
+      // setActivePanel((prevActivePanel) => {
+      //   if (nextPanel == null) {
+      //     return prevActivePanel;
+      //   }
+
+      //   return nextPanel;
+      // });
+      // setNextPanel(undefined);
+      // setPreviousPanel(undefined);
+
+      dispatch({ type: 'end-panel-transition' });
+    };
+
+    const scrollListenerCurrent = () => {
+      clearTimeout((window as any).scrollEndTimer);
+      (window as any).scrollEndTimer = setTimeout(
+        scrollEndListenerCurrent,
+        100,
+      );
+    };
+
+    if ('onscrollend' in window) {
+      refCurrent?.addEventListener('scrollend', scrollEndListenerCurrent);
+    } else {
+      refCurrent?.addEventListener('scroll', scrollListenerCurrent);
+      // document.onscroll = event => {
+      // }
+    }
+
+    return () => {
+      refCurrent?.removeEventListener('scrollend', scrollEndListenerCurrent);
+      refCurrent?.removeEventListener('scroll', scrollListenerCurrent);
+    };
+  }, [activePanel, nextPanel]);
 
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
@@ -128,45 +203,60 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         return;
       }
 
-      ReactDOM.flushSync(() => setNextPanel(newActiveId));
-
-      panelElements.current?.[newActiveId]?.scrollIntoView({
-        block: 'nearest',
-        inline: 'center',
+      ReactDOM.flushSync(() => {
+        // setNextPanel(newActiveId);
+        dispatch({ type: 'start-panel-transition', nextPanel: newActiveId });
       });
 
-      // WIP Focus
-      // const activePanelElement = document.getElementById(activePanel);
-      // const newActiveElement = document.getElementById(newActiveId);
+      // setTimeout(() => {
+      //   console.log('ici', panelElements.current[activePanel]);
+      //   panelElements.current[activePanel]?.scrollIntoView({
+      //     behavior: 'instant',
+      //     block: 'nearest',
+      //     inline: 'center',
+      //   });
+      // }, 1_000);
 
-      // await new Promise((resolve) => {
-      //   setTimeout(() => {
-      //     if (activePanelElement != null && newActiveElement != null) {
-      //       const isNewActivePanelAfterCurrentActivePanelInDom =
-      //         activePanelElement?.compareDocumentPosition(newActiveElement) &
-      //         Node.DOCUMENT_POSITION_FOLLOWING;
+      await new Promise((resolve) => {
+        setTimeout(() => {
+          console.log(
+            "J'essaie défiller cet élément",
+            panelElements.current?.[newActiveId],
+          );
 
-      //       // Going forward = Focus new panel
-      //       if (isNewActivePanelAfterCurrentActivePanelInDom) {
-      //         const panel = document.getElementById(newActiveId);
-      //         console.log('1', panel);
-      //         panel?.focus({ preventScroll: true });
-      //       }
-      //       // Going backward = Focus trigger that had opened the current panel
-      //       else {
-      //         console.log('2');
+          panelElements.current?.[newActiveId]?.scrollIntoView({
+            block: 'nearest',
+            inline: 'center',
+          });
 
-      //         const trigger = document.getElementById(
-      //           triggers[activePanel].triggerId,
-      //         );
-      //         console.log('2', trigger);
-      //         trigger?.focus({ preventScroll: true });
-      //       }
-      //     }
+          // WIP Focus
+          // const activePanelElement = document.getElementById(activePanel);
+          // const newActiveElement = document.getElementById(newActiveId);
 
-      //     resolve(null);
-      //   }, 10);
-      // });
+          // if (activePanelElement != null && newActiveElement != null) {
+          //   const isNewActivePanelAfterCurrentActivePanelInDom =
+          //     activePanelElement?.compareDocumentPosition(newActiveElement) &
+          //     Node.DOCUMENT_POSITION_FOLLOWING;
+
+          //   // Going forward = Focus new panel
+          //   if (isNewActivePanelAfterCurrentActivePanelInDom) {
+          //     const panel = document.getElementById(newActiveId);
+          //     // console.log('1', panel);
+          //     panel?.focus({ preventScroll: true });
+          //   }
+          //   // Going backward = Focus trigger that had opened the current panel
+          //   else {
+          //     const trigger = document.getElementById(
+          //       triggers[activePanel].triggerId,
+          //     );
+          //     // console.log('2', triggers, triggers[activePanel]);
+          //     trigger?.focus({ preventScroll: true });
+          //   }
+          // }
+
+          resolve(null);
+        }, 4_000);
+      });
 
       // TODO: focus
       // const triggerId = triggers?.current?.get(newActiveId)?.triggerId;
@@ -180,18 +270,15 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       //   elementToFocus?.focus({ preventScroll: true });
       // }
 
-      ReactDOM.flushSync(() => {
-        setActivePanel(newActiveId);
-        setNextPanel(undefined);
-      });
+      // ReactDOM.flushSync(() => {
+      //   setActivePanel(newActiveId);
+      //   onActiveIdChange?.(newActiveId);
+      // });
 
-      ReactDOM.flushSync(() => setPreviousPanel(activePanel));
       // TODO: DOM cleanup
       // setTimeout(() => setPreviousPanel(undefined), 1000);
-
-      onActiveIdChange?.(newActiveId);
     },
-    [activePanel, onActiveIdChange],
+    [activePanel, panelElements],
   );
 
   // const divRef = React.useRef<HTMLDivElement | null>(null);
@@ -217,18 +304,18 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         () => ({
           activePanel,
           nextPanel,
-          previousPanel,
           changeActivePanel,
           triggers,
           setTriggers,
-          panelElements,
+          panelElements: panelElements.current,
+          setPanelElements,
         }),
-        [activePanel, nextPanel, previousPanel, changeActivePanel, triggers],
+        [activePanel, changeActivePanel, panelElements, nextPanel, triggers],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
         <Box
-          ref={useMergedRefs(forwardedRef)}
+          ref={useMergedRefs(ref, forwardedRef)}
           {...rest}
           className={cx('iui-panel-wrapper', className)}
         >
@@ -264,7 +351,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, nextPanel, previousPanel, triggers, panelElements } =
+  const { activePanel, nextPanel, triggers, panelElements, setPanelElements } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
@@ -272,11 +359,23 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const [element, setElement] = React.useState<HTMLElement | null>(null);
 
-  React.useEffect(() => {
-    if (panelElements?.current != null) {
-      panelElements.current[id] = element;
-    }
-  }, [element, id, panelElements]);
+  React.useLayoutEffect(() => {
+    // if (panelElements != null) {
+    //   panelElements[id] = element;
+    // }
+
+    setPanelElements?.((oldPanelElements) => {
+      const newPanelElements = {
+        ...oldPanelElements,
+        [id]: element,
+      };
+
+      if (oldPanelElements[id] === element) {
+        return oldPanelElements;
+      }
+      return newPanelElements;
+    });
+  }, [element, id, panelElements, setPanelElements]);
 
   useInertPolyfill();
 
@@ -285,9 +384,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     [id, triggers],
   );
 
-  const isMounted = [activePanel, nextPanel, previousPanel].includes(id);
-  const isActive = id === activePanel;
-  const isInert = [nextPanel, previousPanel].includes(id);
+  const isMounted = [activePanel, nextPanel].includes(id);
+  // const isInert = [nextPanel].includes(id);
 
   const refs = useMergedRefs(setElement, forwardedRef);
 
@@ -305,8 +403,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header`}
           tabIndex={-1}
-          data-iui-active={isActive ? 'true' : undefined}
-          {...{ inert: isInert ? '' : undefined }}
+          // {...{ inert: isInert ? '' : undefined }}
           {...rest}
         >
           {children}

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useSynchronizeInstance } from '../../utils/index.js';
+import type { PanelsWrapperProps } from './Panels.js';
 
 export type PanelsInstance = {
   /** Go back to the panel that has a trigger that points to the current panel. */
@@ -19,13 +20,15 @@ export const PanelsWrapperContext = React.createContext<
       // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
       activePanel: string;
       nextPanel?: string;
-      previousPanel?: string;
       triggers: Record<string, TriggerMapEntry>;
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
       changeActivePanel: (newActiveId: string) => Promise<void>;
-      panelElements: React.RefObject<Record<string, HTMLElement | null>>;
+      panelElements: Record<string, HTMLElement | null>;
+      setPanelElements: React.Dispatch<
+        React.SetStateAction<Record<string, HTMLElement | null>>
+      >;
     }
   | undefined
 >(undefined);
@@ -79,4 +82,48 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
       {children}
     </PanelsInstanceContext.Provider>
   );
+};
+
+// ----------------------------------------------------------------------------
+
+type PanelsReducerState = {
+  activePanel: string;
+  nextPanel?: string;
+  onActiveIdChange?: PanelsWrapperProps['onActiveIdChange'];
+};
+
+type PanelsReducerAction =
+  | {
+      type: 'start-panel-transition';
+      nextPanel: string;
+    }
+  | {
+      type: 'end-panel-transition';
+    };
+
+export const panelsReducer = (
+  state: PanelsReducerState,
+  action: PanelsReducerAction,
+) => {
+  if (action.type === 'start-panel-transition') {
+    return {
+      ...state,
+      nextPanel: action.nextPanel,
+    };
+  }
+
+  if (action.type === 'end-panel-transition') {
+    if (state.nextPanel == null) {
+      return state;
+    }
+
+    const newActivePanel = state.nextPanel;
+
+    state.onActiveIdChange?.(newActivePanel);
+    return {
+      activePanel: newActivePanel,
+    };
+  }
+
+  return state;
 };
