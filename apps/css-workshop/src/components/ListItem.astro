@@ -36,7 +36,7 @@ const {
       <>
         <span
           class:list={['iui-list-item-icon', startIconProps?.class]}
-          style={startIconProps?.style}
+          {...startIconProps}
           aria-hidden='true'
         >
           <slot name='start-icon' />
@@ -55,7 +55,7 @@ const {
     Astro.slots.has('end-icon') && (
       <span
         class:list={['iui-list-item-icon', endIconProps?.class]}
-        style={endIconProps?.style}
+        {...endIconProps}
         aria-hidden='true'
       >
         <slot name='end-icon' />
