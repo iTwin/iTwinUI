@@ -6,6 +6,8 @@
 import * as React from 'react';
 import { isUnitTest } from '../functions/dev.js';
 
+const internalsKey = '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED';
+
 /**
  * Returns a function that can be used to log one-time warnings in dev environments.
  *
@@ -22,19 +24,34 @@ import { isUnitTest } from '../functions/dev.js';
  */
 export const useWarningLogger =
   process.env.NODE_ENV === 'development' && !isUnitTest
-    ? () => {
+    ? function () {
         const loggedRef = React.useRef(false);
         const timeoutRef = React.useRef<number | null>(null);
 
-        const logWarning = React.useCallback((message: string) => {
-          // Using setTimeout to delay execution until after rendering is complete.
-          timeoutRef.current = window.setTimeout(() => {
-            if (!loggedRef.current) {
-              console.error('Warning:', message);
-              loggedRef.current = true;
-            }
-          });
-        }, []);
+        // https://stackoverflow.com/a/71685253
+        const stack = (React as any)[
+          internalsKey
+        ]?.ReactDebugCurrentFrame?.getCurrentStack?.();
+
+        // Second line in the stack is the component name.
+        const componentName = stack?.trim().split('\n')[1];
+
+        const prefix = componentName
+          ? `Warning (${componentName}):`
+          : 'Warning:';
+
+        const logWarning = React.useCallback(
+          (message: string) => {
+            // Using setTimeout to delay execution until after rendering is complete.
+            timeoutRef.current = window.setTimeout(() => {
+              if (!loggedRef.current) {
+                console.error(prefix, message);
+                loggedRef.current = true;
+              }
+            });
+          },
+          [prefix],
+        );
 
         React.useEffect(() => {
           // Clearing timeout on unmount to avoid double execution in StrictMode.
