@@ -23,6 +23,7 @@ const TableExpandableRow = React.forwardRef(
       <Box
         className={cx('iui-table-row', 'iui-table-expanded-content')}
         style={{
+          flex: '0 0 auto',
           minWidth: '100%',
           ...(props.virtualItem != null
             ? { transform: `translateY(${props.virtualItem.start}px)` }
