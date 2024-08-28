@@ -26,7 +26,7 @@ export const useWarningLogger =
         const loggedRef = React.useRef(false);
         const timeoutRef = React.useRef<number | null>(null);
 
-        const logWarning = (message: string) => {
+        const logWarning = React.useCallback((message: string) => {
           // Using setTimeout to delay execution until after rendering is complete.
           timeoutRef.current = window.setTimeout(() => {
             if (!loggedRef.current) {
@@ -34,7 +34,7 @@ export const useWarningLogger =
               loggedRef.current = true;
             }
           });
-        };
+        }, []);
 
         React.useEffect(() => {
           // Clearing timeout on unmount to avoid double execution in StrictMode.
