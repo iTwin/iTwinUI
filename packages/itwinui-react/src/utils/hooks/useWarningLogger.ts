@@ -30,7 +30,7 @@ export const useWarningLogger =
           // Using setTimeout to delay execution until after rendering is complete.
           timeoutRef.current = window.setTimeout(() => {
             if (!loggedRef.current) {
-              console.warn(message);
+              console.error('Warning:', message);
               loggedRef.current = true;
             }
           });
