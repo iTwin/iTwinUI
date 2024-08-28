@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fixed broken expandable content when enabling virtualization in table.
+Fixed broken `subComponent` when enabling virtualization in `Table`.

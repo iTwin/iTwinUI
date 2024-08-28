@@ -852,7 +852,7 @@ export const Table = <
       const row = page[index];
       prepareRow(row);
 
-      if (!page[index].original.isSubComponent) {
+      if (!row.original.isSubComponent) {
         return (
           <TableRowMemoized
             row={row}
@@ -886,7 +886,7 @@ export const Table = <
                 virtualizer={virtualizer}
                 ref={enableVirtualization ? undefined : tableRowRef(row)}
               >
-                {subComponent(page[index])}
+                {subComponent(row)}
               </TableExpandableRowMemoized>
             )}
           </>
