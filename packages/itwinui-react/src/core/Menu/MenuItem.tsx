@@ -8,12 +8,13 @@ import {
   useMergedRefs,
   useId,
   createWarningLogger,
+  ButtonBase,
+  polymorphic,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
-import cx from 'classnames';
 
 const logWarning = createWarningLogger();
 
@@ -83,7 +84,6 @@ export type MenuItemProps = {
  */
 export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const {
-    className,
     children,
     isSelected,
     disabled,
@@ -129,15 +129,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
   }, [subMenuItems.length]);
 
-  const onClick = () => {
-    if (disabled) {
-      return;
-    }
-
-    onClickProp?.(value);
-  };
-
-  const handlers: React.DOMAttributes<HTMLButtonElement> = { onClick };
+  const onClick = () => onClickProp?.(value);
 
   /** Index of this item out of all the focusable items in the parent `Menu` */
   const focusableItemIndex = parentMenu?.focusableElements.findIndex(
@@ -145,10 +137,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   );
 
   const trigger = (
-    <ListItem
-      as='button'
-      type='button'
-      className={cx('iui-button-base', className)}
+    <MenuItemBase
       actionable
       size={size}
       active={isSelected}
@@ -163,10 +152,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       {...(parentMenu?.popoverGetItemProps != null
         ? parentMenu.popoverGetItemProps({
             focusableItemIndex,
-            userProps: handlers,
+            userProps: { onClick },
           })
-        : handlers)}
-      {...(rest as React.DOMAttributes<HTMLButtonElement>)}
+        : { onClick })}
+      {...(rest as React.DOMAttributes<HTMLElement>)}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -187,7 +176,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           {endIcon}
         </ListItem.Icon>
       )}
-    </ListItem>
+    </MenuItemBase>
   );
 
   return (
@@ -205,6 +194,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 if (process.env.NODE_ENV === 'development') {
   MenuItem.displayName = 'MenuItem';
 }
+
+const MenuItemBase = polymorphic(
+  ButtonBase,
+  ListItem,
+) as PolymorphicForwardRefComponent<'button', ListItemOwnProps>;
 
 // ----------------------------------------------------------------------------
 
