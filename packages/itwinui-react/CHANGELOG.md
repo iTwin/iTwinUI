@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.14.1
+
+### Patch Changes
+
+- [#2209](https://github.com/iTwin/iTwinUI/pull/2209): Fixed an issue where nested `Popover`s were automatically closing due to faulty "outside click" detection.
+- [#2213](https://github.com/iTwin/iTwinUI/pull/2213): Dev-only warnings have been improved so that they are correctly shown for every individual instance of a component. Additionally, these warnings are now logged using `console.error`, which results in a better stack trace.
+
 ## 3.14.0
 
 ### Minor Changes
@@ -16,20 +23,22 @@
   - `Popover` now also sets a default max-height of `400px` to prevent it from becoming too large. This can be customized using the `middleware.size.maxHeight` prop.
 - [#2205](https://github.com/iTwin/iTwinUI/pull/2205): `tableFilters.TextFilter` now prevents the user from applying the filter when the text input is empty.
 - [#2205](https://github.com/iTwin/iTwinUI/pull/2205): `BaseFilter` now renders as a `<form>` and `FilterButtonBar` now renders a `<button type="submit">`. Together, this enables the use of browser's built-in validation before applying filters.
+
   - The `setFilter` prop in `FilterButtonBar` has been deprecated, as `onSubmit` should be used instead.
     <details>
       <summary>Diff</summary>
-  
-      ```diff
-        <BaseFilter
-      +   onSubmit={() => setFilter(text)}
-        >
-          …
-          <FilterButtonBar
-      -     setFilter={() => setFilter(text)}
-          />
-        </BaseFilter>
-      ```
+
+    ```diff
+      <BaseFilter
+    +   onSubmit={() => setFilter(text)}
+      >
+        …
+        <FilterButtonBar
+    -     setFilter={() => setFilter(text)}
+        />
+      </BaseFilter>
+    ```
+
     </details>
 
 ### Patch Changes
@@ -43,7 +52,6 @@
 - [#2202](https://github.com/iTwin/iTwinUI/pull/2202): `IconButton` will now display warnings during development when it's missing a label.
 - [#2178](https://github.com/iTwin/iTwinUI/pull/2178): Reduced layout thrashing on `Table` component by memoizing an expensive `ref` function.
 - [#2194](https://github.com/iTwin/iTwinUI/pull/2194): The development build output is now also formatted using `prettier` for easier debugging.
-
 
 ## 3.13.4
 

@@ -7,15 +7,13 @@ import {
   SvgCaretRightSmall,
   useMergedRefs,
   useId,
-  createWarningLogger,
+  useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
-
-const logWarning = createWarningLogger();
 
 export type MenuItemProps = {
   /**
@@ -99,6 +97,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     subMenuItems = [],
     ...rest
   } = props;
+
+  const logWarning = useWarningLogger();
 
   if (
     process.env.NODE_ENV === 'development' &&

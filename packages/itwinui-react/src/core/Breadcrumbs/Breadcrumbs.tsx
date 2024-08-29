@@ -7,15 +7,13 @@ import cx from 'classnames';
 import {
   SvgChevronRight,
   Box,
-  createWarningLogger,
   OverflowContainer,
   useOverflowContainerContext,
+  useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
-
-const logWarning = createWarningLogger();
 
 type BreadcrumbsProps = {
   /**
@@ -217,6 +215,8 @@ const ListItem = ({
   isActive: boolean;
 }) => {
   let children = item as any;
+
+  const logWarning = useWarningLogger();
 
   if (
     children?.type === 'span' ||

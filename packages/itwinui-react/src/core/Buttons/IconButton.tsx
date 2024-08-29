@@ -4,15 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box, ButtonBase, createWarningLogger } from '../../utils/index.js';
+import { Box, ButtonBase, useWarningLogger } from '../../utils/index.js';
 import { Tooltip } from '../Tooltip/Tooltip.js';
 import type { ButtonProps } from './Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 import { ButtonGroupContext } from '../ButtonGroup/ButtonGroup.js';
 import { PopoverOpenContext } from '../Popover/Popover.js';
-
-const logWarning = createWarningLogger();
 
 export type IconButtonProps = {
   /**
@@ -73,6 +71,8 @@ export const IconButton = React.forwardRef((props, ref) => {
 
   const buttonGroupOrientation = React.useContext(ButtonGroupContext);
   const hasPopoverOpen = React.useContext(PopoverOpenContext);
+
+  const logWarning = useWarningLogger();
 
   if (
     process.env.NODE_ENV === 'development' &&
