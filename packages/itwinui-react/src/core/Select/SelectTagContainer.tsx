@@ -8,7 +8,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
 import {
   OverflowContainer,
-  OverflowContainerContext,
+  useOverflowContainerContext,
 } from '../../utils/index.js';
 
 type SelectTagContainerProps = {
@@ -44,8 +44,7 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
 
 const SelectTagContainerContent = (props: SelectTagContainerProps) => {
   const { tags } = props;
-  const visibleCount =
-    React.useContext(OverflowContainerContext)?.visibleCount ?? tags.length;
+  const { visibleCount } = useOverflowContainerContext();
 
   return (
     <>

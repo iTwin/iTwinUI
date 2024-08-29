@@ -7,6 +7,7 @@ import { useMergedRefs } from '../hooks/useMergedRefs.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 import { useOverflow } from '../hooks/useOverflow.js';
+import { useSafeContext } from '../hooks/useSafeContext.js';
 
 type OverflowContainerProps = {
   /**
@@ -110,10 +111,18 @@ export const OverflowContainer = Object.assign(OverflowContainerComponent, {
 
 // ----------------------------------------------------------------------------
 
-export const OverflowContainerContext = React.createContext<
+const OverflowContainerContext = React.createContext<
   | {
       visibleCount: number;
       itemCount: number;
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  OverflowContainerContext.displayName = 'OverflowContainerContext';
+}
+
+export const useOverflowContainerContext = () => {
+  const overflowContainerContext = useSafeContext(OverflowContainerContext);
+  return overflowContainerContext;
+};

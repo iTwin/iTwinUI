@@ -17,7 +17,7 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
-  OverflowContainerContext,
+  useOverflowContainerContext,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -349,8 +349,8 @@ const TablePaginatorCenterContent = (
     pageList,
     isLoading,
   } = props;
-  const visibleCount =
-    React.useContext(OverflowContainerContext)?.visibleCount ?? 1;
+  const { visibleCount } = useOverflowContainerContext();
+
   const halfVisibleCount = Math.floor(visibleCount / 2);
   let startPage = focusedIndex - halfVisibleCount;
   let endPage = focusedIndex + halfVisibleCount + 1;

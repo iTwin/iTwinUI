@@ -6,7 +6,7 @@ import * as React from 'react';
 import type { CommonProps } from '../props.js';
 import {
   OverflowContainer,
-  OverflowContainerContext,
+  useOverflowContainerContext,
 } from './OverflowContainer.js';
 
 const ELLIPSIS_CHAR = '…';
@@ -74,8 +74,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const MiddleTextTruncationContent = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer } = props;
-  const visibleCount =
-    React.useContext(OverflowContainerContext)?.visibleCount ?? text.length;
+  const { visibleCount } = useOverflowContainerContext();
 
   const truncatedText = React.useMemo(() => {
     if (visibleCount < text.length) {

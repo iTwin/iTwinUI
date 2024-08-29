@@ -9,7 +9,7 @@ import {
   Box,
   createWarningLogger,
   OverflowContainer,
-  OverflowContainerContext,
+  useOverflowContainerContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
@@ -163,8 +163,7 @@ const BreadcrumbContent = (props: BreadcrumbsProps) => {
     overflowButton,
     separator,
   } = props;
-  const visibleCount =
-    React.useContext(OverflowContainerContext)?.visibleCount ?? 0;
+  const { visibleCount } = useOverflowContainerContext();
 
   return (
     <>

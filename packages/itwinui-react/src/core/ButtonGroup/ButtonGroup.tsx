@@ -7,7 +7,7 @@ import cx from 'classnames';
 import {
   Box,
   OverflowContainer,
-  OverflowContainerContext,
+  useOverflowContainerContext,
 } from '../../utils/index.js';
 import type {
   AnyString,
@@ -230,17 +230,13 @@ const OverflowGroupContent = ({
 }: Pick<OverflowGroupProps, 'overflowButton' | 'overflowPlacement'> & {
   items: Array<Exclude<React.ReactNode, boolean | null | undefined>>;
 }) => {
-  const overflowGroupContext = React.useContext(OverflowContainerContext);
+  const { visibleCount } = useOverflowContainerContext();
 
-  const overflowStart = (() => {
-    if (overflowGroupContext == null) {
-      return undefined;
-    }
-
+  const overflowStart = React.useMemo(() => {
     return overflowPlacement === 'start'
-      ? items.length - overflowGroupContext.visibleCount
-      : overflowGroupContext.visibleCount - 1;
-  })();
+      ? items.length - visibleCount
+      : visibleCount - 1;
+  }, [items.length, overflowPlacement, visibleCount]);
 
   return overflowStart != null ? (
     <>
