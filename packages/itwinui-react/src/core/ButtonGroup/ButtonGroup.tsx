@@ -223,13 +223,15 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
 
 // ----------------------------------------------------------------------------
 
-const OverflowGroupContent = ({
-  overflowButton,
-  overflowPlacement,
-  items,
-}: Pick<OverflowGroupProps, 'overflowButton' | 'overflowPlacement'> & {
-  items: Array<Exclude<React.ReactNode, boolean | null | undefined>>;
-}) => {
+type OverflowGroupContentProps = Pick<
+  OverflowGroupProps,
+  'overflowButton' | 'overflowPlacement'
+> & {
+  items: ReturnType<typeof React.Children.toArray>;
+};
+
+const OverflowGroupContent = (props: OverflowGroupContentProps) => {
+  const { overflowButton, overflowPlacement, items } = props;
   const { visibleCount } = useOverflowContainerContext();
 
   const overflowStart = React.useMemo(() => {
@@ -238,7 +240,7 @@ const OverflowGroupContent = ({
       : visibleCount - 1;
   }, [items.length, overflowPlacement, visibleCount]);
 
-  return overflowStart != null ? (
+  return (
     <>
       {overflowButton &&
         overflowPlacement === 'start' &&
@@ -252,7 +254,5 @@ const OverflowGroupContent = ({
         overflowPlacement === 'end' &&
         overflowButton(overflowStart)}
     </>
-  ) : (
-    <></>
   );
 };

@@ -201,33 +201,9 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
 
-  const hasNoRows = totalPagesCount === 0;
   const showPagesList = totalPagesCount > 1 || isLoading;
   const showPageSizeList =
     pageSizeList && !!onPageSizeChange && !!totalRowsCount;
-
-  const ellipsis = (
-    <Box
-      as='span'
-      className={cx('iui-table-paginator-ellipsis', {
-        'iui-table-paginator-ellipsis-small': size === 'small',
-      })}
-    >
-      …
-    </Box>
-  );
-
-  const noRowsContent = (
-    <>
-      {isLoading ? (
-        <ProgressRadial indeterminate size='small' />
-      ) : (
-        <Button styleType='borderless' disabled size={buttonSize}>
-          1
-        </Button>
-      )}
-    </>
-  );
 
   if (!showPagesList && !showPageSizeList) {
     return null;
@@ -247,6 +223,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
       {showPagesList && (
         <OverflowContainer className='iui-center' items={pageList}>
           <TablePaginatorCenterContent
+            size={size}
             focusedIndex={focusedIndex}
             focusActivationMode={focusActivationMode}
             totalPagesCount={totalPagesCount}
@@ -257,10 +234,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
             localization={localization}
             buttonSize={buttonSize}
             pageListRef={pageListRef}
-            hasNoRows={hasNoRows}
-            noRowsContent={noRowsContent}
             pageButton={pageButton}
-            ellipsis={ellipsis}
             pageList={pageList}
             isLoading={isLoading}
           />
@@ -311,9 +285,14 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
 type TablePaginatorCenterContentProps = Pick<
   TablePaginatorProps,
-  'focusActivationMode' | 'onPageChange' | 'isLoading'
+  'onPageChange'
 > &
-  Required<Pick<TablePaginatorProps, 'localization'>> & {
+  Required<
+    Pick<
+      TablePaginatorProps,
+      'localization' | 'size' | 'focusActivationMode' | 'isLoading'
+    >
+  > & {
     focusedIndex: number;
     totalPagesCount: number;
     needFocus: React.MutableRefObject<boolean>;
@@ -321,10 +300,7 @@ type TablePaginatorCenterContentProps = Pick<
     currentPage: number;
     buttonSize: 'small' | undefined;
     pageListRef: React.MutableRefObject<HTMLDivElement | null>;
-    hasNoRows: boolean;
-    noRowsContent: React.ReactNode;
     pageButton: (index: number, tabIndex?: number) => React.ReactNode;
-    ellipsis: React.ReactNode;
     pageList: React.ReactNode[];
   };
 
@@ -342,14 +318,14 @@ const TablePaginatorCenterContent = (
     localization,
     buttonSize,
     pageListRef,
-    hasNoRows,
-    noRowsContent,
     pageButton,
-    ellipsis,
     pageList,
     isLoading,
+    size,
   } = props;
   const { visibleCount } = useOverflowContainerContext();
+
+  const hasNoRows = totalPagesCount === 0;
 
   const halfVisibleCount = Math.floor(visibleCount / 2);
   let startPage = focusedIndex - halfVisibleCount;
@@ -362,6 +338,29 @@ const TablePaginatorCenterContent = (
     startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
     endPage = totalPagesCount;
   }
+
+  const ellipsis = (
+    <Box
+      as='span'
+      className={cx('iui-table-paginator-ellipsis', {
+        'iui-table-paginator-ellipsis-small': size === 'small',
+      })}
+    >
+      …
+    </Box>
+  );
+
+  const noRowsContent = (
+    <>
+      {isLoading ? (
+        <ProgressRadial indeterminate size='small' />
+      ) : (
+        <Button styleType='borderless' disabled size={buttonSize}>
+          1
+        </Button>
+      )}
+    </>
+  );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser/assistive technologies

@@ -22,42 +22,10 @@ type OverflowContainerProps = {
 };
 
 /**
- * Renders fewer children + an `overflowTag` when it starts overflowing. When not overflowing, it renders all children.
- * This component listens to resize events and updates the rendered content accordingly.
+ * Wrapper over `useOverflow`.
  *
- * Two forms of usage:
- * 1. `children: React.ReactNode[]`: Pass all the children and an `overflowTag` and this component handles when to show
- * what, depending on whether the component is overflowing.
- * 2. `children: (visibleCount: number) => React.ReactNode`: For more customization, pass a function to get the
- * `visibleCount` and then render custom content based on that.
- *
- * @example
- * <OverflowContainer
- *   as={MyComponent}
- *   overflowTag={(visibleCount) => (
- *     <Text>+${tags.length - (visibleCount - 1)} item(s)</Text> // -1 to account for the overflowTag
- *   )}
- *   overflowLocation='start'
- * >
- *   {items}
- * </OverflowContainer>
- *
- * @example
- * <OverflowContainer
- *   as={MyComponent}
- *   itemsLength={text.length}
- * >
- *   {(visibleCount) => {
- *     // Custom content dependent on visibleCount
- *     return (
- *       <>
- *         itemsLeft(visibleCount)
- *         overflowButton(visibleCount)
- *         itemsRight(visibleCount)
- *       </>
- *     );
- *   }
- * </OverflowContainer>
+ * - Use `useOverflowContainerContext` to get overflow related properties.
+ * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
  */
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
   const { items, children, overflowOrientation, ...rest } = props;
@@ -95,10 +63,8 @@ const OverflowContainerOverflowNode = (
 ) => {
   const { children } = props;
 
-  const overflowContainerContext = React.useContext(OverflowContainerContext);
-  const isOverflowing =
-    overflowContainerContext != null &&
-    overflowContainerContext.visibleCount < overflowContainerContext.itemCount;
+  const { visibleCount, itemCount } = useOverflowContainerContext();
+  const isOverflowing = visibleCount < itemCount;
 
   return isOverflowing && children;
 };
@@ -106,6 +72,9 @@ const OverflowContainerOverflowNode = (
 // ----------------------------------------------------------------------------
 
 export const OverflowContainer = Object.assign(OverflowContainerComponent, {
+  /**
+   * Wrap overflow content in this component to conditionally render it when overflowing.
+   */
   OverflowNode: OverflowContainerOverflowNode,
 });
 

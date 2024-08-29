@@ -35,14 +35,18 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      <SelectTagContainerContent {...props} />
+      <SelectTagContainerContent {...props} tags={tags} />
     </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<'div', SelectTagContainerProps>;
 
 // ----------------------------------------------------------------------------
 
-const SelectTagContainerContent = (props: SelectTagContainerProps) => {
+type SelectTagContainerContentProps = {
+  tags: ReturnType<typeof React.Children.toArray>;
+};
+
+const SelectTagContainerContent = (props: SelectTagContainerContentProps) => {
   const { tags } = props;
   const { visibleCount } = useOverflowContainerContext();
 

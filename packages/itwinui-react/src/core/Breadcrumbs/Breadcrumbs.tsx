@@ -154,13 +154,12 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const BreadcrumbContent = (props: BreadcrumbsProps) => {
-  const {
-    children: items,
-    currentIndex = items.length - 1,
-    overflowButton,
-    separator,
-  } = props;
+type BreadcrumbContentProps = Omit<BreadcrumbsProps, 'currentIndex'> & {
+  currentIndex: NonNullable<BreadcrumbsProps['currentIndex']>;
+};
+
+const BreadcrumbContent = (props: BreadcrumbContentProps) => {
+  const { children: items, currentIndex, overflowButton, separator } = props;
   const { visibleCount } = useOverflowContainerContext();
 
   return (
