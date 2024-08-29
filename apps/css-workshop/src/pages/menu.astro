@@ -38,13 +38,19 @@ import Icon_ from '../components/Icon.astro';
   <h2>Default</h2>
   <section id='demo-default'>
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item' role='menuitem' tabindex='0' id='test-menu-1'>
+      <li
+        class='iui-list-item'
+        data-iui-actionable='true'
+        role='menuitem'
+        tabindex='0'
+        id='test-menu-1'
+      >
         <span class='iui-list-item-content'>Option 1</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 2</span>
       </li>
-      <li class='iui-list-item iui-disabled'>
+      <li class='iui-list-item iui-disabled' data-iui-actionable='true'>
         <span class='iui-list-item-content'>Option 3</span>
       </li>
     </ul>
@@ -52,14 +58,26 @@ import Icon_ from '../components/Icon.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <span class='iui-list-item-content'>Option 1</span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 2</span>
       </li>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <span class='iui-list-item-content'>Option 3</span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
@@ -68,50 +86,74 @@ import Icon_ from '../components/Icon.astro';
     <br />
 
     <ul class='iui-menu' id='demo-scrollable'>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <span class='iui-list-item-content'>Option 1</span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 2</span>
       </li>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <span class='iui-list-item-content'>Option 3</span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <span class='iui-list-item-content'>Option 4</span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <span class='iui-list-item-content'>Option 5</span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 6</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 7</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 8</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 9</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 10</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 11</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 12</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 13</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Option 14</span>
       </li>
     </ul>
@@ -119,15 +161,21 @@ import Icon_ from '../components/Icon.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item' role='menuitem' tabindex='0' id='test-menu-2'>
+      <li
+        class='iui-list-item'
+        data-iui-actionable='true'
+        role='menuitem'
+        tabindex='0'
+        id='test-menu-2'
+      >
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>Option 1</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>Option 2</span>
       </li>
-      <li class='iui-list-item iui-disabled'>
+      <li class='iui-list-item iui-disabled' data-iui-actionable='true'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>Option 3</span>
       </li>
@@ -136,7 +184,13 @@ import Icon_ from '../components/Icon.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item iui-active' role='menuitem' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-active'
+        data-iui-actionable='true'
+        role='menuitem'
+        aria-checked='true'
+        tabindex='0'
+      >
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -148,13 +202,13 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>Option 2</span>
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>Option 3</span>
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
@@ -167,6 +221,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -178,7 +233,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -187,7 +242,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -211,7 +266,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -234,10 +289,10 @@ import Icon_ from '../components/Icon.astro';
         </label>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>View profile</span>
       </li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>Sign out</span>
       </li>
     </ul>
@@ -435,7 +490,7 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'
         ></svg-placeholder>
         <span class='iui-list-item-content'>
@@ -445,6 +500,7 @@ import Icon_ from '../components/Icon.astro';
       </li>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -456,7 +512,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <div class='iui-list-item-icon iui-header-menu-icon demo-picture'></div>
         <span class='iui-list-item-content'>
           <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
@@ -464,7 +520,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -534,7 +590,7 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'
         ></svg-placeholder>
         <span class='iui-list-item-content'>
@@ -544,6 +600,7 @@ import Icon_ from '../components/Icon.astro';
       </li>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -555,7 +612,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <div class='iui-list-item-icon iui-header-menu-icon demo-picture'></div>
         <span class='iui-list-item-content'>
           <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
@@ -563,7 +620,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -585,7 +642,12 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item iui-large iui-active' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
+        aria-checked='true'
+        tabindex='0'
+      >
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Alpha</div>
@@ -593,7 +655,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -602,7 +664,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -626,7 +688,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -645,7 +707,12 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item iui-large iui-active' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
+        aria-checked='true'
+        tabindex='0'
+      >
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Alpha</div>
@@ -653,7 +720,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -662,7 +729,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -686,7 +753,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -705,7 +772,12 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <li class='iui-list-item iui-large iui-active' aria-checked='true' tabindex='0'>
+      <li
+        class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
+        aria-checked='true'
+        tabindex='0'
+      >
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Alpha</div>
@@ -713,7 +785,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -722,7 +794,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -746,7 +818,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -765,6 +837,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -776,7 +849,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -785,7 +858,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -809,7 +882,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -825,6 +898,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -836,7 +910,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -845,7 +919,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -869,7 +943,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -885,6 +959,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -896,7 +971,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -905,7 +980,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -929,7 +1004,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -948,6 +1023,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -959,7 +1035,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -968,7 +1044,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -992,7 +1068,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -1008,6 +1084,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -1019,7 +1096,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -1028,7 +1105,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -1052,7 +1129,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>
@@ -1068,6 +1145,7 @@ import Icon_ from '../components/Icon.astro';
     <ul class='iui-menu' role='menu'>
       <li
         class='iui-list-item iui-large iui-active'
+        data-iui-actionable='true'
         role='menuitem'
         aria-checked='true'
         tabindex='0'
@@ -1079,7 +1157,7 @@ import Icon_ from '../components/Icon.astro';
         </span>
         <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>Beta</div>
@@ -1088,7 +1166,7 @@ import Icon_ from '../components/Icon.astro';
         <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
         ></svg-caret-right-small>
       </li>
-      <li class='iui-list-item iui-large' role='menuitem' tabindex='0'>
+      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
         <span class='iui-list-item-content'>
           <div>
@@ -1112,7 +1190,7 @@ import Icon_ from '../components/Icon.astro';
         ></svg-caret-right-small>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' role='menuitem' tabindex='0'>
+      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
         <span class='iui-list-item-content'>
           <div>My projects</div>
         </span>

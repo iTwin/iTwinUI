@@ -114,18 +114,8 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
     });
   }, []);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    if (event.key === 'Enter') {
-      setFilter([from, to]);
-    }
-  };
-
   return (
-    <BaseFilter>
+    <BaseFilter onSubmit={() => setFilter([from, to])}>
       <DatePickerInput
         ref={inputRef}
         label={translatedStrings.from}
@@ -133,7 +123,6 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         onChange={onFromChange}
         formatDate={formatDate}
         parseInput={parseInput}
-        onKeyDown={onKeyDown}
         placeholder={placeholder}
         selectedDate={to}
         isFromOrTo='from'
@@ -146,7 +135,6 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         onChange={onToChange}
         formatDate={formatDate}
         parseInput={parseInput}
-        onKeyDown={onKeyDown}
         placeholder={placeholder}
         selectedDate={from}
         isFromOrTo='to'
@@ -154,7 +142,6 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         showYearSelection={showYearSelection}
       />
       <FilterButtonBar
-        setFilter={() => setFilter([from, to])}
         clearFilter={clearFilter}
         translatedLabels={translatedLabels}
       />

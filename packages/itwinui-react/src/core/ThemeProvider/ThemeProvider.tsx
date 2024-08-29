@@ -376,8 +376,8 @@ const PortalContainer = React.memo(
       return null;
     }
 
-    if (shouldSetupPortalContainer) {
-      return (
+    if (shouldSetupPortalContainer && ownerDocument) {
+      return ReactDOM.createPortal(
         <Root
           theme={theme}
           themeOptions={{ ...themeOptions, applyBackground: false }}
@@ -387,7 +387,8 @@ const PortalContainer = React.memo(
           id={id}
         >
           <Toaster />
-        </Root>
+        </Root>,
+        ownerDocument.body,
       );
     } else if (portalContainerProp) {
       return ReactDOM.createPortal(<Toaster />, portalContainerProp);

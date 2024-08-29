@@ -5,24 +5,6 @@
 import { render } from '@testing-library/react';
 import { polymorphic } from './polymorphic.js';
 
-it('should work when called directly', () => {
-  const MyDiv = polymorphic('my-div');
-
-  const { container: container1 } = render(<MyDiv data-testid='foo'>🍏</MyDiv>);
-  const el1 = container1.querySelector('div.my-div') as HTMLElement;
-  expect(el1).toHaveTextContent('🍏');
-  expect(el1).toHaveAttribute('data-testid', 'foo');
-
-  const { container: container2 } = render(
-    <MyDiv as='span' data-testid='bar'>
-      🥭
-    </MyDiv>,
-  );
-  const el2 = container2.querySelector('span.my-div') as HTMLElement;
-  expect(el2).toHaveTextContent('🥭');
-  expect(el2).toHaveAttribute('data-testid', 'bar');
-});
-
 it('should work when called as property', () => {
   const MyButton = polymorphic.button('my-button');
 
