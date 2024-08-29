@@ -8,6 +8,46 @@ import { ColorInputPanel } from './ColorInputPanel.js';
 import { ColorValue } from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
 
+it('should pass custom label with props', async () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        panelLabelProps={{
+          className: 'test-panel-label',
+          style: { color: 'red' },
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const inputPanelLabel = container.querySelector(
+    '.iui-color-picker-section-label.test-panel-label',
+  ) as HTMLElement;
+  expect(inputPanelLabel).toBeTruthy();
+  expect(inputPanelLabel.style.color).toBe('red');
+});
+
+it('should render input field with custom props', async () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        inputFieldProps={{
+          className: 'test-input-panel',
+          style: { padding: '10px' },
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const inputPanel = container.querySelector(
+    '.iui-color-input.test-input-panel',
+  ) as HTMLElement;
+  expect(inputPanel).toBeTruthy();
+  expect(inputPanel.style.padding).toBe('10px');
+});
+
 it('should render ColorInputPanel with input fields', async () => {
   const { container } = render(
     <ColorPicker>

@@ -27,13 +27,20 @@ const getHorizontalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
   return ((position - rect.left) / rect.width) * 100;
 };
 
+type ColorBuilderProps = {
+  /**
+   * Props for color builder wrapper.
+   */
+  colorFieldProps?: React.ComponentProps<'div'>;
+};
+
 /**
  * `ColorBuilder` consists of two parts:
  * a color canvas to adjust saturation and lightness values,
  * and a set of sliders to adjust hue and alpha values.
  */
 export const ColorBuilder = React.forwardRef((props, ref) => {
-  const { className, ...rest } = props;
+  const { className, colorFieldProps, ...rest } = props;
 
   const builderRef = React.useRef<HTMLDivElement>();
   const refs = useMergedRefs(builderRef, ref);
@@ -253,11 +260,14 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       {...rest}
     >
       <Box
-        className='iui-color-field'
+        as='div'
+        {...colorFieldProps}
+        className={cx('iui-color-field', colorFieldProps?.className)}
         style={
           {
             '--iui-color-field-hue': hueColorString,
             '--iui-color-picker-selected-color': dotColorString,
+            ...colorFieldProps?.style,
           } as React.CSSProperties
         }
         ref={squareRef}
@@ -332,7 +342,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', ColorBuilderProps>;
 if (process.env.NODE_ENV === 'development') {
   ColorBuilder.displayName = 'ColorBuilder';
 }

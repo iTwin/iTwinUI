@@ -23,6 +23,14 @@ type ColorInputPanelProps = {
    * @default ['hsl', 'rgb', 'hex']
    */
   allowedColorFormats?: ('hsl' | 'rgb' | 'hex')[];
+  /**
+   * Props for color input panel wrapper.
+   */
+  panelLabelProps?: React.ComponentProps<'div'>;
+  /**
+   * Props for color input field wrapper.
+   */
+  inputFieldProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -39,6 +47,8 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     defaultColorFormat,
     allowedColorFormats = ['hsl', 'rgb', 'hex'],
     className,
+    inputFieldProps,
+    panelLabelProps,
     ...rest
   } = props;
 
@@ -454,16 +464,29 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
 
   return (
     <Box
+      as='div'
       className={cx('iui-color-input-wrapper', className)}
       ref={ref}
       {...rest}
     >
-      <Box className='iui-color-picker-section-label' id={labelId}>
+      <Box
+        as='div'
+        {...panelLabelProps}
+        className={cx(
+          'iui-color-picker-section-label',
+          panelLabelProps?.className,
+        )}
+        id={labelId}
+      >
         {showAlpha && currentFormat !== 'hex'
           ? currentFormat.toUpperCase() + 'A'
           : currentFormat.toUpperCase()}
       </Box>
-      <Box className='iui-color-input'>
+      <Box
+        as='div'
+        {...inputFieldProps}
+        className={cx('iui-color-input', inputFieldProps?.className)}
+      >
         {allowedColorFormats.length > 1 && (
           <IconButton
             styleType='borderless'
