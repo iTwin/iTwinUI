@@ -36,11 +36,11 @@ Popover handles positioning using an external library called [Floating UI](float
 There are some advanced positioning options available.
 
 - The `positionReference` prop can be used to position the popover relative to a different element than the trigger. This can be useful, for example, when the trigger is part of a larger group of elements that should all be considered together.
-- The `middleware` prop exposes more granular control over the positioning logic. By default, `Popover` enables the [`flip`](https://floating-ui.com/docs/flip) and [`shift`](https://floating-ui.com/docs/shift) middlewares. You might also find the [`offset`](https://floating-ui.com/docs/offset) middleware useful for adding a gap between the trigger and the popover.
+- The `middleware` prop exposes more granular control over the positioning logic. By default, `Popover` enables the [`flip`](https://floating-ui.com/docs/flip), [`shift`](https://floating-ui.com/docs/shift) and [`size`](https://floating-ui.com/docs/size) middlewares. You might also find the [`offset`](https://floating-ui.com/docs/offset) middleware useful for adding a gap between the trigger and the popover.
 
 ### Portals
 
-It is important to know that before calculating the position, the popover gets [portaled](https://react.dev/reference/react-dom/createPortal) into the nearest `ThemeProvider` to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues. This behavior can be controlled using the Popover's `portal` prop or the ThemeProvider's `portalContainer` prop. Using portals can often lead to issues with keyboard accessibility, so Popover adds some additional logic (described below).
+It is important to know that before calculating the position, the popover gets [portaled](https://react.dev/reference/react-dom/createPortal) to the end of `<body>` to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues. This behavior can be controlled using the Popover's `portal` prop or the ThemeProvider's `portalContainer` prop. Using portals can often lead to issues with keyboard accessibility, so Popover adds some additional logic (described below).
 
 ## Accessibility
 

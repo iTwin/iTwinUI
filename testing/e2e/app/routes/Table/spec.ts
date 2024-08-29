@@ -647,3 +647,35 @@ test.describe('Virtual Scroll Tests', () => {
     expect((await rows.all()).length).toBe(1);
   });
 });
+
+test.describe('Table filters', () => {
+  test('DateRangeFilter should show DatePicker', async ({ page }) => {
+    await page.goto('/Table?allFilters=true');
+
+    // open Date filter
+    const dateHeader = page.locator('[role="columnheader"]', {
+      hasText: 'Date',
+    });
+    const dateFilterButton = dateHeader.getByRole('button', { name: 'Filter' });
+    await dateFilterButton.click();
+    const dateFilterPopover = page.getByRole('dialog', { name: 'Filter' });
+    await expect(dateFilterPopover).toBeVisible();
+
+    // open Date picker in Date filter
+    const datePickerButton = dateFilterPopover
+      .getByRole('button', { name: 'Date picker' })
+      .first();
+    await datePickerButton.click();
+    const datePicker = page.getByRole('dialog', { name: 'Date picker' });
+    await expect(datePicker).toBeVisible();
+
+    // close DatePicker
+    await page.keyboard.press('Escape');
+    await expect(datePicker).not.toBeVisible();
+    await expect(dateFilterPopover).toBeVisible();
+
+    // close Date filter
+    await page.keyboard.press('Escape');
+    await expect(dateFilterPopover).not.toBeVisible();
+  });
+});

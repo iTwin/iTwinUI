@@ -48,7 +48,6 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { usePortalTo } from '../../utils/components/Portal.js';
 import type { PortalProps } from '../../utils/components/Portal.js';
-import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 type PopoverOptions = {
   /**
@@ -74,7 +73,7 @@ type PopoverOptions = {
   /**
    * Middleware options.
    *
-   * By default, `flip` and `shift` are enabled.
+   * By default, `flip`, `shift` and `size` are enabled.
    *
    * @see https://floating-ui.com/docs/middleware
    */
@@ -82,6 +81,15 @@ type PopoverOptions = {
     offset?: number;
     flip?: boolean;
     shift?: boolean;
+    size?:
+      | boolean
+      | {
+          /**
+           * Override the maximum height of the popover. Must be a CSS-compatible value.
+           * @default "400px"
+           */
+          maxHeight?: string;
+        };
     autoPlacement?: boolean;
     hide?: boolean;
     inline?: boolean;
@@ -176,9 +184,12 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const tree = useFloatingTree();
 
   const middleware = React.useMemo(
-    () => ({ flip: true, shift: true, ...options.middleware }),
+    () => ({ flip: true, shift: true, size: true, ...options.middleware }),
     [options.middleware],
   );
+
+  const maxHeight =
+    typeof middleware.size === 'boolean' ? '400px' : middleware.size?.maxHeight;
 
   const [open, onOpenChange] = useControlledState(
     false,
@@ -190,6 +201,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     placement,
     open,
     onOpenChange,
+    strategy: 'fixed',
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when the popover is open
@@ -201,17 +213,24 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       () =>
         [
           middleware.offset !== undefined && offset(middleware.offset),
-          middleware.flip && flip(),
-          middleware.shift && shift(),
-          matchWidth &&
+          middleware.flip && flip({ padding: 4 }),
+          middleware.shift && shift({ padding: 4 }),
+          (matchWidth || middleware.size) &&
             size({
-              apply: ({ rects }) => {
-                setReferenceWidth(rects.reference.width);
+              padding: 4,
+              apply: ({ rects, availableHeight }) => {
+                if (middleware.size) {
+                  setAvailableHeight(Math.round(availableHeight));
+                }
+
+                if (matchWidth) {
+                  setReferenceWidth(rects.reference.width);
+                }
               },
             } as SizeOptions),
-          middleware.autoPlacement && autoPlacement(),
+          middleware.autoPlacement && autoPlacement({ padding: 4 }),
           middleware.inline && inline(),
-          middleware.hide && hide(),
+          middleware.hide && hide({ padding: 4 }),
         ].filter(Boolean),
       [matchWidth, middleware],
     ),
@@ -249,6 +268,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   ]);
 
   const [referenceWidth, setReferenceWidth] = React.useState<number>();
+  const [availableHeight, setAvailableHeight] = React.useState<number>();
 
   const getFloatingProps = React.useCallback(
     (userProps?: React.HTMLProps<HTMLElement>) =>
@@ -256,6 +276,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         ...userProps,
         style: {
           ...floating.floatingStyles,
+          ...(middleware.size &&
+            availableHeight && {
+              maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
+            }),
           zIndex: 9999,
           ...(matchWidth && referenceWidth
             ? {
@@ -266,7 +290,15 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           ...userProps?.style,
         },
       }),
-    [floating.floatingStyles, interactions, matchWidth, referenceWidth],
+    [
+      floating.floatingStyles,
+      interactions,
+      matchWidth,
+      referenceWidth,
+      middleware.size,
+      availableHeight,
+      maxHeight,
+    ],
   );
 
   const getReferenceProps = React.useCallback(
@@ -366,13 +398,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     middleware,
   });
 
-  const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
-
-  const popoverRef = useMergedRefs(
-    popover.refs.setFloating,
-    forwardedRef,
-    setPopoverElement,
-  );
+  const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
 
   const triggerId = `${useId()}-trigger`;
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
@@ -397,28 +423,23 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
       {popover.open ? (
         <PopoverPortal portal={portal}>
-          <ThemeProvider
-            portalContainer={popoverElement} // portal nested popovers into this one
-          >
-            <DisplayContents />
-            <FloatingFocusManager context={popover.context} modal={false}>
-              <Box
-                className={cx(
-                  { 'iui-popover-surface': applyBackground },
-                  className,
-                )}
-                aria-labelledby={
-                  !hasAriaLabel
-                    ? popover.refs.domReference.current?.id
-                    : undefined
-                }
-                {...popover.getFloatingProps(rest)}
-                ref={popoverRef}
-              >
-                {content}
-              </Box>
-            </FloatingFocusManager>
-          </ThemeProvider>
+          <FloatingFocusManager context={popover.context} modal={false}>
+            <Box
+              className={cx(
+                { 'iui-popover-surface': applyBackground },
+                className,
+              )}
+              aria-labelledby={
+                !hasAriaLabel
+                  ? popover.refs.domReference.current?.id
+                  : undefined
+              }
+              {...popover.getFloatingProps(rest)}
+              ref={popoverRef}
+            >
+              {content}
+            </Box>
+          </FloatingFocusManager>
         </PopoverPortal>
       ) : null}
     </>

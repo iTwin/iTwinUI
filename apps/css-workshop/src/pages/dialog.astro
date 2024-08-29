@@ -2,6 +2,7 @@
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
 import IconButton_ from '../components/IconButton.astro';
+import Radio_ from '../components/Radio.astro';
 ---
 
 <Layout title='Dialog'>
@@ -34,26 +35,11 @@ import IconButton_ from '../components/IconButton.astro';
   <div class='iui-input-grid iui-inline-label'>
     <div class='iui-input-label'>Dialog Placement</div>
     <div class='iui-input-group'>
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='dialog-placement' value='' checked />
-        <span class='iui-radio-label'>Centered</span>
-      </label>
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='dialog-placement' value='top-left' />
-        <span class='iui-radio-label'>Top-left</span>
-      </label>
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='dialog-placement' value='top-right' />
-        <span class='iui-radio-label'>Top-right</span>
-      </label>
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='dialog-placement' value='bottom-left' />
-        <span class='iui-radio-label'>Bottom-left</span>
-      </label>
-      <label class='iui-radio-wrapper'>
-        <input class='iui-radio' type='radio' name='dialog-placement' value='bottom-right' />
-        <span class='iui-radio-label'>Bottom-right</span>
-      </label>
+      <Radio_ name='dialog-placement' checked value=''>Centered</Radio_>
+      <Radio_ name='dialog-placement' value='top-left'>Top-left</Radio_>
+      <Radio_ name='dialog-placement' value='top-right'>Top-right</Radio_>
+      <Radio_ name='dialog-placement' value='bottom-left'>Bottom-left</Radio_>
+      <Radio_ name='dialog-placement' value='bottom-right'>Bottom-right</Radio_>
     </div>
   </div>
 

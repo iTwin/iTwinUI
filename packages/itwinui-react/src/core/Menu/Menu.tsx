@@ -179,6 +179,10 @@ export const Menu = React.forwardRef((props, ref) => {
       ...restInteractionsProps,
     },
     ...restPopoverProps,
+    middleware: {
+      size: { maxHeight: 'var(--iui-menu-max-height)' },
+      ...restPopoverProps.middleware,
+    },
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(

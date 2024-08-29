@@ -186,7 +186,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
 
-const TileThumbnailArea = polymorphic('iui-tile-thumbnail');
+const TileThumbnailArea = polymorphic.div('iui-tile-thumbnail');
 if (process.env.NODE_ENV === 'development') {
   TileThumbnailArea.displayName = 'Tile.ThumbnailArea';
 }
@@ -234,7 +234,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
 
-const TileQuickAction = polymorphic('iui-tile-thumbnail-quick-action');
+const TileQuickAction = polymorphic.div('iui-tile-thumbnail-quick-action');
 if (process.env.NODE_ENV === 'development') {
   TileQuickAction.displayName = 'Tile.QuickAction';
 }
@@ -242,7 +242,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.TypeIndicator component
 
-const TileTypeIndicator = polymorphic('iui-tile-thumbnail-type-indicator');
+const TileTypeIndicator = polymorphic.div('iui-tile-thumbnail-type-indicator');
 if (process.env.NODE_ENV === 'development') {
   TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 }
@@ -274,7 +274,9 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.BadgeContainer component
 
-const TileBadgeContainer = polymorphic('iui-tile-thumbnail-badge-container');
+const TileBadgeContainer = polymorphic.div(
+  'iui-tile-thumbnail-badge-container',
+);
 if (process.env.NODE_ENV === 'development') {
   TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 }
@@ -349,7 +351,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
 
-const TileContentArea = polymorphic('iui-tile-content');
+const TileContentArea = polymorphic.div('iui-tile-content');
 if (process.env.NODE_ENV === 'development') {
   TileContentArea.displayName = 'Tile.ContentArea';
 }
@@ -357,7 +359,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.Description component
 
-const TileDescription = polymorphic('iui-tile-description');
+const TileDescription = polymorphic.div('iui-tile-description');
 if (process.env.NODE_ENV === 'development') {
   TileDescription.displayName = 'Tile.Description';
 }
@@ -365,7 +367,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.Metadata component
 
-const TileMetadata = polymorphic('iui-tile-metadata');
+const TileMetadata = polymorphic.div('iui-tile-metadata');
 if (process.env.NODE_ENV === 'development') {
   TileMetadata.displayName = 'Tile.Metadata';
 }
@@ -425,7 +427,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.Buttons component
 
-const TileButtons = polymorphic('iui-tile-buttons');
+const TileButtons = polymorphic.div('iui-tile-buttons');
 if (process.env.NODE_ENV === 'development') {
   TileButtons.displayName = 'Tile.Buttons';
 }

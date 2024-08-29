@@ -20,7 +20,7 @@ import { Label } from '../Label/Label.js';
 // ----------------------------------------------------------------------------
 // TransferListComponent
 
-const TransferListComponent = polymorphic('iui-transfer-list-wrapper');
+const TransferListComponent = polymorphic.div('iui-transfer-list-wrapper');
 if (process.env.NODE_ENV === 'development') {
   TransferListComponent.displayName = 'TransferList';
 }
@@ -64,7 +64,7 @@ const TransferListListbox = React.forwardRef((props, ref) => {
   const { labelId } = useSafeContext(TransferListContext);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
-  const listRef = React.useRef<HTMLUListElement>(null);
+  const listRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(listRef, ref);
 
   const getFocusableNodes = React.useCallback(() => {
@@ -83,7 +83,7 @@ const TransferListListbox = React.forwardRef((props, ref) => {
     }
   }, [focusedIndex, getFocusableNodes]);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -155,7 +155,7 @@ const TransferListItem = React.forwardRef((props, ref) => {
   const onClickEvents = () =>
     actionable && onActiveChange && onActiveChange(!active);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -226,7 +226,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // TransferList.Toolbar component
 
-const TransferListToolbar = polymorphic('iui-transfer-list-toolbar', {
+const TransferListToolbar = polymorphic.div('iui-transfer-list-toolbar', {
   role: 'toolbar',
 });
 if (process.env.NODE_ENV === 'development') {
