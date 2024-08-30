@@ -650,7 +650,7 @@ test.describe('Virtual Scroll Tests', () => {
 
 test.describe('Table filters', () => {
   test('DateRangeFilter should show DatePicker', async ({ page }) => {
-    await page.goto('/Table?allFilters=true');
+    await page.goto('/Table?exampleType=allFilters');
 
     // open Date filter
     const dateHeader = page.locator('[role="columnheader"]', {
