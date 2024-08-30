@@ -129,6 +129,24 @@ const Default = ({
     stateReducer,
   } = config;
 
+  const virtualizedData = React.useMemo(() => {
+    if (empty) {
+      return [];
+    }
+
+    const size = oneRow ? 1 : 100000;
+    const arr = new Array(size);
+    for (let i = 0; i < size; ++i) {
+      arr[i] = {
+        index: i,
+        name: `Name${i}`,
+        description: `Description${i}`,
+        id: i,
+      };
+    }
+    return arr;
+  }, [oneRow, empty]);
+
   const data = subRows ? dataWithSubrows : baseData;
 
   const isRowDisabled = React.useCallback(
@@ -137,22 +155,6 @@ const Default = ({
     },
     [],
   );
-
-  const virtualizedData = React.useMemo(() => {
-    const size = oneRow ? 1 : 100000;
-    const arr = new Array(size);
-    if (!empty) {
-      for (let i = 0; i < size; ++i) {
-        arr[i] = {
-          index: i,
-          name: `Name${i}`,
-          description: `Description${i}`,
-          id: i,
-        };
-      }
-    }
-    return arr;
-  }, [oneRow, empty]);
 
   return (
     <>
@@ -170,7 +172,7 @@ const Default = ({
             accessor: 'name',
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
-            disableResizing: disableResizing,
+            disableResizing,
             Filter: filter ? tableFilters.TextFilter() : undefined,
           },
           {
