@@ -1161,7 +1161,7 @@ export const Table = <
                     return (
                       <ColumnHeader<T>
                         {...dragAndDropProps}
-                        key={dragAndDropProps.key}
+                        key={dragAndDropProps.key || column.id || index}
                         columnRefs={columnRefs}
                         column={column}
                         index={index}
