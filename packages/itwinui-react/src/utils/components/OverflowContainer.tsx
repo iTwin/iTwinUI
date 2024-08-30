@@ -16,7 +16,7 @@ type OverflowContainerProps = {
    */
   overflowOrientation?: 'horizontal' | 'vertical';
   /**
-   * TODO: Will be removed in a later PR in the stacked PRs.
+   * TODO: Will likely be removed in a later PR in the stacked PRs. If not, remove this TODO.
    */
   items: React.ReactNode[] | string;
 };
@@ -30,8 +30,6 @@ type OverflowContainerProps = {
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
   const { items, children, overflowOrientation, ...rest } = props;
 
-  const childrenItems = React.Children.toArray(children);
-
   const [containerRef, visibleCount] = useOverflow(
     items,
     false,
@@ -39,8 +37,8 @@ const OverflowContainerComponent = React.forwardRef((props, ref) => {
   );
 
   const overflowContainerContextValue = React.useMemo(
-    () => ({ visibleCount, itemCount: childrenItems.length }),
-    [childrenItems.length, visibleCount],
+    () => ({ visibleCount, itemCount: items.length }),
+    [items.length, visibleCount],
   );
 
   return (

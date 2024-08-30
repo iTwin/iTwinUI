@@ -234,13 +234,14 @@ const OverflowGroupContent = (props: OverflowGroupContentProps) => {
   const { overflowButton, overflowPlacement, items } = props;
   const { visibleCount } = useOverflowContainerContext();
 
-  const overflowStart = React.useMemo(() => {
-    return overflowPlacement === 'start'
+  const overflowStart =
+    overflowPlacement === 'start'
       ? items.length - visibleCount
       : visibleCount - 1;
-  }, [items.length, overflowPlacement, visibleCount]);
 
-  return (
+  return !(visibleCount < items.length) ? (
+    items
+  ) : (
     <>
       {overflowButton &&
         overflowPlacement === 'start' &&
