@@ -46,7 +46,7 @@ const {
   }
   {
     Astro.slots.has('default') && (
-      <span class={contentProps?.class} {...contentProps}>
+      <span class:list={['iui-list-item-content', contentProps?.class]} {...contentProps}>
         <slot />
       </span>
     )
