@@ -574,22 +574,20 @@ export const Table = <
     [filterFunctions],
   );
 
-  const getSubRowsWithSubComponents = React.useCallback(
-    (originalRow: T): T[] => {
-      if (subComponent && !originalRow.hasParent) {
-        const newSubRow = {
-          ...originalRow,
-          hasParent: true,
-          isSubComponent: true,
-        } as unknown as T;
-        return [newSubRow];
-      } else {
-        // Otherwise, return the existing subRows or an empty array
-        return (originalRow.subRows as T[]) || [];
-      }
-    },
-    [subComponent],
-  );
+  // const getSubRowsWithSubComponents = React.useCallback(
+  //   (originalRow: T): T[] => {
+  //     if (subComponent && !originalRow.isSubComponent) {
+  //       const newSubRow = {
+  //         isSubComponent: true,
+  //       } as unknown as T;
+  //       return [newSubRow];
+  //     } else {
+  //       // Otherwise, return the existing subRows or an empty array
+  //       return (originalRow.subRows as T[]) || [];
+  //     }
+  //   },
+  //   [subComponent],
+  // );
 
   const hasAnySubRows = React.useMemo(() => {
     return data.some((item, index) =>
@@ -609,7 +607,7 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows: getSubRows ?? getSubRowsWithSubComponents,
+      getSubRows, //: getSubRows ?? getSubRowsWithSubComponents,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
@@ -828,14 +826,48 @@ export const Table = <
     }
   });
 
+  // Edge case to confirm:
+  // Let's say pageCount = 1000
+  // pageSize = 5
+  // state.expanded = {0: true, 3: true, 852: true, 904: true}
+  // page = [row(850-0), row(851-1), row(852-2), row(853-3), row(854-4)]
+  // So we only care if any indices in [850, 854] are expanded.
+  // The fact that rows 0, 4, and 904 are expanded are irrelevant for the current page.
+
+  // TODO: Need to confirm what was happening previously when we passed both subComponent and subRows.
+  // We need to make sure that the same behavior is maintained.
+  // If we were giving priority to the subComponent priviously, we should continue doing the same.
+
+  /**
+   * Takes in page and state.expanded.
+   * Returns Array<"row" | "subrow">
+   *
+   * @example
+   * listOfRowsAndSubRows = [row, subrow (1-0), row, row, subrow(4-2), row, subrow(6-3)]
+   * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
+   * state.expanded = {abc1: true, abc3: true}
+   */
+  // TODO: What should we call the items? `row`+`subrow` or something else?
+  const listOfRowsAndSubRows = React.useMemo(() => {
+    const rowsAndSubRows = [];
+    for (let i = 0; i < page.length; i++) {
+      rowsAndSubRows.push('row');
+      if (state.expanded[page[i].id]) {
+        rowsAndSubRows.push('subrow');
+      }
+    }
+    return rowsAndSubRows;
+  }, [page, state.expanded]);
+
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     enabled: enableVirtualization,
-    count: page.length,
+    count: listOfRowsAndSubRows.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
-    getItemKey: (index) => page[index].id,
+    getItemKey: (index) => page[index]?.id ?? 'key',
     overscan: 1,
   });
+  console.log('state', state.expanded, page.length, page);
 
   useLayoutEffect(() => {
     if (scrollToIndex) {
@@ -843,16 +875,82 @@ export const Table = <
     }
   }, [virtualizer, scrollToIndex]);
 
+  /**
+   * Answer = index - number of expanded rows before - 1
+   * - function(1) => 1 - 0 - 1 = 0
+   * - function(4) => 4 - 1 - 1 = 2
+   * - function(6) => 6 - 2 - 1 = 3
+   */
+  const getSubrowsAssociatedRowIndex = React.useCallback(
+    (index: number) => {
+      let expandedRowsBefore = 0;
+      for (let i = 0; i < index; i++) {
+        if (listOfRowsAndSubRows[i] === 'subrow') {
+          expandedRowsBefore++;
+        }
+      }
+      return index - expandedRowsBefore - 1;
+    },
+    [listOfRowsAndSubRows],
+  );
+
+  /**
+   * Answer = index - number of expanded rows before
+   * - function(0) => 0 - 0 = 0
+   * - function(2) => 2 - 1 = 1
+   * - function(3) => 3 - 1 = 2
+   * - function(5) => 5 - 2 = 3
+   */
+  // TODO: May need to combine with getSubrowsAssociatedRowIndex since code is similar.
+  const getRowIndexFromVirtualIndex = React.useCallback(
+    (index: number) => {
+      let expandedRowsBefore = 0;
+      for (let i = 0; i < index; i++) {
+        if (listOfRowsAndSubRows[i] === 'subrow') {
+          expandedRowsBefore++;
+        }
+      }
+      return index - expandedRowsBefore;
+    },
+    [listOfRowsAndSubRows],
+  );
+
+  /**
+   * Take in index and return if the index is a row or a sub-component.
+   * We'd likely need to use state.expanded and page for this.
+   */
+  const isARow = React.useCallback(
+    (index: number) => {
+      // Usually, there's a 1-1 mapping between page's indices and row indices.
+      // But since there could be some subComponents expanded in between the rows, there'll be some off by one (or more)
+      // indices.
+
+      // if (index === 1) {
+      //   return false;
+      // }
+      // return true;
+
+      return listOfRowsAndSubRows[index] === 'row';
+    },
+    [listOfRowsAndSubRows],
+  );
+
   const getPreparedRow = React.useCallback(
     (
       index: number,
       virtualItem?: VirtualItem<Element>,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
-      const row = page[index];
-      prepareRow(row);
+      // const row = page[index];
 
-      if (!row.original.isSubComponent) {
+      const row = page[getRowIndexFromVirtualIndex(index)];
+      const subComponentsRowData = page[getSubrowsAssociatedRowIndex(index)];
+
+      if (isARow(index)) {
+        console.log('getPreparedRow', index, row);
+
+        prepareRow(row);
+
         return (
           <TableRowMemoized
             row={row}
@@ -862,7 +960,7 @@ export const Table = <
             onBottomReached={onBottomReachedRef}
             intersectionMargin={intersectionMargin}
             state={state}
-            key={row.getRowProps().key}
+            key={`row-${row.getRowProps().key}`}
             onClick={onRowClickHandler}
             subComponent={subComponent}
             isDisabled={!!isRowDisabled?.(row.original)}
@@ -878,25 +976,94 @@ export const Table = <
         );
       } else {
         return (
-          <>
-            {subComponent && (
-              <TableExpandableRowMemoized
-                isDisabled={!!isRowDisabled?.(row.original)}
-                virtualItem={virtualItem}
-                virtualizer={virtualizer}
-                ref={enableVirtualization ? undefined : tableRowRef(row)}
-              >
-                {subComponent(row)}
-              </TableExpandableRowMemoized>
-            )}
-          </>
+          subComponent && (
+            <TableExpandableRowMemoized
+              key={`subcomponent-${subComponentsRowData.getRowProps().key}`}
+              isDisabled={!!isRowDisabled?.(subComponentsRowData.original)}
+              virtualItem={virtualItem}
+              virtualizer={virtualizer}
+              ref={enableVirtualization ? undefined : tableRowRef(row)}
+              isSelected={subComponentsRowData.isSelected}
+            >
+              {subComponent(subComponentsRowData)}
+            </TableExpandableRowMemoized>
+          )
         );
       }
+
+      // if (!row.original.isSubComponent) {
+      //   return (
+      //     <TableRowMemoized
+      //       row={row}
+      //       rowProps={rowProps}
+      //       isLast={index === page.length - 1}
+      //       onRowInViewport={onRowInViewportRef}
+      //       onBottomReached={onBottomReachedRef}
+      //       intersectionMargin={intersectionMargin}
+      //       state={state}
+      //       key={row.getRowProps().key}
+      //       onClick={onRowClickHandler}
+      //       subComponent={subComponent}
+      //       isDisabled={!!isRowDisabled?.(row.original)}
+      //       tableHasSubRows={hasAnySubRows}
+      //       tableInstance={instance}
+      //       expanderCell={expanderCell}
+      //       scrollContainerRef={tableRef.current}
+      //       tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+      //       density={density}
+      //       virtualItem={virtualItem}
+      //       virtualizer={virtualizer}
+      //     />
+      //   );
+      // } else {
+      //   const previousRow = page[index - 1];
+      // return (
+      //   <>
+      //     <TableRowMemoized
+      //       row={row}
+      //       rowProps={rowProps}
+      //       isLast={index === page.length - 1}
+      //       onRowInViewport={onRowInViewportRef}
+      //       onBottomReached={onBottomReachedRef}
+      //       intersectionMargin={intersectionMargin}
+      //       state={state}
+      //       key={row.getRowProps().key}
+      //       onClick={onRowClickHandler}
+      //       subComponent={subComponent}
+      //       isDisabled={!!isRowDisabled?.(row.original)}
+      //       tableHasSubRows={hasAnySubRows}
+      //       tableInstance={instance}
+      //       expanderCell={expanderCell}
+      //       scrollContainerRef={tableRef.current}
+      //       tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+      //       density={density}
+      //       virtualItem={virtualItem}
+      //       virtualizer={virtualizer}
+      //     />
+      //     {subComponent && (
+      //       <TableExpandableRowMemoized
+      //         key={page[index].getRowProps().key}
+      //         isDisabled={!!isRowDisabled?.(page[index].original)}
+      //         virtualItem={virtualItem}
+      //         virtualizer={virtualizer}
+      //         ref={enableVirtualization ? undefined : tableRowRef(row)}
+      //         isSelected={page[index].isSelected}
+      //       >
+      //         {subComponent(page[index])}
+      //       </TableExpandableRowMemoized>
+      //     )}
+      //   </>
+      // );
     },
     [
       page,
+      getRowIndexFromVirtualIndex,
+      getSubrowsAssociatedRowIndex,
+      isARow,
       prepareRow,
       rowProps,
+      onRowInViewportRef,
+      onBottomReachedRef,
       intersectionMargin,
       state,
       onRowClickHandler,
@@ -908,8 +1075,6 @@ export const Table = <
       enableVirtualization,
       tableRowRef,
       density,
-      onBottomReachedRef,
-      onRowInViewportRef,
     ],
   );
 
@@ -1051,15 +1216,14 @@ export const Table = <
           {data.length !== 0 && (
             <>
               {enableVirtualization
-                ? virtualizer
-                    .getVirtualItems()
-                    .map((virtualItem) =>
-                      getPreparedRow(
-                        virtualItem.index,
-                        virtualItem,
-                        virtualizer,
-                      ),
-                    )
+                ? virtualizer.getVirtualItems().map((virtualItem) => {
+                    console.log('MAP getPreparedRow', virtualItem.index);
+                    return getPreparedRow(
+                      virtualItem.index,
+                      virtualItem,
+                      virtualizer,
+                    );
+                  })
                 : page.map((_, index) => getPreparedRow(index))}
             </>
           )}

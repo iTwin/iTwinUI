@@ -14,6 +14,7 @@ const TableExpandableRow = React.forwardRef(
       virtualizer?: Virtualizer<Element, Element>;
       isDisabled: boolean;
       children: React.ReactNode;
+      isSelected?: boolean;
     },
     ref,
   ) => {
@@ -31,6 +32,7 @@ const TableExpandableRow = React.forwardRef(
         }}
         aria-disabled={props.isDisabled || undefined}
         data-iui-index={props.virtualItem?.index}
+        aria-selected={props.isSelected}
         {...(props.virtualItem != null && { 'data-iui-virtualizer': 'item' })}
         ref={refs}
       >
