@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fixed the fallback CSS logic to load the correct stylesheet version.
+Fixed the fallback CSS logic in `ThemeProvider` to load the correct stylesheet version.
