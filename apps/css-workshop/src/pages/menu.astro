@@ -133,36 +133,36 @@ import ListItem_ from '../components/ListItem.astro';
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <ListItem_ isActive actionable size='large' tabindex='0' role='menuitem'>
+      <ListItem_
+        isActive
+        actionable
+        size='large'
+        tabindex='0'
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
         <div>Beta</div>
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -394,10 +394,10 @@ import ListItem_ from '../components/ListItem.astro';
         actionable
         startIconProps={{ class: 'iui-header-menu-icon' }}
         tabindex='0'
+        description='0x0987654321'
       >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>Model Alpha</div>
-        <div class='iui-list-item-description'>0x0987654321</div>
+         Model Alpha
       </ListItem_>
       <ListItem_
         size='large'
@@ -406,10 +406,10 @@ import ListItem_ from '../components/ListItem.astro';
         role='menuitem'
         actionable
         startIconProps={{ class: 'iui-header-menu-icon' }}
+        description='0x0123456789'
       >
         <svg-model slot='start-icon'></svg-model>
-        <div>Model Beta</div>
-        <div class='iui-list-item-description'>0x0123456789</div>
+         Model Beta
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
       <ListItem_
@@ -418,22 +418,13 @@ import ListItem_ from '../components/ListItem.astro';
         actionable
         startIconProps={{ style: 'width: 24px; height: 24px' }}
         tabindex='0'
+        description='0x0192837465'
       >
         <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
-        <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-        <div class='iui-list-item-description'>0x0192837465</div>
+         Model Lorem ipsum dolor sit amet, consectetur adipiscing elit
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <ListItem_
-        contentProps={{
-          class: 'iui-list-item-content',
-        }}
-        actionable
-        role='menuitem'
-        tabindex='0'
-      >
-        My projects
-      </ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
 
     <br />
@@ -505,10 +496,10 @@ import ListItem_ from '../components/ListItem.astro';
         actionable
         startIconProps={{ class: 'iui-header-menu-icon' }}
         tabindex='0'
+        description='0x0987654321'
       >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>Model Alpha</div>
-        <div class='iui-list-item-description'>0x0987654321</div>
+         Model Alpha
       </ListItem_>
       <ListItem_
         size='large'
@@ -517,10 +508,10 @@ import ListItem_ from '../components/ListItem.astro';
         role='menuitem'
         actionable
         startIconProps={{ class: 'iui-header-menu-icon' }}
+        description='0x0123456789'
       >
         <svg-model slot='start-icon'></svg-model>
-        <div>Model Beta</div>
-        <div class='iui-list-item-description'>0x0123456789</div>
+         Model Beta
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
       <ListItem_
@@ -529,10 +520,10 @@ import ListItem_ from '../components/ListItem.astro';
         actionable
         startIconProps={{ style: 'width: 24px; height: 24px' }}
         tabindex='0'
+        description='0x0192837465'
       >
         <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
-        <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-        <div class='iui-list-item-description'>0x0192837465</div>
+         Model Lorem ipsum dolor sit amet, consectetur adipiscing elit
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
@@ -553,36 +544,36 @@ import ListItem_ from '../components/ListItem.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' tabindex='0' actionable isActive role='menuitem'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -601,36 +592,36 @@ import ListItem_ from '../components/ListItem.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -649,36 +640,36 @@ import ListItem_ from '../components/ListItem.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive tabindex='0' role='menuitem'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -695,36 +686,36 @@ import ListItem_ from '../components/ListItem.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -738,36 +729,36 @@ import ListItem_ from '../components/ListItem.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -781,36 +772,36 @@ import ListItem_ from '../components/ListItem.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -827,36 +818,36 @@ import ListItem_ from '../components/ListItem.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -870,36 +861,36 @@ import ListItem_ from '../components/ListItem.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
@@ -913,36 +904,36 @@ import ListItem_ from '../components/ListItem.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <ListItem_ size='large' actionable isActive role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Alpha
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Beta
-        <div class='iui-list-item-description'>Lorem ipsum</div>
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <ListItem_ size='large' actionable role='menuitem' tabindex='0'>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
         <svg-placeholder slot='start-icon'></svg-placeholder>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-        <div class='iui-list-item-description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
