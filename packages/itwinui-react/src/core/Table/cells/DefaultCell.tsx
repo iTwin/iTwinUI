@@ -48,6 +48,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   const columnsProp = React.useContext(TableColumnsContext);
   const isCustomCell = React.useMemo(
     () =>
+      !!props.cellProps.column.id &&
       columnsProp
         .find(({ id }) => props.cellProps.column.id === id)
         ?.hasOwnProperty('Cell'),
