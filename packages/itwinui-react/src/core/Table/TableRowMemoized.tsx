@@ -121,6 +121,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     mergedProps.ref,
     tableRowRef,
     virtualizer?.measureElement,
+    virtualItem?.measureElement,
   );
 
   return (
