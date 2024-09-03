@@ -32,7 +32,7 @@ import {
   useResizeObserver,
   useLayoutEffect,
   Box,
-  createWarningLogger,
+  useWarningLogger,
   ShadowRoot,
   useMergedRefs,
   useLatestRef,
@@ -71,8 +71,6 @@ const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
-
-const logWarning = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
   /**
@@ -646,6 +644,8 @@ export const Table = <
   } = instance;
 
   let headerGroups = _headerGroups;
+
+  const logWarning = useWarningLogger();
 
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
