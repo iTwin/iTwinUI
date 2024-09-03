@@ -172,14 +172,14 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         dispatch({ type: 'start-panel-transition', nextPanel: newActiveId });
       });
 
-      setTimeout(() => {
-        console.log('HERE', panelElements.current[activePanel]);
-        panelElements.current[activePanel]?.scrollIntoView({
-          behavior: 'instant',
-          block: 'nearest',
-          inline: 'center',
-        });
-      }, 1_000);
+      // setTimeout(() => {
+      //   console.log('HERE', panelElements.current[activePanel]);
+      //   panelElements.current[activePanel]?.scrollIntoView({
+      //     behavior: 'instant',
+      //     block: 'nearest',
+      //     inline: 'center',
+      //   });
+      // }, 1_000);
 
       await new Promise((resolve) => {
         setTimeout(() => {
