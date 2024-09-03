@@ -14,31 +14,4 @@ const isVitest = typeof (globalThis as any).__vitest_index__ !== 'undefined';
 
 const isUnitTest = isJest || isVitest || isMocha;
 
-/**
- * Returns a function that can be used to log one-time warnings in dev environments.
- *
- * **Note**: The actual log call should be wrapped in a check against `process.env.NODE_ENV === 'development'`
- * to ensure that it is removed from the production build output (by SWC).
- * Read more about the [`NODE_ENV` convention](https://nodejs.org/en/learn/getting-started/nodejs-the-difference-between-development-and-production).
- *
- * @example
- * const logWarning = createWarningLogger();
- *
- * if (process.env.NODE_ENV === 'development') {
- *   logWarning("please don't use this")
- * }
- */
-const createWarningLogger =
-  process.env.NODE_ENV === 'development' && !isUnitTest
-    ? () => {
-        let logged = false;
-        return (message: string) => {
-          if (!logged) {
-            console.warn(message);
-            logged = true;
-          }
-        };
-      }
-    : () => () => {};
-
-export { isUnitTest, createWarningLogger };
+export { isUnitTest };
