@@ -27,7 +27,6 @@ import {
   PanelsWrapperContext,
 } from './helpers.js';
 import type { PanelsInstance, TriggerMapEntry } from './helpers.js';
-// import { scrollend } from 'scrollyfills';
 
 // #region PanelsWrapper
 
@@ -108,11 +107,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  // const [activePanel, setActivePanel] = React.useState<string>(initialActiveId);
-  // const [nextPanel, setNextPanel] = React.useState<string | undefined>(
-  //   undefined,
-  // );
-
   const [{ activePanel, nextPanel }, dispatch] = React.useReducer(
     panelsReducer,
     {
@@ -135,42 +129,14 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     Record<string, TriggerMapEntry>
   >({});
 
-  // console.log('panelElements', panelElements.current);
-
-  // const scrollEndListener = React.useCallback(() => {
-  //   console.log('scroll end', activePanel, previousPanel, nextPanel);
-  //   setPreviousPanel(undefined);
-  // }, [activePanel, nextPanel, previousPanel]);
-  // // const scrollEndListener = useLatestRef(_scrollEndListener);
-
-  // const scrollListener = React.useCallback(() => {
-  //   clearTimeout((window as any).scrollEndTimer);
-  //   (window as any).scrollEndTimer = setTimeout(scrollEndListener, 100);
-  // }, [scrollEndListener]);
-  // const scrollListener = useLatestRef(_scrollListener);
-
   React.useEffect(() => {
     const refCurrent = ref.current;
-    // const scrollEndListenerCurrent = scrollEndListener;
-    // const scrollListenerCurrent = scrollListener;
 
     const scrollEndListenerCurrent = () => {
-      console.log('scroll end');
-
-      // setActivePanel((prevActivePanel) => {
-      //   if (nextPanel == null) {
-      //     return prevActivePanel;
-      //   }
-
-      //   return nextPanel;
-      // });
-      // setNextPanel(undefined);
-      // setPreviousPanel(undefined);
-
       dispatch({ type: 'end-panel-transition' });
     };
 
-    const scrollListenerCurrent = () => {
+    const scrollListener = () => {
       clearTimeout((window as any).scrollEndTimer);
       (window as any).scrollEndTimer = setTimeout(
         scrollEndListenerCurrent,
@@ -181,14 +147,12 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     if ('onscrollend' in window) {
       refCurrent?.addEventListener('scrollend', scrollEndListenerCurrent);
     } else {
-      refCurrent?.addEventListener('scroll', scrollListenerCurrent);
-      // document.onscroll = event => {
-      // }
+      refCurrent?.addEventListener('scroll', scrollListener);
     }
 
     return () => {
       refCurrent?.removeEventListener('scrollend', scrollEndListenerCurrent);
-      refCurrent?.removeEventListener('scroll', scrollListenerCurrent);
+      refCurrent?.removeEventListener('scroll', scrollListener);
     };
   }, [activePanel, nextPanel]);
 
@@ -208,21 +172,18 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         dispatch({ type: 'start-panel-transition', nextPanel: newActiveId });
       });
 
-      // setTimeout(() => {
-      //   console.log('ici', panelElements.current[activePanel]);
-      //   panelElements.current[activePanel]?.scrollIntoView({
-      //     behavior: 'instant',
-      //     block: 'nearest',
-      //     inline: 'center',
-      //   });
-      // }, 1_000);
+      setTimeout(() => {
+        console.log('HERE', panelElements.current[activePanel]);
+        panelElements.current[activePanel]?.scrollIntoView({
+          behavior: 'instant',
+          block: 'nearest',
+          inline: 'center',
+        });
+      }, 1_000);
 
       await new Promise((resolve) => {
         setTimeout(() => {
-          console.log(
-            "J'essaie défiller cet élément",
-            panelElements.current?.[newActiveId],
-          );
+          console.log('Scrolling', panelElements.current?.[newActiveId]);
 
           panelElements.current?.[newActiveId]?.scrollIntoView({
             block: 'nearest',
@@ -280,23 +241,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     },
     [activePanel, panelElements],
   );
-
-  // const divRef = React.useRef<HTMLDivElement | null>(null);
-  // React.useEffect(() => {
-  //   const divRefCurrent = divRef.current;
-
-  //   const listener = () => {
-  //     console.log('scroll end');
-  //   };
-
-  //   console.log('setting event listener');
-  //   divRefCurrent?.addEventListener('onScrollEnd', listener);
-
-  //   return () => {
-  //     console.log('removing event listener');
-  //     divRefCurrent?.removeEventListener('onScrollEnd', listener);
-  //   };
-  // }, []);
 
   return (
     <PanelsWrapperContext.Provider
@@ -385,6 +329,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   );
 
   const isMounted = [activePanel, nextPanel].includes(id);
+  // TODO: Being back inert checks
   // const isInert = [nextPanel].includes(id);
 
   const refs = useMergedRefs(setElement, forwardedRef);
