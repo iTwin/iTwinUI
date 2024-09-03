@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box, ButtonBase } from '../../utils/index.js';
+import { Box, ButtonBase, useWarningLogger } from '../../utils/index.js';
 import { Tooltip } from '../Tooltip/Tooltip.js';
 import type { ButtonProps } from './Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -34,6 +34,10 @@ export type IconButtonProps = {
    * Passes props to IconButton icon.
    */
   iconProps?: React.ComponentProps<'span'>;
+  /**
+   * @deprecated Use `label` instead.
+   */
+  title?: string;
 } & Omit<
   ButtonProps,
   | 'startIcon'
@@ -58,7 +62,8 @@ export const IconButton = React.forwardRef((props, ref) => {
     styleType = 'default',
     size,
     className,
-    label,
+    title,
+    label = title,
     iconProps,
     labelProps,
     ...rest
@@ -66,6 +71,17 @@ export const IconButton = React.forwardRef((props, ref) => {
 
   const buttonGroupOrientation = React.useContext(ButtonGroupContext);
   const hasPopoverOpen = React.useContext(PopoverOpenContext);
+
+  const logWarning = useWarningLogger();
+
+  if (
+    process.env.NODE_ENV === 'development' &&
+    !label &&
+    !props['aria-label'] &&
+    !props['aria-labelledby']
+  ) {
+    logWarning('IconButton is missing the `label` prop.');
+  }
 
   const button = (
     <ButtonBase

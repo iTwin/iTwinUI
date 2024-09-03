@@ -4,21 +4,65 @@ import {
   TablePaginator,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
+import type { CellProps } from '@itwin/itwinui-react/react-table';
 import { useSearchParams } from '@remix-run/react';
-import * as React from 'react';
+import React from 'react';
 
-export default function TableTest() {
+export default function Page() {
   const [searchParams] = useSearchParams();
 
   const config = getConfigFromSearchParams(searchParams);
   const { exampleType } = config;
 
-  return exampleType === 'withTablePaginator' ? (
-    <WithTablePaginator config={config} />
-  ) : (
-    <Default config={config} />
+  switch (exampleType) {
+    case 'withTablePaginator':
+      return <WithTablePaginator config={config} />;
+    case 'allFilters':
+      return <FiltersTest />;
+    default:
+      return <Default config={config} />;
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+function FiltersTest() {
+  return (
+    <Table
+      columns={React.useMemo(
+        () => [
+          {
+            Header: '#',
+            accessor: 'index',
+            fieldType: 'number',
+            Filter: tableFilters.NumberRangeFilter(),
+            filter: 'between',
+          },
+          {
+            Header: 'Name',
+            accessor: 'name',
+            fieldType: 'text',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            Header: 'Date',
+            accessor: 'date',
+            Filter: tableFilters.DateRangeFilter(),
+            filter: 'betweenDate',
+            Cell: ({ value }: CellProps<any>) => {
+              return <>{(value as Date).toLocaleDateString()}</>;
+            },
+          },
+        ],
+        [],
+      )}
+      data={baseData}
+      emptyTableContent='No data.'
+    />
   );
 }
+
+// ----------------------------------------------------------------------------
 
 const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const exampleType = searchParams.get('exampleType') || 'default';
@@ -85,75 +129,25 @@ const Default = ({
     stateReducer,
   } = config;
 
-  const data = subRows
-    ? [
-        {
-          index: 1,
-          name: 'Name1',
-          description: 'Description1',
-          id: '111',
-        },
-        {
-          index: 2,
-          name: 'Name2',
-          description: 'Description2',
-          subRows: [
-            {
-              index: 2.1,
-              name: 'Name2.1',
-              description: 'Description2.1',
-              id: '223',
-            },
-            {
-              index: 2.2,
-              name: 'Name2.2',
-              description: 'Description2.2',
-              id: '224',
-            },
-          ],
-          id: '222',
-        },
-        {
-          index: 3,
-          name: 'Name3',
-          description: 'Description3',
-          subRows: [
-            {
-              index: 3.1,
-              name: 'Name3.1',
-              description: 'Description3.1',
-              id: '334',
-            },
-            {
-              index: 3.2,
-              name: 'Name3.2',
-              description: 'Description3.2',
-              id: '335',
-            },
-          ],
-          id: '333',
-        },
-      ]
-    : [
-        {
-          index: 1,
-          name: 'Name1',
-          description: 'Description1',
-          id: '111',
-        },
-        {
-          index: 2,
-          name: 'Name2',
-          description: 'Description2',
-          id: '222',
-        },
-        {
-          index: 3,
-          name: 'Name3',
-          description: 'Description3',
-          id: '333',
-        },
-      ];
+  const virtualizedData = React.useMemo(() => {
+    if (empty) {
+      return [];
+    }
+
+    const size = oneRow ? 1 : 100000;
+    const arr = new Array(size);
+    for (let i = 0; i < size; ++i) {
+      arr[i] = {
+        index: i,
+        name: `Name${i}`,
+        description: `Description${i}`,
+        id: i,
+      };
+    }
+    return arr;
+  }, [oneRow, empty]);
+
+  const data = subRows ? dataWithSubrows : baseData;
 
   const isRowDisabled = React.useCallback(
     (rowData: Record<string, unknown>) => {
@@ -161,22 +155,6 @@ const Default = ({
     },
     [],
   );
-
-  const virtualizedData = React.useMemo(() => {
-    const size = oneRow ? 1 : 100000;
-    const arr = new Array(size);
-    if (!empty) {
-      for (let i = 0; i < size; ++i) {
-        arr[i] = {
-          index: i,
-          name: `Name${i}`,
-          description: `Description${i}`,
-          id: i,
-        };
-      }
-    }
-    return arr;
-  }, [oneRow, empty]);
 
   return (
     <>
@@ -194,7 +172,7 @@ const Default = ({
             accessor: 'name',
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
-            disableResizing: disableResizing,
+            disableResizing,
             Filter: filter ? tableFilters.TextFilter() : undefined,
           },
           {
@@ -300,3 +278,78 @@ const WithTablePaginator = ({
     </>
   );
 };
+
+// ----------------------------------------------------------------------------
+
+const baseData = [
+  {
+    index: 1,
+    name: 'Name1',
+    description: 'Description1',
+    id: '111',
+    date: new Date('Aug 1, 2023'),
+  },
+  {
+    index: 2,
+    name: 'Name2',
+    description: 'Description2',
+    id: '222',
+    date: new Date('Aug 2, 2024'),
+  },
+  {
+    index: 3,
+    name: 'Name3',
+    description: 'Description3',
+    id: '333',
+    date: new Date('Aug 3, 2025'),
+  },
+];
+
+const dataWithSubrows = [
+  {
+    index: 1,
+    name: 'Name1',
+    description: 'Description1',
+    id: '111',
+  },
+  {
+    index: 2,
+    name: 'Name2',
+    description: 'Description2',
+    subRows: [
+      {
+        index: 2.1,
+        name: 'Name2.1',
+        description: 'Description2.1',
+        id: '223',
+      },
+      {
+        index: 2.2,
+        name: 'Name2.2',
+        description: 'Description2.2',
+        id: '224',
+      },
+    ],
+    id: '222',
+  },
+  {
+    index: 3,
+    name: 'Name3',
+    description: 'Description3',
+    subRows: [
+      {
+        index: 3.1,
+        name: 'Name3.1',
+        description: 'Description3.1',
+        id: '334',
+      },
+      {
+        index: 3.2,
+        name: 'Name3.2',
+        description: 'Description3.2',
+        id: '335',
+      },
+    ],
+    id: '333',
+  },
+];

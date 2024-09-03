@@ -21,7 +21,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='li'
+      role='listitem'
       className={cx('iui-list-item', className)}
       data-iui-active={active ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
@@ -32,7 +32,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', ListItemOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   ListItemComponent.displayName = 'ListItem';
 }
@@ -68,21 +68,21 @@ export type ListItemOwnProps = {
 
 // ----------------------------------------------------------------------------
 
-const ListItemIcon = polymorphic('iui-list-item-icon');
+const ListItemIcon = polymorphic.div('iui-list-item-icon');
 if (process.env.NODE_ENV === 'development') {
   ListItemIcon.displayName = 'ListItem.Icon';
 }
 
 // ----------------------------------------------------------------------------
 
-const ListItemContent = polymorphic('iui-list-item-content');
+const ListItemContent = polymorphic.div('iui-list-item-content');
 if (process.env.NODE_ENV === 'development') {
   ListItemContent.displayName = 'ListItem.Content';
 }
 
 // ----------------------------------------------------------------------------
 
-const ListItemDescription = polymorphic('iui-list-item-description');
+const ListItemDescription = polymorphic.div('iui-list-item-description');
 if (process.env.NODE_ENV === 'development') {
   ListItemDescription.displayName = 'ListItem.Description';
 }

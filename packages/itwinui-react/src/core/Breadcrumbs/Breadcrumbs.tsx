@@ -7,17 +7,13 @@ import cx from 'classnames';
 import {
   SvgChevronRight,
   Box,
-  createWarningLogger,
+  OverflowContainer,
+  useOverflowContainerContext,
+  useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { Anchor } from '../Typography/Anchor.js';
-import {
-  OverflowContainer,
-  OverflowContainerContext,
-} from '../../utils/components/OverflowContainer.js';
-
-const logWarning = createWarningLogger();
 
 type BreadcrumbsProps = {
   /**
@@ -118,13 +114,19 @@ type BreadcrumbsProps = {
  */
 const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   const {
-    children: items,
-    currentIndex = items.length - 1,
+    children: childrenProp,
+    currentIndex: currentIndexProp,
     separator,
     overflowButton,
     className,
     ...rest
   } = props;
+
+  const items = React.useMemo(
+    () => React.Children.toArray(childrenProp),
+    [childrenProp],
+  );
+  const currentIndex = currentIndexProp || items.length - 1;
 
   return (
     <Box
@@ -134,7 +136,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
-      <OverflowContainer as='ol' className='iui-breadcrumbs-list' items={items}>
+      <OverflowContainer as='ol' items={items} className='iui-breadcrumbs-list'>
         <BreadcrumbContent
           currentIndex={currentIndex}
           overflowButton={overflowButton}
@@ -152,15 +154,13 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const BreadcrumbContent = (props: BreadcrumbsProps) => {
-  const {
-    children: items,
-    currentIndex = items.length - 1,
-    overflowButton,
-    separator,
-  } = props;
-  const visibleCount =
-    React.useContext(OverflowContainerContext)?.visibleCount ?? 0;
+type BreadcrumbContentProps = Omit<BreadcrumbsProps, 'currentIndex'> & {
+  currentIndex: NonNullable<BreadcrumbsProps['currentIndex']>;
+};
+
+const BreadcrumbContent = (props: BreadcrumbContentProps) => {
+  const { children: items, currentIndex, overflowButton, separator } = props;
+  const { visibleCount } = useOverflowContainerContext();
 
   return (
     <>
@@ -214,6 +214,8 @@ const ListItem = ({
   isActive: boolean;
 }) => {
   let children = item as any;
+
+  const logWarning = useWarningLogger();
 
   if (
     children?.type === 'span' ||

@@ -58,7 +58,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     );
   }, [focusedIndex, menuRef]);
 
-  const virtualizer = useVirtualScroll({
+  const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     // 'Fool' useVirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
@@ -80,10 +80,8 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
       return React.cloneElement(menuItem, {
         key: virtualItem.key,
         ref: virtualizer.measureElement,
+        'data-iui-virtualizer': 'item',
         style: {
-          position: 'absolute',
-          top: 0,
-          left: 0,
           width: '100%',
           transform: `translateY(${virtualItem.start}px)`,
         },
@@ -94,14 +92,13 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 
   return (
     <>
-      <ShadowRoot>
+      <ShadowRoot css={virtualizerCss}>
         <Box
           as='div'
+          data-iui-virtualizer='root'
           {...rest}
           style={{
             minBlockSize: virtualizer.getTotalSize(),
-            minInlineSize: '100%',
-            contain: 'strict',
             ...props.style,
           }}
         >

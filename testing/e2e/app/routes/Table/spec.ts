@@ -153,6 +153,26 @@ test.describe('Table resizing', () => {
     }
   });
 
+  test('should resize correctly when column width is set lower than default min width', async ({
+    page,
+  }) => {
+    await page.goto('/Table?subRows=true');
+
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +50;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1] - delta);
+      expect(newWidths[2]).toBe(initialWidths[2]); // should not change
+      expect(newWidths[3]).toBe(initialWidths[3]); // should not change
+    }
+  });
+
   // #region Helpers for column resizing tests
   const resizeColumn = async (options: {
     index: number;
@@ -597,7 +617,11 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
+    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
+
+    //Checks empty content to make sure it appears correctly.
+    await expect(emptyContent).toBeInViewport();
   });
 
   test('virtualized table should scroll to provided row', async ({ page }) => {
@@ -621,5 +645,37 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
     const rows = page.getByRole('rowgroup').getByRole('row');
     expect((await rows.all()).length).toBe(1);
+  });
+});
+
+test.describe('Table filters', () => {
+  test('DateRangeFilter should show DatePicker', async ({ page }) => {
+    await page.goto('/Table?exampleType=allFilters');
+
+    // open Date filter
+    const dateHeader = page.locator('[role="columnheader"]', {
+      hasText: 'Date',
+    });
+    const dateFilterButton = dateHeader.getByRole('button', { name: 'Filter' });
+    await dateFilterButton.click();
+    const dateFilterPopover = page.getByRole('dialog', { name: 'Filter' });
+    await expect(dateFilterPopover).toBeVisible();
+
+    // open Date picker in Date filter
+    const datePickerButton = dateFilterPopover
+      .getByRole('button', { name: 'Date picker' })
+      .first();
+    await datePickerButton.click();
+    const datePicker = page.getByRole('dialog', { name: 'Date picker' });
+    await expect(datePicker).toBeVisible();
+
+    // close DatePicker
+    await page.keyboard.press('Escape');
+    await expect(datePicker).not.toBeVisible();
+    await expect(dateFilterPopover).toBeVisible();
+
+    // close Date filter
+    await page.keyboard.press('Escape');
+    await expect(dateFilterPopover).not.toBeVisible();
   });
 });

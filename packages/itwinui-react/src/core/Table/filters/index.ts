@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { BaseFilter } from './BaseFilter.js';
-export type { BaseFilterProps } from './BaseFilter.js';
 
 export { tableFilters } from './tableFilters.js';
 export type { DateRangeFilterOptions } from './tableFilters.js';

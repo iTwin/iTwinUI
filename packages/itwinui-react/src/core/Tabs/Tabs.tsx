@@ -22,7 +22,7 @@ import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 // ----------------------------------------------------------------------------
-// TabsWrapper
+// #region TabsWrapper
 
 type TabsOrientationProps =
   | {
@@ -134,8 +134,9 @@ if (process.env.NODE_ENV === 'development') {
   TabsWrapper.displayName = 'Tabs.Wrapper';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.TabList component
+// #region Tabs.TabList
 
 type TabListOwnProps = {
   /**
@@ -191,8 +192,9 @@ if (process.env.NODE_ENV === 'development') {
   TabList.displayName = 'Tabs.TabList';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.Tab component
+// #region Tabs.Tab
 
 type TabOwnProps = {
   /**
@@ -375,8 +377,9 @@ if (process.env.NODE_ENV === 'development') {
   Tab.displayName = 'Tabs.Tab';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.TabIcon component
+// #region Tabs.TabIcon
 
 const TabIcon = React.forwardRef((props, ref) => {
   return (
@@ -391,16 +394,18 @@ if (process.env.NODE_ENV === 'development') {
   TabIcon.displayName = 'Tabs.TabIcon';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.TabLabel component
+// #region Tabs.TabLabel
 
 const TabLabel = polymorphic.span('iui-tab-label');
 if (process.env.NODE_ENV === 'development') {
   TabLabel.displayName = 'Tabs.TabLabel';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.TabDescription component
+// #region Tabs.TabDescription
 
 const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
@@ -427,8 +432,9 @@ if (process.env.NODE_ENV === 'development') {
   TabDescription.displayName = 'Tabs.TabDescription';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.Actions component
+// #region Tabs.Actions
 
 type TabsActionsOwnProps = {
   /**
@@ -455,8 +461,9 @@ if (process.env.NODE_ENV === 'development') {
   TabsActions.displayName = 'Tabs.Actions';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs.Panel component
+// #region Tabs.Panel
 
 type TabsPanelOwnProps = {
   /**
@@ -492,8 +499,9 @@ if (process.env.NODE_ENV === 'development') {
   TabsPanel.displayName = 'Tabs.Panel';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
-// Tabs legacy component
+// #region LegacyTabsComponent
 
 type TabsLegacyProps = {
   /**
@@ -620,7 +628,9 @@ if (process.env.NODE_ENV === 'development') {
   LegacyTabsComponent.displayName = 'Tabs';
 }
 
+// #endregion
 // ----------------------------------------------------------------------------
+// #region LegacyTab
 
 type TabLegacyProps = {
   /**
@@ -677,8 +687,9 @@ const LegacyTab = React.forwardRef((props, forwardedRef) => {
   );
 }) as PolymorphicForwardRefComponent<'button', TabLegacyProps>;
 
+// #endregion
 // ----------------------------------------------------------------------------
-// exports
+// #region exports and helpers
 
 export { LegacyTab as Tab };
 
@@ -868,3 +879,5 @@ const useScrollbarGutter = () => {
     }
   }, []);
 };
+
+// #endregion

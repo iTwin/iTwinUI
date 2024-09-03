@@ -8,8 +8,8 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
 import {
   OverflowContainer,
-  OverflowContainerContext,
-} from '../../utils/components/OverflowContainer.js';
+  useOverflowContainerContext,
+} from '../../utils/index.js';
 
 type SelectTagContainerProps = {
   /**
@@ -21,7 +21,12 @@ type SelectTagContainerProps = {
 /**
  */
 export const SelectTagContainer = React.forwardRef((props, ref) => {
-  const { tags, className, ...rest } = props;
+  const { tags: tagsProp, className, ...rest } = props;
+
+  const tags = React.useMemo(
+    () => React.Children.toArray(tagsProp),
+    [tagsProp],
+  );
 
   return (
     <OverflowContainer
@@ -30,17 +35,20 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      <SelectTagContainerContent {...props} />
+      <SelectTagContainerContent {...props} tags={tags} />
     </OverflowContainer>
   );
 }) as PolymorphicForwardRefComponent<'div', SelectTagContainerProps>;
 
 // ----------------------------------------------------------------------------
 
-const SelectTagContainerContent = (props: SelectTagContainerProps) => {
+type SelectTagContainerContentProps = {
+  tags: ReturnType<typeof React.Children.toArray>;
+};
+
+const SelectTagContainerContent = (props: SelectTagContainerContentProps) => {
   const { tags } = props;
-  const visibleCount =
-    React.useContext(OverflowContainerContext)?.visibleCount ?? tags.length;
+  const { visibleCount } = useOverflowContainerContext();
 
   return (
     <>

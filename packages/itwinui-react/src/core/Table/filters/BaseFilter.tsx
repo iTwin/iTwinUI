@@ -4,15 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useGlobals } from '../../../utils/index.js';
-import type { CommonProps } from '../../../utils/index.js';
-
-export type BaseFilterProps = {
-  /**
-   * Filter body.
-   */
-  children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+import { Box, mergeEventHandlers } from '../../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
 
 /**
  * Filter wrapper that should be used when creating custom filters.
@@ -28,22 +21,21 @@ export type BaseFilterProps = {
  *   />
  * </BaseFilter>
  */
-export const BaseFilter = (props: BaseFilterProps) => {
-  const { children, className, style, id } = props;
-
-  useGlobals();
-
+export const BaseFilter = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
-      className={cx('iui-table-column-filter', className)}
-      style={style}
-      // Prevents from triggering sort
-      onClick={(e: React.MouseEvent) => {
-        e.stopPropagation();
+      as='form'
+      {...props}
+      ref={forwardedRef}
+      className={cx('iui-table-column-filter', props.className)}
+      onSubmit={(e) => {
+        e.preventDefault(); // prevent default browser form submission
+        props.onSubmit?.(e);
       }}
-      id={id}
-    >
-      {children}
-    </Box>
+      onClick={mergeEventHandlers(props.onClick, (e) => {
+        // Prevents from triggering sort
+        e.stopPropagation();
+      })}
+    />
   );
-};
+}) as PolymorphicForwardRefComponent<'form'>;
