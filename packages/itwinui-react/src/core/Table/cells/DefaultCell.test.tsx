@@ -34,7 +34,7 @@ it('should not apply clamp, if id of column is not defined', () => {
         key: 'key',
         className: 'original-class',
       }}
-      cellProps={{ column: {} } as any}
+      cellProps={{ column: {}, value: 'string' } as any}
     >
       {null}
     </DefaultCell>,
