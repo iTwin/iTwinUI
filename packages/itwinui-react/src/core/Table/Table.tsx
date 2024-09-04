@@ -798,50 +798,24 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
-  // Flexbox handles columns resize so we take new column widths before browser repaints.
-  useLayoutEffect(() => {
-    if (state.isTableResizing) {
-      const newColumnWidths: Record<string, number> = {};
-      flatHeaders.forEach((column) => {
-        if (columnRefs.current[column.id]) {
-          newColumnWidths[column.id] =
-            columnRefs.current[column.id].getBoundingClientRect().width;
-        }
-      });
-      dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
-    }
-  });
-
-  // Edge case to confirm:
-  // Let's say pageCount = 1000
-  // pageSize = 5
-  // state.expanded = {0: true, 3: true, 852: true, 904: true}
-  // page = [row(850-0), row(851-1), row(852-2), row(853-3), row(854-4)]
-  // So we only care if any indices in [850, 854] are expanded.
-  // The fact that rows 0, 4, and 904 are expanded are irrelevant for the current page.
-
-  // TODO: Need to confirm what was happening previously when we passed both subComponent and subRows.
-  // We need to make sure that the same behavior is maintained.
-  // If we were giving priority to the subComponent priviously, we should continue doing the same.
-
   /**
-   * Takes in page and state.expanded.
+   * Takes in page and state.expanded. Only called when there are no sub-rows since sub-rows are treated as row.
    * Returns Array<"row" | "subrow">
    *
    * @example
-   * listOfRowsAndSubRows = [row, subrow (1-0), row, row, subrow(4-2), row, subrow(6-3)]
+   * listOfRowsAndSubComponents = [row, subrow (1-0), row, row, subrow(4-2), row, subrow(6-3)]
    * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
    * state.expanded = {abc1: true, abc3: true}
    */
   const listOfRowsAndSubComponents = React.useMemo(() => {
-    const rowsAndSubRows = [];
+    const rowsAndSubComponents = [];
     for (let i = 0; i < page.length; i++) {
-      rowsAndSubRows.push('row');
+      rowsAndSubComponents.push('row');
       if (!hasAnySubRows && state.expanded[page[i].id]) {
-        rowsAndSubRows.push('subrow');
+        rowsAndSubComponents.push('subrow');
       }
     }
-    return rowsAndSubRows;
+    return rowsAndSubComponents;
   }, [page, state.expanded, hasAnySubRows]);
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
@@ -868,10 +842,10 @@ export const Table = <
         }
       }
       const rowIndex = index - expandedRowsBefore;
-      const subrowAssociatedRowIndex = rowIndex - 1;
+      const subComponentAssociatedRowIndex = rowIndex - 1;
       return {
         rowIndex,
-        subrowAssociatedRowIndex,
+        subComponentAssociatedRowIndex,
       };
     },
     [listOfRowsAndSubComponents],
@@ -957,7 +931,8 @@ export const Table = <
       const row = enableVirtualization
         ? page[rowIndices.rowIndex]
         : page[index];
-      const subComponentsRowData = page[rowIndices.subrowAssociatedRowIndex];
+      const subComponentsRowData =
+        page[rowIndices.subComponentAssociatedRowIndex];
 
       if (enableVirtualization) {
         prepareRow(isRow ? row : subComponentsRowData);
