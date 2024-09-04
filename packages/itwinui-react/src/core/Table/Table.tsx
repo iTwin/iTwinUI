@@ -64,7 +64,7 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import { type VirtualItem } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableRowMemoized } from './TableExpandableRowMemoized.js';
 
@@ -833,9 +833,7 @@ export const Table = <
    * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
    * state.expanded = {abc1: true, abc3: true}
    */
-  // TODO: What should we call the items? `row`+`subrow` or something else
-
-  const listOfRowsAndSubRows = React.useMemo(() => {
+  const listOfRowsAndSubComponents = React.useMemo(() => {
     const rowsAndSubRows = [];
     for (let i = 0; i < page.length; i++) {
       rowsAndSubRows.push('row');
@@ -848,7 +846,7 @@ export const Table = <
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     enabled: enableVirtualization,
-    count: subComponent ? listOfRowsAndSubRows.length : page.length,
+    count: subComponent ? listOfRowsAndSubComponents.length : page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
     getItemKey: (index) => page[index]?.id ?? index.toString(),
@@ -865,7 +863,7 @@ export const Table = <
     (index: number) => {
       let expandedRowsBefore = 0;
       for (let i = 0; i < index; i++) {
-        if (listOfRowsAndSubRows[i] === 'subrow') {
+        if (listOfRowsAndSubComponents[i] === 'subrow') {
           expandedRowsBefore++;
         }
       }
@@ -876,96 +874,101 @@ export const Table = <
         subrowAssociatedRowIndex,
       };
     },
-    [listOfRowsAndSubRows],
+    [listOfRowsAndSubComponents],
   );
 
   const isARow = React.useCallback(
     (index: number) => {
-      return listOfRowsAndSubRows[index] === 'row';
+      return listOfRowsAndSubComponents[index] === 'row';
     },
-    [listOfRowsAndSubRows],
+    [listOfRowsAndSubComponents],
+  );
+
+  const renderTableRow = React.useCallback(
+    (row: Row<T>, index: number, virtualItem?: VirtualItem<Element>) => (
+      <TableRowMemoized
+        row={row}
+        rowProps={rowProps}
+        isLast={
+          getRowIndices(index).rowIndex ===
+          listOfRowsAndSubComponents.length - 1
+        }
+        onRowInViewport={onRowInViewportRef}
+        onBottomReached={onBottomReachedRef}
+        intersectionMargin={intersectionMargin}
+        state={state}
+        key={`row-${row.getRowProps().key}`}
+        onClick={onRowClickHandler}
+        subComponent={subComponent}
+        isDisabled={!!isRowDisabled?.(row.original)}
+        tableHasSubRows={hasAnySubRows}
+        tableInstance={instance}
+        expanderCell={expanderCell}
+        scrollContainerRef={tableRef.current}
+        tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+        density={density}
+        virtualItem={virtualItem}
+        virtualizer={virtualizer}
+      />
+    ),
+    [
+      density,
+      enableVirtualization,
+      expanderCell,
+      getRowIndices,
+      hasAnySubRows,
+      instance,
+      intersectionMargin,
+      isRowDisabled,
+      listOfRowsAndSubComponents.length,
+      onBottomReachedRef,
+      onRowClickHandler,
+      onRowInViewportRef,
+      rowProps,
+      state,
+      subComponent,
+      tableRowRef,
+      virtualizer,
+    ],
+  );
+
+  const renderExpandableRow = React.useCallback(
+    (subComponentsRowData: Row<T>, virtualItem?: VirtualItem<Element>) =>
+      subComponent &&
+      !hasAnySubRows && (
+        <TableExpandableRowMemoized
+          key={`subcomponent-${subComponentsRowData.getRowProps().key}`}
+          isDisabled={!!isRowDisabled?.(subComponentsRowData.original)}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
+          isSelected={subComponentsRowData.isSelected}
+          ref={tableRowRef(subComponentsRowData)}
+        >
+          {subComponent(subComponentsRowData)}
+        </TableExpandableRowMemoized>
+      ),
+    [hasAnySubRows, isRowDisabled, subComponent, tableRowRef, virtualizer],
   );
 
   const getPreparedRow = React.useCallback(
-    (
-      index: number,
-      virtualItem?: VirtualItem<Element>,
-      virtualizer?: Virtualizer<Element, Element>,
-    ) => {
-      if (enableVirtualization) {
-        const row = page[getRowIndices(index).rowIndex];
-        const subComponentsRowData =
-          page[getRowIndices(index).subrowAssociatedRowIndex];
+    (index: number, virtualItem?: VirtualItem<Element>) => {
+      const rowIndices = getRowIndices(index);
+      const isRow = isARow(index);
+      const row = enableVirtualization
+        ? page[rowIndices.rowIndex]
+        : page[index];
+      const subComponentsRowData = page[rowIndices.subrowAssociatedRowIndex];
 
-        if (isARow(index)) {
-          prepareRow(row);
-          return (
-            <TableRowMemoized
-              row={row}
-              rowProps={rowProps}
-              isLast={
-                getRowIndices(index).rowIndex ===
-                listOfRowsAndSubRows.length - 1
-              }
-              onRowInViewport={onRowInViewportRef}
-              onBottomReached={onBottomReachedRef}
-              intersectionMargin={intersectionMargin}
-              state={state}
-              key={`row-${row.getRowProps().key}`}
-              onClick={onRowClickHandler}
-              subComponent={subComponent}
-              isDisabled={!!isRowDisabled?.(row.original)}
-              tableHasSubRows={hasAnySubRows}
-              tableInstance={instance}
-              expanderCell={expanderCell}
-              scrollContainerRef={tableRef.current}
-              density={density}
-              virtualItem={virtualItem}
-              virtualizer={virtualizer}
-            />
-          );
-        } else {
-          return (
-            subComponent && (
-              <TableExpandableRowMemoized
-                key={`subcomponent-${subComponentsRowData.getRowProps().key}`}
-                isDisabled={!!isRowDisabled?.(subComponentsRowData.original)}
-                virtualItem={virtualItem}
-                virtualizer={virtualizer}
-                isSelected={subComponentsRowData.isSelected}
-                ref={tableRowRef(subComponentsRowData)}
-              >
-                {subComponent(subComponentsRowData)}
-              </TableExpandableRowMemoized>
-            )
-          );
-        }
+      if (enableVirtualization) {
+        prepareRow(isRow ? row : subComponentsRowData);
+        return isRow
+          ? renderTableRow(row, index, virtualItem)
+          : renderExpandableRow(subComponentsRowData, virtualItem);
       } else {
-        const row = page[index];
         prepareRow(row);
         return (
           <>
-            <TableRowMemoized
-              row={row}
-              rowProps={rowProps}
-              isLast={index === page.length - 1}
-              onRowInViewport={onRowInViewportRef}
-              onBottomReached={onBottomReachedRef}
-              intersectionMargin={intersectionMargin}
-              state={state}
-              key={row.getRowProps().key}
-              onClick={onRowClickHandler}
-              subComponent={subComponent}
-              isDisabled={!!isRowDisabled?.(row.original)}
-              tableHasSubRows={hasAnySubRows}
-              tableInstance={instance}
-              expanderCell={expanderCell}
-              scrollContainerRef={tableRef.current}
-              tableRowRef={tableRowRef(row)}
-              density={density}
-              virtualItem={virtualItem}
-              virtualizer={virtualizer}
-            />
+            {renderTableRow(row, index)}
             {subComponent && (
               <WithCSSTransition in={row.isExpanded}>
                 <TableExpandableRowMemoized
@@ -983,25 +986,16 @@ export const Table = <
       }
     },
     [
-      enableVirtualization,
-      page,
       getRowIndices,
       isARow,
-      listOfRowsAndSubRows,
+      page,
+      enableVirtualization,
       prepareRow,
-      rowProps,
-      onRowInViewportRef,
-      onBottomReachedRef,
-      intersectionMargin,
-      state,
-      onRowClickHandler,
+      renderTableRow,
+      renderExpandableRow,
       subComponent,
       isRowDisabled,
-      hasAnySubRows,
-      instance,
-      expanderCell,
       tableRowRef,
-      density,
     ],
   );
 
@@ -1144,11 +1138,7 @@ export const Table = <
             <>
               {enableVirtualization
                 ? virtualizer.getVirtualItems().map((virtualItem) => {
-                    return getPreparedRow(
-                      virtualItem.index,
-                      virtualItem,
-                      virtualizer,
-                    );
+                    return getPreparedRow(virtualItem.index, virtualItem);
                   })
                 : page.map((_, index) => getPreparedRow(index))}
             </>
