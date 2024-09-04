@@ -107,6 +107,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const ref = React.useRef<HTMLDivElement | null>(null);
 
   const [activePanel, setActivePanel] = React.useState(initialActiveId);
+  const previousActivePanel = useDelayed(activePanel);
 
   const [_panelElements, setPanelElements] = React.useState<
     Record<string, HTMLElement | null>
@@ -120,6 +121,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
       if (
+        // Panel transition in progress
+        activePanel !== previousActivePanel ||
         // Only if forProp is a panel, go to the new panel.
         !Object.keys(panelElements.current).includes(newActiveId) ||
         // Same panel
@@ -185,7 +188,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       // TODO: DOM cleanup
       // setTimeout(() => setPreviousPanel(undefined), 1000);
     },
-    [activePanel, panelElements],
+    [activePanel, panelElements, previousActivePanel],
   );
 
   return (
@@ -193,13 +196,20 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       value={React.useMemo(
         () => ({
           activePanel,
+          previousActivePanel,
           changeActivePanel,
           triggers,
           setTriggers,
           panelElements: panelElements.current,
           setPanelElements,
         }),
-        [activePanel, changeActivePanel, panelElements, triggers],
+        [
+          activePanel,
+          changeActivePanel,
+          panelElements,
+          previousActivePanel,
+          triggers,
+        ],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -240,8 +250,13 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, triggers, panelElements, setPanelElements } =
-    React.useContext(PanelsWrapperContext) || {};
+  const {
+    activePanel,
+    previousActivePanel,
+    triggers,
+    panelElements,
+    setPanelElements,
+  } = React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
@@ -272,8 +287,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     () => (!!id ? triggers?.[id] : undefined),
     [id, triggers],
   );
-
-  const previousActivePanel = useDelayed(activePanel);
 
   const isMounted = [activePanel, previousActivePanel].includes(id);
   const isTransitioning =
@@ -475,8 +488,8 @@ export const Panels = {
 /**
  * Returns a copy of value which reflects state changes after a set delay.
  */
-function useDelayed<T>(value: T, { delay } = { delay: 500 }): T | undefined {
-  const [delayed, setDelayed] = React.useState<T | undefined>(undefined);
+function useDelayed<T>(value: T, { delay } = { delay: 500 }): T {
+  const [delayed, setDelayed] = React.useState<T>(value);
   const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
