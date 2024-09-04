@@ -70,6 +70,7 @@ function EverythingElse() {
   const oneRow = searchParams.get('oneRow') === 'true';
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
+  const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
 
   const virtualizedData = React.useMemo(() => {
     const size = oneRow ? 1 : 100000;
@@ -151,6 +152,13 @@ function EverythingElse() {
                 }
                 return newState;
               }
+            : undefined
+        }
+        subComponent={
+          hasSubComponent
+            ? (row) => (
+                <div>{`Expanded component, name: ${row.original.name}`}</div>
+              )
             : undefined
         }
       />
