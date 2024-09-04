@@ -20,12 +20,13 @@ export default function App() {
     [],
   );
   const data = useMemo(() => {
-    const size = 20;
+    const size = 5;
     const arr = new Array(size);
     for (let i = 0; i < size; ++i) {
       arr[i] = {
         name: `Name${i}`,
         description: `Description${i}`,
+        // subRows: [{ name: 'Name', description: 'Description' }],
       };
     }
     return arr;
@@ -66,8 +67,8 @@ export default function App() {
         style={{
           maxHeight: '90vh',
         }}
-        subComponent={expandedSubComponent}
         isSelectable
+        subComponent={expandedSubComponent}
       />
     </>
   );

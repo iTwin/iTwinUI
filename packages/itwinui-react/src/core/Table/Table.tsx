@@ -839,23 +839,18 @@ export const Table = <
     const rowsAndSubRows = [];
     for (let i = 0; i < page.length; i++) {
       rowsAndSubRows.push('row');
-      if (state.expanded[page[i].id]) {
+      if (!hasAnySubRows && state.expanded[page[i].id]) {
         rowsAndSubRows.push('subrow');
       }
     }
-
     return rowsAndSubRows;
-  }, [page, state.expanded]);
+  }, [page, state.expanded, hasAnySubRows]);
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
-    // TODO: Check doc for more options/props
     enabled: enableVirtualization,
     count: subComponent ? listOfRowsAndSubRows.length : page.length,
     getScrollElement: () => tableRef.current,
-    // TODO: Check the doc for this option
-    // highest value that the row could be (+ subComponent height)
-    estimateSize: () => rowHeight + 180,
-    // TODO: Confirm that page[index] should not be used here
+    estimateSize: () => rowHeight,
     getItemKey: (index) => page[index]?.id ?? index.toString(),
     overscan: 1,
   });
@@ -884,17 +879,12 @@ export const Table = <
     [listOfRowsAndSubRows],
   );
 
-  /**
-   * Take in index and return if the index is a row or a sub-component.
-   * We'd likely need to use state.expanded and page for this.
-   */
   const isARow = React.useCallback(
     (index: number) => {
       return listOfRowsAndSubRows[index] === 'row';
     },
     [listOfRowsAndSubRows],
   );
-  console.log('state', state);
 
   const getPreparedRow = React.useCallback(
     (
@@ -929,15 +919,12 @@ export const Table = <
               tableInstance={instance}
               expanderCell={expanderCell}
               scrollContainerRef={tableRef.current}
-              tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
               density={density}
               virtualItem={virtualItem}
               virtualizer={virtualizer}
             />
           );
         } else {
-          // Confirm that measureItem is called correctly
-          prepareRow(subComponentsRowData);
           return (
             subComponent && (
               <TableExpandableRowMemoized
@@ -974,7 +961,7 @@ export const Table = <
               tableInstance={instance}
               expanderCell={expanderCell}
               scrollContainerRef={tableRef.current}
-              tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+              tableRowRef={tableRowRef(row)}
               density={density}
               virtualItem={virtualItem}
               virtualizer={virtualizer}
