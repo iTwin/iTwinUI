@@ -23,7 +23,6 @@ import cx from 'classnames';
 import {
   PanelsInstanceContext,
   PanelsInstanceProvider,
-  panelsReducer,
   PanelsWrapperContext,
 } from './helpers.js';
 import type { PanelsInstance, TriggerMapEntry } from './helpers.js';
@@ -107,18 +106,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [{ activePanel, nextPanel }, dispatch] = React.useReducer(
-    panelsReducer,
-    {
-      activePanel: initialActiveId,
-      nextPanel: undefined,
-      onActiveIdChange,
-    },
-  );
-
-  React.useEffect(() => {
-    console.log('panels', activePanel, nextPanel);
-  }, [activePanel, nextPanel]);
+  const [activePanel, setActivePanel] = React.useState(initialActiveId);
 
   const [_panelElements, setPanelElements] = React.useState<
     Record<string, HTMLElement | null>
@@ -128,33 +116,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
   >({});
-
-  React.useEffect(() => {
-    const refCurrent = ref.current;
-
-    const scrollEndListenerCurrent = () => {
-      dispatch({ type: 'end-panel-transition' });
-    };
-
-    const scrollListener = () => {
-      clearTimeout((window as any).scrollEndTimer);
-      (window as any).scrollEndTimer = setTimeout(
-        scrollEndListenerCurrent,
-        100,
-      );
-    };
-
-    if ('onscrollend' in window) {
-      refCurrent?.addEventListener('scrollend', scrollEndListenerCurrent);
-    } else {
-      refCurrent?.addEventListener('scroll', scrollListener);
-    }
-
-    return () => {
-      refCurrent?.removeEventListener('scrollend', scrollEndListenerCurrent);
-      refCurrent?.removeEventListener('scroll', scrollListener);
-    };
-  }, [activePanel, nextPanel]);
 
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
@@ -167,29 +128,15 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         return;
       }
 
-      ReactDOM.flushSync(() => {
-        // setNextPanel(newActiveId);
-        dispatch({ type: 'start-panel-transition', nextPanel: newActiveId });
+      ReactDOM.flushSync(() => setActivePanel(newActiveId));
+      panelElements.current?.[newActiveId]?.scrollIntoView({
+        block: 'nearest',
+        inline: 'center',
+        behavior: 'smooth',
       });
-
-      // setTimeout(() => {
-      //   console.log('HERE', panelElements.current[activePanel]);
-      //   panelElements.current[activePanel]?.scrollIntoView({
-      //     behavior: 'instant',
-      //     block: 'nearest',
-      //     inline: 'center',
-      //   });
-      // }, 1_000);
 
       await new Promise((resolve) => {
         setTimeout(() => {
-          console.log('Scrolling', panelElements.current?.[newActiveId]);
-
-          panelElements.current?.[newActiveId]?.scrollIntoView({
-            block: 'nearest',
-            inline: 'center',
-          });
-
           // WIP Focus
           // const activePanelElement = document.getElementById(activePanel);
           // const newActiveElement = document.getElementById(newActiveId);
@@ -214,9 +161,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           //     trigger?.focus({ preventScroll: true });
           //   }
           // }
-
           resolve(null);
-        }, 4_000);
+        });
       });
 
       // TODO: focus
@@ -247,14 +193,13 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       value={React.useMemo(
         () => ({
           activePanel,
-          nextPanel,
           changeActivePanel,
           triggers,
           setTriggers,
           panelElements: panelElements.current,
           setPanelElements,
         }),
-        [activePanel, changeActivePanel, panelElements, nextPanel, triggers],
+        [activePanel, changeActivePanel, panelElements, triggers],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -295,7 +240,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, nextPanel, triggers, panelElements, setPanelElements } =
+  const { activePanel, triggers, panelElements, setPanelElements } =
     React.useContext(PanelsWrapperContext) || {};
 
   const fallbackId = React.useId();
@@ -328,9 +273,14 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     [id, triggers],
   );
 
-  const isMounted = [activePanel, nextPanel].includes(id);
+  const previousActivePanel = useDelayed(activePanel);
+
+  const isMounted = [activePanel, previousActivePanel].includes(id);
+  const isTransitioning =
+    activePanel === id && activePanel !== previousActivePanel;
+
   // TODO: Being back inert checks
-  // const isInert = [nextPanel].includes(id);
+  const isInert = previousActivePanel === id && activePanel !== id;
 
   const refs = useMergedRefs(setElement, forwardedRef);
 
@@ -348,7 +298,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header`}
           tabIndex={-1}
-          // {...{ inert: isInert ? '' : undefined }}
+          {...{ inert: isInert ? 'true' : undefined }}
+          data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
         >
           {children}
@@ -520,3 +471,22 @@ export const Panels = {
   BackButton: PanelBackButton,
   useInstance: useInstance as () => PanelsInstance,
 };
+
+/**
+ * Returns a copy of value which reflects state changes after a set delay.
+ */
+function useDelayed<T>(value: T, { delay } = { delay: 500 }): T | undefined {
+  const [delayed, setDelayed] = React.useState<T | undefined>(undefined);
+  const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+
+  React.useEffect(() => {
+    timeout.current = setTimeout(() => setDelayed(value), delay);
+    return () => {
+      clearTimeout(timeout.current);
+    };
+  }, [value, delay]);
+
+  return delayed;
+}
