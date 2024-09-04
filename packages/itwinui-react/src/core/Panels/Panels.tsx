@@ -106,7 +106,15 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [activePanel, setActivePanel] = React.useState(initialActiveId);
+  const [activePanel, _setActivePanel] = React.useState(initialActiveId);
+  const setActivePanel = React.useCallback(
+    (newActivePanel: typeof activePanel) => {
+      _setActivePanel(newActivePanel);
+      onActiveIdChange?.(newActivePanel);
+    },
+    [onActiveIdChange],
+  );
+
   const previousActivePanel = useDelayed(activePanel);
 
   const [_panelElements, setPanelElements] = React.useState<
@@ -188,7 +196,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       // TODO: DOM cleanup
       // setTimeout(() => setPreviousPanel(undefined), 1000);
     },
-    [activePanel, panelElements, previousActivePanel],
+    [activePanel, panelElements, previousActivePanel, setActivePanel],
   );
 
   return (
