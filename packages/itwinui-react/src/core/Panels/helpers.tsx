@@ -10,7 +10,11 @@ export type PanelsInstance = {
   goBack: () => void;
 };
 
-export type TriggerMapEntry = { triggerId: string; panelId: string };
+export type TriggerMapEntry = {
+  triggerId: string;
+  triggerElement: HTMLElement | null;
+  panelId: string;
+};
 
 // ----------------------------------------------------------------------------
 
@@ -18,15 +22,21 @@ export const PanelsWrapperContext = React.createContext<
   | {
       // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
       activePanel: string;
-      previousActivePanel: string;
       triggers: Record<string, TriggerMapEntry>;
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
       triggersRef: React.MutableRefObject<Record<string, TriggerMapEntry>>;
-      changeActivePanel: (newActiveId: string) => Promise<void>;
+      changeActivePanel: (
+        newActiveId: string,
+        direction: 'forward' | 'backward',
+      ) => Promise<void>;
       panelElements: Record<string, HTMLElement | null>;
       setPanelElements: React.Dispatch<
+        React.SetStateAction<Record<string, HTMLElement | null>>
+      >;
+      panelHeaderElements: Record<string, HTMLElement | null>;
+      setPanelHeaderElements: React.Dispatch<
         React.SetStateAction<Record<string, HTMLElement | null>>
       >;
     }
@@ -66,7 +76,7 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
 
     const trigger = triggers[activePanel];
     if (trigger.triggerId != null) {
-      changeActivePanel(trigger.panelId);
+      changeActivePanel(trigger.panelId, 'backward');
     }
   }, [panelsWrapperContext]);
 
