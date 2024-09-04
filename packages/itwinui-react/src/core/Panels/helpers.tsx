@@ -23,6 +23,7 @@ export const PanelsWrapperContext = React.createContext<
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
+      triggersRef: React.MutableRefObject<Record<string, TriggerMapEntry>>;
       changeActivePanel: (newActiveId: string) => Promise<void>;
       panelElements: Record<string, HTMLElement | null>;
       setPanelElements: React.Dispatch<
@@ -31,6 +32,9 @@ export const PanelsWrapperContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  PanelsWrapperContext.displayName = 'PanelsWrapperContext';
+}
 
 // ----------------------------------------------------------------------------
 

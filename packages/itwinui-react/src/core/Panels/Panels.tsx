@@ -13,6 +13,7 @@ import {
   useInstance,
   useLatestRef,
   useMergedRefs,
+  useSafeContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -51,10 +52,8 @@ export type PanelsWrapperProps = {
  * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
  * Notes:
- * - There can only be one panel with triggers to a particular other panel. In other words:
- *   - Triggers to a particular Panel Y can only exist in a particular Panel X.
- *   - In a particular navigation path, a panel cannot appear twice. E.g. Panel X → Panel Y → Panel X is not allowed.
- * Panel X can have multiple triggers that point to panel Y.
+ * - A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels,
+ *   only one can point to a particular panel.
  *
  * @example
  * <Panels.Wrapper
@@ -125,6 +124,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
   >({});
+  const triggersRef = useLatestRef(triggers);
 
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
@@ -148,55 +148,37 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
       await new Promise((resolve) => {
         setTimeout(() => {
-          // WIP Focus
-          // const activePanelElement = document.getElementById(activePanel);
-          // const newActiveElement = document.getElementById(newActiveId);
+          const prevElement = document.getElementById(previousActivePanel);
+          const activeElement = document.getElementById(newActiveId);
 
-          // if (activePanelElement != null && newActiveElement != null) {
-          //   const isNewActivePanelAfterCurrentActivePanelInDom =
-          //     activePanelElement?.compareDocumentPosition(newActiveElement) &
-          //     Node.DOCUMENT_POSITION_FOLLOWING;
+          if (prevElement != null && activeElement != null) {
+            const isActivePanelAfterPrevPanelInDom =
+              prevElement?.compareDocumentPosition(activeElement) &
+              Node.DOCUMENT_POSITION_FOLLOWING;
 
-          //   // Going forward = Focus new panel
-          //   if (isNewActivePanelAfterCurrentActivePanelInDom) {
-          //     const panel = document.getElementById(newActiveId);
-          //     // console.log('1', panel);
-          //     panel?.focus({ preventScroll: true });
-          //   }
-          //   // Going backward = Focus trigger that had opened the current panel
-          //   else {
-          //     const trigger = document.getElementById(
-          //       triggers[activePanel].triggerId,
-          //     );
-          //     // console.log('2', triggers, triggers[activePanel]);
-          //     trigger?.focus({ preventScroll: true });
-          //   }
-          // }
+            // Going forward = Focus new panel
+            if (isActivePanelAfterPrevPanelInDom) {
+              activeElement?.focus({ preventScroll: true });
+            }
+            // Going backward = Focus trigger that had opened the current panel
+            else {
+              const trigger = document.getElementById(
+                triggersRef.current[previousActivePanel].triggerId,
+              );
+              trigger?.focus({ preventScroll: true });
+            }
+          }
           resolve(null);
         });
       });
-
-      // TODO: focus
-      // const triggerId = triggers?.current?.get(newActiveId)?.triggerId;
-      // if (triggerId) {
-      //   const trigger = document.getElementById(triggerId);
-      //   console.log(triggers?.current?.get(newActiveId));
-      //   const isTriggerFocused = document.activeElement === trigger;
-      //   const elementToFocus = isTriggerFocused
-      //     ? panelElements.current?.[newActiveId]
-      //     : trigger;
-      //   elementToFocus?.focus({ preventScroll: true });
-      // }
-
-      // ReactDOM.flushSync(() => {
-      //   setActivePanel(newActiveId);
-      //   onActiveIdChange?.(newActiveId);
-      // });
-
-      // TODO: DOM cleanup
-      // setTimeout(() => setPreviousPanel(undefined), 1000);
     },
-    [activePanel, panelElements, previousActivePanel, setActivePanel],
+    [
+      activePanel,
+      panelElements,
+      previousActivePanel,
+      setActivePanel,
+      triggersRef,
+    ],
   );
 
   return (
@@ -208,6 +190,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           changeActivePanel,
           triggers,
           setTriggers,
+          triggersRef,
           panelElements: panelElements.current,
           setPanelElements,
         }),
@@ -217,6 +200,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           panelElements,
           previousActivePanel,
           triggers,
+          triggersRef,
         ],
       )}
     >
@@ -264,7 +248,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     triggers,
     panelElements,
     setPanelElements,
-  } = React.useContext(PanelsWrapperContext) || {};
+  } = useSafeContext(PanelsWrapperContext);
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
@@ -291,16 +275,11 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   useInertPolyfill();
 
-  const associatedTrigger = React.useMemo(
-    () => (!!id ? triggers?.[id] : undefined),
-    [id, triggers],
-  );
+  const associatedTrigger = React.useMemo(() => triggers[id], [id, triggers]);
 
   const isMounted = [activePanel, previousActivePanel].includes(id);
   const isTransitioning =
     activePanel === id && activePanel !== previousActivePanel;
-
-  // TODO: Being back inert checks
   const isInert = previousActivePanel === id && activePanel !== id;
 
   const refs = useMergedRefs(setElement, forwardedRef);
@@ -364,9 +343,9 @@ type PanelTriggerProps = {
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
-  const { changeActivePanel, triggers, setTriggers, activePanel } =
-    React.useContext(PanelsWrapperContext) || {};
-  const { id: panelId } = React.useContext(PanelContext) || {};
+  const { changeActivePanel, setTriggers, activePanel } =
+    useSafeContext(PanelsWrapperContext);
+  const { id: panelId } = useSafeContext(PanelContext);
 
   const fallbackId = React.useId();
   const triggerId = children.props.id || fallbackId;
@@ -377,17 +356,14 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 
   // Add/Update trigger in the triggers map
   React.useEffect(() => {
-    if (triggers == null) {
-      return;
-    }
-
-    setTriggers?.((oldTriggers) => {
+    setTriggers((oldTriggers) => {
       const triggersMatch = oldTriggers[forProp];
 
+      // Update entry only if it doesn't exist or has changed
       if (
-        !!panelId &&
-        (panelId !== triggersMatch?.panelId ||
-          triggerId !== triggersMatch?.triggerId)
+        triggersMatch == null ||
+        panelId !== triggersMatch.panelId ||
+        triggerId !== triggersMatch.triggerId
       ) {
         return {
           ...oldTriggers,
@@ -400,7 +376,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 
       return oldTriggers;
     });
-  }, [forProp, panelId, setTriggers, triggerId, triggers]);
+  }, [forProp, panelId, setTriggers, triggerId]);
 
   return cloneElementWithRef(children, (children) => {
     return {
@@ -425,7 +401,7 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
 
   const { id: panelId, associatedTrigger: panelAssociatedTrigger } =
-    React.useContext(PanelContext) || {};
+    useSafeContext(PanelContext);
 
   return (
     <Flex ref={forwardedRef} {...rest}>
@@ -459,8 +435,7 @@ PanelHeader.displayName = 'Panels.Header';
 const PanelBackButton = React.forwardRef((props, forwardedRef) => {
   const { children, onClick, ...rest } = props;
 
-  const { instance: panelInstance } =
-    React.useContext(PanelsInstanceContext) || {};
+  const { instance: panelInstance } = useSafeContext(PanelsInstanceContext);
 
   return (
     <IconButton
