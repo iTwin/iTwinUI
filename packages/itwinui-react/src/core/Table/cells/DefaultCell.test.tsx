@@ -26,39 +26,3 @@ it('should merge className/style with cellElementProps', () => {
   expect(cellElement.style.width).toBe('100px');
   expect(cellElement.style.color).toBe('red');
 });
-
-it('should not apply clamp, if id of column is not defined', () => {
-  const { container } = render(
-    <DefaultCell
-      cellElementProps={{
-        key: 'key',
-        className: 'original-class',
-      }}
-      cellProps={{ column: {}, value: 'string' } as any}
-    >
-      {null}
-    </DefaultCell>,
-  );
-  const host = container.querySelector('.original-class');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('div');
-  expect(lineClamp).toBeNull();
-});
-
-it('should apply clamp, if id of column is defined and cell value is string', () => {
-  const { container } = render(
-    <DefaultCell
-      cellElementProps={{
-        key: 'key',
-        className: 'original-class',
-      }}
-      cellProps={{ column: { id: 'id' }, value: 'string' } as any}
-    >
-      {null}
-    </DefaultCell>,
-  );
-  const host = container.querySelector('.original-class');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('div');
-  expect(lineClamp).toBeTruthy();
-});

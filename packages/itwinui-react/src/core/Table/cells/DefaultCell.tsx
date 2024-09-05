@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
 import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
@@ -45,13 +46,12 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
-  const columnsProp = React.useContext(TableColumnsContext);
+  const instanceColumns = React.useContext(TableColumnsContext);
   const isCustomCell = React.useMemo(
     () =>
-      columnsProp
-        .find(({ id }) => props.cellProps.column.id === id)
-        ?.hasOwnProperty('Cell'),
-    [props.cellProps.column.id, columnsProp],
+      instanceColumns.find(({ id }) => props.cellProps.column.id === id)
+        ?.Cell !== defaultColumn.Cell,
+    [instanceColumns, props.cellProps.column.id],
   );
 
   const {
@@ -68,9 +68,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' &&
-      !!props.cellProps.column.id &&
-      !isCustomCell,
+    clamp = typeof cellProps.value === 'string' && !isCustomCell,
     ...rest
   } = props;
 
