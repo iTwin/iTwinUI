@@ -12,11 +12,11 @@ import { FooterList } from './FooterList.js';
 import { Anchor } from '../Typography/Anchor.js';
 
 export type TitleTranslations = {
-  termsOfService: string;
-  privacy: string;
-  termsOfUse: string;
-  cookies: string;
-  legalNotices: string;
+  termsOfService?: string;
+  privacy?: string;
+  termsOfUse?: string;
+  cookies?: string;
+  legalNotices?: string;
 };
 
 type FooterProps = {
@@ -55,7 +55,7 @@ export type FooterElement = {
   key?: keyof TitleTranslations | 'copyright' | (string & Record<never, never>);
 };
 
-const footerTranslations: TitleTranslations = {
+const defaultTranslatedTitles: Required<TitleTranslations> = {
   cookies: 'Cookies',
   legalNotices: 'Legal notices',
   privacy: 'Privacy',
@@ -70,27 +70,27 @@ export const defaultFooterElements: FooterElement[] = [
   },
   {
     key: 'termsOfService',
-    title: footerTranslations.termsOfService,
+    title: defaultTranslatedTitles.termsOfService,
     url: 'https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect',
   },
   {
     key: 'privacy',
-    title: footerTranslations.privacy,
+    title: defaultTranslatedTitles.privacy,
     url: 'https://www.bentley.com/en/privacy-policy',
   },
   {
     key: 'termsOfUse',
-    title: footerTranslations.termsOfUse,
+    title: defaultTranslatedTitles.termsOfUse,
     url: 'https://www.bentley.com/en/terms-of-use-and-select-online-agreement',
   },
   {
     key: 'cookies',
-    title: footerTranslations.cookies,
+    title: defaultTranslatedTitles.cookies,
     url: 'https://www.bentley.com/en/cookie-policy',
   },
   {
     key: 'legalNotices',
-    title: footerTranslations.legalNotices,
+    title: defaultTranslatedTitles.legalNotices,
     url: 'https://connect.bentley.com/Legal',
   },
 ];
@@ -113,7 +113,7 @@ export const Footer = Object.assign(
     const { children, customElements, translatedTitles, className, ...rest } =
       props;
 
-    const titles = { ...footerTranslations, ...translatedTitles };
+    const titles = { ...defaultTranslatedTitles, ...translatedTitles };
     const translatedElements = defaultFooterElements.map((element) => {
       if (element.key && titles.hasOwnProperty(element.key)) {
         const key = element.key as keyof TitleTranslations;
