@@ -799,20 +799,16 @@ export const Table = <
   const [resizeRef] = useResizeObserver(onTableResize);
 
   /**
-   * Takes in page and state.expanded. Only called when there are no sub-rows since sub-rows are treated as row.
+   * Takes in page and state.expanded.
+   * Only called when there are no sub-rows since sub-rows are treated as row.
    * Returns Array<"row" | "subrow">
-   *
-   * @example
-   * listOfRowsAndSubComponents = [row, subrow (1-0), row, row, subrow(4-2), row, subrow(6-3)]
-   * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
-   * state.expanded = {abc1: true, abc3: true}
    */
   const listOfRowsAndSubComponents = React.useMemo(() => {
     const rowsAndSubComponents = [];
     for (let i = 0; i < page.length; i++) {
       rowsAndSubComponents.push('row');
       if (!hasAnySubRows && state.expanded[page[i].id]) {
-        rowsAndSubComponents.push('subrow');
+        rowsAndSubComponents.push('subcomponent');
       }
     }
     return rowsAndSubComponents;
@@ -833,11 +829,18 @@ export const Table = <
     }
   }, [virtualizer, scrollToIndex]);
 
+  /**
+   * Returns associated index of the row and sub-component.
+   * Index of subcomponent is retrieved from the current expanded main row subtracted by the number of expanded contents before.
+   * @example
+   * listOfRowsAndSubComponents = [row, subcomponent (1-0), row, row, subcomponent (4-2), row, subcomponent (6-3)]
+   * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
+   * state.expanded = {abc1: true, abc3: true}*/
   const getRowIndices = React.useCallback(
     (index: number) => {
       let expandedRowsBefore = 0;
       for (let i = 0; i < index; i++) {
-        if (listOfRowsAndSubComponents[i] === 'subrow') {
+        if (listOfRowsAndSubComponents[i] === 'subcomponent') {
           expandedRowsBefore++;
         }
       }

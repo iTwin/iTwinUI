@@ -121,7 +121,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     mergedProps.ref,
     tableRowRef,
     virtualizer?.measureElement,
-    virtualItem?.measureElement,
+    virtualItem?.measureElement, // Explicitly tells row to resize when expandable is collapsed
   );
 
   return (
