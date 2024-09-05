@@ -8,7 +8,6 @@ describe('Panels', () => {
     'Basic',
     'Multi Panel Information Panel',
     'Multi Level List',
-    'Custom Back Button',
     'Nested Panels',
   ];
 

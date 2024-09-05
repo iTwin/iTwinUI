@@ -3,7 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Panels, List, ListItem, Surface } from '@itwin/itwinui-react';
+import {
+  Panels,
+  List,
+  ListItem,
+  Surface,
+  ToggleSwitch,
+} from '@itwin/itwinui-react';
 
 export default () => {
   const initialActiveId = React.useId();

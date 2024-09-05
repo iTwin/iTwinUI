@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Panels, Flex, Surface } from '@itwin/itwinui-react';
+import { Panels, Flex, Surface, Button } from '@itwin/itwinui-react';
 
 export default () => {
   const panels = Panels.useInstance();

@@ -89,7 +89,7 @@ test(`should not scroll when reduced motion is enabled`, async ({ page }) => {
   // Assuming the scroll duration is around 500ms, the number of panels in the DOM should never be more than 1
   for (let i = 0; i < 10; i++) {
     await page.waitForTimeout(50);
-    expect(page.locator('#panels-wrapper > *')).toHaveCount(1);
+    expect(await page.locator('#panels-wrapper > *').count()).toBe(1);
   }
 });
 
@@ -120,7 +120,7 @@ test('should inert and/or unmount inactive panels', async ({ page }) => {
 
   // after scroll finishes, even the previously visible inactive panel should be unmounted
   await page.waitForTimeout(550);
-  expect(page.locator('#root')).toHaveCount(0);
+  expect(await page.locator('#root').count()).toBe(0);
 });
 
 test('should not go to a panel that does not exist', async ({ page }) => {
@@ -135,30 +135,6 @@ test('should not go to a panel that does not exist', async ({ page }) => {
 
   await expect(page.locator('#root')).toBeVisible();
   await expect(page.locator('#more-info')).not.toBeVisible();
-});
-
-test('should not go back when no trigger points to a panel', async ({
-  page,
-}) => {
-  await page.goto(
-    '/Panels?exampleType=multi-panel-information-panel&showRootPanelBackButton=true&animationDuration=0',
-  );
-
-  const panels = Array.from(Array(20).keys());
-
-  await expect(page.locator('#root')).toBeVisible();
-  for (let i = 0; i < panels.length; i++) {
-    await expect(page.locator(`#panel-${i}`).first()).not.toBeVisible();
-  }
-
-  await page.locator('#root-panel-back-button').first().click();
-
-  await page.waitForTimeout(10);
-
-  await expect(page.locator('#root')).toBeVisible();
-  for (let i = 0; i < panels.length; i++) {
-    await expect(page.locator(`#panel-${i}`).first()).not.toBeVisible();
-  }
 });
 
 test('should not show a back button in the Panels.Header if no trigger points to the panel', async ({

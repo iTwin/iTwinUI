@@ -10,6 +10,7 @@ import {
   Flex,
   Surface,
   Text,
+  Divider,
 } from '@itwin/itwinui-react';
 
 export default () => {

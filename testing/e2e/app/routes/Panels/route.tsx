@@ -8,7 +8,6 @@ import {
   Surface,
   Text,
 } from '@itwin/itwinui-react';
-import { SvgArrowLeft } from '@itwin/itwinui-icons-react';
 import { useSearchParams } from '@remix-run/react';
 
 export default function ButtonGroupTest() {
@@ -18,7 +17,7 @@ export default function ButtonGroupTest() {
   const { exampleType } = config;
 
   return exampleType === 'multi-panel-information-panel' ? (
-    <MultiPanelInformationPanel config={config} />
+    <MultiPanelInformationPanel />
   ) : exampleType === 'nested-panels' ? (
     <NestedPanels />
   ) : (
@@ -31,12 +30,9 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     | 'default'
     | 'multi-panel-information-panel'
     | 'nested-panels';
-  const showRootPanelBackButton =
-    searchParams.get('showRootPanelBackButton') === 'true';
 
   return {
     exampleType,
-    showRootPanelBackButton,
   };
 };
 
@@ -98,13 +94,7 @@ const Basic = () => {
   );
 };
 
-const MultiPanelInformationPanel = ({
-  config,
-}: {
-  config: ReturnType<typeof getConfigFromSearchParams>;
-}) => {
-  const { showRootPanelBackButton } = config;
-
+const MultiPanelInformationPanel = () => {
   const initialActiveId = 'root';
 
   const panels = Array.from(Array(20).keys()).map((i) => ({
@@ -128,17 +118,7 @@ const MultiPanelInformationPanel = ({
         alignItems='stretch'
         gap='0'
       >
-        <Surface.Header as={Flex}>
-          {showRootPanelBackButton && (
-            <Panels.BackButton
-              label='Should do nothing as no prev panel'
-              id='root-panel-back-button'
-            >
-              <SvgArrowLeft />
-            </Panels.BackButton>
-          )}
-          Root
-        </Surface.Header>
+        <Surface.Header as={Flex}>Root</Surface.Header>
         <Surface.Body
           style={{
             overflowY: 'auto',
