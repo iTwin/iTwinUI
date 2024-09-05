@@ -10,6 +10,7 @@ import {
   useEventListener,
   useMergedRefs,
   Box,
+  mergeEventHandlers,
 } from '../../utils/index.js';
 import type {
   HsvColor,
@@ -29,9 +30,13 @@ const getHorizontalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
 
 type ColorBuilderProps = {
   /**
-   * Props for color builder wrapper.
+   * Props for color field box.
    */
   colorFieldProps?: React.ComponentProps<'div'>;
+  /**
+   * Props for color dot box.
+   */
+  colorDotProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -40,7 +45,7 @@ type ColorBuilderProps = {
  * and a set of sliders to adjust hue and alpha values.
  */
 export const ColorBuilder = React.forwardRef((props, ref) => {
-  const { className, colorFieldProps, ...rest } = props;
+  const { className, colorFieldProps, colorDotProps, ...rest } = props;
 
   const builderRef = React.useRef<HTMLDivElement>();
   const refs = useMergedRefs(builderRef, ref);
@@ -279,21 +284,27 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
         }}
       >
         <Box
-          className='iui-color-dot'
+          as='div'
+          {...colorDotProps}
+          className={cx('iui-color-dot', colorDotProps?.className)}
           style={
             {
               '--iui-color-dot-inset-block': `${squareTop.toString()}% auto`,
               '--iui-color-dot-inset-inline': `${squareLeft.toString()}% auto`,
+              ...colorDotProps?.style,
             } as React.CSSProperties
           }
-          onPointerDown={() => {
-            setColorDotActive(true);
-            colorDotRef.current?.focus();
-          }}
+          onPointerDown={mergeEventHandlers(
+            () => {
+              setColorDotActive(true);
+              colorDotRef.current?.focus();
+            },
+            colorDotProps?.onPointerDown,
+          )}
           onKeyDown={handleColorDotKeyDown}
           onKeyUp={handleColorDotKeyUp}
           tabIndex={0}
-          ref={colorDotRef}
+          ref={useMergedRefs(colorDotRef, colorDotProps?.ref)}
         />
       </Box>
 

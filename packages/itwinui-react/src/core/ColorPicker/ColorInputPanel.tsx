@@ -6,7 +6,13 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Input } from '../Input/Input.js';
-import { ColorValue, SvgSwap, Box, useId } from '../../utils/index.js';
+import {
+  ColorValue,
+  SvgSwap,
+  Box,
+  useId,
+  useMergedRefs,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
@@ -24,11 +30,15 @@ type ColorInputPanelProps = {
    */
   allowedColorFormats?: ('hsl' | 'rgb' | 'hex')[];
   /**
-   * Props for color input panel wrapper.
+   * Props for color input panel box.
    */
   panelLabelProps?: React.ComponentProps<'div'>;
   /**
-   * Props for color input field wrapper.
+   * Props for color input field container box.
+   */
+  inputContainerProps?: React.ComponentProps<'div'>;
+  /**
+   * Props for color input field box.
    */
   inputFieldProps?: React.ComponentProps<'div'>;
 };
@@ -47,8 +57,9 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     defaultColorFormat,
     allowedColorFormats = ['hsl', 'rgb', 'hex'],
     className,
-    inputFieldProps,
+    inputContainerProps,
     panelLabelProps,
+    inputFieldProps,
     ...rest
   } = props;
 
@@ -476,7 +487,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           'iui-color-picker-section-label',
           panelLabelProps?.className,
         )}
-        id={labelId}
+        id={panelLabelProps?.id ?? labelId}
       >
         {showAlpha && currentFormat !== 'hex'
           ? currentFormat.toUpperCase() + 'A'
@@ -484,8 +495,8 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
       </Box>
       <Box
         as='div'
-        {...inputFieldProps}
-        className={cx('iui-color-input', inputFieldProps?.className)}
+        {...inputContainerProps}
+        className={cx('iui-color-input', inputContainerProps?.className)}
       >
         {allowedColorFormats.length > 1 && (
           <IconButton
@@ -498,10 +509,15 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           </IconButton>
         )}
         <Box
-          ref={inputsContainerRef}
-          className='iui-color-input-fields'
+          as='div'
+          {...inputFieldProps}
+          ref={useMergedRefs(inputsContainerRef, inputFieldProps?.ref)}
+          className={cx('iui-color-input-fields', inputFieldProps?.className)}
           role={currentFormat !== 'hex' ? 'group' : undefined}
-          aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
+          aria-labelledby={
+            inputFieldProps?.id ??
+            (currentFormat !== 'hex' ? labelId : undefined)
+          }
         >
           {currentFormat === 'hex' && hexInputField}
           {currentFormat === 'rgb' && rgbInputs}
