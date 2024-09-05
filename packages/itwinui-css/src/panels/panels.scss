@@ -4,6 +4,10 @@
 .iui-panel-wrapper {
   overflow: hidden;
   scroll-snap-type: x proximity;
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 // Intentional selector to increase specificity

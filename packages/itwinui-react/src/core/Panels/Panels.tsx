@@ -14,6 +14,7 @@ import {
   useLatestRef,
   useMergedRefs,
   useSafeContext,
+  getWindow,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -147,7 +148,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       panelElements.current[newActiveId]?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
-        behavior: 'smooth',
       });
 
       await new Promise((resolve) => {
@@ -482,14 +482,33 @@ export const Panels = {
 /**
  * Returns a copy of value which reflects state changes after a set delay.
  */
-function useDelayed<T>(value: T, { delay } = { delay: 500 }): T {
+function useDelayed<T>(
+  value: T,
+  {
+    delay,
+  }: {
+    /** Default delay is 500ms, or 0ms when prefers-reduced-motion */
+    delay?: number;
+  } = {},
+): T {
+  const motionOk = getWindow()?.matchMedia(
+    '(prefers-reduced-motion: no-preference)',
+  )?.matches;
+
+  delay ??= motionOk ? 500 : 0;
+
   const [delayed, setDelayed] = React.useState<T>(value);
   const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
 
   React.useEffect(() => {
-    timeout.current = setTimeout(() => setDelayed(value), delay);
+    if (delay === 0) {
+      setDelayed(value);
+    } else {
+      timeout.current = setTimeout(() => setDelayed(value), delay);
+    }
+
     return () => {
       clearTimeout(timeout.current);
     };
