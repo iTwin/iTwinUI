@@ -53,6 +53,7 @@ const Basic = () => {
         Go Back
       </Button>
       <Panels.Wrapper
+        id='panels-wrapper'
         instance={panels}
         initialActiveId={initialActiveId}
         as={Surface}
