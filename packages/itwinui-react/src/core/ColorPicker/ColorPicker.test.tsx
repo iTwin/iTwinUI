@@ -42,6 +42,42 @@ it('should add className and style correctly', () => {
   expect(swatch).toHaveStyle('width: 100px');
 });
 
+it('should render color field with custom props', () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorBuilder
+        colorFieldProps={{
+          className: 'test-color-field',
+          style: { borderRadius: '10px' },
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const colorField = container.querySelector(
+    '.iui-color-field.test-color-field',
+  ) as HTMLElement;
+  expect(colorField).toBeTruthy();
+  expect(colorField.style.borderRadius).toBe('10px');
+});
+
+it('should render color dot with custom props', () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorBuilder
+        colorDotProps={{
+          className: 'test-color-dot',
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const colorDot = container.querySelector(
+    '.iui-color-dot.test-color-dot',
+  ) as HTMLElement;
+  expect(colorDot).toBeTruthy();
+});
+
 it('should render advanced color picker with no color swatches', () => {
   const { container } = render(
     <ColorPicker>

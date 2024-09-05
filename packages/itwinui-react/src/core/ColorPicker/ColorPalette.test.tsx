@@ -80,7 +80,10 @@ it('should pass color palette with props', () => {
     <ColorPicker>
       <ColorPalette
         label='Saved colors'
-        paletteProps={{ className: 'test-palette', style: { gap: '10px' } }}
+        paletteContainerProps={{
+          className: 'test-palette',
+          style: { gap: '10px' },
+        }}
         colors={colors}
       />
     </ColorPicker>,

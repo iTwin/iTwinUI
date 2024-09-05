@@ -275,13 +275,16 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
             ...colorFieldProps?.style,
           } as React.CSSProperties
         }
-        ref={squareRef}
-        onPointerDown={(event: React.PointerEvent) => {
-          event.preventDefault();
-          updateSquareValue(event, 'onClick');
-          setColorDotActive(true);
-          colorDotRef.current?.focus();
-        }}
+        ref={useMergedRefs(squareRef, colorFieldProps?.ref)}
+        onPointerDown={mergeEventHandlers(
+          (event: React.PointerEvent) => {
+            event.preventDefault();
+            updateSquareValue(event, 'onClick');
+            setColorDotActive(true);
+            colorDotRef.current?.focus();
+          },
+          colorFieldProps?.onPointerDown,
+        )}
       >
         <Box
           as='div'

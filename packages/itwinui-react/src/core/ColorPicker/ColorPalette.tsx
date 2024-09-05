@@ -31,9 +31,9 @@ export type ColorPaletteProps = {
    */
   children?: React.ReactNode;
   /**
-   * Pass any custom swatches as children.
+   * Props for palette container box.
    */
-  paletteProps?: React.ComponentProps<'div'>;
+  paletteContainerProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -54,7 +54,7 @@ export const ColorPalette = React.forwardRef((props, ref) => {
     labelProps,
     className,
     children,
-    paletteProps,
+    paletteContainerProps,
     ...rest
   } = props;
 
@@ -81,8 +81,8 @@ export const ColorPalette = React.forwardRef((props, ref) => {
       )}
       <Box
         as='div'
-        {...paletteProps}
-        className={cx('iui-color-palette', paletteProps?.className)}
+        {...paletteContainerProps}
+        className={cx('iui-color-palette', paletteContainerProps?.className)}
       >
         {children}
         {colors &&

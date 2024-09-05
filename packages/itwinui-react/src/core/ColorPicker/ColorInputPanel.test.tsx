@@ -7,7 +7,6 @@ import { ColorPicker } from './ColorPicker.js';
 import { ColorInputPanel } from './ColorInputPanel.js';
 import { ColorValue } from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
-
 it('should pass custom label with props', async () => {
   const { container } = render(
     <ColorPicker>
@@ -28,12 +27,12 @@ it('should pass custom label with props', async () => {
   expect(inputPanelLabel.style.color).toBe('red');
 });
 
-it('should render input field with custom props', async () => {
+it('should render input field with custom container props', async () => {
   const { container } = render(
     <ColorPicker>
       <ColorInputPanel
         defaultColorFormat='hex'
-        inputFieldProps={{
+        inputContainerProps={{
           className: 'test-input-panel',
           style: { padding: '10px' },
         }}
@@ -46,6 +45,32 @@ it('should render input field with custom props', async () => {
   ) as HTMLElement;
   expect(inputPanel).toBeTruthy();
   expect(inputPanel.style.padding).toBe('10px');
+});
+
+it('should render input field with custom input field props', async () => {
+  const logSpy = vitest.spyOn(console, 'log');
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        inputFieldProps={{
+          className: 'test-input-field',
+          style: {
+            borderRadius: '10px',
+          },
+          onClick: () => console.log('clicked'),
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const inputPanel = container.querySelector(
+    '.iui-color-input-fields.test-input-field',
+  ) as HTMLElement;
+  expect(inputPanel).toBeTruthy();
+  expect(inputPanel.style.borderRadius).toBe('10px');
+  await userEvent.click(inputPanel);
+  expect(logSpy).toHaveBeenCalledWith('clicked');
 });
 
 it('should render ColorInputPanel with input fields', async () => {
