@@ -53,24 +53,15 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
     return !value || isNaN(Number(value)) ? undefined : Number(value);
   };
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    if (event.key === 'Enter') {
-      setFilter([parseInputValue(from), parseInputValue(to)]);
-    }
-  };
-
   return (
-    <BaseFilter>
+    <BaseFilter
+      onSubmit={() => setFilter([parseInputValue(from), parseInputValue(to)])}
+    >
       <LabeledInput
         ref={inputRef}
         label={translatedStrings.from}
         value={from}
         onChange={(e) => setFrom(e.target.value)}
-        onKeyDown={onKeyDown}
         type='number'
         displayStyle='inline'
       />
@@ -80,12 +71,8 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
         onChange={(e) => setTo(e.target.value)}
         type='number'
         displayStyle='inline'
-        onKeyDown={onKeyDown}
       />
       <FilterButtonBar
-        setFilter={() =>
-          setFilter([parseInputValue(from), parseInputValue(to)])
-        }
         clearFilter={clearFilter}
         translatedLabels={translatedLabels}
       />
