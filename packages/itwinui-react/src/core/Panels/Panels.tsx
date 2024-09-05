@@ -52,9 +52,16 @@ export type PanelsWrapperProps = {
  * Component that manages the logic for layered panels.
  * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
- * Notes:
+ * Requirements:
  * - A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels,
  *   only one can point to a particular panel.
+ * - The `Panels.Panel` within the wrapper should be in the order of the navigation. E.g.:
+ *   ```jsx
+ *   <Panels.Wrapper>
+ *     <Panels.Panel id={root} /> // Must come before moreDetails since it contains the trigger to moreDetails
+ *     <Panels.Panel id={moreDetails}> // Must come after root since it is navigated to from root
+ *   </Panels.Wrapper>
+ *   ```
  *
  * @example
  * <Panels.Wrapper
@@ -210,7 +217,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     </PanelsWrapperContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
-PanelsWrapper.displayName = 'Panels.Wrapper';
+if (process.env.NODE_ENV === 'development') {
+  PanelsWrapper.displayName = 'Panels.Wrapper';
+}
 
 // #endregion PanelsWrapper
 // ----------------------------------------------------------------------------
@@ -221,16 +230,19 @@ type PanelProps = {
 };
 
 /**
- * Takes an `id` and the panel content. When the wrapper's `activeId` is set to this panel id, this panel is shown.
+ * Takes an `id` and the panel content.
+ * Match this `id` with a `Panels.Triggers`'s `for` prop to create a link between them.
  *
  * @example
- * <Panels.Panel id={panelIdRoot} as={List}>
+ * <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
  *   <Surface.Header as={Panels.Header}>Root</Surface.Header>
- *   <ListItem>
- *     <Panels.Trigger for={panelIdMoreInfo}>
- *       <ListItem.Action>More details</ListItem.Action>
- *     </Panels.Trigger>
- *   </ListItem>
+ *   <Surface.Body as={List}>
+ *     <ListItem>
+ *       <Panels.Trigger for={panelIdMoreInfo}>
+ *         <ListItem.Action>More details</ListItem.Action>
+ *       </Panels.Trigger>
+ *     </ListItem>
+ *   </Surface.Body>
  * </Panels.Panel>
  */
 const Panel = React.forwardRef((props, forwardedRef) => {
@@ -294,7 +306,9 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     </PanelContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelProps>;
-Panel.displayName = 'Panels.Panel';
+if (process.env.NODE_ENV === 'development') {
+  Panel.displayName = 'Panels.Panel';
+}
 
 const PanelContext = React.createContext<
   | {
@@ -314,17 +328,20 @@ type PanelTriggerProps = {
 };
 
 /**
- * Wraps the button to append an `onClick` that changes the panel to the `for` prop panel.
+ * Wraps the button and appends an `onClick` to change the active panel to the one specified in the `for` prop.
+ * Also appends some attributes for accessibility.
  *
  * @example
- * <Panels.Panel id={panelIdRoot} as={List}>
- *   <Surface.Header as={Panels.Header}>Root</Surface.Header>
- *   <ListItem>
- *     <Panels.Trigger for={panelIdMoreInfo}>
- *       <ListItem.Action>More details</ListItem.Action>
- *     </Panels.Trigger>
- *   </ListItem>
- * </Panels.Panel>
+ * <Panels.Trigger for={nextPanelId}>
+ *   <Button>go to next panel</Button>
+ * </Panels.Trigger>
+ *
+ * @example
+ * <ListItem>
+ *   <Panels.Trigger for={panelIdMoreInfo}>
+ *     <ListItem.Action>More details</ListItem.Action>
+ *   </Panels.Trigger>
+ * </ListItem>
  */
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
@@ -380,14 +397,35 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     };
   });
 };
-PanelTrigger.displayName = 'Panels.Trigger';
+if (process.env.NODE_ENV === 'development') {
+  PanelTrigger.displayName = 'Panels.Trigger';
+}
 
 // #endregion PanelTrigger
 // ----------------------------------------------------------------------------
 // #region PanelHeader
 
 /**
- * Required component to add an accessible name and also a back button (depending on whether a previous panel exist).
+ * Required component to add an accessible name and also a back button (if previous panel exists) to the panel.
+ *
+ * @example
+ * <Panels.Panel id={panelIdRoot}>
+ *   <Panels.Header>Root</Panels.Header>
+ *   …
+ * </Panels.Panel>
+ *
+ * @example
+ * <Panels.Panel
+ *   id={panelIdMoreInfo}
+ *   as={Surface}
+ *   border={false}
+ *   elevation={0}
+ * >
+ *   <Surface.Header as={Panels.Header}>More details</Surface.Header>
+ *   <Surface.Body isPadded>
+ *     <Text>Content</Text>
+ *   </Surface.Body>
+ * </Panels.Panel>
  */
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
@@ -422,7 +460,9 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
     </Flex>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
-PanelHeader.displayName = 'Panels.Header';
+if (process.env.NODE_ENV === 'development') {
+  PanelHeader.displayName = 'Panels.Header';
+}
 
 // #endregion PanelHeader
 // ----------------------------------------------------------------------------
@@ -464,7 +504,9 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
     </IconButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
-PanelBackButton.displayName = 'Panels.BackButton';
+if (process.env.NODE_ENV === 'development') {
+  PanelBackButton.displayName = 'Panels.BackButton';
+}
 
 // #endregion PanelBackButton
 // ----------------------------------------------------------------------------
@@ -474,7 +516,6 @@ export const Panels = {
   Panel,
   Trigger: PanelTrigger,
   Header: PanelHeader,
-  BackButton: PanelBackButton,
   useInstance: useInstance as () => PanelsInstance,
 };
 
@@ -490,7 +531,7 @@ function useDelayed<T>(
     delay?: number;
   } = {},
 ): T {
-  const motionOk = getWindow()?.matchMedia(
+  const motionOk = getWindow()?.matchMedia?.(
     '(prefers-reduced-motion: no-preference)',
   )?.matches;
 

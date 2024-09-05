@@ -860,19 +860,16 @@ export { OverlaySubExample };
 import { default as PanelsMainExampleRaw } from './Panels.main';
 export const PanelsMainExample = withThemeProvider(PanelsMainExampleRaw);
 
-// import { default as PanelsMultiPanelInformationPanelRaw } from './Panels.multiPanelInformationPanel';
-// export const PanelsMultiPanelInformationPanel = withThemeProvider(
-//   PanelsMultiPanelInformationPanelRaw,
-// );
+import { default as PanelsMultiPanelInformationPanelRaw } from './Panels.multiPanelInformationPanel';
+export const PanelsMultiPanelInformationPanel = withThemeProvider(
+  PanelsMultiPanelInformationPanelRaw,
+);
 
-// import { default as PanelsMultiLevelListRaw } from './Panels.multiLevelList';
-// export const PanelsMultiLevelList = withThemeProvider(PanelsMultiLevelListRaw);
+import { default as PanelsMultiLevelListRaw } from './Panels.multiLevelList';
+export const PanelsMultiLevelList = withThemeProvider(PanelsMultiLevelListRaw);
 
-// import { default as CustomBackButtonRaw } from './Panels.customBackButton';
-// export const CustomBackButton = withThemeProvider(CustomBackButtonRaw);
-
-// import { default as PanelsNestedPanelsRaw } from './Panels.nestedPanels';
-// export const PanelsNestedPanels = withThemeProvider(PanelsNestedPanelsRaw);
+import { default as PanelsNestedPanelsRaw } from './Panels.nestedPanels';
+export const PanelsNestedPanels = withThemeProvider(PanelsNestedPanelsRaw);
 
 // ----------------------------------------------------------------------------
 

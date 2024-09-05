@@ -54,6 +54,9 @@ export const PanelsInstanceContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  PanelsInstanceContext.displayName = 'PanelsInstanceContext';
+}
 
 type PanelInstanceProviderProps = {
   children: React.ReactNode;

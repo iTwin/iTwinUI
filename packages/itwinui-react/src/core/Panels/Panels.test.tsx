@@ -7,7 +7,6 @@ import { render } from '@testing-library/react';
 
 import { Panels } from './Panels.js';
 import { Button } from '../Buttons/Button.js';
-import { SvgStar } from '@itwin/itwinui-icons-react';
 
 it('should render in its most basic state', () => {
   const panelIdRoot = 'root';
@@ -35,19 +34,5 @@ it('should render in its most basic state', () => {
   ).toBeTruthy();
   expect(
     container.querySelector('.iui-panel-wrapper > .iui-panel#more-info'),
-  ).toBeTruthy();
-});
-
-it('should allow custom children in Panels.BackButton', () => {
-  const {
-    container: { firstChild: starIcon },
-  } = render(<SvgStar />);
-
-  const { container } = render(
-    <Panels.BackButton>
-      <SvgStar />
-    </Panels.BackButton>,
-  );
-
-  expect(container.querySelector('button svg')).toEqual(starIcon);
+  ).toBeFalsy();
 });
