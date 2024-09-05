@@ -115,16 +115,15 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     [onActiveIdChange],
   );
 
-  // TODO: Combine similar code
-  const [_panelElements, setPanelElements] = React.useState<
+  const [panelElements, setPanelElements] = React.useState<
     Record<string, HTMLElement | null>
   >({});
-  const panelElements = useLatestRef(_panelElements);
+  const panelElementsRef = useLatestRef(panelElements);
 
-  const [_panelHeaderElements, setPanelHeaderElements] = React.useState<
+  const [panelHeaderElements, setPanelHeaderElements] = React.useState<
     Record<string, HTMLElement | null>
   >({});
-  const panelHeaderElements = useLatestRef(_panelHeaderElements);
+  const panelHeaderElementsRef = useLatestRef(panelHeaderElements);
 
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
@@ -137,7 +136,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     async (newActiveId: string, direction: 'forward' | 'backward') => {
       if (
         // Only if forProp is a panel, go to the new panel.
-        !Object.keys(panelElements.current).includes(newActiveId) ||
+        !Object.keys(panelElementsRef.current).includes(newActiveId) ||
         // Same panel
         newActiveId === activePanel
       ) {
@@ -145,7 +144,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       }
 
       ReactDOM.flushSync(() => setActivePanel(newActiveId));
-      panelElements.current[newActiveId]?.scrollIntoView({
+      panelElementsRef.current[newActiveId]?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
       });
@@ -153,7 +152,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       await new Promise((resolve) => {
         setTimeout(() => {
           if (direction === 'forward') {
-            const headerElement = panelHeaderElements.current[newActiveId];
+            const headerElement = panelHeaderElementsRef.current[newActiveId];
             headerElement?.focus({ preventScroll: true });
           } else {
             const trigger =
@@ -167,8 +166,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     },
     [
       activePanel,
-      panelElements,
-      panelHeaderElements,
+      panelElementsRef,
+      panelHeaderElementsRef,
       previousActivePanel,
       setActivePanel,
       triggersRef,
@@ -184,16 +183,16 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           triggers,
           setTriggers,
           triggersRef,
-          panelElements: panelElements.current,
-          panelHeaderElements: panelHeaderElements.current,
+          panelElements: panelElementsRef.current,
+          panelHeaderElements: panelHeaderElementsRef.current,
           setPanelElements,
           setPanelHeaderElements,
         }),
         [
           activePanel,
           changeActivePanel,
-          panelElements,
-          panelHeaderElements,
+          panelElementsRef,
+          panelHeaderElementsRef,
           triggers,
           triggersRef,
         ],
