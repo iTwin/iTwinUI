@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-`Carousel.Slide` component adds polyfill for `inert`.
+`Carousel.Slide` adds polyfill for `inert`.
