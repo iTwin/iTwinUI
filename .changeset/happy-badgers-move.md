@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fix cell not taking full width, where custom `Cell` implementation is passed.
+Fix `Table` cell not taking full width when custom `Cell` implementation is passed.
