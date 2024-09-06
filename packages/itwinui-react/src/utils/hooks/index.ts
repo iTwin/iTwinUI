@@ -18,4 +18,5 @@ export * from './useId.js';
 export * from './useControlledState.js';
 export * from './useSyncExternalStore.js';
 export * from './useVirtualScroll.js';
+export * from './useInertPolyfill.js';
 export * from './useWarningLogger.js';
