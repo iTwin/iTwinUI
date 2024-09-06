@@ -526,7 +526,7 @@ export const Panels = {
 /**
  * Returns a copy of value which reflects state changes after a set delay.
  */
-function useDelayed<T>(value: T, { delay } = { delay: 5000 }): T {
+function useDelayed<T>(value: T, { delay } = { delay: 500 }): T {
   const [delayed, setDelayed] = React.useState<T>(value);
   const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
