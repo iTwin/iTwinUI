@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - [#2217](https://github.com/iTwin/iTwinUI/pull/2217): Fixed the `Footer`'s `translatedTitles` prop's type to allow passing partial translations.
-- [#2218](https://github.com/iTwin/iTwinUI/pull/2218): Fix `Table` cell not taking full width when custom `Cell` implementation is passed.
+- [#2218](https://github.com/iTwin/iTwinUI/pull/2218): Fixed a `Table` bug where custom `Cell` content was not taking up the entire available width in some cases.
 - [#2216](https://github.com/iTwin/iTwinUI/pull/2216): Fixed the fallback CSS logic in `ThemeProvider` to load the correct stylesheet version.
 
 ## 3.14.1
