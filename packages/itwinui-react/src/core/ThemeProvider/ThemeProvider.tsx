@@ -428,7 +428,7 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       } catch (error) {
         console.log('Error loading styles.css locally', error);
         const css = await importCss(
-          'https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@3/styles.css',
+          `https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@${meta.version}/styles.css`,
         );
         document.adoptedStyleSheets = [
           ...document.adoptedStyleSheets,
