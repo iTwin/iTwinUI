@@ -25,6 +25,7 @@ import type {
   ActionType,
   TableInstance,
   Column,
+  ColumnInstance,
 } from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
@@ -1006,9 +1007,7 @@ export const Table = <
   }, []);
 
   return (
-    <TableColumnsContext.Provider
-      value={columns as Column<Record<string, unknown>>[]}
-    >
+    <TableColumnsContext.Provider value={instance.columns as ColumnInstance[]}>
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
