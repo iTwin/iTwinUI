@@ -11,7 +11,6 @@ import {
   SvgChevronLeft,
   useInertPolyfill,
   useInstance,
-  useLatestRef,
   useMergedRefs,
   useSafeContext,
   useMediaQuery,
@@ -118,7 +117,6 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
   >({});
-  const triggersRef = useLatestRef(triggers);
 
   const [shouldFocus, setShouldFocus] = React.useState<FocusEntry>(undefined);
 
@@ -154,11 +152,10 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           changeActivePanel,
           triggers,
           setTriggers,
-          triggersRef,
           shouldFocus,
           setShouldFocus,
         }),
-        [activePanel, changeActivePanel, shouldFocus, triggers, triggersRef],
+        [activePanel, changeActivePanel, shouldFocus, triggers],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -185,8 +182,6 @@ export const PanelsWrapperContext = React.createContext<
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
-      triggersRef: React.MutableRefObject<Record<string, TriggerMapEntry>>;
-
       changeActivePanel: (newActiveId: string) => Promise<void>;
       shouldFocus: FocusEntry;
       setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
