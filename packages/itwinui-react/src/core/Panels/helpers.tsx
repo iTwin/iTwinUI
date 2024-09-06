@@ -31,10 +31,6 @@ export const PanelsWrapperContext = React.createContext<
         newActiveId: string,
         direction: 'forward' | 'backward',
       ) => Promise<void>;
-      panelElements: Record<string, HTMLElement | null>;
-      setPanelElements: React.Dispatch<
-        React.SetStateAction<Record<string, HTMLElement | null>>
-      >;
       panelHeaderElements: Record<string, HTMLElement | null>;
       setPanelHeaderElements: React.Dispatch<
         React.SetStateAction<Record<string, HTMLElement | null>>
