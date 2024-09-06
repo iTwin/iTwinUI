@@ -25,6 +25,7 @@ import type {
   ActionType,
   TableInstance,
   Column,
+  ColumnInstance,
 } from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
@@ -37,6 +38,7 @@ import {
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
+  WithCSSTransition,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TableColumnsContext } from './utils.js';
@@ -63,8 +65,9 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import { type VirtualItem } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
+import { TableExpandableRowMemoized } from './TableExpandableRowMemoized.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -796,26 +799,28 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
-  // Flexbox handles columns resize so we take new column widths before browser repaints.
-  useLayoutEffect(() => {
-    if (state.isTableResizing) {
-      const newColumnWidths: Record<string, number> = {};
-      flatHeaders.forEach((column) => {
-        if (columnRefs.current[column.id]) {
-          newColumnWidths[column.id] =
-            columnRefs.current[column.id].getBoundingClientRect().width;
-        }
-      });
-      dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
+  /**
+   * Takes in page and state.expanded.
+   * Only called when there are no sub-rows since sub-rows are treated as row.
+   * Returns Array<"row" | "subrow">
+   */
+  const listOfRowsAndSubComponents = React.useMemo(() => {
+    const rowsAndSubComponents = [];
+    for (let i = 0; i < page.length; i++) {
+      rowsAndSubComponents.push('row');
+      if (!hasAnySubRows && state.expanded[page[i].id]) {
+        rowsAndSubComponents.push('subcomponent');
+      }
     }
-  });
+    return rowsAndSubComponents;
+  }, [page, state.expanded, hasAnySubRows]);
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     enabled: enableVirtualization,
-    count: page.length,
+    count: subComponent ? listOfRowsAndSubComponents.length : page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
-    getItemKey: (index) => page[index].id,
+    getItemKey: (index) => page[index]?.id ?? index.toString(),
     overscan: 1,
   });
 
@@ -825,55 +830,151 @@ export const Table = <
     }
   }, [virtualizer, scrollToIndex]);
 
-  const getPreparedRow = React.useCallback(
-    (
-      index: number,
-      virtualItem?: VirtualItem<Element>,
-      virtualizer?: Virtualizer<Element, Element>,
-    ) => {
-      const row = page[index];
-      prepareRow(row);
-      return (
-        <TableRowMemoized
-          row={row}
-          rowProps={rowProps}
-          isLast={index === page.length - 1}
-          onRowInViewport={onRowInViewportRef}
-          onBottomReached={onBottomReachedRef}
-          intersectionMargin={intersectionMargin}
-          state={state}
-          key={row.getRowProps().key}
-          onClick={onRowClickHandler}
-          subComponent={subComponent}
-          isDisabled={!!isRowDisabled?.(row.original)}
-          tableHasSubRows={hasAnySubRows}
-          tableInstance={instance}
-          expanderCell={expanderCell}
-          scrollContainerRef={tableRef.current}
-          tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
-          density={density}
-          virtualItem={virtualItem}
-          virtualizer={virtualizer}
-        />
-      );
+  /**
+   * Returns associated index of the row and sub-component.
+   * Index of subcomponent is retrieved from the current expanded main row subtracted by the number of expanded contents before.
+   * @example
+   * listOfRowsAndSubComponents = [row, subcomponent (1-0), row, row, subcomponent (4-2), row, subcomponent (6-3)]
+   * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
+   * state.expanded = {abc1: true, abc3: true}*/
+  const getRowIndices = React.useCallback(
+    (index: number) => {
+      let expandedRowsBefore = 0;
+      for (let i = 0; i < index; i++) {
+        if (listOfRowsAndSubComponents[i] === 'subcomponent') {
+          expandedRowsBefore++;
+        }
+      }
+      const rowIndex = index - expandedRowsBefore;
+      const subComponentAssociatedRowIndex = rowIndex - 1;
+      return {
+        rowIndex,
+        subComponentAssociatedRowIndex,
+      };
     },
+    [listOfRowsAndSubComponents],
+  );
+
+  const isARow = React.useCallback(
+    (index: number) => {
+      return listOfRowsAndSubComponents[index] === 'row';
+    },
+    [listOfRowsAndSubComponents],
+  );
+
+  const renderTableRow = React.useCallback(
+    (row: Row<T>, index: number, virtualItem?: VirtualItem<Element>) => (
+      <TableRowMemoized
+        row={row}
+        rowProps={rowProps}
+        isLast={
+          getRowIndices(index).rowIndex ===
+          listOfRowsAndSubComponents.length - 1
+        }
+        onRowInViewport={onRowInViewportRef}
+        onBottomReached={onBottomReachedRef}
+        intersectionMargin={intersectionMargin}
+        state={state}
+        key={`row-${row.getRowProps().key}`}
+        onClick={onRowClickHandler}
+        subComponent={subComponent}
+        isDisabled={!!isRowDisabled?.(row.original)}
+        tableHasSubRows={hasAnySubRows}
+        tableInstance={instance}
+        expanderCell={expanderCell}
+        scrollContainerRef={tableRef.current}
+        tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+        density={density}
+        virtualItem={virtualItem}
+        virtualizer={virtualizer}
+      />
+    ),
     [
-      page,
-      prepareRow,
-      rowProps,
-      intersectionMargin,
-      state,
-      onRowClickHandler,
-      subComponent,
-      isRowDisabled,
+      density,
+      enableVirtualization,
+      expanderCell,
+      getRowIndices,
       hasAnySubRows,
       instance,
-      expanderCell,
-      enableVirtualization,
-      tableRowRef,
-      density,
+      intersectionMargin,
+      isRowDisabled,
+      listOfRowsAndSubComponents.length,
       onBottomReachedRef,
+      onRowClickHandler,
       onRowInViewportRef,
+      rowProps,
+      state,
+      subComponent,
+      tableRowRef,
+      virtualizer,
+    ],
+  );
+
+  const renderExpandableRow = React.useCallback(
+    (subComponentsRowData: Row<T>, virtualItem?: VirtualItem<Element>) =>
+      subComponent &&
+      !hasAnySubRows && (
+        <TableExpandableRowMemoized
+          key={`subcomponent-${subComponentsRowData.getRowProps().key}`}
+          isDisabled={!!isRowDisabled?.(subComponentsRowData.original)}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
+          isSelected={subComponentsRowData.isSelected}
+          ref={tableRowRef(subComponentsRowData)}
+        >
+          {subComponent(subComponentsRowData)}
+        </TableExpandableRowMemoized>
+      ),
+    [hasAnySubRows, isRowDisabled, subComponent, tableRowRef, virtualizer],
+  );
+
+  const getPreparedRow = React.useCallback(
+    (index: number, virtualItem?: VirtualItem<Element>) => {
+      const rowIndices = getRowIndices(index);
+      const isRow = isARow(index);
+      const row = enableVirtualization
+        ? page[rowIndices.rowIndex]
+        : page[index];
+      const subComponentsRowData =
+        page[rowIndices.subComponentAssociatedRowIndex];
+
+      if (enableVirtualization) {
+        prepareRow(isRow ? row : subComponentsRowData);
+        return isRow
+          ? renderTableRow(row, index, virtualItem)
+          : renderExpandableRow(subComponentsRowData, virtualItem);
+      } else {
+        prepareRow(row);
+        return (
+          <>
+            {renderTableRow(row, index)}
+            {subComponent && (
+              <WithCSSTransition in={row.isExpanded}>
+                <TableExpandableRowMemoized
+                  key={row.getRowProps().key}
+                  isDisabled={!!isRowDisabled?.(row.original)}
+                  ref={tableRowRef(row)}
+                  isSelected={row.isSelected}
+                >
+                  {subComponent(row)}
+                </TableExpandableRowMemoized>
+              </WithCSSTransition>
+            )}
+          </>
+        );
+      }
+    },
+    [
+      getRowIndices,
+      isARow,
+      page,
+      enableVirtualization,
+      prepareRow,
+      renderTableRow,
+      renderExpandableRow,
+      subComponent,
+      isRowDisabled,
+      tableRowRef,
     ],
   );
 
@@ -906,9 +1007,7 @@ export const Table = <
   }, []);
 
   return (
-    <TableColumnsContext.Provider
-      value={columns as Column<Record<string, unknown>>[]}
-    >
+    <TableColumnsContext.Provider value={instance.columns as ColumnInstance[]}>
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
@@ -1015,15 +1114,9 @@ export const Table = <
           {data.length !== 0 && (
             <>
               {enableVirtualization
-                ? virtualizer
-                    .getVirtualItems()
-                    .map((virtualItem) =>
-                      getPreparedRow(
-                        virtualItem.index,
-                        virtualItem,
-                        virtualizer,
-                      ),
-                    )
+                ? virtualizer.getVirtualItems().map((virtualItem) => {
+                    return getPreparedRow(virtualItem.index, virtualItem);
+                  })
                 : page.map((_, index) => getPreparedRow(index))}
             </>
           )}

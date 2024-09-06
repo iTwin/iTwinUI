@@ -10,12 +10,7 @@ import type {
   TableInstance,
   TableState,
 } from '../../react-table/react-table.js';
-import {
-  Box,
-  useIntersection,
-  useMergedRefs,
-  WithCSSTransition,
-} from '../../utils/index.js';
+import { Box, useIntersection, useMergedRefs } from '../../utils/index.js';
 import { TableCell } from './TableCell.js';
 import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
@@ -126,6 +121,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     mergedProps.ref,
     tableRowRef,
     virtualizer?.measureElement,
+    virtualItem?.measureElement, // Explicitly tells row to resize when expandable is collapsed
   );
 
   return (
@@ -153,16 +149,6 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
           );
         })}
       </Box>
-      {subComponent && (
-        <WithCSSTransition in={row.isExpanded}>
-          <Box
-            className={cx('iui-table-row', 'iui-table-expanded-content')}
-            aria-disabled={isDisabled}
-          >
-            {subComponent(row)}
-          </Box>
-        </WithCSSTransition>
-      )}
     </>
   );
 };
