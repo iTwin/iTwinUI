@@ -277,7 +277,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const associatedTrigger = React.useMemo(() => triggers[id], [id, triggers]);
 
-  const previousActivePanel = useDelayed(activePanel);
+  const previousActivePanel = useDelayed(activePanel) || activePanel;
 
   const isMounted = [activePanel, previousActivePanel].includes(id);
   const isTransitioning =
