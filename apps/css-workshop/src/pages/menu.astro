@@ -2,6 +2,7 @@
 import Layout from './_layout.astro';
 import Button_ from '../components/Button.astro';
 import Icon_ from '../components/Icon.astro';
+import ListItem_ from '../components/ListItem.astro';
 ---
 
 <Layout title='Menu'>
@@ -38,239 +39,134 @@ import Icon_ from '../components/Icon.astro';
   <h2>Default</h2>
   <section id='demo-default'>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item'
-        data-iui-actionable='true'
-        role='menuitem'
-        tabindex='0'
-        id='test-menu-1'
-      >
-        <span class='iui-list-item-content'>Option 1</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 2</span>
-      </li>
-      <li class='iui-list-item iui-disabled' data-iui-actionable='true'>
-        <span class='iui-list-item-content'>Option 3</span>
-      </li>
+      <ListItem_ actionable id='test-menu-1' role='menuitem' tabindex='0'>Option 1</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 2</ListItem_>
+      <ListItem_ actionable disabled role='menuitem' tabindex='0'>Option 3</ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <span class='iui-list-item-content'>Option 1</span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 2</span>
-      </li>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <span class='iui-list-item-content'>Option 3</span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem' tabindex='0'>
+        Option 1
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 2</ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
+        Option 3
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' id='demo-scrollable'>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <span class='iui-list-item-content'>Option 1</span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 2</span>
-      </li>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <span class='iui-list-item-content'>Option 3</span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <span class='iui-list-item-content'>Option 4</span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <span class='iui-list-item-content'>Option 5</span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 6</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 7</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 8</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 9</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 10</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 11</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 12</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 13</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Option 14</span>
-      </li>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
+        Option 1
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 2</ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
+        Option 3
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
+        Option 4
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
+        Option 5
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 6</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 7</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 8</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 9</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 10</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 11</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 12</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 13</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Option 14</ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item'
-        data-iui-actionable='true'
-        role='menuitem'
-        tabindex='0'
-        id='test-menu-2'
-      >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>Option 1</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>Option 2</span>
-      </li>
-      <li class='iui-list-item iui-disabled' data-iui-actionable='true'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>Option 3</span>
-      </li>
+      <ListItem_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 1
+      </ListItem_>
+      <ListItem_ actionable tabindex='0' role='menuitem'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 2
+      </ListItem_>
+      <ListItem_ disabled actionable role='menuitem' tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 3
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
-        tabindex='0'
-      >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>Option 2</span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>Option 3</span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+      <ListItem_ isActive actionable tabindex='0' role='menuitem'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 2
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Option 3
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
     </ul>
 
     <br />
 
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        isActive
+        actionable
+        size='large'
         tabindex='0'
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+        <div>Beta</div>
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
 
     <br />
@@ -289,12 +185,8 @@ import Icon_ from '../components/Icon.astro';
         </label>
       </li>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>View profile</span>
-      </li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>Sign out</span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>View profile</ListItem_>
+      <ListItem_ actionable role='menuitem' tabindex='0'>Sign out</ListItem_>
     </ul>
 
     <br />
@@ -311,116 +203,122 @@ import Icon_ from '../components/Icon.astro';
   <h2>Skeleton</h2>
   <section id='demo-skeleton'>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton'
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      >
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton'
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      >
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton'
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      >
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-    </ul>
-
-    <br />
-
-    <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton'
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 30%;'
-      >
-        <div class='iui-icon iui-skeleton' aria-hidden='true'></div>
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton'
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 25%;'
-      >
-        <div class='iui-icon iui-skeleton' aria-hidden='true'></div>
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton'
-        role='presentation'
-        style='--iui-menu-item-content-skeleton-max-width: 35%;'
-      >
-        <div class='iui-icon iui-skeleton' aria-hidden='true'></div>
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-    </ul>
-
-    <br />
-
-    <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton iui-large'
-        role='presentation'
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
         id='test-menu-item-skeleton'
+        role='presentation'
         style='--iui-menu-item-content-skeleton-max-width: 30%;'
       >
-        <div class='iui-icon iui-skeleton' aria-hidden='true'></div>
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton iui-large'
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
         role='presentation'
         style='--iui-menu-item-content-skeleton-max-width: 25%;'
       >
-        <div class='iui-icon iui-skeleton' aria-hidden='true'></div>
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
-      <li
-        class='iui-menu-item iui-menu-item-skeleton iui-large'
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
         role='presentation'
         style='--iui-menu-item-content-skeleton-max-width: 35%;'
       >
-        <div class='iui-icon iui-skeleton' aria-hidden='true'></div>
-        <span class='iui-content'>
-          <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
-          <div class='iui-visually-hidden'>Loading...</div>
-        </span>
-      </li>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+    </ul>
+
+    <br />
+
+    <ul class='iui-menu' role='menu'>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 30%;'
+        startIconProps={{ class: 'iui-icon iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 25%;'
+        startIconProps={{ class: 'iui-icon iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 35%;'
+        startIconProps={{ class: 'iui-icon iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+    </ul>
+
+    <br />
+
+    <ul class='iui-menu' role='menu'>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
+        size='large'
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 30%;'
+        startIconProps={{ class: 'iui-icon iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
+        size='large'
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 25%;'
+        startIconProps={{ class: 'iui-icon iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
+      <ListItem_
+        class='iui-menu-item-skeleton'
+        contentProps={{ class: 'iui-content' }}
+        size='large'
+        id='test-menu-item-skeleton'
+        role='presentation'
+        style='--iui-menu-item-content-skeleton-max-width: 35%;'
+        startIconProps={{ class: 'iui-icon iui-skeleton' }}
+      >
+        <div slot='start-icon'></div>
+        <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
+        <div class='iui-visually-hidden'>Loading...</div>
+      </ListItem_>
     </ul>
   </section>
 
@@ -490,41 +388,43 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'
-        ></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Model Alpha</div>
-          <div class='iui-list-item-description'>0x0987654321</div>
-        </span>
-      </li>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
+      <ListItem_
+        size='large'
         role='menuitem'
-        aria-checked='true'
+        actionable
+        startIconProps={{ class: 'iui-header-menu-icon' }}
         tabindex='0'
+        description='0x0987654321'
       >
-        <svg-model class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'></svg-model>
-        <span class='iui-list-item-content'>
-          <div>Model Beta</div>
-          <div class='iui-list-item-description'>0x0123456789</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <div class='iui-list-item-icon iui-header-menu-icon demo-picture'></div>
-        <span class='iui-list-item-content'>
-          <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-          <div class='iui-list-item-description'>0x0192837465</div>
-        </span>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Model Alpha
+      </ListItem_>
+      <ListItem_
+        size='large'
+        isActive
+        tabindex='0'
+        role='menuitem'
+        actionable
+        startIconProps={{ class: 'iui-header-menu-icon' }}
+        description='0x0123456789'
+      >
+        <svg-model slot='start-icon'></svg-model>
+         Model Beta
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        role='menuitem'
+        actionable
+        startIconProps={{ style: 'width: 24px; height: 24px' }}
+        tabindex='0'
+        description='0x0192837465'
+      >
+        <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
+         Model Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
 
     <br />
@@ -590,41 +490,43 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </header>
     <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'
-        ></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Model Alpha</div>
-          <div class='iui-list-item-description'>0x0987654321</div>
-        </span>
-      </li>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
+      <ListItem_
+        size='large'
         role='menuitem'
-        aria-checked='true'
+        actionable
+        startIconProps={{ class: 'iui-header-menu-icon' }}
         tabindex='0'
+        description='0x0987654321'
       >
-        <svg-model class='iui-list-item-icon iui-header-menu-icon' aria-hidden='true'></svg-model>
-        <span class='iui-list-item-content'>
-          <div>Model Beta</div>
-          <div class='iui-list-item-description'>0x0123456789</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <div class='iui-list-item-icon iui-header-menu-icon demo-picture'></div>
-        <span class='iui-list-item-content'>
-          <div>Model Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
-          <div class='iui-list-item-description'>0x0192837465</div>
-        </span>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Model Alpha
+      </ListItem_>
+      <ListItem_
+        size='large'
+        isActive
+        tabindex='0'
+        role='menuitem'
+        actionable
+        startIconProps={{ class: 'iui-header-menu-icon' }}
+        description='0x0123456789'
+      >
+        <svg-model slot='start-icon'></svg-model>
+         Model Beta
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        role='menuitem'
+        actionable
+        startIconProps={{ style: 'width: 24px; height: 24px' }}
+        tabindex='0'
+        description='0x0192837465'
+      >
+        <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
+         Model Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
   </section>
   <br />
@@ -642,57 +544,40 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -707,57 +592,40 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -772,57 +640,40 @@ import Icon_ from '../components/Icon.astro';
       </div>
     </label>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
   </section>
   <br />
@@ -835,58 +686,40 @@ import Icon_ from '../components/Icon.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -896,58 +729,40 @@ import Icon_ from '../components/Icon.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -957,58 +772,40 @@ import Icon_ from '../components/Icon.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
   </section>
   <br />
@@ -1021,58 +818,40 @@ import Icon_ from '../components/Icon.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -1082,58 +861,40 @@ import Icon_ from '../components/Icon.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
     <br />
 
@@ -1143,58 +904,40 @@ import Icon_ from '../components/Icon.astro';
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
     <ul class='iui-menu' role='menu'>
-      <li
-        class='iui-list-item iui-large iui-active'
-        data-iui-actionable='true'
-        role='menuitem'
-        aria-checked='true'
+      <ListItem_
+        size='large'
         tabindex='0'
+        actionable
+        isActive
+        role='menuitem'
+        description='Lorem ipsum'
       >
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Alpha</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-checkmark class='iui-list-item-icon' aria-hidden='true'></svg-checkmark>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>Beta</div>
-          <div class='iui-list-item-description'>Lorem ipsum</div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
-      <li class='iui-list-item iui-large' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <svg-placeholder class='iui-list-item-icon' aria-hidden='true'></svg-placeholder>
-        <span class='iui-list-item-content'>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-          <div class='iui-list-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
-          </div>
-        </span>
-        <svg-caret-right-small class='iui-list-item-icon' aria-hidden='true'
-        ></svg-caret-right-small>
-      </li>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Alpha
+        <svg-checkmark slot='end-icon'></svg-checkmark>
+      </ListItem_>
+      <ListItem_ size='large' actionable role='menuitem' tabindex='0' description='Lorem ipsum'>
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Beta
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
+      <ListItem_
+        size='large'
+        actionable
+        role='menuitem'
+        tabindex='0'
+        description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      >
+        <svg-placeholder slot='start-icon'></svg-placeholder>
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
+      </ListItem_>
       <li class='iui-menu-divider' role='separator'></li>
-      <li class='iui-list-item' data-iui-actionable='true' role='menuitem' tabindex='0'>
-        <span class='iui-list-item-content'>
-          <div>My projects</div>
-        </span>
-      </li>
+      <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
     </ul>
   </section>
   <script is:inline>
