@@ -137,7 +137,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   >({});
   const triggersRef = useLatestRef(triggers);
 
-  const previousActivePanel = useDelayed(activePanel);
+  const previousActivePanel = useDelayed(activePanel) || activePanel;
 
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
 
@@ -526,8 +526,8 @@ export const Panels = {
 /**
  * Returns a copy of value which reflects state changes after a set delay.
  */
-function useDelayed<T>(value: T, { delay } = { delay: 500 }): T {
-  const [delayed, setDelayed] = React.useState<T>(value);
+function useDelayed<T>(value: T, { delay } = { delay: 500 }): T | undefined {
+  const [delayed, setDelayed] = React.useState<T | undefined>(undefined);
   const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
