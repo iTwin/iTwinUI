@@ -9,7 +9,7 @@ export default () => {
   return (
     <div className='demo-container'>
       <Text variant='subheading'>Section 1</Text>
-      <Divider style={{ height: '200px' }} orientation='vertical' />
+      <Divider orientation='vertical' />
       <Text variant='subheading'>Section 2</Text>
     </div>
   );

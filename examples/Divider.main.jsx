@@ -9,7 +9,7 @@ export default () => {
   return (
     <div className='demo-container'>
       <Text variant='subheading'>Section 1</Text>
-      <Divider style={{ width: '500px' }} orientation='horizontal' />
+      <Divider />
       <Text variant='subheading'>Section 2</Text>
     </div>
   );
