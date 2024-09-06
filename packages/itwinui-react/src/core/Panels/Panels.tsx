@@ -22,11 +22,7 @@ import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
-import {
-  PanelsInstanceContext,
-  PanelsInstanceProvider,
-  PanelsWrapperContext,
-} from './helpers.js';
+import { PanelsInstanceContext, PanelsInstanceProvider } from './helpers.js';
 import type { FocusEntry, PanelsInstance, TriggerMapEntry } from './helpers.js';
 
 // #region PanelsWrapper
@@ -104,12 +100,9 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     children,
     className,
     onActiveIdChange,
-    instance: instanceProp,
+    instance,
     ...rest
   } = props;
-
-  const instanceBackup = Panels.useInstance();
-  const instance = instanceProp || instanceBackup;
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
@@ -182,6 +175,26 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
 if (process.env.NODE_ENV === 'development') {
   PanelsWrapper.displayName = 'Panels.Wrapper';
+}
+
+export const PanelsWrapperContext = React.createContext<
+  | {
+      // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
+      activePanel: string;
+      triggers: Record<string, TriggerMapEntry>;
+      setTriggers: React.Dispatch<
+        React.SetStateAction<Record<string, TriggerMapEntry>>
+      >;
+      triggersRef: React.MutableRefObject<Record<string, TriggerMapEntry>>;
+
+      changeActivePanel: (newActiveId: string) => Promise<void>;
+      shouldFocus: FocusEntry;
+      setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
+    }
+  | undefined
+>(undefined);
+if (process.env.NODE_ENV === 'development') {
+  PanelsWrapperContext.displayName = 'PanelsWrapperContext';
 }
 
 // #endregion PanelsWrapper

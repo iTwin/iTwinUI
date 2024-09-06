@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useSafeContext, useSynchronizeInstance } from '../../utils/index.js';
+import { Panels, PanelsWrapperContext } from './Panels.js';
 
 export type PanelsInstance = {
   /** Go back to the panel that has a trigger that points to the current panel. */
@@ -22,29 +23,6 @@ export type FocusEntry =
 
 // ----------------------------------------------------------------------------
 
-// TODO: Can move this to Panels.tsx near PanelsWrapper
-export const PanelsWrapperContext = React.createContext<
-  | {
-      // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
-      activePanel: string;
-      triggers: Record<string, TriggerMapEntry>;
-      setTriggers: React.Dispatch<
-        React.SetStateAction<Record<string, TriggerMapEntry>>
-      >;
-      triggersRef: React.MutableRefObject<Record<string, TriggerMapEntry>>;
-
-      changeActivePanel: (newActiveId: string) => Promise<void>;
-      shouldFocus: FocusEntry;
-      setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
-    }
-  | undefined
->(undefined);
-if (process.env.NODE_ENV === 'development') {
-  PanelsWrapperContext.displayName = 'PanelsWrapperContext';
-}
-
-// ----------------------------------------------------------------------------
-
 export const PanelsInstanceContext = React.createContext<
   | {
       instance: PanelsInstance;
@@ -57,13 +35,14 @@ if (process.env.NODE_ENV === 'development') {
 
 type PanelInstanceProviderProps = {
   children: React.ReactNode;
-  instance: PanelsInstance;
+  instance: PanelsInstance | undefined;
 };
 
 export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
-  const { children, instance } = props;
+  const { children, instance: instanceProp } = props;
 
-  // TODO: Extract the backup useInstance call here
+  const instanceBackup = Panels.useInstance();
+  const instance = instanceProp || instanceBackup;
 
   const { activePanel, changeActivePanel, triggers, setShouldFocus } =
     useSafeContext(PanelsWrapperContext);
