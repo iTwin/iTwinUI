@@ -27,7 +27,7 @@ import {
   PanelsInstanceProvider,
   PanelsWrapperContext,
 } from './helpers.js';
-import type { PanelsInstance, TriggerMapEntry } from './helpers.js';
+import type { FocusEntry, PanelsInstance, TriggerMapEntry } from './helpers.js';
 
 // #region PanelsWrapper
 
@@ -122,22 +122,17 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     [onActiveIdChange],
   );
 
-  const [panelHeaderElements, setPanelHeaderElements] = React.useState<
-    Record<string, HTMLElement | null>
-  >({});
-  const panelHeaderElementsRef = useLatestRef(panelHeaderElements);
-
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
   >({});
   const triggersRef = useLatestRef(triggers);
 
-  const previousActivePanel = useDelayed(activePanel) || activePanel;
+  const [shouldFocus, setShouldFocus] = React.useState<FocusEntry>(undefined);
 
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
 
   const changeActivePanel = React.useCallback(
-    async (newActiveId: string, direction: 'forward' | 'backward') => {
+    async (newActiveId: string) => {
       if (
         // TODO: Maybe show dev only warning (in trigger) if trigger refers to a panel that dne.
         // // Only if forProp is a panel, go to the new panel.
@@ -154,30 +149,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         inline: 'center',
         behavior: motionOk ? 'smooth' : 'instant',
       });
-
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          if (direction === 'forward') {
-            const headerElement = panelHeaderElementsRef.current[newActiveId];
-            headerElement?.focus({ preventScroll: true });
-          } else {
-            const trigger =
-              triggersRef.current[previousActivePanel].triggerElement;
-            trigger?.focus({ preventScroll: true });
-          }
-
-          resolve(null);
-        });
-      });
     },
-    [
-      activePanel,
-      motionOk,
-      panelHeaderElementsRef,
-      previousActivePanel,
-      setActivePanel,
-      triggersRef,
-    ],
+    [activePanel, motionOk, setActivePanel],
   );
 
   return (
@@ -189,16 +162,10 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           triggers,
           setTriggers,
           triggersRef,
-          panelHeaderElements: panelHeaderElementsRef.current,
-          setPanelHeaderElements,
+          shouldFocus,
+          setShouldFocus,
         }),
-        [
-          activePanel,
-          changeActivePanel,
-          panelHeaderElementsRef,
-          triggers,
-          triggersRef,
-        ],
+        [activePanel, changeActivePanel, shouldFocus, triggers, triggersRef],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -324,8 +291,13 @@ type PanelTriggerProps = {
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
-  const { changeActivePanel, setTriggers, activePanel } =
-    useSafeContext(PanelsWrapperContext);
+  const {
+    changeActivePanel,
+    setTriggers,
+    activePanel,
+    shouldFocus,
+    setShouldFocus,
+  } = useSafeContext(PanelsWrapperContext);
   const { id: panelId } = useSafeContext(PanelContext);
 
   const fallbackId = React.useId();
@@ -335,9 +307,26 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     React.useState<HTMLButtonElement | null>(null);
 
   const onClick = React.useCallback(() => {
-    changeActivePanel?.(forProp, 'forward');
-  }, [changeActivePanel, forProp]);
+    setShouldFocus({ panelId: forProp, direction: 'forward' });
+    changeActivePanel?.(forProp);
+  }, [changeActivePanel, forProp, setShouldFocus]);
 
+  const focusRef = React.useCallback(
+    (el: HTMLButtonElement) => {
+      if (
+        shouldFocus?.panelId === panelId &&
+        shouldFocus.direction === 'backward'
+      ) {
+        el?.focus({ preventScroll: true });
+        setShouldFocus(undefined);
+      }
+    },
+    [panelId, setShouldFocus, shouldFocus?.direction, shouldFocus?.panelId],
+  );
+
+  const refs = useMergedRefs(setTriggerElement, focusRef);
+
+  // TODO: Try to remove?
   // Add/Update trigger in the triggers map
   React.useEffect(() => {
     setTriggers((oldTriggers) => {
@@ -368,7 +357,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     return {
       ...children.props,
       id: triggerId,
-      ref: setTriggerElement,
+      ref: refs,
       onClick: mergeEventHandlers(children.props.onClick, onClick),
       'aria-expanded': activePanel === forProp,
       'aria-controls': forProp,
@@ -382,6 +371,10 @@ if (process.env.NODE_ENV === 'development') {
 // #endregion PanelTrigger
 // ----------------------------------------------------------------------------
 // #region PanelHeader
+
+type PanelHeaderProps = {
+  titleProps?: React.ComponentProps<typeof Text>;
+};
 
 /**
  * Required component to add an accessible name and also a back button (if previous panel exists) to the panel.
@@ -406,38 +399,40 @@ if (process.env.NODE_ENV === 'development') {
  * </Panels.Panel>
  */
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
-  const { children, ...rest } = props;
+  const { titleProps, children, ...rest } = props;
 
-  const { setPanelHeaderElements } = useSafeContext(PanelsWrapperContext);
+  const { shouldFocus, setShouldFocus } = useSafeContext(PanelsWrapperContext);
   const { id: panelId, associatedTrigger: panelAssociatedTrigger } =
     useSafeContext(PanelContext);
 
-  const [element, setElement] = React.useState<HTMLElement | null>(null);
-
-  React.useEffect(() => {
-    setPanelHeaderElements((oldPanelHeaderElements) => {
-      if (oldPanelHeaderElements[panelId] === element) {
-        return oldPanelHeaderElements;
+  const focusRef = React.useCallback(
+    (el: HTMLHeadingElement) => {
+      if (
+        shouldFocus?.panelId === panelId &&
+        shouldFocus.direction === 'forward'
+      ) {
+        el?.focus({ preventScroll: true });
+        setShouldFocus(undefined);
       }
-
-      return {
-        ...oldPanelHeaderElements,
-        [panelId]: element,
-      };
-    });
-  }, [element, panelId, setPanelHeaderElements]);
-
-  const refs = useMergedRefs(setElement, forwardedRef);
+    },
+    [panelId, setShouldFocus, shouldFocus?.direction, shouldFocus?.panelId],
+  );
 
   return (
-    <Flex ref={refs} tabIndex={-1} {...rest}>
+    <Flex ref={forwardedRef} tabIndex={-1} {...rest}>
       {panelAssociatedTrigger && <PanelBackButton />}
-      <Text id={`${panelId}-header-title`} as='h2'>
+      <Text
+        id={`${panelId}-header-title`}
+        as='h2'
+        tabIndex={-1}
+        ref={focusRef}
+        {...titleProps}
+      >
         {children}
       </Text>
     </Flex>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', PanelHeaderProps>;
 if (process.env.NODE_ENV === 'development') {
   PanelHeader.displayName = 'Panels.Header';
 }

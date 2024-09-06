@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useSynchronizeInstance } from '../../utils/index.js';
+import { useSafeContext, useSynchronizeInstance } from '../../utils/index.js';
 
 export type PanelsInstance = {
   /** Go back to the panel that has a trigger that points to the current panel. */
@@ -16,8 +16,13 @@ export type TriggerMapEntry = {
   panelId: string;
 };
 
+export type FocusEntry =
+  | { panelId: string; direction: 'forward' | 'backward' }
+  | undefined;
+
 // ----------------------------------------------------------------------------
 
+// TODO: Can move this to Panels.tsx near PanelsWrapper
 export const PanelsWrapperContext = React.createContext<
   | {
       // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
@@ -27,14 +32,10 @@ export const PanelsWrapperContext = React.createContext<
         React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
       triggersRef: React.MutableRefObject<Record<string, TriggerMapEntry>>;
-      changeActivePanel: (
-        newActiveId: string,
-        direction: 'forward' | 'backward',
-      ) => Promise<void>;
-      panelHeaderElements: Record<string, HTMLElement | null>;
-      setPanelHeaderElements: React.Dispatch<
-        React.SetStateAction<Record<string, HTMLElement | null>>
-      >;
+
+      changeActivePanel: (newActiveId: string) => Promise<void>;
+      shouldFocus: FocusEntry;
+      setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
     }
   | undefined
 >(undefined);
@@ -64,20 +65,16 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
 
   // TODO: Extract the backup useInstance call here
 
-  const panelsWrapperContext = React.useContext(PanelsWrapperContext);
+  const { activePanel, changeActivePanel, triggers, setShouldFocus } =
+    useSafeContext(PanelsWrapperContext);
 
   const goBack = React.useCallback(async () => {
-    if (panelsWrapperContext == null) {
-      return;
-    }
-
-    const { activePanel, changeActivePanel, triggers } = panelsWrapperContext;
-
     const trigger = triggers[activePanel];
     if (trigger.triggerId != null) {
-      changeActivePanel(trigger.panelId, 'backward');
+      setShouldFocus({ panelId: trigger.panelId, direction: 'backward' });
+      changeActivePanel(trigger.panelId);
     }
-  }, [panelsWrapperContext]);
+  }, [activePanel, changeActivePanel, setShouldFocus, triggers]);
 
   useSynchronizeInstance(
     instance,
