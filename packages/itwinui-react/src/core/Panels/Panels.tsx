@@ -14,7 +14,7 @@ import {
   useLatestRef,
   useMergedRefs,
   useSafeContext,
-  getWindow,
+  useMediaQuery,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -139,6 +139,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const previousActivePanel = useDelayed(activePanel);
 
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
   const changeActivePanel = React.useCallback(
     async (newActiveId: string, direction: 'forward' | 'backward') => {
       if (
@@ -154,6 +156,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       panelElementsRef.current[newActiveId]?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
+        behavior: motionOk ? 'smooth' : 'instant',
       });
 
       await new Promise((resolve) => {
@@ -173,6 +176,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
     },
     [
       activePanel,
+      motionOk,
       panelElementsRef,
       panelHeaderElementsRef,
       previousActivePanel,
@@ -522,21 +526,7 @@ export const Panels = {
 /**
  * Returns a copy of value which reflects state changes after a set delay.
  */
-function useDelayed<T>(
-  value: T,
-  {
-    delay,
-  }: {
-    /** Default delay is 500ms, or 0ms when prefers-reduced-motion */
-    delay?: number;
-  } = {},
-): T {
-  const motionOk = getWindow()?.matchMedia?.(
-    '(prefers-reduced-motion: no-preference)',
-  )?.matches;
-
-  delay ??= motionOk ? 500 : 0;
-
+function useDelayed<T>(value: T, { delay } = { delay: 5000 }): T {
   const [delayed, setDelayed] = React.useState<T>(value);
   const timeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
