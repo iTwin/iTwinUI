@@ -9,11 +9,11 @@ import {
   cloneElementWithRef,
   mergeEventHandlers,
   SvgChevronLeft,
-  useInertPolyfill,
   useInstance,
   useMergedRefs,
   useSafeContext,
   useMediaQuery,
+  useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -117,6 +117,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
   >({});
+  const panels = React.useRef(new Set<string>());
 
   const [shouldFocus, setShouldFocus] = React.useState<FocusEntry>(undefined);
 
@@ -128,6 +129,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // TODO: Maybe show dev only warning (in trigger) if trigger refers to a panel that dne.
         // // Only if forProp is a panel, go to the new panel.
         // !Object.keys(panelElementsRef.current).includes(newActiveId) ||
+        !panels.current.has(newActiveId) ||
         // Same panel
         newActiveId === activePanel
       ) {
@@ -154,6 +156,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           setTriggers,
           shouldFocus,
           setShouldFocus,
+          panels,
         }),
         [activePanel, changeActivePanel, shouldFocus, triggers],
       )}
@@ -185,6 +188,7 @@ export const PanelsWrapperContext = React.createContext<
       changeActivePanel: (newActiveId: string) => Promise<void>;
       shouldFocus: FocusEntry;
       setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
+      panels: React.MutableRefObject<Set<string>>;
     }
   | undefined
 >(undefined);
@@ -219,12 +223,11 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, triggers } = useSafeContext(PanelsWrapperContext);
+  const { activePanel, triggers, panels } =
+    useSafeContext(PanelsWrapperContext);
 
   const fallbackId = React.useId();
   const id = idProp || fallbackId;
-
-  useInertPolyfill();
 
   const associatedTrigger = React.useMemo(() => triggers[id], [id, triggers]);
 
@@ -234,6 +237,12 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const isTransitioning =
     activePanel === id && activePanel !== previousActivePanel;
   const isInert = previousActivePanel === id && activePanel !== id;
+
+  React.useEffect(() => {
+    if (!panels.current.has(id)) {
+      panels.current.add(id);
+    }
+  }, [id, panels]);
 
   return (
     <PanelContext.Provider
@@ -301,10 +310,12 @@ const PanelTrigger = (props: PanelTriggerProps) => {
 
   const {
     changeActivePanel,
+    triggers,
     setTriggers,
     activePanel,
     shouldFocus,
     setShouldFocus,
+    panels,
   } = useSafeContext(PanelsWrapperContext);
   const { id: panelId } = useSafeContext(PanelContext);
 
@@ -333,6 +344,21 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   );
 
   const refs = useMergedRefs(setTriggerElement, focusRef);
+
+  const logWarning = useWarningLogger();
+
+  React.useEffect(() => {
+    // Wait for triggers to be set
+    if (Object.keys(triggers).length === 0) {
+      return;
+    }
+
+    if (!panels.current.has(forProp)) {
+      logWarning(
+        `Panels.Trigger's \`for\` prop ("${forProp}") corresponds to no Panel.`,
+      );
+    }
+  }, [forProp, logWarning, panels, triggers]);
 
   // TODO: Try to remove?
   // Add/Update trigger in the triggers map
