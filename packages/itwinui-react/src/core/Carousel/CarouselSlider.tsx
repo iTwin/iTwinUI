@@ -10,6 +10,7 @@ import {
   useMergedRefs,
   useLayoutEffect,
   Box,
+  useMediaQuery,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -48,6 +49,8 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
   const sliderRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(sliderRef, ref);
 
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
   scrollToSlide.current = (
     slideIndex: number,
     { instant }: { instant?: boolean } = {},
@@ -61,10 +64,6 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     if (!sliderRef.current || !slideToShow) {
       return;
     }
-
-    const motionOk = getWindow()?.matchMedia(
-      '(prefers-reduced-motion: no-preference)',
-    )?.matches;
 
     sliderRef.current.scrollTo({
       left: slideToShow.offsetLeft - sliderRef.current.offsetLeft,
