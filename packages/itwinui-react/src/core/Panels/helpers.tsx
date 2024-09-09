@@ -13,7 +13,6 @@ export type PanelsInstance = {
 
 export type TriggerMapEntry = {
   triggerId: string;
-  triggerElement: HTMLElement | null;
   panelId: string;
 };
 

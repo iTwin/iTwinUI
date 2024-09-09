@@ -325,9 +325,6 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   const fallbackId = React.useId();
   const triggerId = children.props.id || fallbackId;
 
-  const [triggerElement, setTriggerElement] =
-    React.useState<HTMLButtonElement | null>(null);
-
   const onClick = React.useCallback(() => {
     setShouldFocus({ panelId: forProp, direction: 'forward' });
     changeActivePanel?.(forProp);
@@ -346,7 +343,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     [panelId, setShouldFocus, shouldFocus?.direction, shouldFocus?.panelId],
   );
 
-  const refs = useMergedRefs(setTriggerElement, focusRef);
+  const refs = useMergedRefs(focusRef);
 
   const logWarning = useWarningLogger();
 
@@ -363,7 +360,6 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     }
   }, [forProp, logWarning, panels, triggers]);
 
-  // TODO: Try to remove?
   // Add/Update trigger in the triggers map
   React.useEffect(() => {
     setTriggers((oldTriggers) => {
@@ -373,22 +369,20 @@ const PanelTrigger = (props: PanelTriggerProps) => {
       if (
         triggersMatch == null ||
         panelId !== triggersMatch.panelId ||
-        triggerId !== triggersMatch.triggerId ||
-        triggerElement !== triggersMatch.triggerElement
+        triggerId !== triggersMatch.triggerId
       ) {
         return {
           ...oldTriggers,
           [forProp]: {
             panelId,
             triggerId,
-            triggerElement,
           },
         };
       }
 
       return oldTriggers;
     });
-  }, [forProp, panelId, setTriggers, triggerElement, triggerId]);
+  }, [forProp, panelId, setTriggers, triggerId]);
 
   return cloneElementWithRef(children, (children) => {
     return {
