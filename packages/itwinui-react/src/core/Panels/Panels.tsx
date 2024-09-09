@@ -126,9 +126,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const changeActivePanel = React.useCallback(
     async (newActiveId: string) => {
       if (
-        // TODO: Maybe show dev only warning (in trigger) if trigger refers to a panel that dne.
-        // // Only if forProp is a panel, go to the new panel.
-        // !Object.keys(panelElementsRef.current).includes(newActiveId) ||
+        // Only if forProp is a panel, go to the new panel.
         !panels.current.has(newActiveId) ||
         // Same panel
         newActiveId === activePanelId
@@ -179,7 +177,6 @@ if (process.env.NODE_ENV === 'development') {
 
 export const PanelsWrapperContext = React.createContext<
   | {
-      // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
       activePanelId: string;
       triggers: Record<string, TriggerMapEntry>;
       setTriggers: React.Dispatch<
@@ -239,9 +236,15 @@ const Panel = React.forwardRef((props, forwardedRef) => {
   const isInert = previousActivePanelId === id && activePanelId !== id;
 
   React.useEffect(() => {
-    if (!panels.current.has(id)) {
-      panels.current.add(id);
+    const panelsCurrent = panels.current;
+
+    if (!panelsCurrent.has(id)) {
+      panelsCurrent.add(id);
     }
+
+    return () => {
+      panelsCurrent.delete(id);
+    };
   }, [id, panels]);
 
   return (
@@ -348,8 +351,8 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   const logWarning = useWarningLogger();
 
   React.useEffect(() => {
-    // Wait for triggers to be set
-    if (Object.keys(triggers).length === 0) {
+    // Wait for panels to be set
+    if (panels.current.size === 0) {
       return;
     }
 
