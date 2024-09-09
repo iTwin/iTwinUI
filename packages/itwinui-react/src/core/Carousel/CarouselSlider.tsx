@@ -67,7 +67,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
 
     sliderRef.current.scrollTo({
       left: slideToShow.offsetLeft - sliderRef.current.offsetLeft,
-      behavior: (instant || !motionOk ? 'instant' : 'smooth') as ScrollBehavior, // scrollTo accepts 'instant' but ScrollBehavior type is wrong
+      behavior: instant || !motionOk ? 'instant' : 'smooth',
     });
   };
 
