@@ -471,7 +471,8 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     </>
   );
 
-  const labelId = useId();
+  const fallbackLabelId = useId();
+  const labelId = panelLabelProps?.id ?? fallbackLabelId;
 
   return (
     <Box
@@ -487,7 +488,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           'iui-color-picker-section-label',
           panelLabelProps?.className,
         )}
-        id={panelLabelProps?.id ?? labelId}
+        id={labelId}
       >
         {showAlpha && currentFormat !== 'hex'
           ? currentFormat.toUpperCase() + 'A'
@@ -514,9 +515,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           ref={useMergedRefs(inputsContainerRef, inputFieldProps?.ref)}
           className={cx('iui-color-input-fields', inputFieldProps?.className)}
           role={currentFormat !== 'hex' ? 'group' : undefined}
-          aria-labelledby={
-            currentFormat !== 'hex' ? panelLabelProps?.id ?? labelId : undefined
-          }
+          aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
         >
           {currentFormat === 'hex' && hexInputField}
           {currentFormat === 'rgb' && rgbInputs}
