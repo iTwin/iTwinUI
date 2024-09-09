@@ -277,13 +277,13 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
         }
         ref={useMergedRefs(squareRef, colorFieldProps?.ref)}
         onPointerDown={mergeEventHandlers(
+          colorFieldProps?.onPointerDown,
           (event: React.PointerEvent) => {
             event.preventDefault();
             updateSquareValue(event, 'onClick');
             setColorDotActive(true);
             colorDotRef.current?.focus();
           },
-          colorFieldProps?.onPointerDown,
         )}
       >
         <Box
@@ -298,14 +298,20 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
             } as React.CSSProperties
           }
           onPointerDown={mergeEventHandlers(
+            colorDotProps?.onPointerDown,
             () => {
               setColorDotActive(true);
               colorDotRef.current?.focus();
             },
-            colorDotProps?.onPointerDown,
           )}
-          onKeyDown={handleColorDotKeyDown}
-          onKeyUp={handleColorDotKeyUp}
+          onKeyDown={mergeEventHandlers(
+            colorDotProps?.onKeyDown,
+            handleColorDotKeyDown,
+          )}
+          onKeyUp={mergeEventHandlers(
+            colorDotProps?.onKeyUp,
+            handleColorDotKeyUp,
+          )}
           tabIndex={0}
           ref={useMergedRefs(colorDotRef, colorDotProps?.ref)}
         />

@@ -515,8 +515,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           className={cx('iui-color-input-fields', inputFieldProps?.className)}
           role={currentFormat !== 'hex' ? 'group' : undefined}
           aria-labelledby={
-            inputFieldProps?.id ??
-            (currentFormat !== 'hex' ? labelId : undefined)
+            currentFormat !== 'hex' ? panelLabelProps?.id ?? labelId : undefined
           }
         >
           {currentFormat === 'hex' && hexInputField}
