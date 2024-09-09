@@ -105,10 +105,10 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [activePanel, _setActivePanel] = React.useState(initialActiveId);
-  const setActivePanel = React.useCallback(
-    (newActivePanel: typeof activePanel) => {
-      _setActivePanel(newActivePanel);
+  const [activePanelId, _setActivePanelId] = React.useState(initialActiveId);
+  const setActivePanelId = React.useCallback(
+    (newActivePanel: typeof activePanelId) => {
+      _setActivePanelId(newActivePanel);
       onActiveIdChange?.(newActivePanel);
     },
     [onActiveIdChange],
@@ -131,26 +131,26 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
         // !Object.keys(panelElementsRef.current).includes(newActiveId) ||
         !panels.current.has(newActiveId) ||
         // Same panel
-        newActiveId === activePanel
+        newActiveId === activePanelId
       ) {
         return;
       }
 
-      ReactDOM.flushSync(() => setActivePanel(newActiveId));
+      ReactDOM.flushSync(() => setActivePanelId(newActiveId));
       ref.current?.ownerDocument.getElementById(newActiveId)?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
         behavior: motionOk ? 'smooth' : 'instant',
       });
     },
-    [activePanel, motionOk, setActivePanel],
+    [activePanelId, motionOk, setActivePanelId],
   );
 
   return (
     <PanelsWrapperContext.Provider
       value={React.useMemo(
         () => ({
-          activePanel,
+          activePanelId,
           changeActivePanel,
           triggers,
           setTriggers,
@@ -158,7 +158,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           setShouldFocus,
           panels,
         }),
-        [activePanel, changeActivePanel, shouldFocus, triggers],
+        [activePanelId, changeActivePanel, shouldFocus, triggers],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -180,7 +180,7 @@ if (process.env.NODE_ENV === 'development') {
 export const PanelsWrapperContext = React.createContext<
   | {
       // TODO: Change names to like activePanelId. But maybe we can use elements directly without ids?
-      activePanel: string;
+      activePanelId: string;
       triggers: Record<string, TriggerMapEntry>;
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
@@ -223,7 +223,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanel, triggers, panels } =
+  const { activePanelId, triggers, panels } =
     useSafeContext(PanelsWrapperContext);
 
   const fallbackId = React.useId();
@@ -231,12 +231,12 @@ const Panel = React.forwardRef((props, forwardedRef) => {
 
   const associatedTrigger = React.useMemo(() => triggers[id], [id, triggers]);
 
-  const previousActivePanel = useDelayed(activePanel) || activePanel;
+  const previousActivePanelId = useDelayed(activePanelId) || activePanelId;
 
-  const isMounted = [activePanel, previousActivePanel].includes(id);
+  const isMounted = [activePanelId, previousActivePanelId].includes(id);
   const isTransitioning =
-    activePanel === id && activePanel !== previousActivePanel;
-  const isInert = previousActivePanel === id && activePanel !== id;
+    activePanelId === id && activePanelId !== previousActivePanelId;
+  const isInert = previousActivePanelId === id && activePanelId !== id;
 
   React.useEffect(() => {
     if (!panels.current.has(id)) {
@@ -312,7 +312,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     changeActivePanel,
     triggers,
     setTriggers,
-    activePanel,
+    activePanelId: activePanel,
     shouldFocus,
     setShouldFocus,
     panels,

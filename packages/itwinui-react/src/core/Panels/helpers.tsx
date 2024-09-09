@@ -44,16 +44,16 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
   const instanceBackup = Panels.useInstance();
   const instance = instanceProp || instanceBackup;
 
-  const { activePanel, changeActivePanel, triggers, setShouldFocus } =
+  const { activePanelId, changeActivePanel, triggers, setShouldFocus } =
     useSafeContext(PanelsWrapperContext);
 
   const goBack = React.useCallback(async () => {
-    const trigger = triggers[activePanel];
+    const trigger = triggers[activePanelId];
     if (trigger.triggerId != null) {
       setShouldFocus({ panelId: trigger.panelId, direction: 'backward' });
       changeActivePanel(trigger.panelId);
     }
-  }, [activePanel, changeActivePanel, setShouldFocus, triggers]);
+  }, [activePanelId, changeActivePanel, setShouldFocus, triggers]);
 
   useSynchronizeInstance(
     instance,
