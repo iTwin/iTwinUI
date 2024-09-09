@@ -12,13 +12,11 @@ import {
   Box,
   useSafeContext,
   ButtonBase,
+  useMediaQuery,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { ToasterStateContext } from './Toaster.js';
-
-const isMotionOk = () =>
-  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
 
 export type ToastCategory =
   | 'informational'
@@ -117,6 +115,8 @@ export const Toast = (props: ToastProps) => {
   const thisElement = React.useRef<HTMLDivElement>(null);
   const [margin, setMargin] = React.useState(0);
 
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
   const marginStyle = () => {
     if (placementPosition === 'top') {
       return { marginBlockEnd: margin };
@@ -192,18 +192,18 @@ export const Toast = (props: ToastProps) => {
       appear={true}
       unmountOnExit={true}
       onEnter={(node: HTMLElement) => {
-        if (isMotionOk()) {
+        if (motionOk) {
           node.style.transform = 'translateY(15%)';
           node.style.transitionTimingFunction = 'ease';
         }
       }}
       onEntered={(node: HTMLElement) => {
-        if (isMotionOk()) {
+        if (motionOk) {
           node.style.transform = 'translateY(0)';
         }
       }}
       onExiting={(node) => {
-        if (isMotionOk()) {
+        if (motionOk) {
           const { translateX, translateY } = calculateOutAnimation(node);
           node.style.transform = animateOutTo
             ? `scale(0.9) translate(${translateX}px,${translateY}px)`
