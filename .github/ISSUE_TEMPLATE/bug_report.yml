@@ -9,21 +9,6 @@ body:
         Thank you for contributing to iTwinUI by creating an issue!
         Make sure you first do a search for existing issues so that this is is not a duplicate.
         Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ).
-  - type: dropdown
-    attributes:
-      label: Are you using the latest version of iTwinUI?
-      options:
-        - 'Yes'
-        - 'No'
-    validations:
-      required: true
-    id: version
-  - type: textarea
-    attributes:
-      label: Version Details
-      description: If you are not using the latest version, please specify the version you are using.
-    validations:
-      required: false
   - type: textarea
     attributes:
       label: Describe the bug (current behavior)
@@ -51,9 +36,20 @@ body:
         3. out
     validations:
       required: false
+  - type: checkboxes
+    attributes:
+      label: Current package version
+      description: Confirm if you are using the latest version of iTwinUI.
+      options:
+        - label: I'm using the latest version of iTwinUI.
+          required: false
+        - label: I'm using other version of iTwinUI.
+          required: false
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Anything else?
-      description: Add anything else you want to mention (package version, environment info, possible solution, etc.)
+      description: Add anything else you want to mention (environment info, possible solution, etc.)
     validations:
       required: false
