@@ -41,7 +41,8 @@ body:
       label: Package Version
       description: Please confirm if you are using the [latest version](https://www.npmjs.com/package/@itwin/itwinui-react?activeTab=versions) of iTwinUI.
       options:
-        - label: I'm using the latest version.
+        - label: |
+            I'm using the [latest version](https://www.npmjs.com/package/@itwin/itwinui-react?activeTab=versions) of iTwinUI.
           required: false
     validations:
       required: false
