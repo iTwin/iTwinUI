@@ -25,8 +25,8 @@ body:
       description: If you are not using the latest version, please specify the version you are using.
     validations:
       required: true
-    conditions:
-      version: 'No'
+    if:
+      equals: version.No
   - type: textarea
     attributes:
       label: Describe the bug (current behavior)
