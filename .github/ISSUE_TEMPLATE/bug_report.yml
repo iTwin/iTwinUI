@@ -40,7 +40,7 @@ body:
     attributes:
       label: Package Version
       options:
-        - label: I'm using the [latest version](https://www.npmjs.com/package/@itwin/itwinui-react?activeTab=versions) of iTwinUI.
+        - label: "I'm using the [latest version](https://www.npmjs.com/package/@itwin/itwinui-react?activeTab=versions) of iTwinUI."
           required: false
     validations:
       required: false
