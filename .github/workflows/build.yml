@@ -32,9 +32,6 @@ jobs:
   assign-author:
     name: Assign author
     runs-on: ubuntu-latest
-    on:
-      pull_request:
-        types: [opened, reopened, ready_for_review]
 
     steps:
       - uses: actions/checkout@v4
@@ -50,10 +47,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Assign author to PR
-        uses: kentaro-m/auto-assign-action@v2.0.0
+        uses: toshimaru/auto-author-assign@v2.1.1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: '.github/workflows/auto_assign.yml'
+          repo-token: ${{ secrets.YOUR_TOKEN }}
 
   audit:
     name: Audit node modules
