@@ -46,7 +46,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const columns = github.rest.projects.listColumns({project_id});
+            const columns = github.rest.projects.listColumns({ project_id: "52" });
             console.log(columns);
 
   audit:
