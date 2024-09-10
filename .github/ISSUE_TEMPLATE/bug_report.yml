@@ -14,8 +14,8 @@ body:
       label: Version
       description: Are you using the latest version of iTwinUI?
       options:
-        - true
-        - false
+        - 'Yes'
+        - 'No'
     validations:
       required: true
     id: version
@@ -26,7 +26,7 @@ body:
     validations:
       required: true
     if:
-      version: false
+      version: 'No'
   - type: textarea
     attributes:
       label: Describe the bug (current behavior)
