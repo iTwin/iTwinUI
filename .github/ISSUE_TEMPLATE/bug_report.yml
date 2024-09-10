@@ -38,7 +38,7 @@ body:
       required: false
   - type: checkboxes
     attributes:
-      label: Current package version
+      label: Package Version
       description: Confirm if you are using the latest version of iTwinUI.
       options:
         - label: I'm using the latest version of iTwinUI.
@@ -50,6 +50,6 @@ body:
   - type: textarea
     attributes:
       label: Anything else?
-      description: Add anything else you want to mention (environment info, possible solution, etc.)
+      description: Add anything else you want to mention (package version, environment info, possible solution, etc.)
     validations:
       required: false
