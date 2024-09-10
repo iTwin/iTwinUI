@@ -25,7 +25,7 @@ body:
       description: If you are not using the latest version, please specify the version you are using.
     validations:
       required: true
-    if:
+    conditions:
       version: 'No'
   - type: textarea
     attributes:
