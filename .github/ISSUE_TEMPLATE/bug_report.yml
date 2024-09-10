@@ -24,9 +24,7 @@ body:
       label: Version Details
       description: If you are not using the latest version, please specify the version you are using.
     validations:
-      required: true
-    if:
-      equals: version.No
+      required: false
   - type: textarea
     attributes:
       label: Describe the bug (current behavior)
