@@ -29,10 +29,22 @@ jobs:
 
       - run: pnpm install
 
-      - name: Assign author
-        uses: hkusu/review-assign-action@v1
+      # - name: Assign author
+      #   uses: hkusu/review-assign-action@v1
+      #   with:
+      #     assignees: ${{ github.actor }}
+
+      - name: Assign author using github-script
+        uses: actions/github-script@v6
         with:
-          assignees: ${{ github.actor }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              assignees: [context.actor]
+            })
 
   audit:
     name: Audit node modules
