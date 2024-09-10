@@ -46,14 +46,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { data: columns } = await github.projects.listColumns({
-              project_id: '52',
-            });
-            const statusColumn = columns.find(column => column.name === 'Status');
-            const { data: cards } = await github.projects.listCards({
-              column_id: statusColumn.id,
-            });
-            console.log(cards)
+            const columns = github.rest.projects.listColumns({project_id});
+            console.log(columns);
 
   audit:
     name: Audit node modules
