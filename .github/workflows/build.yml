@@ -6,7 +6,8 @@ on:
     branches:
       - main
       - dev
-  pull_request:
+  pull_request_target:
+    types: [opened, draft, ready_for_review, synchronize]
   merge_group:
 
 jobs:
@@ -48,9 +49,6 @@ jobs:
           cache: 'pnpm'
 
       - name: Assign author to PR
-        on:
-          pull_request_target:
-            types: [opened, draft]
         uses: kentaro-m/auto-assign-action@v2.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
