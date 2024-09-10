@@ -117,6 +117,12 @@ jobs:
         with:
           version: 9
 
+      - name: Assign author to PR
+        uses: kentaro-m/auto-assign-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignee: author
+
       - name: Use Node 20.x
         uses: actions/setup-node@v4
         with:
