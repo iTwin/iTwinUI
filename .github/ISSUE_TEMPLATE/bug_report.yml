@@ -29,7 +29,7 @@ body:
       label: Describe the bug (current behavior)
       description: A concise description of what you're experiencing.
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Expected Behavior

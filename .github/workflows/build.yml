@@ -29,6 +29,30 @@ jobs:
 
       - run: pnpm install
 
+  assign-author:
+    name: Assign author
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Assign author to PR
+        uses: kentaro-m/auto-assign-action@v2.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignee: author
+
   audit:
     name: Audit node modules
     needs: install
@@ -116,12 +140,6 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-
-      - name: Assign author to PR
-        uses: kentaro-m/auto-assign-action@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          assignee: author
 
       - name: Use Node 20.x
         uses: actions/setup-node@v4
