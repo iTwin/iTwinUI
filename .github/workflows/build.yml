@@ -32,6 +32,9 @@ jobs:
   assign-author:
     name: Assign author
     runs-on: ubuntu-latest
+    on:
+      pull_request_target:
+        types: [opened, reopened, ready_for_review]
 
     steps:
       - uses: actions/checkout@v4
