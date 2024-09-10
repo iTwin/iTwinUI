@@ -29,6 +29,18 @@ jobs:
 
       - run: pnpm install
 
+      - name: Assign author using github-script
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              assignees: [context.actor]
+            })
+
   audit:
     name: Audit node modules
     needs: install
