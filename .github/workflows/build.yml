@@ -32,7 +32,9 @@ jobs:
   assign-author:
     name: Assign author
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
+    on:
+      pull_request:
+        types: [opened, reopened, ready_for_review]
 
     steps:
       - uses: actions/checkout@v4
