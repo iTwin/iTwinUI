@@ -6,8 +6,7 @@ on:
     branches:
       - main
       - dev
-  pull_request_target:
-    types: [opened, draft, ready_for_review, synchronize]
+  pull_request:
   merge_group:
 
 jobs:
@@ -33,7 +32,7 @@ jobs:
   assign-author:
     name: Assign author
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'draft')
 
     steps:
       - uses: actions/checkout@v4
