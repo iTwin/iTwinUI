@@ -29,27 +29,17 @@ jobs:
 
       - run: pnpm install
 
-  assign-author:
-    name: Assign author
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Use Node 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-          cache: 'pnpm'
-
       - name: Assign author
-        uses: kentaro-m/auto-assign-action@v2.0.0
+        uses: actions/github-script@v6
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              assignees: [context.payload.pull_request.user.login]  # PR author as assignee
+            })
 
   audit:
     name: Audit node modules
