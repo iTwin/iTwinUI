@@ -29,11 +29,6 @@ jobs:
 
       - run: pnpm install
 
-      # - name: Assign author
-      #   uses: hkusu/review-assign-action@v1
-      #   with:
-      #     assignees: ${{ github.actor }}
-
       - name: Assign author using github-script
         uses: actions/github-script@v6
         with:
@@ -45,6 +40,20 @@ jobs:
               issue_number: context.payload.pull_request.number,
               assignees: [context.actor]
             })
+
+      - name: Move PR to In Progress/Review Status
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: columns } = await github.projects.listColumns({
+              project_id: '52',
+            });
+            const statusColumn = columns.find(column => column.name === 'Status');
+            const { data: cards } = await github.projects.listCards({
+              column_id: statusColumn.id,
+            });
+            console.log(cards)
 
   audit:
     name: Audit node modules
