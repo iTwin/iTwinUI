@@ -11,8 +11,7 @@ body:
         Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ).
   - type: dropdown
     attributes:
-      label: Version
-      description: Are you using the latest version of iTwinUI?
+      label: Are you using the latest version of iTwinUI?
       options:
         - 'Yes'
         - 'No'
