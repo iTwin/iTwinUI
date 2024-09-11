@@ -10,6 +10,23 @@
     inline-size: 100%;
     border-color: var(--_iui-input-border-color);
   }
+
+  &:where(:not([data-iui-expanded='true'])) {
+    --_iui-input-background-color: transparent;
+    --_iui-input-border-color: transparent;
+    --_iui-input-text-color: var(--iui-color-text);
+    transition:
+      background-color var(--iui-duration-1) ease-out,
+      border-color var(--iui-duration-1) ease-out,
+      color var(--iui-duration-1) ease-out;
+
+    &:hover {
+      --_iui-input-border-color: transparent;
+      // --_iui-input-background-color: transparent;
+      --_iui-input-background-color: var(--iui-color-background);
+      // --_iui-input-text-color: var(--iui-color-text-hover);
+    }
+  }
 }
 
 // noop https://github.com/iTwin/iTwinUI/pull/1881#discussion_r1506166537

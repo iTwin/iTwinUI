@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { InputWithDecorations } from '@itwin/itwinui-react';
+import { IconButton, InputWithDecorations } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -11,15 +11,18 @@ export default {
 
 export const Basic = () => {
   return (
-    <InputWithDecorations>
-      <InputWithDecorations.Icon>
-        <SvgAirplane />
-      </InputWithDecorations.Icon>
-      <InputWithDecorations.Input placeholder='Input..' />
-      <InputWithDecorations.Button label='Custom button'>
-        <SvgAdd />
-      </InputWithDecorations.Button>
-    </InputWithDecorations>
+    <>
+      <InputWithDecorations>
+        <InputWithDecorations.Icon>
+          <SvgAirplane />
+        </InputWithDecorations.Icon>
+        <InputWithDecorations.Input placeholder='Input..' />
+        <InputWithDecorations.Button label='Custom button'>
+          <SvgAdd />
+        </InputWithDecorations.Button>
+      </InputWithDecorations>
+      <IconButton styleType='borderless'>…</IconButton>
+    </>
   );
 };
 

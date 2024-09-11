@@ -123,6 +123,23 @@
   line-height: var(--iui-size-l);
   padding-inline: 1px; // To account for the left and right edges of the 1px border
 
+  // &[data-iui-variant='borderless'] {
+  //   --_iui-input-background-color: transparent;
+  //   --_iui-input-border-color: transparent;
+  //   --_iui-input-text-color: var(--iui-color-text);
+  //   transition:
+  //     background-color var(--iui-duration-1) ease-out,
+  //     border-color var(--iui-duration-1) ease-out,
+  //     color var(--iui-duration-1) ease-out;
+
+  //   &:hover {
+  //     --_iui-input-border-color: transparent;
+  //     // --_iui-input-background-color: transparent;
+  //     --_iui-input-background-color: var(--iui-color-background);
+  //     // --_iui-input-text-color: var(--iui-color-text-hover);
+  //   }
+  // }
+
   // Adding before pseudo-element to make inner elements more centered
   &::before {
     content: '';
