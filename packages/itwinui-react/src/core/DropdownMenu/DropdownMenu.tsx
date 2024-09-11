@@ -95,30 +95,32 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   }, [menuItems, setVisible]);
 
   return (
-    <>
-      <Menu
-        trigger={children}
-        onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
-          if (e.defaultPrevented) {
-            return;
-          }
-          if (e.key === 'Tab') {
-            setVisible(false);
-          }
-        })}
-        role={role}
-        ref={forwardedRef}
-        portal={portal}
-        popoverProps={{
+    <Menu
+      trigger={children}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
+        if (e.defaultPrevented) {
+          return;
+        }
+        if (e.key === 'Tab') {
+          setVisible(false);
+        }
+      })}
+      role={role}
+      ref={forwardedRef}
+      portal={portal}
+      popoverProps={React.useMemo(
+        () => ({
           placement,
           matchWidth,
           visible,
           onVisibleChange: setVisible,
-        }}
-        {...rest}
-      >
-        {menuContent}
-      </Menu>
-    </>
+          middleware: { hide: true },
+        }),
+        [matchWidth, placement, setVisible, visible],
+      )}
+      {...rest}
+    >
+      {menuContent}
+    </Menu>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;

@@ -287,17 +287,24 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
                 maxInlineSize: `min(${referenceWidth * 2}px, 90vw)`,
               }
             : {}),
+          ...(middleware.hide && {
+            visibility: floating.middlewareData.hide?.referenceHidden
+              ? 'hidden'
+              : 'visible',
+          }),
           ...userProps?.style,
         },
       }),
     [
-      floating.floatingStyles,
       interactions,
-      matchWidth,
-      referenceWidth,
+      floating.floatingStyles,
+      floating.middlewareData.hide?.referenceHidden,
       middleware.size,
+      middleware.hide,
       availableHeight,
       maxHeight,
+      matchWidth,
+      referenceWidth,
     ],
   );
 

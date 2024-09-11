@@ -1,11 +1,7 @@
+import * as React from 'react';
 import { Button } from '@itwin/itwinui-react';
+import { Virtualized } from './ItwinTree';
 
-const App = () => {
-  return (
-    <>
-      <Button>Hello world</Button>
-    </>
-  );
-};
-
-export default App;
+export default function App() {
+  return <Virtualized />;
+}
