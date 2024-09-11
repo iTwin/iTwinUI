@@ -40,7 +40,7 @@ type ColorInputPanelProps = {
   /**
    * Props for color input field box.
    */
-  inputFieldProps?: React.ComponentProps<'div'>;
+  inputFieldsGroupProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -59,7 +59,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     className,
     inputContainerProps,
     panelLabelProps,
-    inputFieldProps,
+    inputFieldsGroupProps,
     ...rest
   } = props;
 
@@ -511,9 +511,12 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         )}
         <Box
           as='div'
-          {...inputFieldProps}
-          ref={useMergedRefs(inputsContainerRef, inputFieldProps?.ref)}
-          className={cx('iui-color-input-fields', inputFieldProps?.className)}
+          {...inputFieldsGroupProps}
+          ref={useMergedRefs(inputsContainerRef, inputFieldsGroupProps?.ref)}
+          className={cx(
+            'iui-color-input-fields',
+            inputFieldsGroupProps?.className,
+          )}
           role={currentFormat !== 'hex' ? 'group' : undefined}
           aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
         >
