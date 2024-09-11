@@ -41,6 +41,10 @@ type ColorInputPanelProps = {
    * Props for color input field box.
    */
   inputFieldsGroupProps?: React.ComponentProps<'div'>;
+  /**
+   * Props for color format button.
+   */
+  swapColorFormatButtonProps?: React.ComponentProps<typeof IconButton>;
 };
 
 /**
@@ -60,6 +64,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     inputContainerProps,
     panelLabelProps,
     inputFieldsGroupProps,
+    swapColorFormatButtonProps,
     ...rest
   } = props;
 
@@ -501,10 +506,11 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
       >
         {allowedColorFormats.length > 1 && (
           <IconButton
-            styleType='borderless'
-            onClick={swapColorFormat}
-            size='small'
-            label='Switch format'
+            className={swapColorFormatButtonProps?.className}
+            styleType={swapColorFormatButtonProps?.styleType ?? 'borderless'}
+            onClick={swapColorFormatButtonProps?.onClick ?? swapColorFormat}
+            size={swapColorFormatButtonProps?.size ?? 'small'}
+            label={swapColorFormatButtonProps?.label ?? 'Switch format'}
           >
             <SvgSwap />
           </IconButton>

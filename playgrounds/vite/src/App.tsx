@@ -1,9 +1,17 @@
-import { ColorBuilder, ColorPicker } from '@itwin/itwinui-react';
+import {
+  ColorBuilder,
+  ColorPicker,
+  ColorInputPanel,
+} from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
       <ColorPicker showAlpha>
+        <ColorInputPanel
+          defaultColorFormat='hex'
+          swapColorFormatButtonProps={{ className: 'test-swap-color-button' }}
+        />
         <ColorBuilder
           hueSliderProps={{
             values: [0],

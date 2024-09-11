@@ -48,6 +48,26 @@ it('should render input field with custom container props', async () => {
   expect(inputPanel.style.padding).toBe('10px');
 });
 
+it('should render swap color format button with custom props', async () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        swapColorFormatButtonProps={{
+          className: 'test-swap-color-button',
+          styleType: 'high-visibility',
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const swapColorButton = container.querySelector(
+    '.iui-button[data-iui-variant="high-visibility"]',
+  ) as HTMLElement;
+  expect(swapColorButton).toBeTruthy();
+  expect(swapColorButton).toHaveClass('test-swap-color-button');
+});
+
 it('should render input field with custom input field props', async () => {
   const logSpy = vitest.spyOn(console, 'log');
   const { container } = render(
