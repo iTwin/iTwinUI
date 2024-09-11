@@ -10,3 +10,4 @@ export { useResizeColumns } from './useResizeColumns.js';
 export { useColumnDragAndDrop } from './useColumnDragAndDrop.js';
 export { useScrollToRow } from './useScrollToRow.js';
 export { useStickyColumns } from './useStickyColumns.js';
+export { useSubComponentVirtualizing } from './useSubComponentVirtualizing.js';

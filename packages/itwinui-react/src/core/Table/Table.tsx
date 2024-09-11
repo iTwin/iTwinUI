@@ -54,6 +54,7 @@ import {
   useColumnDragAndDrop,
   useScrollToRow,
   useStickyColumns,
+  useSubComponentVirtualizing,
 } from './hooks/index.js';
 import {
   onExpandHandler,
@@ -799,28 +800,23 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
-  /**
-   * Takes in page and state.expanded.
-   * Only called when there are no sub-rows since sub-rows are treated as row.
-   * Returns Array<"row" | "subrow">
-   */
-  const listOfRowsAndSubComponents = React.useMemo(() => {
-    const rowsAndSubComponents = [];
-    for (let i = 0; i < page.length; i++) {
-      rowsAndSubComponents.push('row');
-      if (!hasAnySubRows && state.expanded[page[i].id]) {
-        rowsAndSubComponents.push('subcomponent');
-      }
-    }
-    return rowsAndSubComponents;
-  }, [page, state.expanded, hasAnySubRows]);
+  const {
+    listOfRowsAndSubComponents,
+    getRowIndexFromVirtualizerIndex,
+    isARow,
+  } = useSubComponentVirtualizing(hasAnySubRows, page, state);
 
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     enabled: enableVirtualization,
     count: subComponent ? listOfRowsAndSubComponents.length : page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
-    getItemKey: (index) => page[index]?.id ?? index.toString(),
+    getItemKey: (index) => {
+      const itemKey = isARow(index)
+        ? `row-${getRowIndexFromVirtualizerIndex(index)}`
+        : `subcomponent-${getRowIndexFromVirtualizerIndex(index)}`;
+      return itemKey;
+    },
     overscan: 1,
   });
 
@@ -830,45 +826,13 @@ export const Table = <
     }
   }, [virtualizer, scrollToIndex]);
 
-  /**
-   * Returns associated index of the row and sub-component.
-   * Index of subcomponent is retrieved from the current expanded main row subtracted by the number of expanded contents before.
-   * @example
-   * listOfRowsAndSubComponents = [row, subcomponent (1-0), row, row, subcomponent (4-2), row, subcomponent (6-3)]
-   * page = [row(id=abc1, index=0), row(id=abc2, index=1), row(id=abc3, index=2), row(id=abc4, index=3)]
-   * state.expanded = {abc1: true, abc3: true}*/
-  const getRowIndices = React.useCallback(
-    (index: number) => {
-      let expandedRowsBefore = 0;
-      for (let i = 0; i < index; i++) {
-        if (listOfRowsAndSubComponents[i] === 'subcomponent') {
-          expandedRowsBefore++;
-        }
-      }
-      const rowIndex = index - expandedRowsBefore;
-      const subComponentAssociatedRowIndex = rowIndex - 1;
-      return {
-        rowIndex,
-        subComponentAssociatedRowIndex,
-      };
-    },
-    [listOfRowsAndSubComponents],
-  );
-
-  const isARow = React.useCallback(
-    (index: number) => {
-      return listOfRowsAndSubComponents[index] === 'row';
-    },
-    [listOfRowsAndSubComponents],
-  );
-
   const renderTableRow = React.useCallback(
     (row: Row<T>, index: number, virtualItem?: VirtualItem<Element>) => (
       <TableRowMemoized
         row={row}
         rowProps={rowProps}
         isLast={
-          getRowIndices(index).rowIndex ===
+          getRowIndexFromVirtualizerIndex(index) ===
           listOfRowsAndSubComponents.length - 1
         }
         onRowInViewport={onRowInViewportRef}
@@ -893,7 +857,7 @@ export const Table = <
       density,
       enableVirtualization,
       expanderCell,
-      getRowIndices,
+      getRowIndexFromVirtualizerIndex,
       hasAnySubRows,
       instance,
       intersectionMargin,
@@ -930,13 +894,10 @@ export const Table = <
 
   const getPreparedRow = React.useCallback(
     (index: number, virtualItem?: VirtualItem<Element>) => {
-      const rowIndices = getRowIndices(index);
+      const rowIndices = getRowIndexFromVirtualizerIndex(index);
       const isRow = isARow(index);
-      const row = enableVirtualization
-        ? page[rowIndices.rowIndex]
-        : page[index];
-      const subComponentsRowData =
-        page[rowIndices.subComponentAssociatedRowIndex];
+      const row = enableVirtualization ? page[rowIndices] : page[index];
+      const subComponentsRowData = page[rowIndices];
 
       if (enableVirtualization) {
         prepareRow(isRow ? row : subComponentsRowData);
@@ -965,10 +926,10 @@ export const Table = <
       }
     },
     [
-      getRowIndices,
+      getRowIndexFromVirtualizerIndex,
       isARow,
-      page,
       enableVirtualization,
+      page,
       prepareRow,
       renderTableRow,
       renderExpandableRow,
