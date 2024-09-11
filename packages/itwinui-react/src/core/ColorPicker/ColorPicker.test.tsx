@@ -8,6 +8,7 @@ import { ColorPalette } from './ColorPalette.js';
 import { ColorBuilder } from './ColorBuilder.js';
 import { ColorInputPanel } from './ColorInputPanel.js';
 import { ColorValue } from '../../utils/index.js';
+import classNames from 'classnames';
 
 it('should convert color list to ColorValues', () => {
   ['#9BA5AF', '#23450b', '#00121D', '#002A44'].forEach((value) => {
@@ -76,6 +77,61 @@ it('should render color dot with custom props', () => {
     '.iui-color-dot.test-color-dot',
   ) as HTMLElement;
   expect(colorDot).toBeTruthy();
+});
+
+it('should render color builder with custom hue slider', () => {
+  const handleChange = vi.fn();
+  const { container } = render(
+    <ColorPicker>
+      <ColorBuilder
+        hueSliderProps={{
+          className: 'test-hue-slider',
+          values: [0],
+          onChange: handleChange,
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const hueSlider = container.querySelector(
+    '.iui-hue-slider.test-hue-slider',
+  ) as HTMLElement;
+  expect(hueSlider).toBeTruthy();
+  const hueSliderThumb = container.querySelector(
+    '.iui-slider-thumb',
+  ) as HTMLDivElement;
+  fireEvent.pointerDown(hueSliderThumb, {
+    pointerId: 5,
+    buttons: 1,
+    clientX: 210,
+  });
+  expect(handleChange).toHaveBeenCalledTimes(1);
+});
+
+it('should render color builder with custom opacity slider', () => {
+  const handleChange = vi.fn();
+  const { container } = render(
+    <ColorPicker showAlpha>
+      <ColorBuilder
+        opacitySliderProps={{
+          className: 'test-opacity-slider',
+          values: [100],
+          onChange: handleChange,
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const opacitySlider = container.querySelector(
+    '.iui-opacity-slider.test-opacity-slider',
+  ) as HTMLElement;
+  expect(opacitySlider).toBeTruthy();
+  const opacitySliderThumb = container.querySelectorAll(
+    '.iui-slider-thumb',
+  )[1] as HTMLElement;
+  fireEvent.keyDown(opacitySliderThumb, { key: 'ArrowLeft' });
+  fireEvent.keyUp(opacitySliderThumb, { key: 'ArrowLeft' });
+  expect(handleChange).toHaveBeenCalledTimes(1);
 });
 
 it('should render advanced color picker with no color swatches', () => {

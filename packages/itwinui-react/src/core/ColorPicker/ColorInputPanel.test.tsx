@@ -54,7 +54,7 @@ it('should render input field with custom input field props', async () => {
     <ColorPicker>
       <ColorInputPanel
         defaultColorFormat='hex'
-        inputFieldProps={{
+        inputFieldsGroupProps={{
           className: 'test-input-field',
           style: {
             borderRadius: '10px',

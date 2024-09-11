@@ -1,9 +1,18 @@
-import { Button } from '@itwin/itwinui-react';
+import { ColorBuilder, ColorPicker } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <Button>Hello world</Button>
+      <ColorPicker showAlpha>
+        <ColorBuilder
+          hueSliderProps={{
+            values: [0],
+            onChange: (value) => {
+              console.log(value);
+            },
+          }}
+        />
+      </ColorPicker>
     </>
   );
 };
