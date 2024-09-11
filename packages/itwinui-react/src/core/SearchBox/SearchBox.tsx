@@ -159,7 +159,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         size={size}
         isDisabled={isDisabled}
         data-iui-expanded={isExpanded}
-        data-iui-variant={isExpanded ? undefined : 'borderless'}
         {...rest}
       >
         {children ?? (

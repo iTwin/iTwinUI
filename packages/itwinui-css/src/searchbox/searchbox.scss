@@ -5,27 +5,16 @@
   inline-size: fit-content;
   padding-inline: 0; // To remove 1px padding from input-flex-container
 
-  // Expanded
   &:where([data-iui-expanded='true']) {
     inline-size: 100%;
     border-color: var(--_iui-input-border-color);
   }
 
-  &:where(:not([data-iui-expanded='true'])) {
+  // Let border and background come from expand button
+  &:where(:not([data-iui-expanded='true'])),
+  &:where(:not([data-iui-expanded='true'])):hover {
     --_iui-input-background-color: transparent;
     --_iui-input-border-color: transparent;
-    --_iui-input-text-color: var(--iui-color-text);
-    transition:
-      background-color var(--iui-duration-1) ease-out,
-      border-color var(--iui-duration-1) ease-out,
-      color var(--iui-duration-1) ease-out;
-
-    &:hover {
-      --_iui-input-border-color: transparent;
-      // --_iui-input-background-color: transparent;
-      --_iui-input-background-color: var(--iui-color-background);
-      // --_iui-input-text-color: var(--iui-color-text-hover);
-    }
   }
 }
 

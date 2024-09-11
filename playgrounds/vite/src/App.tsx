@@ -1,48 +1,94 @@
-import * as React from 'react';
-import { Button, Flex, IconButton, SearchBox } from '@itwin/itwinui-react';
-import { SvgSearch } from '@itwin/itwinui-icons-react';
 import {
-  InputFlexContainer,
-  InputFlexContainerButton,
-} from '../../../packages/itwinui-react/esm/utils/index';
+  Divider,
+  Flex,
+  IconButton,
+  SearchBox,
+  Text,
+} from '@itwin/itwinui-react';
+import { SvgSearch } from '@itwin/itwinui-icons-react';
 
 export default function App() {
   return (
-    <Flex flexDirection='column' alignItems='stretch'>
-      <Flex justifyContent='flex-end'>
-        <IconButton>…</IconButton>
-        <IconButton>…</IconButton>
-        <SearchBox
-          // isExpanded
-          expandable
-          // onExpand={() => {
-          //   console.log('EX');
-          // }}
-          // onCollapse={() => console.log('CO')}
-        >
-          <SearchBox.CollapsedState>
-            <SearchBox.ExpandButton styleType='borderless' />
-            {/* <IconButton styleType='borderless'>…</IconButton> */}
-          </SearchBox.CollapsedState>
-          <SearchBox.ExpandedState>
-            <SearchBox.Icon />
-            <SearchBox.Input />
-            <SearchBox.CollapseButton />
-          </SearchBox.ExpandedState>
-        </SearchBox>
-      </Flex>
-      <Flex justifyContent='flex-end'>
-        <IconButton styleType='borderless'>
-          <SvgSearch />
-        </IconButton>
-      </Flex>
+    <Flex flexDirection='column' alignItems='flex-start'>
+      <Text>Regular Expandable SearchBox</Text>
+      <SearchBox expandable>
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton />
+        </SearchBox.CollapsedState>
+        <SearchBox.ExpandedState>
+          <SearchBox.Icon />
+          <SearchBox.Input />
+          <SearchBox.CollapseButton />
+        </SearchBox.ExpandedState>
+      </SearchBox>
 
-      <Flex justifyContent='flex-end'>
-        <SearchBox
-          expandable
-          inputProps={{ placeholder: 'Expandable search...' }}
-        />
-      </Flex>
+      <Divider />
+
+      <Text>Regular IconButton</Text>
+      <IconButton>
+        <SvgSearch />
+      </IconButton>
+
+      <Divider />
+
+      <Text>Borderless Expandable SearchBox</Text>
+      <SearchBox expandable>
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton styleType='borderless' />
+        </SearchBox.CollapsedState>
+        <SearchBox.ExpandedState>
+          <SearchBox.Icon />
+          <SearchBox.Input />
+          <SearchBox.CollapseButton />
+        </SearchBox.ExpandedState>
+      </SearchBox>
+      <SearchBox expandable>
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton styleType='borderless' />
+        </SearchBox.CollapsedState>
+        <SearchBox.ExpandedState>
+          <SearchBox.Icon />
+          <SearchBox.Input />
+          <SearchBox.CollapseButton />
+        </SearchBox.ExpandedState>
+      </SearchBox>
+
+      <Divider />
+
+      <Text>Borderless IconButton</Text>
+      <IconButton styleType='borderless'>
+        <SvgSearch />
+      </IconButton>
+
+      <Divider />
+
+      <Text>Regular Expandable SearchBox (expanded)</Text>
+      <SearchBox expandable isExpanded={true}>
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton />
+        </SearchBox.CollapsedState>
+        <SearchBox.ExpandedState>
+          <SearchBox.Icon />
+          <SearchBox.Input />
+          <SearchBox.CollapseButton />
+        </SearchBox.ExpandedState>
+      </SearchBox>
+
+      <Divider />
+
+      <Text>Borderless Expandable SearchBox (expanded)</Text>
+      <SearchBox expandable isExpanded={true}>
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton styleType='borderless' />
+        </SearchBox.CollapsedState>
+        <SearchBox.ExpandedState>
+          <SearchBox.Icon />
+          <SearchBox.Input />
+          <SearchBox.CollapseButton />
+        </SearchBox.ExpandedState>
+      </SearchBox>
+
+      <Divider />
     </Flex>
   );
 }

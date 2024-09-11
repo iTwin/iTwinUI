@@ -28,7 +28,6 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
         isDisabled={isDisabled}
         size={size}
         ref={ref}
-        data-iui-variant='borderless'
         {...rest}
       >
         {children}
