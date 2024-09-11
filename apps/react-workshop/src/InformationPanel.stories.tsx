@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { CellProps } from '@itwin/itwinui-react/react-table';
+import type { CellProps, Column } from '@itwin/itwinui-react/react-table';
 import { SvgEdit } from '@itwin/itwinui-icons-react';
 import {
   InformationPanel,
@@ -39,7 +39,7 @@ export const Basic = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<{ name: string }>[];
 
   const data = React.useMemo(
     () =>
@@ -119,7 +119,7 @@ export const Horizontal = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<{ name: string }>[];
 
   const data = React.useMemo(
     () =>
@@ -192,7 +192,7 @@ export const CustomActions = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<{ name: string }>[];
 
   const [data, setData] = React.useState(() =>
     [...Array(10).fill(null)].map((_, index) => ({

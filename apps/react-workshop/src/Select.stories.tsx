@@ -154,7 +154,7 @@ export const Custom = () => {
     undefined,
   );
   return (
-    <Select
+    <Select<string>
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}

@@ -36,8 +36,8 @@ export const Basic = () => {
 
   const transfer = (
     fromData: Array<TransferItemDataType>,
-    setFromData: (data: Array<TransferItemDataType>) => void,
-    setToData: (data: Array<TransferItemDataType>) => void,
+    setFromData: React.Dispatch<React.SetStateAction<TransferItemDataType[]>>,
+    setToData: React.Dispatch<React.SetStateAction<TransferItemDataType[]>>,
     sendAll?: boolean,
   ) => {
     setToData((oldToData) => {
@@ -53,7 +53,7 @@ export const Basic = () => {
         }
       });
       setFromData(newFromData);
-      return newToData;
+      return newToData as TransferItemDataType[];
     });
   };
 
@@ -170,8 +170,8 @@ export const WithLabel = () => {
 
   const transfer = (
     fromData: Array<TransferItemDataType>,
-    setFromData: (data: Array<TransferItemDataType>) => void,
-    setToData: (data: Array<TransferItemDataType>) => void,
+    setFromData: React.Dispatch<React.SetStateAction<TransferItemDataType[]>>,
+    setToData: React.Dispatch<React.SetStateAction<TransferItemDataType[]>>,
     sendAll?: boolean,
   ) => {
     setToData((oldToData) => {
