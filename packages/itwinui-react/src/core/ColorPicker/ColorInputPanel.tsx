@@ -12,6 +12,7 @@ import {
   Box,
   useId,
   useMergedRefs,
+  mergeEventHandlers,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
@@ -506,11 +507,15 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
       >
         {allowedColorFormats.length > 1 && (
           <IconButton
+            size={'small'}
+            styleType={'borderless'}
+            label={'Switch format'}
+            {...swapColorFormatButtonProps}
             className={swapColorFormatButtonProps?.className}
-            styleType={swapColorFormatButtonProps?.styleType ?? 'borderless'}
-            onClick={swapColorFormatButtonProps?.onClick ?? swapColorFormat}
-            size={swapColorFormatButtonProps?.size ?? 'small'}
-            label={swapColorFormatButtonProps?.label ?? 'Switch format'}
+            onClick={mergeEventHandlers(
+              swapColorFormatButtonProps?.onClick,
+              swapColorFormat,
+            )}
           >
             <SvgSwap />
           </IconButton>

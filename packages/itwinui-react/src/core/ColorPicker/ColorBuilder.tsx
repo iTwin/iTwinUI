@@ -333,68 +333,65 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       </Box>
 
       <Slider
-        minLabel={hueSliderProps?.minLabel ?? ''}
-        maxLabel={hueSliderProps?.maxLabel ?? ''}
-        values={hueSliderProps?.values ?? [sliderValue]}
+        minLabel={''}
+        maxLabel={''}
+        values={[sliderValue]}
+        trackDisplayMode={'none'}
+        min={0}
+        max={359}
+        {...hueSliderProps}
         className={cx('iui-hue-slider', hueSliderProps?.className)}
-        trackDisplayMode={hueSliderProps?.trackDisplayMode ?? 'none'}
-        tooltipProps={
-          hueSliderProps?.tooltipProps ?? (() => ({ visible: false }))
-        }
-        onChange={
-          hueSliderProps?.onChange ??
-          ((values) => {
-            updateHueSlider(values[0], true);
-          })
-        }
-        onUpdate={
-          hueSliderProps?.onUpdate ??
-          ((values) => {
-            updateHueSlider(values[0], false);
-          })
-        }
-        min={hueSliderProps?.min ?? 0}
-        max={hueSliderProps?.max ?? 359}
-        thumbProps={
-          hueSliderProps?.thumbProps ?? (() => ({ 'aria-label': 'Hue' }))
-        }
+        tooltipProps={() => ({
+          visible: false,
+          ...hueSliderProps?.tooltipProps,
+        })}
+        onChange={(values) => {
+          hueSliderProps?.onChange?.(values);
+          updateHueSlider(values[0], true);
+        }}
+        onUpdate={(values) => {
+          updateHueSlider(values[0], false);
+          hueSliderProps?.onUpdate?.(values);
+        }}
+        thumbProps={() => ({
+          'aria-label': 'Hue',
+          ...hueSliderProps?.thumbProps,
+        })}
       />
 
       {showAlpha && (
         <Slider
-          minLabel={opacitySliderProps?.minLabel ?? ''}
-          maxLabel={opacitySliderProps?.maxLabel ?? ''}
-          values={opacitySliderProps?.values ?? [alphaValue]}
+          minLabel={''}
+          maxLabel={''}
+          values={[alphaValue]}
+          trackDisplayMode={'none'}
+          min={0}
+          max={1}
+          step={0.01}
+          {...opacitySliderProps}
           className={cx('iui-opacity-slider', opacitySliderProps?.className)}
-          trackDisplayMode={opacitySliderProps?.trackDisplayMode ?? 'none'}
-          tooltipProps={
-            opacitySliderProps?.tooltipProps ?? (() => ({ visible: false }))
-          }
-          onChange={
-            opacitySliderProps?.onChange ??
-            ((values) => {
-              updateOpacitySlider(values[0], true);
-            })
-          }
-          onUpdate={
-            opacitySliderProps?.onUpdate ??
-            ((values) => {
-              updateOpacitySlider(values[0], false);
-            })
-          }
-          min={opacitySliderProps?.min ?? 0}
-          max={opacitySliderProps?.max ?? 1}
-          step={opacitySliderProps?.step ?? 0.01}
+          tooltipProps={() => ({
+            visible: false,
+            ...opacitySliderProps?.tooltipProps,
+          })}
+          onChange={(values) => {
+            updateOpacitySlider(values[0], true);
+            opacitySliderProps?.onChange?.(values);
+          }}
+          onUpdate={(values) => {
+            updateOpacitySlider(values[0], false);
+            opacitySliderProps?.onUpdate?.(values);
+          }}
           style={
             {
               '--iui-color-picker-selected-color': hueColorString,
               ...opacitySliderProps?.style,
             } as React.CSSProperties
           }
-          thumbProps={
-            opacitySliderProps?.thumbProps ??
-            (() => ({ 'aria-label': 'Opacity' }))
-          }
+          thumbProps={() => ({
+            'aria-label': 'Opacity',
+            ...opacitySliderProps?.thumbProps,
+          })}
         />
       )}
     </Box>
