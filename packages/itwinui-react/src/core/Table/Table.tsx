@@ -756,7 +756,11 @@ export const Table = <
 
   const tableRef = React.useRef<HTMLDivElement>(null);
 
-  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
+  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({
+    ...props,
+    page,
+    tableRef,
+  });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
@@ -822,7 +826,7 @@ export const Table = <
 
   useLayoutEffect(() => {
     if (scrollToIndex) {
-      virtualizer.scrollToIndex(scrollToIndex, { align: 'center' });
+      virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
     }
   }, [virtualizer, scrollToIndex]);
 

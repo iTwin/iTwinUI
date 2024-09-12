@@ -13,6 +13,7 @@ type ScrollToRow<T extends Record<string, unknown>> = {
 
 type ScrollToRowProps<T extends Record<string, unknown>> = TableProps<T> & {
   page: Row<T>[];
+  tableRef: React.RefObject<HTMLDivElement>;
 };
 
 export function useScrollToRow<T extends Record<string, unknown>>({
@@ -21,6 +22,7 @@ export function useScrollToRow<T extends Record<string, unknown>>({
   page,
   paginatorRenderer,
   scrollToRow,
+  tableRef,
 }: ScrollToRowProps<T>): ScrollToRow<T> {
   const rowRefs = React.useRef<Record<string, HTMLDivElement>>({});
 
@@ -54,8 +56,12 @@ export function useScrollToRow<T extends Record<string, unknown>>({
       return;
     }
 
-    rowRefs.current[pageRef.current[scrollToIndex]?.id]?.scrollIntoView();
-  }, [enableVirtualization, scrollToIndex]);
+    setTimeout(() => {
+      tableRef.current?.scrollTo({
+        top: rowRefs.current[pageRef.current[scrollToIndex]?.id]?.offsetTop,
+      });
+    });
+  }, [enableVirtualization, scrollToIndex, tableRef]);
 
   const tableRowRef = React.useCallback((row: Row<T>) => {
     return (element: HTMLDivElement) => {
