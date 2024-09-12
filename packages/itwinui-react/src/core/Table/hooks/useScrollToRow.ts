@@ -56,6 +56,10 @@ export function useScrollToRow<T extends Record<string, unknown>>({
       return;
     }
 
+    // Fallback in case the tableRef is not scrollable
+    rowRefs.current[pageRef.current[scrollToIndex]?.id]?.scrollIntoView();
+
+    // If the table is scrollable, scroll to the row without being overlapped by the header
     setTimeout(() => {
       tableRef.current?.scrollTo({
         top: rowRefs.current[pageRef.current[scrollToIndex]?.id]?.offsetTop,
