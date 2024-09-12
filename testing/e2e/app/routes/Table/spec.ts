@@ -485,10 +485,10 @@ test.describe('Virtual Scroll Tests', () => {
 
     const rows = page.getByRole('rowgroup').getByRole('row');
     const row50NameCell = page.getByText('Name50');
-    expect((await rows.all()).length).toBe(14);
-    await expect(rows.nth(0)).toContainText('Name43');
-    await expect(rows.nth(7)).toContainText('Name50');
-    await expect(rows.nth(13)).toContainText('Name56');
+    expect((await rows.all()).length).toBe(13);
+    await expect(rows.nth(0)).toContainText('Name49');
+    await expect(rows.nth(1)).toContainText('Name50');
+    await expect(rows.nth(12)).toContainText('Name61');
 
     await expect(row50NameCell).toBeInViewport();
   });
