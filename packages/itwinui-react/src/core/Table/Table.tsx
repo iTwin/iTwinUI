@@ -811,12 +811,10 @@ export const Table = <
     count: subComponent ? listOfRowsAndSubComponents.length : page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
-    getItemKey: (index) => {
-      const itemKey = isARow(index)
+    getItemKey: (index) =>
+      isARow(index)
         ? `row-${getRowIndexFromVirtualizerIndex(index)}`
-        : `subcomponent-${getRowIndexFromVirtualizerIndex(index)}`;
-      return itemKey;
-    },
+        : `subcomponent-${getRowIndexFromVirtualizerIndex(index)}`,
     overscan: 1,
   });
 

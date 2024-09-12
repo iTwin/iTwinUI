@@ -10,6 +10,10 @@ export const useSubComponentVirtualizing = <T extends Record<string, unknown>>(
   page: Row<T>[],
   state: TableState<T>,
 ) => {
+  /**
+   * Determines if the current index in the virtualizer is a row or a subcomponent.
+   * @returns Array<"row" | "subcomponent">
+   */
   const listOfRowsAndSubComponents = React.useMemo(() => {
     const rowsAndSubComponents = [];
     for (let i = 0; i < page.length; i++) {
@@ -29,8 +33,9 @@ export const useSubComponentVirtualizing = <T extends Record<string, unknown>>(
   );
 
   /**
-   * Returns index with respect to (page|virtualizer).
-   * Index of subcomponent is retrieved from the current expanded main row subtracted by the number of expanded contents before.*/
+   * Generates index from virtual item's index with respect to the index of the page.
+   * @returns Index with respect to (page | virtualizer).
+   * */
   const getRowIndexFromVirtualizerIndex = React.useCallback(
     (index: number) => {
       let expandedRowsBefore = 0;
