@@ -37,7 +37,7 @@ type ColorInputPanelProps = {
   /**
    * Passes props to the color input container.
    */
-  inputContainerProps?: React.ComponentProps<'div'>;
+  colorInputContainerProps?: React.ComponentProps<'div'>;
   /**
    * Passes props to the color input fields group.
    */
@@ -62,7 +62,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     defaultColorFormat,
     allowedColorFormats = ['hsl', 'rgb', 'hex'],
     className,
-    inputContainerProps,
+    colorInputContainerProps,
     panelLabelProps,
     inputFieldsGroupProps,
     swapColorFormatButtonProps,
@@ -502,8 +502,8 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
       </Box>
       <Box
         as='div'
-        {...inputContainerProps}
-        className={cx('iui-color-input', inputContainerProps?.className)}
+        {...colorInputContainerProps}
+        className={cx('iui-color-input', colorInputContainerProps?.className)}
       >
         {allowedColorFormats.length > 1 && (
           <IconButton
