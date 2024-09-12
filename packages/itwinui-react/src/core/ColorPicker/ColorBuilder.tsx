@@ -333,10 +333,10 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       </Box>
 
       <Slider
-        minLabel={''}
-        maxLabel={''}
+        minLabel=''
+        maxLabel=''
         values={[sliderValue]}
-        trackDisplayMode={'none'}
+        trackDisplayMode='none'
         min={0}
         max={359}
         {...hueSliderProps}
@@ -361,10 +361,10 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
 
       {showAlpha && (
         <Slider
-          minLabel={''}
-          maxLabel={''}
+          minLabel=''
+          maxLabel=''
           values={[alphaValue]}
-          trackDisplayMode={'none'}
+          trackDisplayMode='none'
           min={0}
           max={1}
           step={0.01}
