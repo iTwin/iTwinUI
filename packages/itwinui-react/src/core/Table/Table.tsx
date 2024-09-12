@@ -894,16 +894,16 @@ export const Table = <
 
   const getPreparedRow = React.useCallback(
     (index: number, virtualItem?: VirtualItem<Element>) => {
-      const rowIndices = getRowIndexFromVirtualizerIndex(index);
       const isRow = isARow(index);
-      const row = enableVirtualization ? page[rowIndices] : page[index];
-      const subComponentsRowData = page[rowIndices];
+      const row = enableVirtualization
+        ? page[getRowIndexFromVirtualizerIndex(index)]
+        : page[index];
 
       if (enableVirtualization) {
-        prepareRow(isRow ? row : subComponentsRowData);
+        prepareRow(row);
         return isRow
           ? renderTableRow(row, index, virtualItem)
-          : renderExpandableRow(subComponentsRowData, virtualItem);
+          : renderExpandableRow(row, virtualItem);
       } else {
         prepareRow(row);
         return (
