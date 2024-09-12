@@ -13,25 +13,26 @@ type TableExpandableContentProps = {
   isSelected?: boolean;
 };
 
+const TableExpandableContent = React.forwardRef((props, ref) => {
+  const { isDisabled, children, isSelected, className, style, ...rest } = props;
+  return (
+    <Box
+      className={cx('iui-table-row', 'iui-table-expanded-content', className)}
+      style={{
+        flex: '0 0 auto',
+        minWidth: '100%',
+        ...style,
+      }}
+      aria-disabled={isDisabled}
+      aria-selected={isSelected}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TableExpandableContentProps>;
+
 export const TableExpandableContentMemoized = React.memo(
-  React.forwardRef((props, ref) => {
-    const { isDisabled, children, isSelected, className, style, ...rest } =
-      props;
-    return (
-      <Box
-        className={cx('iui-table-row', 'iui-table-expanded-content', className)}
-        style={{
-          flex: '0 0 auto',
-          minWidth: '100%',
-          ...style,
-        }}
-        aria-disabled={isDisabled}
-        aria-selected={isSelected}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </Box>
-    );
-  }) as PolymorphicForwardRefComponent<'div', TableExpandableContentProps>,
+  TableExpandableContent,
 );
