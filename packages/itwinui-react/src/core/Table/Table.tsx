@@ -863,13 +863,8 @@ export const Table = <
             <WithCSSTransition in={row.isExpanded}>
               <TableExpandableContentMemoized
                 key={row.getRowProps().key}
-                virtualItem={virtualItem}
                 isDisabled={!!isRowDisabled?.(row.original)}
-                ref={
-                  enableVirtualization
-                    ? virtualizer?.measureElement
-                    : tableRowRef(row)
-                }
+                ref={tableRowRef(row)}
                 isSelected={row.isSelected}
               >
                 {subComponent(row)}
