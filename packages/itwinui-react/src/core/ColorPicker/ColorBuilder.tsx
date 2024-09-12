@@ -30,19 +30,19 @@ const getHorizontalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
 
 type ColorBuilderProps = {
   /**
-   * Props for color field box.
+   * Passes props to the color field.
    */
   colorFieldProps?: React.ComponentProps<'div'>;
   /**
-   * Props for color dot box.
+   * Passes props to the color dot.
    */
   colorDotProps?: React.ComponentProps<'div'>;
   /**
-   * Props for color opacity slider.
+   * Passes props to the color opacity slider.
    */
   opacitySliderProps?: React.ComponentProps<typeof Slider>;
   /**
-   * Props for color hue slider.
+   * Passes props to the color hue slider.
    */
   hueSliderProps?: React.ComponentProps<typeof Slider>;
 };

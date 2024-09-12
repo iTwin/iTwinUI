@@ -31,19 +31,19 @@ type ColorInputPanelProps = {
    */
   allowedColorFormats?: ('hsl' | 'rgb' | 'hex')[];
   /**
-   * Props for input panel label.
+   * Passes props to the color picker section label.
    */
   panelLabelProps?: React.ComponentProps<'div'>;
   /**
-   * Props for color input field container box.
+   * Passes props to the color input container.
    */
   inputContainerProps?: React.ComponentProps<'div'>;
   /**
-   * Props for color input fields group.
+   * Passes props to the color input fields group.
    */
   inputFieldsGroupProps?: React.ComponentProps<'div'>;
   /**
-   * Props for swap color format button.
+   * Passes props to the swap color format button.
    */
   swapColorFormatButtonProps?: React.ComponentProps<typeof IconButton>;
 };

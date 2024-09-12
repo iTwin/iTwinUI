@@ -19,7 +19,7 @@ export type ColorPaletteProps = {
    */
   label?: React.ReactNode;
   /**
-   * Props for custom label.
+   * Passes props to the color picker section label.
    */
   labelProps?: React.ComponentProps<'div'>;
   /**
@@ -31,7 +31,7 @@ export type ColorPaletteProps = {
    */
   children?: React.ReactNode;
   /**
-   * Props for palette container box.
+   * Passes props to the color palette container.
    */
   paletteContainerProps?: React.ComponentProps<'div'>;
 };
