@@ -154,10 +154,13 @@ export const Custom = () => {
     undefined,
   );
   return (
-    <Select<string>
+    <Select
       options={options}
       value={selectedValue}
-      onChange={setSelectedValue}
+      onChange={React.useCallback(
+        (value: string) => setSelectedValue(value),
+        [],
+      )}
       placeholder='Placeholder text'
       itemRenderer={(option) => (
         <MenuItem style={{ color: option.value }}>{option.label}</MenuItem>

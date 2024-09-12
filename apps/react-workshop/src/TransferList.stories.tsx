@@ -53,7 +53,7 @@ export const Basic = () => {
         }
       });
       setFromData(newFromData);
-      return newToData as TransferItemDataType[];
+      return newToData;
     });
   };
 
