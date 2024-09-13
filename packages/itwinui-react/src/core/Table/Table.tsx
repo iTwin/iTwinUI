@@ -962,14 +962,14 @@ export const Table = <
                         key={dragAndDropProps.key || column.id || index}
                         columnRefs={columnRefs}
                         column={column}
-                        index={index}
+                        isLast={index === headerGroup.headers.length - 1}
+                        columnHasExpanders={hasAnySubRows && !isSelectable}
                         areFiltersSet={areFiltersSet}
-                        hasAnySubRows={hasAnySubRows}
-                        headers={headerGroup.headers}
                         state={state}
                         data={data}
-                        isResizable={isResizable}
-                        columnResizeMode={columnResizeMode}
+                        columnResizeMode={
+                          isResizable ? columnResizeMode : undefined
+                        }
                         enableColumnReordering={enableColumnReordering}
                         density={density}
                         visibleColumns={visibleColumns}

@@ -16,7 +16,6 @@ import type {
   TableKeyedProps,
   TableState,
 } from '../../react-table/react-table.js';
-import { SELECTION_CELL_ID } from './columns/index.js';
 import { FilterToggle } from './filters/FilterToggle.js';
 import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
 import cx from 'classnames';
@@ -26,14 +25,12 @@ type ColumnHeaderProps<
 > = TableKeyedProps & {
   columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
   column: HeaderGroup<T>;
-  index: number;
   areFiltersSet: boolean;
-  hasAnySubRows: boolean;
-  headers: HeaderGroup<T>[];
+  columnHasExpanders: boolean;
+  isLast: boolean;
   state: TableState<T>;
   data: T[];
-  isResizable: boolean;
-  columnResizeMode: 'fit' | 'expand';
+  columnResizeMode?: 'fit' | 'expand';
   enableColumnReordering: boolean;
   density: string | undefined;
   visibleColumns: ColumnInstance<T>[];
@@ -47,13 +44,11 @@ export const ColumnHeader = <
   const {
     columnRefs,
     column,
-    index,
+    columnHasExpanders,
+    isLast,
     areFiltersSet,
-    hasAnySubRows,
-    headers,
     state,
     data,
-    isResizable,
     columnResizeMode,
     enableColumnReordering,
     density,
@@ -76,12 +71,7 @@ export const ColumnHeader = <
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
 
-  const columnHasExpanders =
-    hasAnySubRows &&
-    index ===
-      headers.findIndex(
-        (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
-      );
+  console.log('column', column);
 
   if ([undefined, 0].includes(column.minWidth)) {
     // override "undefined" or zero min-width with default value
@@ -181,9 +171,9 @@ export const ColumnHeader = <
             )}
           </Box>
         )}
-        {isResizable &&
+        {columnResizeMode &&
           column.isResizerVisible &&
-          (index !== headers.length - 1 || columnResizeMode === 'expand') && (
+          (!isLast || columnResizeMode === 'expand') && (
             <Box
               {...column.getResizerProps()}
               className='iui-table-resizer'
