@@ -33,7 +33,7 @@ it('should render input field with custom container props', async () => {
     <ColorPicker>
       <ColorInputPanel
         defaultColorFormat='hex'
-        inputContainerProps={{
+        colorInputContainerProps={{
           className: 'test-input-panel',
           style: { padding: '10px' },
         }}
