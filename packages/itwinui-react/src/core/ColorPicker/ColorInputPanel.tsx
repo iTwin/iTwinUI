@@ -511,7 +511,6 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
             styleType='borderless'
             label='Switch format'
             {...swapColorFormatButtonProps}
-            className={swapColorFormatButtonProps?.className}
             onClick={mergeEventHandlers(
               swapColorFormatButtonProps?.onClick,
               swapColorFormat,
