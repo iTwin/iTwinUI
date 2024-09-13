@@ -148,14 +148,8 @@ function EverythingElse() {
         style={{ maxHeight: '90vh' }}
         scrollToRow={
           scroll
-            ? (rows, data) => {
-                const q = rows.findIndex(
-                  (row) => row.original === data[scrollRow],
-                );
-                console.log(q, scrollRow);
-
-                return q;
-              }
+            ? (rows, data) =>
+                rows.findIndex((row) => row.original === data[scrollRow])
             : undefined
         }
         stateReducer={
