@@ -863,9 +863,7 @@ export const Table = <
             <WithCSSTransition in={row.isExpanded}>
               <TableExpandableContentMemoized
                 key={row.getRowProps().key}
-                isDisabled={!!isRowDisabled?.(row.original)}
                 ref={tableRowRef(row)}
-                isSelected={row.isSelected}
               >
                 {subComponent(row)}
               </TableExpandableContentMemoized>
