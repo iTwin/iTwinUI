@@ -1,5 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 
+test('un-virtualized table should scroll to provided row', async ({ page }) => {
+  await page.goto('/Table?rows=large&scroll=true&scrollRow=50');
+
+  await expect(page.getByText('Name47')).not.toBeInViewport();
+  await expect(page.getByText('Name48')).toBeInViewport();
+  await expect(page.getByText('Name49')).toBeInViewport();
+  await expect(page.getByText('Name50')).toBeInViewport();
+  await expect(page.getByText('Name51')).toBeInViewport();
+});
+
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
@@ -156,7 +166,7 @@ test.describe('Table resizing', () => {
   test('should resize correctly when column width is set lower than default min width', async ({
     page,
   }) => {
-    await page.goto('/Table?subRows=true');
+    await page.goto('/Table?rows=subRows');
 
     // resize first column
     {
@@ -227,7 +237,7 @@ test.describe('Table row selection', () => {
   test('Should select all sub rows when parent row is selected', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows');
 
     const row2 = page.getByText('2Name2Description2');
     const row2SubRowExpander = row2.getByLabel('Toggle sub row');
@@ -253,7 +263,7 @@ test.describe('Table row selection', () => {
   test('Should show indeterminate when sub rows are disabled', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows');
 
     const row3 = page.getByText('3Name3Description3');
     const row3SubRowExpander = row3.getByLabel('Toggle sub row');
@@ -275,7 +285,7 @@ test.describe('Table row selection', () => {
   test('Should show indeterminate when some sub rows are filtered out', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows&filter=true');
 
     await filter(page);
     const row2 = page.getByText('2Name2Description2');
@@ -318,7 +328,7 @@ test.describe('Table row selection', () => {
   test('parent checkbox state should become indeterminate when some filtered sub rows are deselected', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows&filter=true');
 
     //expand subRows
     const row2 = page.getByText('2Name2Description2');
@@ -354,7 +364,7 @@ test.describe('Table row selection', () => {
     page,
   }) => {
     await page.goto(
-      '/Table?isSelectable=true&subRows=true&selectSubRows=false',
+      '/Table?isSelectable=true&rows=subRows&selectSubRows=false',
     );
 
     const row2 = page
@@ -384,7 +394,7 @@ test.describe('Table row selection', () => {
     page,
   }) => {
     await page.goto(
-      '/Table?isSelectable=true&subRows=true&selectSubRows=false&stateReducer=true',
+      '/Table?isSelectable=true&rows=subRows&selectSubRows=false&stateReducer=true',
     );
 
     const row2 = page
