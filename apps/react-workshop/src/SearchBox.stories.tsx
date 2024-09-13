@@ -53,15 +53,15 @@ export const Expandable = () => {
   );
 };
 
-export const BorderlessExpandButton = () => {
+export const BorderlessCollapsedState = () => {
   return (
     <SearchBox expandable>
-      <SearchBox.CollapsedState>
-        <SearchBox.ExpandButton styleType='borderless' />
+      <SearchBox.CollapsedState styleType='borderless'>
+        <SearchBox.ExpandButton />
       </SearchBox.CollapsedState>
       <SearchBox.ExpandedState>
         <SearchBox.Icon />
-        <SearchBox.Input placeholder='Expandable search with borderless ExpandButton' />
+        <SearchBox.Input placeholder='Expandable search with borderless SearchBox.CollapsedState' />
         <SearchBox.CollapseButton />
       </SearchBox.ExpandedState>
     </SearchBox>

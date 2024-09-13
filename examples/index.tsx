@@ -914,6 +914,12 @@ import { default as SearchBoxSizeExampleRaw } from './SearchBox.size';
 const SearchBoxSizeExample = withThemeProvider(SearchBoxSizeExampleRaw);
 export { SearchBoxSizeExample };
 
+import { default as SearchBoxBorderlessCollapsedStateExampleRaw } from './SearchBox.borderlesscollapsedstate';
+const SearchBoxBorderlessCollapsedStateExample = withThemeProvider(
+  SearchBoxBorderlessCollapsedStateExampleRaw,
+);
+export { SearchBoxBorderlessCollapsedStateExample };
+
 import { default as SearchBoxExpandableExampleRaw } from './SearchBox.expandable';
 const SearchBoxExpandableExample = withThemeProvider(
   SearchBoxExpandableExampleRaw,

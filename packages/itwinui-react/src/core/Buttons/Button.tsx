@@ -17,7 +17,7 @@ export type ButtonProps = {
   size?: 'small' | 'large';
   /**
    * Style of the button.
-   * Use 'borderless' to hide outline.
+   * Use `'borderless'` to hide border, background, etc.
    * @default 'default'
    */
   styleType?: 'cta' | 'high-visibility' | 'default' | 'borderless';

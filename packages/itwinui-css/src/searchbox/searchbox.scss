@@ -10,13 +10,14 @@
     border-color: var(--_iui-input-border-color);
   }
 
-  // Let border and background come from expand button
-  &:where(:not([data-iui-expanded='true'])),
-  &:where(:not([data-iui-expanded='true'])):hover,
-  &:where(:not([data-iui-expanded='true']))::before {
-    transition: none;
-    --_iui-input-background-color: transparent;
-    --_iui-input-border-color: transparent;
+  &:where([data-iui-collapsed-variant='borderless']:not([data-iui-expanded='true'])) {
+    &,
+    &:hover,
+    &::before {
+      transition: none;
+      --_iui-input-background-color: transparent;
+      --_iui-input-border-color: transparent;
+    }
   }
 }
 

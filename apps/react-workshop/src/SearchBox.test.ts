@@ -9,7 +9,7 @@ describe('SearchBox', () => {
     'Basic With Status',
     'Basic With Custom Items',
     'Expandable',
-    'Borderless Expand Button',
+    'Borderless Collapsed State',
     'Expandable With Custom Items',
     'With Custom Action',
     'Small',
