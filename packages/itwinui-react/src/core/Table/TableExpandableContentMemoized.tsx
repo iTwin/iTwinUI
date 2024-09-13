@@ -9,10 +9,11 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type TableExpandableContentProps = {
   children: React.ReactNode;
+  isDisabled?: boolean;
 };
 
 const TableExpandableContent = React.forwardRef((props, ref) => {
-  const { children, className, style, ...rest } = props;
+  const { children, className, style, isDisabled, ...rest } = props;
   return (
     <Box
       className={cx('iui-table-row', 'iui-table-expanded-content', className)}
@@ -21,6 +22,7 @@ const TableExpandableContent = React.forwardRef((props, ref) => {
         minWidth: '100%',
         ...style,
       }}
+      aria-disabled={isDisabled}
       ref={ref}
       {...rest}
     >

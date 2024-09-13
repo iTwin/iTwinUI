@@ -864,6 +864,7 @@ export const Table = <
               <TableExpandableContentMemoized
                 key={row.getRowProps().key}
                 ref={tableRowRef(row)}
+                isDisabled={!!isRowDisabled?.(row.original)}
               >
                 {subComponent(row)}
               </TableExpandableContentMemoized>
