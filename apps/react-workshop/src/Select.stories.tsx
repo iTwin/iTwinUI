@@ -157,7 +157,7 @@ export const Custom = () => {
     <Select
       options={options}
       value={selectedValue}
-      onChange={setSelectedValue}
+      onChange={(value) => setSelectedValue(value)}
       placeholder='Placeholder text'
       itemRenderer={(option) => (
         <MenuItem style={{ color: option.value }}>{option.label}</MenuItem>
