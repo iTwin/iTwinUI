@@ -2040,7 +2040,7 @@ it('should render sub-rows and handle expansions', async () => {
   expect(onExpand).toHaveBeenNthCalledWith(1, [data[0]], expect.any(Object));
   expect(onExpand).toHaveBeenNthCalledWith(
     2,
-    [data[0], data[1]],
+    [data[0], data[0].subRows[1]],
     expect.any(Object),
   );
   expect(onExpand).toHaveBeenNthCalledWith(
