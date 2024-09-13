@@ -8,7 +8,6 @@ import { ColorPalette } from './ColorPalette.js';
 import { ColorBuilder } from './ColorBuilder.js';
 import { ColorInputPanel } from './ColorInputPanel.js';
 import { ColorValue } from '../../utils/index.js';
-import classNames from 'classnames';
 
 it('should convert color list to ColorValues', () => {
   ['#9BA5AF', '#23450b', '#00121D', '#002A44'].forEach((value) => {

@@ -522,14 +522,14 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         )}
         <Box
           as='div'
+          role={currentFormat !== 'hex' ? 'group' : undefined}
+          aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
           {...inputFieldsGroupProps}
           ref={useMergedRefs(inputsContainerRef, inputFieldsGroupProps?.ref)}
           className={cx(
             'iui-color-input-fields',
             inputFieldsGroupProps?.className,
           )}
-          role={currentFormat !== 'hex' ? 'group' : undefined}
-          aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
         >
           {currentFormat === 'hex' && hexInputField}
           {currentFormat === 'rgb' && rgbInputs}

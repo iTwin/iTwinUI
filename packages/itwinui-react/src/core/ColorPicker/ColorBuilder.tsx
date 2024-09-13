@@ -350,8 +350,8 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
           updateHueSlider(values[0], true);
         }}
         onUpdate={(values) => {
-          updateHueSlider(values[0], false);
           hueSliderProps?.onUpdate?.(values);
+          updateHueSlider(values[0], false);
         }}
         thumbProps={() => ({
           'aria-label': 'Hue',
