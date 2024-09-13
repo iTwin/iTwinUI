@@ -375,12 +375,12 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
             ...opacitySliderProps?.tooltipProps,
           })}
           onChange={(values) => {
-            updateOpacitySlider(values[0], true);
             opacitySliderProps?.onChange?.(values);
+            updateOpacitySlider(values[0], true);
           }}
           onUpdate={(values) => {
-            updateOpacitySlider(values[0], false);
             opacitySliderProps?.onUpdate?.(values);
+            updateOpacitySlider(values[0], false);
           }}
           style={
             {
