@@ -26,6 +26,7 @@ describe('Table', () => {
     'Localized',
     'No Data',
     'Resizable Columns',
+    'Scroll To Row',
     'Selectable Multi',
     'Selectable Single',
     'Sortable',
@@ -80,6 +81,9 @@ describe('Table', () => {
             cy.get('input').first().click();
             cy.get('button').first().click({ force: true }); // force because the button is hidden
             break;
+          }
+          case 'Scroll To Row': {
+            cy.wait(100);
           }
         }
       });

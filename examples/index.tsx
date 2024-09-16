@@ -441,6 +441,16 @@ export { DialogPlacementExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as DividerMainExampleRaw } from './Divider.main';
+const DividerMainExample = withThemeProvider(DividerMainExampleRaw);
+export { DividerMainExample };
+
+import { default as DividerVerticalExampleRaw } from './Divider.vertical';
+const DividerVerticalExample = withThemeProvider(DividerVerticalExampleRaw);
+export { DividerVerticalExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as DropdownButtonMainExampleRaw } from './DropdownButton.main';
 const DropdownButtonMainExample = withThemeProvider(
   DropdownButtonMainExampleRaw,

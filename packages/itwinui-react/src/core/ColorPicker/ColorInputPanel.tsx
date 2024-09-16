@@ -6,7 +6,14 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Input } from '../Input/Input.js';
-import { ColorValue, SvgSwap, Box, useId } from '../../utils/index.js';
+import {
+  ColorValue,
+  SvgSwap,
+  Box,
+  useId,
+  useMergedRefs,
+  mergeEventHandlers,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
@@ -23,6 +30,22 @@ type ColorInputPanelProps = {
    * @default ['hsl', 'rgb', 'hex']
    */
   allowedColorFormats?: ('hsl' | 'rgb' | 'hex')[];
+  /**
+   * Passes props to the color picker section label.
+   */
+  panelLabelProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to the color input container.
+   */
+  colorInputContainerProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to the color input fields group.
+   */
+  inputFieldsGroupProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to the swap color format button.
+   */
+  swapColorFormatButtonProps?: React.ComponentProps<typeof IconButton>;
 };
 
 /**
@@ -39,6 +62,10 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     defaultColorFormat,
     allowedColorFormats = ['hsl', 'rgb', 'hex'],
     className,
+    colorInputContainerProps,
+    panelLabelProps,
+    inputFieldsGroupProps,
+    swapColorFormatButtonProps,
     ...rest
   } = props;
 
@@ -450,35 +477,58 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     </>
   );
 
-  const labelId = useId();
+  const fallbackLabelId = useId();
+  const labelId = panelLabelProps?.id ?? fallbackLabelId;
 
   return (
     <Box
+      as='div'
       className={cx('iui-color-input-wrapper', className)}
       ref={ref}
       {...rest}
     >
-      <Box className='iui-color-picker-section-label' id={labelId}>
+      <Box
+        as='div'
+        {...panelLabelProps}
+        className={cx(
+          'iui-color-picker-section-label',
+          panelLabelProps?.className,
+        )}
+        id={labelId}
+      >
         {showAlpha && currentFormat !== 'hex'
           ? currentFormat.toUpperCase() + 'A'
           : currentFormat.toUpperCase()}
       </Box>
-      <Box className='iui-color-input'>
+      <Box
+        as='div'
+        {...colorInputContainerProps}
+        className={cx('iui-color-input', colorInputContainerProps?.className)}
+      >
         {allowedColorFormats.length > 1 && (
           <IconButton
-            styleType='borderless'
-            onClick={swapColorFormat}
             size='small'
+            styleType='borderless'
             label='Switch format'
+            {...swapColorFormatButtonProps}
+            onClick={mergeEventHandlers(
+              swapColorFormatButtonProps?.onClick,
+              swapColorFormat,
+            )}
           >
             <SvgSwap />
           </IconButton>
         )}
         <Box
-          ref={inputsContainerRef}
-          className='iui-color-input-fields'
+          as='div'
           role={currentFormat !== 'hex' ? 'group' : undefined}
           aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
+          {...inputFieldsGroupProps}
+          ref={useMergedRefs(inputsContainerRef, inputFieldsGroupProps?.ref)}
+          className={cx(
+            'iui-color-input-fields',
+            inputFieldsGroupProps?.className,
+          )}
         >
           {currentFormat === 'hex' && hexInputField}
           {currentFormat === 'rgb' && rgbInputs}
