@@ -152,6 +152,9 @@
   min-inline-size: 100%;
   display: flex;
 
+  // To prevent the row from being overlapped by the tallest header when scrollToRow is used.
+  scroll-margin-block-start: calc(var(--_iui-table-header-size) + var(--iui-size-xl));
+
   .iui-table-header & {
     flex-grow: 1;
   }
