@@ -56,8 +56,8 @@ export const Expandable = () => {
 export const BorderlessCollapsedState = () => {
   return (
     <SearchBox expandable>
-      <SearchBox.CollapsedState styleType='borderless'>
-        <SearchBox.ExpandButton />
+      <SearchBox.CollapsedState>
+        <SearchBox.ExpandButton styleType='borderless' />
       </SearchBox.CollapsedState>
       <SearchBox.ExpandedState>
         <SearchBox.Icon />
