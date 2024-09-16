@@ -23,8 +23,6 @@ import type {
 import type { IconButtonProps } from '../Buttons/IconButton.js';
 import type { IconProps } from '../Icon/Icon.js';
 
-type CollapsedStyleType = 'default' | 'borderless';
-
 const SearchBoxContext = React.createContext<
   | {
       /**
@@ -67,13 +65,6 @@ const SearchBoxContext = React.createContext<
        * Is SearchBox expandable
        */
       expandable?: boolean;
-      /**
-       * Style type for the `SearchBox.CollapsedState`
-       */
-      collapsedStyleType: CollapsedStyleType;
-      setCollapsedStyleType: React.Dispatch<
-        React.SetStateAction<CollapsedStyleType>
-      >;
     }
   | undefined
 >(undefined);
@@ -128,8 +119,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   const openButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const [localExpanded, setLocalExpanded] = React.useState(isExpandedProp);
-  const [collapsedStyleType, setCollapsedStyleType] =
-    React.useState<CollapsedStyleType>('default');
 
   const isExpanded = isExpandedProp ?? localExpanded;
 
@@ -158,8 +147,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         openButtonRef,
         isExpanded,
         expandable,
-        collapsedStyleType,
-        setCollapsedStyleType,
       }}
     >
       <InputFlexContainer
@@ -172,9 +159,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         size={size}
         isDisabled={isDisabled}
         data-iui-expanded={isExpanded}
-        data-iui-collapsed-variant={
-          collapsedStyleType !== 'default' ? collapsedStyleType : undefined
-        }
         {...rest}
       >
         {children ?? (
@@ -203,22 +187,11 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
 
 type SearchBoxCollapsedStateProps = {
   children?: React.ReactNode;
-  /**
-   * Style of SearchBox in collapsed state.
-   * Use `'borderless'` to hide border, background, etc.
-   * @default 'default'
-   */
-  styleType?: 'default' | 'borderless';
 };
 
 const SearchBoxCollapsedState = (props: SearchBoxCollapsedStateProps) => {
-  const { children, styleType: styleTypeProp = 'default' } = props;
-  const { isExpanded, expandable, setCollapsedStyleType } =
-    useSafeContext(SearchBoxContext);
-
-  React.useEffect(() => {
-    setCollapsedStyleType(styleTypeProp);
-  }, [setCollapsedStyleType, styleTypeProp]);
+  const { children } = props;
+  const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
 
   if (!expandable || isExpanded) {
     return null;
@@ -359,7 +332,6 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
     size: sizeContext,
     isDisabled,
     openButtonRef,
-    collapsedStyleType,
   } = useSafeContext(SearchBoxContext);
 
   return (
@@ -369,7 +341,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       size={sizeContext}
       disabled={isDisabled}
       onClick={mergeEventHandlers(onClickProp, onExpand)}
-      styleType={collapsedStyleType === 'borderless' ? 'borderless' : 'default'}
+      styleType='default'
       {...rest}
     >
       {children ?? <SvgSearch />}

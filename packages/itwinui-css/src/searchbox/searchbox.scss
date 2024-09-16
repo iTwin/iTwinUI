@@ -10,12 +10,13 @@
     border-color: var(--_iui-input-border-color);
   }
 
-  &:where([data-iui-collapsed-variant='borderless']:not([data-iui-expanded='true'])) {
-    &,
-    &:hover,
+  &:not([data-iui-expanded='true']) {
+    &:is(:hover, :not(:hover)) {
+      --_iui-input-background-color: transparent;
+    }
+
     &::before {
       transition: none;
-      --_iui-input-background-color: transparent;
       --_iui-input-border-color: transparent;
     }
   }

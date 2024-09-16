@@ -33,19 +33,8 @@ export default function App() {
 
       <Text>Borderless Expandable SearchBox</Text>
       <SearchBox expandable>
-        <SearchBox.CollapsedState styleType='borderless'>
-          <SearchBox.ExpandButton />
-        </SearchBox.CollapsedState>
-        <SearchBox.ExpandedState>
-          <SearchBox.Icon />
-          <SearchBox.Input />
-          <SearchBox.CollapseButton />
-        </SearchBox.ExpandedState>
-      </SearchBox>
-
-      <SearchBox expandable>
-        <SearchBox.CollapsedState styleType='borderless'>
-          <SearchBox.ExpandButton styleType='default' />
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton styleType='borderless' />
         </SearchBox.CollapsedState>
         <SearchBox.ExpandedState>
           <SearchBox.Icon />

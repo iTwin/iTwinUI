@@ -9,8 +9,8 @@ export default () => {
   return (
     <div className='demo-container'>
       <SearchBox expandable>
-        <SearchBox.CollapsedState styleType='borderless'>
-          <SearchBox.ExpandButton />
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton styleType='borderless' />
         </SearchBox.CollapsedState>
         <SearchBox.ExpandedState>
           <SearchBox.Icon />
