@@ -12,12 +12,12 @@
 
   &:not([data-iui-expanded='true']) {
     &:is(:hover, :not(:hover)) {
-      --_iui-input-background-color: transparent;
+      background-color: transparent;
     }
 
     &::before {
       transition: none;
-      --_iui-input-border-color: transparent;
+      border: none;
     }
   }
 }
