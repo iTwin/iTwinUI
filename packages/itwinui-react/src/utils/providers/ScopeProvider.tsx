@@ -11,6 +11,8 @@ const ScopeContext = React.createContext({
   parentStore: null as null | ReturnType<typeof createStore>,
 });
 
+type ScopeProviderProps = { children: React.ReactNode };
+
 /**
  * Provider that creates a fresh, isolated jotai store for its children.
  *
@@ -18,7 +20,9 @@ const ScopeContext = React.createContext({
  *
  * @private
  */
-export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
+export const ScopeProvider = (props: ScopeProviderProps) => {
+  const { children } = props;
+
   const store = React.useMemo(() => createStore(), []);
   const parentStore = React.useContext(ScopeContext).store;
 

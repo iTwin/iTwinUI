@@ -187,13 +187,13 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const ListItem = ({
-  item,
-  isActive,
-}: {
+type ListItemProps = {
   item: React.ReactNode;
   isActive: boolean;
-}) => {
+};
+
+const ListItem = (props: ListItemProps) => {
+  const { item, isActive } = props;
   let children = item as any;
 
   const logWarning = useWarningLogger();
