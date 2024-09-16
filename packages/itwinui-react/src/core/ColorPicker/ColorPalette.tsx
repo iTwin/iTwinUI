@@ -19,6 +19,10 @@ export type ColorPaletteProps = {
    */
   label?: React.ReactNode;
   /**
+   * Passes props to the color picker section label.
+   */
+  labelProps?: React.ComponentProps<'div'>;
+  /**
    * List of colors shown as swatches in the palette.
    */
   colors?: Array<ColorType | ColorValue>;
@@ -26,6 +30,10 @@ export type ColorPaletteProps = {
    * Pass any custom swatches as children.
    */
   children?: React.ReactNode;
+  /**
+   * Passes props to the color palette container.
+   */
+  paletteContainerProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -40,7 +48,15 @@ export type ColorPaletteProps = {
  * </ColorPalette>
  */
 export const ColorPalette = React.forwardRef((props, ref) => {
-  const { colors, label, className, children, ...rest } = props;
+  const {
+    colors,
+    label,
+    labelProps,
+    className,
+    children,
+    paletteContainerProps,
+    ...rest
+  } = props;
 
   const { activeColor, setActiveColor, onChangeComplete } =
     useColorPickerContext();
@@ -51,8 +67,23 @@ export const ColorPalette = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {label && <Box className='iui-color-picker-section-label'>{label}</Box>}
-      <Box className='iui-color-palette'>
+      {label && (
+        <Box
+          as='div'
+          {...labelProps}
+          className={cx(
+            'iui-color-picker-section-label',
+            labelProps?.className,
+          )}
+        >
+          {label}
+        </Box>
+      )}
+      <Box
+        as='div'
+        {...paletteContainerProps}
+        className={cx('iui-color-palette', paletteContainerProps?.className)}
+      >
         {children}
         {colors &&
           colors.map((_color, index) => {

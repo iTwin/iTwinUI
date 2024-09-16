@@ -820,7 +820,7 @@ export const Table = <
 
   useLayoutEffect(() => {
     if (scrollToIndex) {
-      virtualizer.scrollToIndex(scrollToIndex, { align: 'center' });
+      virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
     }
   }, [virtualizer, scrollToIndex]);
 

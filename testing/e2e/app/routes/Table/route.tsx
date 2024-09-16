@@ -61,7 +61,7 @@ function EverythingElse() {
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
   const isSelectable = searchParams.get('isSelectable') === 'true';
-  const subRows = searchParams.get('subRows') === 'true';
+  const rows = searchParams.get('rows');
   const filter = searchParams.get('filter') === 'true';
   const selectSubRows = !(searchParams.get('selectSubRows') === 'false');
   const enableVirtualization = searchParams.get('virtualization') === 'true';
@@ -89,7 +89,16 @@ function EverythingElse() {
     return arr;
   }, [oneRow, empty]);
 
-  const data = subRows ? dataWithSubrows : baseData;
+  const data = (() => {
+    switch (rows) {
+      case 'subRows':
+        return dataWithSubrows;
+      case 'large':
+        return largeData;
+      default:
+        return baseData;
+    }
+  })();
 
   const isRowDisabled = React.useCallback(
     (rowData: Record<string, unknown>) => {
@@ -137,7 +146,7 @@ function EverythingElse() {
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
-        style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
+        style={{ maxHeight: '90vh' }}
         scrollToRow={
           scroll
             ? (rows, data) =>
@@ -191,6 +200,13 @@ const baseData = [
     date: new Date('Aug 3, 2025'),
   },
 ];
+
+const largeData = new Array(100).fill(0).map((_, i) => ({
+  index: i,
+  name: `Name${i}`,
+  description: `Description${i}`,
+  id: i,
+}));
 
 const dataWithSubrows = [
   {
