@@ -10,14 +10,14 @@
     border-color: var(--_iui-input-border-color);
   }
 
-  &:where([data-iui-collapsed-variant='borderless']:not([data-iui-expanded='true'])) {
-    &,
-    &:hover,
-    &::before {
-      transition: none;
-      --_iui-input-background-color: transparent;
-      --_iui-input-border-color: transparent;
-    }
+  &:where([data-iui-collapsed-variant='borderless']:not([data-iui-expanded='true'])):is(
+      :not(:hover),
+      :not(:hover)::before,
+      :hover
+    ) {
+    transition: none;
+    --_iui-input-background-color: transparent;
+    --_iui-input-border-color: transparent;
   }
 }
 
