@@ -38,6 +38,65 @@ it('should render in its most basic state', () => {
   });
 });
 
+it('should pass custom label with props', () => {
+  const colors = [
+    'hsla(210, 11%, 65%, 1.00)',
+    'hsla(95, 73%, 16%, 1.00)',
+    'hsla(203, 100%, 6%, 1.00)',
+    'hsla(203, 100%, 13%, 1.00)',
+  ];
+
+  const { container } = render(
+    <ColorPicker>
+      <ColorPalette
+        label='Saved colors'
+        labelProps={{
+          className: 'test-picker-label',
+          style: { fontSize: '16px', color: 'red' },
+        }}
+        colors={colors}
+      />
+    </ColorPicker>,
+  );
+
+  const paletteLabel = container.querySelector(
+    '.iui-color-picker-section-label.test-picker-label',
+  ) as HTMLElement;
+
+  expect(paletteLabel).toBeTruthy();
+  expect(paletteLabel.style.color).toBe('red');
+  expect(paletteLabel.style.fontSize).toBe('16px');
+});
+
+it('should pass color palette with props', () => {
+  const colors = [
+    'hsla(210, 11%, 65%, 1.00)',
+    'hsla(95, 73%, 16%, 1.00)',
+    'hsla(203, 100%, 6%, 1.00)',
+    'hsla(203, 100%, 13%, 1.00)',
+  ];
+
+  const { container } = render(
+    <ColorPicker>
+      <ColorPalette
+        label='Saved colors'
+        paletteContainerProps={{
+          className: 'test-palette',
+          style: { gap: '10px' },
+        }}
+        colors={colors}
+      />
+    </ColorPicker>,
+  );
+
+  const palette = container.querySelector(
+    '.iui-color-palette.test-palette',
+  ) as HTMLElement;
+
+  expect(palette).toBeTruthy();
+  expect(palette.style.gap).toBe('10px');
+});
+
 it('should render with selectedColor', () => {
   const colors = [
     'hsla(210, 11%, 65%, 1.00)',
