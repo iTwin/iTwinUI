@@ -216,7 +216,7 @@ const SearchBoxCollapsedState = (props: SearchBoxCollapsedStateProps) => {
   const { isExpanded, expandable, setCollapsedStyleType } =
     useSafeContext(SearchBoxContext);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setCollapsedStyleType(styleTypeProp);
   }, [setCollapsedStyleType, styleTypeProp]);
 
