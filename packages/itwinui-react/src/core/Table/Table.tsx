@@ -38,7 +38,6 @@ import {
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
-  WithCSSTransition,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TableColumnsContext } from './utils.js';
@@ -54,7 +53,6 @@ import {
   useColumnDragAndDrop,
   useScrollToRow,
   useStickyColumns,
-  useSubComponentVirtualizing,
 } from './hooks/index.js';
 import {
   onExpandHandler,
@@ -581,6 +579,20 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
+  const [rowHasParent] = React.useState(() => new Set<T>());
+
+  const getSubRowsWithSubComponents = React.useCallback(
+    (originalRow: T) => {
+      if (!rowHasParent.has(originalRow)) {
+        rowHasParent.add(originalRow);
+        return [originalRow];
+      }
+
+      return (originalRow.subRows as T[]) || [];
+    },
+    [rowHasParent],
+  );
+
   const instance = useTable<T>(
     {
       manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
@@ -593,7 +605,7 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows,
+      getSubRows: (subComponent && getSubRowsWithSubComponents) ?? getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
@@ -800,21 +812,12 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
-  const {
-    listOfRowsAndSubComponents,
-    getRowIndexFromVirtualizerIndex,
-    isARow,
-  } = useSubComponentVirtualizing(hasAnySubRows, page, state);
-
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     enabled: enableVirtualization,
-    count: subComponent ? listOfRowsAndSubComponents.length : page.length,
+    count: page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
-    getItemKey: (index) =>
-      isARow(index)
-        ? `row-${getRowIndexFromVirtualizerIndex(index)}`
-        : `subcomponent-${getRowIndexFromVirtualizerIndex(index)}`,
+    getItemKey: (index) => page[index].id,
     overscan: 1,
   });
 
@@ -832,8 +835,9 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      return (
-        <>
+
+      if (row.subRows.length > 0 || !subComponent) {
+        return (
           <TableRowMemoized
             row={row}
             rowProps={rowProps}
@@ -855,19 +859,26 @@ export const Table = <
             virtualItem={virtualItem}
             virtualizer={virtualizer}
           />
-          {subComponent && (
-            <WithCSSTransition in={row.isExpanded}>
+        );
+      } else {
+        return (
+          <>
+            {subComponent && (
               <TableExpandableContentMemoized
-                key={row.getRowProps().key}
-                ref={tableRowRef(row)}
+                virtualItem={virtualItem}
+                ref={
+                  enableVirtualization
+                    ? virtualItem?.measureElement
+                    : tableRowRef(row)
+                }
                 isDisabled={!!isRowDisabled?.(row.original)}
               >
                 {subComponent(row)}
               </TableExpandableContentMemoized>
-            </WithCSSTransition>
-          )}
-        </>
-      );
+            )}
+          </>
+        );
+      }
     },
     [
       page,
