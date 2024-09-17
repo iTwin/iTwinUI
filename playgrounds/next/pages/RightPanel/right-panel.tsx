@@ -1,0 +1,19 @@
+import * as React from 'react';
+import './right-panel.scss';
+import { OverlayModal } from '../OverlayModal/overlay-modal.jsx';
+
+export const RightPanel = () => {
+  const [showOverlay, setShowOverlay] = React.useState(false);
+
+  return (
+    <div className={'right-panel'}>
+      <p>some content</p>
+      <button onClick={() => setShowOverlay(true)}>show overlay</button>
+      <div style={{ justifySelf: 'flex-end' }}>
+        <div>
+          {showOverlay && <OverlayModal close={() => setShowOverlay(false)} />}
+        </div>
+      </div>
+    </div>
+  );
+};
