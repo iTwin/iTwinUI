@@ -879,6 +879,7 @@ export const Table = <
           <>
             {subComponent && (
               <TableExpandableContentMemoized
+                key={row.getRowProps().key}
                 virtualItem={virtualItem}
                 ref={
                   enableVirtualization
