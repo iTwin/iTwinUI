@@ -526,7 +526,7 @@ export const MultipleSelect = () => {
       multiple
       value={selectedOptions}
       onChange={(selected, event) => {
-        console.log(event.value + ' ' + event.type ?? '');
+        console.log(event.value + ' ' + event.type);
         setSelectedOptions(selected);
       }}
     />
