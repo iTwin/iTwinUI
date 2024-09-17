@@ -522,35 +522,37 @@ test.describe('Virtual Scroll Tests', () => {
     ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
-    //await expect(rows.nth(0)).toContainText('Name49');
     await expect(rows.nth(1)).toContainText('Name50');
+    await expect(rows.nth(4)).toContainText('Name53');
 
-    // const row49ExpanderContent = page.getByText(
-    //   'Expanded component, name: Name49',
-    // );
     const row50ExpanderContent = page.getByText(
       'Expanded component, name: Name50',
     );
-    // const expanderButtonRow49Cell = rows
-    //   .nth(0)
-    //   .getByRole('cell')
-    //   .nth(0)
-    //   .getByRole('button');
+    const row53ExpanderContent = page.getByText(
+      'Expanded component, name: Name53',
+    );
+
     const expanderButtonRow50Cell = rows
       .nth(1)
       .getByRole('cell')
       .nth(0)
       .getByRole('button');
-    // await expanderButtonRow49Cell.click();
+    const expanderButtonRow53Cell = rows
+      .nth(4)
+      .getByRole('cell')
+      .nth(0)
+      .getByRole('button');
+
     await expanderButtonRow50Cell.click();
-    // await expect(row49ExpanderContent).toBeInViewport();
+    await expanderButtonRow53Cell.click();
     await expect(row50ExpanderContent).toBeInViewport();
+    await expect(row53ExpanderContent).toBeInViewport();
 
     // Collapse the expanded content
-    // await expanderButtonRow49Cell.click();
-    // await expect(row49ExpanderContent).not.toBeInViewport();
     await expanderButtonRow50Cell.click();
     await expect(row50ExpanderContent).not.toBeInViewport();
+    await expanderButtonRow53Cell.click();
+    await expect(row53ExpanderContent).not.toBeInViewport();
   });
 });
 
