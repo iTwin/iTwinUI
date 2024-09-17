@@ -6,7 +6,6 @@
 $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 :is(.iui-list, .iui-menu) {
-  // iui-list
   @include mixins.iui-reset;
   list-style-type: none;
   isolation: isolate;
@@ -34,7 +33,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 :is(.iui-list-item, .iui-menu-item-skeleton) {
-  // iui-menu-item
   display: flex;
   align-items: center;
   gap: var(--iui-size-xs);
