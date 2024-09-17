@@ -812,6 +812,20 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
+  // Flexbox handles columns resize so we take new column widths before browser repaints.
+  useLayoutEffect(() => {
+    if (state.isTableResizing) {
+      const newColumnWidths: Record<string, number> = {};
+      flatHeaders.forEach((column) => {
+        if (columnRefs.current[column.id]) {
+          newColumnWidths[column.id] =
+            columnRefs.current[column.id].getBoundingClientRect().width;
+        }
+      });
+      dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
+    }
+  });
+
   const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     enabled: enableVirtualization,
     count: page.length,
