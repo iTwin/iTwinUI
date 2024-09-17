@@ -522,11 +522,11 @@ test.describe('Virtual Scroll Tests', () => {
     ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
-    await expect(rows.nth(0)).toContainText('Name43');
-    await expect(rows.nth(7)).toContainText('Name50');
+    await expect(rows.nth(0)).toContainText('Name49');
+    await expect(rows.nth(1)).toContainText('Name50');
 
     const row43ExpanderContent = page.getByText(
-      'Expanded component, name: Name43',
+      'Expanded component, name: Name49',
     );
     const row50ExpanderContent = page.getByText(
       'Expanded component, name: Name50',
