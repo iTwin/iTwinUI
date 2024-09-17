@@ -99,7 +99,7 @@
     "dev:dev-esm": "swc src -d DEV-esm --env-name='development' --watch --strip-leading-paths",
     "dev:cjs": "swc src -d cjs --env-name='production' --watch --strip-leading-paths -C module.type=commonjs",
     "dev:dev-cjs": "swc src -d DEV-cjs --env-name='development' --watch --strip-leading-paths -C module.type=commonjs",
-    "dev:types": "concurrently \"tsc -p tsconfig.build.json --outDir DEV-esm --watch --preserveWatchOutput\" \"tsc -p tsconfig.build.json --outDir DEV-cjs --watch --preserveWatchOutput\"",
+    "dev:types": "concurrently \"tsc -p tsconfig.build.json --outDir esm --watch --preserveWatchOutput\" \"tsc -p tsconfig.build.json --outDir cjs --watch --preserveWatchOutput\"",
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
