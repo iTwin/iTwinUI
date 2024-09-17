@@ -50,23 +50,6 @@ jobs:
       - run: pnpm install
       - run: pnpm audit
 
-  assign-author:
-    name: Assign PR author
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Assign author using github-script
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              assignees: [context.actor]
-            })
-
   build:
     name: Build and lint packages
     needs: install
