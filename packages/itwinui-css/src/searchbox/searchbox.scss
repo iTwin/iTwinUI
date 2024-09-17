@@ -11,9 +11,7 @@
   }
 
   &:not([data-iui-expanded='true']) {
-    &:is(:hover, :not(:hover)) {
-      background-color: transparent;
-    }
+    background-color: transparent;
 
     &::before {
       transition: none;
