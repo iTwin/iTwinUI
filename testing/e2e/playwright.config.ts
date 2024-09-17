@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testMatch: 'app/**/*spec.ts', // Look for test files anywhere in the app
-  timeout: 100000,
+  timeout: 100000, // Increase timeout to 100s
   fullyParallel: true, // Run tests in files in parallel
   forbidOnly: !!process.env.CI, // Fail CI if you accidentally left test.only
   retries: process.env.CI ? 2 : 0, // Retry on CI only
