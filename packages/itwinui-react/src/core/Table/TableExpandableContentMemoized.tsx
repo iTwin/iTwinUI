@@ -9,8 +9,8 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import type { VirtualItem } from '@tanstack/react-virtual';
 
 type TableExpandableContentProps = {
-  virtualItem?: VirtualItem<Element>;
   children: React.ReactNode;
+  virtualItem?: VirtualItem<Element>;
   isDisabled?: boolean;
 };
 

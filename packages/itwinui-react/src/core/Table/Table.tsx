@@ -868,7 +868,7 @@ export const Table = <
                 virtualItem={virtualItem}
                 ref={
                   enableVirtualization
-                    ? virtualItem?.measureElement
+                    ? virtualizer?.measureElement
                     : tableRowRef(row)
                 }
                 isDisabled={!!isRowDisabled?.(row.original)}
