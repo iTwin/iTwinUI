@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './overlay-modal.scss';
+import styles from './overlay-modal.module.scss';
 import { ComboBox } from '@itwin/itwinui-react';
 
 const comboBoxOptions = [
@@ -11,14 +11,14 @@ const comboBoxOptions = [
 
 export const OverlayModal: React.FC<{ close: () => void }> = ({ close }) => {
   return (
-    <div className={'overlay-modal'}>
-      <div className={'content-box'}>
+    <div className={styles['overlay-modal']}>
+      <div className={styles['content-box']}>
         <p>overlay content</p>
         <button onClick={() => close()}>close overlay</button>
         <ComboBox
           onChange={() => {}}
           options={comboBoxOptions}
-          status={'status'}
+          // status={'status'}
           value={'test'}
           inputProps={{
             placeholder: 'placeholder',

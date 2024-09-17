@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './right-panel.scss';
-import { OverlayModal } from '../OverlayModal/overlay-modal.jsx';
+import styles from './right-panel.scss';
+import { OverlayModal } from '../OverlayModal/overlay-modal';
 
 export const RightPanel = () => {
   const [showOverlay, setShowOverlay] = React.useState(false);

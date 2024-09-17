@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './style.css';
-import { RightPanel } from './RightPanel/right-panel.jsx';
+// import './style.css';
+import { RightPanel } from './RightPanel/right-panel';
 
 export default function App() {
   return (
