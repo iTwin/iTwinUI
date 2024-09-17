@@ -99,38 +99,13 @@ const outEsmDevDir = path.join(root, 'DEV-esm');
 const outCjsDevDir = path.join(root, 'DEV-cjs');
 
 const copyBuildOutput = async () => {
-  // Create production outputs only in non-development mode
-  if (process.env.NODE_ENV !== 'development') {
-    // create cjs/ and esm/ directories if they don't exist
-    if (!fs.existsSync(outEsmDir)) {
-      await fs.promises.mkdir(outEsmDir);
-    }
-    if (!fs.existsSync(outCjsDir)) {
-      await fs.promises.mkdir(outCjsDir);
-    }
-
-    // copy styles.js from src/styles.js/dist/ into cjs/ and esm/
-    await fs.promises.copyFile(
-      path.join(distEsmDir, 'styles.js'),
-      path.join(outEsmDir, 'styles.js'),
-    );
-    await fs.promises.copyFile(
-      path.join(distCjsDir, 'styles.js'),
-      path.join(outCjsDir, 'styles.js'),
-    );
-
-    // copy styles.d.ts from src/ into cjs/ and esm/
-    await fs.promises.copyFile(
-      path.join(srcDir, 'styles.d.ts'),
-      path.join(outEsmDir, 'styles.d.ts'),
-    );
-    await fs.promises.copyFile(
-      path.join(srcDir, 'styles.d.ts'),
-      path.join(outCjsDir, 'styles.d.ts'),
-    );
+  // create cjs/, esm/, DEV-cjs/, and DEV-esm/ directories if they don't exist
+  if (!fs.existsSync(outEsmDir)) {
+    await fs.promises.mkdir(outEsmDir);
   }
-
-  // create DEV-cjs/ and DEV-esm/ directories if they don't exist
+  if (!fs.existsSync(outCjsDir)) {
+    await fs.promises.mkdir(outCjsDir);
+  }
   if (!fs.existsSync(outEsmDevDir)) {
     await fs.promises.mkdir(outEsmDevDir);
   }
@@ -138,10 +113,18 @@ const copyBuildOutput = async () => {
     await fs.promises.mkdir(outCjsDevDir);
   }
 
-  // copy styles.js from src/styles.js/dist/ into cjs/ and esm/
+  // copy styles.js from src/styles.js/dist/ into cjs/, esm/, DEV-cjs/, and DEV-esm/
+  await fs.promises.copyFile(
+    path.join(distEsmDir, 'styles.js'),
+    path.join(outEsmDir, 'styles.js'),
+  );
   await fs.promises.copyFile(
     path.join(distEsmDir, 'styles.js'),
     path.join(outEsmDevDir, 'styles.js'),
+  );
+  await fs.promises.copyFile(
+    path.join(distCjsDir, 'styles.js'),
+    path.join(outCjsDir, 'styles.js'),
   );
   await fs.promises.copyFile(
     path.join(distCjsDir, 'styles.js'),
@@ -152,5 +135,15 @@ const copyBuildOutput = async () => {
   await fs.promises.copyFile(
     path.join(distDir, 'styles.css'),
     path.join(root, 'styles.css'),
+  );
+
+  // copy styles.d.ts from src/ into cjs/ and esm/
+  await fs.promises.copyFile(
+    path.join(srcDir, 'styles.d.ts'),
+    path.join(outEsmDir, 'styles.d.ts'),
+  );
+  await fs.promises.copyFile(
+    path.join(srcDir, 'styles.d.ts'),
+    path.join(outCjsDir, 'styles.d.ts'),
   );
 };
