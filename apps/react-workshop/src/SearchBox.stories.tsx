@@ -17,7 +17,7 @@ export const Basic = () => {
 export const BasicWithCustomItems = () => {
   return (
     <SearchBox>
-      <SearchBox.Button title='Search button' />
+      <SearchBox.Button label='Search button' />
       <SearchBox.Input placeholder='Basic search with custom interactions' />
       <Text
         isMuted
