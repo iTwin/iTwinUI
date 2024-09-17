@@ -1050,9 +1050,11 @@ export const Table = <
           {data.length !== 0 && (
             <>
               {enableVirtualization
-                ? virtualizer.getVirtualItems().map((virtualItem) => {
-                    return getPreparedRow(virtualItem.index, virtualItem);
-                  })
+                ? virtualizer
+                    .getVirtualItems()
+                    .map((virtualItem) =>
+                      getPreparedRow(virtualItem.index, virtualItem),
+                    )
                 : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
