@@ -8,6 +8,92 @@ import { ColorInputPanel } from './ColorInputPanel.js';
 import { ColorValue } from '../../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
 
+it('should pass custom label with props', async () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        panelLabelProps={{
+          className: 'test-panel-label',
+          style: { color: 'red' },
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const inputPanelLabel = container.querySelector(
+    '.iui-color-picker-section-label.test-panel-label',
+  ) as HTMLElement;
+  expect(inputPanelLabel).toBeTruthy();
+  expect(inputPanelLabel.style.color).toBe('red');
+});
+
+it('should render input field with custom container props', async () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        colorInputContainerProps={{
+          className: 'test-input-panel',
+          style: { padding: '10px' },
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const inputPanel = container.querySelector(
+    '.iui-color-input.test-input-panel',
+  ) as HTMLElement;
+  expect(inputPanel).toBeTruthy();
+  expect(inputPanel.style.padding).toBe('10px');
+});
+
+it('should render swap color format button with custom props', async () => {
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        swapColorFormatButtonProps={{
+          className: 'test-swap-color-button',
+          styleType: 'high-visibility',
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const swapColorButton = container.querySelector(
+    '.iui-button[data-iui-variant="high-visibility"]',
+  ) as HTMLElement;
+  expect(swapColorButton).toBeTruthy();
+  expect(swapColorButton).toHaveClass('test-swap-color-button');
+});
+
+it('should render input field with custom input field props', async () => {
+  const logSpy = vitest.spyOn(console, 'log');
+  const { container } = render(
+    <ColorPicker>
+      <ColorInputPanel
+        defaultColorFormat='hex'
+        inputFieldsGroupProps={{
+          className: 'test-input-field',
+          style: {
+            borderRadius: '10px',
+          },
+          onClick: () => console.log('clicked'),
+        }}
+      />
+    </ColorPicker>,
+  );
+
+  const inputPanel = container.querySelector(
+    '.iui-color-input-fields.test-input-field',
+  ) as HTMLElement;
+  expect(inputPanel).toBeTruthy();
+  expect(inputPanel.style.borderRadius).toBe('10px');
+  await userEvent.click(inputPanel);
+  expect(logSpy).toHaveBeenCalledWith('clicked');
+});
+
 it('should render ColorInputPanel with input fields', async () => {
   const { container } = render(
     <ColorPicker>

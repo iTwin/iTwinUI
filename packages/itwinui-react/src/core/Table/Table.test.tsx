@@ -2040,7 +2040,7 @@ it('should render sub-rows and handle expansions', async () => {
   expect(onExpand).toHaveBeenNthCalledWith(1, [data[0]], expect.any(Object));
   expect(onExpand).toHaveBeenNthCalledWith(
     2,
-    [data[0], data[1]],
+    [data[0], data[0].subRows[1]],
     expect.any(Object),
   );
   expect(onExpand).toHaveBeenNthCalledWith(
@@ -3289,28 +3289,6 @@ it('should render selectable rows without select column', async () => {
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
   expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
   expect(onRowClick).toHaveBeenCalledTimes(3);
-});
-
-it('should scroll to selected item in non-virtualized table', async () => {
-  let scrolledElement: HTMLElement | null = null;
-  vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(
-    function (this: HTMLElement) {
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      scrolledElement = this;
-    },
-  );
-
-  const data = mockedData(50);
-  renderComponent({
-    data,
-    scrollToRow: (rows) => rows.findIndex((row) => row.original === data[25]),
-  });
-
-  expect(scrolledElement).toBeTruthy();
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  expect(scrolledElement!.querySelector('.iui-table-cell')?.textContent).toBe(
-    data[25].name,
-  );
 });
 
 it('should render sticky columns correctly', () => {

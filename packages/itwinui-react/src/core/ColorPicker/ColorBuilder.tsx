@@ -10,6 +10,7 @@ import {
   useEventListener,
   useMergedRefs,
   Box,
+  mergeEventHandlers,
 } from '../../utils/index.js';
 import type {
   HsvColor,
@@ -27,13 +28,39 @@ const getHorizontalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
   return ((position - rect.left) / rect.width) * 100;
 };
 
+type ColorBuilderProps = {
+  /**
+   * Passes props to the color field.
+   */
+  colorFieldProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to the color dot.
+   */
+  colorDotProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to the color opacity slider.
+   */
+  opacitySliderProps?: React.ComponentProps<typeof Slider>;
+  /**
+   * Passes props to the color hue slider.
+   */
+  hueSliderProps?: React.ComponentProps<typeof Slider>;
+};
+
 /**
  * `ColorBuilder` consists of two parts:
  * a color canvas to adjust saturation and lightness values,
  * and a set of sliders to adjust hue and alpha values.
  */
 export const ColorBuilder = React.forwardRef((props, ref) => {
-  const { className, ...rest } = props;
+  const {
+    className,
+    colorFieldProps,
+    colorDotProps,
+    opacitySliderProps,
+    hueSliderProps,
+    ...rest
+  } = props;
 
   const builderRef = React.useRef<HTMLDivElement>();
   const refs = useMergedRefs(builderRef, ref);
@@ -253,37 +280,55 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       {...rest}
     >
       <Box
-        className='iui-color-field'
+        as='div'
+        {...colorFieldProps}
+        className={cx('iui-color-field', colorFieldProps?.className)}
         style={
           {
             '--iui-color-field-hue': hueColorString,
             '--iui-color-picker-selected-color': dotColorString,
+            ...colorFieldProps?.style,
           } as React.CSSProperties
         }
-        ref={squareRef}
-        onPointerDown={(event: React.PointerEvent) => {
-          event.preventDefault();
-          updateSquareValue(event, 'onClick');
-          setColorDotActive(true);
-          colorDotRef.current?.focus();
-        }}
+        ref={useMergedRefs(squareRef, colorFieldProps?.ref)}
+        onPointerDown={mergeEventHandlers(
+          colorFieldProps?.onPointerDown,
+          (event: React.PointerEvent) => {
+            event.preventDefault();
+            updateSquareValue(event, 'onClick');
+            setColorDotActive(true);
+            colorDotRef.current?.focus();
+          },
+        )}
       >
         <Box
-          className='iui-color-dot'
+          as='div'
+          {...colorDotProps}
+          className={cx('iui-color-dot', colorDotProps?.className)}
           style={
             {
               '--iui-color-dot-inset-block': `${squareTop.toString()}% auto`,
               '--iui-color-dot-inset-inline': `${squareLeft.toString()}% auto`,
+              ...colorDotProps?.style,
             } as React.CSSProperties
           }
-          onPointerDown={() => {
-            setColorDotActive(true);
-            colorDotRef.current?.focus();
-          }}
-          onKeyDown={handleColorDotKeyDown}
-          onKeyUp={handleColorDotKeyUp}
+          onPointerDown={mergeEventHandlers(
+            colorDotProps?.onPointerDown,
+            () => {
+              setColorDotActive(true);
+              colorDotRef.current?.focus();
+            },
+          )}
+          onKeyDown={mergeEventHandlers(
+            colorDotProps?.onKeyDown,
+            handleColorDotKeyDown,
+          )}
+          onKeyUp={mergeEventHandlers(
+            colorDotProps?.onKeyUp,
+            handleColorDotKeyUp,
+          )}
           tabIndex={0}
-          ref={colorDotRef}
+          ref={useMergedRefs(colorDotRef, colorDotProps?.ref)}
         />
       </Box>
 
@@ -291,18 +336,27 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
         minLabel=''
         maxLabel=''
         values={[sliderValue]}
-        className='iui-hue-slider'
         trackDisplayMode='none'
-        tooltipProps={() => ({ visible: false })}
+        min={0}
+        max={359}
+        {...hueSliderProps}
+        className={cx('iui-hue-slider', hueSliderProps?.className)}
+        tooltipProps={() => ({
+          visible: false,
+          ...hueSliderProps?.tooltipProps,
+        })}
         onChange={(values) => {
+          hueSliderProps?.onChange?.(values);
           updateHueSlider(values[0], true);
         }}
         onUpdate={(values) => {
+          hueSliderProps?.onUpdate?.(values);
           updateHueSlider(values[0], false);
         }}
-        min={0}
-        max={359}
-        thumbProps={() => ({ 'aria-label': 'Hue' })}
+        thumbProps={() => ({
+          'aria-label': 'Hue',
+          ...hueSliderProps?.thumbProps,
+        })}
       />
 
       {showAlpha && (
@@ -310,29 +364,39 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
           minLabel=''
           maxLabel=''
           values={[alphaValue]}
-          className='iui-opacity-slider'
           trackDisplayMode='none'
-          tooltipProps={() => ({ visible: false })}
-          onChange={(values) => {
-            updateOpacitySlider(values[0], true);
-          }}
-          onUpdate={(values) => {
-            updateOpacitySlider(values[0], false);
-          }}
           min={0}
           max={1}
           step={0.01}
+          {...opacitySliderProps}
+          className={cx('iui-opacity-slider', opacitySliderProps?.className)}
+          tooltipProps={() => ({
+            visible: false,
+            ...opacitySliderProps?.tooltipProps,
+          })}
+          onChange={(values) => {
+            opacitySliderProps?.onChange?.(values);
+            updateOpacitySlider(values[0], true);
+          }}
+          onUpdate={(values) => {
+            opacitySliderProps?.onUpdate?.(values);
+            updateOpacitySlider(values[0], false);
+          }}
           style={
             {
               '--iui-color-picker-selected-color': hueColorString,
+              ...opacitySliderProps?.style,
             } as React.CSSProperties
           }
-          thumbProps={() => ({ 'aria-label': 'Opacity' })}
+          thumbProps={() => ({
+            'aria-label': 'Opacity',
+            ...opacitySliderProps?.thumbProps,
+          })}
         />
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', ColorBuilderProps>;
 if (process.env.NODE_ENV === 'development') {
   ColorBuilder.displayName = 'ColorBuilder';
 }
