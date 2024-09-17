@@ -883,7 +883,7 @@ export const Table = <
                 virtualItem={virtualItem}
                 ref={
                   enableVirtualization
-                    ? virtualItem?.measureElement
+                    ? virtualizer?.measureElement
                     : tableRowRef(row)
                 }
                 isDisabled={!!isRowDisabled?.(row.original)}
@@ -1054,7 +1054,11 @@ export const Table = <
                 ? virtualizer
                     .getVirtualItems()
                     .map((virtualItem) =>
-                      getPreparedRow(virtualItem.index, virtualItem),
+                      getPreparedRow(
+                        virtualItem.index,
+                        virtualItem,
+                        virtualizer,
+                      ),
                     )
                 : page.map((_, index) => getPreparedRow(index))}
             </>
