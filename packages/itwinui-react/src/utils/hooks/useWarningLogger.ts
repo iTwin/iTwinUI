@@ -43,7 +43,7 @@ export const useWarningLogger =
 
         const logWarning = React.useCallback(
           (message: string) => {
-            // Only run on client since window is not available on the server.
+            // Bail if window not available (e.g. on server)
             if (typeof window === 'undefined') {
               return;
             }
@@ -63,6 +63,11 @@ export const useWarningLogger =
           // Clearing timeout on unmount to avoid double execution in StrictMode.
           // The warning should be logged only once per component instance.
           return () => {
+            // Bail if window not available (e.g. on server)
+            if (typeof window === 'undefined') {
+              return;
+            }
+
             if (timeoutRef.current) {
               window.clearTimeout(timeoutRef.current);
             }
