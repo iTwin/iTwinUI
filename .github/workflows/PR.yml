@@ -1,7 +1,6 @@
-name: Assign PR author
+name: PR
 on:
   pull_request:
-    types: [opened, reopened, ready_for_review]
 
 jobs:
   assign-author:
