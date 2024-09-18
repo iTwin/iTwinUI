@@ -61,16 +61,10 @@ const defaultGetDragAndDropProps =
       const columnElement = event.currentTarget as HTMLElement;
       if (position === 'left') {
         columnElement.classList.remove(rightClassName);
-
-        if (!columnElement.classList.contains(leftClassName)) {
-          columnElement.classList.add(leftClassName);
-        }
+        columnElement.classList.add(leftClassName);
       } else if (position === 'right') {
         columnElement.classList.remove(leftClassName);
-
-        if (!columnElement.classList.contains(rightClassName)) {
-          columnElement.classList.add(rightClassName);
-        }
+        columnElement.classList.add(rightClassName);
       } else {
         columnElement.classList.remove(leftClassName);
         columnElement.classList.remove(rightClassName);
