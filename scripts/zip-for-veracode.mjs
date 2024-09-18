@@ -1,9 +1,7 @@
-/**
- * This script is used to zip the files that are going to be uploaded to Veracode.
- * It should take command line arguments for the source directory and the output file,
- * in addition to any files or folders that should be excluded from the zip.
- * This should be written in esm format with modern JavaScript.
- */
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 
 import { createWriteStream } from 'fs';
 import { resolve, relative } from 'path';
@@ -16,6 +14,8 @@ const [sourceDir, outputFile, ...excludedPaths] = argv.slice(2);
 
 const displayUsage = () => {
   console.log(`
+Zip files for Veracode
+
 Usage: node zip-for-veracode.mjs <sourceDir> <outputFile> [excludedPaths...]
 
 Arguments:
@@ -104,13 +104,20 @@ const getDefaultExcludedPaths = async () => {
   ];
 
   try {
-    const gitignoreContent = await readFile(resolve('.gitignore'), 'utf8');
-    const gitignorePatterns = gitignoreContent.split('\n').filter(Boolean);
+    const gitignorePatterns = await parseGitgnores('.gitignore');
     return defaultExcludedPaths.concat(gitignorePatterns);
   } catch (error) {
-    console.warn('Warning: .gitignore file not found or could not be read.');
+    // .gitignore file not found or could not be read.
     return defaultExcludedPaths;
   }
+};
+
+const parseGitgnores = async (gitignorePath) => {
+  const gitignoreContent = await readFile(resolve(gitignorePath), 'utf8');
+  return gitignoreContent
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
 };
 
 zipFiles(sourceDir, outputFile, excludedPaths);

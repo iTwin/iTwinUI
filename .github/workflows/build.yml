@@ -407,7 +407,7 @@ jobs:
       - run: pnpm run build
 
       - name: Zip files
-        run: node ./scripts/zip-for-veracode.mjs . itwui-veracodefull scripts/**  testing/** minimal-sandbox/** internal
+        run: node ./scripts/zip-for-veracode.mjs . itwui-veracode scripts/**  testing/** minimal-sandbox/** internal
 
       - name: Upload & Scan
         uses: veracode/veracode-uploadandscan-action@0.2.6
