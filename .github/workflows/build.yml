@@ -10,384 +10,383 @@ on:
   merge_group:
 
 jobs:
-  # install:
-  #   name: Install node modules
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  # audit:
-  #   name: Audit node modules
-  #   needs: install
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-  #     - run: pnpm audit
-
-  # assign-author:
-  #   name: Assign PR author
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Assign author using github-script
-  #       uses: actions/github-script@v6
-  #       with:
-  #         github-token: ${{ secrets.GITHUB_TOKEN }}
-  #         script: |
-  #           github.rest.issues.addAssignees({
-  #             owner: context.repo.owner,
-  #             repo: context.repo.repo,
-  #             issue_number: context.payload.pull_request.number,
-  #             assignees: [context.actor]
-  #           })
-
-  # build:
-  #   name: Build and lint packages
-  #   needs: install
-  #   strategy:
-  #     matrix:
-  #       os: [ubuntu-latest, windows-latest]
-  #   runs-on: ${{ matrix.os }}
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - run: pnpm lint
-  #     - run: pnpm lint:copyright
-  #     - run: pnpm run build --filter="{./packages/*}..."
-
-  # apps:
-  #   name: Build website and playgrounds
-  #   needs: install
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - run: pnpm run build --filter=website --filter="{./playgrounds/*}..."
-
-  # deploy-gh-pages:
-  #   name: Push static files to github pages
-  #   needs: install
-  #   runs-on: ubuntu-latest
-  #   if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
-  #   concurrency:
-  #     group: ${{ github.workflow }}-${{ github.ref }}
-  #     cancel-in-progress: true
-  #   env:
-  #     base_folder: ${{ github.event.number || github.ref_name != 'main' && github.ref_name || '' }}
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - name: Build css-workshop
-  #       run: pnpm run build --filter=css-workshop
-
-  #     - name: Build portal
-  #       run: pnpm --filter portal build --base "/iTwinUI/${{ env.base_folder }}"
-
-  #     - name: Build react-workshop
-  #       run: pnpm run build --filter=react-workshop
-
-  #     - name: Build vite-playground
-  #       run: pnpm run build --filter=vite-playground
-
-  #     - name: List folders to preserve (open PRs and 'legacy')
-  #       id: clean_exclude_folders
-  #       uses: actions/github-script@v4
-  #       with:
-  #         result-encoding: string
-  #         script: |
-  #           return ['legacy', ...((await github.pulls.list({
-  #             owner: context.repo.owner,
-  #             repo: context.repo.repo,
-  #             state: 'open'
-  #           })).data.map(pr => pr.number))].join('\n')
-
-  #     - name: Host portal under / or /legacy
-  #       uses: JamesIves/github-pages-deploy-action@v4
-  #       with:
-  #         branch: gh-pages
-  #         single-commit: true
-  #         folder: ${{ github.workspace }}/apps/portal/dist
-  #         target-folder: ${{ env.base_folder }}
-  #         clean-exclude: ${{ steps.clean_exclude_folders.outputs.result }}
-  #         git-config-name: github-actions[bot]
-  #         git-config-email: github-actions[bot]@users.noreply.github.com
-
-  #     - name: Host css-workshop under /css
-  #       uses: JamesIves/github-pages-deploy-action@v4
-  #       with:
-  #         branch: gh-pages
-  #         folder: ${{ github.workspace }}/apps/css-workshop/dist
-  #         target-folder: ${{ env.base_folder }}/css
-  #         git-config-name: github-actions[bot]
-  #         git-config-email: github-actions[bot]@users.noreply.github.com
-
-  #     - name: Host react-workshop under /react
-  #       uses: JamesIves/github-pages-deploy-action@v4
-  #       with:
-  #         branch: gh-pages
-  #         folder: ${{ github.workspace }}/apps/react-workshop/build
-  #         target-folder: ${{ env.base_folder }}/react
-  #         git-config-name: github-actions[bot]
-  #         git-config-email: github-actions[bot]@users.noreply.github.com
-
-  #     - name: Host vite-playground under /vite
-  #       if: github.ref != 'refs/heads/main'
-  #       uses: JamesIves/github-pages-deploy-action@v4
-  #       with:
-  #         branch: gh-pages
-  #         folder: ${{ github.workspace }}/playgrounds/vite/dist
-  #         target-folder: ${{ env.base_folder }}/vite
-  #         git-config-name: github-actions[bot]
-  #         git-config-email: github-actions[bot]@users.noreply.github.com
-
-  #     - name: Post deploy preview link under Checks
-  #       if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
-  #       uses: actions/github-script@v6
-  #       with:
-  #         script: |
-  #           github.rest.checks.create({
-  #             owner: context.repo.owner,
-  #             repo: context.repo.repo,
-  #             head_sha: '${{ github.event.pull_request.head.sha }}',
-  #             conclusion: 'neutral',
-  #             name: 'Deploy preview',
-  #             output: {
-  #               title: 'Live preview of the current branch',
-  #               summary: '',
-  #               text: `\
-  #           - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
-  #           - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
-  #           - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
-  #           - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)`
-  #             }
-  #           })
-
-  # unit-test:
-  #   name: Run unit tests
-  #   needs: install
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - run: pnpm --filter @itwin/itwinui-react test
-
-  #     - name: Publish test results
-  #       uses: EnricoMi/publish-unit-test-result-action@v2.12.0
-  #       if: always()
-  #       with:
-  #         files: 'packages/itwinui-react/coverage/junit.xml'
-  #         comment_mode: off
-  #         check_name: 'Test results'
-  #         fail_on: 'nothing'
-
-  # visual-test-css:
-  #   name: Run visual tests (css)
-  #   needs: install
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - name: pnpm run test --filter=css-workshop
-  #       uses: nick-fields/retry@v3
-  #       with:
-  #         timeout_minutes: 15
-  #         max_attempts: 2
-  #         retry_on: timeout
-  #         command: pnpm run test --filter=css-workshop
-
-  #     - name: Publish test results artifact
-  #       if: failure()
-  #       continue-on-error: true
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: 'backstop_test_results'
-  #         path: '${{ github.workspace }}/apps/css-workshop/backstop/results/'
-  #         overwrite: true
-
-  # visual-test-react:
-  #   name: Run visual tests (react)
-  #   needs: install
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - run: pnpm run test --filter=react-workshop
-
-  #     - name: Publish test results artifact
-  #       if: failure()
-  #       continue-on-error: true
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: 'cypress-visual-screenshots'
-  #         path: '${{ github.workspace }}/apps/react-workshop/cypress-visual-screenshots'
-  #         overwrite: true
-
-  # a11y:
-  #   name: Test for a11y violations
-  #   needs: install
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-
-  #     - name: Install Cypress binary if not found
-  #       run: pnpx cypress@13.8.1 install
-
-  #     - name: Run a11y tests
-  #       run: pnpm run test --filter=a11y
-
-  # e2e:
-  #   name: Run e2e tests
-  #   needs: install
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 60
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - uses: pnpm/action-setup@v3
-  #       with:
-  #         version: 9
-
-  #     - name: Use Node 20.x
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install
-  #     - run: pnpm run build --filter=e2e
-
-  #     - name: Run Playwright tests
-  #       run: pnpm run test --filter=e2e
-
-  #     - name: Upload Playwright report
-  #       uses: actions/upload-artifact@v4
-  #       if: always()
-  #       with:
-  #         name: e2e-report
-  #         path: testing/e2e/playwright-report/
-  #         retention-days: 30
+  install:
+    name: Install node modules
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+  audit:
+    name: Audit node modules
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+      - run: pnpm audit
+
+  assign-author:
+    name: Assign PR author
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Assign author using github-script
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              assignees: [context.actor]
+            })
+
+  build:
+    name: Build and lint packages
+    needs: install
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm lint
+      - run: pnpm lint:copyright
+      - run: pnpm run build --filter="{./packages/*}..."
+
+  apps:
+    name: Build website and playgrounds
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm run build --filter=website --filter="{./playgrounds/*}..."
+
+  deploy-gh-pages:
+    name: Push static files to github pages
+    needs: install
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    env:
+      base_folder: ${{ github.event.number || github.ref_name != 'main' && github.ref_name || '' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - name: Build css-workshop
+        run: pnpm run build --filter=css-workshop
+
+      - name: Build portal
+        run: pnpm --filter portal build --base "/iTwinUI/${{ env.base_folder }}"
+
+      - name: Build react-workshop
+        run: pnpm run build --filter=react-workshop
+
+      - name: Build vite-playground
+        run: pnpm run build --filter=vite-playground
+
+      - name: List folders to preserve (open PRs and 'legacy')
+        id: clean_exclude_folders
+        uses: actions/github-script@v4
+        with:
+          result-encoding: string
+          script: |
+            return ['legacy', ...((await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            })).data.map(pr => pr.number))].join('\n')
+
+      - name: Host portal under / or /legacy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          single-commit: true
+          folder: ${{ github.workspace }}/apps/portal/dist
+          target-folder: ${{ env.base_folder }}
+          clean-exclude: ${{ steps.clean_exclude_folders.outputs.result }}
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host css-workshop under /css
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/apps/css-workshop/dist
+          target-folder: ${{ env.base_folder }}/css
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host react-workshop under /react
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/apps/react-workshop/build
+          target-folder: ${{ env.base_folder }}/react
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host vite-playground under /vite
+        if: github.ref != 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/playgrounds/vite/dist
+          target-folder: ${{ env.base_folder }}/vite
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Post deploy preview link under Checks
+        if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: '${{ github.event.pull_request.head.sha }}',
+              conclusion: 'neutral',
+              name: 'Deploy preview',
+              output: {
+                title: 'Live preview of the current branch',
+                summary: '',
+                text: `\
+            - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
+            - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
+            - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
+            - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)`
+              }
+            })
+
+  unit-test:
+    name: Run unit tests
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm --filter @itwin/itwinui-react test
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v2.12.0
+        if: always()
+        with:
+          files: 'packages/itwinui-react/coverage/junit.xml'
+          comment_mode: off
+          check_name: 'Test results'
+          fail_on: 'nothing'
+
+  visual-test-css:
+    name: Run visual tests (css)
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - name: pnpm run test --filter=css-workshop
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 15
+          max_attempts: 2
+          retry_on: timeout
+          command: pnpm run test --filter=css-workshop
+
+      - name: Publish test results artifact
+        if: failure()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'backstop_test_results'
+          path: '${{ github.workspace }}/apps/css-workshop/backstop/results/'
+          overwrite: true
+
+  visual-test-react:
+    name: Run visual tests (react)
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm run test --filter=react-workshop
+
+      - name: Publish test results artifact
+        if: failure()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'cypress-visual-screenshots'
+          path: '${{ github.workspace }}/apps/react-workshop/cypress-visual-screenshots'
+          overwrite: true
+
+  a11y:
+    name: Test for a11y violations
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - name: Install Cypress binary if not found
+        run: pnpx cypress@13.8.1 install
+
+      - name: Run a11y tests
+        run: pnpm run test --filter=a11y
+
+  e2e:
+    name: Run e2e tests
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - run: pnpm install
+      - run: pnpm run build --filter=e2e
+
+      - name: Run Playwright tests
+        run: pnpm run test --filter=e2e
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-report
+          path: testing/e2e/playwright-report/
+          retention-days: 30
 
   veracode:
     name: Zip and Upload files to Veracode
-    # needs: install
     runs-on: ubuntu-latest
 
     steps:
@@ -413,6 +412,6 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@0.2.6
         with:
           appname: 'iTwinUI - UX (ITWUI - 3418)'
-          filepath: 'itwui-veracodefull.zip'
+          filepath: 'itwui-veracode.zip'
           vid: ${{ secrets.VERACODE_ID }}
           vkey: ${{ secrets.VERACODE_SECRET_KEY }}
