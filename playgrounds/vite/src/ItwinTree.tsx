@@ -140,11 +140,7 @@ export const Virtualized = () => {
               <DropdownMenu
                 menuItems={dropdownMenuItems}
                 id='itm-itwin-actions-drop-down'
-                //  matchWidth={true}
-                // portal={{
-                //   to: document.getElementById('sample-div-id') ?? null,
-                // }}
-                // placement="right-start"
+                middleware={{ hide: true }}
               >
                 <IconButton size='small' styleType='borderless'>
                   icon

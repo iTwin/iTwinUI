@@ -30,6 +30,16 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
+  /**
+   * Middleware options.
+   *
+   * By default, `hide` is disabled.
+   *
+   * @see https://floating-ui.com/docs/middleware
+   */
+  middleware?: {
+    hide?: boolean;
+  };
 } & Pick<
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
@@ -78,6 +88,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     matchWidth = false,
     onVisibleChange,
     portal = true,
+    middleware: middlewareProp,
     ...rest
   } = props;
 
@@ -85,6 +96,14 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     false,
     visibleProp,
     onVisibleChange,
+  );
+
+  const middleware = React.useMemo(
+    () => ({
+      hide: false,
+      ...middlewareProp,
+    }),
+    [middlewareProp],
   );
 
   const menuContent = React.useMemo(() => {
@@ -114,9 +133,9 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
           matchWidth,
           visible,
           onVisibleChange: setVisible,
-          middleware: { hide: true },
+          middleware,
         }),
-        [matchWidth, placement, setVisible, visible],
+        [matchWidth, middleware, placement, setVisible, visible],
       )}
       {...rest}
     >

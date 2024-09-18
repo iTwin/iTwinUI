@@ -24,23 +24,6 @@ export const OverlayModal: React.FC<{ close: () => void }> = ({ close }) => {
             placeholder: 'placeholder',
             disabled: false,
           }}
-          dropdownMenuProps={{
-            // should work with versions until v6
-            boundry: 'window',
-            // should work after v6
-            // https://github.com/atomiks/tippyjs/blob/master/MIGRATION_GUIDE.md#if-you-were-using-boundary
-            popperOptions: {
-              modifiers: [
-                {
-                  name: 'preventOverflow',
-                  options: {
-                    // equivalent to boundary: 'window' in v1, usually NOT necessary in v2
-                    rootBoundary: 'document',
-                  },
-                },
-              ],
-            },
-          }}
         />
       </div>
     </div>
