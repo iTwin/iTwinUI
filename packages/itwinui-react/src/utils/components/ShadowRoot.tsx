@@ -81,6 +81,24 @@ function useShadowRoot(
   const latestCss = useLatestRef(css);
   const latestShadowRoot = useLatestRef(shadowRoot);
 
+  const createStyleSheet = React.useCallback(() => {
+    const shadow = latestShadowRoot.current;
+
+    if (shadow && supportsAdoptedStylesheets) {
+      // create an empty stylesheet and add it to the shadowRoot
+      const currentWindow = shadow.ownerDocument.defaultView || globalThis;
+      if (!(styleSheet.current instanceof currentWindow.CSSStyleSheet)) {
+        styleSheet.current = new currentWindow.CSSStyleSheet();
+        shadow.adoptedStyleSheets.push(styleSheet.current);
+      }
+
+      // add the CSS immediately to avoid FOUC (one-time)
+      if (latestCss.current) {
+        styleSheet.current.replaceSync(latestCss.current);
+      }
+    }
+  }, [latestCss, latestShadowRoot]);
+
   useLayoutEffect(() => {
     const parent = templateRef.current?.parentElement;
     if (!parent) {
@@ -94,23 +112,13 @@ function useShadowRoot(
 
       const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
 
-      if (supportsAdoptedStylesheets) {
-        // create an empty stylesheet and add it to the shadowRoot
-        const currentWindow = shadow.ownerDocument.defaultView || globalThis;
-        styleSheet.current = new currentWindow.CSSStyleSheet();
-        shadow.adoptedStyleSheets = [styleSheet.current];
-
-        // add the CSS immediately to avoid FOUC (one-time)
-        if (latestCss.current) {
-          styleSheet.current.replaceSync(latestCss.current);
-        }
-      }
-
       // Flush the state immediately after shadow-root is attached, to ensure that layout
       // measurements in parent component are correct.
       // Without this, the parent component may end up measuring the layout when the shadow-root
       // is attached in the DOM but React hasn't rendered any slots or content into it yet.
       ReactDOM.flushSync(() => setShadowRoot(shadow));
+
+      createStyleSheet();
     };
 
     queueMicrotask(() => {
@@ -118,7 +126,7 @@ function useShadowRoot(
     });
 
     return () => void setShadowRoot(null);
-  }, [templateRef, latestCss, latestShadowRoot]);
+  }, [templateRef, createStyleSheet, latestShadowRoot]);
 
   // Synchronize `css` with contents of the existing stylesheet
   useLayoutEffect(() => {
@@ -126,6 +134,14 @@ function useShadowRoot(
       styleSheet.current?.replaceSync(css);
     }
   }, [css]);
+
+  // Re-create stylesheet if the element is moved to a different window (by AppUI)
+  React.useEffect(() => {
+    window.addEventListener('appui:reparent', createStyleSheet);
+    return () => {
+      window.removeEventListener('appui:reparent', createStyleSheet);
+    };
+  }, [createStyleSheet, latestShadowRoot]);
 
   return shadowRoot;
 }
