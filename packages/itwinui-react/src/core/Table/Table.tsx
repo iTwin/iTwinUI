@@ -605,7 +605,7 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows: (subComponent && getSubRowsWithSubComponents) ?? getSubRows,
+      getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
@@ -876,22 +876,18 @@ export const Table = <
         );
       } else {
         return (
-          <>
-            {subComponent && (
-              <TableExpandableContentMemoized
-                key={row.getRowProps().key}
-                virtualItem={virtualItem}
-                ref={
-                  enableVirtualization
-                    ? virtualizer?.measureElement
-                    : tableRowRef(row)
-                }
-                isDisabled={!!isRowDisabled?.(row.original)}
-              >
-                {subComponent(row)}
-              </TableExpandableContentMemoized>
-            )}
-          </>
+          <TableExpandableContentMemoized
+            key={row.getRowProps().key}
+            virtualItem={virtualItem}
+            ref={
+              enableVirtualization
+                ? virtualizer?.measureElement
+                : tableRowRef(row)
+            }
+            isDisabled={!!isRowDisabled?.(row.original)}
+          >
+            {subComponent(row)}
+          </TableExpandableContentMemoized>
         );
       }
     },
