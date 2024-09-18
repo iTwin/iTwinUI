@@ -387,7 +387,7 @@ jobs:
 
   veracode:
     name: Zip and Upload files to Veracode
-    needs: install
+    # needs: install
     runs-on: ubuntu-latest
 
     steps:
