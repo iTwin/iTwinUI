@@ -15,6 +15,9 @@ import type {
 } from '../../../react-table/react-table.js';
 import { styles } from '../../../styles.js';
 
+const leftClassName = styles['iui-table-reorder-column-left'];
+const rightClassName = styles['iui-table-reorder-column-right'];
+
 const REORDER_ACTIONS = {
   columnDragStart: 'columnDragStart',
   columnDragEnd: 'columnDragEnd',
@@ -56,12 +59,21 @@ const defaultGetDragAndDropProps =
       position?: 'left' | 'right',
     ) => {
       const columnElement = event.currentTarget as HTMLElement;
-      columnElement.classList.remove(styles['iui-table-reorder-column-right']);
-      columnElement.classList.remove(styles['iui-table-reorder-column-left']);
       if (position === 'left') {
-        columnElement.classList.add(styles['iui-table-reorder-column-left']);
+        columnElement.classList.remove(rightClassName);
+
+        if (!columnElement.classList.contains(leftClassName)) {
+          columnElement.classList.add(leftClassName);
+        }
       } else if (position === 'right') {
-        columnElement.classList.add(styles['iui-table-reorder-column-right']);
+        columnElement.classList.remove(leftClassName);
+
+        if (!columnElement.classList.contains(rightClassName)) {
+          columnElement.classList.add(rightClassName);
+        }
+      } else {
+        columnElement.classList.remove(leftClassName);
+        columnElement.classList.remove(rightClassName);
       }
     };
 
