@@ -13,7 +13,7 @@ const { disabled, status, class: className, labelPosition = 'right', ...props } 
 
 <label
   class:list={[
-    'iui-radio-wrapper',
+    'iui-checkbox-wrapper',
     {
       'iui-disabled': disabled,
       [`iui-${status}`]: !!status,
@@ -27,7 +27,12 @@ const { disabled, status, class: className, labelPosition = 'right', ...props } 
       </span>
     )
   }
-  <input class:list={['iui-radio', className]} type='radio' disabled={disabled} {...props} />
+  <input
+    class:list={['iui-checkbox', 'iui-radio', className]}
+    type='radio'
+    disabled={disabled}
+    {...props}
+  />
   {
     labelPosition === 'right' && (
       <span class='iui-radio-label'>
