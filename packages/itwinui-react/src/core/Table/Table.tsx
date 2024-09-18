@@ -579,7 +579,7 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
-  const [rowHasParent] = React.useState(() => new Set<T>());
+  const [rowHasParent] = React.useState(() => new WeakSet<T>());
 
   const getSubRowsWithSubComponents = React.useCallback(
     (originalRow: T) => {
