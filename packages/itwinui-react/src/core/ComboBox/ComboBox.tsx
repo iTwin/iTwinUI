@@ -152,6 +152,17 @@ export type ComboBoxProps<T> = {
    * Callback fired when dropdown menu is closed.
    */
   onHide?: () => void;
+  /**
+   * Middleware options.
+   *
+   * By default, `hide` is enabled. If the floating options get hidden even when they shouldn't (e.g. some custom styles
+   * interfering with the trigger's hide detection) consider disabling the `hide` middleware.
+   *
+   * @see https://floating-ui.com/docs/middleware
+   */
+  middleware?: {
+    hide?: boolean;
+  };
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
   CommonProps;
@@ -206,6 +217,7 @@ export const ComboBox = React.forwardRef(
       onHide: onHideProp,
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
+      middleware,
       ...rest
     } = props;
 
@@ -572,7 +584,10 @@ export const ComboBox = React.forwardRef(
       visible: isOpen,
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
-      middleware: { size: { maxHeight: 'var(--iui-menu-max-height)' } },
+      middleware: {
+        size: { maxHeight: 'var(--iui-menu-max-height)' },
+        ...middleware,
+      },
       closeOnOutsideClick: true,
       interactions: { click: false, focus: true },
     });

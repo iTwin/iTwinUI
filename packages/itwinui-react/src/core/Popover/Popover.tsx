@@ -184,7 +184,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const tree = useFloatingTree();
 
   const middleware = React.useMemo(
-    () => ({ flip: true, shift: true, size: true, ...options.middleware }),
+    () => ({
+      flip: true,
+      shift: true,
+      size: true,
+      hide: true,
+      ...options.middleware,
+    }),
     [options.middleware],
   );
 

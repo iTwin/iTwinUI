@@ -89,7 +89,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     matchWidth = false,
     onVisibleChange,
     portal = true,
-    middleware: middlewareProp,
+    middleware,
     ...rest
   } = props;
 
@@ -97,14 +97,6 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     false,
     visibleProp,
     onVisibleChange,
-  );
-
-  const middleware = React.useMemo(
-    () => ({
-      ...middlewareProp,
-      hide: middlewareProp?.hide ?? true,
-    }),
-    [middlewareProp],
   );
 
   const menuContent = React.useMemo(() => {

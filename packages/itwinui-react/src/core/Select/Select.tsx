@@ -550,7 +550,19 @@ export type CustomSelectProps<T> = SelectCommonProps & {
     | 'placement'
     | 'matchWidth'
     | 'closeOnOutsideClick'
-  >;
+  > & {
+    /**
+     * Middleware options.
+     *
+     * By default, `hide` is enabled. If the floating options get hidden even when they shouldn't (e.g. some custom
+     * styles interfering with the trigger's hide detection) consider disabling the `hide` middleware.
+     *
+     * @see https://floating-ui.com/docs/middleware
+     */
+    middleware?: {
+      hide?: boolean;
+    };
+  };
   /**
    * Props to pass to the select button (trigger) element.
    */
