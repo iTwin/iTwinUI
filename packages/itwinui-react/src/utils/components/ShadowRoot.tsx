@@ -84,12 +84,16 @@ function useShadowRoot(
   const createStyleSheet = React.useCallback(
     (shadow: ShadowRoot | null) => {
       if (shadow && supportsAdoptedStylesheets) {
-        // create an empty stylesheet and add it to the shadowRoot
         const currentWindow = shadow.ownerDocument.defaultView || globalThis;
-        if (!(styleSheet.current instanceof currentWindow.CSSStyleSheet)) {
-          styleSheet.current = new currentWindow.CSSStyleSheet();
-          shadow.adoptedStyleSheets.push(styleSheet.current);
+
+        // bail if stylesheet already exists in the current window
+        if (styleSheet.current instanceof currentWindow.CSSStyleSheet) {
+          return;
         }
+
+        // create an empty stylesheet and add it to the shadowRoot
+        styleSheet.current = new currentWindow.CSSStyleSheet();
+        shadow.adoptedStyleSheets.push(styleSheet.current);
 
         // add the CSS immediately to avoid FOUC (one-time)
         if (latestCss.current) {
