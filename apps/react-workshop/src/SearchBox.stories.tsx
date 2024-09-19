@@ -53,6 +53,21 @@ export const Expandable = () => {
   );
 };
 
+export const BorderlessExpandButton = () => {
+  return (
+    <SearchBox expandable>
+      <SearchBox.CollapsedState>
+        <SearchBox.ExpandButton styleType='borderless' />
+      </SearchBox.CollapsedState>
+      <SearchBox.ExpandedState>
+        <SearchBox.Icon />
+        <SearchBox.Input placeholder='Expandable search with borderless ExpandButton' />
+        <SearchBox.CollapseButton />
+      </SearchBox.ExpandedState>
+    </SearchBox>
+  );
+};
+
 export const ExpandableWithCustomItems = () => {
   return (
     <SearchBox expandable>
