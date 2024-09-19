@@ -7,10 +7,8 @@ import {
   Surface,
   List,
   ListItem,
-  Flex,
   DropdownMenu,
   IconButton,
-  Text,
   MenuItem,
 } from '@itwin/itwinui-react';
 import { SvgMore } from '@itwin/itwinui-icons-react';
@@ -34,14 +32,17 @@ export default () => {
     <Surface className='demo-container'>
       <Surface.Body as={List} className='list'>
         {items.map((_, i) => (
-          <ListItem key={i} as={Flex} actionable>
-            <Text>Item {i}</Text>
-            <Flex.Spacer />
+          <ListItem key={i}>
+            <ListItem.Content>Item {i}</ListItem.Content>
             <DropdownMenu
               menuItems={dropdownMenuItems}
               middleware={{ hide: true }}
             >
-              <IconButton styleType='borderless' label='More options'>
+              <IconButton
+                styleType='borderless'
+                label='More options'
+                size='small'
+              >
                 <SvgMore />
               </IconButton>
             </DropdownMenu>

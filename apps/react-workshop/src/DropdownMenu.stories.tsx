@@ -11,6 +11,9 @@ import {
   MenuItem,
   Select,
   Text,
+  Surface,
+  List,
+  ListItem,
 } from '@itwin/itwinui-react';
 import {
   SvgClipboard,
@@ -336,3 +339,58 @@ WithContent.decorators = [
     </div>
   ),
 ] satisfies StoryDecorator[];
+
+export const HideMiddleware = () => {
+  const onClick = (index: number, close: () => void) => () => {
+    console.log(`Item #${index} clicked!`);
+    close();
+  };
+
+  const dropdownMenuItems = (close: () => void) => [
+    <MenuItem key={1} onClick={onClick(1, close)}>
+      Option #1
+    </MenuItem>,
+    <MenuItem key={2} onClick={onClick(2, close)}>
+      Option #2
+    </MenuItem>,
+    <MenuItem key={3} onClick={onClick(3, close)} disabled>
+      Option #3
+    </MenuItem>,
+  ];
+
+  const items = new Array(30).fill(0);
+
+  return (
+    <Surface
+      style={{
+        width: 'min(200px, 20%)',
+      }}
+    >
+      <Surface.Body
+        as={List}
+        style={{
+          overflowY: 'auto',
+          maxHeight: '200px',
+        }}
+      >
+        {items.map((_, i) => (
+          <ListItem key={i}>
+            <ListItem.Content>Item {i}</ListItem.Content>
+            <DropdownMenu
+              menuItems={dropdownMenuItems}
+              middleware={{ hide: true }}
+            >
+              <IconButton
+                styleType='borderless'
+                label='More options'
+                size='small'
+              >
+                <SvgMore />
+              </IconButton>
+            </DropdownMenu>
+          </ListItem>
+        ))}
+      </Surface.Body>
+    </Surface>
+  );
+};

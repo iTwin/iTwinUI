@@ -43,11 +43,6 @@ export const useWarningLogger =
 
         const logWarning = React.useCallback(
           (message: string) => {
-            // Only run on client side since window is not available on the server.
-            if (typeof window === 'undefined') {
-              return;
-            }
-
             // Using setTimeout to delay execution until after rendering is complete.
             timeoutRef.current = window.setTimeout(() => {
               if (!loggedRef.current) {
