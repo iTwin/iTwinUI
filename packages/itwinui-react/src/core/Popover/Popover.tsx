@@ -185,11 +185,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
   const middleware = React.useMemo(
     () => ({
-      flip: true,
-      shift: true,
-      size: true,
-      hide: true,
       ...options.middleware,
+      flip: options.middleware?.flip ?? true,
+      shift: options.middleware?.shift ?? true,
+      size: options.middleware?.size ?? true,
+      hide: options.middleware?.hide ?? true,
     }),
     [options.middleware],
   );
