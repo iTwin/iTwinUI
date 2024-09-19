@@ -81,23 +81,24 @@ function useShadowRoot(
   const latestCss = useLatestRef(css);
   const latestShadowRoot = useLatestRef(shadowRoot);
 
-  const createStyleSheet = React.useCallback(() => {
-    const shadow = latestShadowRoot.current;
+  const createStyleSheet = React.useCallback(
+    (shadow: ShadowRoot | null) => {
+      if (shadow && supportsAdoptedStylesheets) {
+        // create an empty stylesheet and add it to the shadowRoot
+        const currentWindow = shadow.ownerDocument.defaultView || globalThis;
+        if (!(styleSheet.current instanceof currentWindow.CSSStyleSheet)) {
+          styleSheet.current = new currentWindow.CSSStyleSheet();
+          shadow.adoptedStyleSheets.push(styleSheet.current);
+        }
 
-    if (shadow && supportsAdoptedStylesheets) {
-      // create an empty stylesheet and add it to the shadowRoot
-      const currentWindow = shadow.ownerDocument.defaultView || globalThis;
-      if (!(styleSheet.current instanceof currentWindow.CSSStyleSheet)) {
-        styleSheet.current = new currentWindow.CSSStyleSheet();
-        shadow.adoptedStyleSheets.push(styleSheet.current);
+        // add the CSS immediately to avoid FOUC (one-time)
+        if (latestCss.current) {
+          styleSheet.current.replaceSync(latestCss.current);
+        }
       }
-
-      // add the CSS immediately to avoid FOUC (one-time)
-      if (latestCss.current) {
-        styleSheet.current.replaceSync(latestCss.current);
-      }
-    }
-  }, [latestCss, latestShadowRoot]);
+    },
+    [latestCss],
+  );
 
   useLayoutEffect(() => {
     const parent = templateRef.current?.parentElement;
@@ -118,7 +119,7 @@ function useShadowRoot(
       // is attached in the DOM but React hasn't rendered any slots or content into it yet.
       ReactDOM.flushSync(() => setShadowRoot(shadow));
 
-      createStyleSheet();
+      createStyleSheet(shadow);
     };
 
     queueMicrotask(() => {
@@ -137,9 +138,11 @@ function useShadowRoot(
 
   // Re-create stylesheet if the element is moved to a different window (by AppUI)
   React.useEffect(() => {
-    window.addEventListener('appui:reparent', createStyleSheet);
+    const listener = () => createStyleSheet(latestShadowRoot.current);
+
+    window.addEventListener('appui:reparent', listener);
     return () => {
-      window.removeEventListener('appui:reparent', createStyleSheet);
+      window.removeEventListener('appui:reparent', listener);
     };
   }, [createStyleSheet, latestShadowRoot]);
 
