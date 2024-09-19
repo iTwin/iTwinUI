@@ -21,7 +21,7 @@ function PopoutTest() {
     <>
       <button onClick={popout.open}>Open popout</button>
       {popout.popout &&
-        ReactDOM.createPortal(
+        ReactDOM.render(
           <ThemeProvider>
             <VisuallyHidden>Hello</VisuallyHidden>
           </ThemeProvider>,
