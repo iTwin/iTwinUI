@@ -143,6 +143,7 @@ function useShadowRoot(
   React.useEffect(() => {
     const listener = () => createStyleSheet(latestShadowRoot.current);
 
+    // See https://github.com/iTwin/appui/blob/0a4cc7d127b50146e003071320d06064a09a06ae/ui/appui-react/src/appui-react/layout/widget/ContentRenderer.tsx#L74-L80
     window.addEventListener('appui:reparent', listener);
     return () => {
       window.removeEventListener('appui:reparent', listener);
