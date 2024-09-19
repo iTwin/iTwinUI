@@ -381,7 +381,7 @@ jobs:
         run: |
           # Define the source directories and output file
           sourceDirs=("apps" "packages")
-          outputFile="twui-veracode.zip"
+          outputFile="itwui-veracode.zip"
 
           # Define the paths to exclude
           excludedPaths=(
