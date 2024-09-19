@@ -572,10 +572,7 @@ export const ComboBox = React.forwardRef(
       visible: isOpen,
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
-      middleware: {
-        size: { maxHeight: 'var(--iui-menu-max-height)' },
-        hide: true,
-      },
+      middleware: { size: { maxHeight: 'var(--iui-menu-max-height)' } },
       closeOnOutsideClick: true,
       interactions: { click: false, focus: true },
     });

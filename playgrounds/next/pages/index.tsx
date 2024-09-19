@@ -1,13 +1,9 @@
-import * as React from 'react';
-// import './style.css';
-import { RightPanel } from './RightPanel/right-panel';
+import { Button } from '@itwin/itwinui-react';
 
-export default function App() {
+export default function Home() {
   return (
-    <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
-      <RightPanel />
-    </div>
+    <>
+      <Button>Hello world</Button>
+    </>
   );
 }
