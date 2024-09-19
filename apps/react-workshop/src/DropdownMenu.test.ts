@@ -12,7 +12,7 @@ describe('DropdownMenu', () => {
     'With Content',
     'With Separator',
     'With Sublabels',
-    'Hide Middleware',
+    'Hide Menu When Trigger Hidden',
   ];
 
   tests.forEach((testName) => {

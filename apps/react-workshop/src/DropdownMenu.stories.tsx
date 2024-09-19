@@ -340,7 +340,7 @@ WithContent.decorators = [
   ),
 ] satisfies StoryDecorator[];
 
-export const HideMiddleware = () => {
+export const HideMenuWhenTriggerHidden = () => {
   const onClick = (index: number, close: () => void) => () => {
     console.log(`Item #${index} clicked!`);
     close();
@@ -378,7 +378,9 @@ export const HideMiddleware = () => {
             <ListItem.Content>Item {i}</ListItem.Content>
             <DropdownMenu
               menuItems={dropdownMenuItems}
-              middleware={{ hide: true }}
+              middleware={{
+                hide: false,
+              }}
             >
               <IconButton
                 styleType='borderless'

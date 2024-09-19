@@ -33,7 +33,8 @@ export type DropdownMenuProps = {
   /**
    * Middleware options.
    *
-   * By default, `hide` is disabled.
+   * By default, `hide` is enabled. If the menu gets hidden even when it shouldn't (e.g. some custom styles interfering
+   * with the trigger's hide detection) consider disabling the `hide` middleware.
    *
    * @see https://floating-ui.com/docs/middleware
    */
@@ -100,7 +101,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
 
   const middleware = React.useMemo(
     () => ({
-      hide: false,
+      hide: middlewareProp?.hide ?? true,
       ...middlewareProp,
     }),
     [middlewareProp],

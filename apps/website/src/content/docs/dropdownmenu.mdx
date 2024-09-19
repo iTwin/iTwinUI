@@ -76,11 +76,26 @@ The menu can contain extra content, including both text and additional selectabl
 
 ### Hide middleware
 
-Similar to the [`Popover`](/docs/popover) component, the dropdown menu can be hidden when the trigger gets hidden. This could be useful when the trigger is in a scrollable container.
+By default, the menu is hidden when the trigger is hidden (e.g. out of the scroll port).
+This is useful when the trigger is in a scrollable container.
 
 <LiveExample src='DropdownMenu.hidemiddleware.jsx'>
   <AllExamples.DropdownMenuHideMiddlewareExample client:load />
 </LiveExample>
+
+If the menu gets hidden even when it shouldn't (e.g. some custom styles interfering with the trigger's hide detection)
+consider disabling the `hide` middleware.
+
+```jsx {4}
+<DropdownMenu
+  …
+  middleware={{
+    hide: false,
+  }}
+>
+  …
+</DropdownMenu>
+```
 
 ## Props
 

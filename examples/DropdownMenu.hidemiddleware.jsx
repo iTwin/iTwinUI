@@ -34,10 +34,7 @@ export default () => {
         {items.map((_, i) => (
           <ListItem key={i}>
             <ListItem.Content>Item {i}</ListItem.Content>
-            <DropdownMenu
-              menuItems={dropdownMenuItems}
-              middleware={{ hide: true }}
-            >
+            <DropdownMenu menuItems={dropdownMenuItems}>
               <IconButton
                 styleType='borderless'
                 label='More options'

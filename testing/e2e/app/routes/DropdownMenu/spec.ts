@@ -292,13 +292,24 @@ test.describe('DropdownMenu', () => {
     // Close the menu with Tab
   });
 
-  test('should support the hide middleware', async ({ page }) => {
+  test('should hide menu when trigger hidden', async ({ page }) => {
     await page.goto('/DropdownMenu?menuType=withHideMiddleware');
 
     await page.locator('button').first().click();
     await page.locator('button').nth(10).scrollIntoViewIfNeeded();
 
-    await expect(page.getByRole('menu')).toHaveCount(0);
+    await expect(page.getByRole('menu').first()).not.toBeVisible();
+  });
+
+  test('should allow opting out of hide middleware', async ({ page }) => {
+    await page.goto(
+      '/DropdownMenu?menuType=withHideMiddleware&hideMiddleware=false',
+    );
+
+    await page.locator('button').first().click();
+    await page.locator('button').nth(10).scrollIntoViewIfNeeded();
+
+    await expect(page.getByRole('menu')).toBeVisible();
   });
 });
 

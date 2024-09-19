@@ -20,13 +20,15 @@ export default () => {
     | 'withSubmenu'
     | 'withHideMiddleware'
     | 'withExtraContent';
+  const hideMiddleware =
+    searchParams.get('hideMiddleware') === 'false' ? false : undefined;
 
   return (
     <>
       {menuType === 'withExtraContent' ? (
         <DropdownMenuWithExtraContent />
       ) : menuType === 'withHideMiddleware' ? (
-        <DropdownMenuHideMiddleware />
+        <DropdownMenuHideMiddleware hideMiddleware={hideMiddleware} />
       ) : (
         <DropdownMenuWithSubmenus />
       )}
@@ -141,7 +143,11 @@ const DropdownMenuWithExtraContent = () => {
   );
 };
 
-const DropdownMenuHideMiddleware = () => {
+const DropdownMenuHideMiddleware = ({
+  hideMiddleware,
+}: {
+  hideMiddleware?: boolean;
+}) => {
   const dropdownMenuItems = (close: () => void) => [
     <MenuItem key={1} onClick={() => close()}>
       Option #1
@@ -167,7 +173,7 @@ const DropdownMenuHideMiddleware = () => {
             <ListItem.Content>Item {i}</ListItem.Content>
             <DropdownMenu
               menuItems={dropdownMenuItems}
-              middleware={{ hide: true }}
+              middleware={{ hide: hideMiddleware }}
             >
               <IconButton
                 styleType='borderless'
