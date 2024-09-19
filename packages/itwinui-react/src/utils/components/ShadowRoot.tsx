@@ -116,14 +116,13 @@ function useShadowRoot(
       }
 
       const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
+      createStyleSheet(shadow);
 
       // Flush the state immediately after shadow-root is attached, to ensure that layout
       // measurements in parent component are correct.
       // Without this, the parent component may end up measuring the layout when the shadow-root
       // is attached in the DOM but React hasn't rendered any slots or content into it yet.
       ReactDOM.flushSync(() => setShadowRoot(shadow));
-
-      createStyleSheet(shadow);
     };
 
     queueMicrotask(() => {
