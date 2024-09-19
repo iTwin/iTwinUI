@@ -383,15 +383,9 @@ jobs:
           outputFile="itwui-veracode.zip"
 
           excludedPaths=(
-            "**/node_modules/*"
             ".git/*"
             "**/backstop/*"
-            '**/dist/*'
-            '**/build/*'
             "**/cypress*/*"
-            "**/.turbo/*"
-            "**/.astro/*"
-            "**/.next/*"
           )
 
           zipCommand="zip -r $outputFile"
