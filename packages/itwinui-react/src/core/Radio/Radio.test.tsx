@@ -61,9 +61,10 @@ it('renders positive component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-positive'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'positive',
+  );
 });
 
 it('renders warning component', () => {
@@ -74,9 +75,10 @@ it('renders warning component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-warning'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'warning',
+  );
 });
 
 it('renders negative component', () => {
@@ -87,9 +89,10 @@ it('renders negative component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-negative'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'negative',
+  );
 });
 
 it('passes custom props to wrapper and label', () => {
