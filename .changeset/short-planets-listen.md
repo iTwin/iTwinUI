@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': patch
+'@itwin/itwinui-react': minor
 ---
 
-Removed `WithCSSTransition` as it is not working with sub-components in this current bug fix.
+`Table`'s animation to show and hide its `subComponent` is now removed.
