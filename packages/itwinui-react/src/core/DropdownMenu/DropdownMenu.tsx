@@ -101,8 +101,8 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
 
   const middleware = React.useMemo(
     () => ({
-      hide: middlewareProp?.hide ?? true,
       ...middlewareProp,
+      hide: middlewareProp?.hide ?? true,
     }),
     [middlewareProp],
   );

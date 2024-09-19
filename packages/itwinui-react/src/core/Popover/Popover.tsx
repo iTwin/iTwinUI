@@ -170,6 +170,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
   const mergedInteractions = React.useMemo(
     () => ({
+      ...interactionsProp,
       ...{
         click: interactionsProp?.click ?? true,
         dismiss: interactionsProp?.dismiss ?? true,
