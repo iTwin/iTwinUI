@@ -54,9 +54,7 @@ it('renders disabled component', () => {
 });
 
 it('renders positive component', () => {
-  const { container } = render(
-    <Radio label='Some label' data-iui-status='positive' />,
-  );
+  const { container } = render(<Radio label='Some label' status='positive' />);
 
   assertBaseElements(container);
 
@@ -68,9 +66,7 @@ it('renders positive component', () => {
 });
 
 it('renders warning component', () => {
-  const { container } = render(
-    <Radio label='Some label' data-iui-status='warning' />,
-  );
+  const { container } = render(<Radio label='Some label' status='warning' />);
 
   assertBaseElements(container);
 
@@ -82,9 +78,7 @@ it('renders warning component', () => {
 });
 
 it('renders negative component', () => {
-  const { container } = render(
-    <Radio label='Some label' data-iui-status='negative' />,
-  );
+  const { container } = render(<Radio label='Some label' status='negative' />);
 
   assertBaseElements(container);
 

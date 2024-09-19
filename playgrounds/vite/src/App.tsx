@@ -1,9 +1,9 @@
-import { Button } from '@itwin/itwinui-react';
+import { Checkbox } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <Button>Hello world</Button>
+      <Checkbox label='Checkbox' status='warning' />
     </>
   );
 };
