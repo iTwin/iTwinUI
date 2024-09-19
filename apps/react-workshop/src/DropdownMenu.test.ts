@@ -12,6 +12,7 @@ describe('DropdownMenu', () => {
     'With Content',
     'With Separator',
     'With Sublabels',
+    'Hide Middleware',
   ];
 
   tests.forEach((testName) => {

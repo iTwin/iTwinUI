@@ -291,6 +291,15 @@ test.describe('DropdownMenu', () => {
 
     // Close the menu with Tab
   });
+
+  test('should support the hide middleware', async ({ page }) => {
+    await page.goto('/DropdownMenu?menuType=withHideMiddleware');
+
+    await page.locator('button').first().click();
+    await page.locator('button').nth(10).scrollIntoViewIfNeeded();
+
+    await expect(page.getByRole('menu')).toHaveCount(0);
+  });
 });
 
 // ----------------------------------------------------------------------------
