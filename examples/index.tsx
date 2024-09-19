@@ -924,6 +924,12 @@ import { default as SearchBoxSizeExampleRaw } from './SearchBox.size';
 const SearchBoxSizeExample = withThemeProvider(SearchBoxSizeExampleRaw);
 export { SearchBoxSizeExample };
 
+import { default as SearchBoxBorderlessExpandButtonExampleRaw } from './SearchBox.borderlessexpandbutton.jsx';
+const SearchBoxBorderlessExpandButtonExample = withThemeProvider(
+  SearchBoxBorderlessExpandButtonExampleRaw,
+);
+export { SearchBoxBorderlessExpandButtonExample };
+
 import { default as SearchBoxExpandableExampleRaw } from './SearchBox.expandable';
 const SearchBoxExpandableExample = withThemeProvider(
   SearchBoxExpandableExampleRaw,
