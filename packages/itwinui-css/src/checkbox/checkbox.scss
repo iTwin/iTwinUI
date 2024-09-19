@@ -14,7 +14,7 @@
   color: var(--iui-color-text);
   gap: var(--iui-size-xs);
 
-  &.iui-loading {
+  &[data-iui-loading='true'] {
     cursor: progress;
     font-style: italic;
     color: var(--iui-color-text-disabled);
@@ -31,7 +31,7 @@
     }
   }
 
-  &.iui-disabled {
+  &[data-iui-disabled='true'] {
     cursor: not-allowed;
     color: var(--iui-color-text-disabled);
 
@@ -40,16 +40,10 @@
     }
   }
 
-  &.iui-positive {
-    color: var(--iui-color-text-positive);
-  }
-
-  &.iui-warning {
-    color: var(--iui-color-text-warning);
-  }
-
-  &.iui-negative {
-    color: var(--iui-color-text-negative);
+  @each $status in ('positive', 'warning', 'negative') {
+    &[data-iui-status='#{$status}'] {
+      color: var(--iui-color-text-#{$status});
+    }
   }
 }
 
@@ -107,7 +101,7 @@
 
   @include mixins.iui-focus($thickness: 2px);
 
-  &:disabled {
+  &[data-iui-disabled='true'] {
     --_iui-checkbox-svg-color: var(--iui-color-icon-disabled);
     --_iui-checkbox-border-color: var(--iui-color-border-disabled);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);
@@ -139,7 +133,7 @@
     }
   }
 
-  &.iui-loading {
+  &[data-iui-loading='true'] {
     --_iui-checkbox-border-color: transparent;
     --_iui-checkbox-background-color: transparent;
     opacity: 0;

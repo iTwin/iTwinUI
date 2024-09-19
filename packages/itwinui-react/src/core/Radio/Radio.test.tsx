@@ -41,19 +41,22 @@ it('renders correctly with jsx element as label', () => {
 });
 
 it('renders disabled component', () => {
-  const { container } = render(<Radio label='Some label' disabled />);
+  const { container } = render(
+    <Radio label='Some label' data-iui-disabled='true' />,
+  );
 
   assertBaseElements(container);
 
   screen.getByText('Some label');
   expect(
-    (container.querySelector('input[type="radio"]') as HTMLInputElement)
-      .disabled,
-  ).toBe(true);
+    container.querySelector('input[type="radio"]') as HTMLInputElement,
+  ).toHaveAttribute('data-iui-disabled', 'true');
 });
 
 it('renders positive component', () => {
-  const { container } = render(<Radio label='Some label' status='positive' />);
+  const { container } = render(
+    <Radio label='Some label' data-iui-status='positive' />,
+  );
 
   assertBaseElements(container);
 
@@ -64,7 +67,9 @@ it('renders positive component', () => {
 });
 
 it('renders warning component', () => {
-  const { container } = render(<Radio label='Some label' status='warning' />);
+  const { container } = render(
+    <Radio label='Some label' data-iui-status='warning' />,
+  );
 
   assertBaseElements(container);
 
@@ -75,7 +80,9 @@ it('renders warning component', () => {
 });
 
 it('renders negative component', () => {
-  const { container } = render(<Radio label='Some label' status='negative' />);
+  const { container } = render(
+    <Radio label='Some label' data-iui-status='negative' />,
+  );
 
   assertBaseElements(container);
 
