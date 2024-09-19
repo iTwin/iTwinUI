@@ -171,12 +171,11 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const mergedInteractions = React.useMemo(
     () => ({
       ...{
-        click: true,
-        dismiss: true,
-        hover: false,
-        focus: false,
+        click: interactionsProp?.click ?? true,
+        dismiss: interactionsProp?.dismiss ?? true,
+        hover: interactionsProp?.hover ?? false,
+        focus: interactionsProp?.focus ?? false,
       },
-      ...interactionsProp,
     }),
     [interactionsProp],
   );
@@ -287,11 +286,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
                 maxInlineSize: `min(${referenceWidth * 2}px, 90vw)`,
               }
             : {}),
-          ...(middleware.hide && {
-            visibility: floating.middlewareData.hide?.referenceHidden
-              ? 'hidden'
-              : 'visible',
-          }),
+          ...(middleware.hide &&
+            floating.middlewareData.hide?.referenceHidden && {
+              visibility: 'hidden',
+            }),
           ...userProps?.style,
         },
       }),
