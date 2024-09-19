@@ -16,7 +16,7 @@ it('renders correctly with label', () => {
   const { container } = render(<Radio label='Some label' />);
 
   assertBaseElements(container);
-  expect(container.querySelector('label')).toHaveClass('iui-radio-wrapper');
+  expect(container.querySelector('label')).toHaveClass('iui-checkbox-wrapper');
   expect(screen.getByText('Some label')).toHaveClass('iui-radio-label');
 });
 
@@ -25,7 +25,7 @@ it('renders correctly without label', () => {
 
   assertBaseElements(container);
   expect(container.querySelector('label')).toBeFalsy();
-  expect(container.querySelector('iui-radio-wrapper')).toBeFalsy();
+  expect(container.querySelector('iui-checkbox-wrapper')).toBeFalsy();
   expect(container.querySelector('.iui-radio-label')).toBeNull();
 });
 
@@ -59,7 +59,7 @@ it('renders positive component', () => {
 
   screen.getByText('Some label');
   expect(
-    container.querySelector('.iui-radio-wrapper.iui-positive'),
+    container.querySelector('.iui-checkbox-wrapper.iui-positive'),
   ).toBeTruthy();
 });
 
@@ -70,7 +70,7 @@ it('renders warning component', () => {
 
   screen.getByText('Some label');
   expect(
-    container.querySelector('.iui-radio-wrapper.iui-warning'),
+    container.querySelector('.iui-checkbox-wrapper.iui-warning'),
   ).toBeTruthy();
 });
 
@@ -81,7 +81,7 @@ it('renders negative component', () => {
 
   screen.getByText('Some label');
   expect(
-    container.querySelector('.iui-radio-wrapper.iui-negative'),
+    container.querySelector('.iui-checkbox-wrapper.iui-negative'),
   ).toBeTruthy();
 });
 
@@ -101,14 +101,14 @@ it('passes custom props to wrapper and label', () => {
 
   // Test Radio
   const radio = container.querySelector(
-    '.iui-radio.custom-class',
+    '.iui-checkbox.iui-radio.custom-class',
   ) as HTMLElement;
   expect(radio).toBeTruthy();
   expect(radio.style.fontSize).toBe('12px');
 
   // Test wrapper
   const wrapper = container.querySelector(
-    '.iui-radio-wrapper.custom-wrapper-class',
+    '.iui-checkbox-wrapper.custom-wrapper-class',
   ) as HTMLElement;
   expect(wrapper).toBeTruthy();
   expect(wrapper.style.fontSize).toBe('14px');
