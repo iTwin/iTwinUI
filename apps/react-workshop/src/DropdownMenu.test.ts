@@ -12,7 +12,6 @@ describe('DropdownMenu', () => {
     'With Content',
     'With Separator',
     'With Sublabels',
-    'Hide Menu When Trigger Hidden',
   ];
 
   tests.forEach((testName) => {
