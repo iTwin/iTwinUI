@@ -376,19 +376,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Use Node 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-          cache: 'pnpm'
-
-      - run: pnpm install
-      - run: pnpm run build
-
       - name: Zip files for veracode
         shell: bash
         run: |
