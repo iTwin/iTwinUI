@@ -38,7 +38,6 @@ import {
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
-  WithCSSTransition,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TableColumnsContext } from './utils.js';
@@ -65,7 +64,7 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
 
@@ -580,6 +579,20 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
+  const [rowHasParent] = React.useState(() => new WeakSet<T>());
+
+  const getSubRowsWithSubComponents = React.useCallback(
+    (originalRow: T) => {
+      if (!rowHasParent.has(originalRow)) {
+        rowHasParent.add(originalRow);
+        return [originalRow];
+      }
+
+      return (originalRow.subRows as T[]) || [];
+    },
+    [rowHasParent],
+  );
+
   const instance = useTable<T>(
     {
       manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
@@ -592,7 +605,7 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows,
+      getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
@@ -836,8 +849,9 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      return (
-        <>
+
+      if (row.subRows.length > 0 || !subComponent) {
+        return (
           <TableRowMemoized
             row={row}
             rowProps={rowProps}
@@ -859,24 +873,30 @@ export const Table = <
             virtualItem={virtualItem}
             virtualizer={virtualizer}
           />
-          {subComponent && (
-            <WithCSSTransition in={row.isExpanded}>
-              <TableExpandableContentMemoized
-                key={row.getRowProps().key}
-                ref={tableRowRef(row)}
-                isDisabled={!!isRowDisabled?.(row.original)}
-              >
-                {subComponent(row)}
-              </TableExpandableContentMemoized>
-            </WithCSSTransition>
-          )}
-        </>
-      );
+        );
+      } else {
+        return (
+          <TableExpandableContentMemoized
+            key={row.getRowProps().key}
+            virtualItem={virtualItem}
+            ref={
+              enableVirtualization
+                ? virtualizer?.measureElement
+                : tableRowRef(row)
+            }
+            isDisabled={!!isRowDisabled?.(row.original)}
+          >
+            {subComponent(row)}
+          </TableExpandableContentMemoized>
+        );
+      }
     },
     [
       page,
       prepareRow,
       rowProps,
+      onRowInViewportRef,
+      onBottomReachedRef,
       intersectionMargin,
       state,
       onRowClickHandler,
@@ -888,8 +908,6 @@ export const Table = <
       enableVirtualization,
       tableRowRef,
       density,
-      onBottomReachedRef,
-      onRowInViewportRef,
     ],
   );
 

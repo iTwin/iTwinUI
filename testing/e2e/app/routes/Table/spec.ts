@@ -510,6 +510,50 @@ test.describe('Virtual Scroll Tests', () => {
     const rows = page.getByRole('rowgroup').getByRole('row');
     expect((await rows.all()).length).toBe(1);
   });
+
+  test('virtualized table should allow expandable contents', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?virtualization=true&scroll=true&scrollRow=50&hasSubComponent=true',
+      {
+        waitUntil: 'networkidle',
+      },
+    ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    await expect(rows.nth(1)).toContainText('Name50');
+    await expect(rows.nth(4)).toContainText('Name53');
+
+    const row50ExpanderContent = page.getByText(
+      'Expanded component, name: Name50',
+    );
+    const row53ExpanderContent = page.getByText(
+      'Expanded component, name: Name53',
+    );
+
+    const expanderButtonRow50Cell = rows
+      .nth(1)
+      .getByRole('cell')
+      .nth(0)
+      .getByRole('button');
+    const expanderButtonRow53Cell = rows
+      .nth(4)
+      .getByRole('cell')
+      .nth(0)
+      .getByRole('button');
+
+    await expanderButtonRow50Cell.click();
+    await expanderButtonRow53Cell.click();
+    await expect(row50ExpanderContent).toBeInViewport();
+    await expect(row53ExpanderContent).toBeInViewport();
+
+    // Collapse the expanded content
+    await expanderButtonRow50Cell.click();
+    await expect(row50ExpanderContent).not.toBeInViewport();
+    await expanderButtonRow53Cell.click();
+    await expect(row53ExpanderContent).not.toBeInViewport();
+  });
 });
 
 test.describe('Table filters', () => {
