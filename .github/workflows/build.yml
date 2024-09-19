@@ -389,10 +389,52 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
 
-      - name: Zip files
-        run: node ./scripts/zip-for-veracode.mjs . itwui-veracode scripts/**  testing minimal-sandbox/** internal **/backstop/** **/.next/** **/cypress*/** .git/**
+      - name: Zip files for veracode
+        shell: bash
+        run: |
+          # Define the source directories and output file
+          sourceDirs=("apps" "packages")
+          outputFile="twui-veracode.zip"
 
-      - name: Upload & Scan
+          # Define the paths to exclude
+          excludedPaths=(
+            "**/node_modules/*"
+            ".git/*"
+            "**/backstop/*"
+            '**/dist/*'
+            '**/build/*'
+            "**/cypress*/*"
+            "**/.turbo/*"
+            "**/.astro/*"
+            "**/.next/*"
+          )
+
+          # Create the zip command with exclusions
+          zipCommand="zip -r $outputFile"
+
+          # Add source directories to the zip command
+          for dir in "${sourceDirs[@]}"; do
+            zipCommand+=" $dir"
+          done
+
+          # Add excluded paths to the zip command
+          for path in "${excludedPaths[@]}"; do
+            zipCommand+=" -x \"$path\""
+          done
+
+          # Execute the zip command
+          eval $zipCommand
+
+          # Check if the zip command was successful
+          if [[ $? -eq 0 ]]; then
+            echo "Zip file created successfully"
+            echo "Output file size: $(du -h $outputFile | cut -f1)"
+          else
+            echo "An error occurred while creating the zip file"
+            exit 1
+          fi
+
+      - name: Upload & scan
         uses: veracode/veracode-uploadandscan-action@0.2.6
         with:
           appname: 'iTwinUI - UX (ITWUI - 3418)'
