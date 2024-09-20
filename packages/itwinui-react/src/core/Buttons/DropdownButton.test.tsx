@@ -83,6 +83,28 @@ it('should update when menu opens or closes', async () => {
   expect(svg).toEqual(downArrow);
 });
 
+it('should work with menu items', async () => {
+  const { container } = renderComponent();
+
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
+  expect(button).toBeTruthy();
+
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeFalsy();
+
+  await userEvent.click(button);
+  menu = document.querySelector('[role=menu]') as HTMLElement;
+  expect(menu).toBeVisible();
+
+  expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
+
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
+  expect(menuItem).toBeTruthy();
+  await userEvent.click(menuItem);
+
+  expect(menu).not.toBeVisible();
+});
+
 it('should render borderless button correctly', () => {
   const { container } = renderComponent({ styleType: 'borderless' });
   const button = container.querySelector('.iui-button') as HTMLButtonElement;

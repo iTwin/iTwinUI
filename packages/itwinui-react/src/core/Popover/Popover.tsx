@@ -39,6 +39,7 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
+  isUnitTest,
   mergeEventHandlers,
   useControlledState,
   useId,
@@ -189,7 +190,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       flip: options.middleware?.flip ?? true,
       shift: options.middleware?.shift ?? true,
       size: options.middleware?.size ?? true,
-      hide: options.middleware?.hide ?? true,
+      hide: options.middleware?.hide || !isUnitTest, // default is true, except in fake DOM environments
     }),
     [options.middleware],
   );

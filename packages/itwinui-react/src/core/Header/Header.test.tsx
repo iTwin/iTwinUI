@@ -102,6 +102,55 @@ it('renders avatar alone correctly', () => {
   expect(avatar).toBeTruthy();
   expect(avatar?.textContent).toEqual('AvatarContent');
 });
+it('renders moreMenu alone correctly', async () => {
+  // Summarized, as this is partly based on DropdownMenu, which is tested independently.
+  const itemOneOnClick = vi.fn();
+
+  const { container } = render(
+    <Header
+      appLogo={<div>AppTitle</div>}
+      menuItems={(close) => [
+        <MenuItem
+          key={0}
+          onClick={() => {
+            itemOneOnClick();
+            close();
+          }}
+        >
+          Test0
+        </MenuItem>,
+        <MenuItem key={1} onClick={close}>
+          Test1
+        </MenuItem>,
+        <MenuItem key={2} onClick={close}>
+          Test2
+        </MenuItem>,
+      ]}
+    />,
+  );
+  const button = container.querySelector(
+    '.iui-page-header-right > .iui-button[data-iui-variant="borderless"]:last-child',
+  ) as HTMLButtonElement;
+  expect(button).toBeTruthy();
+  expect(button.getAttribute('aria-label')).toEqual('More options');
+
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeFalsy();
+
+  await userEvent.click(button);
+  menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeVisible();
+
+  expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
+
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
+  expect(menuItem).toBeTruthy();
+  await userEvent.click(menuItem);
+
+  expect(menu).not.toBeVisible();
+
+  expect(itemOneOnClick).toHaveBeenCalled();
+});
 
 it('renders translatedStrings correctly', () => {
   const { container } = render(
