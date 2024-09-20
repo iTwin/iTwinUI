@@ -81,6 +81,29 @@ function useShadowRoot(
   const latestCss = useLatestRef(css);
   const latestShadowRoot = useLatestRef(shadowRoot);
 
+  const createStyleSheet = React.useCallback(
+    (shadow: ShadowRoot | null) => {
+      if (shadow && supportsAdoptedStylesheets) {
+        const currentWindow = shadow.ownerDocument.defaultView || globalThis;
+
+        // bail if stylesheet already exists in the current window
+        if (styleSheet.current instanceof currentWindow.CSSStyleSheet) {
+          return;
+        }
+
+        // create an empty stylesheet and add it to the shadowRoot
+        styleSheet.current = new currentWindow.CSSStyleSheet();
+        shadow.adoptedStyleSheets.push(styleSheet.current);
+
+        // add the CSS immediately to avoid FOUC (one-time)
+        if (latestCss.current) {
+          styleSheet.current.replaceSync(latestCss.current);
+        }
+      }
+    },
+    [latestCss],
+  );
+
   useLayoutEffect(() => {
     const parent = templateRef.current?.parentElement;
     if (!parent) {
@@ -93,18 +116,7 @@ function useShadowRoot(
       }
 
       const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
-
-      if (supportsAdoptedStylesheets) {
-        // create an empty stylesheet and add it to the shadowRoot
-        const currentWindow = shadow.ownerDocument.defaultView || globalThis;
-        styleSheet.current = new currentWindow.CSSStyleSheet();
-        shadow.adoptedStyleSheets = [styleSheet.current];
-
-        // add the CSS immediately to avoid FOUC (one-time)
-        if (latestCss.current) {
-          styleSheet.current.replaceSync(latestCss.current);
-        }
-      }
+      createStyleSheet(shadow);
 
       // Flush the state immediately after shadow-root is attached, to ensure that layout
       // measurements in parent component are correct.
@@ -118,7 +130,7 @@ function useShadowRoot(
     });
 
     return () => void setShadowRoot(null);
-  }, [templateRef, latestCss, latestShadowRoot]);
+  }, [templateRef, createStyleSheet, latestShadowRoot]);
 
   // Synchronize `css` with contents of the existing stylesheet
   useLayoutEffect(() => {
@@ -126,6 +138,17 @@ function useShadowRoot(
       styleSheet.current?.replaceSync(css);
     }
   }, [css]);
+
+  // Re-create stylesheet if the element is moved to a different window (by AppUI)
+  React.useEffect(() => {
+    const listener = () => createStyleSheet(latestShadowRoot.current);
+
+    // See https://github.com/iTwin/appui/blob/0a4cc7d127b50146e003071320d06064a09a06ae/ui/appui-react/src/appui-react/layout/widget/ContentRenderer.tsx#L74-L80
+    window.addEventListener('appui:reparent', listener);
+    return () => {
+      window.removeEventListener('appui:reparent', listener);
+    };
+  }, [createStyleSheet, latestShadowRoot]);
 
   return shadowRoot;
 }
