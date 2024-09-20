@@ -94,7 +94,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
         )}
         style={style}
         data-iui-loading={isLoading ? 'true' : undefined}
-        data-iui-disabled={disabled || isLoading ? 'true' : undefined}
+        disabled={disabled || isLoading}
         type='checkbox'
         ref={refs}
         {...rest}

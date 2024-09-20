@@ -101,7 +101,7 @@
 
   @include mixins.iui-focus($thickness: 2px);
 
-  &[data-iui-disabled='true'] {
+  &:disabled {
     --_iui-checkbox-svg-color: var(--iui-color-icon-disabled);
     --_iui-checkbox-border-color: var(--iui-color-border-disabled);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);

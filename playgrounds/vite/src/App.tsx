@@ -3,7 +3,7 @@ import { Checkbox } from '@itwin/itwinui-react';
 const App = () => {
   return (
     <>
-      <Checkbox label='Checkbox' status='warning' />
+      <Checkbox label='Checkbox' status='warning' disabled />
     </>
   );
 };
