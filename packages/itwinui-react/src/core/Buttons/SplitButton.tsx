@@ -51,7 +51,7 @@ export type SplitButtonProps = ButtonProps & {
   /**
    * Props to customize menu behavior.
    */
-  menuProps?: Pick<Parameters<typeof usePopover>[0], 'middleware'>;
+  dropdownMenuProps?: Pick<Parameters<typeof usePopover>[0], 'middleware'>;
 } & Pick<PortalProps, 'portal'>;
 
 /**
