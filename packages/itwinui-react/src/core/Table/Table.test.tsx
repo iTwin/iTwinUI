@@ -1842,10 +1842,10 @@ it('should disable row and handle selection accordingly', async () => {
 
   const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
   expect(checkboxCells.length).toBe(4);
-  expect(checkboxCells[0]).not.toHaveAttribute('data-iui-disabled');
-  expect(checkboxCells[1]).not.toHaveAttribute('data-iui-disabled');
-  expect(checkboxCells[2]).toHaveAttribute('data-iui-disabled', 'true');
-  expect(checkboxCells[3]).not.toHaveAttribute('data-iui-disabled');
+  expect(checkboxCells[0]).not.toBeDisabled();
+  expect(checkboxCells[1]).not.toBeDisabled();
+  expect(checkboxCells[2]).toBeDisabled();
+  expect(checkboxCells[3]).not.toBeDisabled();
 
   // Select disabled row
   await userEvent.click(checkboxCells[2]);
@@ -3111,10 +3111,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 
   await userEvent.click(columnManager);
   const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
-  expect(columnManagerColumns[0].classList).toHaveAttribute(
-    'data-iui-disabled',
-    'true',
-  );
+  expect(columnManagerColumns[0]).toBeDisabled();
   expect(columnManagerColumns[0].querySelector('input')?.disabled).toBeTruthy();
 });
 
