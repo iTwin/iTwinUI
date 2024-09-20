@@ -1842,10 +1842,10 @@ it('should disable row and handle selection accordingly', async () => {
 
   const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
   expect(checkboxCells.length).toBe(4);
-  expect(checkboxCells[0]).not.toBeDisabled();
-  expect(checkboxCells[1]).not.toBeDisabled();
-  expect(checkboxCells[2]).toBeDisabled();
-  expect(checkboxCells[3]).not.toBeDisabled();
+  expect(checkboxCells[0]).not.toHaveAttribute('data-iui-disabled');
+  expect(checkboxCells[1]).not.toHaveAttribute('data-iui-disabled');
+  expect(checkboxCells[2]).toHaveAttribute('data-iui-disabled', 'true');
+  expect(checkboxCells[3]).not.toHaveAttribute('data-iui-disabled');
 
   // Select disabled row
   await userEvent.click(checkboxCells[2]);

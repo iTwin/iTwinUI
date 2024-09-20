@@ -89,7 +89,7 @@ it('should render node with a checkbox', () => {
 
   expect(
     container.querySelector('.iui-tree-node-checkbox .testClass'),
-  ).not.toBeDisabled();
+  ).not.toHaveAttribute('data-iui-disabled');
 });
 
 it('should render node with an icon', () => {

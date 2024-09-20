@@ -63,9 +63,8 @@ it('renders disabled component', () => {
 
   screen.getByText('Some checkbox');
   expect(
-    (container.querySelector('input[type="checkbox"]') as HTMLInputElement)
-      .disabled,
-  ).toBe(true);
+    container.querySelector('input[type="checkbox"]') as HTMLInputElement,
+  ).toHaveAttribute('data-iui-disabled', 'true');
 });
 
 it('renders positive component', () => {
