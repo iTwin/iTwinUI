@@ -24,6 +24,7 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
+import type { DropdownMenuProps } from '../DropdownMenu/DropdownMenu.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -110,7 +111,8 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: React.ComponentProps<'div'>;
+  dropdownMenuProps?: React.ComponentProps<'div'> &
+    Pick<DropdownMenuProps, 'middleware'>;
   /**
    * End icon props.
    */
@@ -152,17 +154,6 @@ export type ComboBoxProps<T> = {
    * Callback fired when dropdown menu is closed.
    */
   onHide?: () => void;
-  /**
-   * Middleware options.
-   *
-   * By default, `hide` is enabled. If the floating options get hidden even when they shouldn't (e.g. some custom styles
-   * interfering with the trigger's hide detection) consider disabling the `hide` middleware.
-   *
-   * @see https://floating-ui.com/docs/middleware
-   */
-  middleware?: {
-    hide?: boolean;
-  };
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
   CommonProps;
@@ -208,7 +199,7 @@ export const ComboBox = React.forwardRef(
       filterFunction = defaultFilterFunction,
       inputProps,
       endIconProps,
-      dropdownMenuProps,
+      dropdownMenuProps: { middleware, ...dropdownMenuProps } = {},
       emptyStateMessage = 'No options found',
       itemRenderer,
       enableVirtualization = false,
@@ -217,7 +208,6 @@ export const ComboBox = React.forwardRef(
       onHide: onHideProp,
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
-      middleware,
       ...rest
     } = props;
 
