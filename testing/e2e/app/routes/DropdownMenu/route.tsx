@@ -11,7 +11,7 @@ import {
   Surface,
 } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
-import { SvgMore } from 'node_modules/@itwin/itwinui-react/esm/utils/index.js';
+import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [searchParams] = useSearchParams();
