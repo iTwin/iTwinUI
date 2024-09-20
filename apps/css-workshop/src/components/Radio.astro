@@ -22,7 +22,7 @@ const { disabled, status, class: className, labelPosition = 'right', ...props } 
   <input
     class:list={['iui-checkbox', 'iui-radio', className]}
     type='radio'
-    disabled={disabled}
+    data-iui-disabled={disabled ? 'true' : undefined}
     {...props}
   />
   {

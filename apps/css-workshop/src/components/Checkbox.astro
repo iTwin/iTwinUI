@@ -30,8 +30,8 @@ const inputProps = {
   ],
   indeterminate: indeterminate,
   type: 'checkbox',
-  'data-iui-loading': { isLoading },
-  'data-iui-disabled': { disabled },
+  'data-iui-loading': isLoading ? 'true' : undefined,
+  'data-iui-disabled': disabled ? 'true' : undefined,
   ...props,
 } as astroHTML.JSX.InputHTMLAttributes;
 ---
@@ -41,9 +41,9 @@ const inputProps = {
   !basic && (
     <label
       class:list={['iui-checkbox-wrapper']}
-      data-iui-disabled={disabled}
-      data-iui-loading={isLoading}
-      data-iui-status={status}
+      data-iui-disabled={disabled ? 'true' : undefined}
+      data-iui-loading={isLoading ? 'true' : undefined}
+      data-iui-status={!!status}
       {...wrapperProps}
     >
       <input {...inputProps} />

@@ -71,8 +71,8 @@ export const Radio = React.forwardRef((props, ref) => {
       as='label'
       {...wrapperProps}
       className={cx('iui-checkbox-wrapper', wrapperProps?.className)}
-      data-iui-status={status}
-      data-iui-disabled={disabled}
+      data-iui-status={!!status}
+      data-iui-disabled={disabled ? 'true' : undefined}
     >
       {radio}
       {label && (
