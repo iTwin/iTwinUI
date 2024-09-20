@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 .turbo
+.astro
 dist
 build
 .cache
@@ -26,5 +27,3 @@ features/search
 test-results
 playwright-report
 blob-report
-
-.astro
