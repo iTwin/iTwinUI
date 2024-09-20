@@ -114,7 +114,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
       as='label'
       className={cx('iui-checkbox-wrapper', wrapperClassName)}
       data-iui-disabled={disabled ? 'true' : undefined}
-      data-iui-status={!!status}
+      data-iui-status={status}
       data-iui-loading={isLoading ? 'true' : undefined}
       {...restWrapperProps}
     >
