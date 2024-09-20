@@ -24,7 +24,6 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
-import type { DropdownMenuProps } from '../DropdownMenu/DropdownMenu.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -112,7 +111,7 @@ export type ComboBoxProps<T> = {
    * Props to customize dropdown menu behavior.
    */
   dropdownMenuProps?: React.ComponentProps<'div'> &
-    Pick<DropdownMenuProps, 'middleware'>;
+    Pick<Parameters<typeof usePopover>['0'], 'middleware'>;
   /**
    * End icon props.
    */
