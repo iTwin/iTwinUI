@@ -26,3 +26,5 @@ features/search
 test-results
 playwright-report
 blob-report
+
+.astro
