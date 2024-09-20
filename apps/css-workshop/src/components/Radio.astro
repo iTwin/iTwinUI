@@ -11,7 +11,11 @@ type Props = {
 const { disabled, status, class: className, labelPosition = 'right', ...props } = Astro.props;
 ---
 
-<label class='iui-checkbox-wrapper' data-iui-disabled={disabled} data-iui-status={status}>
+<label
+  class='iui-checkbox-wrapper'
+  data-iui-disabled={disabled ? 'true' : undefined}
+  data-iui-status={status}
+>
   {
     labelPosition === 'left' && (
       <span class='iui-radio-label'>
