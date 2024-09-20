@@ -31,7 +31,7 @@ const inputProps = {
   indeterminate: indeterminate,
   type: 'checkbox',
   'data-iui-loading': isLoading ? 'true' : undefined,
-  'data-iui-disabled': disabled ? 'true' : undefined,
+  disabled: disabled,
   ...props,
 } as astroHTML.JSX.InputHTMLAttributes;
 ---
