@@ -32,9 +32,7 @@ it('should render disabled group', () => {
   getByText('some label');
   const inputs = container.querySelectorAll('input');
   expect(inputs.length).toBe(2);
-  inputs.forEach((input) =>
-    expect(input).toHaveAttribute('data-iui-disabled', 'true'),
-  );
+  inputs.forEach((input) => expect(input).toBeDisabled());
 });
 
 it('should render required group', () => {
