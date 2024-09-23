@@ -74,7 +74,10 @@ type PopoverOptions = {
   /**
    * Middleware options.
    *
-   * By default, `flip`, `shift` and `size` are enabled.
+   * By default, `flip`, `shift`, `size`, and `hide` are enabled.
+   *
+   * If the floating content gets hidden even when it shouldn't (e.g. some custom styles interfering with the trigger's
+   * hide detection) consider disabling the `hide` middleware.
    *
    * @see https://floating-ui.com/docs/middleware
    */
