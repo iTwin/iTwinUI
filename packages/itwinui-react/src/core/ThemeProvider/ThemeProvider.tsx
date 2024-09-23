@@ -149,6 +149,8 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  useInertPolyfill();
+
   const [rootElement, setRootElement] = React.useState<HTMLElement | null>(
     null,
   );
@@ -428,7 +430,7 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       } catch (error) {
         console.log('Error loading styles.css locally', error);
         const css = await importCss(
-          'https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@3/styles.css',
+          `https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@${meta.version}/styles.css`,
         );
         document.adoptedStyleSheets = [
           ...document.adoptedStyleSheets,
@@ -485,4 +487,25 @@ const useIuiDebugRef = () => {
   }
 
   _globalThis.__iui.versions.add(JSON.stringify(meta));
+};
+
+// ----------------------------------------------------------------------------
+
+const useInertPolyfill = () => {
+  const loaded = React.useRef(false);
+  const modulePath =
+    'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
+
+  React.useEffect(() => {
+    (async () => {
+      if (
+        !HTMLElement.prototype.hasOwnProperty('inert') &&
+        !loaded.current &&
+        !isUnitTest
+      ) {
+        await new Function('url', 'return import(url)')(modulePath);
+        loaded.current = true;
+      }
+    })();
+  }, []);
 };

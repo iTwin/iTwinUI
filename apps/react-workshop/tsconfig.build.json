@@ -1,12 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.json",
-
-  // Temporarily testing only Table.stories.tsx.
-  // TODO: Fix all tsc errors in all stories and then include all stories.
-  "include": [],
-  "files": ["src/Table.stories.tsx"],
-
+  "include": [
+    "./src/**/*.stories.tsx"
+  ],
   "compilerOptions": {
     "noEmit": true
   }

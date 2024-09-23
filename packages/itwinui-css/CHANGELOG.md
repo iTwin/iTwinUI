@@ -269,7 +269,7 @@
 - [#1884](https://github.com/iTwin/iTwinUI/pull/1884): Fixes bug that caused the `.iui-tabs-wrapper` to change size dependent on which `.iui-tab` was active.
 - [#1828](https://github.com/iTwin/iTwinUI/pull/1828): The `.iui-svg-icon` inside the `.iui-searchbox` no longer has the same width as `.iui-button`. Its width also no longer changes with the `.iui-searchbox` size. This is because its padding behavior is now similar to `.iui-svg-icon`'s padding behavior, where it uses a constant padding.
 - [#1894](https://github.com/iTwin/iTwinUI/pull/1894): All instances of `box-sizing: content-box` have been reinforced with `!important` to prevent accidental overrides from application styles.
-- [#1906](https://github.com/iTwin/iTwinUI/pull/1906): Dialog title will now wrap to multiple lines instead of getting clippped.
+- [#1906](https://github.com/iTwin/iTwinUI/pull/1906): Dialog title will now wrap to multiple lines instead of getting clipped.
 - [#1881](https://github.com/iTwin/iTwinUI/pull/1881): `.iui-search-input` and `.iui-search-icon` are now no-op. This is because the main objective of these two classes was collapsing the padding between the icon and `input`/`textarea` in `.iui-input-flex-container`, and that is now handled by `.iui-input-flex-container-icon` instead.
 
 ## 2.4.0
