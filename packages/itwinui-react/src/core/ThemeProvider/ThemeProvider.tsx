@@ -324,94 +324,89 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
 
 // ----------------------------------------------------------------------------
 
-type PortalContainerProps = {
-  portalContainerProp: HTMLElement | undefined;
-  portalContainerFromParent: HTMLElement | undefined;
-  isInheritingTheme: boolean;
-} & RootProps;
-
 /**
  * Creates a new portal container if necessary, or reuses the parent portal container.
  *
  * Updates `portalContainerAtom` with the correct portal container.
  */
-const PortalContainer = React.memo((props: PortalContainerProps) => {
-  const {
+const PortalContainer = React.memo(
+  ({
     portalContainerProp,
     portalContainerFromParent,
     isInheritingTheme,
     theme,
     themeOptions,
-  } = props;
-  const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-  const [portalContainer, setPortalContainer] =
-    useScopedAtom(portalContainerAtom);
+  }: {
+    portalContainerProp: HTMLElement | undefined;
+    portalContainerFromParent: HTMLElement | undefined;
+    isInheritingTheme: boolean;
+  } & RootProps) => {
+    const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
+    const [portalContainer, setPortalContainer] =
+      useScopedAtom(portalContainerAtom);
 
-  // Create a new portal container only if necessary:
-  // - no explicit portalContainer prop
-  // - not inheriting theme
-  // - no parent portal container to portal into
-  // - parent portal container is in a different window (#2006)
-  const shouldSetupPortalContainer =
-    !portalContainerProp &&
-    (!isInheritingTheme ||
-      !portalContainerFromParent ||
-      (!!ownerDocument &&
-        portalContainerFromParent.ownerDocument !== ownerDocument));
+    // Create a new portal container only if necessary:
+    // - no explicit portalContainer prop
+    // - not inheriting theme
+    // - no parent portal container to portal into
+    // - parent portal container is in a different window (#2006)
+    const shouldSetupPortalContainer =
+      !portalContainerProp &&
+      (!isInheritingTheme ||
+        !portalContainerFromParent ||
+        (!!ownerDocument &&
+          portalContainerFromParent.ownerDocument !== ownerDocument));
 
-  const id = useId();
+    const id = useId();
 
-  // Synchronize atom with the correct portal target if necessary.
-  React.useEffect(() => {
-    if (shouldSetupPortalContainer) {
-      return;
+    // Synchronize atom with the correct portal target if necessary.
+    React.useEffect(() => {
+      if (shouldSetupPortalContainer) {
+        return;
+      }
+
+      const portalTarget = portalContainerProp || portalContainerFromParent;
+
+      if (portalTarget && portalTarget !== portalContainer) {
+        setPortalContainer(portalTarget);
+      }
+    });
+
+    // bail if not hydrated, because portals don't work on server
+    const isHydrated = useHydration() === 'hydrated';
+    if (!isHydrated) {
+      return null;
     }
 
-    const portalTarget = portalContainerProp || portalContainerFromParent;
-
-    if (portalTarget && portalTarget !== portalContainer) {
-      setPortalContainer(portalTarget);
+    if (shouldSetupPortalContainer && ownerDocument) {
+      return ReactDOM.createPortal(
+        <Root
+          theme={theme}
+          themeOptions={{ ...themeOptions, applyBackground: false }}
+          data-iui-portal
+          style={{ display: 'contents' }}
+          ref={setPortalContainer}
+          id={id}
+        >
+          <Toaster />
+        </Root>,
+        ownerDocument.body,
+      );
+    } else if (portalContainerProp) {
+      return ReactDOM.createPortal(<Toaster />, portalContainerProp);
     }
-  });
 
-  // bail if not hydrated, because portals don't work on server
-  const isHydrated = useHydration() === 'hydrated';
-  if (!isHydrated) {
     return null;
-  }
-
-  if (shouldSetupPortalContainer && ownerDocument) {
-    return ReactDOM.createPortal(
-      <Root
-        theme={theme}
-        themeOptions={{ ...themeOptions, applyBackground: false }}
-        data-iui-portal
-        style={{ display: 'contents' }}
-        ref={setPortalContainer}
-        id={id}
-      >
-        <Toaster />
-      </Root>,
-      ownerDocument.body,
-    );
-  } else if (portalContainerProp) {
-    return ReactDOM.createPortal(<Toaster />, portalContainerProp);
-  }
-
-  return null;
-});
+  },
+);
 
 // ----------------------------------------------------------------------------
-
-type FallbackStylesProps = { root: HTMLElement };
 
 /**
  * When `@itwin/itwinui-react/styles.css` is not imported, we will attempt to
  * dynamically import it (if possible) and fallback to loading it from a CDN.
  */
-const FallbackStyles = (props: FallbackStylesProps) => {
-  const { root } = props;
-
+const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   useLayoutEffect(() => {
     // bail if styles are already loaded
     if (

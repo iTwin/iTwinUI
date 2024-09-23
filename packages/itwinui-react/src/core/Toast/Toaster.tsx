@@ -89,14 +89,13 @@ export const Toaster = () => {
 
 // ----------------------------------------------------------------------------
 
-type ToastProviderProps = {
+export const ToastProvider = ({
+  children,
+  inherit = false,
+}: {
   children: React.ReactNode;
   inherit?: boolean;
-};
-
-export const ToastProvider = (props: ToastProviderProps) => {
-  const { children, inherit = false } = props;
-
+}) => {
   const [toasterState, dispatch] = React.useReducer(toastReducer, {
     toasts: [],
     settings: {

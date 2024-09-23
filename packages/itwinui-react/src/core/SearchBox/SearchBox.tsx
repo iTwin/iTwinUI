@@ -170,12 +170,11 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
 
 // ----------------------------------------------------------------------------
 
-type SearchBoxCollapsedStateProps = {
+const SearchBoxCollapsedState = ({
+  children,
+}: {
   children?: React.ReactNode;
-};
-
-const SearchBoxCollapsedState = (props: SearchBoxCollapsedStateProps) => {
-  const { children } = props;
+}) => {
   const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
 
   if (!expandable || isExpanded) {
@@ -190,12 +189,11 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-type SearchBoxExpandedStateProps = {
+const SearchBoxExpandedState = ({
+  children,
+}: {
   children: React.ReactNode;
-};
-
-const SearchBoxExpandedState = (props: SearchBoxExpandedStateProps) => {
-  const { children } = props;
+}) => {
   const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
 
   if (expandable && !isExpanded) {

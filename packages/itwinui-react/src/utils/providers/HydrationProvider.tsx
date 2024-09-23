@@ -41,14 +41,12 @@ export const useHydration = () => {
   return undefined;
 };
 
-type HydrationProviderProps = {
-  children: React.ReactNode;
-};
-
 /** @private */
-export const HydrationProvider = (props: HydrationProviderProps) => {
-  const { children } = props;
-
+export const HydrationProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [isHydrated, setIsHydrated] = React.useState(
     React.useContext(HydrationContext),
   );
@@ -62,12 +60,8 @@ export const HydrationProvider = (props: HydrationProviderProps) => {
   );
 };
 
-type HydrationCheckProps = { onHydrate: () => void };
-
 /** This is extracted into a child component to ensure it runs first. */
-const HydrationCheck = (props: HydrationCheckProps) => {
-  const { onHydrate } = props;
-
+const HydrationCheck = ({ onHydrate }: { onHydrate: () => void }) => {
   React.useEffect(() => void onHydrate(), [onHydrate]);
   return null;
 };
