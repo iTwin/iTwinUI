@@ -50,23 +50,6 @@ jobs:
       - run: pnpm install
       - run: pnpm audit
 
-  assign-author:
-    name: Assign PR author
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Assign author using github-script
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              assignees: [context.actor]
-            })
-
   build:
     name: Build and lint packages
     needs: install
@@ -384,3 +367,50 @@ jobs:
           name: e2e-report
           path: testing/e2e/playwright-report/
           retention-days: 30
+
+  veracode:
+    name: Zip and Upload files to Veracode
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zip files for veracode
+        shell: bash
+        run: |
+          sourceDirs=("apps" "packages")
+          outputFile="itwui-veracode.zip"
+
+          excludedPaths=(
+            ".git/*"
+            "**/backstop/*"
+            "**/cypress*/*"
+          )
+
+          zipCommand="zip -r $outputFile"
+
+          for dir in "${sourceDirs[@]}"; do
+            zipCommand+=" $dir"
+          done
+
+          for path in "${excludedPaths[@]}"; do
+            zipCommand+=" -x \"$path\""
+          done
+
+          eval $zipCommand
+
+          if [[ $? -eq 0 ]]; then
+            echo "Zip file created successfully"
+          else
+            echo "An error occurred while creating the zip file"
+            exit 1
+          fi
+
+      - name: Upload & scan
+        uses: veracode/veracode-uploadandscan-action@0.2.6
+        with:
+          appname: 'iTwinUI - UX (ITWUI - 3418)'
+          filepath: 'itwui-veracode.zip'
+          vid: ${{ secrets.VERACODE_ID }}
+          vkey: ${{ secrets.VERACODE_SECRET_KEY }}

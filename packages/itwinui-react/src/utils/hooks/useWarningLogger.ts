@@ -5,6 +5,7 @@
 
 import * as React from 'react';
 import { isUnitTest } from '../functions/dev.js';
+import { getWindow } from '../functions/dom.js';
 
 const _React = React as any;
 const ReactInternals =
@@ -28,7 +29,7 @@ export const useWarningLogger =
   process.env.NODE_ENV === 'development' && !isUnitTest
     ? function () {
         const loggedRef = React.useRef(false);
-        const timeoutRef = React.useRef<number | null>(null);
+        const timeoutRef = React.useRef<number | undefined>(undefined);
 
         // https://stackoverflow.com/a/71685253
         const stack =
@@ -44,7 +45,7 @@ export const useWarningLogger =
         const logWarning = React.useCallback(
           (message: string) => {
             // Using setTimeout to delay execution until after rendering is complete.
-            timeoutRef.current = window.setTimeout(() => {
+            timeoutRef.current = getWindow()?.setTimeout(() => {
               if (!loggedRef.current) {
                 console.error(prefix, message);
                 loggedRef.current = true;
@@ -59,7 +60,7 @@ export const useWarningLogger =
           // The warning should be logged only once per component instance.
           return () => {
             if (timeoutRef.current) {
-              window.clearTimeout(timeoutRef.current);
+              getWindow()?.clearTimeout(timeoutRef.current);
             }
           };
         }, []);
