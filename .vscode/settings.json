@@ -25,8 +25,12 @@
   },
   "javascript.format.semicolons": "insert",
   "javascript.preferences.quoteStyle": "single",
-  "stylelint.validate": ["scss"],
-  "prettier.documentSelectors": ["**/*.astro"],
+  "stylelint.validate": [
+    "scss"
+  ],
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
@@ -35,6 +39,7 @@
     "*.astro": "${capture}.tsx, ${capture).css, ${capture}.scss",
     "*.ts": "${capture}.test.ts",
     "*.tsx": "${capture}.ts, ${capture}.css, ${capture}.test.tsx",
+    "*.jsx": "${capture}.css",
     "*.stories.tsx": "${capture}.test.ts",
     ".env": ".env.*"
   },
