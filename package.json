@@ -62,7 +62,6 @@
     "octokit": "^3.1.2",
     "prettier": "~3.1.0",
     "rimraf": "^5.0.5",
-    "serve": "^14.2.1",
     "turbo": "~1.12.3"
   },
   "resolutions": {

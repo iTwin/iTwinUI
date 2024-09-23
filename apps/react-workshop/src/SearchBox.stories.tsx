@@ -17,7 +17,7 @@ export const Basic = () => {
 export const BasicWithCustomItems = () => {
   return (
     <SearchBox>
-      <SearchBox.Button title='Search button' />
+      <SearchBox.Button label='Search button' />
       <SearchBox.Input placeholder='Basic search with custom interactions' />
       <Text
         isMuted
@@ -50,6 +50,21 @@ export const BasicWithStatus = () => {
 export const Expandable = () => {
   return (
     <SearchBox expandable inputProps={{ placeholder: 'Expandable search' }} />
+  );
+};
+
+export const BorderlessExpandButton = () => {
+  return (
+    <SearchBox expandable>
+      <SearchBox.CollapsedState>
+        <SearchBox.ExpandButton styleType='borderless' />
+      </SearchBox.CollapsedState>
+      <SearchBox.ExpandedState>
+        <SearchBox.Icon />
+        <SearchBox.Input placeholder='Expandable search with borderless ExpandButton' />
+        <SearchBox.CollapseButton />
+      </SearchBox.ExpandedState>
+    </SearchBox>
   );
 };
 

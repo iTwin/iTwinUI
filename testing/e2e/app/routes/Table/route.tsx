@@ -76,7 +76,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     | 'extra-condensed'
     | undefined;
   const isSelectable = searchParams.get('isSelectable') === 'true';
-  const subRows = searchParams.get('subRows') === 'true';
+  const rows = searchParams.get('rows');
   const filter = searchParams.get('filter') === 'true';
   const selectSubRows = !(searchParams.get('selectSubRows') === 'false');
   const enableVirtualization = searchParams.get('virtualization') === 'true';
@@ -85,6 +85,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const oneRow = searchParams.get('oneRow') === 'true';
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
+  const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
 
   return {
     exampleType,
@@ -147,7 +148,16 @@ const Default = ({
     return arr;
   }, [oneRow, empty]);
 
-  const data = subRows ? dataWithSubrows : baseData;
+  const data = (() => {
+    switch (rows) {
+      case 'subRows':
+        return dataWithSubrows;
+      case 'large':
+        return largeData;
+      default:
+        return baseData;
+    }
+  })();
 
   const isRowDisabled = React.useCallback(
     (rowData: Record<string, unknown>) => {
@@ -196,7 +206,7 @@ const Default = ({
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
-        style={enableVirtualization ? { maxHeight: '90vh' } : undefined}
+        style={{ maxHeight: '90vh' }}
         scrollToRow={
           scroll
             ? (rows, data) =>
@@ -211,6 +221,13 @@ const Default = ({
                 }
                 return newState;
               }
+            : undefined
+        }
+        subComponent={
+          hasSubComponent
+            ? (row) => (
+                <div>{`Expanded component, name: ${row.original.name}`}</div>
+              )
             : undefined
         }
       />
@@ -304,6 +321,13 @@ const baseData = [
     date: new Date('Aug 3, 2025'),
   },
 ];
+
+const largeData = new Array(100).fill(0).map((_, i) => ({
+  index: i,
+  name: `Name${i}`,
+  description: `Description${i}`,
+  id: i,
+}));
 
 const dataWithSubrows = [
   {
