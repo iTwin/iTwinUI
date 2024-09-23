@@ -19,8 +19,6 @@ overrides:
   astro: ~4.15.8
   cypress: 13.8.1
   ws@8: ^8.17.1
-  dset@3: '>=3.1.4'
-  send@0: '>=0.19.0'
 
 importers:
   .:
@@ -6315,10 +6313,10 @@ packages:
       }
     engines: { node: '>=6' }
 
-  express@4.20.0:
+  express@4.21.0:
     resolution:
       {
-        integrity: sha512-pLdae7I6QqShF5PnNTCVn4hI91Dx0Grkn2+IAsMTgMIKuQVte2dN9PeGSSAME2FR8anOhVA62QDIUaWVfEXVLw==,
+        integrity: sha512-VqcNGcj/Id5ZT1LZ/cfihi3ttTn+NJmkli2eZADigjq29qTlWi/hAQ43t/VLPq8+UX06FCEx3ByOYet6ZFblng==,
       }
     engines: { node: '>= 0.10.0' }
 
@@ -6483,10 +6481,10 @@ packages:
       }
     engines: { node: '>=14.16' }
 
-  finalhandler@1.2.0:
+  finalhandler@1.3.1:
     resolution:
       {
-        integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==,
+        integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==,
       }
     engines: { node: '>= 0.8' }
 
@@ -10961,7 +10959,7 @@ packages:
       {
         integrity: sha512-39olGaX2djYUdhaQQHDZ0T0GwEp+5f9UB9HmEP0qHfdQHIq0xGQZuAZ5TLnJIc/88SrPLpEflPC+xUqOTv3c5g==,
       }
-    deprecated: < 22.8.2 is no longer supported
+    deprecated: < 21.9.0 is no longer supported
 
   qs@6.10.5:
     resolution:
@@ -10970,13 +10968,6 @@ packages:
       }
     engines: { node: '>=0.6' }
     deprecated: when using stringify with arrayFormat comma, `[]` is appended on single-item arrays. Upgrade to v6.11.0 or downgrade to v6.10.4 to fix.
-
-  qs@6.11.0:
-    resolution:
-      {
-        integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==,
-      }
-    engines: { node: '>=0.6' }
 
   qs@6.13.0:
     resolution:
@@ -11776,10 +11767,10 @@ packages:
       }
     engines: { node: '>= 0.8.0' }
 
-  serve-static@1.16.0:
+  serve-static@1.16.2:
     resolution:
       {
-        integrity: sha512-pDLK8zwl2eKaYrs8mrPZBJua4hMplRWJ1tIFksVC3FtBEBnl8dxgeHtsaMS8DhS9i4fLObaon6ABoc4/hQGdPA==,
+        integrity: sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw==,
       }
     engines: { node: '>= 0.8.0' }
 
@@ -15408,7 +15399,7 @@ snapshots:
       esbuild-plugins-node-modules-polyfill: 1.6.3(esbuild@0.17.6)
       execa: 5.1.1
       exit-hook: 2.2.1
-      express: 4.20.0
+      express: 4.21.0
       fs-extra: 10.1.0
       get-port: 5.1.1
       gunzip-maybe: 1.4.2
@@ -15453,10 +15444,10 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  '@remix-run/express@2.8.1(express@4.20.0)(typescript@5.5.2)':
+  '@remix-run/express@2.8.1(express@4.21.0)(typescript@5.5.2)':
     dependencies:
       '@remix-run/node': 2.8.1(typescript@5.5.2)
-      express: 4.20.0
+      express: 4.21.0
     optionalDependencies:
       typescript: 5.5.2
 
@@ -15490,11 +15481,11 @@ snapshots:
 
   '@remix-run/serve@2.8.1(typescript@5.5.2)':
     dependencies:
-      '@remix-run/express': 2.8.1(express@4.20.0)(typescript@5.5.2)
+      '@remix-run/express': 2.8.1(express@4.21.0)(typescript@5.5.2)
       '@remix-run/node': 2.8.1(typescript@5.5.2)
       chokidar: 3.6.0
       compression: 1.7.4
-      express: 4.20.0
+      express: 4.21.0
       get-port: 5.1.1
       morgan: 1.10.0
       source-map-support: 0.5.21
@@ -17761,7 +17752,7 @@ snapshots:
 
   exit-hook@2.2.1: {}
 
-  express@4.20.0:
+  express@4.21.0:
     dependencies:
       accepts: 1.3.8
       array-flatten: 1.1.1
@@ -17775,7 +17766,7 @@ snapshots:
       encodeurl: 2.0.0
       escape-html: 1.0.3
       etag: 1.8.1
-      finalhandler: 1.2.0
+      finalhandler: 1.3.1
       fresh: 0.5.2
       http-errors: 2.0.0
       merge-descriptors: 1.0.3
@@ -17784,11 +17775,11 @@ snapshots:
       parseurl: 1.3.3
       path-to-regexp: 0.1.10
       proxy-addr: 2.0.7
-      qs: 6.11.0
+      qs: 6.13.0
       range-parser: 1.2.1
       safe-buffer: 5.2.1
       send: 0.19.0
-      serve-static: 1.16.0
+      serve-static: 1.16.2
       setprototypeof: 1.2.0
       statuses: 2.0.1
       type-is: 1.6.18
@@ -17893,10 +17884,10 @@ snapshots:
 
   filter-obj@5.1.0: {}
 
-  finalhandler@1.2.0:
+  finalhandler@1.3.1:
     dependencies:
       debug: 2.6.9
-      encodeurl: 1.0.2
+      encodeurl: 2.0.0
       escape-html: 1.0.3
       on-finished: 2.4.1
       parseurl: 1.3.3
@@ -21095,10 +21086,6 @@ snapshots:
     dependencies:
       side-channel: 1.0.6
 
-  qs@6.11.0:
-    dependencies:
-      side-channel: 1.0.6
-
   qs@6.13.0:
     dependencies:
       side-channel: 1.0.6
@@ -21688,9 +21675,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  serve-static@1.16.0:
+  serve-static@1.16.2:
     dependencies:
-      encodeurl: 1.0.2
+      encodeurl: 2.0.0
       escape-html: 1.0.3
       parseurl: 1.3.3
       send: 0.19.0
@@ -22115,7 +22102,7 @@ snapshots:
 
   super-simple-web-server@1.1.4:
     dependencies:
-      express: 4.20.0
+      express: 4.21.0
     transitivePeerDependencies:
       - supports-color
 
