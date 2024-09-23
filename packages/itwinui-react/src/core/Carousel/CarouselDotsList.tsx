@@ -7,7 +7,7 @@ import cx from 'classnames';
 import { CarouselContext } from './CarouselContext.js';
 import {
   getBoundedValue,
-  getWindow,
+  useMediaQuery,
   useMergedRefs,
   useResizeObserver,
   Box,
@@ -146,6 +146,8 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
     handleSlideChange,
   ]);
 
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
   React.useEffect(() => {
     const firstDot = listRef.current?.children[firstVisibleDotIndex] as
       | HTMLElement
@@ -153,10 +155,6 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
     if (!listRef.current || !firstDot) {
       return;
     }
-
-    const motionOk = getWindow()?.matchMedia(
-      '(prefers-reduced-motion: no-preference)',
-    )?.matches;
 
     listRef.current.scrollTo({
       left: firstDot.offsetLeft - listRef.current.offsetLeft,
@@ -166,7 +164,14 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
     if (justMounted.current) {
       justMounted.current = false;
     }
-  }, [currentIndex, firstVisibleDotIndex, slideCount, visibleCount, width]);
+  }, [
+    currentIndex,
+    firstVisibleDotIndex,
+    motionOk,
+    slideCount,
+    visibleCount,
+    width,
+  ]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
