@@ -19,7 +19,6 @@ import {
   autoPlacement,
   hide,
   inline,
-  useDelayGroupContext,
   useDelayGroup,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
@@ -119,12 +118,6 @@ type TooltipOwnProps = {
   children?: React.ReactNode;
 } & PortalProps;
 
-// TODO: Remove this when types are available
-type HTMLElementWithPopover = HTMLElement & {
-  /** @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover */
-  togglePopover?: (force?: boolean) => void;
-};
-
 // ----------------------------------------------------------------------------
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -148,7 +141,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   const syncWithControlledState = React.useCallback(
-    (element: HTMLElementWithPopover | null) => {
+    (element: HTMLElement | null) => {
       // Using a microtask ensures that the popover is mounted before calling togglePopover
       queueMicrotask(() => {
         try {
@@ -165,6 +158,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange,
+    strategy: 'fixed',
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when tooltip is open
@@ -177,12 +171,12 @@ const useTooltip = (options: TooltipOptions = {}) => {
           middleware.offset !== undefined
             ? offset(middleware.offset)
             : offset(4),
-          middleware.flip && flip(),
-          middleware.shift && shift(),
-          middleware.size && size(),
-          middleware.autoPlacement && autoPlacement(),
+          middleware.flip && flip({ padding: 4 }),
+          middleware.shift && shift({ padding: 4 }),
+          middleware.size && size({ padding: 4 }),
+          middleware.autoPlacement && autoPlacement({ padding: 4 }),
           middleware.inline && inline(),
-          middleware.hide && hide(),
+          middleware.hide && hide({ padding: 4 }),
         ].filter(Boolean),
       [middleware],
     ),
@@ -199,9 +193,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
     [ariaStrategy, id],
   );
 
-  const { delay } = useDelayGroupContext();
-
-  useDelayGroup(floating.context, { id: useId() });
+  const { delay } = useDelayGroup(floating.context, { id: useId() });
 
   const interactions = useInteractions([
     useHover(floating.context, {

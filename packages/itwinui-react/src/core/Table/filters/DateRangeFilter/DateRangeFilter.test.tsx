@@ -112,29 +112,6 @@ it('should set filter when only To is entered', () => {
   ]);
 });
 
-it('should set filter when both values entered and Enter is pressed', () => {
-  const setFilter = vi.fn();
-  const { container } = renderComponent({ setFilter });
-
-  const labeledInputs = container.querySelectorAll(
-    '.iui-input-flex-container > input',
-  ) as NodeListOf<HTMLInputElement>;
-  expect(labeledInputs.length).toBe(2);
-
-  fireEvent.change(labeledInputs[0], { target: { value: 'May 1, 2021' } });
-  fireEvent.change(labeledInputs[1], { target: { value: 'May 3, 2021' } });
-
-  fireEvent.keyDown(labeledInputs[1], {
-    key: 'Enter',
-    charCode: 13,
-  });
-
-  expect(setFilter).toHaveBeenCalledWith([
-    new Date(2021, 4, 1, 0, 0, 0, 0),
-    new Date(2021, 4, 3, 23, 59, 59, 999),
-  ]);
-});
-
 it('should set filter with empty values when invalid date is entered', () => {
   const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });

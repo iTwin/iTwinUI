@@ -1,5 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 
+test('un-virtualized table should scroll to provided row', async ({ page }) => {
+  await page.goto('/Table?rows=large&scroll=true&scrollRow=50');
+
+  await expect(page.getByText('Name47')).not.toBeInViewport();
+  await expect(page.getByText('Name48')).toBeInViewport();
+  await expect(page.getByText('Name49')).toBeInViewport();
+  await expect(page.getByText('Name50')).toBeInViewport();
+  await expect(page.getByText('Name51')).toBeInViewport();
+});
+
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
@@ -153,6 +163,26 @@ test.describe('Table resizing', () => {
     }
   });
 
+  test('should resize correctly when column width is set lower than default min width', async ({
+    page,
+  }) => {
+    await page.goto('/Table?rows=subRows');
+
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +50;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1] - delta);
+      expect(newWidths[2]).toBe(initialWidths[2]); // should not change
+      expect(newWidths[3]).toBe(initialWidths[3]); // should not change
+    }
+  });
+
   // #region Helpers for column resizing tests
   const resizeColumn = async (options: {
     index: number;
@@ -207,7 +237,7 @@ test.describe('Table row selection', () => {
   test('Should select all sub rows when parent row is selected', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows');
 
     const row2 = page.getByText('2Name2Description2');
     const row2SubRowExpander = row2.getByLabel('Toggle sub row');
@@ -233,7 +263,7 @@ test.describe('Table row selection', () => {
   test('Should show indeterminate when sub rows are disabled', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows');
 
     const row3 = page.getByText('3Name3Description3');
     const row3SubRowExpander = row3.getByLabel('Toggle sub row');
@@ -255,7 +285,7 @@ test.describe('Table row selection', () => {
   test('Should show indeterminate when some sub rows are filtered out', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows&filter=true');
 
     await filter(page);
     const row2 = page.getByText('2Name2Description2');
@@ -298,7 +328,7 @@ test.describe('Table row selection', () => {
   test('parent checkbox state should become indeterminate when some filtered sub rows are deselected', async ({
     page,
   }) => {
-    await page.goto('/Table?isSelectable=true&subRows=true&filter=true');
+    await page.goto('/Table?isSelectable=true&rows=subRows&filter=true');
 
     //expand subRows
     const row2 = page.getByText('2Name2Description2');
@@ -334,7 +364,7 @@ test.describe('Table row selection', () => {
     page,
   }) => {
     await page.goto(
-      '/Table?isSelectable=true&subRows=true&selectSubRows=false',
+      '/Table?isSelectable=true&rows=subRows&selectSubRows=false',
     );
 
     const row2 = page
@@ -364,7 +394,7 @@ test.describe('Table row selection', () => {
     page,
   }) => {
     await page.goto(
-      '/Table?isSelectable=true&subRows=true&selectSubRows=false&stateReducer=true',
+      '/Table?isSelectable=true&rows=subRows&selectSubRows=false&stateReducer=true',
     );
 
     const row2 = page
@@ -414,168 +444,6 @@ test.describe('Table row selection', () => {
   //#endregion
 });
 
-test.describe('Table Paginator', () => {
-  test(`should render data in pages`, async ({ page }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
-    await expect(page.locator(`[role="cell"]`).last()).toHaveText(
-      'Description 49',
-    );
-
-    // Go to the 6th page
-    await page.locator('button').last().click({ clickCount: 5 });
-
-    await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
-    await expect(page.locator(`[role="cell"]`).last()).toHaveText(
-      'Description 299',
-    );
-  });
-
-  test('should render truncated pages list', async ({ page }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    const setContainerSize = getSetContainerSize(page);
-    await setContainerSize('800px');
-
-    // Go to the 6th page
-    await page.locator('button').last().click({ clickCount: 5 });
-
-    const paginatorButtons = page.locator('#paginator button', {
-      hasText: /[0-9]+/,
-    });
-    await expect(paginatorButtons).toHaveText([
-      '1',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '11',
-    ]);
-    await expect(paginatorButtons.nth(3)).toHaveAttribute(
-      'data-iui-active',
-      'true',
-    );
-
-    await expect(page.getByText('…')).toHaveCount(2);
-  });
-
-  test(`should overflow whenever there is not enough space`, async ({
-    page,
-  }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-
-    await setContainerSize('750px');
-
-    await expectOverflowState({
-      expectedItemLength: 6,
-      expectedOverflowingEllipsisVisibleCount: 1,
-    });
-
-    // should restore hidden items when space is available again
-    await setContainerSize(undefined);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-  });
-
-  test(`should at minimum always show one page`, async ({ page }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator`);
-
-    const setContainerSize = getSetContainerSize(page);
-    const expectOverflowState = getExpectOverflowState(page);
-
-    await expectOverflowState({
-      expectedItemLength: 11,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-
-    await setContainerSize('100px');
-
-    await expectOverflowState({
-      expectedItemLength: 1,
-      expectedOverflowingEllipsisVisibleCount: 0,
-    });
-
-    await expect(
-      page.locator('#paginator button', { hasText: /1/ }),
-    ).toHaveAttribute('data-iui-active', 'true');
-  });
-
-  test(`should render elements in small size`, async ({ page }) => {
-    await page.goto(`/Table?exampleType=withTablePaginator&density=condensed`);
-
-    const setContainerSize = getSetContainerSize(page);
-    await setContainerSize('500px');
-
-    (await page.locator('#paginator button').all()).forEach(async (button) => {
-      await expect(button).toHaveAttribute('data-iui-size', 'small');
-    });
-
-    await expect(page.getByText('…')).toHaveClass(
-      /_iui[0-9]+-table-paginator-ellipsis-small/,
-    );
-
-    await page.waitForTimeout(300);
-  });
-
-  //#region Helpers for table paginator tests
-  const getSetContainerSize = (page: Page) => {
-    return async (dimension: string | undefined) => {
-      await page.locator('#container').evaluate(
-        (element, args) => {
-          if (args.dimension != null) {
-            element.style.setProperty(
-              'width',
-              args.dimension ? args.dimension : `999px`,
-            );
-          } else {
-            element.style.removeProperty('width');
-          }
-        },
-        {
-          dimension,
-        },
-      );
-      await page.waitForTimeout(60);
-    };
-  };
-
-  const getExpectOverflowState = (page: Page) => {
-    return async ({
-      expectedItemLength,
-      expectedOverflowingEllipsisVisibleCount,
-    }: {
-      expectedItemLength: number;
-      expectedOverflowingEllipsisVisibleCount: number;
-    }) => {
-      const allItems = await page.locator('#paginator button').all();
-      const items =
-        allItems.length >= 2
-          ? allItems.slice(1, allItems.length - 1) // since the first and last button and to toggle pages
-          : [];
-      expect(items).toHaveLength(expectedItemLength);
-
-      const overflowingEllipsis = page.getByText('…');
-      await expect(overflowingEllipsis).toHaveCount(
-        expectedOverflowingEllipsisVisibleCount,
-      );
-    };
-  };
-  //#endregion
-});
-
 test.describe('Virtual Scroll Tests', () => {
   test('should render only a few elements out of a big data set', async ({
     page,
@@ -613,7 +481,11 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.getByRole('rowgroup').getByRole('row');
+    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
+
+    //Checks empty content to make sure it appears correctly.
+    await expect(emptyContent).toBeInViewport();
   });
 
   test('virtualized table should scroll to provided row', async ({ page }) => {
@@ -623,10 +495,10 @@ test.describe('Virtual Scroll Tests', () => {
 
     const rows = page.getByRole('rowgroup').getByRole('row');
     const row50NameCell = page.getByText('Name50');
-    expect((await rows.all()).length).toBe(14);
-    await expect(rows.nth(0)).toContainText('Name43');
-    await expect(rows.nth(7)).toContainText('Name50');
-    await expect(rows.nth(13)).toContainText('Name56');
+    expect((await rows.all()).length).toBe(13);
+    await expect(rows.nth(0)).toContainText('Name49');
+    await expect(rows.nth(1)).toContainText('Name50');
+    await expect(rows.nth(12)).toContainText('Name61');
 
     await expect(row50NameCell).toBeInViewport();
   });
@@ -637,5 +509,81 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
     const rows = page.getByRole('rowgroup').getByRole('row');
     expect((await rows.all()).length).toBe(1);
+  });
+
+  test('virtualized table should allow expandable contents', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?virtualization=true&scroll=true&scrollRow=50&hasSubComponent=true',
+      {
+        waitUntil: 'networkidle',
+      },
+    ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
+
+    const rows = page.getByRole('rowgroup').getByRole('row');
+    await expect(rows.nth(1)).toContainText('Name50');
+    await expect(rows.nth(4)).toContainText('Name53');
+
+    const row50ExpanderContent = page.getByText(
+      'Expanded component, name: Name50',
+    );
+    const row53ExpanderContent = page.getByText(
+      'Expanded component, name: Name53',
+    );
+
+    const expanderButtonRow50Cell = rows
+      .nth(1)
+      .getByRole('cell')
+      .nth(0)
+      .getByRole('button');
+    const expanderButtonRow53Cell = rows
+      .nth(4)
+      .getByRole('cell')
+      .nth(0)
+      .getByRole('button');
+
+    await expanderButtonRow50Cell.click();
+    await expanderButtonRow53Cell.click();
+    await expect(row50ExpanderContent).toBeInViewport();
+    await expect(row53ExpanderContent).toBeInViewport();
+
+    // Collapse the expanded content
+    await expanderButtonRow50Cell.click();
+    await expect(row50ExpanderContent).not.toBeInViewport();
+    await expanderButtonRow53Cell.click();
+    await expect(row53ExpanderContent).not.toBeInViewport();
+  });
+});
+
+test.describe('Table filters', () => {
+  test('DateRangeFilter should show DatePicker', async ({ page }) => {
+    await page.goto('/Table?allFilters=true');
+
+    // open Date filter
+    const dateHeader = page.locator('[role="columnheader"]', {
+      hasText: 'Date',
+    });
+    const dateFilterButton = dateHeader.getByRole('button', { name: 'Filter' });
+    await dateFilterButton.click();
+    const dateFilterPopover = page.getByRole('dialog', { name: 'Filter' });
+    await expect(dateFilterPopover).toBeVisible();
+
+    // open Date picker in Date filter
+    const datePickerButton = dateFilterPopover
+      .getByRole('button', { name: 'Date picker' })
+      .first();
+    await datePickerButton.click();
+    const datePicker = page.getByRole('dialog', { name: 'Date picker' });
+    await expect(datePicker).toBeVisible();
+
+    // close DatePicker
+    await page.keyboard.press('Escape');
+    await expect(datePicker).not.toBeVisible();
+    await expect(dateFilterPopover).toBeVisible();
+
+    // close Date filter
+    await page.keyboard.press('Escape');
+    await expect(dateFilterPopover).not.toBeVisible();
   });
 });

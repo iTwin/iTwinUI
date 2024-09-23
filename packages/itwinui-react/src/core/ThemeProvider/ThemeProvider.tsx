@@ -18,7 +18,6 @@ import {
   ScopeProvider,
   portalContainerAtom,
   useScopedAtom,
-  useScopedSetAtom,
   useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -75,10 +74,6 @@ type RootProps = {
      */
     applyBackground?: boolean;
   };
-  /**
-   * This will be used to determine if background will be applied.
-   */
-  shouldApplyBackground?: boolean;
 };
 
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
@@ -154,6 +149,8 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  useInertPolyfill();
+
   const [rootElement, setRootElement] = React.useState<HTMLElement | null>(
     null,
   );
@@ -180,12 +177,14 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     <ScopeProvider>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
-          <ToastProvider>
+          <ToastProvider
+            inherit={themeProp === 'inherit' && !portalContainerProp}
+          >
             {includeCss && rootElement ? (
               <FallbackStyles root={rootElement} />
             ) : null}
 
-            <Root
+            <MainRoot
               theme={theme}
               themeOptions={themeOptions}
               ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
@@ -194,11 +193,13 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
               {children}
 
               <PortalContainer
+                theme={theme}
+                themeOptions={themeOptions}
                 portalContainerProp={portalContainerProp}
                 portalContainerFromParent={portalContainerFromParent}
                 isInheritingTheme={themeProp === 'inherit'}
               />
-            </Root>
+            </MainRoot>
           </ToastProvider>
         </ThemeContext.Provider>
       </HydrationProvider>
@@ -211,15 +212,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const Root = React.forwardRef((props, forwardedRef) => {
-  const { theme, children, themeOptions, className, ...rest } = props;
-
-  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
-  const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
-  const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
-  const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
-  const shouldApplyBackground = themeOptions?.applyBackground;
-
+const MainRoot = React.forwardRef((props, forwardedRef) => {
   const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
   const findOwnerDocumentFromRef = React.useCallback(
     (el: HTMLElement | null): void => {
@@ -231,6 +224,25 @@ const Root = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
+    <Root
+      {...props}
+      ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', RootProps>;
+
+// ----------------------------------------------------------------------------
+
+const Root = React.forwardRef((props, forwardedRef) => {
+  const { theme, children, themeOptions, className, ...rest } = props;
+
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
+  const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
+  const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
+  const shouldApplyBackground = themeOptions?.applyBackground;
+
+  return (
     <Box
       className={cx(
         'iui-root',
@@ -239,7 +251,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={useMergedRefs(forwardedRef, findOwnerDocumentFromRef)}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
@@ -322,15 +334,43 @@ const PortalContainer = React.memo(
     portalContainerProp,
     portalContainerFromParent,
     isInheritingTheme,
+    theme,
+    themeOptions,
   }: {
     portalContainerProp: HTMLElement | undefined;
     portalContainerFromParent: HTMLElement | undefined;
     isInheritingTheme: boolean;
-  }) => {
+  } & RootProps) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const setPortalContainer = useScopedSetAtom(portalContainerAtom);
+    const [portalContainer, setPortalContainer] =
+      useScopedAtom(portalContainerAtom);
+
+    // Create a new portal container only if necessary:
+    // - no explicit portalContainer prop
+    // - not inheriting theme
+    // - no parent portal container to portal into
+    // - parent portal container is in a different window (#2006)
+    const shouldSetupPortalContainer =
+      !portalContainerProp &&
+      (!isInheritingTheme ||
+        !portalContainerFromParent ||
+        (!!ownerDocument &&
+          portalContainerFromParent.ownerDocument !== ownerDocument));
 
     const id = useId();
+
+    // Synchronize atom with the correct portal target if necessary.
+    React.useEffect(() => {
+      if (shouldSetupPortalContainer) {
+        return;
+      }
+
+      const portalTarget = portalContainerProp || portalContainerFromParent;
+
+      if (portalTarget && portalTarget !== portalContainer) {
+        setPortalContainer(portalTarget);
+      }
+    });
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
@@ -338,46 +378,27 @@ const PortalContainer = React.memo(
       return null;
     }
 
-    if (portalContainerProp) {
-      return <PortaledToaster target={portalContainerProp} />;
-    }
-
-    // Create a new portal container only if necessary:
-    // - not inheriting theme
-    // - no parent portal container to portal into
-    // - parent portal container is in a different window (#2006)
-    if (
-      !isInheritingTheme ||
-      !portalContainerFromParent ||
-      (!!ownerDocument &&
-        portalContainerFromParent.ownerDocument !== ownerDocument)
-    ) {
-      return (
-        <div style={{ display: 'contents' }} ref={setPortalContainer} id={id}>
+    if (shouldSetupPortalContainer && ownerDocument) {
+      return ReactDOM.createPortal(
+        <Root
+          theme={theme}
+          themeOptions={{ ...themeOptions, applyBackground: false }}
+          data-iui-portal
+          style={{ display: 'contents' }}
+          ref={setPortalContainer}
+          id={id}
+        >
           <Toaster />
-        </div>
+        </Root>,
+        ownerDocument.body,
       );
+    } else if (portalContainerProp) {
+      return ReactDOM.createPortal(<Toaster />, portalContainerProp);
     }
 
-    return <PortaledToaster target={portalContainerFromParent} />;
+    return null;
   },
 );
-
-// ----------------------------------------------------------------------------
-
-const PortaledToaster = ({ target }: { target?: HTMLElement }) => {
-  const [portalContainer, setPortalContainer] =
-    useScopedAtom(portalContainerAtom);
-
-  // Synchronize atom with the correct portal target if necessary.
-  React.useEffect(() => {
-    if (target && target !== portalContainer) {
-      setPortalContainer(target);
-    }
-  });
-
-  return target ? ReactDOM.createPortal(<Toaster />, target) : null;
-};
 
 // ----------------------------------------------------------------------------
 
@@ -409,7 +430,7 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       } catch (error) {
         console.log('Error loading styles.css locally', error);
         const css = await importCss(
-          'https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@3/styles.css',
+          `https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@${meta.version}/styles.css`,
         );
         document.adoptedStyleSheets = [
           ...document.adoptedStyleSheets,
@@ -466,4 +487,25 @@ const useIuiDebugRef = () => {
   }
 
   _globalThis.__iui.versions.add(JSON.stringify(meta));
+};
+
+// ----------------------------------------------------------------------------
+
+const useInertPolyfill = () => {
+  const loaded = React.useRef(false);
+  const modulePath =
+    'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
+
+  React.useEffect(() => {
+    (async () => {
+      if (
+        !HTMLElement.prototype.hasOwnProperty('inert') &&
+        !loaded.current &&
+        !isUnitTest
+      ) {
+        await new Function('url', 'return import(url)')(modulePath);
+        loaded.current = true;
+      }
+    })();
+  }, []);
 };

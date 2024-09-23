@@ -1,5 +1,88 @@
 # Changelog
 
+## 3.14.2
+
+### Patch Changes
+
+- [#2217](https://github.com/iTwin/iTwinUI/pull/2217): Fixed the `Footer`'s `translatedTitles` prop's type to allow passing partial translations.
+- [#2218](https://github.com/iTwin/iTwinUI/pull/2218): Fixed a `Table` bug where custom `Cell` content was not taking up the entire available width in some cases.
+- [#2216](https://github.com/iTwin/iTwinUI/pull/2216): Fixed the fallback CSS logic in `ThemeProvider` to load the correct stylesheet version.
+
+## 3.14.1
+
+### Patch Changes
+
+- [#2209](https://github.com/iTwin/iTwinUI/pull/2209): Fixed an issue where nested `Popover`s were automatically closing due to faulty "outside click" detection.
+- [#2213](https://github.com/iTwin/iTwinUI/pull/2213): Dev-only warnings have been improved so that they are correctly shown for every individual instance of a component. Additionally, these warnings are now logged using `console.error`, which results in a better stack trace.
+
+## 3.14.0
+
+### Minor Changes
+
+- [#2040](https://github.com/iTwin/iTwinUI/pull/2040): The colors of disabled controls have been adjusted make them easier to distinguish from regular controls.
+  - Also added hover state to disabled button, select, input, textarea, and actionable list item to help with accessibility.
+- [#2153](https://github.com/iTwin/iTwinUI/pull/2153): Nested `ThemeProvider`s will now reuse the same toaster instead of creating new ones.
+- [#2201](https://github.com/iTwin/iTwinUI/pull/2201): `List` and `ListItem` will now be rendered as `<div>`s instead of `<ul>`/`<li>`. This change makes these components less restrictive and less error-prone to use.
+- [#2187](https://github.com/iTwin/iTwinUI/pull/2187): Floating elements will now use `position: fixed` instead of `position: absolute`.
+  - This fixes some issues when a floating element is placed near the edge of the viewport.
+  - Some components affected: `Tooltip`, `Popover`, `Select`, `DropdownMenu`, `ComboBox`, etc.
+- [#2190](https://github.com/iTwin/iTwinUI/pull/2190): `Popover` now enables the [`size` middleware](https://floating-ui.com/docs/size) to prevent it from overflowing the viewport.
+  - This also affects other popover-like components (e.g. `Select`, `ComboBox`, `DropdownMenu`).
+  - `Popover` now also sets a default max-height of `400px` to prevent it from becoming too large. This can be customized using the `middleware.size.maxHeight` prop.
+- [#2205](https://github.com/iTwin/iTwinUI/pull/2205): `tableFilters.TextFilter` now prevents the user from applying the filter when the text input is empty.
+- [#2205](https://github.com/iTwin/iTwinUI/pull/2205): `BaseFilter` now renders as a `<form>` and `FilterButtonBar` now renders a `<button type="submit">`. Together, this enables the use of browser's built-in validation before applying filters.
+
+  - The `setFilter` prop in `FilterButtonBar` has been deprecated, as `onSubmit` should be used instead.
+    <details>
+      <summary>Diff</summary>
+
+    ```diff
+      <BaseFilter
+    +   onSubmit={() => setFilter(text)}
+      >
+        …
+        <FilterButtonBar
+    -     setFilter={() => setFilter(text)}
+        />
+      </BaseFilter>
+    ```
+
+    </details>
+
+### Patch Changes
+
+- [#2194](https://github.com/iTwin/iTwinUI/pull/2194): Fixed an issue where CommonJS files in the development build output (`DEV-cjs/` directory) were being treated as ESM, inadvertently causing runtime errors during development.
+- [#2185](https://github.com/iTwin/iTwinUI/pull/2185): Portal containers will now default to a `<div>` rendered at the end of `<body>` instead of a `<div>` rendered inside the `<ThemeProvider>`.
+- [#2202](https://github.com/iTwin/iTwinUI/pull/2202): `IconButton` will now reroute the HTML `title` prop to its own `label` prop for better accessibility. The `title` prop has also been marked deprecated to encourage the use of `label`.
+- [#2168](https://github.com/iTwin/iTwinUI/pull/2168): Adjusted focus management in `Popover` so that it allows interactive elements inside the popover to be more easily focused. This more closely matches the behavior of the HTML `<dialog>` element, which focuses the first interactive element inside it.
+- [#2207](https://github.com/iTwin/iTwinUI/pull/2207): Fixed a bug where `pointer-events: none` was sometimes applied to the main `<body>` when a `MenuItem` was hovered in a popout window.
+- [#2189](https://github.com/iTwin/iTwinUI/pull/2189): Floating elements will now have a few pixels of padding from the edge of the viewport.
+- [#2202](https://github.com/iTwin/iTwinUI/pull/2202): `IconButton` will now display warnings during development when it's missing a label.
+- [#2178](https://github.com/iTwin/iTwinUI/pull/2178): Reduced layout thrashing on `Table` component by memoizing an expensive `ref` function.
+- [#2194](https://github.com/iTwin/iTwinUI/pull/2194): The development build output is now also formatted using `prettier` for easier debugging.
+
+## 3.13.4
+
+### Patch Changes
+
+- [#2138](https://github.com/iTwin/iTwinUI/pull/2138): Fixed an issue in `Table` column resizing where passing in a `width` value that was less than the column's default `minWidth` would cause an undesirable shift when the column was resized.
+- [#2170](https://github.com/iTwin/iTwinUI/pull/2170): Fixed an issue in virtualized `Tree` where the `style` prop passed to `TreeNode` was not respected.
+- [#2170](https://github.com/iTwin/iTwinUI/pull/2170): Fixed an issue in virtualized `Tree` where horizontal scroll was impossible to achieve.
+- [#2174](https://github.com/iTwin/iTwinUI/pull/2174): Fixed an issue in `Table` where the virtualizer was being initialized when the `enableVirtualization` prop wasn't set to `true`.
+
+## 3.13.3
+
+### Patch Changes
+
+- [#2163](https://github.com/iTwin/iTwinUI/pull/2163): Fixed an issue in virtualized `Table` where horizontal scroll was broken.
+
+## 3.13.2
+
+### Patch Changes
+
+- [#2143](https://github.com/iTwin/iTwinUI/pull/2143): Added `border-radius` to the `Table` component so that the border radius is correctly applied to the `Table`'s corners.
+- [#2161](https://github.com/iTwin/iTwinUI/pull/2161): Fixed issue where `emptyTableContent` would not appear on virutalized `Table` components.
+
 ## 3.13.1
 
 ### Patch Changes
@@ -314,7 +397,7 @@
 
 - [#1865](https://github.com/iTwin/iTwinUI/pull/1865): `Dialog`/`Modal` will no longer keep its wrapper in the DOM when `isOpen=false`.
 - [#1889](https://github.com/iTwin/iTwinUI/pull/1889): `Dialog`/`Modal`'s close button will now be visually aligned based on the icon inside it, excluding the padding.
-- [#1906](https://github.com/iTwin/iTwinUI/pull/1906): `Dialog`/`Modal` title will now wrap to multiple lines instead of getting clippped.
+- [#1906](https://github.com/iTwin/iTwinUI/pull/1906): `Dialog`/`Modal` title will now wrap to multiple lines instead of getting clipped.
 - [#1873](https://github.com/iTwin/iTwinUI/pull/1873): Fixed `Tab` stripe size and position calculation that sometimes used to cause unnecessary overflow and thus cause a horizontal scrollbar in `TabList`.
 - [#1884](https://github.com/iTwin/iTwinUI/pull/1884): Fixed a bug that caused the `Tabs.Wrapper` to change size dependent on which `Tabs.Tab` was active.
 - [#1901](https://github.com/iTwin/iTwinUI/pull/1901): Fixed a bug in `Table` where `initialState.columnOrder` was not being respected.
@@ -602,7 +685,7 @@ This release includes a few breaking changes which have been briefly listed belo
 - [#1506](https://github.com/iTwin/iTwinUI/pull/1506): Added new `Popover` component for public use.
 - [#1323](https://github.com/iTwin/iTwinUI/pull/1323): Added `placement` prop to `Dialog` to allow placing it at one of the corners.
 - [#1523](https://github.com/iTwin/iTwinUI/pull/1523): Added `ariaStrategy` prop to Tooltip. Can be used to change how the tooltip is associated with the trigger element.
-- [#1477](https://github.com/iTwin/iTwinUI/pull/1477): Added a new `portalContainer` prop to `ThemeProvider`. When specified, all floating elements (tooltips, toats, dialogs) under the ThemeProvider will read this prop from context and portal into it.
+- [#1477](https://github.com/iTwin/iTwinUI/pull/1477): Added a new `portalContainer` prop to `ThemeProvider`. When specified, all floating elements (tooltips, toasts, dialogs) under the ThemeProvider will read this prop from context and portal into it.
 - [#1362](https://github.com/iTwin/iTwinUI/pull/1362): All elements under the root will now get a default focus styling matching `--iui-color-border-accent`.
 - [#1373](https://github.com/iTwin/iTwinUI/pull/1373): Converted all physical CSS properties to their logical equivalents.
 - [#1328](https://github.com/iTwin/iTwinUI/pull/1328): Added new `Overlay` component with customizable subcomponents: `Overlay.Wrapper`, `Overlay.HiddenContent`, `Overlay.Overlay`.

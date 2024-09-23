@@ -3255,28 +3255,6 @@ it('should render selectable rows without select column', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(3);
 });
 
-it('should scroll to selected item in non-virtualized table', async () => {
-  let scrolledElement: HTMLElement | null = null;
-  vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(
-    function (this: HTMLElement) {
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      scrolledElement = this;
-    },
-  );
-
-  const data = mockedData(50);
-  renderComponent({
-    data,
-    scrollToRow: (rows) => rows.findIndex((row) => row.original === data[25]),
-  });
-
-  expect(scrolledElement).toBeTruthy();
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  expect(scrolledElement!.querySelector('.iui-table-cell')?.textContent).toBe(
-    data[25].name,
-  );
-});
-
 it('should render sticky columns correctly', () => {
   vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
   vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
@@ -3957,4 +3935,43 @@ it('should pass custom props to different parts of Table', () => {
   ) as HTMLElement;
   expect(emptyTableContent).toBeTruthy();
   expect(emptyTableContent.style.fontSize).toBe('12px');
+});
+
+it('should apply clamp, if cell is string value and no custom Cell is rendered', () => {
+  const data = [{ name: 'name' }];
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Name',
+      accessor: 'name',
+      cellClassName: 'test-cell',
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+    data,
+  });
+  const host = container.querySelector('.test-cell');
+  expect(host?.shadowRoot).toBeTruthy();
+  const lineClamp = host?.shadowRoot?.querySelector('div');
+  expect(lineClamp).toBeTruthy();
+});
+
+it('should not apply clamp, if custom Cell is used', () => {
+  const data = [{ name: 'name' }];
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Name',
+      accessor: 'name',
+      cellClassName: 'test-cell',
+      Cell: () => 'my custom content',
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+    data,
+  });
+  const host = container.querySelector('.test-cell');
+  expect(host?.shadowRoot).toBeTruthy();
+  const lineClamp = host?.shadowRoot?.querySelector('div');
+  expect(lineClamp).toBeNull();
 });

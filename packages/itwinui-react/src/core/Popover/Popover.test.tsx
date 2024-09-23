@@ -67,6 +67,8 @@ it('should portal to within the ThemeProvider', async () => {
   expect(screen.getByText('Popped over')).toBeVisible();
 
   const root = document.querySelector('.the-root') as HTMLElement;
-  const popover = root.querySelector('.the-popover');
-  expect(popover).toBeVisible();
+  expect(root.querySelector('.the-popover')).toBeNull();
+  expect(
+    document.body.querySelector('body > [data-iui-portal] .the-popover'),
+  ).toBeVisible();
 });

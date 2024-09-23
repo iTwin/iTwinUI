@@ -10,12 +10,7 @@ import type {
   TableInstance,
   TableState,
 } from '../../react-table/react-table.js';
-import {
-  Box,
-  useIntersection,
-  useMergedRefs,
-  WithCSSTransition,
-} from '../../utils/index.js';
+import { Box, useIntersection, useMergedRefs } from '../../utils/index.js';
 import { TableCell } from './TableCell.js';
 import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
@@ -99,12 +94,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
         flex: `0 0 auto`,
         minWidth: '100%',
         ...(virtualItem != null
-          ? {
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              transform: `translateY(${virtualItem.start}px)`,
-            }
+          ? { transform: `translateY(${virtualItem.start}px)` }
           : {}),
       },
     }),
@@ -122,6 +112,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
       'aria-disabled': isDisabled || undefined,
       'data-iui-status': status,
       'data-iui-index': virtualItem?.index,
+      ...(virtualItem != null && { 'data-iui-virtualizer': 'item' }),
     },
   };
 
@@ -157,16 +148,6 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
           );
         })}
       </Box>
-      {subComponent && (
-        <WithCSSTransition in={row.isExpanded}>
-          <Box
-            className={cx('iui-table-row', 'iui-table-expanded-content')}
-            aria-disabled={isDisabled}
-          >
-            {subComponent(row)}
-          </Box>
-        </WithCSSTransition>
-      )}
     </>
   );
 };

@@ -102,26 +102,6 @@ it('should set filter when only To is entered', () => {
   expect(setFilter).toHaveBeenCalledWith([undefined, 3]);
 });
 
-it('should set filter when both values entered and Enter is pressed', () => {
-  const setFilter = vi.fn();
-  const { container } = renderComponent({ setFilter });
-
-  const labeledInputs = container.querySelectorAll(
-    '.iui-input-grid input',
-  ) as NodeListOf<HTMLInputElement>;
-  expect(labeledInputs.length).toBe(2);
-
-  fireEvent.change(labeledInputs[0], { target: { value: '1' } });
-  fireEvent.change(labeledInputs[1], { target: { value: '3' } });
-
-  fireEvent.keyDown(labeledInputs[1], {
-    key: 'Enter',
-    charCode: 13,
-  });
-
-  expect(setFilter).toHaveBeenCalledWith([1, 3]);
-});
-
 it('should set filter with empty values when invalid number is entered', () => {
   const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });

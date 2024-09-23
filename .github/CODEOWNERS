@@ -5,4 +5,5 @@
 
 # These owners will be the default owners for everything in
 # the repo, unless a later match takes precedence.
-*       @iTwin/itwinui-1 @iTwin/itwinui-2
+*       @iTwin/itwinui
+/scripts/zip-for-veracode.mjs @ben-polinsky

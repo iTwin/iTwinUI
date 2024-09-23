@@ -25,31 +25,23 @@ import type {
   ActionType,
   TableInstance,
   Column,
+  ColumnInstance,
 } from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
   useGlobals,
   useResizeObserver,
-  SvgSortDown,
-  SvgSortUp,
   useLayoutEffect,
   Box,
-  createWarningLogger,
+  useWarningLogger,
   ShadowRoot,
-  LineClamp,
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import {
-  TableColumnsContext,
-  getCellStyle,
-  getStickyStyle,
-  getSubRowStyle,
-} from './utils.js';
+import { TableColumnsContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
-import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
 import {
@@ -72,19 +64,14 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import { Virtualizer, type VirtualItem } from '@tanstack/react-virtual';
+import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
+import { ColumnHeader } from './ColumnHeader.js';
+import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
-
-const COLUMN_MIN_WIDTHS = {
-  default: 72,
-  withExpander: 108, // expander column should be wider to accommodate the expander icon
-};
-
-const logWarning = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
   /**
@@ -592,6 +579,20 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
+  const [rowHasParent] = React.useState(() => new WeakSet<T>());
+
+  const getSubRowsWithSubComponents = React.useCallback(
+    (originalRow: T) => {
+      if (!rowHasParent.has(originalRow)) {
+        rowHasParent.add(originalRow);
+        return [originalRow];
+      }
+
+      return (originalRow.subRows as T[]) || [];
+    },
+    [rowHasParent],
+  );
+
   const instance = useTable<T>(
     {
       manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
@@ -604,7 +605,7 @@ export const Table = <
       filterTypes,
       selectSubRows,
       data,
-      getSubRows,
+      getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
     },
@@ -644,6 +645,8 @@ export const Table = <
 
   let headerGroups = _headerGroups;
 
+  const logWarning = useWarningLogger();
+
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
     if (process.env.NODE_ENV === 'development') {
@@ -667,12 +670,6 @@ export const Table = <
     allColumns.some(
       (column) => column.filterValue != null && column.filterValue !== '',
     ) || !!globalFilterValue;
-
-  const showFilterButton = (column: HeaderGroup<T>) =>
-    (data.length !== 0 || areFiltersSet) && column.canFilter && !!column.Filter;
-
-  const showSortButton = (column: HeaderGroup<T>) =>
-    data.length !== 0 && column.canSort;
 
   const onRowClickHandler = React.useCallback(
     (event: React.MouseEvent, row: Row<T>) => {
@@ -829,7 +826,8 @@ export const Table = <
     }
   });
 
-  const virtualizer = useVirtualScroll({
+  const { virtualizer, css: virtualizerCss } = useVirtualScroll({
+    enabled: enableVirtualization,
     count: page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
@@ -839,7 +837,7 @@ export const Table = <
 
   useLayoutEffect(() => {
     if (scrollToIndex) {
-      virtualizer.scrollToIndex(scrollToIndex, { align: 'center' });
+      virtualizer.scrollToIndex(scrollToIndex, { align: 'start' });
     }
   }, [virtualizer, scrollToIndex]);
 
@@ -851,34 +849,54 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      return (
-        <TableRowMemoized
-          row={row}
-          rowProps={rowProps}
-          isLast={index === page.length - 1}
-          onRowInViewport={onRowInViewportRef}
-          onBottomReached={onBottomReachedRef}
-          intersectionMargin={intersectionMargin}
-          state={state}
-          key={row.getRowProps().key}
-          onClick={onRowClickHandler}
-          subComponent={subComponent}
-          isDisabled={!!isRowDisabled?.(row.original)}
-          tableHasSubRows={hasAnySubRows}
-          tableInstance={instance}
-          expanderCell={expanderCell}
-          scrollContainerRef={tableRef.current}
-          tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
-          density={density}
-          virtualItem={virtualItem}
-          virtualizer={virtualizer}
-        />
-      );
+
+      if (row.subRows.length > 0 || !subComponent) {
+        return (
+          <TableRowMemoized
+            row={row}
+            rowProps={rowProps}
+            isLast={index === page.length - 1}
+            onRowInViewport={onRowInViewportRef}
+            onBottomReached={onBottomReachedRef}
+            intersectionMargin={intersectionMargin}
+            state={state}
+            key={row.getRowProps().key}
+            onClick={onRowClickHandler}
+            subComponent={subComponent}
+            isDisabled={!!isRowDisabled?.(row.original)}
+            tableHasSubRows={hasAnySubRows}
+            tableInstance={instance}
+            expanderCell={expanderCell}
+            scrollContainerRef={tableRef.current}
+            tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+            density={density}
+            virtualItem={virtualItem}
+            virtualizer={virtualizer}
+          />
+        );
+      } else {
+        return (
+          <TableExpandableContentMemoized
+            key={row.getRowProps().key}
+            virtualItem={virtualItem}
+            ref={
+              enableVirtualization
+                ? virtualizer?.measureElement
+                : tableRowRef(row)
+            }
+            isDisabled={!!isRowDisabled?.(row.original)}
+          >
+            {subComponent(row)}
+          </TableExpandableContentMemoized>
+        );
+      }
     },
     [
       page,
       prepareRow,
       rowProps,
+      onRowInViewportRef,
+      onBottomReachedRef,
       intersectionMargin,
       state,
       onRowClickHandler,
@@ -890,8 +908,6 @@ export const Table = <
       enableVirtualization,
       tableRowRef,
       density,
-      onBottomReachedRef,
-      onRowInViewportRef,
     ],
   );
 
@@ -923,22 +939,8 @@ export const Table = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isHeaderDirectClick = React.useRef(false);
-
-  const columnResizeRef = React.useCallback(
-    (el: HTMLDivElement | null, column: HeaderGroup<T>) => {
-      if (el) {
-        columnRefs.current[column.id] = el;
-        column.resizeWidth = el.getBoundingClientRect().width;
-      }
-    },
-    [],
-  );
-
   return (
-    <TableColumnsContext.Provider
-      value={columns as Column<Record<string, unknown>>[]}
-    >
+    <TableColumnsContext.Provider value={instance.columns as ColumnInstance[]}>
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
@@ -986,147 +988,25 @@ export const Table = <
               >
                 <Box {...headerGroupProps}>
                   {headerGroup.headers.map((column, index) => {
-                    const { onClick, ...restSortProps } =
-                      column.getSortByToggleProps();
-
-                    const columnHasExpanders =
-                      hasAnySubRows &&
-                      index ===
-                        headerGroup.headers.findIndex(
-                          (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
-                        );
-
-                    // override "undefined" or zero min-width with default value
-                    if ([undefined, 0].includes(column.minWidth)) {
-                      column.minWidth = columnHasExpanders
-                        ? COLUMN_MIN_WIDTHS.withExpander
-                        : COLUMN_MIN_WIDTHS.default;
-                    }
-
-                    const columnProps = column.getHeaderProps({
-                      ...restSortProps,
-                      className: cx(
-                        'iui-table-cell',
-                        {
-                          'iui-actionable': column.canSort,
-                          'iui-sorted': column.isSorted,
-                          'iui-table-cell-sticky': !!column.sticky,
-                        },
-                        column.columnClassName,
-                      ),
-                      style: {
-                        ...getCellStyle(column, !!state.isTableResizing),
-                        ...(columnHasExpanders && getSubRowStyle({ density })),
-                        ...getStickyStyle(column, visibleColumns),
-                        flexWrap: 'wrap',
-                        columnGap: 'var(--iui-size-xs)',
-                      },
-                    });
-
+                    const dragAndDropProps = column.getDragAndDropProps();
                     return (
-                      <Box
-                        {...columnProps}
-                        {...column.getDragAndDropProps()}
-                        key={columnProps.key}
-                        title={undefined}
-                        ref={(el) => {
-                          columnResizeRef(el, column);
-                        }}
-                        onMouseDown={() => {
-                          isHeaderDirectClick.current = true;
-                        }}
-                        onClick={(e) => {
-                          // Prevents from triggering sort when resizing and mouse is released in the middle of header
-                          if (isHeaderDirectClick.current) {
-                            onClick?.(e);
-                            isHeaderDirectClick.current = false;
-                          }
-                        }}
-                        tabIndex={showSortButton(column) ? 0 : undefined}
-                        onKeyDown={(e) => {
-                          if (e.key == 'Enter' && showSortButton(column)) {
-                            column.toggleSortBy();
-                          }
-                        }}
-                      >
-                        <>
-                          <ShadowRoot>
-                            {typeof column.Header === 'string' ? (
-                              <LineClamp>
-                                <slot />
-                              </LineClamp>
-                            ) : (
-                              <slot />
-                            )}
-                            <slot name='actions' />
-                            <slot name='resizers' />
-                            <slot name='shadows' />
-                          </ShadowRoot>
-
-                          {column.render('Header')}
-                          {(showFilterButton(column) ||
-                            showSortButton(column)) && (
-                            <Box
-                              className='iui-table-header-actions-container'
-                              onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
-                              slot='actions'
-                            >
-                              {showFilterButton(column) && (
-                                <FilterToggle column={column} />
-                              )}
-                              {showSortButton(column) && (
-                                <Box className='iui-table-cell-end-icon'>
-                                  {column.isSortedDesc ||
-                                  (!column.isSorted && column.sortDescFirst) ? (
-                                    <SvgSortDown
-                                      className='iui-table-sort'
-                                      aria-hidden
-                                    />
-                                  ) : (
-                                    <SvgSortUp
-                                      className='iui-table-sort'
-                                      aria-hidden
-                                    />
-                                  )}
-                                </Box>
-                              )}
-                            </Box>
-                          )}
-                          {isResizable &&
-                            column.isResizerVisible &&
-                            (index !== headerGroup.headers.length - 1 ||
-                              columnResizeMode === 'expand') && (
-                              <Box
-                                {...column.getResizerProps()}
-                                className='iui-table-resizer'
-                                slot='resizers'
-                              >
-                                <Box className='iui-table-resizer-bar' />
-                              </Box>
-                            )}
-                          {enableColumnReordering &&
-                            !column.disableReordering && (
-                              <Box
-                                className='iui-table-reorder-bar'
-                                slot='resizers'
-                              />
-                            )}
-                          {column.sticky === 'left' &&
-                            state.sticky.isScrolledToRight && (
-                              <Box
-                                className='iui-table-cell-shadow-right'
-                                slot='shadows'
-                              />
-                            )}
-                          {column.sticky === 'right' &&
-                            state.sticky.isScrolledToLeft && (
-                              <Box
-                                className='iui-table-cell-shadow-left'
-                                slot='shadows'
-                              />
-                            )}
-                        </>
-                      </Box>
+                      <ColumnHeader<T>
+                        {...dragAndDropProps}
+                        key={dragAndDropProps.key || column.id || index}
+                        columnRefs={columnRefs}
+                        column={column}
+                        index={index}
+                        areFiltersSet={areFiltersSet}
+                        hasAnySubRows={hasAnySubRows}
+                        headers={headerGroup.headers}
+                        state={state}
+                        data={data}
+                        isResizable={isResizable}
+                        columnResizeMode={columnResizeMode}
+                        enableColumnReordering={enableColumnReordering}
+                        density={density}
+                        visibleColumns={visibleColumns}
+                      />
                     );
                   })}
                 </Box>
@@ -1152,21 +1032,11 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot
-            css={`
-              div,
-              slot {
-                border-radius: inherit;
-              }
-            `}
-          >
-            {enableVirtualization ? (
+          <ShadowRoot css={virtualizerCss}>
+            {enableVirtualization && data.length !== 0 ? (
               <div
-                style={{
-                  minBlockSize: virtualizer.getTotalSize(),
-                  minInlineSize: '100%',
-                  contain: 'strict',
-                }}
+                data-iui-virtualizer='root'
+                style={{ minBlockSize: virtualizer.getTotalSize() }}
               >
                 <slot />
               </div>

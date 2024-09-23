@@ -441,6 +441,16 @@ export { DialogPlacementExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as DividerMainExampleRaw } from './Divider.main';
+const DividerMainExample = withThemeProvider(DividerMainExampleRaw);
+export { DividerMainExample };
+
+import { default as DividerVerticalExampleRaw } from './Divider.vertical';
+const DividerVerticalExample = withThemeProvider(DividerVerticalExampleRaw);
+export { DividerVerticalExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as DropdownButtonMainExampleRaw } from './DropdownButton.main';
 const DropdownButtonMainExample = withThemeProvider(
   DropdownButtonMainExampleRaw,
@@ -913,6 +923,12 @@ export { SearchBoxBasicExample };
 import { default as SearchBoxSizeExampleRaw } from './SearchBox.size';
 const SearchBoxSizeExample = withThemeProvider(SearchBoxSizeExampleRaw);
 export { SearchBoxSizeExample };
+
+import { default as SearchBoxBorderlessExpandButtonExampleRaw } from './SearchBox.borderlessexpandbutton.jsx';
+const SearchBoxBorderlessExpandButtonExample = withThemeProvider(
+  SearchBoxBorderlessExpandButtonExampleRaw,
+);
+export { SearchBoxBorderlessExpandButtonExample };
 
 import { default as SearchBoxExpandableExampleRaw } from './SearchBox.expandable';
 const SearchBoxExpandableExample = withThemeProvider(

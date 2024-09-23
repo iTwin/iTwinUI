@@ -26,6 +26,7 @@ describe('Table', () => {
     'Localized',
     'No Data',
     'Resizable Columns',
+    'Scroll To Row',
     'Selectable Multi',
     'Selectable Single',
     'Sortable',
@@ -81,10 +82,18 @@ describe('Table', () => {
             cy.get('button').first().click({ force: true }); // force because the button is hidden
             break;
           }
+          case 'Scroll To Row': {
+            cy.wait(100);
+          }
         }
       });
 
       cy.compareSnapshot(testName);
+
+      if (testName === 'Full2') {
+        cy.get('[role=table]').scrollTo('right');
+        cy.compareSnapshot(`${testName} (scrolled right)`);
+      }
     });
   });
 });
