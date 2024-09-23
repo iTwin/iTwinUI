@@ -453,7 +453,7 @@ importers:
         specifier: 18.2.18
         version: 18.2.18
       next:
-        specifier: ^14.2.10
+        specifier: ^14.2.13
         version: 14.2.13(@playwright/test@1.42.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.72.0)
       react:
         specifier: ^18
