@@ -587,6 +587,20 @@ import { default as FlexMainExampleRaw } from './Flex.main';
 const FlexMainExample = withThemeProvider(FlexMainExampleRaw);
 export { FlexMainExample };
 
+import { default as FlexSpacerExampleRaw } from './Flex.spacer';
+const FlexSpacerExample = withThemeProvider(FlexSpacerExampleRaw);
+export { FlexSpacerExample };
+
+import { default as FlexWithFlexItemsExampleRaw } from './Flex.flexItems.jsx';
+const FlexWithFlexItemsExample = withThemeProvider(FlexWithFlexItemsExampleRaw);
+export { FlexWithFlexItemsExample };
+
+import { default as FlexWithIndividualGapsExampleRaw } from './Flex.individualGaps';
+const FlexWithIndividualGapsExample = withThemeProvider(
+  FlexWithIndividualGapsExampleRaw,
+);
+export { FlexWithIndividualGapsExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as FooterMainExampleRaw } from './Footer.main';
