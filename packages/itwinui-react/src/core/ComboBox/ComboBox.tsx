@@ -110,7 +110,8 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: React.ComponentProps<'div'>;
+  dropdownMenuProps?: React.ComponentProps<'div'> &
+    Pick<Parameters<typeof usePopover>['0'], 'middleware'>;
   /**
    * End icon props.
    */
@@ -197,7 +198,7 @@ export const ComboBox = React.forwardRef(
       filterFunction = defaultFilterFunction,
       inputProps,
       endIconProps,
-      dropdownMenuProps,
+      dropdownMenuProps: { middleware, ...dropdownMenuProps } = {},
       emptyStateMessage = 'No options found',
       itemRenderer,
       enableVirtualization = false,
@@ -572,7 +573,10 @@ export const ComboBox = React.forwardRef(
       visible: isOpen,
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
-      middleware: { size: { maxHeight: 'var(--iui-menu-max-height)' } },
+      middleware: {
+        size: { maxHeight: 'var(--iui-menu-max-height)' },
+        ...middleware,
+      },
       closeOnOutsideClick: true,
       interactions: { click: false, focus: true },
     });
