@@ -19,7 +19,7 @@ To turn off the default portaling behavior, use `portal: false`.
 ```
 
 ```jsx
-<ComboBox
+<Select
   options={[…]}
   popoverProps={{ portal: false }}
 />
