@@ -6,13 +6,63 @@ thumbnail: Toast
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='toasts--positive' />
-
 <LiveExample src='Toast.main.jsx'>
   <AllExamples.ToastMainExample client:load />
 </LiveExample>
 
 A toast notification provides a brief message about app processes at the top of the screen. Because these messages are so prominent, we need to be careful not to overuse or misuse them.
+
+## Variants
+
+### Status
+
+A toast message can come with a status such as:
+
+- `positive`
+- `negative`
+- `warning`
+- `informational`
+
+<LiveExample src='Toast.positive.jsx'>
+  <AllExamples.ToastPositiveExample client:load />
+</LiveExample>
+
+<LiveExample src='Toast.negative.jsx'>
+  <AllExamples.ToastNegativeExample client:load />
+</LiveExample>
+
+<LiveExample src='Toast.warning.jsx'>
+  <AllExamples.ToastWarningExample client:load />
+</LiveExample>
+
+<LiveExample src='Toast.informational.jsx'>
+  <AllExamples.ToastInformationalExample client:load />
+</LiveExample>
+
+### Position changed
+
+The toast position can be customized using the `placement` prop, which is default to `top`. The available `placement` values are:
+
+- `bottom-end`
+- `top`
+- `top-start`
+- `top-end`
+- `bottom`
+- `bottom-start`
+
+`Start` indicates left side of viewport. `End` - right side of viewport.
+
+<LiveExample src='Toast.positionChanged.jsx'>
+  <AllExamples.ToastPositionChangedExample client:load />
+</LiveExample>
+
+### Anchor to button
+
+Use `animateOutTo` to set the direction to which the toast goes when closing.
+
+<LiveExample src='Toast.anchorToButton.jsx'>
+  <AllExamples.ToastAnchorToButtonExample client:load />
+</LiveExample>
 
 ## Props
 

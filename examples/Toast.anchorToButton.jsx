@@ -3,29 +3,41 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { useRef } from 'react';
 import { useToaster, Button } from '@itwin/itwinui-react';
 
 export default () => {
   const toaster = useToaster();
+  const buttonRef = useRef(null);
 
   return (
     <div className='demo-container'>
       <Button
+        ref={buttonRef}
+        styleType='high-visibility'
         onClick={() => {
           toaster.setSettings({
-            placement: 'bottom-end',
-            order: 'ascending',
+            placement: 'top-end',
+            order: 'descending',
           });
-          toaster.positive('Job processing completed.', {
+          toaster.positive('This is a positive toast message', {
+            duration: 7000,
             hasCloseButton: true,
             link: {
-              onClick: () => {},
-              title: 'View the report',
+              title: 'Link',
+              onClick: () => {
+                alert('Link was clicked!');
+              },
             },
+            type: 'temporary',
+            onRemove: () => {
+              console.log('Toast removed!');
+            },
+            animateOutTo: buttonRef.current,
           });
         }}
       >
-        Open toast
+        Toast
       </Button>
       <Button
         style={{

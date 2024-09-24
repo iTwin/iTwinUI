@@ -11,21 +11,29 @@ export default () => {
   return (
     <div className='demo-container'>
       <Button
+        styleType='high-visibility'
         onClick={() => {
           toaster.setSettings({
-            placement: 'bottom-end',
-            order: 'ascending',
+            placement: 'top',
+            order: 'descending',
           });
-          toaster.positive('Job processing completed.', {
+          toaster.warning('This is a warning toast message.', {
+            duration: 7000,
             hasCloseButton: true,
             link: {
-              onClick: () => {},
-              title: 'View the report',
+              title: 'Link',
+              onClick: () => {
+                alert('Link was clicked!');
+              },
+            },
+            type: 'temporary',
+            onRemove: () => {
+              console.log('Toast removed!');
             },
           });
         }}
       >
-        Open toast
+        Warning
       </Button>
       <Button
         style={{
