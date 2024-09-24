@@ -499,6 +499,12 @@ const DropdownMenuContentExample = withThemeProvider(
 );
 export { DropdownMenuContentExample };
 
+import { default as DropdownMenuHideMiddlewareExampleRaw } from './DropdownMenu.hidemiddleware';
+const DropdownMenuHideMiddlewareExample = withThemeProvider(
+  DropdownMenuHideMiddlewareExampleRaw,
+);
+export { DropdownMenuHideMiddlewareExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as ExpandableBlockMainExampleRaw } from './ExpandableBlock.main';
