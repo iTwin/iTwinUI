@@ -21,6 +21,7 @@ import {
 import type {
   CommonProps,
   PolymorphicForwardRefComponent,
+  PortalProps,
 } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
 import { SelectTagContainer } from './SelectTagContainer.js';
@@ -293,7 +294,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     multiple = false,
     triggerProps,
     status,
-    popoverProps,
+    popoverProps: { portal = true, ...popoverProps } = {},
     // @ts-expect-error -- this prop is disallowed by types but should still be handled at runtime
     styleType,
     ...rest
@@ -490,7 +491,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
       </InputWithIcon>
 
       {popover.open && (
-        <Portal>
+        <Portal portal={portal}>
           <SelectListbox
             defaultFocusedIndex={defaultFocusedIndex}
             className={menuClassName}
@@ -550,7 +551,19 @@ export type CustomSelectProps<T> = SelectCommonProps & {
     | 'placement'
     | 'matchWidth'
     | 'closeOnOutsideClick'
-  >;
+  > & {
+    /**
+     * Middleware options.
+     *
+     * By default, `hide` is enabled. If the floating options get hidden even when they shouldn't (e.g. some custom
+     * styles interfering with the trigger's hide detection) consider disabling the `hide` middleware.
+     *
+     * @see https://floating-ui.com/docs/middleware
+     */
+    middleware?: {
+      hide?: boolean;
+    };
+  } & Pick<PortalProps, 'portal'>;
   /**
    * Props to pass to the select button (trigger) element.
    */
