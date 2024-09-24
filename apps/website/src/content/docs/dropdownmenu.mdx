@@ -74,6 +74,27 @@ The menu can contain extra content, including both text and additional selectabl
   <AllExamples.DropdownMenuContentExample client:load />
 </LiveExample>
 
+### `hide` middleware
+
+By default, the menu is hidden when the trigger is hidden (e.g. out of the scrollport/viewport). This is useful when the trigger element is scrolled out of view.
+
+<LiveExample src='DropdownMenu.hidemiddleware.jsx'>
+  <AllExamples.DropdownMenuHideMiddlewareExample client:load />
+</LiveExample>
+
+If the menu gets hidden even when it shouldn't (e.g. due to some custom styles interfering with the trigger's hide detection), consider disabling the `hide` middleware.
+
+```jsx {4}
+<DropdownMenu
+  …
+  middleware={{
+    hide: false,
+  }}
+>
+  …
+</DropdownMenu>
+```
+
 ## Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/DropdownMenu/DropdownMenu.d.ts' />
