@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useRef } from 'react';
-import { useRef } from 'react';
 import { useToaster, Button } from '@itwin/itwinui-react';
 
 export default () => {
