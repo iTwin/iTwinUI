@@ -65,7 +65,7 @@ export default () => {
 
   return (
     <Button styleType='high-visibility' onClick={displayProcessToast}>
-      Toast
+      Start process
     </Button>
   );
 };

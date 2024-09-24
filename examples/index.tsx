@@ -1295,7 +1295,7 @@ const ToastAnchorToButtonExample = withThemeProvider(
 );
 export { ToastAnchorToButtonExample };
 
-import { default as ToastCloseIndividualExampleRaw } from './Toast.anchorToButton';
+import { default as ToastCloseIndividualExampleRaw } from './Toast.closeIndividual';
 const ToastCloseIndividualExample = withThemeProvider(
   ToastCloseIndividualExampleRaw,
 );
