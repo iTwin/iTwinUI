@@ -17,7 +17,11 @@ import {
   useControlledState,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
-import type { InputContainerProps, CommonProps } from '../../utils/index.js';
+import type {
+  InputContainerProps,
+  CommonProps,
+  PortalProps,
+} from '../../utils/index.js';
 import { ComboBoxRefsContext, ComboBoxStateContext } from './helpers.js';
 import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 import { ComboBoxInput } from './ComboBoxInput.js';
@@ -111,7 +115,8 @@ export type ComboBoxProps<T> = {
    * Props to customize dropdown menu behavior.
    */
   dropdownMenuProps?: React.ComponentProps<'div'> &
-    Pick<Parameters<typeof usePopover>['0'], 'middleware'>;
+    Pick<Parameters<typeof usePopover>['0'], 'middleware'> &
+    Pick<PortalProps, 'portal'>;
   /**
    * End icon props.
    */
