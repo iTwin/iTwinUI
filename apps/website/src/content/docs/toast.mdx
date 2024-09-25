@@ -60,7 +60,7 @@ When setting the `hasCloseButton` to `true`, each toast will be displayed with a
   <AllExamples.ToastCloseIndividualExample client:load />
 </LiveExample>
 
-Closing also depends on which type of toast you are using. Persisting toasts will not be closed automatically, and will contain a close button. Temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `persisting` or `temporary` into the `type` prop.
+Closing also depends on which type of toast you are using, without the use of `hasCloseButton`. Persisting toasts will not be closed automatically, and will contain a close button. Temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `persisting` or `temporary` into the `type` prop.
 
 To close all toasters on viewport at once, use `closeAll()`.
 
