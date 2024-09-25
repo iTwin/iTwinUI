@@ -17,6 +17,7 @@ export default () => {
           setCurrentDate(date);
         }}
         applyBackground={false}
+        showDatesOutsideMonth={false}
       />
       <div className='demo-label'>{currentDate.toDateString()}</div>
     </Wrapper>
