@@ -1289,6 +1289,10 @@ const ToastCloseIndividualExample = withThemeProvider(
 );
 export { ToastCloseIndividualExample };
 
+import { default as ToastTypeExampleRaw } from './Toast.type';
+const ToastTypeExample = withThemeProvider(ToastTypeExampleRaw);
+export { ToastTypeExample };
+
 import { default as ToastCloseAllExampleRaw } from './Toast.closeAll';
 const ToastCloseAllExample = withThemeProvider(ToastCloseAllExampleRaw);
 export { ToastCloseAllExample };
