@@ -593,24 +593,6 @@ import { default as FlexMainExampleRaw } from './Flex.main';
 const FlexMainExample = withThemeProvider(FlexMainExampleRaw);
 export { FlexMainExample };
 
-import { default as FlexJustifyContentExampleRaw } from './Flex.justifyContent';
-const FlexJustifyContentExample = withThemeProvider(
-  FlexJustifyContentExampleRaw,
-);
-export { FlexJustifyContentExample };
-
-import { default as FlexAlignItemsExampleRaw } from './Flex.alignItems';
-const FlexAlignItemsExample = withThemeProvider(FlexAlignItemsExampleRaw);
-export { FlexAlignItemsExample };
-
-import { default as FlexDirectionExampleRaw } from './Flex.direction';
-const FlexDirectionExample = withThemeProvider(FlexDirectionExampleRaw);
-export { FlexDirectionExample };
-
-import { default as FlexWrapExampleRaw } from './Flex.wrap';
-const FlexWrapExample = withThemeProvider(FlexWrapExampleRaw);
-export { FlexWrapExample };
-
 import { default as FlexSpacerExampleRaw } from './Flex.spacer';
 const FlexSpacerExample = withThemeProvider(FlexSpacerExampleRaw);
 export { FlexSpacerExample };
