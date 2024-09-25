@@ -8,13 +8,12 @@ import { useToaster, Button } from '@itwin/itwinui-react';
 export default () => {
   const toaster = useToaster();
 
-  const displayPositionChangedToast = () => {
+  const displayToast = () => {
     toaster.setSettings({
-      placement: 'bottom-end',
-      order: 'descending',
+      placement: 'top',
+      order: 'ascending',
     });
-    toaster.informational('This is a negative toast message.', {
-      duration: 7000,
+    toaster.positive('Job processing completed.', {
       hasCloseButton: true,
       link: {
         title: 'Link',
@@ -22,27 +21,12 @@ export default () => {
           alert('Link was clicked!');
         },
       },
-      type: 'temporary',
-      onRemove: () => {
-        console.log('Toast removed!');
-      },
     });
   };
 
   return (
     <div className='demo-container'>
-      <Button styleType='high-visibility' onClick={displayPositionChangedToast}>
-        Toast
-      </Button>
-      <Button
-        style={{
-          display: 'block',
-          marginTop: 16,
-        }}
-        onClick={() => toaster.closeAll()}
-      >
-        Close All
-      </Button>
+      <Button onClick={displayToast}>Toast with link</Button>
     </div>
   );
 };

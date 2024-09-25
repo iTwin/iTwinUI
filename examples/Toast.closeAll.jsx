@@ -8,41 +8,21 @@ import { useToaster, Button } from '@itwin/itwinui-react';
 export default () => {
   const toaster = useToaster();
 
-  const displayPositiveToast = () => {
+  const displayToast = () => {
     toaster.setSettings({
       placement: 'top',
-      order: 'descending',
+      order: 'ascending',
     });
-    toaster.positive('This is a positive toast message', {
-      duration: 7000,
+    toaster.positive('Job processing completed.', {
       hasCloseButton: true,
-      link: {
-        title: 'Link',
-        onClick: () => {
-          alert('Link was clicked!');
-        },
-      },
-      type: 'temporary',
-      onRemove: () => {
-        console.log('Toast removed!');
-      },
     });
   };
 
   return (
     <div className='demo-container'>
-      <Button styleType='high-visibility' onClick={displayPositiveToast}>
-        Positive
-      </Button>
-      <Button
-        style={{
-          display: 'block',
-          marginTop: 16,
-        }}
-        onClick={() => toaster.closeAll()}
-      >
-        Close All
-      </Button>
+      <Button onClick={displayToast}>Open toast 1</Button>
+      <Button onClick={displayToast}>Open toast 2</Button>
+      <Button onClick={() => toaster.closeAll()}>Close All</Button>
     </div>
   );
 };

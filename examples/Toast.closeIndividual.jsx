@@ -31,12 +31,6 @@ export default () => {
       {
         duration: 7000,
         hasCloseButton: true,
-        link: {
-          title: 'Link',
-          onClick: () => {
-            alert('Link was clicked!');
-          },
-        },
         type: 'persisting',
         onRemove: () => {
           console.log('Toast removed!');
@@ -49,12 +43,6 @@ export default () => {
       toaster.positive('Process completed', {
         duration: 7000,
         hasCloseButton: true,
-        link: {
-          title: 'Link',
-          onClick: () => {
-            alert('Link was clicked!');
-          },
-        },
         type: 'persisting',
         onRemove: () => {
           console.log('Toast removed!');

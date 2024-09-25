@@ -8,20 +8,14 @@ import { useToaster, Button } from '@itwin/itwinui-react';
 export default () => {
   const toaster = useToaster();
 
-  const displayInformationalToast = () => {
+  const displayBottomEndToast = () => {
     toaster.setSettings({
-      placement: 'top',
+      placement: 'bottom-end',
       order: 'descending',
     });
-    toaster.informational('This is an informational toast message.', {
+    toaster.informational('This is a negative toast message.', {
       duration: 7000,
       hasCloseButton: true,
-      link: {
-        title: 'Link',
-        onClick: () => {
-          alert('Link was clicked!');
-        },
-      },
       type: 'temporary',
       onRemove: () => {
         console.log('Toast removed!');
@@ -31,18 +25,7 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Button styleType='high-visibility' onClick={displayInformationalToast}>
-        Informational
-      </Button>
-      <Button
-        style={{
-          display: 'block',
-          marginTop: 16,
-        }}
-        onClick={() => toaster.closeAll()}
-      >
-        Close All
-      </Button>
+      <Button onClick={displayBottomEndToast}>Bottom-end toast</Button>
     </div>
   );
 };

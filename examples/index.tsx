@@ -1265,29 +1265,17 @@ import { default as ToastMainExampleRaw } from './Toast.main';
 const ToastMainExample = withThemeProvider(ToastMainExampleRaw);
 export { ToastMainExample };
 
-import { default as ToastPositiveExampleRaw } from './Toast.positive';
-const ToastPositiveExample = withThemeProvider(ToastPositiveExampleRaw);
-export { ToastPositiveExample };
+import { default as ToastStatusExampleRaw } from './Toast.status';
+const ToastStatusExample = withThemeProvider(ToastStatusExampleRaw);
+export { ToastStatusExample };
 
-import { default as ToastNegativeExampleRaw } from './Toast.negative';
-const ToastNegativeExample = withThemeProvider(ToastNegativeExampleRaw);
-export { ToastNegativeExample };
+import { default as ToastLinkExampleRaw } from './Toast.link';
+const ToastLinkExample = withThemeProvider(ToastLinkExampleRaw);
+export { ToastLinkExample };
 
-import { default as ToastWarningExampleRaw } from './Toast.warning';
-const ToastWarningExample = withThemeProvider(ToastWarningExampleRaw);
-export { ToastWarningExample };
-
-import { default as ToastInformationalExampleRaw } from './Toast.informational';
-const ToastInformationalExample = withThemeProvider(
-  ToastInformationalExampleRaw,
-);
-export { ToastInformationalExample };
-
-import { default as ToastPositionChangedExampleRaw } from './Toast.positionChanged';
-const ToastPositionChangedExample = withThemeProvider(
-  ToastPositionChangedExampleRaw,
-);
-export { ToastPositionChangedExample };
+import { default as ToastPositioningExampleRaw } from './Toast.positioning';
+const ToastPositioningExample = withThemeProvider(ToastPositioningExampleRaw);
+export { ToastPositioningExample };
 
 import { default as ToastAnchorToButtonExampleRaw } from './Toast.anchorToButton';
 const ToastAnchorToButtonExample = withThemeProvider(
@@ -1300,6 +1288,10 @@ const ToastCloseIndividualExample = withThemeProvider(
   ToastCloseIndividualExampleRaw,
 );
 export { ToastCloseIndividualExample };
+
+import { default as ToastCloseAllExampleRaw } from './Toast.closeAll';
+const ToastCloseAllExample = withThemeProvider(ToastCloseAllExampleRaw);
+export { ToastCloseAllExample };
 
 // ----------------------------------------------------------------------------
 

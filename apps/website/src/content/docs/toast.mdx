@@ -1,77 +1,77 @@
 ---
 title: Toast
-description: A Toast is a non modal, unobtrusive window element used to display small amount of information to a user.
+description: A toast is a non modal, unobtrusive window element used to display small amount of information to a user. Because these messages are so prominent, we need to be careful not to overuse or misuse them.
 thumbnail: Toast
 ---
 
 <p>{frontmatter.description}</p>
 
+## Usage
+
+Initialize your toast using the `useToaster` hook, and customize its `placement`, `order` and other options via the `setSettings` method. To specify the content of the toast, pass the toast message into the status method along with further control options.
+
 <LiveExample src='Toast.main.jsx'>
   <AllExamples.ToastMainExample client:load />
 </LiveExample>
 
-A toast notification provides a brief message about app processes at the top of the screen. Because these messages are so prominent, we need to be careful not to overuse or misuse them.
-
-## Variants
-
 ### Status
 
-A toast message can come with a status such as:
+There are four available statuses that comes with toast message:
 
 - `positive`
 - `negative`
 - `warning`
 - `informational`
 
-<LiveExample src='Toast.positive.jsx'>
-  <AllExamples.ToastPositiveExample client:load />
+<LiveExample src='Toast.status.jsx'>
+  <AllExamples.ToastStatusExample client:load />
 </LiveExample>
 
-<LiveExample src='Toast.negative.jsx'>
-  <AllExamples.ToastNegativeExample client:load />
+### Link
+
+The toast notification can come with a hyperlink using the `link` prop. This link allows users to take further action directly from the toast, such as navigating to another page or triggering a specific function.
+
+<LiveExample src='Toast.link.jsx'>
+  <AllExamples.ToastLinkExample client:load />
 </LiveExample>
 
-<LiveExample src='Toast.warning.jsx'>
-  <AllExamples.ToastWarningExample client:load />
-</LiveExample>
-
-<LiveExample src='Toast.informational.jsx'>
-  <AllExamples.ToastInformationalExample client:load />
-</LiveExample>
-
-### Position changed
+### Positioning
 
 The toast position can be customized using the `placement` prop, which is default to `top`. The available `placement` values are:
 
-- `bottom-end`
 - `top`
 - `top-start`
 - `top-end`
 - `bottom`
 - `bottom-start`
+- `bottom-end`
 
-`Start` indicates left side of viewport. `End` - right side of viewport.
+`start` indicates left side of viewport, while `end` represents the right side of viewport.
 
-<LiveExample src='Toast.positionChanged.jsx'>
-  <AllExamples.ToastPositionChangedExample client:load />
+<LiveExample src='Toast.positioning.jsx'>
+  <AllExamples.ToastPositioningExample client:load />
 </LiveExample>
 
-### Anchor to button
+### Closing toasts
 
-Use `animateOutTo` to set the direction to which the toast goes when closing.
-
-<LiveExample src='Toast.anchorToButton.jsx'>
-  <AllExamples.ToastAnchorToButtonExample client:load />
-</LiveExample>
-
-## Usage
-
-### Close individual
-
-Each toast can be closed individually and chained after one another to display multiple messages.
+When setting the `hasCloseButton` to `true`, each toast will be displayed with a close button, which allows you to close the toast manually. Additionally, to implement further actions upon each toast closing or chain after one another to display multiple messages, you can retrieve the `close()` function returned from the status method.
 
 <LiveExample src='Toast.closeIndividual.jsx'>
   <AllExamples.ToastCloseIndividualExample client:load />
+</LiveExample>
+
+Closing also depends on which type of toast you are using. Persisting toasts will not be closed automatically, and will contain a close button. Temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `persisting` or `temporary` into the `type` prop.
+
+To close all toasters on viewport at once, use `closeAll()`.
+
+<LiveExample src='Toast.closeAll.jsx'>
+  <AllExamples.ToastCloseAllExample client:load />
+</LiveExample>
+
+The `animateOutTo` prop allows you to control the direction to which the toast animates out when closing. Specifically, it helps determine an "anchor" element that the toast will go towards when it is dismissed by pointing to a ref passed into that element.
+
+<LiveExample src='Toast.anchorToButton.jsx'>
+  <AllExamples.ToastAnchorToButtonExample client:load />
 </LiveExample>
 
 ## Props

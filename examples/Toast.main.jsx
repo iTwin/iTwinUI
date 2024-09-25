@@ -10,30 +10,17 @@ export default () => {
 
   const displayToast = () => {
     toaster.setSettings({
-      placement: 'bottom-end',
+      placement: 'top',
       order: 'ascending',
     });
     toaster.positive('Job processing completed.', {
       hasCloseButton: true,
-      link: {
-        onClick: () => {},
-        title: 'View the report',
-      },
     });
   };
 
   return (
     <div className='demo-container'>
       <Button onClick={displayToast}>Open toast</Button>
-      <Button
-        style={{
-          display: 'block',
-          marginTop: 16,
-        }}
-        onClick={() => toaster.closeAll()}
-      >
-        Close All
-      </Button>
     </div>
   );
 };

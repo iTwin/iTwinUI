@@ -11,18 +11,12 @@ export default () => {
 
   const displayAnchorToButtonToast = () => {
     toaster.setSettings({
-      placement: 'top-end',
+      placement: 'top',
       order: 'descending',
     });
     toaster.positive('This is a positive toast message', {
       duration: 7000,
       hasCloseButton: true,
-      link: {
-        title: 'Link',
-        onClick: () => {
-          alert('Link was clicked!');
-        },
-      },
       type: 'temporary',
       onRemove: () => {
         console.log('Toast removed!');
@@ -38,16 +32,7 @@ export default () => {
         styleType='high-visibility'
         onClick={displayAnchorToButtonToast}
       >
-        Toast
-      </Button>
-      <Button
-        style={{
-          display: 'block',
-          marginTop: 16,
-        }}
-        onClick={() => toaster.closeAll()}
-      >
-        Close All
+        Anchor to button
       </Button>
     </div>
   );
