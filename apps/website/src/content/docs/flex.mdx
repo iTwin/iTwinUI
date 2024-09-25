@@ -1,19 +1,47 @@
 ---
 title: Flex
-description: A utility component to work with CSS flexbox and iTwinUI design tokens.
+description: A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens. Supports all flex properties. Can be used with or without `Flex.Item` and `Flex.Spacer` subcomponents.
 thumbnail: #TODO
 group: utilities
 ---
 
 <p>{frontmatter.description}</p>
 
+## Usage
+
+Wrap `Flex` around the components you want to be the children of the flex container. To set a certain universal space between the children, pass iTwinUI size tokens (e.g. `x`, `xs`) into the `gap` prop. The `gap` prop is set to be `xs` by default.
+
 <LiveExample src='Flex.main.jsx'>
   <AllExamples.FlexMainExample client:load />
 </LiveExample>
 
-A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens. Supports all flex properties. Can be used with or without `Flex.Item` and `Flex.Spacer` subcomponents.
+### Flex properties
 
-## Usage
+The `Flex` container offers properties which reflect similar behaviors to the CSS flexbox, such as `alignItem`, `justifyContent`, `flexDirection`, and `flexWrap`.
+
+#### `justifyContent`
+
+<LiveExample src='Flex.justifyContent.jsx'>
+  <AllExamples.FlexJustifyContentExample client:load />
+</LiveExample>
+
+#### `alignItems`
+
+<LiveExample src='Flex.alignItems.jsx'>
+  <AllExamples.FlexAlignItemsExample client:load />
+</LiveExample>
+
+#### `flexDirection`
+
+<LiveExample src='Flex.direction.jsx'>
+  <AllExamples.FlexDirectionExample client:load />
+</LiveExample>
+
+#### `flexWrap`
+
+<LiveExample src='Flex.wrap.jsx'>
+  <AllExamples.FlexWrapExample client:load />
+</LiveExample>
 
 ### Spacer
 

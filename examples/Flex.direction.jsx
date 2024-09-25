@@ -7,7 +7,7 @@ import { Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex gap='l'>
+    <Flex flexDirection='column-reverse'>
       <MyItem>1</MyItem>
       <MyItem>2</MyItem>
       <MyItem>3</MyItem>

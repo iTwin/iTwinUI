@@ -7,10 +7,13 @@ import { Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex gap='l'>
+    <Flex className='demo-container' flexWrap='wrap'>
       <MyItem>1</MyItem>
       <MyItem>2</MyItem>
       <MyItem>3</MyItem>
+      <MyItem>4</MyItem>
+      <MyItem>5</MyItem>
+      <MyItem>6</MyItem>
     </Flex>
   );
 };
