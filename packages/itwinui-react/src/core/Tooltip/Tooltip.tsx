@@ -24,7 +24,6 @@ import {
 import type { Placement } from '@floating-ui/react';
 import {
   Box,
-  FloatingDelayGroupContext,
   Portal,
   cloneElementWithRef,
   useControlledState,
@@ -194,19 +193,11 @@ const useTooltip = (options: TooltipOptions = {}) => {
     [ariaStrategy, id],
   );
 
-  const floatingDelayGroupExists = React.useContext(FloatingDelayGroupContext);
-  const { delay: delayGroupDelay } = useDelayGroup(floating.context, {
-    id: useId(),
-  });
-
-  // If there is a FloatingDelayGroup up the tree, use its delay
-  const delay = floatingDelayGroupExists
-    ? delayGroupDelay
-    : { open: 50, close: 250 };
+  const { delay } = useDelayGroup(floating.context, { id: useId() });
 
   const interactions = useInteractions([
     useHover(floating.context, {
-      delay,
+      delay: delay !== 0 ? delay : { open: 50, close: 250 },
       handleClose: safePolygon({ buffer: -Infinity }),
       move: false,
     }),

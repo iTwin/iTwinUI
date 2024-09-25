@@ -4,17 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useOverflow,
-  useMergedRefs,
-  Box,
-  FloatingDelayGroup,
-} from '../../utils/index.js';
+import { useOverflow, useMergedRefs, Box } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
 } from '../../utils/index.js';
-import { Composite, CompositeItem } from '@floating-ui/react';
+import {
+  Composite,
+  CompositeItem,
+  FloatingDelayGroup,
+} from '@floating-ui/react';
 
 // ----------------------------------------------------------------------------
 
