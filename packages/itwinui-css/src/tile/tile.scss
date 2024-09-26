@@ -224,7 +224,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   flex-shrink: 0;
   align-items: center;
   font-size: var(--iui-font-size-2);
-  user-select: all;
   color: var(--_iui-tile-title-text-color);
   padding-inline: var(--iui-size-s);
 }

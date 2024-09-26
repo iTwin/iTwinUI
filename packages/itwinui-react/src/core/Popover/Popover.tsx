@@ -39,6 +39,7 @@ import {
   Box,
   ShadowRoot,
   cloneElementWithRef,
+  isUnitTest,
   mergeEventHandlers,
   useControlledState,
   useId,
@@ -73,7 +74,10 @@ type PopoverOptions = {
   /**
    * Middleware options.
    *
-   * By default, `flip`, `shift` and `size` are enabled.
+   * By default, `flip`, `shift`, `size`, and `hide` are enabled.
+   *
+   * If the floating content gets hidden even when it shouldn't (e.g. some custom styles interfering with the trigger's
+   * hide detection) consider disabling the `hide` middleware.
    *
    * @see https://floating-ui.com/docs/middleware
    */
@@ -170,13 +174,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 
   const mergedInteractions = React.useMemo(
     () => ({
-      ...{
-        click: true,
-        dismiss: true,
-        hover: false,
-        focus: false,
-      },
       ...interactionsProp,
+      ...{
+        click: interactionsProp?.click ?? true,
+        dismiss: interactionsProp?.dismiss ?? true,
+        hover: interactionsProp?.hover ?? false,
+        focus: interactionsProp?.focus ?? false,
+      },
     }),
     [interactionsProp],
   );
@@ -184,7 +188,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const tree = useFloatingTree();
 
   const middleware = React.useMemo(
-    () => ({ flip: true, shift: true, size: true, ...options.middleware }),
+    () => ({
+      ...options.middleware,
+      flip: options.middleware?.flip ?? true,
+      shift: options.middleware?.shift ?? true,
+      size: options.middleware?.size ?? true,
+      hide: options.middleware?.hide || !isUnitTest, // default is true, except in fake DOM environments
+    }),
     [options.middleware],
   );
 
@@ -287,17 +297,23 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
                 maxInlineSize: `min(${referenceWidth * 2}px, 90vw)`,
               }
             : {}),
+          ...(middleware.hide &&
+            floating.middlewareData.hide?.referenceHidden && {
+              visibility: 'hidden',
+            }),
           ...userProps?.style,
         },
       }),
     [
-      floating.floatingStyles,
       interactions,
-      matchWidth,
-      referenceWidth,
+      floating.floatingStyles,
+      floating.middlewareData.hide?.referenceHidden,
       middleware.size,
+      middleware.hide,
       availableHeight,
       maxHeight,
+      matchWidth,
+      referenceWidth,
     ],
   );
 

@@ -115,7 +115,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 };
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
-  const { className, children, style, ...rest } = props;
+  const { className, children, style, portal = true, ...rest } = props;
   const { id, enableVirtualization, popover } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
@@ -124,7 +124,7 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
 
   return (
     popover.open && (
-      <Portal portal>
+      <Portal portal={portal}>
         <List
           as='div'
           className={cx('iui-menu', className)}

@@ -197,7 +197,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const interactions = useInteractions([
     useHover(floating.context, {
-      delay: delay ?? { open: 50, close: 250 },
+      delay: delay !== 0 ? delay : { open: 50, close: 250 }, // If FloatingDelayGroup exists, use its delay
       handleClose: safePolygon({ buffer: -Infinity }),
       move: false,
     }),

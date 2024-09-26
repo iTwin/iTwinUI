@@ -1,5 +1,79 @@
 # Changelog
 
+## 3.15.1
+
+### Patch Changes
+
+- [#2263](https://github.com/iTwin/iTwinUI/pull/2263): Default `Tooltip` delay is now correctly applied.
+- [#2266](https://github.com/iTwin/iTwinUI/pull/2266): All instances of `user-select: all` have been removed.
+  - Affected components: `Code`, `InformationPanel`, `Slider`, `Stepper`, `Tile`.
+
+## 3.15.0
+
+### Minor Changes
+
+- [#2233](https://github.com/iTwin/iTwinUI/pull/2233): `Popover` now enables the [`hide` middleware](https://floating-ui.com/docs/hide) to hide the floating content when the trigger is hidden.
+  - This also affects other popover-like components (e.g. `Select`, `ComboBox`, `DropdownMenu`, `SplitButton`).
+  - If the floating content gets hidden even when it shouldn't (e.g. due to some custom styles interfering with the trigger's hide detection), consider disabling the `hide` middleware.
+
+- [#2233](https://github.com/iTwin/iTwinUI/pull/2233): Added a new `dropdownMenuProps` prop to `SplitButton` for additional control over the menu (e.g. to disable the [`hide` middleware](https://floating-ui.com/docs/hide)).
+
+- [#2259](https://github.com/iTwin/iTwinUI/pull/2259): `ComboBox` and `Select` now allow customizing the portal behavior of the floating listbox.
+
+  - To customize `ComboBox` portaling behavior, use `dropdownMenuProps.portal`.
+  - To customize `Select` portaling behavior, use `popoverProps.portal`.
+
+  <details>
+  <summary>Example</summary>
+
+  To turn off the default portaling behavior, use `portal: false`.
+
+  ```jsx
+  <ComboBox
+    options={[…]}
+    dropdownMenuProps={{ portal: false }}
+  />
+  ```
+
+  ```jsx
+  <Select
+    options={[…]}
+    popoverProps={{ portal: false }}
+  />
+  ```
+
+  </details>
+
+- [#2238](https://github.com/iTwin/iTwinUI/pull/2238): Passing `styleType="borderless"` to `SearchBox.ExpandButton` now works as expected. This is because collapsed `SearchBox` will now hide its border and background in favor of the ones from `SearchBox.ExpandButton`.
+
+  <details>
+  <summary>Example</summary>
+
+  ```diff
+  <SearchBox expandable>
+    <SearchBox.CollapsedState>
+  -     <SearchBox.ExpandButton/>
+  +     <SearchBox.ExpandButton styleType="borderless"/>
+    </SearchBox.CollapsedState>
+    <SearchBox.ExpandedState>…</SearchBox.ExpandedState>
+  </SearchBox>
+  ```
+
+  </details>
+
+- [#2211](https://github.com/iTwin/iTwinUI/pull/2211): Added the ability to have custom `props` for each sub-component of `ColorPicker`.
+  - New **ColorBuilder** props: `colorFieldProps`, `colorDotProps`, `opacitySliderProps`, and `hueSliderProps`.
+  - New **ColorInputPanel** props: `panelLabelProps`, `colorInputContainerProps`, `inputFieldsGroupProps` and `swapColorFormatButtonProps`.
+  - New **ColorPalette** props: `labelProps`, and `paletteContainerProps`.
+
+### Patch Changes
+
+- [#2208](https://github.com/iTwin/iTwinUI/pull/2208): Fixed an issue in `Table` where `subComponent` was broken when enabling virtualization.
+- [#2239](https://github.com/iTwin/iTwinUI/pull/2239): Fixed `scrollToRow` in un-virtualized `Table`. In virtualized `Table`, `scrollToRow` now scrolls to the top for consistent behavior.
+- [#2233](https://github.com/iTwin/iTwinUI/pull/2233): `Popover`'s `middleware.hide` prop is now respected.
+- [#2208](https://github.com/iTwin/iTwinUI/pull/2208): `Table`'s animation to show and hide its `subComponent` is now removed.
+- [#2252](https://github.com/iTwin/iTwinUI/pull/2252): Fixed an issue where some components (e.g. `VisuallyHidden` inside `ProgressRadial`) were losing their styles when reparented into a different window.
+
 ## 3.14.2
 
 ### Patch Changes
