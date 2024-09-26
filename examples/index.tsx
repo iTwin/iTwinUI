@@ -892,11 +892,47 @@ const ProgressLinearMainExample = withThemeProvider(
 );
 export { ProgressLinearMainExample };
 
+import { default as ProgressLinearValueExampleRaw } from './ProgressLinear.value';
+const ProgressLinearValueExample = withThemeProvider(
+  ProgressLinearValueExampleRaw,
+);
+export { ProgressLinearValueExample };
+
+import { default as ProgressLinearLabelExampleRaw } from './ProgressLinear.label';
+const ProgressLinearLabelExample = withThemeProvider(
+  ProgressLinearLabelExampleRaw,
+);
+export { ProgressLinearLabelExample };
+
+import { default as ProgressLinearStatusExampleRaw } from './ProgressLinear.status';
+const ProgressLinearStatusExample = withThemeProvider(
+  ProgressLinearStatusExampleRaw,
+);
+export { ProgressLinearStatusExample };
+
 import { default as ProgressRadialMainExampleRaw } from './ProgressRadial.main';
 const ProgressRadialMainExample = withThemeProvider(
   ProgressRadialMainExampleRaw,
 );
 export { ProgressRadialMainExample };
+
+import { default as ProgressRadialSizeExampleRaw } from './ProgressRadial.size';
+const ProgressRadialSizeExample = withThemeProvider(
+  ProgressRadialSizeExampleRaw,
+);
+export { ProgressRadialSizeExample };
+
+import { default as ProgressRadialContentExampleRaw } from './ProgressRadial.content';
+const ProgressRadialContentExample = withThemeProvider(
+  ProgressRadialContentExampleRaw,
+);
+export { ProgressRadialContentExample };
+
+import { default as ProgressRadialStatusExampleRaw } from './ProgressRadial.status';
+const ProgressRadialStatusExample = withThemeProvider(
+  ProgressRadialStatusExampleRaw,
+);
+export { ProgressRadialStatusExample };
 
 // ----------------------------------------------------------------------------
 
