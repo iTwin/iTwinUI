@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.15.1
+
+### Patch Changes
+
+- [#2263](https://github.com/iTwin/iTwinUI/pull/2263): Default `Tooltip` delay is now correctly applied.
+- [#2266](https://github.com/iTwin/iTwinUI/pull/2266): All instances of `user-select: all` have been removed.
+  - Affected components: `Code`, `InformationPanel`, `Slider`, `Stepper`, `Tile`.
+
 ## 3.15.0
 
 ### Minor Changes

@@ -26,7 +26,7 @@ const sizeTokens = [
 type SizeToken = (typeof sizeTokens)[number];
 
 const getValueForToken = (token?: string) => {
-  if (sizeTokens.includes(token as (typeof sizeTokens)[number])) {
+  if (sizeTokens.includes(token as SizeToken)) {
     return `var(--iui-size-${token})`;
   }
   return token;

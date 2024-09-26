@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import * as React from 'react';
 import { Tooltip } from './Tooltip.js';
 
-it('should toggle the visibility of tooltip on hover', () => {
+it('should toggle the visibility of tooltip on hover', async () => {
   const onVisibleChange = vi.fn();
 
   const { getByText } = render(
@@ -23,11 +23,11 @@ it('should toggle the visibility of tooltip on hover', () => {
   expect(tooltip).toHaveAttribute('popover', 'manual');
 
   fireEvent.mouseEnter(trigger);
-  expect(tooltip).toBeVisible();
+  await waitFor(() => expect(tooltip).toBeVisible());
   expect(onVisibleChange).toBeCalledWith(true);
 
   fireEvent.mouseLeave(trigger);
-  expect(tooltip).not.toBeVisible();
+  await waitFor(() => expect(tooltip).not.toBeVisible());
   expect(onVisibleChange).toBeCalledWith(false);
 });
 
@@ -135,8 +135,6 @@ it.each(['description', 'label', 'none'] as const)(
 );
 
 it('should work with reference prop', async () => {
-  vi.useFakeTimers();
-
   const TestComp = () => {
     const [reference, setReference] = React.useState<HTMLElement | null>(null);
     return (
@@ -155,18 +153,14 @@ it('should work with reference prop', async () => {
   expect(tooltip).not.toBeVisible();
 
   fireEvent.mouseEnter(trigger);
-  expect(tooltip).toBeVisible();
+  await waitFor(() => void expect(tooltip).toBeVisible());
 
   fireEvent.mouseLeave(trigger);
-  expect(tooltip).not.toBeVisible();
+  await waitFor(() => void expect(tooltip).not.toBeVisible());
 
   fireEvent.focus(trigger);
-  act(() => void vi.advanceTimersByTime(50));
-  expect(tooltip).toBeVisible();
+  await waitFor(() => void expect(tooltip).toBeVisible());
 
   fireEvent.blur(trigger);
-  act(() => void vi.advanceTimersByTime(250));
-  expect(tooltip).not.toBeVisible();
-
-  vi.useRealTimers();
+  await waitFor(() => void expect(tooltip).not.toBeVisible());
 });
