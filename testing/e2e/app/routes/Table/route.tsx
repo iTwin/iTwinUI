@@ -95,7 +95,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     minWidths,
     density,
     isSelectable,
-    subRows,
+    rows,
     filter,
     selectSubRows,
     enableVirtualization,
@@ -104,6 +104,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     oneRow,
     stateReducer,
     scrollRow,
+    hasSubComponent,
   };
 };
 
@@ -113,7 +114,6 @@ const Default = ({
   config: ReturnType<typeof getConfigFromSearchParams>;
 }) => {
   const {
-    subRows,
     oneRow,
     empty,
     columnResizeMode,
@@ -128,6 +128,8 @@ const Default = ({
     scrollRow,
     selectSubRows,
     stateReducer,
+    rows,
+    hasSubComponent,
   } = config;
 
   const virtualizedData = React.useMemo(() => {
