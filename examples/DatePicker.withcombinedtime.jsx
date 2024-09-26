@@ -26,18 +26,14 @@ export default () => {
             minuteStep={30}
             use12Hours={true}
             setFocus
+            showDatesOutsideMonth={false}
           />
         }
         placement='bottom-start'
         visible={visible}
         onVisibleChange={setVisible}
       >
-        <IconButton
-          label='Choose date'
-          onClick={() => {
-            setVisible(!visible);
-          }}
-        >
+        <IconButton label='Choose date'>
           <SvgCalendar />
         </IconButton>
       </Popover>
