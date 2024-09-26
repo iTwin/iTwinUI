@@ -1,19 +1,45 @@
 ---
 title: Flex
-description: A utility component to work with CSS flexbox and iTwinUI design tokens.
+description: A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens.
 thumbnail: #TODO
 group: utilities
 ---
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='flex--basic' />
+## Usage
+
+The `Flex` component is a generic container that can be wrapped around the items that need to be laid out using CSS flexbox. These items can be used directly or with [`Flex.Item`](#flex-items) for more granular customization.
+
+`Flex` offers a `gap` prop, which can accept a value corresponding to [iTwinUI size tokens](/docs/variables#size) (e.g. `"x"`, `"xs"`). By default, a `gap` of `"xs"` is used.
 
 <LiveExample src='Flex.main.jsx'>
   <AllExamples.FlexMainExample client:load />
 </LiveExample>
 
-A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens. Supports all flex properties. Can be used with or without `Flex.Item` and `Flex.Spacer` subcomponents.
+The `Flex` component offers props that are equivalent to those of the CSS flexbox, such as `alignItems` (defaults to `"center"`), `justifyContent`, `flexDirection`, and `flexWrap`.
+
+### Spacer
+
+The `Flex.Spacer` subcomponent fills up the available space between flex items. This subcomponent is useful when it is necessary to push certain items to the edges.
+
+<LiveExample src='Flex.spacer.jsx'>
+  <AllExamples.FlexSpacerExample client:load />
+</LiveExample>
+
+### Flex Items
+
+The `Flex.Item` subcomponent allows customizing individual flex items using the `flex`, `alignSelf` and `gapBefore`/`gapAfter` props.
+
+<LiveExample src='Flex.flexItems.jsx'>
+  <AllExamples.FlexWithFlexItemsExample client:load />
+</LiveExample>
+
+The `gapBefore`/`gapAfter` props can used to override the gap at an individual level, for when you need a different gap than the one set in the parent `Flex`.
+
+<LiveExample src='Flex.individualGaps.jsx'>
+  <AllExamples.FlexWithIndividualGapsExample client:load />
+</LiveExample>
 
 ## Props
 
