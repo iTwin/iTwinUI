@@ -9,13 +9,15 @@ group: utilities
 
 ## Usage
 
-Wrap `Flex` around the components that should be the children of the flex container. Set the gap using the `gap` prop with a value of an iTwinUI size token (e.g. `x`, `xs`) or any valid css value (e.g. "1rem"). The default `gap` is `xs`.
+The `Flex` component is a generic container that can be wrapped around the items that need to be laid out using CSS flexbox. These items can be used directly or with [`Flex.Item`](#flex-items) for more granular customization.
+
+`Flex` offers a `gap` prop, which can accept a value corresponding to [iTwinUI size tokens](/docs/variables#size) (e.g. `"x"`, `"xs"`). By default, a `gap` of `"xs"` is used.
 
 <LiveExample src='Flex.main.jsx'>
   <AllExamples.FlexMainExample client:load />
 </LiveExample>
 
-The `Flex` container offers props that are equivalent to those of the CSS flexbox, such as `alignItem`, `justifyContent`, `flexDirection`, and `flexWrap`.
+The `Flex` component offers props that are equivalent to those of the CSS flexbox, such as `alignItems` (defaults to `"center"`), `justifyContent`, `flexDirection`, and `flexWrap`.
 
 ### Spacer
 
@@ -27,7 +29,7 @@ The `Flex.Spacer` subcomponent fills up the available space between flex items. 
 
 ### Flex Items
 
-This `Flex.Item` allows customizing flex items through the `flex`, `alignSelf` and `gapBefore`/`gapAfter` props.
+The `Flex.Item` subcomponent allows customizing individual flex items using the `flex`, `alignSelf` and `gapBefore`/`gapAfter` props.
 
 <LiveExample src='Flex.flexItems.jsx'>
   <AllExamples.FlexWithFlexItemsExample client:load />
