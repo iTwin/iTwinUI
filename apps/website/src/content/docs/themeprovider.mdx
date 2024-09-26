@@ -136,8 +136,8 @@ This works well for applications that already use iTwinUI v3, but it can be tric
 
 To make this easier, `ThemeProvider` can automatically import `styles.css` if it is not already imported. By default, this is enabled when using [`theme='inherit'`](#inheritance).
 
-If you want to override this behavior, you can use the `importCss` prop:
+If you want to override this behavior, you can use the `includeCss` prop:
 
 ```jsx
-<ThemeProvider importCss={false}>…</ThemeProvider>
+<ThemeProvider includeCss={false}>…</ThemeProvider>
 ```

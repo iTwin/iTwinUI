@@ -27,6 +27,7 @@ describe('Breadcrumbs', () => {
         cy.get('button').eq(1).click();
       } else if (testName === 'Custom Overflow Back Button') {
         cy.get('button').eq(1).trigger('mouseenter');
+        cy.wait(60);
       }
 
       cy.compareSnapshot(testName);
