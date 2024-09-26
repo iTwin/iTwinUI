@@ -916,6 +916,12 @@ const ProgressRadialMainExample = withThemeProvider(
 );
 export { ProgressRadialMainExample };
 
+import { default as ProgressRadialValueExampleRaw } from './ProgressRadial.value';
+const ProgressRadialValueExample = withThemeProvider(
+  ProgressRadialValueExampleRaw,
+);
+export { ProgressRadialValueExample };
+
 import { default as ProgressRadialSizeExampleRaw } from './ProgressRadial.size';
 const ProgressRadialSizeExample = withThemeProvider(
   ProgressRadialSizeExampleRaw,

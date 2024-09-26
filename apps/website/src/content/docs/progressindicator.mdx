@@ -50,10 +50,16 @@ The indicator can have a progress status. The available statuses are `positive`,
 
 ### Usage
 
-Similar to linear progress indicators, the radial indicator is indeterminate by default unless a `value` is passed.
+Like linear progress indicators, the radial indicator is indeterminate by default. It becomes determinate when a `value` is passed.
 
 <LiveExample src='ProgressRadial.main.jsx' truncate={false}>
   <AllExamples.ProgressRadialMainExample client:load />
+</LiveExample>
+
+#### Value
+
+<LiveExample src='ProgressRadial.value.jsx' truncate={false}>
+  <AllExamples.ProgressRadialValueExample client:load />
 </LiveExample>
 
 #### Size
