@@ -6,5 +6,5 @@ import * as React from 'react';
 import { ProgressRadial } from '@itwin/itwinui-react';
 
 export default () => {
-  return <ProgressRadial indeterminate />;
+  return <ProgressRadial />;
 };

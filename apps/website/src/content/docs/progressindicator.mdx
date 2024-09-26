@@ -10,7 +10,7 @@ thumbnail: ProgressIndicator
 
 ### Usage
 
-The default linear progress indicator is set to be indeterminate. If a `value` is passed, the indicator becomes determinate.
+The default linear progress indicator is indeterminate by default. If a `value` is passed, the indicator becomes determinate.
 
 <LiveExample src='ProgressLinear.main.jsx' truncate={false}>
   <AllExamples.ProgressLinearMainExample client:load />
@@ -18,7 +18,7 @@ The default linear progress indicator is set to be indeterminate. If a `value` i
 
 #### Value
 
-To specify a value for indeterminate linear indicator, pass a number into the `value` prop. We recommend keeping the value inclusively between 0 and 100.
+To specify a value for indeterminate linear indicator, pass a number into the `value` prop. If the `indeterminate` prop is set to `true`, this value will be ignored. We recommend keeping the value inclusively between 0 and 100.
 
 <LiveExample src='ProgressLinear.value.jsx' truncate={false}>
   <AllExamples.ProgressLinearValueExample client:load />
@@ -26,20 +26,20 @@ To specify a value for indeterminate linear indicator, pass a number into the `v
 
 For determinate indicators, use the `isAnimated` flag to apply animation as the value changes.
 
-#### Label
-
-Indicator label can be passed into the `labels` prop as an array. If one label is passed, it will be centered. If there are two labels, each is pushed to one end of the progress indicator.
-
-<LiveExample src='ProgressLinear.label.jsx' truncate={false}>
-  <AllExamples.ProgressLinearLabelExample client:load />
-</LiveExample>
-
 #### Status
 
 The indicator can have a progress status. The available statuses are `positive`, `negative`, and `warning`.
 
 <LiveExample src='ProgressLinear.status.jsx' truncate={false}>
   <AllExamples.ProgressLinearStatusExample client:load />
+</LiveExample>
+
+#### Label
+
+Indicator label can be passed into the `labels` prop as an array. If one label is passed, it will be centered. If there are two labels, each is pushed to one end of the progress indicator.
+
+<LiveExample src='ProgressLinear.label.jsx' truncate={false}>
+  <AllExamples.ProgressLinearLabelExample client:load />
 </LiveExample>
 
 ### Props
@@ -58,13 +58,23 @@ Like linear progress indicators, the radial indicator is indeterminate by defaul
 
 #### Value
 
+To specify a value for the indeterminate radial indicator, pass a number into the `value` prop. If the `indeterminate` prop is set to `true`, this value will be ignored. We recommend keeping the value inclusively between 0 and 100.
+
 <LiveExample src='ProgressRadial.value.jsx' truncate={false}>
   <AllExamples.ProgressRadialValueExample client:load />
 </LiveExample>
 
+#### Status
+
+Three statuses available for radial indicators are `positive`, `negative`, and `warning`. Unlike linear indicators, each radial indicator with status is accompanied by an icon, providing a visual cue to inform the current progress state better. The icon can be replaced by a [content](#content).
+
+<LiveExample src='ProgressRadial.status.jsx' truncate={false}>
+  <AllExamples.ProgressRadialStatusExample client:load />
+</LiveExample>
+
 #### Size
 
-There 4 sizes available, which are `x-small`, `small`, `medium`, and `large`. The default size is `medium`.
+Four size options available are `x-small`, `small`, `medium`, and `large`. The default size is `medium`.
 
 <LiveExample src='ProgressRadial.size.jsx' truncate={false}>
   <AllExamples.ProgressRadialSizeExample client:load />
@@ -72,18 +82,10 @@ There 4 sizes available, which are `x-small`, `small`, `medium`, and `large`. Th
 
 #### Content
 
-The radial progress indicator can wrap around a JSX element such as icons, texts or other components. This `children` content helps provide flexibility to enhance the progress display with additional visual appearance.
+The radial progress indicator can be wrapped around JSX elements, such as icons, texts or other components. This content helps provide flexibility to enhance the progress display with additional visual appearance.
 
 <LiveExample src='ProgressRadial.content.jsx' truncate={false}>
   <AllExamples.ProgressRadialContentExample client:load />
-</LiveExample>
-
-#### Status
-
-There are 3 statuses available for the radial indicator, which are `positive`, `negative`, and `warning`. Unlike linear indicators, each radial indicator with status is accompanied by an icon, providing a visual cue to inform the current progress state better. These icons can be replaced by a content.
-
-<LiveExample src='ProgressRadial.status.jsx' truncate={false}>
-  <AllExamples.ProgressRadialStatusExample client:load />
 </LiveExample>
 
 ## Accessibility
