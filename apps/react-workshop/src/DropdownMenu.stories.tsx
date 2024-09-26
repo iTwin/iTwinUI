@@ -43,7 +43,7 @@ export const Basic = () => {
   ];
   return (
     <DropdownMenu menuItems={dropdownMenuItems}>
-      <IconButton>
+      <IconButton label='More options'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
@@ -81,7 +81,7 @@ export const WithStartIcons = () => {
   ];
   return (
     <DropdownMenu menuItems={dropdownMenuItems}>
-      <IconButton>
+      <IconButton label='More options'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
@@ -118,7 +118,7 @@ export const WithEndIcons = () => {
   ];
   return (
     <DropdownMenu menuItems={dropdownMenuItems}>
-      <IconButton>
+      <IconButton label='More options'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
@@ -167,7 +167,7 @@ export const WithSublabels = () => {
   return (
     <div style={{ minHeight: 200 }}>
       <DropdownMenu menuItems={dropdownMenuItems}>
-        <IconButton>
+        <IconButton label='More options'>
           <SvgMore />
         </IconButton>
       </DropdownMenu>
@@ -234,7 +234,7 @@ export const Submenu = () => {
   ];
   return (
     <DropdownMenu menuItems={dropdownMenuItems}>
-      <IconButton>
+      <IconButton label='More options'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
@@ -271,7 +271,7 @@ export const WithSeparator = () => {
   ];
   return (
     <DropdownMenu menuItems={dropdownMenuItems}>
-      <IconButton>
+      <IconButton label='More options'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
@@ -322,7 +322,7 @@ export const WithContent = () => {
   ];
   return (
     <DropdownMenu menuItems={dropdownMenuItems}>
-      <IconButton>
+      <IconButton label='Toggle user info'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
