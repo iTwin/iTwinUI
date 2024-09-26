@@ -1,10 +1,18 @@
 # Changelog
 
+## 3.15.1
+
+### Patch Changes
+
+- [#2263](https://github.com/iTwin/iTwinUI/pull/2263): Default `Tooltip` delay is now correctly applied.
+- [#2266](https://github.com/iTwin/iTwinUI/pull/2266): All instances of `user-select: all` have been removed. Affected components: `Code`, `InformationPanel`, `Slider`, `Stepper`, `Tile`.
+
 ## 3.15.0
 
 ### Minor Changes
 
 - [#2233](https://github.com/iTwin/iTwinUI/pull/2233): `Popover` now enables the [`hide` middleware](https://floating-ui.com/docs/hide) to hide the floating content when the trigger is hidden.
+
   - This also affects other popover-like components (e.g. `Select`, `ComboBox`, `DropdownMenu`, `SplitButton`).
   - If the floating content gets hidden even when it shouldn't (e.g. due to some custom styles interfering with the trigger's hide detection), consider disabling the `hide` middleware.
 
