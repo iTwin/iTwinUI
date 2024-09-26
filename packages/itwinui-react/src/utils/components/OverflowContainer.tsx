@@ -209,8 +209,8 @@ const useOverflow = <T extends HTMLElement>(
 
       const isOverflowing = availableSize < requiredSize;
 
-      // We have already found the correct visibleCount
       if (
+        // We have already found the correct visibleCount
         (visibleCount === itemsLength && !isOverflowing) ||
         // if the new average of visibleCountGuessRange will never change the visibleCount anymore (infinite loop)
         (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1 &&
@@ -243,14 +243,19 @@ const useOverflow = <T extends HTMLElement>(
         newVisibleCountGuessRange = [visibleCount, visibleCountGuessRange[1]];
       }
 
-      setVisibleCountGuessRange(newVisibleCountGuessRange);
-
       // Next guess is always the middle of the new guess range
-      setVisibleCount(
-        Math.floor(
-          (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
-        ),
+      const newVisibleCount = Math.floor(
+        (newVisibleCountGuessRange[0] + newVisibleCountGuessRange[1]) / 2,
       );
+
+      // If newVisibleCount is 0 (impossible state as min is 1), end guessing
+      if (newVisibleCount === 0) {
+        setVisibleCountGuessRange(null);
+        return;
+      }
+
+      setVisibleCountGuessRange(newVisibleCountGuessRange);
+      setVisibleCount(newVisibleCount);
     } finally {
       isGuessing.current = false;
     }
