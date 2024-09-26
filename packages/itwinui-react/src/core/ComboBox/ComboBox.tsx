@@ -17,7 +17,11 @@ import {
   useControlledState,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
-import type { InputContainerProps, CommonProps } from '../../utils/index.js';
+import type {
+  InputContainerProps,
+  CommonProps,
+  PortalProps,
+} from '../../utils/index.js';
 import { ComboBoxRefsContext, ComboBoxStateContext } from './helpers.js';
 import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 import { ComboBoxInput } from './ComboBoxInput.js';
@@ -110,7 +114,9 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: React.ComponentProps<'div'>;
+  dropdownMenuProps?: React.ComponentProps<'div'> &
+    Pick<Parameters<typeof usePopover>['0'], 'middleware'> &
+    Pick<PortalProps, 'portal'>;
   /**
    * End icon props.
    */
@@ -197,7 +203,7 @@ export const ComboBox = React.forwardRef(
       filterFunction = defaultFilterFunction,
       inputProps,
       endIconProps,
-      dropdownMenuProps,
+      dropdownMenuProps: { middleware, ...dropdownMenuProps } = {},
       emptyStateMessage = 'No options found',
       itemRenderer,
       enableVirtualization = false,
@@ -572,7 +578,10 @@ export const ComboBox = React.forwardRef(
       visible: isOpen,
       onVisibleChange: (open) => (open ? show() : hide()),
       matchWidth: true,
-      middleware: { size: { maxHeight: 'var(--iui-menu-max-height)' } },
+      middleware: {
+        size: { maxHeight: 'var(--iui-menu-max-height)' },
+        ...middleware,
+      },
       closeOnOutsideClick: true,
       interactions: { click: false, focus: true },
     });
