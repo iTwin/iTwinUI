@@ -199,7 +199,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   return (
     <OverflowContainer
       as={BaseGroup}
-      items={items}
+      itemsCount={items.length}
       overflowOrientation={orientation}
       orientation={orientation}
       {...rest}

@@ -17,10 +17,7 @@ type OverflowContainerProps = {
    * @default 'horizontal'
    */
   overflowOrientation?: 'horizontal' | 'vertical';
-  /**
-   * TODO: Will likely be removed in a later PR in the stacked PRs. If not, remove this TODO.
-   */
-  items: React.ReactNode[] | string;
+  itemsCount: number;
 };
 
 /**
@@ -30,17 +27,17 @@ type OverflowContainerProps = {
  * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
  */
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
-  const { items, children, overflowOrientation, ...rest } = props;
+  const { itemsCount, children, overflowOrientation, ...rest } = props;
 
   const [containerRef, visibleCount] = useOverflow(
-    items.length,
+    itemsCount,
     false, // TODO: Do we need to bring back ability to disable overflow detection?
     overflowOrientation,
   );
 
   const overflowContainerContextValue = React.useMemo(
-    () => ({ visibleCount, itemCount: items.length }),
-    [items.length, visibleCount],
+    () => ({ visibleCount, itemsCount }),
+    [itemsCount, visibleCount],
   );
 
   return (
@@ -63,8 +60,8 @@ const OverflowContainerOverflowNode = (
 ) => {
   const { children } = props;
 
-  const { visibleCount, itemCount } = useOverflowContainerContext();
-  const isOverflowing = visibleCount < itemCount;
+  const { visibleCount, itemsCount } = useOverflowContainerContext();
+  const isOverflowing = visibleCount < itemsCount;
 
   return isOverflowing && children;
 };
@@ -83,7 +80,7 @@ export const OverflowContainer = Object.assign(OverflowContainerComponent, {
 const OverflowContainerContext = React.createContext<
   | {
       visibleCount: number;
-      itemCount: number;
+      itemsCount: number;
     }
   | undefined
 >(undefined);
@@ -118,7 +115,7 @@ export const useOverflowContainerContext = () => {
  * );
  */
 const useOverflow = <T extends HTMLElement>(
-  itemsLength: number,
+  itemsCount: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
@@ -132,8 +129,8 @@ const useOverflow = <T extends HTMLElement>(
 
   const initialVisibleCount = React.useMemo(
     () =>
-      disabled ? itemsLength : Math.min(itemsLength, STARTING_MAX_ITEMS_COUNT),
-    [disabled, itemsLength],
+      disabled ? itemsCount : Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT),
+    [disabled, itemsCount],
   );
   const initialVisibleCountGuessRange = React.useMemo(
     () => (disabled ? null : ([0, initialVisibleCount] satisfies GuessRange)),
@@ -148,7 +145,7 @@ const useOverflow = <T extends HTMLElement>(
   const isStabilized = visibleCountGuessRange == null;
 
   /**
-   * Ensures that `visibleCount <= itemsLength`
+   * Ensures that `visibleCount <= itemsCount`
    */
   const setVisibleCount = React.useCallback(
     (setStateAction: React.SetStateAction<typeof visibleCount>) => {
@@ -158,10 +155,10 @@ const useOverflow = <T extends HTMLElement>(
             ? setStateAction(prev)
             : setStateAction;
 
-        return Math.min(newVisibleCount, itemsLength);
+        return Math.min(newVisibleCount, itemsCount);
       });
     },
-    [itemsLength],
+    [itemsCount],
   );
 
   const [resizeRef] = useResizeObserver(
@@ -211,7 +208,7 @@ const useOverflow = <T extends HTMLElement>(
 
       if (
         // We have already found the correct visibleCount
-        (visibleCount === itemsLength && !isOverflowing) ||
+        (visibleCount === itemsCount && !isOverflowing) ||
         // if the new average of visibleCountGuessRange will never change the visibleCount anymore (infinite loop)
         (visibleCountGuessRange[1] - visibleCountGuessRange[0] === 1 &&
           visibleCount === visibleCountGuessRange[0])
@@ -263,7 +260,7 @@ const useOverflow = <T extends HTMLElement>(
     containerRef,
     disabled,
     isStabilized,
-    itemsLength,
+    itemsCount,
     orientation,
     setVisibleCount,
     visibleCount,
