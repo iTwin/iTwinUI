@@ -9,10 +9,6 @@ export default () => {
   const toaster = useToaster();
 
   const displayPositiveToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'descending',
-    });
     toaster.positive('This is a positive toast message.', {
       duration: 7000,
       hasCloseButton: true,
@@ -23,10 +19,6 @@ export default () => {
     });
   };
   const displayNegativeToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'descending',
-    });
     toaster.negative('This is a negative toast message.', {
       duration: 7000,
       hasCloseButton: true,
@@ -38,10 +30,6 @@ export default () => {
   };
 
   const displayWarningToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'descending',
-    });
     toaster.warning('This is a warning toast message.', {
       duration: 7000,
       hasCloseButton: true,
@@ -53,10 +41,6 @@ export default () => {
   };
 
   const displayInformationalToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'descending',
-    });
     toaster.informational('This is an informational toast message.', {
       duration: 7000,
       hasCloseButton: true,

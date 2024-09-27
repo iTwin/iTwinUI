@@ -8,19 +8,11 @@ import { useToaster, Button } from '@itwin/itwinui-react';
 export default () => {
   const toaster = useToaster();
 
-  const displayToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'ascending',
-    });
-    toaster.positive('Job processing completed.', {
-      hasCloseButton: true,
-    });
-  };
-
   return (
     <div className='demo-container'>
-      <Button onClick={displayToast}>Open toast</Button>
+      <Button onClick={() => toaster.positive('Job processing completed.')}>
+        Open toast
+      </Button>
     </div>
   );
 };

@@ -9,10 +9,6 @@ export default () => {
   const toaster = useToaster();
 
   const displayToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'ascending',
-    });
     toaster.positive('Job processing completed.', {
       hasCloseButton: true,
       link: {
