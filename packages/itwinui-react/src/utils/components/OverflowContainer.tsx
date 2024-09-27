@@ -299,11 +299,9 @@ const useOverflow = <T extends HTMLElement>(
     disabled,
     guessVisibleCount,
     isStabilized,
-    itemsCount,
     previousContainer,
     previousVisibleCount,
     previousVisibleCountGuessRange,
-    setVisibleCount,
     visibleCount,
     visibleCountGuessRange,
   ]);
@@ -314,7 +312,7 @@ const useOverflow = <T extends HTMLElement>(
       setVisibleCount(itemsCount);
       setVisibleCountGuessRange(null);
     }
-  }, [itemsCount, setVisibleCount, visibleCount]);
+  }, [itemsCount, setVisibleCount]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
   return [mergedRefs, visibleCount] as const;
