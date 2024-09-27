@@ -4,12 +4,6 @@ description: A toast is a non-disruptive message that provides feedback based on
 thumbnail: Toast
 ---
 
-{/* TODO: Remove setSettings from each example. One separate example for setSettings */}
-{/* TODO: setSettings() can be put in a useEffect() */}
-{/* TODO: One example for `order` */}
-{/* TODO: Try to explain the "code" part (hooks, components, etc.) apart from just the non-code related plain english */}
-{/* TODO: In general, go though the examples and make sure that there's no unnecessary code. i.e. if demoing A, only have code that implements A. */}
-
 <p>{frontmatter.description}</p>
 
 ## Usage
@@ -20,26 +14,20 @@ Before triggering a toast, the toaster needs to be initialized using the `useToa
   <AllExamples.ToastMainExample client:load />
 </LiveExample>
 
-{/* TODO: Re-add removed working to say that it accepts a second param containing an options object. And explain maybe more about that object. */}
-
 ### Status
 
-There are four available statuses that comes with toast message:
+Toast statuses can be set using the status methods provided by the toaster object. The status method takes in a toast message and an `options` object for further customization. Four available statuses are:
 
-- `positive`
-- `negative`
-- `warning`
-- `informational`
+- `positive()`
+- `negative()`
+- `warning()`
+- `informational()`
 
 <LiveExample src='Toast.status.jsx'>
   <AllExamples.ToastStatusExample client:load />
 </LiveExample>
 
-### Link
-
-{/* TODO: No component is there. So, no link prop. Need to rephrase that we can pass it as an option in the second param. The second param is called options. */}
-
-The toast notification can come with a hyperlink using the `link` prop. You can utilize this prop to take further action directly from the toast, such as navigating to another page or triggering a specific function.
+For further customization with `options`, you can utilize `link`, which allows taking further actions directly from the toast, such as navigating to another page or triggering a specific function.
 
 <LiveExample src='Toast.link.jsx'>
   <AllExamples.ToastLinkExample client:load />
@@ -60,6 +48,10 @@ The object returned by `useToaster` also provides a `setSettings` method, which 
 
 `"start"` indicates the left side of viewport, while `"end"` represents the right side.
 
+<LiveExample src='Toast.placement.jsx'>
+  <AllExamples.ToastPlacementExample client:load />
+</LiveExample>
+
 `order` supports the following values:
 
 - `"auto"` (default)
@@ -68,16 +60,22 @@ The object returned by `useToaster` also provides a `setSettings` method, which 
 
 When set to `"descending"`, the most recent toasts are on top. When set to `"ascending"`, the most recent toasts are on bottom. When set to `"auto"`, it will behave like `"descending"` when `placement` is set to a `-top` value, otherwise `"ascending"`.
 
-<LiveExample src='Toast.positioning.jsx'>
-  <AllExamples.ToastPositioningExample client:load />
+<LiveExample src='Toast.order.jsx'>
+  <AllExamples.ToastOrderExample client:load />
 </LiveExample>
 
 ### Closing toasts
 
-When setting the `hasCloseButton` to `true`, each toast will be displayed with a close button, which allows you to close the toast manually. Additionally, to implement further actions upon each toast closing or chain after one another to display multiple messages, you can retrieve the `close()` function returned from the status method.
+When setting the `hasCloseButton` option available in the status method to `true`, each toast will be displayed with a close button, which allows you to close the toast manually.
 
-<LiveExample src='Toast.closeIndividual.jsx'>
-  <AllExamples.ToastCloseIndividualExample client:load />
+<LiveExample src='Toast.hasCloseButton.jsx'>
+  <AllExamples.ToastHasCloseButtonExample client:load />
+</LiveExample>
+
+Additionally, to implement further actions upon each toast closing or chain after one another to display multiple messages, you can retrieve the `close()` function returned from the status method.
+
+<LiveExample src='Toast.close.jsx'>
+  <AllExamples.ToastCloseExample client:load />
 </LiveExample>
 
 Closing also depends on which type of toast you are using, without the use of `hasCloseButton`. Persisting toasts will not be closed automatically, and will contain a close button. Temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `"persisting"` or `"temporary"` into the `type` option.
@@ -88,9 +86,7 @@ Closing also depends on which type of toast you are using, without the use of `h
 
 {/* TODO: Describe where closeAll comes from */}
 
-To close all toasters on viewport at once, use `closeAll()`.
-
-{/* TODO: Change example so that the animation is more obvious. Position may be top right. */}
+To close all toasters on viewport at once, use the `closeAll()` method offered by the toaster object.
 
 <LiveExample src='Toast.closeAll.jsx'>
   <AllExamples.ToastCloseAllExample client:load />

@@ -1287,9 +1287,13 @@ import { default as ToastLinkExampleRaw } from './Toast.link';
 const ToastLinkExample = withThemeProvider(ToastLinkExampleRaw);
 export { ToastLinkExample };
 
-import { default as ToastPositioningExampleRaw } from './Toast.positioning';
-const ToastPositioningExample = withThemeProvider(ToastPositioningExampleRaw);
-export { ToastPositioningExample };
+import { default as ToastPlacementExampleRaw } from './Toast.placement';
+const ToastPlacementExample = withThemeProvider(ToastPlacementExampleRaw);
+export { ToastPlacementExample };
+
+import { default as ToastOrderExampleRaw } from './Toast.order';
+const ToastOrderExample = withThemeProvider(ToastOrderExampleRaw);
+export { ToastOrderExample };
 
 import { default as ToastAnchorToButtonExampleRaw } from './Toast.anchorToButton';
 const ToastAnchorToButtonExample = withThemeProvider(
@@ -1297,11 +1301,15 @@ const ToastAnchorToButtonExample = withThemeProvider(
 );
 export { ToastAnchorToButtonExample };
 
-import { default as ToastCloseIndividualExampleRaw } from './Toast.closeIndividual';
-const ToastCloseIndividualExample = withThemeProvider(
-  ToastCloseIndividualExampleRaw,
+import { default as ToastHasCloseButtonExampleRaw } from './Toast.hasCloseButton';
+const ToastHasCloseButtonExample = withThemeProvider(
+  ToastHasCloseButtonExampleRaw,
 );
-export { ToastCloseIndividualExample };
+export { ToastHasCloseButtonExample };
+
+import { default as ToastCloseExampleRaw } from './Toast.close';
+const ToastCloseExample = withThemeProvider(ToastCloseExampleRaw);
+export { ToastCloseExample };
 
 import { default as ToastTypeExampleRaw } from './Toast.type';
 const ToastTypeExample = withThemeProvider(ToastTypeExampleRaw);

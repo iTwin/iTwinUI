@@ -10,7 +10,6 @@ export default () => {
 
   const displayToast = () => {
     toaster.positive('Job processing completed.', {
-      hasCloseButton: true,
       link: {
         title: 'Link',
         onClick: () => {

@@ -8,55 +8,30 @@ import { useToaster, Button } from '@itwin/itwinui-react';
 export default () => {
   const toaster = useToaster();
 
-  const displayPositiveToast = () => {
-    toaster.positive('This is a positive toast message.', {
-      duration: 7000,
-      hasCloseButton: true,
-      type: 'temporary',
-      onRemove: () => {
-        console.log('Toast removed!');
-      },
-    });
-  };
-  const displayNegativeToast = () => {
-    toaster.negative('This is a negative toast message.', {
-      duration: 7000,
-      hasCloseButton: true,
-      type: 'temporary',
-      onRemove: () => {
-        console.log('Toast removed!');
-      },
-    });
-  };
-
-  const displayWarningToast = () => {
-    toaster.warning('This is a warning toast message.', {
-      duration: 7000,
-      hasCloseButton: true,
-      type: 'temporary',
-      onRemove: () => {
-        console.log('Toast removed!');
-      },
-    });
-  };
-
-  const displayInformationalToast = () => {
-    toaster.informational('This is an informational toast message.', {
-      duration: 7000,
-      hasCloseButton: true,
-      type: 'temporary',
-      onRemove: () => {
-        console.log('Toast removed!');
-      },
-    });
-  };
-
   return (
     <div className='demo-container'>
-      <Button onClick={displayPositiveToast}>Positive</Button>
-      <Button onClick={displayNegativeToast}>Negative</Button>
-      <Button onClick={displayWarningToast}>Warning</Button>
-      <Button onClick={displayInformationalToast}>Informational</Button>
+      <Button
+        onClick={() => toaster.positive('This is a positive toast message.')}
+      >
+        Positive
+      </Button>
+      <Button
+        onClick={() => toaster.negative('This is a negative toast message.')}
+      >
+        Negative
+      </Button>
+      <Button
+        onClick={() => toaster.warning('This is a warning toast message.')}
+      >
+        Warning
+      </Button>
+      <Button
+        onClick={() =>
+          toaster.informational('This is an informational toast message.')
+        }
+      >
+        Informational
+      </Button>
     </div>
   );
 };

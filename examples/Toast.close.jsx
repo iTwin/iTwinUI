@@ -9,10 +9,6 @@ export default () => {
   const toaster = useToaster();
 
   const displayProcessToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'descending',
-    });
     const { close } = toaster.informational(
       <div
         style={{
@@ -28,32 +24,15 @@ export default () => {
         />
         Your process is running...
       </div>,
-      {
-        duration: 7000,
-        hasCloseButton: true,
-        type: 'persisting',
-        onRemove: () => {
-          console.log('Toast removed!');
-        },
-      },
     );
 
     setTimeout(() => {
       close();
       toaster.positive('Process completed', {
-        duration: 7000,
         hasCloseButton: true,
-        type: 'persisting',
-        onRemove: () => {
-          console.log('Toast removed!');
-        },
       });
     }, 3000);
   };
 
-  return (
-    <Button styleType='high-visibility' onClick={displayProcessToast}>
-      Start process
-    </Button>
-  );
+  return <Button onClick={displayProcessToast}>Start process</Button>;
 };
