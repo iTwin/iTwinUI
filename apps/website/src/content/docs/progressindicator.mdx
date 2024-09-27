@@ -30,9 +30,19 @@ To specify a value for indeterminate indicator, pass a number into the `value` p
   <AllExamples.ProgressRadialValueExample client:load />
 </LiveExample>
 
+Exclusively for linear indicators, the `isAnimated` flag is helpful when applying animation to the indicator as the value changes.
+
+<LiveExample src='ProgressLinear.isAnimated.jsx'>
+  <AllExamples.ProgressLinearAnimatedExample client:load />
+</LiveExample>
+
 ### Status
 
-Three available statuses for both linear and radial progress indicators are `positive`, `negative`, and `warning`.
+Three available statuses for both linear and radial progress indicators are:
+
+- `"positive"`
+- `"negative"`
+- `"warning"`
 
 <LiveExample src='ProgressLinear.status.jsx'>
   <AllExamples.ProgressLinearStatusExample client:load />
@@ -46,7 +56,7 @@ Each radial indicator with status is accompanied by an icon, providing a visual 
 
 ### Label
 
-Indicator label can be passed into the `labels` prop as an array. If one label is passed, it will be centered. If there are two labels, each is pushed to one end of the progress indicator. This prop is only available for linear indicators.
+Indicator labels can be passed into the `labels` prop as an array. If one label is passed, it will be centered. If there are two labels, each is pushed to one end of the progress indicator. This prop is only available for linear indicators.
 
 <LiveExample src='ProgressLinear.label.jsx'>
   <AllExamples.ProgressLinearLabelExample client:load />
@@ -54,7 +64,14 @@ Indicator label can be passed into the `labels` prop as an array. If one label i
 
 ### Size
 
-Four size options available are `x-small`, `small`, `medium`, and `large`. The default size is `medium`. This prop is only available for radial indicators.
+Four size options available are:
+
+- `"x-small"`
+- `"small"`
+- `"medium"` (default)
+- `"large"`
+
+This prop is only available for radial indicators.
 
 <LiveExample src='ProgressRadial.size.jsx'>
   <AllExamples.ProgressRadialSizeExample client:load />

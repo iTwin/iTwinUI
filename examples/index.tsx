@@ -912,6 +912,12 @@ const ProgressLinearValueExample = withThemeProvider(
 );
 export { ProgressLinearValueExample };
 
+import { default as ProgressLinearAnimatedExampleRaw } from './ProgressLinear.isAnimated';
+const ProgressLinearAnimatedExample = withThemeProvider(
+  ProgressLinearAnimatedExampleRaw,
+);
+export { ProgressLinearAnimatedExample };
+
 import { default as ProgressLinearLabelExampleRaw } from './ProgressLinear.label';
 const ProgressLinearLabelExample = withThemeProvider(
   ProgressLinearLabelExampleRaw,
