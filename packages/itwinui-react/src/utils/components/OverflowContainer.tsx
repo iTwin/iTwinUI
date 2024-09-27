@@ -10,6 +10,7 @@ import { useResizeObserver } from '../hooks/useResizeObserver.js';
 import { useLatestRef } from '../hooks/useLatestRef.js';
 import { useLayoutEffect } from '../hooks/useIsomorphicLayoutEffect.js';
 import { useSafeContext } from '../hooks/useSafeContext.js';
+import { isUnitTest } from '../functions/dev.js';
 
 type OverflowContainerProps = {
   /**
@@ -187,8 +188,8 @@ const useOverflow = <T extends HTMLElement>(
    * - The min guess is then the correct `visibleCount`.
    */
   const guessVisibleCount = React.useCallback(() => {
-    // If disabled or already stabilized
-    if (disabled || isStabilized || isGuessing.current) {
+    // If disabled, already stabilized, etc., do not guess.
+    if (disabled || isStabilized || isGuessing.current || isUnitTest) {
       return;
     }
 
@@ -276,7 +277,7 @@ const useOverflow = <T extends HTMLElement>(
   // - `visibleCountGuessRange`
   // - `containerRef`
   useLayoutEffect(() => {
-    if (disabled || isStabilized) {
+    if (disabled || isStabilized || isUnitTest) {
       return;
     }
 
@@ -298,12 +299,22 @@ const useOverflow = <T extends HTMLElement>(
     disabled,
     guessVisibleCount,
     isStabilized,
+    itemsCount,
     previousContainer,
     previousVisibleCount,
     previousVisibleCountGuessRange,
+    setVisibleCount,
     visibleCount,
     visibleCountGuessRange,
   ]);
+
+  // In unit test environments, always show all items
+  useLayoutEffect(() => {
+    if (isUnitTest) {
+      setVisibleCount(itemsCount);
+      setVisibleCountGuessRange(null);
+    }
+  }, [itemsCount, setVisibleCount, visibleCount]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
   return [mergedRefs, visibleCount] as const;
