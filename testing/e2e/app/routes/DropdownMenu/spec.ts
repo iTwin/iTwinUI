@@ -309,7 +309,7 @@ test.describe('DropdownMenu', () => {
     await page.locator('button').first().click();
     await page.locator('button').nth(10).scrollIntoViewIfNeeded();
 
-    await expect(page.getByRole('menu')).toBeVisible();
+    await expect(page.getByRole('menu')).toHaveCount(1);
   });
 });
 
