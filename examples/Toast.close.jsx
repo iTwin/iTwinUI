@@ -31,7 +31,7 @@ export default () => {
       toaster.positive('Process completed', {
         hasCloseButton: true,
       });
-    }, 3000);
+    }, 1000);
   };
 
   return <Button onClick={displayProcessToast}>Start process</Button>;

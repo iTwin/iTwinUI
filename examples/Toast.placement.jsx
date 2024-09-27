@@ -16,9 +16,7 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Button
-        onClick={() => toaster.informational('This is a toast message.', {})}
-      >
+      <Button onClick={() => toaster.informational('This is a toast message.')}>
         Bottom-end toast
       </Button>
     </div>

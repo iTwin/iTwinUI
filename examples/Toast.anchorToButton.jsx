@@ -15,15 +15,16 @@ export default () => {
     });
   }, []);
 
-  const displayAnchorToButtonToast = () => {
-    toaster.positive('This is a positive toast message', {
-      animateOutTo: buttonRef.current,
-    });
-  };
-
   return (
     <div className='demo-container'>
-      <Button ref={buttonRef} onClick={displayAnchorToButtonToast}>
+      <Button
+        ref={buttonRef}
+        onClick={() =>
+          toaster.positive('This is a positive toast message', {
+            animateOutTo: buttonRef.current,
+          })
+        }
+      >
         Anchor to button
       </Button>
     </div>
