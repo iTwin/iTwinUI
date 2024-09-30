@@ -3,21 +3,30 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useToaster, Button } from '@itwin/itwinui-react';
+import { useToaster, Button, Select } from '@itwin/itwinui-react';
 
 export default () => {
   const toaster = useToaster();
+  const [selectedOrder, setSelectedOrder] = React.useState('auto');
 
   React.useEffect(() => {
     toaster.setSettings({
-      order: 'ascending',
+      order: selectedOrder,
     });
   }, []);
 
   return (
     <div className='demo-container'>
+      <Select
+        placeholder='Select order'
+        options={[
+          { value: 'ascending', label: 'Ascending' },
+          { value: 'descending', label: 'Descending' },
+          { value: 'auto', label: 'Auto' },
+        ]}
+      ></Select>
       <Button onClick={() => toaster.informational('This is a toast message.')}>
-        Ascending toast
+        Open toast
       </Button>
     </div>
   );
