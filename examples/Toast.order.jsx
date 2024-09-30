@@ -25,7 +25,7 @@ export default () => {
           { value: 'auto', label: 'Auto' },
         ]}
         onChange={(value) => setSelectedOrder(value)}
-      ></Select>
+      />
       <Button onClick={() => toaster.informational('This is a toast message.')}>
         Open toast
       </Button>

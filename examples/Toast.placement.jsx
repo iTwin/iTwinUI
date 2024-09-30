@@ -28,7 +28,7 @@ export default () => {
           { value: 'bottom-end', label: 'Bottom end' },
         ]}
         onChange={(value) => setSelectedPlacement(value)}
-      ></Select>
+      />
       <Button onClick={() => toaster.informational('This is a toast message.')}>
         Open toast
       </Button>
