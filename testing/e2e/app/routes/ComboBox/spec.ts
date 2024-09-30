@@ -80,7 +80,14 @@ test('should not have flickering tags (fixes #2112)', async ({ page }) => {
   const selectTagContainers = page.locator(
     "[role='combobox'] + div:first-of-type",
   );
+
+  // Wait for page to stabilize
   await expect(selectTagContainers).toHaveCount(10);
+  for (let i = 0; i < 10; i++) {
+    await expect(selectTagContainers.nth(i).locator('> span')).toHaveCount(
+      i < 5 ? 6 : 7,
+    );
+  }
 
   // The number of items should not change with time (i.e. no flickering)
   for (let iteration = 0; iteration < 10; iteration++) {
