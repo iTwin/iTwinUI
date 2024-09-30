@@ -101,6 +101,7 @@ export const CustomFileUploadCard = () => {
         </FileUploadCard.Info>
         <FileUploadCard.Action>
           <IconButton
+            label='Remove file'
             onClick={() => {
               setFiles([]);
             }}

@@ -63,6 +63,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
       } else {
         return (
           <IconButton
+            aria-label='Toggle expandable content'
             className='iui-table-row-expander'
             styleType='borderless'
             size='small'
