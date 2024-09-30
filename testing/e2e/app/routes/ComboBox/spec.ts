@@ -21,7 +21,7 @@ test('should select multiple options', async ({ page }) => {
   }
 
   const tags = getSelectTagContainerTags(page);
-  expect(tags).toHaveCount(options.length);
+  await expect(tags).toHaveCount(options.length);
 
   for (let i = 0; i < (await tags.count()); i++) {
     await expect(tags.nth(i)).toHaveText(
@@ -44,7 +44,7 @@ test('should select multiple options', async ({ page }) => {
 
     // Should change internal state when the value prop changes
     if (multiple) {
-      expect(tags).toHaveCount(defaultOptions.length);
+      await expect(tags).toHaveCount(defaultOptions.length);
 
       for (let i = 0; i < (await tags.count()); i++) {
         await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
@@ -52,7 +52,7 @@ test('should select multiple options', async ({ page }) => {
 
       await page.getByTestId('change-value-to-first-option-button').click();
 
-      expect(tags).toHaveCount(1);
+      await expect(tags).toHaveCount(1);
       await expect(tags.first()).toHaveText(defaultOptions[0].label);
     } else {
       await expect(page.locator('input')).toHaveValue('Item 11');
@@ -66,12 +66,37 @@ test('should select multiple options', async ({ page }) => {
     await page.getByRole('option').nth(3).click();
 
     if (multiple) {
-      expect(tags).toHaveCount(1);
+      await expect(tags).toHaveCount(1);
       await expect(tags.first()).toHaveText(defaultOptions[0].label);
     } else {
       await expect(page.locator('input')).toHaveValue('Item 0');
     }
   });
+});
+
+test('should not have flickering tags (fixes #2112)', async ({ page }) => {
+  await page.goto('/ComboBox?exampleType=overflow');
+
+  const selectTagContainers = page.locator(
+    "[role='combobox'] + div:first-of-type",
+  );
+
+  // Wait for page to stabilize
+  await expect(selectTagContainers).toHaveCount(10);
+  for (let i = 0; i < 10; i++) {
+    await expect(selectTagContainers.nth(i).locator('> span')).toHaveCount(
+      i < 5 ? 6 : 7,
+    );
+  }
+
+  // The number of items should not change with time (i.e. no flickering)
+  for (let iteration = 0; iteration < 10; iteration++) {
+    for (let i = 0; i < 10; i++) {
+      expect(selectTagContainers.nth(i).locator('> span')).toHaveCount(
+        i < 5 ? 6 : 7,
+      );
+    }
+  }
 });
 
 test.describe('ComboBox (virtualization)', () => {
@@ -341,14 +366,14 @@ const expectOverflowState = async ({
   expectedLastTagTextContent: string | undefined;
 }) => {
   const tags = getSelectTagContainerTags(page);
-  expect(tags).toHaveCount(expectedItemLength);
+  await expect(tags).toHaveCount(expectedItemLength);
 
-  const lastTag = tags.nth((await tags.count()) - 1);
+  const lastTag = tags.last();
 
   if (expectedLastTagTextContent != null) {
     await expect(lastTag).toHaveText(expectedLastTagTextContent);
   } else {
-    expect(tags).toHaveCount(0);
+    await expect(tags).toHaveCount(0);
   }
 };
 
