@@ -11,11 +11,7 @@ export default () => {
   const displayProcessToast = () => {
     const { close } = toaster.informational(
       <Flex>
-        <ProgressRadial
-          size={'small'}
-          indeterminate
-          style={{ marginRight: '8px' }}
-        />
+        <ProgressRadial size='small' />
         Your process is running...
       </Flex>,
     );
