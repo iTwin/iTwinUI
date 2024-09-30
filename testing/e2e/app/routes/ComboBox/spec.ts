@@ -44,7 +44,7 @@ test.describe('ComboBox (general)', () => {
       // Should change internal state when the value prop changes
       if (multiple) {
         let tags = getSelectTagContainerTags(page);
-        expect(tags).toHaveCount(defaultOptions.length);
+        await expect(tags).toHaveCount(defaultOptions.length);
 
         for (let i = 0; i < (await tags.count()); i++) {
           await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
@@ -67,10 +67,8 @@ test.describe('ComboBox (general)', () => {
 
       if (multiple) {
         const tags = getSelectTagContainerTags(page);
-        const tagsArray = await tags.all();
-
-        expect(tagsArray).toHaveLength(1);
-        await expect(tagsArray[0]).toHaveText(defaultOptions[0].label);
+        await expect(tags).toHaveCount(1);
+        await expect(tags.first()).toHaveText(defaultOptions[0].label);
       } else {
         await expect(page.locator('input')).toHaveValue('Item 0');
       }
@@ -345,7 +343,7 @@ const expectOverflowState = async ({
   expectedLastTagTextContent: string | undefined;
 }) => {
   const tags = getSelectTagContainerTags(page);
-  expect(tags).toHaveCount(expectedItemLength);
+  await expect(tags).toHaveCount(expectedItemLength);
 
   const lastTag = tags.last();
 

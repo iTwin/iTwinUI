@@ -32,7 +32,6 @@ const OverflowContainerComponent = React.forwardRef((props, ref) => {
 
   const [containerRef, visibleCount] = useOverflow(
     itemsCount,
-    false, // TODO: Do we need to bring back ability to disable overflow detection?
     overflowOrientation,
   );
 
@@ -101,7 +100,6 @@ export const useOverflowContainerContext = () => {
  *
  * @private
  * @param items Items that this element contains.
- * @param disabled Set to true to disconnect the observer.
  * @param dimension 'horizontal' (default) or 'vertical'
  * @returns [callback ref to set on container, stateful count of visible items]
  *
@@ -117,7 +115,6 @@ export const useOverflowContainerContext = () => {
  */
 const useOverflow = <T extends HTMLElement>(
   itemsCount: number,
-  disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
   /** `[number, number]` means that we're still guessing. `null` means that we got the correct `visibleCount`. */
@@ -129,13 +126,12 @@ const useOverflow = <T extends HTMLElement>(
   const containerRef = React.useRef<T>(null);
 
   const initialVisibleCount = React.useMemo(
-    () =>
-      disabled ? itemsCount : Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT),
-    [disabled, itemsCount],
+    () => Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT),
+    [itemsCount],
   );
   const initialVisibleCountGuessRange = React.useMemo(
-    () => (disabled ? null : ([0, initialVisibleCount] satisfies GuessRange)),
-    [disabled, initialVisibleCount],
+    () => [0, initialVisibleCount] satisfies GuessRange,
+    [initialVisibleCount],
   );
 
   const [visibleCount, _setVisibleCount] =
@@ -188,18 +184,18 @@ const useOverflow = <T extends HTMLElement>(
    * - The min guess is then the correct `visibleCount`.
    */
   const guessVisibleCount = React.useCallback(() => {
-    // If disabled, already stabilized, etc., do not guess.
-    if (disabled || isStabilized || isGuessing.current || isUnitTest) {
-      return;
-    }
-
-    // We need to wait for the ref to be attached so that we can measure available and required sizes.
-    if (containerRef.current == null) {
+    // If already stabilized, already guessing, or in unit test, do not guess.
+    if (isStabilized || isGuessing.current || isUnitTest) {
       return;
     }
 
     try {
       isGuessing.current = true;
+
+      // We need to wait for the ref to be attached so that we can measure available and required sizes.
+      if (containerRef.current == null) {
+        return;
+      }
 
       const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
       const availableSize = containerRef.current[`offset${dimension}`];
@@ -259,7 +255,6 @@ const useOverflow = <T extends HTMLElement>(
     }
   }, [
     containerRef,
-    disabled,
     isStabilized,
     itemsCount,
     orientation,
@@ -277,7 +272,7 @@ const useOverflow = <T extends HTMLElement>(
   // - `visibleCountGuessRange`
   // - `containerRef`
   useLayoutEffect(() => {
-    if (disabled || isStabilized || isUnitTest) {
+    if (isStabilized || isUnitTest) {
       return;
     }
 
@@ -296,7 +291,6 @@ const useOverflow = <T extends HTMLElement>(
       guessVisibleCount();
     }
   }, [
-    disabled,
     guessVisibleCount,
     isStabilized,
     previousContainer,
