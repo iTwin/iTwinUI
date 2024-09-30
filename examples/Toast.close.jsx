@@ -3,27 +3,21 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useToaster, Button, ProgressRadial } from '@itwin/itwinui-react';
+import { useToaster, Button, Flex, ProgressRadial } from '@itwin/itwinui-react';
 
 export default () => {
   const toaster = useToaster();
 
   const displayProcessToast = () => {
     const { close } = toaster.informational(
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'flex-end',
-        }}
-      >
+      <Flex>
         <ProgressRadial
           size={'small'}
           indeterminate
           style={{ marginRight: '8px' }}
         />
         Your process is running...
-      </div>,
+      </Flex>,
     );
 
     setTimeout(() => {

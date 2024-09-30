@@ -58,7 +58,7 @@ The object returned by `useToaster` also provides a `setSettings` method, which 
 - `"descending"`
 - `"ascending"`
 
-When set to `"descending"`, the most recent toasts are on top. When set to `"ascending"`, the most recent toasts are on bottom. When set to `"auto"`, it will behave like `"descending"` when `placement` is set to a `-top` value, otherwise `"ascending"`.
+When set to `"descending"`, the most recent toasts are on top. When set to `"ascending"`, the most recent toasts are on bottom. When set to `"auto"`, it will behave like `"descending"` when `placement` is set to a value beginning with `"top"`, otherwise it will behave like `"ascending"`.
 
 <LiveExample src='Toast.order.jsx'>
   <AllExamples.ToastOrderExample client:load />
@@ -72,13 +72,13 @@ When setting the `hasCloseButton` option available in the status method to `true
   <AllExamples.ToastHasCloseButtonExample client:load />
 </LiveExample>
 
-Additionally, to implement further actions upon each toast closing or chain after one another to display multiple messages, you can retrieve the `close()` function returned from the status method.
+Additionally, to implement further actions upon the closing of each toast or chain one toast after the other, you can retrieve the `close()` function returned from the status method.
 
 <LiveExample src='Toast.close.jsx'>
   <AllExamples.ToastCloseExample client:load />
 </LiveExample>
 
-Closing also depends on which type of toast you are using, without the use of `hasCloseButton`. Persisting toasts will not be closed automatically, and will contain a close button. Temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `"persisting"` or `"temporary"` into the `type` option.
+Closing also depends on the type of toast when used without `hasCloseButton`. By default, persisting toasts will not be closed automatically and will contain a close button while temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `"persisting"` or `"temporary"` into the `type` option.
 
 <LiveExample src='Toast.type.jsx'>
   <AllExamples.ToastTypeExample client:load />
