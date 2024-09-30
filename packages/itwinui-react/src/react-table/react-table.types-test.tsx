@@ -443,6 +443,7 @@ import {
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
               disabled={isRowDisabled(props.row.original)}
+              label='Column manager'
             >
               <svg />
             </IconButton>
