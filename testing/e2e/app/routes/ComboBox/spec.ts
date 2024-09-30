@@ -21,11 +21,13 @@ test.describe('ComboBox (general)', () => {
       await option.click();
     }
 
-    const tags = await getSelectTagContainerTags(page);
-    expect(tags).toHaveLength(options.length);
+    const tags = getSelectTagContainerTags(page);
+    expect(tags).toHaveCount(options.length);
 
-    for (let i = 0; i < tags.length; i++) {
-      await expect(tags[i]).toHaveText((await options[i].textContent()) ?? '');
+    for (let i = 0; i < (await tags.count()); i++) {
+      await expect(tags.nth(i)).toHaveText(
+        (await options[i].textContent()) ?? '',
+      );
     }
   });
 
@@ -39,20 +41,20 @@ test.describe('ComboBox (general)', () => {
 
       await page.waitForTimeout(200);
 
+      let tags = getSelectTagContainerTags(page);
+
       // Should change internal state when the value prop changes
       if (multiple) {
-        let tags = await getSelectTagContainerTags(page);
-        expect(tags).toHaveLength(defaultOptions.length);
+        expect(tags).toHaveCount(defaultOptions.length);
 
-        for (let i = 0; i < tags.length; i++) {
-          await expect(tags[i]).toHaveText(defaultOptions[i].label);
+        for (let i = 0; i < (await tags.count()); i++) {
+          await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
         }
 
         await page.getByTestId('change-value-to-first-option-button').click();
-        tags = await getSelectTagContainerTags(page);
 
-        expect(tags).toHaveLength(1);
-        await expect(tags[0]).toHaveText(defaultOptions[0].label);
+        expect(tags).toHaveCount(1);
+        await expect(tags.first()).toHaveText(defaultOptions[0].label);
       } else {
         await expect(page.locator('input')).toHaveValue('Item 11');
         await page.getByTestId('change-value-to-first-option-button').click();
@@ -65,10 +67,8 @@ test.describe('ComboBox (general)', () => {
       await page.getByRole('option').nth(3).click();
 
       if (multiple) {
-        const tags = await getSelectTagContainerTags(page);
-
-        expect(tags).toHaveLength(1);
-        await expect(tags[0]).toHaveText(defaultOptions[0].label);
+        expect(tags).toHaveCount(1);
+        await expect(tags.first()).toHaveText(defaultOptions[0].label);
       } else {
         await expect(page.locator('input')).toHaveValue('Item 0');
       }
@@ -342,18 +342,18 @@ const expectOverflowState = async ({
   expectedItemLength: number;
   expectedLastTagTextContent: string | undefined;
 }) => {
-  const tags = await getSelectTagContainerTags(page);
-  expect(tags).toHaveLength(expectedItemLength);
+  const tags = getSelectTagContainerTags(page);
+  expect(tags).toHaveCount(expectedItemLength);
 
-  const lastTag = tags[tags.length - 1];
+  const lastTag = tags.nth((await tags.count()) - 1);
 
   if (expectedLastTagTextContent != null) {
     await expect(lastTag).toHaveText(expectedLastTagTextContent);
   } else {
-    expect(tags).toHaveLength(0);
+    expect(tags).toHaveCount(0);
   }
 };
 
-const getSelectTagContainerTags = async (page: Page) => {
-  return await page.locator('span[class$="-select-tag"]').all();
+const getSelectTagContainerTags = (page: Page) => {
+  return page.getByRole('combobox').locator('+ div > span');
 };
