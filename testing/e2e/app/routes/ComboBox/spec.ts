@@ -10,70 +10,87 @@ const defaultOptions = [
   { label: 'Item 11', value: 11 },
 ];
 
-test.describe('ComboBox (general)', () => {
-  test('should select multiple options', async ({ page }) => {
-    await page.goto('/ComboBox?multiple=true');
+test('should select multiple options', async ({ page }) => {
+  await page.goto('/ComboBox?multiple=true');
 
+  await page.keyboard.press('Tab');
+
+  const options = await page.locator('[role="option"]').all();
+  for (const option of options) {
+    await option.click();
+  }
+
+  const tags = getSelectTagContainerTags(page);
+  await expect(tags).toHaveCount(options.length);
+
+  for (let i = 0; i < (await tags.count()); i++) {
+    await expect(tags.nth(i)).toHaveText(
+      (await options[i].textContent()) ?? '',
+    );
+  }
+});
+
+[true, false].forEach((multiple) => {
+  test(`should respect the value prop (${multiple})`, async ({ page }) => {
+    await page.goto(
+      `/ComboBox?multiple=${multiple}&initialValue=${
+        multiple ? 'all' : 11
+      }&showChangeValueButton=true`,
+    );
+
+    await page.waitForTimeout(200);
+
+    // Should change internal state when the value prop changes
+    if (multiple) {
+      let tags = getSelectTagContainerTags(page);
+      await expect(tags).toHaveCount(defaultOptions.length);
+
+      for (let i = 0; i < (await tags.count()); i++) {
+        await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
+      }
+
+      await page.getByTestId('change-value-to-first-option-button').click();
+
+      await expect(tags).toHaveCount(1);
+      await expect(tags.first()).toHaveText(defaultOptions[0].label);
+    } else {
+      await expect(page.locator('input')).toHaveValue('Item 11');
+      await page.getByTestId('change-value-to-first-option-button').click();
+      await expect(page.locator('input')).toHaveValue('Item 0');
+    }
+
+    // Should not allow to select other options
     await page.keyboard.press('Tab');
 
-    const options = await page.locator('[role="option"]').all();
-    for (const option of options) {
-      await option.click();
-    }
+    await page.getByRole('option').nth(3).click();
 
-    const tags = getSelectTagContainerTags(page);
-    await expect(tags).toHaveCount(options.length);
-
-    for (let i = 0; i < (await tags.count()); i++) {
-      await expect(tags.nth(i)).toHaveText(
-        (await options[i].textContent()) ?? '',
-      );
+    if (multiple) {
+      const tags = getSelectTagContainerTags(page);
+      await expect(tags).toHaveCount(1);
+      await expect(tags.first()).toHaveText(defaultOptions[0].label);
+    } else {
+      await expect(page.locator('input')).toHaveValue('Item 0');
     }
   });
+});
 
-  [true, false].forEach((multiple) => {
-    test(`should respect the value prop (${multiple})`, async ({ page }) => {
-      await page.goto(
-        `/ComboBox?multiple=${multiple}&initialValue=${
-          multiple ? 'all' : 11
-        }&showChangeValueButton=true`,
+test('should not have flickering tags (fixes #2112)', async ({ page }) => {
+  await page.goto('/ComboBox?exampleType=overflow');
+
+  const selectTagContainers = page.locator(
+    "[role='combobox'] + div:first-of-type",
+  );
+  await expect(selectTagContainers).toHaveCount(10);
+
+  // The number of items should not change with time (i.e. no flickering)
+  for (let iteration = 0; iteration < 10; iteration++) {
+    for (let i = 0; i < 10; i++) {
+      expect(selectTagContainers.nth(i).locator('> span')).toHaveCount(
+        i < 5 ? 6 : 7,
       );
-
-      await page.waitForTimeout(200);
-
-      // Should change internal state when the value prop changes
-      if (multiple) {
-        let tags = getSelectTagContainerTags(page);
-        await expect(tags).toHaveCount(defaultOptions.length);
-
-        for (let i = 0; i < (await tags.count()); i++) {
-          await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
-        }
-
-        await page.getByTestId('change-value-to-first-option-button').click();
-
-        await expect(tags).toHaveCount(1);
-        await expect(tags.first()).toHaveText(defaultOptions[0].label);
-      } else {
-        await expect(page.locator('input')).toHaveValue('Item 11');
-        await page.getByTestId('change-value-to-first-option-button').click();
-        await expect(page.locator('input')).toHaveValue('Item 0');
-      }
-
-      // Should not allow to select other options
-      await page.keyboard.press('Tab');
-
-      await page.getByRole('option').nth(3).click();
-
-      if (multiple) {
-        const tags = getSelectTagContainerTags(page);
-        await expect(tags).toHaveCount(1);
-        await expect(tags.first()).toHaveText(defaultOptions[0].label);
-      } else {
-        await expect(page.locator('input')).toHaveValue('Item 0');
-      }
-    });
-  });
+    }
+    await page.waitForTimeout(20);
+  }
 });
 
 test.describe('ComboBox (virtualization)', () => {
