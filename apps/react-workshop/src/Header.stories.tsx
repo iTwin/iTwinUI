@@ -144,16 +144,17 @@ export const Full = () => {
           key='notif'
           onClick={() => console.log('Clicked on the notification bell')}
           styleType='borderless'
+          aria-label='Notifications'
         >
           <SvgNotification />
         </IconButton>,
         <DropdownMenu key='help' menuItems={buildMenu('Help')}>
-          <IconButton styleType='borderless'>
+          <IconButton styleType='borderless' aria-label='Help'>
             <SvgHelpCircularHollow />
           </IconButton>
         </DropdownMenu>,
         <DropdownMenu key='avatar' menuItems={avatarMenuItems}>
-          <IconButton styleType='borderless'>
+          <IconButton styleType='borderless' aria-label='User'>
             <Avatar
               size='medium'
               abbreviation='TR'

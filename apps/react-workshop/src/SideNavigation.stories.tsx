@@ -124,7 +124,7 @@ export const Submenu = () => {
           <SidenavSubmenu>
             <SidenavSubmenuHeader
               actions={
-                <IconButton styleType='borderless'>
+                <IconButton styleType='borderless' aria-label='Settings'>
                   <SvgSettings />
                 </IconButton>
               }
