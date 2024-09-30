@@ -40,9 +40,10 @@ test('should select multiple options', async ({ page }) => {
 
     await page.waitForTimeout(200);
 
+    let tags = getSelectTagContainerTags(page);
+
     // Should change internal state when the value prop changes
     if (multiple) {
-      let tags = getSelectTagContainerTags(page);
       await expect(tags).toHaveCount(defaultOptions.length);
 
       for (let i = 0; i < (await tags.count()); i++) {
@@ -65,7 +66,6 @@ test('should select multiple options', async ({ page }) => {
     await page.getByRole('option').nth(3).click();
 
     if (multiple) {
-      const tags = getSelectTagContainerTags(page);
       await expect(tags).toHaveCount(1);
       await expect(tags.first()).toHaveText(defaultOptions[0].label);
     } else {
@@ -96,7 +96,6 @@ test('should not have flickering tags (fixes #2112)', async ({ page }) => {
         i < 5 ? 6 : 7,
       );
     }
-    await page.waitForTimeout(20);
   }
 });
 
@@ -379,5 +378,5 @@ const expectOverflowState = async ({
 };
 
 const getSelectTagContainerTags = (page: Page) => {
-  return page.locator('span[class$="-select-tag"]');
+  return page.getByRole('combobox').locator('+ div > span');
 };
