@@ -10,69 +10,67 @@ const defaultOptions = [
   { label: 'Item 11', value: 11 },
 ];
 
-test.describe('ComboBox (general)', () => {
-  test('should select multiple options', async ({ page }) => {
-    await page.goto('/ComboBox?multiple=true');
+test('should select multiple options', async ({ page }) => {
+  await page.goto('/ComboBox?multiple=true');
 
+  await page.keyboard.press('Tab');
+
+  const options = await page.locator('[role="option"]').all();
+  for (const option of options) {
+    await option.click();
+  }
+
+  const tags = getSelectTagContainerTags(page);
+  expect(tags).toHaveCount(options.length);
+
+  for (let i = 0; i < (await tags.count()); i++) {
+    await expect(tags.nth(i)).toHaveText(
+      (await options[i].textContent()) ?? '',
+    );
+  }
+});
+
+[true, false].forEach((multiple) => {
+  test(`should respect the value prop (${multiple})`, async ({ page }) => {
+    await page.goto(
+      `/ComboBox?multiple=${multiple}&initialValue=${
+        multiple ? 'all' : 11
+      }&showChangeValueButton=true`,
+    );
+
+    await page.waitForTimeout(200);
+
+    let tags = getSelectTagContainerTags(page);
+
+    // Should change internal state when the value prop changes
+    if (multiple) {
+      expect(tags).toHaveCount(defaultOptions.length);
+
+      for (let i = 0; i < (await tags.count()); i++) {
+        await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
+      }
+
+      await page.getByTestId('change-value-to-first-option-button').click();
+
+      expect(tags).toHaveCount(1);
+      await expect(tags.first()).toHaveText(defaultOptions[0].label);
+    } else {
+      await expect(page.locator('input')).toHaveValue('Item 11');
+      await page.getByTestId('change-value-to-first-option-button').click();
+      await expect(page.locator('input')).toHaveValue('Item 0');
+    }
+
+    // Should not allow to select other options
     await page.keyboard.press('Tab');
 
-    const options = await page.locator('[role="option"]').all();
-    for (const option of options) {
-      await option.click();
+    await page.getByRole('option').nth(3).click();
+
+    if (multiple) {
+      expect(tags).toHaveCount(1);
+      await expect(tags.first()).toHaveText(defaultOptions[0].label);
+    } else {
+      await expect(page.locator('input')).toHaveValue('Item 0');
     }
-
-    const tags = getSelectTagContainerTags(page);
-    expect(tags).toHaveCount(options.length);
-
-    for (let i = 0; i < (await tags.count()); i++) {
-      await expect(tags.nth(i)).toHaveText(
-        (await options[i].textContent()) ?? '',
-      );
-    }
-  });
-
-  [true, false].forEach((multiple) => {
-    test(`should respect the value prop (${multiple})`, async ({ page }) => {
-      await page.goto(
-        `/ComboBox?multiple=${multiple}&initialValue=${
-          multiple ? 'all' : 11
-        }&showChangeValueButton=true`,
-      );
-
-      await page.waitForTimeout(200);
-
-      let tags = getSelectTagContainerTags(page);
-
-      // Should change internal state when the value prop changes
-      if (multiple) {
-        expect(tags).toHaveCount(defaultOptions.length);
-
-        for (let i = 0; i < (await tags.count()); i++) {
-          await expect(tags.nth(i)).toHaveText(defaultOptions[i].label);
-        }
-
-        await page.getByTestId('change-value-to-first-option-button').click();
-
-        expect(tags).toHaveCount(1);
-        await expect(tags.first()).toHaveText(defaultOptions[0].label);
-      } else {
-        await expect(page.locator('input')).toHaveValue('Item 11');
-        await page.getByTestId('change-value-to-first-option-button').click();
-        await expect(page.locator('input')).toHaveValue('Item 0');
-      }
-
-      // Should not allow to select other options
-      await page.keyboard.press('Tab');
-
-      await page.getByRole('option').nth(3).click();
-
-      if (multiple) {
-        expect(tags).toHaveCount(1);
-        await expect(tags.first()).toHaveText(defaultOptions[0].label);
-      } else {
-        await expect(page.locator('input')).toHaveValue('Item 0');
-      }
-    });
   });
 });
 
