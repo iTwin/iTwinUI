@@ -22,7 +22,7 @@ The default progress indicator is indeterminate. If a [value](#value) is passed,
 
 ### Value
 
-To specify a value for indeterminate indicator, pass a number into the `value` prop. This prop is available for both linear and radial indicators. If the `indeterminate` prop is set to `true`, this value will be ignored. We recommend keeping the value inclusively between 0 and 100.
+To specify a value for indeterminate indicator, pass a number into the `value` prop. This prop is available for both linear and radial indicators. If the `indeterminate` prop is set to `true`, this value will be ignored. This value must be inclusively between 0 and 100.
 
 <LiveExample src='ProgressLinear.value.jsx' truncate={false}>
   <AllExamples.ProgressLinearValueExample client:load />
@@ -81,7 +81,7 @@ This prop is only available for radial indicators.
 
 ### Content
 
-The radial progress indicator can be wrapped around JSX elements, such as icons or texts. This content helps provide flexibility to enhance the progress display with additional visual appearance. This prop is only available for radial indicators.
+The radial progress indicator can be wrapped around JSX elements, such as icons or texts. This content helps provide flexibility to enhance the progress display with additional visual appearance. Moreover, indicators of `"x-small"` size will not display its content. This prop is only available for radial indicators.
 
 <LiveExample src='ProgressRadial.content.jsx'>
   <AllExamples.ProgressRadialContentExample client:load />
