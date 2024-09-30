@@ -7,13 +7,6 @@ import { useToaster, Button, Select } from '@itwin/itwinui-react';
 
 export default () => {
   const toaster = useToaster();
-  const [selectedPlacement, setSelectedPlacement] = React.useState('top');
-
-  React.useEffect(() => {
-    toaster.setSettings({
-      placement: selectedPlacement,
-    });
-  }, [selectedPlacement]);
 
   return (
     <div className='demo-container'>
@@ -27,7 +20,11 @@ export default () => {
           { value: 'bottom-start', label: 'Bottom start' },
           { value: 'bottom-end', label: 'Bottom end' },
         ]}
-        onChange={(value) => setSelectedPlacement(value)}
+        onChange={(value) =>
+          toaster.setSettings({
+            placement: value,
+          })
+        }
       />
       <Button onClick={() => toaster.informational('This is a toast message.')}>
         Open toast
