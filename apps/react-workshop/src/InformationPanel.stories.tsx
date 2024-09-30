@@ -217,6 +217,7 @@ export const CustomActions = () => {
               styleType='borderless'
               isActive={isEditing}
               onClick={() => setIsEditing((editing) => !editing)}
+              aria-label='Edit'
             >
               <SvgEdit />
             </IconButton>
