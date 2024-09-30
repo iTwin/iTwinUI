@@ -13,7 +13,7 @@ export default () => {
     toaster.setSettings({
       order: selectedOrder,
     });
-  }, []);
+  }, [selectedOrder]);
 
   return (
     <div className='demo-container'>
@@ -24,6 +24,7 @@ export default () => {
           { value: 'descending', label: 'Descending' },
           { value: 'auto', label: 'Auto' },
         ]}
+        onChange={(value) => setSelectedOrder(value)}
       ></Select>
       <Button onClick={() => toaster.informational('This is a toast message.')}>
         Open toast
