@@ -12,6 +12,9 @@ export default () => {
     <div className='demo-container'>
       <Select
         placeholder='Select placement'
+        triggerProps={{
+          'aria-label': 'Placement',
+        }}
         options={[
           { value: 'top', label: 'Top' },
           { value: 'top-start', label: 'Top start' },

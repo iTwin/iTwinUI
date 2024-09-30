@@ -11,6 +11,9 @@ export default () => {
   return (
     <div className='demo-container'>
       <Select
+        triggerProps={{
+          'aria-label': 'Order',
+        }}
         placeholder='Select order'
         options={[
           { value: 'ascending', label: 'Ascending' },
