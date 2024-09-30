@@ -1284,6 +1284,7 @@ export const Full = () => {
             <IconButton
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
+              aria-label='More options'
             >
               <SvgMore />
             </IconButton>
@@ -1488,6 +1489,7 @@ export const Full2 = () => {
             <IconButton
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
+              aria-label='More options'
               disabled={isRowDisabled(props.row.original)}
             >
               <SvgMore />
@@ -3323,6 +3325,7 @@ export const StickyColumns = () => {
             <IconButton
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
+              aria-label='More options'
             >
               <SvgMore />
             </IconButton>

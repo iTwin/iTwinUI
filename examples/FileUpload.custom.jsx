@@ -54,6 +54,7 @@ export default () => {
         </FileUploadCard.Info>
         <FileUploadCard.Action>
           <IconButton
+            label='Remove file'
             onClick={() => {
               setFiles([]);
             }}
