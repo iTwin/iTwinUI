@@ -1,20 +1,32 @@
 ---
 title: Tree
-description: A tree provides a list of data.
+description: A tree provides a hierarchial lists of data with nested expandable levels.
 thumbnail: Tree
 ---
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='tree--basic' />
+## Usage
+
+A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. The tree component requires these props to be included for initialization:
+
+- `nodeRenderer`: A render function that returns the node element, which must be memoized. We recommend this function to return the `TreeNode` component.
+- `data`: An array of custom data used for `TreeNode`s inside `Tree`.
+- `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. We recommend controlling state of expanded, selected and disabled nodes via this prop. The function must be memoized.
 
 <LiveExample src='Tree.main.jsx'>
   <AllExamples.TreeMainExample client:load />
 </LiveExample>
 
-A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. Each line of data level may begin with an eye icon for toggling its visibility. In this context, this icon is called specialty checkbox.
+### Visibility
 
-## Size
+Each line of data level may begin with an eye icon for toggling its visibility. In this context, we suggest using the [Checkbox](/docs/checkbox) component with its `variant` set to `"eyeballs"`.
+
+<LiveExample src='Tree.visibility.jsx'>
+  <AllExamples.TreeVisibilityExample client:load />
+</LiveExample>
+
+### Size
 
 There are 2 different sizes available. The default size should suffice for most cases. When a smaller version of the tree is needed, use `size="small"`.
 

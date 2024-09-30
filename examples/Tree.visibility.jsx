@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tree, TreeNode } from '@itwin/itwinui-react';
+import { Checkbox, Tree, TreeNode } from '@itwin/itwinui-react';
 
 export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({});
@@ -65,7 +65,12 @@ export default () => {
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
+          <TreeNode
+            label={node.label}
+            onExpanded={onNodeExpanded}
+            checkbox={<Checkbox variant='eyeball' />}
+            {...rest}
+          />
         ),
         [onNodeExpanded],
       )}

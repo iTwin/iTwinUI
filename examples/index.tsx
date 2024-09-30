@@ -1341,6 +1341,10 @@ import { default as TreeMainExampleRaw } from './Tree.main';
 const TreeMainExample = withThemeProvider(TreeMainExampleRaw);
 export { TreeMainExample };
 
+import { default as TreeVisibilityExampleRaw } from './Tree.visibility';
+const TreeVisibilityExample = withThemeProvider(TreeVisibilityExampleRaw);
+export { TreeVisibilityExample };
+
 import { default as TreeSmallExampleRaw } from './Tree.small';
 const TreeSmallExample = withThemeProvider(TreeSmallExampleRaw);
 export { TreeSmallExample };
