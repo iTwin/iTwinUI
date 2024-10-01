@@ -10,8 +10,27 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Button onClick={() => toaster.positive('Job processing completed.')}>
-        Open toast
+      <Button
+        onClick={() => toaster.positive('This is a positive toast message.')}
+      >
+        Positive
+      </Button>
+      <Button
+        onClick={() => toaster.negative('This is a negative toast message.')}
+      >
+        Negative
+      </Button>
+      <Button
+        onClick={() => toaster.warning('This is a warning toast message.')}
+      >
+        Warning
+      </Button>
+      <Button
+        onClick={() =>
+          toaster.informational('This is an informational toast message.')
+        }
+      >
+        Informational
       </Button>
     </div>
   );
