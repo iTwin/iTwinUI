@@ -997,7 +997,6 @@ export const Table = <
                         column={column}
                         isLast={index === headerGroup.headers.length - 1}
                         columnHasExpanders={hasAnySubRows && !isSelectable}
-                        areFiltersSet={areFiltersSet}
                         state={state}
                         data={data}
                         columnResizeMode={

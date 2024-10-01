@@ -25,7 +25,6 @@ type ColumnHeaderProps<
 > = TableKeyedProps & {
   columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
   column: HeaderGroup<T>;
-  areFiltersSet: boolean;
   columnHasExpanders: boolean;
   isLast: boolean;
   state: TableState<T>;
@@ -46,7 +45,6 @@ export const ColumnHeader = <
     column,
     columnHasExpanders,
     isLast,
-    areFiltersSet,
     state,
     data,
     columnResizeMode,
@@ -64,7 +62,9 @@ export const ColumnHeader = <
   };
 
   const showFilterButton = (column: HeaderGroup<T>) =>
-    (data.length !== 0 || areFiltersSet) && column.canFilter && !!column.Filter;
+    (data.length !== 0 || !!column.filterValue) &&
+    column.canFilter &&
+    !!column.Filter;
 
   const showSortButton = (column: HeaderGroup<T>) =>
     data.length !== 0 && column.canSort;

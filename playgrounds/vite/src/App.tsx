@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react';
 import * as React from 'react';
 import { Divider, Table, Text } from '@itwin/itwinui-react';
-import type { Row } from '@itwin/itwinui-react/react-table';
+import type { Row, Column } from '@itwin/itwinui-react/react-table';
 
 export default function App() {
-  const columns = useMemo(
+  const columns: Column[] = useMemo(
     () => [
       {
         id: 'name',
@@ -74,6 +74,7 @@ export default function App() {
         enableColumnReordering
         isResizable
         columnResizeMode='expand'
+        globalFilterValue='Name0'
       />
     </>
   );
