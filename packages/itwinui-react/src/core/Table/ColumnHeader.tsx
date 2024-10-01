@@ -71,8 +71,6 @@ export const ColumnHeader = <
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
 
-  console.log('column', column);
-
   if ([undefined, 0].includes(column.minWidth)) {
     // override "undefined" or zero min-width with default value
     column.minWidth = columnHasExpanders
