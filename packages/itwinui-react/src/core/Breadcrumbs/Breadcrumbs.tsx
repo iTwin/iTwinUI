@@ -136,11 +136,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       aria-label='Breadcrumb'
       {...rest}
     >
-      <OverflowContainer
-        as='ol'
-        itemsCount={items.length}
-        className='iui-breadcrumbs-list'
-      >
+      <OverflowContainer as='ol' items={items} className='iui-breadcrumbs-list'>
         <BreadcrumbContent
           currentIndex={currentIndex}
           overflowButton={overflowButton}

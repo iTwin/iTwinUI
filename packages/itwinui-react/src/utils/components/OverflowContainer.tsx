@@ -18,7 +18,10 @@ type OverflowContainerProps = {
    * @default 'horizontal'
    */
   overflowOrientation?: 'horizontal' | 'vertical';
-  itemsCount: number;
+  /**
+   * TODO: Will likely be removed in a later PR in the stacked PRs. If not, remove this TODO.
+   */
+  items: React.ReactNode[] | string;
 };
 
 /**
@@ -28,16 +31,16 @@ type OverflowContainerProps = {
  * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
  */
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
-  const { itemsCount, children, overflowOrientation, ...rest } = props;
+  const { items, children, overflowOrientation, ...rest } = props;
 
   const [containerRef, visibleCount] = useOverflow(
-    itemsCount,
+    items.length,
     overflowOrientation,
   );
 
   const overflowContainerContextValue = React.useMemo(
-    () => ({ visibleCount, itemsCount }),
-    [itemsCount, visibleCount],
+    () => ({ visibleCount, itemCount: items.length }),
+    [items.length, visibleCount],
   );
 
   return (
@@ -60,8 +63,8 @@ const OverflowContainerOverflowNode = (
 ) => {
   const { children } = props;
 
-  const { visibleCount, itemsCount } = useOverflowContainerContext();
-  const isOverflowing = visibleCount < itemsCount;
+  const { visibleCount, itemCount } = useOverflowContainerContext();
+  const isOverflowing = visibleCount < itemCount;
 
   return isOverflowing && children;
 };
@@ -80,7 +83,7 @@ export const OverflowContainer = Object.assign(OverflowContainerComponent, {
 const OverflowContainerContext = React.createContext<
   | {
       visibleCount: number;
-      itemsCount: number;
+      itemCount: number;
     }
   | undefined
 >(undefined);
