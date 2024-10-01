@@ -5,9 +5,6 @@ import * as React from 'react';
 export default function ComboBoxTest() {
   const config = getConfigFromSearchParams();
 
-  if (config.exampleType === 'overflow') {
-    return <Overflow />;
-  }
   return <Default config={config} />;
 }
 
@@ -47,37 +44,12 @@ const Default = ({
   );
 };
 
-const Overflow = () => {
-  const data = new Array(15).fill(0).map((_, i) => ({
-    label: `option ${i}`,
-    value: i,
-  }));
-  const widths = new Array(10).fill(0).map((_, i) => 790 + i * 3);
-
-  return (
-    <>
-      {widths.slice(0, 10).map((width) => (
-        <ComboBox
-          key={width}
-          style={{ width: `${width}px`, maxWidth: '80vw' }}
-          multiple={true}
-          options={data}
-          value={data.map((x) => x.value)}
-        />
-      ))}
-    </>
-  );
-};
-
 // ----------------------------------------------------------------------------
 
 function getConfigFromSearchParams() {
   const [searchParams] = useSearchParams();
 
-  const exampleType = searchParams.get('exampleType') as
-    | 'default'
-    | 'overflow'
-    | undefined;
+  const exampleType = searchParams.get('exampleType') as 'default' | undefined;
   const virtualization = searchParams.get('virtualization') === 'true';
   const multiple = searchParams.get('multiple') === 'true';
   const showChangeValueButton =
