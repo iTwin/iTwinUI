@@ -63,9 +63,8 @@ it('renders disabled component', () => {
 
   screen.getByText('Some checkbox');
   expect(
-    (container.querySelector('input[type="checkbox"]') as HTMLInputElement)
-      .disabled,
-  ).toBe(true);
+    container.querySelector('input[type="checkbox"]') as HTMLInputElement,
+  ).toBeDisabled();
 });
 
 it('renders positive component', () => {
@@ -76,9 +75,10 @@ it('renders positive component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-positive'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'positive',
+  );
 });
 
 it('renders warning component', () => {
@@ -89,9 +89,10 @@ it('renders warning component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-warning'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'warning',
+  );
 });
 
 it('renders negative component', () => {
@@ -102,9 +103,10 @@ it('renders negative component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-negative'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'negative',
+  );
 });
 
 it('displays a spinner when isLoading is set to true', () => {
@@ -113,12 +115,14 @@ it('displays a spinner when isLoading is set to true', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(
-    container.querySelector('.iui-checkbox-wrapper.iui-loading'),
-  ).toBeTruthy();
-  expect(
-    container.querySelector('input[type="checkbox"].iui-loading'),
-  ).toBeDisabled();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-loading',
+    'true',
+  );
+  expect(container.querySelector('input[type="checkbox"]')).toHaveAttribute(
+    'data-iui-loading',
+    'true',
+  );
   expect(
     container.querySelector('.iui-progress-indicator-radial'),
   ).toBeTruthy();
