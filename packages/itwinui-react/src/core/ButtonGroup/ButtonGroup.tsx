@@ -187,7 +187,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
   );
 
   const [overflowRef, visibleCount] = useOverflow(
-    items,
+    items.length,
     !overflowButton,
     orientation,
   );
