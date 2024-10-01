@@ -1,4 +1,4 @@
-name: Bug Report 🐛 
+name: Bug Report 🐛
 description: Create a bug report to help us improve
 labels: ['bug']
 assignees: []
@@ -14,7 +14,7 @@ body:
       label: Describe the bug (current behavior)
       description: A concise description of what you're experiencing.
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Expected Behavior
@@ -25,6 +25,8 @@ body:
     attributes:
       label: Link to minimal repro
       description: 'Create a minimal reproduction by forking [this sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)'
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Steps To Reproduce
@@ -32,6 +34,15 @@ body:
         1. Fill 
         2. this
         3. out
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: Package Version
+      description: Please confirm that you are using the [latest version](https://www.npmjs.com/package/@itwin/itwinui-react?activeTab=versions) of iTwinUI.
+      options:
+        - label: I'm using the latest version of iTwinUI.
+          required: false
     validations:
       required: false
   - type: textarea

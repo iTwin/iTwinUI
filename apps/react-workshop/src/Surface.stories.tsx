@@ -46,7 +46,7 @@ export const Custom = () => {
           <Text variant='subheading' as='h2'>
             Custom surface
           </Text>
-          <IconButton styleType='borderless'>
+          <IconButton styleType='borderless' aria-label='Settings'>
             <SvgSettings />
           </IconButton>
         </Flex>

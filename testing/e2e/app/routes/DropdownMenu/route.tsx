@@ -2,23 +2,33 @@ import {
   Button,
   Checkbox,
   DropdownMenu,
+  IconButton,
+  List,
+  ListItem,
   MenuDivider,
   MenuExtraContent,
   MenuItem,
+  Surface,
 } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
+import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [searchParams] = useSearchParams();
 
   const menuType = (searchParams.get('menuType') || 'withSubmenu') as
     | 'withSubmenu'
+    | 'withHideMiddleware'
     | 'withExtraContent';
+  const hideMiddleware =
+    searchParams.get('hideMiddleware') === 'false' ? false : undefined;
 
   return (
     <>
       {menuType === 'withExtraContent' ? (
         <DropdownMenuWithExtraContent />
+      ) : menuType === 'withHideMiddleware' ? (
+        <DropdownMenuHideMiddleware hideMiddleware={hideMiddleware} />
       ) : (
         <DropdownMenuWithSubmenus />
       )}
@@ -130,5 +140,52 @@ const DropdownMenuWithExtraContent = () => {
     >
       <Button data-testid='trigger'>Menu with extra content</Button>
     </DropdownMenu>
+  );
+};
+
+const DropdownMenuHideMiddleware = ({
+  hideMiddleware,
+}: {
+  hideMiddleware?: boolean;
+}) => {
+  const dropdownMenuItems = (close: () => void) => [
+    <MenuItem key={1} onClick={() => close()}>
+      Option #1
+    </MenuItem>,
+    <MenuItem key={2} onClick={() => close()}>
+      Option #2
+    </MenuItem>,
+    <MenuItem key={3} onClick={() => close()} disabled>
+      Option #3
+    </MenuItem>,
+  ];
+
+  const items = new Array(30).fill(0);
+
+  return (
+    <Surface style={{ maxHeight: '200px' }}>
+      <Surface.Body
+        as={List}
+        style={{ overflowY: 'auto', minWidth: 'min(200px, 20%)' }}
+      >
+        {items.map((_, i) => (
+          <ListItem key={i} actionable>
+            <ListItem.Content>Item {i}</ListItem.Content>
+            <DropdownMenu
+              menuItems={dropdownMenuItems}
+              middleware={{ hide: hideMiddleware }}
+            >
+              <IconButton
+                styleType='borderless'
+                label='More options'
+                size='small'
+              >
+                <SvgMore />
+              </IconButton>
+            </DropdownMenu>
+          </ListItem>
+        ))}
+      </Surface.Body>
+    </Surface>
   );
 };

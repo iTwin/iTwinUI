@@ -1,7 +1,6 @@
 ---
 title: Date picker
 description: Used for selecting dates on a calendar to set timeframes, deadlines, and more.
-propsPath: '@itwin/itwinui-react/esm/core/DatePicker/DatePicker.d.ts'
 thumbnail: DatePicker
 related:
   - table
@@ -26,6 +25,8 @@ This component is recommended to be used inside the [`Popover`](popover) compone
 </LiveExample>
 
 If you would rather see an example of the date picker being used on its own, look at the [standalone usage](#standalone-usage).
+
+**Note**: The `showDatesOutsideMonth` prop is recommended to be set to `false`, so that dates that are not in the currently selected month are not displayed. Currently, this prop defaults to `true` for backwards compatibility reasons.
 
 ### Localized
 
@@ -85,4 +86,4 @@ You can set `applyBackground={false}` to make the `DatePicker` blend into its su
 
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+<PropsTable path='@itwin/itwinui-react/esm/core/DatePicker/DatePicker.d.ts' />

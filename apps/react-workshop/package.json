@@ -9,7 +9,7 @@
     "@itwin/itwinui-icons-react": "2.8.0",
     "@itwin/itwinui-variables": "*",
     "@itwin/itwinui-react": "*",
-    "@ladle/react": "^4.0.2",
+    "@ladle/react": "^4.1.1",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
