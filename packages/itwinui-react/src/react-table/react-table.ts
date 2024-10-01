@@ -1193,9 +1193,52 @@ export interface SortingRule<D> {
 
 //#endregion
 
+type ActionTypes =
+  | 'init'
+  | 'resetHiddenColumns'
+  | 'toggleHideColumn'
+  | 'setHiddenColumns'
+  | 'toggleHideAllColumns'
+  | 'resetExpanded'
+  | 'toggleRowExpanded'
+  | 'toggleAllRowsExpanded'
+  | 'resetFilters'
+  | 'setFilter'
+  | 'setAllFilters'
+  | 'resetGlobalFilter'
+  | 'setGlobalFilter'
+  | 'resetGroupBy'
+  | 'setGroupBy'
+  | 'toggleGroupBy'
+  | 'resetSortBy'
+  | 'setSortBy'
+  | 'toggleSortBy'
+  | 'clearSortBy'
+  | 'resetPage'
+  | 'gotoPage'
+  | 'setPageSize'
+  | 'resetPivot'
+  | 'togglePivot'
+  | 'resetSelectedRows'
+  | 'toggleAllRowsSelected'
+  | 'toggleRowSelected'
+  | 'toggleAllPageRowsSelected'
+  | 'setRowState'
+  | 'setCellState'
+  | 'resetRowState'
+  | 'resetColumnOrder'
+  | 'setColumnOrder'
+  | 'columnStartResizing'
+  | 'columnResizing'
+  | 'columnDoneResizing'
+  | 'resetResize'
+  | 'setScrolledLeft'
+  | 'setScrolledRight'
+  | AnyString;
+
 // Additional API
-export declare const actions: Record<string, string>;
-export type ActionType = { type: string } & Record<string, any>;
+export declare const actions: Record<ActionTypes, string>;
+export type ActionType = { type: ActionTypes } & Record<string, any>;
 export declare const defaultColumn: Partial<Column> & Record<string, any>;
 
 // Helpers
