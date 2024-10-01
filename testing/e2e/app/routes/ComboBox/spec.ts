@@ -77,26 +77,15 @@ test('should select multiple options', async ({ page }) => {
 test('should not have flickering tags (fixes #2112)', async ({ page }) => {
   await page.goto('/ComboBox?exampleType=overflow');
 
-  const selectTagContainers = page.locator(
-    "[role='combobox'] + div:first-of-type",
-  );
-
   // Wait for page to stabilize
-  await expect(selectTagContainers).toHaveCount(10);
-  for (let i = 0; i < 10; i++) {
-    await expect(selectTagContainers.nth(i).locator('> span')).toHaveCount(
-      i < 5 ? 6 : 7,
-    );
-  }
+  await page.waitForTimeout(30);
 
-  // The number of items should not change with time (i.e. no flickering)
-  for (let iteration = 0; iteration < 10; iteration++) {
-    for (let i = 0; i < 10; i++) {
-      expect(selectTagContainers.nth(i).locator('> span')).toHaveCount(
-        i < 5 ? 6 : 7,
-      );
-    }
-  }
+  const stabalizedCount = await getSelectTagContainerDomChangeCount(page);
+  await page.waitForTimeout(100);
+  const newCount = await getSelectTagContainerDomChangeCount(page);
+
+  // DOM should not change with time (i.e. no flickering)
+  expect(stabalizedCount).toBe(newCount);
 });
 
 test.describe('ComboBox (virtualization)', () => {
@@ -379,4 +368,13 @@ const expectOverflowState = async ({
 
 const getSelectTagContainerTags = (page: Page) => {
   return page.getByRole('combobox').locator('+ div > span');
+};
+
+const getSelectTagContainerDomChangeCount = async (page: Page) => {
+  const selectTagContainerDomChangeCounter = page.getByTestId(
+    'select-tag-containers-dom-change-count',
+  );
+  return (await selectTagContainerDomChangeCounter.textContent())
+    ?.split(':')[1]
+    .trim();
 };

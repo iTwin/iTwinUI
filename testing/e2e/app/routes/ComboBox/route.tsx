@@ -1,4 +1,4 @@
-import { Button, ComboBox } from '@itwin/itwinui-react';
+import { Button, ComboBox, Flex } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
 import * as React from 'react';
 
@@ -54,8 +54,37 @@ const Overflow = () => {
   }));
   const widths = new Array(10).fill(0).map((_, i) => 790 + i * 3);
 
+  const [
+    selectTagContainersDomChangeCount,
+    setSelectTagContainersDomChangeCount,
+  ] = React.useState(0);
+
+  React.useEffect(() => {
+    const observer = new MutationObserver(() =>
+      setSelectTagContainersDomChangeCount((count) => count + 1),
+    );
+
+    const selectTagContainers = document.querySelectorAll(
+      "[role='combobox'] + div:first-of-type",
+    );
+    selectTagContainers.forEach((container) => {
+      observer.observe(container, {
+        attributes: false,
+        childList: true,
+        subtree: false,
+      });
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <>
+    <Flex flexDirection='column' alignItems='flex-start'>
+      <p data-testid='select-tag-containers-dom-change-count'>
+        Select tag containers DOM changes: {selectTagContainersDomChangeCount}
+      </p>
       {widths.slice(0, 10).map((width) => (
         <ComboBox
           key={width}
@@ -65,7 +94,7 @@ const Overflow = () => {
           value={data.map((x) => x.value)}
         />
       ))}
-    </>
+    </Flex>
   );
 };
 
