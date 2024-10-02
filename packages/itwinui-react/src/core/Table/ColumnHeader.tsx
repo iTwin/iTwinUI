@@ -28,7 +28,6 @@ type ColumnHeaderProps<
   columnHasExpanders: boolean;
   isLast: boolean;
   state: TableState<T>;
-  data: T[];
   columnResizeMode?: 'fit' | 'expand';
   enableColumnReordering: boolean;
   density: string | undefined;
@@ -46,7 +45,6 @@ export const ColumnHeader = <
     columnHasExpanders,
     isLast,
     state,
-    data,
     columnResizeMode,
     enableColumnReordering,
     density,
@@ -61,13 +59,15 @@ export const ColumnHeader = <
     withExpander: 108, // expander column should be wider to accommodate the expander icon
   };
 
+  console.log('column', column);
+
   const showFilterButton = (column: HeaderGroup<T>) =>
-    (data.length !== 0 || !!column.filterValue) &&
+    (column.preFilteredRows.length !== 0 || !!column.filterValue) &&
     column.canFilter &&
     !!column.Filter;
 
   const showSortButton = (column: HeaderGroup<T>) =>
-    data.length !== 0 && column.canSort;
+    column.preFilteredRows.length !== 0 && column.canSort;
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
 

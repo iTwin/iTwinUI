@@ -998,7 +998,6 @@ export const Table = <
                         isLast={index === headerGroup.headers.length - 1}
                         columnHasExpanders={hasAnySubRows && !isSelectable}
                         state={state}
-                        data={data}
                         columnResizeMode={
                           isResizable ? columnResizeMode : undefined
                         }

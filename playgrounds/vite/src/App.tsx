@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react';
 import * as React from 'react';
 import { Divider, Table, Text } from '@itwin/itwinui-react';
-import type { Row, Column } from '@itwin/itwinui-react/react-table';
+import type { Row } from '@itwin/itwinui-react/react-table';
 
 export default function App() {
-  const columns: Column[] = useMemo(
+  const columns = useMemo(
     () => [
       {
         id: 'name',
@@ -26,7 +26,7 @@ export default function App() {
       arr[i] = {
         name: `Name${i}`,
         description: `Description${i}`,
-        subRows: [{ name: 'Name', description: 'Description' }],
+        //subRows: [{ name: 'Name', description: 'Description' }],
       };
     }
     return arr;
@@ -61,7 +61,7 @@ export default function App() {
       <h1>This is a test table.</h1>
       <Divider style={{ width: '100%', color: 'white', height: '5px' }} />
       <Table
-        //enableVirtualization
+        enableVirtualization
         columns={columns}
         data={data}
         emptyTableContent={'Empty table.'}
@@ -69,12 +69,10 @@ export default function App() {
           marginTop: '10px',
           maxHeight: '90vh',
         }}
-        //subComponent={expandedSubComponent}
+        subComponent={expandedSubComponent}
         isSelectable
-        enableColumnReordering
         isResizable
         columnResizeMode='expand'
-        globalFilterValue='Name0'
       />
     </>
   );
