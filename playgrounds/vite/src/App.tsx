@@ -1,5 +1,4 @@
 import { useCallback, useMemo } from 'react';
-import * as React from 'react';
 import { Divider, Table, Text } from '@itwin/itwinui-react';
 import type { Row } from '@itwin/itwinui-react/react-table';
 
@@ -61,7 +60,7 @@ export default function App() {
       <h1>This is a test table.</h1>
       <Divider style={{ width: '100%', color: 'white', height: '5px' }} />
       <Table
-        enableVirtualization
+        //enableVirtualization
         columns={columns}
         data={data}
         emptyTableContent={'Empty table.'}

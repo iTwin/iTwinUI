@@ -1001,7 +1001,6 @@ export const Table = <
                         columnResizeMode={
                           isResizable ? columnResizeMode : undefined
                         }
-                        enableColumnReordering={enableColumnReordering}
                         density={density}
                         visibleColumns={visibleColumns}
                       />

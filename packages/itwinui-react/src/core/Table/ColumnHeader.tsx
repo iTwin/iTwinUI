@@ -29,7 +29,6 @@ type ColumnHeaderProps<
   isLast: boolean;
   state: TableState<T>;
   columnResizeMode?: 'fit' | 'expand';
-  enableColumnReordering: boolean;
   density: string | undefined;
   visibleColumns: ColumnInstance<T>[];
 };
@@ -46,7 +45,6 @@ export const ColumnHeader = <
     isLast,
     state,
     columnResizeMode,
-    enableColumnReordering,
     density,
     visibleColumns,
     ...rest
@@ -59,7 +57,7 @@ export const ColumnHeader = <
     withExpander: 108, // expander column should be wider to accommodate the expander icon
   };
 
-  console.log('column', column);
+  console.log('disable reordering', column.disableReordering);
 
   const showFilterButton = (column: HeaderGroup<T>) =>
     (column.preFilteredRows.length !== 0 || !!column.filterValue) &&
@@ -180,7 +178,7 @@ export const ColumnHeader = <
               <Box className='iui-table-resizer-bar' />
             </Box>
           )}
-        {enableColumnReordering && !column.disableReordering && (
+        {!column.disableReordering && (
           <Box className='iui-table-reorder-bar' slot='resizers' />
         )}
         {column.sticky === 'left' && state.sticky.isScrolledToRight && (
