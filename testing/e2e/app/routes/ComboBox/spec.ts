@@ -74,6 +74,20 @@ test('should select multiple options', async ({ page }) => {
   });
 });
 
+test('should not have flickering tags (fixes #2112)', async ({ page }) => {
+  await page.goto('/ComboBox?exampleType=overflow');
+
+  // Wait for page to stabilize
+  await page.waitForTimeout(30);
+
+  const stabalizedCount = await getSelectTagContainerDomChangeCount(page);
+  await page.waitForTimeout(100);
+  const newCount = await getSelectTagContainerDomChangeCount(page);
+
+  // DOM should not change with time (i.e. no flickering)
+  expect(stabalizedCount).toBe(newCount);
+});
+
 test.describe('ComboBox (virtualization)', () => {
   test('should support keyboard navigation when virtualization is enabled', async ({
     page,
@@ -354,4 +368,13 @@ const expectOverflowState = async ({
 
 const getSelectTagContainerTags = (page: Page) => {
   return page.getByRole('combobox').locator('+ div > span');
+};
+
+const getSelectTagContainerDomChangeCount = async (page: Page) => {
+  const selectTagContainerDomChangeCounter = page.getByTestId(
+    'select-tag-containers-dom-change-count',
+  );
+  return (await selectTagContainerDomChangeCounter.textContent())
+    ?.split(':')[1]
+    .trim();
 };
