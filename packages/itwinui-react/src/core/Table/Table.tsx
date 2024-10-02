@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  actions as TableActions,
+  actions,
   useFlexLayout,
   useFilters,
   useRowSelect,
@@ -68,10 +68,10 @@ import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
 
-const singleRowSelectedAction = 'singleRowSelected';
-const shiftRowSelectedAction = 'shiftRowSelected';
-export const tableResizeStartAction = 'tableResizeStart';
-const tableResizeEndAction = 'tableResizeEnd';
+actions.singleRowSelected = 'singleRowSelected';
+actions.shiftRowSelected = 'shiftRowSelected';
+actions.tableResizeStart = 'tableResizeStart';
+actions.tableResizeEnd = 'tableResizeEnd';
 
 export type TablePaginatorRendererProps = {
   /**
@@ -416,6 +416,8 @@ export const Table = <
     ...rest
   } = props;
 
+  console.log(Object.keys(actions));
+
   useGlobals();
 
   const ownerDocument = React.useRef<Document | undefined>();
@@ -492,10 +494,10 @@ export const Table = <
       instance?: TableInstance<T>,
     ): TableState<T> => {
       switch (action.type) {
-        case TableActions.toggleSortBy:
+        case actions.toggleSortBy:
           onSort?.(newState);
           break;
-        case TableActions.setFilter:
+        case actions.setFilter:
           currentFilter.current = onFilterHandler(
             newState,
             action,
@@ -504,11 +506,11 @@ export const Table = <
             instance,
           );
           break;
-        case TableActions.toggleRowExpanded:
-        case TableActions.toggleAllRowsExpanded:
+        case actions.toggleRowExpanded:
+        case actions.toggleAllRowsExpanded:
           onExpandHandler(newState, instance, onExpand);
           break;
-        case singleRowSelectedAction: {
+        case actions.singleRowSelected: {
           newState = onSingleSelectHandler(
             newState,
             action,
@@ -519,7 +521,7 @@ export const Table = <
           );
           break;
         }
-        case shiftRowSelectedAction: {
+        case actions.shiftRowSelected: {
           newState = onShiftSelectHandler(
             newState,
             action,
@@ -530,9 +532,9 @@ export const Table = <
           );
           break;
         }
-        case TableActions.toggleRowSelected:
-        case TableActions.toggleAllRowsSelected:
-        case TableActions.toggleAllPageRowsSelected: {
+        case actions.toggleRowSelected:
+        case actions.toggleAllRowsSelected:
+        case actions.toggleAllPageRowsSelected: {
           onToggleHandler(
             newState,
             action,
@@ -543,11 +545,11 @@ export const Table = <
           );
           break;
         }
-        case tableResizeStartAction: {
+        case actions.tableResizeStart: {
           newState = onTableResizeStart(newState);
           break;
         }
-        case tableResizeEndAction: {
+        case actions.tableResizeEnd: {
           newState = onTableResizeEnd(newState, action);
           break;
         }
@@ -687,7 +689,7 @@ export const Table = <
       ) {
         if (selectionMode === 'multi' && event.shiftKey) {
           dispatch({
-            type: shiftRowSelectedAction,
+            type: actions.shiftRowSelected,
             id: row.id,
             ctrlPressed: ctrlPressed,
           });
@@ -696,7 +698,7 @@ export const Table = <
           (selectionMode === 'single' || !ctrlPressed)
         ) {
           dispatch({
-            type: singleRowSelectedAction,
+            type: actions.shiftRowSelected,
             id: row.id,
           });
         } else {
@@ -800,7 +802,7 @@ export const Table = <
         return;
       }
 
-      dispatch({ type: tableResizeStartAction });
+      dispatch({ type: actions.tableResizeStart });
     },
     [
       dispatch,
@@ -822,7 +824,7 @@ export const Table = <
             columnRefs.current[column.id].getBoundingClientRect().width;
         }
       });
-      dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
+      dispatch({ type: actions.tableResizeEnd, columnWidths: newColumnWidths });
     }
   });
 
@@ -917,9 +919,9 @@ export const Table = <
     }
 
     if (tableRef.current.scrollLeft !== 0) {
-      dispatch({ type: TableActions.setScrolledRight, value: true });
+      dispatch({ type: actions.setScrolledRight, value: true });
     } else {
-      dispatch({ type: TableActions.setScrolledRight, value: false });
+      dispatch({ type: actions.setScrolledRight, value: false });
     }
 
     // If scrolled a bit to the left looking from the right side
@@ -927,9 +929,9 @@ export const Table = <
       tableRef.current.scrollLeft !==
       tableRef.current.scrollWidth - tableRef.current.clientWidth
     ) {
-      dispatch({ type: TableActions.setScrolledLeft, value: true });
+      dispatch({ type: actions.setScrolledLeft, value: true });
     } else {
-      dispatch({ type: TableActions.setScrolledLeft, value: false });
+      dispatch({ type: actions.setScrolledLeft, value: false });
     }
   };
 

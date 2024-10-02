@@ -7,7 +7,7 @@ import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/Checkbox.js';
 import { FieldsetBase, SvgColumnManager } from '../../../utils/index.js';
 import { IconButton } from '../../Buttons/IconButton.js';
-import { tableResizeStartAction } from '../Table.js';
+import { actions } from 'react-table';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
 import { Popover } from '../../Popover/Popover.js';
@@ -85,7 +85,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
                 return;
               }
               // Triggers an update to resize the widths of all visible columns
-              dispatch({ type: tableResizeStartAction });
+              dispatch({ type: actions.tableResizeStart });
 
               // If some columns were resized and some columns visibility was enabled, then horizontal scrollbar appears
               // and table is scrolled to the very left which means our visibility dropdown menu is not visible.
