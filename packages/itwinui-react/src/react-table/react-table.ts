@@ -1193,9 +1193,61 @@ export interface SortingRule<D> {
 
 //#endregion
 
+type BuiltInAction =
+  | 'init'
+  | 'resetHiddenColumns'
+  | 'toggleHideColumn'
+  | 'setHiddenColumns'
+  | 'toggleHideAllColumns'
+  | 'resetPivot'
+  | 'togglePivot'
+  | 'resetColumnOrder'
+  | 'setColumnOrder'
+  | 'resetExpanded'
+  | 'toggleRowExpanded'
+  | 'toggleAllRowsExpanded'
+  | 'resetFilters'
+  | 'setFilter'
+  | 'setAllFilters'
+  | 'resetGlobalFilter'
+  | 'setGlobalFilter'
+  | 'columnStartResizing'
+  | 'columnResizing'
+  | 'columnDoneResizing'
+  | 'resetResize'
+  | 'resetGroupBy'
+  | 'setGroupBy'
+  | 'toggleGroupBy'
+  | 'resetPage'
+  | 'gotoPage'
+  | 'setPageSize'
+  | 'resetSelectedRows'
+  | 'toggleAllRowsSelected'
+  | 'toggleRowSelected'
+  | 'toggleAllPageRowsSelected'
+  | 'setRowState'
+  | 'setCellState'
+  | 'resetRowState'
+  | 'resetSortBy'
+  | 'setSortBy'
+  | 'toggleSortBy'
+  | 'clearSortBy';
+
+type CustomAction =
+  | 'setScrolledLeft'
+  | 'setScrolledRight'
+  | 'columnDragStart'
+  | 'columnDragEnd'
+  | 'singleRowSelected'
+  | 'shiftRowSelected'
+  | 'tableResizeStart'
+  | 'tableResizeEnd';
+
+type PossibleActionType = BuiltInAction | CustomAction | AnyString;
+
 // Additional API
-export declare const actions: Record<string, string>;
-export type ActionType = { type: string } & Record<string, any>;
+export declare const actions: Record<PossibleActionType, string>;
+export type ActionType = { type: PossibleActionType } & Record<string, any>;
 export declare const defaultColumn: Partial<Column> & Record<string, any>;
 
 // Helpers
