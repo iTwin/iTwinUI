@@ -13,17 +13,15 @@ There are two types of progress indicators available as separate components:
 - `ProgressLinear`: shows progress on a linear bar
 - `ProgressRadial`: shows progress in a circular form.
 
-The default progress indicator is indeterminate. If a [value](#value) is passed, the indicator becomes determinate.
-
 <LiveExample src='ProgressIndicators.main.jsx' truncate={false}>
   <AllExamples.ProgressIndicatorsMainExample client:load />
 </LiveExample>
 
+By default, the progress indicators are considered to be "indeterminate". This is useful for short processes, where it isn't necessary (or possible) to indicate the completion percentage. For longer processes, a "determinate" progress indicator should be used.
+
 ### Value
 
 To specify a value for determinate progress indicator, the `value` prop can be used. This prop is available for both `ProgressLinear` and `ProgressRadial`. The value must be inclusively between `0` and `100`, representing what percentage of the task has completed.
-
-If the `indeterminate` prop is set to `true`, this value will be ignored.
 
 <LiveExample src='ProgressIndicators.value.jsx' truncate={false}>
   <AllExamples.ProgressIndicatorsValueExample client:load />
@@ -35,9 +33,13 @@ Exclusively for `ProgressLinear`, the `isAnimated` flag is helpful when applying
   <AllExamples.ProgressLinearAnimatedExample client:load />
 </LiveExample>
 
+**Note**: If the `indeterminate` prop is set to `true`, this value will be ignored.
+
 ### Status
 
-The statuses for both `ProgressLinear` and `ProgressRadial` are used to convey the outcome of a process. The desired UX flow is to show a default progress indicator during the process, and then update the status to reflect whether the process was successful, encountered an error, or requires attention. Three available statuses are:
+The `status` prop can be used to convey the outcome of a process. The recommended UX flow is to display the default progress indicator during the loading process, and then update the `status` to reflect whether the process was successful, encountered an error, or requires attention.
+
+Three available statuses are:
 
 - `"positive"`: to indicate success.
 - `"negative"`: to indicate failure.
@@ -80,11 +82,11 @@ This prop is only available for `ProgressRadial`.
 
 The `ProgressRadial` component can be wrapped around JSX elements, such as icons or texts. This content helps provide flexibility to enhance the progress display with additional visual appearance. This prop is only available for `ProgressRadial`.
 
-**Note**: Indicators of `"x-small"` size will not display its content.
-
 <LiveExample src='ProgressRadial.content.jsx'>
   <AllExamples.ProgressRadialContentExample client:load />
 </LiveExample>
+
+**Note**: Indicators of `"x-small"` size will not display its content.
 
 ## Accessibility
 

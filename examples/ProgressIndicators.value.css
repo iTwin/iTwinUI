@@ -1,6 +1,6 @@
 .demo-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 200px;
   align-items: center;
   gap: var(--iui-size-s);
