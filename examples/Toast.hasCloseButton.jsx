@@ -10,7 +10,13 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Button onClick={() => toaster.positive('Job processing completed.')}>
+      <Button
+        onClick={() =>
+          toaster.positive('This is a positive message', {
+            hasCloseButton: true,
+          })
+        }
+      >
         Open toast
       </Button>
     </div>
