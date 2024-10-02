@@ -696,7 +696,7 @@ export const Table = <
           (selectionMode === 'single' || !ctrlPressed)
         ) {
           dispatch({
-            type: actions.shiftRowSelected,
+            type: actions.singleRowSelected,
             id: row.id,
           });
         } else {
