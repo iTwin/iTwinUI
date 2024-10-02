@@ -59,7 +59,7 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
         whiteSpace: 'nowrap',
         ...style,
       }}
-      items={text}
+      itemsCount={text.length}
       {...rest}
     >
       <MiddleTextTruncationContent {...props} />
