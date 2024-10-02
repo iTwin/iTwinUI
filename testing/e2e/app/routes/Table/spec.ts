@@ -473,7 +473,15 @@ test.describe('Table Paginator', () => {
     const paginatorButtons = page.locator('#paginator button', {
       hasText: /[0-9]+/,
     });
-    await expect(paginatorButtons).toHaveText(['1', '5', '6', '7', '11']);
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '11',
+    ]);
     await expect(paginatorButtons.nth(2)).toHaveAttribute(
       'data-iui-active',
       'true',
