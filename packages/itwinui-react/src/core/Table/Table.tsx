@@ -416,8 +416,6 @@ export const Table = <
     ...rest
   } = props;
 
-  console.log(Object.keys(actions));
-
   useGlobals();
 
   const ownerDocument = React.useRef<Document | undefined>();
