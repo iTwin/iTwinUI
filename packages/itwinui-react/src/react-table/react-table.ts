@@ -1193,12 +1193,16 @@ export interface SortingRule<D> {
 
 //#endregion
 
-type ActionTypes =
+type BuiltInAction =
   | 'init'
   | 'resetHiddenColumns'
   | 'toggleHideColumn'
   | 'setHiddenColumns'
   | 'toggleHideAllColumns'
+  | 'resetPivot'
+  | 'togglePivot'
+  | 'resetColumnOrder'
+  | 'setColumnOrder'
   | 'resetExpanded'
   | 'toggleRowExpanded'
   | 'toggleAllRowsExpanded'
@@ -1207,18 +1211,16 @@ type ActionTypes =
   | 'setAllFilters'
   | 'resetGlobalFilter'
   | 'setGlobalFilter'
+  | 'columnStartResizing'
+  | 'columnResizing'
+  | 'columnDoneResizing'
+  | 'resetResize'
   | 'resetGroupBy'
   | 'setGroupBy'
   | 'toggleGroupBy'
-  | 'resetSortBy'
-  | 'setSortBy'
-  | 'toggleSortBy'
-  | 'clearSortBy'
   | 'resetPage'
   | 'gotoPage'
   | 'setPageSize'
-  | 'resetPivot'
-  | 'togglePivot'
   | 'resetSelectedRows'
   | 'toggleAllRowsSelected'
   | 'toggleRowSelected'
@@ -1226,19 +1228,18 @@ type ActionTypes =
   | 'setRowState'
   | 'setCellState'
   | 'resetRowState'
-  | 'resetColumnOrder'
-  | 'setColumnOrder'
-  | 'columnStartResizing'
-  | 'columnResizing'
-  | 'columnDoneResizing'
-  | 'resetResize'
-  | 'setScrolledLeft'
-  | 'setScrolledRight'
-  | AnyString;
+  | 'resetSortBy'
+  | 'setSortBy'
+  | 'toggleSortBy'
+  | 'clearSortBy';
+
+type CustomAction = 'setScrolledLeft' | 'setScrolledRight';
+
+type PossibleActionType = BuiltInAction | CustomAction | AnyString;
 
 // Additional API
-export declare const actions: Record<ActionTypes, string>;
-export type ActionType = { type: ActionTypes } & Record<string, any>;
+export declare const actions: Record<PossibleActionType, string>;
+export type ActionType = { type: PossibleActionType } & Record<string, any>;
 export declare const defaultColumn: Partial<Column> & Record<string, any>;
 
 // Helpers
