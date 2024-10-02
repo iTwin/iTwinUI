@@ -1,3 +1,6 @@
 .demo-container {
-  width: min(100%, 200px);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-xs);
 }
