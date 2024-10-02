@@ -3,12 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ProgressLinear } from '@itwin/itwinui-react';
+import { ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <div className='demo-container'>
-      <ProgressLinear value={50} />
+      <ProgressLinear style={{ width: '100%' }} value={50} />
+      <ProgressRadial value={50} />
     </div>
   );
 };

@@ -900,17 +900,17 @@ export const PopoverFocusExample = withThemeProvider(PopoverFocusExampleRaw);
 
 // ----------------------------------------------------------------------------
 
-import { default as ProgressLinearMainExampleRaw } from './ProgressLinear.main';
-const ProgressLinearMainExample = withThemeProvider(
-  ProgressLinearMainExampleRaw,
+import { default as ProgressIndicatorsMainExampleRaw } from './ProgressIndicators.main';
+const ProgressIndicatorsMainExample = withThemeProvider(
+  ProgressIndicatorsMainExampleRaw,
 );
-export { ProgressLinearMainExample };
+export { ProgressIndicatorsMainExample };
 
-import { default as ProgressLinearValueExampleRaw } from './ProgressLinear.value';
-const ProgressLinearValueExample = withThemeProvider(
-  ProgressLinearValueExampleRaw,
+import { default as ProgressIndicatorsValueExampleRaw } from './ProgressIndicators.value';
+const ProgressIndicatorsValueExample = withThemeProvider(
+  ProgressIndicatorsValueExampleRaw,
 );
-export { ProgressLinearValueExample };
+export { ProgressIndicatorsValueExample };
 
 import { default as ProgressLinearAnimatedExampleRaw } from './ProgressLinear.isAnimated';
 const ProgressLinearAnimatedExample = withThemeProvider(
@@ -929,18 +929,6 @@ const ProgressLinearStatusExample = withThemeProvider(
   ProgressLinearStatusExampleRaw,
 );
 export { ProgressLinearStatusExample };
-
-import { default as ProgressRadialMainExampleRaw } from './ProgressRadial.main';
-const ProgressRadialMainExample = withThemeProvider(
-  ProgressRadialMainExampleRaw,
-);
-export { ProgressRadialMainExample };
-
-import { default as ProgressRadialValueExampleRaw } from './ProgressRadial.value';
-const ProgressRadialValueExample = withThemeProvider(
-  ProgressRadialValueExampleRaw,
-);
-export { ProgressRadialValueExample };
 
 import { default as ProgressRadialSizeExampleRaw } from './ProgressRadial.size';
 const ProgressRadialSizeExample = withThemeProvider(

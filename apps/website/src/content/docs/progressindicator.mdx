@@ -15,12 +15,8 @@ There are two types of progress indicators available as separate components:
 
 The default progress indicator is indeterminate. If a [value](#value) is passed, the indicator becomes determinate.
 
-<LiveExample src='ProgressLinear.main.jsx' truncate={false}>
-  <AllExamples.ProgressLinearMainExample client:load />
-</LiveExample>
-
-<LiveExample src='ProgressRadial.main.jsx' truncate={false}>
-  <AllExamples.ProgressRadialMainExample client:load />
+<LiveExample src='ProgressIndicators.main.jsx' truncate={false}>
+  <AllExamples.ProgressIndicatorsMainExample client:load />
 </LiveExample>
 
 ### Value
@@ -29,12 +25,8 @@ To specify a value for determinate progress indicator, the `value` prop can be u
 
 If the `indeterminate` prop is set to `true`, this value will be ignored.
 
-<LiveExample src='ProgressLinear.value.jsx' truncate={false}>
-  <AllExamples.ProgressLinearValueExample client:load />
-</LiveExample>
-
-<LiveExample src='ProgressRadial.value.jsx' truncate={false}>
-  <AllExamples.ProgressRadialValueExample client:load />
+<LiveExample src='ProgressIndicators.value.jsx' truncate={false}>
+  <AllExamples.ProgressIndicatorsValueExample client:load />
 </LiveExample>
 
 Exclusively for `ProgressLinear`, the `isAnimated` flag is helpful when applying animation to the indicator as the value changes.

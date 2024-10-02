@@ -1,0 +1,7 @@
+.demo-container {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  align-items: center;
+  gap: var(--iui-size-s);
+}
