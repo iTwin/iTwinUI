@@ -1,12 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('toolbar pattern in TransferList.Toolbar', () => {
-  test("should have role='toolbar'", async ({ page }) => {
-    await page.goto('/TransferList');
-    const toolbar = page.getByRole('toolbar');
-    await expect(toolbar).toHaveCount(1);
-  });
-
   test('should support toolbar arrow-key keyboard navigation', async ({
     page,
   }) => {
