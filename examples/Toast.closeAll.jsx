@@ -10,9 +10,13 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Button onClick={() => toaster.positive('Job processing completed.')}>
-        Open toast
+      <Button onClick={() => toaster.positive('Job 1 processing completed.')}>
+        Open toast 1
       </Button>
+      <Button onClick={() => toaster.positive('Job 2 processing completed.')}>
+        Open toast 2
+      </Button>
+      <Button onClick={() => toaster.closeAll()}>Close All</Button>
     </div>
   );
 };
