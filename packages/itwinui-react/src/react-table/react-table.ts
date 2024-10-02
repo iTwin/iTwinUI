@@ -1233,7 +1233,15 @@ type BuiltInAction =
   | 'toggleSortBy'
   | 'clearSortBy';
 
-type CustomAction = 'setScrolledLeft' | 'setScrolledRight';
+type CustomAction =
+  | 'setScrolledLeft'
+  | 'setScrolledRight'
+  | 'columnDragStart'
+  | 'columnDragEnd'
+  | 'singleRowSelected'
+  | 'shiftRowSelected'
+  | 'tableResizeStart'
+  | 'tableResizeEnd';
 
 type PossibleActionType = BuiltInAction | CustomAction | AnyString;
 
