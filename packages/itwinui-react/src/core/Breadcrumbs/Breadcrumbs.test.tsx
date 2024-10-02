@@ -58,9 +58,9 @@ const assertBaseElement = (
 
 const useOverflowMock = vi
   .spyOn(UseOverflow, 'useOverflow')
-  .mockImplementation((items) => [vi.fn(), items.length]);
+  .mockImplementation((itemsCount) => [vi.fn(), itemsCount]);
 beforeEach(() => {
-  useOverflowMock.mockImplementation((items) => [vi.fn(), items.length]);
+  useOverflowMock.mockImplementation((itemsCount) => [vi.fn(), itemsCount]);
 });
 
 it('should render all elements in default state', () => {
