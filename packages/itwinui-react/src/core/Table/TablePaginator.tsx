@@ -221,7 +221,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         )}
       </Box>
       {showPagesList && (
-        <OverflowContainer className='iui-center' items={pageList}>
+        <OverflowContainer className='iui-center' itemsCount={pageList.length}>
           <TablePaginatorCenterContent
             size={size}
             focusedIndex={focusedIndex}
