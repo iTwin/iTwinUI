@@ -39,6 +39,7 @@
     "prepare": "husky install && playwright install",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
+    "approve": "pnpm run approve:css && pnpm run approve:react",
     "approve:css": "pnpm --filter css-workshop approve",
     "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",

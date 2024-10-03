@@ -48,6 +48,12 @@ To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](h
 
 _Before running this command, make sure Docker is running. See [Visual testing](#visual-testing-css) (CSS and React) sections below for more details._
 
+### To approve test image changes
+
+* `pnpm approve` (approve in all workspaces)
+* `pnpm approve:css` (approve in css-workshop only) ([more info](#how-to-run-tests))
+* `pnpm approve:react` (approve in react-workshop only) ([more info](#running-visual-tests))
+
 ### To run all tests for a specific component
 
 `pnpm test [component-name]` e.g. `pnpm test Alert`
