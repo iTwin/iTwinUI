@@ -995,12 +995,17 @@ export const Table = <
                         key={dragAndDropProps.key || column.id || index}
                         columnRefs={columnRefs}
                         column={column}
-                        index={index}
                         areFiltersSet={areFiltersSet}
-                        hasAnySubRows={hasAnySubRows}
-                        headers={headerGroup.headers}
+                        columnHasExpanders={
+                          hasAnySubRows &&
+                          index ===
+                            headerGroup.headers.findIndex(
+                              (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
+                            )
+                        }
+                        isLast={index === headerGroup.headers.length - 1}
                         state={state}
-                        data={data}
+                        isTableEmpty={data.length === 0}
                         isResizable={isResizable}
                         columnResizeMode={columnResizeMode}
                         enableColumnReordering={enableColumnReordering}
