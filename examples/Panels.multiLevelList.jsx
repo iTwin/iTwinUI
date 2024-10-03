@@ -87,6 +87,8 @@ export default () => {
     [],
   );
 
+  const toggleSwitchId = React.useId();
+
   return (
     <>
       <Panels.Wrapper
@@ -99,9 +101,12 @@ export default () => {
         }}
       >
         <Panels.Panel as={List} id={initialActiveId}>
-          <ListItem as='label'>
-            <ListItem.Content>Repeat</ListItem.Content>
+          <ListItem>
+            <ListItem.Content as='label' htmlFor={toggleSwitchId}>
+              Repeat
+            </ListItem.Content>
             <ToggleSwitch
+              id={toggleSwitchId}
               onChange={(e) => setRepeat(e.target.checked)}
               checked={repeat}
             />
