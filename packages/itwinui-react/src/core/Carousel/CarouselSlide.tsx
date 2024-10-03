@@ -7,7 +7,6 @@ import cx from 'classnames';
 import {
   Box,
   mergeEventHandlers,
-  useInertPolyfill,
   useIntersection,
   useMergedRefs,
 } from '../../utils/index.js';
@@ -52,8 +51,6 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
   );
 
   const refs = useMergedRefs(intersectionRef, ref);
-
-  useInertPolyfill();
 
   return (
     <Box
