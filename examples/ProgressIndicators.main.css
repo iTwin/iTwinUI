@@ -4,4 +4,8 @@
   width: 200px;
   align-items: center;
   gap: var(--iui-size-s);
+
+  :first-child {
+    width: 100%;
+  }
 }

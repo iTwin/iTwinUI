@@ -8,7 +8,7 @@ import { ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div className='demo-container'>
-      <ProgressLinear value={20} style={{ width: '100%' }} />
+      <ProgressLinear value={20} />
       <ProgressRadial value={50} />
     </div>
   );

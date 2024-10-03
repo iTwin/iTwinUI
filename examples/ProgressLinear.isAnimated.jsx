@@ -8,9 +8,10 @@ import { Button, ProgressLinear } from '@itwin/itwinui-react';
 export default () => {
   const [value, setValue] = React.useState(0);
   const timeoutRef = React.useRef(null);
+  const isDone = value === 100;
 
   React.useEffect(() => {
-    if (value < 100) {
+    if (!isDone) {
       timeoutRef.current = setTimeout(
         () => setValue((prevValue) => prevValue + 20),
         1500,
@@ -27,10 +28,8 @@ export default () => {
       <ProgressLinear
         value={value}
         isAnimated
-        labels={
-          value < 100 ? ['Loading...', `${value}%`] : ['Upload succeeded.']
-        }
-        status={value === 100 ? 'positive' : undefined}
+        labels={!isDone ? ['Loading...', `${value}%`] : ['Upload succeeded.']}
+        status={isDone ? 'positive' : undefined}
       />
       <Button onClick={() => setValue(0)}>Reset process</Button>
     </div>
