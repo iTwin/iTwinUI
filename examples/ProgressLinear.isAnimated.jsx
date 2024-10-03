@@ -21,7 +21,7 @@ export default () => {
     }
 
     return () => clearTimeout(timeoutRef.current);
-  }, [value]);
+  }, [isDone]);
 
   return (
     <div className='demo-container'>

@@ -5,7 +5,8 @@
   align-items: center;
   gap: var(--iui-size-s);
 
-  :first-child {
+  > * {
+    margin-inline: auto;
     width: 100%;
   }
 }
