@@ -19,7 +19,7 @@ export default () => {
       );
     }
 
-    return () => clearTimeout(interval);
+    return () => clearInterval(interval);
   }, [isDone]);
 
   return (
