@@ -7,20 +7,20 @@ import { Button, ProgressLinear } from '@itwin/itwinui-react';
 
 export default () => {
   const [value, setValue] = React.useState(0);
-  const timeoutRef = React.useRef(null);
+  const intervalRef = React.useRef(null);
   const isDone = value === 100;
 
   React.useEffect(() => {
     if (!isDone) {
-      timeoutRef.current = setTimeout(
+      intervalRef.current = setInterval(
         () => setValue((prevValue) => prevValue + 20),
         1500,
       );
     } else {
-      clearTimeout(timeoutRef.current);
+      clearInterval(intervalRef.current);
     }
 
-    return () => clearTimeout(timeoutRef.current);
+    return () => clearInterval(intervalRef.current);
   }, [isDone]);
 
   return (
