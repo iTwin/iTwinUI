@@ -3,9 +3,4 @@
   flex-direction: column;
   width: 200px;
   gap: var(--iui-size-s);
-
-  > * {
-    margin-inline: auto;
-    width: 100%;
-  }
 }
