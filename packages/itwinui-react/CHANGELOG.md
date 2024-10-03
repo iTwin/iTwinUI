@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.15.2
+
+### Patch Changes
+
+- [#2275](https://github.com/iTwin/iTwinUI/pull/2275): Made the `ActionType.type` type in `Table` more specific. This will help when using the `action` argument in the `stateReducer` function, for example.
+- [#2273](https://github.com/iTwin/iTwinUI/pull/2273): Fixed an issue where the internal unit test detection logic was incorrectly treating Cypress like a unit test environment.
+
 ## 3.15.1
 
 ### Patch Changes
@@ -13,6 +20,7 @@
 ### Minor Changes
 
 - [#2233](https://github.com/iTwin/iTwinUI/pull/2233): `Popover` now enables the [`hide` middleware](https://floating-ui.com/docs/hide) to hide the floating content when the trigger is hidden.
+
   - This also affects other popover-like components (e.g. `Select`, `ComboBox`, `DropdownMenu`, `SplitButton`).
   - If the floating content gets hidden even when it shouldn't (e.g. due to some custom styles interfering with the trigger's hide detection), consider disabling the `hide` middleware.
 
