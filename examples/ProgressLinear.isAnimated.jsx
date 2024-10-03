@@ -7,29 +7,29 @@ import { Button, ProgressLinear } from '@itwin/itwinui-react';
 
 export default () => {
   const [value, setValue] = React.useState(0);
-  const intervalRef = React.useRef(null);
   const isDone = value === 100;
 
   React.useEffect(() => {
+    let interval;
+
     if (!isDone) {
-      intervalRef.current = setInterval(
+      interval = setInterval(
         () => setValue((prevValue) => prevValue + 20),
         1500,
       );
-    } else {
-      clearInterval(intervalRef.current);
     }
 
-    return () => clearInterval(intervalRef.current);
+    return () => clearTimeout(interval);
   }, [isDone]);
 
   return (
     <div className='demo-container'>
       <ProgressLinear
         value={value}
-        isAnimated
+        isAnimated={!isDone}
         labels={!isDone ? ['Loading...', `${value}%`] : ['Upload succeeded.']}
         status={isDone ? 'positive' : undefined}
+        key={isDone.toString()}
       />
       <Button onClick={() => setValue(0)}>Reset process</Button>
     </div>
