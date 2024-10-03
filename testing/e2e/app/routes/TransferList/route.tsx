@@ -1,3 +1,5 @@
-import { TransferListMainExample } from '../../../../../examples';
+import { TransferListMainExample } from 'examples';
 
-export default TransferListMainExample;
+export default function Page() {
+  return <TransferListMainExample />;
+}
