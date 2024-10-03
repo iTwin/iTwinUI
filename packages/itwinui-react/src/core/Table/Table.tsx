@@ -995,12 +995,15 @@ export const Table = <
                         key={dragAndDropProps.key || column.id || index}
                         columnRefs={columnRefs}
                         column={column}
-                        isLast={index === headerGroup.headers.length - 1}
-                        columnHasExpanders={hasAnySubRows && !isSelectable}
+                        index={index}
+                        areFiltersSet={areFiltersSet}
+                        hasAnySubRows={hasAnySubRows}
+                        headers={headerGroup.headers}
                         state={state}
-                        columnResizeMode={
-                          isResizable ? columnResizeMode : undefined
-                        }
+                        data={data}
+                        isResizable={isResizable}
+                        columnResizeMode={columnResizeMode}
+                        enableColumnReordering={enableColumnReordering}
                         density={density}
                         visibleColumns={visibleColumns}
                       />
