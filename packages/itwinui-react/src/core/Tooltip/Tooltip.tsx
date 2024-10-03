@@ -118,12 +118,6 @@ type TooltipOwnProps = {
   children?: React.ReactNode;
 } & PortalProps;
 
-// TODO: Remove this when types are available
-type HTMLElementWithPopover = HTMLElement & {
-  /** @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/togglePopover */
-  togglePopover?: (force?: boolean) => void;
-};
-
 // ----------------------------------------------------------------------------
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -147,7 +141,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   const syncWithControlledState = React.useCallback(
-    (element: HTMLElementWithPopover | null) => {
+    (element: HTMLElement | null) => {
       // Using a microtask ensures that the popover is mounted before calling togglePopover
       queueMicrotask(() => {
         try {
@@ -203,7 +197,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const interactions = useInteractions([
     useHover(floating.context, {
-      delay: delay ?? { open: 50, close: 250 },
+      delay: delay !== 0 ? delay : { open: 50, close: 250 }, // If FloatingDelayGroup exists, use its delay
       handleClose: safePolygon({ buffer: -Infinity }),
       move: false,
     }),

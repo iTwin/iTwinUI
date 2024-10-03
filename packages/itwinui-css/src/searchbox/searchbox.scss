@@ -5,10 +5,18 @@
   inline-size: fit-content;
   padding-inline: 0; // To remove 1px padding from input-flex-container
 
-  // Expanded
   &:where([data-iui-expanded='true']) {
     inline-size: 100%;
     border-color: var(--_iui-input-border-color);
+  }
+
+  &:not([data-iui-expanded='true']) {
+    background-color: transparent;
+
+    &::before {
+      transition: none;
+      border: none;
+    }
   }
 }
 

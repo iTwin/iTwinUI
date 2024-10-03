@@ -19,6 +19,7 @@ import type {
 } from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
 import { Menu } from '../Menu/Menu.js';
+import type { usePopover } from '../Popover/Popover.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -47,6 +48,10 @@ export type SplitButtonProps = ButtonProps & {
     React.ComponentProps<typeof IconButton>,
     'label' | 'size'
   >;
+  /**
+   * Props to customize menu behavior.
+   */
+  dropdownMenuProps?: Pick<Parameters<typeof usePopover>[0], 'middleware'>;
 } & Pick<PortalProps, 'portal'>;
 
 /**

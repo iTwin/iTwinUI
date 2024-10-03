@@ -1,0 +1,8 @@
+.demo-container {
+  width: 50%;
+}
+
+.list {
+  overflow-y: auto;
+  max-height: 200px;
+}

@@ -1,20 +1,103 @@
 ---
 title: Toast
-description: A Toast is a non modal, unobtrusive window element used to display small amount of information to a user.
-propsPath: '@itwin/itwinui-react/esm/core/Toast/Toast.d.ts'
+description: A toast is a non-disruptive message that provides feedback based on a user action.
 thumbnail: Toast
 ---
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='toasts--positive' />
+## Usage
+
+Before triggering a toast, you need to call the `useToaster` hook, which returns an object containing various methods for triggering the toast and changing the toaster settings.
 
 <LiveExample src='Toast.main.jsx'>
   <AllExamples.ToastMainExample client:load />
 </LiveExample>
 
-A toast notification provides a brief message about app processes at the top of the screen. Because these messages are so prominent, we need to be careful not to overuse or misuse them.
+**Note**: `useToaster` must be called from the top level of a component which is rendered as a descendant of [`ThemeProvider`](/docs/themeprovider).
+
+### Status
+
+Toasts can be triggered using the status methods provided by the toaster object. The status method takes in a toast message and an `options` object for further customization. Four available statuses are:
+
+- `positive()`
+- `negative()`
+- `warning()`
+- `informational()`
+
+<LiveExample src='Toast.status.jsx'>
+  <AllExamples.ToastStatusExample client:load />
+</LiveExample>
+
+For further customization with `options`, you can utilize `link`, which allows taking further actions directly from the toast, such as navigating to another page or triggering a specific function.
+
+<LiveExample src='Toast.link.jsx'>
+  <AllExamples.ToastLinkExample client:load />
+</LiveExample>
+
+### Settings
+
+The object returned by `useToaster` also provides a `setSettings` method, which can be used to customize the `placement` and `order` of toasts.
+
+`placement` supports the following values:
+
+- `"top"` (default)
+- `"top-start"`
+- `"top-end"`
+- `"bottom"`
+- `"bottom-start"`
+- `"bottom-end"`
+
+`"start"` indicates the left side of viewport, while `"end"` represents the right side.
+
+<LiveExample src='Toast.placement.jsx'>
+  <AllExamples.ToastPlacementExample client:load />
+</LiveExample>
+
+`order` supports the following values:
+
+- `"auto"` (default)
+- `"descending"`
+- `"ascending"`
+
+When set to `"descending"`, the most recent toasts are on top. When set to `"ascending"`, the most recent toasts are on bottom. When set to `"auto"`, it will behave like `"descending"` when `placement` is set to a value beginning with `"top"`, otherwise it will behave like `"ascending"`.
+
+<LiveExample src='Toast.order.jsx'>
+  <AllExamples.ToastOrderExample client:load />
+</LiveExample>
+
+### Closing toasts
+
+When setting the `hasCloseButton` option available in the status method to `true`, each toast will be displayed with a close button, which allows the end user to close the toast manually.
+
+<LiveExample src='Toast.hasCloseButton.jsx'>
+  <AllExamples.ToastHasCloseButtonExample client:load />
+</LiveExample>
+
+Additionally, to implement further actions upon the closing of each toast or to chain one toast after another, you can call the `close()` function returned from the status method.
+
+<LiveExample src='Toast.close.jsx'>
+  <AllExamples.ToastCloseExample client:load />
+</LiveExample>
+
+Closing also depends on the type of toast when used without `hasCloseButton`. By default, persisting toasts will not be closed automatically and will contain a close button while temporary toasts will automatically close after 7 seconds and will not contain a close button. The type of toasts can be specified by passing either `"persisting"` or `"temporary"` into the `type` option.
+
+<LiveExample src='Toast.type.jsx'>
+  <AllExamples.ToastTypeExample client:load />
+</LiveExample>
+
+To close all currently open toasts at once, use the `closeAll()` method offered by the toaster object.
+
+<LiveExample src='Toast.closeAll.jsx'>
+  <AllExamples.ToastCloseAllExample client:load />
+</LiveExample>
+
+The `animateOutTo` prop allows you to control the direction to which the toast animates out when closing. Specifically, it helps determine an "anchor" element that the toast will go towards when it is dismissed. This can be useful, for example, when you want to indicate to the user that the toasts are being saved into a "notifications" panel.
+
+<LiveExample src='Toast.anchorToButton.jsx'>
+  <AllExamples.ToastAnchorToButtonExample client:load />
+</LiveExample>
 
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+<PropsTable path='@itwin/itwinui-react/esm/core/Toast/Toast.d.ts' />

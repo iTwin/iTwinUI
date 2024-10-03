@@ -23,54 +23,6 @@ import type {
 import type { IconButtonProps } from '../Buttons/IconButton.js';
 import type { IconProps } from '../Icon/Icon.js';
 
-const SearchBoxContext = React.createContext<
-  | {
-      /**
-       * Context prop for sizing subcomponents
-       */
-      size?: 'small' | 'large';
-      /**
-       * Context prop for disabling subcomponents
-       */
-      isDisabled?: boolean;
-      /**
-       * Id to pass to input
-       */
-      inputId: string;
-      /**
-       * Callback to set inputID
-       */
-      setInputId: (inputId: string) => void;
-      /**
-       * Ref for input subcomponent
-       */
-      inputRef: React.RefObject<HTMLInputElement>;
-      /**
-       * Ref for open button subcomponent
-       */
-      openButtonRef: React.RefObject<HTMLButtonElement>;
-      /**
-       * Callback for closing expandable searchbox
-       */
-      onCollapse?: () => void;
-      /**
-       * Callback for expanding searchbox
-       */
-      onExpand?: () => void;
-      /**
-       * SearchBox state
-       */
-      isExpanded?: boolean;
-      /**
-       * Is SearchBox expandable
-       */
-      expandable?: boolean;
-    }
-  | undefined
->(undefined);
-
-// ----------------------------------------------------------------------------
-
 type SearchBoxOwnProps = {
   /**
    * Whether the searchbox is expandable.
@@ -98,6 +50,39 @@ type SearchBoxOwnProps = {
    */
   size?: 'small' | 'large';
 };
+
+// ----------------------------------------------------------------------------
+
+const SearchBoxContext = React.createContext<
+  | ({
+      /**
+       * Context prop for disabling subcomponents
+       */
+      isDisabled?: boolean;
+      /**
+       * Id to pass to input
+       */
+      inputId: string;
+      /**
+       * Callback to set inputID
+       */
+      setInputId: (inputId: string) => void;
+      /**
+       * Ref for input subcomponent
+       */
+      inputRef: React.RefObject<HTMLInputElement>;
+      /**
+       * Ref for open button subcomponent
+       */
+      openButtonRef: React.RefObject<HTMLButtonElement>;
+    } & Pick<
+      SearchBoxOwnProps,
+      'size' | 'onCollapse' | 'expandable' | 'isExpanded' | 'onExpand'
+    >)
+  | undefined
+>(undefined);
+
+// ----------------------------------------------------------------------------
 
 const SearchBoxComponent = React.forwardRef((props, ref) => {
   const {
