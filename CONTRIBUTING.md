@@ -50,9 +50,9 @@ _Before running this command, make sure Docker is running. See [Visual testing](
 
 ### To approve test image changes
 
-* `pnpm approve` (approve in all workspaces)
-* `pnpm approve:css` (approve in css-workshop only) ([more info](#how-to-run-tests))
-* `pnpm approve:react` (approve in react-workshop only) ([more info](#running-visual-tests))
+`pnpm approve` (approve in all workspaces)
+
+[More info](#visual-testing-approval)
 
 ### To run all tests for a specific component
 
@@ -388,6 +388,12 @@ Notice how we do all of these things manually:
 - taking and comparing the screenshot using `cy.compareSnapshot` from [`cypress-image-diff-js`](https://github.com/uktrade/cypress-image-diff).
 
 We have full access to the [Cypress API](https://docs.cypress.io/api) so any additional interactions or custom logic can be easily added.
+
+### Visual testing (approval)
+
+* `pnpm approve` (approve in all workspaces)
+* `pnpm approve:css` (approve in css-workshop only) ([more info](#how-to-run-tests))
+* `pnpm approve:react` (approve in react-workshop only) ([more info](#running-visual-tests))
 
 ### Accessibility testing
 
