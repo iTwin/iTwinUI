@@ -28,7 +28,7 @@ main {
   transform: translateZ(0);
 }
 
-/* TODO: Remove when the sidenav scroll works out-of-the-box in newer versions of Chrome. See #2283 */
+/* TODO: Remove when the sidenav scroll is fixed in Chrome. See https://github.com/tajo/ladle/issues/574 */
 nav.ladle-aside {
   min-height: unset;
 }
