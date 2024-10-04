@@ -260,7 +260,6 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           id={id}
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header-title`}
-          tabIndex={-1}
           {...{ inert: isInert ? 'true' : undefined }}
           data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
@@ -450,7 +449,7 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <Flex ref={forwardedRef} tabIndex={-1} {...rest}>
+    <Flex ref={forwardedRef} {...rest}>
       {panelAssociatedTrigger && <PanelBackButton />}
       <Text
         id={`${panelId}-header-title`}
