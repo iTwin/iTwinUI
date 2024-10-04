@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.15.3
+
+### Patch Changes
+
+- [#2274](https://github.com/iTwin/iTwinUI/pull/2274): `TransferList.Toolbar` implements the previously missing [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/), including the arrow-key navigation functionality.
+- [#2274](https://github.com/iTwin/iTwinUI/pull/2274): `IconButton`s inside `TransferList.Toolbar` will now show tooltips on the right side by default to avoid obscuring adjacent buttons in the group. This placement can be changed using the `labelProps.placement` prop on the `IconButton`.
+- [#2285](https://github.com/iTwin/iTwinUI/pull/2285): Fixed an issue in `ProgressLinear` where passing a `style` prop would cause it to lose its `value`.
+- [#2281](https://github.com/iTwin/iTwinUI/pull/2281): Inputs (e.g. `<Input>`, `<LabeledInput>`, etc.) with "small" size now have the same height as other field elements with "small" size (e.g. `<Button>`).
+
 ## 3.15.2
 
 ### Patch Changes
