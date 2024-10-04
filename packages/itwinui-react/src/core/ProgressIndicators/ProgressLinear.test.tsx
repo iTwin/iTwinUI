@@ -77,6 +77,23 @@ it('renders ProgressLinear with 2 labels', () => {
   screen.getByText('test.dgn');
 });
 
+it('should accept custom props', () => {
+  const { container } = render(
+    <ProgressLinear
+      value={50}
+      className='custom-class'
+      style={{ color: 'var(--red)' }}
+      data-foo
+    />,
+  );
+  const progress = container.querySelector('.iui-progress-indicator-linear');
+  expect(progress).toHaveClass('custom-class');
+  expect(progress).toHaveStyle(
+    '--iui-progress-percentage: 50%;color: var(--red);',
+  );
+  expect(progress).toHaveAttribute('data-foo');
+});
+
 it('passes custom props to ProgressLinear parts', () => {
   const value = 100;
   const labels = ['Upload done!', '100%'];

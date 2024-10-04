@@ -82,12 +82,13 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
       data-iui-status={status}
       data-iui-indeterminate={indeterminate ? 'true' : undefined}
       data-iui-animated={isAnimated ? 'true' : undefined}
+      {...rest}
       style={
         {
           '--iui-progress-percentage': `${boundedValue}%`,
+          ...props.style,
         } as React.CSSProperties
       }
-      {...rest}
     >
       <ShadowRoot>
         {value !== 100 && <VisuallyHidden>Loading.</VisuallyHidden>}
