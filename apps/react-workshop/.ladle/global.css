@@ -27,3 +27,8 @@ main {
   position: relative;
   transform: translateZ(0);
 }
+
+/* TODO: Remove this override when the scroll works out-of-the-box in newer versions of Chrome. See #2283 */
+#ladle-root nav.ladle-aside {
+  min-height: unset;
+}
