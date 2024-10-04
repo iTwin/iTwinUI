@@ -14,10 +14,13 @@ test('should go to the next panel when the trigger is clicked', async ({
 }) => {
   await page.goto('/Panels');
 
+  // Wait for Panels inner states to stabilize
+  await page.waitForTimeout(550);
+
   const panelsWrapper = page.locator('#panels-wrapper');
   const rootPanel = page.locator('#root');
   const moreInfoPanel = page.locator('#more-info');
-  const moreInfoPanelHeader = page.locator('#panels-header-2');
+  const moreInfoPanelHeaderTitle = page.locator('#more-info-header-title');
   const rootPanelTrigger = page.locator('#root button');
 
   await expect(panelsWrapper.locator(':scope > *')).toHaveCount(1);
@@ -31,7 +34,7 @@ test('should go to the next panel when the trigger is clicked', async ({
   await expect(panelsWrapper.locator(':scope > *')).toHaveCount(2);
   await expect(rootPanel).toBeVisible();
   await expect(rootPanel).toHaveAttribute('inert');
-  await expect(moreInfoPanelHeader).toBeFocused();
+  await expect(moreInfoPanelHeaderTitle).toBeFocused();
   await expect(moreInfoPanel).toBeVisible();
 
   await expect(panelsWrapper.locator(':scope > *')).toHaveCount(1);
@@ -45,6 +48,9 @@ test('should go to the next panel when the trigger is clicked', async ({
       page,
     }) => {
       await page.goto('/Panels');
+
+      // Wait for Panels inner states to stabilize
+      await page.waitForTimeout(550);
 
       const panelsWrapper = page.locator('#panels-wrapper');
       const rootPanel = page.locator('#root');
@@ -92,6 +98,9 @@ test(`should not scroll when reduced motion is enabled`, async ({ page }) => {
 
 test('should inert and/or unmount inactive panels', async ({ page }) => {
   await page.goto('/Panels?exampleType=multi-panel-information-panel');
+
+  // Wait for Panels inner states to stabilize
+  await page.waitForTimeout(550);
 
   await expect(page.locator('#root')).toBeVisible();
 

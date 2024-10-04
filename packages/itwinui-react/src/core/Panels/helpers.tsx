@@ -17,7 +17,11 @@ export type TriggerMapEntry = {
 };
 
 export type FocusEntry =
-  | { panelId: string; direction: 'forward' | 'backward' }
+  | {
+      fromPanelId: string;
+      toPanelId: string;
+      direction: 'forward' | 'backward';
+    }
   | undefined;
 
 // ----------------------------------------------------------------------------
@@ -49,7 +53,11 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
   const goBack = React.useCallback(async () => {
     const trigger = triggers[activePanelId];
     if (trigger.triggerId != null) {
-      setShouldFocus({ panelId: trigger.panelId, direction: 'backward' });
+      setShouldFocus({
+        fromPanelId: activePanelId,
+        toPanelId: trigger.panelId,
+        direction: 'backward',
+      });
       changeActivePanel(trigger.panelId);
     }
   }, [activePanelId, changeActivePanel, setShouldFocus, triggers]);

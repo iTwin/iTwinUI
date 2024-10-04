@@ -325,24 +325,27 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   const triggerId = children.props.id || fallbackId;
 
   const onClick = React.useCallback(() => {
-    setShouldFocus({ panelId: forProp, direction: 'forward' });
+    setShouldFocus({
+      fromPanelId: activePanel,
+      toPanelId: forProp,
+      direction: 'forward',
+    });
     changeActivePanel?.(forProp);
-  }, [changeActivePanel, forProp, setShouldFocus]);
+  }, [activePanel, changeActivePanel, forProp, setShouldFocus]);
 
   const focusRef = React.useCallback(
     (el: HTMLButtonElement) => {
       if (
-        shouldFocus?.panelId === panelId &&
-        shouldFocus.direction === 'backward'
+        shouldFocus?.direction === 'backward' &&
+        shouldFocus?.toPanelId === panelId &&
+        shouldFocus?.fromPanelId === forProp
       ) {
         el?.focus({ preventScroll: true });
         setShouldFocus(undefined);
       }
     },
-    [panelId, setShouldFocus, shouldFocus?.direction, shouldFocus?.panelId],
+    [forProp, panelId, setShouldFocus, shouldFocus],
   );
-
-  const refs = useMergedRefs(focusRef);
 
   const logWarning = useWarningLogger();
 
@@ -387,7 +390,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     return {
       ...children.props,
       id: triggerId,
-      ref: refs,
+      ref: focusRef,
       onClick: mergeEventHandlers(children.props.onClick, onClick),
       'aria-expanded': activePanel === forProp,
       'aria-controls': forProp,
@@ -438,14 +441,14 @@ const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const focusRef = React.useCallback(
     (el: HTMLHeadingElement) => {
       if (
-        shouldFocus?.panelId === panelId &&
-        shouldFocus.direction === 'forward'
+        shouldFocus?.direction === 'forward' &&
+        shouldFocus.toPanelId === panelId
       ) {
         el?.focus({ preventScroll: true });
         setShouldFocus(undefined);
       }
     },
-    [panelId, setShouldFocus, shouldFocus?.direction, shouldFocus?.panelId],
+    [panelId, setShouldFocus, shouldFocus?.direction, shouldFocus?.toPanelId],
   );
 
   return (
