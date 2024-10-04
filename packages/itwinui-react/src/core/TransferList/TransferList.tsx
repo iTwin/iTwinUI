@@ -16,6 +16,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { List } from '../List/List.js';
 import { ListItem } from '../List/ListItem.js';
 import { Label } from '../Label/Label.js';
+import { ButtonGroup } from '../ButtonGroup/ButtonGroup.js';
 
 // ----------------------------------------------------------------------------
 // TransferListComponent
@@ -226,9 +227,20 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // TransferList.Toolbar component
 
-const TransferListToolbar = polymorphic.div('iui-transfer-list-toolbar', {
-  role: 'toolbar',
-});
+const TransferListToolbar = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+  return (
+    <ButtonGroup
+      role='toolbar'
+      ref={ref}
+      {...rest}
+      orientation='vertical'
+      className={cx('iui-transfer-list-toolbar', className)}
+    >
+      {children}
+    </ButtonGroup>
+  );
+}) as PolymorphicForwardRefComponent<'div', object>;
 if (process.env.NODE_ENV === 'development') {
   TransferListToolbar.displayName = 'TransferList.Toolbar';
 }
