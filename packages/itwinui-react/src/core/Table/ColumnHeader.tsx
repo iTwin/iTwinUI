@@ -23,7 +23,6 @@ import cx from 'classnames';
 type ColumnHeaderProps<
   T extends Record<string, unknown> = Record<string, unknown>,
 > = TableKeyedProps & {
-  columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
   column: HeaderGroup<T>;
   areFiltersSet: boolean;
   state: TableState<T>;
@@ -43,7 +42,6 @@ export const ColumnHeader = <
   props: ColumnHeaderProps<T>,
 ): JSX.Element => {
   const {
-    columnRefs,
     column,
     areFiltersSet,
     state,
@@ -111,15 +109,6 @@ export const ColumnHeader = <
       {...rest}
       key={columnProps.key}
       title={undefined}
-      ref={React.useCallback(
-        (el: HTMLDivElement) => {
-          if (el) {
-            columnRefs.current[column.id] = el;
-            column.resizeWidth = el.getBoundingClientRect().width;
-          }
-        },
-        [column, columnRefs],
-      )}
       onMouseDown={() => {
         isHeaderDirectClick.current = true;
       }}

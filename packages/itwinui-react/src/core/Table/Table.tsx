@@ -993,7 +993,6 @@ export const Table = <
                       <ColumnHeader<T>
                         {...dragAndDropProps}
                         key={dragAndDropProps.key || column.id || index}
-                        columnRefs={columnRefs}
                         column={column}
                         areFiltersSet={areFiltersSet}
                         columnHasExpanders={
