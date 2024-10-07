@@ -411,7 +411,7 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
   return (
     <IconButton
       ref={forwardedRef}
-      label='Back'
+      aria-label='Back'
       styleType='borderless'
       size='small'
       data-iui-shift='left'
