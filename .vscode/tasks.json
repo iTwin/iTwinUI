@@ -26,6 +26,18 @@
       "detail": "Run all tests"
     },
     {
+      "label": "Approve",
+      "type": "shell",
+      "command": "pnpm run approve",
+      "detail": "Approve test images in all workspaces"
+    },
+    {
+      "label": "Approve specific",
+      "type": "shell",
+      "command": "pnpm run approve:${input:imageTestingTypes}",
+      "detail": "Approve only specific type of test images"
+    },
+    {
       "label": "Component test",
       "type": "shell",
       "command": "pnpm run test ${input:componentName}",
@@ -57,6 +69,15 @@
         "@itwin/itwinui-variables",
         "vite-playground",
         "e2e"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "imageTestingTypes",
+      "description": "Choose a type of test image",
+      "options": [
+        "css",
+        "react",
       ]
     },
     {
@@ -136,11 +157,26 @@
       "id": "testFilter",
       "description": "Choose a workspace to run tests for",
       "options": [
-        { "label": "visual tests", "value": "css-workshop" },
-        { "label": "visual tests", "value": "react-workshop" },
-        { "label": "unit tests", "value": "@itwin/itwinui-react" },
-        { "label": "end-to-end tests", "value": "e2e" },
-        { "label": "accessibility tests", "value": "a11y" }
+        {
+          "label": "visual tests",
+          "value": "css-workshop"
+        },
+        {
+          "label": "visual tests",
+          "value": "react-workshop"
+        },
+        {
+          "label": "unit tests",
+          "value": "@itwin/itwinui-react"
+        },
+        {
+          "label": "end-to-end tests",
+          "value": "e2e"
+        },
+        {
+          "label": "accessibility tests",
+          "value": "a11y"
+        }
       ]
     }
   ]
