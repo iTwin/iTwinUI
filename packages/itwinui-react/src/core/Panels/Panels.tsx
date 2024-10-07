@@ -57,10 +57,7 @@ export type PanelsWrapperProps = {
  *   ```
  *
  * @example
- * <Panels.Wrapper
- *   as={Surface}
- *   style={{ inlineSize: '300px', blockSize: '500px' }}
- * >
+ * <Panels.Wrapper as={Surface}>
  *   <Panels.Panel
  *     id={panelIdRoot}
  *     as={Surface}
@@ -153,6 +150,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           activePanelId,
           changeActivePanel,
           setActivePanelId,
+          setTriggers,
           shouldFocus,
           triggers,
         ],
@@ -178,6 +176,19 @@ export const PanelsWrapperContext = React.createContext<
   | {
       activePanelId: string | undefined;
       setActivePanelId: React.Dispatch<React.SetStateAction<string>>;
+      /**
+       * Simpler alternative to a full history stack.
+       *
+       * ```
+       * Record<
+       *   string, // Id of a panel
+       *   {
+       *     triggerId: string, // Id of the trigger element that points to this panel
+       *     panelId: string, // Id of the panel element in which the trigger is present
+       *   }
+       * >
+       * ```
+       */
       triggers: Record<string, TriggerMapEntry>;
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
@@ -218,13 +229,10 @@ type PanelProps = {
  * </Panels.Panel>
  */
 const Panel = React.forwardRef((props, forwardedRef) => {
-  const { id: idProp, children, className, ...rest } = props;
+  const { id, children, className, ...rest } = props;
 
   const { activePanelId, triggers, panels, setActivePanelId } =
     useSafeContext(PanelsWrapperContext);
-
-  const fallbackId = React.useId();
-  const id = idProp || fallbackId;
 
   const associatedTrigger = React.useMemo(() => triggers[id], [id, triggers]);
 
@@ -297,8 +305,8 @@ type PanelTriggerProps = {
 };
 
 /**
- * Wraps the button and appends an `onClick` to change the active panel to the one specified in the `for` prop.
- * Also appends some attributes for accessibility.
+ * Wraps the clickable element and appends an `onClick` to change the active panel to the one specified in the `for`
+ * prop. Also appends some attributes for accessibility.
  *
  * @example
  * <Panels.Trigger for={nextPanelId}>
@@ -395,16 +403,14 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     });
   }, [forProp, panelId, setTriggers, triggerId]);
 
-  return cloneElementWithRef(children, (children) => {
-    return {
-      ...children.props,
-      id: triggerId,
-      ref: focusRef,
-      onClick: mergeEventHandlers(children.props.onClick, onClick),
-      'aria-expanded': activePanel === forProp,
-      'aria-controls': forProp,
-    };
-  });
+  return cloneElementWithRef(children, (children) => ({
+    ...children.props,
+    id: triggerId,
+    ref: focusRef,
+    onClick: mergeEventHandlers(children.props.onClick, onClick),
+    'aria-expanded': activePanel === forProp,
+    'aria-controls': forProp,
+  }));
 };
 if (process.env.NODE_ENV === 'development') {
   PanelTrigger.displayName = 'Panels.Trigger';
@@ -484,6 +490,7 @@ if (process.env.NODE_ENV === 'development') {
 // #region PanelBackButton
 
 /**
+ * @private
  * Optional component that goes to the previous panel when clicked (i.e. to the panel that has a trigger that points to
  * the current panel)
  *
@@ -533,6 +540,8 @@ export const Panels = {
   Header: PanelHeader,
   useInstance: useInstance as () => PanelsInstance,
 };
+
+// ----------------------------------------------------------------------------
 
 /**
  * Returns a copy of value which reflects state changes after a set delay.
