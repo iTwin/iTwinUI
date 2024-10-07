@@ -66,10 +66,10 @@ export const ColumnHeader = <
   };
 
   const showFilterButton = (column: HeaderGroup<T>) =>
-    (isTableEmpty || areFiltersSet) && column.canFilter && !!column.Filter;
+    (!isTableEmpty || areFiltersSet) && column.canFilter && !!column.Filter;
 
   const showSortButton = (column: HeaderGroup<T>) =>
-    isTableEmpty && column.canSort;
+    !isTableEmpty && column.canSort;
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
 
