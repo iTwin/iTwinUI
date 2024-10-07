@@ -4,7 +4,7 @@
 
 @mixin iui-input {
   inline-size: 100%;
-  line-height: var(--iui-size-l);
+  line-height: var(--_iui-input-line-height, var(--iui-size-l));
   appearance: none;
   padding-block: var(--_iui-input-padding-block);
   padding-inline: var(--iui-size-s);
@@ -33,6 +33,7 @@
 @mixin iui-input-size($size: medium) {
   @if $size == small {
     --_iui-input-padding-block: 0;
+    --_iui-input-line-height: var(--iui-size-m);
   }
 
   @if $size == medium {
