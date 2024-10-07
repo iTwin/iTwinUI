@@ -657,9 +657,9 @@ export const Table = <
   }
 
   if (
+    process.env.NODE_ENV === 'development' &&
     data.some((item) => (item.subRows as T[]).length > 0) &&
-    subComponent &&
-    process.env.NODE_ENV === 'development'
+    subComponent
   ) {
     logWarning(
       `Passing both \`subComponent\` and \`data\` with \`subRows\` is not supported. There are features designed for \`subRows\` that are not compatible with \`subComponent\` and vice versa.`,
