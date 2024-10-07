@@ -51,6 +51,10 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
     useSafeContext(PanelsWrapperContext);
 
   const goBack = React.useCallback(async () => {
+    if (activePanelId == null) {
+      return;
+    }
+
     const trigger = triggers[activePanelId];
     if (trigger.triggerId != null) {
       setShouldFocus({

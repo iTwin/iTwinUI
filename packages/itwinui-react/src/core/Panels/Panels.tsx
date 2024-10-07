@@ -14,6 +14,7 @@ import {
   useSafeContext,
   useMediaQuery,
   useWarningLogger,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -27,10 +28,6 @@ import type { FocusEntry, PanelsInstance, TriggerMapEntry } from './helpers.js';
 // #region PanelsWrapper
 
 export type PanelsWrapperProps = {
-  /**
-   * The initialPanel that is displayed.
-   */
-  initialActiveId: string;
   onActiveIdChange?: (newActiveId: string) => void;
   children: React.ReactNode;
   /**
@@ -48,6 +45,7 @@ export type PanelsWrapperProps = {
  * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
  *
  * Requirements:
+ * - The initial displayed Panel should be the first `Panel` in the `Panels.Wrapper`.
  * - A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels,
  *   only one can point to a particular panel.
  * - The `Panels.Panel` within the wrapper should be in the order of the navigation. E.g.:
@@ -60,7 +58,6 @@ export type PanelsWrapperProps = {
  *
  * @example
  * <Panels.Wrapper
- *   initialActiveId={panelIdRoot}
  *   as={Surface}
  *   style={{ inlineSize: '300px', blockSize: '500px' }}
  * >
@@ -94,20 +91,15 @@ export type PanelsWrapperProps = {
  * </Panels.Wrapper>
  */
 const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
-  const {
-    initialActiveId,
-    children,
-    className,
-    onActiveIdChange,
-    instance,
-    ...rest
-  } = props;
+  const { children, className, onActiveIdChange, instance, ...rest } = props;
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [activePanelId, _setActivePanelId] = React.useState(initialActiveId);
+  const [activePanelId, _setActivePanelId] = React.useState<string | undefined>(
+    undefined,
+  );
   const setActivePanelId = React.useCallback(
-    (newActivePanel: typeof activePanelId) => {
+    (newActivePanel: NonNullable<typeof activePanelId>) => {
       _setActivePanelId(newActivePanel);
       onActiveIdChange?.(newActivePanel);
     },
@@ -149,6 +141,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       value={React.useMemo(
         () => ({
           activePanelId,
+          setActivePanelId,
           changeActivePanel,
           triggers,
           setTriggers,
@@ -156,7 +149,13 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
           setShouldFocus,
           panels,
         }),
-        [activePanelId, changeActivePanel, shouldFocus, triggers],
+        [
+          activePanelId,
+          changeActivePanel,
+          setActivePanelId,
+          shouldFocus,
+          triggers,
+        ],
       )}
     >
       <PanelsInstanceProvider instance={instance}>
@@ -177,7 +176,8 @@ if (process.env.NODE_ENV === 'development') {
 
 export const PanelsWrapperContext = React.createContext<
   | {
-      activePanelId: string;
+      activePanelId: string | undefined;
+      setActivePanelId: React.Dispatch<React.SetStateAction<string>>;
       triggers: Record<string, TriggerMapEntry>;
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
@@ -220,7 +220,7 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id: idProp, children, className, ...rest } = props;
 
-  const { activePanelId, triggers, panels } =
+  const { activePanelId, triggers, panels, setActivePanelId } =
     useSafeContext(PanelsWrapperContext);
 
   const fallbackId = React.useId();
@@ -235,9 +235,14 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     activePanelId === id && activePanelId !== previousActivePanelId;
   const isInert = previousActivePanelId === id && activePanelId !== id;
 
-  React.useEffect(() => {
-    const panelsCurrent = panels.current;
+  useLayoutEffect(() => {
+    // In the beginning, show the first <Panel> in the DOM
+    const isFirstPanel = activePanelId == null && panels.current.size === 0;
+    if (isFirstPanel) {
+      setActivePanelId(id);
+    }
 
+    const panelsCurrent = panels.current;
     if (!panelsCurrent.has(id)) {
       panelsCurrent.add(id);
     }
@@ -245,7 +250,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     return () => {
       panelsCurrent.delete(id);
     };
-  }, [id, panels]);
+  }, [activePanelId, id, panels, setActivePanelId]);
 
   return (
     <PanelContext.Provider
@@ -325,6 +330,10 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   const triggerId = children.props.id || fallbackId;
 
   const onClick = React.useCallback(() => {
+    if (activePanel == null) {
+      return;
+    }
+
     setShouldFocus({
       fromPanelId: activePanel,
       toPanelId: forProp,

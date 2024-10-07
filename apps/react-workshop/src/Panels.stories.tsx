@@ -26,7 +26,6 @@ export const Basic = () => {
 
   return (
     <Panels.Wrapper
-      initialActiveId={panelIdRoot}
       as={Surface}
       style={{
         inlineSize: 'min(300px, 30vw)',
@@ -69,7 +68,6 @@ export const MultiPanelInformationPanel = () => {
 
   return (
     <Panels.Wrapper
-      initialActiveId={initialActiveId}
       as={Surface}
       style={{
         inlineSize: 'min(300px, 30vw)',
@@ -210,7 +208,6 @@ export const MultiLevelList = () => {
       <Panels.Wrapper
         instance={panels}
         as={Surface}
-        initialActiveId={initialActiveId}
         style={{
           inlineSize: 'min(200px, 30vw)',
           blockSize: 'min(250px, 50vh)',
@@ -307,7 +304,6 @@ export const NestedPanels = () => {
       </Button>
       <Panels.Wrapper
         instance={panels}
-        initialActiveId={initialActiveId}
         style={{
           width: 'min(300px, 30vw)',
           height: 'min(500px, 50vh)',

@@ -51,7 +51,6 @@ const Basic = () => {
       <Panels.Wrapper
         id='panels-wrapper'
         instance={panels}
-        initialActiveId={initialActiveId}
         as={Surface}
         style={{
           inlineSize: 'min(300px, 30vw)',
@@ -104,7 +103,6 @@ const MultiPanelInformationPanel = () => {
 
   return (
     <Panels.Wrapper
-      initialActiveId={initialActiveId}
       as={Surface}
       style={{
         inlineSize: 'min(300px, 30vw)',
@@ -182,7 +180,6 @@ const NestedPanels = () => {
       </Button>
       <Panels.Wrapper
         instance={panels}
-        initialActiveId={initialActiveId}
         style={{
           width: 'min(300px, 30vw)',
           height: 'min(500px, 50vh)',

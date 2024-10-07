@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
 import { Panels, List, ListItem, Surface, Text } from '@itwin/itwinui-react';
 
 export default () => {
@@ -11,7 +10,6 @@ export default () => {
 
   return (
     <Panels.Wrapper
-      initialActiveId={panelIdRoot}
       as={Surface}
       style={{
         inlineSize: 'min(300px, 30vw)',

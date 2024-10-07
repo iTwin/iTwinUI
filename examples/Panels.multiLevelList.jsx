@@ -94,7 +94,6 @@ export default () => {
       <Panels.Wrapper
         instance={panels}
         as={Surface}
-        initialActiveId={initialActiveId}
         style={{
           inlineSize: 'min(200px, 30vw)',
           blockSize: 'min(250px, 50vh)',

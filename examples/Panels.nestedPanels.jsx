@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
 import { Panels, Flex, Surface, Button } from '@itwin/itwinui-react';
 
 export default () => {
@@ -22,7 +21,6 @@ export default () => {
       </Button>
       <Panels.Wrapper
         instance={panels}
-        initialActiveId={initialActiveId}
         style={{
           width: 'min(300px, 30vw)',
           height: 'min(500px, 50vh)',

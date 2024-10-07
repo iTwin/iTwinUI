@@ -13,7 +13,7 @@ it('should render in its most basic state', () => {
   const panelIdMoreInfo = 'more-info';
 
   const { container } = render(
-    <Panels.Wrapper initialActiveId={panelIdRoot}>
+    <Panels.Wrapper>
       <Panels.Panel id={panelIdRoot}>
         <Panels.Header>Base</Panels.Header>
         <Panels.Trigger for={panelIdMoreInfo}>
