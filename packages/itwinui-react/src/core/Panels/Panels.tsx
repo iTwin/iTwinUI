@@ -40,53 +40,6 @@ export type PanelsWrapperProps = {
   instance?: PanelsInstance;
 };
 
-/**
- * Component that manages the logic for layered panels.
- * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
- *
- * Requirements:
- * - The initial displayed Panel should be the first `Panel` in the `Panels.Wrapper`.
- * - A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels,
- *   only one can point to a particular panel.
- * - The `Panels.Panel` within the wrapper should be in the order of the navigation. E.g.:
- *   ```jsx
- *   <Panels.Wrapper>
- *     <Panels.Panel id={root} /> // Must come before moreDetails since it contains the trigger to moreDetails
- *     <Panels.Panel id={moreDetails}> // Must come after root since it is navigated to from root
- *   </Panels.Wrapper>
- *   ```
- *
- * @example
- * <Panels.Wrapper as={Surface}>
- *   <Panels.Panel
- *     id={panelIdRoot}
- *     as={Surface}
- *     border={false}
- *     elevation={0}
- *   >
- *     <Surface.Header as={Panels.Header}>Root</Surface.Header>
- *     <Surface.Body as={List}>
- *       <ListItem>
- *         <Panels.Trigger for={panelIdMoreInfo}>
- *           <ListItem.Action>More details</ListItem.Action>
- *         </Panels.Trigger>
- *       </ListItem>
- *     </Surface.Body>
- *   </Panels.Panel>
- *
- *   <Panels.Panel
- *     id={panelIdMoreInfo}
- *     as={Surface}
- *     border={false}
- *     elevation={0}
- *   >
- *     <Surface.Header as={Panels.Header}>More details</Surface.Header>
- *     <Surface.Body isPadded>
- *       <Text>Content</Text>
- *     </Surface.Body>
- *   </Panels.Panel>
- * </Panels.Wrapper>
- */
 const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const { children, className, onActiveIdChange, instance, ...rest } = props;
 
@@ -212,22 +165,6 @@ type PanelProps = {
   id: string;
 };
 
-/**
- * Takes an `id` and the panel content.
- * Match this `id` with a `Panels.Triggers`'s `for` prop to create a link between them.
- *
- * @example
- * <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
- *   <Surface.Header as={Panels.Header}>Root</Surface.Header>
- *   <Surface.Body as={List}>
- *     <ListItem>
- *       <Panels.Trigger for={panelIdMoreInfo}>
- *         <ListItem.Action>More details</ListItem.Action>
- *       </Panels.Trigger>
- *     </ListItem>
- *   </Surface.Body>
- * </Panels.Panel>
- */
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id, children, className, ...rest } = props;
 
@@ -304,22 +241,6 @@ type PanelTriggerProps = {
   children: React.ReactElement;
 };
 
-/**
- * Wraps the clickable element and appends an `onClick` to change the active panel to the one specified in the `for`
- * prop. Also appends some attributes for accessibility.
- *
- * @example
- * <Panels.Trigger for={nextPanelId}>
- *   <Button>go to next panel</Button>
- * </Panels.Trigger>
- *
- * @example
- * <ListItem>
- *   <Panels.Trigger for={panelIdMoreInfo}>
- *     <ListItem.Action>More details</ListItem.Action>
- *   </Panels.Trigger>
- * </ListItem>
- */
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
@@ -424,28 +345,6 @@ type PanelHeaderProps = {
   titleProps?: React.ComponentProps<typeof Text>;
 };
 
-/**
- * Required component to add an accessible name and also a back button (if previous panel exists) to the panel.
- *
- * @example
- * <Panels.Panel id={panelIdRoot}>
- *   <Panels.Header>Root</Panels.Header>
- *   …
- * </Panels.Panel>
- *
- * @example
- * <Panels.Panel
- *   id={panelIdMoreInfo}
- *   as={Surface}
- *   border={false}
- *   elevation={0}
- * >
- *   <Surface.Header as={Panels.Header}>More details</Surface.Header>
- *   <Surface.Body isPadded>
- *     <Text>Content</Text>
- *   </Surface.Body>
- * </Panels.Panel>
- */
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { titleProps, children, ...rest } = props;
 
@@ -534,9 +433,110 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 
 export const Panels = {
+  /**
+   * Component that manages the logic for layered panels.
+   * It can be used anywhere to create layers. E.g. `Menu`, `InformationPanel`, `Popover`, etc.
+   *
+   * Requirements:
+   * - The initial displayed Panel should be the first `Panel` in the `Panels.Wrapper`.
+   * - A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels,
+   *   only one can point to a particular panel.
+   * - The `Panels.Panel` within the wrapper should be in the order of the navigation. E.g.:
+   *   ```jsx
+   *   <Panels.Wrapper>
+   *     <Panels.Panel id={root} /> // Must come before moreDetails since it contains the trigger to moreDetails
+   *     <Panels.Panel id={moreDetails}> // Must come after root since it is navigated to from root
+   *   </Panels.Wrapper>
+   *   ```
+   *
+   * @example
+   * <Panels.Wrapper as={Surface}>
+   *   <Panels.Panel
+   *     id={panelIdRoot}
+   *     as={Surface}
+   *     border={false}
+   *     elevation={0}
+   *   >
+   *     <Surface.Header as={Panels.Header}>Root</Surface.Header>
+   *     <Surface.Body as={List}>
+   *       <ListItem>
+   *         <Panels.Trigger for={panelIdMoreInfo}>
+   *           <ListItem.Action>More details</ListItem.Action>
+   *         </Panels.Trigger>
+   *       </ListItem>
+   *     </Surface.Body>
+   *   </Panels.Panel>
+   *
+   *   <Panels.Panel
+   *     id={panelIdMoreInfo}
+   *     as={Surface}
+   *     border={false}
+   *     elevation={0}
+   *   >
+   *     <Surface.Header as={Panels.Header}>More details</Surface.Header>
+   *     <Surface.Body isPadded>
+   *       <Text>Content</Text>
+   *     </Surface.Body>
+   *   </Panels.Panel>
+   * </Panels.Wrapper>
+   */
   Wrapper: PanelsWrapper,
+  /**
+   * Takes an `id` and the panel content.
+   * Match this `id` with a `Panels.Triggers`'s `for` prop to create a link between them.
+   *
+   * @example
+   * <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
+   *   <Surface.Header as={Panels.Header}>Root</Surface.Header>
+   *   <Surface.Body as={List}>
+   *     <ListItem>
+   *       <Panels.Trigger for={panelIdMoreInfo}>
+   *         <ListItem.Action>More details</ListItem.Action>
+   *       </Panels.Trigger>
+   *     </ListItem>
+   *   </Surface.Body>
+   * </Panels.Panel>
+   */
   Panel,
+  /**
+   * Wraps the clickable element and appends an `onClick` to change the active panel to the one specified in the `for`
+   * prop. Also appends some attributes for accessibility.
+   *
+   * @example
+   * <Panels.Trigger for={nextPanelId}>
+   *   <Button>go to next panel</Button>
+   * </Panels.Trigger>
+   *
+   * @example
+   * <ListItem>
+   *   <Panels.Trigger for={panelIdMoreInfo}>
+   *     <ListItem.Action>More details</ListItem.Action>
+   *   </Panels.Trigger>
+   * </ListItem>
+   */
   Trigger: PanelTrigger,
+  /**
+   * Required component to add an accessible name and also a back button (if previous panel exists) to the panel.
+   *
+   * @example
+   * <Panels.Panel id={panelIdRoot}>
+   *   <Panels.Header>Root</Panels.Header>
+   *   …
+   * </Panels.Panel>
+   *
+   * @example
+   * <Panels.Panel
+   *   id={panelIdMoreInfo}
+   *   as={Surface}
+   *   border={false}
+   *   elevation={0}
+   * >
+   *   <Surface.Header as={Panels.Header}>More details</Surface.Header>
+   *   <Surface.Body isPadded>
+   *     <Text>Content</Text>
+   *   </Surface.Body>
+   * </Panels.Panel>
+   */
   Header: PanelHeader,
   useInstance: useInstance as () => PanelsInstance,
 };
