@@ -40,7 +40,21 @@ it('should render in its most basic state', () => {
   });
 });
 
-it('should handle keyboard navigation', () => {
+it('should render Toolbar in its most basic state', () => {
+  const { container } = render(
+    <TransferList>
+      <TransferList.Toolbar>
+        <Button />
+      </TransferList.Toolbar>
+    </TransferList>,
+  );
+
+  const toolbar = container.querySelector('.iui-transfer-list-toolbar');
+  expect(toolbar).toBeTruthy();
+  expect(toolbar).toHaveAttribute('role', 'toolbar');
+});
+
+it('should handle keyboard navigation in Listbox', () => {
   const { container } = render(
     <TransferList>
       <TransferList.ListboxWrapper>
@@ -105,7 +119,7 @@ it('should handle keyboard navigation', () => {
   });
 });
 
-it('should handle key presses', async () => {
+it('should handle key presses in Listbox', async () => {
   const mockedOnClick = vi.fn();
   render(
     <TransferList>

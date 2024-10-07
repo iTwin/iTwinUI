@@ -499,6 +499,12 @@ const DropdownMenuContentExample = withThemeProvider(
 );
 export { DropdownMenuContentExample };
 
+import { default as DropdownMenuHideMiddlewareExampleRaw } from './DropdownMenu.hidemiddleware';
+const DropdownMenuHideMiddlewareExample = withThemeProvider(
+  DropdownMenuHideMiddlewareExampleRaw,
+);
+export { DropdownMenuHideMiddlewareExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as ExpandableBlockMainExampleRaw } from './ExpandableBlock.main';
@@ -586,6 +592,20 @@ export { FileUploadCustomExample };
 import { default as FlexMainExampleRaw } from './Flex.main';
 const FlexMainExample = withThemeProvider(FlexMainExampleRaw);
 export { FlexMainExample };
+
+import { default as FlexSpacerExampleRaw } from './Flex.spacer';
+const FlexSpacerExample = withThemeProvider(FlexSpacerExampleRaw);
+export { FlexSpacerExample };
+
+import { default as FlexWithFlexItemsExampleRaw } from './Flex.flexItems';
+const FlexWithFlexItemsExample = withThemeProvider(FlexWithFlexItemsExampleRaw);
+export { FlexWithFlexItemsExample };
+
+import { default as FlexWithIndividualGapsExampleRaw } from './Flex.individualGaps';
+const FlexWithIndividualGapsExample = withThemeProvider(
+  FlexWithIndividualGapsExampleRaw,
+);
+export { FlexWithIndividualGapsExample };
 
 // ----------------------------------------------------------------------------
 
@@ -1258,6 +1278,46 @@ export { TileQuickActionsExample };
 import { default as ToastMainExampleRaw } from './Toast.main';
 const ToastMainExample = withThemeProvider(ToastMainExampleRaw);
 export { ToastMainExample };
+
+import { default as ToastStatusExampleRaw } from './Toast.status';
+const ToastStatusExample = withThemeProvider(ToastStatusExampleRaw);
+export { ToastStatusExample };
+
+import { default as ToastLinkExampleRaw } from './Toast.link';
+const ToastLinkExample = withThemeProvider(ToastLinkExampleRaw);
+export { ToastLinkExample };
+
+import { default as ToastPlacementExampleRaw } from './Toast.placement';
+const ToastPlacementExample = withThemeProvider(ToastPlacementExampleRaw);
+export { ToastPlacementExample };
+
+import { default as ToastOrderExampleRaw } from './Toast.order';
+const ToastOrderExample = withThemeProvider(ToastOrderExampleRaw);
+export { ToastOrderExample };
+
+import { default as ToastAnchorToButtonExampleRaw } from './Toast.anchorToButton';
+const ToastAnchorToButtonExample = withThemeProvider(
+  ToastAnchorToButtonExampleRaw,
+);
+export { ToastAnchorToButtonExample };
+
+import { default as ToastHasCloseButtonExampleRaw } from './Toast.hasCloseButton';
+const ToastHasCloseButtonExample = withThemeProvider(
+  ToastHasCloseButtonExampleRaw,
+);
+export { ToastHasCloseButtonExample };
+
+import { default as ToastCloseExampleRaw } from './Toast.close';
+const ToastCloseExample = withThemeProvider(ToastCloseExampleRaw);
+export { ToastCloseExample };
+
+import { default as ToastTypeExampleRaw } from './Toast.type';
+const ToastTypeExample = withThemeProvider(ToastTypeExampleRaw);
+export { ToastTypeExample };
+
+import { default as ToastCloseAllExampleRaw } from './Toast.closeAll';
+const ToastCloseAllExample = withThemeProvider(ToastCloseAllExampleRaw);
+export { ToastCloseAllExample };
 
 // ----------------------------------------------------------------------------
 

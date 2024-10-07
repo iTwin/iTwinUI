@@ -30,6 +30,17 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
+  /**
+   * Middleware options.
+   *
+   * By default, `hide` is enabled. If the menu gets hidden even when it shouldn't (e.g. some custom styles interfering
+   * with the trigger's hide detection) consider disabling the `hide` middleware.
+   *
+   * @see https://floating-ui.com/docs/middleware
+   */
+  middleware?: {
+    hide?: boolean;
+  };
 } & Pick<
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
@@ -78,6 +89,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     matchWidth = false,
     onVisibleChange,
     portal = true,
+    middleware,
     ...rest
   } = props;
 
@@ -95,30 +107,32 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   }, [menuItems, setVisible]);
 
   return (
-    <>
-      <Menu
-        trigger={children}
-        onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
-          if (e.defaultPrevented) {
-            return;
-          }
-          if (e.key === 'Tab') {
-            setVisible(false);
-          }
-        })}
-        role={role}
-        ref={forwardedRef}
-        portal={portal}
-        popoverProps={{
+    <Menu
+      trigger={children}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
+        if (e.defaultPrevented) {
+          return;
+        }
+        if (e.key === 'Tab') {
+          setVisible(false);
+        }
+      })}
+      role={role}
+      ref={forwardedRef}
+      portal={portal}
+      popoverProps={React.useMemo(
+        () => ({
           placement,
           matchWidth,
           visible,
           onVisibleChange: setVisible,
-        }}
-        {...rest}
-      >
-        {menuContent}
-      </Menu>
-    </>
+          middleware,
+        }),
+        [matchWidth, middleware, placement, setVisible, visible],
+      )}
+      {...rest}
+    >
+      {menuContent}
+    </Menu>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
