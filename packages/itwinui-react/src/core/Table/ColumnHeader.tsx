@@ -18,7 +18,6 @@ import type {
 } from '../../react-table/react-table.js';
 import { FilterToggle } from './filters/FilterToggle.js';
 import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import cx from 'classnames';
 
 type ColumnHeaderProps<
@@ -37,9 +36,9 @@ type ColumnHeaderProps<
 };
 
 export const ColumnHeader = React.forwardRef(
-  <T extends Record<string, unknown>>(
+  <T extends Record<string, unknown> = Record<string, unknown>>(
     props: ColumnHeaderProps<T>,
-    ref: React.Ref<HTMLDivElement>,
+    ref: React.ForwardedRef<HTMLInputElement>,
   ) => {
     const {
       column,
@@ -190,4 +189,6 @@ export const ColumnHeader = React.forwardRef(
       </Box>
     );
   },
-) as PolymorphicForwardRefComponent<'div', ColumnHeaderProps<any>>;
+) as <T extends Record<string, unknown>>(
+  props: ColumnHeaderProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
+) => JSX.Element;

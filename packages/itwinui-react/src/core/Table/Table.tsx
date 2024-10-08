@@ -998,7 +998,7 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
-                      <ColumnHeader
+                      <ColumnHeader<T>
                         {...dragAndDropProps}
                         key={dragAndDropProps.key || column.id || index}
                         column={column}
