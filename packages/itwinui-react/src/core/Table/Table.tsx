@@ -639,7 +639,6 @@ export const Table = <
     gotoPage,
     setPageSize,
     flatHeaders,
-    visibleColumns,
     setGlobalFilter,
   } = instance;
 
@@ -1003,13 +1002,12 @@ export const Table = <
                             )
                         }
                         isLast={index === headerGroup.headers.length - 1}
-                        state={state}
                         isTableEmpty={data.length === 0}
                         isResizable={isResizable}
                         columnResizeMode={columnResizeMode}
                         enableColumnReordering={enableColumnReordering}
                         density={density}
-                        visibleColumns={visibleColumns}
+                        instance={instance}
                       />
                     );
                   })}

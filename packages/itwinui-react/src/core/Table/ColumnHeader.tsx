@@ -11,10 +11,9 @@ import {
   SvgSortUp,
 } from '../../utils/index.js';
 import type {
-  ColumnInstance,
   HeaderGroup,
   TableKeyedProps,
-  TableState,
+  TableInstance,
 } from '../../react-table/react-table.js';
 import { FilterToggle } from './filters/FilterToggle.js';
 import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
@@ -25,7 +24,6 @@ type ColumnHeaderProps<
 > = TableKeyedProps & {
   column: HeaderGroup<T>;
   areFiltersSet: boolean;
-  state: TableState<T>;
   isResizable: boolean;
   columnResizeMode: 'fit' | 'expand';
   enableColumnReordering: boolean;
@@ -33,7 +31,7 @@ type ColumnHeaderProps<
   columnHasExpanders: boolean;
   isLast: boolean;
   isTableEmpty: boolean;
-  visibleColumns: ColumnInstance<T>[];
+  instance: TableInstance<T>;
 };
 
 export const ColumnHeader = <
@@ -42,10 +40,8 @@ export const ColumnHeader = <
   props: ColumnHeaderProps<T>,
 ): JSX.Element => {
   const {
-    // columnRefs,
     column,
     areFiltersSet,
-    state,
     isResizable,
     columnResizeMode,
     enableColumnReordering,
@@ -53,7 +49,7 @@ export const ColumnHeader = <
     columnHasExpanders,
     isLast,
     isTableEmpty,
-    visibleColumns,
+    instance,
     ...rest
   } = props;
 
@@ -96,9 +92,9 @@ export const ColumnHeader = <
       column.columnClassName,
     ),
     style: {
-      ...getCellStyle(column, !!state.isTableResizing),
+      ...getCellStyle(column, !!instance.state.isTableResizing),
       ...(columnHasExpanders && getSubRowStyle({ density })),
-      ...getStickyStyle(column, visibleColumns),
+      ...getStickyStyle(column, instance.visibleColumns),
       flexWrap: 'wrap',
       columnGap: 'var(--iui-size-xs)',
     },
@@ -121,7 +117,7 @@ export const ColumnHeader = <
         }
       }}
       ref={React.useCallback(
-        (el: HTMLDivElement | null) => {
+        (el: HTMLDivElement) => {
           if (el) {
             column.resizeWidth = el.getBoundingClientRect().width;
           }
@@ -183,12 +179,14 @@ export const ColumnHeader = <
         {enableColumnReordering && !column.disableReordering && (
           <Box className='iui-table-reorder-bar' slot='resizers' />
         )}
-        {column.sticky === 'left' && state.sticky.isScrolledToRight && (
-          <Box className='iui-table-cell-shadow-right' slot='shadows' />
-        )}
-        {column.sticky === 'right' && state.sticky.isScrolledToLeft && (
-          <Box className='iui-table-cell-shadow-left' slot='shadows' />
-        )}
+        {column.sticky === 'left' &&
+          instance.state.sticky.isScrolledToRight && (
+            <Box className='iui-table-cell-shadow-right' slot='shadows' />
+          )}
+        {column.sticky === 'right' &&
+          instance.state.sticky.isScrolledToLeft && (
+            <Box className='iui-table-cell-shadow-left' slot='shadows' />
+          )}
       </>
     </Box>
   );
