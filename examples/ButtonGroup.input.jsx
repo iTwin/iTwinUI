@@ -20,6 +20,7 @@ export default () => {
         <Input
           aria-label='URL'
           value='https://itwinui.bentley.com/docs/buttongroup'
+          readOnly
         />
         <Button styleType='high-visibility'>Copy</Button>
       </ButtonGroup>

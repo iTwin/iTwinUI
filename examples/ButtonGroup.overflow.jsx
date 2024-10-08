@@ -12,15 +12,11 @@ import {
 import { SvgMore, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const buttons = Array(12)
-    .fill(null)
-    .map((_, _index) => {
-      return (
-        <IconButton label='Placeholder'>
-          <SvgPlaceholder />
-        </IconButton>
-      );
-    });
+  const buttons = Array.from({ length: 12 }, (_, index) => (
+    <IconButton key={index} label={`Item #${index}`}>
+      <SvgPlaceholder />
+    </IconButton>
+  ));
 
   return (
     <div className='demo-container'>
@@ -28,20 +24,17 @@ export default () => {
         overflowButton={(overflowStart) => (
           <DropdownMenu
             menuItems={(close) =>
-              Array(buttons.length - overflowStart + 1)
+              Array(buttons.length - overflowStart)
                 .fill(null)
                 .map((_, _index) => {
                   const index = overflowStart + _index;
-                  const onClick = () => {
-                    close();
-                  };
                   return (
                     <MenuItem
                       key={index}
-                      onClick={onClick}
+                      onClick={close}
                       startIcon={<SvgPlaceholder />}
                     >
-                      Button #{index}
+                      Item #{index}
                     </MenuItem>
                   );
                 })
