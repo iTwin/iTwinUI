@@ -86,5 +86,5 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
 };
 
 export const TableInstanceContext = React.createContext<
-  TableInstance<any> | undefined
+  TableInstance<Record<string, unknown>> | undefined
 >(undefined);

@@ -948,7 +948,9 @@ export const Table = <
   }, []);
 
   return (
-    <TableInstanceContext.Provider value={instance}>
+    <TableInstanceContext.Provider
+      value={instance as TableInstance<Record<string, unknown>>}
+    >
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
@@ -998,10 +1000,10 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
-                      <ColumnHeader<T>
+                      <ColumnHeader
                         {...dragAndDropProps}
                         key={dragAndDropProps.key || column.id || index}
-                        column={column}
+                        column={column as HeaderGroup<Record<string, unknown>>}
                         areFiltersSet={areFiltersSet}
                         columnHasExpanders={
                           hasAnySubRows &&
@@ -1016,8 +1018,7 @@ export const Table = <
                         columnResizeMode={columnResizeMode}
                         enableColumnReordering={enableColumnReordering}
                         density={density}
-                        instance={instance}
-                        ref={(el: HTMLDivElement) => {
+                        ref={(el) => {
                           if (el) {
                             columnRefs.current[column.id] = el;
                           }
