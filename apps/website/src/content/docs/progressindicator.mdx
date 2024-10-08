@@ -1,30 +1,92 @@
 ---
 title: Progress indicator
-description: Progress indicators express an unspecified wait time or display the length of a process.
+description: Progress indicators express the length of in-progress operations.
 thumbnail: ProgressIndicator
 ---
 
 <p>{frontmatter.description}</p>
 
-## Progress linear
+## Usage
 
-<Placeholder componentPageName='progresslinear--determinate' />
+There are two types of progress indicators available as separate components:
 
-<LiveExample src='ProgressLinear.main.jsx' truncate={false}>
-  <AllExamples.ProgressLinearMainExample client:load />
+- `ProgressLinear`: shows progress on a linear bar.
+- `ProgressRadial`: shows progress in a circular form.
+
+<LiveExample src='ProgressIndicators.main.jsx' truncate={false}>
+  <AllExamples.ProgressIndicatorsMainExample client:load />
 </LiveExample>
 
-### Props
+By default, the progress indicators are considered to be "indeterminate". This is useful for short processes, where it isn't necessary (or possible) to indicate the completion percentage. For longer processes, a "determinate" progress indicator should be used.
 
-<PropsTable path='@itwin/itwinui-react/esm/core/ProgressIndicators/ProgressLinear.d.ts' />
+### Value
 
-## Progress radial
+To specify a value for determinate progress indicator, the `value` prop can be used. This prop is available for both `ProgressLinear` and `ProgressRadial`. The value must be inclusively between `0` and `100`, representing what percentage of the task has been completed.
 
-<Placeholder componentPageName='progressradial--determinate' />
-
-<LiveExample src='ProgressRadial.main.jsx' truncate={false}>
-  <AllExamples.ProgressRadialMainExample client:load />
+<LiveExample src='ProgressIndicators.value.jsx' truncate={false}>
+  <AllExamples.ProgressIndicatorsValueExample client:load />
 </LiveExample>
+
+Exclusively for `ProgressLinear`, the `isAnimated` flag is helpful when applying animation to the indicator as the value changes.
+
+<LiveExample src='ProgressLinear.isAnimated.jsx'>
+  <AllExamples.ProgressLinearAnimatedExample client:load />
+</LiveExample>
+
+**Note**: If the `indeterminate` prop is set to `true`, this value will be ignored.
+
+### Status
+
+The `status` prop can be used to convey the outcome of a process. The recommended UX flow is to display the default progress indicator during the loading process, and then update the `status` to reflect whether the process was successful, encountered an error, or requires attention.
+
+Three available statuses are:
+
+- `"positive"`: to indicate success.
+- `"negative"`: to indicate failure.
+- `"warning"`: to indicate a cautionary state or partial success.
+
+<LiveExample src='ProgressLinear.status.jsx'>
+  <AllExamples.ProgressLinearStatusExample client:load />
+</LiveExample>
+
+When using the `status` prop, each `ProgressRadial` is accompanied by a status icon, which provides a visual cue to inform the current progress state better. The status icon can also be replaced by custom [content](#content) for more advanced uses.
+
+<LiveExample src='ProgressRadial.status.jsx'>
+  <AllExamples.ProgressRadialStatusExample client:load />
+</LiveExample>
+
+### Label
+
+Indicator labels can be passed into the `labels` prop as an array. If one label is passed, it will be centered. If there are two labels, each is pushed to one end of the progress indicator. This prop is only available for `ProgressLinear`.
+
+<LiveExample src='ProgressLinear.label.jsx'>
+  <AllExamples.ProgressLinearLabelExample client:load />
+</LiveExample>
+
+### Size
+
+Four `size` options available are:
+
+- `"x-small"`
+- `"small"`
+- `"medium"` (default)
+- `"large"`
+
+This prop is only available for `ProgressRadial`.
+
+<LiveExample src='ProgressRadial.size.jsx'>
+  <AllExamples.ProgressRadialSizeExample client:load />
+</LiveExample>
+
+### Content
+
+The `ProgressRadial` component can be wrapped around JSX elements, such as icons or texts. This content helps provide flexibility to enhance the progress display with additional visual appearance. This prop is only available for `ProgressRadial`.
+
+<LiveExample src='ProgressRadial.content.jsx'>
+  <AllExamples.ProgressRadialContentExample client:load />
+</LiveExample>
+
+**Note**: Indicators of `"x-small"` size will not display its content.
 
 ## Accessibility
 
@@ -32,6 +94,12 @@ To make the progress indicator accessible to non-sighted users, a visually-hidde
 
 To further improve the experience, applications should have a mechanism to inform users once the loading process is complete. Depending on the criticality of the content and how long it takes to load, the progress completion can be indicated using a [live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions), or by programmatically moving focus to the top of the new content.
 
-### Props
+## Props
+
+### ProgressLinear
+
+<PropsTable path='@itwin/itwinui-react/esm/core/ProgressIndicators/ProgressLinear.d.ts' />
+
+### ProgressRadial
 
 <PropsTable path='@itwin/itwinui-react/esm/core/ProgressIndicators/ProgressRadial.d.ts' />
