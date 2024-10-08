@@ -17,7 +17,6 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
-  useOverflowContainerContext,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -323,7 +322,7 @@ const TablePaginatorCenterContent = (
     isLoading,
     size,
   } = props;
-  const { visibleCount } = useOverflowContainerContext();
+  const { visibleCount } = OverflowContainer.useContext();
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser/assistive technologies

@@ -15,15 +15,12 @@ type OverflowContainerProps = {
    * @default 'horizontal'
    */
   overflowOrientation?: 'horizontal' | 'vertical';
+  /**
+   * Count of the *original* items (i.e. when sufficient space is available).
+   */
   itemsCount: number;
 };
 
-/**
- * Wrapper over `useOverflow`.
- *
- * - Use `useOverflowContainerContext` to get overflow related properties.
- * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
- */
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
   const { itemsCount, children, overflowOrientation, ...rest } = props;
 
@@ -61,16 +58,26 @@ const OverflowContainerOverflowNode = (
   const { visibleCount, itemsCount } = useOverflowContainerContext();
   const isOverflowing = visibleCount < itemsCount;
 
-  return isOverflowing && children;
+  return isOverflowing ? children : null;
 };
 
 // ----------------------------------------------------------------------------
 
+/**
+ * Wrapper over `useOverflow`.
+ *
+ * - Use `OverflowContainer.useContext()` to get overflow related properties.
+ * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
+ */
 export const OverflowContainer = Object.assign(OverflowContainerComponent, {
   /**
    * Wrap overflow content in this component to conditionally render it when overflowing.
    */
   OverflowNode: OverflowContainerOverflowNode,
+  /**
+   * Get overflow related properties of the nearest `OverflowContainer` ancestor.
+   */
+  useContext: useOverflowContainerContext,
 });
 
 // ----------------------------------------------------------------------------
@@ -86,7 +93,7 @@ if (process.env.NODE_ENV === 'development') {
   OverflowContainerContext.displayName = 'OverflowContainerContext';
 }
 
-export const useOverflowContainerContext = () => {
+function useOverflowContainerContext() {
   const overflowContainerContext = useSafeContext(OverflowContainerContext);
   return overflowContainerContext;
-};
+}

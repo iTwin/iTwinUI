@@ -8,7 +8,6 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
-  useOverflowContainerContext,
   useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -163,7 +162,7 @@ type BreadcrumbContentProps = Omit<BreadcrumbsProps, 'currentIndex'> & {
 
 const BreadcrumbContent = (props: BreadcrumbContentProps) => {
   const { children: items, currentIndex, overflowButton, separator } = props;
-  const { visibleCount } = useOverflowContainerContext();
+  const { visibleCount } = OverflowContainer.useContext();
 
   return (
     <>
