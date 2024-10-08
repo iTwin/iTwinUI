@@ -239,9 +239,11 @@ const OverflowGroupContent = (props: OverflowGroupContentProps) => {
       ? items.length - visibleCount
       : visibleCount - 1;
 
-  return !(visibleCount < items.length) ? (
-    items
-  ) : (
+  if (!(visibleCount < items.length)) {
+    return items;
+  }
+
+  return (
     <>
       {overflowButton &&
         overflowPlacement === 'start' &&

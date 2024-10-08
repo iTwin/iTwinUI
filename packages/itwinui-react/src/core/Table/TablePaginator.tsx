@@ -325,43 +325,6 @@ const TablePaginatorCenterContent = (
   } = props;
   const { visibleCount } = useOverflowContainerContext();
 
-  const hasNoRows = totalPagesCount === 0;
-
-  const halfVisibleCount = Math.floor(visibleCount / 2);
-  let startPage = focusedIndex - halfVisibleCount;
-  let endPage = focusedIndex + halfVisibleCount + 1;
-  if (startPage < 0) {
-    endPage = Math.min(totalPagesCount, endPage + Math.abs(startPage)); // If no room at the beginning, show extra pages at the end
-    startPage = 0;
-  }
-  if (endPage > totalPagesCount) {
-    startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
-    endPage = totalPagesCount;
-  }
-
-  const ellipsis = (
-    <Box
-      as='span'
-      className={cx('iui-table-paginator-ellipsis', {
-        'iui-table-paginator-ellipsis-small': size === 'small',
-      })}
-    >
-      …
-    </Box>
-  );
-
-  const noRowsContent = (
-    <>
-      {isLoading ? (
-        <ProgressRadial indeterminate size='small' />
-      ) : (
-        <Button styleType='borderless' disabled size={buttonSize}>
-          1
-        </Button>
-      )}
-    </>
-  );
-
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser/assistive technologies
     if (event.altKey) {
@@ -406,6 +369,43 @@ const TablePaginatorCenterContent = (
         break;
     }
   };
+
+  const halfVisibleCount = Math.floor(visibleCount / 2);
+  let startPage = focusedIndex - halfVisibleCount;
+  let endPage = focusedIndex + halfVisibleCount + 1;
+  if (startPage < 0) {
+    endPage = Math.min(totalPagesCount, endPage + Math.abs(startPage)); // If no room at the beginning, show extra pages at the end
+    startPage = 0;
+  }
+  if (endPage > totalPagesCount) {
+    startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
+    endPage = totalPagesCount;
+  }
+
+  const hasNoRows = totalPagesCount === 0;
+
+  const ellipsis = (
+    <Box
+      as='span'
+      className={cx('iui-table-paginator-ellipsis', {
+        'iui-table-paginator-ellipsis-small': size === 'small',
+      })}
+    >
+      …
+    </Box>
+  );
+
+  const noRowsContent = (
+    <>
+      {isLoading ? (
+        <ProgressRadial indeterminate size='small' />
+      ) : (
+        <Button styleType='borderless' disabled size={buttonSize}>
+          1
+        </Button>
+      )}
+    </>
+  );
 
   return (
     <>

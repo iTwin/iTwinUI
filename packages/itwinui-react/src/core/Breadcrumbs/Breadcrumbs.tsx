@@ -115,7 +115,7 @@ type BreadcrumbsProps = {
 const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   const {
     children: childrenProp,
-    currentIndex: currentIndexProp,
+    currentIndex = React.Children.count(childrenProp) - 1,
     separator,
     overflowButton,
     className,
@@ -126,7 +126,6 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     () => React.Children.toArray(childrenProp),
     [childrenProp],
   );
-  const currentIndex = currentIndexProp || items.length - 1;
 
   return (
     <Box
