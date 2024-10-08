@@ -1017,7 +1017,7 @@ export const Table = <
                         enableColumnReordering={enableColumnReordering}
                         density={density}
                         instance={instance}
-                        ref={(el) => {
+                        ref={(el: HTMLDivElement) => {
                           if (el) {
                             columnRefs.current[column.id] = el;
                           }
