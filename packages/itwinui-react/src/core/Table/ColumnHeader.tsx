@@ -37,7 +37,7 @@ type ColumnHeaderProps = TableKeyedProps & {
   isTableEmpty: boolean;
 };
 
-export const ColumnHeader = React.forwardRef((props, ref) => {
+export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
   const {
     column,
     areFiltersSet,
@@ -115,11 +115,17 @@ export const ColumnHeader = React.forwardRef((props, ref) => {
           isHeaderDirectClick.current = false;
         }
       }}
-      ref={useMergedRefs(ref, (el: HTMLDivElement) => {
-        if (el) {
-          column.resizeWidth = el.getBoundingClientRect().width;
-        }
-      })}
+      ref={useMergedRefs(
+        React.useCallback(
+          (el?: HTMLDivElement) => {
+            if (el) {
+              column.resizeWidth = el.getBoundingClientRect().width;
+            }
+          },
+          [column],
+        ),
+        forwardedRef,
+      )}
       tabIndex={showSortButton(column) ? 0 : undefined}
       onKeyDown={(e) => {
         if (e.key == 'Enter' && showSortButton(column)) {
