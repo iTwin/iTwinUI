@@ -643,15 +643,6 @@ export const Table = <
 
   let headerGroups = _headerGroups;
 
-  const prevInstanceRef = React.useRef(instance);
-
-  React.useEffect(() => {
-    if (prevInstanceRef.current && prevInstanceRef.current !== instance) {
-      console.log('Instance object has changed');
-    }
-    prevInstanceRef.current = instance;
-  }, [instance]);
-
   const logWarning = useWarningLogger();
 
   if (columns.length === 1 && 'columns' in columns[0]) {
