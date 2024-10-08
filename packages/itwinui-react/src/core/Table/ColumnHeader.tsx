@@ -42,6 +42,7 @@ export const ColumnHeader = <
   props: ColumnHeaderProps<T>,
 ): JSX.Element => {
   const {
+    // columnRefs,
     column,
     areFiltersSet,
     state,
@@ -119,6 +120,14 @@ export const ColumnHeader = <
           isHeaderDirectClick.current = false;
         }
       }}
+      ref={React.useCallback(
+        (el: HTMLDivElement | null) => {
+          if (el) {
+            column.resizeWidth = el.getBoundingClientRect().width;
+          }
+        },
+        [column],
+      )}
       tabIndex={showSortButton(column) ? 0 : undefined}
       onKeyDown={(e) => {
         if (e.key == 'Enter' && showSortButton(column)) {
