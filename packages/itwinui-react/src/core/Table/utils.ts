@@ -3,7 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { ColumnInstance } from '../../react-table/react-table.js';
+import type {
+  ColumnInstance,
+  TableInstance,
+} from '../../react-table/react-table.js';
 
 export const getCellStyle = <T extends Record<string, unknown>>(
   column: ColumnInstance<T>,
@@ -82,4 +85,6 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
   } satisfies React.CSSProperties;
 };
 
-export const TableColumnsContext = React.createContext<ColumnInstance[]>([]);
+export const TableInstanceContext = React.createContext<
+  TableInstance<any> | undefined
+>(undefined);

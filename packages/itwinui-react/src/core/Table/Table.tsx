@@ -25,7 +25,6 @@ import type {
   ActionType,
   TableInstance,
   Column,
-  ColumnInstance,
 } from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
@@ -40,7 +39,6 @@ import {
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TableColumnsContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
@@ -64,6 +62,7 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
+import { TableInstanceContext } from './utils.js';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
@@ -949,7 +948,7 @@ export const Table = <
   }, []);
 
   return (
-    <TableColumnsContext.Provider value={instance.columns as ColumnInstance[]}>
+    <TableInstanceContext.Provider value={instance}>
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
@@ -999,7 +998,7 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
-                      <ColumnHeader<T>
+                      <ColumnHeader
                         {...dragAndDropProps}
                         key={dragAndDropProps.key || column.id || index}
                         column={column}
@@ -1018,6 +1017,11 @@ export const Table = <
                         enableColumnReordering={enableColumnReordering}
                         density={density}
                         instance={instance}
+                        ref={(el) => {
+                          if (el) {
+                            columnRefs.current[column.id] = el;
+                          }
+                        }}
                       />
                     );
                   })}
@@ -1117,7 +1121,7 @@ export const Table = <
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
-    </TableColumnsContext.Provider>
+    </TableInstanceContext.Provider>
   );
 };
 if (process.env.NODE_ENV === 'development') {
