@@ -25,7 +25,6 @@ import type {
   ActionType,
   TableInstance,
   Column,
-  ColumnInstance,
 } from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
@@ -40,7 +39,7 @@ import {
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TableColumnsContext } from './utils.js';
+import { TableInstanceContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
@@ -639,7 +638,6 @@ export const Table = <
     gotoPage,
     setPageSize,
     flatHeaders,
-    visibleColumns,
     setGlobalFilter,
   } = instance;
 
@@ -950,7 +948,9 @@ export const Table = <
   }, []);
 
   return (
-    <TableColumnsContext.Provider value={instance.columns as ColumnInstance[]}>
+    <TableInstanceContext.Provider
+      value={instance as TableInstance<Record<string, unknown>>}
+    >
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
@@ -1000,22 +1000,29 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
-                      <ColumnHeader<T>
+                      <ColumnHeader
                         {...dragAndDropProps}
                         key={dragAndDropProps.key || column.id || index}
-                        columnRefs={columnRefs}
-                        column={column}
-                        index={index}
+                        column={column as HeaderGroup<Record<string, unknown>>}
                         areFiltersSet={areFiltersSet}
-                        hasAnySubRows={hasAnySubRows}
-                        headers={headerGroup.headers}
-                        state={state}
-                        data={data}
+                        columnHasExpanders={
+                          hasAnySubRows &&
+                          index ===
+                            headerGroup.headers.findIndex(
+                              (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
+                            )
+                        }
+                        isLast={index === headerGroup.headers.length - 1}
+                        isTableEmpty={data.length === 0}
                         isResizable={isResizable}
                         columnResizeMode={columnResizeMode}
                         enableColumnReordering={enableColumnReordering}
                         density={density}
-                        visibleColumns={visibleColumns}
+                        ref={(el) => {
+                          if (el) {
+                            columnRefs.current[column.id] = el;
+                          }
+                        }}
                       />
                     );
                   })}
@@ -1115,7 +1122,7 @@ export const Table = <
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
-    </TableColumnsContext.Provider>
+    </TableInstanceContext.Provider>
   );
 };
 if (process.env.NODE_ENV === 'development') {
