@@ -444,6 +444,152 @@ test.describe('Table row selection', () => {
   //#endregion
 });
 
+test.describe('Table Paginator', () => {
+  test(`should render data in pages`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
+    await expect(page.locator(`[role="cell"]`).last()).toHaveText(
+      'Description 49',
+    );
+
+    // Go to the 6th page
+    await page.locator('button').last().click({ clickCount: 5 });
+
+    await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
+    await expect(page.locator(`[role="cell"]`).last()).toHaveText(
+      'Description 299',
+    );
+  });
+
+  test('should render truncated pages list', async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    await setContainerSize(page, '800px');
+
+    // Go to the 6th page
+    await page.locator('button').last().click({ clickCount: 5 });
+
+    const paginatorButtons = page.locator('#paginator button', {
+      hasText: /[0-9]+/,
+    });
+    await expect(paginatorButtons).toHaveText(['1', '5', '6', '7', '11']);
+    await expect(paginatorButtons.nth(2)).toHaveAttribute(
+      'data-iui-active',
+      'true',
+    );
+
+    await expect(page.getByText('…')).toHaveCount(2);
+  });
+
+  test(`should overflow whenever there is not enough space`, async ({
+    page,
+  }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    await expectOverflowState({
+      page,
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize(page, '750px');
+
+    await expectOverflowState({
+      page,
+      expectedItemLength: 6,
+      expectedOverflowingEllipsisVisibleCount: 1,
+    });
+
+    // should restore hidden items when space is available again
+    await setContainerSize(page, undefined);
+
+    await expectOverflowState({
+      page,
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+  });
+
+  test(`should at minimum always show one page`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    await expectOverflowState({
+      page,
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize(page, '100px');
+
+    await expectOverflowState({
+      page,
+      expectedItemLength: 1,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await expect(
+      page.locator('#paginator button', { hasText: /1/ }),
+    ).toHaveAttribute('data-iui-active', 'true');
+  });
+
+  test(`should render elements in small size`, async ({ page }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator&density=condensed`);
+
+    await setContainerSize(page, '500px');
+
+    (await page.locator('#paginator button').all()).forEach(async (button) => {
+      await expect(button).toHaveAttribute('data-iui-size', 'small');
+    });
+
+    await expect(page.getByText('…')).toHaveClass(
+      /_iui[0-9]+-table-paginator-ellipsis-small/,
+    );
+
+    await page.waitForTimeout(300);
+  });
+
+  //#region Helpers for table paginator tests
+  const setContainerSize = async (page: Page, value: string | undefined) => {
+    await page.locator('#container').evaluate(
+      (element, args) => {
+        if (args.value != null) {
+          element.style.setProperty('width', args.value ? args.value : `999px`);
+        } else {
+          element.style.removeProperty('width');
+        }
+      },
+      {
+        value,
+      },
+    );
+    await page.waitForTimeout(200);
+  };
+
+  const expectOverflowState = async ({
+    page,
+    expectedItemLength,
+    expectedOverflowingEllipsisVisibleCount,
+  }: {
+    page: Page;
+    expectedItemLength: number;
+    expectedOverflowingEllipsisVisibleCount: number;
+  }) => {
+    const allItems = await page.locator('#paginator button').all();
+    const items =
+      allItems.length >= 2
+        ? allItems.slice(1, allItems.length - 1) // since the first and last button and to toggle pages
+        : [];
+    expect(items).toHaveLength(expectedItemLength);
+
+    const overflowingEllipsis = page.getByText('…');
+    await expect(overflowingEllipsis).toHaveCount(
+      expectedOverflowingEllipsisVisibleCount,
+    );
+  };
+  //#endregion
+});
+
 test.describe('Virtual Scroll Tests', () => {
   test('should render only a few elements out of a big data set', async ({
     page,
@@ -558,7 +704,7 @@ test.describe('Virtual Scroll Tests', () => {
 
 test.describe('Table filters', () => {
   test('DateRangeFilter should show DatePicker', async ({ page }) => {
-    await page.goto('/Table?allFilters=true');
+    await page.goto('/Table?exampleType=allFilters');
 
     // open Date filter
     const dateHeader = page.locator('[role="columnheader"]', {
