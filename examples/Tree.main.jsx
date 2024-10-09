@@ -6,36 +6,13 @@ import * as React from 'react';
 import { Tree, TreeNode } from '@itwin/itwinui-react';
 
 export default () => {
-  const [expandedNodes, setExpandedNodes] = React.useState({});
-
-  const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
-    if (isExpanded) {
-      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-    } else {
-      setExpandedNodes((oldExpanded) => ({
-        ...oldExpanded,
-        [nodeId]: false,
-      }));
-    }
+  const generateItem = React.useCallback((index, parentNode = '') => {
+    const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
+    return {
+      id: `Node-${keyValue}`,
+      label: `Node ${keyValue}`,
+    };
   }, []);
-
-  const generateItem = React.useCallback(
-    (index, parentNode = '', depth = 0) => {
-      const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
-      return {
-        id: `Node-${keyValue}`,
-        label: `Node ${keyValue}`,
-        sublabel: `Sublabel for Node ${keyValue}`,
-        subItems:
-          depth < 10
-            ? Array(Math.round(index % 5))
-                .fill(null)
-                .map((_, index) => generateItem(index, keyValue, depth + 1))
-            : [],
-      };
-    },
-    [],
-  );
 
   const data = React.useMemo(
     () =>
@@ -45,18 +22,12 @@ export default () => {
     [generateItem],
   );
 
-  const getNode = React.useCallback(
-    (node) => {
-      return {
-        subNodes: node.subItems,
-        nodeId: node.id,
-        node: node,
-        isExpanded: expandedNodes[node.id],
-        hasSubNodes: node.subItems.length > 0,
-      };
-    },
-    [expandedNodes],
-  );
+  const getNode = React.useCallback((node) => {
+    return {
+      nodeId: node.id,
+      node: node,
+    };
+  }, []);
 
   return (
     <Tree
@@ -65,9 +36,9 @@ export default () => {
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
+          <TreeNode label={node.label} {...rest} />
         ),
-        [onNodeExpanded],
+        [],
       )}
     />
   );

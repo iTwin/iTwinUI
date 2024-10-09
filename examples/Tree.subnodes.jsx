@@ -2,19 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React, { useCallback, useState } from 'react';
+import * as React from 'react';
 import { Tree, TreeNode } from '@itwin/itwinui-react';
 
 export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({});
-  const [selectedNodes, setSelectedNodes] = useState({});
-
-  const onSelectedNodeChange = useCallback((nodeId, isSelected) => {
-    setSelectedNodes((oldSelected) => ({
-      ...oldSelected,
-      [nodeId]: isSelected,
-    }));
-  }, []);
 
   const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
     setExpandedNodes((oldExpanded) => ({
@@ -56,11 +48,10 @@ export default () => {
         nodeId: node.id,
         node: node,
         isExpanded: expandedNodes[node.id],
-        isSelected: selectedNodes[node.id],
         hasSubNodes: node.subItems.length > 0,
       };
     },
-    [expandedNodes, selectedNodes],
+    [expandedNodes],
   );
 
   return (
@@ -70,14 +61,9 @@ export default () => {
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode
-            label={node.label}
-            onExpanded={onNodeExpanded}
-            onSelected={onSelectedNodeChange}
-            {...rest}
-          />
+          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
         ),
-        [onNodeExpanded, onSelectedNodeChange],
+        [onNodeExpanded],
       )}
     />
   );

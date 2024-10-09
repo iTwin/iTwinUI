@@ -8,19 +8,31 @@ thumbnail: Tree
 
 ## Usage
 
-A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. The tree component requires these props to be included for initialization:
+A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. To initialize the tree component, the following props are required:
 
 - `nodeRenderer`: A render function that returns the node element, which must be memoized. We recommend this function to return the `TreeNode` component.
-- `data`: An array of custom data used for `TreeNode`s inside `Tree`.
+- `data`: An array of custom data used for [TreeNode](#treenode) inside `Tree`.
 - `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. We recommend controlling state of expanded, selected and disabled nodes via this prop. The function must be memoized.
 
 <LiveExample src='Tree.main.jsx'>
   <AllExamples.TreeMainExample client:load />
 </LiveExample>
 
+### TreeNode
+
+The `TreeNode` component can be used to display the node content within a `Tree`. `TreeNode` must be used inside `Tree` component to correctly set node `depth` and `subNodes`.
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Tree/TreeNode.d.ts' />
+
+### SubNode
+
+<LiveExample src='Tree.subnodes.jsx'>
+  <AllExamples.TreeSubNodesExample client:load />
+</LiveExample>
+
 ### Size
 
-There are 2 different sizes available. The default size should suffice for most cases. When a smaller version of the tree is needed, use `size="small"`.
+There are two different sizes available. The default size should suffice for most cases. When a smaller version of the tree is needed, use `size="small"`.
 
 <LiveExample src='Tree.small.jsx'>
   <AllExamples.TreeSmallExample client:load />
@@ -28,7 +40,7 @@ There are 2 different sizes available. The default size should suffice for most 
 
 ### Visibility
 
-Each line of data level may begin with an eye icon for toggling its visibility. In this context, we suggest using the [Checkbox](/docs/checkbox) component with its `variant` set to `"eyeballs"`.
+Each data level line may begin with an eye icon to toggle visibility. In this context, we suggest using the [Checkbox](/docs/checkbox) component with the `variant` set to `"eyeballs"` and passing it into the `checkbox` prop of the `TreeNode`.
 
 <LiveExample src='Tree.visibility.jsx'>
   <AllExamples.TreeVisibilityExample client:load />

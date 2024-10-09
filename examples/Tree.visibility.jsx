@@ -9,14 +9,10 @@ export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({});
 
   const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
-    if (isExpanded) {
-      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-    } else {
-      setExpandedNodes((oldExpanded) => ({
-        ...oldExpanded,
-        [nodeId]: false,
-      }));
-    }
+    setExpandedNodes((oldExpanded) => ({
+      ...oldExpanded,
+      [nodeId]: isExpanded,
+    }));
   }, []);
 
   const generateItem = React.useCallback(
