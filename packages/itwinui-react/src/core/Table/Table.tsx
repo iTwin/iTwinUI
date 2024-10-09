@@ -39,6 +39,7 @@ import {
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
+import { TableInstanceContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
@@ -62,7 +63,6 @@ import {
   onTableResizeStart,
 } from './actionHandlers/index.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
-import { TableInstanceContext } from './utils.js';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';

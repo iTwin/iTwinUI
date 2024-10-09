@@ -105,16 +105,6 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
       {...rest}
       key={columnProps.key}
       title={undefined}
-      onMouseDown={() => {
-        isHeaderDirectClick.current = true;
-      }}
-      onClick={(e) => {
-        // Prevents from triggering sort when resizing and mouse is released in the middle of header
-        if (isHeaderDirectClick.current) {
-          onClick?.(e);
-          isHeaderDirectClick.current = false;
-        }
-      }}
       ref={useMergedRefs(
         React.useCallback(
           (el?: HTMLDivElement) => {
@@ -126,6 +116,16 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
         ),
         forwardedRef,
       )}
+      onMouseDown={() => {
+        isHeaderDirectClick.current = true;
+      }}
+      onClick={(e) => {
+        // Prevents from triggering sort when resizing and mouse is released in the middle of header
+        if (isHeaderDirectClick.current) {
+          onClick?.(e);
+          isHeaderDirectClick.current = false;
+        }
+      }}
       tabIndex={showSortButton(column) ? 0 : undefined}
       onKeyDown={(e) => {
         if (e.key == 'Enter' && showSortButton(column)) {
