@@ -313,8 +313,11 @@ export const ComboBox = React.forwardRef(
       else {
         // Reset the focused index
         setFocusedIndex(-1);
-        // Reset/update the input value if not multiple
-        if (!isMultipleEnabled(selectedIndexes, multiple)) {
+
+        // Reset/update the input value
+        if (isMultipleEnabled(selectedIndexes, multiple)) {
+          setInputValue('');
+        } else {
           setInputValue(
             selectedIndexes >= 0
               ? optionsRef.current[selectedIndexes]?.label ?? ''
