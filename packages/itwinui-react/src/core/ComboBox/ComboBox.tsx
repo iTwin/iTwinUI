@@ -483,7 +483,6 @@ export const ComboBox = React.forwardRef(
 
           // Clear the filter whenever an item is selected
           setInputValue('');
-          setIsInputDirty(false);
         } else {
           setSelectedIndexes(__originalIndex);
           hide();
