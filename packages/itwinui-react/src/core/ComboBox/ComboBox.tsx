@@ -82,12 +82,25 @@ export type ComboboxMultipleTypeProps<T> =
        * Callback fired when selected value changes.
        */
       onChange?: (value: T) => void;
+      /**
+       * Only applicable when `multiple` is enabled.
+       *
+       * If `true`, toggling an option will clear the filter.
+       * Useful when users would likely want to re-filter after toggling an option.
+       *
+       * If `false`, the filter will remain as-is after toggling an option.
+       * Useful when users would likely want to toggle multiple options from the same filtered results.
+       *
+       * @default true
+       */
+      clearFilterOnOptionToggle?: never;
     }
   | {
       multiple: true;
       value?: T[] | null | undefined;
       defaultValue?: T[] | null;
       onChange?: (value: T[], event: MultipleOnChangeProps<T>) => void;
+      clearFilterOnOptionToggle?: boolean;
     };
 
 export type ComboBoxProps<T> = {
@@ -212,6 +225,7 @@ export const ComboBox = React.forwardRef(
       onHide: onHideProp,
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
+      clearFilterOnOptionToggle = true,
       ...rest
     } = props;
 
@@ -324,6 +338,8 @@ export const ComboBox = React.forwardRef(
               : '',
           );
         }
+
+        setIsInputDirty(false);
       }
     }, [isOpen, multiple, optionsRef, selectedIndexes]);
 
@@ -455,7 +471,6 @@ export const ComboBox = React.forwardRef(
           return;
         }
 
-        setIsInputDirty(false);
         if (multiple) {
           const actionType = isMenuItemSelected(__originalIndex)
             ? 'removed'
@@ -478,6 +493,12 @@ export const ComboBox = React.forwardRef(
               .filter(Boolean)
               .join(', '),
           );
+
+          // If clearFilterOnOptionToggle, clear the filter
+          setIsInputDirty(!clearFilterOnOptionToggle);
+          if (clearFilterOnOptionToggle) {
+            setInputValue('');
+          }
         } else {
           setSelectedIndexes(__originalIndex);
           hide();
@@ -485,13 +506,14 @@ export const ComboBox = React.forwardRef(
         }
       },
       [
-        selectedChangeHandler,
-        isMenuItemSelected,
-        multiple,
-        onChangeHandler,
         optionsRef,
-        hide,
+        multiple,
+        isMenuItemSelected,
+        selectedChangeHandler,
         setSelectedIndexes,
+        onChangeHandler,
+        clearFilterOnOptionToggle,
+        hide,
       ],
     );
 

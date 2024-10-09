@@ -11,6 +11,9 @@ import {
   SelectOption,
   MenuItemSkeleton,
   InputGrid,
+  Flex,
+  Checkbox,
+  Divider,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 import { StoryDefault } from '@ladle/react';
@@ -519,16 +522,28 @@ export const MultipleSelect = () => {
     'AX',
   ]);
 
+  const [clearFilterOnOptionToggle, setClearFilterOnOptionToggle] =
+    React.useState(true);
+
   return (
-    <ComboBox
-      options={options}
-      inputProps={{ placeholder: 'Select a country' }}
-      multiple
-      value={selectedOptions}
-      onChange={(selected, event) => {
-        console.log(event.value + ' ' + event.type);
-        setSelectedOptions(selected);
-      }}
-    />
+    <Flex flexDirection='column' alignItems='stretch'>
+      <Checkbox
+        checked={clearFilterOnOptionToggle}
+        onChange={(e) => setClearFilterOnOptionToggle(e.target.checked)}
+        label='clearFilterOnOptionToggle'
+      />
+      <Divider />
+      <ComboBox
+        options={options}
+        inputProps={{ placeholder: 'Select a country' }}
+        multiple
+        value={selectedOptions}
+        onChange={(selected, event) => {
+          console.log(event.value + ' ' + event.type);
+          setSelectedOptions(selected);
+        }}
+        clearFilterOnOptionToggle={clearFilterOnOptionToggle}
+      />
+    </Flex>
   );
 };
