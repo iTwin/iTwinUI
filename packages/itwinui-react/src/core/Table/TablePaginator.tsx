@@ -197,7 +197,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         .map((_, index) => pageButton(index)),
     [pageButton, totalPagesCount],
   );
-  const [overflowRef, visibleCount] = useOverflow(pageList);
+  const [overflowRef, visibleCount] = useOverflow(pageList.length);
 
   const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
 

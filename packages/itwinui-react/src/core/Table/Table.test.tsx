@@ -2500,9 +2500,9 @@ it('should handle unwanted actions on editable cell', async () => {
 });
 
 it('should render data in pages', async () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((items) => [
+  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((itemsCount) => [
     vi.fn(),
-    items.length,
+    itemsCount,
   ]);
   const { container } = renderComponent({
     data: mockedData(100),

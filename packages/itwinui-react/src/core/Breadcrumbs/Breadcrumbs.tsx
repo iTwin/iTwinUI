@@ -122,7 +122,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [overflowRef, visibleCount] = useOverflow(items);
+  const [overflowRef, visibleCount] = useOverflow(items.length);
   const refs = useMergedRefs(overflowRef, ref);
 
   return (

@@ -16,7 +16,7 @@ const STARTING_MAX_ITEMS_COUNT = 20;
  * The returned number should be used to render the element with fewer items.
  *
  * @private
- * @param items Items that this element contains.
+ * @param itemsCount Number of items that this element contains.
  * @param disabled Set to true to disconnect the observer.
  * @param dimension 'horizontal' (default) or 'vertical'
  * @returns [callback ref to set on container, stateful count of visible items]
@@ -32,14 +32,14 @@ const STARTING_MAX_ITEMS_COUNT = 20;
  * );
  */
 export const useOverflow = <T extends HTMLElement>(
-  items: React.ReactNode[] | string,
+  itemsCount: number,
   disabled = false,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
   const containerRef = React.useRef<T>(null);
 
   const [visibleCount, setVisibleCount] = React.useState(() =>
-    disabled ? items.length : Math.min(items.length, STARTING_MAX_ITEMS_COUNT),
+    disabled ? itemsCount : Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT),
   );
 
   const needsFullRerender = React.useRef(true);
@@ -56,12 +56,12 @@ export const useOverflow = <T extends HTMLElement>(
 
   useLayoutEffect(() => {
     if (disabled) {
-      setVisibleCount(items.length);
+      setVisibleCount(itemsCount);
     } else {
-      setVisibleCount(Math.min(items.length, STARTING_MAX_ITEMS_COUNT));
+      setVisibleCount(Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT));
       needsFullRerender.current = true;
     }
-  }, [containerSize, disabled, items]);
+  }, [containerSize, disabled, itemsCount]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
@@ -89,17 +89,17 @@ export const useOverflow = <T extends HTMLElement>(
       // Previous `useEffect` might have updated visible count, but we still have old one
       // If it is 0, lets try to update it with items length.
       const currentVisibleCount =
-        visibleCount || Math.min(items.length, STARTING_MAX_ITEMS_COUNT);
+        visibleCount || Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT);
       const avgItemSize = childrenSize / currentVisibleCount;
       const visibleItems = Math.floor(availableSize / avgItemSize);
 
       if (!isNaN(visibleItems)) {
         // Doubling the visible items to overflow the container. Just to be safe.
-        setVisibleCount(Math.min(items.length, visibleItems * 2));
+        setVisibleCount(Math.min(itemsCount, visibleItems * 2));
       }
     }
     needsFullRerender.current = false;
-  }, [containerSize, visibleCount, disabled, items.length, orientation]);
+  }, [containerSize, visibleCount, disabled, itemsCount, orientation]);
 
   useLayoutEffect(() => {
     previousContainerSize.current = containerSize;

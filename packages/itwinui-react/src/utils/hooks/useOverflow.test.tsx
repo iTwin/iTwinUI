@@ -17,7 +17,7 @@ const MockComponent = ({
   orientation?: 'horizontal' | 'vertical';
 }) => {
   const [overflowRef, visibleCount] = useOverflow(
-    children,
+    children.length,
     disableOverflow,
     orientation,
   );

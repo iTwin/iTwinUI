@@ -46,7 +46,7 @@ export type MiddleTextTruncationProps = {
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
 
-  const [ref, visibleCount] = useOverflow(text);
+  const [ref, visibleCount] = useOverflow(text.length);
 
   const truncatedText = React.useMemo(() => {
     if (visibleCount < text.length) {
