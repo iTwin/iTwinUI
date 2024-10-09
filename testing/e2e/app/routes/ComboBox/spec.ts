@@ -353,5 +353,7 @@ const expectOverflowState = async ({
 };
 
 const getSelectTagContainerTags = (page: Page) => {
+  // TODO: Remove this implementation detail of DOM hierarchy when we can customize the tag container.
+  // See: https://github.com/iTwin/iTwinUI/pull/2151#discussion_r1684394649
   return page.getByRole('combobox').locator('+ div > span');
 };
