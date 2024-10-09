@@ -36,7 +36,7 @@ export const Basic = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -67,7 +67,7 @@ export const WithTime = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -101,7 +101,7 @@ export const WithCombinedTime = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -132,7 +132,7 @@ export const Localized = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -160,7 +160,7 @@ export const WithYear = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -201,7 +201,7 @@ export const Range = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>
@@ -254,7 +254,7 @@ export const SomeDatesDisabled = () => {
           />
         }
       >
-        <IconButton id='picker-button'>
+        <IconButton id='picker-button' label='Toggle calendar'>
           <SvgCalendar />
         </IconButton>
       </Popover>

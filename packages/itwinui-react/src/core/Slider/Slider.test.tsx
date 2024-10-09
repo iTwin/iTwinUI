@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { Slider } from './Slider.js';
 import { userEvent } from '@testing-library/user-event';
 
@@ -503,14 +503,13 @@ it('should show tooltip on thumb hover', async () => {
   expect(thumb.classList).not.toContain('iui-active');
   expect(document.querySelector('.iui-tooltip')).toBeNull();
 
-  vi.useFakeTimers();
   fireEvent.mouseEnter(thumb);
-  act(() => void vi.advanceTimersByTime(50));
-  vi.useRealTimers();
 
-  const tooltip = document.querySelector('.iui-tooltip');
-  expect(tooltip).toBeVisible();
-  expect(tooltip).toHaveTextContent('50');
+  await waitFor(() => {
+    const tooltip = document.querySelector('.iui-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveTextContent('50');
+  });
 });
 
 it('should show tooltip on thumb focus', async () => {

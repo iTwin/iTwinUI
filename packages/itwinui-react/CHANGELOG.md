@@ -1,10 +1,35 @@
 # Changelog
 
+## 3.15.3
+
+### Patch Changes
+
+- [#2285](https://github.com/iTwin/iTwinUI/pull/2285): Fixed an issue in `ProgressLinear` where passing a `style` prop would cause it to lose its `value`.
+- [#2281](https://github.com/iTwin/iTwinUI/pull/2281): Inputs (e.g. `Input`, `ComboBox`, etc.) with "small" size now have the same height as other field elements with "small" size (e.g. `Button`).
+- [#2274](https://github.com/iTwin/iTwinUI/pull/2274): `IconButton`s inside `TransferList.Toolbar` will now show tooltips on the right side by default to avoid obscuring adjacent buttons in the group. This placement can be changed using the `labelProps.placement` prop on the `IconButton`.
+- [#2274](https://github.com/iTwin/iTwinUI/pull/2274): `TransferList.Toolbar` implements the previously missing [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/), including the arrow-key navigation functionality.
+
+## 3.15.2
+
+### Patch Changes
+
+- [#2275](https://github.com/iTwin/iTwinUI/pull/2275): Made the `ActionType.type` type in `Table` more specific. This will help when using the `action` argument in the `stateReducer` function, for example.
+- [#2273](https://github.com/iTwin/iTwinUI/pull/2273): Fixed an issue where the internal unit test detection logic was incorrectly treating Cypress like a unit test environment.
+
+## 3.15.1
+
+### Patch Changes
+
+- [#2263](https://github.com/iTwin/iTwinUI/pull/2263): Default `Tooltip` delay is now correctly applied.
+- [#2266](https://github.com/iTwin/iTwinUI/pull/2266): All instances of `user-select: all` have been removed.
+  - Affected components: `Code`, `InformationPanel`, `Slider`, `Stepper`, `Tile`.
+
 ## 3.15.0
 
 ### Minor Changes
 
 - [#2233](https://github.com/iTwin/iTwinUI/pull/2233): `Popover` now enables the [`hide` middleware](https://floating-ui.com/docs/hide) to hide the floating content when the trigger is hidden.
+
   - This also affects other popover-like components (e.g. `Select`, `ComboBox`, `DropdownMenu`, `SplitButton`).
   - If the floating content gets hidden even when it shouldn't (e.g. due to some custom styles interfering with the trigger's hide detection), consider disabling the `hide` middleware.
 

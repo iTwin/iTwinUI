@@ -1,6 +1,6 @@
 ---
 title: Flex
-description: A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens. Supports all flex properties. Can be used with or without `Flex.Item` and `Flex.Spacer` subcomponents.
+description: A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens.
 thumbnail: #TODO
 group: utilities
 ---
@@ -9,39 +9,15 @@ group: utilities
 
 ## Usage
 
-Wrap `Flex` around the components you want to be the children of the flex container. To set a certain universal space between the children, pass iTwinUI size tokens (e.g. `x`, `xs`) into the `gap` prop. The `gap` prop is set to be `xs` by default.
+The `Flex` component is a generic container that can be wrapped around the items that need to be laid out using CSS flexbox. These items can be used directly or with [`Flex.Item`](#flex-items) for more granular customization.
+
+`Flex` offers a `gap` prop, which can accept a value corresponding to [iTwinUI size tokens](/docs/variables#size) (e.g. `"x"`, `"xs"`). By default, a `gap` of `"xs"` is used.
 
 <LiveExample src='Flex.main.jsx'>
   <AllExamples.FlexMainExample client:load />
 </LiveExample>
 
-### Flex properties
-
-The `Flex` container offers properties which reflect similar behaviors to the CSS flexbox, such as `alignItem`, `justifyContent`, `flexDirection`, and `flexWrap`.
-
-#### `justifyContent`
-
-<LiveExample src='Flex.justifyContent.jsx'>
-  <AllExamples.FlexJustifyContentExample client:load />
-</LiveExample>
-
-#### `alignItems`
-
-<LiveExample src='Flex.alignItems.jsx'>
-  <AllExamples.FlexAlignItemsExample client:load />
-</LiveExample>
-
-#### `flexDirection`
-
-<LiveExample src='Flex.direction.jsx'>
-  <AllExamples.FlexDirectionExample client:load />
-</LiveExample>
-
-#### `flexWrap`
-
-<LiveExample src='Flex.wrap.jsx'>
-  <AllExamples.FlexWrapExample client:load />
-</LiveExample>
+The `Flex` component offers props that are equivalent to those of the CSS flexbox, such as `alignItems` (defaults to `"center"`), `justifyContent`, `flexDirection`, and `flexWrap`.
 
 ### Spacer
 
@@ -53,7 +29,7 @@ The `Flex.Spacer` subcomponent fills up the available space between flex items. 
 
 ### Flex Items
 
-This `Flex.Item` allows customizing flex items through the `flex`, `alignSelf` and `gapBefore`/`gapAfter` props.
+The `Flex.Item` subcomponent allows customizing individual flex items using the `flex`, `alignSelf` and `gapBefore`/`gapAfter` props.
 
 <LiveExample src='Flex.flexItems.jsx'>
   <AllExamples.FlexWithFlexItemsExample client:load />
@@ -65,6 +41,6 @@ The `gapBefore`/`gapAfter` props can used to override the gap at an individual l
   <AllExamples.FlexWithIndividualGapsExample client:load />
 </LiveExample>
 
-### Props
+## Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Flex/Flex.d.ts' />

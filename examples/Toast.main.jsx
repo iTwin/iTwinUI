@@ -9,22 +9,10 @@ export default () => {
   const toaster = useToaster();
 
   return (
-    <Button
-      onClick={() => {
-        toaster.setSettings({
-          placement: 'bottom-end',
-          order: 'ascending',
-        });
-        toaster.positive('Job processing completed.', {
-          hasCloseButton: true,
-          link: {
-            onClick: () => {},
-            title: 'View the report',
-          },
-        });
-      }}
-    >
-      Open toast
-    </Button>
+    <div className='demo-container'>
+      <Button onClick={() => toaster.positive('Job processing completed.')}>
+        Open toast
+      </Button>
+    </div>
   );
 };

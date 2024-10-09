@@ -3,12 +3,22 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ProgressLinear } from '@itwin/itwinui-react';
+import { useToaster, Button } from '@itwin/itwinui-react';
 
 export default () => {
+  const toaster = useToaster();
+
   return (
     <div className='demo-container'>
-      <ProgressLinear indeterminate />
+      <Button
+        onClick={() =>
+          toaster.positive('This is a positive message', {
+            hasCloseButton: true,
+          })
+        }
+      >
+        Open toast
+      </Button>
     </div>
   );
 };

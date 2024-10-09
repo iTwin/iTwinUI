@@ -7,7 +7,7 @@ import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
 import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
-import { TableColumnsContext } from '../utils.js';
+import { TableInstanceContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
@@ -46,12 +46,12 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
-  const instanceColumns = React.useContext(TableColumnsContext);
+  const instance = React.useContext(TableInstanceContext);
   const isCustomCell = React.useMemo(
     () =>
-      instanceColumns.find(({ id }) => props.cellProps.column.id === id)
+      instance?.columns.find(({ id }) => props.cellProps.column.id === id)
         ?.Cell !== defaultColumn.Cell,
-    [instanceColumns, props.cellProps.column.id],
+    [instance, props.cellProps.column.id],
   );
 
   const {
