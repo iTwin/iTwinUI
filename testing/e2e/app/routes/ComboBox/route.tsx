@@ -51,10 +51,7 @@ const Default = ({
 function getConfigFromSearchParams() {
   const [searchParams] = useSearchParams();
 
-  const exampleType = searchParams.get('exampleType') as
-    | 'default'
-    | 'overflow'
-    | undefined;
+  const exampleType = searchParams.get('exampleType') as 'default' | undefined;
   const virtualization = searchParams.get('virtualization') === 'true';
   const multiple = searchParams.get('multiple') === 'true';
   const clearFilterOnOptionToggle =
