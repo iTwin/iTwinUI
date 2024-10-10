@@ -89,7 +89,7 @@ export type ComboboxMultipleTypeProps<T> =
        * Useful when users would likely want to re-filter after toggling an option.
        *
        * If `false`, the filter will remain as-is after toggling an option.
-       * Useful when users would likely want to toggle multiple options from the same filtered results.
+       * Useful when users would likely want to toggle multiple options from the _same_ filtered results.
        *
        * @default true
        */
