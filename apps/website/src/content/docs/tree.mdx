@@ -26,6 +26,72 @@ The `TreeNode` component can be used to display the node content within a `Tree`
 
 ### SubNode
 
+The tree supports hierarchial data structures where each node can have subnodes, which can be expanded or collapsed. Subnodes allow handling nested data up to any desired depth.
+
+Each object in the `data` array can take information under the `subItems` array as its children, which allows for nested structures.
+
+```jsx
+const treeData = React.useMemo(
+  () => [
+    {
+      id: 'Node-1',
+      label: 'Node 1',
+      subItems: [
+        { id: 'Node-1-1', label: 'Node 1.1' },
+        {
+          id: 'Node-1-2',
+          label: 'Node 1.2',
+          subItems: [
+            { id: 'Node-1-2-1', label: 'Node 1.2.1' },
+            { id: 'Node-1-2-2', label: 'Node 1.2.2' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'Node-2',
+      label: 'Node 2',
+      subItems: [{ id: 'Node-2-1', label: 'Node 2.1' }],
+    },
+  ],
+  [],
+);
+```
+
+To handle expandable subnodes, a state variable is needed to track each node and its expansion state.
+
+When a user interacts with a node, the `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly.
+
+```jsx
+const onExpand = React.useCallback((nodeId, isExpanded) => {
+  setExpandedNodes((prev) => ({
+    ...prev,
+    [nodeId]: isExpanded,
+  }));
+}, []);
+```
+
+To correctly display subnodes, the `getNode` function must return the node state with subnode information before rendering each node. This includes:
+
+- The `subNodes` property which holds the array of the child nodes contained in the node.
+- The `hasSubNodes` flag which indicates whether the node has subnodes. This is used to determine if node should be expandable.
+- The `isExpanded` flag which indicates whether the node is expanded to display its subnode(s).
+
+```jsx
+const getNode = React.useCallback(
+  (node) => {
+    return {
+      nodeId: node.id,
+      node: node,
+      subNodes: node.subItems,
+      isExpanded: expandedNodes[node.id],
+      hasSubNodes: node.subItems.length > 0,
+    };
+  },
+  [expandedNodes],
+);
+```
+
 <LiveExample src='Tree.subnodes.jsx'>
   <AllExamples.TreeSubNodesExample client:load />
 </LiveExample>
