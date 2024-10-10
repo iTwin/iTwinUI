@@ -19,6 +19,7 @@ const Default = ({
     options,
     showChangeValueButton,
     virtualization,
+    clearFilterOnOptionToggle,
   } = config;
   const [value, setValue] = React.useState(initialValue);
 
@@ -39,6 +40,7 @@ const Default = ({
         value={value as any}
         multiple={multiple}
         enableVirtualization={virtualization}
+        clearFilterOnOptionToggle={clearFilterOnOptionToggle as any}
       />
     </div>
   );
@@ -52,6 +54,10 @@ function getConfigFromSearchParams() {
   const exampleType = searchParams.get('exampleType') as 'default' | undefined;
   const virtualization = searchParams.get('virtualization') === 'true';
   const multiple = searchParams.get('multiple') === 'true';
+  const clearFilterOnOptionToggle =
+    searchParams.get('clearFilterOnOptionToggle') != null
+      ? searchParams.get('clearFilterOnOptionToggle') === 'true'
+      : undefined;
   const showChangeValueButton =
     searchParams.get('showChangeValueButton') === 'true';
 
@@ -82,5 +88,6 @@ function getConfigFromSearchParams() {
     showChangeValueButton,
     options,
     initialValue,
+    clearFilterOnOptionToggle,
   };
 }

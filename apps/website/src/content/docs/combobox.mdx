@@ -60,6 +60,11 @@ Set the property `multiple` to true to allow users to select more than one value
   <AllExamples.ComboBoxMultipleSelectExample client:load />
 </LiveExample>
 
+When `multiple` is `true`, a `clearFilterOnOptionToggle` prop is available. Possible values:
+
+- `true` (default): Filter is cleared when an option is toggled. Useful when users would likely want to re-filter after toggling an option.
+- `false`: Filter is _not_ cleared when an option is toggled. This is useful when users would likely want to toggle multiple options from the same filtered results.
+
 ### Virtualized
 
 If you expect the combobox to have a very long list of items, you can set `enableVirtualization` to true. This will use virtualization for the scrollable dropdown list.
