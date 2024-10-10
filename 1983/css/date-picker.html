@@ -1,0 +1,487 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Date picker | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Date picker"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/date-picker.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/date-picker.html"><link rel="stylesheet" href="./_astro/alert.CVlRJb0P.css" />
+<link rel="stylesheet" href="./_astro/date-picker.B6K6I9ux.css" /><script type="module" src="./_astro/hoisted.C6Kww1Bd.js"></script></head> <body class="iui-root" data-iui-theme> <theme-button></theme-button>    <h1>Date picker</h1> <hr> <h2>Date</h2> <section id="demo-date"> <div class="iui-date-picker iui-popover-surface" role="dialog" aria-modal="true"> <div> <div class="iui-calendar-month-year"> <button aria-label="Previous month" type="button" role="month-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left> </button> <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span> <button aria-label="Next month" type="button" role="month-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right> </button> </div> <div class="iui-calendar-weekdays"> <div title="Sunday" abbr="Sunday">Su</div> <div title="Monday" abbr="Monday">Mo</div> <div title="Tuesday" abbr="Tuesday">Tu</div> <div title="Wednesday" abbr="Wednesday">We</div> <div title="Thursday" abbr="Thursday">Th</div> <div title="Friday" abbr="Friday">Fr</div> <div title="Saturday" abbr="Saturday">Sa</div> </div> <div role="listbox" aria-label="month-2020-08"> <div class="iui-calendar-week"> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-6" role="option" aria-disabled="false">
+6
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-7" role="option" aria-disabled="false">
+7
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-8" role="option" aria-disabled="false">
+8
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-9" role="option" aria-disabled="false">
+9
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-10" role="option" aria-disabled="false" id="test-date">
+10
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-11" role="option" aria-disabled="false">
+11
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-12" role="option" aria-disabled="false">
+12
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-13" role="option" aria-disabled="false">
+13
+</div> <div class="iui-calendar-day-selected-today" tabindex="0" aria-label="day-14" role="option" aria-disabled="false">
+14
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-15" role="option" aria-disabled="false">
+15
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-16" role="option" aria-disabled="false">
+16
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-17" role="option" aria-disabled="false">
+17
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-18" role="option" aria-disabled="false">
+18
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-19" role="option" aria-disabled="false">
+19
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-20" role="option" aria-disabled="false">
+20
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-21" role="option" aria-disabled="false">
+21
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-22" role="option" aria-disabled="false">
+22
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-23" role="option" aria-disabled="false">
+23
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-24" role="option" aria-disabled="false">
+24
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-25" role="option" aria-disabled="false">
+25
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> <div class="iui-calendar-day-outside-month"></div> </div> </div> </div> </div> </section> <br> <h3>Year skipping buttons</h3> <section id="demo-date-year-skipping"> <div class="iui-date-picker iui-popover-surface" role="dialog" aria-modal="true"> <div> <div class="iui-calendar-month-year"> <button aria-label="Previous year" type="button" role="year-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left-double class="iui-button-icon" aria-hidden="true"></svg-chevron-left-double> </button> <button aria-label="Previous month" type="button" role="month-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left> </button> <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span> <button aria-label="Next month" type="button" role="month-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right> </button> <button aria-label="Next year" type="button" role="year-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right-double class="iui-button-icon" aria-hidden="true"></svg-chevron-right-double> </button> </div> <div class="iui-calendar-weekdays"> <div title="Sunday" abbr="Sunday">Su</div> <div title="Monday" abbr="Monday">Mo</div> <div title="Tuesday" abbr="Tuesday">Tu</div> <div title="Wednesday" abbr="Wednesday">We</div> <div title="Thursday" abbr="Thursday">Th</div> <div title="Friday" abbr="Friday">Fr</div> <div title="Saturday" abbr="Saturday">Sa</div> </div> <div role="listbox" aria-label="month-2020-08"> <div class="iui-calendar-week"> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-6" role="option" aria-disabled="false">
+6
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-7" role="option" aria-disabled="false">
+7
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-8" role="option" aria-disabled="false">
+8
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-9" role="option" aria-disabled="false">
+9
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-10" role="option" aria-disabled="false" id="test-date">
+10
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-11" role="option" aria-disabled="false">
+11
+</div> <div class="iui-calendar-day-today" tabindex="0" aria-label="day-12" role="option" aria-disabled="false">
+12
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-13" role="option" aria-disabled="false">
+13
+</div> <div class="iui-calendar-day-selected" tabindex="0" aria-label="day-14" role="option" aria-disabled="false">
+14
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-15" role="option" aria-disabled="false">
+15
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-16" role="option" aria-disabled="false">
+16
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-17" role="option" aria-disabled="false">
+17
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-18" role="option" aria-disabled="false">
+18
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-19" role="option" aria-disabled="false">
+19
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-20" role="option" aria-disabled="false">
+20
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-21" role="option" aria-disabled="false">
+21
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-22" role="option" aria-disabled="false">
+22
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-23" role="option" aria-disabled="false">
+23
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-24" role="option" aria-disabled="false">
+24
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-25" role="option" aria-disabled="false">
+25
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> </div> </div> </div> </div> </section> <hr> <h2>Date & time</h2> <section id="demo-date-and-time"> <div class="iui-date-picker iui-popover-surface" role="dialog" aria-modal="true"> <div> <div class="iui-calendar-month-year"> <button aria-label="Previous month" type="button" role="month-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left> </button> <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span> <button aria-label="Next month" type="button" role="month-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right> </button> </div> <div class="iui-calendar-weekdays"> <div title="Sunday" abbr="Sunday">Su</div> <div title="Monday" abbr="Monday">Mo</div> <div title="Tuesday" abbr="Tuesday">Tu</div> <div title="Wednesday" abbr="Wednesday">We</div> <div title="Thursday" abbr="Thursday">Th</div> <div title="Friday" abbr="Friday">Fr</div> <div title="Saturday" abbr="Saturday">Sa</div> </div> <div role="listbox" aria-label="month-2020-08"> <div class="iui-calendar-week"> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-6" role="option" aria-disabled="false">
+6
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-7" role="option" aria-disabled="false">
+7
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-8" role="option" aria-disabled="false">
+8
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-9" role="option" aria-disabled="false">
+9
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-10" role="option" aria-disabled="false" id="test-date">
+10
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-11" role="option" aria-disabled="false">
+11
+</div> <div class="iui-calendar-day-today" tabindex="0" aria-label="day-12" role="option" aria-disabled="false">
+12
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-13" role="option" aria-disabled="false">
+13
+</div> <div class="iui-calendar-day-selected" tabindex="0" aria-label="day-14" role="option" aria-disabled="false">
+14
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-15" role="option" aria-disabled="false">
+15
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-16" role="option" aria-disabled="false">
+16
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-17" role="option" aria-disabled="false">
+17
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-18" role="option" aria-disabled="false">
+18
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-19" role="option" aria-disabled="false">
+19
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-20" role="option" aria-disabled="false">
+20
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-21" role="option" aria-disabled="false">
+21
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-22" role="option" aria-disabled="false">
+22
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-23" role="option" aria-disabled="false">
+23
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-24" role="option" aria-disabled="false">
+24
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-25" role="option" aria-disabled="false">
+25
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> </div> </div> </div> <div class="iui-time-picker"> <div class="iui-time"> <ol> <li tabindex="0" id="test-time">12:00</li> <li tabindex="0">12:15</li> <li tabindex="0" class="iui-selected">12:30</li> <li tabindex="0">12:45</li> <li tabindex="0">1:00</li> <li tabindex="0">1:15</li> <li tabindex="0">1:30</li> <li tabindex="0">1:45</li> <li tabindex="0">2:00</li> <li tabindex="0">2:15</li> <li tabindex="0">2:30</li> <li tabindex="0">2:45</li> <li tabindex="0">3:00</li> <li tabindex="0">3:15</li> <li tabindex="0">3:30</li> <li tabindex="0">3:45</li> <li tabindex="0">4:00</li> <li tabindex="0">4:15</li> <li tabindex="0">4:30</li> <li tabindex="0">4:45</li> <li tabindex="0">5:00</li> <li tabindex="0">5:15</li> <li tabindex="0">5:30</li> <li tabindex="0">5:45</li> <li tabindex="0">6:00</li> <li tabindex="0">6:15</li> <li tabindex="0">6:30</li> <li tabindex="0">6:45</li> <li tabindex="0">7:00</li> <li tabindex="0">7:15</li> <li tabindex="0">7:30</li> <li tabindex="0">7:45</li> <li tabindex="0">8:00</li> <li tabindex="0">8:15</li> <li tabindex="0">8:30</li> <li tabindex="0">8:45</li> <li tabindex="0">9:00</li> <li tabindex="0">9:15</li> <li tabindex="0">9:30</li> <li tabindex="0">9:45</li> <li tabindex="0">10:00</li> <li tabindex="0">10:15</li> <li tabindex="0">10:30</li> <li tabindex="0">10:45</li> <li tabindex="0">11:00</li> <li tabindex="0">11:15</li> <li tabindex="0">11:30</li> <li tabindex="0">11:45</li> </ol> </div> <div class="iui-period"> <ol> <li tabindex="0" class="iui-selected">AM</li> <li tabindex="0">PM</li> </ol> </div> </div> </div> </section> <br> <h3>24hr format</h3> <section id="demo-date-and-time-24h"> <div class="iui-date-picker iui-popover-surface" role="dialog" aria-modal="true"> <div> <div class="iui-calendar-month-year"> <button aria-label="Previous month" type="button" role="month-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left> </button> <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span> <button aria-label="Next month" type="button" role="month-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right> </button> </div> <div class="iui-calendar-weekdays"> <div title="Sunday" abbr="Sunday">Su</div> <div title="Monday" abbr="Monday">Mo</div> <div title="Tuesday" abbr="Tuesday">Tu</div> <div title="Wednesday" abbr="Wednesday">We</div> <div title="Thursday" abbr="Thursday">Th</div> <div title="Friday" abbr="Friday">Fr</div> <div title="Saturday" abbr="Saturday">Sa</div> </div> <div role="listbox" aria-label="month-2020-08"> <div class="iui-calendar-week"> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-6" role="option" aria-disabled="false">
+6
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-7" role="option" aria-disabled="false">
+7
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-8" role="option" aria-disabled="false">
+8
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-9" role="option" aria-disabled="false">
+9
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-10" role="option" aria-disabled="false" id="test-date">
+10
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-11" role="option" aria-disabled="false">
+11
+</div> <div class="iui-calendar-day-today" tabindex="0" aria-label="day-12" role="option" aria-disabled="false">
+12
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-13" role="option" aria-disabled="false">
+13
+</div> <div class="iui-calendar-day-selected" tabindex="0" aria-label="day-14" role="option" aria-disabled="false">
+14
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-15" role="option" aria-disabled="false">
+15
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-16" role="option" aria-disabled="false">
+16
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-17" role="option" aria-disabled="false">
+17
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-18" role="option" aria-disabled="false">
+18
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-19" role="option" aria-disabled="false">
+19
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-20" role="option" aria-disabled="false">
+20
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-21" role="option" aria-disabled="false">
+21
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-22" role="option" aria-disabled="false">
+22
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-23" role="option" aria-disabled="false">
+23
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-24" role="option" aria-disabled="false">
+24
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-25" role="option" aria-disabled="false">
+25
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> </div> </div> </div> <div class="iui-time-picker"> <div class="iui-time"> <ol> <li tabindex="0">00:00</li> <li tabindex="0">00:15</li> <li tabindex="0" class="iui-selected">00:30</li> <li tabindex="0">00:45</li> <li tabindex="0">1:00</li> <li tabindex="0">1:15</li> <li tabindex="0">1:30</li> <li tabindex="0">1:45</li> <li tabindex="0">2:00</li> <li tabindex="0">2:15</li> <li tabindex="0">2:30</li> <li tabindex="0">2:45</li> <li tabindex="0">3:00</li> <li tabindex="0">3:15</li> <li tabindex="0">3:30</li> <li tabindex="0">3:45</li> <li tabindex="0">4:00</li> <li tabindex="0">4:15</li> <li tabindex="0">4:30</li> <li tabindex="0">4:45</li> <li tabindex="0">5:00</li> <li tabindex="0">5:15</li> <li tabindex="0">5:30</li> <li tabindex="0">5:45</li> <li tabindex="0">6:00</li> <li tabindex="0">6:15</li> <li tabindex="0">6:30</li> <li tabindex="0">6:45</li> <li tabindex="0">7:00</li> <li tabindex="0">7:15</li> <li tabindex="0">7:30</li> <li tabindex="0">7:45</li> <li tabindex="0">8:00</li> <li tabindex="0">8:15</li> <li tabindex="0">8:30</li> <li tabindex="0">8:45</li> <li tabindex="0">9:00</li> <li tabindex="0">9:15</li> <li tabindex="0">9:30</li> <li tabindex="0">9:45</li> <li tabindex="0">10:00</li> <li tabindex="0">10:15</li> <li tabindex="0">10:30</li> <li tabindex="0">10:45</li> <li tabindex="0">11:00</li> <li tabindex="0">11:15</li> <li tabindex="0">11:30</li> <li tabindex="0">11:45</li> <li tabindex="0">12:00</li> <li tabindex="0">12:15</li> <li tabindex="0">12:30</li> <li tabindex="0">12:45</li> <li tabindex="0">13:00</li> <li tabindex="0">13:15</li> <li tabindex="0">13:30</li> <li tabindex="0">13:45</li> <li tabindex="0">14:00</li> <li tabindex="0">14:15</li> <li tabindex="0">14:30</li> <li tabindex="0">14:45</li> <li tabindex="0">15:00</li> <li tabindex="0">15:15</li> <li tabindex="0">15:30</li> <li tabindex="0">15:45</li> <li tabindex="0">16:00</li> <li tabindex="0">16:15</li> <li tabindex="0">16:30</li> <li tabindex="0">16:45</li> <li tabindex="0">17:00</li> <li tabindex="0">17:15</li> <li tabindex="0">17:30</li> <li tabindex="0">17:45</li> <li tabindex="0">18:00</li> <li tabindex="0">18:15</li> <li tabindex="0">18:30</li> <li tabindex="0">18:45</li> <li tabindex="0">19:00</li> <li tabindex="0">19:15</li> <li tabindex="0">19:30</li> <li tabindex="0">19:45</li> <li tabindex="0">20:00</li> <li tabindex="0">20:15</li> <li tabindex="0">20:30</li> <li tabindex="0">20:45</li> <li tabindex="0">21:00</li> <li tabindex="0">21:15</li> <li tabindex="0">21:30</li> <li tabindex="0">21:45</li> <li tabindex="0">22:00</li> <li tabindex="0">22:15</li> <li tabindex="0">22:30</li> <li tabindex="0">22:45</li> <li tabindex="0">23:00</li> <li tabindex="0">23:15</li> <li tabindex="0">23:30</li> <li tabindex="0">23:45</li> </ol> </div> </div> </div> </section> <h2>Date range</h2> <section id="demo-date-range"> <div class="iui-date-picker iui-popover-surface" role="dialog" aria-modal="true"> <div> <div class="iui-calendar-month-year"> <button aria-label="Previous year" type="button" role="year-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left-double class="iui-button-icon" aria-hidden="true"></svg-chevron-left-double> </button> <button aria-label="Previous month" type="button" role="month-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left> </button> <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span> <button aria-label="Next month" type="button" role="month-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right> </button> <button aria-label="Next year" type="button" role="year-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small"> <svg-chevron-right-double class="iui-button-icon" aria-hidden="true"></svg-chevron-right-double> </button> </div> <div class="iui-calendar-weekdays"> <div title="Sunday" abbr="Sunday">Su</div> <div title="Monday" abbr="Monday">Mo</div> <div title="Tuesday" abbr="Tuesday">Tu</div> <div title="Wednesday" abbr="Wednesday">We</div> <div title="Thursday" abbr="Thursday">Th</div> <div title="Friday" abbr="Friday">Fr</div> <div title="Saturday" abbr="Saturday">Sa</div> </div> <div role="listbox" aria-label="month-2020-08"> <div class="iui-calendar-week"> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-6" role="option" aria-disabled="false">
+6
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-7" role="option" aria-disabled="false">
+7
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-8" role="option" aria-disabled="false">
+8
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-9" role="option" aria-disabled="false">
+9
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-10" role="option" aria-disabled="false">
+10
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-11" role="option" aria-disabled="false">
+11
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-12" role="option" aria-disabled="false">
+12
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-13" role="option" aria-disabled="false">
+13
+</div> <div class="iui-calendar-day-range-start" tabindex="0" aria-label="day-14" role="option" aria-disabled="false">
+14
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-15" role="option" aria-disabled="false" id="test-range">
+15
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-16" role="option" aria-disabled="false">
+16
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-17" role="option" aria-disabled="false">
+17
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-18" role="option" aria-disabled="false">
+18
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-19" role="option" aria-disabled="false">
+19
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-20" role="option" aria-disabled="false">
+20
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-21" role="option" aria-disabled="false">
+21
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-22" role="option" aria-disabled="false">
+22
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day-range-today" tabindex="0" aria-label="day-23" role="option" aria-disabled="false">
+23
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-24" role="option" aria-disabled="false">
+24
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-25" role="option" aria-disabled="false">
+25
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day-range-end" tabindex="0" aria-label="day-28" role="option" aria-disabled="false">
+28
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-29" role="option" aria-disabled="false">
+29
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-30" role="option" aria-disabled="false">
+30
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-31" role="option" aria-disabled="false">
+31
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-1" role="option" aria-disabled="false">
+1
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-2" role="option" aria-disabled="false">
+2
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-3" role="option" aria-disabled="false">
+3
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-4" role="option" aria-disabled="false">
+4
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-5" role="option" aria-disabled="false">
+5
+</div> </div> </div> </div> </div> </section> <h3>Some dates disabled</h3> <section id="demo-dates-disabled"> <div class="iui-date-picker iui-popover-surface" role="dialog" aria-modal="true"> <div> <div class="iui-calendar-month-year"> <button aria-label="Previous year" type="button" role="year-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small" disabled=""> <svg-chevron-left-double class="iui-button-icon" aria-hidden="true"></svg-chevron-left-double> </button> <button aria-label="Previous month" type="button" role="month-previous" class="iui-button" data-iui-variant="borderless" data-iui-size="small" disabled=""> <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left> </button> <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span> <button aria-label="Next month" type="button" role="month-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small" disabled=""> <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right> </button> <button aria-label="Next year" type="button" role="year-next" class="iui-button" data-iui-variant="borderless" data-iui-size="small" disabled=""> <svg-chevron-right-double class="iui-button-icon" aria-hidden="true"></svg-chevron-right-double> </button> </div> <div class="iui-calendar-weekdays"> <div title="Sunday" abbr="Sunday">Su</div> <div title="Monday" abbr="Monday">Mo</div> <div title="Tuesday" abbr="Tuesday">Tu</div> <div title="Wednesday" abbr="Wednesday">We</div> <div title="Thursday" abbr="Thursday">Th</div> <div title="Friday" abbr="Friday">Fr</div> <div title="Saturday" abbr="Saturday">Sa</div> </div> <div role="listbox" aria-label="month-2020-08"> <div class="iui-calendar-week"> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-26" role="option" aria-disabled="true">
+26
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-27" role="option" aria-disabled="true">
+27
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-28" role="option" aria-disabled="true">
+28
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-29" role="option" aria-disabled="true">
+29
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-30" role="option" aria-disabled="true">
+30
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-31" role="option" aria-disabled="true">
+31
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-1" role="option" aria-disabled="true">
+1
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-2" role="option" aria-disabled="true">
+2
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-3" role="option" aria-disabled="true">
+3
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-4" role="option" aria-disabled="true">
+4
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-5" role="option" aria-disabled="true">
+5
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-6" role="option" aria-disabled="false">
+6
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-7" role="option" aria-disabled="false">
+7
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-8" role="option" aria-disabled="false">
+8
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-9" role="option" aria-disabled="false">
+9
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-10" role="option" aria-disabled="false">
+10
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-11" role="option" aria-disabled="false">
+11
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-12" role="option" aria-disabled="false">
+12
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-13" role="option" aria-disabled="false">
+13
+</div> <div class="iui-calendar-day-range-start" tabindex="0" aria-label="day-14" role="option" aria-disabled="false">
+14
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-15" role="option" aria-disabled="false" id="test-range">
+15
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-16" role="option" aria-disabled="false">
+16
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-17" role="option" aria-disabled="false">
+17
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-18" role="option" aria-disabled="false">
+18
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-19" role="option" aria-disabled="false">
+19
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-20" role="option" aria-disabled="false">
+20
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-21" role="option" aria-disabled="false">
+21
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-22" role="option" aria-disabled="false">
+22
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day-range-today" tabindex="0" aria-label="day-23" role="option" aria-disabled="false">
+23
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-24" role="option" aria-disabled="false">
+24
+</div> <div class="iui-calendar-day-range" tabindex="0" aria-label="day-25" role="option" aria-disabled="false">
+25
+</div> <div class="iui-calendar-day-range-end" tabindex="0" aria-label="day-26" role="option" aria-disabled="false">
+26
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-27" role="option" aria-disabled="false">
+27
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-28" role="option" aria-disabled="true">
+28
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-29" role="option" aria-disabled="true">
+29
+</div> </div> <div class="iui-calendar-week"> <div class="iui-calendar-day" tabindex="0" aria-label="day-30" role="option" aria-disabled="true">
+30
+</div> <div class="iui-calendar-day" tabindex="0" aria-label="day-31" role="option" aria-disabled="true">
+31
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-1" role="option" aria-disabled="true">
+1
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-2" role="option" aria-disabled="true">
+2
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-3" role="option" aria-disabled="true">
+3
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-4" role="option" aria-disabled="true">
+4
+</div> <div class="iui-calendar-day-outside-month" tabindex="0" aria-label="day-5" role="option" aria-disabled="true">
+5
+</div> </div> </div> </div> </div> </section>  </body></html>
