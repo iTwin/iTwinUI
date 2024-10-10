@@ -18,10 +18,8 @@ import { styles } from '../../../styles.js';
 const leftClassName = styles['iui-table-reorder-column-left'];
 const rightClassName = styles['iui-table-reorder-column-right'];
 
-const REORDER_ACTIONS = {
-  columnDragStart: 'columnDragStart',
-  columnDragEnd: 'columnDragEnd',
-};
+actions.columnDragStart = 'columnDragStart';
+actions.columnDragEnd = 'columnDragEnd';
 
 export const useColumnDragAndDrop =
   <T extends Record<string, unknown>>(isEnabled: boolean) =>
@@ -49,7 +47,7 @@ const defaultGetDragAndDropProps =
 
     const onDragStart = () => {
       instance.dispatch({
-        type: REORDER_ACTIONS.columnDragStart,
+        type: actions.columnDragStart,
         columnIndex: instance.flatHeaders.indexOf(header),
       });
     };
@@ -113,7 +111,7 @@ const defaultGetDragAndDropProps =
 
       instance.setColumnOrder(reorderColumns(columnIds, srcIndex, dstIndex));
       instance.dispatch({
-        type: REORDER_ACTIONS.columnDragEnd,
+        type: actions.columnDragEnd,
         columnIndex: -1,
       });
     };
@@ -140,12 +138,12 @@ const reducer = <T extends Record<string, unknown>>(
         ...newState,
         columnReorderStartIndex: -1,
       };
-    case REORDER_ACTIONS.columnDragStart:
+    case actions.columnDragStart:
       return {
         ...newState,
         columnReorderStartIndex: action.columnIndex,
       };
-    case REORDER_ACTIONS.columnDragEnd:
+    case actions.columnDragEnd:
       return {
         ...newState,
         columnReorderStartIndex: -1,
