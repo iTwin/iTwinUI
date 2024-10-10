@@ -24,11 +24,11 @@ The `TreeNode` component can be used to display the node content within a `Tree`
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Tree/TreeNode.d.ts' />
 
-### SubNode
+### Subnode
 
 The tree supports hierarchial data structures where each node can have subnodes, which can be expanded or collapsed. Subnodes allow handling nested data up to any desired depth.
 
-Each object in the `data` array can take information under the `subItems` array as its children, which allows for nested structures.
+Each object in the `data` array can include a `subItems` array to represent its children, enabling nested structures.
 
 ```jsx
 const treeData = React.useMemo(
@@ -58,9 +58,9 @@ const treeData = React.useMemo(
 );
 ```
 
-To handle expandable subnodes, a state variable is needed to track each node and its expansion state.
+To manage expandable subnodes, a state variable is required to track each node and its expansion state.
 
-When a user interacts with a node, the `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly.
+The `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly. This way, when a user expands or collapses a node, its expansion state is updated and the tree re-renders to reflect whether subnodes are visible.
 
 ```jsx
 const onExpand = React.useCallback((nodeId, isExpanded) => {
@@ -71,7 +71,7 @@ const onExpand = React.useCallback((nodeId, isExpanded) => {
 }, []);
 ```
 
-To correctly display subnodes, the `getNode` function must return the node state with subnode information before rendering each node. This includes:
+For each node, the `getNode` function retrieves the current node's information, including whether it has subnodes or it is currently expanded. The information includes:
 
 - The `subNodes` property which holds the array of the child nodes contained in the node.
 - The `hasSubNodes` flag which indicates whether the node has subnodes. This is used to determine if node should be expandable.
