@@ -124,8 +124,8 @@ importers:
         specifier: '*'
         version: link:../../packages/itwinui-variables
       '@ladle/react':
-        specifier: ^4.1.1
-        version: 4.1.1(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)
+        specifier: ^4.1.2
+        version: 4.1.2(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -2594,10 +2594,10 @@ packages:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
 
-  '@ladle/react@4.1.1':
+  '@ladle/react@4.1.2':
     resolution:
       {
-        integrity: sha512-WSH+abvPwXMgy1PquYBcgmuV8R1WeZhaLKIfoPm4YgfmD3tgsA9MOwa+SFNkIrIHI71Q6J41sguObToof13WfQ==,
+        integrity: sha512-6nMIPCsnkGCjIRz5kpRojJyieqcFPsq34QeqJp5mFpT1xFeX7sKwdCpQJ92d5ORsejmxTyp9gkQA+AXG3i3AGw==,
       }
     engines: { node: '>=20.0.0' }
     hasBin: true
@@ -14964,7 +14964,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@ladle/react@4.1.1(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)':
+  '@ladle/react@4.1.2(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)':
     dependencies:
       '@babel/code-frame': 7.24.7
       '@babel/core': 7.25.2
