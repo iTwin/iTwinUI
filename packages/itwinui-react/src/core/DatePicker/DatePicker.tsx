@@ -699,11 +699,14 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                       role='option'
                       tabIndex={isSameDay(weekDay, focusedDay) ? 0 : -1}
                       aria-disabled={isDisabled ? 'true' : undefined}
-                      ref={(element) =>
-                        isSameDay(weekDay, focusedDay) &&
-                        needFocus.current &&
-                        element?.focus()
-                      }
+                      ref={(element) => {
+                        if (
+                          isSameDay(weekDay, focusedDay) &&
+                          needFocus.current
+                        ) {
+                          queueMicrotask(() => element?.focus());
+                        }
+                      }}
                       {...dayProps}
                       className={cx(getDayClass(weekDay), dayProps?.className)}
                     >
