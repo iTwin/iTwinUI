@@ -64,7 +64,9 @@ export default () => {
           <TreeNode
             label={node.label}
             onExpanded={onNodeExpanded}
-            checkbox={<Checkbox variant='eyeball' />}
+            checkbox={
+              <Checkbox label='' variant='eyeball' disabled={rest.isDisabled} />
+            }
             {...rest}
           />
         ),
