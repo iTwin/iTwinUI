@@ -916,17 +916,53 @@ export const PopoverFocusExample = withThemeProvider(PopoverFocusExampleRaw);
 
 // ----------------------------------------------------------------------------
 
-import { default as ProgressLinearMainExampleRaw } from './ProgressLinear.main';
-const ProgressLinearMainExample = withThemeProvider(
-  ProgressLinearMainExampleRaw,
+import { default as ProgressIndicatorsMainExampleRaw } from './ProgressIndicators.main';
+const ProgressIndicatorsMainExample = withThemeProvider(
+  ProgressIndicatorsMainExampleRaw,
 );
-export { ProgressLinearMainExample };
+export { ProgressIndicatorsMainExample };
 
-import { default as ProgressRadialMainExampleRaw } from './ProgressRadial.main';
-const ProgressRadialMainExample = withThemeProvider(
-  ProgressRadialMainExampleRaw,
+import { default as ProgressIndicatorsValueExampleRaw } from './ProgressIndicators.value';
+const ProgressIndicatorsValueExample = withThemeProvider(
+  ProgressIndicatorsValueExampleRaw,
 );
-export { ProgressRadialMainExample };
+export { ProgressIndicatorsValueExample };
+
+import { default as ProgressLinearAnimatedExampleRaw } from './ProgressLinear.isAnimated';
+const ProgressLinearAnimatedExample = withThemeProvider(
+  ProgressLinearAnimatedExampleRaw,
+);
+export { ProgressLinearAnimatedExample };
+
+import { default as ProgressLinearLabelExampleRaw } from './ProgressLinear.label';
+const ProgressLinearLabelExample = withThemeProvider(
+  ProgressLinearLabelExampleRaw,
+);
+export { ProgressLinearLabelExample };
+
+import { default as ProgressLinearStatusExampleRaw } from './ProgressLinear.status';
+const ProgressLinearStatusExample = withThemeProvider(
+  ProgressLinearStatusExampleRaw,
+);
+export { ProgressLinearStatusExample };
+
+import { default as ProgressRadialSizeExampleRaw } from './ProgressRadial.size';
+const ProgressRadialSizeExample = withThemeProvider(
+  ProgressRadialSizeExampleRaw,
+);
+export { ProgressRadialSizeExample };
+
+import { default as ProgressRadialContentExampleRaw } from './ProgressRadial.content';
+const ProgressRadialContentExample = withThemeProvider(
+  ProgressRadialContentExampleRaw,
+);
+export { ProgressRadialContentExample };
+
+import { default as ProgressRadialStatusExampleRaw } from './ProgressRadial.status';
+const ProgressRadialStatusExample = withThemeProvider(
+  ProgressRadialStatusExampleRaw,
+);
+export { ProgressRadialStatusExample };
 
 // ----------------------------------------------------------------------------
 
