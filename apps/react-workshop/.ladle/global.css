@@ -27,8 +27,3 @@ main {
   position: relative;
   transform: translateZ(0);
 }
-
-/* TODO: Remove when the sidenav scroll is fixed in Chrome. See https://github.com/tajo/ladle/issues/574 */
-nav.ladle-aside {
-  min-height: unset;
-}
