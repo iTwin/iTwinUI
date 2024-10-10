@@ -704,7 +704,10 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                           isSameDay(weekDay, focusedDay) &&
                           needFocus.current
                         ) {
-                          queueMicrotask(() => element?.focus());
+                          // Wait for DateRangeFilter's portaling to finish before focusing
+                          setTimeout(() => {
+                            element?.focus();
+                          });
                         }
                       }}
                       {...dayProps}
