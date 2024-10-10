@@ -120,6 +120,14 @@ The tree allows you to select one or multiple nodes within its structure. This f
   <AllExamples.TreeSelectionExample client:load />
 </LiveExample>
 
+### Virtualization
+
+For trees with a large number of nodes, enabling virtualization can improve performance. To enable virtualization, the `enableVirtualization` property of the tree component can be set to `"true"`. When virtualization is enabled, the tree's DOM structure will change, adding a wrapper `div` to which `className` and `style` will be applied.
+
+<LiveExample src='Tree.virtualization.jsx'>
+  <AllExamples.TreeVirtualizationExample client:load />
+</LiveExample>
+
 ## Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Tree/Tree.d.ts' />

@@ -1415,6 +1415,12 @@ import { default as TreeSmallExampleRaw } from './Tree.small';
 const TreeSmallExample = withThemeProvider(TreeSmallExampleRaw);
 export { TreeSmallExample };
 
+import { default as TreeVirtualizationExampleRaw } from './Tree.virtualization';
+const TreeVirtualizationExample = withThemeProvider(
+  TreeVirtualizationExampleRaw,
+);
+export { TreeVirtualizationExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as VisuallyHiddenIconExampleRaw } from './VisuallyHidden.icon';
