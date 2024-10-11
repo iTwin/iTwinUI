@@ -9,79 +9,63 @@ import {
   LineClamp,
   SvgSortDown,
   SvgSortUp,
+  useMergedRefs,
+  type PolymorphicForwardRefComponent,
 } from '../../utils/index.js';
 import type {
-  ColumnInstance,
   HeaderGroup,
   TableKeyedProps,
-  TableState,
 } from '../../react-table/react-table.js';
-import { SELECTION_CELL_ID } from './columns/index.js';
 import { FilterToggle } from './filters/FilterToggle.js';
-import { getCellStyle, getSubRowStyle, getStickyStyle } from './utils.js';
+import {
+  getCellStyle,
+  getSubRowStyle,
+  getStickyStyle,
+  TableInstanceContext,
+} from './utils.js';
 import cx from 'classnames';
 
-type ColumnHeaderProps<
-  T extends Record<string, unknown> = Record<string, unknown>,
-> = TableKeyedProps & {
-  columnRefs: React.MutableRefObject<Record<string, HTMLDivElement>>;
-  column: HeaderGroup<T>;
-  index: number;
+type ColumnHeaderProps = TableKeyedProps & {
+  column: HeaderGroup<Record<string, unknown>>;
   areFiltersSet: boolean;
-  hasAnySubRows: boolean;
-  headers: HeaderGroup<T>[];
-  state: TableState<T>;
-  data: T[];
   isResizable: boolean;
   columnResizeMode: 'fit' | 'expand';
   enableColumnReordering: boolean;
   density: string | undefined;
-  visibleColumns: ColumnInstance<T>[];
+  columnHasExpanders: boolean;
+  isLast: boolean;
+  isTableEmpty: boolean;
 };
 
-export const ColumnHeader = <
-  T extends Record<string, unknown> = Record<string, unknown>,
->(
-  props: ColumnHeaderProps<T>,
-): JSX.Element => {
+export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
   const {
-    columnRefs,
     column,
-    index,
     areFiltersSet,
-    hasAnySubRows,
-    headers,
-    state,
-    data,
     isResizable,
     columnResizeMode,
     enableColumnReordering,
     density,
-    visibleColumns,
+    columnHasExpanders,
+    isLast,
+    isTableEmpty,
     ...rest
   } = props;
 
   const isHeaderDirectClick = React.useRef(false);
+  const instance = React.useContext(TableInstanceContext);
 
   const COLUMN_MIN_WIDTHS = {
     default: 72,
     withExpander: 108, // expander column should be wider to accommodate the expander icon
   };
 
-  const showFilterButton = (column: HeaderGroup<T>) =>
-    (data.length !== 0 || areFiltersSet) && column.canFilter && !!column.Filter;
+  const showFilterButton = (column: HeaderGroup<Record<string, unknown>>) =>
+    (!isTableEmpty || areFiltersSet) && column.canFilter && !!column.Filter;
 
-  const showSortButton = (column: HeaderGroup<T>) =>
-    data.length !== 0 && column.canSort;
+  const showSortButton = (column: HeaderGroup<Record<string, unknown>>) =>
+    !isTableEmpty && column.canSort;
 
   const { onClick, ...restSortProps } = column.getSortByToggleProps();
-
-  const columnHasExpanders =
-    hasAnySubRows &&
-    index ===
-      headers.findIndex(
-        (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
-      );
 
   if ([undefined, 0].includes(column.minWidth)) {
     // override "undefined" or zero min-width with default value
@@ -107,9 +91,9 @@ export const ColumnHeader = <
       column.columnClassName,
     ),
     style: {
-      ...getCellStyle(column, !!state.isTableResizing),
+      ...getCellStyle(column, !!instance?.state.isTableResizing),
       ...(columnHasExpanders && getSubRowStyle({ density })),
-      ...getStickyStyle(column, visibleColumns),
+      ...getStickyStyle(column, instance?.visibleColumns ?? []),
       flexWrap: 'wrap',
       columnGap: 'var(--iui-size-xs)',
     },
@@ -121,14 +105,16 @@ export const ColumnHeader = <
       {...rest}
       key={columnProps.key}
       title={undefined}
-      ref={React.useCallback(
-        (el: HTMLDivElement) => {
-          if (el) {
-            columnRefs.current[column.id] = el;
-            column.resizeWidth = el.getBoundingClientRect().width;
-          }
-        },
-        [column, columnRefs],
+      ref={useMergedRefs(
+        React.useCallback(
+          (el?: HTMLDivElement) => {
+            if (el) {
+              column.resizeWidth = el.getBoundingClientRect().width;
+            }
+          },
+          [column],
+        ),
+        forwardedRef,
       )}
       onMouseDown={() => {
         isHeaderDirectClick.current = true;
@@ -183,7 +169,7 @@ export const ColumnHeader = <
         )}
         {isResizable &&
           column.isResizerVisible &&
-          (index !== headers.length - 1 || columnResizeMode === 'expand') && (
+          (!isLast || columnResizeMode === 'expand') && (
             <Box
               {...column.getResizerProps()}
               className='iui-table-resizer'
@@ -195,13 +181,15 @@ export const ColumnHeader = <
         {enableColumnReordering && !column.disableReordering && (
           <Box className='iui-table-reorder-bar' slot='resizers' />
         )}
-        {column.sticky === 'left' && state.sticky.isScrolledToRight && (
-          <Box className='iui-table-cell-shadow-right' slot='shadows' />
-        )}
-        {column.sticky === 'right' && state.sticky.isScrolledToLeft && (
-          <Box className='iui-table-cell-shadow-left' slot='shadows' />
-        )}
+        {column.sticky === 'left' &&
+          instance?.state.sticky.isScrolledToRight && (
+            <Box className='iui-table-cell-shadow-right' slot='shadows' />
+          )}
+        {column.sticky === 'right' &&
+          instance?.state.sticky.isScrolledToLeft && (
+            <Box className='iui-table-cell-shadow-left' slot='shadows' />
+          )}
       </>
     </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ColumnHeaderProps>;
