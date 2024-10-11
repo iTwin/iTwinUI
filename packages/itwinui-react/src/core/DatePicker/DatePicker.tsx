@@ -705,6 +705,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                           needFocus.current
                         ) {
                           // Wait for DateRangeFilter's portaling to finish before focusing
+                          // See: https://github.com/iTwin/iTwinUI/pull/2297
                           setTimeout(() => {
                             element?.focus();
                           });
