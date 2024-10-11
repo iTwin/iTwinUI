@@ -169,160 +169,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   }, [focusedIndex]);
 
   const buttonSize = size != 'default' ? 'small' : undefined;
-
-  const pageButton = React.useCallback(
-    (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
-      <Button
-        key={index}
-        className='iui-table-paginator-page-button'
-        styleType='borderless'
-        size={buttonSize}
-        data-iui-active={index === currentPage}
-        onClick={() => onPageChange(index)}
-        aria-current={index === currentPage}
-        aria-label={localization.goToPageLabel(index + 1)}
-        tabIndex={tabIndex}
-      >
-        {index + 1}
-      </Button>
-    ),
-    [focusedIndex, currentPage, localization, buttonSize, onPageChange],
-  );
-
   const totalPagesCount = Math.ceil(totalRowsCount / pageSize);
-  const pageList = React.useMemo(
-    () =>
-      new Array(totalPagesCount)
-        .fill(null)
-        .map((_, index) => pageButton(index)),
-    [pageButton, totalPagesCount],
-  );
-
-  const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
-
-  const showPagesList = totalPagesCount > 1 || isLoading;
-  const showPageSizeList =
-    pageSizeList && !!onPageSizeChange && !!totalRowsCount;
-
-  if (!showPagesList && !showPageSizeList) {
-    return null;
-  }
-
-  return (
-    <Box
-      className={cx('iui-table-paginator', className)}
-      ref={paginatorResizeRef}
-      {...rest}
-    >
-      <Box className='iui-left'>
-        {totalSelectedRowsCount > 0 && (
-          <span>{localization.rowsSelectedLabel(totalSelectedRowsCount)}</span>
-        )}
-      </Box>
-      {showPagesList && (
-        <OverflowContainer className='iui-center' itemsCount={pageList.length}>
-          <TablePaginatorCenterContent
-            size={size}
-            focusedIndex={focusedIndex}
-            focusActivationMode={focusActivationMode}
-            totalPagesCount={totalPagesCount}
-            needFocus={needFocus}
-            onPageChange={onPageChange}
-            setFocusedIndex={setFocusedIndex}
-            currentPage={currentPage}
-            localization={localization}
-            buttonSize={buttonSize}
-            pageListRef={pageListRef}
-            pageButton={pageButton}
-            pageList={pageList}
-            isLoading={isLoading}
-          />
-        </OverflowContainer>
-      )}
-      <Box className='iui-right'>
-        {showPageSizeList && (
-          <>
-            {localization.rowsPerPageLabel !== null &&
-              paginatorWidth >= 1024 && (
-                <Box as='span' className='iui-table-paginator-page-size-label'>
-                  {localization.rowsPerPageLabel}
-                </Box>
-              )}
-            <DropdownButton
-              styleType='borderless'
-              size={buttonSize}
-              menuItems={(close) =>
-                pageSizeList.map((size) => (
-                  <MenuItem
-                    key={size}
-                    isSelected={size === pageSize}
-                    onClick={() => {
-                      close();
-                      onPageSizeChange(size);
-                    }}
-                  >
-                    {localization.pageSizeLabel(size)}
-                  </MenuItem>
-                ))
-              }
-            >
-              {localization.rangeLabel(
-                currentPage * pageSize + 1,
-                Math.min(totalRowsCount, (currentPage + 1) * pageSize),
-                totalRowsCount,
-                isLoading,
-              )}
-            </DropdownButton>
-          </>
-        )}
-      </Box>
-    </Box>
-  );
-};
-
-// ----------------------------------------------------------------------------
-
-type TablePaginatorCenterContentProps = Pick<
-  TablePaginatorProps,
-  'onPageChange'
-> &
-  Required<
-    Pick<
-      TablePaginatorProps,
-      'localization' | 'size' | 'focusActivationMode' | 'isLoading'
-    >
-  > & {
-    focusedIndex: number;
-    totalPagesCount: number;
-    needFocus: React.MutableRefObject<boolean>;
-    setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
-    currentPage: number;
-    buttonSize: 'small' | undefined;
-    pageListRef: React.MutableRefObject<HTMLDivElement | null>;
-    pageButton: (index: number, tabIndex?: number) => React.ReactNode;
-    pageList: React.ReactNode[];
-  };
-
-const TablePaginatorCenterContent = (
-  props: TablePaginatorCenterContentProps,
-) => {
-  const {
-    focusedIndex,
-    focusActivationMode,
-    totalPagesCount,
-    needFocus,
-    onPageChange,
-    setFocusedIndex,
-    currentPage,
-    localization,
-    buttonSize,
-    pageListRef,
-    pageButton,
-    pageList,
-    isLoading,
-    size,
-  } = props;
-  const { visibleCount } = OverflowContainer.useContext();
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser/assistive technologies
@@ -369,31 +216,13 @@ const TablePaginatorCenterContent = (
     }
   };
 
-  const halfVisibleCount = Math.floor(visibleCount / 2);
-  let startPage = focusedIndex - halfVisibleCount;
-  let endPage = focusedIndex + halfVisibleCount + 1;
-  if (startPage < 0) {
-    endPage = Math.min(totalPagesCount, endPage + Math.abs(startPage)); // If no room at the beginning, show extra pages at the end
-    startPage = 0;
-  }
-  if (endPage > totalPagesCount) {
-    startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
-    endPage = totalPagesCount;
-  }
+  const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
+
+  const showPagesList = totalPagesCount > 1 || isLoading;
+  const showPageSizeList =
+    pageSizeList && !!onPageSizeChange && !!totalRowsCount;
 
   const hasNoRows = totalPagesCount === 0;
-
-  const ellipsis = (
-    <Box
-      as='span'
-      className={cx('iui-table-paginator-ellipsis', {
-        'iui-table-paginator-ellipsis-small': size === 'small',
-      })}
-    >
-      …
-    </Box>
-  );
-
   const noRowsContent = (
     <>
       {isLoading ? (
@@ -406,64 +235,206 @@ const TablePaginatorCenterContent = (
     </>
   );
 
+  if (!showPagesList && !showPageSizeList) {
+    return null;
+  }
+
+  return (
+    <Box
+      className={cx('iui-table-paginator', className)}
+      ref={paginatorResizeRef}
+      {...rest}
+    >
+      <Box className='iui-left'>
+        {totalSelectedRowsCount > 0 && (
+          <span>{localization.rowsSelectedLabel(totalSelectedRowsCount)}</span>
+        )}
+      </Box>
+      {showPagesList && (
+        <OverflowContainer className='iui-center' itemsCount={totalPagesCount}>
+          <IconButton
+            styleType='borderless'
+            disabled={currentPage === 0}
+            onClick={() => onPageChange(currentPage - 1)}
+            size={buttonSize}
+            aria-label={localization.previousPage}
+          >
+            <SvgChevronLeft />
+          </IconButton>
+          <Box
+            as='span'
+            className='iui-table-paginator-pages-group'
+            onKeyDown={onKeyDown}
+            ref={pageListRef}
+          >
+            {hasNoRows ? (
+              noRowsContent
+            ) : (
+              <TablePaginatorPageButtons
+                size={size}
+                focusedIndex={focusedIndex}
+                totalPagesCount={totalPagesCount}
+                onPageChange={onPageChange}
+                currentPage={currentPage}
+                localization={localization}
+                isLoading={isLoading}
+              />
+            )}
+          </Box>
+          <IconButton
+            styleType='borderless'
+            disabled={currentPage === totalPagesCount - 1 || hasNoRows}
+            onClick={() => onPageChange(currentPage + 1)}
+            size={buttonSize}
+            aria-label={localization.nextPage}
+          >
+            <SvgChevronRight />
+          </IconButton>
+        </OverflowContainer>
+      )}
+      <Box className='iui-right'>
+        {showPageSizeList && (
+          <>
+            {localization.rowsPerPageLabel !== null &&
+              paginatorWidth >= 1024 && (
+                <Box as='span' className='iui-table-paginator-page-size-label'>
+                  {localization.rowsPerPageLabel}
+                </Box>
+              )}
+            <DropdownButton
+              styleType='borderless'
+              size={buttonSize}
+              menuItems={(close) =>
+                pageSizeList.map((size) => (
+                  <MenuItem
+                    key={size}
+                    isSelected={size === pageSize}
+                    onClick={() => {
+                      close();
+                      onPageSizeChange(size);
+                    }}
+                  >
+                    {localization.pageSizeLabel(size)}
+                  </MenuItem>
+                ))
+              }
+            >
+              {localization.rangeLabel(
+                currentPage * pageSize + 1,
+                Math.min(totalRowsCount, (currentPage + 1) * pageSize),
+                totalRowsCount,
+                isLoading,
+              )}
+            </DropdownButton>
+          </>
+        )}
+      </Box>
+    </Box>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+type TablePaginatorPageButtonsProps = Pick<
+  TablePaginatorProps,
+  'onPageChange'
+> &
+  Required<Pick<TablePaginatorProps, 'localization' | 'size' | 'isLoading'>> & {
+    focusedIndex: number;
+    totalPagesCount: number;
+    currentPage: number;
+  };
+
+const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
+  const {
+    focusedIndex,
+    totalPagesCount,
+    onPageChange,
+    currentPage,
+    localization,
+    isLoading,
+    size,
+  } = props;
+
+  const { visibleCount } = OverflowContainer.useContext();
+
+  const buttonSize = size != 'default' ? 'small' : undefined;
+
+  const pageButton = React.useCallback(
+    (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
+      <Button
+        key={index}
+        className='iui-table-paginator-page-button'
+        styleType='borderless'
+        size={buttonSize}
+        data-iui-active={index === currentPage}
+        onClick={() => onPageChange(index)}
+        aria-current={index === currentPage}
+        aria-label={localization.goToPageLabel?.(index + 1)}
+        tabIndex={tabIndex}
+      >
+        {index + 1}
+      </Button>
+    ),
+    [focusedIndex, currentPage, localization, buttonSize, onPageChange],
+  );
+
+  const pageList = React.useMemo(
+    () =>
+      new Array(totalPagesCount)
+        .fill(null)
+        .map((_, index) => pageButton(index)),
+    [pageButton, totalPagesCount],
+  );
+
+  const halfVisibleCount = Math.floor(visibleCount / 2);
+  let startPage = focusedIndex - halfVisibleCount;
+  let endPage = focusedIndex + halfVisibleCount + 1;
+  if (startPage < 0) {
+    endPage = Math.min(totalPagesCount, endPage + Math.abs(startPage)); // If no room at the beginning, show extra pages at the end
+    startPage = 0;
+  }
+  if (endPage > totalPagesCount) {
+    startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
+    endPage = totalPagesCount;
+  }
+
+  const ellipsis = (
+    <Box
+      as='span'
+      className={cx('iui-table-paginator-ellipsis', {
+        'iui-table-paginator-ellipsis-small': size === 'small',
+      })}
+    >
+      …
+    </Box>
+  );
+
+  if (visibleCount === 1) {
+    return pageButton(focusedIndex);
+  }
+
   return (
     <>
-      <IconButton
-        styleType='borderless'
-        disabled={currentPage === 0}
-        onClick={() => onPageChange(currentPage - 1)}
-        size={buttonSize}
-        aria-label={localization.previousPage}
-      >
-        <SvgChevronLeft />
-      </IconButton>
-      <Box
-        as='span'
-        className='iui-table-paginator-pages-group'
-        onKeyDown={onKeyDown}
-        ref={pageListRef}
-      >
-        {(() => {
-          if (hasNoRows) {
-            return noRowsContent;
-          }
-          if (visibleCount === 1) {
-            return pageButton(focusedIndex);
-          }
-          return (
-            <>
-              {startPage !== 0 && (
-                <>
-                  {pageButton(0, 0)}
-                  {ellipsis}
-                </>
-              )}
-              {pageList.slice(startPage, endPage)}
-              {endPage !== totalPagesCount && !isLoading && (
-                <>
-                  {ellipsis}
-                  {pageButton(totalPagesCount - 1, 0)}
-                </>
-              )}
-              {isLoading && (
-                <>
-                  {ellipsis}
-                  <ProgressRadial indeterminate size='small' />
-                </>
-              )}
-            </>
-          );
-        })()}
-      </Box>
-      <IconButton
-        styleType='borderless'
-        disabled={currentPage === totalPagesCount - 1 || hasNoRows}
-        onClick={() => onPageChange(currentPage + 1)}
-        size={buttonSize}
-        aria-label={localization.nextPage}
-      >
-        <SvgChevronRight />
-      </IconButton>
+      {startPage !== 0 && (
+        <>
+          {pageButton(0, 0)}
+          {ellipsis}
+        </>
+      )}
+      {pageList.slice(startPage, endPage)}
+      {endPage !== totalPagesCount && !isLoading && (
+        <>
+          {ellipsis}
+          {pageButton(totalPagesCount - 1, 0)}
+        </>
+      )}
+      {isLoading && (
+        <>
+          {ellipsis}
+          <ProgressRadial indeterminate size='small' />
+        </>
+      )}
     </>
   );
 };
