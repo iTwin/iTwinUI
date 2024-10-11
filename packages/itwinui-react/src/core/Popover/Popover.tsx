@@ -151,12 +151,28 @@ type PopoverInternalProps = {
   matchWidth?: boolean;
 } & Omit<UseFloatingOptions, 'middleware' | 'placement'>;
 
+type InitialFocus = React.ComponentPropsWithoutRef<
+  typeof FloatingFocusManager
+>['initialFocus'];
+
 // ----------------------------------------------------------------------------
 
 /** Stores the current open/closed state of the popover. */
 export const PopoverOpenContext = React.createContext<boolean | undefined>(
   undefined,
 );
+
+/**
+ * Stores the initialFocus of the popover.
+ *
+ * E.g. Popover's descendants can disable the popover's initialFocus to prevent conflicts with its own focus management.
+ */
+export const PopoverInitialFocusContext = React.createContext<
+  | {
+      setInitialFocus: React.Dispatch<React.SetStateAction<InitialFocus>>;
+    }
+  | undefined
+>(undefined);
 
 // ----------------------------------------------------------------------------
 
@@ -434,6 +450,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     return () => void popover.refs.setPositionReference(null);
   }, [popover.refs, positionReference]);
 
+  const [initialFocus, setInitialFocus] = React.useState<InitialFocus>();
+
   return (
     <>
       <PopoverOpenContext.Provider value={popover.open}>
@@ -445,30 +463,36 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       </PopoverOpenContext.Provider>
 
       {popover.open ? (
-        <PopoverPortal portal={portal}>
-          <ThemeProvider
-            portalContainer={popoverElement} // portal nested popovers into this one
-          >
-            <DisplayContents />
-            <FloatingFocusManager context={popover.context} modal={false}>
-              <Box
-                className={cx(
-                  { 'iui-popover-surface': applyBackground },
-                  className,
-                )}
-                aria-labelledby={
-                  !hasAriaLabel
-                    ? popover.refs.domReference.current?.id
-                    : undefined
-                }
-                {...popover.getFloatingProps(rest)}
-                ref={popoverRef}
+        <PopoverInitialFocusContext.Provider value={{ setInitialFocus }}>
+          <PopoverPortal portal={portal}>
+            <ThemeProvider
+              portalContainer={popoverElement} // portal nested popovers into this one
+            >
+              <DisplayContents />
+              <FloatingFocusManager
+                context={popover.context}
+                modal={false}
+                initialFocus={initialFocus}
               >
-                {content}
-              </Box>
-            </FloatingFocusManager>
-          </ThemeProvider>
-        </PopoverPortal>
+                <Box
+                  className={cx(
+                    { 'iui-popover-surface': applyBackground },
+                    className,
+                  )}
+                  aria-labelledby={
+                    !hasAriaLabel
+                      ? popover.refs.domReference.current?.id
+                      : undefined
+                  }
+                  {...popover.getFloatingProps(rest)}
+                  ref={popoverRef}
+                >
+                  {content}
+                </Box>
+              </FloatingFocusManager>
+            </ThemeProvider>
+          </PopoverPortal>
+        </PopoverInitialFocusContext.Provider>
       ) : null}
     </>
   );
