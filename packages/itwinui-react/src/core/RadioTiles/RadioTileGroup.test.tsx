@@ -85,5 +85,5 @@ it('should apply all custom props', () => {
     container.querySelector(
       '.iui-input-grid > .iui-status-message > .message-content-props',
     ),
-  ).toBeTruthy();
+  ).toHaveTextContent('Message');
 });
