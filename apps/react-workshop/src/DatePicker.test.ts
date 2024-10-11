@@ -20,6 +20,9 @@ describe('DatePicker', () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.get('#picker-button').siblings('span').hide();
       cy.get('#picker-button').click();
+
+      cy.wait(30);
+
       cy.compareSnapshot(testName);
     });
   });
