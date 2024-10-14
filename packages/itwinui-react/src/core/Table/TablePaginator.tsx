@@ -258,6 +258,10 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     endPage = totalPagesCount;
   }
 
+  // Show ellipsis only if there is a gap between the extremities and the middle pages
+  const showStartEllipsis = startPage > 1;
+  const showEndEllipsis = endPage < totalPagesCount - 1;
+
   const hasNoRows = totalPagesCount === 0;
   const showPagesList = totalPagesCount > 1 || isLoading;
   const showPageSizeList =
@@ -325,10 +329,6 @@ export const TablePaginator = (props: TablePaginatorProps) => {
               if (visibleCount === 1) {
                 return pageButton(focusedIndex);
               }
-
-              // Show ellipsis if there is a gap between the extremities and the middle pages
-              const showStartEllipsis = startPage > 1;
-              const showEndEllipsis = endPage < totalPagesCount - 2;
 
               return (
                 <>
