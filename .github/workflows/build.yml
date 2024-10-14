@@ -380,7 +380,7 @@ jobs:
         shell: bash
         run: |
           sourceDirs=("apps" "packages")
-          outputFile="itwui-veracode.zip"
+          outputFile="itdw-veracode.zip"
 
           excludedPaths=(
             ".git/*"
@@ -410,7 +410,7 @@ jobs:
       - name: Upload & scan
         uses: veracode/veracode-uploadandscan-action@0.2.6
         with:
-          appname: 'iTwinUI - UX (ITWUI - 3418)'
-          filepath: 'itwui-veracode.zip'
+          appname: 'iTwinUI - UX (ITDW - 3418)'
+          filepath: 'itdw-veracode.zip'
           vid: ${{ secrets.VERACODE_ID }}
           vkey: ${{ secrets.VERACODE_SECRET_KEY }}

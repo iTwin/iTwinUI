@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-// import * as ReactDOM from 'react-dom';
 import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {

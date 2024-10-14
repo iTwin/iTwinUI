@@ -19,6 +19,7 @@ overrides:
   astro: ~4.15.8
   cypress: 13.8.1
   ws@8: ^8.17.1
+  cookie@<0.7.0: '>=0.7.0'
 
 importers:
   .:
@@ -123,8 +124,8 @@ importers:
         specifier: '*'
         version: link:../../packages/itwinui-variables
       '@ladle/react':
-        specifier: ^4.1.1
-        version: 4.1.1(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)
+        specifier: ^4.1.2
+        version: 4.1.2(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -2593,10 +2594,10 @@ packages:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
 
-  '@ladle/react@4.1.1':
+  '@ladle/react@4.1.2':
     resolution:
       {
-        integrity: sha512-WSH+abvPwXMgy1PquYBcgmuV8R1WeZhaLKIfoPm4YgfmD3tgsA9MOwa+SFNkIrIHI71Q6J41sguObToof13WfQ==,
+        integrity: sha512-6nMIPCsnkGCjIRz5kpRojJyieqcFPsq34QeqJp5mFpT1xFeX7sKwdCpQJ92d5ORsejmxTyp9gkQA+AXG3i3AGw==,
       }
     engines: { node: '>=20.0.0' }
     hasBin: true
@@ -5184,17 +5185,10 @@ packages:
       }
     engines: { node: '>=6.6.0' }
 
-  cookie@0.5.0:
+  cookie@0.7.2:
     resolution:
       {
-        integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==,
-      }
-    engines: { node: '>= 0.6' }
-
-  cookie@0.6.0:
-    resolution:
-      {
-        integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==,
+        integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==,
       }
     engines: { node: '>= 0.6' }
 
@@ -14210,7 +14204,7 @@ snapshots:
 
   '@bundled-es-modules/cookie@2.0.0':
     dependencies:
-      cookie: 0.5.0
+      cookie: 0.7.2
 
   '@bundled-es-modules/statuses@1.0.1':
     dependencies:
@@ -14970,7 +14964,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@ladle/react@4.1.1(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)':
+  '@ladle/react@4.1.2(@swc/helpers@0.5.11)(@types/node@22.5.5)(@types/react@18.2.14)(lightningcss@1.25.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)':
     dependencies:
       '@babel/code-frame': 7.24.7
       '@babel/core': 7.25.2
@@ -15498,7 +15492,7 @@ snapshots:
       '@remix-run/router': 1.15.3
       '@types/cookie': 0.6.0
       '@web3-storage/multipart-parser': 1.0.0
-      cookie: 0.6.0
+      cookie: 0.7.2
       set-cookie-parser: 2.6.0
       source-map: 0.7.4
     optionalDependencies:
@@ -16356,7 +16350,7 @@ snapshots:
       ci-info: 4.0.0
       clsx: 2.1.1
       common-ancestor-path: 1.0.1
-      cookie: 0.6.0
+      cookie: 0.7.2
       cssesc: 3.0.0
       debug: 4.3.7(supports-color@8.1.1)
       deterministic-object-hash: 2.0.2
@@ -16922,9 +16916,7 @@ snapshots:
 
   cookie-signature@1.2.1: {}
 
-  cookie@0.5.0: {}
-
-  cookie@0.6.0: {}
+  cookie@0.7.2: {}
 
   cookies@0.9.1:
     dependencies:
@@ -17759,7 +17751,7 @@ snapshots:
       body-parser: 1.20.3
       content-disposition: 0.5.4
       content-type: 1.0.5
-      cookie: 0.6.0
+      cookie: 0.7.2
       cookie-signature: 1.0.6
       debug: 2.6.9
       depd: 2.0.0

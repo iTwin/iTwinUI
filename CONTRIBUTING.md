@@ -48,6 +48,10 @@ To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](h
 
 _Before running this command, make sure Docker is running. See [Visual testing](#visual-testing-css) (CSS and React) sections below for more details._
 
+### To approve all test image changes
+
+`pnpm approve` ([more info](#visual-testing-approval))
+
 ### To run all tests for a specific component
 
 `pnpm test [component-name]` e.g. `pnpm test Alert`
@@ -382,6 +386,14 @@ Notice how we do all of these things manually:
 - taking and comparing the screenshot using `cy.compareSnapshot` from [`cypress-image-diff-js`](https://github.com/uktrade/cypress-image-diff).
 
 We have full access to the [Cypress API](https://docs.cypress.io/api) so any additional interactions or custom logic can be easily added.
+
+### Visual testing (approval)
+
+After making any desired visual changes, the following commands can be used to update the test image snapshots:
+
+* `pnpm approve` (approve in all workspaces)
+* `pnpm approve:css` (approve in css-workshop only) ([more info](#how-to-run-tests))
+* `pnpm approve:react` (approve in react-workshop only) ([more info](#running-visual-tests))
 
 ### Accessibility testing
 
