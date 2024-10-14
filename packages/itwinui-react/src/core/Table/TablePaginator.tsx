@@ -147,7 +147,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   const pageListRef = React.useRef<HTMLDivElement | null>(null);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number>(currentPage);
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     setFocusedIndex(currentPage);
   }, [currentPage]);
 
@@ -356,6 +356,8 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
     size,
   } = props;
 
+  console.log('focusedIndex', focusedIndex);
+
   const { visibleCount } = OverflowContainer.useContext();
 
   const buttonSize = size != 'default' ? 'small' : undefined;
@@ -398,6 +400,8 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
     startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
     endPage = totalPagesCount;
   }
+
+  console.log(startPage, endPage, focusedIndex);
 
   const ellipsis = (
     <Box
