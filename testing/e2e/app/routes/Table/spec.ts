@@ -467,19 +467,19 @@ test.describe('Table Paginator', () => {
 
     await setContainerSize(page, '800px');
 
-    // Go to the 6th page
-    await page.locator('button').last().click({ clickCount: 5 });
+    // Go to the 5th page
+    await page.locator('#paginator button').nth(5).click();
 
     const paginatorButtons = page.locator('#paginator button', {
       hasText: /[0-9]+/,
     });
     await expect(paginatorButtons).toHaveText([
       '1',
+      '3',
       '4',
       '5',
       '6',
       '7',
-      '8',
       '11',
     ]);
     await expect(paginatorButtons.nth(3)).toHaveAttribute(
