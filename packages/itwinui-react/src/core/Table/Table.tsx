@@ -578,19 +578,17 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
-  const [rowHasParent] = React.useState(() => new WeakSet<T>());
-
-  const getSubRowsWithSubComponents = React.useCallback(
-    (originalRow: T) => {
-      if (!rowHasParent.has(originalRow)) {
-        rowHasParent.add(originalRow);
-        return [originalRow];
-      }
-
+  const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
+    if (!originalRow._hasParent) {
+      const newSubRow = {
+        ...originalRow,
+        _hasParent: true,
+      } as unknown as T;
+      return [newSubRow];
+    } else {
       return (originalRow.subRows as T[]) || [];
-    },
-    [rowHasParent],
-  );
+    }
+  }, []);
 
   const instance = useTable<T>(
     {
