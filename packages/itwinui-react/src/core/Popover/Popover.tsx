@@ -451,6 +451,10 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   }, [popover.refs, positionReference]);
 
   const [initialFocus, setInitialFocus] = React.useState<InitialFocus>();
+  const initialFocusContextValue = React.useMemo(
+    () => ({ setInitialFocus }),
+    [],
+  );
 
   return (
     <>
@@ -463,7 +467,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       </PopoverOpenContext.Provider>
 
       {popover.open ? (
-        <PopoverInitialFocusContext.Provider value={{ setInitialFocus }}>
+        <PopoverInitialFocusContext.Provider value={initialFocusContextValue}>
           <PopoverPortal portal={portal}>
             <ThemeProvider
               portalContainer={popoverElement} // portal nested popovers into this one
