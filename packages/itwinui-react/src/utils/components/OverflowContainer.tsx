@@ -50,6 +50,9 @@ type OverflowContainerOverflowNodeProps = {
   children: React.ReactNode;
 };
 
+/**
+ * Shows the content only when the container is overflowing.
+ */
 const OverflowContainerOverflowNode = (
   props: OverflowContainerOverflowNodeProps,
 ) => {

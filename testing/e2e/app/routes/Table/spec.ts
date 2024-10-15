@@ -454,7 +454,7 @@ test.describe('Table Paginator', () => {
     );
 
     // Go to the 6th page
-    await page.locator('button').last().click({ clickCount: 5 });
+    await page.locator('button').last().click();
 
     await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
     await expect(page.locator(`[role="cell"]`).last()).toHaveText(
