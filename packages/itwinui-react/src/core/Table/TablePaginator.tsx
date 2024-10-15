@@ -20,6 +20,7 @@ import {
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
+import { styles } from '../../styles.js';
 
 const defaultLocalization = {
   pageSizeLabel: (size: number) => `${size} per page`,
@@ -159,7 +160,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     if (isMounted.current && needFocus.current) {
       const buttonToFocus = Array.from(
         pageListRef.current?.querySelectorAll(
-          '.iui-table-paginator-page-button',
+          `.${styles['iui-table-paginator-page-button']}`,
         ) ?? [],
       ).find((el) => el.textContent?.trim() === (focusedIndex + 1).toString());
       (buttonToFocus as HTMLButtonElement | undefined)?.focus();
