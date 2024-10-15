@@ -412,6 +412,7 @@ export const Table = <
     headerProps,
     bodyProps,
     emptyTableContentProps,
+    getRowId,
     ...rest
   } = props;
 
@@ -578,17 +579,71 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
+  // ----------------------------------------------------------------------------
+  // Identifying the problem:
+  /**
+   * getSubRows:
+   * After the getSubRows function loops/recurses to the last level of (potential) subRows, it takes in the main rows without sub-rows in the next render since there are no sub-rows in the beginning (being passed by users in the top level)
+   * In the next re-render, the main row gets added to the Set, then the function is called again. However, as it finds the sub-row generated last re-render, it skips returning the main row's sub-row.
+   * This results in the main rows in page in the next render not having sub-rows.
+   *
+   * getRowId:
+   * getRowId is also recursive and it is called for every row and sub-rows. It accesses the sub-row using the main row's originalSubRows property. However, since the originalSubRows property contains the original main row, it keeps looping.
+   *
+   * Should we...
+   * 1. Reset the Set every time getSubRows goes back to traversing the first row?
+   * 2. Find another approach other than using getSubRows?
+   */
+
+  /**
+   * Approaches I have tried:
+   * - Checking depth === 0. If yes, return itself as sub-row. If not, return sub-rows. However, as it returns itself as a a sub-row, it gets passed in to the function again while the depth is always 0.
+   * - Adding a unique id for sub-row
+   * 
+   * // const newSubRow = { ...originalRow, id: original.id ? `${original.id}-sub` : `${original.index}-sub` };
+   * 
+   * - Returning existing sub-rows if found in the Set last render. However, the current row is not updated.
+   * // const rowHasParent = React.useRef<T[]>([]);
+
+  // const getSubRowsWithSubComponents = React.useCallback(
+  //   (originalRow: T) => {
+  //     const existingSubRow = rowHasParent.current.find(
+  //       (row) => row.id === originalRow.id && row.index === originalRow.index,
+  //     );
+  //     if (rowHasParent.current.indexOf(originalRow) === -1) {
+  //       if (!existingSubRow) {
+  //         rowHasParent.current.push(originalRow);
+  //         return [originalRow];
+  //       }
+  //     }
+  //     return (existingSubRow?.subRows as T[]) || [];
+  //   },
+  //   [rowHasParent],
+  // );
+   */
+
+  const rowHasParent = React.useRef(new WeakSet<T>());
+
   const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
-    if (!originalRow._hasParent) {
-      const newSubRow = {
-        ...originalRow,
-        _hasParent: true,
-      } as unknown as T;
-      return [newSubRow];
-    } else {
-      return (originalRow.subRows as T[]) || [];
+    if (!rowHasParent.current.has(originalRow)) {
+      // Reset the Set when it loops back to the row list
+      if (originalRow.index === 0) {
+        rowHasParent.current = new WeakSet<T>();
+      }
+      rowHasParent.current.add(originalRow);
+      return [originalRow];
     }
+    return (originalRow.subRows as T[]) || [];
   }, []);
+
+  const getRowIdWithSubComponents = React.useCallback(
+    (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
+      return parent
+        ? `${parent.id}.${relativeIndex}`
+        : `${originalRow.id || relativeIndex}`;
+    },
+    [],
+  );
 
   const instance = useTable<T>(
     {
@@ -605,6 +660,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
+      getRowId: subComponent ? getRowIdWithSubComponents : getRowId,
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
@@ -855,6 +911,8 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
+
+      console.log('page', page);
 
       if (row.subRows.length > 0 || !subComponent) {
         return (
