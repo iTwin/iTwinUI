@@ -624,17 +624,20 @@ export const Table = <
 
   const rowHasParent = React.useRef(new WeakSet<T>());
 
-  const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
-    if (!rowHasParent.current.has(originalRow)) {
-      // Reset the Set when it loops back to the row list
-      if (originalRow.index === 0) {
-        rowHasParent.current = new WeakSet<T>();
+  const getSubRowsWithSubComponents = React.useCallback(
+    (originalRow: T, relativeIndex: number) => {
+      if (!rowHasParent.current.has(originalRow)) {
+        // Reset the Set when it loops back to the row list
+        if (relativeIndex === 0) {
+          rowHasParent.current = new WeakSet<T>();
+        }
+        rowHasParent.current.add(originalRow);
+        return [originalRow];
       }
-      rowHasParent.current.add(originalRow);
-      return [originalRow];
-    }
-    return (originalRow.subRows as T[]) || [];
-  }, []);
+      return (originalRow.subRows as T[]) || [];
+    },
+    [],
+  );
 
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {

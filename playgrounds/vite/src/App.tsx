@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from '@itwin/itwinui-react';
 
-const data = new Array(2).fill(null).map((_, ind) => ({
+const data = new Array(5).fill(null).map((_, ind) => ({
   id: ind,
   name: `Name ${ind}`,
   permissionGroups: new Array(5).fill(null).map((_, i) => ({
@@ -45,6 +45,7 @@ export default function App() {
   }, []);
 
   const getRowId = React.useCallback((row) => {
+    console.log('getRowId', row.id);
     return row.id;
   }, []);
 
@@ -126,7 +127,7 @@ export default function App() {
         data={data}
         subComponent={subComponent}
         isRowDisabled={isRowDisabled}
-        // getRowId={getRowId} <-- this brings max rerenders warning
+        getRowId={getRowId} //<-- this brings max rerenders warning
         density='extra-condensed'
         emptyTableContent='no data'
         isSelectable
@@ -139,71 +140,3 @@ export default function App() {
     </>
   );
 }
-
-// import { useCallback, useMemo } from 'react';
-// import { Table } from '@itwin/itwinui-react';
-// import { Row } from '@itwin/itwinui-react/react-table';
-
-// export default () => {
-//   const data = useMemo(() => {
-//     const size = 5;
-//     const arr = new Array(size);
-//     for (let i = 0; i < size; ++i) {
-//       arr[i] = {
-//         name: `Name${i}`,
-//         description: `Description${i}`,
-//       };
-//     }
-//     return arr;
-//   }, []);
-
-//   const columns = useMemo(
-//     () => [
-//       {
-//         id: 'name',
-//         Header: 'Name',
-//         accessor: 'name',
-//       },
-//       {
-//         id: 'description',
-//         Header: 'Description',
-//         accessor: 'description',
-//       },
-//     ],
-//     [],
-//   );
-
-//   const expandedSubComponent = useCallback(
-//     (row: Row) => (
-//       <div
-//         style={{
-//           padding: 16,
-//         }}
-//       >
-//         <pre>
-//           <code>
-//             {JSON.stringify(
-//               {
-//                 values: row.values,
-//               },
-//               null,
-//               2,
-//             )}
-//           </code>
-//         </pre>
-//       </div>
-//     ),
-//     [],
-//   );
-
-//   return (
-//     <Table
-//       emptyTableContent='No data.'
-//       isSelectable
-//       isSortable
-//       data={data}
-//       columns={columns}
-//       subComponent={expandedSubComponent}
-//     />
-//   );
-// };
