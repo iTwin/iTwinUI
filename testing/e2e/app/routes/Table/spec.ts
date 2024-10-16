@@ -454,7 +454,7 @@ test.describe('Table Paginator', () => {
     );
 
     // Go to the 6th page
-    await page.locator('button').last().click({ clickCount: 5 });
+    await page.locator('button').last().click();
 
     await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
     await expect(page.locator(`[role="cell"]`).last()).toHaveText(
@@ -468,7 +468,7 @@ test.describe('Table Paginator', () => {
     await setContainerSize(page, '800px');
 
     // Go to the 6th page
-    await page.locator('button').last().click({ clickCount: 5 });
+    await page.locator('button').last().click();
 
     const paginatorButtons = page.locator('#paginator button', {
       hasText: /[0-9]+/,
@@ -517,6 +517,82 @@ test.describe('Table Paginator', () => {
       expectedItemLength: 11,
       expectedOverflowingEllipsisVisibleCount: 0,
     });
+  });
+
+  test(`should show ellipses only when a gap of one or more pages`, async ({
+    page,
+  }) => {
+    await page.goto(`/Table?exampleType=withTablePaginator`);
+
+    await expectOverflowState({
+      page,
+      expectedItemLength: 11,
+      expectedOverflowingEllipsisVisibleCount: 0,
+    });
+
+    await setContainerSize(page, '800px');
+
+    const paginatorButtons = page.locator('#paginator button', {
+      hasText: /[0-9]+/,
+    });
+    const ellipses = page.locator('#paginator span', {
+      hasText: /^…$/,
+    });
+
+    await expect(paginatorButtons).toHaveText(['1', '2', '3', '4', '5', '11']);
+    await expect(ellipses).toHaveCount(1);
+
+    await paginatorButtons.locator('*', { hasText: '4' }).click();
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '11',
+    ]);
+    await expect(ellipses).toHaveCount(1);
+
+    await paginatorButtons.locator('*', { hasText: '5' }).click();
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '11',
+    ]);
+    await expect(ellipses).toHaveCount(2);
+
+    await paginatorButtons.locator('*', { hasText: '11' }).click();
+    await expect(paginatorButtons).toHaveText(['1', '7', '8', '9', '10', '11']);
+    await expect(ellipses).toHaveCount(1);
+
+    await paginatorButtons.locator('*', { hasText: '8' }).click();
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+    ]);
+    await expect(ellipses).toHaveCount(1);
+
+    await paginatorButtons.locator('*', { hasText: '7' }).click();
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '11',
+    ]);
+    await expect(ellipses).toHaveCount(2);
   });
 
   test(`should at minimum always show one page`, async ({ page }) => {
