@@ -20,7 +20,7 @@ type SelectTagContainerProps = {
 export const SelectTagContainer = React.forwardRef((props, ref) => {
   const { tags, className, ...rest } = props;
 
-  const [containerRef, visibleCount] = useOverflow(tags);
+  const [containerRef, visibleCount] = useOverflow(tags.length);
   const refs = useMergedRefs(ref, containerRef);
 
   return (

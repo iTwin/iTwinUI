@@ -20,6 +20,7 @@ import {
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
+import { styles } from '../../styles.js';
 
 const defaultLocalization = {
   pageSizeLabel: (size: number) => `${size} per page`,
@@ -159,7 +160,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     if (isMounted.current && needFocus.current) {
       const buttonToFocus = Array.from(
         pageListRef.current?.querySelectorAll(
-          '.iui-table-paginator-page-button',
+          `.${styles['iui-table-paginator-page-button']}`,
         ) ?? [],
       ).find((el) => el.textContent?.trim() === (focusedIndex + 1).toString());
       (buttonToFocus as HTMLButtonElement | undefined)?.focus();
@@ -197,7 +198,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         .map((_, index) => pageButton(index)),
     [pageButton, totalPagesCount],
   );
-  const [overflowRef, visibleCount] = useOverflow(pageList);
+  const [overflowRef, visibleCount] = useOverflow(pageList.length);
 
   const [paginatorResizeRef, paginatorWidth] = useContainerWidth();
 
@@ -257,6 +258,10 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     startPage = Math.max(0, startPage - (endPage - totalPagesCount)); // If no room at the end, show extra pages at the beginning
     endPage = totalPagesCount;
   }
+
+  // Show ellipsis only if there is a gap between the extremities and the middle pages
+  const showStartEllipsis = startPage > 1;
+  const showEndEllipsis = endPage < totalPagesCount - 1;
 
   const hasNoRows = totalPagesCount === 0;
   const showPagesList = totalPagesCount > 1 || isLoading;
@@ -325,18 +330,19 @@ export const TablePaginator = (props: TablePaginatorProps) => {
               if (visibleCount === 1) {
                 return pageButton(focusedIndex);
               }
+
               return (
                 <>
                   {startPage !== 0 && (
                     <>
                       {pageButton(0, 0)}
-                      {ellipsis}
+                      {showStartEllipsis ? ellipsis : null}
                     </>
                   )}
                   {pageList.slice(startPage, endPage)}
                   {endPage !== totalPagesCount && !isLoading && (
                     <>
-                      {ellipsis}
+                      {showEndEllipsis ? ellipsis : null}
                       {pageButton(totalPagesCount - 1, 0)}
                     </>
                   )}
