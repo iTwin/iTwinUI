@@ -336,13 +336,13 @@ export const TablePaginator = (props: TablePaginatorProps) => {
                   {startPage !== 0 && (
                     <>
                       {pageButton(0, 0)}
-                      {showStartEllipsis && ellipsis}
+                      {showStartEllipsis ? ellipsis : null}
                     </>
                   )}
                   {pageList.slice(startPage, endPage)}
                   {endPage !== totalPagesCount && !isLoading && (
                     <>
-                      {showEndEllipsis && ellipsis}
+                      {showEndEllipsis ? ellipsis : null}
                       {pageButton(totalPagesCount - 1, 0)}
                     </>
                   )}
