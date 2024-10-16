@@ -448,13 +448,17 @@ test.describe('Table Paginator', () => {
   test(`should render data in pages`, async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
+    const paginatorButtons = page.locator('#paginator button', {
+      hasText: /[0-9]+/,
+    });
+
     await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 0');
     await expect(page.locator(`[role="cell"]`).last()).toHaveText(
       'Description 49',
     );
 
     // Go to the 6th page
-    await page.locator('button').last().click();
+    await paginatorButtons.nth(5).click();
 
     await expect(page.locator(`[role="cell"]`).first()).toHaveText('Name 250');
     await expect(page.locator(`[role="cell"]`).last()).toHaveText(
@@ -465,14 +469,15 @@ test.describe('Table Paginator', () => {
   test('should render truncated pages list', async ({ page }) => {
     await page.goto(`/Table?exampleType=withTablePaginator`);
 
-    await setContainerSize(page, '800px');
-
-    // Go to the 5th page
-    await page.locator('#paginator button').nth(5).click();
-
     const paginatorButtons = page.locator('#paginator button', {
       hasText: /[0-9]+/,
     });
+
+    await setContainerSize(page, '800px');
+
+    // Go to the 5th page
+    await paginatorButtons.nth(4).click();
+
     await expect(paginatorButtons).toHaveText([
       '1',
       '3',
