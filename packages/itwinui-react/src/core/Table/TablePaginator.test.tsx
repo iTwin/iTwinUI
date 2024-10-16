@@ -22,9 +22,9 @@ const renderComponent = (props?: Partial<TablePaginatorProps>) => {
 };
 
 beforeEach(() => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((items) => [
+  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((itemsCount) => [
     vi.fn(),
-    items.length,
+    itemsCount,
   ]);
 });
 
