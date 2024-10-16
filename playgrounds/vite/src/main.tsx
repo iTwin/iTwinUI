@@ -33,6 +33,6 @@ const Shell = () => {
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Shell />,
+    <Shell />
   </React.StrictMode>,
 );
