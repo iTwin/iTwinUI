@@ -412,7 +412,7 @@ export const Table = <
     headerProps,
     bodyProps,
     emptyTableContentProps,
-    getRowId,
+    getRowId: getRowIdUser,
     ...rest
   } = props;
 
@@ -579,70 +579,35 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
-  // ----------------------------------------------------------------------------
-  // Identifying the problem:
-  /**
-   * getSubRows:
-   * After the getSubRows function loops/recurses to the last level of (potential) subRows, it takes in the main rows without sub-rows in the next render since there are no sub-rows in the beginning (being passed by users in the top level)
-   * In the next re-render, the main row gets added to the Set, then the function is called again. However, as it finds the sub-row generated last re-render, it skips returning the main row's sub-row.
-   * This results in the main rows in page in the next render not having sub-rows.
-   *
-   * getRowId:
-   * getRowId is also recursive and it is called for every row and sub-rows. It accesses the sub-row using the main row's originalSubRows property. However, since the originalSubRows property contains the original main row, it keeps looping.
-   *
-   * Should we...
-   * 1. Reset the Set every time getSubRows goes back to traversing the first row?
-   * 2. Find another approach other than using getSubRows?
-   */
-
-  /**
-   * Approaches I have tried:
-   * - Checking depth === 0. If yes, return itself as sub-row. If not, return sub-rows. However, as it returns itself as a a sub-row, it gets passed in to the function again while the depth is always 0.
-   * - Adding a unique id for sub-row
-   * 
-   * // const newSubRow = { ...originalRow, id: original.id ? `${original.id}-sub` : `${original.index}-sub` };
-   * 
-   * - Returning existing sub-rows if found in the Set last render. However, the current row is not updated.
-   * // const rowHasParent = React.useRef<T[]>([]);
-
-  // const getSubRowsWithSubComponents = React.useCallback(
-  //   (originalRow: T) => {
-  //     const existingSubRow = rowHasParent.current.find(
-  //       (row) => row.id === originalRow.id && row.index === originalRow.index,
-  //     );
-  //     if (rowHasParent.current.indexOf(originalRow) === -1) {
-  //       if (!existingSubRow) {
-  //         rowHasParent.current.push(originalRow);
-  //         return [originalRow];
-  //       }
-  //     }
-  //     return (existingSubRow?.subRows as T[]) || [];
-  //   },
-  //   [rowHasParent],
-  // );
-   */
-
-  const rowHasParent = React.useRef(new WeakSet<T>());
-
   const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
-    if (!rowHasParent.current.has(originalRow)) {
-      // Reset the Set when it loops back to the row list
-      if (originalRow.index === 0) {
-        rowHasParent.current = new WeakSet<T>();
-      }
-      rowHasParent.current.add(originalRow);
-      return [originalRow];
+    const symbol = Symbol.for('iui-id');
+    if (originalRow[symbol as keyof typeof originalRow]) {
+      return [];
     }
-    return (originalRow.subRows as T[]) || [];
+
+    return [
+      {
+        [symbol]: `subcomponent-${originalRow.id}`,
+        ...originalRow,
+      },
+    ];
   }, []);
 
-  const getRowIdWithSubComponents = React.useCallback(
+  const getRowId = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
-      return parent
-        ? `${parent.id}.${relativeIndex}`
-        : `${originalRow.id || relativeIndex}`;
+      const mainRowId =
+        getRowIdUser?.(originalRow, relativeIndex, parent) || originalRow.id;
+      const isSubComponent =
+        originalRow[Symbol.for('iui-id') as keyof typeof originalRow];
+
+      if (isSubComponent) {
+        return `${mainRowId}-${
+          parent ? `${parent.id}.${relativeIndex}` : relativeIndex
+        }`;
+      }
+      return mainRowId as string;
     },
-    [],
+    [getRowIdUser],
   );
 
   const instance = useTable<T>(
@@ -660,7 +625,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
-      getRowId: subComponent ? getRowIdWithSubComponents : getRowId,
+      getRowId,
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
@@ -911,34 +876,10 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
+      const isRowWithSubComponent =
+        !!row.original[Symbol.for('iui-id') as keyof typeof row.original];
 
-      console.log('page', page);
-
-      if (row.subRows.length > 0 || !subComponent) {
-        return (
-          <TableRowMemoized
-            row={row}
-            rowProps={rowProps}
-            isLast={index === page.length - 1}
-            onRowInViewport={onRowInViewportRef}
-            onBottomReached={onBottomReachedRef}
-            intersectionMargin={intersectionMargin}
-            state={state}
-            key={row.getRowProps().key}
-            onClick={onRowClickHandler}
-            subComponent={subComponent}
-            isDisabled={!!isRowDisabled?.(row.original)}
-            tableHasSubRows={hasAnySubRows}
-            tableInstance={instance}
-            expanderCell={expanderCell}
-            scrollContainerRef={tableRef.current}
-            tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
-            density={density}
-            virtualItem={virtualItem}
-            virtualizer={virtualizer}
-          />
-        );
-      } else {
+      if (isRowWithSubComponent && !!subComponent) {
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
@@ -954,6 +895,30 @@ export const Table = <
           </TableExpandableContentMemoized>
         );
       }
+
+      return (
+        <TableRowMemoized
+          row={row}
+          rowProps={rowProps}
+          isLast={index === page.length - 1}
+          onRowInViewport={onRowInViewportRef}
+          onBottomReached={onBottomReachedRef}
+          intersectionMargin={intersectionMargin}
+          state={state}
+          key={row.getRowProps().key}
+          onClick={onRowClickHandler}
+          subComponent={subComponent}
+          isDisabled={!!isRowDisabled?.(row.original)}
+          tableHasSubRows={hasAnySubRows}
+          tableInstance={instance}
+          expanderCell={expanderCell}
+          scrollContainerRef={tableRef.current}
+          tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+          density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
+        />
+      );
     },
     [
       page,
@@ -1107,6 +1072,7 @@ export const Table = <
         >
           <ShadowRoot css={virtualizerCss}>
             {enableVirtualization && data.length !== 0 ? (
+              // take a look at key warning
               <div
                 data-iui-virtualizer='root'
                 style={{ minBlockSize: virtualizer.getTotalSize() }}
