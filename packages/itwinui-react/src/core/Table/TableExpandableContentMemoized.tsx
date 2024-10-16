@@ -17,7 +17,6 @@ type TableExpandableContentProps = {
 const TableExpandableContent = React.forwardRef((props, ref) => {
   const { children, className, style, isDisabled, virtualItem, ...rest } =
     props;
-
   return (
     <Box
       className={cx('iui-table-row', 'iui-table-expanded-content', className)}

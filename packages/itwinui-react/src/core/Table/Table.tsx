@@ -1072,7 +1072,6 @@ export const Table = <
         >
           <ShadowRoot css={virtualizerCss}>
             {enableVirtualization && data.length !== 0 ? (
-              // take a look at key warning
               <div
                 data-iui-virtualizer='root'
                 style={{ minBlockSize: virtualizer.getTotalSize() }}
