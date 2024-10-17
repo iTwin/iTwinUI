@@ -582,6 +582,7 @@ export const Table = <
   const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
     const symbol = Symbol.for('iui-id');
 
+    console.log('originalRow', originalRow);
     // Check if the current row is a sub-row that holds data for the according sub-component.
     if (originalRow[symbol as keyof typeof originalRow]) {
       return [];
@@ -604,15 +605,12 @@ export const Table = <
       const mainRowId =
         getRowIdUser?.(originalRow, relativeIndex, parent) ??
         `${originalRow.id}`;
-      const isSubComponent =
-        originalRow[Symbol.for('iui-id') as keyof typeof originalRow];
 
-      if (!isSubComponent) {
-        return mainRowId;
-      }
-      return `${mainRowId}-${
-        parent ? `${parent.id}.${relativeIndex}` : relativeIndex
-      }`;
+      return originalRow[Symbol.for('iui-id') as keyof typeof originalRow]
+        ? `${mainRowId}-${
+            parent ? `${parent.id}.${relativeIndex}` : relativeIndex
+          }`
+        : mainRowId;
     },
     [getRowIdUser],
   );
