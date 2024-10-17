@@ -887,7 +887,6 @@ export const Table = <
         !!row.original[Symbol.for('iui-id') as keyof typeof row.original];
 
       if (isRowWithSubComponent && !!subComponent) {
-        console.log('row', row);
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
