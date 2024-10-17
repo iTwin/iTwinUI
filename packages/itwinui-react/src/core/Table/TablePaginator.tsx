@@ -430,13 +430,13 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
       {pageList.slice(startPage, endPage)}
       {endPage !== totalPagesCount && !isLoading && (
         <>
-          {ellipsis}
+          {showEndEllipsis ? ellipsis : null}
           {pageButton(totalPagesCount - 1, 0)}
         </>
       )}
       {isLoading && (
         <>
-          {showEndEllipsis ? ellipsis : null}
+          {ellipsis}
           <ProgressRadial indeterminate size='small' />
         </>
       )}
