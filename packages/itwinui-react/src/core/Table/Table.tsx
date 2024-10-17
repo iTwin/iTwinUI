@@ -581,31 +581,38 @@ export const Table = <
 
   const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
     const symbol = Symbol.for('iui-id');
+
+    // Check if the current row is a sub-row that holds data for the according sub-component.
     if (originalRow[symbol as keyof typeof originalRow]) {
       return [];
     }
 
-    return [
-      {
-        [symbol]: `subcomponent-${originalRow.id}`,
-        ...originalRow,
-      },
-    ];
+    // If rows have sub-components (generated as sub-rows), we need to return that sub-rows. Otherwise, row selection will get into a loop as it needs the row ID to set the sub-component to be selected.
+    // If the main row has not had any sub-rows, we need an object that holds a Symbol as a form of flag to prevent infinite loop.
+    return (
+      (originalRow.subRows as T[]) ?? [
+        {
+          [symbol]: `subcomponent-${originalRow.id}`,
+          ...originalRow,
+        },
+      ]
+    );
   }, []);
 
   const getRowId = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
       const mainRowId =
-        getRowIdUser?.(originalRow, relativeIndex, parent) || originalRow.id;
+        getRowIdUser?.(originalRow, relativeIndex, parent) ??
+        `${originalRow.id}`;
       const isSubComponent =
         originalRow[Symbol.for('iui-id') as keyof typeof originalRow];
 
-      if (isSubComponent) {
-        return `${mainRowId}-${
-          parent ? `${parent.id}.${relativeIndex}` : relativeIndex
-        }`;
+      if (!isSubComponent) {
+        return mainRowId;
       }
-      return mainRowId as string;
+      return `${mainRowId}-${
+        parent ? `${parent.id}.${relativeIndex}` : relativeIndex
+      }`;
     },
     [getRowIdUser],
   );
