@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useOverflow } from '../hooks/useOverflow.js';
 import type { CommonProps } from '../props.js';
+import { OverflowContainer } from './OverflowContainer.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -44,9 +44,34 @@ export type MiddleTextTruncationProps = {
  * />
  */
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
-  const { text, endCharsCount = 6, textRenderer, style, ...rest } = props;
+  const { text, style, ...rest } = props;
 
-  const [ref, visibleCount] = useOverflow(text.length);
+  return (
+    <OverflowContainer
+      as='span'
+      style={{
+        display: 'flex',
+        minWidth: 0,
+        flexGrow: 1,
+        whiteSpace: 'nowrap',
+        ...style,
+      }}
+      itemsCount={text.length}
+      {...rest}
+    >
+      <MiddleTextTruncationContent {...props} />
+    </OverflowContainer>
+  );
+};
+if (process.env.NODE_ENV === 'development') {
+  MiddleTextTruncation.displayName = 'MiddleTextTruncation';
+}
+
+// ----------------------------------------------------------------------------
+
+const MiddleTextTruncationContent = (props: MiddleTextTruncationProps) => {
+  const { text, endCharsCount = 6, textRenderer } = props;
+  const { visibleCount } = OverflowContainer.useContext();
 
   const truncatedText = React.useMemo(() => {
     if (visibleCount < text.length) {
@@ -59,22 +84,5 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
     }
   }, [endCharsCount, text, visibleCount]);
 
-  return (
-    <span
-      style={{
-        display: 'flex',
-        minWidth: 0,
-        flexGrow: 1,
-        whiteSpace: 'nowrap',
-        ...style,
-      }}
-      ref={ref}
-      {...rest}
-    >
-      {textRenderer?.(truncatedText, text) ?? truncatedText}
-    </span>
-  );
+  return textRenderer?.(truncatedText, text) ?? truncatedText;
 };
-if (process.env.NODE_ENV === 'development') {
-  MiddleTextTruncation.displayName = 'MiddleTextTruncation';
-}
