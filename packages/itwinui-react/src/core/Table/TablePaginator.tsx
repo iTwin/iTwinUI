@@ -415,12 +415,16 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
     return pageButton(focusedIndex);
   }
 
+  // Show ellipsis only if there is a gap between the extremities and the middle pages
+  const showStartEllipsis = startPage > 1;
+  const showEndEllipsis = endPage < totalPagesCount - 1;
+
   return (
     <>
       {startPage !== 0 && (
         <>
           {pageButton(0, 0)}
-          {ellipsis}
+          {showStartEllipsis ? ellipsis : null}
         </>
       )}
       {pageList.slice(startPage, endPage)}
@@ -432,7 +436,7 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
       )}
       {isLoading && (
         <>
-          {ellipsis}
+          {showEndEllipsis ? ellipsis : null}
           <ProgressRadial indeterminate size='small' />
         </>
       )}

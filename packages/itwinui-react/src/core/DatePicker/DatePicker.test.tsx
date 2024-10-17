@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { DatePicker } from './DatePicker.js';
 
@@ -222,7 +222,7 @@ it('should apply custom class and style', () => {
   picker.style.width = '300px';
 });
 
-it('should navigate with keyboard', () => {
+it('should navigate with keyboard', async () => {
   const onClick = vi.fn();
   const { container, getAllByText, getByRole } = render(
     <DatePicker date={new Date(2020, 1, 1)} onChange={onClick} setFocus />,
@@ -230,7 +230,7 @@ it('should navigate with keyboard', () => {
   assertMonthYear(container, 'February', '2020');
   let day = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(day.textContent).toBe('1');
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
 
   // go left
   const calendar = getByRole('listbox') as HTMLElement;
@@ -240,14 +240,14 @@ it('should navigate with keyboard', () => {
     (el) => !el.className.includes(outsideDayClassName),
   ) as HTMLDivElement;
   expect(day).toBeTruthy();
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
 
   // go right
   fireEvent.keyDown(calendar, { key: 'ArrowRight' });
   assertMonthYear(container, 'February', '2020');
   day = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(day.textContent).toBe('1');
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
 
   // go up
   fireEvent.keyDown(calendar, { key: 'ArrowUp' });
@@ -256,14 +256,14 @@ it('should navigate with keyboard', () => {
     (el) => !el.className.includes(outsideDayClassName),
   ) as HTMLDivElement;
   expect(day).toBeTruthy();
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
 
   // go down
   fireEvent.keyDown(calendar, { key: 'ArrowDown' });
   assertMonthYear(container, 'February', '2020');
   day = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(day.textContent).toBe('1');
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
 
   // go right and select with enter
   fireEvent.keyDown(calendar, { key: 'ArrowRight' });
@@ -272,7 +272,7 @@ it('should navigate with keyboard', () => {
     (el) => !el.className.includes(outsideDayClassName),
   ) as HTMLDivElement;
   expect(day).toBeTruthy();
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
   fireEvent.keyDown(calendar, { key: 'Enter' });
   day = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(day.textContent).toBe('2');
@@ -285,7 +285,7 @@ it('should navigate with keyboard', () => {
     (el) => !el.className.includes(outsideDayClassName),
   ) as HTMLDivElement;
   expect(day).toBeTruthy();
-  expect(document.activeElement).toEqual(day);
+  await waitFor(() => expect(document.activeElement).toEqual(day));
   fireEvent.keyDown(calendar, { key: ' ' });
   day = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(day.textContent).toBe('3');

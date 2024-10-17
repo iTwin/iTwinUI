@@ -49,6 +49,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { usePortalTo } from '../../utils/components/Portal.js';
 import type { PortalProps } from '../../utils/components/Portal.js';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 type PopoverOptions = {
   /**
@@ -150,12 +151,28 @@ type PopoverInternalProps = {
   matchWidth?: boolean;
 } & Omit<UseFloatingOptions, 'middleware' | 'placement'>;
 
+type InitialFocus = React.ComponentPropsWithoutRef<
+  typeof FloatingFocusManager
+>['initialFocus'];
+
 // ----------------------------------------------------------------------------
 
 /** Stores the current open/closed state of the popover. */
 export const PopoverOpenContext = React.createContext<boolean | undefined>(
   undefined,
 );
+
+/**
+ * Stores the initialFocus of the popover.
+ *
+ * E.g. Popover's descendants can disable the popover's initialFocus to prevent conflicts with its own focus management.
+ */
+export const PopoverInitialFocusContext = React.createContext<
+  | {
+      setInitialFocus: React.Dispatch<React.SetStateAction<InitialFocus>>;
+    }
+  | undefined
+>(undefined);
 
 // ----------------------------------------------------------------------------
 
@@ -414,7 +431,13 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     middleware,
   });
 
-  const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
+  const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
+
+  const popoverRef = useMergedRefs(
+    popover.refs.setFloating,
+    forwardedRef,
+    setPopoverElement,
+  );
 
   const triggerId = `${useId()}-trigger`;
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
@@ -427,6 +450,12 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     return () => void popover.refs.setPositionReference(null);
   }, [popover.refs, positionReference]);
 
+  const [initialFocus, setInitialFocus] = React.useState<InitialFocus>();
+  const initialFocusContextValue = React.useMemo(
+    () => ({ setInitialFocus }),
+    [],
+  );
+
   return (
     <>
       <PopoverOpenContext.Provider value={popover.open}>
@@ -438,25 +467,36 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       </PopoverOpenContext.Provider>
 
       {popover.open ? (
-        <PopoverPortal portal={portal}>
-          <FloatingFocusManager context={popover.context} modal={false}>
-            <Box
-              className={cx(
-                { 'iui-popover-surface': applyBackground },
-                className,
-              )}
-              aria-labelledby={
-                !hasAriaLabel
-                  ? popover.refs.domReference.current?.id
-                  : undefined
-              }
-              {...popover.getFloatingProps(rest)}
-              ref={popoverRef}
+        <PopoverInitialFocusContext.Provider value={initialFocusContextValue}>
+          <PopoverPortal portal={portal}>
+            <ThemeProvider
+              portalContainer={popoverElement} // portal nested popovers into this one
             >
-              {content}
-            </Box>
-          </FloatingFocusManager>
-        </PopoverPortal>
+              <DisplayContents />
+              <FloatingFocusManager
+                context={popover.context}
+                modal={false}
+                initialFocus={initialFocus}
+              >
+                <Box
+                  className={cx(
+                    { 'iui-popover-surface': applyBackground },
+                    className,
+                  )}
+                  aria-labelledby={
+                    !hasAriaLabel
+                      ? popover.refs.domReference.current?.id
+                      : undefined
+                  }
+                  {...popover.getFloatingProps(rest)}
+                  ref={popoverRef}
+                >
+                  {content}
+                </Box>
+              </FloatingFocusManager>
+            </ThemeProvider>
+          </PopoverPortal>
+        </PopoverInitialFocusContext.Provider>
       ) : null}
     </>
   );
