@@ -582,7 +582,6 @@ export const Table = <
   const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
     const symbol = Symbol.for('iui-id');
 
-    console.log('originalRow', originalRow);
     // Check if the current row is a sub-row that holds data for the according sub-component.
     if (originalRow[symbol as keyof typeof originalRow]) {
       return [];
@@ -606,6 +605,7 @@ export const Table = <
         getRowIdUser?.(originalRow, relativeIndex, parent) ??
         `${relativeIndex}`;
 
+      // If the row contains the Symbol, it indicates that the current row is a sub-component row. We need to append the ID passed by user with its according sub-component ID.
       return originalRow[Symbol.for('iui-id') as keyof typeof originalRow]
         ? `${mainRowId}-${
             parent ? `${parent.id}.${relativeIndex}` : relativeIndex
@@ -630,7 +630,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
-      getRowId: subComponent ? getRowIdWithSubComponents : getRowIdUser,
+      getRowId: subComponent ? getRowIdWithSubComponents : getRowIdUser, // only call this wrapper function when sub-component is present
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
