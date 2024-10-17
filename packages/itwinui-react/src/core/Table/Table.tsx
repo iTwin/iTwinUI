@@ -579,25 +579,28 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
-  const getSubRowsWithSubComponents = React.useCallback((originalRow: T) => {
-    const symbol = Symbol.for('iui-id');
+  const getSubRowsWithSubComponents = React.useCallback(
+    (originalRow: T, relativeIndex: number) => {
+      const symbol = Symbol.for('iui-id');
 
-    // Check if the current row is a sub-row that holds data for the according sub-component.
-    if (originalRow[symbol as keyof typeof originalRow]) {
-      return [];
-    }
+      // Check if the current row is a sub-row that holds data for the according sub-component.
+      if (originalRow[symbol as keyof typeof originalRow]) {
+        return [];
+      }
 
-    // If rows have sub-components (generated as sub-rows), we need to return that sub-rows. Otherwise, row selection will get into a loop as it needs the row ID to set the sub-component to be selected.
-    // If the main row has not had any sub-rows, we need an object that holds a Symbol as a form of flag to prevent infinite loop.
-    return (
-      (originalRow.subRows as T[]) ?? [
-        {
-          [symbol]: `subcomponent-${originalRow.id}`,
-          ...originalRow,
-        },
-      ]
-    );
-  }, []);
+      // If rows have sub-components (generated as sub-rows), we need to return that sub-rows. Otherwise, row selection will get into a loop as it needs the row ID to set the sub-component to be selected.
+      // If the main row has not had any sub-rows, we need an object that holds a Symbol as a form of flag to prevent infinite loop.
+      return (
+        (originalRow.subRows as T[]) ?? [
+          {
+            [symbol]: `subcomponent-${relativeIndex}`,
+            ...originalRow,
+          },
+        ]
+      );
+    },
+    [],
+  );
 
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
@@ -884,6 +887,7 @@ export const Table = <
         !!row.original[Symbol.for('iui-id') as keyof typeof row.original];
 
       if (isRowWithSubComponent && !!subComponent) {
+        console.log('row', row);
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
