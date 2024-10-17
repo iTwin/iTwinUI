@@ -412,7 +412,7 @@ export const Table = <
     headerProps,
     bodyProps,
     emptyTableContentProps,
-    getRowId: getRowIdUser,
+    getRowId,
     ...rest
   } = props;
 
@@ -602,8 +602,7 @@ export const Table = <
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
       const mainRowId =
-        getRowIdUser?.(originalRow, relativeIndex, parent) ??
-        `${relativeIndex}`;
+        getRowId?.(originalRow, relativeIndex, parent) ?? `${relativeIndex}`;
 
       // If the row contains the Symbol, it indicates that the current row is a sub-component row. We need to append the ID passed by user with its according sub-component ID.
       return originalRow[Symbol.for('iui-id') as keyof typeof originalRow]
@@ -612,7 +611,7 @@ export const Table = <
           }`
         : mainRowId;
     },
-    [getRowIdUser],
+    [getRowId],
   );
 
   const instance = useTable<T>(
@@ -630,7 +629,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
-      getRowId: subComponent ? getRowIdWithSubComponents : getRowIdUser, // only call this wrapper function when sub-component is present
+      getRowId: subComponent ? getRowIdWithSubComponents : getRowId, // only call this wrapper function when sub-component is present
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
