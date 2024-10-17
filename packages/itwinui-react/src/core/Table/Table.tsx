@@ -600,11 +600,11 @@ export const Table = <
     );
   }, []);
 
-  const getRowId = React.useCallback(
+  const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
       const mainRowId =
         getRowIdUser?.(originalRow, relativeIndex, parent) ??
-        `${originalRow.id}`;
+        `${relativeIndex}`;
 
       return originalRow[Symbol.for('iui-id') as keyof typeof originalRow]
         ? `${mainRowId}-${
@@ -630,7 +630,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
-      getRowId,
+      getRowId: subComponent ? getRowIdWithSubComponents : getRowIdUser,
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
