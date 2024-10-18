@@ -582,8 +582,9 @@ export const Table = <
 
   const getSubRowsWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number) => {
+      console.log('row', originalRow);
       // If originalRow represents a subcomponent, don't add any subrows to it
-      if (originalRow[iuiId as keyof typeof originalRow]) {
+      if (originalRow[iuiId as any]) {
         return [];
       }
 
@@ -592,10 +593,7 @@ export const Table = <
       // This distinguishment is needed as the subrow needs to have all fields of the row since react-table expects even subrows to be rows (Row<T>).
       return (
         (originalRow.subRows as T[]) ?? [
-          {
-            [iuiId]: `subcomponent-${relativeIndex}`,
-            ...originalRow,
-          },
+          { [iuiId as any]: `subComponent-${relativeIndex}`, ...originalRow },
         ]
       );
     },
@@ -611,7 +609,7 @@ export const Table = <
         getRowId?.(originalRow, relativeIndex, parent) ?? `${relativeIndex}`;
 
       // If the row contains the Symbol, it indicates that the current row is a sub-component row. We need to append the ID passed by user with its according sub-component ID.
-      return originalRow[iuiId as keyof typeof originalRow]
+      return originalRow[iuiId as any]
         ? `${mainRowId}-${
             parent ? `${parent.id}.${relativeIndex}` : relativeIndex
           }`
@@ -886,8 +884,7 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      const isRowASubComponent =
-        !!row.original[iuiId as keyof typeof row.original];
+      const isRowASubComponent = !!row.original[iuiId as any];
 
       if (isRowASubComponent && !!subComponent) {
         return (
