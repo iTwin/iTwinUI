@@ -1736,6 +1736,54 @@ it('should expand correctly', async () => {
   getByText('Expanded component, name: Name1');
 });
 
+it('should show expandable content correctly after re-rendering', async () => {
+  const data = mockedData();
+  const onExpandMock = vi.fn();
+  const { rerender } = render(
+    <Table
+      columns={[
+        {
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test1</>,
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+      onExpand={onExpandMock}
+    />,
+  );
+  expect(screen.getAllByText('test1').length).toBe(3);
+
+  rerender(
+    <Table
+      columns={[
+        {
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test2</>,
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+      onExpand={onExpandMock}
+    />,
+  );
+  expect(screen.getAllByText('test2').length).toBe(3);
+
+  await act(async () => {
+    await userEvent.click(screen.getAllByRole('button')[0]);
+  });
+
+  screen.getByText('Expanded component, name: Name1');
+});
+
 it('should expand correctly with a custom expander cell', async () => {
   const onExpandMock = vi.fn();
   const { getByText, queryByText } = renderComponent({

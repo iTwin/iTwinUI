@@ -71,6 +71,7 @@ const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
+const iuiId = Symbol('iui-id');
 
 export type TablePaginatorRendererProps = {
   /**
@@ -412,6 +413,7 @@ export const Table = <
     headerProps,
     bodyProps,
     emptyTableContentProps,
+    getRowId,
     ...rest
   } = props;
 
@@ -578,18 +580,43 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
-  const [rowHasParent] = React.useState(() => new WeakSet<T>());
-
   const getSubRowsWithSubComponents = React.useCallback(
-    (originalRow: T) => {
-      if (!rowHasParent.has(originalRow)) {
-        rowHasParent.add(originalRow);
-        return [originalRow];
+    (originalRow: T, relativeIndex: number) => {
+      console.log('row', originalRow);
+      // If originalRow represents a subcomponent, don't add any subrows to it
+      if (originalRow[iuiId as any]) {
+        return [];
       }
 
-      return (originalRow.subRows as T[]) || [];
+      // If originalRow represents the top-most level row, add itself as a subrow that will represent a subComponent.
+      // Add a symbol as a key on this subrow to distinguish it from the real row.
+      // This distinguishment is needed as the subrow needs to have all fields of the row since react-table expects even subrows to be rows (Row<T>).
+      if (originalRow.subRows) {
+        return originalRow.subRows as T[];
+      }
+
+      (originalRow as any)[iuiId] = `subcomponent-${relativeIndex}`;
+      return [originalRow];
     },
-    [rowHasParent],
+    [],
+  );
+
+  /**
+   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row. Avoiding duplicate react-table prevents react-table errors.
+   */
+  const getRowIdWithSubComponents = React.useCallback(
+    (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
+      const mainRowId =
+        getRowId?.(originalRow, relativeIndex, parent) ?? `${relativeIndex}`;
+
+      // If the row contains the Symbol, it indicates that the current row is a sub-component row. We need to append the ID passed by user with its according sub-component ID.
+      return originalRow[iuiId as any]
+        ? `${mainRowId}-${
+            parent ? `${parent.id}.${relativeIndex}` : relativeIndex
+          }`
+        : mainRowId;
+    },
+    [getRowId],
   );
 
   const instance = useTable<T>(
@@ -607,6 +634,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
+      getRowId: subComponent ? getRowIdWithSubComponents : getRowId, // only call this wrapper function when sub-component is present
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
@@ -857,32 +885,9 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
+      const isRowASubComponent = !!row.original[iuiId as any];
 
-      if (row.subRows.length > 0 || !subComponent) {
-        return (
-          <TableRowMemoized
-            row={row}
-            rowProps={rowProps}
-            isLast={index === page.length - 1}
-            onRowInViewport={onRowInViewportRef}
-            onBottomReached={onBottomReachedRef}
-            intersectionMargin={intersectionMargin}
-            state={state}
-            key={row.getRowProps().key}
-            onClick={onRowClickHandler}
-            subComponent={subComponent}
-            isDisabled={!!isRowDisabled?.(row.original)}
-            tableHasSubRows={hasAnySubRows}
-            tableInstance={instance}
-            expanderCell={expanderCell}
-            scrollContainerRef={tableRef.current}
-            tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
-            density={density}
-            virtualItem={virtualItem}
-            virtualizer={virtualizer}
-          />
-        );
-      } else {
+      if (isRowASubComponent && !!subComponent) {
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
@@ -898,17 +903,41 @@ export const Table = <
           </TableExpandableContentMemoized>
         );
       }
+
+      return (
+        <TableRowMemoized
+          row={row}
+          rowProps={rowProps}
+          isLast={index === page.length - 1}
+          onRowInViewport={onRowInViewportRef}
+          onBottomReached={onBottomReachedRef}
+          intersectionMargin={intersectionMargin}
+          state={state}
+          key={row.getRowProps().key}
+          onClick={onRowClickHandler}
+          subComponent={subComponent}
+          isDisabled={!!isRowDisabled?.(row.original)}
+          tableHasSubRows={hasAnySubRows}
+          tableInstance={instance}
+          expanderCell={expanderCell}
+          scrollContainerRef={tableRef.current}
+          tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+          density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
+        />
+      );
     },
     [
       page,
       prepareRow,
+      subComponent,
       rowProps,
       onRowInViewportRef,
       onBottomReachedRef,
       intersectionMargin,
       state,
       onRowClickHandler,
-      subComponent,
       isRowDisabled,
       hasAnySubRows,
       instance,
