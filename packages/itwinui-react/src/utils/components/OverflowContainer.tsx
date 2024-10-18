@@ -25,10 +25,33 @@ type OverflowContainerProps = {
 };
 
 /**
- * Wrapper over `useOverflow`.
+ * Useful to handle overflow of items in a container.
  *
- * - Use `useOverflowContainerContext` to get overflow related properties.
+ * Notes:
+ * - Use `OverflowContainer.useContext()` to get overflow related properties.
  * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
+ *
+ * @example
+ * const items = Array(10)
+ *   .fill()
+ *   .map((_, i) => <span>Item {i}</span>);
+ *
+ * return (
+ *   <OverflowContainer itemsCount={items.length}>
+ *     {items}
+ *     <MyOverflowContainerContent />
+ *   </OverflowContainer>
+ * );
+ *
+ * const MyOverflowContainerContent = () => {
+ *   const { visibleCount, itemsCount } = OverflowContainer.useContext();
+ *
+ *   return (
+ *     <OverflowContainer.OverflowNode>
+ *       <span>And {itemsCount - visibleCount} more...</span>
+ *     </OverflowContainer.OverflowNode>
+ *   );
+ * };
  */
 const OverflowContainerComponent = React.forwardRef((props, ref) => {
   const { itemsCount, children, overflowOrientation, ...rest } = props;
@@ -110,13 +133,13 @@ if (process.env.NODE_ENV === 'development') {
  * The returned number should be used to render the element with fewer items.
  *
  * @private
- * @param items Items that this element contains.
- * @param dimension 'horizontal' (default) or 'vertical'
+ * @param itemsCount Number of items that this element contains.
+ * @param orientation 'horizontal' (default) or 'vertical'
  * @returns [callback ref to set on container, stateful count of visible items]
  *
  * @example
  * const items = Array(10).fill().map((_, i) => <span>Item {i}</span>);
- * const [ref, visibleCount] = useOverflow(items);
+ * const [ref, visibleCount] = useOverflow(items.count);
  * ...
  * return (
  *   <div ref={ref}>
@@ -124,7 +147,7 @@ if (process.env.NODE_ENV === 'development') {
  *   </div>
  * );
  */
-const useOverflow = <T extends HTMLElement>(
+const useOverflow = (
   itemsCount: number,
   orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
@@ -136,7 +159,7 @@ const useOverflow = <T extends HTMLElement>(
 
   const { minGuess, maxGuess, isStabilized, visibleCount } = guessState;
 
-  const containerRef = React.useRef<T>(null);
+  const containerRef = React.useRef(null);
 
   const [resizeRef] = useResizeObserver(
     React.useCallback(() => {
