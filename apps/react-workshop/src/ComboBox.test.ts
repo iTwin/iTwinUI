@@ -22,7 +22,7 @@ describe('ComboBox', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('input').focus();
+      cy.get('[role=combobox]').focus();
       if (testName === 'Multiple Select') {
         cy.get('[role=option]').then((els) => {
           const items = Array.from(els, (el) => el);
