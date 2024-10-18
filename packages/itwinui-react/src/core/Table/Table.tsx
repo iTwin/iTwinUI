@@ -591,11 +591,12 @@ export const Table = <
       // If originalRow represents the top-most level row, add itself as a subrow that will represent a subComponent.
       // Add a symbol as a key on this subrow to distinguish it from the real row.
       // This distinguishment is needed as the subrow needs to have all fields of the row since react-table expects even subrows to be rows (Row<T>).
-      return (
-        (originalRow.subRows as T[]) ?? [
-          { [iuiId as any]: `subComponent-${relativeIndex}`, ...originalRow },
-        ]
-      );
+      if (originalRow.subRows) {
+        return originalRow.subRows as T[];
+      }
+
+      (originalRow as any)[iuiId] = `subcomponent-${relativeIndex}`;
+      return [originalRow];
     },
     [],
   );
