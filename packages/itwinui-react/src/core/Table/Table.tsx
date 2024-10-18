@@ -71,6 +71,7 @@ const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
+const iuiId = Symbol('iui-id');
 
 export type TablePaginatorRendererProps = {
   /**
@@ -419,7 +420,6 @@ export const Table = <
   useGlobals();
 
   const ownerDocument = React.useRef<Document | undefined>();
-  const iuiId = Symbol('iui-id');
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -599,7 +599,7 @@ export const Table = <
         ]
       );
     },
-    [iuiId],
+    [],
   );
 
   /**
@@ -617,7 +617,7 @@ export const Table = <
           }`
         : mainRowId;
     },
-    [getRowId, iuiId],
+    [getRowId],
   );
 
   const instance = useTable<T>(
@@ -933,7 +933,6 @@ export const Table = <
     [
       page,
       prepareRow,
-      iuiId,
       subComponent,
       rowProps,
       onRowInViewportRef,
