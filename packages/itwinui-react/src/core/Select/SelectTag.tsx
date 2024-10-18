@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box } from '../../utils/index.js';
+import { Tag } from '../Tag/Tag.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type SelectTagProps = {
@@ -12,7 +12,7 @@ type SelectTagProps = {
    * Text inside the tag.
    */
   label: string;
-};
+} & Pick<React.ComponentProps<typeof Tag>, 'onClick' | 'onRemove'>;
 
 /**
  * Tag for showing selected value in `Select`.
@@ -22,15 +22,14 @@ export const SelectTag = React.forwardRef((props, forwardedRef) => {
   const { className, label, ...rest } = props;
 
   return (
-    <Box
-      as='span'
+    <Tag
       className={cx('iui-select-tag', className)}
+      labelProps={{ className: 'iui-select-tag-label' }}
+      removeButtonProps={{ className: 'iui-select-tag-button' }}
       ref={forwardedRef}
       {...rest}
     >
-      <Box as='span' className='iui-select-tag-label'>
-        {label}
-      </Box>
-    </Box>
+      {label}
+    </Tag>
   );
 }) as PolymorphicForwardRefComponent<'span', SelectTagProps>;
