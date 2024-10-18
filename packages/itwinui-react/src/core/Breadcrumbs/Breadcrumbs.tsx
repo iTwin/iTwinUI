@@ -9,6 +9,8 @@ import {
   Box,
   OverflowContainer,
   useWarningLogger,
+  useResizeObserver,
+  useMergedRefs,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
@@ -111,7 +113,7 @@ type BreadcrumbsProps = {
  *   <span>Current level</span>
  * </Breadcrumbs>
  */
-const BreadcrumbsComponent = React.forwardRef((props, ref) => {
+const BreadcrumbsComponent = React.forwardRef((props, forwardedRef) => {
   const {
     children: childrenProp,
     currentIndex = React.Children.count(childrenProp) - 1,
@@ -121,10 +123,15 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
+  const [resizeRef] = useResizeObserver(setSize);
+
   const items = React.useMemo(
     () => React.Children.toArray(childrenProp),
     [childrenProp],
   );
+
+  const ref = useMergedRefs(resizeRef, forwardedRef);
 
   return (
     <Box
@@ -132,6 +139,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
       className={cx('iui-breadcrumbs', className)}
       ref={ref}
       aria-label='Breadcrumb'
+      key={size?.width}
       {...rest}
     >
       <OverflowContainer

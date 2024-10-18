@@ -17,6 +17,7 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
+  useResizeObserver,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -236,6 +237,9 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     </>
   );
 
+  const [domSize, setDomSize] = React.useState<DOMRectReadOnly | null>(null);
+  const [resizeRef] = useResizeObserver(setDomSize);
+
   if (!showPagesList && !showPageSizeList) {
     return null;
   }
@@ -252,7 +256,12 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         )}
       </Box>
       {showPagesList && (
-        <OverflowContainer className='iui-center' itemsCount={totalPagesCount}>
+        <OverflowContainer
+          key={domSize?.width}
+          ref={resizeRef}
+          className='iui-center'
+          itemsCount={totalPagesCount}
+        >
           <IconButton
             styleType='borderless'
             disabled={currentPage === 0}

@@ -6,7 +6,8 @@ import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
-import { OverflowContainer } from '../../utils/index.js';
+import { OverflowContainer, useResizeObserver } from '../../utils/index.js';
+import { useMergeRefs } from '@floating-ui/react';
 
 type SelectTagContainerProps = {
   /**
@@ -17,7 +18,7 @@ type SelectTagContainerProps = {
 
 /**
  */
-export const SelectTagContainer = React.forwardRef((props, ref) => {
+export const SelectTagContainer = React.forwardRef((props, forwardedRef) => {
   const { tags: tagsProp, className, ...rest } = props;
 
   const tags = React.useMemo(
@@ -25,8 +26,14 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
     [tagsProp],
   );
 
+  const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
+  const [resizeRef] = useResizeObserver(setSize);
+
+  const ref = useMergeRefs([resizeRef, forwardedRef]);
+
   return (
     <OverflowContainer
+      key={size?.width}
       itemsCount={tags.length}
       className={cx('iui-select-tag-container', className)}
       ref={ref}
@@ -46,6 +53,8 @@ type SelectTagContainerContentProps = {
 const SelectTagContainerContent = (props: SelectTagContainerContentProps) => {
   const { tags } = props;
   const { visibleCount } = OverflowContainer.useContext();
+
+  console.log('SelectTagContainerContent', visibleCount);
 
   return (
     <>
