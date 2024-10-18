@@ -39,6 +39,7 @@
     "prepare": "husky install && playwright install",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
+    "approve": "pnpm run approve:css && pnpm run approve:react",
     "approve:css": "pnpm --filter css-workshop approve",
     "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
@@ -76,9 +77,10 @@
     "typescript": "~5.5.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.18",
-    "astro": "~4.15.8",
+    "astro": "~4.16.3",
     "cypress": "13.8.1",
-    "ws@8": "^8.17.1"
+    "ws@8": "^8.17.1",
+    "cookie@<0.7.0": ">=0.7.0"
   },
   "engines": {
     "node": ">=18.14.1"

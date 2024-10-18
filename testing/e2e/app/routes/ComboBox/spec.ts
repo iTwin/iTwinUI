@@ -88,6 +88,85 @@ test('should not have flickering tags (fixes #2112)', async ({ page }) => {
   expect(stabalizedCount).toBe(newCount);
 });
 
+test(`should clear filter and input value when an option is toggled and when focus is lost (multiple=true)`, async ({
+  page,
+}) => {
+  await page.goto(`/ComboBox?multiple=true`);
+
+  const options = page.getByRole('option');
+  const input = page.locator('input');
+
+  await input.focus();
+  await input.fill('1');
+
+  await expect(options).toHaveCount(3);
+  await expect(input).toHaveValue('1');
+
+  await options.first().click();
+
+  // Should clear filter when an option is toggled
+  await expect(options).not.toHaveCount(3);
+  await expect(input).toHaveValue('');
+
+  await input.fill('1');
+
+  await expect(options).toHaveCount(3);
+  await expect(input).toHaveValue('1');
+
+  await page.keyboard.press('Tab');
+
+  // Should clear filter when focus is lost
+  await expect(options).toHaveCount(0);
+  await expect(input).toHaveValue('');
+
+  await input.focus();
+
+  // Should not be filtered the next time the menu is opened
+  await expect(options).toHaveCount(defaultOptions.length);
+  await expect(input).toHaveValue('');
+});
+
+test(`should clear filter and set input value when an option is toggled and when focus is lost (multiple=false)`, async ({
+  page,
+}) => {
+  await page.goto(`/ComboBox`);
+
+  await page.keyboard.press('Tab');
+
+  const options = page.getByRole('option');
+  const input = page.locator('input');
+
+  await input.fill('1');
+
+  await expect(options).toHaveCount(3);
+  await expect(input).toHaveValue('1');
+
+  await options.first().click();
+
+  // Should clear filter and set input value when an option is toggled
+  await expect(options).toHaveCount(0);
+  await expect(input).toHaveValue('Item 1');
+
+  await page.keyboard.press('Tab');
+
+  await page.keyboard.down('Shift');
+  await page.keyboard.press('Tab');
+  await page.keyboard.up('Shift');
+
+  await expect(input).toBeFocused();
+
+  // Should not be filtered the next time the menu is opened
+  await expect(options).toHaveCount(defaultOptions.length);
+  await expect(input).toHaveValue('Item 1');
+
+  await input.fill('foobar');
+  await page.keyboard.press('Tab');
+
+  // Should clear filter and set back the input value when focus is lost
+  await expect(options).toHaveCount(0);
+  await expect(input).toHaveValue('Item 1');
+});
+
 test.describe('ComboBox (virtualization)', () => {
   test('should support keyboard navigation when virtualization is enabled', async ({
     page,
@@ -367,6 +446,8 @@ const expectOverflowState = async ({
 };
 
 const getSelectTagContainerTags = (page: Page) => {
+  // TODO: Remove this implementation detail of DOM hierarchy when we can customize the tag container.
+  // See: https://github.com/iTwin/iTwinUI/pull/2151#discussion_r1684394649
   return page.getByRole('combobox').locator('+ div > span');
 };
 

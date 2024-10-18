@@ -8,7 +8,6 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
-  useOverflowContainerContext,
   useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -115,7 +114,7 @@ type BreadcrumbsProps = {
 const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   const {
     children: childrenProp,
-    currentIndex: currentIndexProp,
+    currentIndex = React.Children.count(childrenProp) - 1,
     separator,
     overflowButton,
     className,
@@ -126,7 +125,6 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     () => React.Children.toArray(childrenProp),
     [childrenProp],
   );
-  const currentIndex = currentIndexProp || items.length - 1;
 
   return (
     <Box
@@ -164,7 +162,7 @@ type BreadcrumbContentProps = Omit<BreadcrumbsProps, 'currentIndex'> & {
 
 const BreadcrumbContent = (props: BreadcrumbContentProps) => {
   const { children: items, currentIndex, overflowButton, separator } = props;
-  const { visibleCount } = useOverflowContainerContext();
+  const { visibleCount } = OverflowContainer.useContext();
 
   return (
     <>

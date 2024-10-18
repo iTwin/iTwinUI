@@ -6,10 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
-import {
-  OverflowContainer,
-  useOverflowContainerContext,
-} from '../../utils/index.js';
+import { OverflowContainer } from '../../utils/index.js';
 
 type SelectTagContainerProps = {
   /**
@@ -48,7 +45,7 @@ type SelectTagContainerContentProps = {
 
 const SelectTagContainerContent = (props: SelectTagContainerContentProps) => {
   const { tags } = props;
-  const { visibleCount } = useOverflowContainerContext();
+  const { visibleCount } = OverflowContainer.useContext();
 
   return (
     <>

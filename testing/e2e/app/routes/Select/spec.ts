@@ -134,5 +134,7 @@ const expectOverflowState = async ({
 };
 
 const getSelectTagContainerTags = async (page: Page) => {
+  // TODO: Remove this implementation detail of class name when we can customize the tag container.
+  // See: https://github.com/iTwin/iTwinUI/pull/2151#discussion_r1684394649
   return await page.locator('span[class$="-select-tag"]').all();
 };

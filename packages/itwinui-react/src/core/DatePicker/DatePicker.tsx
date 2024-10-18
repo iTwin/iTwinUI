@@ -17,6 +17,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { TimePicker } from '../TimePicker/TimePicker.js';
 import type { TimePickerProps } from '../TimePicker/TimePicker.js';
+import { PopoverInitialFocusContext } from '../Popover/Popover.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -340,6 +341,16 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
         currentDate.getFullYear(),
     );
   }, [date, setMonthAndYear, startDate, endDate, enableRangeSelect]);
+
+  const popoverInitialFocusContext = React.useContext(
+    PopoverInitialFocusContext,
+  );
+  React.useLayoutEffect(() => {
+    // If setFocus and the DatePicker is in a Popover, tell Popover to not focus anything since we handle focus.
+    if (setFocus && popoverInitialFocusContext) {
+      popoverInitialFocusContext.setInitialFocus(-1);
+    }
+  }, [popoverInitialFocusContext, setFocus]);
 
   const days = React.useMemo(() => {
     let offsetToFirst = new Date(
@@ -699,11 +710,18 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                       role='option'
                       tabIndex={isSameDay(weekDay, focusedDay) ? 0 : -1}
                       aria-disabled={isDisabled ? 'true' : undefined}
-                      ref={(element) =>
-                        isSameDay(weekDay, focusedDay) &&
-                        needFocus.current &&
-                        element?.focus()
-                      }
+                      ref={(element) => {
+                        if (
+                          isSameDay(weekDay, focusedDay) &&
+                          needFocus.current
+                        ) {
+                          // Wait for DateRangeFilter's portaling to finish before focusing
+                          // See: https://github.com/iTwin/iTwinUI/pull/2297
+                          setTimeout(() => {
+                            element?.focus();
+                          });
+                        }
+                      }}
                       {...dayProps}
                       className={cx(getDayClass(weekDay), dayProps?.className)}
                     >

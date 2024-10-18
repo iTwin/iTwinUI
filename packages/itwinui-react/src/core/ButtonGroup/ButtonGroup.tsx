@@ -4,11 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  Box,
-  OverflowContainer,
-  useOverflowContainerContext,
-} from '../../utils/index.js';
+import { Box, OverflowContainer } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -232,16 +228,18 @@ type OverflowGroupContentProps = Pick<
 
 const OverflowGroupContent = (props: OverflowGroupContentProps) => {
   const { overflowButton, overflowPlacement, items } = props;
-  const { visibleCount } = useOverflowContainerContext();
+  const { visibleCount } = OverflowContainer.useContext();
 
   const overflowStart =
     overflowPlacement === 'start'
       ? items.length - visibleCount
       : visibleCount - 1;
 
-  return !(visibleCount < items.length) ? (
-    items
-  ) : (
+  if (!(visibleCount < items.length)) {
+    return items;
+  }
+
+  return (
     <>
       {overflowButton &&
         overflowPlacement === 'start' &&

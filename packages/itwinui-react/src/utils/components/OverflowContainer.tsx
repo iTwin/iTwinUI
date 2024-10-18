@@ -18,6 +18,9 @@ type OverflowContainerProps = {
    * @default 'horizontal'
    */
   overflowOrientation?: 'horizontal' | 'vertical';
+  /**
+   * Count of the *original* items (i.e. when sufficient space is available).
+   */
   itemsCount: number;
 };
 
@@ -55,6 +58,9 @@ type OverflowContainerOverflowNodeProps = {
   children: React.ReactNode;
 };
 
+/**
+ * Shows the content only when the container is overflowing.
+ */
 const OverflowContainerOverflowNode = (
   props: OverflowContainerOverflowNodeProps,
 ) => {
@@ -63,16 +69,26 @@ const OverflowContainerOverflowNode = (
   const { visibleCount, itemsCount } = useOverflowContainerContext();
   const isOverflowing = visibleCount < itemsCount;
 
-  return isOverflowing && children;
+  return isOverflowing ? children : null;
 };
 
 // ----------------------------------------------------------------------------
 
+/**
+ * Wrapper over `useOverflow`.
+ *
+ * - Use `OverflowContainer.useContext()` to get overflow related properties.
+ * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
+ */
 export const OverflowContainer = Object.assign(OverflowContainerComponent, {
   /**
    * Wrap overflow content in this component to conditionally render it when overflowing.
    */
   OverflowNode: OverflowContainerOverflowNode,
+  /**
+   * Get overflow related properties of the nearest `OverflowContainer` ancestor.
+   */
+  useContext: useOverflowContainerContext,
 });
 
 // ----------------------------------------------------------------------------
@@ -87,11 +103,6 @@ const OverflowContainerContext = React.createContext<
 if (process.env.NODE_ENV === 'development') {
   OverflowContainerContext.displayName = 'OverflowContainerContext';
 }
-
-export const useOverflowContainerContext = () => {
-  const overflowContainerContext = useSafeContext(OverflowContainerContext);
-  return overflowContainerContext;
-};
 
 /**
  * Hook that returns the number of items that should be visible based on the size of the container element.
@@ -311,3 +322,7 @@ const useOverflow = <T extends HTMLElement>(
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
   return [mergedRefs, visibleCount] as const;
 };
+function useOverflowContainerContext() {
+  const overflowContainerContext = useSafeContext(OverflowContainerContext);
+  return overflowContainerContext;
+}
