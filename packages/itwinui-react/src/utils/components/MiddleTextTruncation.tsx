@@ -5,6 +5,7 @@
 import * as React from 'react';
 import type { CommonProps } from '../props.js';
 import { OverflowContainer } from './OverflowContainer.js';
+import { useResizeObserver } from '../hooks/useResizeObserver.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -46,8 +47,13 @@ export type MiddleTextTruncationProps = {
 export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
   const { text, style, ...rest } = props;
 
+  const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
+  const [resizeRef] = useResizeObserver(setSize);
+
   return (
     <OverflowContainer
+      key={size?.width}
+      ref={resizeRef}
       as='span'
       style={{
         display: 'flex',

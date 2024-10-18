@@ -6,7 +6,6 @@ import React from 'react';
 import { useMergedRefs } from '../hooks/useMergedRefs.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
-import { useResizeObserver } from '../hooks/useResizeObserver.js';
 import { useLatestRef } from '../hooks/useLatestRef.js';
 import { useLayoutEffect } from '../hooks/useIsomorphicLayoutEffect.js';
 import { useSafeContext } from '../hooks/useSafeContext.js';
@@ -27,6 +26,8 @@ type OverflowContainerProps = {
 /**
  * Useful to handle overflow of items in a container.
  *
+ * The listen to resize changes, pass a new `key` to reset the overflow calculations.
+ *
  * Notes:
  * - Use `OverflowContainer.useContext()` to get overflow related properties.
  * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
@@ -36,8 +37,15 @@ type OverflowContainerProps = {
  *   .fill()
  *   .map((_, i) => <span>Item {i}</span>);
  *
+ * const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
+ * const [resizeRef] = useResizeObserver(setSize);
+ *
  * return (
- *   <OverflowContainer itemsCount={items.length}>
+ *   <OverflowContainer
+ *     key={size?.width}
+ *     ref={resizeRef}
+ *     itemsCount={items.length}
+ *   >
  *     {items}
  *     <MyOverflowContainerContent />
  *   </OverflowContainer>
@@ -160,13 +168,6 @@ const useOverflow = (
   const { minGuess, maxGuess, isStabilized, visibleCount } = guessState;
 
   const containerRef = React.useRef(null);
-
-  const [resizeRef] = useResizeObserver(
-    React.useCallback(() => {
-      dispatch({ type: 'reset' });
-    }, []),
-  );
-
   const isGuessing = React.useRef(false);
 
   /**
@@ -291,8 +292,7 @@ const useOverflow = (
     previousVisibleCount,
   ]);
 
-  const mergedRefs = useMergedRefs(containerRef, resizeRef);
-  return [mergedRefs, visibleCount] as const;
+  return [containerRef, visibleCount] as const;
 };
 
 // ----------------------------------------------------------------------------
@@ -340,12 +340,6 @@ type GuessAction =
        * `"stabilize"`: Stop guessing as `visibleCount` is the correct value.
        */
       type: 'stabilize';
-    }
-  | {
-      /**
-       * `"reset"`: Reset the guess state to the initial state and start guessing again.
-       */
-      type: 'reset';
     };
 
 /** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
@@ -414,8 +408,6 @@ const overflowGuessReducer = (
         minGuess: null,
         maxGuess: null,
       };
-    case 'reset':
-      return overflowGuessReducerInitialState({ itemsCount: state.itemsCount });
     default:
       return state;
   }
