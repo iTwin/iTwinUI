@@ -419,6 +419,7 @@ export const Table = <
   useGlobals();
 
   const ownerDocument = React.useRef<Document | undefined>();
+  const iuiId = Symbol('iui-id');
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -581,10 +582,8 @@ export const Table = <
 
   const getSubRowsWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number) => {
-      const symbol = Symbol.for('iui-id');
-
       // If originalRow represents a subcomponent, don't add any subrows to it
-      if (originalRow[symbol as keyof typeof originalRow]) {
+      if (originalRow[iuiId as keyof typeof originalRow]) {
         return [];
       }
 
@@ -594,13 +593,13 @@ export const Table = <
       return (
         (originalRow.subRows as T[]) ?? [
           {
-            [symbol]: `subcomponent-${relativeIndex}`,
+            [iuiId]: `subcomponent-${relativeIndex}`,
             ...originalRow,
           },
         ]
       );
     },
-    [],
+    [iuiId],
   );
 
   /**
@@ -612,13 +611,13 @@ export const Table = <
         getRowId?.(originalRow, relativeIndex, parent) ?? `${relativeIndex}`;
 
       // If the row contains the Symbol, it indicates that the current row is a sub-component row. We need to append the ID passed by user with its according sub-component ID.
-      return originalRow[Symbol.for('iui-id') as keyof typeof originalRow]
+      return originalRow[iuiId as keyof typeof originalRow]
         ? `${mainRowId}-${
             parent ? `${parent.id}.${relativeIndex}` : relativeIndex
           }`
         : mainRowId;
     },
-    [getRowId],
+    [getRowId, iuiId],
   );
 
   const instance = useTable<T>(
@@ -888,7 +887,7 @@ export const Table = <
       const row = page[index];
       prepareRow(row);
       const isRowASubComponent =
-        !!row.original[Symbol.for('iui-id') as keyof typeof row.original];
+        !!row.original[iuiId as keyof typeof row.original];
 
       if (isRowASubComponent && !!subComponent) {
         return (
@@ -934,13 +933,14 @@ export const Table = <
     [
       page,
       prepareRow,
+      iuiId,
+      subComponent,
       rowProps,
       onRowInViewportRef,
       onBottomReachedRef,
       intersectionMargin,
       state,
       onRowClickHandler,
-      subComponent,
       isRowDisabled,
       hasAnySubRows,
       instance,
