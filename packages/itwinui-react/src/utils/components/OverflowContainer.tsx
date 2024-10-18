@@ -262,7 +262,7 @@ const useOverflow = (
 
   // If not stabilized, guess each time any of the guess related values or the container changes.
   useLayoutEffect(() => {
-    if (isStabilized || isUnitTest) {
+    if (isStabilized) {
       return;
     }
 
@@ -290,13 +290,6 @@ const useOverflow = (
     previousMinGuess,
     previousVisibleCount,
   ]);
-
-  // In unit test environments, always show all items
-  useLayoutEffect(() => {
-    if (isUnitTest) {
-      dispatch({ type: 'stabilizeAndShowAll' });
-    }
-  }, [itemsCount, visibleCount]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
   return [mergedRefs, visibleCount] as const;
@@ -350,13 +343,6 @@ type GuessAction =
     }
   | {
       /**
-       * `"stabilizeAndShowAll"`: Stop guessing and just show all items, even if overflowing.
-       * Useful in unit tests environments.
-       */
-      type: 'stabilizeAndShowAll';
-    }
-  | {
-      /**
        * `"reset"`: Reset the guess state to the initial state and start guessing again.
        */
       type: 'reset';
@@ -370,13 +356,22 @@ const overflowGuessReducerInitialState = ({
 }: Pick<GuessState, 'itemsCount'>): GuessState => {
   const initialVisibleCount = Math.min(itemsCount, STARTING_MAX_ITEMS_COUNT);
 
-  return {
-    isStabilized: false,
-    minGuess: 0,
-    maxGuess: initialVisibleCount,
-    itemsCount,
-    visibleCount: initialVisibleCount,
-  };
+  // In unit test environments, always show all items
+  return isUnitTest
+    ? {
+        isStabilized: true,
+        minGuess: null,
+        maxGuess: null,
+        itemsCount,
+        visibleCount: itemsCount,
+      }
+    : {
+        isStabilized: false,
+        minGuess: 0,
+        maxGuess: initialVisibleCount,
+        itemsCount,
+        visibleCount: initialVisibleCount,
+      };
 };
 
 const overflowGuessReducer = (
@@ -419,15 +414,6 @@ const overflowGuessReducer = (
         minGuess: null,
         maxGuess: null,
       };
-    case 'stabilizeAndShowAll':
-      return {
-        isStabilized: true,
-        minGuess: null,
-        maxGuess: null,
-        itemsCount: state.itemsCount,
-        visibleCount: getSafeVisibleCount(state.itemsCount),
-      };
-
     case 'reset':
       return overflowGuessReducerInitialState({ itemsCount: state.itemsCount });
     default:
