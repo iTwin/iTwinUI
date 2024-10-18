@@ -583,13 +583,14 @@ export const Table = <
     (originalRow: T, relativeIndex: number) => {
       const symbol = Symbol.for('iui-id');
 
-      // Check if the current row is a sub-row that holds data for the according sub-component.
+      // If originalRow represents a subcomponent, don't add any subrows to it
       if (originalRow[symbol as keyof typeof originalRow]) {
         return [];
       }
 
-      // If rows have sub-components (generated as sub-rows), we need to return that sub-rows. Otherwise, row selection will get into a loop as it needs the row ID to set the sub-component to be selected.
-      // If the main row has not had any sub-rows, we need an object that holds a Symbol as a form of flag to prevent infinite loop.
+      // If originalRow represents the top-most level row, add itself as a subrow that will represent a subComponent.
+      // Add a symbol as a key on this subrow to distinguish it from the real row.
+      // This distinguishment is needed as the subrow needs to have all fields of the row since react-table expects even subrows to be rows (Row<T>).
       return (
         (originalRow.subRows as T[]) ?? [
           {
@@ -602,6 +603,9 @@ export const Table = <
     [],
   );
 
+  /**
+   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row. Avoiding duplicate react-table prevents react-table errors.
+   */
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
       const mainRowId =
@@ -883,10 +887,10 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      const isRowWithSubComponent =
+      const isRowASubComponent =
         !!row.original[Symbol.for('iui-id') as keyof typeof row.original];
 
-      if (isRowWithSubComponent && !!subComponent) {
+      if (isRowASubComponent && !!subComponent) {
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
