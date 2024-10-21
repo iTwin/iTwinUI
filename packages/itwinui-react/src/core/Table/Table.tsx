@@ -889,8 +889,7 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      const isRowASubComponent =
-        !!row.original[iuiId as keyof typeof row.original] && !!subComponent;
+      const isRowASubComponent = !!row.original[iuiId as any] && !!subComponent;
 
       if (isRowASubComponent) {
         return (
