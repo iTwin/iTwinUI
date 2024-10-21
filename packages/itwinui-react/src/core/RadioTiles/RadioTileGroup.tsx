@@ -6,11 +6,11 @@ import * as React from 'react';
 import { InputGroup } from '../InputGroup/InputGroup.js';
 import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import cx from 'classnames';
 
-type RadioTileGroupProps = Omit<
-  React.ComponentProps<typeof InputGroup>,
-  'displayStyle' | 'disabled'
->;
+type RadioTileGroupProps = {
+  tileContainerProps?: React.ComponentProps<'div'>;
+} & Omit<React.ComponentProps<typeof InputGroup>, 'displayStyle' | 'disabled'>;
 
 /**
  * RadioTileGroup component to group RadioTile components together
@@ -21,11 +21,20 @@ type RadioTileGroupProps = Omit<
  * </RadioTileGroup>
  */
 export const RadioTileGroup = React.forwardRef((props, forwardedRef) => {
-  const { children, label, ...rest } = props;
+  const { children, label, tileContainerProps, ...rest } = props;
 
   return (
     <InputGroup label={label} ref={forwardedRef} {...rest}>
-      <Box className='iui-radio-tile-container'>{children}</Box>
+      <Box
+        as='div'
+        {...tileContainerProps}
+        className={cx(
+          'iui-radio-tile-container',
+          tileContainerProps?.className,
+        )}
+      >
+        {children}
+      </Box>
     </InputGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', RadioTileGroupProps>;
