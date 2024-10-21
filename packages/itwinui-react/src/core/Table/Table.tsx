@@ -602,7 +602,7 @@ export const Table = <
   );
 
   /**
-   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row. Avoiding duplicate react-table prevents react-table errors.
+   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row. Avoiding duplicate react-table ids prevents react-table errors.
    */
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
