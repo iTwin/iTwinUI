@@ -495,9 +495,9 @@ export const ComboBox = React.forwardRef(
           );
 
           // If clearFilterOnOptionToggle, clear the filter
-          setIsInputDirty(!clearFilterOnOptionToggle);
           if (clearFilterOnOptionToggle) {
             setInputValue('');
+            setIsInputDirty(false);
           }
         } else {
           setSelectedIndexes(__originalIndex);
