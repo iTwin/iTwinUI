@@ -583,20 +583,24 @@ export const Table = <
   const getSubRowsWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number) => {
       console.log('row', originalRow);
-      // If originalRow represents a subcomponent, don't add any subrows to it
+      // If originalRow represents a sub-component, don't add any sub-rows to it
       if (originalRow[iuiId as any]) {
         return [];
       }
 
-      // If originalRow represents the top-most level row, add itself as a subrow that will represent a subComponent.
-      // Add a symbol as a key on this subrow to distinguish it from the real row.
-      // This distinguishment is needed as the subrow needs to have all fields of the row since react-table expects even subrows to be rows (Row<T>).
+      // If originalRow represents the top-most level row, add itself as a sub-row that will represent a subComponent.
+      // Add a symbol as a key on this sub-row to distinguish it from the real row.
+      // This distinction is needed as the sub-row needs to have all fields of the row since react-table expects even sub-rows to be rows (Row<T>).
       if (originalRow.subRows) {
         return originalRow.subRows as T[];
       }
 
-      (originalRow as any)[iuiId] = `subcomponent-${relativeIndex}`;
-      return [originalRow];
+      return [
+        {
+          [iuiId]: `subcomponent-${relativeIndex}`,
+          ...originalRow,
+        },
+      ];
     },
     [],
   );
@@ -885,9 +889,10 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
-      const isRowASubComponent = !!row.original[iuiId as any];
+      const isRowASubComponent =
+        !!row.original[iuiId as keyof typeof row.original] && !!subComponent;
 
-      if (isRowASubComponent && !!subComponent) {
+      if (isRowASubComponent) {
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
