@@ -12,8 +12,8 @@ import {
   MenuItemSkeleton,
   InputGrid,
   Flex,
-  Checkbox,
   Divider,
+  Checkbox,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 import { StoryDefault } from '@ladle/react';
@@ -516,34 +516,58 @@ export const Virtualized = () => {
 };
 
 export const MultipleSelect = () => {
+  const { clearFilterOnOptionToggle } = React.useContext(MultipleSelectContext);
+
   const options = React.useMemo(() => countriesList, []);
   const [selectedOptions, setSelectedOptions] = React.useState<string[]>([
     'CA',
     'AX',
   ]);
 
-  const [clearFilterOnOptionToggle, setClearFilterOnOptionToggle] =
-    React.useState(true);
-
   return (
-    <Flex flexDirection='column' alignItems='stretch'>
-      <Checkbox
-        checked={clearFilterOnOptionToggle}
-        onChange={(e) => setClearFilterOnOptionToggle(e.target.checked)}
-        label='clearFilterOnOptionToggle'
-      />
-      <Divider />
-      <ComboBox
-        options={options}
-        inputProps={{ placeholder: 'Select a country' }}
-        multiple
-        value={selectedOptions}
-        onChange={(selected, event) => {
-          console.log(event.value + ' ' + event.type);
-          setSelectedOptions(selected);
-        }}
-        clearFilterOnOptionToggle={clearFilterOnOptionToggle}
-      />
-    </Flex>
+    <ComboBox
+      options={options}
+      inputProps={{ placeholder: 'Select a country' }}
+      multiple
+      value={selectedOptions}
+      onChange={(selected, event) => {
+        console.log(event.value + ' ' + event.type);
+        setSelectedOptions(selected);
+      }}
+      clearFilterOnOptionToggle={clearFilterOnOptionToggle}
+    />
   );
 };
+
+MultipleSelect.decorators = [
+  (Story: () => React.ReactNode) => {
+    const [clearFilterOnOptionToggle, setClearFilterOnOptionToggle] =
+      React.useState(true);
+
+    return (
+      <>
+        <MultipleSelectContext.Provider value={{ clearFilterOnOptionToggle }}>
+          <Flex
+            id='main-story-container'
+            flexDirection='column'
+            alignItems='stretch'
+          >
+            <Story />
+            <Divider />
+            <Checkbox
+              checked={clearFilterOnOptionToggle}
+              onChange={(e) => setClearFilterOnOptionToggle(e.target.checked)}
+              label='clearFilterOnOptionToggle'
+            />
+          </Flex>
+        </MultipleSelectContext.Provider>
+      </>
+    );
+  },
+];
+
+const MultipleSelectContext = React.createContext<{
+  clearFilterOnOptionToggle: boolean;
+}>({
+  clearFilterOnOptionToggle: true,
+});
