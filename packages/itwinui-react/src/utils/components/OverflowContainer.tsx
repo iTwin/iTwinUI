@@ -200,6 +200,12 @@ const useOverflow = (
         return;
       }
 
+      // If there are no items, stabilize immediately.
+      if (itemsCount === 0) {
+        dispatch({ type: 'stabilize' });
+        return;
+      }
+
       const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
       const availableSize = containerRef.current[`offset${dimension}`];
       const requiredSize = containerRef.current[`scroll${dimension}`];
@@ -222,7 +228,6 @@ const useOverflow = (
       // - set min guess to current visibleCount: since underflow means correct visibleCount >= current visibleCount.
       if (maxGuess === visibleCount && !isOverflowing) {
         dispatch({ type: 'shiftGuessRangeForward' });
-
         return;
       }
 
@@ -258,15 +263,23 @@ const useOverflow = (
 
   const previousMinGuess = useLatestRef(minGuess);
   const previousMaxGuess = useLatestRef(maxGuess);
+  const previousItemsCount = useLatestRef(itemsCount);
   const previousVisibleCount = useLatestRef(visibleCount);
   const previousContainer = useLatestRef(containerRef.current);
 
-  // If not stabilized, guess each time any of the guess related values or the container changes.
   useLayoutEffect(() => {
+    // If itemsCount changes, we have to restart guessing.
+    if (itemsCount !== previousItemsCount.current) {
+      dispatch({ type: 'itemCountChanged', itemsCount });
+      return;
+    }
+
+    // If stabilized, do not guess.
     if (isStabilized) {
       return;
     }
 
+    // If not stabilized, guess each time any of the guess related values or the container changes.
     if (
       visibleCount !== previousVisibleCount.current ||
       minGuess !== previousMinGuess.current ||
@@ -283,13 +296,15 @@ const useOverflow = (
   }, [
     guessVisibleCount,
     isStabilized,
-    visibleCount,
+    itemsCount,
     maxGuess,
     minGuess,
     previousContainer,
+    previousItemsCount,
     previousMaxGuess,
     previousMinGuess,
     previousVisibleCount,
+    visibleCount,
   ]);
 
   return [containerRef, visibleCount] as const;
@@ -318,7 +333,7 @@ type GuessState = (
 type GuessAction =
   | {
       /**
-       * `"update"`: Update the guess range and visible count.
+       * - `"update"`: Update the guess range and visible count.
        */
       type: 'update';
       guessRange: GuessRange;
@@ -326,20 +341,27 @@ type GuessAction =
     }
   | {
       /**
-       * `"shiftGuessRangeForward"`: Shift the guess range forward by:
-       * - doubling the max guess
-       * - setting min guess to the current max guess
-       * - setting visible count to the new max guess
-       *
-       * Useful to induce the first overflow to start guessing.
+       * - `"shiftGuessRangeForward"`
+       *   - Shift the guess range forward by:
+       *     - doubling the max guess
+       *     - setting min guess to the current max guess
+       *     - setting visible count to the new max guess
+       *   - Useful to induce the first overflow to start guessing.
        */
       type: 'shiftGuessRangeForward';
     }
   | {
       /**
-       * `"stabilize"`: Stop guessing as `visibleCount` is the correct value.
+       * - `"stabilize"`: Stop guessing as `visibleCount` is the correct value.
        */
       type: 'stabilize';
+    }
+  | {
+      /**
+       * - `"itemCountChanged"`: Restart guess from the beginning as the itemsCount has changed.
+       */
+      type: 'itemCountChanged';
+      itemsCount: number;
     };
 
 /** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
@@ -401,6 +423,14 @@ const overflowGuessReducer = (
         maxGuess: doubleOfMaxGuess,
         visibleCount: getSafeVisibleCount(state.maxGuess * 2),
       };
+    case 'itemCountChanged':
+      if (!state.isStabilized) {
+        return state;
+      }
+
+      return overflowGuessReducerInitialState({
+        itemsCount: action.itemsCount,
+      });
     case 'stabilize':
       return {
         ...state,

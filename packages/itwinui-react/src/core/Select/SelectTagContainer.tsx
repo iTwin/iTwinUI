@@ -54,8 +54,6 @@ const SelectTagContainerContent = (props: SelectTagContainerContentProps) => {
   const { tags } = props;
   const { visibleCount } = OverflowContainer.useContext();
 
-  console.log('SelectTagContainerContent', visibleCount);
-
   return (
     <>
       {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
