@@ -592,9 +592,11 @@ export const Table = <
         return originalRow.subRows as T[];
       }
 
-      // If originalRow represents the top-most level row, add itself as a sub-row that will represent a subComponent.
+      // If originalRow represents the top-most level row, add itself as a sub-row
+      // that will represent a subComponent.
       // Add a symbol as a key on this sub-row to distinguish it from the real row.
-      // This distinction is needed as the sub-row needs to have all fields of the row since react-table expects even sub-rows to be rows (Row<T>).
+      // This distinction is needed as the sub-row needs to have all fields of the row
+      // since react-table expects even sub-rows to be rows (Row<T>).
       return [
         {
           [iuiId]: `subcomponent-${relativeIndex}`,
@@ -606,7 +608,8 @@ export const Table = <
   );
 
   /**
-   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row. Avoiding duplicate react-table ids prevents react-table errors.
+   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row.
+   * Avoiding duplicate react-table ids prevents react-table errors.
    */
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
