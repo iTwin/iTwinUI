@@ -582,19 +582,19 @@ export const Table = <
 
   const getSubRowsWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number) => {
-      console.log('row', originalRow);
       // If originalRow represents a sub-component, don't add any sub-rows to it
       if (originalRow[iuiId as any]) {
         return [];
       }
 
-      // If originalRow represents the top-most level row, add itself as a sub-row that will represent a subComponent.
-      // Add a symbol as a key on this sub-row to distinguish it from the real row.
-      // This distinction is needed as the sub-row needs to have all fields of the row since react-table expects even sub-rows to be rows (Row<T>).
+      // If sub-rows already exist, return them as they are.
       if (originalRow.subRows) {
         return originalRow.subRows as T[];
       }
 
+      // If originalRow represents the top-most level row, add itself as a sub-row that will represent a subComponent.
+      // Add a symbol as a key on this sub-row to distinguish it from the real row.
+      // This distinction is needed as the sub-row needs to have all fields of the row since react-table expects even sub-rows to be rows (Row<T>).
       return [
         {
           [iuiId]: `subcomponent-${relativeIndex}`,
@@ -610,15 +610,16 @@ export const Table = <
    */
   const getRowIdWithSubComponents = React.useCallback(
     (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
-      const mainRowId =
-        getRowId?.(originalRow, relativeIndex, parent) ?? `${relativeIndex}`;
-
-      // If the row contains the Symbol, it indicates that the current row is a sub-component row. We need to append the ID passed by user with its according sub-component ID.
-      return originalRow[iuiId as any]
-        ? `${mainRowId}-${
-            parent ? `${parent.id}.${relativeIndex}` : relativeIndex
-          }`
-        : mainRowId;
+      const defaultRowId = parent
+        ? `${parent.id}.${relativeIndex}`
+        : `${relativeIndex}`;
+      const rowIdFromUser = getRowId?.(originalRow, relativeIndex, parent);
+      // If the row contains the Symbol, it indicates that the current row is a sub-component row.
+      // We need to append the ID passed by user with its according sub-component ID.
+      if (rowIdFromUser && originalRow[iuiId as any]) {
+        return `${rowIdFromUser}-${defaultRowId}`;
+      }
+      return rowIdFromUser ?? defaultRowId;
     },
     [getRowId],
   );
