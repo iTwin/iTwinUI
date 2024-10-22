@@ -616,9 +616,10 @@ export const Table = <
       const rowIdFromUser = getRowId?.(originalRow, relativeIndex, parent);
       // If the row contains the Symbol, it indicates that the current row is a sub-component row.
       // We need to append the ID passed by user with its according sub-component ID.
-      if (rowIdFromUser && originalRow[iuiId as any]) {
+      if (rowIdFromUser !== undefined && originalRow[iuiId as any]) {
         return `${rowIdFromUser}-${defaultRowId}`;
       }
+
       return rowIdFromUser ?? defaultRowId;
     },
     [getRowId],

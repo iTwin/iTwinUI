@@ -1738,7 +1738,7 @@ it('should expand correctly', async () => {
 
 it('should show expandable content correctly after re-rendering', async () => {
   const data = mockedData();
-  const onExpandMock = vi.fn();
+  const getRowIdMock = vi.fn();
   const { rerender } = render(
     <Table
       columns={[
@@ -1753,7 +1753,6 @@ it('should show expandable content correctly after re-rendering', async () => {
       subComponent={(row) => (
         <div>{`Expanded component, name: ${row.original.name}`}</div>
       )}
-      onExpand={onExpandMock}
     />,
   );
   expect(screen.getAllByText('test1').length).toBe(3);
@@ -1772,7 +1771,7 @@ it('should show expandable content correctly after re-rendering', async () => {
       subComponent={(row) => (
         <div>{`Expanded component, name: ${row.original.name}`}</div>
       )}
-      onExpand={onExpandMock}
+      getRowId={getRowIdMock}
     />,
   );
   expect(screen.getAllByText('test2').length).toBe(3);
@@ -1782,6 +1781,9 @@ it('should show expandable content correctly after re-rendering', async () => {
   });
 
   screen.getByText('Expanded component, name: Name1');
+
+  // getRowId is called for each row and sub-row before and after re-rendering.
+  expect(getRowIdMock).toHaveBeenCalledTimes(12);
 });
 
 it('should expand correctly with a custom expander cell', async () => {
