@@ -6,7 +6,6 @@ import React from 'react';
 import { useMergedRefs } from '../hooks/useMergedRefs.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
-import { useLatestRef } from '../hooks/useLatestRef.js';
 import { useLayoutEffect } from '../hooks/useIsomorphicLayoutEffect.js';
 import { useSafeContext } from '../hooks/useSafeContext.js';
 import { isUnitTest } from '../functions/dev.js';
@@ -261,51 +260,22 @@ const useOverflow = (
     }
   }, [isStabilized, itemsCount, maxGuess, minGuess, orientation, visibleCount]);
 
-  const previousMinGuess = useLatestRef(minGuess);
-  const previousMaxGuess = useLatestRef(maxGuess);
-  const previousItemsCount = useLatestRef(itemsCount);
-  const previousVisibleCount = useLatestRef(visibleCount);
-  const previousContainer = useLatestRef(containerRef.current);
+  const [previousItemsCount, setPreviousItemsCount] =
+    React.useState(itemsCount);
 
+  // If itemsCount changes, we have to restart guessing.
+  if (itemsCount !== previousItemsCount) {
+    dispatch({ type: 'itemCountChanged', itemsCount });
+    setPreviousItemsCount(itemsCount);
+  }
+
+  // Before paint, guess the visible count until stabilized.
+  // If stabilized, do not guess.
   useLayoutEffect(() => {
-    // If itemsCount changes, we have to restart guessing.
-    if (itemsCount !== previousItemsCount.current) {
-      dispatch({ type: 'itemCountChanged', itemsCount });
-      return;
-    }
-
-    // If stabilized, do not guess.
-    if (isStabilized) {
-      return;
-    }
-
-    // If not stabilized, guess each time any of the guess related values or the container changes.
-    if (
-      visibleCount !== previousVisibleCount.current ||
-      minGuess !== previousMinGuess.current ||
-      maxGuess !== previousMaxGuess.current ||
-      containerRef.current !== previousContainer.current
-    ) {
-      previousVisibleCount.current = visibleCount;
-      previousMinGuess.current = minGuess;
-      previousMaxGuess.current = maxGuess;
-      previousContainer.current = containerRef.current;
-
+    if (!isStabilized) {
       guessVisibleCount();
     }
-  }, [
-    guessVisibleCount,
-    isStabilized,
-    itemsCount,
-    maxGuess,
-    minGuess,
-    previousContainer,
-    previousItemsCount,
-    previousMaxGuess,
-    previousMinGuess,
-    previousVisibleCount,
-    visibleCount,
-  ]);
+  }, [guessVisibleCount, isStabilized]);
 
   return [containerRef, visibleCount] as const;
 };
