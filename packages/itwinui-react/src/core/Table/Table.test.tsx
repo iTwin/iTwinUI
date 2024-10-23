@@ -3161,7 +3161,6 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 
   await userEvent.click(columnManager);
   const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
-  expect(columnManagerColumns[0].classList).toContain('iui-disabled');
   expect(columnManagerColumns[0].querySelector('input')?.disabled).toBeTruthy();
 });
 

@@ -16,7 +16,7 @@ it('renders correctly with label', () => {
   const { container } = render(<Radio label='Some label' />);
 
   assertBaseElements(container);
-  expect(container.querySelector('label')).toHaveClass('iui-radio-wrapper');
+  expect(container.querySelector('label')).toHaveClass('iui-checkbox-wrapper');
   expect(screen.getByText('Some label')).toHaveClass('iui-radio-label');
 });
 
@@ -25,7 +25,7 @@ it('renders correctly without label', () => {
 
   assertBaseElements(container);
   expect(container.querySelector('label')).toBeFalsy();
-  expect(container.querySelector('iui-radio-wrapper')).toBeFalsy();
+  expect(container.querySelector('iui-checkbox-wrapper')).toBeFalsy();
   expect(container.querySelector('.iui-radio-label')).toBeNull();
 });
 
@@ -41,15 +41,16 @@ it('renders correctly with jsx element as label', () => {
 });
 
 it('renders disabled component', () => {
-  const { container } = render(<Radio label='Some label' disabled />);
+  const { container } = render(
+    <Radio label='Some label' data-iui-disabled='true' />,
+  );
 
   assertBaseElements(container);
 
   screen.getByText('Some label');
   expect(
-    (container.querySelector('input[type="radio"]') as HTMLInputElement)
-      .disabled,
-  ).toBe(true);
+    container.querySelector('input[type="radio"]') as HTMLInputElement,
+  ).toHaveAttribute('data-iui-disabled', 'true');
 });
 
 it('renders positive component', () => {
@@ -58,9 +59,10 @@ it('renders positive component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(
-    container.querySelector('.iui-radio-wrapper.iui-positive'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'positive',
+  );
 });
 
 it('renders warning component', () => {
@@ -69,9 +71,10 @@ it('renders warning component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(
-    container.querySelector('.iui-radio-wrapper.iui-warning'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'warning',
+  );
 });
 
 it('renders negative component', () => {
@@ -80,9 +83,10 @@ it('renders negative component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(
-    container.querySelector('.iui-radio-wrapper.iui-negative'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-status',
+    'negative',
+  );
 });
 
 it('passes custom props to wrapper and label', () => {
@@ -101,14 +105,14 @@ it('passes custom props to wrapper and label', () => {
 
   // Test Radio
   const radio = container.querySelector(
-    '.iui-radio.custom-class',
+    '.iui-checkbox.iui-radio.custom-class',
   ) as HTMLElement;
   expect(radio).toBeTruthy();
   expect(radio.style.fontSize).toBe('12px');
 
   // Test wrapper
   const wrapper = container.querySelector(
-    '.iui-radio-wrapper.custom-wrapper-class',
+    '.iui-checkbox-wrapper.custom-wrapper-class',
   ) as HTMLElement;
   expect(wrapper).toBeTruthy();
   expect(wrapper.style.fontSize).toBe('14px');

@@ -1,11 +1,143 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use './mixins' as *;
+@use '../mixins';
 
 .iui-checkbox-wrapper {
-  @include iui-checkbox-wrapper;
+  @include mixins.iui-reset;
+  display: flex;
+  align-items: center;
+  font-size: var(--iui-font-size-1);
+  inline-size: fit-content;
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+  color: var(--iui-color-text);
+  gap: var(--iui-size-xs);
+
+  &[data-iui-loading='true'] {
+    cursor: progress;
+    font-style: italic;
+    color: var(--iui-color-text-disabled);
+  }
+
+  > .iui-checkbox-label,
+  > .iui-radio-label {
+    line-height: var(--iui-size-l);
+
+    svg {
+      @include mixins.iui-icon-style('m');
+      vertical-align: middle;
+      fill: var(--iui-color-icon);
+    }
+  }
+
+  &[data-iui-disabled='true'] {
+    cursor: not-allowed;
+    color: var(--iui-color-text-disabled);
+
+    svg {
+      fill: var(--iui-color-icon-disabled);
+    }
+  }
+
+  @each $status in ('positive', 'warning', 'negative') {
+    &[data-iui-status='#{$status}'] {
+      color: var(--iui-color-text-#{$status});
+    }
+  }
 }
 
 .iui-checkbox {
-  @include iui-checkbox;
+  --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
+  --_iui-checkbox-indeterminate-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m2.75 6.875h10.5v2.25h-10.5z" /></svg>');
+  --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
+
+  --_iui-checkbox-svg-color: var(--iui-color-icon-accent);
+  --_iui-checkbox-border-color: var(--iui-color-border-foreground);
+  --_iui-checkbox-background-color: var(--iui-color-background);
+  --_iui-checkbox-mask-image: initial;
+
+  @include mixins.iui-icon-style('m');
+  appearance: none; // disable default browser styles
+  margin: 0;
+  position: relative;
+  border-radius: var(--iui-border-radius-1);
+  background-color: var(--_iui-checkbox-background-color);
+  cursor: pointer;
+  transition: outline-color var(--iui-duration-1) ease-out;
+  outline: solid 1px var(--_iui-checkbox-border-color);
+  outline-offset: -1px;
+
+  // increase tap target size to 24x24 by default and allow adjusting through CSS var
+  &::before {
+    content: '';
+    position: absolute;
+    inset: calc((var(--iui-checkbox-target-size, 24px) - 16px) / -2);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--_iui-checkbox-svg-color);
+    mask: var(--_iui-checkbox-mask-image) no-repeat center;
+  }
+
+  &:not(:checked) {
+    --_iui-checkbox-mask-image: var(--_iui-checkbox-unchecked-svg);
+  }
+
+  &:checked {
+    --_iui-checkbox-mask-image: var(--_iui-checkbox-checkmark-svg);
+  }
+
+  &:indeterminate {
+    --_iui-checkbox-mask-image: var(--_iui-checkbox-indeterminate-svg);
+  }
+
+  &:hover {
+    --_iui-checkbox-border-color: var(--iui-color-border-foreground-hover);
+  }
+
+  @include mixins.iui-focus($thickness: 2px);
+
+  &:disabled {
+    --_iui-checkbox-svg-color: var(--iui-color-icon-disabled);
+    --_iui-checkbox-border-color: var(--iui-color-border-disabled);
+    --_iui-checkbox-background-color: var(--iui-color-background-disabled);
+    cursor: not-allowed;
+  }
+
+  &.iui-checkbox-visibility {
+    --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m8 2.99051a8.81883 8.81883 0 0 0 -8 4.95062 8.74664 8.74664 0 0 0 8 5.06836 8.63266 8.63266 0 0 0 8-5.06836 8.83631 8.83631 0 0 0 -8-4.95062zm-1.31445 1.86981a1.47663 1.47663 0 1 1 -1.47663 1.47668 1.47665 1.47665 0 0 1 1.47663-1.47668zm1.31445 6.64917a7.17486 7.17486 0 0 1 -6.30475-3.55237 7.4952 7.4952 0 0 1 2.81475-2.6336 3.83956 3.83956 0 1 0 6.98126.00244 7.522 7.522 0 0 1 2.81774 2.63916 7.09785 7.09785 0 0 1 -6.309 3.54437z" /></svg>');
+    --_iui-checkbox-indeterminate-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m8 3v7.9a4.01179 4.01179 0 0 0 4-4 6.7509 6.7509 0 0 0 -.2-1.4l.1.1a6.89429 6.89429 0 0 1 2.4 2.4 8.39088 8.39088 0 0 1 -2.3 2.3 6.89412 6.89412 0 0 1 -3.9 1.2c-.03345 0-.06653-.00677-.1-.0072v1.5072a8.90686 8.90686 0 0 0 8-5 8.90686 8.90686 0 0 0 -8-5z" opacity=".33" /><path d="m8 0a1 1 0 0 0 -1 1v2.07135a8.91637 8.91637 0 0 0 -7 4.92865 8.91637 8.91637 0 0 0 7 4.92865v2.07135a1 1 0 0 0 2 0v-14a1 1 0 0 0 -1-1zm-1.5 4.9a1.55426 1.55426 0 0 1 .5.087v2.81451a1.40746 1.40746 0 0 1 -.5.09849 1.538 1.538 0 0 1 -1.5-1.5 1.53794 1.53794 0 0 1 1.5-1.5zm-2.3 5.4a6.97279 6.97279 0 0 1 -2.5-2.3 6.89429 6.89429 0 0 1 2.4-2.4c.1 0 .1-.1.2-.1a3.194 3.194 0 0 0 -.3 1.4 4.0047 4.0047 0 0 0 3 3.857v.65289a6.37491 6.37491 0 0 1 -2.8-1.10989z" /></svg>');
+    --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m1.70671 12.879 11.17218-11.17219 1.4142 1.4142-11.17218 11.17218zm.99329-1.679 1.1-1.1a5.06317 5.06317 0 0 1 -2-2.1 7.48268 7.48268 0 0 1 6.2-3.5 4.86877 4.86877 0 0 1 1.2.1l1.3-1.3a10.07431 10.07431 0 0 0 -2.5-.3 8.84129 8.84129 0 0 0 -8 5 8.42455 8.42455 0 0 0 2.7 3.2zm10.7-6.4-1.1 1.1a7.08625 7.08625 0 0 1 2 2.1 7.50323 7.50323 0 0 1 -6.2 3.5 8.31665 8.31665 0 0 1 -1.3-.2l-1.3 1.3a8.909 8.909 0 0 0 6.4-.5 9.04344 9.04344 0 0 0 4.1-4.1 9.168 9.168 0 0 0 -2.6-3.2z" /></svg>');
+
+    --_iui-checkbox-border-color: transparent;
+    --_iui-checkbox-background-color: transparent;
+
+    outline-width: 1px;
+
+    &:where(:not(:checked):not(:indeterminate)) {
+      --_iui-checkbox-svg-color: var(--iui-color-icon);
+    }
+
+    &:where(:hover) {
+      --_iui-checkbox-border-color: transparent;
+      --_iui-checkbox-background-color: var(--iui-color-background-transparent-hover);
+    }
+
+    &:where(:disabled) {
+      --_iui-checkbox-svg-color: var(--iui-color-icon-disabled);
+      --_iui-checkbox-background-color: var(--iui-color-background-disabled);
+    }
+  }
+
+  &[data-iui-loading='true'] {
+    --_iui-checkbox-border-color: transparent;
+    --_iui-checkbox-background-color: transparent;
+    opacity: 0;
+    position: absolute;
+    cursor: wait;
+  }
 }
