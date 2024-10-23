@@ -1,5 +1,5 @@
 .turbo
 node_modules
 dist
-!styles.module.css
+!styles.css
 !unscoped.css
