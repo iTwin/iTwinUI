@@ -21,8 +21,16 @@ describe('ComboBox', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
+
+      if (testName === 'Multiple Select') {
+        // Hide the dividers and checkboxs/labels for test image
+        cy.get('hr').hide();
+        cy.get('label').hide();
+      }
+
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('input').focus();
+      cy.get('[role=combobox]').focus();
+
       if (testName === 'Multiple Select') {
         cy.get('[role=option]').then((els) => {
           const items = Array.from(els, (el) => el);

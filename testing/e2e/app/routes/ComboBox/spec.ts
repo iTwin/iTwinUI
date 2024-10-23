@@ -88,44 +88,6 @@ test('should not have flickering tags (fixes #2112)', async ({ page }) => {
   expect(stabalizedCount).toBe(newCount);
 });
 
-test(`should clear filter and input value when an option is toggled and when focus is lost (multiple=true)`, async ({
-  page,
-}) => {
-  await page.goto(`/ComboBox?multiple=true`);
-
-  const options = page.getByRole('option');
-  const input = page.locator('input');
-
-  await input.focus();
-  await input.fill('1');
-
-  await expect(options).toHaveCount(3);
-  await expect(input).toHaveValue('1');
-
-  await options.first().click();
-
-  // Should clear filter when an option is toggled
-  await expect(options).not.toHaveCount(3);
-  await expect(input).toHaveValue('');
-
-  await input.fill('1');
-
-  await expect(options).toHaveCount(3);
-  await expect(input).toHaveValue('1');
-
-  await page.keyboard.press('Tab');
-
-  // Should clear filter when focus is lost
-  await expect(options).toHaveCount(0);
-  await expect(input).toHaveValue('');
-
-  await input.focus();
-
-  // Should not be filtered the next time the menu is opened
-  await expect(options).toHaveCount(defaultOptions.length);
-  await expect(input).toHaveValue('');
-});
-
 test(`should clear filter and set input value when an option is toggled and when focus is lost (multiple=false)`, async ({
   page,
 }) => {
@@ -165,6 +127,52 @@ test(`should clear filter and set input value when an option is toggled and when
   // Should clear filter and set back the input value when focus is lost
   await expect(options).toHaveCount(0);
   await expect(input).toHaveValue('Item 1');
+});
+
+[false, true, undefined].map((clearFilterOnOptionToggle) => {
+  test(`should support clearFilterOnOptionToggle=${clearFilterOnOptionToggle} (multiple=true)`, async ({
+    page,
+  }) => {
+    const clearFilterOnOptionToggleQueryParam =
+      clearFilterOnOptionToggle != null
+        ? `&clearFilterOnOptionToggle=${clearFilterOnOptionToggle}`
+        : '';
+
+    await page.goto(
+      '/ComboBox?multiple=true' + clearFilterOnOptionToggleQueryParam,
+    );
+
+    const options = page.locator('[role="option"]');
+    const input = page.locator('input');
+
+    await input.fill('1');
+    await expect(options).toHaveCount(3);
+
+    await options.first().click();
+
+    if (clearFilterOnOptionToggle !== false) {
+      await expect(input).toHaveValue('');
+      await expect(options).not.toHaveCount(3);
+    } else {
+      await expect(input).toHaveValue('1');
+      await expect(options).toHaveCount(3);
+    }
+
+    await expect(page.locator('[role=option][aria-selected=true]')).toHaveCount(
+      1,
+    );
+
+    await input.fill('1');
+
+    await expect(options).toHaveCount(3);
+    await expect(input).toHaveValue('1');
+
+    await page.keyboard.press('Tab');
+
+    // Regardless of clearFilterOnOptionToggle, the filter should be cleared when focus is lost
+    await expect(options).toHaveCount(0);
+    await expect(input).toHaveValue('');
+  });
 });
 
 test.describe('ComboBox (virtualization)', () => {
@@ -243,7 +251,7 @@ test.describe('ComboBox (virtualization)', () => {
 
     //Filter and focus first
     await comboBoxInput.fill('1');
-    expect(items).toHaveCount(3);
+    await expect(items).toHaveCount(3);
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
