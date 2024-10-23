@@ -347,6 +347,12 @@ const ComboBoxMultipleSelectExample = withThemeProvider(
 );
 export { ComboBoxMultipleSelectExample };
 
+import { default as ComboBoxMultipleSelectFilterBehaviorExampleRaw } from './ComboBox.multipleSelectFilterBehavior';
+const ComboBoxMultipleSelectFilterBehaviorExample = withThemeProvider(
+  ComboBoxMultipleSelectFilterBehaviorExampleRaw,
+);
+export { ComboBoxMultipleSelectFilterBehaviorExample };
+
 import { default as ComboBoxStatusExampleRaw } from './ComboBox.status';
 const ComboBoxStatusExample = withThemeProvider(ComboBoxStatusExampleRaw);
 export { ComboBoxStatusExample };
