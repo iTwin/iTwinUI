@@ -53,7 +53,7 @@ type OverflowContainerProps = {
  *   );
  * };
  */
-const OverflowContainerMain = React.forwardRef((props, ref) => {
+const OverflowContainerMain = React.forwardRef((props, forwardedRef) => {
   const { itemsCount, children, overflowOrientation, ...rest } = props;
 
   const [containerRef, visibleCount] = useOverflow(
@@ -68,7 +68,7 @@ const OverflowContainerMain = React.forwardRef((props, ref) => {
 
   return (
     <OverflowContainerContext.Provider value={overflowContainerContextValue}>
-      <Box ref={useMergedRefs(ref, containerRef)} {...rest}>
+      <Box ref={useMergedRefs(forwardedRef, containerRef)} {...rest}>
         {children}
       </Box>
     </OverflowContainerContext.Provider>
@@ -103,18 +103,23 @@ const OverflowContainerOverflowNode = (
 // ----------------------------------------------------------------------------
 
 const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
-  const { overflowOrientation = 'horizontal', ...rest } = props;
+  const { itemsCount, overflowOrientation = 'horizontal', ...rest } = props;
 
   const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
   const [resizeRef] = useResizeObserver(setSize);
 
   const ref = useMergedRefs(resizeRef, forwardedRef);
 
+  const key =
+    `${itemsCount}` +
+    `${overflowOrientation === 'vertical' ? size?.height : size?.width}`;
+
   return (
     <OverflowContainerMain
       {...rest}
-      key={overflowOrientation === 'vertical' ? size?.height : size?.width}
+      key={key}
       ref={ref}
+      itemsCount={itemsCount}
       overflowOrientation={overflowOrientation}
     />
   );
@@ -278,15 +283,6 @@ const useOverflow = (
     }
   }, [isStabilized, itemsCount, maxGuess, minGuess, orientation, visibleCount]);
 
-  const [previousItemsCount, setPreviousItemsCount] =
-    React.useState(itemsCount);
-
-  // If itemsCount changes, we have to restart guessing.
-  if (itemsCount !== previousItemsCount) {
-    dispatch({ type: 'itemCountChanged', itemsCount });
-    setPreviousItemsCount(itemsCount);
-  }
-
   // Guess the visible count until stabilized.
   // To prevent flicking, use useLayoutEffect to paint only after stabilized.
   useLayoutEffect(() => {
@@ -343,13 +339,6 @@ type GuessAction =
        * - `"stabilize"`: Stop guessing as `visibleCount` is the correct value.
        */
       type: 'stabilize';
-    }
-  | {
-      /**
-       * - `"itemCountChanged"`: Restart guess from the beginning as the itemsCount has changed.
-       */
-      type: 'itemCountChanged';
-      itemsCount: number;
     };
 
 /** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
@@ -411,14 +400,6 @@ const overflowGuessReducer = (
         maxGuess: doubleOfMaxGuess,
         visibleCount: getSafeVisibleCount(state.maxGuess * 2),
       };
-    case 'itemCountChanged':
-      if (!state.isStabilized) {
-        return state;
-      }
-
-      return overflowGuessReducerInitialState({
-        itemsCount: action.itemsCount,
-      });
     case 'stabilize':
       return {
         ...state,
