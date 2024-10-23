@@ -103,26 +103,17 @@ const OverflowContainerOverflowNode = (
 // ----------------------------------------------------------------------------
 
 const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
-  const {
-    key: keyProp,
-    overflowOrientation = 'horizontal',
-    ref: refProp,
-    ...rest
-  } = props;
+  const { overflowOrientation = 'horizontal', ...rest } = props;
 
   const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
   const [resizeRef] = useResizeObserver(setSize);
 
-  const ref = useMergedRefs(resizeRef, forwardedRef, refProp);
-
-  const sizeKey =
-    overflowOrientation === 'vertical' ? size?.height : size?.width;
-  const key = `${keyProp}-${sizeKey}`;
+  const ref = useMergedRefs(resizeRef, forwardedRef);
 
   return (
     <OverflowContainerMain
       {...rest}
-      key={key}
+      key={overflowOrientation === 'vertical' ? size?.height : size?.width}
       ref={ref}
       overflowOrientation={overflowOrientation}
     />
