@@ -66,7 +66,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
 
   const changeActivePanel = React.useCallback(
-    async (newActiveId: string) => {
+    (newActiveId: string) => {
       if (
         // Only if forProp is a panel, go to the new panel.
         !panels.current.has(newActiveId) ||
@@ -146,7 +146,7 @@ export const PanelsWrapperContext = React.createContext<
       setTriggers: React.Dispatch<
         React.SetStateAction<Record<string, TriggerMapEntry>>
       >;
-      changeActivePanel: (newActiveId: string) => Promise<void>;
+      changeActivePanel: (newActiveId: string) => void;
       shouldFocus: FocusEntry;
       setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
       panels: React.MutableRefObject<Set<string>>;
@@ -210,7 +210,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           id={id}
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header-title`}
-          {...{ inert: isInert ? 'true' : undefined }}
+          {...{ inert: isInert ? '' : undefined }}
           data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
         >
@@ -231,6 +231,9 @@ const PanelContext = React.createContext<
     }
   | undefined
 >(undefined);
+if (process.env.NODE_ENV === 'development') {
+  PanelContext.displayName = 'PanelContext';
+}
 
 // #endregion Panel
 // ----------------------------------------------------------------------------
@@ -288,11 +291,6 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   const logWarning = useWarningLogger();
 
   React.useEffect(() => {
-    // Wait for panels to be set
-    if (panels.current.size === 0) {
-      return;
-    }
-
     if (!panels.current.has(forProp)) {
       logWarning(
         `Panels.Trigger's \`for\` prop ("${forProp}") corresponds to no Panel.`,
@@ -411,7 +409,7 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
   return (
     <IconButton
       ref={forwardedRef}
-      aria-label='Back'
+      aria-label='Previous panel'
       styleType='borderless'
       size='small'
       data-iui-shift='left'
