@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.15.5
+
+### Patch Changes
+
+- [#2306](https://github.com/iTwin/iTwinUI/pull/2306): Fixed broken expandable content when `Table` is asynchronously re-rendered as well as the max depth reached error caused by the `getRowId` prop passed into `Table`.
+
 ## 3.15.4
 
 ### Patch Changes
