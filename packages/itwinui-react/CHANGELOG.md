@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.16.0
+
+### Minor Changes
+
+- [#2294](https://github.com/iTwin/iTwinUI/pull/2294): `ComboBox` with `multiple` enabled now offers a `clearFilterOnOptionToggle` prop to control whether the filter is cleared or not when an option is toggled. The default multi select `ComboBox` behavior is unchanged since the default prop value is `true`.
+- 5d313a763b5b5996664a3af14c8270e40dc07b72: Added new `tileContainer` prop to `RadioTileGroup` to allow further customizing of inner DOM elements.
+
+### Patch Changes
+
+- [#2311](https://github.com/iTwin/iTwinUI/pull/2311): Updated the default value of `Dialog`'s `setFocus` prop to be based on the value of the `trapFocus` prop.
+
 ## 3.15.5
 
 ### Patch Changes
