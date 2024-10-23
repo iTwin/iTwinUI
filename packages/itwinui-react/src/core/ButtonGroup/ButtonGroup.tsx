@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  Box,
-  OverflowContainer,
-  useMergedRefs,
-  useResizeObserver,
-} from '../../utils/index.js';
+import { Box, OverflowContainer } from '../../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -197,14 +192,8 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     [childrenProp],
   );
 
-  const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
-  const [resizeRef] = useResizeObserver(setSize);
-
-  const ref = useMergedRefs(resizeRef, forwardedRef);
-
   return (
     <OverflowContainer
-      key={orientation === 'horizontal' ? size?.width : size?.height}
       as={BaseGroup}
       itemsCount={items.length}
       overflowOrientation={orientation}
@@ -217,7 +206,7 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
         },
         props.className,
       )}
-      ref={ref}
+      ref={forwardedRef}
     >
       <OverflowGroupContent
         overflowButton={overflowButton}

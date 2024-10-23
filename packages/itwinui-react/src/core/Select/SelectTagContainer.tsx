@@ -6,8 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { SelectTag } from './SelectTag.js';
-import { OverflowContainer, useResizeObserver } from '../../utils/index.js';
-import { useMergeRefs } from '@floating-ui/react';
+import { OverflowContainer } from '../../utils/index.js';
 
 type SelectTagContainerProps = {
   /**
@@ -26,17 +25,11 @@ export const SelectTagContainer = React.forwardRef((props, forwardedRef) => {
     [tagsProp],
   );
 
-  const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
-  const [resizeRef] = useResizeObserver(setSize);
-
-  const ref = useMergeRefs([resizeRef, forwardedRef]);
-
   return (
     <OverflowContainer
-      key={size?.width}
       itemsCount={tags.length}
       className={cx('iui-select-tag-container', className)}
-      ref={ref}
+      ref={forwardedRef}
       {...rest}
     >
       <SelectTagContainerContent {...props} tags={tags} />

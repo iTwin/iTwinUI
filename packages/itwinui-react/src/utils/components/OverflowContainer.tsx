@@ -9,6 +9,7 @@ import { Box } from './Box.js';
 import { useLayoutEffect } from '../hooks/useIsomorphicLayoutEffect.js';
 import { useSafeContext } from '../hooks/useSafeContext.js';
 import { isUnitTest } from '../functions/dev.js';
+import { useResizeObserver } from '../hooks/useResizeObserver.js';
 
 type OverflowContainerProps = {
   /**
@@ -24,10 +25,9 @@ type OverflowContainerProps = {
 
 /**
  * Useful to handle overflow of items in a container.
+ * Also listens to resize changes along the overflowOrientation.
  *
- * The listen to resize changes, pass a new `key` to reset the overflow calculations.
- *
- * Notes:
+ * API:
  * - Use `OverflowContainer.useContext()` to get overflow related properties.
  * - Wrap overflow content in `OverflowContainer.OverflowNode` to conditionally render it when overflowing.
  *
@@ -36,15 +36,8 @@ type OverflowContainerProps = {
  *   .fill()
  *   .map((_, i) => <span>Item {i}</span>);
  *
- * const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
- * const [resizeRef] = useResizeObserver(setSize);
- *
  * return (
- *   <OverflowContainer
- *     key={size?.width}
- *     ref={resizeRef}
- *     itemsCount={items.length}
- *   >
+ *   <OverflowContainer itemsCount={items.length}>
  *     {items}
  *     <MyOverflowContainerContent />
  *   </OverflowContainer>
@@ -60,7 +53,7 @@ type OverflowContainerProps = {
  *   );
  * };
  */
-const OverflowContainerComponent = React.forwardRef((props, ref) => {
+const OverflowContainerMain = React.forwardRef((props, ref) => {
   const { itemsCount, children, overflowOrientation, ...rest } = props;
 
   const [containerRef, visibleCount] = useOverflow(
@@ -80,7 +73,12 @@ const OverflowContainerComponent = React.forwardRef((props, ref) => {
       </Box>
     </OverflowContainerContext.Provider>
   );
-}) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
+}) as PolymorphicForwardRefComponent<
+  'div',
+  OverflowContainerProps & {
+    overflowOrientation: Required<OverflowContainerProps>['overflowOrientation'];
+  }
+>;
 
 // ----------------------------------------------------------------------------
 
@@ -101,6 +99,35 @@ const OverflowContainerOverflowNode = (
 
   return isOverflowing ? children : null;
 };
+
+// ----------------------------------------------------------------------------
+
+const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
+  const {
+    key: keyProp,
+    overflowOrientation = 'horizontal',
+    ref: refProp,
+    ...rest
+  } = props;
+
+  const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
+  const [resizeRef] = useResizeObserver(setSize);
+
+  const ref = useMergedRefs(resizeRef, forwardedRef, refProp);
+
+  const sizeKey =
+    overflowOrientation === 'vertical' ? size?.height : size?.width;
+  const key = `${keyProp}-${sizeKey}`;
+
+  return (
+    <OverflowContainerMain
+      {...rest}
+      key={key}
+      ref={ref}
+      overflowOrientation={overflowOrientation}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
 
 // ----------------------------------------------------------------------------
 
@@ -269,8 +296,8 @@ const useOverflow = (
     setPreviousItemsCount(itemsCount);
   }
 
-  // Before paint, guess the visible count until stabilized.
-  // If stabilized, do not guess.
+  // Guess the visible count until stabilized.
+  // To prevent flicking, use useLayoutEffect to paint only after stabilized.
   useLayoutEffect(() => {
     if (!isStabilized) {
       guessVisibleCount();
