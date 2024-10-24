@@ -1,0 +1,1 @@
+import{r as a,B as c,c as l,V as i}from"./index-7nKTUIFH.js";const m=a.forwardRef((e,r)=>{const{isExternal:n,children:t,...s}=e;return a.createElement(c,{as:"a",...s,ref:r,className:l("iui-anchor",{"iui-anchor-external":n},e.className)},t,e.target==="_blank"&&a.createElement(i,null," (opens in new tab)"))});export{m as A};
