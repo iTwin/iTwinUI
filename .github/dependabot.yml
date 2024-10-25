@@ -6,6 +6,14 @@
 version: 2
 updates:
   - package-ecosystem: 'pnpm'
-    directory: '/'
+    directories:
+      - '/'
+      - '/apps/*'
+      - '/packages/*'
+      - '/playgrounds/*'
+      - '/internal/*'
+      - '/examples'
+      - '/testing/*'
     schedule:
-      interval: 'monthly'
+      interval: 'daily'
+      timezone: 'US/Eastern'
