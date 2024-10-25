@@ -1981,6 +1981,43 @@ it('should select and filter rows', async () => {
   expect(checkboxInputs[3].checked).toBe(false);
 });
 
+it('should only select main row when subComponent is present', async () => {
+  const logSpy = vitest.spyOn(console, 'log');
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+  ];
+
+  const data = mockedData();
+
+  const { container } = renderComponent({
+    columns,
+    data,
+    isSelectable: true,
+    onSelect: (selectedRows) => console.log(selectedRows),
+  });
+
+  const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
+  expect(checkboxCells.length).toBe(4);
+
+  await userEvent.click(checkboxCells[0]);
+  expect(logSpy).toHaveBeenCalledWith(data);
+
+  await userEvent.click(checkboxCells[1]);
+  expect(logSpy).toHaveBeenCalledWith([data[1], data[2]]);
+
+  await userEvent.click(checkboxCells[2]);
+  expect(logSpy).toHaveBeenCalledWith([data[2]]);
+});
+
 it('should pass custom props to row', () => {
   const onMouseEnter = vi.fn();
   let element: HTMLInputElement | null = null;

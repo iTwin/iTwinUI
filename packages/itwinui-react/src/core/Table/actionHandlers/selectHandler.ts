@@ -9,6 +9,7 @@ import type {
   TableState,
   IdType,
 } from '../../../react-table/react-table.js';
+import { iuiId } from '../Table.js';
 
 /**
  * Handles subrow selection and validation.
@@ -190,7 +191,10 @@ const getSelectedData = <T extends Record<string, unknown>>(
 ) => {
   const selectedData: T[] = [];
   const setSelectedData = (row: Row<T>) => {
-    if (selectedRowIds[row.id]) {
+    // Check whether the row selected is a sub-component.
+    // If so, exclude it from the selected data.
+    const isMainRow = row.original[iuiId as any] === undefined;
+    if (selectedRowIds[row.id] && isMainRow) {
       selectedData.push(row.original);
     }
     row.initialSubRows.forEach((subRow) => setSelectedData(subRow));
