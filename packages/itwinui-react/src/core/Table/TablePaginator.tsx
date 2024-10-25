@@ -236,6 +236,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     </>
   );
 
+  const centerContainerRef = React.useRef<HTMLDivElement>(null);
+
   if (!showPagesList && !showPageSizeList) {
     return null;
   }
@@ -252,7 +254,12 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         )}
       </Box>
       {showPagesList && (
-        <OverflowContainer className='iui-center' itemsCount={totalPagesCount}>
+        <OverflowContainer
+          key={centerContainerRef.current?.scrollWidth}
+          ref={centerContainerRef}
+          className='iui-center'
+          itemsCount={totalPagesCount}
+        >
           <IconButton
             styleType='borderless'
             disabled={currentPage === 0}
