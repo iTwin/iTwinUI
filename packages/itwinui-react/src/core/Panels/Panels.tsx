@@ -45,15 +45,8 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [activePanelId, _setActivePanelId] = React.useState<string | undefined>(
+  const [activePanelId, setActivePanelId] = React.useState<string | undefined>(
     undefined,
-  );
-  const setActivePanelId = React.useCallback(
-    (newActivePanel: NonNullable<typeof activePanelId>) => {
-      _setActivePanelId(newActivePanel);
-      onActiveIdChange?.(newActivePanel);
-    },
-    [onActiveIdChange],
   );
 
   const [triggers, setTriggers] = React.useState<
@@ -77,13 +70,15 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       }
 
       ReactDOM.flushSync(() => setActivePanelId(newActiveId));
+      onActiveIdChange?.(newActiveId);
+
       ref.current?.ownerDocument.getElementById(newActiveId)?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
         behavior: motionOk ? 'smooth' : 'instant',
       });
     },
-    [activePanelId, motionOk, setActivePanelId],
+    [activePanelId, motionOk, onActiveIdChange],
   );
 
   return (
@@ -184,6 +179,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
     // In the beginning, show the first <Panel> in the DOM
     const isFirstPanel = activePanelId == null && panels.current.size === 0;
     if (isFirstPanel) {
+      // Set the first panel as active without calling onActiveIdChange since this is initialization.
       setActivePanelId(id);
     }
 
