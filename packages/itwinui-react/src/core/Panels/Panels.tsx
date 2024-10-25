@@ -15,6 +15,8 @@ import {
   useMediaQuery,
   useWarningLogger,
   useLayoutEffect,
+  useControlledState,
+  useLatestRef,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -41,20 +43,21 @@ export type PanelsWrapperProps = {
 };
 
 const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
-  const { children, className, onActiveIdChange, instance, ...rest } = props;
+  const {
+    children,
+    className,
+    onActiveIdChange: onActiveIdChangeProp,
+    instance,
+    ...rest
+  } = props;
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
-  const [activePanelId, _setActivePanelId] = React.useState<string | undefined>(
-    undefined,
-  );
-  const setActivePanelId = React.useCallback(
-    (newActivePanel: NonNullable<typeof activePanelId>) => {
-      _setActivePanelId(newActivePanel);
-      onActiveIdChange?.(newActivePanel);
-    },
-    [onActiveIdChange],
-  );
+  const onActiveIdChange = useLatestRef(onActiveIdChangeProp);
+
+  const [activePanelId, setActivePanelId] = useControlledState<
+    string | undefined
+  >(undefined, undefined, onActiveIdChange.current);
 
   const [triggers, setTriggers] = React.useState<
     Record<string, TriggerMapEntry>
