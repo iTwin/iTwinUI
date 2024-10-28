@@ -17,7 +17,6 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
-  useLayoutEffect,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -149,7 +148,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   const pageListRef = React.useRef<HTMLDivElement | null>(null);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number>(currentPage);
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     setFocusedIndex(currentPage);
   }, [currentPage]);
 
@@ -373,10 +372,8 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
         styleType='borderless'
         size={buttonSize}
         data-iui-active={index === currentPage}
-        onClick={() => {
-          setFocusedIndex(index);
-          onPageChange(index);
-        }}
+        onFocus={() => setFocusedIndex(index)}
+        onClick={() => onPageChange(index)}
         aria-current={index === currentPage}
         aria-label={localization.goToPageLabel?.(index + 1)}
         tabIndex={tabIndex}
