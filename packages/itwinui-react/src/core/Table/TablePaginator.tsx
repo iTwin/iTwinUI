@@ -372,8 +372,10 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
         styleType='borderless'
         size={buttonSize}
         data-iui-active={index === currentPage}
-        onFocus={() => setFocusedIndex(index)}
-        onClick={() => onPageChange(index)}
+        onClick={() => {
+          setFocusedIndex(index);
+          onPageChange(index);
+        }}
         aria-current={index === currentPage}
         aria-label={localization.goToPageLabel?.(index + 1)}
         tabIndex={tabIndex}
