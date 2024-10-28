@@ -638,6 +638,53 @@ test.describe('Table Paginator', () => {
     await page.waitForTimeout(300);
   });
 
+  test('should handle focus of page buttons when focusActivationMode is manual', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/Table?exampleType=withTablePaginator&focusActivationMode=manual',
+    );
+
+    const paginatorButtons = page.locator('#paginator button', {
+      hasText: /[0-9]+/,
+    });
+
+    await paginatorButtons.nth(8).click();
+    await expect(paginatorButtons.nth(8)).toBeFocused();
+
+    // Confirm that arrow keys move focus from _previously focused page_.
+    await page.keyboard.press('ArrowRight');
+    await expect(paginatorButtons.nth(9)).toBeFocused();
+    await expect(paginatorButtons.nth(1)).not.toBeFocused();
+
+    // Clicking current page itself focuses that page button.
+    await paginatorButtons.nth(8).click();
+    await expect(paginatorButtons.nth(8)).toBeFocused();
+
+    // Confirm that arrow keys move focus from _previously focused page_.
+    await page.keyboard.press('ArrowRight');
+    await expect(paginatorButtons.nth(9)).toBeFocused();
+    await expect(paginatorButtons.nth(10)).not.toBeFocused();
+
+    // Clicking non-current page focuses that page button.
+    await paginatorButtons.nth(4).click();
+    await expect(paginatorButtons.nth(4)).toBeFocused();
+
+    // Confirm that arrow keys move focus from _previously focused page_.
+    await page.keyboard.press('ArrowLeft');
+    await expect(paginatorButtons.nth(3)).toBeFocused();
+    await expect(paginatorButtons.nth(8)).not.toBeFocused();
+
+    // Focus somehow goes to a particular page
+    await paginatorButtons.nth(6).focus();
+    await expect(paginatorButtons.nth(6)).toBeFocused();
+
+    // Confirm that arrow keys move focus from _previously focused page_.
+    await page.keyboard.press('ArrowLeft');
+    await expect(paginatorButtons.nth(5)).toBeFocused();
+    await expect(paginatorButtons.nth(2)).not.toBeFocused();
+  });
+
   //#region Helpers for table paginator tests
   const setContainerSize = async (page: Page, value: string | undefined) => {
     await page.locator('#container').evaluate(
