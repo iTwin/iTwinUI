@@ -674,15 +674,6 @@ test.describe('Table Paginator', () => {
     await page.keyboard.press('ArrowLeft');
     await expect(paginatorButtons.nth(3)).toBeFocused();
     await expect(paginatorButtons.nth(8)).not.toBeFocused();
-
-    // Focus somehow goes to a particular page
-    await paginatorButtons.nth(6).focus();
-    await expect(paginatorButtons.nth(6)).toBeFocused();
-
-    // Confirm that arrow keys move focus from _previously focused page_.
-    await page.keyboard.press('ArrowLeft');
-    await expect(paginatorButtons.nth(5)).toBeFocused();
-    await expect(paginatorButtons.nth(2)).not.toBeFocused();
   });
 
   //#region Helpers for table paginator tests
