@@ -476,7 +476,7 @@ test.describe('Table Paginator', () => {
     await setContainerSize(page, '800px');
 
     // Go to the 5th page
-    await page.locator('#paginator button', { hasText: '5' }).click();
+    await paginatorButtons.nth(4).click();
 
     await expect(paginatorButtons).toHaveText([
       '1',
@@ -487,10 +487,10 @@ test.describe('Table Paginator', () => {
       '7',
       '11',
     ]);
-
-    await expect(
-      page.locator('#paginator button', { hasText: '5' }),
-    ).toHaveAttribute('data-iui-active', 'true');
+    await expect(paginatorButtons.nth(3)).toHaveAttribute(
+      'data-iui-active',
+      'true',
+    );
 
     await expect(page.getByText('…')).toHaveCount(2);
   });
