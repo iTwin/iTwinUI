@@ -275,6 +275,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
               <TablePaginatorPageButtons
                 size={size}
                 focusedIndex={focusedIndex}
+                setFocusedIndex={setFocusedIndex}
                 totalPagesCount={totalPagesCount}
                 onPageChange={onPageChange}
                 currentPage={currentPage}
@@ -343,6 +344,7 @@ type TablePaginatorPageButtonsProps = Pick<
 > &
   Required<Pick<TablePaginatorProps, 'localization' | 'size' | 'isLoading'>> & {
     focusedIndex: number;
+    setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
     totalPagesCount: number;
     currentPage: number;
   };
@@ -350,6 +352,7 @@ type TablePaginatorPageButtonsProps = Pick<
 const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
   const {
     focusedIndex,
+    setFocusedIndex,
     totalPagesCount,
     onPageChange,
     currentPage,
@@ -370,7 +373,10 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
         styleType='borderless'
         size={buttonSize}
         data-iui-active={index === currentPage}
-        onClick={() => onPageChange(index)}
+        onClick={() => {
+          setFocusedIndex(index);
+          onPageChange(index);
+        }}
         aria-current={index === currentPage}
         aria-label={localization.goToPageLabel?.(index + 1)}
         tabIndex={tabIndex}
@@ -378,7 +384,14 @@ const TablePaginatorPageButtons = (props: TablePaginatorPageButtonsProps) => {
         {index + 1}
       </Button>
     ),
-    [focusedIndex, currentPage, localization, buttonSize, onPageChange],
+    [
+      focusedIndex,
+      buttonSize,
+      currentPage,
+      localization,
+      setFocusedIndex,
+      onPageChange,
+    ],
   );
 
   const pageList = React.useMemo(
