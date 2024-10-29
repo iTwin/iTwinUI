@@ -39,7 +39,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     }
 
     let isAllSubSelected = true;
-    if (row.subRows[0]?.original[iuiId as any] === undefined) {
+    if (row.initialSubRows[0]?.original[iuiId as any] === undefined) {
       row.initialSubRows.forEach((subRow) => {
         const result = handleRow(subRow);
         if (!result) {
@@ -48,9 +48,11 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       });
     }
 
-    // If `selectSubRows` is false, then no need to select sub-rows and just check current selection state.
-    // If a row doesn't have sub-rows then check its selection state.
-    // If it has sub-rows then check whether all of them are selected.
+    // Check if the current row is selected, then verify if:
+    // `selectSubRows` is false (no need to select sub-rows), OR
+    // the row has no sub-rows, OR
+    // the row has sub-rows and all of them are selected.
+    // If any of the above conditions are met, mark the row id as selected.
     if (
       newState.selectedRowIds[row.id] &&
       (!instance.selectSubRows ||
