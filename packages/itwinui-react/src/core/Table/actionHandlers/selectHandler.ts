@@ -48,10 +48,10 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       });
     }
 
-    // Check if the current row is selected, then verify if:
-    // `selectSubRows` is false (no need to select sub-rows), OR
-    // the row has no sub-rows, OR all of them are selected if sub-rows are present.
-    // If any of the above conditions are met, mark the row id as selected.
+    // A row is considered selected if it is selected AND one of the following:
+    // - `selectSubRows` is false, OR
+    // - the row has no sub-rows, OR
+    // - the row has sub-rows and all of them are selected
     if (
       newState.selectedRowIds[row.id] &&
       (!instance.selectSubRows ||
