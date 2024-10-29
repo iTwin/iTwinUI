@@ -4,11 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { getWindow } from '../functions/dom.js';
+import { useLatestRef } from './useLatestRef.js';
 
 /**
  * Hook that uses `ResizeObserver` to access an element's size every time it updates.
  * @private
- * @param onResize callback fired with the element's new dimensions on every resize.
+ * @param onResizeProp callback fired with the element's new dimensions on every resize.
  * @returns a callback ref that needs to be set on the element, and a ResizeObserver instance.
  *
  * @example
@@ -18,8 +19,9 @@ import { getWindow } from '../functions/dom.js';
  * return <div ref={ref}>...</div>;
  */
 export const useResizeObserver = <T extends HTMLElement>(
-  onResize: (size: DOMRectReadOnly) => void,
+  onResizeProp: (size: DOMRectReadOnly) => void,
 ) => {
+  const onResize = useLatestRef(onResizeProp);
   const resizeObserver = React.useRef<ResizeObserver>();
 
   const elementRef = React.useCallback(
@@ -40,7 +42,7 @@ export const useResizeObserver = <T extends HTMLElement>(
             }
 
             const [{ contentRect }] = entries;
-            return onResize(contentRect);
+            return onResize.current(contentRect);
           });
         });
         resizeObserver.current?.observe?.(element);
