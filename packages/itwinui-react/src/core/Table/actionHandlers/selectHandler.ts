@@ -52,11 +52,10 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     // If a row doesn't have sub-rows then check its selection state.
     // If it has sub-rows then check whether all of them are selected.
     if (
-      (!instance.selectSubRows && newState.selectedRowIds[row.id]) ||
-      (!row.initialSubRows.length && newState.selectedRowIds[row.id]) ||
-      (row.initialSubRows.length &&
-        isAllSubSelected &&
-        newState.selectedRowIds[row.id])
+      newState.selectedRowIds[row.id] &&
+      (!instance.selectSubRows ||
+        !row.initialSubRows.length ||
+        (row.initialSubRows.length && isAllSubSelected))
     ) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
