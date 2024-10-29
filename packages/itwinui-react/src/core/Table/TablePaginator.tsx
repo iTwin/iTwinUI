@@ -17,6 +17,8 @@ import {
   SvgChevronRight,
   Box,
   OverflowContainer,
+  useResizeObserver,
+  useMergedRefs,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -236,7 +238,18 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     </>
   );
 
-  const centerContainerRef = React.useRef<HTMLDivElement>(null);
+  const centerContainerRef = React.useRef<HTMLDivElement | null>(null);
+  const [centerContainerScrollWidth, setCenterContainerScrollWidth] =
+    React.useState<number | undefined>(undefined);
+
+  const [resizeObserverRef] = useResizeObserver<HTMLElement>(() => {
+    setCenterContainerScrollWidth(centerContainerRef.current?.scrollWidth);
+  });
+
+  const centerContainerMergedRef = useMergedRefs(
+    centerContainerRef,
+    resizeObserverRef,
+  );
 
   if (!showPagesList && !showPageSizeList) {
     return null;
@@ -255,8 +268,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
       </Box>
       {showPagesList && (
         <OverflowContainer
-          key={centerContainerRef.current?.scrollWidth}
-          ref={centerContainerRef}
+          key={centerContainerScrollWidth}
+          ref={centerContainerMergedRef}
           className='iui-center'
           itemsCount={totalPagesCount}
         >
