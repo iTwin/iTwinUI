@@ -478,8 +478,16 @@ test.describe('Table Paginator', () => {
     // Go to the 5th page
     await paginatorButtons.nth(4).click();
 
-    await expect(paginatorButtons).toHaveText(['1', '4', '5', '6', '11']);
-    await expect(paginatorButtons.nth(2)).toHaveAttribute(
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '11',
+    ]);
+    await expect(paginatorButtons.nth(3)).toHaveAttribute(
       'data-iui-active',
       'true',
     );
@@ -552,7 +560,15 @@ test.describe('Table Paginator', () => {
     await expect(ellipses).toHaveCount(1);
 
     await paginatorButtons.locator('*', { hasText: '5' }).click();
-    await expect(paginatorButtons).toHaveText(['1', '4', '5', '6', '11']);
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '11',
+    ]);
     await expect(ellipses).toHaveCount(2);
 
     await paginatorButtons.locator('*', { hasText: '11' }).click();
@@ -572,7 +588,15 @@ test.describe('Table Paginator', () => {
     await expect(ellipses).toHaveCount(1);
 
     await paginatorButtons.locator('*', { hasText: '7' }).click();
-    await expect(paginatorButtons).toHaveText(['1', '6', '7', '8', '11']);
+    await expect(paginatorButtons).toHaveText([
+      '1',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '11',
+    ]);
     await expect(ellipses).toHaveCount(2);
   });
 
