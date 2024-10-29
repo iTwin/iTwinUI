@@ -39,12 +39,14 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     }
 
     let isAllSubSelected = true;
-    row.initialSubRows.forEach((subRow) => {
-      const result = handleRow(subRow);
-      if (!result) {
-        isAllSubSelected = false;
-      }
-    });
+    if (row.subRows[0]?.original[iuiId as any] === undefined) {
+      row.initialSubRows.forEach((subRow) => {
+        const result = handleRow(subRow);
+        if (!result) {
+          isAllSubSelected = false;
+        }
+      });
+    }
 
     // If `selectSubRows` is false, then no need to select sub-rows and just check current selection state.
     // If a row doesn't have sub-rows then check its selection state.
@@ -52,7 +54,9 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     if (
       (!instance.selectSubRows && newState.selectedRowIds[row.id]) ||
       (!row.initialSubRows.length && newState.selectedRowIds[row.id]) ||
-      (row.initialSubRows.length && isAllSubSelected)
+      (row.initialSubRows.length &&
+        isAllSubSelected &&
+        newState.selectedRowIds[row.id])
     ) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
@@ -191,10 +195,7 @@ const getSelectedData = <T extends Record<string, unknown>>(
 ) => {
   const selectedData: T[] = [];
   const setSelectedData = (row: Row<T>) => {
-    // Check whether the row selected is a sub-component.
-    // If so, exclude it from the selected data.
-    const isMainRow = row.original[iuiId as any] === undefined;
-    if (selectedRowIds[row.id] && isMainRow) {
+    if (selectedRowIds[row.id]) {
       selectedData.push(row.original);
     }
     row.initialSubRows.forEach((subRow) => setSelectedData(subRow));
