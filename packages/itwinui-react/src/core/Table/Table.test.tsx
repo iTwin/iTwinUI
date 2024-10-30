@@ -2003,6 +2003,7 @@ it('should only select main row when subComponent is present', async () => {
     data,
     isSelectable: true,
     onSelect: (selectedRows) => console.log(selectedRows),
+    subComponent: (row) => <div>{`Name ${row.original.name}`}</div>,
   });
 
   const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
