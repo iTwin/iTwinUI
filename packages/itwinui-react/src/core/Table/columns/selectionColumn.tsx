@@ -87,7 +87,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
           if (
             row.subRows.length > 0 &&
             selectSubRows &&
-            row.subRows[0].original[iuiId as any] === undefined
+            row.initialSubRows[0].original[iuiId as any] === undefined
           ) {
             //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
             //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
