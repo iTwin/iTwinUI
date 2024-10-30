@@ -71,7 +71,7 @@ const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
-const iuiId = Symbol('iui-id');
+export const iuiId = Symbol('iui-id');
 
 export type TablePaginatorRendererProps = {
   /**
