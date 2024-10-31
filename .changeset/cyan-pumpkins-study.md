@@ -2,7 +2,7 @@
 '@itwin/itwinui-css': major
 ---
 
-Replaces the status classes for `iui-checkbox` with a new `data-iui-status` attribute.
+Replaces the attribute classes for `iui-checkbox` such as `iui-status`, `iui-disabled`, and `iui-loading` with new `data-iui-` attributes: `data-iui-status`, `data-iui-disabled`, and `data-iui-loading`.
 
 ```diff
 - <div class="iui-checkbox iui-positive">
@@ -10,3 +10,13 @@ Replaces the status classes for `iui-checkbox` with a new `data-iui-status` attr
 ```
 
 Possible values include: `"positive"`, `"negative"`, and `"warning"`.
+
+```diff
+- <div class="iui-checkbox iui-disabled">
++ <div class="iui-checkbox" data-iui-disabled="true">
+```
+
+```diff
+- <div class="iui-checkbox iui-loading">
++ <div class="iui-checkbox" data-iui-loading="true">
+```
