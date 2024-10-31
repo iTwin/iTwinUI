@@ -1736,6 +1736,56 @@ it('should expand correctly', async () => {
   getByText('Expanded component, name: Name1');
 });
 
+it('should show expandable content correctly after re-rendering', async () => {
+  const data = mockedData();
+  const getRowIdMock = vi.fn();
+  const { rerender } = render(
+    <Table
+      columns={[
+        {
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test1</>,
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+    />,
+  );
+  expect(screen.getAllByText('test1').length).toBe(3);
+
+  rerender(
+    <Table
+      columns={[
+        {
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test2</>,
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+      getRowId={getRowIdMock}
+    />,
+  );
+  expect(screen.getAllByText('test2').length).toBe(3);
+
+  await act(async () => {
+    await userEvent.click(screen.getAllByRole('button')[0]);
+  });
+
+  screen.getByText('Expanded component, name: Name1');
+
+  // getRowId is called for each row and sub-row before and after re-rendering.
+  expect(getRowIdMock).toHaveBeenCalledTimes(12);
+});
+
 it('should expand correctly with a custom expander cell', async () => {
   const onExpandMock = vi.fn();
   const { getByText, queryByText } = renderComponent({
@@ -1929,6 +1979,44 @@ it('should select and filter rows', async () => {
   expect(checkboxInputs[1].checked).toBe(true);
   expect(checkboxInputs[2].checked).toBe(true);
   expect(checkboxInputs[3].checked).toBe(false);
+});
+
+it('should only select main row when subComponent is present', async () => {
+  const logSpy = vitest.spyOn(console, 'log');
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+  ];
+
+  const data = mockedData();
+
+  const { container } = renderComponent({
+    columns,
+    data,
+    isSelectable: true,
+    onSelect: (selectedRows) => console.log(selectedRows),
+    subComponent: (row) => <div>{`Name ${row.original.name}`}</div>,
+  });
+
+  const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
+  expect(checkboxCells.length).toBe(4);
+
+  await userEvent.click(checkboxCells[0]);
+  expect(logSpy).toHaveBeenCalledWith(data);
+
+  await userEvent.click(checkboxCells[1]);
+  expect(logSpy).toHaveBeenCalledWith([data[1], data[2]]);
+
+  await userEvent.click(checkboxCells[2]);
+  expect(logSpy).toHaveBeenCalledWith([data[2]]);
 });
 
 it('should pass custom props to row', () => {
