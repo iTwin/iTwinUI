@@ -114,7 +114,11 @@ Each data level line may begin with an eye icon to toggle visibility. In this co
 
 ### Selection
 
-The tree allows you to select one or multiple nodes within its structure. This feature is useful for actions on specific nodes, such as editing, deleting or viewing details.
+The tree allows end users to select one or multiple nodes within its structure. This feature is useful for actions on specific nodes, such as editing, deleting or viewing details.
+
+Similar to node expansion, a state variable is required to track the currently selected node. This state variable is updated via the `onSelect` callback, which is triggered whenever users select a node.
+
+To ensure the `getNode` function updates the selection state of each node correctly, the `isSelected` flag should be set based on the node's `id`.
 
 <LiveExample src='Tree.selection.jsx'>
   <AllExamples.TreeSelectionExample client:load />
