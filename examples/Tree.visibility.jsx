@@ -65,7 +65,13 @@ export default () => {
             label={node.label}
             onExpanded={onNodeExpanded}
             checkbox={
-              <Checkbox label='' variant='eyeball' disabled={rest.isDisabled} />
+              <Checkbox
+                triggerProps={{
+                  'aria-label': 'Visibility',
+                }}
+                variant='eyeball'
+                disabled={rest.isDisabled}
+              />
             }
             {...rest}
           />

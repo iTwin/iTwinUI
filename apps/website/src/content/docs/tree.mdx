@@ -18,11 +18,7 @@ A tree can be used to organize data in an application specific way, or it can be
   <AllExamples.TreeMainExample client:load />
 </LiveExample>
 
-### TreeNode
-
-The `TreeNode` component can be used to display the node content within a `Tree`. `TreeNode` must be used inside `Tree` component to correctly set node `depth` and `subNodes`.
-
-<PropsTable path='@itwin/itwinui-react/esm/core/Tree/TreeNode.d.ts' />
+Each level of the tree is compressed of multiple `TreeNode` components, which can be used to display the node content. `TreeNode` must be used inside `Tree` component to correctly set node `depth` and `subNodes`.
 
 ### Subnode
 
@@ -133,5 +129,11 @@ For trees with a large number of nodes, enabling virtualization can improve perf
 </LiveExample>
 
 ## Props
+
+### TreeNode
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Tree/TreeNode.d.ts' />
+
+### Tree
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Tree/Tree.d.ts' />
