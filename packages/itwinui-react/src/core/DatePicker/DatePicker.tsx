@@ -12,6 +12,7 @@ import {
   isBefore,
   Box,
   useId,
+  useLayoutEffect,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -345,7 +346,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
   const popoverInitialFocusContext = React.useContext(
     PopoverInitialFocusContext,
   );
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     // If setFocus and the DatePicker is in a Popover, tell Popover to not focus anything since we handle focus.
     if (setFocus && popoverInitialFocusContext) {
       popoverInitialFocusContext.setInitialFocus(-1);

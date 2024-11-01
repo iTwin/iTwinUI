@@ -9,6 +9,7 @@ import type {
   TableState,
   IdType,
 } from '../../../react-table/react-table.js';
+import { iuiId } from '../Table.js';
 
 /**
  * Handles subrow selection and validation.
@@ -38,20 +39,24 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     }
 
     let isAllSubSelected = true;
-    row.initialSubRows.forEach((subRow) => {
-      const result = handleRow(subRow);
-      if (!result) {
-        isAllSubSelected = false;
-      }
-    });
+    if (row.initialSubRows[0]?.original[iuiId as any] === undefined) {
+      row.initialSubRows.forEach((subRow) => {
+        const result = handleRow(subRow);
+        if (!result) {
+          isAllSubSelected = false;
+        }
+      });
+    }
 
-    // If `selectSubRows` is false, then no need to select sub-rows and just check current selection state.
-    // If a row doesn't have sub-rows then check its selection state.
-    // If it has sub-rows then check whether all of them are selected.
+    // A row is considered selected if it is selected AND one of the following:
+    // - `selectSubRows` is false, OR
+    // - the row has no sub-rows, OR
+    // - the row has sub-rows and all of them are selected
     if (
-      (!instance.selectSubRows && newState.selectedRowIds[row.id]) ||
-      (!row.initialSubRows.length && newState.selectedRowIds[row.id]) ||
-      (row.initialSubRows.length && isAllSubSelected)
+      newState.selectedRowIds[row.id] &&
+      (!instance.selectSubRows ||
+        !row.initialSubRows.length ||
+        isAllSubSelected)
     ) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
