@@ -69,6 +69,7 @@ export default () => {
                 triggerProps={{
                   'aria-label': 'Visibility',
                 }}
+                label=''
                 variant='eyeball'
                 disabled={rest.isDisabled}
               />
