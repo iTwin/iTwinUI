@@ -1080,6 +1080,12 @@ const SkipToContentLinkMainExample = withThemeProvider(
 );
 export { SkipToContentLinkMainExample };
 
+import { default as SkipToContentLinkCustomTextExampleRaw } from './SkipToContentLink.customText';
+const SkipToContentLinkCustomTextExample = withThemeProvider(
+  SkipToContentLinkCustomTextExampleRaw,
+);
+export { SkipToContentLinkCustomTextExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as SliderMainExampleRaw } from './Slider.main';

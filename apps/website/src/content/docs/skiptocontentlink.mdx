@@ -6,12 +6,26 @@ thumbnail: #TODO
 
 <p>{frontmatter.description}</p>
 
+<Placeholder componentPageName='table--basic' />
+
 ## Usage
 
-`SkipToContentLink` is for screen reader and keyboard users and will not be visible unless tabbed to. Provides a shortcut to the main content of the page without navigating through the header, etc.
+`SkipToContentLink` is designed for screen reader and keyboard users and will only become visible when focused. It provides a shortcut to the main content of the page, bypassing the header and other navigation elements. The `href` prop should be set to the `id` of the main content section, and the value must include the '#' prefix.
 
 <LiveExample src='SkipToContentLink.main.jsx' truncate={true}>
-  <AllExamples.SkipToContentLinkMainExample client:visible />
+  <AllExamples.SkipToContentLinkMainExample client:load />
+</LiveExample>
+
+**Note**: `SkipToContentLink` must be placed inside a `<body>`.
+
+### Custom Text
+
+The link component accepts custom text through its `children` prop, allowing for localization. If no custom text is provided, the default text displayed is "Skip to main content".
+
+<LiveExample src='SkipToContentLink.customText.jsx' truncate={true}>
+  <AllExamples.SkipToContentLinkCustomTextExample client:load />
 </LiveExample>
 
 ## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/SkipToContentLink/SkipToContentLink.d.ts' />
