@@ -4,14 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Tree, TreeNode } from '@itwin/itwinui-react';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [expandedNodes, setExpandedNodes] = React.useState({});
+  const [expandedNodes, setExpandedNodes] = React.useState({
+    'Node-2': true,
+    'Node-2-1': true,
+    'Node-3': true,
+  });
   const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
-    setExpandedNodes((oldExpanded) => ({
-      ...oldExpanded,
-      [nodeId]: isExpanded,
-    }));
+    if (isExpanded) {
+      setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
+    } else {
+      setExpandedNodes((oldExpanded) => ({
+        ...oldExpanded,
+        [nodeId]: false,
+      }));
+    }
   }, []);
   const generateItem = React.useCallback(
     (index, parentNode = '', depth = 0) => {
@@ -59,7 +68,12 @@ export default () => {
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
+          <TreeNode
+            label={node.label}
+            onExpanded={onNodeExpanded}
+            icon={<SvgPlaceholder />}
+            {...rest}
+          />
         ),
         [onNodeExpanded],
       )}
