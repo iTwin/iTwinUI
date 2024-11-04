@@ -14,6 +14,7 @@
   border-end-start-radius: var(--iui-border-radius-1);
   border-end-end-radius: var(--iui-border-radius-1);
   border-block-start: 1px solid var(--iui-color-border);
+  isolation: isolate;
 
   > .iui-left,
   > .iui-center,
@@ -29,6 +30,7 @@
     justify-content: center;
     flex: 2 1;
     color: var(--iui-color-text);
+    z-index: 1;
   }
 
   > .iui-right {
