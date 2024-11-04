@@ -6,5 +6,5 @@ import * as React from 'react';
 import { Text } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Text>This is a text</Text>;
+  return <Text isSkeleton>This is a skeleton text</Text>;
 };

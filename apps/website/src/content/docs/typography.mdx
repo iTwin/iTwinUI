@@ -1,18 +1,56 @@
 ---
 title: Typography
-description:
+description: Typography components can be used to provide consistency in text styling across the application.
 thumbnail: Typography
 ---
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='text--basic' />
-
 ## Text
+
+The `Text` component is a polymorphic typography component that can be used to render any kind of text as any kind of element.
 
 <LiveExample src='Text.main.jsx' truncate={false}>
   <AllExamples.TextMainExample client:load />
 </LiveExample>
+
+### Variant
+
+The `variant` prop can be used to determine which type of typography size should be utilized for the content of the application. The available variants are:
+
+- `"headline"`: can be treated as an HTML `h1` text.
+
+- `"title"`: can be treated as an HTML `h2` text.
+
+- `"subheading"`: can be treated as an HTML `h3` text.
+
+- `"leading"`: can be treated as an HTML `h4` text.
+
+- `"body"` (default): can be treated as an HTML normal paragraph text.
+
+- `"smaller"`: can be treated as a text of smaller size.
+
+<LiveExample src='Text.variant.jsx' truncate={false}>
+  <AllExamples.TextVariantExample client:load />
+</LiveExample>
+
+### Muted
+
+To achieve a muted or desaturated text effect, the `isMuted` prop can be passed into the component. Muted text helps differentiating less important information as well as enhancing the overall readability.
+
+<LiveExample src='Text.muted.jsx' truncate={false}>
+  <AllExamples.TextMutedExample client:load />
+</LiveExample>
+
+### Skeleton
+
+To indicate that content is loading and will be available soon, use skeleton text by setting the `isSkeleton` prop on the component.
+
+<LiveExample src='Text.skeleton.jsx' truncate={false}>
+  <AllExamples.TextSkeletonExample client:load />
+</LiveExample>
+
+**Note**: The `isSkeleton` prop can be passed along with `variant` to show indicate different text section being loaded. By default or with no `variant` being passed, the skeleton text size has the size of a `"body"` text.
 
 ### Props
 

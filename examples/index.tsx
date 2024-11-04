@@ -1262,6 +1262,18 @@ import { default as TextMainExampleRaw } from './Text.main';
 const TextMainExample = withThemeProvider(TextMainExampleRaw);
 export { TextMainExample };
 
+import { default as TextVariantExampleRaw } from './Text.variant';
+const TextVariantExample = withThemeProvider(TextVariantExampleRaw);
+export { TextVariantExample };
+
+import { default as TextMutedExampleRaw } from './Text.muted';
+const TextMutedExample = withThemeProvider(TextMutedExampleRaw);
+export { TextMutedExample };
+
+import { default as TextSkeletonExampleRaw } from './Text.skeleton';
+const TextSkeletonExample = withThemeProvider(TextSkeletonExampleRaw);
+export { TextSkeletonExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TileMainExampleRaw } from './Tile.main';
