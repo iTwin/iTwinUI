@@ -42,7 +42,7 @@
 // ----------------------------------------------------------------------------
 
 .iui-toast-wrapper {
-  pointer-events: none;
+  pointer-events: none !important; // Ensuring that toast-wrapper doesn't block clicks
   position: fixed;
   display: flex;
   align-items: center;
