@@ -66,7 +66,7 @@ export default () => {
             onExpanded={onNodeExpanded}
             checkbox={
               <Checkbox
-                aria-labelledby={node.label}
+                aria-label={node.label}
                 variant='eyeball'
                 disabled={rest.isDisabled}
               />
