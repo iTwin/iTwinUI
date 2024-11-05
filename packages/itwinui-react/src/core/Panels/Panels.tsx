@@ -15,6 +15,7 @@ import {
   useMediaQuery,
   useWarningLogger,
   useLayoutEffect,
+  useLatestRef,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -41,7 +42,15 @@ export type PanelsWrapperProps = {
 };
 
 const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
-  const { children, className, onActiveIdChange, instance, ...rest } = props;
+  const {
+    children,
+    className,
+    onActiveIdChange: onActiveIdChangeProp,
+    instance,
+    ...rest
+  } = props;
+
+  const onActiveIdChange = useLatestRef(onActiveIdChangeProp);
 
   const ref = React.useRef<HTMLDivElement | null>(null);
 
@@ -70,7 +79,7 @@ const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       }
 
       ReactDOM.flushSync(() => setActivePanelId(newActiveId));
-      onActiveIdChange?.(newActiveId);
+      onActiveIdChange.current?.(newActiveId);
 
       ref.current?.ownerDocument.getElementById(newActiveId)?.scrollIntoView({
         block: 'nearest',
