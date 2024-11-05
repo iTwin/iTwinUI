@@ -807,6 +807,20 @@ export { ListComboboxExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as MiddleTextTruncationMainExampleRaw } from './MiddleTextTruncation.main';
+const MiddleTextTruncationMainExample = withThemeProvider(
+  MiddleTextTruncationMainExampleRaw,
+);
+export { MiddleTextTruncationMainExample };
+
+import { default as MiddleTextTruncationEndCharsCountExampleRaw } from './MiddleTextTruncation.endCharsCount';
+const MiddleTextTruncationEndCharsCountExample = withThemeProvider(
+  MiddleTextTruncationEndCharsCountExampleRaw,
+);
+export { MiddleTextTruncationEndCharsCountExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as NonIdealStateBadgatewayExampleRaw } from './NonIdealState.badgateway';
 const NonIdealStateBadgatewayExample = withThemeProvider(
   NonIdealStateBadgatewayExampleRaw,

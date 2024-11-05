@@ -1,0 +1,26 @@
+---
+title: MiddleTextTruncation
+description: A utility component used for truncating texts which exceed certain limit.
+thumbnail: #TODO
+group: utilities
+---
+
+<p>{frontmatter.description}</p>
+
+## Usage
+
+The `MiddleTextTruncation` component handles long text strings by truncating them in the middle by inserting the ellipsis (`"..."`). This ensures that the beginning and/or the end of the text remain visible, which is helpful for identification.
+
+<LiveExample src='MiddleTextTruncation.main.jsx'>
+  <AllExamples.MiddleTextTruncationMainExample client:load />
+</LiveExample>
+
+### End character count
+
+By default, the number of characters left visible at the end of the truncated text is set to 6. This ensures that important suffixes, such as file extensions or identifiers, remain visible. This number can be modified through the `endCharsCount` prop to suit your specific needs. Adjusting this prop allows you to control how much of the end of the text is shown, which can be particularly useful for maintaining readability and context in various use cases.
+
+<LiveExample src='MiddleTextTruncation.endCharsCount.jsx'>
+  <AllExamples.MiddleTextTruncationEndCharsCountExample client:load />
+</LiveExample>
+
+## Props
