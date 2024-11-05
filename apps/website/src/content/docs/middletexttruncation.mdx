@@ -23,4 +23,14 @@ By default, the number of characters left visible at the end of the truncated te
   <AllExamples.MiddleTextTruncationEndCharsCountExample client:load />
 </LiveExample>
 
+### Truncated text customization
+
+For further customization, the `textRenderer` prop allows you to define a custom rendering function for the truncated text. This function receives two parameters: `truncatedText`, which is the text that has been truncated, and `originalText`, which is the full, unmodified text. The function should return a `ReactNode` that represents the customized text element. This is particularly useful when you want to apply specific styles or add additional elements to the truncated text, such as highlighting the truncated portion or adding tooltips for better user experience.
+
+<LiveExample src='MiddleTextTruncation.customizeTruncation.jsx'>
+  <AllExamples.MiddleTextTruncationCustomizationExample client:load />
+</LiveExample>
+
 ## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/utils/components/MiddleTextTruncation.d.ts' />

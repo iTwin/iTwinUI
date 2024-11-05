@@ -9,8 +9,15 @@ export default () => {
   return (
     <MiddleTextTruncation
       className='demo-container'
-      endCharsCount={10}
-      text='ThisIsMyVeryLongFileNameWithImportantExtension.docx'
+      text='MyTitleWithAReallyLongNameThatWillBeTruncatedWithCustomizedStylingBecauseItIsReallyThatLongSoHardToBelieve'
+      textRenderer={React.useCallback(
+        (truncatedText) => (
+          <b>
+            <i>{truncatedText}</i>
+          </b>
+        ),
+        [],
+      )}
     />
   );
 };

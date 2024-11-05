@@ -819,6 +819,12 @@ const MiddleTextTruncationEndCharsCountExample = withThemeProvider(
 );
 export { MiddleTextTruncationEndCharsCountExample };
 
+import { default as MiddleTextTruncationCustomizationExampleRaw } from './MiddleTextTruncation.customizeTruncation';
+const MiddleTextTruncationCustomizationExample = withThemeProvider(
+  MiddleTextTruncationCustomizationExampleRaw,
+);
+export { MiddleTextTruncationCustomizationExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as NonIdealStateBadgatewayExampleRaw } from './NonIdealState.badgateway';
