@@ -16,14 +16,7 @@ export default () => {
         &nbsp;after focusing on skip-to-content-link to skip to the main content
         below. <Anchor href='#'>This link will be skipped.</Anchor> <br />
       </Text>
-      <div
-        style={{
-          border: 'solid 1px var(--iui-color-background-border)',
-          height: 1000,
-          padding: '11px 12px',
-        }}
-        id='main-content'
-      >
+      <div className='main-content' id='main-content'>
         <Text variant='body'>
           This is the main content. Focus will be directed here from the
           skip-to-content-link component.&nbsp;

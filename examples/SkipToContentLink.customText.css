@@ -1,0 +1,6 @@
+.main-content {
+  border: solid 1px var(--iui-color-border);
+  height: 300px;
+  padding: 11px 12px;
+  margin-top: 10px;
+}
