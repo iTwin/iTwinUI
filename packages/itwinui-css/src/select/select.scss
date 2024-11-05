@@ -98,7 +98,6 @@
 }
 
 @mixin iui-select-tag {
-  @include tag.iui-tag;
   // Override hardcoded Tag margin
   margin-block: 0;
   display: inline-flex;
@@ -109,15 +108,12 @@
 }
 
 @mixin iui-select-tag-label {
-  @include tag.iui-tag-label;
-
   .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
   }
 }
 
 @mixin iui-select-tag-button {
-  @include tag.iui-tag-button;
   padding-inline: var(--iui-size-2xs);
   min-block-size: unset;
   min-inline-size: unset;
@@ -126,12 +122,10 @@
 
   .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
-  }
-}
 
-@mixin iui-select-tag-button-icon {
-  .iui-select-button[data-iui-size='small'] & svg {
-    @include mixins.iui-icon-style('s');
+    svg {
+      @include mixins.iui-icon-style('s');
+    }
   }
 }
 
@@ -153,18 +147,14 @@
   @include iui-select-tag-container;
 }
 
-.iui-select-tag {
+.iui-select-tag:is(.iui-tag) {
   @include iui-select-tag;
 }
 
-.iui-select-tag-label {
+.iui-select-tag-label:is(.iui-tag-label) {
   @include iui-select-tag-label;
 }
 
-.iui-select-tag-button {
+.iui-select-tag-button:is(.iui-tag-button) {
   @include iui-select-tag-button;
-}
-
-.iui-select-tag-button-icon {
-  @include iui-select-tag-button-icon;
 }
