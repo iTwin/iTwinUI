@@ -196,15 +196,25 @@ const useOverflow = (
    * Call this function to guess the new `visibleCount`.
    * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
    *
-   * Logic:
-   * - Have a guess range for `visibleCount`. e.g. `[0, 32]` (32 is an arbitrary choice).
-   * - Keep doubling the max guess until the container overflows.
-   *   i.e. the max guess should always be `≥` the correct `visibleCount`.
-   *   - With each such doubling, the new min guess is the current max guess (since underflow = we guessed low).
-   * - Set `visibleCount` to the `maxGuess`.
-   * - Repeat the following by calling `guessVisibleCount()` (keep re-rendering but not painting):
-   *   - Each time the container overflows, new max guess is the average of the two guesses.
-   *   - Each time the container does not overflow, new min guess is the average of the two guesses.
+   * The logic of finding the correct `visibleCount` is similar to binary search.
+   * Logic (without all edge cases):
+   * - Have a guess range for `visibleCount` of `(0, x]` (0 is exclusive and x is inclusive)
+   *   - 0 is exclusive as the minimum `visibleItems` always has to be 1.
+   *     - The only exception is when the `itemsCount` is itself 0.
+   *   - x can be an any arbitrary number ≤ `itemsCount`.
+   * - Initial `visibleCount` = max guess.
+   * - We NEED an overflow in the beginning for the algorithm to work.
+   *   - Because the max guess should always be `≥` the correct `visibleCount`.
+   * - So, if not overflow, shift the guess range forward by:
+   *   - doubling the max guess: since we need to overflow
+   *   - setting min guess to current visibleCount: since not overflow means correct visibleCount ≥ current visibleCount
+   *   - setting visible count to the new max guess
+   * - Shift the guess range forward repeatedly until the container overflows.
+   * - After the first overflow, `visibleCount` = average of the two guesses.
+   * - Repeat the following (`guessVisibleCount()`):
+   *   - If container overflows, new max guess = current `visibleCount`.
+   *   - If container does not overflow, new min guess = current `visibleCount`.
+   *   - new `visibleCount` = the average of the new min and max guesses.
    * - Stop when the average of the two guesses is the min guess itself. i.e. no more averaging possible.
    * - The min guess is then the correct `visibleCount`.
    */
@@ -222,12 +232,6 @@ const useOverflow = (
         return;
       }
 
-      // If there are no items, stabilize immediately.
-      if (itemsCount === 0) {
-        dispatch({ type: 'stabilize' });
-        return;
-      }
-
       const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
       const availableSize = containerRef.current[`offset${dimension}`];
       const requiredSize = containerRef.current[`scroll${dimension}`];
@@ -235,19 +239,21 @@ const useOverflow = (
       const isOverflowing = availableSize < requiredSize;
 
       if (
-        // We have already found the correct visibleCount
+        // there are no items
+        itemsCount === 0 ||
+        // overflowing when even 1 item is present
+        (visibleCount === 1 && isOverflowing) ||
+        // no overflow when rendering all items
         (visibleCount === itemsCount && !isOverflowing) ||
-        // if the new average of visibleCountGuessRange will never change the visibleCount anymore (infinite loop)
+        // if the new average of the guess range will never change the visibleCount anymore (infinite loop)
         (maxGuess - minGuess === 1 && visibleCount === minGuess)
       ) {
         dispatch({ type: 'stabilize' });
         return;
       }
 
-      // Before the main logic, the max guess MUST be >= the correct visibleCount for the algorithm to work.
-      // If not:
-      // - double the max guess and visibleCount: since we need to overflow.
-      // - set min guess to current visibleCount: since underflow means correct visibleCount >= current visibleCount.
+      // Before the main logic, the max guess MUST be ≥ the correct visibleCount for the algorithm to work.
+      // If not, should shift the guess range forward to induce the first overflow.
       if (maxGuess === visibleCount && !isOverflowing) {
         dispatch({ type: 'shiftGuessRangeForward' });
         return;
@@ -257,21 +263,15 @@ const useOverflow = (
       let newMaxGuess = maxGuess;
 
       if (isOverflowing) {
-        // overflowing = we guessed too high. So, new max guess = half the current guess
+        // overflowing = we guessed too high. So, new max guess = current guess
         newMaxGuess = visibleCount;
       } else {
-        // not overflowing = maybe we guessed too low? So, new min guess = half of current guess
+        // not overflowing = maybe we guessed too low? So, new min guess = current guess
         newMinGuess = visibleCount;
       }
 
       // Next guess is always the middle of the new guess range
-      const newVisibleCount = Math.floor((minGuess + maxGuess) / 2);
-
-      // If newVisibleCount is 0 (impossible state as min is 1), end guessing
-      if (newVisibleCount === 0) {
-        dispatch({ type: 'stabilize' });
-        return;
-      }
+      const newVisibleCount = Math.floor((newMinGuess + newMaxGuess) / 2);
 
       dispatch({
         type: 'update',
@@ -325,12 +325,12 @@ type GuessAction =
     }
   | {
       /**
-       * - `"shiftGuessRangeForward"`
+       * - `"shiftGuessRangeForward"`: Useful to induce the first overflow to start guessing.
        *   - Shift the guess range forward by:
-       *     - doubling the max guess
-       *     - setting min guess to the current max guess
+       *     - doubling the max guess: since we need to overflow
+       *     - setting min guess to current visibleCount: since underflow means correct visibleCount ≥ current
+       *       visibleCount
        *     - setting visible count to the new max guess
-       *   - Useful to induce the first overflow to start guessing.
        */
       type: 'shiftGuessRangeForward';
     }
@@ -341,7 +341,7 @@ type GuessAction =
       type: 'stabilize';
     };
 
-/** First guess of the number of items that overflows. We refine this guess with subsequent renders. */
+/** Arbitrary initial max guess for `visibleCount`. We refine this max guess with subsequent renders. */
 const STARTING_MAX_ITEMS_COUNT = 32;
 
 const overflowGuessReducerInitialState = ({
@@ -371,7 +371,7 @@ const overflowGuessReducer = (
   state: GuessState,
   action: GuessAction,
 ): GuessState => {
-  /** Ensure that the visibleCount is always <= itemsCount */
+  /** Ensure that the visibleCount is always ≤ itemsCount */
   const getSafeVisibleCount = (visibleCount: number) =>
     Math.min(state.itemsCount, visibleCount);
 
@@ -398,7 +398,7 @@ const overflowGuessReducer = (
         isStabilized: false,
         minGuess: state.maxGuess,
         maxGuess: doubleOfMaxGuess,
-        visibleCount: getSafeVisibleCount(state.maxGuess * 2),
+        visibleCount: getSafeVisibleCount(doubleOfMaxGuess),
       };
     case 'stabilize':
       return {
