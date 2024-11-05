@@ -1427,6 +1427,12 @@ const TreeVirtualizationExample = withThemeProvider(
 );
 export { TreeVirtualizationExample };
 
+import { default as TreeCustomizeExpanderExampleRaw } from './Tree.customizeExpander';
+const TreeCustomizeExpanderExample = withThemeProvider(
+  TreeCustomizeExpanderExampleRaw,
+);
+export { TreeCustomizeExpanderExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as VisuallyHiddenIconExampleRaw } from './VisuallyHidden.icon';
