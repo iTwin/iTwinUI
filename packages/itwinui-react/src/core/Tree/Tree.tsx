@@ -353,6 +353,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
           onKeyDown={handleKeyDown}
           ref={treeRef}
           className={className}
+          data-iui-size={size === 'small' ? 'small' : undefined}
           style={style}
           {...rest}
         />

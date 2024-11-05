@@ -17,18 +17,18 @@ class SelectTag extends HTMLElement {
 
     const innerHtml = `
     <span
-      class="iui-select-tag"
+      class="iui-tag iui-select-tag"
     >
       <span
-        class="iui-select-tag-label"
+        class="iui-tag-label iui-select-tag-label"
         title="${value}"
       >
         ${value}
       </span>
       ${
         dismissible
-          ? `<button class="iui-button iui-field iui-select-tag-button" data-iui-variant="borderless" aria-label="Delete ${value} tag" type="button">
-            <svg-close-small class="iui-button-icon iui-select-tag-button-icon" aria-hidden="true"></svg-close-small>
+          ? `<button class="iui-button iui-field iui-tag-button iui-select-tag-button" data-iui-variant="borderless" aria-label="Delete ${value} tag" type="button">
+            <svg-close-small class="iui-button-icon" aria-hidden="true"></svg-close-small>
           </button>`
           : ''
       }
