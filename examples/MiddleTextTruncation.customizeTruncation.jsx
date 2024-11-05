@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { MiddleTextTruncation } from '@itwin/itwinui-react';
+import { MiddleTextTruncation, Tooltip } from '@itwin/itwinui-react';
 
 export default () => {
   return (
@@ -11,10 +11,10 @@ export default () => {
       className='demo-container'
       text='MyTitleWithAReallyLongNameThatWillBeTruncatedWithCustomizedStylingBecauseItIsReallyThatLongSoHardToBelieve'
       textRenderer={React.useCallback(
-        (truncatedText) => (
-          <b>
-            <i>{truncatedText}</i>
-          </b>
+        (truncatedText, originalText) => (
+          <Tooltip content={originalText}>
+            <b>{truncatedText}</b>
+          </Tooltip>
         ),
         [],
       )}
