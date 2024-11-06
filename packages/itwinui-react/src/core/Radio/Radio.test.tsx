@@ -41,16 +41,18 @@ it('renders correctly with jsx element as label', () => {
 });
 
 it('renders disabled component', () => {
-  const { container } = render(
-    <Radio label='Some label' data-iui-disabled='true' />,
-  );
+  const { container } = render(<Radio label='Some label' disabled />);
 
   assertBaseElements(container);
 
   screen.getByText('Some label');
+  expect(container.querySelector('.iui-checkbox-wrapper')).toHaveAttribute(
+    'data-iui-disabled',
+    'true',
+  );
   expect(
     container.querySelector('input[type="radio"]') as HTMLInputElement,
-  ).toHaveAttribute('data-iui-disabled', 'true');
+  ).toBeDisabled();
 });
 
 it('renders positive component', () => {

@@ -37,6 +37,7 @@ import {
   SelectionColumn,
   ExpanderColumn,
 } from './columns/index.js';
+import exp from 'node:constants';
 
 const intersectionCallbacks = new Map<Element, () => void>();
 vi.spyOn(IntersectionHooks, 'useIntersection').mockImplementation(
@@ -3199,6 +3200,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 
   await userEvent.click(columnManager);
   const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
+  expect(columnManagerColumns[0]).toHaveAttribute('data-iui-disabled', 'true');
   expect(columnManagerColumns[0].querySelector('input')?.disabled).toBeTruthy();
 });
 
