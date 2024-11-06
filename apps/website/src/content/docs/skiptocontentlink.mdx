@@ -1,22 +1,32 @@
 ---
-title: Skip to content link
+title: SkipToContentLink
 description: A skip-to-content link can be used to navigate directly to certain desired contents.
 thumbnail: #TODO
 ---
 
-<p>{frontmatter.description}</p>
+The skip-to-content link is designed for screen reader and keyboard users and will only become visible when focused. It provides a shortcut to the main content of the page, bypassing the header and other navigation elements.
 
-<Placeholder componentPageName='table--basic' />
+```jsx
+<div className='App'>
+  <SkipToContentLink href='#main-content' />
+  <header>{/* Some page headers and introduction */}</header>
+
+  <div id='main-content'>
+    Main Content
+    {/* Some main content that needs to be focused */}
+  </div>
+
+  <footer>{/* Some page footer */}</footer>
+</div>
+```
 
 ## Usage
 
-`SkipToContentLink` is designed for screen reader and keyboard users and will only become visible when focused. It provides a shortcut to the main content of the page, bypassing the header and other navigation elements. The `href` prop should be set to the `id` of the main content section, and the value must include the '#' prefix.
+The `href` prop should be set to the `id` of the main content section, and the value must include the `"#"` prefix. In order to see skip-to-content-link component, end users might click on top of the page or the URL first then press `Tab` for the component to appear from the top. The main content can then be navigated to after the end users click on the component or hit `Enter`.
 
 <LiveExample src='SkipToContentLink.main.jsx' truncate={true}>
   <AllExamples.SkipToContentLinkMainExample client:load />
 </LiveExample>
-
-**Note**: `SkipToContentLink` must be placed inside a `<body>`.
 
 ### Custom Text
 

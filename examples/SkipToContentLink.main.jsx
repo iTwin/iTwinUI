@@ -2,28 +2,34 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SkipToContentLink, Text, Kbd, Anchor } from '@itwin/itwinui-react';
+import { Flex, SkipToContentLink, Text } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
+    <Flex flexDirection='column'>
       <SkipToContentLink href='#main-content' />
-      <Text variant='body'>
-        This is not the main content. Press&nbsp;
-        <Kbd>tab</Kbd>&nbsp;to see skip-to-content-link component. You might
-        need to click on the top of the page or the URL first. Press&nbsp;
-        <Kbd>&crarr;</Kbd>
-        &nbsp;after focusing on skip-to-content-link to skip to the main content
-        below. <Anchor href='#'>This link will be skipped.</Anchor> <br />
-      </Text>
-      <div className='main-content' id='main-content'>
+      <Text variant='headline'>Page Header</Text>
+
+      <Flex.Item className='demo-section' id='introduction'>
+        <Text variant='subheading'>Introduction</Text>
         <Text variant='body'>
-          This is the main content. Focus will be directed here from the
-          skip-to-content-link component.&nbsp;
-          <Anchor href='#'>Tab again to focus on this link.</Anchor>
-          &nbsp;
+          Some introduction text that explains what this page is about.
         </Text>
-      </div>
-    </>
+      </Flex.Item>
+      <Flex.Item className='demo-section' id='main-content'>
+        <Text variant='subheading'>Main Content</Text>
+        <Text variant='body'>
+          Some main content that the user is interested in, which should be
+          focused on when the skip link is clicked.
+        </Text>
+      </Flex.Item>
+      <Flex.Item className='demo-section' id='conclusion'>
+        <Text variant='subheading'>Conclusion</Text>
+        <Text variant='body'>
+          Some conclusion text that summarizes what the user has learned from
+          this page.
+        </Text>
+      </Flex.Item>
+    </Flex>
   );
 };
