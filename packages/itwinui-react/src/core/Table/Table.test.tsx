@@ -37,7 +37,6 @@ import {
   SelectionColumn,
   ExpanderColumn,
 } from './columns/index.js';
-import exp from 'node:constants';
 
 const intersectionCallbacks = new Map<Element, () => void>();
 vi.spyOn(IntersectionHooks, 'useIntersection').mockImplementation(
