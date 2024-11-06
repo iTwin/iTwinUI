@@ -18,13 +18,13 @@ A tree can be used to organize data in an application specific way, or it can be
   <AllExamples.TreeMainExample client:load />
 </LiveExample>
 
-Each level of the tree is compressed of multiple `TreeNode` components, which can be used to display the node content. `TreeNode` must be used inside `Tree` component to correctly set node `depth` and `subNodes`.
+Each level of the tree is composed of multiple `TreeNode` components, which can be used to display the node content. `TreeNode` must be used inside `Tree` component to correctly set node `depth` and `subNodes`.
 
 ### Subnode
 
 The tree supports hierarchial data structures where each node can have subnodes, which can be expanded or collapsed. Subnodes allow handling nested data up to any desired depth.
 
-Each object in the `data` array can include a `subItems` array to represent its children, enabling nested structures.
+Each object in the `data` array can include an array of sub-item objects (e.g., `subItems`) to represent its children, enabling nested structures.
 
 ```jsx
 const treeData = React.useMemo(
@@ -122,7 +122,7 @@ To ensure the `getNode` function updates the selection state of each node correc
 
 ### Virtualization
 
-For trees with a large number of nodes, enabling virtualization can improve performance. To enable virtualization, the `enableVirtualization` property of the tree component can be set to `"true"`. When virtualization is enabled, the tree's DOM structure will change, adding a wrapper `div` to which `className` and `style` will be applied.
+For trees with a large number of nodes, enabling virtualization can improve performance. To enable virtualization, the `enableVirtualization` property of the tree component can be set to `"true"`.
 
 <LiveExample src='Tree.virtualization.jsx'>
   <AllExamples.TreeVirtualizationExample client:load />
@@ -130,13 +130,11 @@ For trees with a large number of nodes, enabling virtualization can improve perf
 
 ### Expander customization
 
-The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders. This can include features such as enabling expansion for disabled nodes, and adjusting the expander based on its state to better align with your application's design and user experience requirements.
+The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders. This can include features such as enabling expansion for disabled nodes, and adjusting the expander based on its state to better align with your application's design and user experience requirements. If `hasSubNodes` is false, the expanders will not be shown.
 
 <LiveExample src='Tree.customizeExpander.jsx'>
   <AllExamples.TreeCustomizeExpanderExample client:load />
 </LiveExample>
-
-**Note**: If `hasSubNodes` is false, the expanders will not be shown.
 
 ## Props
 
