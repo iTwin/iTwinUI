@@ -6,23 +6,34 @@ thumbnail: #TODO
 
 The skip-to-content link is designed for screen reader and keyboard users and will only become visible when focused. It provides a shortcut to the main content of the page, bypassing the header and other navigation elements.
 
+## Usage
+
+The skip link setup requires two elements:
+
+- The target element to skip to.
+- The link pointing to the target.
+
 ```jsx
 <div className='App'>
-  <SkipToContentLink href='#main-content' />
-  <header>{/* Some page headers and introduction */}</header>
+  <SkipToContentLink href='#main-content-id' />
+  {/* Other elements such as header, navigation, etc. */}
 
-  <div id='main-content'>
-    Main Content
-    {/* Some main content that needs to be focused */}
-  </div>
-
-  <footer>{/* Some page footer */}</footer>
+  <div id='main-content-id'>{/* Some main content that will be skipped to */}</div>
 </div>
 ```
 
-## Usage
+The `href` prop can be used to direct focus to the target element. This prop must be set to the `id` of the main content section, including the `"#"` prefix.
 
-The `href` prop should be set to the `id` of the main content section, and the value must include the `"#"` prefix. In order to see skip-to-content-link component, end users might click on top of the page or the URL first then press `Tab` for the component to appear from the top. The main content can then be navigated to after the end users click on the component or hit `Enter`.
+```jsx {5}
+<div className='App'>
+  <SkipToContentLink href='#main-content-id' />
+  {/* Other elements such as header, navigation, etc. */}
+
+  <div id='main-content-id'>{/* Some main content that will be skipped to */}</div>
+</div>
+```
+
+The skip link is visually hidden from view end users focus to it. Users typically access the link by pressing `Tab` at the start of the page, making it visible to those navigating through the page via keyboard.
 
 <LiveExample src='SkipToContentLink.main.jsx' truncate={true}>
   <AllExamples.SkipToContentLinkMainExample client:load />
