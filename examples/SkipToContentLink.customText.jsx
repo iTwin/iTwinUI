@@ -8,7 +8,7 @@ export default () => {
   return (
     <>
       <SkipToContentLink href='#main-content'>
-        Go to main section
+        Skip main navigation
       </SkipToContentLink>
       <div id='main-content'>
         To view the skip link, click inside this box then press <Kbd>Tab</Kbd>.
