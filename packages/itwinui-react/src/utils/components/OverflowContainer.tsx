@@ -259,25 +259,13 @@ const useOverflow = (
         return;
       }
 
-      let newMinGuess = minGuess;
-      let newMaxGuess = maxGuess;
-
       if (isOverflowing) {
-        // overflowing = we guessed too high. So, new max guess = current guess
-        newMaxGuess = visibleCount;
+        // overflowing = we guessed too high. So, decrease max guess
+        dispatch({ type: 'decreaseMaxGuess' });
       } else {
-        // not overflowing = maybe we guessed too low? So, new min guess = current guess
-        newMinGuess = visibleCount;
+        // not overflowing = maybe we guessed too low? So, increase min guess
+        dispatch({ type: 'increaseMinGuess' });
       }
-
-      // Next guess is always the middle of the new guess range
-      const newVisibleCount = Math.floor((newMinGuess + newMaxGuess) / 2);
-
-      dispatch({
-        type: 'update',
-        guessRange: { minGuess: newMinGuess, maxGuess: newMaxGuess },
-        visibleCount: newVisibleCount,
-      });
     } finally {
       isGuessing.current = false;
     }
@@ -295,8 +283,6 @@ const useOverflow = (
 };
 
 // ----------------------------------------------------------------------------
-
-type GuessRange = { minGuess: number; maxGuess: number };
 
 type GuessState = (
   | {
@@ -317,11 +303,19 @@ type GuessState = (
 type GuessAction =
   | {
       /**
-       * - `"update"`: Update the guess range and visible count.
+       * - `"decreaseMaxGuess"`: When overflowing, do the following:
+       *   - New `maxGuess` = current `visibleCount`.
+       *   - New `visibleCount` = average of the `minGuess` and new `maxGuess`.
        */
-      type: 'update';
-      guessRange: GuessRange;
-      visibleCount: number;
+      type: 'decreaseMaxGuess';
+    }
+  | {
+      /**
+       * - `"increaseMinGuess"`: When not overflowing, do the following:
+       *   - New `minGuess` = current `visibleCount`.
+       *   - New `visibleCount` = average of the `maxGuess` and new `minGuess`.
+       */
+      type: 'increaseMinGuess';
     }
   | {
       /**
@@ -376,15 +370,30 @@ const overflowGuessReducer = (
     Math.min(state.itemsCount, visibleCount);
 
   switch (action.type) {
-    case 'update':
-      const { minGuess, maxGuess } = action.guessRange;
+    case 'decreaseMaxGuess':
+    case 'increaseMinGuess':
+      if (state.isStabilized) {
+        return state;
+      }
+
+      let newMinGuess = state.minGuess;
+      let newMaxGuess = state.maxGuess;
+
+      if (action.type === 'decreaseMaxGuess') {
+        newMaxGuess = state.visibleCount;
+      } else {
+        newMinGuess = state.visibleCount;
+      }
+
+      // Next guess is always the middle of the new guess range
+      const newVisibleCount = Math.floor((newMinGuess + newMaxGuess) / 2);
 
       return {
         ...state,
         isStabilized: false,
-        minGuess,
-        maxGuess,
-        visibleCount: getSafeVisibleCount(action.visibleCount),
+        minGuess: newMinGuess,
+        maxGuess: newMaxGuess,
+        visibleCount: getSafeVisibleCount(newVisibleCount),
       };
     case 'shiftGuessRangeForward':
       if (state.isStabilized) {
