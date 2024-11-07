@@ -3,6 +3,10 @@
 @use 'base';
 
 @mixin iui-button-borderless {
+  &:where(:not(:has(.iui-button-label))) {
+    aspect-ratio: 1;
+  }
+
   &[data-iui-shift='left'] {
     margin-inline-start: calc(-1 * var(--_iui-button-padding-inline));
   }
