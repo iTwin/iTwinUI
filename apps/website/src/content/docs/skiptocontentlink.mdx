@@ -17,7 +17,7 @@ The skip-to-content link is designed for screen reader and keyboard users and wi
 The skip link setup requires two elements:
 
 - The target element to skip to.
-- The link pointing to the target.
+- The link pointing to that target element.
 
 The `href` prop can be used to direct focus to the target element. This prop must be set to the `id` of the main content section, including the `"#"` prefix.
 
@@ -30,7 +30,7 @@ The `href` prop can be used to direct focus to the target element. This prop mus
 </div>
 ```
 
-As the skip link is visually hidden from view until focused, users typically access the link by pressing `Tab` at the start of the page. The skip link component should appear on top of the page to make sure it is one of the first items that screen readers get to and that keyboard users are able to navigate to using the keyboard.
+As the skip link is visually hidden from view until focused, users typically access the link by pressing `Tab` at the start of the page. The skip link component should appear on top of the page to make sure it is one of the first items the screen readers get to and that keyboard users are able to navigate to using the keyboard.
 
 <LiveExample src='SkipToContentLink.main.jsx' truncate={true}>
   <AllExamples.SkipToContentLinkMainExample client:load />
@@ -38,7 +38,9 @@ As the skip link is visually hidden from view until focused, users typically acc
 
 ### Custom Text
 
-As the link is designed for screen reader users, localization is crucial for making the application accessible and understandable. The skip link component accepts custom text through its `children` prop, allowing end users to provide a localized message. If no custom text is provided, the default text displayed is "Skip to main content". This flexibility helps create a more inclusive and user-friendly experience for a global audience.
+As the link is designed for screen reader users, localization is crucial for making the application accessible and understandable. The skip link component accepts custom text through its `children` prop, allowing end users to provide a localized message.
+
+If no custom text is provided, the default text displayed is "Skip to main content". This flexibility helps create a more inclusive and user-friendly experience for a global audience.
 
 <LiveExample src='SkipToContentLink.customText.jsx' truncate={true}>
   <AllExamples.SkipToContentLinkCustomTextExample client:load />
