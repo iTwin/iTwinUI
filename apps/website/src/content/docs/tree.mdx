@@ -114,8 +114,6 @@ The tree allows end users to select one or multiple nodes within its structure. 
 
 Similar to node expansion, a state variable is required to track the currently selected node. This state variable is updated via the `onSelect` callback, which is triggered whenever users select a node.
 
-To ensure the `getNode` function updates the selection state of each node correctly, the `isSelected` flag should be set based on the node's `id`.
-
 <LiveExample src='Tree.selection.jsx'>
   <AllExamples.TreeSelectionExample client:load />
 </LiveExample>
