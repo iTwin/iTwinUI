@@ -6,7 +6,7 @@ The class `iui-radio` now depends on `iui-checkbox` for its styling. Additionall
 
 ```diff
 - <label class="iui-radio-wrapper">
--   <input class="iui-radio">
+- <input class="iui-radio">
 + <label class="iui-checkbox-wrapper">
-+   <input class="iui-checkbox iui-radio">
++ <input class="iui-checkbox iui-radio">
 ```
