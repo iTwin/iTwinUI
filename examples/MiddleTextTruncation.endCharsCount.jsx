@@ -9,8 +9,8 @@ export default () => {
   return (
     <MiddleTextTruncation
       className='demo-container'
-      endCharsCount={10}
-      text='ThisIsMyVeryLongFileNameWithImportantExtension.docx'
+      endCharsCount={15}
+      text='ThisIsMyVeryLongFileNameWithImportantExtension-example.docx'
     />
   );
 };

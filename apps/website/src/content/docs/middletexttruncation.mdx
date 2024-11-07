@@ -9,15 +9,19 @@ group: utilities
 
 ## Usage
 
-The `MiddleTextTruncation` component handles long text strings by truncating them in the middle by inserting the ellipsis (`"..."`). This ensures that the beginning and the end of the text remain visible.
+In circumstances where a fixed width constraint is required, the `MiddleTextTruncation` component can be helpful in handling long text strings by truncating them in the middle by inserting the ellipsis (`"..."`). This ensures that the beginning and the end of the text remain visible.
 
 <LiveExample src='MiddleTextTruncation.main.jsx'>
   <AllExamples.MiddleTextTruncationMainExample client:load />
 </LiveExample>
 
-### End character count
+For more application examples, see this [documentation on Select](/docs/select#truncation).
 
-By default, the number of characters left visible at the end of the truncated text is set to 6. This ensures that important suffixes, such as file extensions or identifiers, remain visible. This number can be modified through the `endCharsCount` prop to suit your specific needs. Adjusting this prop allows you to control how much of the end of the text is shown, which can be particularly useful for maintaining readability and context in various use cases.
+### Number of end characters
+
+By default, the number of characters left visible at the end of the truncated text is set to 6. This ensures that important suffixes, such as file extensions or identifiers, remain visible. This number can be modified through the `endCharsCount` prop to suit your specific needs.
+
+Adjusting this prop allows you to control how much of the end of the text is shown, which can be particularly useful for maintaining readability and context in various use cases.
 
 <LiveExample src='MiddleTextTruncation.endCharsCount.jsx'>
   <AllExamples.MiddleTextTruncationEndCharsCountExample client:load />
@@ -25,7 +29,12 @@ By default, the number of characters left visible at the end of the truncated te
 
 ### Customization
 
-For further customization, the `textRenderer` prop allows you to define a custom rendering function for the truncated text. This function receives two parameters: `originalText`, and `truncatedText`. The function should return a `ReactNode` that represents the customized text element. This is particularly useful when end users want to apply specific styles or add additional elements to the truncated text, such as highlighting the truncated portion or adding tooltips for better user experience.
+For further customization, the `textRenderer` prop allows end users to define a custom rendering function for the truncated text. This function receives two parameters:
+
+- `originalText`
+- `truncatedText`
+
+The function should return a `ReactNode` that represents the customized text element. This is particularly useful when end users want to apply specific styles or add additional elements to the truncated text, such as highlighting the truncated portion or adding tooltips for better user experience.
 
 <LiveExample src='MiddleTextTruncation.customizeTruncation.jsx'>
   <AllExamples.MiddleTextTruncationCustomizationExample client:load />
