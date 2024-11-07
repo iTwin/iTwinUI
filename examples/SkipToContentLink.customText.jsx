@@ -11,8 +11,7 @@ export default () => {
         Go to main section
       </SkipToContentLink>
       <div id='main-content'>
-        To view the skip link, click inside this box then press <Kbd>Enter</Kbd>
-        .
+        To view the skip link, click inside this box then press <Kbd>Tab</Kbd>.
       </div>
     </>
   );
