@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import {
-  Panels,
+  unstable_Panels as Panels,
   List,
   ListItem,
   Flex,

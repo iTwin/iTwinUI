@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  Panels,
+  unstable_Panels as Panels,
   List,
   ListItem,
   Surface,

@@ -2,7 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Panels, Flex, Surface, Button } from '@itwin/itwinui-react';
+import {
+  unstable_Panels as Panels,
+  Flex,
+  Surface,
+  Button,
+} from '@itwin/itwinui-react';
 
 export default () => {
   const panels = Panels.useInstance();

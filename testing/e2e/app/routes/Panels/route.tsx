@@ -4,7 +4,7 @@ import {
   Flex,
   List,
   ListItem,
-  Panels,
+  unstable_Panels as Panels,
   Surface,
   Text,
 } from '@itwin/itwinui-react';

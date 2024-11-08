@@ -9,7 +9,7 @@ import {
   Flex,
   List,
   ListItem,
-  Panels,
+  unstable_Panels as Panels,
   Surface,
   Text,
   ToggleSwitch,

@@ -2,7 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Panels, List, ListItem, Surface, Text } from '@itwin/itwinui-react';
+import {
+  unstable_Panels as Panels,
+  List,
+  ListItem,
+  Surface,
+  Text,
+} from '@itwin/itwinui-react';
 
 export default () => {
   const panelIdRoot = 'root';
