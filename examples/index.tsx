@@ -777,6 +777,10 @@ import { default as LabelMainExampleRaw } from './Label.main';
 const LabelMainExample = withThemeProvider(LabelMainExampleRaw);
 export { LabelMainExample };
 
+import { default as LabelRequiredExampleRaw } from './Label.required';
+const LabelRequiredExample = withThemeProvider(LabelRequiredExampleRaw);
+export { LabelRequiredExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as LinkActionMainExampleRaw } from './LinkAction.main';
