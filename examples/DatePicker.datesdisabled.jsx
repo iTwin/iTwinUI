@@ -30,9 +30,6 @@ export default () => {
           startDate={startDate}
           endDate={endDate}
           isDateDisabled={isDateDisabled}
-          onChange={() => {
-            setVisible(false);
-          }}
           setFocus
           showDatesOutsideMonth={false}
         />
