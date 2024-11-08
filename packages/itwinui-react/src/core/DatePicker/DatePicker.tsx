@@ -166,8 +166,8 @@ export type DateRangePickerProps =
     }
   | {
       enableRangeSelect: true;
-      startDate: Date;
-      endDate: Date;
+      startDate?: Date;
+      endDate?: Date;
       onChange?: (startDate: Date, endDate: Date) => void;
     };
 
