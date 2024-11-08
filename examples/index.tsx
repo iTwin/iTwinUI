@@ -1274,6 +1274,10 @@ import { default as TextSkeletonExampleRaw } from './Text.skeleton';
 const TextSkeletonExample = withThemeProvider(TextSkeletonExampleRaw);
 export { TextSkeletonExample };
 
+import { default as TextPolymorphicExampleRaw } from './Text.polymorphic';
+const TextPolymorphicExample = withThemeProvider(TextPolymorphicExampleRaw);
+export { TextPolymorphicExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TileMainExampleRaw } from './Tile.main';

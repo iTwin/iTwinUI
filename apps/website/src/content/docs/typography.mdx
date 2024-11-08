@@ -18,19 +18,19 @@ The `Text` component is a polymorphic typography component that can be used to r
 
 The `variant` prop can be used to determine which type of typography size should be utilized for the content of the application. The available variants are:
 
-- `"headline"`: can be treated as an HTML `h1` text.
+- `"headline"`: can be treated as an HTML `<h1>` text.
 
-- `"title"`: can be treated as an HTML `h2` text.
+- `"title"`: can be treated as an HTML `<h2>` text.
 
-- `"subheading"`: can be treated as an HTML `h3` text.
+- `"subheading"`: can be treated as an HTML `<h3>` text.
 
-- `"leading"`: can be treated as an HTML `h4` text.
+- `"leading"`: can be treated as an HTML `<h4>` text.
 
-- `"body"` (default): can be treated as an HTML normal paragraph text.
+- `"body"` (default): can be treated as an HTML `<p>` text.
 
-- `"smaller"`: can be treated as a text of smaller size.
+- `"smaller"`: can be treated as an HTML `<smaller>` text.
 
-<LiveExample src='Text.variant.jsx' truncate={false}>
+<LiveExample src='Text.variant.jsx'>
   <AllExamples.TextVariantExample client:load />
 </LiveExample>
 
@@ -46,11 +46,19 @@ To achieve a muted or desaturated text effect, the `isMuted` prop can be passed 
 
 To indicate that content is loading and will be available soon, use skeleton text by setting the `isSkeleton` prop on the component.
 
-<LiveExample src='Text.skeleton.jsx' truncate={false}>
+The `isSkeleton` prop can be passed along with `variant` to show indicate different text section being loaded. By default or with no `variant` being passed, the skeleton has the size of a `"body"` text.
+
+<LiveExample src='Text.skeleton.jsx'>
   <AllExamples.TextSkeletonExample client:load />
 </LiveExample>
 
-**Note**: The `isSkeleton` prop can be passed along with `variant` to show indicate different text section being loaded. By default or with no `variant` being passed, the skeleton text size has the size of a `"body"` text.
+### Polymorphic
+
+The `Text` component supports the polymorphic `as`, allowing end users to render the text as a specific heading level while maintaining a desired size. This provides users the flexibility to control both the visual style and underlying HTML element used for rendering the texts.
+
+<LiveExample src='Text.polymorphic.jsx' truncate={false}>
+  <AllExamples.TextPolymorphicExample client:load />
+</LiveExample>
 
 ### Props
 
@@ -58,9 +66,17 @@ To indicate that content is loading and will be available soon, use skeleton tex
 
 ## Label
 
-<Placeholder componentPageName='label--basic' />
+The `Label` component is a fundamental element that provides descriptive text or captions for form inputs.
 
-<LiveExample src='Label.main.jsx' truncate={false}>
+```jsx
+<Label>This is a label.</Label>
+```
+
+`Label` can be used with `Input` components by setting the `htmlFor` attribute to match the `id` of the corresponding input element.
+
+This association enhances accessibility by ensuring that screen readers and other assistive technologies can correctly identify the relationship between the label and the input field.
+
+<LiveExample src='Label.main.jsx'>
   <AllExamples.LabelMainExample client:load />
 </LiveExample>
 
