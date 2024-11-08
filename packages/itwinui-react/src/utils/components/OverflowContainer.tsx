@@ -33,12 +33,11 @@ type OverflowContainerProps = {
  *
  * @example
  * const items = Array(10)
- *   .fill()
+ *   .fill(null)
  *   .map((_, i) => <span>Item {i}</span>);
  *
  * return (
  *   <OverflowContainer itemsCount={items.length}>
- *     {items}
  *     <MyOverflowContainerContent />
  *   </OverflowContainer>
  * );
@@ -47,9 +46,12 @@ type OverflowContainerProps = {
  *   const { visibleCount, itemsCount } = OverflowContainer.useContext();
  *
  *   return (
- *     <OverflowContainer.OverflowNode>
- *       <span>And {itemsCount - visibleCount} more...</span>
- *     </OverflowContainer.OverflowNode>
+ *     <>
+ *       {items.slice(0, visibleCount)}
+ *       <OverflowContainer.OverflowNode>
+ *         <span>+{itemsCount - visibleCount} more...</span>
+ *       </OverflowContainer.OverflowNode>
+ *     </>
  *   );
  * };
  */
@@ -128,6 +130,7 @@ const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 /**
+ * @private
  * Wrapper over `useOverflow`.
  *
  * - Use `OverflowContainer.useContext()` to get overflow related properties.
@@ -158,11 +161,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 /**
+ * @private
  * Hook that returns the number of items that should be visible based on the size of the container element.
  *
  * The returned number should be used to render the element with fewer items.
  *
- * @private
  * @param itemsCount Number of items that this element contains.
  * @param orientation 'horizontal' (default) or 'vertical'
  * @returns [callback ref to set on container, stateful count of visible items]

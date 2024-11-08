@@ -80,12 +80,12 @@ test('should not have flickering tags (fixes #2112)', async ({ page }) => {
   // Wait for page to stabilize
   await page.waitForTimeout(30);
 
-  const stabalizedCount = await getSelectTagContainerDomChangeCount(page);
+  const stabilizedCount = await getSelectTagContainerDomChangeCount(page);
   await page.waitForTimeout(100);
   const newCount = await getSelectTagContainerDomChangeCount(page);
 
   // DOM should not change with time (i.e. no flickering)
-  expect(stabalizedCount).toBe(newCount);
+  expect(stabilizedCount).toBe(newCount);
 });
 
 test(`should clear filter and set input value when an option is toggled and when focus is lost (multiple=false)`, async ({
