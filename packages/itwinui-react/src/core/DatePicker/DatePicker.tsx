@@ -288,12 +288,14 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
 
   const logWarning = useWarningLogger();
 
-  const onlyOneRangePropPassed =
-    (!!startDate ? 1 : 0) + (!!endDate ? 1 : 0) === 1;
-  if (enableRangeSelect && onlyOneRangePropPassed) {
-    logWarning(
-      '`DatePicker` with `enableRangeSelect` needs *both* `startDate` and `endDate` to either be `Date` or `undefined`. Passing `Date` to just one of them is not allowed.',
-    );
+  if (process.env.NODE_ENV === 'development') {
+    const onlyOneRangePropPassed =
+      (!!startDate ? 1 : 0) + (!!endDate ? 1 : 0) === 1;
+    if (enableRangeSelect && onlyOneRangePropPassed) {
+      logWarning(
+        '`DatePicker` with `enableRangeSelect` needs *both* `startDate` and `endDate` to either be `Date` or `undefined`. Passing `Date` to just one of them is not allowed.',
+      );
+    }
   }
 
   const monthNames = localizedNames?.months ?? defaultMonths;
