@@ -17,7 +17,7 @@ type SelectTagContainerProps = {
 
 /**
  */
-export const SelectTagContainer = React.forwardRef((props, ref) => {
+export const SelectTagContainer = React.forwardRef((props, forwardedRef) => {
   const { tags: tagsProp, className, ...rest } = props;
 
   const tags = React.useMemo(
@@ -29,7 +29,7 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
     <OverflowContainer
       itemsCount={tags.length}
       className={cx('iui-select-tag-container', className)}
-      ref={ref}
+      ref={forwardedRef}
       {...rest}
     >
       <SelectTagContainerContent {...props} tags={tags} />

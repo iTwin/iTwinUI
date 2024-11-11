@@ -111,7 +111,7 @@ type BreadcrumbsProps = {
  *   <span>Current level</span>
  * </Breadcrumbs>
  */
-const BreadcrumbsComponent = React.forwardRef((props, ref) => {
+const BreadcrumbsComponent = React.forwardRef((props, forwardedRef) => {
   const {
     children: childrenProp,
     currentIndex = React.Children.count(childrenProp) - 1,
@@ -130,7 +130,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
     <Box
       as='nav'
       className={cx('iui-breadcrumbs', className)}
-      ref={ref}
+      ref={forwardedRef}
       aria-label='Breadcrumb'
       {...rest}
     >
