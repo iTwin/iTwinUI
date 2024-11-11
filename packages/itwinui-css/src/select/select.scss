@@ -126,6 +126,12 @@
     svg {
       @include mixins.iui-icon-style('s');
     }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+    }
   }
 }
 
