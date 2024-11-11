@@ -6,6 +6,8 @@ test.describe('ButtonGroup (toolbar)', () => {
   }) => {
     await page.goto('/ButtonGroup');
 
+    await page.waitForTimeout(50);
+
     await page.keyboard.press('Tab');
     await expect(page.getByRole('button', { name: 'Button 1' })).toBeFocused();
 
@@ -35,6 +37,8 @@ test.describe('ButtonGroup (toolbar)', () => {
     page,
   }) => {
     await page.goto('/ButtonGroup?orientation=vertical');
+
+    await page.waitForTimeout(50);
 
     await page.keyboard.press('Tab');
     await expect(page.getByRole('button', { name: 'Button 1' })).toBeFocused();
