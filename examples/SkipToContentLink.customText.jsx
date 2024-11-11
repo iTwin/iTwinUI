@@ -6,13 +6,13 @@ import { Kbd, SkipToContentLink } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
-      <SkipToContentLink href='#main-content'>
+    <div className='demo-container'>
+      <SkipToContentLink href='#main-content' className='skip-link'>
         Skip main navigation
       </SkipToContentLink>
       <div id='main-content'>
         To view the skip link, click inside this box then press <Kbd>Tab</Kbd>.
       </div>
-    </>
+    </div>
   );
 };
