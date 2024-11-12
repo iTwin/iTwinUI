@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.15.5
+
+### Patch Changes
+
+- [#2306](https://github.com/iTwin/iTwinUI/pull/2306): Fixed broken expandable content (`subComponent`) when `Table` is asynchronously re-rendered.
+- [#2306](https://github.com/iTwin/iTwinUI/pull/2306): Fixed `Table`'s max depth reached error caused when passing the `getRowId` prop.
+
+## 3.15.4
+
+### Patch Changes
+
+- [#2297](https://github.com/iTwin/iTwinUI/pull/2297): More robust fix for an issue where nested `Popover`s were automatically closing due to faulty "outside click" detection.
+- [#2295](https://github.com/iTwin/iTwinUI/pull/2295): `ComboBox` with `multiple={true}` properly clears its input's value whenever the filter is cleared. e.g. when an option is toggled or the combobox is unfocused.
+- [#2288](https://github.com/iTwin/iTwinUI/pull/2288): `Table` now displays development-only console warnings when both `subRows` and `subComponent` are simultaneously passed to it.
+- [#2301](https://github.com/iTwin/iTwinUI/pull/2301): Fixed arrow keys page navigation in `TablePaginator`.
+- [#2303](https://github.com/iTwin/iTwinUI/pull/2303): `TablePaginator` shows ellipses only whenever needed.
+
 ## 3.15.3
 
 ### Patch Changes

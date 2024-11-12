@@ -25,7 +25,6 @@ import type {
   ActionType,
   TableInstance,
   Column,
-  ColumnInstance,
 } from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
@@ -40,7 +39,7 @@ import {
   useVirtualScroll,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TableColumnsContext } from './utils.js';
+import { TableInstanceContext } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
@@ -72,6 +71,7 @@ const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
+export const iuiId = Symbol('iui-id');
 
 export type TablePaginatorRendererProps = {
   /**
@@ -413,6 +413,7 @@ export const Table = <
     headerProps,
     bodyProps,
     emptyTableContentProps,
+    getRowId,
     ...rest
   } = props;
 
@@ -579,18 +580,52 @@ export const Table = <
     );
   }, [data, getSubRows]);
 
-  const [rowHasParent] = React.useState(() => new WeakSet<T>());
-
   const getSubRowsWithSubComponents = React.useCallback(
-    (originalRow: T) => {
-      if (!rowHasParent.has(originalRow)) {
-        rowHasParent.add(originalRow);
-        return [originalRow];
+    (originalRow: T, relativeIndex: number) => {
+      // If originalRow represents a sub-component, don't add any sub-rows to it
+      if (originalRow[iuiId as any]) {
+        return [];
       }
 
-      return (originalRow.subRows as T[]) || [];
+      // If sub-rows already exist, return them as they are.
+      if (originalRow.subRows) {
+        return originalRow.subRows as T[];
+      }
+
+      // If originalRow represents the top-most level row, add itself as a sub-row
+      // that will represent a subComponent.
+      // Add a symbol as a key on this sub-row to distinguish it from the real row.
+      // This distinction is needed as the sub-row needs to have all fields of the row
+      // since react-table expects even sub-rows to be rows (Row<T>).
+      return [
+        {
+          [iuiId]: `subcomponent-${relativeIndex}`,
+          ...originalRow,
+        },
+      ];
     },
-    [rowHasParent],
+    [],
+  );
+
+  /**
+   * Gives `subComponent` a unique id since `subComponent` has the same react-table id as its parent row.
+   * Avoiding duplicate react-table ids prevents react-table errors.
+   */
+  const getRowIdWithSubComponents = React.useCallback(
+    (originalRow: T, relativeIndex: number, parent?: Row<T>) => {
+      const defaultRowId = parent
+        ? `${parent.id}.${relativeIndex}`
+        : `${relativeIndex}`;
+      const rowIdFromUser = getRowId?.(originalRow, relativeIndex, parent);
+      // If the row contains the Symbol, it indicates that the current row is a sub-component row.
+      // We need to append the ID passed by user with its according sub-component ID.
+      if (rowIdFromUser !== undefined && originalRow[iuiId as any]) {
+        return `${rowIdFromUser}-${defaultRowId}`;
+      }
+
+      return rowIdFromUser ?? defaultRowId;
+    },
+    [getRowId],
   );
 
   const instance = useTable<T>(
@@ -608,6 +643,7 @@ export const Table = <
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
       initialState: { pageSize, ...props.initialState },
       columnResizeMode,
+      getRowId: subComponent ? getRowIdWithSubComponents : getRowId, // only call this wrapper function when sub-component is present
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
@@ -639,7 +675,6 @@ export const Table = <
     gotoPage,
     setPageSize,
     flatHeaders,
-    visibleColumns,
     setGlobalFilter,
   } = instance;
 
@@ -859,32 +894,9 @@ export const Table = <
     ) => {
       const row = page[index];
       prepareRow(row);
+      const isRowASubComponent = !!row.original[iuiId as any] && !!subComponent;
 
-      if (row.subRows.length > 0 || !subComponent) {
-        return (
-          <TableRowMemoized
-            row={row}
-            rowProps={rowProps}
-            isLast={index === page.length - 1}
-            onRowInViewport={onRowInViewportRef}
-            onBottomReached={onBottomReachedRef}
-            intersectionMargin={intersectionMargin}
-            state={state}
-            key={row.getRowProps().key}
-            onClick={onRowClickHandler}
-            subComponent={subComponent}
-            isDisabled={!!isRowDisabled?.(row.original)}
-            tableHasSubRows={hasAnySubRows}
-            tableInstance={instance}
-            expanderCell={expanderCell}
-            scrollContainerRef={tableRef.current}
-            tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
-            density={density}
-            virtualItem={virtualItem}
-            virtualizer={virtualizer}
-          />
-        );
-      } else {
+      if (isRowASubComponent) {
         return (
           <TableExpandableContentMemoized
             key={row.getRowProps().key}
@@ -900,17 +912,41 @@ export const Table = <
           </TableExpandableContentMemoized>
         );
       }
+
+      return (
+        <TableRowMemoized
+          row={row}
+          rowProps={rowProps}
+          isLast={index === page.length - 1}
+          onRowInViewport={onRowInViewportRef}
+          onBottomReached={onBottomReachedRef}
+          intersectionMargin={intersectionMargin}
+          state={state}
+          key={row.getRowProps().key}
+          onClick={onRowClickHandler}
+          subComponent={subComponent}
+          isDisabled={!!isRowDisabled?.(row.original)}
+          tableHasSubRows={hasAnySubRows}
+          tableInstance={instance}
+          expanderCell={expanderCell}
+          scrollContainerRef={tableRef.current}
+          tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+          density={density}
+          virtualItem={virtualItem}
+          virtualizer={virtualizer}
+        />
+      );
     },
     [
       page,
       prepareRow,
+      subComponent,
       rowProps,
       onRowInViewportRef,
       onBottomReachedRef,
       intersectionMargin,
       state,
       onRowClickHandler,
-      subComponent,
       isRowDisabled,
       hasAnySubRows,
       instance,
@@ -950,7 +986,9 @@ export const Table = <
   }, []);
 
   return (
-    <TableColumnsContext.Provider value={instance.columns as ColumnInstance[]}>
+    <TableInstanceContext.Provider
+      value={instance as TableInstance<Record<string, unknown>>}
+    >
       <Box
         ref={useMergedRefs<HTMLDivElement>(
           tableRef,
@@ -1000,22 +1038,29 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
-                      <ColumnHeader<T>
+                      <ColumnHeader
                         {...dragAndDropProps}
                         key={dragAndDropProps.key || column.id || index}
-                        columnRefs={columnRefs}
-                        column={column}
-                        index={index}
+                        column={column as HeaderGroup<Record<string, unknown>>}
                         areFiltersSet={areFiltersSet}
-                        hasAnySubRows={hasAnySubRows}
-                        headers={headerGroup.headers}
-                        state={state}
-                        data={data}
+                        columnHasExpanders={
+                          hasAnySubRows &&
+                          index ===
+                            headerGroup.headers.findIndex(
+                              (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
+                            )
+                        }
+                        isLast={index === headerGroup.headers.length - 1}
+                        isTableEmpty={data.length === 0}
                         isResizable={isResizable}
                         columnResizeMode={columnResizeMode}
                         enableColumnReordering={enableColumnReordering}
                         density={density}
-                        visibleColumns={visibleColumns}
+                        ref={(el) => {
+                          if (el) {
+                            columnRefs.current[column.id] = el;
+                          }
+                        }}
                       />
                     );
                   })}
@@ -1115,7 +1160,7 @@ export const Table = <
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
-    </TableColumnsContext.Provider>
+    </TableInstanceContext.Provider>
   );
 };
 if (process.env.NODE_ENV === 'development') {

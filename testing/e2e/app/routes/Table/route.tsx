@@ -1,4 +1,9 @@
-import { Table, tableFilters } from '@itwin/itwinui-react';
+import {
+  Table,
+  tableFilters,
+  TablePaginator,
+  TablePaginatorRendererProps,
+} from '@itwin/itwinui-react';
 import type { CellProps } from '@itwin/itwinui-react/react-table';
 import { useSearchParams } from '@remix-run/react';
 import React from 'react';
@@ -6,11 +11,17 @@ import React from 'react';
 export default function Page() {
   const [searchParams] = useSearchParams();
 
-  if (searchParams.get('allFilters')) {
-    return <FiltersTest />;
-  }
+  const config = getConfigFromSearchParams(searchParams);
+  const { exampleType } = config;
 
-  return <EverythingElse />;
+  switch (exampleType) {
+    case 'withTablePaginator':
+      return <WithTablePaginator config={config} />;
+    case 'allFilters':
+      return <FiltersTest />;
+    default:
+      return <Default config={config} />;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -53,13 +64,17 @@ function FiltersTest() {
 
 // ----------------------------------------------------------------------------
 
-function EverythingElse() {
-  const [searchParams] = useSearchParams();
-
+const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
+  const exampleType = searchParams.get('exampleType') || 'default';
   const disableResizing = searchParams.get('disableResizing') === 'true';
   const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
   const maxWidths = searchParams.getAll('maxWidth');
   const minWidths = searchParams.getAll('minWidth');
+  const density = (searchParams.get('density') || undefined) as
+    | 'default'
+    | 'condensed'
+    | 'extra-condensed'
+    | undefined;
   const isSelectable = searchParams.get('isSelectable') === 'true';
   const rows = searchParams.get('rows');
   const filter = searchParams.get('filter') === 'true';
@@ -72,11 +87,57 @@ function EverythingElse() {
   const scrollRow = Number(searchParams.get('scrollRow'));
   const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
 
+  return {
+    exampleType,
+    disableResizing,
+    columnResizeMode,
+    maxWidths,
+    minWidths,
+    density,
+    isSelectable,
+    rows,
+    filter,
+    selectSubRows,
+    enableVirtualization,
+    empty,
+    scroll,
+    oneRow,
+    stateReducer,
+    scrollRow,
+    hasSubComponent,
+  };
+};
+
+const Default = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const {
+    oneRow,
+    empty,
+    columnResizeMode,
+    density,
+    disableResizing,
+    enableVirtualization,
+    filter,
+    isSelectable,
+    maxWidths,
+    minWidths,
+    scroll,
+    scrollRow,
+    selectSubRows,
+    stateReducer,
+    rows,
+    hasSubComponent,
+  } = config;
+
   const virtualizedData = React.useMemo(() => {
-    const size = oneRow ? 1 : 100000;
     if (empty) {
       return [];
     }
+
+    const size = oneRow ? 1 : 100000;
     const arr = new Array(size);
     for (let i = 0; i < size; ++i) {
       arr[i] = {
@@ -143,6 +204,7 @@ function EverythingElse() {
         isRowDisabled={isRowDisabled}
         isSelectable={isSelectable}
         isSortable
+        density={density}
         columnResizeMode={columnResizeMode as 'fit' | 'expand' | undefined}
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
@@ -173,7 +235,68 @@ function EverythingElse() {
       />
     </>
   );
-}
+};
+
+const WithTablePaginator = ({
+  config,
+}: {
+  config: ReturnType<typeof getConfigFromSearchParams>;
+}) => {
+  const { density } = config;
+
+  const columns = React.useMemo(
+    () => [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
+      },
+    ],
+    [],
+  );
+
+  const data = React.useMemo(
+    () =>
+      Array(505)
+        .fill(null)
+        .map((_, index) => ({
+          name: `Name ${index}`,
+          description: `Description ${index}`,
+        })),
+    [],
+  );
+
+  const paginator = React.useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator id='paginator' {...props} />
+    ),
+    [],
+  );
+
+  return (
+    <>
+      <div id='container' style={{ height: '80vh' }}>
+        <Table
+          style={{ height: '100%' }}
+          emptyTableContent='No data.'
+          columns={columns}
+          data={data}
+          pageSize={50}
+          density={density}
+          paginatorRenderer={paginator}
+        />
+      </div>
+    </>
+  );
+};
 
 // ----------------------------------------------------------------------------
 

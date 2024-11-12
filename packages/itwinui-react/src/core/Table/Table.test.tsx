@@ -30,7 +30,6 @@ import {
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
-import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,
@@ -1736,6 +1735,56 @@ it('should expand correctly', async () => {
   getByText('Expanded component, name: Name1');
 });
 
+it('should show expandable content correctly after re-rendering', async () => {
+  const data = mockedData();
+  const getRowIdMock = vi.fn();
+  const { rerender } = render(
+    <Table
+      columns={[
+        {
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test1</>,
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+    />,
+  );
+  expect(screen.getAllByText('test1').length).toBe(3);
+
+  rerender(
+    <Table
+      columns={[
+        {
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test2</>,
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+      getRowId={getRowIdMock}
+    />,
+  );
+  expect(screen.getAllByText('test2').length).toBe(3);
+
+  await act(async () => {
+    await userEvent.click(screen.getAllByRole('button')[0]);
+  });
+
+  screen.getByText('Expanded component, name: Name1');
+
+  // getRowId is called for each row and sub-row before and after re-rendering.
+  expect(getRowIdMock).toHaveBeenCalledTimes(12);
+});
+
 it('should expand correctly with a custom expander cell', async () => {
   const onExpandMock = vi.fn();
   const { getByText, queryByText } = renderComponent({
@@ -1929,6 +1978,44 @@ it('should select and filter rows', async () => {
   expect(checkboxInputs[1].checked).toBe(true);
   expect(checkboxInputs[2].checked).toBe(true);
   expect(checkboxInputs[3].checked).toBe(false);
+});
+
+it('should only select main row when subComponent is present', async () => {
+  const logSpy = vitest.spyOn(console, 'log');
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+  ];
+
+  const data = mockedData();
+
+  const { container } = renderComponent({
+    columns,
+    data,
+    isSelectable: true,
+    onSelect: (selectedRows) => console.log(selectedRows),
+    subComponent: (row) => <div>{`Name ${row.original.name}`}</div>,
+  });
+
+  const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
+  expect(checkboxCells.length).toBe(4);
+
+  await userEvent.click(checkboxCells[0]);
+  expect(logSpy).toHaveBeenCalledWith(data);
+
+  await userEvent.click(checkboxCells[1]);
+  expect(logSpy).toHaveBeenCalledWith([data[1], data[2]]);
+
+  await userEvent.click(checkboxCells[2]);
+  expect(logSpy).toHaveBeenCalledWith([data[2]]);
 });
 
 it('should pass custom props to row', () => {
@@ -2497,41 +2584,6 @@ it('should handle unwanted actions on editable cell', async () => {
 
   await userEvent.click(editableCells[1]);
   expect(onSelect).not.toHaveBeenCalled();
-});
-
-it('should render data in pages', async () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((items) => [
-    vi.fn(),
-    items.length,
-  ]);
-  const { container } = renderComponent({
-    data: mockedData(100),
-    pageSize: 10,
-    paginatorRenderer: (props) => <TablePaginator {...props} />,
-  });
-
-  let rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows).toHaveLength(10);
-  expect(rows[0].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name1',
-  );
-  expect(rows[9].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name10',
-  );
-
-  const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-table-paginator .iui-table-paginator-page-button',
-  );
-  expect(pages).toHaveLength(10);
-  await userEvent.click(pages[3]);
-  rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows).toHaveLength(10);
-  expect(rows[0].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name31',
-  );
-  expect(rows[9].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name40',
-  );
 });
 
 it('should change page size', async () => {
@@ -3111,7 +3163,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 
   await userEvent.click(columnManager);
   const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
-  expect(columnManagerColumns[0].classList).toContain('iui-disabled');
+  expect(columnManagerColumns[0]).toHaveAttribute('data-iui-disabled', 'true');
   expect(columnManagerColumns[0].querySelector('input')?.disabled).toBeTruthy();
 });
 

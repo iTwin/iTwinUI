@@ -35,13 +35,17 @@ export type DialogContextProps = {
    */
   closeOnEsc?: boolean;
   /**
-   * Traps the focus inside the dialog. This is useful when the dialog is modal.
+   * Prevents focus from leaving the dialog. This is useful when the dialog is modal.
+   *
+   * Setting this prop to `true` will also set `setFocus` to `true`.
+   *
    * @default false
    */
   trapFocus?: boolean;
   /**
    * If true, focuses the dialog.
-   * @default false
+   *
+   * Defaults to `true` if `trapFocus` is set to `true`, otherwise defaults to `false`.
    */
   setFocus?: boolean;
   /**
