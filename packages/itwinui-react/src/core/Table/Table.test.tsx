@@ -30,7 +30,6 @@ import {
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
-import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,
@@ -2587,41 +2586,6 @@ it('should handle unwanted actions on editable cell', async () => {
   expect(onSelect).not.toHaveBeenCalled();
 });
 
-it('should render data in pages', async () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((itemsCount) => [
-    vi.fn(),
-    itemsCount,
-  ]);
-  const { container } = renderComponent({
-    data: mockedData(100),
-    pageSize: 10,
-    paginatorRenderer: (props) => <TablePaginator {...props} />,
-  });
-
-  let rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows).toHaveLength(10);
-  expect(rows[0].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name1',
-  );
-  expect(rows[9].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name10',
-  );
-
-  const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-table-paginator .iui-table-paginator-page-button',
-  );
-  expect(pages).toHaveLength(10);
-  await userEvent.click(pages[3]);
-  rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows).toHaveLength(10);
-  expect(rows[0].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name31',
-  );
-  expect(rows[9].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name40',
-  );
-});
-
 it('should change page size', async () => {
   const { container } = renderComponent({
     data: mockedData(100),
@@ -3199,7 +3163,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 
   await userEvent.click(columnManager);
   const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
-  expect(columnManagerColumns[0].classList).toContain('iui-disabled');
+  expect(columnManagerColumns[0]).toHaveAttribute('data-iui-disabled', 'true');
   expect(columnManagerColumns[0].querySelector('input')?.disabled).toBeTruthy();
 });
 

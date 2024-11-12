@@ -19,9 +19,6 @@ export default () => {
           enableRangeSelect={true}
           startDate={startDate}
           endDate={endDate}
-          onChange={() => {
-            setVisible(false);
-          }}
           setFocus
           showDatesOutsideMonth={false}
         />
