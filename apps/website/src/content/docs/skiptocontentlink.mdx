@@ -22,17 +22,17 @@ The `SkipToContentLink` component setup requires two elements:
 - The link pointing to that target element.
 
 ```jsx
-<SkipToContentLink href='#main-content-id' />
+<SkipToContentLink href='#main-id' />
 ```
 
 The `href` prop should be used to direct focus to the target element. This prop must be set to the `id` of the main content section, including the `"#"` prefix.
 
 ```jsx {2}
 <div className='App'>
-  <SkipToContentLink href='#main-content-id' />
+  <SkipToContentLink href='#main-id' />
   {/* Other elements such as header, navigation, etc. */}
 
-  <main id='main-content-id'>{/* Main content that will be skipped to */}</main>
+  <main id='main-id'>{/* Main content that will be skipped to */}</main>
 </div>
 ```
 
@@ -46,10 +46,10 @@ If no `children` is passed, the default text displayed is "Skip to main content"
 
 ```jsx {2}
 <div className='App'>
-  <SkipToContentLink href='#main-content-id'>Skip main navigation</SkipToContentLink>
+  <SkipToContentLink href='#main-id'>Skip main navigation</SkipToContentLink>
   {/* Other elements such as header, navigation, etc. */}
 
-  <main id='main-content-id'>{/* Main content that will be skipped to */}</main>
+  <main id='main-id'>{/* Main content that will be skipped to */}</main>
 </div>
 ```
 
