@@ -6,6 +6,10 @@ thumbnail: #TODO
 
 <p>{frontmatter.description}</p>
 
+<LiveExample src='SkipToContentLink.main.jsx' truncate={true}>
+  <AllExamples.SkipToContentLinkMainExample client:load />
+</LiveExample>
+
 In large applications, numerous navigation links and other focusable elements can require a lot of keyboard presses before users reach their desired content. What is more, if users navigate to another page with the same structure, they might need to tab through the same list of non-essential links again.
 
 While this may not be an issue for sighted mouse users, it can be cumbersome for those who rely on keyboard navigation. Therefore, a skip link is crucial to improve accessibility and streamline navigation for keyboard users.
@@ -34,19 +38,20 @@ The `href` prop should be used to direct focus to the target element. This prop 
 
 As the skip link is visually hidden from view until focused, users typically access the link by pressing <kbd>Tab</kbd> at the start of the page. The skip link component should appear on top of the page to make sure it is one of the first items that keyboard users are able to navigate to using the keyboard.
 
-<LiveExample src='SkipToContentLink.main.jsx' truncate={true}>
-  <AllExamples.SkipToContentLinkMainExample client:load />
-</LiveExample>
-
 ### Custom Text
 
 The skip link component accepts custom text through its `children` prop, which is especially useful for providing a localized message.
 
 If no `children` is passed, the default text displayed is "Skip to main content".
 
-<LiveExample src='SkipToContentLink.customText.jsx' truncate={true}>
-  <AllExamples.SkipToContentLinkCustomTextExample client:load />
-</LiveExample>
+```jsx {2}
+<div className='App'>
+  <SkipToContentLink href='#main-content-id'>Skip main navigation</SkipToContentLink>
+  {/* Other elements such as header, navigation, etc. */}
+
+  <main id='main-content-id'>{/* Main content that will be skipped to */}</main>
+</div>
+```
 
 ## Props
 
