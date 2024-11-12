@@ -1080,7 +1080,6 @@ export const Table = <
               },
               bodyProps?.className,
             ),
-            style: { outline: 0 },
           })}
           aria-multiselectable={
             (isSelectable && selectionMode === 'multi') || undefined
