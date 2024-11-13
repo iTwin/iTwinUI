@@ -16,9 +16,15 @@ export type Props = {
    * @default true
    */
   truncate?: boolean;
+
+  /**
+   * whether the demo code should be visible.
+   * @default false
+   */
+  hideCode?: boolean;
 };
 
-const { src, truncate = true } = Astro.props;
+const { src, truncate = true, hideCode = false } = Astro.props;
 
 const jsxPath = require.resolve(`examples/${src}`);
 const cssPath = jsxPath.replace(/\.jsx$/, '.css');
@@ -61,10 +67,14 @@ const cssCode = await (async () => {
   />
 </demo-box>
 
-<demo-code>
-  {truncate && <button aria-expanded='false'>Toggle full code</button>}
-  <Code code={jsxCode} lang='tsx' theme={'github-dark'} />
-</demo-code>
+{
+  !hideCode && (
+    <demo-code>
+      {truncate && <button aria-expanded='false'>Toggle full code</button>}
+      <Code code={jsxCode} lang='tsx' theme={'github-dark'} />
+    </demo-code>
+  )
+}
 
 <script>
   customElements.define(
