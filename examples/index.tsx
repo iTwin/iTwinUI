@@ -1094,6 +1094,14 @@ export { SideNavigationSubmenuExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as SkipToContentLinkMainExampleRaw } from './SkipToContentLink.main';
+const SkipToContentLinkMainExample = withThemeProvider(
+  SkipToContentLinkMainExampleRaw,
+);
+export { SkipToContentLinkMainExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as SliderMainExampleRaw } from './Slider.main';
 const SliderMainExample = withThemeProvider(SliderMainExampleRaw);
 export { SliderMainExample };
