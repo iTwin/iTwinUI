@@ -8,7 +8,6 @@ import {
   MiddleTextTruncation,
   LabeledSelect,
 } from '@itwin/itwinui-react';
-import { useCallback, useState } from 'react';
 
 export default () => {
   const options = [
@@ -27,7 +26,7 @@ export default () => {
       label: 'SomeOtherFile.dgn',
     },
   ];
-  const [selectedValue, setSelectedValue] = useState(options[0].value);
+  const [selectedValue, setSelectedValue] = React.useState(options[0].value);
 
   return (
     <LabeledSelect
