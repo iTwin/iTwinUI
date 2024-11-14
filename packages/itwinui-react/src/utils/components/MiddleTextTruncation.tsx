@@ -3,12 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { CommonProps } from '../props.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
 import { OverflowContainer } from './OverflowContainer.js';
 
 const ELLIPSIS_CHAR = '…';
 
-export type MiddleTextTruncationProps = {
+type MiddleTextTruncationProps = {
   /**
    * Text to truncate.
    */
@@ -25,7 +25,7 @@ export type MiddleTextTruncationProps = {
     truncatedText: string,
     originalText: string,
   ) => React.ReactNode;
-} & CommonProps;
+};
 
 /**
  * Truncates text with the ellipsis in the middle,
@@ -43,8 +43,8 @@ export type MiddleTextTruncationProps = {
  *   )}
  * />
  */
-export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
-  const { text, style, ...rest } = props;
+export const MiddleTextTruncation = React.forwardRef((props, forwardedRef) => {
+  const { text, endCharsCount, textRenderer, style, ...rest } = props;
 
   return (
     <OverflowContainer
@@ -58,11 +58,16 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
       }}
       itemsCount={text.length}
       {...rest}
+      ref={forwardedRef}
     >
-      <MiddleTextTruncationContent {...props} />
+      <MiddleTextTruncationContent
+        text={text}
+        endCharsCount={endCharsCount}
+        textRenderer={textRenderer}
+      />
     </OverflowContainer>
   );
-};
+}) as PolymorphicForwardRefComponent<'span', MiddleTextTruncationProps>;
 if (process.env.NODE_ENV === 'development') {
   MiddleTextTruncation.displayName = 'MiddleTextTruncation';
 }
@@ -79,9 +84,9 @@ const MiddleTextTruncationContent = (props: MiddleTextTruncationProps) => {
         0,
         visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
       )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
-    } else {
-      return text;
     }
+
+    return text;
   }, [endCharsCount, text, visibleCount]);
 
   return textRenderer?.(truncatedText, text) ?? truncatedText;
