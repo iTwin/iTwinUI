@@ -64,7 +64,12 @@ export const MiddleTextTruncation = React.forwardRef((props, forwardedRef) => {
     >
       <ShadowRoot>
         <VisuallyHidden>{text}</VisuallyHidden>
-        <slot aria-hidden />
+        <slot
+          aria-hidden
+          style={{
+            pointerEvents: 'none', // Shadow-tree should not affect handling of clicks
+          }}
+        />
       </ShadowRoot>
       <MiddleTextTruncationContent
         text={text}
