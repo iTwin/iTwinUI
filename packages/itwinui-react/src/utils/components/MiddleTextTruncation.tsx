@@ -5,6 +5,8 @@
 import * as React from 'react';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { OverflowContainer } from './OverflowContainer.js';
+import { VisuallyHidden } from '../../core/VisuallyHidden/VisuallyHidden.js';
+import { ShadowRoot } from './ShadowRoot.js';
 
 const ELLIPSIS_CHAR = '…';
 
@@ -60,6 +62,10 @@ export const MiddleTextTruncation = React.forwardRef((props, forwardedRef) => {
       {...rest}
       ref={forwardedRef}
     >
+      <ShadowRoot>
+        <VisuallyHidden>{text}</VisuallyHidden>
+        <slot aria-hidden />
+      </ShadowRoot>
       <MiddleTextTruncationContent
         text={text}
         endCharsCount={endCharsCount}
