@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React, { useCallback } from 'react';
+import * as React from 'react';
 import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
 import {
   SvgSmileyHappy,
@@ -184,15 +184,6 @@ export const TruncateMiddleText = () => {
     options[0].value,
   );
 
-  const textRenderer = useCallback(
-    (truncatedText: string, originalText: string) => (
-      <span title={truncatedText !== originalText ? originalText : undefined}>
-        {truncatedText}
-      </span>
-    ),
-    [],
-  );
-
   return (
     <Select
       options={options}
@@ -201,14 +192,11 @@ export const TruncateMiddleText = () => {
       placeholder='Placeholder text'
       itemRenderer={(option) => (
         <MenuItem>
-          <MiddleTextTruncation
-            text={option.label}
-            textRenderer={textRenderer}
-          />
+          <MiddleTextTruncation text={option.label} />
         </MenuItem>
       )}
       selectedItemRenderer={(option) => (
-        <MiddleTextTruncation text={option.label} textRenderer={textRenderer} />
+        <MiddleTextTruncation text={option.label} />
       )}
     />
   );
