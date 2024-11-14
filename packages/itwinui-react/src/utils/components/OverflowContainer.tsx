@@ -251,28 +251,36 @@ const useOverflow = (
         // if the new average of the guess range will never change the visibleCount anymore (infinite loop)
         (maxGuess - minGuess === 1 && visibleCount === minGuess)
       ) {
-        dispatch({ type: 'stabilize' });
+        dispatch({ type: 'stabilize', state: guessState });
         return;
       }
 
       // Before the main logic, the max guess MUST be ≥ the correct visibleCount for the algorithm to work.
       // If not, should shift the guess range forward to induce the first overflow.
       if (maxGuess === visibleCount && !isOverflowing) {
-        dispatch({ type: 'shiftGuessRangeForward' });
+        dispatch({ type: 'shiftGuessRangeForward', state: guessState });
         return;
       }
 
       if (isOverflowing) {
         // overflowing = we guessed too high. So, decrease max guess
-        dispatch({ type: 'decreaseMaxGuess' });
+        dispatch({ type: 'decreaseMaxGuess', state: guessState });
       } else {
         // not overflowing = maybe we guessed too low? So, increase min guess
-        dispatch({ type: 'increaseMinGuess' });
+        dispatch({ type: 'increaseMinGuess', state: guessState });
       }
     } finally {
       isGuessing.current = false;
     }
-  }, [isStabilized, itemsCount, maxGuess, minGuess, orientation, visibleCount]);
+  }, [
+    guessState,
+    isStabilized,
+    itemsCount,
+    maxGuess,
+    minGuess,
+    orientation,
+    visibleCount,
+  ]);
 
   // Guess the visible count until stabilized.
   // To prevent flicking, use useLayoutEffect to paint only after stabilized.
@@ -311,6 +319,7 @@ type GuessAction =
        *   - New `visibleCount` = average of the `minGuess` and new `maxGuess`.
        */
       type: 'decreaseMaxGuess';
+      state: GuessState;
     }
   | {
       /**
@@ -319,6 +328,7 @@ type GuessAction =
        *   - New `visibleCount` = average of the `maxGuess` and new `minGuess`.
        */
       type: 'increaseMinGuess';
+      state: GuessState;
     }
   | {
       /**
@@ -330,12 +340,14 @@ type GuessAction =
        *     - setting visible count to the new max guess
        */
       type: 'shiftGuessRangeForward';
+      state: GuessState;
     }
   | {
       /**
        * - `"stabilize"`: Stop guessing as `visibleCount` is the correct value.
        */
       type: 'stabilize';
+      state: GuessState;
     };
 
 /** Arbitrary initial max guess for `visibleCount`. We refine this max guess with subsequent renders. */
@@ -370,51 +382,51 @@ const overflowGuessReducer = (
 ): GuessState => {
   /** Ensure that the visibleCount is always ≤ itemsCount */
   const getSafeVisibleCount = (visibleCount: number) =>
-    Math.min(state.itemsCount, visibleCount);
+    Math.min(action.state.itemsCount, visibleCount);
 
   switch (action.type) {
     case 'decreaseMaxGuess':
     case 'increaseMinGuess':
-      if (state.isStabilized) {
-        return state;
+      if (action.state.isStabilized) {
+        return action.state;
       }
 
-      let newMinGuess = state.minGuess;
-      let newMaxGuess = state.maxGuess;
+      let newMinGuess = action.state.minGuess;
+      let newMaxGuess = action.state.maxGuess;
 
       if (action.type === 'decreaseMaxGuess') {
-        newMaxGuess = state.visibleCount;
+        newMaxGuess = action.state.visibleCount;
       } else {
-        newMinGuess = state.visibleCount;
+        newMinGuess = action.state.visibleCount;
       }
 
       // Next guess is always the middle of the new guess range
       const newVisibleCount = Math.floor((newMinGuess + newMaxGuess) / 2);
 
       return {
-        ...state,
+        ...action.state,
         isStabilized: false,
         minGuess: newMinGuess,
         maxGuess: newMaxGuess,
         visibleCount: getSafeVisibleCount(newVisibleCount),
       };
     case 'shiftGuessRangeForward':
-      if (state.isStabilized) {
-        return state;
+      if (action.state.isStabilized) {
+        return action.state;
       }
 
-      const doubleOfMaxGuess = state.maxGuess * 2;
+      const doubleOfMaxGuess = action.state.maxGuess * 2;
 
       return {
-        ...state,
+        ...action.state,
         isStabilized: false,
-        minGuess: state.maxGuess,
+        minGuess: action.state.maxGuess,
         maxGuess: doubleOfMaxGuess,
         visibleCount: getSafeVisibleCount(doubleOfMaxGuess),
       };
     case 'stabilize':
       return {
-        ...state,
+        ...action.state,
         isStabilized: true,
         minGuess: null,
         maxGuess: null,
