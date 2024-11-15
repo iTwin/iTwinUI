@@ -260,23 +260,23 @@ const useOverflow = (
           // if the new average of the guess range will never change the visibleCount anymore (infinite loop)
           (maxGuess - minGuess === 1 && visibleCount === minGuess)
         ) {
-          dispatch({ type: 'stabilize', state: guessState });
+          dispatch({ type: 'stabilize' });
           return;
         }
 
         // Before the main logic, the max guess MUST be ≥ the correct visibleCount for the algorithm to work.
         // If not, should shift the guess range forward to induce the first overflow.
         if (maxGuess === visibleCount && !isOverflowing) {
-          dispatch({ type: 'shiftGuessRangeForward', state: guessState });
+          dispatch({ type: 'shiftGuessRangeForward' });
           return;
         }
 
         if (isOverflowing) {
           // overflowing = we guessed too high. So, decrease max guess
-          dispatch({ type: 'decreaseMaxGuess', state: guessState });
+          dispatch({ type: 'decreaseMaxGuess', currentState: guessState });
         } else {
           // not overflowing = maybe we guessed too low? So, increase min guess
-          dispatch({ type: 'increaseMinGuess', state: guessState });
+          dispatch({ type: 'increaseMinGuess', currentState: guessState });
         }
       } finally {
         isGuessing.current = false;
@@ -313,7 +313,12 @@ type GuessAction =
        *   - New `visibleCount` = average of the `minGuess` and new `maxGuess`.
        */
       type: 'decreaseMaxGuess';
-      state: GuessState;
+      /**
+       * Needed to prevent using stale state in the reducer when in `StrictMode`.
+       *
+       * @see https://github.com/iTwin/iTwinUI/pull/2340
+       */
+      currentState: GuessState;
     }
   | {
       /**
@@ -322,7 +327,12 @@ type GuessAction =
        *   - New `visibleCount` = average of the `maxGuess` and new `minGuess`.
        */
       type: 'increaseMinGuess';
-      state: GuessState;
+      /**
+       * Needed to prevent using stale state in the reducer when in `StrictMode`.
+       *
+       * @see https://github.com/iTwin/iTwinUI/pull/2340
+       */
+      currentState: GuessState;
     }
   | {
       /**
@@ -334,14 +344,12 @@ type GuessAction =
        *     - setting visible count to the new max guess
        */
       type: 'shiftGuessRangeForward';
-      state: GuessState;
     }
   | {
       /**
        * - `"stabilize"`: Stop guessing as `visibleCount` is the correct value.
        */
       type: 'stabilize';
-      state: GuessState;
     };
 
 /** Arbitrary initial max guess for `visibleCount`. We refine this max guess with subsequent renders. */
@@ -374,53 +382,66 @@ const overflowGuessReducer = (
   state: GuessState,
   action: GuessAction,
 ): GuessState => {
-  /** Ensure that the visibleCount is always ≤ itemsCount */
-  const getSafeVisibleCount = (visibleCount: number) =>
-    Math.min(action.state.itemsCount, visibleCount);
+  /** Ensure that the `visibleCount` is always ≤ `itemsCount` */
+  const getSafeVisibleCount = ({
+    visibleCount,
+    itemsCount,
+  }: {
+    visibleCount: number;
+    itemsCount: number;
+  }) => Math.min(itemsCount, visibleCount);
 
   switch (action.type) {
+    // Always use `action.currentState` instead of `state` to prevent stale state when in StrictMode
+    // @see https://github.com/iTwin/iTwinUI/pull/2340
     case 'decreaseMaxGuess':
     case 'increaseMinGuess':
-      if (action.state.isStabilized) {
-        return action.state;
+      if (action.currentState.isStabilized) {
+        return action.currentState;
       }
 
-      let newMinGuess = action.state.minGuess;
-      let newMaxGuess = action.state.maxGuess;
+      let newMinGuess = action.currentState.minGuess;
+      let newMaxGuess = action.currentState.maxGuess;
 
       if (action.type === 'decreaseMaxGuess') {
-        newMaxGuess = action.state.visibleCount;
+        newMaxGuess = action.currentState.visibleCount;
       } else {
-        newMinGuess = action.state.visibleCount;
+        newMinGuess = action.currentState.visibleCount;
       }
 
       // Next guess is always the middle of the new guess range
       const newVisibleCount = Math.floor((newMinGuess + newMaxGuess) / 2);
 
       return {
-        ...action.state,
+        ...action.currentState,
         isStabilized: false,
         minGuess: newMinGuess,
         maxGuess: newMaxGuess,
-        visibleCount: getSafeVisibleCount(newVisibleCount),
+        visibleCount: getSafeVisibleCount({
+          visibleCount: newVisibleCount,
+          itemsCount: action.currentState.itemsCount,
+        }),
       };
     case 'shiftGuessRangeForward':
-      if (action.state.isStabilized) {
-        return action.state;
+      if (state.isStabilized) {
+        return state;
       }
 
-      const doubleOfMaxGuess = action.state.maxGuess * 2;
+      const doubleOfMaxGuess = state.maxGuess * 2;
 
       return {
-        ...action.state,
+        ...state,
         isStabilized: false,
-        minGuess: action.state.maxGuess,
+        minGuess: state.maxGuess,
         maxGuess: doubleOfMaxGuess,
-        visibleCount: getSafeVisibleCount(doubleOfMaxGuess),
+        visibleCount: getSafeVisibleCount({
+          visibleCount: doubleOfMaxGuess,
+          itemsCount: state.itemsCount,
+        }),
       };
     case 'stabilize':
       return {
-        ...action.state,
+        ...state,
         isStabilized: true,
         minGuess: null,
         maxGuess: null,
