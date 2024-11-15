@@ -314,7 +314,7 @@ type GuessAction =
        */
       type: 'decreaseMaxGuess';
       /**
-       * Needed to prevent using stale state in the reducer when in `StrictMode`.
+       * Needed to prevent using stale state in the reducer function when in `StrictMode`.
        *
        * @see https://github.com/iTwin/iTwinUI/pull/2340
        */
@@ -328,7 +328,7 @@ type GuessAction =
        */
       type: 'increaseMinGuess';
       /**
-       * Needed to prevent using stale state in the reducer when in `StrictMode`.
+       * Needed to prevent using stale state in the reducer function when in `StrictMode`.
        *
        * @see https://github.com/iTwin/iTwinUI/pull/2340
        */
@@ -392,17 +392,17 @@ const overflowGuessReducer = (
   }) => Math.min(itemsCount, visibleCount);
 
   switch (action.type) {
-    // Always use `action.currentState` instead of `state` to prevent stale state when in StrictMode
-    // @see https://github.com/iTwin/iTwinUI/pull/2340
     case 'decreaseMaxGuess':
     case 'increaseMinGuess':
-      if (action.currentState.isStabilized) {
-        return action.currentState;
+      if (state.isStabilized) {
+        return state;
       }
 
-      let newMinGuess = action.currentState.minGuess;
-      let newMaxGuess = action.currentState.maxGuess;
+      let newMinGuess = state.minGuess;
+      let newMaxGuess = state.maxGuess;
 
+      // Using `action.currentState` instead of `state` to prevent stale visibleCount when in StrictMode
+      // @see https://github.com/iTwin/iTwinUI/pull/2340
       if (action.type === 'decreaseMaxGuess') {
         newMaxGuess = action.currentState.visibleCount;
       } else {
@@ -413,13 +413,13 @@ const overflowGuessReducer = (
       const newVisibleCount = Math.floor((newMinGuess + newMaxGuess) / 2);
 
       return {
-        ...action.currentState,
+        ...state,
         isStabilized: false,
         minGuess: newMinGuess,
         maxGuess: newMaxGuess,
         visibleCount: getSafeVisibleCount({
           visibleCount: newVisibleCount,
-          itemsCount: action.currentState.itemsCount,
+          itemsCount: state.itemsCount,
         }),
       };
     case 'shiftGuessRangeForward':
