@@ -94,10 +94,7 @@ export default () => {
       <Panels.Wrapper
         instance={panels}
         as={Surface}
-        style={{
-          inlineSize: 'min(200px, 30vw)',
-          blockSize: 'min(250px, 50vh)',
-        }}
+        className='demo-panels-wrapper'
       >
         <Panels.Panel as={List} id={initialActiveId}>
           <ListItem>

@@ -444,7 +444,7 @@ export const Panels = {
    * - The initial displayed Panel should be the first `Panel` in the `Panels.Wrapper`.
    * - A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels,
    *   only one can point to a particular panel.
-   * - The `Panels.Panel` within the wrapper should be in the order of the navigation. E.g.:
+   * - The `Panels.Panel`s within the wrapper should be in the order of the navigation. E.g.:
    *   ```jsx
    *   <Panels.Wrapper>
    *     <Panels.Panel id={root} /> // Must come before moreDetails since it contains the trigger to moreDetails

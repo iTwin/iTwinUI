@@ -31,6 +31,7 @@ export default () => {
           height: 'min(500px, 50vh)',
         }}
         as={Surface}
+        className='demo-panels-wrapper'
       >
         {panelIds.map((id, index) => (
           <Panels.Panel

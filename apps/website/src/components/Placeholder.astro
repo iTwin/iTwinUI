@@ -1,22 +1,10 @@
 ---
-import InformationIcon from '~/icons/InformationIcon.astro';
 
-export type Props = {
-  /** ending of the url for a specific react-workshop page */
-  componentPageName: string;
-};
-
-const { componentPageName, ...rest } = Astro.props;
-
-const storyUrl = `https://itwin.github.io/iTwinUI/react/?story=${componentPageName}`;
 ---
 
-<div {...rest}>
-  <InformationIcon aria-hidden='true' />
-  <p>
-    This page has not yet been finished and is being worked on. In the meantime, you can view the
-    <a href={storyUrl}>stories</a>.
-  </p>
+<div {...Astro.props}>
+  <slot name='icon' />
+  <slot name='content' />
 </div>
 
 <style lang='scss'>

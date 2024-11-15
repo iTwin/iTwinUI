@@ -21,13 +21,7 @@ export default () => {
   }));
 
   return (
-    <Panels.Wrapper
-      as={Surface}
-      style={{
-        inlineSize: 'min(300px, 30vw)',
-        blockSize: 'min(500px, 50vh)',
-      }}
-    >
+    <Panels.Wrapper as={Surface} className='demo-panels-wrapper'>
       <Panels.Panel
         id={initialActiveId}
         as={Surface}

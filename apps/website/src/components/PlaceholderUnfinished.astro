@@ -1,0 +1,21 @@
+---
+import InformationIcon from '~/icons/InformationIcon.astro';
+import Placeholder from './Placeholder.astro';
+
+export type Props = {
+  /** ending of the url for a specific react-workshop page */
+  componentPageName: string;
+};
+
+const { componentPageName, ...rest } = Astro.props;
+
+const storyUrl = `https://itwin.github.io/iTwinUI/react/?story=${componentPageName}`;
+---
+
+<Placeholder {...rest}>
+  <InformationIcon aria-hidden='true' slot='icon' />
+  <p slot='content'>
+    This page has not yet been finished and is being worked on. In the meantime, you can view the
+    <a href={storyUrl}>stories</a>.
+  </p>
+</Placeholder>

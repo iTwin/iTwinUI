@@ -15,7 +15,9 @@ const currentPage = new URL(Astro.request.url).pathname;
     <Header class='header' />
     <LeftSidebar class='sidebar' />
     <div class='content-wrapper' id='article'>
-      <h1 id='overview'>{content.title}</h1>
+      <div class='overview-wrapper'>
+        <h1 id='overview'>{content.title}</h1>
+      </div>
       <slot />
       <div class='aftermain'>
         {content.related ? <RelatedComponents related={content.related} /> : null}
@@ -126,6 +128,10 @@ const currentPage = new URL(Astro.request.url).pathname;
 
       @media (prefers-reduced-motion: no-preference) {
         scroll-behavior: smooth;
+      }
+
+      :where(.overview-wrapper) {
+        display: flex;
       }
 
       /* this is the table-of-contents */
