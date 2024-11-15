@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { Stepper, type StepperLocalization } from '@itwin/itwinui-react';
+import { SvgCheckmarkSmall } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Stepper',
@@ -22,6 +23,26 @@ export const Basic = () => {
         { name: 'Next Step' },
         { name: 'Last Step' },
       ]}
+      onStepClick={onStepClick}
+    />
+  );
+};
+
+export const CustomIcon = () => {
+  const onStepClick = (index: number) => {
+    console.log(`Clicked index: ${index}`);
+  };
+  return (
+    <Stepper
+      currentStep={2}
+      steps={[
+        { name: 'First Step' },
+        { name: 'Completed Step' },
+        { name: 'Current Step' },
+        { name: 'Next Step' },
+        { name: 'Last Step' },
+      ]}
+      completedStepRenderer={() => <SvgCheckmarkSmall />}
       onStepClick={onStepClick}
     />
   );
