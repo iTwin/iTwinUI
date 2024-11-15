@@ -198,6 +198,12 @@ const useOverflow = (
   useLayoutEffect(() => {
     const { minGuess, maxGuess, isStabilized, visibleCount } = guessState;
 
+    if (isStabilized) {
+      return;
+    }
+
+    guessVisibleCount();
+
     /**
      * Call this function to guess the new `visibleCount`.
      * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
@@ -224,7 +230,7 @@ const useOverflow = (
      * - Stop when the average of the two guesses is the min guess itself. i.e. no more averaging possible.
      * - The min guess is then the correct `visibleCount`.
      */
-    const guessVisibleCount = () => {
+    function guessVisibleCount() {
       // If already stabilized, already guessing, or in unit test, do not guess.
       if (isStabilized || isGuessing.current || isUnitTest) {
         return;
@@ -275,10 +281,6 @@ const useOverflow = (
       } finally {
         isGuessing.current = false;
       }
-    };
-
-    if (!isStabilized) {
-      guessVisibleCount();
     }
   }, [guessState, itemsCount, orientation]);
 
