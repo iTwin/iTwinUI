@@ -18,6 +18,7 @@
   --_iui-stepper-step-background-color: var(--iui-color-background);
   --_iui-stepper-step-border-color: var(--iui-color-border-positive);
   --_iui-stepper-step-number-color: var(--iui-color-text-positive);
+  --_iui-stepper-step-icon-color: var(--iui-color-text-positive);
   --_iui-stepper-step-text-color: var(--iui-color-text-positive);
   --_iui-stepper-step-track-before-color: var(--iui-color-border-positive);
   --_iui-stepper-step-track-after-color: var(--iui-color-border-positive);
@@ -82,6 +83,10 @@
   background-color: var(--_iui-stepper-step-background-color);
   color: var(--_iui-stepper-step-number-color);
 
+  :is(svg, img) {
+    fill: var(--_iui-stepper-step-icon-color);
+  }
+
   .iui-clickable & {
     cursor: pointer;
     transition:
@@ -93,6 +98,7 @@
       --_iui-stepper-step-background-color: var(--iui-color-background-positive);
       --_iui-stepper-step-border-color: var(--iui-color-background-positive);
       --_iui-stepper-step-number-color: var(--iui-color-white);
+      --_iui-stepper-step-icon-color: var(--iui-color-white);
     }
   }
 
