@@ -1,0 +1,15 @@
+.demo-container {
+  min-width: min(100%, 400px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-m);
+}
+
+.demo-stepper {
+  align-self: stretch;
+}
+
+.demo-button-container {
+  display: flex;
+  gap: var(--iui-size-xs);
+}
