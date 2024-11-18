@@ -1405,13 +1405,15 @@ import { default as TreeMainExampleRaw } from './Tree.main';
 const TreeMainExample = withThemeProvider(TreeMainExampleRaw);
 export { TreeMainExample };
 
-import { default as TreeSubNodesExampleRaw } from './Tree.subnodes';
-const TreeSubNodesExample = withThemeProvider(TreeSubNodesExampleRaw);
-export { TreeSubNodesExample };
+import { default as TreeExpansionExampleRaw } from './Tree.expansion';
+const TreeExpansionExample = withThemeProvider(TreeExpansionExampleRaw);
+export { TreeExpansionExample };
 
-import { default as TreeVisibilityExampleRaw } from './Tree.visibility';
-const TreeVisibilityExample = withThemeProvider(TreeVisibilityExampleRaw);
-export { TreeVisibilityExample };
+import { default as TreeVisibilityCheckboxExampleRaw } from './Tree.visibilityCheckbox';
+const TreeVisibilityCheckboxExample = withThemeProvider(
+  TreeVisibilityCheckboxExampleRaw,
+);
+export { TreeVisibilityCheckboxExample };
 
 import { default as TreeSelectionExampleRaw } from './Tree.selection';
 const TreeSelectionExample = withThemeProvider(TreeSelectionExampleRaw);

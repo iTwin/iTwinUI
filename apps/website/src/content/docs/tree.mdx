@@ -6,9 +6,11 @@ thumbnail: Tree
 
 <p>{frontmatter.description}</p>
 
+The `Tree` component can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate.
+
 ## Usage
 
-A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. To initialize the tree component, the following props are required:
+To initialize the tree component, the following props are required:
 
 - `nodeRenderer`: A render function that returns the node element, which must be memoized. We recommend this function to return the `TreeNode` component.
 - `data`: An array of custom data used for [TreeNode](#treenode) inside `Tree`.
@@ -24,7 +26,7 @@ Each level of the tree is composed of multiple `TreeNode` components, which can 
 
 The tree supports hierarchial data structures where each node can have subnodes, which can be expanded or collapsed. Subnodes allow handling nested data up to any desired depth.
 
-Each object in the `data` array can include an array of sub-item objects (e.g., `subItems`) to represent its children, enabling nested structures.
+Each object in the `data` array can include an array of sub-item objects. This array can be named according to the user's preference (e.g., `subItems` in the example below) to represent its children, enabling nested structures.
 
 ```jsx
 const treeData = React.useMemo(
@@ -54,43 +56,25 @@ const treeData = React.useMemo(
 );
 ```
 
-To manage expandable subnodes, a state variable is required to track each node and its expansion state.
-
-The `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly. This way, when a user expands or collapses a node, its expansion state is updated and the tree re-renders to reflect whether subnodes are visible.
-
-```jsx
-const onExpand = React.useCallback((nodeId, isExpanded) => {
-  setExpandedNodes((prev) => ({
-    ...prev,
-    [nodeId]: isExpanded,
-  }));
-}, []);
-```
-
-For each node, the `getNode` function retrieves the current node's information, including whether it has subnodes or it is currently expanded. The information includes:
+The `getNode` function needs to have these information including:
 
 - The `subNodes` property which holds the array of the child nodes contained in the node.
 - The `hasSubNodes` flag which indicates whether the node has subnodes. This is used to determine if node should be expandable.
-- The `isExpanded` flag which indicates whether the node is expanded to display its subnode(s).
 
-```jsx
+```jsx{7, 8}
 const getNode = React.useCallback(
   (node) => {
     return {
       nodeId: node.id,
       node: node,
+      /*{other node's information}*/
       subNodes: node.subItems,
-      isExpanded: expandedNodes[node.id],
       hasSubNodes: node.subItems.length > 0,
     };
   },
   [expandedNodes],
 );
 ```
-
-<LiveExample src='Tree.subnodes.jsx'>
-  <AllExamples.TreeSubNodesExample client:load />
-</LiveExample>
 
 ### Size
 
@@ -100,12 +84,12 @@ There are two different sizes available. The default size should suffice for mos
   <AllExamples.TreeSmallExample client:load />
 </LiveExample>
 
-### Visibility
+### Visibility checkbox
 
 Each data level line may begin with an eye icon to toggle visibility. In this context, we suggest using the [Checkbox](/docs/checkbox) component with the `variant` set to `"eyeballs"` and passing it into the `checkbox` prop of the `TreeNode`.
 
-<LiveExample src='Tree.visibility.jsx'>
-  <AllExamples.TreeVisibilityExample client:load />
+<LiveExample src='Tree.visibilityCheckbox.jsx'>
+  <AllExamples.TreeVisibilityCheckboxExample client:load />
 </LiveExample>
 
 ### Selection
@@ -126,9 +110,46 @@ For trees with a large number of nodes, enabling virtualization can improve perf
   <AllExamples.TreeVirtualizationExample client:load />
 </LiveExample>
 
-### Expander customization
+### Expansion
 
-The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders. This can include features such as enabling expansion for disabled nodes, and adjusting the expander based on its state to better align with your application's design and user experience requirements. If `hasSubNodes` is false, the expanders will not be shown.
+To manage expandable subnodes, a state variable is required to track each node and its expansion state.
+
+The `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly. This way, when a user expands or collapses a node, its expansion state is updated and the tree re-renders to reflect whether subnodes are visible.
+
+```jsx
+const onExpand = React.useCallback((nodeId, isExpanded) => {
+  setExpandedNodes((prev) => ({
+    ...prev,
+    [nodeId]: isExpanded,
+  }));
+}, []);
+```
+
+The `isExpanded` flag which indicates whether the node is expanded to display its subnode(s) should be passed into the `getNode` function for each node to be updated its expansion state correctly.
+
+```jsx{7}
+const getNode = React.useCallback(
+  (node) => {
+    return {
+      nodeId: node.id,
+      node: node,
+      /*{other node's information}*/
+      isExpanded: expandedNodes[node.id]
+    };
+  },
+  [expandedNodes],
+);
+```
+
+<LiveExample src='Tree.expansion.jsx'>
+  <AllExamples.TreeExpansionExample client:load />
+</LiveExample>
+
+#### Expander customization
+
+The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders.
+
+This can include features such as enabling expansion for disabled nodes, and adjusting the expander based on its state to better align with your application's design and user experience requirements. If `hasSubNodes` is false, the expanders will not be shown.
 
 <LiveExample src='Tree.customizeExpander.jsx'>
   <AllExamples.TreeCustomizeExpanderExample client:load />
