@@ -31,7 +31,6 @@
   @include meta.load-css('menu/menu');
   @include meta.load-css('non-ideal-state/non-ideal-state');
   @include meta.load-css('overlay/overlay');
-  @include meta.load-css('panels/panels');
   @include meta.load-css('progress-indicator/progress-indicator');
   @include meta.load-css('radio/radio');
   @include meta.load-css('radio-tile/radio-tile');
@@ -43,6 +42,7 @@
   @include meta.load-css('status-message/status-message');
   @include meta.load-css('stepper/stepper');
   @include meta.load-css('surface/surface');
+  @include meta.load-css('panels/panels');
   @include meta.load-css('table/table');
   @include meta.load-css('tabs/tabs');
   @include meta.load-css('tag/tag');

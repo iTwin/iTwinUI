@@ -29,6 +29,9 @@ import type { FocusEntry, PanelsInstance, TriggerMapEntry } from './helpers.js';
 // #region PanelsWrapper
 
 type PanelsWrapperProps = {
+  /**
+   * Function that gets called when the active panel is changed.
+   */
   onActiveIdChange?: (newActiveId: string) => void;
   children: React.ReactNode;
   /**

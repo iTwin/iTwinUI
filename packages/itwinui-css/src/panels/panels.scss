@@ -6,8 +6,7 @@
   scroll-snap-type: x proximity;
 }
 
-// Intentional selector to increase specificity
-.iui-panel-wrapper.iui-panel-wrapper {
+.iui-panel-wrapper {
   display: flex;
   flex-direction: row;
 }
