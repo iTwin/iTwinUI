@@ -28,7 +28,7 @@ import type { FocusEntry, PanelsInstance, TriggerMapEntry } from './helpers.js';
 
 // #region PanelsWrapper
 
-export type PanelsWrapperProps = {
+type PanelsWrapperProps = {
   onActiveIdChange?: (newActiveId: string) => void;
   children: React.ReactNode;
   /**
@@ -41,7 +41,7 @@ export type PanelsWrapperProps = {
   instance?: PanelsInstance;
 };
 
-const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
+export const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
   const {
     children,
     className,
@@ -541,6 +541,15 @@ export const Panels = {
    * </Panels.Panel>
    */
   Header: PanelHeader,
+  /**
+   * You can use methods from `Panels.useInstance()` to control the state programmatically.
+   *
+   * @example
+   * const panels = Panels.useInstance();
+   *
+   * <Button onClick={() => panels.goBack()}>Go back</Button>
+   * <Panels.Wrapper instance={panels}>{…}</Panels.Wrapper>;
+   */
   useInstance: useInstance as () => PanelsInstance,
 };
 

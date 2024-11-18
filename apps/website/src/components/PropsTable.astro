@@ -22,7 +22,7 @@ const defaultImporter = docgenImporters.makeFsImporter();
 
 const relativePath = Astro.props.path.replace(
   '@itwin/itwinui-react',
-  '../../packages/itwinui-react', // relative from root of `website` workspace
+  '../../packages/itwinui-react' // relative from root of `website` workspace
 );
 
 const componentPath = path.join(__dirname, relativePath);
@@ -35,7 +35,8 @@ const docgenResults = componentPath.endsWith('.tsx')
     }) as DocumentationObject[])
   : docgenTsParse(componentPath);
 
-const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === componentName);
+const componentNameFilter = componentName === 'Panels' ? 'PanelsWrapper' : componentName;
+const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === componentNameFilter);
 ---
 
 <div class='wrapper'>

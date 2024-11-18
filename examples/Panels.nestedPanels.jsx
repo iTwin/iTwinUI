@@ -26,10 +26,6 @@ export default () => {
       </Button>
       <Panels.Wrapper
         instance={panels}
-        style={{
-          width: 'min(300px, 30vw)',
-          height: 'min(500px, 50vh)',
-        }}
         as={Surface}
         className='demo-panels-wrapper'
       >

@@ -1,4 +1,4 @@
-.demo-wrapper {
-  inline-size: 'min(200px, 30vw)';
-  block-size: 'min(300px, 100vh)';
+.demo-panels-wrapper {
+  inline-size: 200px;
+  block-size: 300px;
 }
