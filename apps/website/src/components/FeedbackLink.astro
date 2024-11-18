@@ -5,7 +5,7 @@ type Props = { page: string } & astroHTML.JSX.AnchorHTMLAttributes;
 let { page, ...rest } = Astro.props;
 
 const repoUrl = 'https://github.com/iTwin/iTwinUI';
-const githubFeedbackUrl = `${repoUrl}/discussions/new?category=documentation&title=Feedback%20on%20%60${page}%60&body=Replace%20this%20text%20with%20your%20feedback%20on%20the%20%60${page}%60%20page.`;
+const githubFeedbackUrl = `${repoUrl}/discussions/new?category=feedback&title=Feedback%20on%20%60${page}%60&body=Replace%20this%20text%20with%20your%20feedback%20on%20the%20%60${page}%60%20page.`;
 ---
 
 <a href={githubFeedbackUrl} {...rest}>
