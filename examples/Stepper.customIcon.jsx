@@ -7,10 +7,10 @@ import { Button, Stepper } from '@itwin/itwinui-react';
 import { SvgCheckmarkSmall } from '@itwin/itwinui-icons-react';
 
 const steps = [
-  { name: 'First Step' },
-  { name: 'Second Step' },
-  { name: 'Third Step' },
-  { name: 'Last Step' },
+  { name: 'First Step', stepContent: () => <SvgCheckmarkSmall /> },
+  { name: 'Second Step', stepContent: () => <SvgCheckmarkSmall /> },
+  { name: 'Third Step', stepContent: () => <SvgCheckmarkSmall /> },
+  { name: 'Last Step', stepContent: () => <SvgCheckmarkSmall /> },
 ];
 
 export default () => {
@@ -25,7 +25,6 @@ export default () => {
           onStepClick={(index) => {
             setCurrentStep(index);
           }}
-          stepCircleRenderer={() => <SvgCheckmarkSmall />}
         />
       </div>
 

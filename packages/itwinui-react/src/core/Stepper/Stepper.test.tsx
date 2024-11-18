@@ -77,19 +77,29 @@ it('should pass custom icon for completed steps', () => {
       steps={[
         {
           name: 'Step One',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
         },
         {
           name: 'Step Two',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
         },
         {
           name: 'Step Three',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
         },
       ]}
-      stepCircleRenderer={() => (
-        <span className={`test-icon`}>
-          <SvgCheckmarkSmall />
-        </span>
-      )}
     />
   );
 

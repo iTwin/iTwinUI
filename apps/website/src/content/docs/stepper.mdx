@@ -62,7 +62,7 @@ The ‘Step X of X’ label that appears in the default long stepper can be repl
 
 ### Custom Icon
 
-By default, each step circle displays the step number. However, end users can customize the icon or content shown for completed steps in the `Stepper` component by using the `stepCircleRenderer` prop. This prop accepts a function that takes the step index and returns the custom content to represent step completion.
+By default, each step circle displays the step number. However, end users can customize the icon or content shown for completed steps in the `Stepper` component by passing the `stepCircleRenderer` property in each step item. This property is a function that takes the step index and returns the custom content to represent step completion.
 
 <LiveExample src='Stepper.customIcon.jsx'>
   <AllExamples.StepperCustomIconExample client:load />

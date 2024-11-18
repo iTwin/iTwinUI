@@ -36,13 +36,11 @@ export const CustomIcon = () => {
     <Stepper
       currentStep={2}
       steps={[
-        { name: 'First Step' },
-        { name: 'Completed Step' },
-        { name: 'Current Step' },
-        { name: 'Next Step' },
-        { name: 'Last Step' },
+        { name: 'First Step', stepContent: () => <SvgCheckmarkSmall /> },
+        { name: 'Second Step', stepContent: () => <SvgCheckmarkSmall /> },
+        { name: 'Third Step', stepContent: () => <SvgCheckmarkSmall /> },
+        { name: 'Last Step', stepContent: () => <SvgCheckmarkSmall /> },
       ]}
-      stepCircleRenderer={() => <SvgCheckmarkSmall />}
       onStepClick={onStepClick}
     />
   );

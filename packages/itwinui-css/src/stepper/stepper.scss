@@ -83,7 +83,7 @@
   background-color: var(--_iui-stepper-step-background-color);
   color: var(--_iui-stepper-step-number-color);
 
-  :is(svg, img) {
+  :is(svg) {
     fill: var(--_iui-stepper-step-icon-color);
   }
 

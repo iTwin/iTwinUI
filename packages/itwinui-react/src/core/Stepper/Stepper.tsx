@@ -21,6 +21,10 @@ export type StepProperties = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
+  /**
+   * Custom content passed for completed steps.
+   */
+  stepContent?: (index: number) => React.ReactNode;
 } & React.ComponentProps<'li'>;
 
 export type StepperProps = {
@@ -41,10 +45,6 @@ export type StepperProps = {
    *  Option to provide localized strings.
    */
   localization?: StepperLocalization;
-  /**
-   * Custom content passed for completed steps.
-   */
-  stepCircleRenderer?: (completedIndex: number) => React.ReactNode;
   /**
    *  Click handler on completed step.
    */
@@ -86,7 +86,6 @@ export const Stepper = React.forwardRef((props, ref) => {
     steps,
     type = 'default',
     localization = defaultStepperLocalization,
-    stepCircleRenderer,
     onStepClick,
     stepProps,
     trackContentProps,
@@ -124,7 +123,7 @@ export const Stepper = React.forwardRef((props, ref) => {
               type={type}
               onClick={onStepClick}
               description={s.description}
-              stepCircleRenderer={stepCircleRenderer}
+              stepContent={s.stepContent}
             />
           );
         })}
