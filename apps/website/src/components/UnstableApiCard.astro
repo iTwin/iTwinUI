@@ -1,0 +1,12 @@
+---
+import InformationIcon from '~/icons/InformationIcon.astro';
+import DocsNoteCard from './DocsNoteCard.astro';
+---
+
+<DocsNoteCard {...Astro.props}>
+  <InformationIcon aria-hidden='true' slot='icon' />
+  <p slot='content'>
+    <strong>Unstable</strong>: This component is marked unstable to help us gather feedback and
+    improve it. Thus, there could be future breaking changes to this component.
+  </p>
+</DocsNoteCard>
