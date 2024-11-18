@@ -190,99 +190,101 @@ const useOverflow = (
     overflowGuessReducerInitialState,
   );
 
-  const { minGuess, maxGuess, isStabilized, visibleCount } = guessState;
-
   const containerRef = React.useRef(null);
   const isGuessing = React.useRef(false);
-
-  /**
-   * Call this function to guess the new `visibleCount`.
-   * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
-   *
-   * The logic of finding the correct `visibleCount` is similar to binary search.
-   * Logic (without all edge cases):
-   * - Have a guess range for `visibleCount` of `(0, x]` (0 is exclusive and x is inclusive)
-   *   - 0 is exclusive as the minimum `visibleItems` always has to be 1.
-   *     - The only exception is when the `itemsCount` is itself 0.
-   *   - x can be an any arbitrary number ≤ `itemsCount`.
-   * - Initial `visibleCount` = max guess.
-   * - We NEED an overflow in the beginning for the algorithm to work.
-   *   - Because the max guess should always be `≥` the correct `visibleCount`.
-   * - So, if not overflow, shift the guess range forward by:
-   *   - doubling the max guess: since we need to overflow
-   *   - setting min guess to current visibleCount: since not overflow means correct visibleCount ≥ current visibleCount
-   *   - setting visible count to the new max guess
-   * - Shift the guess range forward repeatedly until the container overflows.
-   * - After the first overflow, `visibleCount` = average of the two guesses.
-   * - Repeat the following (`guessVisibleCount()`):
-   *   - If container overflows, new max guess = current `visibleCount`.
-   *   - If container does not overflow, new min guess = current `visibleCount`.
-   *   - new `visibleCount` = the average of the new min and max guesses.
-   * - Stop when the average of the two guesses is the min guess itself. i.e. no more averaging possible.
-   * - The min guess is then the correct `visibleCount`.
-   */
-  const guessVisibleCount = React.useCallback(() => {
-    // If already stabilized, already guessing, or in unit test, do not guess.
-    if (isStabilized || isGuessing.current || isUnitTest) {
-      return;
-    }
-
-    try {
-      isGuessing.current = true;
-
-      // We need to wait for the ref to be attached so that we can measure available and required sizes.
-      if (containerRef.current == null) {
-        return;
-      }
-
-      const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
-      const availableSize = containerRef.current[`offset${dimension}`];
-      const requiredSize = containerRef.current[`scroll${dimension}`];
-
-      const isOverflowing = availableSize < requiredSize;
-
-      if (
-        // there are no items
-        itemsCount === 0 ||
-        // overflowing when even 1 item is present
-        (visibleCount === 1 && isOverflowing) ||
-        // no overflow when rendering all items
-        (visibleCount === itemsCount && !isOverflowing) ||
-        // if the new average of the guess range will never change the visibleCount anymore (infinite loop)
-        (maxGuess - minGuess === 1 && visibleCount === minGuess)
-      ) {
-        dispatch({ type: 'stabilize' });
-        return;
-      }
-
-      // Before the main logic, the max guess MUST be ≥ the correct visibleCount for the algorithm to work.
-      // If not, should shift the guess range forward to induce the first overflow.
-      if (maxGuess === visibleCount && !isOverflowing) {
-        dispatch({ type: 'shiftGuessRangeForward' });
-        return;
-      }
-
-      if (isOverflowing) {
-        // overflowing = we guessed too high. So, decrease max guess
-        dispatch({ type: 'decreaseMaxGuess' });
-      } else {
-        // not overflowing = maybe we guessed too low? So, increase min guess
-        dispatch({ type: 'increaseMinGuess' });
-      }
-    } finally {
-      isGuessing.current = false;
-    }
-  }, [isStabilized, itemsCount, maxGuess, minGuess, orientation, visibleCount]);
 
   // Guess the visible count until stabilized.
   // To prevent flicking, use useLayoutEffect to paint only after stabilized.
   useLayoutEffect(() => {
-    if (!isStabilized) {
-      guessVisibleCount();
-    }
-  }, [guessVisibleCount, isStabilized]);
+    const { minGuess, maxGuess, isStabilized, visibleCount } = guessState;
 
-  return [containerRef, visibleCount] as const;
+    if (isStabilized) {
+      return;
+    }
+
+    guessVisibleCount();
+
+    /**
+     * Call this function to guess the new `visibleCount`.
+     * The `visibleCount` is not changed if the correct `visibleCount` has already been found.
+     *
+     * The logic of finding the correct `visibleCount` is similar to binary search.
+     * Logic (without all edge cases):
+     * - Have a guess range for `visibleCount` of `(0, x]` (0 is exclusive and x is inclusive)
+     *   - 0 is exclusive as the minimum `visibleItems` always has to be 1.
+     *     - The only exception is when the `itemsCount` is itself 0.
+     *   - x can be an any arbitrary number ≤ `itemsCount`.
+     * - Initial `visibleCount` = max guess.
+     * - We NEED an overflow in the beginning for the algorithm to work.
+     *   - Because the max guess should always be `≥` the correct `visibleCount`.
+     * - So, if not overflow, shift the guess range forward by:
+     *   - doubling the max guess: since we need to overflow
+     *   - setting min guess to current visibleCount: since not overflow means correct visibleCount ≥ current visibleCount
+     *   - setting visible count to the new max guess
+     * - Shift the guess range forward repeatedly until the container overflows.
+     * - After the first overflow, `visibleCount` = average of the two guesses.
+     * - Repeat the following (`guessVisibleCount()`):
+     *   - If container overflows, new max guess = current `visibleCount`.
+     *   - If container does not overflow, new min guess = current `visibleCount`.
+     *   - new `visibleCount` = the average of the new min and max guesses.
+     * - Stop when the average of the two guesses is the min guess itself. i.e. no more averaging possible.
+     * - The min guess is then the correct `visibleCount`.
+     */
+    function guessVisibleCount() {
+      // If already stabilized, already guessing, or in unit test, do not guess.
+      if (isStabilized || isGuessing.current || isUnitTest) {
+        return;
+      }
+
+      try {
+        isGuessing.current = true;
+
+        // We need to wait for the ref to be attached so that we can measure available and required sizes.
+        if (containerRef.current == null) {
+          return;
+        }
+
+        const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
+        const availableSize = containerRef.current[`offset${dimension}`];
+        const requiredSize = containerRef.current[`scroll${dimension}`];
+
+        const isOverflowing = availableSize < requiredSize;
+
+        if (
+          // there are no items
+          itemsCount === 0 ||
+          // overflowing when even 1 item is present
+          (visibleCount === 1 && isOverflowing) ||
+          // no overflow when rendering all items
+          (visibleCount === itemsCount && !isOverflowing) ||
+          // if the new average of the guess range will never change the visibleCount anymore (infinite loop)
+          (maxGuess - minGuess === 1 && visibleCount === minGuess)
+        ) {
+          dispatch({ type: 'stabilize' });
+          return;
+        }
+
+        // Before the main logic, the max guess MUST be ≥ the correct visibleCount for the algorithm to work.
+        // If not, should shift the guess range forward to induce the first overflow.
+        if (maxGuess === visibleCount && !isOverflowing) {
+          dispatch({ type: 'shiftGuessRangeForward' });
+          return;
+        }
+
+        if (isOverflowing) {
+          // overflowing = we guessed too high. So, decrease max guess
+          dispatch({ type: 'decreaseMaxGuess', currentState: guessState });
+        } else {
+          // not overflowing = maybe we guessed too low? So, increase min guess
+          dispatch({ type: 'increaseMinGuess', currentState: guessState });
+        }
+      } finally {
+        isGuessing.current = false;
+      }
+    }
+  }, [guessState, itemsCount, orientation]);
+
+  return [containerRef, guessState.visibleCount] as const;
 };
 
 // ----------------------------------------------------------------------------
@@ -311,6 +313,12 @@ type GuessAction =
        *   - New `visibleCount` = average of the `minGuess` and new `maxGuess`.
        */
       type: 'decreaseMaxGuess';
+      /**
+       * Needed to prevent using stale state in the reducer function when in `StrictMode`.
+       *
+       * @see https://github.com/iTwin/iTwinUI/pull/2340
+       */
+      currentState: GuessState;
     }
   | {
       /**
@@ -319,6 +327,12 @@ type GuessAction =
        *   - New `visibleCount` = average of the `maxGuess` and new `minGuess`.
        */
       type: 'increaseMinGuess';
+      /**
+       * Needed to prevent using stale state in the reducer function when in `StrictMode`.
+       *
+       * @see https://github.com/iTwin/iTwinUI/pull/2340
+       */
+      currentState: GuessState;
     }
   | {
       /**
@@ -368,9 +382,14 @@ const overflowGuessReducer = (
   state: GuessState,
   action: GuessAction,
 ): GuessState => {
-  /** Ensure that the visibleCount is always ≤ itemsCount */
-  const getSafeVisibleCount = (visibleCount: number) =>
-    Math.min(state.itemsCount, visibleCount);
+  /** Ensure that the `visibleCount` is always ≤ `itemsCount` */
+  const getSafeVisibleCount = ({
+    visibleCount,
+    itemsCount,
+  }: {
+    visibleCount: number;
+    itemsCount: number;
+  }) => Math.min(itemsCount, visibleCount);
 
   switch (action.type) {
     case 'decreaseMaxGuess':
@@ -382,10 +401,12 @@ const overflowGuessReducer = (
       let newMinGuess = state.minGuess;
       let newMaxGuess = state.maxGuess;
 
+      // Using `action.currentState` instead of `state` to prevent stale visibleCount when in StrictMode
+      // @see https://github.com/iTwin/iTwinUI/pull/2340
       if (action.type === 'decreaseMaxGuess') {
-        newMaxGuess = state.visibleCount;
+        newMaxGuess = action.currentState.visibleCount;
       } else {
-        newMinGuess = state.visibleCount;
+        newMinGuess = action.currentState.visibleCount;
       }
 
       // Next guess is always the middle of the new guess range
@@ -396,7 +417,10 @@ const overflowGuessReducer = (
         isStabilized: false,
         minGuess: newMinGuess,
         maxGuess: newMaxGuess,
-        visibleCount: getSafeVisibleCount(newVisibleCount),
+        visibleCount: getSafeVisibleCount({
+          visibleCount: newVisibleCount,
+          itemsCount: state.itemsCount,
+        }),
       };
     case 'shiftGuessRangeForward':
       if (state.isStabilized) {
@@ -410,7 +434,10 @@ const overflowGuessReducer = (
         isStabilized: false,
         minGuess: state.maxGuess,
         maxGuess: doubleOfMaxGuess,
-        visibleCount: getSafeVisibleCount(doubleOfMaxGuess),
+        visibleCount: getSafeVisibleCount({
+          visibleCount: doubleOfMaxGuess,
+          itemsCount: state.itemsCount,
+        }),
       };
     case 'stabilize':
       return {
