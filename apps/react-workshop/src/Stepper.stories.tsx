@@ -42,7 +42,7 @@ export const CustomIcon = () => {
         { name: 'Next Step' },
         { name: 'Last Step' },
       ]}
-      completedStepRenderer={() => <SvgCheckmarkSmall />}
+      stepCircleRenderer={() => <SvgCheckmarkSmall />}
       onStepClick={onStepClick}
     />
   );
