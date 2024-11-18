@@ -71,7 +71,7 @@ export const MultiPanelInformationPanel = () => {
     >
       <Panels.Panel id={initialActiveId}>
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <Surface.Body as={List}>
+        <Surface.Body as={List} style={{ height: '100%' }}>
           {panels.map((panel) => (
             <ListItem key={panel.id}>
               <ListItem.Content>
@@ -203,34 +203,32 @@ export const MultiLevelList = () => {
           blockSize: 'min(250px, 50vh)',
         }}
       >
-        <Panels.Panel id={initialActiveId}>
-          <List>
-            <ListItem>
-              <ListItem.Content as='label' htmlFor={toggleSwitchId}>
-                Repeat
-              </ListItem.Content>
-              <ToggleSwitch
-                id={toggleSwitchId}
-                onChange={(e) => setRepeat(e.target.checked)}
-                checked={repeat}
-              />
-            </ListItem>
-            <ListItem>
-              <Panels.Trigger for={qualityPanelId}>
-                <ListItem.Action>Quality</ListItem.Action>
-              </Panels.Trigger>
-            </ListItem>
-            <ListItem>
-              <Panels.Trigger for={speedPanelId}>
-                <ListItem.Action>Speed</ListItem.Action>
-              </Panels.Trigger>
-            </ListItem>
-            <ListItem>
-              <Panels.Trigger for={accessibilityPanelId}>
-                <ListItem.Action>Accessibility</ListItem.Action>
-              </Panels.Trigger>
-            </ListItem>
-          </List>
+        <Panels.Panel as={List} id={initialActiveId}>
+          <ListItem>
+            <ListItem.Content as='label' htmlFor={toggleSwitchId}>
+              Repeat
+            </ListItem.Content>
+            <ToggleSwitch
+              id={toggleSwitchId}
+              onChange={(e) => setRepeat(e.target.checked)}
+              checked={repeat}
+            />
+          </ListItem>
+          <ListItem>
+            <Panels.Trigger for={qualityPanelId}>
+              <ListItem.Action>Quality</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+          <ListItem>
+            <Panels.Trigger for={speedPanelId}>
+              <ListItem.Action>Speed</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
+          <ListItem>
+            <Panels.Trigger for={accessibilityPanelId}>
+              <ListItem.Action>Accessibility</ListItem.Action>
+            </Panels.Trigger>
+          </ListItem>
         </Panels.Panel>
 
         <Panels.Panel id={qualityPanelId}>

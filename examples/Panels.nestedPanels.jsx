@@ -30,13 +30,7 @@ export default () => {
         className='demo-panels-wrapper'
       >
         {panelIds.map((id, index) => (
-          <Panels.Panel
-            key={id}
-            id={id}
-            as={Surface}
-            border={false}
-            elevation={0}
-          >
+          <Panels.Panel key={id} id={id}>
             <Surface.Header as={Panels.Header}>{id}</Surface.Header>
             <Surface.Body isPadded>
               <Panels.Trigger for={panelIds[index + 1]}>

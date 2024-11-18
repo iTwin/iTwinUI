@@ -22,14 +22,9 @@ export default () => {
 
   return (
     <Panels.Wrapper as={Surface} className='demo-panels-wrapper'>
-      <Panels.Panel
-        id={initialActiveId}
-        as={Surface}
-        border={false}
-        elevation={0}
-      >
+      <Panels.Panel id={initialActiveId}>
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <Surface.Body as={List}>
+        <Surface.Body as={List} className='demo-initial-panel-body'>
           {panels.map((panel) => (
             <ListItem key={panel.id}>
               <ListItem.Content>
@@ -44,11 +39,11 @@ export default () => {
 
       {panels.map((panel) => (
         <Panels.Panel
+          as={Flex}
           key={panel.id}
           id={panel.id}
-          as={Surface}
-          border={false}
-          elevation={0}
+          flexDirection='column'
+          alignItems='stretch'
         >
           <Surface.Header as={Panels.Header}>{panel.label}</Surface.Header>
           <Surface.Body as={Flex} flexDirection='column'>

@@ -124,12 +124,7 @@ export default () => {
           </ListItem>
         </Panels.Panel>
 
-        <Panels.Panel
-          id={qualityPanelId}
-          as={Surface}
-          border={false}
-          elevation={0}
-        >
+        <Panels.Panel id={qualityPanelId}>
           <Surface.Header as={Panels.Header}>Quality</Surface.Header>
           <Surface.Body as={List}>
             {qualities.map((quality) => (
@@ -138,12 +133,7 @@ export default () => {
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel
-          id={speedPanelId}
-          as={Surface}
-          border={false}
-          elevation={0}
-        >
+        <Panels.Panel id={speedPanelId}>
           <Surface.Header as={Panels.Header}>Speed</Surface.Header>
           <Surface.Body as={List}>
             {speeds.map((speed) => (
@@ -152,12 +142,7 @@ export default () => {
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel
-          as={Surface}
-          id={accessibilityPanelId}
-          border={false}
-          elevation={0}
-        >
+        <Panels.Panel id={accessibilityPanelId}>
           <Surface.Header as={Panels.Header}>Accessibility</Surface.Header>
           <Surface.Body as={List}>
             <_ItemAccessibility content='High contrast' />

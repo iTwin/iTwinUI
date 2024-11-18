@@ -16,7 +16,7 @@ export default () => {
 
   return (
     <Panels.Wrapper as={Surface} className='demo-panels-wrapper'>
-      <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
+      <Panels.Panel id={panelIdRoot}>
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
         <Surface.Body as={List}>
           <ListItem>
@@ -27,12 +27,7 @@ export default () => {
         </Surface.Body>
       </Panels.Panel>
 
-      <Panels.Panel
-        id={panelIdMoreInfo}
-        as={Surface}
-        border={false}
-        elevation={0}
-      >
+      <Panels.Panel id={panelIdMoreInfo}>
         <Surface.Header as={Panels.Header}>More details</Surface.Header>
         <Surface.Body isPadded>
           <Text>Content</Text>
