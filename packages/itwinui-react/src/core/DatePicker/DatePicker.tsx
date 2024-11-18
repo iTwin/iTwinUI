@@ -13,6 +13,7 @@ import {
   Box,
   useId,
   useLayoutEffect,
+  useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -166,8 +167,8 @@ export type DateRangePickerProps =
     }
   | {
       enableRangeSelect: true;
-      startDate: Date;
-      endDate: Date;
+      startDate?: Date;
+      endDate?: Date;
       onChange?: (startDate: Date, endDate: Date) => void;
     };
 
@@ -284,6 +285,18 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     showDatesOutsideMonth = true,
     ...rest
   } = props;
+
+  const logWarning = useWarningLogger();
+
+  if (process.env.NODE_ENV === 'development') {
+    const onlyOneRangePropPassed =
+      (!!startDate ? 1 : 0) + (!!endDate ? 1 : 0) === 1;
+    if (enableRangeSelect && onlyOneRangePropPassed) {
+      logWarning(
+        '`DatePicker` with `enableRangeSelect` needs *both* `startDate` and `endDate` to either be `Date` or `undefined`. Passing `Date` to just one of them is not allowed.',
+      );
+    }
+  }
 
   const monthNames = localizedNames?.months ?? defaultMonths;
   const shortDays = localizedNames?.shortDays ?? defaultShortDays;
