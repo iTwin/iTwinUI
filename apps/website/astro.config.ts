@@ -15,8 +15,6 @@ import astroExpressiveCode from 'astro-expressive-code';
 import * as lightningCss from 'lightningcss';
 import { itwinuiReactAliases } from 'helpers';
 
-const isDev = process.env.NODE_ENV === 'development';
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://itwinui.bentley.com',
@@ -26,6 +24,7 @@ export default defineConfig({
         './src/components/PropsTable.astro',
         './src/components/LiveExample.astro',
         './src/components/Placeholder.astro',
+        './src/components/UnstableApiCard.astro',
         { examples: 'AllExamples' },
       ],
     }),
