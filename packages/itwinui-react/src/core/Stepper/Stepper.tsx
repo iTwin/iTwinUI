@@ -22,9 +22,9 @@ export type StepProperties = {
    */
   description?: string;
   /**
-   * Custom content passed for completed steps.
+   * A custom content displayed in each step's circle.
    */
-  stepContent?: (index: number) => React.ReactNode;
+  stepContent?: () => React.ReactNode;
 } & React.ComponentProps<'li'>;
 
 export type StepperProps = {

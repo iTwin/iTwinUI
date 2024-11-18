@@ -6,15 +6,26 @@ import * as React from 'react';
 import { Button, Stepper } from '@itwin/itwinui-react';
 import { SvgCheckmarkSmall } from '@itwin/itwinui-icons-react';
 
-const steps = [
-  { name: 'First Step', stepContent: () => <SvgCheckmarkSmall /> },
-  { name: 'Second Step', stepContent: () => <SvgCheckmarkSmall /> },
-  { name: 'Third Step', stepContent: () => <SvgCheckmarkSmall /> },
-  { name: 'Last Step', stepContent: () => <SvgCheckmarkSmall /> },
-];
-
 export default () => {
-  const [currentStep, setCurrentStep] = React.useState(2);
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [completedSteps, setCompletedSteps] = React.useState([]);
+
+  const isStepCompleted = (index) => {
+    if (completedSteps.includes(index)) return true;
+    return false;
+  };
+
+  const steps = Array(4)
+    .fill()
+    .map((_, index) => ({
+      name: `Step ${index + 1}`,
+      stepContent: () => {
+        if (isStepCompleted(index)) {
+          return <SvgCheckmarkSmall />;
+        }
+        return <div>{index + 1}</div>;
+      },
+    }));
 
   return (
     <div className='demo-container'>
@@ -32,7 +43,12 @@ export default () => {
         <Button
           disabled={currentStep === 0}
           onClick={() => {
-            if (currentStep !== 0) setCurrentStep(currentStep - 1);
+            if (currentStep !== 0) {
+              setCurrentStep(currentStep - 1);
+              setCompletedSteps((prevCompletedSteps) =>
+                prevCompletedSteps.filter((step) => step !== currentStep - 1),
+              );
+            }
           }}
         >
           Previous
@@ -41,7 +57,11 @@ export default () => {
           styleType='cta'
           disabled={currentStep === steps.length - 1}
           onClick={() => {
-            if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
+            if (currentStep < steps.length - 1) {
+              setCurrentStep(currentStep + 1);
+              completedSteps.push(currentStep);
+              setCompletedSteps(completedSteps);
+            }
           }}
         >
           Next

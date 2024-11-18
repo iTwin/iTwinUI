@@ -40,7 +40,7 @@ export type StepperStepProps = {
   /**
    * Custom content passed for completed step.
    */
-  stepContent?: (index: number) => React.ReactNode;
+  stepContent?: () => React.ReactNode;
   /**
    * Allows props to be passed for stepper step.
    */
@@ -137,7 +137,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
           {...circleProps}
           className={cx('iui-stepper-circle', circleProps?.className)}
         >
-          {stepContent && isPast ? stepContent(index) : index + 1}
+          {stepContent ? stepContent() : index + 1}
         </Box>
       </Box>
 
