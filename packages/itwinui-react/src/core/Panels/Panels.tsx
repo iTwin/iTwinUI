@@ -218,6 +218,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           id={id}
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header-title`}
+          role='group'
           {...{ inert: isInert ? '' : undefined }}
           data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
