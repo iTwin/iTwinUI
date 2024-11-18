@@ -38,8 +38,8 @@ export const CustomIcon = () => {
       steps={[
         { name: 'First Step', stepContent: () => <SvgCheckmarkSmall /> },
         { name: 'Second Step', stepContent: () => <SvgCheckmarkSmall /> },
-        { name: 'Third Step', stepContent: () => <SvgCheckmarkSmall /> },
-        { name: 'Last Step', stepContent: () => <SvgCheckmarkSmall /> },
+        { name: 'Third Step' },
+        { name: 'Last Step' },
       ]}
       onStepClick={onStepClick}
     />
