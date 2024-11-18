@@ -456,23 +456,14 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             },
             triggerProps?.className,
           )}
+          data-iui-multi={multiple}
         >
           {(!selectedItems || selectedItems.length === 0) && (
             <Box as='span' className='iui-content'>
               {placeholder}
             </Box>
           )}
-          {isMultipleEnabled(selectedItems, multiple) ? (
-            <MultipleSelectButton
-              selectedItems={selectedItems}
-              selectedItemsRenderer={
-                selectedItemRenderer as (
-                  options: SelectOption<unknown>[],
-                ) => JSX.Element
-              }
-              tagRenderer={tagRenderer}
-            />
-          ) : (
+          {!isMultipleEnabled(selectedItems, multiple) ? (
             <SingleSelectButton
               selectedItem={selectedItems}
               selectedItemRenderer={
@@ -481,12 +472,21 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
                 ) => JSX.Element
               }
             />
+          ) : (
+            <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
           )}
         </SelectButton>
         <SelectEndIcon disabled={disabled} isOpen={isOpen} />
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+        {isMultipleEnabled(selectedItems, multiple) ? (
+          <MultipleSelectButton
+            selectedItems={selectedItems}
+            selectedItemsRenderer={
+              selectedItemRenderer as (
+                options: SelectOption<unknown>[],
+              ) => JSX.Element
+            }
+            tagRenderer={tagRenderer}
+          />
         ) : null}
       </InputWithIcon>
 
@@ -774,12 +774,13 @@ const MultipleSelectButton = <T,>({
 
   return (
     <>
-      {selectedItems &&
-        selectedItemsRenderer &&
-        selectedItemsRenderer(selectedItems)}
-      {selectedItems && !selectedItemsRenderer && (
+      {selectedItems && (
         <Box as='span' className='iui-content'>
-          <SelectTagContainer tags={selectedItemsElements} />
+          {selectedItemsRenderer ? (
+            selectedItemsRenderer(selectedItems)
+          ) : (
+            <SelectTagContainer tags={selectedItemsElements} />
+          )}
         </Box>
       )}
     </>
