@@ -8,23 +8,14 @@ import { SvgCheckmarkSmall } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [currentStep, setCurrentStep] = React.useState(0);
-  const [completedSteps, setCompletedSteps] = React.useState([]);
-
-  const isStepCompleted = (index) => {
-    if (completedSteps.includes(index)) return true;
-    return false;
-  };
+  const [completedSteps, setCompletedSteps] = React.useState(new Set());
 
   const steps = Array(4)
     .fill()
     .map((_, index) => ({
       name: `Step ${index + 1}`,
-      stepContent: () => {
-        if (isStepCompleted(index)) {
-          return <SvgCheckmarkSmall />;
-        }
-        return <div>{index + 1}</div>;
-      },
+      stepContent: () =>
+        completedSteps.has(index) ? <SvgCheckmarkSmall /> : null,
     }));
 
   return (
@@ -45,9 +36,11 @@ export default () => {
           onClick={() => {
             if (currentStep !== 0) {
               setCurrentStep(currentStep - 1);
-              setCompletedSteps((prevCompletedSteps) =>
-                prevCompletedSteps.filter((step) => step !== currentStep - 1),
-              );
+              setCompletedSteps((prevCompletedSteps) => {
+                const newCompletedSteps = new Set(prevCompletedSteps);
+                newCompletedSteps.delete(currentStep - 1);
+                return newCompletedSteps;
+              });
             }
           }}
         >
@@ -59,8 +52,11 @@ export default () => {
           onClick={() => {
             if (currentStep < steps.length - 1) {
               setCurrentStep(currentStep + 1);
-              completedSteps.push(currentStep);
-              setCompletedSteps(completedSteps);
+              setCompletedSteps((prevCompletedSteps) => {
+                const newCompletedSteps = new Set(prevCompletedSteps);
+                newCompletedSteps.add(currentStep);
+                return newCompletedSteps;
+              });
             }
           }}
         >
