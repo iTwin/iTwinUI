@@ -1,31 +1,21 @@
 ---
+import InformationIcon from '~/icons/InformationIcon.astro';
+import DocsNoteCard from './DocsNoteCard.astro';
 
+export type Props = {
+  /** ending of the url for a specific react-workshop page */
+  componentPageName: string;
+};
+
+const { componentPageName, ...rest } = Astro.props;
+
+const storyUrl = `https://itwin.github.io/iTwinUI/react/?story=${componentPageName}`;
 ---
 
-<div {...Astro.props}>
-  <slot name='icon' />
-  <slot name='content' />
-</div>
-
-<style lang='scss'>
-  @layer components {
-    div {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding: var(--space-3);
-      border: solid 1px var(--color-highlight-2);
-      border-radius: var(--border-radius-1);
-
-      p {
-        color: var(--color-text);
-      }
-
-      svg {
-        color: var(--color-highlight-2);
-        height: var(--space-8);
-        width: var(--space-8);
-      }
-    }
-  }
-</style>
+<DocsNoteCard {...rest}>
+  <InformationIcon aria-hidden='true' slot='icon' />
+  <p slot='content'>
+    This page has not yet been finished and is being worked on. In the meantime, you can view the
+    <a href={storyUrl}>stories</a>.
+  </p>
+</DocsNoteCard>
