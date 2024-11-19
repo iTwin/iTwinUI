@@ -1,5 +1,28 @@
 # Changelog
 
+## 3.16.0
+
+### Minor Changes
+
+- [#2345](https://github.com/iTwin/iTwinUI/pull/2345): `Stepper` now allows passing custom icon or content in each step circle to indicate step completion. This can be done by using a `stepContent` property in each item of the `steps` array.
+- [#2294](https://github.com/iTwin/iTwinUI/pull/2294): `ComboBox` with `multiple` enabled now offers a `clearFilterOnOptionToggle` prop to control whether the filter is cleared or not when an option is toggled. The default multi select `ComboBox` behavior is unchanged since the default prop value is `true`.
+- [#2001](https://github.com/iTwin/iTwinUI/pull/2001): Added a new generic `unstable_Panels` component for easy setup of nested screens/panels. Example uses: multi-layered menus, wizards, settings screens, etc.
+  - This API is temporarily marked as **unstable** to collect [feedback](https://github.com/iTwin/iTwinUI/discussions/2348) for some time to tailor the generic component specifically to users' needs.
+- 5d313a763b5b5996664a3af14c8270e40dc07b72: Added new `tileContainer` prop to `RadioTileGroup` to allow further customizing of inner DOM elements.
+
+### Patch Changes
+
+- [#2327](https://github.com/iTwin/iTwinUI/pull/2327): Fixed a `Tree` bug where the `size` prop was not respected when virtualization was enabled.
+- [#2323](https://github.com/iTwin/iTwinUI/pull/2323): Ensured that the `useToaster` wrapper does not block clicks when used within other portal containers (e.g. from AppUI).
+- [#2311](https://github.com/iTwin/iTwinUI/pull/2311): Updated the default value of `Dialog`'s `setFocus` prop to be based on the value of the `trapFocus` prop.
+- [#2347](https://github.com/iTwin/iTwinUI/pull/2347): `InputWithDecorations.Input` now properly gets `cursor: not-allowed` when disabled.
+- [#2339](https://github.com/iTwin/iTwinUI/pull/2339): Improved the accessibility of `MiddleTextTruncation` so that the entire untruncated text is part of the accessibility tree.
+- [#2154](https://github.com/iTwin/iTwinUI/pull/2154): Fixed bugs and improved performance in components with overflow support (e.g. `ComboBox`, `Select`, `ButtonGroup`, `Breadcrumbs`, etc.)
+- [#2316](https://github.com/iTwin/iTwinUI/pull/2316): `TablePaginator`'s page buttons no longer get overlapped by neighboring paginator elements.
+- [#2317](https://github.com/iTwin/iTwinUI/pull/2317): Fixed duplicate data returned from the `onSelect` prop passed into `Table`.
+- [#2337](https://github.com/iTwin/iTwinUI/pull/2337): Fixed a `Table` bug where row items could not be focused via the `Tab` key.
+- [#2334](https://github.com/iTwin/iTwinUI/pull/2334): `DatePicker` with `enableRangeSelect` now allows `startDate` and `endDate` to _both_ be `undefined` (e.g. when there is no initial range). Passing `Date` to just _one_ of them is not allowed.
+
 ## 3.15.5
 
 ### Patch Changes
