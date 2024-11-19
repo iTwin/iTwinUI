@@ -96,35 +96,43 @@ export default () => {
         as={Surface}
         className='demo-panels-wrapper'
       >
-        <Panels.Panel as={List} id={initialActiveId}>
-          <ListItem>
-            <ListItem.Content as='label' htmlFor={toggleSwitchId}>
-              Repeat
-            </ListItem.Content>
-            <ToggleSwitch
-              id={toggleSwitchId}
-              onChange={(e) => setRepeat(e.target.checked)}
-              checked={repeat}
-            />
-          </ListItem>
-          <ListItem>
-            <Panels.Trigger for={qualityPanelId}>
-              <ListItem.Action>Quality</ListItem.Action>
-            </Panels.Trigger>
-          </ListItem>
-          <ListItem>
-            <Panels.Trigger for={speedPanelId}>
-              <ListItem.Action>Speed</ListItem.Action>
-            </Panels.Trigger>
-          </ListItem>
-          <ListItem>
-            <Panels.Trigger for={accessibilityPanelId}>
-              <ListItem.Action>Accessibility</ListItem.Action>
-            </Panels.Trigger>
-          </ListItem>
+        <Panels.Panel id={initialActiveId}>
+          <List>
+            <ListItem>
+              <ListItem.Content as='label' htmlFor={toggleSwitchId}>
+                Repeat
+              </ListItem.Content>
+              <ToggleSwitch
+                id={toggleSwitchId}
+                onChange={(e) => setRepeat(e.target.checked)}
+                checked={repeat}
+              />
+            </ListItem>
+            <ListItem>
+              <Panels.Trigger for={qualityPanelId}>
+                <ListItem.Action>Quality</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem>
+            <ListItem>
+              <Panels.Trigger for={speedPanelId}>
+                <ListItem.Action>Speed</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem>
+            <ListItem>
+              <Panels.Trigger for={accessibilityPanelId}>
+                <ListItem.Action>Accessibility</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem>
+          </List>
         </Panels.Panel>
 
-        <Panels.Panel id={qualityPanelId}>
+        <Panels.Panel
+          id={qualityPanelId}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          gap='0'
+        >
           <Surface.Header as={Panels.Header}>Quality</Surface.Header>
           <Surface.Body as={List}>
             {qualities.map((quality) => (
@@ -133,7 +141,13 @@ export default () => {
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel id={speedPanelId}>
+        <Panels.Panel
+          id={speedPanelId}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          gap='0'
+        >
           <Surface.Header as={Panels.Header}>Speed</Surface.Header>
           <Surface.Body as={List}>
             {speeds.map((speed) => (
@@ -142,7 +156,13 @@ export default () => {
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel id={accessibilityPanelId}>
+        <Panels.Panel
+          id={accessibilityPanelId}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          gap='0'
+        >
           <Surface.Header as={Panels.Header}>Accessibility</Surface.Header>
           <Surface.Body as={List}>
             <_ItemAccessibility content='High contrast' />

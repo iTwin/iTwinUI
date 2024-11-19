@@ -22,9 +22,15 @@ export default () => {
 
   return (
     <Panels.Wrapper as={Surface} className='demo-panels-wrapper'>
-      <Panels.Panel id={initialActiveId}>
+      <Panels.Panel
+        id={initialActiveId}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+        gap='0'
+      >
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <Surface.Body as={List} className='demo-initial-panel-body'>
+        <Surface.Body as={List}>
           {panels.map((panel) => (
             <ListItem key={panel.id}>
               <ListItem.Content>

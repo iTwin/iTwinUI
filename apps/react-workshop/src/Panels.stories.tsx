@@ -69,9 +69,15 @@ export const MultiPanelInformationPanel = () => {
         blockSize: 'min(500px, 50vh)',
       }}
     >
-      <Panels.Panel id={initialActiveId}>
+      <Panels.Panel
+        id={initialActiveId}
+        as={Flex}
+        flexDirection='column'
+        alignItems='stretch'
+        gap='0'
+      >
         <Surface.Header as={Panels.Header}>Root</Surface.Header>
-        <Surface.Body as={List} style={{ height: '100%' }}>
+        <Surface.Body as={List}>
           {panels.map((panel) => (
             <ListItem key={panel.id}>
               <ListItem.Content>
@@ -203,35 +209,43 @@ export const MultiLevelList = () => {
           blockSize: 'min(250px, 50vh)',
         }}
       >
-        <Panels.Panel as={List} id={initialActiveId}>
-          <ListItem>
-            <ListItem.Content as='label' htmlFor={toggleSwitchId}>
-              Repeat
-            </ListItem.Content>
-            <ToggleSwitch
-              id={toggleSwitchId}
-              onChange={(e) => setRepeat(e.target.checked)}
-              checked={repeat}
-            />
-          </ListItem>
-          <ListItem>
-            <Panels.Trigger for={qualityPanelId}>
-              <ListItem.Action>Quality</ListItem.Action>
-            </Panels.Trigger>
-          </ListItem>
-          <ListItem>
-            <Panels.Trigger for={speedPanelId}>
-              <ListItem.Action>Speed</ListItem.Action>
-            </Panels.Trigger>
-          </ListItem>
-          <ListItem>
-            <Panels.Trigger for={accessibilityPanelId}>
-              <ListItem.Action>Accessibility</ListItem.Action>
-            </Panels.Trigger>
-          </ListItem>
+        <Panels.Panel id={initialActiveId}>
+          <List>
+            <ListItem>
+              <ListItem.Content as='label' htmlFor={toggleSwitchId}>
+                Repeat
+              </ListItem.Content>
+              <ToggleSwitch
+                id={toggleSwitchId}
+                onChange={(e) => setRepeat(e.target.checked)}
+                checked={repeat}
+              />
+            </ListItem>
+            <ListItem>
+              <Panels.Trigger for={qualityPanelId}>
+                <ListItem.Action>Quality</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem>
+            <ListItem>
+              <Panels.Trigger for={speedPanelId}>
+                <ListItem.Action>Speed</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem>
+            <ListItem>
+              <Panels.Trigger for={accessibilityPanelId}>
+                <ListItem.Action>Accessibility</ListItem.Action>
+              </Panels.Trigger>
+            </ListItem>
+          </List>
         </Panels.Panel>
 
-        <Panels.Panel id={qualityPanelId}>
+        <Panels.Panel
+          id={qualityPanelId}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          gap='0'
+        >
           <Surface.Header as={Panels.Header}>Quality</Surface.Header>
           <Surface.Body as={List}>
             {qualities.map((quality) => (
@@ -240,7 +254,13 @@ export const MultiLevelList = () => {
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel id={speedPanelId}>
+        <Panels.Panel
+          id={speedPanelId}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          gap='0'
+        >
           <Surface.Header as={Panels.Header}>Speed</Surface.Header>
           <Surface.Body as={List}>
             {speeds.map((speed) => (
@@ -249,7 +269,13 @@ export const MultiLevelList = () => {
           </Surface.Body>
         </Panels.Panel>
 
-        <Panels.Panel id={accessibilityPanelId}>
+        <Panels.Panel
+          id={accessibilityPanelId}
+          as={Flex}
+          flexDirection='column'
+          alignItems='stretch'
+          gap='0'
+        >
           <Surface.Header as={Panels.Header}>Accessibility</Surface.Header>
           <Surface.Body as={List}>
             <_ItemAccessibility content='High contrast' />
