@@ -10,11 +10,8 @@ export default () => {
     <MiddleTextTruncation
       className='demo-container'
       text='MyTitleWithAReallyLongNameThatWillBeTruncatedWithCustomizedStylingBecauseItIsReallyThatLongSoHardToBelieve'
-      textRenderer={React.useCallback(
-        (truncatedText, originalText) => (
-          <Tooltip content={originalText}>{truncatedText}</Tooltip>
-        ),
-        [],
+      textRenderer={(truncatedText, originalText) => (
+        <Tooltip content={originalText}>{truncatedText}</Tooltip>
       )}
     />
   );
