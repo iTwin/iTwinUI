@@ -38,7 +38,7 @@ export type StepperStepProps = {
    */
   description?: string;
   /**
-   * Custom content passed for completed step.
+   * Custom content displayed in the step's circle.
    */
   stepContent?: () => React.ReactNode;
   /**

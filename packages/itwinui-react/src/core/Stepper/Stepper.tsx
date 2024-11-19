@@ -22,7 +22,7 @@ export type StepProperties = {
    */
   description?: string;
   /**
-   * A custom content displayed in each step's circle.
+   * Custom content displayed in the step's circle.
    */
   stepContent?: () => React.ReactNode;
 } & React.ComponentProps<'li'>;
