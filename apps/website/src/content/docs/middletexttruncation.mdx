@@ -11,7 +11,7 @@ group: utilities
 
 In circumstances where a fixed width constraint is required, the `MiddleTextTruncation` component can be helpful in handling long text strings by truncating them in the middle by inserting the ellipsis (`"..."`). This ensures that the beginning and the end of the text remain visible.
 
-<LiveExample src='MiddleTextTruncation.main.jsx'>
+<LiveExample src='MiddleTextTruncation.main.jsx' truncated={false}>
   <AllExamples.MiddleTextTruncationMainExample client:load />
 </LiveExample>
 
@@ -19,9 +19,9 @@ For more application examples, see this [documentation on Select](/docs/select#t
 
 ### Number of end characters
 
-By default, the number of characters left visible at the end of the truncated text is set to 6. This ensures that important suffixes, such as file extensions or identifiers, remain visible. This number can be modified through the `endCharsCount` prop to suit your specific needs.
+By default, the number of characters left visible at the end of the truncated text is set to 6. This ensures that important suffixes, such as file extensions or identifiers, remain visible. This number can be modified through the `endCharsCount` prop to suit user's specific needs.
 
-Adjusting this prop allows you to control how much of the end of the text is shown, which can be particularly useful for maintaining readability and context in various use cases.
+Adjusting this prop allows end users to control how much of the end of the text is shown, which can be particularly useful for maintaining readability and context in various use cases.
 
 <LiveExample src='MiddleTextTruncation.endCharsCount.jsx'>
   <AllExamples.MiddleTextTruncationEndCharsCountExample client:load />
@@ -39,6 +39,12 @@ The function should return a `ReactNode` that represents the customized text ele
 <LiveExample src='MiddleTextTruncation.customizeTruncation.jsx'>
   <AllExamples.MiddleTextTruncationCustomizationExample client:load />
 </LiveExample>
+
+### Accessibility
+
+As this component is meant for visual truncation, it should not affect the accessibility tree since the text would be made nonsensical, especially to non-sighted users. Therefore, this component is implemented in the way that the original text is kept visually hidden and the truncated text is removed from the accessibility tree. Additionally, this behavior provides consistency with the built-in `text-overflow: ellipsis`, which makes it possible to apply the same set of UX design guidelines in both cases.
+
+This behavior, on the other hand, might create certain level of inconvenience for screen-reader users as the text can become excessively verbose. However, there has been hardly any way for users to access the full text without this approach.
 
 ## Props
 

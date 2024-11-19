@@ -12,9 +12,7 @@ export default () => {
       text='MyTitleWithAReallyLongNameThatWillBeTruncatedWithCustomizedStylingBecauseItIsReallyThatLongSoHardToBelieve'
       textRenderer={React.useCallback(
         (truncatedText, originalText) => (
-          <Tooltip content={originalText}>
-            <b>{truncatedText}</b>
-          </Tooltip>
+          <Tooltip content={originalText}>{truncatedText}</Tooltip>
         ),
         [],
       )}
