@@ -42,9 +42,9 @@ The function should return a `ReactNode` that represents the customized text ele
 
 ### Accessibility
 
-As this component is meant for visual truncation, it should not affect the accessibility tree since the text would be made nonsensical, especially to non-sighted users. Therefore, this component is implemented in the way that the original text is kept visually hidden and the truncated text is removed from the accessibility tree. Additionally, this behavior provides consistency with the built-in `text-overflow: ellipsis`, which makes it possible to apply the same set of UX design guidelines in both cases.
+This component is designed for visual truncation and should not impact the accessibility tree, as the truncated text would be confusing, especially for non-sighted users. The original text is kept visually hidden, and the truncated text is removed from the accessibility tree. This approach ensures consistency with the built-in `text-overflow: ellipsis`, allowing the same UX design guidelines to be applied in both cases.
 
-This behavior, on the other hand, might create certain level of inconvenience for screen-reader users as the text can become excessively verbose. However, there has been hardly any way for users to access the full text without this approach.
+However, this behavior may cause some inconvenience for screen-reader users, as the text can become overly verbose. Unfortunately, there is no better way for users to access the full text without this method.
 
 ## Props
 
