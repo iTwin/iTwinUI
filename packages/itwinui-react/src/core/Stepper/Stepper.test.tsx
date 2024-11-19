@@ -73,7 +73,7 @@ it('should add custom props to Stepper', () => {
 it('should pass custom icon for completed steps', () => {
   const stepper = (
     <Stepper
-      currentStep={2}
+      currentStep={3}
       steps={[
         {
           name: 'Step One',
@@ -105,7 +105,7 @@ it('should pass custom icon for completed steps', () => {
 
   const { container } = render(stepper);
   const completedSteps = container.querySelectorAll('.test-icon');
-  expect(completedSteps).toHaveLength(2);
+  expect(completedSteps).toHaveLength(3);
 });
 
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {
