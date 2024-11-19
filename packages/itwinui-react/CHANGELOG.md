@@ -8,12 +8,12 @@
   - This API is temporarily marked as **unstable** to collect [feedback](https://github.com/iTwin/iTwinUI/discussions/2348) for some time to tailor the generic component specifically to users' needs.
 - [#2345](https://github.com/iTwin/iTwinUI/pull/2345): `Stepper` now allows passing custom icon or content in each step circle using a `stepContent` property in each item of the `steps` array.
 - [#2294](https://github.com/iTwin/iTwinUI/pull/2294): `ComboBox` with `multiple` enabled now offers a `clearFilterOnOptionToggle` prop to control whether the filter is cleared or not when an option is toggled. Default value is `true` (i.e. no breaking change).
-- [#2299](https://github.com/iTwin/iTwinUI/pull/2299)/[5d313a7](https://github.com/iTwin/iTwinUI/commit/5d313a763b5b5996664a3af14c8270e40dc07b72): Added new `tileContainer` prop to `RadioTileGroup` to allow further customizing of inner DOM elements.
+- [#2299](https://github.com/iTwin/iTwinUI/pull/2299)/[5d313a7](https://github.com/iTwin/iTwinUI/commit/5d313a763b5b5996664a3af14c8270e40dc07b72): Added new `tileContainer` prop to `RadioTileGroup` to allow further customization of inner DOM elements.
 
 ### Patch Changes
 
 - [#2337](https://github.com/iTwin/iTwinUI/pull/2337): Fixed a `Table` bug where row items could not be focused via the `Tab` key.
-- [#2317](https://github.com/iTwin/iTwinUI/pull/2317): Fixed duplicate data returned from the `onSelect` prop passed into `Table`.
+- [#2317](https://github.com/iTwin/iTwinUI/pull/2317): Fixed duplicate data returned from `Table`'s `onSelect` prop.
 - [#2316](https://github.com/iTwin/iTwinUI/pull/2316): `TablePaginator`'s page buttons no longer get overlapped by neighboring paginator elements.
 - [#2327](https://github.com/iTwin/iTwinUI/pull/2327): Fixed a `Tree` bug where the `size` prop was not respected when virtualization was enabled.
 - [#2311](https://github.com/iTwin/iTwinUI/pull/2311): Updated the default value of `Dialog`'s `setFocus` prop to be based on the value of the `trapFocus` prop.
