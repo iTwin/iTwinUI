@@ -196,6 +196,7 @@
 
     &:disabled {
       color: var(--iui-color-text-disabled);
+      cursor: not-allowed;
     }
   }
 

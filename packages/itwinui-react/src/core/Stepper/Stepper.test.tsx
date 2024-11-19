@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { screen, render, fireEvent, act } from '@testing-library/react';
 import { Stepper } from './Stepper.js';
+import { SvgCheckmarkSmall } from '../../utils/index.js';
 
 it('should render all step names and numbers in default stepper', () => {
   const stepper = (
@@ -67,6 +68,44 @@ it('should add custom props to Stepper', () => {
   expect(
     container.querySelector('.iui-stepper-steps-label-count.some-count'),
   ).toBeTruthy();
+});
+
+it('should pass custom icon for completed steps', () => {
+  const stepper = (
+    <Stepper
+      currentStep={3}
+      steps={[
+        {
+          name: 'Step One',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
+        },
+        {
+          name: 'Step Two',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
+        },
+        {
+          name: 'Step Three',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
+        },
+      ]}
+    />
+  );
+
+  const { container } = render(stepper);
+  const completedSteps = container.querySelectorAll('.test-icon');
+  expect(completedSteps).toHaveLength(3);
 });
 
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {

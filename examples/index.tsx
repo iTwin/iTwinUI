@@ -1156,6 +1156,10 @@ import { default as StepperMainExampleRaw } from './Stepper.main';
 const StepperMainExample = withThemeProvider(StepperMainExampleRaw);
 export { StepperMainExample };
 
+import { default as StepperCustomIconExampleRaw } from './Stepper.customIcon';
+const StepperCustomIconExample = withThemeProvider(StepperCustomIconExampleRaw);
+export { StepperCustomIconExample };
+
 import { default as StepperShortExampleRaw } from './Stepper.short';
 const StepperShortExample = withThemeProvider(StepperShortExampleRaw);
 export { StepperShortExample };
