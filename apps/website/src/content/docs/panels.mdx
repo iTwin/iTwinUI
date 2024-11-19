@@ -54,7 +54,7 @@ We provide four _required_ subcomponents:
 
 `Panels` is intentionally generic and does not provide much UI. That way you can use the `as` prop to render the panels to your needs and preferences. E.g. using [`Surface`](surface) to render the panels:
 
-```tsx {2, 8, 9, 19, 20}
+```tsx {2, 9, 20}
 <Panels.Wrapper
   as={Surface}
   style={{
@@ -62,7 +62,7 @@ We provide four _required_ subcomponents:
     blockSize: 'min(500px, 50vh)',
   }}
 >
-  <Panels.Panel id={panelIdRoot} as={Surface} border={false} elevation={0}>
+  <Panels.Panel id={panelIdRoot}>
     <Surface.Header as={Panels.Header}>Root</Surface.Header>
     <Surface.Body as={List}>
       <ListItem>
@@ -73,7 +73,7 @@ We provide four _required_ subcomponents:
     </Surface.Body>
   </Panels.Panel>
 
-  <Panels.Panel id={panelIdMoreInfo} as={Surface} border={false} elevation={0}>
+  <Panels.Panel id={panelIdMoreInfo}>
     <Surface.Header as={Panels.Header}>More details</Surface.Header>
     <Surface.Body isPadded>
       <Text>Content</Text>
