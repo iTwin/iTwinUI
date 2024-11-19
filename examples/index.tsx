@@ -897,6 +897,22 @@ export { OverlaySubExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as PanelsMainExampleRaw } from './Panels.main';
+export const PanelsMainExample = withThemeProvider(PanelsMainExampleRaw);
+
+import { default as PanelsMultiPanelInformationPanelRaw } from './Panels.multiPanelInformationPanel';
+export const PanelsMultiPanelInformationPanel = withThemeProvider(
+  PanelsMultiPanelInformationPanelRaw,
+);
+
+import { default as PanelsMultiLevelListRaw } from './Panels.multiLevelList';
+export const PanelsMultiLevelList = withThemeProvider(PanelsMultiLevelListRaw);
+
+import { default as PanelsNestedPanelsRaw } from './Panels.nestedPanels';
+export const PanelsNestedPanels = withThemeProvider(PanelsNestedPanelsRaw);
+
+// ----------------------------------------------------------------------------
+
 import { default as PopoverMainExampleRaw } from './Popover.main';
 export const PopoverMainExample = withThemeProvider(PopoverMainExampleRaw);
 
@@ -1078,6 +1094,14 @@ export { SideNavigationSubmenuExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as SkipToContentLinkMainExampleRaw } from './SkipToContentLink.main';
+const SkipToContentLinkMainExample = withThemeProvider(
+  SkipToContentLinkMainExampleRaw,
+);
+export { SkipToContentLinkMainExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as SliderMainExampleRaw } from './Slider.main';
 const SliderMainExample = withThemeProvider(SliderMainExampleRaw);
 export { SliderMainExample };
@@ -1131,6 +1155,10 @@ export { StatusMessageStatusExample };
 import { default as StepperMainExampleRaw } from './Stepper.main';
 const StepperMainExample = withThemeProvider(StepperMainExampleRaw);
 export { StepperMainExample };
+
+import { default as StepperCustomIconExampleRaw } from './Stepper.customIcon';
+const StepperCustomIconExample = withThemeProvider(StepperCustomIconExampleRaw);
+export { StepperCustomIconExample };
 
 import { default as StepperShortExampleRaw } from './Stepper.short';
 const StepperShortExample = withThemeProvider(StepperShortExampleRaw);

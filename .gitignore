@@ -27,3 +27,8 @@ features/search
 test-results
 playwright-report
 blob-report
+
+# threat modeling
+.threat-model
+!.threat-model/threagile.yaml
+

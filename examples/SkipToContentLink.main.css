@@ -1,0 +1,8 @@
+.demo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  width: 100%;
+  transform: translateX(0); /* creates containing block for position: fixed */
+}
