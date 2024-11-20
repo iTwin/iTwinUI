@@ -12,9 +12,9 @@ sort, filter, group, or search data as the user deems appropriate.
 
 To initialize the tree component, the following props are required:
 
-- `nodeRenderer`: A render function that returns the node element, which must be memoized. We recommend this function to return the `TreeNode` component.
-- `data`: An array of custom data used for [TreeNode](#treenode) inside `Tree`.
-- `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. We recommend controlling state of expanded, selected and disabled nodes via this prop. The function must be memoized.
+- `data`: An array of the custom data that represents a tree node.
+- `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. Here is where one can control the state of expanded, selected and disabled nodes. The function must be memoized.
+- `nodeRenderer`: A function to render the tree node using `NodeData`. We recommend this function to return the `TreeNode` component. This function must be memoized.
 
 <LiveExample src='Tree.main.jsx'>
   <AllExamples.TreeMainExample client:load />
@@ -56,10 +56,10 @@ const treeData = React.useMemo(
 );
 ```
 
-The `getNode` function needs to have these information including:
+The `getNode` function then needs to map the user `data` to a `NodeData`. The properties relevant to sub-nodes include:
 
-- The `subNodes` property which holds the array of the child nodes contained in the node.
-- The `hasSubNodes` flag which indicates whether the node has subnodes. This is used to determine if the node should be expandable.
+- `subNodes`: array of child `data` nodes. Can be obtained from the `data`'s `subItems`.
+- `hasSubNodes`: indicates whether the node has subnodes which determines whether the nodes should be expandable.
 
 ```jsx {5, 6}
 const getNode = React.useCallback(
@@ -76,9 +76,7 @@ const getNode = React.useCallback(
 
 ### Expansion
 
-To manage expandable subnodes, a state variable is required to track each node and its expansion state.
-
-The `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly. This way, when a user expands or collapses a node, its expansion state is updated and the tree re-renders to reflect whether subnodes are visible.
+A state variable can be used to track each node and its expansion state. The `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly.
 
 ```jsx
 const onExpand = React.useCallback((nodeId, isExpanded) => {
