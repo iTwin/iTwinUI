@@ -14,19 +14,25 @@ import snarkdown from 'snarkdown';
 
 export interface Props {
   path: string;
+  /**
+   * Uses the props for the `componentName`. If not provided, it will use the filename as the `componentName`.
+   */
+  componentName?: string;
 }
 
 const defaultHandlers = Object.values(docgenHandlers).map((handler) => handler);
 const defaultResolver = docgenResolver.findAllExportedComponentDefinitions;
 const defaultImporter = docgenImporters.makeFsImporter();
 
-const relativePath = Astro.props.path.replace(
+const { path: pathProp, componentName } = Astro.props as Props;
+
+const relativePath = pathProp.replace(
   '@itwin/itwinui-react',
-  '../../packages/itwinui-react', // relative from root of `website` workspace
+  '../../packages/itwinui-react' // relative from root of `website` workspace
 );
 
 const componentPath = path.join(__dirname, relativePath);
-const componentName = path.parse(componentPath).name.split('.')[0]; // Spliting on `.` since some files are .d.ts files
+const componentNameFallback = path.parse(componentPath).name.split('.')[0]; // Spliting on `.` since some files are .d.ts files
 const src = fs.readFileSync(componentPath, 'utf8');
 
 const docgenResults = componentPath.endsWith('.tsx')
@@ -35,7 +41,9 @@ const docgenResults = componentPath.endsWith('.tsx')
     }) as DocumentationObject[])
   : docgenTsParse(componentPath);
 
-const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === componentName);
+const componentDoc = [...docgenResults].find(
+  (docs) => docs['displayName'] === (componentName ?? componentNameFallback)
+);
 ---
 
 <div class='wrapper'>

@@ -1,0 +1,15 @@
+---
+import WarningIcon from '~/icons/WarningIcon.astro';
+import DocsNoteCard from './DocsNoteCard.astro';
+
+const feedbackUrl = 'https://github.com/iTwin/iTwinUI/discussions/new?category=feedback';
+---
+
+<DocsNoteCard {...Astro.props}>
+  <WarningIcon aria-hidden='true' slot='icon' />
+  <p slot='content'>
+    <strong>Unstable</strong>: This component is marked unstable to help us gather <a
+      href={feedbackUrl}>feedback</a
+    > and improve it. Thus, there could be future breaking changes to this component.
+  </p>
+</DocsNoteCard>
