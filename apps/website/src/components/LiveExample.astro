@@ -8,17 +8,23 @@ import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
 const require = createRequire(import.meta.url);
 
 export type Props = {
-  /** name of the file to read code example from, should be located in ~/examples folder */
+  /** Name of the file to read code example from, should be located in ~/examples folder */
   src: string;
 
   /**
-   * whether the first code snippet will truncate and turn into an expandable disclosure.
+   * A flag to determine whether the first code snippet will truncate and turn into an expandable disclosure.
    * @default true
    */
   truncate?: boolean;
+
+  /**
+   * A flag to determine whether the demo code should be visible.
+   * @default false
+   */
+  hideCode?: boolean;
 };
 
-const { src, truncate = true } = Astro.props;
+const { src, truncate = true, hideCode = false } = Astro.props;
 
 const jsxPath = require.resolve(`examples/${src}`);
 const cssPath = jsxPath.replace(/\.jsx$/, '.css');
@@ -61,10 +67,14 @@ const cssCode = await (async () => {
   />
 </demo-box>
 
-<demo-code>
-  {truncate && <button aria-expanded='false'>Toggle full code</button>}
-  <Code code={jsxCode} lang='tsx' theme={'github-dark'} />
-</demo-code>
+{
+  !hideCode && (
+    <demo-code>
+      {truncate && <button aria-expanded='false'>Toggle full code</button>}
+      <Code code={jsxCode} lang='tsx' theme={'github-dark'} />
+    </demo-code>
+  )
+}
 
 <script>
   customElements.define(
