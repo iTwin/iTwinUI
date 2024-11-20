@@ -95,7 +95,7 @@ The `isExpanded` flag which indicates whether the node is expanded to display it
 const getNode = React.useCallback(
   (node) => {
     return {
-      /* {Other node's information} */
+      /* ... */
       isExpanded: expandedNodes[node.id],
     };
   },
@@ -109,9 +109,7 @@ const getNode = React.useCallback(
 
 #### Expander customization
 
-The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders.
-
-This can include features such as enabling expansion for disabled nodes, and adjusting the expander based on its state to better align with your application's design and user experience requirements. If `hasSubNodes` is false, the expanders will not be shown.
+The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders. If `hasSubNodes` is false, the expanders will not be shown.
 
 <LiveExample src='Tree.customizeExpander.jsx'>
   <AllExamples.TreeCustomizeExpanderExample client:load />
