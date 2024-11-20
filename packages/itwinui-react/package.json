@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.15.5",
+  "version": "3.16.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -113,7 +113,7 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@swc/cli": "^0.3.12",
+    "@swc/cli": "^0.5.1",
     "@swc/core": "^1.5.28",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^13.2.0",
