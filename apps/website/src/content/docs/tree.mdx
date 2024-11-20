@@ -117,7 +117,7 @@ The `expander` prop in the `TreeNode` component allows for customization of the 
 
 The tree allows end users to select one or multiple nodes within its structure. This feature is useful for actions on specific nodes, such as editing, deleting or viewing details.
 
-Similar to node expansion, a state variable is needed to track the currently selected node. This state is updated via the `onSelect` callback, which is triggered whenever a user selects a node. The `isSelected` flag must be set in the `getNode` function to correctly update each node's selection state.
+Similar to node expansion, a state variable can be used to track the currently selected node. This state can be updated via the `onSelect` callback which is triggered whenever a user selects a node. The `isSelected` flag must be set in the `getNode` function to correctly update each node's selection state.
 
 <LiveExample src='Tree.selection.jsx'>
   <AllExamples.TreeSelectionExample client:load />
@@ -141,7 +141,7 @@ Each data level line may begin with an eye icon to toggle visibility. In this co
 
 ### Virtualization
 
-For trees with a large number of nodes, enabling virtualization can improve performance. To enable virtualization, the `enableVirtualization` property of the tree component can be set to `"true"`.
+For trees with a large number of nodes, enabling virtualization can improve performance. To enable virtualization, the `enableVirtualization` property of the tree component can be set to `true`.
 
 <LiveExample src='Tree.virtualization.jsx'>
   <AllExamples.TreeVirtualizationExample client:load />
