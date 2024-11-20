@@ -1,0 +1,8 @@
+.demo-panels-wrapper {
+  inline-size: 200px;
+  block-size: 300px;
+}
+
+.demo-initial-panel-body {
+  height: 100%;
+}

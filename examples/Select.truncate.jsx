@@ -8,7 +8,6 @@ import {
   MiddleTextTruncation,
   LabeledSelect,
 } from '@itwin/itwinui-react';
-import { useCallback, useState } from 'react';
 
 export default () => {
   const options = [
@@ -27,15 +26,8 @@ export default () => {
       label: 'SomeOtherFile.dgn',
     },
   ];
-  const [selectedValue, setSelectedValue] = useState(options[0].value);
-  const textRenderer = useCallback(
-    (truncatedText, originalText) => (
-      <span title={truncatedText !== originalText ? originalText : undefined}>
-        {truncatedText}
-      </span>
-    ),
-    [],
-  );
+  const [selectedValue, setSelectedValue] = React.useState(options[0].value);
+
   return (
     <LabeledSelect
       label={'Choose file'}
@@ -45,14 +37,11 @@ export default () => {
       placeholder={'Placeholder text'}
       itemRenderer={(option) => (
         <MenuItem>
-          <MiddleTextTruncation
-            text={option.label}
-            textRenderer={textRenderer}
-          />
+          <MiddleTextTruncation text={option.label} />
         </MenuItem>
       )}
       selectedItemRenderer={(option) => (
-        <MiddleTextTruncation text={option.label} textRenderer={textRenderer} />
+        <MiddleTextTruncation text={option.label} />
       )}
     />
   );

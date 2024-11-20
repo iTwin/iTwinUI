@@ -21,6 +21,10 @@ export type StepProperties = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
+  /**
+   * Custom content displayed in the step's circle.
+   */
+  stepContent?: () => React.ReactNode;
 } & React.ComponentProps<'li'>;
 
 export type StepperProps = {
@@ -119,6 +123,7 @@ export const Stepper = React.forwardRef((props, ref) => {
               type={type}
               onClick={onStepClick}
               description={s.description}
+              stepContent={s.stepContent}
             />
           );
         })}

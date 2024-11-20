@@ -1080,9 +1080,7 @@ export const Table = <
               },
               bodyProps?.className,
             ),
-            style: { outline: 0 },
           })}
-          tabIndex={-1}
           aria-multiselectable={
             (isSelectable && selectionMode === 'multi') || undefined
           }
