@@ -1,12 +1,16 @@
 ---
 title: Tree
-description: A tree provides a hierarchial lists of data with nested expandable levels.
+description: A tree provides a hierarchical lists of data with nested expandable levels.
 thumbnail: Tree
 ---
 
 <p>{frontmatter.description}</p>
-The `Tree` component can be used to organize data in an application specific way, or it can be used to
-sort, filter, group, or search data as the user deems appropriate.
+
+<LiveExample src='Tree.main.jsx'>
+  <AllExamples.TreeMainExample client:load />
+</LiveExample>
+
+The `Tree` component can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate.
 
 ## Usage
 
@@ -15,10 +19,6 @@ To initialize the tree component, the following props are required:
 - `data`: An array of the custom data that represents a tree node.
 - `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. Here is where one can control the state of expanded, selected and disabled nodes. The function must be memoized.
 - `nodeRenderer`: A function to render the tree node using `NodeData`. We recommend this function to return the `TreeNode` component. This function must be memoized.
-
-<LiveExample src='Tree.main.jsx'>
-  <AllExamples.TreeMainExample client:load />
-</LiveExample>
 
 ### Subnode
 
@@ -63,7 +63,7 @@ The `getNode` function then needs to map the user `data` to a `NodeData`. The pr
 const getNode = React.useCallback(
   (node) => {
     return {
-      /* {Other node's information} */
+      /*...*/
       subNodes: node.subItems,
       hasSubNodes: node.subItems.length > 0,
     };
@@ -91,7 +91,7 @@ The `isExpanded` flag which indicates whether the node is expanded to display it
 const getNode = React.useCallback(
   (node) => {
     return {
-      /* ... */
+      /*...*/
       isExpanded: expandedNodes[node.id],
     };
   },

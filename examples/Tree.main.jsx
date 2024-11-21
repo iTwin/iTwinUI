@@ -6,28 +6,47 @@ import * as React from 'react';
 import { Tree, TreeNode } from '@itwin/itwinui-react';
 
 export default () => {
-  const generateItem = React.useCallback((index, parentNode = '') => {
-    const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
-    return {
-      id: `Node-${keyValue}`,
-      label: `Node ${keyValue}`,
-    };
+  const [expandedNodes, setExpandedNodes] = React.useState({});
+
+  const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
+    setExpandedNodes((oldExpanded) => ({
+      ...oldExpanded,
+      [nodeId]: isExpanded,
+    }));
   }, []);
 
   const data = React.useMemo(
-    () =>
-      Array(3)
-        .fill(null)
-        .map((_, index) => generateItem(index)),
-    [generateItem],
+    () => [
+      {
+        id: 'Node-0',
+        label: 'Node 0',
+      },
+      {
+        id: 'Node-1',
+        label: 'Node 1',
+        subItems: [{ id: 'Subnode-1', label: 'Subnode 1' }],
+      },
+      {
+        id: 'Node-2',
+        label: 'Node 2',
+        subItems: [{ id: 'Subnode-2', label: 'Subnode 2' }],
+      },
+    ],
+    [],
   );
 
-  const getNode = React.useCallback((node) => {
-    return {
-      nodeId: node.id,
-      node: node,
-    };
-  }, []);
+  const getNode = React.useCallback(
+    (node) => {
+      return {
+        subNodes: node.subItems,
+        nodeId: node.id,
+        node: node,
+        isExpanded: expandedNodes[node.id],
+        hasSubNodes: node.subItems?.length > 0,
+      };
+    },
+    [expandedNodes],
+  );
 
   return (
     <Tree
@@ -36,9 +55,9 @@ export default () => {
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode label={node.label} {...rest} />
+          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
         ),
-        [],
+        [onNodeExpanded],
       )}
     />
   );
