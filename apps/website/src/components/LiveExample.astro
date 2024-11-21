@@ -49,7 +49,7 @@ const cssCode = await (async () => {
   <template shadowrootmode='open'>
     <style is:inline>
       astro-island {
-        display: contents;
+        display: block !important;
       }
     </style>
     <style set:html={cssCode}></style>
