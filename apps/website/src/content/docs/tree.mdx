@@ -63,7 +63,7 @@ The `getNode` function then needs to map the user `data` to a `NodeData`. The pr
 const getNode = React.useCallback(
   (node) => {
     return {
-      /*...*/
+      /*…*/
       subNodes: node.subItems,
       hasSubNodes: node.subItems.length > 0,
     };
@@ -91,7 +91,7 @@ The `isExpanded` flag which indicates whether the node is expanded to display it
 const getNode = React.useCallback(
   (node) => {
     return {
-      /*...*/
+      /*…*/
       isExpanded: expandedNodes[node.id],
     };
   },
