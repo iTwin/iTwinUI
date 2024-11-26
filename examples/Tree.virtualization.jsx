@@ -7,18 +7,21 @@ import { Tree, TreeNode } from '@itwin/itwinui-react';
 
 export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({});
+
   const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
     setExpandedNodes((oldExpanded) => ({
       ...oldExpanded,
       [nodeId]: isExpanded,
     }));
   }, []);
+
   const generateItem = React.useCallback(
     (index, parentNode = '', depth = 0) => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
         id: `Node-${keyValue}`,
         label: `Node ${keyValue}`,
+        sublabel: `Sublabel for Node ${keyValue}`,
         subItems:
           depth < 10
             ? Array(Math.round(index % 5))
@@ -32,7 +35,7 @@ export default () => {
 
   const data = React.useMemo(
     () =>
-      Array(3)
+      Array(10000)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -55,8 +58,8 @@ export default () => {
     <Tree
       className='demo-tree'
       data={data}
-      size='small'
       getNode={getNode}
+      enableVirtualization
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
           <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />

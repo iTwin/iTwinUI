@@ -1453,9 +1453,35 @@ import { default as TreeMainExampleRaw } from './Tree.main';
 const TreeMainExample = withThemeProvider(TreeMainExampleRaw);
 export { TreeMainExample };
 
+import { default as TreeExpansionExampleRaw } from './Tree.expansion';
+const TreeExpansionExample = withThemeProvider(TreeExpansionExampleRaw);
+export { TreeExpansionExample };
+
+import { default as TreeVisibilityCheckboxExampleRaw } from './Tree.visibilityCheckbox';
+const TreeVisibilityCheckboxExample = withThemeProvider(
+  TreeVisibilityCheckboxExampleRaw,
+);
+export { TreeVisibilityCheckboxExample };
+
+import { default as TreeSelectionExampleRaw } from './Tree.selection';
+const TreeSelectionExample = withThemeProvider(TreeSelectionExampleRaw);
+export { TreeSelectionExample };
+
 import { default as TreeSmallExampleRaw } from './Tree.small';
 const TreeSmallExample = withThemeProvider(TreeSmallExampleRaw);
 export { TreeSmallExample };
+
+import { default as TreeVirtualizationExampleRaw } from './Tree.virtualization';
+const TreeVirtualizationExample = withThemeProvider(
+  TreeVirtualizationExampleRaw,
+);
+export { TreeVirtualizationExample };
+
+import { default as TreeCustomizeExpanderExampleRaw } from './Tree.customizeExpander';
+const TreeCustomizeExpanderExample = withThemeProvider(
+  TreeCustomizeExpanderExampleRaw,
+);
+export { TreeCustomizeExpanderExample };
 
 // ----------------------------------------------------------------------------
 

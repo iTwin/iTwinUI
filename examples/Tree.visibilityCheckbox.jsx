@@ -3,22 +3,25 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tree, TreeNode } from '@itwin/itwinui-react';
+import { Checkbox, Tree, TreeNode } from '@itwin/itwinui-react';
 
 export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({});
+
   const onNodeExpanded = React.useCallback((nodeId, isExpanded) => {
     setExpandedNodes((oldExpanded) => ({
       ...oldExpanded,
       [nodeId]: isExpanded,
     }));
   }, []);
+
   const generateItem = React.useCallback(
     (index, parentNode = '', depth = 0) => {
       const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
       return {
         id: `Node-${keyValue}`,
         label: `Node ${keyValue}`,
+        sublabel: `Sublabel for Node ${keyValue}`,
         subItems:
           depth < 10
             ? Array(Math.round(index % 5))
@@ -55,11 +58,21 @@ export default () => {
     <Tree
       className='demo-tree'
       data={data}
-      size='small'
       getNode={getNode}
       nodeRenderer={React.useCallback(
         ({ node, ...rest }) => (
-          <TreeNode label={node.label} onExpanded={onNodeExpanded} {...rest} />
+          <TreeNode
+            label={node.label}
+            onExpanded={onNodeExpanded}
+            checkbox={
+              <Checkbox
+                aria-label={node.label}
+                variant='eyeball'
+                disabled={rest.isDisabled}
+              />
+            }
+            {...rest}
+          />
         ),
         [onNodeExpanded],
       )}
