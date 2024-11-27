@@ -507,56 +507,55 @@ import Icon_ from '../components/Icon.astro';
 
   <section id='demo-multi'>
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='small'>
-        <span class='iui-content'>
-          <div class='iui-select-tag-container'>
-            <multi-select-tag value='Option 1' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 2' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 3' dismissible></multi-select-tag>
-          </div>
-        </span>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='small' data-iui-multi>
       </div>
       <Icon_ svg='caret-down-small' class='iui-end-icon' />
+      <span class='iui-content'>
+        <div class='iui-select-tag-container'>
+          <multi-select-tag value='Option 1' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 2' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 3' dismissible></multi-select-tag>
+        </div>
+      </span>
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button iui-field'>
-        <span class='iui-content'>
-          <div class='iui-select-tag-container'>
-            <multi-select-tag value='Option 1' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 2' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 3' dismissible></multi-select-tag>
-          </div>
-        </span>
-      </div>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-multi></div>
       <Icon_ svg='caret-down-small' class='iui-end-icon' />
+      <span class='iui-content'>
+        <div class='iui-select-tag-container'>
+          <multi-select-tag value='Option 1' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 2' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 3' dismissible></multi-select-tag>
+        </div>
+      </span>
     </div>
 
     <div class='iui-input-with-icon'>
-      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large'>
-        <span class='iui-content'>
-          <div class='iui-select-tag-container'>
-            <multi-select-tag value='Option 1' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 2' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 3' dismissible></multi-select-tag>
-          </div>
-        </span>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large' data-iui-multi>
       </div>
       <Icon_ svg='caret-down-small' class='iui-end-icon' />
+      <span class='iui-content'>
+        <div class='iui-select-tag-container'>
+          <multi-select-tag value='Option 1' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 2' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 3' dismissible></multi-select-tag>
+        </div>
+      </span>
     </div>
 
     <div class='iui-input-with-icon' style='width: 480px'>
-      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large'>
-        <span class='iui-content'>
-          <div class='iui-select-tag-container'>
-            <multi-select-tag value='Option 1' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 2' dismissible></multi-select-tag>
-            <multi-select-tag value='Option 3' dismissible></multi-select-tag>
-            <multi-select-tag value='+5 more'></multi-select-tag>
-          </div>
-        </span>
+      <div tabindex='0' class='iui-select-button iui-field' data-iui-size='large' data-iui-multi>
       </div>
       <Icon_ svg='caret-down-small' class='iui-end-icon' />
+      <span class='iui-content'>
+        <div class='iui-select-tag-container'>
+          <multi-select-tag value='Option 1' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 2' dismissible></multi-select-tag>
+          <multi-select-tag value='Option 3' dismissible></multi-select-tag>
+          <multi-select-tag value='+5 more'></multi-select-tag>
+        </div>
+      </span>
     </div>
   </section>
 </Layout>
