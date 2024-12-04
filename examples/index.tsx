@@ -777,6 +777,10 @@ import { default as LabelMainExampleRaw } from './Label.main';
 const LabelMainExample = withThemeProvider(LabelMainExampleRaw);
 export { LabelMainExample };
 
+import { default as LabelRequiredExampleRaw } from './Label.required';
+const LabelRequiredExample = withThemeProvider(LabelRequiredExampleRaw);
+export { LabelRequiredExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as LinkActionMainExampleRaw } from './LinkAction.main';
@@ -1309,6 +1313,22 @@ export { TextareaInlineExample };
 import { default as TextMainExampleRaw } from './Text.main';
 const TextMainExample = withThemeProvider(TextMainExampleRaw);
 export { TextMainExample };
+
+import { default as TextVariantExampleRaw } from './Text.variant';
+const TextVariantExample = withThemeProvider(TextVariantExampleRaw);
+export { TextVariantExample };
+
+import { default as TextMutedExampleRaw } from './Text.muted';
+const TextMutedExample = withThemeProvider(TextMutedExampleRaw);
+export { TextMutedExample };
+
+import { default as TextSkeletonExampleRaw } from './Text.skeleton';
+const TextSkeletonExample = withThemeProvider(TextSkeletonExampleRaw);
+export { TextSkeletonExample };
+
+import { default as TextPolymorphicExampleRaw } from './Text.polymorphic';
+const TextPolymorphicExample = withThemeProvider(TextPolymorphicExampleRaw);
+export { TextPolymorphicExample };
 
 // ----------------------------------------------------------------------------
 
