@@ -53,9 +53,14 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
       preFilteredFlatRows,
       state,
     }: HeaderProps<T>) => {
-      const disabled = preFilteredFlatRows.every(
-        (row) => isDisabled?.(row.original),
-      );
+      const disabled = preFilteredFlatRows.every((row) => {
+        console.log(
+          'row is disabled',
+          row.original,
+          isDisabled?.(row.original),
+        );
+        return isDisabled?.(row.original);
+      });
       const checked = preFilteredFlatRows.every(
         (row) => state.selectedRowIds[row.id] || isDisabled?.(row.original),
       );
