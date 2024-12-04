@@ -68,6 +68,7 @@ export type TreeProps<T> = {
   /**
    * Render function that should return the node element.
    * Recommended to use `TreeNode` component.
+   * If `nodeRenderer` returns a wrapper component that returns `TreeNode`, the component must be wrapped with `React.forwardRef`.
    * Must be memoized.
    * @example
    * const nodeRenderer = React.useCallback(({ node, ...rest }: NodeRenderProps<DataType>) => (
