@@ -811,6 +811,26 @@ export { ListComboboxExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as MiddleTextTruncationMainExampleRaw } from './MiddleTextTruncation.main';
+const MiddleTextTruncationMainExample = withThemeProvider(
+  MiddleTextTruncationMainExampleRaw,
+);
+export { MiddleTextTruncationMainExample };
+
+import { default as MiddleTextTruncationEndCharsCountExampleRaw } from './MiddleTextTruncation.endCharsCount';
+const MiddleTextTruncationEndCharsCountExample = withThemeProvider(
+  MiddleTextTruncationEndCharsCountExampleRaw,
+);
+export { MiddleTextTruncationEndCharsCountExample };
+
+import { default as MiddleTextTruncationCustomizationExampleRaw } from './MiddleTextTruncation.customizeTruncation';
+const MiddleTextTruncationCustomizationExample = withThemeProvider(
+  MiddleTextTruncationCustomizationExampleRaw,
+);
+export { MiddleTextTruncationCustomizationExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as NonIdealStateBadgatewayExampleRaw } from './NonIdealState.badgateway';
 const NonIdealStateBadgatewayExample = withThemeProvider(
   NonIdealStateBadgatewayExampleRaw,
@@ -1453,9 +1473,35 @@ import { default as TreeMainExampleRaw } from './Tree.main';
 const TreeMainExample = withThemeProvider(TreeMainExampleRaw);
 export { TreeMainExample };
 
+import { default as TreeExpansionExampleRaw } from './Tree.expansion';
+const TreeExpansionExample = withThemeProvider(TreeExpansionExampleRaw);
+export { TreeExpansionExample };
+
+import { default as TreeVisibilityCheckboxExampleRaw } from './Tree.visibilityCheckbox';
+const TreeVisibilityCheckboxExample = withThemeProvider(
+  TreeVisibilityCheckboxExampleRaw,
+);
+export { TreeVisibilityCheckboxExample };
+
+import { default as TreeSelectionExampleRaw } from './Tree.selection';
+const TreeSelectionExample = withThemeProvider(TreeSelectionExampleRaw);
+export { TreeSelectionExample };
+
 import { default as TreeSmallExampleRaw } from './Tree.small';
 const TreeSmallExample = withThemeProvider(TreeSmallExampleRaw);
 export { TreeSmallExample };
+
+import { default as TreeVirtualizationExampleRaw } from './Tree.virtualization';
+const TreeVirtualizationExample = withThemeProvider(
+  TreeVirtualizationExampleRaw,
+);
+export { TreeVirtualizationExample };
+
+import { default as TreeCustomizeExpanderExampleRaw } from './Tree.customizeExpander';
+const TreeCustomizeExpanderExample = withThemeProvider(
+  TreeCustomizeExpanderExampleRaw,
+);
+export { TreeCustomizeExpanderExample };
 
 // ----------------------------------------------------------------------------
 

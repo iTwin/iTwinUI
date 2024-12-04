@@ -1,27 +1,160 @@
 ---
 title: Tree
-description: A tree provides a list of data.
+description: A tree provides a hierarchical lists of data with nested expandable levels.
 thumbnail: Tree
 ---
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='tree--basic' />
-
 <LiveExample src='Tree.main.jsx'>
   <AllExamples.TreeMainExample client:load />
 </LiveExample>
 
-A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. Each line of data level may begin with an eye icon for toggling its visibility. In this context, this icon is called specialty checkbox.
+The `Tree` component can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate.
 
-## Size
+## Usage
 
-There are 2 different sizes available. The default size should suffice for most cases. When a smaller version of the tree is needed, use `size="small"`.
+To initialize the tree component, the following props are required:
+
+- `data`: An array of the custom data that represents a tree node.
+- `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. Here is where one can control the state of expanded, selected and disabled nodes. The function must be memoized.
+- `nodeRenderer`: A function to render the tree node using `NodeData`. We recommend this function to return the `TreeNode` component. This function must be memoized.
+
+### Subnode
+
+The tree supports hierarchial data structures where each node can have subnodes, which can be expanded or collapsed. Subnodes allow handling nested data up to any desired depth.
+
+Each object in the `data` array can include an array of sub-item objects. This array can be named according to the user's preference (e.g., `subItems` in the example below) to represent its children, enabling nested structures.
+
+```jsx
+const treeData = React.useMemo(
+  () => [
+    {
+      id: 'Node-1',
+      label: 'Node 1',
+      subItems: [
+        { id: 'Node-1-1', label: 'Node 1.1' },
+        {
+          id: 'Node-1-2',
+          label: 'Node 1.2',
+          subItems: [
+            { id: 'Node-1-2-1', label: 'Node 1.2.1' },
+            { id: 'Node-1-2-2', label: 'Node 1.2.2' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'Node-2',
+      label: 'Node 2',
+      subItems: [{ id: 'Node-2-1', label: 'Node 2.1' }],
+    },
+  ],
+  [],
+);
+```
+
+The `getNode` function then needs to map the user `data` to a `NodeData`. The properties relevant to sub-nodes include:
+
+- `subNodes`: array of child `data` nodes. Can be obtained from the `data`'s `subItems`.
+- `hasSubNodes`: indicates whether the node has subnodes which determines whether the nodes should be expandable.
+
+```jsx {5, 6}
+const getNode = React.useCallback(
+  (node) => {
+    return {
+      /*…*/
+      subNodes: node.subItems,
+      hasSubNodes: node.subItems.length > 0,
+    };
+  },
+  [expandedNodes],
+);
+```
+
+### Expansion
+
+A state variable can be used to track each node and its expansion state. The `onExpand` function in each `TreeNode` can be used to update the node's expansion state accordingly.
+
+```jsx
+const onExpand = React.useCallback((nodeId, isExpanded) => {
+  setExpandedNodes((prev) => ({
+    ...prev,
+    [nodeId]: isExpanded,
+  }));
+}, []);
+```
+
+The `isExpanded` flag which indicates whether the node is expanded to display its subnode(s) should be passed into the `getNode` function for each node to be updated its expansion state correctly.
+
+```jsx {5}
+const getNode = React.useCallback(
+  (node) => {
+    return {
+      /*…*/
+      isExpanded: expandedNodes[node.id],
+    };
+  },
+  [expandedNodes],
+);
+```
+
+<LiveExample src='Tree.expansion.jsx'>
+  <AllExamples.TreeExpansionExample client:load />
+</LiveExample>
+
+#### Expander customization
+
+The `expander` prop in the `TreeNode` component allows for customization of the node expanders. We recommend using the `TreeNodeExpander` component with this prop to customize the appearance and behavior of the expanders. If `hasSubNodes` is false, the expanders will not be shown.
+
+<LiveExample src='Tree.customizeExpander.jsx'>
+  <AllExamples.TreeCustomizeExpanderExample client:load />
+</LiveExample>
+
+### Selection
+
+The tree allows end users to select one or multiple nodes within its structure. This feature is useful for actions on specific nodes, such as editing, deleting or viewing details.
+
+Similar to node expansion, a state variable can be used to track the currently selected node. This state can be updated via the `onSelect` callback which is triggered whenever a user selects a node. The `isSelected` flag must be set in the `getNode` function to correctly update each node's selection state.
+
+<LiveExample src='Tree.selection.jsx'>
+  <AllExamples.TreeSelectionExample client:load />
+</LiveExample>
+
+### Size
+
+There are two different sizes available. The default size should suffice for most cases. When a smaller version of the tree is needed, use `size="small"`.
 
 <LiveExample src='Tree.small.jsx'>
   <AllExamples.TreeSmallExample client:load />
 </LiveExample>
 
+### Visibility checkbox
+
+Each data level line may begin with an eye icon to toggle visibility. In this context, we suggest using the [Checkbox](/docs/checkbox) component with the `variant` set to `"eyeballs"` and passing it into the `checkbox` prop of the `TreeNode`.
+
+<LiveExample src='Tree.visibilityCheckbox.jsx'>
+  <AllExamples.TreeVisibilityCheckboxExample client:load />
+</LiveExample>
+
+### Virtualization
+
+For trees with a large number of nodes, enabling virtualization can improve performance. To enable virtualization, the `enableVirtualization` property of the tree component can be set to `true`.
+
+<LiveExample src='Tree.virtualization.jsx'>
+  <AllExamples.TreeVirtualizationExample client:load />
+</LiveExample>
+
 ## Props
+
+### TreeNode
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Tree/TreeNode.d.ts' />
+
+### TreeNodeExpander
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Tree/TreeNodeExpander.d.ts' />
+
+### Tree
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Tree/Tree.d.ts' />

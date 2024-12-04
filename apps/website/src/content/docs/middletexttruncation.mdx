@@ -1,0 +1,44 @@
+---
+title: MiddleTextTruncation
+description: A utility component for truncating long texts in the middle.
+thumbnail: #TODO
+group: utilities
+---
+
+<p>{frontmatter.description}</p>
+
+## Usage
+
+When displaying texts with constrains on its width, the `MiddleTextTruncation` component can help by truncating long texts in the middle with an ellipsis (`"…"`). This ensures that the beginning and the end of the text remain visible.
+
+<LiveExample src='MiddleTextTruncation.main.jsx' truncated={false}>
+  <AllExamples.MiddleTextTruncationMainExample client:load />
+</LiveExample>
+
+For more examples, see [truncation in Select](/docs/select#truncation).
+
+### Number of end characters
+
+By default, six characters are left visible at the end of the truncated text. This ensures that important suffixes, such as file extensions or identifiers, remain visible. This number can be modified through the `endCharsCount` prop to suit user's specific needs.
+
+<LiveExample src='MiddleTextTruncation.endCharsCount.jsx'>
+  <AllExamples.MiddleTextTruncationEndCharsCountExample client:load />
+</LiveExample>
+
+### Customization
+
+For further control over the rendering of the content, the `textRenderer` prop allows users to provide a custom rendering function. This function takes `originalText` and `truncatedText` as parameters and returns a `ReactNode`.
+
+<LiveExample src='MiddleTextTruncation.customizeTruncation.jsx'>
+  <AllExamples.MiddleTextTruncationCustomizationExample client:load />
+</LiveExample>
+
+## Accessibility
+
+This component only truncates the content visually but leaves the full content in the accessibility tree. That way, users using assistive technologies can still have access to the full content. This is also consistent with the browser's default `text-overflow` behavior.
+
+However, this behavior may cause some inconvenience for screen-reader users, as the accessible text can become overly verbose. Thus, we recommend taking this into consideration when planning the UX.
+
+## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/utils/components/MiddleTextTruncation.d.ts' />
