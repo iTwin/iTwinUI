@@ -8,7 +8,7 @@
   padding-block: var(--_iui-select-padding-block);
   padding-inline: var(--iui-size-s);
   user-select: none;
-  line-height: var(--iui-size-l);
+  line-height: var(--_iui-select-line-height, --iui-size-l);
   cursor: pointer;
   @include iui-select-size;
 
@@ -51,7 +51,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    min-block-size: var(--iui-size-l);
+    min-block-size: var(--_iui-select-block-size, --iui-size-l);
     color: inherit;
   }
 
@@ -67,6 +67,8 @@
 @mixin iui-select-size($size: medium) {
   @if $size == small {
     --_iui-select-padding-block: 0;
+    --_iui-select-line-height: var(--iui-size-m);
+    --_iui-select-block-size: var(--iui-size-m);
   }
 
   @if $size == medium {
