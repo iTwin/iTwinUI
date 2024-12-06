@@ -18,7 +18,9 @@ To initialize the tree component, the following props are required:
 
 - `data`: An array of the custom data that represents a tree node.
 - `getNode`: A function that maps your `data` entry to `NodeData` that has all information about the node state. Here is where one can control the state of expanded, selected and disabled nodes. The function must be memoized.
-- `nodeRenderer`: A function to render the tree node using `NodeData`. We recommend this function to return the `TreeNode` component. If `nodeRenderer` returns a wrapper component that in turn returns a `TreeNode`, the wrapper component must be wrapped with `React.forwardRef`. This ensures that the correct styling and logic are applied to the returned component, especially with virtualization. This function must be memoized.
+- `nodeRenderer`: A function to render the tree node using `NodeData`. We recommend this function to return the `TreeNode` component.
+
+**Note**: When virtualization is enabled, the return value of `nodeRenderer()` is cloned and a `ref` is passed to it. Thus, you would need a `React.forwardRef` in the component returned by `nodeRenderer()`, except if you are returning `TreeNode` since that already forwards its ref.
 
 ### Subnode
 
