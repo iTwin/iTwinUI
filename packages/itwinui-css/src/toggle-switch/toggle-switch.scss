@@ -57,10 +57,7 @@
   cursor: pointer;
   appearance: none;
   inline-size: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
-  block-size: calc(
-    var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
-      ($iui-toggle-switch-border-thickness * 2)
-  );
+  block-size: calc(var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2));
   border-radius: var(--iui-border-radius-round);
   transition:
     background-color var(--iui-duration-1) ease-out,
@@ -193,7 +190,7 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
+    margin: var(--_iui-toggle-switch-handle-offset);
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
