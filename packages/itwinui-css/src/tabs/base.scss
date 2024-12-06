@@ -18,6 +18,16 @@ $borderless-horizontal-tab-min-height: calc(
 );
 
 @mixin iui-tabs-wrapper {
+  --_iui-tab-color-stripe-blue: var(--iui-color-border-accent);
+  --_iui-tab-color-stripe-green: var(--iui-color-border-positive);
+  --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-blue);
+
+  --_iui-tab-color-default: var(--iui-color-text);
+  --_iui-tab-color-selected: var(--iui-color-text-accent);
+  --_iui-tab-color-disabled: var(--iui-color-text-disabled);
+  --_iui-tab-color-green-selected: var(--iui-color-text-positive);
+  --_iui-tab-color: var(--_iui-tab-color-default);
+
   display: grid;
   position: relative;
 }
@@ -44,13 +54,17 @@ $borderless-horizontal-tab-min-height: calc(
     min-block-size: calc(var(--iui-size-m) * 2.5);
     block-size: 100%;
     cursor: pointer;
-    color: var(--iui-color-text);
+    color: var(--_iui-tab-color);
     transition: background-color var(--iui-duration-1) ease-out;
     text-align: start;
     scroll-margin: var(--iui-size-m);
 
+    &::after {
+      background-color: var(--_iui-tab-color-stripe);
+    }
+
     &[aria-selected='true'] {
-      color: var(--iui-color-text-accent);
+      --_iui-tab-color: var(--_iui-tab-color-selected);
 
       .iui-tab-icon svg {
         fill: currentColor;
@@ -63,7 +77,7 @@ $borderless-horizontal-tab-min-height: calc(
 
     &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       cursor: not-allowed;
-      color: var(--iui-color-text-disabled);
+      --_iui-tab-color: var(--_iui-tab-color-disabled);
 
       .iui-tab-description {
         color: inherit;
@@ -105,7 +119,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[aria-selected='true'] {
-      color: var(--iui-color-text-positive);
+      --_iui-tab-color: var(--_iui-tab-color-green-selected);
 
       .iui-tab-icon svg {
         fill: currentColor;
@@ -235,7 +249,8 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-tab::after {
     content: '';
     position: absolute;
-    background-color: var(--iui-color-border-accent);
+
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-blue);
   }
 
   [aria-selected='true']::after {
@@ -247,7 +262,7 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-border-positive);
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 }
 
@@ -255,11 +270,12 @@ $borderless-horizontal-tab-min-height: calc(
   &::after {
     position: absolute;
     content: ' ';
-    background-color: var(--iui-color-border-accent);
+
+    background-color: var(--_iui-tab-color-stripe);
   }
 
   &.iui-green::after {
-    background-color: var(--iui-color-border-positive);
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 
   .iui-horizontal &::after {
