@@ -4,6 +4,10 @@
 @use 'sass:string';
 @use '../mixins';
 
+:is(.iui-progress-indicator-radial, .iui-progress-indicator-linear) {
+  --_iui-progress-indicator-color-default-progress: var(--iui-color-border-accent);
+}
+
 .iui-progress-indicator-radial {
   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
   vertical-align: middle;
@@ -34,7 +38,7 @@
   &::after {
     mask-composite: subtract;
     mask-clip: border-box, content-box;
-    background-color: var(--iui-color-border-accent);
+    background-color: var(--_iui-progress-indicator-color-default-progress);
   }
 
   &::before,
@@ -144,7 +148,7 @@
     content: '';
     block-size: var(--iui-size-2xs);
     $percentage: var(--iui-progress-percentage, 100%);
-    $fill: var(--_iui-progress-indicator-track-fill, var(--iui-color-border-accent));
+    $fill: var(--_iui-progress-indicator-track-fill, var(--_iui-progress-indicator-color-default-progress));
 
     background-color: var(--iui-color-border);
     background-image: linear-gradient(90deg, $fill 0% 100%);
