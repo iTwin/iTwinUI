@@ -1,0 +1,1 @@
+import{r as s}from"./index-DTVZzNG9.js";const o=(e,u,r)=>{let t=s.useRef();s.useEffect(()=>{t.current=u},[u]),s.useEffect(()=>{if(!r)return;let f=i=>{var c;return(c=t.current)==null?void 0:c.call(t,i)};return r.addEventListener(e,f),()=>{r.removeEventListener(e,f)}},[e,r])};export{o as u};
