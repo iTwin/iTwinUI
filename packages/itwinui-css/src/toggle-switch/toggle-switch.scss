@@ -73,7 +73,7 @@
     content: '';
     block-size: var(--_iui-toggle-switch-handle-size);
     inline-size: var(--_iui-toggle-switch-handle-size);
-    margin: var(--_iui-toggle-switch-handle-offset);
+    margin: auto var(--_iui-toggle-switch-handle-offset);
     aspect-ratio: 1 / 1;
     border-radius: var(--iui-border-radius-round);
     transition: background-color var(--iui-duration-1) ease-out;
