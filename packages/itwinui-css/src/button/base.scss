@@ -94,7 +94,7 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
     --_iui-button-padding-inline: var(--iui-size-xs);
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: var(--iui-size-2xs);
+      --_iui-button-padding-inline: var(--iui-size-3xs);
     }
   }
 
