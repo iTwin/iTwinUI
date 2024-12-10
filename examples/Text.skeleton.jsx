@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Text } from '@itwin/itwinui-react';
+import { Flex, Text } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
+    <Flex flexDirection='column'>
       <Text isSkeleton variant='headline'>
         This is a skeleton text
       </Text>
@@ -24,6 +24,6 @@ export default () => {
       <Text isSkeleton variant='small'>
         This is a skeleton text
       </Text>
-    </>
+    </Flex>
   );
 };

@@ -10,9 +10,9 @@ thumbnail: Typography
 
 The `Text` component is a polymorphic typography component that can be used to render any kind of text as any kind of element.
 
-<LiveExample src='Text.main.jsx' truncate={false}>
-  <AllExamples.TextMainExample client:load />
-</LiveExample>
+```jsx
+<Text>This is a text.</Text>
+```
 
 ### Variant
 
@@ -82,8 +82,21 @@ This association enhances accessibility by ensuring that screen readers and othe
 
 ### Required
 
+To create a required label, end users can pass the `required` prop into the `Label` to indicate the visual indicator (\*) the component.
+
 <LiveExample src='Label.required.jsx'>
   <AllExamples.LabelRequiredExample client:load />
+</LiveExample>
+
+### Display style
+
+There are two available display styles:
+
+- `"block"` (default): places the label and the other fields on separate lines without adding any extra spacing.
+- `"inline"`: displays the label inline with other elements by adding a right margin to it.
+
+<LiveExample src='Label.inline.jsx'>
+  <AllExamples.LabelInlineExample client:load />
 </LiveExample>
 
 ### Props

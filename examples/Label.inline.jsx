@@ -3,8 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Text } from '@itwin/itwinui-react';
+import { Input, Label } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Text>This is a text</Text>;
+  return (
+    <div className='demo-container'>
+      <Label htmlFor='text-input' displayStyle='inline'>
+        Name:
+      </Label>
+      <Input id='text-input' placeholder='Enter name' />
+    </div>
+  );
 };
