@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.16.1
+
+### Patch Changes
+
+- [#2362](https://github.com/iTwin/iTwinUI/pull/2362): `Select` elements with "small" size now have the same height of 24px as other input elements with the size of "small" such as `ComboBox`.
+
 ## 3.16.0
 
 ### Minor Changes
