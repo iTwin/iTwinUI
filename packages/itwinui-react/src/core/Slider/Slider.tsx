@@ -9,6 +9,7 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Track } from './Track.js';
 import { Thumb } from './Thumb.js';
 import type { Tooltip } from '../Tooltip/Tooltip.js';
+import { FloatingDelayGroup } from '@floating-ui/react';
 
 /**
  * Determines which segments are shown with color.
@@ -492,49 +493,51 @@ export const Slider = React.forwardRef((props, ref) => {
           {minValueLabel}
         </Box>
       )}
-      <Box
-        ref={containerRef}
-        {...trackContainerProps}
-        className={cx(
-          'iui-slider',
-          {
-            'iui-grabbing': undefined !== activeThumbIndex,
-          },
-          trackContainerProps?.className,
-        )}
-        onPointerDown={handlePointerDownOnSlider}
-      >
-        {currentValues.map((thumbValue, index) => {
-          const [minVal, maxVal] = getAllowableThumbRange(index);
-          const thisThumbProps = thumbProps?.(index);
-          return (
-            <Thumb
-              key={thisThumbProps?.id ?? index}
-              index={index}
-              disabled={disabled}
-              isActive={activeThumbIndex === index}
-              onThumbActivated={onThumbActivated}
-              onThumbValueChanged={onThumbValueChanged}
-              minVal={minVal}
-              maxVal={maxVal}
-              value={thumbValue}
-              tooltipProps={generateTooltipProps(index, thumbValue)}
-              thumbProps={thisThumbProps}
-              step={step}
-              sliderMin={min}
-              sliderMax={max}
-            />
-          );
-        })}
-        <Track
-          trackDisplayMode={trackDisplay}
-          sliderMin={min}
-          sliderMax={max}
-          values={currentValues}
-          orientation={orientation}
-          {...trackProps}
-        />
-      </Box>
+      <FloatingDelayGroup delay={{ open: 100, close: 200 }}>
+        <Box
+          ref={containerRef}
+          {...trackContainerProps}
+          className={cx(
+            'iui-slider',
+            {
+              'iui-grabbing': undefined !== activeThumbIndex,
+            },
+            trackContainerProps?.className,
+          )}
+          onPointerDown={handlePointerDownOnSlider}
+        >
+          {currentValues.map((thumbValue, index) => {
+            const [minVal, maxVal] = getAllowableThumbRange(index);
+            const thisThumbProps = thumbProps?.(index);
+            return (
+              <Thumb
+                key={thisThumbProps?.id ?? index}
+                index={index}
+                disabled={disabled}
+                isActive={activeThumbIndex === index}
+                onThumbActivated={onThumbActivated}
+                onThumbValueChanged={onThumbValueChanged}
+                minVal={minVal}
+                maxVal={maxVal}
+                value={thumbValue}
+                tooltipProps={generateTooltipProps(index, thumbValue)}
+                thumbProps={thisThumbProps}
+                step={step}
+                sliderMin={min}
+                sliderMax={max}
+              />
+            );
+          })}
+          <Track
+            trackDisplayMode={trackDisplay}
+            sliderMin={min}
+            sliderMax={max}
+            values={currentValues}
+            orientation={orientation}
+            {...trackProps}
+          />
+        </Box>
+      </FloatingDelayGroup>
       {tickMarkArea}
       {maxValueLabel && (
         <Box
