@@ -84,7 +84,7 @@ export const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       ReactDOM.flushSync(() => setActivePanelId(newActiveId));
       onActiveIdChange.current?.(newActiveId);
 
-      ref.current?.ownerDocument.getElementById(newActiveId)?.scrollIntoView({
+      ref.current?.querySelector(`[id='${newActiveId}']`)?.scrollIntoView({
         block: 'nearest',
         inline: 'center',
         behavior: motionOk ? 'smooth' : 'instant',
