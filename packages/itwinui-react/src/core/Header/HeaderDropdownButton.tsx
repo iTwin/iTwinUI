@@ -39,19 +39,7 @@ export const HeaderDropdownButton = React.forwardRef((props, ref) => {
         className={cx('iui-header-breadcrumb-button', className)}
         ref={refs}
         aria-label='Dropdown'
-        endIcon={
-          isMenuOpen ? (
-            <SvgCaretUpSmall
-              className='iui-header-breadcrumb-button-dropdown-icon'
-              aria-hidden
-            />
-          ) : (
-            <SvgCaretDownSmall
-              className='iui-header-breadcrumb-button-dropdown-icon'
-              aria-hidden
-            />
-          )
-        }
+        endIcon={isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         {...rest}
       >
         {children}
