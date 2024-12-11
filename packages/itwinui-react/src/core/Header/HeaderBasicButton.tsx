@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { ButtonBase } from '../../utils/index.js';
+import { ButtonBase, cloneElementWithRef } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import type { ButtonProps } from '../Buttons/Button.js';
+import { styles } from '../../styles.js';
 
 export const HeaderBasicButton = React.forwardRef((props, ref) => {
   const { className, children, startIcon, endIcon, styleType, size, ...rest } =
@@ -22,7 +23,15 @@ export const HeaderBasicButton = React.forwardRef((props, ref) => {
     >
       {startIcon}
       {children}
-      {endIcon}
+      {!!endIcon
+        ? cloneElementWithRef(endIcon, () => ({
+            className: cx(
+              styles['iui-header-breadcrumb-button-dropdown-icon'],
+              endIcon.props.className,
+            ),
+            ['aria-hidden']: true,
+          }))
+        : null}
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', ButtonProps>;
