@@ -45,8 +45,8 @@
   }
 
   &:where([data-iui-size='default']) {
-    --_iui-toggle-switch-handle-offset: calc(var(--iui-size-3xs) + 1.5px);
-    --_iui-toggle-switch-block-size-offset: 1px;
+    --_iui-toggle-switch-handle-offset: calc(var(--iui-size-2xs) * 0.875);
+    --_iui-toggle-switch-block-size-offset: var(--_iui-toggle-switch-border-thickness);
   }
 }
 
