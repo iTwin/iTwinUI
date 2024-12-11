@@ -131,7 +131,7 @@ export const ButtonGroup = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
+    <FloatingDelayGroup delay={{ open: 100, close: 200 }}>
       <ButtonGroupContext.Provider value={orientation}>
         {props.role === 'toolbar' ? (
           <Composite
