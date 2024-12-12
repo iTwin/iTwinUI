@@ -5,7 +5,7 @@
 .iui-toggle-switch-wrapper {
   --_iui-toggle-switch-handle-size: var(--iui-size-m);
   --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
-  --_iui-toggle-switch-border-thickness: 1px;
+  $iui-toggle-switch-border-thickness: 1px;
 
   @include mixins.iui-reset;
   display: grid;
@@ -41,20 +41,20 @@
   &:where([data-iui-size='small']) {
     --_iui-toggle-switch-handle-size: var(--iui-size-s);
     --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
-    --_iui-toggle-switch-block-size-offset: calc(var(--_iui-toggle-switch-border-thickness) * 2);
+    --_iui-toggle-switch-block-size-offset: calc($iui-toggle-switch-border-thickness * 2);
   }
 
   &:where([data-iui-size='default']) {
     --_iui-toggle-switch-handle-offset: calc(var(--iui-size-2xs) * 0.875);
-    --_iui-toggle-switch-block-size-offset: var(--_iui-toggle-switch-border-thickness);
+    --_iui-toggle-switch-block-size-offset: $iui-toggle-switch-border-thickness;
   }
 }
 
 .iui-toggle-switch {
   @include mixins.iui-reset;
   @include mixins.iui-focus(
-    $thickness: var(--_iui-toggle-switch-border-thickness),
-    $offset: var(--_iui-toggle-switch-border-thickness)
+    $thickness: $iui-toggle-switch-border-thickness,
+    $offset: $iui-toggle-switch-border-thickness
   );
   grid-area: toggle;
   display: flex;
@@ -71,7 +71,7 @@
     background-color var(--iui-duration-1) ease-out,
     border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background);
-  border: var(--_iui-toggle-switch-border-thickness) solid;
+  border: $iui-toggle-switch-border-thickness solid;
 
   &-label {
     grid-area: label;
@@ -198,7 +198,7 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    margin: calc(var(--_iui-toggle-switch-handle-offset) + 1px);
+    margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
