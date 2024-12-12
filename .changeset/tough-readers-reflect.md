@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-`iui-toggle-switch` now has the height of 24px.
+`iui-toggle-switch` that contains `data-iui-size="small"` now has the height of 24px.

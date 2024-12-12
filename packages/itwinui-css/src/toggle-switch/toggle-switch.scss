@@ -53,8 +53,8 @@
 .iui-toggle-switch {
   @include mixins.iui-reset;
   @include mixins.iui-focus(
-    $thickness: --_iui-toggle-switch-border-thickness,
-    $offset: --_iui-toggle-switch-border-thickness
+    $thickness: var(--_iui-toggle-switch-border-thickness),
+    $offset: var(--_iui-toggle-switch-border-thickness)
   );
   grid-area: toggle;
   display: flex;
