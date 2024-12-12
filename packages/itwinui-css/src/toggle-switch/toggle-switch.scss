@@ -81,7 +81,7 @@
     content: '';
     block-size: var(--_iui-toggle-switch-handle-size);
     inline-size: var(--_iui-toggle-switch-handle-size);
-    margin: auto var(--_iui-toggle-switch-handle-offset);
+    margin: var(--_iui-toggle-switch-handle-offset);
     aspect-ratio: 1 / 1;
     border-radius: var(--iui-border-radius-round);
     transition: background-color var(--iui-duration-1) ease-out;
@@ -198,7 +198,7 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    margin: var(--_iui-toggle-switch-handle-offset);
+    margin: calc(var(--_iui-toggle-switch-handle-offset) + 1px);
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
