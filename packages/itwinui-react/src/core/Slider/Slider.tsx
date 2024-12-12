@@ -10,6 +10,7 @@ import { Track } from './Track.js';
 import { Thumb } from './Thumb.js';
 import type { Tooltip } from '../Tooltip/Tooltip.js';
 import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 /**
  * Determines which segments are shown with color.
@@ -493,7 +494,7 @@ export const Slider = React.forwardRef((props, ref) => {
           {minValueLabel}
         </Box>
       )}
-      <FloatingDelayGroup delay={{ open: 100, close: 200 }}>
+      <FloatingDelayGroup delay={defaultTooltipDelay}>
         <Box
           ref={containerRef}
           {...trackContainerProps}

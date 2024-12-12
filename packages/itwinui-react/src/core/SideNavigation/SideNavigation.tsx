@@ -13,6 +13,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 // ----------------------------------------------------------------------------
 
@@ -143,7 +144,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
         className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
         ref={forwardedRef}
       >
-        <FloatingDelayGroup delay={{ open: 100, close: 200 }}>
+        <FloatingDelayGroup delay={defaultTooltipDelay}>
           <Box
             as='div'
             className={cx(

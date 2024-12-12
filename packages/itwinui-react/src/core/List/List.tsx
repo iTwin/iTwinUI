@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { Box, type PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 export const List = React.forwardRef((props, ref) => {
   return (
-    <FloatingDelayGroup delay={{ open: 100, close: 200 }}>
+    <FloatingDelayGroup delay={defaultTooltipDelay}>
       <Box as='div' ref={ref} className='iui-list' role='list' {...props} />
     </FloatingDelayGroup>
   );

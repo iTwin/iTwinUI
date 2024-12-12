@@ -8,6 +8,7 @@ import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { StepperStep } from './StepperStep.js';
 import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 export type StepperLocalization = {
   stepsCountLabel: (currentStep: number, totalSteps: number) => string;
@@ -104,7 +105,7 @@ export const Stepper = React.forwardRef((props, ref) => {
 
   return (
     <Box className={'iui-stepper'} ref={ref} {...rest}>
-      <FloatingDelayGroup delay={{ open: 100, close: 200 }}>
+      <FloatingDelayGroup delay={defaultTooltipDelay}>
         <ol>
           {steps.map((s, index) => {
             const thisStepProps = stepProps?.(index);
