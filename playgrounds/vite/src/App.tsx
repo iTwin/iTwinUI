@@ -1,9 +1,9 @@
-import { ToggleSwitch } from '@itwin/itwinui-react';
+import { Button } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <ToggleSwitch size='small' />
+      <Button>Hello world</Button>
     </>
   );
 };
