@@ -1,6 +1,6 @@
 ---
 title: Typography
-description: Typography components can be used to provide consistency in text styling across the application.
+description: Typography components provide consistency in text styling across the application.
 thumbnail: Typography
 ---
 
@@ -18,17 +18,17 @@ The `Text` component is a polymorphic typography component that can be used to r
 
 The `variant` prop can be used to determine which type of typography size should be utilized for the content of the application. The available variants are:
 
-- `"headline"`: can be treated as an HTML `<h1>` text.
+- `"headline"`: corresponds to an `<h1>` text.
 
-- `"title"`: can be treated as an HTML `<h2>` text.
+- `"title"`: corresponds to an `<h2>` text.
 
-- `"subheading"`: can be treated as an HTML `<h3>` text.
+- `"subheading"`: corresponds to an `<h3>` text.
 
-- `"leading"`: can be treated as an HTML `<h4>` text.
+- `"leading"`: corresponds to an `<h4>` text.
 
-- `"body"` (default): can be treated as an HTML `<p>` text.
+- `"body"` (default): corresponds to a `<p>` text.
 
-- `"smaller"`: can be treated as an HTML `<smaller>` text.
+- `"smaller"`: corresponds to a `<smaller>` text.
 
 <LiveExample src='Text.variant.jsx'>
   <AllExamples.TextVariantExample client:load />
@@ -66,13 +66,7 @@ The `Text` component supports the polymorphic `as`, allowing end users to render
 
 ## Label
 
-The `Label` component is a fundamental element that provides descriptive text or captions for form inputs.
-
-```jsx
-<Label>This is a label.</Label>
-```
-
-`Label` can be used with `Input` components by setting the `htmlFor` attribute to match the `id` of the corresponding input element.
+The `Label` component is a fundamental element that provides descriptive text or captions for form inputs. It can be used with `Input` components by setting the `htmlFor` attribute to match the `id` of the corresponding input element.
 
 This association enhances accessibility by ensuring that screen readers and other assistive technologies can correctly identify the relationship between the label and the input field.
 
@@ -97,6 +91,14 @@ There are two available display styles:
 
 <LiveExample src='Label.inline.jsx'>
   <AllExamples.LabelInlineExample client:load />
+</LiveExample>
+
+### Polymorphic
+
+The `as` prop allows the `Label` component to be rendered as a different element while maintaining its styling. This increases the reusability and versatility of the `Label` by removing the default behaviors of the HTML `label` element, such as navigating the focus to the input when clicked.
+
+<LiveExample src='Label.polymorphic.jsx'>
+  <AllExamples.LabelPolymorphicExample client:load />
 </LiveExample>
 
 ### Props
