@@ -55,9 +55,11 @@ const slug = Astro.url.pathname.replace('/', '');
 
   <body>
     <ITwinUIV5Root client:only colorScheme='dark' density='dense'>
-      <div class='iui-root' data-iui-theme data-iui-bridge='true'>
-        <theme-button></theme-button>
-        <slot />
+      <div class='iui-root iui-root-background' data-iui-theme='dark' data-iui-bridge='true'>
+        <div>
+          <theme-button></theme-button>
+          <slot />
+        </div>
       </div>
     </ITwinUIV5Root>
   </body>

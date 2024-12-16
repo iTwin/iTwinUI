@@ -33,11 +33,15 @@ export const Provider: GlobalProvider = ({ children }) => {
 
   // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
+    document.documentElement.dataset.colorScheme = theme;
     document.documentElement.dataset.iuiTheme = theme;
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-  }, [theme, highContrast]);
+
+    document.body.dataset.iuiTheme = theme;
+    document.body.dataset.iuiBridge = bridgeToFutureVersions;
+  }, [theme, highContrast, bridgeToFutureVersions]);
 
   // redirect old storybook paths to new ones
   React.useEffect(() => {

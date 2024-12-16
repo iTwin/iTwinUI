@@ -140,9 +140,9 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelector(
       `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
     ).checked = true;
-    document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
-    document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
-    document.body.classList.toggle('iui-root', true);
+    // document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
+    // document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
+    // document.body.classList.toggle('iui-root', true);
   }
 
   changeTheme = ({ target: { value: _theme } }) => {
@@ -166,7 +166,7 @@ class ThemeButton extends HTMLElement {
   };
 
   changeBridge = ({ target: { checked } }) => {
-    const root = document.querySelectorAll('.iui-root')[1];
+    const root = document.querySelectorAll('.iui-root')[0];
     root.dataset.iuiBridge = checked ? 'true' : 'false';
   };
 

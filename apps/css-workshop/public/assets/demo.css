@@ -62,8 +62,11 @@ p {
 
 body {
   margin: 0;
-  padding: 24px;
   overflow: overlay;
+}
+
+.iui-root {
+  padding: 24px;
 }
 
 h1 {

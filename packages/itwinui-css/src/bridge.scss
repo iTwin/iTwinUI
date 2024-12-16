@@ -2,7 +2,7 @@
   /* TODO: Use a better way than this demos container */
   // :where(html:not([data-kiwi-bridge="false"])) {
 
-  &.iui-root {
+  * {
     /* TODO: Apply other global.css styles under the right selector */
     font-family: var(--kiwi-font-family-sans);
     font-size: var(--kiwi-font-size-m);

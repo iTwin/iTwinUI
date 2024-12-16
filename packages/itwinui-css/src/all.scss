@@ -2,14 +2,12 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:meta';
 
-// @layer itwinui.v3, itwinui.bridge;
+// @layer reset, itwinui, kiwi;
 
 // TODO: Fix layer issue
 // @layer itwinui.bridge {
 
 // }
-
-@include meta.load-css('./bridge');
 
 @layer itwinui.v3 {
   @include meta.load-css('global');
@@ -65,4 +63,8 @@
   @include meta.load-css('tree/tree');
   @include meta.load-css('utils/utils');
   @include meta.load-css('workflow-diagram/workflow-diagram');
+}
+
+@layer itwinui.bridge {
+  @include meta.load-css('./bridge');
 }
