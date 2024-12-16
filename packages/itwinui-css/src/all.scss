@@ -2,6 +2,15 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:meta';
 
+// @layer itwinui.v3, itwinui.bridge;
+
+// TODO: Fix layer issue
+// @layer itwinui.bridge {
+
+// }
+
+@include meta.load-css('./bridge');
+
 @layer itwinui.v3 {
   @include meta.load-css('global');
   @include meta.load-css('field');

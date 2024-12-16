@@ -13,5 +13,8 @@
     },
     "./styles.css": "./dist/styles.css",
     "./*": "./*"
+  },
+  "dependencies": {
+    "@itwin/itwinui-react-v5": "npm:@itwin/itwinui-react@5.0.0-alpha.0"
   }
 }

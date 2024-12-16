@@ -20,6 +20,8 @@ export const Provider: GlobalProvider = ({ children }) => {
   const { globalState, dispatch } = useLadleContext();
   const theme = globalState.theme === 'dark' ? 'dark' : 'light';
   const highContrast = globalState.control?.['high-contrast']?.value;
+  const bridgeToFutureVersions =
+    globalState.control?.['bridgeToFutureVersions']?.value;
 
   // default to OS theme
   React.useLayoutEffect(() => {
@@ -53,7 +55,11 @@ export const Provider: GlobalProvider = ({ children }) => {
     <React.StrictMode>
       <ThemeProvider
         theme={theme}
-        themeOptions={{ applyBackground: false, highContrast }}
+        themeOptions={{
+          applyBackground: false,
+          highContrast,
+          bridgeToFutureVersions,
+        }}
       >
         {children}
       </ThemeProvider>
@@ -73,5 +79,9 @@ export const argTypes = {
   'high-contrast': {
     control: { type: 'boolean' },
     defaultValue: false,
+  },
+  bridgeToFutureVersions: {
+    control: { type: 'boolean' },
+    defaultValue: true,
   },
 };

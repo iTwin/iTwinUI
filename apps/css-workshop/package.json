@@ -8,6 +8,7 @@
     "@fontsource/noto-sans": "5",
     "@fontsource/noto-sans-mono": "5",
     "@itwin/itwinui-icons-elements": "0.20.0",
+    "@itwin/itwinui-react-v5": "npm:@itwin/itwinui-react@5.0.0-alpha.0",
     "astro": "^4",
     "astro-relative-links": "^0.3.7",
     "backstopjs": "~6.2.1",
@@ -23,5 +24,12 @@
     "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
   },
-  "prettier": "configs/prettier-astro-config.js"
+  "prettier": "configs/prettier-astro-config.js",
+  "dependencies": {
+    "@astrojs/react": "^4.1.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "react": "^18",
+    "react-dom": "^18"
+  }
 }

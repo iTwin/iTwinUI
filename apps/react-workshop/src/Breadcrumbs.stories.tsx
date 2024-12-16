@@ -41,12 +41,12 @@ export const Basic = () => {
 export const Links = () => {
   return (
     <Breadcrumbs>
-      <Breadcrumbs.Item key={0} href='/'>
-        iTwinUI
-      </Breadcrumbs.Item>
-      <Breadcrumbs.Item key={1} href='/?path=/docs/core-breadcrumbs'>
-        Breadcrumbs
-      </Breadcrumbs.Item>
+      <a key={0} href='/'>
+        iTwinUI1
+      </a>
+      <a key={1} href='/?path=/docs/core-breadcrumbs'>
+        Breadcrumbs1
+      </a>
       <Breadcrumbs.Item key={2}>Links</Breadcrumbs.Item>
     </Breadcrumbs>
   );
