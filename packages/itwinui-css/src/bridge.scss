@@ -278,11 +278,6 @@
   /* ---------------------------------------------------------------------------- */
   /* ToggleSwitch */
 
-  :is(.iui-toggle-switch, .iui-toggle-switch-wrapper) {
-    // --_iui-toggle-switch-handle-size: unset;
-    // --_iui-toggle-switch-handle-offset: calc(-1px + 0.125rem) /* spacing-2 - 1px to account for border */;
-  }
-
   .iui-toggle-switch {
     --iui-color-background: var(--kiwi-color-bg-surface-primary); /* TODO: Variable */
 
