@@ -160,6 +160,17 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   &[aria-disabled='true'] {
     cursor: not-allowed;
   }
+
+  svg {
+    fill: currentColor;
+
+    :disabled &,
+    [aria-disabled='true'] & {
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
+  }
 }
 
 @mixin iui-header-breadcrumb-button-split {
@@ -190,20 +201,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   flex-shrink: 0;
   margin-inline-end: calc(0px - var(--iui-size-2xs));
 
-  &,
-  > svg {
-    fill: currentColor;
-  }
-
   .iui-header-breadcrumb-button-split & {
     margin-inline-end: 0;
-  }
-
-  :disabled &,
-  [aria-disabled='true'] & {
-    @media (forced-colors: active) {
-      fill: GrayText;
-    }
   }
 }
 
@@ -277,7 +276,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     :is(:disabled, [aria-disabled='true']) & {
       background-color: var(--iui-color-background-backdrop);
-      fill: var(--iui-color-icon-disabled);
+      fill: currentColor;
 
       @media (forced-colors: active) {
         fill: GrayText;
