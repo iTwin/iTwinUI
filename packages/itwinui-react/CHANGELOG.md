@@ -6,7 +6,7 @@
 
 - [#2362](https://github.com/iTwin/iTwinUI/pull/2362): `Select` elements with "small" size now have the same height of 24px as other input elements with the size of "small" such as `ComboBox`.
 - [#2370](https://github.com/iTwin/iTwinUI/pull/2370): Fixed `Panels` animations not working in some rare cases.
-- [#2374](https://github.com/iTwin/iTwinUI/pull/2374): Fix `HeaderButton`'s `startIcon` and `endIcon` fill color.
+- [#2374](https://github.com/iTwin/iTwinUI/pull/2374): Fixed `HeaderButton`'s `startIcon` and `endIcon` fill color.
 - [#2359](https://github.com/iTwin/iTwinUI/pull/2359): The `Tooltip` now remains visible when hovered up to `4px` outside its border.
 
 ## 3.16.0
