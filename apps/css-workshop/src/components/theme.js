@@ -151,12 +151,12 @@ class ThemeButton extends HTMLElement {
 
   changeTheme = ({ target: { value: _theme } }) => {
     const root = document.querySelector('.iui-root');
-    const v5Root = document.querySelector('.🥝-root');
+    const v5Root = document.documentElement;
 
     const isHighContrast = _theme.endsWith('-hc');
     const theme = isHighContrast ? _theme.split('-')[0] : _theme;
     root.dataset.iuiTheme = theme;
-    v5Root.dataset.kiwiTheme = theme;
+    v5Root.dataset.colorScheme = theme;
     root.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
     this.shadowRoot.querySelector('#theme-color-scheme').innerHTML = `
     :host {

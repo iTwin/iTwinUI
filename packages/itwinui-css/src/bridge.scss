@@ -1,3 +1,5 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
 [data-iui-bridge='true'] {
   /* TODO: Use a better way than this demos container */
   // :where(html:not([data-kiwi-bridge="false"])) {
@@ -27,6 +29,7 @@
     --iui-color-background-zebra: var(--kiwi-color-bg-glow-on-surface-disabled); /* TODO: Temporary */
     --iui-color-background-hover: var(--iui-color-background);
     --iui-color-background-backdrop: var(--kiwi-color-bg-surface-primary);
+    --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
     --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
     --iui-color-background-accent-hover: var(--iui-color-background-accent);
     --iui-color-background-accent-muted: var(--kiwi-color-bg-glow-on-surface-accent-hover);
@@ -41,16 +44,20 @@
     --iui-color-border-foreground: var(--kiwi-color-border-mono-muted); /* Confirm ColorPicker and ColumnFilter demos */
     --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
 
+    --iui-color-background-informational: var(--kiwi-color-bg-info-base);
+    --iui-color-background-informational-hover: var(--iui-color-background-info);
+    --iui-color-background-informational-muted: var(--kiwi-color-bg-info-muted);
     --iui-color-background-positive: var(--kiwi-color-bg-positive-base);
-    --iui-color-background-positive-hover: var(--kiwi-color-bg-positive-faded);
+    --iui-color-background-positive-hover: var(--iui-color-background-positive);
     --iui-color-background-positive-muted: var(--kiwi-color-bg-positive-muted);
     --iui-color-background-warning: var(--kiwi-color-bg-attention-base);
-    --iui-color-background-warning-hover: var(--kiwi-color-bg-attention-faded);
+    --iui-color-background-warning-hover: var(--iui-color-background-warning);
     --iui-color-background-warning-muted: var(--kiwi-color-bg-attention-muted);
     --iui-color-background-negative: var(--kiwi-color-bg-critical-base);
-    --iui-color-background-negative-hover: var(--kiwi-color-bg-critical-faded);
+    --iui-color-background-negative-hover: var(--iui-color-background-negative);
     --iui-color-background-negative-muted: var(--kiwi-color-bg-critical-muted);
 
+    --iui-color-border-informational: var(--kiwi-color-border-info-base);
     --iui-color-border-positive: var(--kiwi-color-border-positive-base);
     --iui-color-border-warning: var(--kiwi-color-border-attention-base);
     --iui-color-border-negative: var(--kiwi-color-border-critical-base);
@@ -68,6 +75,7 @@
     ); /* TODO: border-accent-base or border-accent-strong? */
 
     --iui-color-icon-accent: var(--kiwi-color-icon-accent-base);
+    --iui-color-icon-informational: var(--kiwi-color-icon-info-base);
     --iui-color-icon-positive: var(--kiwi-color-icon-positive-base);
     --iui-color-icon-warning: var(--kiwi-color-icon-attention-base);
     --iui-color-icon-negative: var(--kiwi-color-icon-critical-base);
@@ -79,12 +87,14 @@
     --iui-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
     --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
 
+    --iui-color-text-informational: var(--kiwi-color-text-info-base);
+    --iui-color-text-informational-hover: var(--iui-color-text-informational);
     --iui-color-text-positive: var(--kiwi-color-text-positive-base);
-    --iui-color-text-positive-hover: var(--kiwi-color-text-positive-faded);
+    --iui-color-text-positive-hover: var(--iui-color-text-positive);
     --iui-color-text-warning: var(--kiwi-color-text-attention-base);
-    --iui-color-text-warning-hover: var(--kiwi-color-text-attention-faded);
+    --iui-color-text-warning-hover: var(--iui-color-text-warning);
     --iui-color-text-negative: var(--kiwi-color-text-critical-base);
-    --iui-color-text-negative-hover: var(--kiwi-color-text-critical-faded);
+    --iui-color-text-negative-hover: var(--iui-color-text-negative);
 
     /* --iui-color-text-accent: var(--kiwi-color-text-accent-base); */
     --iui-color-text: var(--kiwi-color-text-neutral-primary);
@@ -155,8 +165,10 @@
     }
 
     /* Un-disabled high-visibility and cta  */
-    &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']):where(:not([data-iui-disabled])) {
+    &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
       --_iui-field-color-background: var(--kiwi-color-bg-accent-base);
+      --_iui-field-color-background-disabled: var(--kiwi-color-bg-neutral-base);
+      --_iui-field-color-border-disabled: var(--kiwi-color-border-neutral-base);
       --_iui-field-color-icon: var(--kiwi-color-icon-neutral-emphasis);
 
       /* TODO: What to do for the border? */
@@ -375,7 +387,7 @@
     transition-timing-function: ease-out;
     transition-property: background-color, border-color;
 
-    &:after {
+    &::after {
       block-size: 1rem;
       aspect-ratio: 1;
       background-color: var(--kiwi-color-bg-neutral-inverse);
@@ -480,8 +492,7 @@
   /* ProgressRadial */
 
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
-    /* TODO: I guess this override of a global variable in a component scope is unsafe? */
-    --iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
+    --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */

@@ -11,56 +11,56 @@ const slug = Astro.url.pathname.replace('/', '');
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
-<html lang='en-US' id='theme'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
+<html lang='en-US' id='theme' data-color-scheme='dark'>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width' />
 
-    <title>{title ? `${title} | iTwinUI` : 'iTwinUI'}</title>
+  <title>{title ? `${title} | iTwinUI` : 'iTwinUI'}</title>
 
-    <meta
-      name='description'
-      content='An open-source design system that helps us build a unified web experience.'
-    />
-    <meta property='og:site_name' content='iTwinUI' />
-    <meta property='og:title' content={title} />
-    <meta
-      property='og:description'
-      content='An open-source design system that helps us build a unified web experience.'
-    />
-    <meta property='og:image' content='https://itwin.github.io/iTwinUI/css/assets/logo.png' />
-    <meta property='og:image:alt' content='iTwinUI logo' />
-    <meta property='og:type' content='website' />
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta property='og:url' content=`https://itwin.github.io/iTwinUI/${slug}` />
+  <meta
+    name='description'
+    content='An open-source design system that helps us build a unified web experience.'
+  />
+  <meta property='og:site_name' content='iTwinUI' />
+  <meta property='og:title' content={title} />
+  <meta
+    property='og:description'
+    content='An open-source design system that helps us build a unified web experience.'
+  />
+  <meta property='og:image' content='https://itwin.github.io/iTwinUI/css/assets/logo.png' />
+  <meta property='og:image:alt' content='iTwinUI logo' />
+  <meta property='og:type' content='website' />
+  <meta name='twitter:card' content='summary_large_image' />
+  <meta property='og:url' content=`https://itwin.github.io/iTwinUI/${slug}` />
 
-    <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
-    <link rel='alternate icon' href='/favicon.ico' sizes='any' />
-    <link rel='apple-touch-icon' href='/assets/pwa-icon.png' />
-    <link rel='manifest' href='/assets/manifest.json' />
-    <link rel='canonical' href=`https://itwin.github.io/iTwinUI/${slug}` />
+  <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
+  <link rel='alternate icon' href='/favicon.ico' sizes='any' />
+  <link rel='apple-touch-icon' href='/assets/pwa-icon.png' />
+  <link rel='manifest' href='/assets/manifest.json' />
+  <link rel='canonical' href=`https://itwin.github.io/iTwinUI/${slug}` />
 
-    <style is:global>
-      @layer reset, kiwi, itwinui;
-      @import '/assets/demo.css' layer(demo);
-      @import '@itwin/itwinui-variables' layer(variables);
-      @import '@itwin/itwinui-css/css/all.css';
-    </style>
-    <script>
-      import '../components/theme.js';
-    </script>
+  <style is:global>
+    @layer reset, kiwi, itwinui;
+    @import '/assets/demo.css' layer(demo);
+    @import '@itwin/itwinui-variables' layer(variables);
+    @import '@itwin/itwinui-css/css/all.css';
+  </style>
+  <script>
+    import '../components/theme.js';
+  </script>
 
-    <slot name='head' />
-  </head>
+  <slot name='head' />
+
+  <!-- Useful since Astro scripts with is:inline don't work in React trees -->
+  <slot name='scripts' />
 
   <body>
-    <ITwinUIV5Root client:only colorScheme='dark' density='dense'>
-      <div class='iui-root iui-root-background' data-iui-theme='dark' data-iui-bridge='true'>
-        <div>
-          <theme-button></theme-button>
-          <slot />
-        </div>
+    <ITwinUIV5Root client:only colorScheme='dark' density='dense' />
+    <div class='iui-root iui-root-background' data-iui-theme='dark' data-iui-bridge='true'>
+      <div>
+        <theme-button></theme-button>
+        <slot />
       </div>
-    </ITwinUIV5Root>
+    </div>
   </body>
 </html>

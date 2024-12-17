@@ -4,6 +4,13 @@
   "private": true,
   "version": "0.1.0",
   "description": "Workshop environment containing HTML pages demonstrating itwinui-css",
+  "dependencies": {
+    "@astrojs/react": "^4.1.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "react": "^18",
+    "react-dom": "^18"
+  },
   "devDependencies": {
     "@fontsource/noto-sans": "5",
     "@fontsource/noto-sans-mono": "5",
@@ -24,12 +31,5 @@
     "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
   },
-  "prettier": "configs/prettier-astro-config.js",
-  "dependencies": {
-    "@astrojs/react": "^4.1.0",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "react": "^18",
-    "react-dom": "^18"
-  }
+  "prettier": "configs/prettier-astro-config.js"
 }
