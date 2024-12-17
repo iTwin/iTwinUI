@@ -45,7 +45,7 @@
     --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
 
     --iui-color-background-informational: var(--kiwi-color-bg-info-base);
-    --iui-color-background-informational-hover: var(--iui-color-background-info);
+    --iui-color-background-informational-hover: var(--iui-color-background-informational);
     --iui-color-background-informational-muted: var(--kiwi-color-bg-info-muted);
     --iui-color-background-positive: var(--kiwi-color-bg-positive-base);
     --iui-color-background-positive-hover: var(--iui-color-background-positive);
@@ -100,6 +100,7 @@
     --iui-color-text: var(--kiwi-color-text-neutral-primary);
     --iui-color-text-hover: var(--iui-color-text);
     --iui-color-text-accent: var(--kiwi-color-text-accent-strong);
+    --iui-color-text-accent-hover: var(--iui-color-text-accent);
     --iui-color-text-muted: var(--kiwi-color-text-neutral-secondary);
     --iui-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
     --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
@@ -125,7 +126,7 @@
   /* ---------------------------------------------------------------------------- */
   /* Button */
 
-  .iui-field {
+  .iui-field:not([data-iui-status]) {
     --_iui-field-color-focus-outline: var(--kiwi-color-border-accent-strong);
   }
 
@@ -139,7 +140,7 @@
     --_iui-field-color-icon-disabled-hover: var(--_iui-field-color-icon-disabled);
     --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
 
-    &:where(:not([data-iui-active='true'])) {
+    &:where(:not([data-iui-active='true']):not(.iui-tile-thumbnail-button)) {
       --_iui-field-color-background: var(--kiwi-color-bg-neutral-base);
       --_iui-field-color-background-disabled: var(--_iui-field-color-background);
 
@@ -177,7 +178,7 @@
 
     /* Borderless, except tile-thumbnail-button  */
     /* TODO: Confirm if excluding tile-thumbnail-button like this is alright? */
-    &:where([data-iui-variant='borderless']:not(.iui-tile-thumbnail-button)) {
+    &:where([data-iui-variant='borderless']) {
       --_iui-field-color-background: transparent;
       --_iui-field-color-background-disabled: transparent;
       --_iui-field-color-border: transparent;
@@ -272,19 +273,26 @@
   /* ---------------------------------------------------------------------------- */
   /* Input */
 
+  .iui-input-grid {
+    @each $statusColor in positive, warning, negative {
+      &:where([data-iui-status='#{$statusColor}']) .iui-field {
+        --_iui-field-color-focus-outline: var(--iui-color-text-#{$statusColor});
+      }
+    }
+  }
+
   .iui-input-flex-container {
     --_iui-input-background-color: var(--kiwi-color-bg-neutral-primary);
     --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
-    outline-color: var(--kiwi-color-border-accent-strong);
+
+    &:not([data-iui-status]) {
+      outline-color: var(--kiwi-color-border-accent-strong);
+    }
 
     input,
     textarea {
       outline: none;
     }
-  }
-
-  .iui-input-flex-container-icon {
-    --iui-svg-fill: var(--kiwi-color-icon-neutral-secondary);
   }
 
   /* ---------------------------------------------------------------------------- */
