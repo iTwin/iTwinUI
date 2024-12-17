@@ -13,12 +13,7 @@ const Shell = () => {
 
   return (
     <>
-      <ThemeProvider
-        theme={theme}
-        themeOptions={{
-          bridgeToFutureVersions: true,
-        }}
-      >
+      <ThemeProvider theme={theme}>
         <main className={styles.main}>
           <button
             className={styles.themeButton}

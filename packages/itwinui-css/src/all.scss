@@ -2,13 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:meta';
 
-// @layer reset, itwinui, kiwi;
-
-// TODO: Fix layer issue
-// @layer itwinui.bridge {
-
-// }
-
 @layer itwinui.v3 {
   @include meta.load-css('global');
   @include meta.load-css('field');

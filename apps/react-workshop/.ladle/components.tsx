@@ -3,16 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ThemeProvider } from '@itwin/itwinui-react';
 import {
   useLadleContext,
   ActionType,
   ThemeState,
   type GlobalProvider,
 } from '@ladle/react';
+import './global.css';
 import '@itwin/itwinui-variables';
 import '@itwin/itwinui-react/styles.css';
-import './global.css';
+import { ThemeProvider } from '@itwin/itwinui-react';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 

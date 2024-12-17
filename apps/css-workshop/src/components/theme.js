@@ -140,17 +140,13 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelector(
       `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
     ).checked = true;
-
-    setTimeout(() => {
-      const root = document.querySelector('.iui-root');
-      root.iuiTheme = prefersDark ? 'dark' : 'light';
-      root.dataset.iuiContrast = prefersHC ? 'high' : undefined;
-      root.classList.toggle('iui-root', true);
-    }, 0);
+    document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
+    document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
+    document.body.classList.toggle('iui-root', true);
   }
 
   changeTheme = ({ target: { value: _theme } }) => {
-    const root = document.querySelector('.iui-root');
+    const root = document.body;
     const v5Root = document.documentElement;
 
     const isHighContrast = _theme.endsWith('-hc');
@@ -166,17 +162,15 @@ class ThemeButton extends HTMLElement {
   };
 
   changeBackground = ({ target: { value: _background } }) => {
-    const root = document.querySelector('.iui-root');
     if (_background === 'bg1') {
-      root.style.backgroundColor = 'var(--iui-color-background)';
+      document.body.style.backgroundColor = 'var(--iui-color-background)';
     } else {
-      root.removeAttribute('style');
+      document.body.removeAttribute('style');
     }
   };
 
   changeBridge = ({ target: { checked } }) => {
-    const root = document.querySelector('.iui-root');
-    root.dataset.iuiBridge = checked ? 'true' : 'false';
+    document.body.dataset.iuiBridge = checked ? 'true' : 'false';
   };
 
   connectedCallback() {

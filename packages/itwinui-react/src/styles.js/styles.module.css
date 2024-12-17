@@ -3,15 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-/* TODO: Remove reset from here */
-@layer reset, itwinui-v1, itwinui.v1, itwinui.v2, itwinui.v3, itwinui.bridge, kiwi;
+@layer itwinui-v1, itwinui.v1, itwinui.v2, itwinui.v3, itwinui.bridge;
 
 @import '@itwin/itwinui-variables' layer(itwinui.v3);
 @import '@itwin/itwinui-css';
-/* @import './bridge.scss' layer(itwinui.bridge); */
-/* TODO: Import into layer */
-/* @import './bridge.scss';  */
-/* @import '@itwin/itwinui-react-v5'; */
 
 @layer itwinui {
   .iui-root * {

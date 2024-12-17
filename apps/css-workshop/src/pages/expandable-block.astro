@@ -22,7 +22,7 @@ import Icon_ from '../components/Icon.astro';
           this.parentElement.insertAdjacentHTML('beforeend', innerHTML);
           this.remove();
         }
-      }
+      },
     );
   </script>
   <h1>Expandable block</h1>
@@ -256,7 +256,7 @@ import Icon_ from '../components/Icon.astro';
           } else {
             el.insertAdjacentHTML(
               'afterend',
-              '<div class="iui-expandable-content"><div><expandable-content></expandable-content></div></div>'
+              '<div class="iui-expandable-content"><div><expandable-content></expandable-content></div></div>',
             );
           }
         });

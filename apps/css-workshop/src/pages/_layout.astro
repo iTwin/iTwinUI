@@ -40,7 +40,7 @@ const slug = Astro.url.pathname.replace('/', '');
   <link rel='canonical' href=`https://itwin.github.io/iTwinUI/${slug}` />
 
   <style is:global>
-    @layer reset, kiwi, itwinui;
+    @layer reset, itwinui, kiwi;
     @import '/assets/demo.css' layer(demo);
     @import '@itwin/itwinui-variables' layer(variables);
     @import '@itwin/itwinui-css/css/all.css';
@@ -51,12 +51,9 @@ const slug = Astro.url.pathname.replace('/', '');
 
   <slot name='head' />
 
-  <!-- Useful since Astro scripts with is:inline don't work in React trees -->
-  <slot name='scripts' />
-
-  <body>
+  <body class='iui-root' data-iui-theme='dark' data-iui-bridge='true'>
     <ITwinUIV5Root client:only colorScheme='dark' density='dense' />
-    <div class='iui-root iui-root-background' data-iui-theme='dark' data-iui-bridge='true'>
+    <div>
       <div>
         <theme-button></theme-button>
         <slot />

@@ -15,7 +15,6 @@
     "@fontsource/noto-sans": "5",
     "@fontsource/noto-sans-mono": "5",
     "@itwin/itwinui-icons-elements": "0.20.0",
-    "@itwin/itwinui-react-v5": "npm:@itwin/itwinui-react@5.0.0-alpha.0",
     "astro": "^4",
     "astro-relative-links": "^0.3.7",
     "backstopjs": "~6.2.1",

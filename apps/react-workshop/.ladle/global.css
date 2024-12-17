@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
+@layer reset, kiwi, itwinui;
+
 @import '@fontsource/noto-sans';
 @import '@fontsource/noto-sans-mono';
 @import '@fontsource/noto-sans/400-italic.css';

@@ -42,11 +42,11 @@ export type ThemeOptions = {
    */
   highContrast?: boolean;
   /**
-   * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) whenever possible.
+   * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) *whenever possible*.
    *
-   * This is useful in making apps looks like future unreleased versions of iTwinUI to help with incremental adoption.
+   * This is useful in making apps looks like future versions of iTwinUI to help with incremental adoption.
    *
-   * **NOTE**: Since this is a theme bridge to *future unreleased* versions, the theme could have breaking changes.
+   * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
    */
   bridgeToFutureVersions?: boolean;
 };
@@ -181,6 +181,8 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
       ? parent.context?.themeOptions?.bridgeToFutureVersions
       : undefined;
 
+  const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
+
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
@@ -188,48 +190,34 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     [theme, JSON.stringify(themeOptions)],
   );
 
-  const themeProviderChildren = React.useMemo(
-    () => (
-      <ThemeProviderChildren
-        {...rest}
-        ref={forwardedRef}
-        theme={theme}
-        themeOptions={themeOptions}
-        portalContainer={portalContainerProp}
-        includeCss={includeCss}
-        rootElement={rootElement}
-        setRootElement={setRootElement}
-      >
-        {children}
-      </ThemeProviderChildren>
-    ),
-    [
-      children,
-      forwardedRef,
-      includeCss,
-      portalContainerProp,
-      rest,
-      rootElement,
-      theme,
-      themeOptions,
-    ],
-  );
-
   return (
     <ScopeProvider>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
-          {/* <ITwinUIV5Root colorScheme='dark' density='dense' /> */}
-          {themeOptions.bridgeToFutureVersions ? (
-            // <ITwinUIV5Root colorScheme='dark' density='dense'>
-            // <ITwinUIV5Root colorScheme='dark' density='dense'>
-            <>{themeProviderChildren}</>
-          ) : (
-            // </ITwinUIV5Root>
-            // </ITwinUIV5Root>
-            // </ITwinUIV5Root>
-            themeProviderChildren
-          )}
+          <ToastProvider
+            inherit={themeProp === 'inherit' && !portalContainerProp}
+          >
+            {includeCss && rootElement ? (
+              <FallbackStyles root={rootElement} />
+            ) : null}
+
+            <MainRoot
+              theme={theme}
+              themeOptions={themeOptions}
+              ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
+              {...rest}
+            >
+              {children}
+
+              <PortalContainer
+                theme={theme}
+                themeOptions={themeOptions}
+                portalContainerProp={portalContainerProp}
+                portalContainerFromParent={portalContainerFromParent}
+                isInheritingTheme={themeProp === 'inherit'}
+              />
+            </MainRoot>
+          </ToastProvider>
         </ThemeContext.Provider>
       </HydrationProvider>
     </ScopeProvider>
@@ -238,50 +226,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 if (process.env.NODE_ENV === 'development') {
   ThemeProvider.displayName = 'ThemeProvider';
 }
-
-const ThemeProviderChildren = React.forwardRef((props, forwardedRef) => {
-  const {
-    theme,
-    children,
-    themeOptions,
-    portalContainer: portalContainerProp,
-    includeCss,
-    rootElement,
-    setRootElement,
-    ...rest
-  } = props;
-
-  const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
-
-  return (
-    <ToastProvider inherit={theme === 'inherit' && !portalContainerProp}>
-      {includeCss && rootElement ? <FallbackStyles root={rootElement} /> : null}
-
-      <MainRoot
-        theme={theme}
-        themeOptions={themeOptions}
-        ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
-        {...rest}
-      >
-        {children}
-
-        <PortalContainer
-          theme={theme}
-          themeOptions={themeOptions}
-          portalContainerProp={portalContainerProp}
-          portalContainerFromParent={portalContainerFromParent}
-          isInheritingTheme={theme === 'inherit'}
-        />
-      </MainRoot>
-    </ToastProvider>
-  );
-}) as PolymorphicForwardRefComponent<
-  'div',
-  ThemeProviderOwnProps & {
-    rootElement: HTMLElement | null;
-    setRootElement: (el: HTMLElement | null) => void;
-  }
->;
 
 // ----------------------------------------------------------------------------
 
@@ -338,9 +282,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
         {...rest}
       >
         {childrenProp}
-        {/* <ITwinUIV5Root colorScheme='dark' density='dense'>
-          {childrenProp}
-        </ITwinUIV5Root> */}
       </Box>
     ),
     [
