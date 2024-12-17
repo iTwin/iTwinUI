@@ -140,33 +140,42 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelector(
       `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
     ).checked = true;
-    // document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
-    // document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
-    // document.body.classList.toggle('iui-root', true);
+
+    setTimeout(() => {
+      const root = document.querySelector('.iui-root');
+      root.iuiTheme = prefersDark ? 'dark' : 'light';
+      root.dataset.iuiContrast = prefersHC ? 'high' : undefined;
+      root.classList.toggle('iui-root', true);
+    }, 0);
   }
 
   changeTheme = ({ target: { value: _theme } }) => {
+    const root = document.querySelector('.iui-root');
+    const v5Root = document.querySelector('.🥝-root');
+
     const isHighContrast = _theme.endsWith('-hc');
     const theme = isHighContrast ? _theme.split('-')[0] : _theme;
-    document.body.dataset.iuiTheme = theme;
-    document.body.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
+    root.dataset.iuiTheme = theme;
+    v5Root.dataset.kiwiTheme = theme;
+    root.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
     this.shadowRoot.querySelector('#theme-color-scheme').innerHTML = `
-      :host {
-        color-scheme: ${theme.includes('light') ? 'light' : 'dark'};
+    :host {
+      color-scheme: ${theme.includes('light') ? 'light' : 'dark'};
       }
-    `;
+      `;
   };
 
   changeBackground = ({ target: { value: _background } }) => {
+    const root = document.querySelector('.iui-root');
     if (_background === 'bg1') {
-      document.body.style.backgroundColor = 'var(--iui-color-background)';
+      root.style.backgroundColor = 'var(--iui-color-background)';
     } else {
-      document.body.removeAttribute('style');
+      root.removeAttribute('style');
     }
   };
 
   changeBridge = ({ target: { checked } }) => {
-    const root = document.querySelectorAll('.iui-root')[0];
+    const root = document.querySelector('.iui-root');
     root.dataset.iuiBridge = checked ? 'true' : 'false';
   };
 
