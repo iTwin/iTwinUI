@@ -1,47 +1,21 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 [data-iui-bridge='true'] {
-  /* TODO: Use a better way than this demos container */
-  // :where(html:not([data-kiwi-bridge="false"])) {
-
   * {
-    /* TODO: Apply other global.css styles under the right selector */
-    font-family: var(--kiwi-font-family-sans);
-    font-size: var(--kiwi-font-size-m);
-    // color: var(--kiwi-color-text-neutral-primary); // TODO: Is this causing problems?
-
-    /* TODO: Confirm all these */
-    --_kiwi-bridge-bg-glow--hover: var(--kiwi-color-glow-hue) var(--kiwi-color-bg-glow-base-hover-\%);
-    /* --_kiwi-bridge-bg-glow--press: var(--kiwi-color-glow-hue)
-		var(--kiwi-color-bg-glow-base-pressed-\%); */
-    --_kiwi-bridge-border-glow--hover: var(--kiwi-color-glow-hue) var(--kiwi-color-border-glow-base-hover-\%);
-
-    /* --_kiwi-bridge-border-glow--press: var(--kiwi-color-glow-hue)
-		var(--kiwi-color-border-glow-base-pressed-\%); */
-
     --iui-color-white: var(--kiwi-color-static-white);
 
-    /* TODO: Confirm all these */
     --iui-color-background: var(--kiwi-color-bg-neutral-base);
     --iui-color-background-disabled: var(--kiwi-color-bg-glow-on-surface-disabled);
-    /* --iui-color-background-disabled: var(--kiwi-color-bg-neutral-faded); */
-    /* --iui-color-background-disabled: var(--kiwi-color-bg-surface-primary); */
-    --iui-color-background-zebra: var(--kiwi-color-bg-glow-on-surface-disabled); /* TODO: Temporary */
+    --iui-color-background-zebra: var(--kiwi-color-bg-glow-on-surface-disabled); /* TODO: Not sure */
     --iui-color-background-hover: var(--iui-color-background);
     --iui-color-background-backdrop: var(--kiwi-color-bg-surface-primary);
     --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
     --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
     --iui-color-background-accent-hover: var(--iui-color-background-accent);
     --iui-color-background-accent-muted: var(--kiwi-color-bg-glow-on-surface-accent-hover);
-    /* --iui-color-background-accent-muted: var(--kiwi-color-bg-accent-faded); */
-    /* --iui-color-background-accent-muted: var(--kiwi-color-bg-accent-base); */
-    /* --iui-color-background-accent-muted: var(--kiwi-color-bg-accent-muted); */
-    /* --iui-color-background-accent-muted: red; */
-    /* --iui-color-background-accent-muted: var(--kiwi-color-border-accent-faded); */
     --iui-color-background-transparent-hover: transparent;
 
-    /* TODO: Confirm all these; basically all root level variable overrides */
-    --iui-color-border-foreground: var(--kiwi-color-border-mono-muted); /* Confirm ColorPicker and ColumnFilter demos */
+    --iui-color-border-foreground: var(--kiwi-color-border-mono-muted);
     --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
 
     --iui-color-background-informational: var(--kiwi-color-bg-info-base);
@@ -65,11 +39,13 @@
     --iui-color-border: var(--kiwi-color-border-neutral-base);
     --iui-color-border-hover: var(--iui-color-border);
     --iui-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
-    /* TODO: Problem with --kiwi-color-border-neutral-muted for Surface since border-neutral-muted === bg-neutral-base.
-	So should we use faded instead? Same problem I think with Divider (iui-color-border-subtle) inside of a
-	Surface (iui-color-background)*/
-    /* --iui-color-border-subtle: var(--kiwi-color-border-neutral-faded); */
-    --iui-color-border-subtle: var(--iui-color-border);
+
+    --iui-color-border-subtle: var(
+      --iui-color-border
+    ); /* TODO: Not sure. E.g. --kiwi-color-border-neutral-muted for Surface is an issue since
+    border-neutral-muted === bg-neutral-base. So border is invisible. So, should we use -faded instead? Same problem I
+    think with Divider (iui-color-border-subtle) inside of a Surface (iui-color-background) */
+
     --iui-color-border-accent: var(
       --kiwi-color-border-accent-base
     ); /* TODO: border-accent-base or border-accent-strong? */
@@ -96,31 +72,15 @@
     --iui-color-text-negative: var(--kiwi-color-text-critical-base);
     --iui-color-text-negative-hover: var(--iui-color-text-negative);
 
-    /* --iui-color-text-accent: var(--kiwi-color-text-accent-base); */
     --iui-color-text: var(--kiwi-color-text-neutral-primary);
     --iui-color-text-hover: var(--iui-color-text);
-    --iui-color-text-accent: var(--kiwi-color-text-accent-strong);
+    --iui-color-text-accent: var(--kiwi-color-text-accent-strong); /* TODO: -accent-strong or -accent-base? */
     --iui-color-text-accent-hover: var(--iui-color-text-accent);
     --iui-color-text-muted: var(--kiwi-color-text-neutral-secondary);
     --iui-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
     --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
 
     /* TODO: Handle hsl */
-    /* --iui-color-positive-hsl:
-	--iui-color-warning-hsl:
-	--iui-color-negative-hsl: */
-
-    /* TODO: Add values for other missed variable mappings */
-  }
-
-  :where(.iui-root) {
-    :where(*:focus-visible) {
-      /* outline: 2px solid var(--kiwi-color-border-accent-strong); */
-      // outline-color: var(--kiwi-color-border-accent-strong);
-
-      /* TODO: Is this needed? */
-      /* outline-offset: 1px; */
-    }
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -131,8 +91,6 @@
   }
 
   .iui-button {
-    font-size: 14px; /* TODO: Temporary; confirm for real value. Until Kiwi has medium and large buttons */
-
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
     --_iui-field-color-text-hover: var(--_iui-field-color-text);
     --_iui-field-color-icon-hover: var(--_iui-field-color-icon);
@@ -154,30 +112,18 @@
       --_iui-field-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
     }
 
-    /* TODO: ITwinUI variables to avoid long selector to account for the white icon when tile thumbnail buttons
-		have a picture in the background. */
     &:where([data-iui-active='true']) {
       --_iui-field-color-icon: var(--kiwi-color-icon-accent-strong);
     }
 
-    /* Because Kiwi button most closely matches the small iTwinUI button. */
-    &:where([data-iui-size='small']) {
-      font-size: 0.75rem;
-    }
-
-    /* Un-disabled high-visibility and cta  */
     &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
       --_iui-field-color-background: var(--kiwi-color-bg-accent-base);
       --_iui-field-color-background-disabled: var(--kiwi-color-bg-neutral-base);
       --_iui-field-color-border-disabled: var(--kiwi-color-border-neutral-base);
       --_iui-field-color-icon: var(--kiwi-color-icon-neutral-emphasis);
-
-      /* TODO: What to do for the border? */
       --_iui-field-color-border: var(--kiwi-color-border-accent-base);
     }
 
-    /* Borderless, except tile-thumbnail-button  */
-    /* TODO: Confirm if excluding tile-thumbnail-button like this is alright? */
     &:where([data-iui-variant='borderless']) {
       --_iui-field-color-background: transparent;
       --_iui-field-color-background-disabled: transparent;
@@ -195,15 +141,6 @@
       text-decoration-color 150ms ease-out;
     text-decoration: underline;
 
-    // --_iui-anchor-color-default: var(--kiwi-color-text-neutral-primary);
-    // --_iui-anchor-color-hover: var(--_iui-anchor-color-default);
-
-    // // TODO: Use loop
-    // --_iui-anchor-color-informational-hover: var(--iui-color-text-informational);
-    // --_iui-anchor-color-positive-hover: var(--iui-color-text-positive);
-    // --_iui-anchor-color-warning-hover: var(--iui-color-text-warning);
-    // --_iui-anchor-color-negative-hover: var(--iui-color-text-negative);
-
     &:where(:not([data-iui-status])) {
       color: var(--kiwi-color-text-neutral-primary);
     }
@@ -211,17 +148,11 @@
     &:where(:hover) {
       text-decoration-color: transparent;
     }
-
-    /* TODO: In iTwinUI, maybe we need to add data-iui-underline='false' when false is passed */
-    /* .iui-anchor[data-iui-underline="false"] {
-		text-decoration-color: transparent;
-	} */
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Checkbox */
 
-  /* TODO: ITwinUI variables */
   :is(.iui-checkbox, .iui-radio) {
     --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
     --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.2 5.6 6.8 10l-2-2"/></svg>');
@@ -241,19 +172,17 @@
     &:disabled {
       --_iui-checkbox-border-color: transparent;
     }
+
+    &.iui-checkbox-visibility {
+      /* TODO: What to do about indeterminate? */
+      --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.961 6.807a.5.5 0 0 0-.922.386L1.5 7l-.461.193v.002l.002.004.006.013a3.404 3.404 0 0 0 .094.202A9.478 9.478 0 0 0 2.923 9.87l-1.277 1.277a.5.5 0 1 0 .708.707l1.326-1.326a7.13 7.13 0 0 0 2.174 1.145l-.801 1.603a.5.5 0 1 0 .894.448l.907-1.814a7.253 7.253 0 0 0 2.292 0l.907 1.814a.5.5 0 1 0 .894-.448l-.801-1.603a7.13 7.13 0 0 0 2.174-1.145l1.326 1.326a.5.5 0 0 0 .708-.707L13.077 9.87a9.479 9.479 0 0 0 1.782-2.456 5.53 5.53 0 0 0 .074-.158l.02-.044.006-.013.001-.004.001-.001L14.5 7l.461.193a.5.5 0 0 0-.922-.386l-.003.007-.014.03a7.227 7.227 0 0 1-.319.605c-.234.4-.593.93-1.086 1.46C11.63 9.968 10.13 11 8 11S4.369 9.968 3.383 8.91A8.478 8.478 0 0 1 2.04 6.972a4.479 4.479 0 0 1-.075-.16l-.003-.006Z"/></svg>');
+      --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.14 7.849C2.736 6.774 4.616 4 8 4c3.383 0 5.263 2.774 5.86 3.849a.304.304 0 0 1 0 .302C13.264 9.226 11.384 12 8 12c-3.383 0-5.263-2.774-5.86-3.849a.304.304 0 0 1 0-.302ZM8 3C4.023 3 1.887 6.244 1.265 7.363a1.304 1.304 0 0 0 0 1.274C1.887 9.756 4.023 13 8 13c3.977 0 6.113-3.244 6.735-4.363a1.304 1.304 0 0 0 0-1.274C14.113 6.244 11.977 3 8 3ZM7 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>');
+
+      --_iui-checkbox-background-color: transparent;
+      --_iui-checkbox-border-color: transparent;
+    }
   }
 
-  .iui-checkbox.iui-checkbox-visibility {
-    /* TODO: Confirm icons. Also, what to do about indeterminate? */
-    --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.961 6.807a.5.5 0 0 0-.922.386L1.5 7l-.461.193v.002l.002.004.006.013a3.404 3.404 0 0 0 .094.202A9.478 9.478 0 0 0 2.923 9.87l-1.277 1.277a.5.5 0 1 0 .708.707l1.326-1.326a7.13 7.13 0 0 0 2.174 1.145l-.801 1.603a.5.5 0 1 0 .894.448l.907-1.814a7.253 7.253 0 0 0 2.292 0l.907 1.814a.5.5 0 1 0 .894-.448l-.801-1.603a7.13 7.13 0 0 0 2.174-1.145l1.326 1.326a.5.5 0 0 0 .708-.707L13.077 9.87a9.479 9.479 0 0 0 1.782-2.456 5.53 5.53 0 0 0 .074-.158l.02-.044.006-.013.001-.004.001-.001L14.5 7l.461.193a.5.5 0 0 0-.922-.386l-.003.007-.014.03a7.227 7.227 0 0 1-.319.605c-.234.4-.593.93-1.086 1.46C11.63 9.968 10.13 11 8 11S4.369 9.968 3.383 8.91A8.478 8.478 0 0 1 2.04 6.972a4.479 4.479 0 0 1-.075-.16l-.003-.006Z"/></svg>');
-    --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.14 7.849C2.736 6.774 4.616 4 8 4c3.383 0 5.263 2.774 5.86 3.849a.304.304 0 0 1 0 .302C13.264 9.226 11.384 12 8 12c-3.383 0-5.263-2.774-5.86-3.849a.304.304 0 0 1 0-.302ZM8 3C4.023 3 1.887 6.244 1.265 7.363a1.304 1.304 0 0 0 0 1.274C1.887 9.756 4.023 13 8 13c3.977 0 6.113-3.244 6.735-4.363a1.304 1.304 0 0 0 0-1.274C14.113 6.244 11.977 3 8 3ZM7 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>');
-
-    --_iui-checkbox-background-color: transparent;
-    --_iui-checkbox-border-color: transparent;
-  }
-
-  /* TODO: Confirm disabled styling */
-  /* TODO: Does this also apply to radio and checkbox? */
   .iui-toggle-switch:disabled {
     background-color: var(--kiwi-color-bg-surface-primary);
     border-color: var(--kiwi-color-border-glow-on-surface-disabled);
@@ -261,7 +190,7 @@
 
   /* TODO: ITwinUI variables */
   .iui-checkbox-wrapper {
-    &:not(:where([data-iui-status='positive'], [data-iui-status='warning'], [data-iui-status='negative'])) {
+    &:not(:where([data-iui-status])) {
       color: var(--kiwi-color-text-neutral-secondary);
     }
 
@@ -300,40 +229,13 @@
 
   .iui-menu {
     background-color: var(--kiwi-color-bg-surface-tertiary);
-    padding-block: 0.5rem; /* TODO: Replace with variables when ready */
-    border-radius: 8px /* TODO: Replace with variables when ready */;
-
-    /* TODO: Maybe try to simplify this? i.e. use border itself instead of box-shadow? */
     border: none;
-
-    /* TODO: Confirm the mapping */
     box-shadow: var(--kiwi-shadow-surface-xl);
-
-    /* TODO: What is this representing? I think it's the workaround for the focus traps that <Root> adds */
-    /* span { */
-    /* TODO: Use real value */
-    /* background-color: red;
-		height: 0px;
-		width: 0px;
-		display: none;
-		position: absolute;
-	} */
-
-    /* span:not([class^="iui"]) {
-		background-color: red;
-		color: red;
-		fill: red;
-		width: 100px;
-		height: 100px;
-		margin: 5px;
-		display: none;
-	} */
   }
 
   .iui-list-item {
     border: none;
     --_iui-list-item-background-hover: transparent;
-    /* TODO: Why does the text move a little on hover when the outline is triggered? */
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -366,7 +268,6 @@
   /* ---------------------------------------------------------------------------- */
   /* RadioTile */
 
-  /* TODO: Variables on iTwinUI side? */
   .iui-radio-tile {
     --_iui-radio-tile-color-icon: var(--iui-color-icon-muted);
     --_iui-radio-tile-color-icon-hover: var(--_iui-radio-tile-color-icon-default);
@@ -377,37 +278,15 @@
   /* ---------------------------------------------------------------------------- */
   /* ToggleSwitch */
 
-  /* TODO: Better to have variables in iTwinUI */
   :is(.iui-toggle-switch, .iui-toggle-switch-wrapper) {
-    --_iui-toggle-switch-handle-size: unset;
-    --_iui-toggle-switch-handle-offset: calc(-1px + 0.125rem) /* spacing-2 - 1px to account for border */;
+    // --_iui-toggle-switch-handle-size: unset;
+    // --_iui-toggle-switch-handle-offset: calc(-1px + 0.125rem) /* spacing-2 - 1px to account for border */;
   }
 
-  /* TODO: Better to have variables in iTwinUI */
   .iui-toggle-switch {
-    --iui-color-background: var(--kiwi-color-bg-surface-primary);
-
-    inline-size: 2rem;
-    display: inline-grid;
-
-    // TODO: Combine using shorthand
-    transition-duration: 150ms;
-    transition-timing-function: ease-out;
-    transition-property: background-color, border-color;
-
-    &::after {
-      block-size: 1rem;
-      aspect-ratio: 1;
-      background-color: var(--kiwi-color-bg-neutral-inverse);
-      justify-self: start;
-    }
+    --iui-color-background: var(--kiwi-color-bg-surface-primary); /* TODO: Variable */
 
     &:checked {
-      &::after {
-        transform: none;
-        justify-self: end;
-      }
-
       &:not(:disabled) {
         border-color: var(--kiwi-color-border-accent-base);
       }
@@ -419,10 +298,6 @@
         background-color: var(--kiwi-color-icon-neutral-disabled);
       }
     }
-  }
-
-  .iui-toggle-switch-icon {
-    display: none;
   }
 
   .iui-toggle-switch-wrapper {
@@ -445,24 +320,19 @@
   /* ---------------------------------------------------------------------------- */
   /* Input */
 
-  /* TODO: Maybe some variables don't need to be overridden since they are already overridden globally? */
   .iui-input:not([role='combobox']) {
     --_iui-field-color-text: var(--kiwi-color-text-neutral-primary);
     --_iui-field-color-text-hover: var(--_iui-field-color-text);
     --_iui-field-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
     --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
 
-    /* The select and the input when adjacent, don't look same and so looks incorrect. So I changed input's background to the same as the select. */
-    /* --_iui-field-color-background: var(--kiwi-color-bg-surface-primary); */
-    --_iui-field-color-background: var(--kiwi-color-bg-neutral-primary);
+    --_iui-field-color-background: var(--kiwi-color-bg-surface-base); /* TODO: bg-neutral-primary or bg-neutral-base */
 
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-background-disabled: var(--kiwi-color-bg-surface-base);
     --_iui-field-color-border: var(--kiwi-color-border-neutral-base);
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
     --_iui-field-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
-
-    /* box-shadow: 0px 1px 2px 0px #00000029 inset, 0px 2px 4px 0px #00000029 inset; */
 
     &::placeholder {
       color: var(--kiwi-color-text-neutral-secondary);
@@ -552,26 +422,18 @@
   /* ---------------------------------------------------------------------------- */
   /* Slider */
   /* TODO: Since Slider is experimental in Kiwi, revisit this when stable on the Kiwi end */
-  /* TODO: are minLabel and maxLabel fills/colors correct? */
+  /* TODO: Are minLabel and maxLabel fills/colors correct? */
 
   .iui-slider-thumb {
     background-color: var(--kiwi-color-bg-neutral-faded);
-    border-color: var(
-      --kiwi-color-border-neutral-faded
-    ); /* TODO: Find correct color since Kiwi uses shadow, I think. */
-  }
-
-  .iui-slider-container[data-iui-disabled='true'] {
-    .iui-slider {
-      /* --_iui-slider-rail-color: ; */
-    }
+    border-color: var(--kiwi-color-border-neutral-faded);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Blockquote */
 
   .iui-blockquote {
-    /* TODO: The subtle border for the other three edges are not subtle. */
+    /* TODO: Not sure because the subtle border for the other three edges are not subtle. */
     border-inline-start-color: var(--kiwi-color-border-neutral-faded);
   }
 
@@ -579,22 +441,13 @@
   /* Icon */
 
   .iui-svg-icon {
-    /* TODO: Or var(--kiwi-color-text-neutral-primary)? */
+    /* TODO: icon-neutral-base or text-neutral-primary */
     --_iui-svg-icon-fill-default: var(--kiwi-color-icon-neutral-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Keyboard */
-
-  /* TODO: ITwinUI variable for box shadow color? */
-  .iui-keyboard {
-    // --iui-opacity-5: var(--iui-opacity-6);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Breadcrumbs */
 
-  /* TODO: ITwinUI variables */
   .iui-breadcrumbs {
     --_iui-breadcrumbs-content-color-default: var(--iui-color-text);
     --_iui-breadcrumbs-content-color-current: var(--kiwi-color-text-accent-strong);
@@ -606,6 +459,7 @@
         color: var(--_iui-breadcrumbs-content-color-current);
       }
 
+      // For any non iui-anchor links
       &:any-link {
         transition:
           color 150ms ease-out,
@@ -622,15 +476,13 @@
   /* ---------------------------------------------------------------------------- */
   /* Carousel */
 
-  /* TODO: ITwinUI variables */
-  .iui-carousel-navigation-dot:focus {
+  .iui-carousel-navigation-dot:focus-visible {
     outline-color: transparent;
   }
 
   /* ---------------------------------------------------------------------------- */
   /* FileUpload */
 
-  /* TODO: ITwinUI variables */
   .iui-file-upload.iui-drag > .iui-content {
     /* TODO: Confirm if transparent background color is alright when dragging */
     /* background-color: var(--iui-color-background-accent); */
@@ -642,9 +494,8 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* FileUpload */
+  /* Tree */
 
-  /* .iui-tree-node, .iui-tree-node.iui-disabled .iui-tree-node-content-caption */
   .iui-tree-node:not(.iui-disabled) .iui-tree-node-content-caption {
     color: var(--iui-color-text-muted);
   }
@@ -655,13 +506,11 @@
   .iui-link-box {
     outline-color: var(--kiwi-color-border-accent-strong);
   }
-  // }
 
   /* ---------------------------------------------------------------------------- */
   /* Footer */
 
   .iui-legal-footer-item {
-    /* TODO: Maybe have iTwinUI variables for this? */
     a {
       color: var(--iui-color-text-muted);
     }

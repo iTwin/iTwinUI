@@ -40,7 +40,7 @@ const slug = Astro.url.pathname.replace('/', '');
   <link rel='canonical' href=`https://itwin.github.io/iTwinUI/${slug}` />
 
   <style is:global>
-    @layer reset, itwinui, kiwi;
+    @layer reset, kiwi, itwinui;
     @import '/assets/demo.css' layer(demo);
     @import '@itwin/itwinui-variables' layer(variables);
     @import '@itwin/itwinui-css/css/all.css';
