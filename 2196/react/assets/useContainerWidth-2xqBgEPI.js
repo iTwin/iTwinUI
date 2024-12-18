@@ -1,0 +1,1 @@
+import{r,i as o,d as l}from"./index-CuyZiCR-.js";const C=(s=!0)=>{let[n,i]=r.useState(0),u=r.useCallback(e=>{e&&i(e.getBoundingClientRect().width)},[]),a=r.useCallback(({width:e})=>i(e),[]),[d,t]=o(a);return s||t==null||t.disconnect(),[l(u,s?d:void 0),n]};export{C as u};
