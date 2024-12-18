@@ -3,16 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ThemeProvider } from '@itwin/itwinui-react';
 import {
   useLadleContext,
   ActionType,
   ThemeState,
   type GlobalProvider,
 } from '@ladle/react';
+import './global.css';
 import '@itwin/itwinui-variables';
 import '@itwin/itwinui-react/styles.css';
-import './global.css';
+import { ThemeProvider } from '@itwin/itwinui-react';
+import { Root as ITwinUiV5Root } from '@itwin/itwinui-react-v5/bricks';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -20,6 +21,8 @@ export const Provider: GlobalProvider = ({ children }) => {
   const { globalState, dispatch } = useLadleContext();
   const theme = globalState.theme === 'dark' ? 'dark' : 'light';
   const highContrast = globalState.control?.['high-contrast']?.value;
+  const bridgeToFutureVersions =
+    globalState.control?.['bridgeToFutureVersions']?.value;
 
   // default to OS theme
   React.useLayoutEffect(() => {
@@ -31,11 +34,15 @@ export const Provider: GlobalProvider = ({ children }) => {
 
   // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
+    document.documentElement.dataset.colorScheme = theme;
     document.documentElement.dataset.iuiTheme = theme;
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-  }, [theme, highContrast]);
+
+    document.body.dataset.iuiTheme = theme;
+    document.body.dataset.iuiBridge = bridgeToFutureVersions;
+  }, [theme, highContrast, bridgeToFutureVersions]);
 
   // redirect old storybook paths to new ones
   React.useEffect(() => {
@@ -53,9 +60,15 @@ export const Provider: GlobalProvider = ({ children }) => {
     <React.StrictMode>
       <ThemeProvider
         theme={theme}
-        themeOptions={{ applyBackground: false, highContrast }}
+        themeOptions={{
+          applyBackground: false,
+          highContrast,
+          bridgeToFutureVersions,
+        }}
       >
-        {children}
+        <ITwinUiV5Root colorScheme={theme} density='dense'>
+          {children}
+        </ITwinUiV5Root>
       </ThemeProvider>
     </React.StrictMode>
   );
@@ -73,5 +86,9 @@ export const argTypes = {
   'high-contrast': {
     control: { type: 'boolean' },
     defaultValue: false,
+  },
+  bridgeToFutureVersions: {
+    control: { type: 'boolean' },
+    defaultValue: true,
   },
 };

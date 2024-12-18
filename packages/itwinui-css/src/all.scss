@@ -57,3 +57,5 @@
   @include meta.load-css('utils/utils');
   @include meta.load-css('workflow-diagram/workflow-diagram');
 }
+
+@include meta.load-css('./bridge');
