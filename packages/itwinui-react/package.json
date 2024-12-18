@@ -105,7 +105,6 @@
   "dependencies": {
     "@floating-ui/react": "^0.26.23",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
-    "@itwin/itwinui-react-v5": "npm:@itwin/itwinui-react@5.0.0-alpha.0",
     "@swc/helpers": "^0.5.11",
     "@tanstack/react-virtual": "^3.8.2",
     "classnames": "^2.3.2",

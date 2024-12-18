@@ -25,7 +25,6 @@ import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 import { atom } from 'jotai';
 import { meta } from '../../utils/meta.js';
-import { Root as ITwinUIV5Root } from '@itwin/itwinui-react-v5/bricks';
 
 const versionWithoutDots = meta.version.replace(/\./g, '');
 
@@ -251,13 +250,7 @@ const MainRoot = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
-  const {
-    theme,
-    children: childrenProp,
-    themeOptions,
-    className,
-    ...rest
-  } = props;
+  const { theme, children, themeOptions, className, ...rest } = props;
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
@@ -265,46 +258,21 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
-  const children = React.useMemo(
-    () => (
-      <Box
-        className={cx(
-          'iui-root',
-          { 'iui-root-background': shouldApplyBackground },
-          className,
-        )}
-        data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
-        data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-        data-iui-bridge={
-          themeOptions?.bridgeToFutureVersions ? true : undefined
-        }
-        ref={forwardedRef}
-        {...rest}
-      >
-        {childrenProp}
-      </Box>
-    ),
-    [
-      childrenProp,
-      className,
-      forwardedRef,
-      rest,
-      shouldApplyBackground,
-      shouldApplyDark,
-      shouldApplyHC,
-      themeOptions?.bridgeToFutureVersions,
-    ],
-  );
-
-  return themeOptions?.bridgeToFutureVersions ? (
-    <ITwinUIV5Root
-      colorScheme={shouldApplyDark ? 'dark' : 'light'}
-      density='dense'
+  return (
+    <Box
+      className={cx(
+        'iui-root',
+        { 'iui-root-background': shouldApplyBackground },
+        className,
+      )}
+      data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
+      data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
+      data-iui-bridge={themeOptions?.bridgeToFutureVersions ? true : undefined}
+      ref={forwardedRef}
+      {...rest}
     >
       {children}
-    </ITwinUIV5Root>
-  ) : (
-    children
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 

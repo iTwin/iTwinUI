@@ -13,6 +13,7 @@ import './global.css';
 import '@itwin/itwinui-variables';
 import '@itwin/itwinui-react/styles.css';
 import { ThemeProvider } from '@itwin/itwinui-react';
+import { Root as ITwinUiV5Root } from '@itwin/itwinui-react-v5/bricks';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -65,7 +66,9 @@ export const Provider: GlobalProvider = ({ children }) => {
           bridgeToFutureVersions,
         }}
       >
-        {children}
+        <ITwinUiV5Root colorScheme={theme} density='dense'>
+          {children}
+        </ITwinUiV5Root>
       </ThemeProvider>
     </React.StrictMode>
   );

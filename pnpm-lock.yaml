@@ -136,6 +136,9 @@ importers:
       '@itwin/itwinui-react':
         specifier: '*'
         version: link:../../packages/itwinui-react
+      '@itwin/itwinui-react-v5':
+        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.1
+        version: '@itwin/itwinui-react@5.0.0-alpha.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)'
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -354,9 +357,6 @@ importers:
       '@itwin/itwinui-illustrations-react':
         specifier: ^2.1.0
         version: 2.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@itwin/itwinui-react-v5':
-        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.0
-        version: '@itwin/itwinui-react@5.0.0-alpha.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)'
       '@swc/helpers':
         specifier: ^0.5.11
         version: 0.5.11
@@ -2115,8 +2115,8 @@ packages:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
 
-  '@itwin/itwinui-react@5.0.0-alpha.0':
-    resolution: {integrity: sha512-wLkpzTshlUjkAhlrfuAOL+uYOlY7iUbld2Q+4GO6aO+DUwuFBcoPXRD+PXnMDnhuxjUAzhXVTerj81jvyQsvrA==}
+  '@itwin/itwinui-react@5.0.0-alpha.1':
+    resolution: {integrity: sha512-5f6l7oK8HCQGiukUMqBcWJwZFxBS/KW2QwdOeNWLI/3NQ0jCdp9g0Xq5S2udLYN95HZklLPUKNxF7ry1GqP5zA==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -10234,7 +10234,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@itwin/itwinui-react@5.0.0-alpha.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@itwin/itwinui-react@5.0.0-alpha.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@ariakit/react': 0.4.15(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       classnames: 2.5.1
