@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-Fix broken `iui-tile` layout when it has a long name.
+Fix folder variant `iui-tile`'s broken layout when it has a long name.
