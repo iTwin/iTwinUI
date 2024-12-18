@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2378](https://github.com/iTwin/iTwinUI/pull/2378): Fix folder variant `Tile`'s broken layout when it has a long name.
+- [#2378](https://github.com/iTwin/iTwinUI/pull/2378): Fixed folder variant `Tile`'s broken layout when it has a long name.
 
 ## 3.16.1
 
