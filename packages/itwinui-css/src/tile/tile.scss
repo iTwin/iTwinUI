@@ -183,6 +183,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   .iui-tile-name {
     grid-area: name;
     margin-block-start: calc(var(--iui-size-xs));
+    min-inline-size: 0;
   }
 
   .iui-tile-content {
