@@ -448,8 +448,8 @@
     --_iui-breadcrumbs-content-color-current: var(--kiwi-color-text-accent-strong);
     --_iui-breadcrumbs-content-color-link-hover: var(--_iui-breadcrumbs-content-color-default);
 
-    // Workaround since iTwinUI doesn't style its spans that are aria-current.
     .iui-breadcrumbs-content {
+      // Workaround since iTwinUI doesn't style its spans that are aria-current.
       &[aria-current] {
         color: var(--_iui-breadcrumbs-content-color-current);
       }
