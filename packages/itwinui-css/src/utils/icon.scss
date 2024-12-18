@@ -11,16 +11,17 @@ $icon-sizes: (
 );
 
 $default-size: #{map.get($icon-sizes, m)};
-$default-fill: var(--iui-color-icon-muted);
 
 .iui-svg-icon {
+  --_iui-svg-icon-fill-default: var(--iui-color-icon-muted);
+
   display: inline-flex;
   flex-shrink: 0;
 
   svg {
     inline-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
     block-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
-    fill: var(--iui-svg-fill, var(--_iui-svg-fill, #{$default-fill}));
+    fill: var(--iui-svg-fill, var(--_iui-svg-fill, var(--_iui-svg-icon-fill-default)));
   }
 
   @each $size in 's', 'm', 'l', 'auto' {
