@@ -5,7 +5,7 @@
 
 @layer reset, kiwi, itwinui;
 
-@import '@itwin/itwinui-variables' layer(itwinui.v3);
+@import '@itwin/itwinui-variables' layer(variables);
 
 @import '@fontsource/noto-sans';
 @import '@fontsource/noto-sans-mono';
