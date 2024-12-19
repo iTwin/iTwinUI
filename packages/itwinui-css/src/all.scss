@@ -58,4 +58,6 @@
   @include meta.load-css('workflow-diagram/workflow-diagram');
 }
 
-@include meta.load-css('./bridge');
+@layer itwinui.bridge {
+  @include meta.load-css('./bridge');
+}

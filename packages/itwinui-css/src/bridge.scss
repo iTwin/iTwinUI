@@ -81,438 +81,432 @@
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
 
   /* TODO: Handle hsl */
-}
 
-@layer itwinui.bridge {
-  :where([data-iui-bridge='true']) {
-    /* ---------------------------------------------------------------------------- */
-    /* Button */
+  /* ---------------------------------------------------------------------------- */
+  /* Button */
 
-    .iui-field:not([data-iui-status]) {
-      --_iui-field-color-focus-outline: var(--kiwi-color-border-accent-strong);
-    }
+  .iui-field:not([data-iui-status]) {
+    --_iui-field-color-focus-outline: var(--kiwi-color-border-accent-strong);
+  }
 
-    .iui-button {
-      --_iui-field-color-border-hover: var(--_iui-field-color-border);
-      --_iui-field-color-text-hover: var(--_iui-field-color-text);
-      --_iui-field-color-icon-hover: var(--_iui-field-color-icon);
-      --_iui-field-color-background-hover: var(--_iui-field-color-background);
-      --_iui-field-color-icon-disabled-hover: var(--_iui-field-color-icon-disabled);
-      --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
+  .iui-button {
+    --_iui-field-color-border-hover: var(--_iui-field-color-border);
+    --_iui-field-color-text-hover: var(--_iui-field-color-text);
+    --_iui-field-color-icon-hover: var(--_iui-field-color-icon);
+    --_iui-field-color-background-hover: var(--_iui-field-color-background);
+    --_iui-field-color-icon-disabled-hover: var(--_iui-field-color-icon-disabled);
+    --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
 
-      &:where(:not([data-iui-active='true']):not(.iui-tile-thumbnail-button)) {
-        --_iui-field-color-background: var(--kiwi-color-bg-neutral-base);
-        --_iui-field-color-background-disabled: var(--_iui-field-color-background);
+    &:where(:not([data-iui-active='true']):not(.iui-tile-thumbnail-button)) {
+      --_iui-field-color-background: var(--kiwi-color-bg-neutral-base);
+      --_iui-field-color-background-disabled: var(--_iui-field-color-background);
 
-        --_iui-field-color-border: var(--kiwi-color-border-neutral-base);
-        --_iui-field-color-border-disabled: var(--_iui-field-color-border);
-
-        --_iui-field-color-text: var(--kiwi-color-text-neutral-primary);
-        --_iui-field-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
-
-        --_iui-field-color-icon: var(--kiwi-color-icon-neutral-base);
-        --_iui-field-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
-      }
-
-      &:where([data-iui-active='true']) {
-        --_iui-field-color-icon: var(--kiwi-color-icon-accent-strong);
-      }
-
-      &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
-        --_iui-field-color-background: var(--kiwi-color-bg-accent-base);
-        --_iui-field-color-background-disabled: var(--kiwi-color-bg-neutral-base);
-        --_iui-field-color-border-disabled: var(--kiwi-color-border-neutral-base);
-        --_iui-field-color-icon: var(--kiwi-color-icon-neutral-emphasis);
-        --_iui-field-color-border: var(--kiwi-color-border-accent-base);
-      }
-
-      &:where([data-iui-variant='borderless']) {
-        --_iui-field-color-background: transparent;
-        --_iui-field-color-background-disabled: transparent;
-        --_iui-field-color-border: transparent;
-        --_iui-field-color-border-disabled: transparent;
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Anchor */
-
-    .iui-anchor {
-      transition:
-        color 150ms ease-out,
-        text-decoration-color 150ms ease-out;
-      text-decoration: underline;
-
-      &:where(:not([data-iui-status])) {
-        color: var(--kiwi-color-text-neutral-primary);
-      }
-
-      &:where(:hover) {
-        text-decoration-color: transparent;
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Checkbox */
-
-    :is(.iui-checkbox, .iui-radio) {
-      --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
-      --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.2 5.6 6.8 10l-2-2"/></svg>');
-      --_iui-checkbox-indeterminate-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h6.5"/></svg>');
-
-      &:not(:disabled):not(.iui-checkbox-visibility) {
-        --_iui-checkbox-svg-color: var(--kiwi-color-icon-neutral-emphasis);
-        --_iui-checkbox-background-color: var(--kiwi-color-bg-neutral-base);
-        --_iui-checkbox-border-color: var(--kiwi-color-border-neutral-base);
-
-        &:checked {
-          --_iui-checkbox-background-color: var(--kiwi-color-bg-accent-base);
-          --_iui-checkbox-border-color: var(--kiwi-color-border-accent-base);
-        }
-      }
-
-      &:disabled {
-        --_iui-checkbox-border-color: transparent;
-      }
-
-      &.iui-checkbox-visibility {
-        /* TODO: What to do about indeterminate? */
-        --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.961 6.807a.5.5 0 0 0-.922.386L1.5 7l-.461.193v.002l.002.004.006.013a3.404 3.404 0 0 0 .094.202A9.478 9.478 0 0 0 2.923 9.87l-1.277 1.277a.5.5 0 1 0 .708.707l1.326-1.326a7.13 7.13 0 0 0 2.174 1.145l-.801 1.603a.5.5 0 1 0 .894.448l.907-1.814a7.253 7.253 0 0 0 2.292 0l.907 1.814a.5.5 0 1 0 .894-.448l-.801-1.603a7.13 7.13 0 0 0 2.174-1.145l1.326 1.326a.5.5 0 0 0 .708-.707L13.077 9.87a9.479 9.479 0 0 0 1.782-2.456 5.53 5.53 0 0 0 .074-.158l.02-.044.006-.013.001-.004.001-.001L14.5 7l.461.193a.5.5 0 0 0-.922-.386l-.003.007-.014.03a7.227 7.227 0 0 1-.319.605c-.234.4-.593.93-1.086 1.46C11.63 9.968 10.13 11 8 11S4.369 9.968 3.383 8.91A8.478 8.478 0 0 1 2.04 6.972a4.479 4.479 0 0 1-.075-.16l-.003-.006Z"/></svg>');
-        --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.14 7.849C2.736 6.774 4.616 4 8 4c3.383 0 5.263 2.774 5.86 3.849a.304.304 0 0 1 0 .302C13.264 9.226 11.384 12 8 12c-3.383 0-5.263-2.774-5.86-3.849a.304.304 0 0 1 0-.302ZM8 3C4.023 3 1.887 6.244 1.265 7.363a1.304 1.304 0 0 0 0 1.274C1.887 9.756 4.023 13 8 13c3.977 0 6.113-3.244 6.735-4.363a1.304 1.304 0 0 0 0-1.274C14.113 6.244 11.977 3 8 3ZM7 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>');
-
-        --_iui-checkbox-background-color: transparent;
-        --_iui-checkbox-border-color: transparent;
-      }
-    }
-
-    .iui-toggle-switch:disabled {
-      background-color: var(--kiwi-color-bg-surface-primary);
-      border-color: var(--kiwi-color-border-glow-on-surface-disabled);
-    }
-
-    /* TODO: ITwinUI variables */
-    .iui-checkbox-wrapper {
-      &:not(:where([data-iui-status])) {
-        color: var(--kiwi-color-text-neutral-secondary);
-      }
-
-      &:is([data-iui-disabled='true'], .iui-disabled) {
-        color: var(--kiwi-color-text-neutral-disabled);
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Input */
-
-    .iui-input-grid {
-      @each $statusColor in positive, warning, negative {
-        &:where([data-iui-status='#{$statusColor}']) .iui-field {
-          --_iui-field-color-focus-outline: var(--iui-color-text-#{$statusColor});
-        }
-      }
-    }
-
-    .iui-input-flex-container {
-      --_iui-input-background-color: var(--kiwi-color-bg-neutral-primary);
-      --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
-
-      &:not([data-iui-status]) {
-        outline-color: var(--kiwi-color-border-accent-strong);
-      }
-
-      input,
-      textarea {
-        outline: none;
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* DropdownMenu */
-
-    .iui-menu {
-      background-color: var(--kiwi-color-bg-surface-tertiary);
-      border: none;
-      box-shadow: var(--kiwi-shadow-surface-xl);
-    }
-
-    .iui-list-item {
-      border: none;
-      --_iui-list-item-background-hover: transparent;
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* SideNav */
-
-    .iui-sidenav-button {
-      svg {
-        max-inline-size: unset; /* TODO: See why this workaround is needed and how to avoid it */
-      }
-
-      .iui-button-label {
-        font-size: 1rem; /* TODO: See why this workaround is needed and how to avoid it */
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Radio */
-
-    .iui-radio {
-      &:checked {
-        --_iui-checkbox-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" ><circle cx="8" cy="8" r="4" /></svg>');
-      }
-
-      &:not(:checked),
-      &:indeterminate {
-        --_iui-checkbox-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* RadioTile */
-
-    .iui-radio-tile {
-      --_iui-radio-tile-color-icon: var(--iui-color-icon-muted);
-      --_iui-radio-tile-color-icon-hover: var(--_iui-radio-tile-color-icon-default);
-      --_iui-radio-tile-color-icon-checked: var(--iui-color-icon-accent);
-      --_iui-radio-tile-color-icon-disabled: var(--iui-color-icon-disabled);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* ToggleSwitch */
-
-    .iui-toggle-switch {
-      --iui-color-background: var(--kiwi-color-bg-surface-primary); /* TODO: Variable */
-
-      &:checked {
-        &:not(:disabled) {
-          border-color: var(--kiwi-color-border-accent-base);
-        }
-      }
-
-      &:where([disabled], :disabled, [aria-disabled='true']) {
-        &::after {
-          box-shadow: none;
-          background-color: var(--kiwi-color-icon-neutral-disabled);
-        }
-      }
-    }
-
-    .iui-toggle-switch-wrapper {
-      color: var(--kiwi-color-text-neutral-secondary);
-
-      &.iui-disabled {
-        color: var(--kiwi-color-text-neutral-disabled);
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Tooltip */
-
-    .iui-tooltip {
-      background-color: var(--kiwi-color-bg-surface-emphasis);
-      border-color: var(--kiwi-color-border-surface-primary);
-      box-shadow: var(--kiwi-shadow-tooltip-base);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Input */
-
-    .iui-input:not([role='combobox']) {
-      --_iui-field-color-text: var(--kiwi-color-text-neutral-primary);
-      --_iui-field-color-text-hover: var(--_iui-field-color-text);
-      --_iui-field-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
-      --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
-
-      --_iui-field-color-background: var(
-        --kiwi-color-bg-surface-base
-      ); /* TODO: bg-neutral-primary or bg-neutral-base */
-
-      --_iui-field-color-background-hover: var(--_iui-field-color-background);
-      --_iui-field-color-background-disabled: var(--kiwi-color-bg-surface-base);
       --_iui-field-color-border: var(--kiwi-color-border-neutral-base);
-      --_iui-field-color-border-hover: var(--_iui-field-color-border);
-      --_iui-field-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
+      --_iui-field-color-border-disabled: var(--_iui-field-color-border);
 
-      &::placeholder {
-        color: var(--kiwi-color-text-neutral-secondary);
+      --_iui-field-color-text: var(--kiwi-color-text-neutral-primary);
+      --_iui-field-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
+
+      --_iui-field-color-icon: var(--kiwi-color-icon-neutral-base);
+      --_iui-field-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
+    }
+
+    &:where([data-iui-active='true']) {
+      --_iui-field-color-icon: var(--kiwi-color-icon-accent-strong);
+    }
+
+    &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
+      --_iui-field-color-background: var(--kiwi-color-bg-accent-base);
+      --_iui-field-color-background-disabled: var(--kiwi-color-bg-neutral-base);
+      --_iui-field-color-border-disabled: var(--kiwi-color-border-neutral-base);
+      --_iui-field-color-icon: var(--kiwi-color-icon-neutral-emphasis);
+      --_iui-field-color-border: var(--kiwi-color-border-accent-base);
+    }
+
+    &:where([data-iui-variant='borderless']) {
+      --_iui-field-color-background: transparent;
+      --_iui-field-color-background-disabled: transparent;
+      --_iui-field-color-border: transparent;
+      --_iui-field-color-border-disabled: transparent;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Anchor */
+
+  .iui-anchor {
+    transition:
+      color 150ms ease-out,
+      text-decoration-color 150ms ease-out;
+    text-decoration: underline;
+
+    &:where(:not([data-iui-status])) {
+      color: var(--kiwi-color-text-neutral-primary);
+    }
+
+    &:where(:hover) {
+      text-decoration-color: transparent;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Checkbox */
+
+  :is(.iui-checkbox, .iui-radio) {
+    --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
+    --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.2 5.6 6.8 10l-2-2"/></svg>');
+    --_iui-checkbox-indeterminate-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h6.5"/></svg>');
+
+    &:not(:disabled):not(.iui-checkbox-visibility) {
+      --_iui-checkbox-svg-color: var(--kiwi-color-icon-neutral-emphasis);
+      --_iui-checkbox-background-color: var(--kiwi-color-bg-neutral-base);
+      --_iui-checkbox-border-color: var(--kiwi-color-border-neutral-base);
+
+      &:checked {
+        --_iui-checkbox-background-color: var(--kiwi-color-bg-accent-base);
+        --_iui-checkbox-border-color: var(--kiwi-color-border-accent-base);
       }
     }
 
-    .iui-input-label {
-      --_iui-input-label-color: var(--kiwi-color-text-neutral-secondary);
-      font-weight: unset;
-
-      &.iui-required::after {
-        color: var(--kiwi-color-text-critical-base);
-      }
-
-      &[data-iui-disabled='true'] {
-        --_iui-input-label-color: var(--kiwi-color-text-neutral-disabled);
-      }
+    &:disabled {
+      --_iui-checkbox-border-color: transparent;
     }
 
-    /* ---------------------------------------------------------------------------- */
-    /* ExpandableBlock */
+    &.iui-checkbox-visibility {
+      /* TODO: What to do about indeterminate? */
+      --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.961 6.807a.5.5 0 0 0-.922.386L1.5 7l-.461.193v.002l.002.004.006.013a3.404 3.404 0 0 0 .094.202A9.478 9.478 0 0 0 2.923 9.87l-1.277 1.277a.5.5 0 1 0 .708.707l1.326-1.326a7.13 7.13 0 0 0 2.174 1.145l-.801 1.603a.5.5 0 1 0 .894.448l.907-1.814a7.253 7.253 0 0 0 2.292 0l.907 1.814a.5.5 0 1 0 .894-.448l-.801-1.603a7.13 7.13 0 0 0 2.174-1.145l1.326 1.326a.5.5 0 0 0 .708-.707L13.077 9.87a9.479 9.479 0 0 0 1.782-2.456 5.53 5.53 0 0 0 .074-.158l.02-.044.006-.013.001-.004.001-.001L14.5 7l.461.193a.5.5 0 0 0-.922-.386l-.003.007-.014.03a7.227 7.227 0 0 1-.319.605c-.234.4-.593.93-1.086 1.46C11.63 9.968 10.13 11 8 11S4.369 9.968 3.383 8.91A8.478 8.478 0 0 1 2.04 6.972a4.479 4.479 0 0 1-.075-.16l-.003-.006Z"/></svg>');
+      --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.14 7.849C2.736 6.774 4.616 4 8 4c3.383 0 5.263 2.774 5.86 3.849a.304.304 0 0 1 0 .302C13.264 9.226 11.384 12 8 12c-3.383 0-5.263-2.774-5.86-3.849a.304.304 0 0 1 0-.302ZM8 3C4.023 3 1.887 6.244 1.265 7.363a1.304 1.304 0 0 0 0 1.274C1.887 9.756 4.023 13 8 13c3.977 0 6.113-3.244 6.735-4.363a1.304 1.304 0 0 0 0-1.274C14.113 6.244 11.977 3 8 3ZM7 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>');
 
-    .iui-expandable-block {
-      --_iui-expandable-block-header-background-color-hover: var(--_iui-expandable-block-background-color);
+      --_iui-checkbox-background-color: transparent;
+      --_iui-checkbox-border-color: transparent;
+    }
+  }
+
+  .iui-toggle-switch:disabled {
+    background-color: var(--kiwi-color-bg-surface-primary);
+    border-color: var(--kiwi-color-border-glow-on-surface-disabled);
+  }
+
+  /* TODO: ITwinUI variables */
+  .iui-checkbox-wrapper {
+    &:not(:where([data-iui-status])) {
+      color: var(--kiwi-color-text-neutral-secondary);
     }
 
-    .iui-expandable-header:where(:not([data-iui-disabled='true'])):where(:hover) {
-      --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon);
-      --_iui-expandable-block-header-caption-color: var(--iui-color-text-muted);
-      --_iui-expandable-block-header-label-color: var(--iui-color-text);
-      background-color: var(--_iui-expandable-block-header-background-color-hover);
+    &:is([data-iui-disabled='true'], .iui-disabled) {
+      color: var(--kiwi-color-text-neutral-disabled);
     }
+  }
 
-    /* ---------------------------------------------------------------------------- */
-    /* ProgressRadial */
+  /* ---------------------------------------------------------------------------- */
+  /* Input */
 
-    :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
-      --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Tabs */
-
-    :where(.iui-tabs-wrapper) {
-      --_iui-tab-color-stripe-blue: var(--kiwi-color-border-neutral-inverse);
-      --_iui-tab-color-stripe-green: var(--kiwi-color-border-accent-strong);
-
-      --_iui-tab-color-default: var(--kiwi-color-text-neutral-tertiary);
-      --_iui-tab-color-selected: var(--kiwi-color-text-neutral-primary);
-      --_iui-tab-color-green-selected: var(--kiwi-color-text-accent-strong);
-
-      &:where(.iui-horizontal) .iui-tab::after {
-        inset-inline: 4px;
-        inline-size: calc(100% - 4px * 2);
-        inset-block-start: calc(100% - var(--iui-size-3xs));
-      }
-
-      &:where(.iui-vertical) .iui-tab::after {
-        inset-block: 4px;
-        block-size: calc(100% - 4px * 2);
-        inset-inline-start: calc(100% - var(--iui-size-3xs));
+  .iui-input-grid {
+    @each $statusColor in positive, warning, negative {
+      &:where([data-iui-status='#{$statusColor}']) .iui-field {
+        --_iui-field-color-focus-outline: var(--iui-color-text-#{$statusColor});
       }
     }
+  }
 
-    .iui-tab {
-      outline-offset: -6px;
+  .iui-input-flex-container {
+    --_iui-input-background-color: var(--kiwi-color-bg-neutral-primary);
+    --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
 
-      background-color: transparent;
-      border: none;
-      border-radius: calc(4px + 6px); /* To account for outline-offset */
-
-      &:focus-visible {
-        outline-width: 2px;
-        outline-color: var(--kiwi-color-border-accent-strong) !important;
-      }
-    }
-
-    .iui-tabs-content {
-      background-color: transparent;
-      border: none;
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Surface */
-    /* TODO: Confirm if Surface needs to use the kiwi variables starting with --kiwi-color-bg-surface-xyz */
-
-    /* ---------------------------------------------------------------------------- */
-    /* Slider */
-    /* TODO: Since Slider is experimental in Kiwi, revisit this when stable on the Kiwi end */
-    /* TODO: Are minLabel and maxLabel fills/colors correct? */
-
-    .iui-slider-thumb {
-      background-color: var(--kiwi-color-bg-neutral-faded);
-      border-color: var(--kiwi-color-border-neutral-faded);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Blockquote */
-
-    .iui-blockquote {
-      /* TODO: Not sure because the subtle border for the other three edges are not subtle. */
-      border-inline-start-color: var(--kiwi-color-border-neutral-faded);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Icon */
-
-    .iui-svg-icon {
-      /* TODO: icon-neutral-base or text-neutral-primary */
-      --_iui-svg-icon-fill-default: var(--kiwi-color-icon-neutral-base);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Breadcrumbs */
-
-    .iui-breadcrumbs {
-      --_iui-breadcrumbs-content-color-default: var(--iui-color-text);
-      --_iui-breadcrumbs-content-color-current: var(--kiwi-color-text-accent-strong);
-      --_iui-breadcrumbs-content-color-link-hover: var(--_iui-breadcrumbs-content-color-default);
-
-      .iui-breadcrumbs-content {
-        // Workaround since iTwinUI doesn't style its spans that are aria-current.
-        &[aria-current] {
-          color: var(--_iui-breadcrumbs-content-color-current);
-        }
-
-        // For any non iui-anchor links
-        &:any-link {
-          transition:
-            color 150ms ease-out,
-            text-decoration-color 150ms ease-out;
-          text-decoration: underline;
-
-          &:where(:hover) {
-            text-decoration-color: transparent;
-          }
-        }
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Carousel */
-
-    .iui-carousel-navigation-dot:focus-visible {
-      outline-color: transparent;
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* FileUpload */
-
-    .iui-file-upload.iui-drag > .iui-content {
-      /* TODO: Confirm if transparent background color is alright when dragging */
-      /* background-color: var(--iui-color-background-accent); */
-      /* background-color: var(--kiwi-color-bg-accent-base); */
-
-      * {
-        color: var(--iui-color-text-accent);
-      }
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* Tree */
-
-    .iui-tree-node:not(.iui-disabled) .iui-tree-node-content-caption {
-      color: var(--iui-color-text-muted);
-    }
-
-    /* ---------------------------------------------------------------------------- */
-    /* LinkBox */
-
-    .iui-link-box {
+    &:not([data-iui-status]) {
       outline-color: var(--kiwi-color-border-accent-strong);
     }
 
-    /* ---------------------------------------------------------------------------- */
-    /* Footer */
+    input,
+    textarea {
+      outline: none;
+    }
+  }
 
-    .iui-legal-footer-item {
-      a {
-        color: var(--iui-color-text-muted);
+  /* ---------------------------------------------------------------------------- */
+  /* DropdownMenu */
+
+  .iui-menu {
+    background-color: var(--kiwi-color-bg-surface-tertiary);
+    border: none;
+    box-shadow: var(--kiwi-shadow-surface-xl);
+  }
+
+  .iui-list-item {
+    border: none;
+    --_iui-list-item-background-hover: transparent;
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* SideNav */
+
+  .iui-sidenav-button {
+    svg {
+      max-inline-size: unset; /* TODO: See why this workaround is needed and how to avoid it */
+    }
+
+    .iui-button-label {
+      font-size: 1rem; /* TODO: See why this workaround is needed and how to avoid it */
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Radio */
+
+  .iui-radio {
+    &:checked {
+      --_iui-checkbox-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" ><circle cx="8" cy="8" r="4" /></svg>');
+    }
+
+    &:not(:checked),
+    &:indeterminate {
+      --_iui-checkbox-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* RadioTile */
+
+  .iui-radio-tile {
+    --_iui-radio-tile-color-icon: var(--iui-color-icon-muted);
+    --_iui-radio-tile-color-icon-hover: var(--_iui-radio-tile-color-icon-default);
+    --_iui-radio-tile-color-icon-checked: var(--iui-color-icon-accent);
+    --_iui-radio-tile-color-icon-disabled: var(--iui-color-icon-disabled);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* ToggleSwitch */
+
+  .iui-toggle-switch {
+    --iui-color-background: var(--kiwi-color-bg-surface-primary); /* TODO: Variable */
+
+    &:checked {
+      &:not(:disabled) {
+        border-color: var(--kiwi-color-border-accent-base);
       }
+    }
+
+    &:where([disabled], :disabled, [aria-disabled='true']) {
+      &::after {
+        box-shadow: none;
+        background-color: var(--kiwi-color-icon-neutral-disabled);
+      }
+    }
+  }
+
+  .iui-toggle-switch-wrapper {
+    color: var(--kiwi-color-text-neutral-secondary);
+
+    &.iui-disabled {
+      color: var(--kiwi-color-text-neutral-disabled);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tooltip */
+
+  .iui-tooltip {
+    background-color: var(--kiwi-color-bg-surface-emphasis);
+    border-color: var(--kiwi-color-border-surface-primary);
+    box-shadow: var(--kiwi-shadow-tooltip-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Input */
+
+  .iui-input:not([role='combobox']) {
+    --_iui-field-color-text: var(--kiwi-color-text-neutral-primary);
+    --_iui-field-color-text-hover: var(--_iui-field-color-text);
+    --_iui-field-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
+    --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
+
+    --_iui-field-color-background: var(--kiwi-color-bg-surface-base); /* TODO: bg-neutral-primary or bg-neutral-base */
+
+    --_iui-field-color-background-hover: var(--_iui-field-color-background);
+    --_iui-field-color-background-disabled: var(--kiwi-color-bg-surface-base);
+    --_iui-field-color-border: var(--kiwi-color-border-neutral-base);
+    --_iui-field-color-border-hover: var(--_iui-field-color-border);
+    --_iui-field-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
+
+    &::placeholder {
+      color: var(--kiwi-color-text-neutral-secondary);
+    }
+  }
+
+  .iui-input-label {
+    --_iui-input-label-color: var(--kiwi-color-text-neutral-secondary);
+    font-weight: unset;
+
+    &.iui-required::after {
+      color: var(--kiwi-color-text-critical-base);
+    }
+
+    &[data-iui-disabled='true'] {
+      --_iui-input-label-color: var(--kiwi-color-text-neutral-disabled);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* ExpandableBlock */
+
+  .iui-expandable-block {
+    --_iui-expandable-block-header-background-color-hover: var(--_iui-expandable-block-background-color);
+  }
+
+  .iui-expandable-header:where(:not([data-iui-disabled='true'])):where(:hover) {
+    --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon);
+    --_iui-expandable-block-header-caption-color: var(--iui-color-text-muted);
+    --_iui-expandable-block-header-label-color: var(--iui-color-text);
+    background-color: var(--_iui-expandable-block-header-background-color-hover);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* ProgressRadial */
+
+  :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
+    --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tabs */
+
+  :where(.iui-tabs-wrapper) {
+    --_iui-tab-color-stripe-blue: var(--kiwi-color-border-neutral-inverse);
+    --_iui-tab-color-stripe-green: var(--kiwi-color-border-accent-strong);
+
+    --_iui-tab-color-default: var(--kiwi-color-text-neutral-tertiary);
+    --_iui-tab-color-selected: var(--kiwi-color-text-neutral-primary);
+    --_iui-tab-color-green-selected: var(--kiwi-color-text-accent-strong);
+
+    &:where(.iui-horizontal) .iui-tab::after {
+      inset-inline: 4px;
+      inline-size: calc(100% - 4px * 2);
+      inset-block-start: calc(100% - var(--iui-size-3xs));
+    }
+
+    &:where(.iui-vertical) .iui-tab::after {
+      inset-block: 4px;
+      block-size: calc(100% - 4px * 2);
+      inset-inline-start: calc(100% - var(--iui-size-3xs));
+    }
+  }
+
+  .iui-tab {
+    outline-offset: -6px;
+
+    background-color: transparent;
+    border: none;
+    border-radius: calc(4px + 6px); /* To account for outline-offset */
+
+    &:focus-visible {
+      outline-width: 2px;
+      outline-color: var(--kiwi-color-border-accent-strong) !important;
+    }
+  }
+
+  .iui-tabs-content {
+    background-color: transparent;
+    border: none;
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Surface */
+  /* TODO: Confirm if Surface needs to use the kiwi variables starting with --kiwi-color-bg-surface-xyz */
+
+  /* ---------------------------------------------------------------------------- */
+  /* Slider */
+  /* TODO: Since Slider is experimental in Kiwi, revisit this when stable on the Kiwi end */
+  /* TODO: Are minLabel and maxLabel fills/colors correct? */
+
+  .iui-slider-thumb {
+    background-color: var(--kiwi-color-bg-neutral-faded);
+    border-color: var(--kiwi-color-border-neutral-faded);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Blockquote */
+
+  .iui-blockquote {
+    /* TODO: Not sure because the subtle border for the other three edges are not subtle. */
+    border-inline-start-color: var(--kiwi-color-border-neutral-faded);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Icon */
+
+  .iui-svg-icon {
+    /* TODO: icon-neutral-base or text-neutral-primary */
+    --_iui-svg-icon-fill-default: var(--kiwi-color-icon-neutral-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Breadcrumbs */
+
+  .iui-breadcrumbs {
+    --_iui-breadcrumbs-content-color-default: var(--iui-color-text);
+    --_iui-breadcrumbs-content-color-current: var(--kiwi-color-text-accent-strong);
+    --_iui-breadcrumbs-content-color-link-hover: var(--_iui-breadcrumbs-content-color-default);
+
+    .iui-breadcrumbs-content {
+      // Workaround since iTwinUI doesn't style its spans that are aria-current.
+      &[aria-current] {
+        color: var(--_iui-breadcrumbs-content-color-current);
+      }
+
+      // For any non iui-anchor links
+      &:any-link {
+        transition:
+          color 150ms ease-out,
+          text-decoration-color 150ms ease-out;
+        text-decoration: underline;
+
+        &:where(:hover) {
+          text-decoration-color: transparent;
+        }
+      }
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Carousel */
+
+  .iui-carousel-navigation-dot:focus-visible {
+    outline-color: transparent;
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* FileUpload */
+
+  .iui-file-upload.iui-drag > .iui-content {
+    /* TODO: Confirm if transparent background color is alright when dragging */
+    /* background-color: var(--iui-color-background-accent); */
+    /* background-color: var(--kiwi-color-bg-accent-base); */
+
+    * {
+      color: var(--iui-color-text-accent);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tree */
+
+  .iui-tree-node:not(.iui-disabled) .iui-tree-node-content-caption {
+    color: var(--iui-color-text-muted);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* LinkBox */
+
+  .iui-link-box {
+    outline-color: var(--kiwi-color-border-accent-strong);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Footer */
+
+  .iui-legal-footer-item {
+    a {
+      color: var(--iui-color-text-muted);
     }
   }
 }

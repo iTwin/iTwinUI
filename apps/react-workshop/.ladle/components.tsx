@@ -10,7 +10,6 @@ import {
   type GlobalProvider,
 } from '@ladle/react';
 import './global.css';
-import '@itwin/itwinui-variables';
 import '@itwin/itwinui-react/styles.css';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import { Root as ITwinUiV5Root } from '@itwin/itwinui-react-v5/bricks';
@@ -58,18 +57,18 @@ export const Provider: GlobalProvider = ({ children }) => {
 
   return (
     <React.StrictMode>
-      <ThemeProvider
-        theme={theme}
-        themeOptions={{
-          applyBackground: false,
-          highContrast,
-          bridgeToFutureVersions,
-        }}
-      >
-        <ITwinUiV5Root colorScheme={theme} density='dense'>
+      <ITwinUiV5Root colorScheme={theme} density='dense'>
+        <ThemeProvider
+          theme={theme}
+          themeOptions={{
+            applyBackground: false,
+            highContrast,
+            bridgeToFutureVersions,
+          }}
+        >
           {children}
-        </ITwinUiV5Root>
-      </ThemeProvider>
+        </ThemeProvider>
+      </ITwinUiV5Root>
     </React.StrictMode>
   );
 };
