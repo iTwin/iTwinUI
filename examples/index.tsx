@@ -1248,6 +1248,10 @@ import { default as TableSelectSingleExampleRaw } from './Table.selectSingle';
 const TableSelectSingleExample = withThemeProvider(TableSelectSingleExampleRaw);
 export { TableSelectSingleExample };
 
+import { default as TableDensityExampleRaw } from './Table.density';
+const TableDensityExample = withThemeProvider(TableDensityExampleRaw);
+export { TableDensityExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';
