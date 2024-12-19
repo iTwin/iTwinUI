@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+// TODO: Make it alphabetical
 
 :where([data-iui-bridge='true']) {
   --iui-color-white: var(--kiwi-color-static-white);
@@ -40,15 +41,12 @@
   --iui-color-border-hover: var(--iui-color-border);
   --iui-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
 
-  --iui-color-border-subtle: var(
-    --iui-color-border
-  ); /* TODO: Not sure. E.g. --kiwi-color-border-neutral-muted for Surface is an issue since
+  /* TODO: Not sure. E.g. --kiwi-color-border-neutral-muted for Surface is an issue since
     border-neutral-muted === bg-neutral-base. So border is invisible. So, should we use -faded instead? Same problem I
     think with Divider (iui-color-border-subtle) inside of a Surface (iui-color-background) */
+  --iui-color-border-subtle: var(--kiwi-color-border-neutral-base);
 
-  --iui-color-border-accent: var(
-    --kiwi-color-border-accent-base
-  ); /* TODO: border-accent-base or border-accent-strong? */
+  --iui-color-border-accent: var(--kiwi-color-border-accent-strong);
 
   --iui-color-icon-accent: var(--kiwi-color-icon-accent-base);
   --iui-color-icon-informational: var(--kiwi-color-icon-info-base);
@@ -422,14 +420,6 @@
   .iui-slider-thumb {
     background-color: var(--kiwi-color-bg-neutral-faded);
     border-color: var(--kiwi-color-border-neutral-faded);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Blockquote */
-
-  .iui-blockquote {
-    /* TODO: Not sure because the subtle border for the other three edges are not subtle. */
-    border-inline-start-color: var(--kiwi-color-border-neutral-faded);
   }
 
   /* ---------------------------------------------------------------------------- */
