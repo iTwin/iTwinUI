@@ -31,7 +31,7 @@ export default () => {
   );
 
   return (
-    <>
+    <div>
       <InputGrid>
         <Label htmlFor='breakfast-input'>Breakfast</Label>
         <ComboBox
@@ -56,6 +56,6 @@ export default () => {
           }}
         />
       </InputGrid>
-    </>
+    </div>
   );
 };
