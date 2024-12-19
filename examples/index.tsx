@@ -1224,6 +1224,16 @@ import { default as TableMainExampleRaw } from './Table.main';
 const TableMainExample = withThemeProvider(TableMainExampleRaw);
 export { TableMainExample };
 
+import { default as TableSubRowsExampleRaw } from './Table.subRows';
+const TableSubRowsExample = withThemeProvider(TableSubRowsExampleRaw);
+export { TableSubRowsExample };
+
+import { default as TableVirtualizationExampleRaw } from './Table.virtualization';
+const TableVirtualizationExample = withThemeProvider(
+  TableVirtualizationExampleRaw,
+);
+export { TableVirtualizationExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';

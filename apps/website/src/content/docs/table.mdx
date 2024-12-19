@@ -6,15 +6,37 @@ thumbnail: Table
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='table--basic' />
+Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
+
+Bentley makes extensive use of tables and data grids throughout its web applications. Use the following flexible grid format below in most circumstances as it provides functionality “built in” to the design, and because users learning how to consistently sort, filter, and search tables is an important skill to leverage.
+
+## Usage
+
+The most basic `Table` can be implemented by passing three props:
+
+- `data`: an array containing table data displayed on the table. This array must be memoized.
+- `columns`: an array containing table column objects. Each column object require to have a `Header`, which will be displayed as a column title, and `id`.
+- `emptyTableContent`: a JSX element table content shown when there is no data.
 
 <LiveExample src='Table.main.jsx'>
   <AllExamples.TableMainExample client:load />
 </LiveExample>
 
-Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
+**Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see this [doc](https://react-table.tanstack.com/docs/api/overview).
 
-Bentley makes extensive use of tables and data grids throughout its web applications. Use the following flexible grid format below in most circumstances as it provides functionality “built in” to the design, and because users learning how to consistently sort, filter, and search tables is an important skill to leverage.
+## Subrows
+
+Each table row can be expanded t
+
+<LiveExample src='Table.subRows.jsx'>
+  <AllExamples.TableSubRowsExample client:load />
+</LiveExample>
+
+## Expandable content
+
+## Virtualization
+
+## Selection
 
 ## Props
 
