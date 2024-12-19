@@ -63,13 +63,15 @@
   --iui-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
   --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
 
-  --iui-color-text-informational: var(--kiwi-color-text-info-base);
+  --iui-color-text-informational: var(--kiwi-color-text-info-faded);
+  --iui-color-text-positive: var(--kiwi-color-text-positive-faded);
+  --iui-color-text-warning: var(--kiwi-color-text-attention-faded);
+  --iui-color-text-negative: var(--kiwi-color-text-critical-faded);
+
+  // TODO: status-hover variables are not being used anywhere in iTwinUi v3. Investigate.
   --iui-color-text-informational-hover: var(--iui-color-text-informational);
-  --iui-color-text-positive: var(--kiwi-color-text-positive-base);
   --iui-color-text-positive-hover: var(--iui-color-text-positive);
-  --iui-color-text-warning: var(--kiwi-color-text-attention-base);
   --iui-color-text-warning-hover: var(--iui-color-text-warning);
-  --iui-color-text-negative: var(--kiwi-color-text-critical-base);
   --iui-color-text-negative-hover: var(--iui-color-text-negative);
 
   --iui-color-text: var(--kiwi-color-text-neutral-primary);
@@ -135,17 +137,16 @@
   /* Anchor */
 
   .iui-anchor {
-    transition:
-      color 150ms ease-out,
-      text-decoration-color 150ms ease-out;
+    // TODO: use underline prop
     text-decoration: underline;
-
-    &:where(:not([data-iui-status])) {
-      color: var(--kiwi-color-text-neutral-primary);
-    }
 
     &:where(:hover) {
       text-decoration-color: transparent;
+    }
+
+    // Neutral color instead of accent
+    &:where(:not([data-iui-status])) {
+      color: var(--kiwi-color-text-neutral-primary);
     }
   }
 
