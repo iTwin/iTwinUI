@@ -14,7 +14,6 @@
   --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
   --iui-color-background-accent-muted: var(--kiwi-color-bg-glow-on-surface-accent-hover);
-  --iui-color-background-transparent-hover: transparent;
 
   --iui-color-border-foreground: var(--kiwi-color-border-mono-muted);
   --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
@@ -93,7 +92,6 @@
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
     --_iui-field-color-text-hover: var(--_iui-field-color-text);
     --_iui-field-color-icon-hover: var(--_iui-field-color-icon);
-    --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-icon-disabled-hover: var(--_iui-field-color-icon-disabled);
     --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
 
@@ -435,7 +433,6 @@
 
   .iui-breadcrumbs {
     --_iui-breadcrumbs-content-color-default: var(--iui-color-text);
-    --_iui-breadcrumbs-content-color-current: var(--kiwi-color-text-accent-strong);
     --_iui-breadcrumbs-content-color-link-hover: var(--_iui-breadcrumbs-content-color-default);
 
     .iui-breadcrumbs-content {
