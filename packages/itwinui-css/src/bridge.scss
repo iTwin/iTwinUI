@@ -102,20 +102,12 @@
   /* Breadcrumbs */
 
   .iui-breadcrumbs {
+    // Neutral color instead of accent
     --_iui-breadcrumbs-content-color-default: var(--iui-color-text);
-    --_iui-breadcrumbs-content-color-link-hover: var(--_iui-breadcrumbs-content-color-default);
 
     .iui-breadcrumbs-content {
-      // Workaround since iTwinUI doesn't style its spans that are aria-current.
-      &[aria-current] {
-        color: var(--_iui-breadcrumbs-content-color-current);
-      }
-
-      // For any non iui-anchor links
+      // Manually add underline for any non iui-anchor links (since we don't have underline prop)
       &:any-link {
-        transition:
-          color 150ms ease-out,
-          text-decoration-color 150ms ease-out;
         text-decoration: underline;
 
         &:where(:hover) {
