@@ -49,9 +49,10 @@ const cssCode = await (async () => {
   <template shadowrootmode='open'>
     <style is:inline>
       astro-island {
-        display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+        display: flex !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
         width: 650px;
-        text-align: center;
+        justify-content: center;
+        align-items: center;
       }
     </style>
     <style set:html={cssCode}></style>
