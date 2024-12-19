@@ -1240,6 +1240,14 @@ const TableExpandableContentExample = withThemeProvider(
 );
 export { TableExpandableContentExample };
 
+import { default as TableSelectMultiExampleRaw } from './Table.selectMulti';
+const TableSelectMultiExample = withThemeProvider(TableSelectMultiExampleRaw);
+export { TableSelectMultiExample };
+
+import { default as TableSelectSingleExampleRaw } from './Table.selectSingle';
+const TableSelectSingleExample = withThemeProvider(TableSelectSingleExampleRaw);
+export { TableSelectSingleExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';

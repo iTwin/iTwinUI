@@ -69,11 +69,19 @@ The `Table` component allows end users to customize their own expandable content
 
 ## Virtualization
 
+For tables with large datasets, the `enableVirtualization` prop can be set to `true` to enhance performance by only rendering the rows that are currently in the viewport.
+
 <LiveExample src='Table.virtualization.jsx'>
   <AllExamples.TableVirtualizationExample client:load />
 </LiveExample>
 
 ## Selection
+
+There are two available selection modes, `"single"` and `"multi"`.
+
+<LiveExample src='Table.selectMulti.jsx'>
+  <AllExamples.TableSelectMultiExample client:load />
+</LiveExample>
 
 ## Props
 

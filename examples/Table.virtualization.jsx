@@ -44,6 +44,7 @@ export default () => {
         columns={columns}
         emptyTableContent='No data.'
         data={data}
+        style={{ height: '300px' }}
         enableVirtualization
       />
     </div>
