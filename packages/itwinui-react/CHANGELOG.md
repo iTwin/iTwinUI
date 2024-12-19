@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.16.2
+
+### Patch Changes
+
+- [#2378](https://github.com/iTwin/iTwinUI/pull/2378): Fixed folder variant `Tile`'s broken layout when it has a long name.
+
+## 3.16.1
+
+### Patch Changes
+
+- [#2362](https://github.com/iTwin/iTwinUI/pull/2362): `Select` with "small" size now has the same height (`24px`) as other input elements with "small" size (e.g. `ComboBox`)
+- [#2370](https://github.com/iTwin/iTwinUI/pull/2370): Fixed `Panels` animations not working in some rare cases.
+- [#2374](https://github.com/iTwin/iTwinUI/pull/2374): Fixed `HeaderButton`'s `startIcon` and `endIcon` fill color.
+- [#2359](https://github.com/iTwin/iTwinUI/pull/2359): `Tooltip` now remains visible when hovered up to `4px` outside its border.
+
 ## 3.16.0
 
 ### Minor Changes
