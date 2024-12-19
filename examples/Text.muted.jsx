@@ -6,5 +6,10 @@ import * as React from 'react';
 import { Text } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Text isMuted>This is a muted text</Text>;
+  return (
+    <Flex>
+      <Text>This is a regular text</Text>
+      <Text isMuted>This is a muted text</Text>
+    </Flex>
+  );
 };
