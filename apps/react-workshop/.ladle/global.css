@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-@layer reset, kiwi, itwinui;
+@layer reset, kiwi, variables, itwinui;
 
 @import '@itwin/itwinui-variables' layer(variables);
 
