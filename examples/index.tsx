@@ -1234,6 +1234,12 @@ const TableVirtualizationExample = withThemeProvider(
 );
 export { TableVirtualizationExample };
 
+import { default as TableExpandableContentExampleRaw } from './Table.expandableContent';
+const TableExpandableContentExample = withThemeProvider(
+  TableExpandableContentExampleRaw,
+);
+export { TableExpandableContentExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';

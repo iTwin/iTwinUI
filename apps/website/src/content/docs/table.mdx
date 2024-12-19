@@ -24,9 +24,34 @@ The most basic `Table` can be implemented by passing three props:
 
 **Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see this [doc](https://react-table.tanstack.com/docs/api/overview).
 
-## Subrows
+## Subrow
 
-Each table row can be expanded t
+The `Table` component supports hierarchical data structures, allowing end users to display subrows, which can be expanded or collapsed. Each data entry in the `data` array should have `subRows` array.
+
+```jsx
+const data = React.useMemo(() => {
+  return [
+    {
+      name: 'Row 1',
+      description: 'Description',
+      subRows: [{ name: 'Subrow 1', description: 'Description 1' }],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description',
+      subRows: [
+        {
+          name: 'Subrow 2',
+          description: 'Description 2',
+          subRows: [{ name: 'Subrow 2.1', description: 'Description 2.1' }],
+        },
+      ],
+    },
+  ];
+}, []);
+```
+
+If subrows has any items, then expander will be shown for that row. This feature is useful for displaying related data in a structured and organized manner.
 
 <LiveExample src='Table.subRows.jsx'>
   <AllExamples.TableSubRowsExample client:load />
@@ -34,7 +59,19 @@ Each table row can be expanded t
 
 ## Expandable content
 
+The `Table` component allows end users to customize their own expandable content within rows by rendering a JSX element using the `subComponent` prop. This feature enables end users to provide additional details or complex data structures in a desired format that can be revealed when a row is expanded.
+
+<LiveExample src='Table.expandableContent.jsx'>
+  <AllExamples.TableExpandableContentExample client:load />
+</LiveExample>
+
+**Note**: As there are features that are designed exclusively for expandable content but not for subrows and vice versa, these two features cannot be passed into the `Table` at the same time.
+
 ## Virtualization
+
+<LiveExample src='Table.virtualization.jsx'>
+  <AllExamples.TableVirtualizationExample client:load />
+</LiveExample>
 
 ## Selection
 
