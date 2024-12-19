@@ -47,7 +47,7 @@
 
   --iui-color-border-accent: var(--kiwi-color-border-accent-strong);
 
-  --iui-color-icon-accent: var(--kiwi-color-icon-accent-base);
+  --iui-color-icon-accent: var(--kiwi-color-icon-accent-strong);
   --iui-color-icon-informational: var(--kiwi-color-icon-info-base);
   --iui-color-icon-positive: var(--kiwi-color-icon-positive-base);
   --iui-color-icon-warning: var(--kiwi-color-icon-attention-base);
@@ -84,48 +84,27 @@
   /* ---------------------------------------------------------------------------- */
   /* Button */
 
-  .iui-field:not([data-iui-status]) {
-    --_iui-field-color-focus-outline: var(--kiwi-color-border-accent-strong);
-  }
-
+  // TODO: Border for all disabled buttons should match bg
   .iui-button {
+    // This is needed because for CTA buttons, border-hover variables are set to bg variables
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
-    --_iui-field-color-text-hover: var(--_iui-field-color-text);
+
+    // TODO: add comment
     --_iui-field-color-icon-hover: var(--_iui-field-color-icon);
-    --_iui-field-color-icon-disabled-hover: var(--_iui-field-color-icon-disabled);
-    --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
 
-    &:where(:not([data-iui-active='true']):not(.iui-tile-thumbnail-button)) {
-      --_iui-field-color-background: var(--kiwi-color-bg-neutral-base);
-      --_iui-field-color-background-disabled: var(--_iui-field-color-background);
+    // TODO: verify if these are needed
+    // --_iui-field-color-text-hover: var(--_iui-field-color-text);
+    // --_iui-field-color-icon-disabled-hover: var(--_iui-field-color-icon-disabled);
+    // --_iui-field-color-text-disabled-hover: var(--kiwi-color-text-neutral-disabled);
 
-      --_iui-field-color-border: var(--kiwi-color-border-neutral-base);
-      --_iui-field-color-border-disabled: var(--_iui-field-color-border);
-
-      --_iui-field-color-text: var(--kiwi-color-text-neutral-primary);
-      --_iui-field-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
-
-      --_iui-field-color-icon: var(--kiwi-color-icon-neutral-base);
-      --_iui-field-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
-    }
-
-    &:where([data-iui-active='true']) {
-      --_iui-field-color-icon: var(--kiwi-color-icon-accent-strong);
-    }
-
-    &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
+    // CTA variant should use the same colors as high-visibility instead of using "positive" colors
+    &:where([data-iui-variant='cta']) {
       --_iui-field-color-background: var(--kiwi-color-bg-accent-base);
+      --_iui-field-color-background-hover: var(--_iui-field-color-background);
       --_iui-field-color-background-disabled: var(--kiwi-color-bg-neutral-base);
-      --_iui-field-color-border-disabled: var(--kiwi-color-border-neutral-base);
       --_iui-field-color-icon: var(--kiwi-color-icon-neutral-emphasis);
       --_iui-field-color-border: var(--kiwi-color-border-accent-base);
-    }
-
-    &:where([data-iui-variant='borderless']) {
-      --_iui-field-color-background: transparent;
-      --_iui-field-color-background-disabled: transparent;
-      --_iui-field-color-border: transparent;
-      --_iui-field-color-border-disabled: transparent;
+      --_iui-field-color-border-disabled: var(--_iui-field-color-background-disabled);
     }
   }
 
