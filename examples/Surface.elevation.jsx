@@ -7,7 +7,7 @@ import { Surface } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
+    <div>
       <div className='demo-container'>
         <Surface elevation={0} className='demo-card'>
           <p>Elevation 0 (0dp)</p>
@@ -30,6 +30,6 @@ export default () => {
           <p>Elevation 5 (24dp)</p>
         </Surface>
       </div>
-    </>
+    </div>
   );
 };
