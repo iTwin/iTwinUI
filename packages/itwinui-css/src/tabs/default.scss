@@ -81,7 +81,7 @@
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-border-positive);
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 
   ~ .iui-tabs-content {
