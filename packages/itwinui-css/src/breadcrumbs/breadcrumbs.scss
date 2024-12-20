@@ -6,11 +6,7 @@
 
 .iui-breadcrumbs {
   --_iui-breadcrumbs-height: var(--iui-component-height);
-
   --_iui-breadcrumbs-content-color-default: var(--iui-color-text-accent);
-  --_iui-breadcrumbs-content-color-current: var(--iui-color-text);
-  --_iui-breadcrumbs-content-color-link-hover: var(--iui-color-text-accent-hover);
-  --_iui-breadcrumbs-content-color: var(--_iui-breadcrumbs-content-color-default);
 
   @include mixins.iui-reset;
   display: flex;
@@ -53,7 +49,7 @@
     outline-offset: -1px;
 
     &:hover {
-      --_iui-breadcrumbs-content-color: var(--_iui-breadcrumbs-content-color-link-hover);
+      color: var(--iui-color-text-accent-hover);
       text-decoration: underline;
     }
   }
@@ -61,10 +57,10 @@
   &:where(button, :any-link) {
     @include base.iui-button;
     @include borderless.iui-button-borderless;
-    color: var(--_iui-breadcrumbs-content-color);
+    color: var(--_iui-breadcrumbs-content-color-default);
 
     &[aria-current] {
-      --_iui-breadcrumbs-content-color: var(--_iui-breadcrumbs-content-color-current);
+      color: var(--iui-color-text);
     }
   }
 }
