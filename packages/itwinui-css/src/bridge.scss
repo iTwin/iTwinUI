@@ -134,6 +134,10 @@
     }
   }
 
+  .iui-button-group .iui-button:not([data-iui-variant='borderless']) {
+    --_iui-field-color-border-disabled: var(--iui-color-border-disabled);
+  }
+
   /* ---------------------------------------------------------------------------- */
   /* Checkbox/Radio */
 
