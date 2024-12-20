@@ -4,11 +4,11 @@
 :where([data-iui-bridge='true']) {
   --iui-color-white: var(--kiwi-color-static-white);
 
-  --iui-color-background: var(--kiwi-color-bg-neutral-base);
+  --iui-color-background: var(--kiwi-color-bg-surface-primary);
   --iui-color-background-disabled: var(--kiwi-color-bg-glow-on-surface-disabled);
-  --iui-color-background-zebra: var(--kiwi-color-bg-glow-on-surface-disabled); /* TODO: Not sure */
+  --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--iui-color-background);
-  --iui-color-background-backdrop: var(--kiwi-color-bg-surface-primary);
+  --iui-color-background-backdrop: var(--kiwi-color-bg-surface-secondary);
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
   --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
@@ -30,20 +30,15 @@
   --iui-color-background-negative-hover: var(--iui-color-background-negative);
   --iui-color-background-negative-muted: var(--kiwi-color-bg-critical-muted);
 
-  --iui-color-border-informational: var(--kiwi-color-border-info-base);
-  --iui-color-border-positive: var(--kiwi-color-border-positive-base);
-  --iui-color-border-warning: var(--kiwi-color-border-attention-base);
-  --iui-color-border-negative: var(--kiwi-color-border-critical-base);
+  --iui-color-border-informational: var(--kiwi-color-border-info-faded);
+  --iui-color-border-positive: var(--kiwi-color-border-positive-faded);
+  --iui-color-border-warning: var(--kiwi-color-border-attention-faded);
+  --iui-color-border-negative: var(--kiwi-color-border-critical-faded);
 
   --iui-color-border: var(--kiwi-color-border-neutral-base);
   --iui-color-border-hover: var(--iui-color-border);
   --iui-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
-
-  /* TODO: Not sure. E.g. --kiwi-color-border-neutral-muted for Surface is an issue since
-    border-neutral-muted === bg-neutral-base. So border is invisible. So, should we use -faded instead? Same problem I
-    think with Divider (iui-color-border-subtle) inside of a Surface (iui-color-background) */
-  --iui-color-border-subtle: var(--kiwi-color-border-neutral-base);
-
+  --iui-color-border-subtle: var(--kiwi-color-border-neutral-muted);
   --iui-color-border-accent: var(--kiwi-color-border-accent-strong);
 
   --iui-color-icon-accent: var(--kiwi-color-icon-accent-strong);
@@ -114,6 +109,10 @@
           text-decoration-color: transparent;
         }
       }
+    }
+
+    .iui-breadcrumbs-content:not([aria-current]) {
+      color: var(--iui-color-text-accent);
     }
   }
 
