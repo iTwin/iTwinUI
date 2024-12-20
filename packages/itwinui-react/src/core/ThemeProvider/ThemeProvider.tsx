@@ -40,6 +40,14 @@ export type ThemeOptions = {
    * Will default to user preference if browser supports it.
    */
   highContrast?: boolean;
+  /**
+   * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) *whenever possible*.
+   *
+   * This is useful in making apps looks like future versions of iTwinUI to help with incremental adoption.
+   *
+   * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
+   */
+  bridgeToFutureVersions?: boolean;
 };
 
 export type ThemeType = 'light' | 'dark' | 'os';
@@ -60,7 +68,10 @@ type RootProps = {
    * @default 'inherit'
    */
   theme?: ThemeType | 'inherit';
-  themeOptions?: Pick<ThemeOptions, 'highContrast'> & {
+  themeOptions?: Pick<
+    ThemeOptions,
+    'highContrast' | 'bridgeToFutureVersions'
+  > & {
     /**
      * Whether or not the element should apply the recommended `background-color` on itself.
      *
@@ -164,6 +175,11 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
+  themeOptions.bridgeToFutureVersions ??=
+    themeProp === 'inherit'
+      ? parent.context?.themeOptions?.bridgeToFutureVersions
+      : undefined;
+
   const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
 
   const contextValue = React.useMemo(
@@ -251,6 +267,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
+      data-iui-bridge={themeOptions?.bridgeToFutureVersions ? true : undefined}
       ref={forwardedRef}
       {...rest}
     >
