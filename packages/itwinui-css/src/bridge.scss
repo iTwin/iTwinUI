@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-:where([data-iui-bridge='true']) {
+.iui-root:where([data-iui-bridge='true']) {
   --iui-color-white: var(--kiwi-color-static-white);
 
   --iui-color-background: var(--kiwi-color-bg-surface-primary);
@@ -75,12 +75,18 @@
   --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
 
   /* TODO: Handle hsl */
+  &[data-iui-theme='dark'] {
+    --iui-color-background-hsl: 209.99deg 9.99% 15.69%;
+    --iui-color-foreground-hsl: 240deg 100% 9.8%;
+    --iui-color-accent-hsl: var(--iui-color-informational-hsl);
+    --iui-color-informational-hsl: 208.91deg 100% 43.14%;
+  }
 
   /* ---------------------------------------------------------------------------- */
   /* Anchor */
 
   .iui-anchor {
-    // TODO: use underline prop
+    // TODO: Potentially, use underline prop
     text-decoration: underline;
 
     &:where(:hover) {
