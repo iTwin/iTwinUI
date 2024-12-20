@@ -103,12 +103,69 @@ Multi-row selection can be enabled by setting the `selectionMode` prop to `"mult
 
 ## Density
 
-There are three available density modes which define the height of each row: `"default"`, `"condensed"`, and `"extra-condensed"`.
+There are three available density options which define the height of each row: `"default"`, `"condensed"`, and `"extra-condensed"`.
 
 <LiveExample src='Table.density.jsx'>
   <AllExamples.TableDensityExample client:load />
 </LiveExample>
 
+## Pagination
+
+The `Table` component supports pagination, which allows end users to divide large datasets into pages. This feature enhances the user experience by making it easier to navigate, view and manage data in smaller and manageable chunks.
+
+### Page size
+
+A memoized variable can be used to hold a list of page size options.
+
+```jsx
+const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+```
+
+The initial page size can be set using the `pageSize` prop, which defaults to 25. Additionally, the `initialState` prop can be used to specify the initial page size by setting a page size number to its `pageSize` option.
+
+```jsx {6}
+<Table
+  /*…*/
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  pageSize={10}
+/>
+```
+
+```jsx {6}
+<Table
+  /*…*/
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  initialSize={{ pageSize: 50 }}
+/>
+```
+
+### Paginator
+
+The `paginatorRenderer` can be used to take this page size list and render the corresponding selected rows per page as users change the option.
+
+```jsx
+const paginator = React.useCallback(
+  (props) => <TablePaginator {...props} pageSizeList={pageSizeList} />,
+  [pageSizeList],
+);
+```
+
+This prop is a function that takes `TablePaginatorRendererProps` as an argument and returns pagination component. It is highly recommended that the [`TablePaginator`](#tablepaginator) is returned by this function to handle all state management as it is efficient enough for basic use-cases.
+
+<LiveExample src='Table.pagination.jsx'>
+  <AllExamples.TablePaginationExample client:load />
+</LiveExample>
+
 ## Props
 
+### Table
+
 <PropsTable path='@itwin/itwinui-react/esm/core/Table/Table.d.ts' />
+
+### TablePaginator
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Table/TablePaginator.d.ts' />

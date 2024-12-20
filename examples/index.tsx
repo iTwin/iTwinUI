@@ -1252,6 +1252,10 @@ import { default as TableDensityExampleRaw } from './Table.density';
 const TableDensityExample = withThemeProvider(TableDensityExampleRaw);
 export { TableDensityExample };
 
+import { default as TablePaginationExampleRaw } from './Table.pagination';
+const TablePaginationExample = withThemeProvider(TablePaginationExampleRaw);
+export { TablePaginationExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';
