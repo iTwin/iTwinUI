@@ -12,7 +12,7 @@
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
   --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
-  --iui-color-background-accent-muted: var(--kiwi-color-bg-accent-muted);
+  --iui-color-background-accent-muted: var(--kiwi-color-bg-glow-on-surface-accent-pressed);
 
   --iui-color-border-foreground: var(--kiwi-color-border-mono-muted);
   --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
@@ -74,12 +74,26 @@
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
   --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
 
-  /* TODO: Handle hsl */
+  &[data-iui-theme='light'] {
+    --iui-opacity-5: 0.25; // TODO: fix opacity value in iTwinUI v3
+
+    --iui-color-background-hsl: 209.21deg 17.09% 97.27%; // --kiwi-color-bg-surface-primary
+    --iui-color-foreground-hsl: 214.23deg 9.08% 15.9%; // --kiwi-color-text-neutral-primary
+    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --kiwi-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --kiwi-color-icon-info-faded
+    --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --kiwi-color-icon-positive-faded
+    --iui-color-warning-hsl: 39.78deg 94.44% 25.8%; // --kiwi-color-icon-attention-faded
+    --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --kiwi-color-icon-critical-faded
+  }
+
   &[data-iui-theme='dark'] {
-    --iui-color-background-hsl: 209.99deg 9.99% 15.69%;
-    --iui-color-foreground-hsl: 240deg 100% 9.8%;
-    --iui-color-accent-hsl: var(--iui-color-informational-hsl);
-    --iui-color-informational-hsl: 208.91deg 100% 43.14%;
+    --iui-color-background-hsl: 214.23deg 9.08% 15.9%; // --kiwi-color-bg-surface-primary
+    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --kiwi-color-text-neutral-primary
+    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --kiwi-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --kiwi-color-icon-info-faded
+    --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --kiwi-color-icon-positive-faded
+    --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --kiwi-color-icon-attention-faded
+    --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --kiwi-color-icon-critical-faded
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -251,15 +265,6 @@
   // Since iTwinUI v5 progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
     --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* SideNav */
-
-  .iui-sidenav-button {
-    svg {
-      max-inline-size: unset; /* TODO: See how to avoid this workaround when reset layer is there */
-    }
   }
 
   /* ---------------------------------------------------------------------------- */
