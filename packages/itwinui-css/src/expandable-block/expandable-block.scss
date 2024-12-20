@@ -17,6 +17,8 @@
   --_iui-expandable-block-header-focus-offset: -2px;
   --_iui-expandable-block-header-focus-thickness: 2px;
 
+  --_iui-expandable-block-header-caption-color-hover: var(--iui-color-text-hover);
+
   &[data-iui-expanded='true'] {
     --_iui-expandable-block-header-bottom-border-radius: 0;
     --_iui-expandable-block-expander-icon-transform: rotate(90deg);
@@ -80,14 +82,14 @@
 
   &:where(:hover) {
     --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-hover);
-    --_iui-expandable-block-header-caption-color: var(--iui-color-text-hover);
+    --_iui-expandable-block-header-caption-color: var(--_iui-expandable-block-header-caption-color-hover);
     --_iui-expandable-block-header-label-color: var(--iui-color-text-hover);
 
     background-color: var(--_iui-expandable-block-header-background-color-hover);
 
     @media (forced-colors: active) {
       --_iui-expandable-block-expander-icon-fill: Highlight;
-      --_iui-expandable-block-header-caption-color: Highlight;
+      --_iui-expandable-block-header-caption-color-hover: Highlight;
       --_iui-expandable-block-header-label-color: Highlight;
       border-color: Highlight;
     }
