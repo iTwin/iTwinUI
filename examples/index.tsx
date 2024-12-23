@@ -781,9 +781,11 @@ import { default as LabelRequiredExampleRaw } from './Label.required';
 const LabelRequiredExample = withThemeProvider(LabelRequiredExampleRaw);
 export { LabelRequiredExample };
 
-import { default as LabelInlineExampleRaw } from './Label.inline';
-const LabelInlineExample = withThemeProvider(LabelInlineExampleRaw);
-export { LabelInlineExample };
+import { default as LabelDisplayStylesExampleRaw } from './Label.displayStyles';
+const LabelDisplayStylesExample = withThemeProvider(
+  LabelDisplayStylesExampleRaw,
+);
+export { LabelDisplayStylesExample };
 
 // ----------------------------------------------------------------------------
 
