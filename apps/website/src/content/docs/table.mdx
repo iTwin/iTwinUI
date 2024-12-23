@@ -24,7 +24,7 @@ The most basic `Table` can be implemented by passing three props:
 
 **Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see this [doc](https://react-table.tanstack.com/docs/api/overview).
 
-## Subrow
+### Subrow
 
 The `Table` component supports hierarchical data structures, allowing end users to display subrows, which can be expanded or collapsed. Each data entry in the `data` array should have `subRows` array.
 
@@ -57,7 +57,7 @@ If subrows has any items, then expander will be shown for that row. This feature
   <AllExamples.TableSubRowsExample client:load />
 </LiveExample>
 
-## Expandable content
+### Expandable content
 
 The `Table` component allows end users to customize their own expandable content within rows by rendering a JSX element using the `subComponent` prop. This feature enables end users to provide additional details or complex data structures in a desired format that can be revealed when a row is expanded.
 
@@ -67,7 +67,7 @@ The `Table` component allows end users to customize their own expandable content
 
 **Note**: As there are features that are designed exclusively for expandable content but not for subrows and vice versa, these two features cannot be passed into the `Table` at the same time.
 
-## Virtualization
+### Virtualization
 
 For tables with large datasets, the `enableVirtualization` prop can be set to `true` to enhance performance by only rendering the rows that are currently in the viewport. More importantly, height on the table is required for virtualization to work.
 
@@ -75,7 +75,7 @@ For tables with large datasets, the `enableVirtualization` prop can be set to `t
   <AllExamples.TableVirtualizationExample client:load />
 </LiveExample>
 
-## Selection
+### Selection
 
 The `Table` component supports row selection, allowing users to select one or more rows for actions by setting the `isSelectable` prop to `true`.
 
@@ -101,7 +101,7 @@ Multi-row selection can be enabled by setting the `selectionMode` prop to `"mult
   <AllExamples.TableSelectMultiExample client:load />
 </LiveExample>
 
-## Density
+### Density
 
 There are three available density options which define the height of each row: `"default"`, `"condensed"`, and `"extra-condensed"`.
 
@@ -109,11 +109,11 @@ There are three available density options which define the height of each row: `
   <AllExamples.TableDensityExample client:load />
 </LiveExample>
 
-## Pagination
+### Pagination
 
 The `Table` component supports pagination, which allows end users to divide large datasets into pages. This feature enhances the user experience by making it easier to navigate, view and manage data in smaller and manageable chunks.
 
-### Page size
+#### Page size
 
 A memoized variable can be used to hold a list of page size options.
 
@@ -143,7 +143,7 @@ The initial page size can be set using the `pageSize` prop, which defaults to 25
 />
 ```
 
-### Paginator
+#### Paginator
 
 The `paginatorRenderer` can be used to take this page size list and render the corresponding selected rows per page as users change the option.
 
@@ -159,6 +159,8 @@ This prop is a function that takes `TablePaginatorRendererProps` as an argument 
 <LiveExample src='Table.pagination.jsx'>
   <AllExamples.TablePaginationExample client:load />
 </LiveExample>
+
+### Editing
 
 ## Props
 
