@@ -227,6 +227,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   font-size: var(--iui-font-size-2);
   color: var(--_iui-tile-title-text-color);
   padding-inline: var(--iui-size-s);
+  overflow-wrap: anywhere;
 }
 
 @mixin iui-tile-status-icon {
