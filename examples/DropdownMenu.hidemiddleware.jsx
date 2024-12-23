@@ -29,7 +29,7 @@ export default () => {
   const items = new Array(30).fill(0);
 
   return (
-    <Surface className='demo-container'>
+    <Surface>
       <Surface.Body as={List} className='list'>
         {items.map((_, i) => (
           <ListItem key={i}>
