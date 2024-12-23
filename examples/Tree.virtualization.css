@@ -1,5 +1,5 @@
 .demo-tree {
   width: min(100%, 260px);
-  height: 100%;
+  height: 300px;
   overflow: auto;
 }
