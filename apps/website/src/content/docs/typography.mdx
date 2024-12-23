@@ -8,7 +8,7 @@ thumbnail: Typography
 
 ## Text
 
-The `Text` component is a [polymorphic](#polymorphic) typography component that can be used to render any kind of text as any kind of element.
+`Text` is a [polymorphic](#polymorphic) typography component that can be used to render any kind of text as any kind of element.
 
 ```jsx
 <Text>This is a text.</Text>
@@ -29,6 +29,14 @@ The `variant` prop can be used to determine which type of typography size should
   <AllExamples.TextVariantExample client:load />
 </LiveExample>
 
+### Polymorphic (Only semantics and not size)
+
+The `Text` component supports the polymorphic `as`, allowing end users to render the text as a specific heading level while maintaining a desired size. This provides users the flexibility to control both the visual style and underlying HTML element used for rendering the texts.
+
+<LiveExample src='Text.polymorphic.jsx' truncate={false}>
+  <AllExamples.TextPolymorphicExample client:load />
+</LiveExample>
+
 ### Muted
 
 To achieve a muted or desaturated text effect, the `isMuted` prop can be passed into the component. Muted text helps differentiating less important information as well as enhancing the overall readability.
@@ -45,23 +53,13 @@ To indicate that content is loading and will be available soon, you can use the 
   <AllExamples.TextSkeletonExample client:load />
 </LiveExample>
 
-### Polymorphic (Only semantics and not size)
-
-The `Text` component supports the polymorphic `as`, allowing end users to render the text as a specific heading level while maintaining a desired size. This provides users the flexibility to control both the visual style and underlying HTML element used for rendering the texts.
-
-<LiveExample src='Text.polymorphic.jsx' truncate={false}>
-  <AllExamples.TextPolymorphicExample client:load />
-</LiveExample>
-
 ### Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Typography/Text.d.ts' />
 
 ## Label
 
-The `Label` component is a fundamental element that provides descriptive text or captions for form inputs. It can be used with `Input` components by setting the `htmlFor` attribute to match the `id` of the corresponding input element.
-
-This association enhances accessibility by ensuring that screen readers and other assistive technologies can correctly identify the relationship between the label and the input field.
+`Label` corresponds to an HTML `<label>` and can be linked to an `Input` by matching `Label`'s `htmlFor` with `Input`'s `id` for better accessibility, ensuring assistive technologies correctly identify their relationship.
 
 <LiveExample src='Label.main.jsx'>
   <AllExamples.LabelMainExample client:load />
@@ -69,7 +67,7 @@ This association enhances accessibility by ensuring that screen readers and othe
 
 ### Required
 
-To create a required label, end users can pass the `required` prop into the `Label` to indicate the visual indicator (\*) the component.
+To make the form field required, you can pass the `required` prop. This also adds the `*` next to the label.
 
 <LiveExample src='Label.required.jsx'>
   <AllExamples.LabelRequiredExample client:load />
@@ -84,14 +82,6 @@ There are two available display styles:
 
 <LiveExample src='Label.inline.jsx'>
   <AllExamples.LabelInlineExample client:load />
-</LiveExample>
-
-### Polymorphic
-
-The `as` prop allows the `Label` component to be rendered as a different element while maintaining its styling. This increases the reusability and versatility of the `Label` by removing the default behaviors of the HTML `label` element, such as navigating the focus to the input when clicked.
-
-<LiveExample src='Label.polymorphic.jsx'>
-  <AllExamples.LabelPolymorphicExample client:load />
 </LiveExample>
 
 ### Props
