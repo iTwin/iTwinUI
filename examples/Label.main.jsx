@@ -7,9 +7,9 @@ import { Flex, Input, Label } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex className='demo-container'>
+    <>
       <Label htmlFor='text-input'>Name:</Label>
       <Input id='text-input' placeholder='Enter name' />
-    </Flex>
+    </>
   );
 };

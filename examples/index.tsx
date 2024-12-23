@@ -785,10 +785,6 @@ import { default as LabelInlineExampleRaw } from './Label.inline';
 const LabelInlineExample = withThemeProvider(LabelInlineExampleRaw);
 export { LabelInlineExample };
 
-import { default as LabelPolymorphicExampleRaw } from './Label.polymorphic';
-const LabelPolymorphicExample = withThemeProvider(LabelPolymorphicExampleRaw);
-export { LabelPolymorphicExample };
-
 // ----------------------------------------------------------------------------
 
 import { default as LinkActionMainExampleRaw } from './LinkAction.main';
