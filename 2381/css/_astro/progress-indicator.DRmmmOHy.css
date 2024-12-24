@@ -1,0 +1,1 @@
+section[id^=demo]{display:flex;flex-direction:column;gap:var(--iui-size-l);width:auto}#demo-radial-determinate>*,#demo-radial-indeterminate>*{display:flex;gap:var(--iui-size-m)}.demo-overlay-wrapper{border:1px solid var(--iui-color-border);position:relative}.demo-overlay-content{padding:var(--iui-size-s)}
