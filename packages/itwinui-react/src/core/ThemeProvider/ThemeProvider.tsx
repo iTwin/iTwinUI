@@ -161,7 +161,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     themeOptions = {},
     portalContainer: portalContainerProp,
     includeCss = themeProp === 'inherit',
-    future: futureProp,
+    future = {},
     ...rest
   } = props;
 
@@ -180,7 +180,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  const future = futureProp ?? {};
   future.themeBridge ??=
     themeProp === 'inherit' ? parent.context?.future?.themeBridge : undefined;
 
