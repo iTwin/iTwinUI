@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.16.2",
+  "version": "3.16.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -134,8 +134,8 @@
     "vitest": "^1.2.1"
   },
   "peerDependencies": {
-    "react": ">= 17.0.0 < 19.0.0",
-    "react-dom": ">=17.0.0 < 19.0.0"
+    "react": ">=17.0.0 <19.0.0",
+    "react-dom": ">=17.0.0 <19.0.0"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
