@@ -16,6 +16,7 @@ import {
   useWarningLogger,
   useLayoutEffect,
   useLatestRef,
+  getReactVersionSafeInertProp,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -221,7 +222,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header-title`}
           role='group'
-          {...{ inert: isInert ? '' : undefined }}
+          {...getReactVersionSafeInertProp(isInert)}
           data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
         >
