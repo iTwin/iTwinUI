@@ -3,13 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { ThemeOptions, ThemeType } from './ThemeProvider.js';
+import type {
+  FutureOptions,
+  ThemeOptions,
+  ThemeType,
+} from './ThemeProvider.js';
 
 export const ThemeContext = React.createContext<
   | {
       theme?: ThemeType;
       themeOptions?: ThemeOptions;
       portalContainer?: HTMLElement | null;
+      future?: FutureOptions;
     }
   | undefined
 >(undefined);
