@@ -49,7 +49,7 @@
 
   --iui-color-icon: var(--kiwi-color-icon-neutral-base);
   --iui-color-icon-hover: var(--iui-color-icon);
-  --iui-color-icon-muted: var(--kiwi-color-icon-neutral-secondary); /* TODO: or --kiwi-color-icon-neutral-muted? */
+  --iui-color-icon-muted: var(--kiwi-color-icon-neutral-secondary);
   --iui-color-icon-muted-hover: var(--iui-color-icon-muted);
   --iui-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
   --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
@@ -67,7 +67,7 @@
 
   --iui-color-text: var(--kiwi-color-text-neutral-primary);
   --iui-color-text-hover: var(--iui-color-text);
-  --iui-color-text-accent: var(--kiwi-color-text-accent-strong); /* TODO: -accent-strong or -accent-base? */
+  --iui-color-text-accent: var(--kiwi-color-text-accent-strong);
   --iui-color-text-accent-hover: var(--iui-color-text-accent);
   --iui-color-text-muted: var(--kiwi-color-text-neutral-secondary);
   --iui-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
@@ -100,7 +100,7 @@
   /* Anchor */
 
   .iui-anchor {
-    // TODO: Potentially, use underline prop
+    // TODO: Potentially, use underline prop.
     text-decoration: underline;
 
     &:where(:hover) {
@@ -193,13 +193,12 @@
     }
   }
 
-  /* TODO: ITwinUI variables */
   .iui-checkbox-wrapper {
     &:not(:where([data-iui-status])) {
       color: var(--kiwi-color-text-neutral-secondary);
     }
 
-    &:is([data-iui-disabled='true'], .iui-disabled) {
+    &[data-iui-disabled='true'] {
       color: var(--kiwi-color-text-neutral-disabled);
     }
   }
@@ -253,7 +252,7 @@
 
   .iui-input:not([role='combobox']) {
     // Since iTwinUI v5 input background colors are different from global values
-    --_iui-field-color-background: var(--kiwi-color-bg-surface-base); /* TODO: bg-neutral-primary or bg-neutral-base */
+    --_iui-field-color-background: var(--kiwi-color-bg-surface-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-background-disabled: var(--kiwi-color-bg-surface-base);
   }
@@ -270,10 +269,6 @@
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
     --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
   }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Surface */
-  /* TODO: Confirm if Surface needs to use the kiwi variables starting with --kiwi-color-bg-surface-xyz */
 
   /* ---------------------------------------------------------------------------- */
   /* Slider */
@@ -336,27 +331,14 @@
   /* ---------------------------------------------------------------------------- */
   /* ToggleSwitch */
 
-  // TODO: Simplify
   .iui-toggle-switch {
-    --iui-color-background: var(--kiwi-color-bg-surface-primary); /* TODO: Variable */
-
-    &:checked {
-      &:not(:disabled) {
-        border-color: var(--kiwi-color-border-accent-base);
-      }
+    &:checked:not(:disabled) {
+      border-color: var(--kiwi-color-border-accent-base);
     }
 
-    &:where([disabled], :disabled, [aria-disabled='true']) {
-      &::after {
-        box-shadow: none;
-        background-color: var(--kiwi-color-icon-neutral-disabled);
-      }
+    &:disabled {
+      background-color: var(--iui-color-background);
     }
-  }
-
-  .iui-toggle-switch:disabled {
-    background-color: var(--kiwi-color-bg-surface-primary);
-    border-color: var(--kiwi-color-border-glow-on-surface-disabled);
   }
 
   .iui-toggle-switch-wrapper {
@@ -375,13 +357,5 @@
     background-color: var(--kiwi-color-bg-surface-emphasis);
     border-color: var(--kiwi-color-border-surface-primary);
     box-shadow: var(--kiwi-shadow-tooltip-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Icon */
-
-  .iui-svg-icon {
-    /* TODO: icon-neutral-base or text-neutral-primary */
-    --_iui-svg-icon-fill-default: var(--kiwi-color-icon-neutral-base);
   }
 }
