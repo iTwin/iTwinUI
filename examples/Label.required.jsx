@@ -3,13 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Flex, Input, Label } from '@itwin/itwinui-react';
+import { Input, Label } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
-      <Label htmlFor='text-input'>Name:</Label>
+    <div className='demo-container'>
+      <Label htmlFor='text-input' required>
+        Name:
+      </Label>
       <Input id='text-input' placeholder='Enter name' />
-    </>
+    </div>
   );
 };
