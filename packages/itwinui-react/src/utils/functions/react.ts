@@ -26,7 +26,11 @@ export const cloneElementWithRef = (
   const props = getProps(children);
   const ref = mergeRefs(
     ...[
-      'ref' in children ? (children as any).ref : null,
+      'ref' in children.props
+        ? children.props.ref
+        : 'ref' in children
+          ? children.ref
+          : null,
       'ref' in props ? props.ref : null,
     ].filter(Boolean),
   );
