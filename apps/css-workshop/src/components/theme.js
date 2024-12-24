@@ -139,9 +139,15 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelector(
       `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
     ).checked = true;
-    document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
-    document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
-    document.body.classList.toggle('iui-root', true);
+
+    const root = document.body;
+    const v5Root = document.documentElement;
+    const theme = prefersDark ? 'dark' : 'light';
+
+    root.dataset.iuiTheme = theme;
+    v5Root.dataset.colorScheme = theme;
+    root.dataset.iuiContrast = prefersHC ? 'high' : undefined;
+    root.classList.toggle('iui-root', true);
   }
 
   changeTheme = ({ target: { value: _theme } }) => {

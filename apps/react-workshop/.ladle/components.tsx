@@ -37,9 +37,6 @@ export const Provider: GlobalProvider = ({ children }) => {
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-
-    document.body.dataset.iuiTheme = theme;
-    document.body.dataset.iuiBridge = futureThemeBridge;
   }, [theme, highContrast, futureThemeBridge]);
 
   // redirect old storybook paths to new ones
