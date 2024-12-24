@@ -53,7 +53,7 @@ const slug = Astro.url.pathname.replace('/', '');
     <slot name='head' />
   </head>
 
-  <body class='iui-root' data-iui-theme='dark'>
+  <body class='iui-root' data-iui-theme>
     <ITwinUIV5Root client:load colorScheme='dark' density='dense' />
     <theme-button></theme-button>
     <slot />
