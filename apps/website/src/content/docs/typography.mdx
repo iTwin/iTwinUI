@@ -14,24 +14,28 @@ thumbnail: Typography
 <Text>This is a text.</Text>
 ```
 
+The `Text` component includes a `variant` prop that allows you to adjust the text size. Available options range from `"headline"` to `"smaller"`, with `"body"` set as the default size. The `as` prop is also provided, which allows you to specify the HTML element to render, defaulting to a `<span>`.
+
 ### Variant (Only size and not semantics)
 
-The `variant` prop can be used to determine which type of typography size should be utilized for the content of the application. The available variants are:
+The `variant` prop can be used to determine the size of the text. The available variants are (from largest to smallest):
 
-- `"headline"`: `<h1>` sized text.
-- `"title"`: `<h2>` sized text.
-- `"subheading"`: `<h3>` sized text.
-- `"leading"`: `<h4>` sized text.
-- `"body"` (default): `<p>` sized text.
-- `"smaller"`: smaller text.
+1. `"headline"`.
+2. `"title"`.
+3. `"subheading"`.
+4. `"leading"`.
+5. `"body"` (default).
+6. `"smaller"`.
 
 <LiveExample src='Text.variant.jsx'>
   <AllExamples.TextVariantExample client:load />
 </LiveExample>
 
+Please note that the `variant` prop only affects the visual size and is completely decoupled from the semantics, which can be controlled using the `as` prop (see below).
+
 ### Polymorphic (Only semantics and not size)
 
-The `Text` component supports the polymorphic `as`, allowing end users to render the text as a specific heading level while maintaining a desired size. This provides users the flexibility to control both the visual style and underlying HTML element used for rendering the texts.
+The `Text` component supports the polymorphic `as` prop, which can be used to change the underlying HTML element. This is useful when you want to render the text as a specific heading level while maintaining a desired size.
 
 <LiveExample src='Text.polymorphic.jsx' truncate={false}>
   <AllExamples.TextPolymorphicExample client:load />
