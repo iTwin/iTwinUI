@@ -86,7 +86,7 @@ type RootProps = {
     applyBackground?: boolean;
   };
   /**
-   * Options to help users migrate to future versions.
+   * Options to help with early adoption of features from future versions.
    */
   future?: FutureOptions;
 };
@@ -190,7 +190,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     () => ({ theme, themeOptions, future }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, JSON.stringify(themeOptions), future],
+    [theme, JSON.stringify(themeOptions), JSON.stringify(future)],
   );
 
   return (

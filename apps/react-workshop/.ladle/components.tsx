@@ -20,8 +20,7 @@ export const Provider: GlobalProvider = ({ children }) => {
   const { globalState, dispatch } = useLadleContext();
   const theme = globalState.theme === 'dark' ? 'dark' : 'light';
   const highContrast = globalState.control?.['high-contrast']?.value;
-  const bridgeToFutureVersions =
-    globalState.control?.['bridgeToFutureVersions']?.value;
+  const futureThemeBridge = globalState.control?.['future.themeBridge']?.value;
 
   // default to OS theme
   React.useLayoutEffect(() => {
@@ -40,8 +39,8 @@ export const Provider: GlobalProvider = ({ children }) => {
       : 'default';
 
     document.body.dataset.iuiTheme = theme;
-    document.body.dataset.iuiBridge = bridgeToFutureVersions;
-  }, [theme, highContrast, bridgeToFutureVersions]);
+    document.body.dataset.iuiBridge = futureThemeBridge;
+  }, [theme, highContrast, futureThemeBridge]);
 
   // redirect old storybook paths to new ones
   React.useEffect(() => {
@@ -63,7 +62,9 @@ export const Provider: GlobalProvider = ({ children }) => {
           themeOptions={{
             applyBackground: false,
             highContrast,
-            bridgeToFutureVersions,
+          }}
+          future={{
+            themeBridge: futureThemeBridge,
           }}
         >
           {children}
@@ -86,8 +87,8 @@ export const argTypes = {
     control: { type: 'boolean' },
     defaultValue: false,
   },
-  bridgeToFutureVersions: {
+  'future.themeBridge': {
     control: { type: 'boolean' },
-    defaultValue: true,
+    defaultValue: false,
   },
 };

@@ -20,7 +20,7 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="theme" value="light-hc" /><span>High contrast light</span></label>
             <label tabindex="-1"><input type="radio" name="theme" value="dark-hc" /><span>High contrast dark</span></label>
             <br />
-            <label tabindex="-1"><input type="checkbox" name="bridge" checked /><span>bridgeToFutureVersions</span></label>
+            <label tabindex="-1"><input type="checkbox" name="theme-bridge" /><span>Theme Bridge</span></label>
           </fieldset>
 
           <fieldset>
@@ -28,7 +28,6 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background</span></label>
             <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background backdrop</span></label>
           </fieldset>
-
         </article>
       </div>
     `;
@@ -155,10 +154,10 @@ class ThemeButton extends HTMLElement {
     v5Root.dataset.colorScheme = theme;
     root.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
     this.shadowRoot.querySelector('#theme-color-scheme').innerHTML = `
-    :host {
-      color-scheme: ${theme.includes('light') ? 'light' : 'dark'};
+      :host {
+        color-scheme: ${theme.includes('light') ? 'light' : 'dark'};
       }
-      `;
+    `;
   };
 
   changeBackground = ({ target: { value: _background } }) => {
@@ -183,7 +182,7 @@ class ThemeButton extends HTMLElement {
     });
 
     this.shadowRoot
-      .querySelector('input[name="bridge"]')
+      .querySelector('input[name="theme-bridge"]')
       .addEventListener('change', this.changeBridge);
   }
 
@@ -197,7 +196,7 @@ class ThemeButton extends HTMLElement {
     });
 
     this.shadowRoot
-      .querySelector('input[name="bridge"]')
+      .querySelector('input[name="theme-bridge"]')
       .removeEventListener('change', this.changeBridge);
   }
 }
