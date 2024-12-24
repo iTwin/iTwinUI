@@ -6,6 +6,7 @@
 
 .iui-breadcrumbs {
   --_iui-breadcrumbs-height: var(--iui-component-height);
+  --_iui-breadcrumbs-content-color-default: var(--iui-color-text-accent);
 
   @include mixins.iui-reset;
   display: flex;
@@ -56,7 +57,7 @@
   &:where(button, :any-link) {
     @include base.iui-button;
     @include borderless.iui-button-borderless;
-    color: var(--iui-color-text-accent);
+    color: var(--_iui-breadcrumbs-content-color-default);
 
     &[aria-current] {
       color: var(--iui-color-text);
