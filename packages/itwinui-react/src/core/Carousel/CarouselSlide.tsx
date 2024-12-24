@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   Box,
+  getReactVersionSafeInertProp,
   mergeEventHandlers,
   useIntersection,
   useMergedRefs,
@@ -59,7 +60,7 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
       aria-roledescription='slide'
       tabIndex={index === currentIndex ? 0 : undefined}
       ref={refs}
-      {...{ inert: index !== currentIndex ? '' : undefined }}
+      {...getReactVersionSafeInertProp(index !== currentIndex)}
       {...rest}
       onKeyDown={mergeEventHandlers(props.onKeyDown, (event) => {
         // prevent default browser scrolling on arrow keys because focus will get lost when slide switches

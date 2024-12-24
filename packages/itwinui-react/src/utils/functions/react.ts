@@ -43,3 +43,14 @@ export const cloneElementWithRef = (
     ref,
   });
 };
+
+/**
+ * Returns an object with `inert` if the `inert` argument is `true`.
+ *
+ * The value of the `inert` prop is adjusted to work with all React versions, including React 19+.
+ */
+export const getReactVersionSafeInertProp = (inert = true) => {
+  const inertValue =
+    Number(React.version.split('.')[0]) >= 19 ? true : undefined;
+  return inert ? { inert: inertValue } : {};
+};
