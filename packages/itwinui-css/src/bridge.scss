@@ -116,9 +116,6 @@
   /* Breadcrumbs */
 
   .iui-breadcrumbs {
-    // Neutral color instead of accent
-    --_iui-breadcrumbs-content-color-default: var(--iui-color-text);
-
     .iui-breadcrumbs-content {
       // Manually add underline for any non iui-anchor links (since we don't have underline prop)
       &:any-link {
@@ -215,7 +212,7 @@
   }
 
   .iui-list-item {
-    // Since iTwinUI v3 has hover background color but iTwinUI v5 doesn't
+    // Disabling hover to keep the code simple
     --_iui-list-item-background-hover: transparent;
   }
 
