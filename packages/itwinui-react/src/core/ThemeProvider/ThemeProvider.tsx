@@ -40,6 +40,9 @@ export type ThemeOptions = {
    * Will default to user preference if browser supports it.
    */
   highContrast?: boolean;
+};
+
+export type FutureOptions = {
   /**
    * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) *whenever possible*.
    *
@@ -47,7 +50,7 @@ export type ThemeOptions = {
    *
    * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
    */
-  bridgeToFutureVersions?: boolean;
+  themeBridge?: boolean;
 };
 
 export type ThemeType = 'light' | 'dark' | 'os';
@@ -62,16 +65,13 @@ type RootProps = {
    *
    * The 'inherit' option is intended to be used by packages, to enable incremental adoption
    * of iTwinUI while respecting the theme set by the consuming app. It will fall back to 'light'
-   * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`
-   * and `portalContainer` (if possible).
+   * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`,
+   * `portalContainer`, and `future.themeBridge` (if possible).
    *
    * @default 'inherit'
    */
   theme?: ThemeType | 'inherit';
-  themeOptions?: Pick<
-    ThemeOptions,
-    'highContrast' | 'bridgeToFutureVersions'
-  > & {
+  themeOptions?: Pick<ThemeOptions, 'highContrast'> & {
     /**
      * Whether or not the element should apply the recommended `background-color` on itself.
      *
@@ -85,9 +85,13 @@ type RootProps = {
      */
     applyBackground?: boolean;
   };
+  /**
+   * Options to help users migrate to future versions.
+   */
+  future?: FutureOptions;
 };
 
-type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
+type ThemeProviderOwnProps = Pick<RootProps, 'theme' | 'future'> & {
   themeOptions?: RootProps['themeOptions'];
   children: Required<React.ReactNode>;
   /**
@@ -157,6 +161,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     themeOptions = {},
     portalContainer: portalContainerProp,
     includeCss = themeProp === 'inherit',
+    future: futureProp,
     ...rest
   } = props;
 
@@ -175,18 +180,17 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  themeOptions.bridgeToFutureVersions ??=
-    themeProp === 'inherit'
-      ? parent.context?.themeOptions?.bridgeToFutureVersions
-      : undefined;
+  const future = futureProp ?? {};
+  future.themeBridge ??=
+    themeProp === 'inherit' ? parent.context?.future?.themeBridge : undefined;
 
   const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions }),
+    () => ({ theme, themeOptions, future }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, JSON.stringify(themeOptions)],
+    [theme, JSON.stringify(themeOptions), future],
   );
 
   return (
@@ -203,6 +207,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
             <MainRoot
               theme={theme}
               themeOptions={themeOptions}
+              future={future}
               ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
               {...rest}
             >
@@ -250,7 +255,7 @@ const MainRoot = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
-  const { theme, children, themeOptions, className, ...rest } = props;
+  const { theme, children, themeOptions, className, future, ...rest } = props;
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
@@ -267,7 +272,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      data-iui-bridge={themeOptions?.bridgeToFutureVersions ? true : undefined}
+      data-iui-bridge={!!future?.themeBridge ? true : undefined}
       ref={forwardedRef}
       {...rest}
     >
@@ -353,6 +358,7 @@ const PortalContainer = React.memo(
     isInheritingTheme,
     theme,
     themeOptions,
+    future,
   }: {
     portalContainerProp: HTMLElement | undefined;
     portalContainerFromParent: HTMLElement | undefined;
@@ -400,6 +406,7 @@ const PortalContainer = React.memo(
         <Root
           theme={theme}
           themeOptions={{ ...themeOptions, applyBackground: false }}
+          future={future}
           data-iui-portal
           style={{ display: 'contents' }}
           ref={setPortalContainer}
