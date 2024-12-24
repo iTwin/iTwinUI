@@ -216,6 +216,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
               <PortalContainer
                 theme={theme}
                 themeOptions={themeOptions}
+                future={future}
                 portalContainerProp={portalContainerProp}
                 portalContainerFromParent={portalContainerFromParent}
                 isInheritingTheme={themeProp === 'inherit'}
