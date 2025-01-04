@@ -48,15 +48,20 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       });
     }
 
-    // A row is considered selected if it is selected AND one of the following:
-    // - `selectSubRows` is false, OR
-    // - the row has no sub-rows, OR
-    // - the row has sub-rows and all of them are selected
+    // A row is considered selected if it satisfies either of these conditions:
+    // - It is selected AND one of the following:
+    //  +) `selectSubRows` is false, OR
+    //  +) the row has no sub-rows, OR
+    //  +) the row has sub-component
+    // - It has sub-rows and all of them are selected
     if (
-      newState.selectedRowIds[row.id] &&
-      (!instance.selectSubRows ||
-        !row.initialSubRows.length ||
-        isAllSubSelected)
+      (newState.selectedRowIds[row.id] &&
+        (!instance.selectSubRows ||
+          !row.initialSubRows.length ||
+          row.initialSubRows[0].original[iuiId as any])) ||
+      (row.initialSubRows.length &&
+        isAllSubSelected &&
+        !row.initialSubRows[0].original[iuiId as any])
     ) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
@@ -65,7 +70,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
   instance.initialRows.forEach((row) => handleRow(row));
 
   const selectedData = getSelectedData(newSelectedRowIds, instance);
-
+  console.log('selectedData', selectedData);
   newState.selectedRowIds = newSelectedRowIds;
   onSelect?.(selectedData, newState);
 };
