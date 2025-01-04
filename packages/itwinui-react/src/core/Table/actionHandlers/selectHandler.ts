@@ -70,7 +70,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
   instance.initialRows.forEach((row) => handleRow(row));
 
   const selectedData = getSelectedData(newSelectedRowIds, instance);
-  console.log('selectedData', selectedData);
+
   newState.selectedRowIds = newSelectedRowIds;
   onSelect?.(selectedData, newState);
 };
