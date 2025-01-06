@@ -16,7 +16,6 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
-import { Transition } from 'react-transition-group';
 import { DialogDragContext } from './DialogDragContext.js';
 import { useDragAndDrop } from '../../utils/hooks/useDragAndDrop.js';
 
@@ -203,19 +202,17 @@ export const DialogMain = React.forwardRef((props, ref) => {
     </Box>
   );
 
-  return (
-    <Transition
-      in={isOpen}
-      appear={true}
-      timeout={{ exit: 600 }}
+  React.useEffect(() => {
+    // Wait for the dialog to be rendered before focusing
+    queueMicrotask(() => {
       // Focuses dialog when opened
-      onEntered={() => {
+      if (isOpen) {
         previousFocusedElement.current = dialogRef.current?.ownerDocument
           .activeElement as HTMLElement;
         setFocus && dialogRef.current?.focus({ preventScroll: true });
-      }}
+      }
       // Brings back focus to the previously focused element when closed
-      onExit={() => {
+      else {
         if (
           dialogRef.current?.contains(
             dialogRef.current?.ownerDocument.activeElement,
@@ -223,16 +220,16 @@ export const DialogMain = React.forwardRef((props, ref) => {
         ) {
           previousFocusedElement.current?.focus();
         }
-      }}
-      unmountOnExit={true}
-      nodeRef={dialogRef}
-    >
-      <DialogDragContext.Provider value={{ onPointerDown: handlePointerDown }}>
-        {trapFocus && <FocusTrap>{content}</FocusTrap>}
-        {!trapFocus && content}
-      </DialogDragContext.Provider>
-    </Transition>
-  );
+      }
+    });
+  });
+
+  return isOpen ? (
+    <DialogDragContext.Provider value={{ onPointerDown: handlePointerDown }}>
+      {trapFocus && <FocusTrap>{content}</FocusTrap>}
+      {!trapFocus && content}
+    </DialogDragContext.Provider>
+  ) : null;
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
 if (process.env.NODE_ENV === 'development') {
   DialogMain.displayName = 'Dialog.Main';

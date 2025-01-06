@@ -164,7 +164,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
   @include mixins.iui-transition-group;
 
-  // noop
+  // noop https://github.com/iTwin/iTwinUI/pull/2391
   /* stylelint-disable-next-line block-no-empty */
   &.iui-enter-active,
   &.iui-exit-active {
