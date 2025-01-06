@@ -1,9 +1,14 @@
-import { Button } from '@itwin/itwinui-react';
+import { Button, LabeledInput } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <Button>Hello world</Button>
+      <LabeledInput
+        label='Label'
+        placeholder='Placeholder'
+        message='Hint message'
+      />
+      <Button>Click me</Button>
     </>
   );
 };
