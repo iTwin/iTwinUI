@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Transition } from 'react-transition-group';
 import cx from 'classnames';
 import {
   getWindow,
@@ -172,73 +171,36 @@ export const Toast = (props: ToastProps) => {
     }
   };
 
-  const calculateOutAnimation = (node: HTMLElement) => {
-    // calculation translate x and y pixels.
-    let translateX = 0;
-    let translateY = 0;
-    if (animateOutTo && node) {
-      const { x: startX, y: startY } = node.getBoundingClientRect(); // current element
-      const { x: endX, y: endY } = animateOutTo.getBoundingClientRect(); // anchor point
-      translateX = endX - startX;
-      translateY = endY - startY;
+  React.useEffect(() => {
+    if (!isVisible) {
+      onRemove?.();
     }
-    return { translateX, translateY };
-  };
+  }, [isVisible, motionOk, onRemove]);
 
-  return (
-    <Transition
-      timeout={{ enter: 240, exit: animateOutTo ? 400 : 120 }}
-      in={isVisible}
-      appear={true}
-      unmountOnExit={true}
-      onEnter={(node: HTMLElement) => {
-        if (motionOk) {
-          node.style.transform = 'translateY(15%)';
-          node.style.transitionTimingFunction = 'ease';
-        }
+  return isVisible ? (
+    <Box
+      ref={thisElement}
+      className='iui-toast-all'
+      style={{
+        height,
+        ...marginStyle(),
       }}
-      onEntered={(node: HTMLElement) => {
-        if (motionOk) {
-          node.style.transform = 'translateY(0)';
-        }
-      }}
-      onExiting={(node) => {
-        if (motionOk) {
-          const { translateX, translateY } = calculateOutAnimation(node);
-          node.style.transform = animateOutTo
-            ? `scale(0.9) translate(${translateX}px,${translateY}px)`
-            : `scale(0.9)`;
-          node.style.opacity = '0';
-          node.style.transitionDuration = animateOutTo ? '400ms' : '120ms';
-          node.style.transitionTimingFunction = 'cubic-bezier(0.4, 0, 1, 1)';
-        }
-      }}
-      onExited={onRemove}
     >
-      <Box
-        ref={thisElement}
-        className='iui-toast-all'
-        style={{
-          height,
-          ...marginStyle(),
-        }}
-      >
-        <div ref={onRef}>
-          <ToastPresentation
-            as='div'
-            category={category}
-            content={content}
-            link={link}
-            type={type}
-            hasCloseButton={hasCloseButton}
-            onClose={close}
-            {...domProps?.toastProps}
-            contentProps={domProps?.contentProps}
-          />
-        </div>
-      </Box>
-    </Transition>
-  );
+      <div ref={onRef}>
+        <ToastPresentation
+          as='div'
+          category={category}
+          content={content}
+          link={link}
+          type={type}
+          hasCloseButton={hasCloseButton}
+          onClose={close}
+          {...domProps?.toastProps}
+          contentProps={domProps?.contentProps}
+        />
+      </div>
+    </Box>
+  ) : null;
 };
 
 export type ToastPresentationProps = Omit<

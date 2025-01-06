@@ -119,6 +119,7 @@
     0 0 0 1px rgba(255, 255, 255, var(--iui-opacity-4)),
     var(--iui-shadow-5);
   overflow: hidden;
+  animation: iui-fade-in var(--iui-duration-1) ease-out;
 
   > .iui-status-area {
     display: flex;

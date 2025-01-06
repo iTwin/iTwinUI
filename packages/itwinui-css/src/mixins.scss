@@ -43,32 +43,22 @@
 
 /// Classes for react-transition-group
 /// Used for expand/collapse transitions. Needs height/width to be set in JS.
+/// noop https://github.com/iTwin/iTwinUI/pull/2391
 @mixin iui-transition-group {
-  $transition-rule:
-    opacity var(--iui-duration-1) ease-out,
-    width var(--iui-duration-1) ease-out,
-    height var(--iui-duration-1) ease-out;
-
+  /* stylelint-disable-next-line block-no-empty */
   &.iui-enter {
-    opacity: 0;
   }
 
+  /* stylelint-disable-next-line block-no-empty */
   &.iui-enter-active {
-    opacity: 1;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: $transition-rule;
-    }
   }
 
+  /* stylelint-disable-next-line block-no-empty */
   &.iui-exit {
-    opacity: 1;
   }
 
+  /* stylelint-disable-next-line block-no-empty */
   &.iui-exit-active {
-    opacity: 0;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: $transition-rule;
-    }
   }
 }
 
