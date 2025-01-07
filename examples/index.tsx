@@ -1316,10 +1316,6 @@ export { TextareaInlineExample };
 
 // ----------------------------------------------------------------------------
 
-import { default as TextMainExampleRaw } from './Text.main';
-const TextMainExample = withThemeProvider(TextMainExampleRaw);
-export { TextMainExample };
-
 import { default as TextVariantExampleRaw } from './Text.variant';
 const TextVariantExample = withThemeProvider(TextVariantExampleRaw);
 export { TextVariantExample };
