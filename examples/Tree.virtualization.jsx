@@ -35,7 +35,7 @@ export default () => {
 
   const data = React.useMemo(
     () =>
-      Array(10000)
+      Array(200)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
