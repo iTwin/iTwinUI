@@ -2217,6 +2217,35 @@ it('should handle sub-rows selection', async () => {
   );
 });
 
+it('should show parent row being selected when all sub-rows are selected', async () => {
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+
+  await expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(10);
+  await userEvent.click(checkboxes[1]);
+  await userEvent.click(checkboxes[2]);
+  await userEvent.click(checkboxes[3]);
+  await userEvent.click(checkboxes[4]);
+  await userEvent.click(checkboxes[5]);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+
+  expect(checkboxes[0].indeterminate).toBe(false);
+});
+
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
   const onSelect = vi.fn();
   const data = mockedSubRowsData();
