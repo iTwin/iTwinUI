@@ -1,0 +1,38 @@
+---
+title: Label
+description: Label components can be used to associate text with form inputs.
+thumbnail: #TODO
+---
+
+<p>{frontmatter.description}</p>
+
+## Usage
+
+`Label` corresponds to an HTML `<label>` and can be linked to an `Input` by matching `Label`'s `htmlFor` with `Input`'s `id` for better accessibility, ensuring assistive technologies correctly identify their relationship.
+
+<LiveExample src='Label.main.jsx'>
+  <AllExamples.LabelMainExample client:load />
+</LiveExample>
+
+### Required
+
+To make the form field required, you can pass the `required` prop. This also adds the `*` next to the label.
+
+<LiveExample src='Label.required.jsx'>
+  <AllExamples.LabelRequiredExample client:load />
+</LiveExample>
+
+### Display style
+
+There are two available display styles:
+
+- `"block"` (default): places the label and the other fields on separate lines without adding any extra spacing.
+- `"inline"`: displays the label inline with other elements by adding a right margin to it.
+
+<LiveExample src='Label.displayStyles.jsx'>
+  <AllExamples.LabelDisplayStylesExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Label/Label.d.ts' />
