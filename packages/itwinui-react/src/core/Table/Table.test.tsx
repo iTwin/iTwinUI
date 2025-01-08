@@ -2233,17 +2233,14 @@ it('should show parent row being selected when all sub-rows are selected', async
     '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
-  await userEvent.click(checkboxes[1]);
-  await userEvent.click(checkboxes[2]);
-  await userEvent.click(checkboxes[3]);
-  await userEvent.click(checkboxes[4]);
-  await userEvent.click(checkboxes[5]);
+  await userEvent.click(checkboxes[7]);
+  await userEvent.click(checkboxes[8]);
 
   checkboxes = container.querySelectorAll<HTMLInputElement>(
     '.iui-table-body .iui-checkbox',
   );
 
-  expect(checkboxes[0].indeterminate).toBe(false);
+  expect(checkboxes[6].checked).toBe(true);
 });
 
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
