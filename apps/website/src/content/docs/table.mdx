@@ -89,17 +89,34 @@ The `Table` component supports row selection, allowing users to select one or mo
 />
 ```
 
+#### Single-row selection
+
 There are two available selection modes: `"single"` and `"multi"` (default). These modes can be specified using the `selectionMode` prop. For single row selection mode, users can select each row by clicking on the desired row.
 
 <LiveExample src='Table.selectSingle.jsx'>
   <AllExamples.TableSelectSingleExample client:load />
 </LiveExample>
 
-Multi-row selection can be enabled by setting the `selectionMode` prop to `"multi"` or by omitting the `selectionMode` prop altogether. When the `isSelectable` prop is set, the table defaults to multi-selectable. In this mode, a row with checkboxes for toggling selection is added. End users can select or deselect multiple rows by clicking on the row while holding the `Shift` or `Ctrl`/`Command` keys, or by using the checkboxes.
+#### Multiple-row selection
+
+Multiple-row selection can be enabled by setting the `selectionMode` prop to `"multi"` or by omitting the `selectionMode` prop altogether. When the `isSelectable` prop is set, the table defaults to multi-selectable. In this mode, a row with checkboxes for toggling selection is added. End users can select or deselect multiple rows by clicking on the row while holding the `Shift` or `Ctrl`/`Command` keys, or by using the checkboxes.
 
 <LiveExample src='Table.selectMulti.jsx'>
   <AllExamples.TableSelectMultiExample client:load />
 </LiveExample>
+
+The `initialState` prop is useful when you want specific rows to be selected by default. This prop accepts an array of row IDs, ensuring that these rows are rendered with the appropriate selection styling.
+
+```jsx {7}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  // Pre-select the first two rows
+  initialState={{ selectedRowIds: [1, 2] }}
+/>
+```
 
 ### Density
 
