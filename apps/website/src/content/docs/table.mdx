@@ -81,7 +81,7 @@ The `Table` component supports row selection, allowing users to select one or mo
 
 ```jsx {6}
 <Table
-  /*…*/
+  /* … */
   data={data}
   columns={columns}
   emptyTableContent='No data.'
@@ -125,7 +125,7 @@ The initial page size can be set using the `pageSize` prop, which defaults to 25
 
 ```jsx {6}
 <Table
-  /*…*/
+  /* … */
   data={data}
   columns={columns}
   emptyTableContent='No data.'
@@ -135,11 +135,11 @@ The initial page size can be set using the `pageSize` prop, which defaults to 25
 
 ```jsx {6}
 <Table
-  /*…*/
+  /* … */
   data={data}
   columns={columns}
   emptyTableContent='No data.'
-  initialSize={{ pageSize: 50 }}
+  initialState={{ pageSize: 50 }}
 />
 ```
 
@@ -160,7 +160,38 @@ This prop is a function that takes `TablePaginatorRendererProps` as an argument 
   <AllExamples.TablePaginationExample client:load />
 </LiveExample>
 
-### Editing
+### Column manager
+
+The `ActionColumn` component allows you to perform actions on column items by adding the column manager to the Table header. It is recommended to place this column at the end of the column object array with its `columnManager` option set to `"true"`. The column manager includes a popover that contains information about each column, enabling you to decide which columns should be visible.
+
+```jsx {4}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    ActionColumn({ columnManager: true }),
+  ],
+  [],
+);
+```
+
+Additionally, you can override the `Cell` prop of the `ActionColumn` to include a row action menu at the end of each table row. This menu enhances the user experience by providing convenient access to row-specific actions, such as editing or deleting entries.
+
+<LiveExample src='Table.columnManager.jsx'>
+  <AllExamples.TableColumnManagerExample client:load />
+</LiveExample>
+
+As a side note, the `initialState` prop allows you to initially hide specific columns in the column manager popover when the table is rendered by setting its `hiddenColumns` property to an array of the columns you want to hide.
+
+```jsx {7}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  // Hide the 'Price' column
+  initialState={{ hiddenColumns: ['price'] }}
+/>
+```
 
 ## Props
 

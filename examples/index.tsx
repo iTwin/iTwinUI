@@ -1266,6 +1266,12 @@ import { default as TablePaginationExampleRaw } from './Table.pagination';
 const TablePaginationExample = withThemeProvider(TablePaginationExampleRaw);
 export { TablePaginationExample };
 
+import { default as TableColumnManagerExampleRaw } from './Table.columnManager';
+const TableColumnManagerExample = withThemeProvider(
+  TableColumnManagerExampleRaw,
+);
+export { TableColumnManagerExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';
