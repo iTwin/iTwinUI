@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.16.3
+
+### Patch Changes
+
+- [#2384](https://github.com/iTwin/iTwinUI/pull/2384): Fixed the syntax for `react` and `react-dom` version ranges declared in `peerDependencies`.
+- [#2386](https://github.com/iTwin/iTwinUI/pull/2386): Fixed a visual issue in `Tile.Name` where a long string without spaces wasn't wrapping properly.
+
+## 3.16.2
+
+### Patch Changes
+
+- [#2378](https://github.com/iTwin/iTwinUI/pull/2378): Fixed folder variant `Tile`'s broken layout when it has a long name.
+
 ## 3.16.1
 
 ### Patch Changes
