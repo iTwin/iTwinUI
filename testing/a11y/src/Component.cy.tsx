@@ -33,9 +33,14 @@ describe('Should have no WCAG violations', () => {
   examplesToTest.forEach(([name, Component]) => {
     it(name, () => {
       cy.mount(
-        <ThemeProvider theme='dark' style={{ height: '100vh' }}>
-          <Component />
-        </ThemeProvider>,
+        <>
+          {customStyles[name] != null ? (
+            <style>{customStyles[name]}</style>
+          ) : null}
+          <ThemeProvider theme='dark' style={{ height: '100vh' }}>
+            <Component />
+          </ThemeProvider>
+        </>,
       );
       cy.injectAxe({
         axeCorePath: Cypress.env('axeCorePath'),
@@ -54,3 +59,12 @@ describe('Should have no WCAG violations', () => {
     });
   });
 });
+
+/** Styles needed for the examples to work. */
+const customStyles = {
+  TreeVirtualizationExample: /* css */ `
+    .demo-tree {
+      height: 400px;
+    }
+  `,
+};
