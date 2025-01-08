@@ -1272,6 +1272,10 @@ const TableColumnManagerExample = withThemeProvider(
 );
 export { TableColumnManagerExample };
 
+import { default as TableEditingExampleRaw } from './Table.editing';
+const TableEditingExample = withThemeProvider(TableEditingExampleRaw);
+export { TableEditingExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';
