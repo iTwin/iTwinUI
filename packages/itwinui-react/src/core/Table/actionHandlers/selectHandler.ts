@@ -39,7 +39,10 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     }
 
     let isAllSubSelected = true;
-    if (row.initialSubRows[0]?.original[iuiId as any] === undefined) {
+    const hasSubComponent = !!row.initialSubRows[0]?.original[iuiId as any];
+    const hasSubRows = row.initialSubRows.length > 0;
+
+    if (!hasSubComponent) {
       row.initialSubRows.forEach((subRow) => {
         const result = handleRow(subRow);
         if (!result) {
@@ -48,20 +51,21 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       });
     }
 
-    // A row is considered selected if it satisfies either of these conditions:
-    // - It is selected AND one of the following:
-    //  +) `selectSubRows` is false, OR
-    //  +) the row has no sub-rows, OR
-    //  +) the row has sub-component
-    // - It has sub-rows and all of them are selected
+    /*
+    A row is considered selected if it satisfies either of these conditions:
+    - If the row is toggled/clicked to be selected by users, AND one of the following:
+     +) `selectSubRows` is false/undefined, OR
+     +) the row has no sub-rows, OR
+     +) the row has sub-component
+     
+    - If the row is not directly selected, check if it has sub-rows and all of them are selected while no sub-components are present.*/
+
+    const isRowSelected = newState.selectedRowIds[row.id];
+
     if (
-      (newState.selectedRowIds[row.id] &&
-        (!instance.selectSubRows ||
-          !row.initialSubRows.length ||
-          row.initialSubRows[0].original[iuiId as any])) ||
-      (row.initialSubRows.length &&
-        isAllSubSelected &&
-        !row.initialSubRows[0].original[iuiId as any])
+      (isRowSelected &&
+        (!instance.selectSubRows || !hasSubRows || hasSubComponent)) ||
+      (hasSubRows && isAllSubSelected && !hasSubComponent)
     ) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
