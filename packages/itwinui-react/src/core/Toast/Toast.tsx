@@ -11,7 +11,6 @@ import {
   Box,
   useSafeContext,
   ButtonBase,
-  useMediaQuery,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -114,8 +113,6 @@ export const Toast = (props: ToastProps) => {
   const thisElement = React.useRef<HTMLDivElement>(null);
   const [margin, setMargin] = React.useState(0);
 
-  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
-
   const marginStyle = () => {
     if (placementPosition === 'top') {
       return { marginBlockEnd: margin };
@@ -171,11 +168,16 @@ export const Toast = (props: ToastProps) => {
     }
   };
 
-  React.useEffect(() => {
+  const [prevIsVisible, setPrevIsVisible] =
+    React.useState<typeof isVisible>(isVisible);
+
+  if (prevIsVisible !== isVisible) {
+    setPrevIsVisible(isVisible);
+
     if (!isVisible) {
       onRemove?.();
     }
-  }, [isVisible, motionOk, onRemove]);
+  }
 
   return isVisible ? (
     <Box
