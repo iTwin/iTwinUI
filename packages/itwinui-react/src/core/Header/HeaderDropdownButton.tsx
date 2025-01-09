@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
 import * as React from 'react';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
 import {
@@ -15,7 +14,7 @@ import { HeaderBasicButton } from './HeaderBasicButton.js';
 import type { DropdownButtonProps } from '../Buttons/DropdownButton.js';
 
 export const HeaderDropdownButton = React.forwardRef((props, ref) => {
-  const { menuItems, className, children, ...rest } = props;
+  const { menuItems, children, ...rest } = props;
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -36,7 +35,6 @@ export const HeaderDropdownButton = React.forwardRef((props, ref) => {
       onVisibleChange={(open) => setIsMenuOpen(open)}
     >
       <HeaderBasicButton
-        className={cx('iui-header-breadcrumb-button', className)}
         ref={refs}
         aria-label='Dropdown'
         endIcon={

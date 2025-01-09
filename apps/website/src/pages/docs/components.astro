@@ -4,7 +4,10 @@ import Layout from './_layout.astro';
 import Card from '~/components/Card.astro';
 
 const componentPages = (
-  await getCollection('docs', ({ data: { group } }) => group !== 'intro')
+  await getCollection(
+    'docs',
+    ({ data: { group, title } }) => group !== 'intro' && title !== 'Typography',
+  )
 ).map(({ slug, data }) => ({ url: `/docs/${slug}`, ...data }));
 ---
 
