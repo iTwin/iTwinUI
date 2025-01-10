@@ -38,11 +38,13 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       return false;
     }
 
-    let isAllSubSelected = true;
-    const hasSubComponent = !!row.initialSubRows[0]?.original[iuiId as any];
-    const hasSubRows = row.initialSubRows.length > 0;
+    const hasSubComponents = !!row.initialSubRows[0]?.original[iuiId as any];
 
-    if (!hasSubComponent) {
+    // Since sub-rows and sub-components cannot co-exist, we check if the sub-rows are present and no sub-components are defined to make sure the row only has sub-rows
+    const hasSubRows = row.subRows.length > 0 && !hasSubComponents;
+    let isAllSubSelected = true;
+
+    if (hasSubRows) {
       row.initialSubRows.forEach((subRow) => {
         const result = handleRow(subRow);
         if (!result) {
@@ -51,21 +53,17 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       });
     }
 
-    /*
-    A row is considered selected if it satisfies either of these conditions:
-    - If the row is toggled/clicked to be selected by users, AND one of the following:
-     +) `selectSubRows` is false/undefined, OR
-     +) the row has no sub-rows, OR
-     +) the row has sub-component
-     
-    - If the row is not directly selected, check if it has sub-rows and all of them are selected while no sub-components are present.*/
+    // A row is considered selected if it is selected AND one of the following:
+    // - If the row is toggled/clicked to be selected by users, AND one of the following:
+    //   + `selectSubRows` is false, OR
+    //   + the row has no sub-rows, or has sub-component.
+    // - If the row is not directly selected, check if it has sub-rows and all of them are selected while no sub-components are present.
 
     const isRowSelected = newState.selectedRowIds[row.id];
 
     if (
-      (isRowSelected &&
-        (!instance.selectSubRows || !hasSubRows || hasSubComponent)) ||
-      (hasSubRows && isAllSubSelected && !hasSubComponent)
+      (isRowSelected && (!instance.selectSubRows || !hasSubRows)) ||
+      (isAllSubSelected && hasSubRows)
     ) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
