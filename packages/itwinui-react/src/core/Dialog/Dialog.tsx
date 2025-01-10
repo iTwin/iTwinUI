@@ -43,7 +43,21 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRefs = useMergedRefs(ref, dialogRootRef);
 
-  return isOpen ? (
+  const [shouldBeMounted, setShouldBeMounted] = React.useState(isOpen);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setShouldBeMounted(true);
+    }
+    // Wait for DialogMain to receive the isOpen=false to properly handle its exit. E.g. move focus to trigger.
+    else {
+      setTimeout(() => {
+        setShouldBeMounted(false);
+      }, 600);
+    }
+  }, [isOpen]);
+
+  return shouldBeMounted ? (
     <DialogContext.Provider
       value={{
         isOpen,

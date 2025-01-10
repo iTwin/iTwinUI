@@ -108,7 +108,7 @@ export const ToastProvider = ({
   const toasterStateContext = React.useContext(ToasterStateContext);
 
   // Re-use existing ToastProvider if found
-  const shouldReuse = React.useContext(ToasterStateContext) && inherit;
+  const shouldReuse = toasterStateContext && inherit;
   const toasterDispatchContextValue = shouldReuse
     ? toasterDispatchContext
     : dispatch;

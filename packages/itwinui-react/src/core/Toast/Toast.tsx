@@ -171,13 +171,112 @@ export const Toast = (props: ToastProps) => {
     }
   };
 
-  React.useEffect(() => {
-    if (!isVisible) {
-      onRemove?.();
-    }
-  }, [isVisible, motionOk, onRemove]);
+  const calculateOutAnimation = React.useCallback(
+    (node: HTMLElement) => {
+      // calculation translate x and y pixels.
+      let translateX = 0;
+      let translateY = 0;
+      if (animateOutTo && node) {
+        const { x: startX, y: startY } = node.getBoundingClientRect(); // current element
+        const { x: endX, y: endY } = animateOutTo.getBoundingClientRect(); // anchor point
+        translateX = endX - startX;
+        translateY = endY - startY;
+      }
+      return { translateX, translateY };
+    },
+    [animateOutTo],
+  );
 
-  return isVisible ? (
+  const [shouldBeMounted, setShouldBeMounted] = React.useState(isVisible);
+
+  const [prevIsVisible, setPrevIsVisible] = React.useState<
+    typeof isVisible | undefined
+  >(undefined);
+
+  const animateIn = React.useCallback(() => {
+    if (!motionOk) {
+      return;
+    }
+
+    thisElement.current?.animate(
+      [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
+      {
+        duration: 240,
+        fill: 'forwards',
+      },
+    );
+  }, [motionOk]);
+
+  const animateOut = React.useCallback(() => {
+    if (thisElement.current == null || !motionOk) {
+      return;
+    }
+
+    const { translateX, translateY } = calculateOutAnimation(
+      thisElement.current,
+    );
+    const animationDuration = animateOutTo ? 400 : 120;
+
+    const animation = thisElement.current?.animate(
+      [
+        {
+          transform: animateOutTo
+            ? `scale(0.9) translate(${translateX}px,${translateY}px)`
+            : `scale(0.9)`,
+          opacity: 0,
+          transitionDuration: `${animationDuration}ms`,
+          transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
+        },
+      ],
+      {
+        duration: animationDuration,
+        iterations: 1,
+        fill: 'forwards',
+      },
+    );
+
+    return animation;
+  }, [animateOutTo, calculateOutAnimation, motionOk]);
+
+  // if isVisible prop is changed, animate in or out.
+  React.useEffect(() => {
+    if (prevIsVisible !== isVisible) {
+      setPrevIsVisible(isVisible);
+
+      if (isVisible) {
+        setShouldBeMounted(true);
+
+        // Mount *before* handling dialog entry.
+        queueMicrotask(() => {
+          animateIn();
+        });
+      } else {
+        if (!motionOk) {
+          setShouldBeMounted(false);
+          onRemove?.();
+        } else {
+          const animation = animateOut();
+
+          // Unmount *after* handling dialog exit.
+          animation?.addEventListener('finish', () => {
+            setShouldBeMounted(false);
+            onRemove?.();
+          });
+        }
+      }
+    }
+  }, [
+    animateIn,
+    animateOut,
+    animateOutTo,
+    calculateOutAnimation,
+    isVisible,
+    motionOk,
+    onRemove,
+    prevIsVisible,
+  ]);
+
+  return shouldBeMounted ? (
     <Box
       ref={thisElement}
       className='iui-toast-all'
