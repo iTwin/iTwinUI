@@ -7,9 +7,9 @@ import { EditableCell, DefaultCell, Table } from '@itwin/itwinui-react';
 
 export default () => {
   const [data, setData] = React.useState([
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Fetching...' },
+    { product: 'Product 1', price: '$15' },
+    { product: 'Product 2', price: '$30' },
+    { product: 'Product 3', price: 'Fetching...' },
   ]);
 
   const onCellEdit = React.useCallback((columnId, value, rowData) => {
@@ -41,22 +41,25 @@ export default () => {
       {
         id: 'product',
         Header: 'Product',
-        cellRenderer,
         accessor: 'product',
+        cellRenderer,
       },
       {
         id: 'price',
         Header: 'Price',
-        cellRenderer,
         accessor: 'price',
+        cellRenderer,
       },
     ],
     [cellRenderer],
   );
 
   return (
-    <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
-    </div>
+    <Table
+      className='demo-container'
+      emptyTableContent='No data.'
+      columns={columns}
+      data={data}
+    />
   );
 };
