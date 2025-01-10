@@ -194,6 +194,10 @@ export const Toast = (props: ToastProps) => {
   >(undefined);
 
   const animateIn = React.useCallback(() => {
+    if (!motionOk) {
+      return;
+    }
+
     thisElement.current?.animate(
       [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
       {
@@ -201,7 +205,7 @@ export const Toast = (props: ToastProps) => {
         fill: 'forwards',
       },
     );
-  }, []);
+  }, [motionOk]);
 
   const animateOut = React.useCallback(() => {
     if (thisElement.current == null || !motionOk) {
@@ -247,13 +251,18 @@ export const Toast = (props: ToastProps) => {
           animateIn();
         });
       } else {
-        const animation = animateOut();
-
-        // Unmount *after* handling dialog exit.
-        animation?.addEventListener('finish', () => {
+        if (!motionOk) {
           setShouldBeMounted(false);
           onRemove?.();
-        });
+        } else {
+          const animation = animateOut();
+
+          // Unmount *after* handling dialog exit.
+          animation?.addEventListener('finish', () => {
+            setShouldBeMounted(false);
+            onRemove?.();
+          });
+        }
       }
     }
   }, [
