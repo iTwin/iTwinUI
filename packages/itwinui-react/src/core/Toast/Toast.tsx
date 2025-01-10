@@ -11,6 +11,7 @@ import {
   Box,
   useSafeContext,
   ButtonBase,
+  useMediaQuery,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -113,6 +114,8 @@ export const Toast = (props: ToastProps) => {
   const thisElement = React.useRef<HTMLDivElement>(null);
   const [margin, setMargin] = React.useState(0);
 
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
   const marginStyle = () => {
     if (placementPosition === 'top') {
       return { marginBlockEnd: margin };
@@ -168,18 +171,103 @@ export const Toast = (props: ToastProps) => {
     }
   };
 
-  const [prevIsVisible, setPrevIsVisible] =
-    React.useState<typeof isVisible>(isVisible);
+  const calculateOutAnimation = React.useCallback(
+    (node: HTMLElement) => {
+      // calculation translate x and y pixels.
+      let translateX = 0;
+      let translateY = 0;
+      if (animateOutTo && node) {
+        const { x: startX, y: startY } = node.getBoundingClientRect(); // current element
+        const { x: endX, y: endY } = animateOutTo.getBoundingClientRect(); // anchor point
+        translateX = endX - startX;
+        translateY = endY - startY;
+      }
+      return { translateX, translateY };
+    },
+    [animateOutTo],
+  );
 
-  if (prevIsVisible !== isVisible) {
-    setPrevIsVisible(isVisible);
+  const [shouldBeMounted, setShouldBeMounted] = React.useState(isVisible);
 
-    if (!isVisible) {
-      onRemove?.();
+  const [prevIsVisible, setPrevIsVisible] = React.useState<
+    typeof isVisible | undefined
+  >(undefined);
+
+  const animateIn = React.useCallback(() => {
+    thisElement.current?.animate(
+      [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
+      {
+        duration: 240,
+        fill: 'forwards',
+      },
+    );
+  }, []);
+
+  const animateOut = React.useCallback(() => {
+    if (thisElement.current == null || !motionOk) {
+      return;
     }
-  }
 
-  return isVisible ? (
+    const { translateX, translateY } = calculateOutAnimation(
+      thisElement.current,
+    );
+    const animationDuration = animateOutTo ? 400 : 120;
+
+    const animation = thisElement.current?.animate(
+      [
+        {
+          transform: animateOutTo
+            ? `scale(0.9) translate(${translateX}px,${translateY}px)`
+            : `scale(0.9)`,
+          opacity: 0,
+          transitionDuration: `${animationDuration}ms`,
+          transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
+        },
+      ],
+      {
+        duration: animationDuration,
+        iterations: 1,
+        fill: 'forwards',
+      },
+    );
+
+    return animation;
+  }, [animateOutTo, calculateOutAnimation, motionOk]);
+
+  // if isVisible prop is changed, animate in or out.
+  React.useEffect(() => {
+    if (prevIsVisible !== isVisible) {
+      setPrevIsVisible(isVisible);
+
+      if (isVisible) {
+        setShouldBeMounted(true);
+
+        // Mount *before* handling dialog entry.
+        queueMicrotask(() => {
+          animateIn();
+        });
+      } else {
+        const animation = animateOut();
+
+        // Unmount *after* handling dialog exit.
+        animation?.addEventListener('finish', () => {
+          setShouldBeMounted(false);
+          onRemove?.();
+        });
+      }
+    }
+  }, [
+    animateIn,
+    animateOut,
+    animateOutTo,
+    calculateOutAnimation,
+    isVisible,
+    motionOk,
+    onRemove,
+    prevIsVisible,
+  ]);
+
+  return shouldBeMounted ? (
     <Box
       ref={thisElement}
       className='iui-toast-all'

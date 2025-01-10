@@ -41,27 +41,6 @@
   }
 }
 
-/// Classes for react-transition-group
-/// Used for expand/collapse transitions. Needs height/width to be set in JS.
-/// noop https://github.com/iTwin/iTwinUI/pull/2391
-@mixin iui-transition-group {
-  /* stylelint-disable-next-line block-no-empty */
-  &.iui-enter {
-  }
-
-  /* stylelint-disable-next-line block-no-empty */
-  &.iui-enter-active {
-  }
-
-  /* stylelint-disable-next-line block-no-empty */
-  &.iui-exit {
-  }
-
-  /* stylelint-disable-next-line block-no-empty */
-  &.iui-exit-active {
-  }
-}
-
 @mixin safari-only {
   @supports (-apple-pay-button-style: inherit) {
     @content;

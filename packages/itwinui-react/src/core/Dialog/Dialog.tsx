@@ -51,9 +51,9 @@ const DialogComponent = React.forwardRef((props, ref) => {
     }
     // Wait for DialogMain to receive the isOpen=false to properly handle its exit. E.g. move focus to trigger.
     else {
-      queueMicrotask(() => {
+      setTimeout(() => {
         setShouldBeMounted(false);
-      });
+      }, 600);
     }
   }, [isOpen]);
 

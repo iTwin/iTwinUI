@@ -231,12 +231,16 @@ export const DialogMain = React.forwardRef((props, ref) => {
       queueMicrotask(() => {
         onEnter();
       });
+
+      setShouldBeMounted(true);
     } else {
       onExit();
-    }
 
-    // If unmounting, do so *after* handling dialog exit.
-    setShouldBeMounted(isOpen);
+      // Wait for the animation to end
+      setTimeout(() => {
+        setShouldBeMounted(false);
+      }, 600);
+    }
   }
 
   return shouldBeMounted ? (
