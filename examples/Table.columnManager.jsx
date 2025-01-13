@@ -75,12 +75,7 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Table
-        columns={columns}
-        emptyTableContent='No data.'
-        data={data}
-        initialState={{ hiddenColumns: ['price'] }}
-      />
+      <Table columns={columns} emptyTableContent='No data.' data={data} />
     </div>
   );
 };

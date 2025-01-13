@@ -212,15 +212,65 @@ As a side note, the `initialState` prop allows you to initially hide specific co
 
 ### Editing
 
-To enable editing for each Table cell
+To enable editing for each `Table` cell, the `EditableCell` component should be passed into `cellRenderer` of the column object.
+
+```jsx {7}
+const columns = React.useMemo(
+  () => [
+    ...,
+    {
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => <EditableCell {...props} onCellEdit={onCellEditHandler} />,
+    },
+  ],
+  [],
+);
+```
+
+This component takes the callback function `onCellEdit` which is used to handle cell edit events and update the table data accordingly.
+
+```jsx
+const onCellEdit = React.useCallback(
+  (columnId: string, value: string, rowData: T) => {
+  setData((oldData) => {
+    const newData = [...oldData];
+    const index = oldData.indexOf(rowData);
+      const newObject = { ...newData[index] };
+      newObject[columnId] = value;
+    newData[index] = newObject;
+    return newData;
+  });
+},[]);
+```
 
 <LiveExample src='Table.editing.jsx'>
   <AllExamples.TableEditingExample client:load />
 </LiveExample>
 
-### Filtering
-
 ### Sorting
+
+To enable sorting in the `Table`, set the `isSortable` prop to `true`. This will allow the columns to display an arrow when hovered, indicating whether the column is sorted in ascending or descending order.
+
+<LiveExample src='Table.sorting.jsx'>
+  <AllExamples.TableSortingExample client:load />
+</LiveExample>
+
+By default, columns are sorted in ascending order first when the arrow is clicked. To prioritize descending sorting instead, set the `sortDescFirst` property to `true` in the column object.
+
+```jsx {7}
+const columns = React.useMemo(
+  () => [
+    ...,
+    {
+      Header: 'Name',
+      accessor: 'name',
+      sortDescFirst: true,
+    },
+  ],
+  [],
+);
+```
 
 ## Props
 

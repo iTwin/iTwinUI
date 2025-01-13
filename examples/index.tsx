@@ -1276,6 +1276,10 @@ import { default as TableEditingExampleRaw } from './Table.editing';
 const TableEditingExample = withThemeProvider(TableEditingExampleRaw);
 export { TableEditingExample };
 
+import { default as TableSortingExampleRaw } from './Table.sorting';
+const TableSortingExample = withThemeProvider(TableSortingExampleRaw);
+export { TableSortingExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';
