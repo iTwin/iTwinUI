@@ -40,7 +40,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
 
     // In case when sub-rows are not present but sub-components are,
     // the length of sub-rows for each row is 1 (because a sub-component is a sub-row).
-    // Therefore, we need check for sub-components.
+    // Therefore, we also need to check for sub-components whenever checking for sub-rows.
     const hasSubComponents = !!row.initialSubRows[0]?.original[iuiId as any];
     const hasSubRows = row.subRows.length > 0 && !hasSubComponents;
     let isAllSubSelected = true;
