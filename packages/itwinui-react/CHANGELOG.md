@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.16.4
+
+### Patch Changes
+
+- [#2390](https://github.com/iTwin/iTwinUI/pull/2390): Fixed `ThemeProvider` bug of re-mounting its children and losing state when `portalContainer` is toggled between `undefined` and defined.
+- [#2396](https://github.com/iTwin/iTwinUI/pull/2396): Fixed rare bug where icons in button components (e.g. `Button`, `SidenavButton`, etc.) were becoming 0 in width when less space was available.
+- [#2389](https://github.com/iTwin/iTwinUI/pull/2389): Fixed bug in the `Table` where parent rows showing indeterminate checkboxes when all sub-rows are selected.
+
 ## 3.16.3
 
 ### Patch Changes
