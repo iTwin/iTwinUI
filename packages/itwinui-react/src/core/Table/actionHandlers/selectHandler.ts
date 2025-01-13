@@ -55,8 +55,8 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       });
     }
 
-    // A row is considered selected if it is selected AND one of the following:
-    // - Case 1: If the row is toggled/clicked to be selected by users, AND one of the following:
+    // A row is considered selected if it satisfies one of the following:
+    // - Case 1: If the row is directly selected, AND one of the following:
     //   + `selectSubRows` is false, OR
     //   + the row has no sub-rows.
     // - Case 2: If the row is not directly selected,
@@ -64,7 +64,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
 
     const isRowSelected = newState.selectedRowIds[row.id];
     const case1 = isRowSelected && (!instance.selectSubRows || !hasSubRows);
-    const case2 = isAllSubSelected && hasSubRows;
+    const case2 = isAllSubSelected;
 
     if (case1 || case2) {
       newSelectedRowIds[row.id as IdType<T>] = true;
