@@ -64,7 +64,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
 
     const isRowSelected = newState.selectedRowIds[row.id];
     const case1 = isRowSelected && (!instance.selectSubRows || !hasSubRows);
-    const case2 = isAllSubSelected;
+    const case2 = hasSubRows && isAllSubSelected;
 
     if (case1 || case2) {
       newSelectedRowIds[row.id as IdType<T>] = true;
