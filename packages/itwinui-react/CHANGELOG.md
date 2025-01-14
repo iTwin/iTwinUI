@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.16.5
+
+### Patch Changes
+
+- [#2402](https://github.com/iTwin/iTwinUI/pull/2402): Fixed an issue in `Tabs` where it wasn't recalculating the active stripe position when a new tab was asynchronously added to the tablist.
+
 ## 3.16.4
 
 ### Patch Changes
