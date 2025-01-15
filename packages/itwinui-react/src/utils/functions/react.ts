@@ -23,16 +23,23 @@ export const cloneElementWithRef = (
     return children;
   }
 
+  const childrenRef = (() => {
+    // React 19
+    if ('ref' in children.props) {
+      return children.props.ref;
+    }
+
+    // Other React versions
+    if ('ref' in children) {
+      return children.ref;
+    }
+
+    return null;
+  })();
+
   const props = getProps(children);
   const ref = mergeRefs(
-    ...[
-      'ref' in children.props
-        ? children.props.ref
-        : 'ref' in children
-          ? children.ref
-          : null,
-      'ref' in props ? props.ref : null,
-    ].filter(Boolean),
+    ...[childrenRef, 'ref' in props ? props.ref : null].filter(Boolean),
   );
 
   return React.cloneElement(children, {
@@ -50,7 +57,6 @@ export const cloneElementWithRef = (
  * The value of the `inert` prop is adjusted to work with all React versions, including React 19+.
  */
 export const getReactVersionSafeInertProp = (inert = true) => {
-  const inertValue =
-    Number(React.version.split('.')[0]) >= 19 ? true : undefined;
+  const inertValue = Number(React.version.split('.')[0]) >= 19 ? true : '';
   return inert ? { inert: inertValue } : {};
 };
