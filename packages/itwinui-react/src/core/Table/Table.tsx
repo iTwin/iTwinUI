@@ -419,7 +419,7 @@ export const Table = <
 
   useGlobals();
 
-  const ownerDocument = React.useRef<Document | undefined>();
+  const ownerDocument = React.useRef<Document>(undefined);
 
   const defaultColumn = React.useMemo(
     () => ({

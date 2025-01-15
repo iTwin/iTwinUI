@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import type { JSX } from 'react';
 import * as React from 'react';
 import { getTabbableElements } from '../functions/focusable.js';
 import { cloneElementWithRef } from '../functions/react.js';
@@ -19,7 +20,7 @@ export type FocusTrapProps = {
  */
 export const FocusTrap = (props: FocusTrapProps) => {
   const { children } = props;
-  const childRef = React.useRef<HTMLElement>();
+  const childRef = React.useRef<HTMLElement>(undefined);
 
   const getFirstLastFocusables = () => {
     const elements = getTabbableElements(childRef.current);

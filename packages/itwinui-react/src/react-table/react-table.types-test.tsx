@@ -120,7 +120,12 @@ import {
     {
       Header: 'Header 2',
       accessor: 'header2',
-      Cell: (props) => <div>{props.row.original.header2}</div>,
+      Cell: (
+        props: TableTypes.CellProps<{
+          header1: string;
+          header2: string;
+        }>,
+      ) => <div>{props.row.original.header2}</div>,
     },
   ] satisfies TableTypes.Column<{
     header1: string;
@@ -210,7 +215,10 @@ import {
       },
     ],
     [],
-  );
+  ) satisfies TableTypes.Column<{
+    name: string;
+    description: string;
+  }>[];
 
   const data = React.useMemo(() => {
     return [
@@ -422,7 +430,7 @@ import {
           return (
             <Anchor
               as='button'
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
                 console.log(props.row.original.name);
 
@@ -642,7 +650,7 @@ import {
 
   const [globalFilter, setGlobalFilter] = React.useState('');
   const tableInstance =
-    React.useRef<TableTypes.TableInstance<TableRowDataType>>();
+    React.useRef<TableTypes.TableInstance<TableRowDataType>>(undefined);
 
   const [hoveredRowIndex, setHoveredRowIndex] = React.useState(0);
   const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(

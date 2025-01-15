@@ -71,7 +71,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     });
   };
 
-  const scrollTimeout = React.useRef<number>();
+  const scrollTimeout = React.useRef<number>(undefined);
 
   // reset isManuallyUpdating.current to false after the last scroll event
   const handleOnScroll = React.useCallback(() => {
