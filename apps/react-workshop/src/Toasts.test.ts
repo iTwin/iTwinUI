@@ -20,6 +20,9 @@ describe('Toasts', () => {
       cy.get('#ladle-root').within(() => {
         cy.get('button').first().click();
       });
+
+      // Wait for entry animation to complete
+      cy.wait(240);
       cy.compareSnapshot(testName);
     });
   });

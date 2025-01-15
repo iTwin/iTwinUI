@@ -7,7 +7,6 @@ export * from './FocusTrap.js';
 export * from './InputContainer.js';
 export * from './InputFlexContainer.js';
 export * from './InputWithIcon.js';
-export * from './WithCSSTransition.js';
 export * from './MiddleTextTruncation.js';
 export * from './AutoclearingHiddenLiveRegion.js';
 export * from './Box.js';
