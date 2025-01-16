@@ -2,9 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import type { JSX } from 'react';
 import * as React from 'react';
 import { getTabbableElements } from '../functions/focusable.js';
-import { mergeRefs } from '../hooks/useMergedRefs.js';
+import { cloneElementWithRef } from '../functions/react.js';
 
 export type FocusTrapProps = {
   /**
@@ -19,7 +20,7 @@ export type FocusTrapProps = {
  */
 export const FocusTrap = (props: FocusTrapProps) => {
   const { children } = props;
-  const childRef = React.useRef<HTMLElement>();
+  const childRef = React.useRef<HTMLElement>(undefined);
 
   const getFirstLastFocusables = () => {
     const elements = getTabbableElements(childRef.current);
@@ -49,12 +50,9 @@ export const FocusTrap = (props: FocusTrapProps) => {
   return (
     <>
       <div tabIndex={0} onFocus={onFirstFocus} aria-hidden />
-      {React.cloneElement(children, {
-        ref: mergeRefs(
-          (children as React.FunctionComponentElement<HTMLElement>).ref,
-          childRef,
-        ),
-      })}
+      {cloneElementWithRef(children, () => ({
+        ref: childRef,
+      }))}
       <div tabIndex={0} onFocus={onLastFocus} aria-hidden />
     </>
   );

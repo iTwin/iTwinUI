@@ -19,7 +19,7 @@ export const useEventListener = (
   element: HTMLElement | Document | Window | undefined,
 ) => {
   // Based on published hook https://usehooks.com/useEventListener/.
-  const savedHandler = React.useRef<(event: Event) => void>();
+  const savedHandler = React.useRef<(event: Event) => void>(undefined);
 
   // Update reference if handler changes. This allows our effect below to
   // always use latest handler without us needing to pass it in effect deps array

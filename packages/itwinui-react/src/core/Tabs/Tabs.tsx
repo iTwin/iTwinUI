@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
+import type { JSX } from 'react';
 import {
   useSafeContext,
   Box,
@@ -225,7 +226,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     focusActivationMode,
   } = useSafeContext(TabsContext);
   const { tabsWidth, tablistRef } = useSafeContext(TabListContext);
-  const tabRef = React.useRef<HTMLButtonElement>();
+  const tabRef = React.useRef<HTMLButtonElement>(undefined);
 
   const isActive = activeValue === value;
   const isActiveRef = useLatestRef(isActive);
@@ -849,7 +850,7 @@ if (process.env.NODE_ENV === 'development') {
 const TabListContext = React.createContext<
   | {
       tabsWidth: number;
-      tablistRef: React.RefObject<HTMLDivElement>;
+      tablistRef: React.RefObject<HTMLDivElement | null>;
     }
   | undefined
 >(undefined);
