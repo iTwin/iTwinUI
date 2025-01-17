@@ -11,7 +11,7 @@ import { useEventListener } from './useEventListener.js';
 import { useResizeObserver } from './useResizeObserver.js';
 
 const getContainerRect = (
-  containerRef: React.RefObject<HTMLElement> | undefined,
+  containerRef: React.RefObject<HTMLElement | null> | undefined,
 ) => {
   const containerRect = containerRef?.current?.getBoundingClientRect();
   return {
@@ -32,7 +32,7 @@ const getContainerRect = (
  */
 export const useDragAndDrop = (
   elementRef: React.RefObject<HTMLElement | null>,
-  containerRef?: React.RefObject<HTMLElement>,
+  containerRef?: React.RefObject<HTMLElement | null>,
   enabled = true,
 ) => {
   const grabOffsetX = React.useRef(0);

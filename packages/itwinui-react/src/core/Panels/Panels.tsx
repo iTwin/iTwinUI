@@ -253,7 +253,7 @@ if (process.env.NODE_ENV === 'development') {
 
 type PanelTriggerProps = {
   for: string;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
 };
 
 const PanelTrigger = (props: PanelTriggerProps) => {

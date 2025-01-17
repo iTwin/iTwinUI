@@ -9,8 +9,8 @@ import type { usePopover } from '../Popover/Popover.js';
 
 export const ComboBoxRefsContext = React.createContext<
   | {
-      inputRef: React.RefObject<HTMLInputElement>;
-      menuRef: React.RefObject<HTMLElement>;
+      inputRef: React.RefObject<HTMLInputElement | null>;
+      menuRef: React.RefObject<HTMLElement | null>;
       optionsExtraInfo: Record<string, { __originalIndex: number }>;
     }
   | undefined

@@ -1065,7 +1065,7 @@ export const ControlledState = () => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableInstance<DemoData>>();
+  const tableInstance = React.useRef<TableInstance<DemoData>>(undefined);
   const [selectedRows, setSelectedRows] = React.useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = React.useState<DemoData[]>([]);
 

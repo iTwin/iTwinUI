@@ -201,7 +201,7 @@ const useSetup = (children: React.ReactNode) => {
  * Handles regular inputs, plus `InputWithDecorations`, `InputWithIcon`, `ComboBox` and `Select`.
  */
 const handleCloningInputs = (
-  child: React.ReactElement,
+  child: React.ReactElement<any>,
   {
     labelId,
     inputId,
@@ -225,7 +225,7 @@ const handleCloningInputs = (
     };
   };
 
-  const cloneInput = (child: React.ReactElement) => {
+  const cloneInput = (child: React.ReactElement<any>) => {
     if (child.type === ComboBox) {
       return cloneElementWithRef(child, (child) => ({
         inputProps: inputProps(child.props.inputProps),
@@ -266,15 +266,16 @@ const handleCloningInputs = (
 /** @returns true if `child` is a form element that can be associated with a label using id  */
 const isInput = (child: React.ReactNode): boolean => {
   return (
-    React.isValidElement(child) &&
+    // contains ComboBox.inputProps
+    React.isValidElement(child) && // contains Select.triggerProps
     (child.type === 'input' ||
       child.type === 'textarea' ||
       child.type === 'select' ||
       child.type === Input ||
       child.type === Textarea ||
       child.type === InputWithDecorations.Input ||
-      child.type === Select || // contains Select.triggerProps
-      child.type === ComboBox) // contains ComboBox.inputProps
+      child.type === Select ||
+      child.type === ComboBox)
   );
 };
 

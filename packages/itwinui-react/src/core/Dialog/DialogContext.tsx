@@ -88,7 +88,7 @@ export type DialogContextProps = {
   /**
    * Dialog root ref. For internal use.
    */
-  dialogRootRef?: React.RefObject<HTMLDivElement>;
+  dialogRootRef?: React.RefObject<HTMLDivElement | null>;
   /**
    * Determines the positioning of Dialog on page.
    */
