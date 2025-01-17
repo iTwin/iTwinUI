@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import type { JSX } from 'react';
 import cx from 'classnames';
 import { Menu } from '../Menu/Menu.js';
 import {

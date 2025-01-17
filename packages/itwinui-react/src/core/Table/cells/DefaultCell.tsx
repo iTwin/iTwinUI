@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import type { JSX } from 'react';
 import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';

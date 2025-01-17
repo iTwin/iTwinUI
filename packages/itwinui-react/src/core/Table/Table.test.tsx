@@ -10,6 +10,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import * as React from 'react';
+import type { JSX } from 'react';
 import { Table, type TableProps } from './Table.js';
 import * as IntersectionHooks from '../../utils/hooks/useIntersection.js';
 import {

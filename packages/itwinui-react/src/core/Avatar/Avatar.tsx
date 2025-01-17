@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
+import type { JSX } from 'react';
 import { Box, SoftBackgrounds, isSoftBackground } from '../../utils/index.js';
 import type {
   AnyString,

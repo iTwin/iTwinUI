@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
+import type { JSX } from 'react';
 
 import { Box, ButtonBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';

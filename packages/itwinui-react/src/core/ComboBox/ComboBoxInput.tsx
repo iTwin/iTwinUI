@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import type { JSX } from 'react';
 import { Input } from '../Input/Input.js';
 import {
   useSafeContext,

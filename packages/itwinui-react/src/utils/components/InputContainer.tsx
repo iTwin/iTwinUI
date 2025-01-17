@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import type { JSX } from 'react';
 import cx from 'classnames';
 import { Box } from './Box.js';
 import { Label } from '../../core/Label/Label.js';

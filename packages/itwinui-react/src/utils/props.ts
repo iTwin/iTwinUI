@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import type * as React from 'react';
+import type { JSX } from 'react';
 
 // TODO: remove this once it's not used anywhere
 export type CommonProps = {

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
+import type { JSX } from 'react';
 import { IconButton } from '../Buttons/IconButton.js';
 
 import { SvgMoreVertical, Box } from '../../utils/index.js';

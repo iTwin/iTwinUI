@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
+import type { JSX } from 'react';
 import { Button } from './Button.js';
 import type { ButtonProps } from './Button.js';
 import { IconButton } from './IconButton.js';
