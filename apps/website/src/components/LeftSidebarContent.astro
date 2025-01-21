@@ -7,7 +7,10 @@ const currentPage = Astro.url.pathname.endsWith('/')
   : Astro.url.pathname;
 
 const introPages = await getCollection('docs', ({ data: { group } }) => group === 'intro');
-const mainComponents = await getCollection('docs', ({ data: { group } }) => group === undefined);
+const mainComponents = await getCollection(
+  'docs',
+  ({ data: { group, title } }) => group === undefined && title !== 'Typography',
+);
 const utilityComponents = await getCollection(
   'docs',
   ({ data: { group } }) => group === 'utilities',

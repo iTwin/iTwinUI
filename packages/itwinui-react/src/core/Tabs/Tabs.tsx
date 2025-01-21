@@ -286,6 +286,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     tabsWidth, // to fix visual artifact on initial render
     setStripeProperties,
     tablistRef,
+    value, // since Tab with a different value might be later added to the same position
   ]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
