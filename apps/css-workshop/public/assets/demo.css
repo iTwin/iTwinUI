@@ -90,3 +90,9 @@ section[id^='demo'] {
   width: -moz-fit-content; /* stylelint-disable */
   width: fit-content;
 }
+
+ul {
+  padding-inline-start: revert;
+  margin-block-start: revert;
+  margin-block-end: revert;
+}
