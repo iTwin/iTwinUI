@@ -170,15 +170,11 @@ export const Toast = (props: ToastProps) => {
     }
   };
 
-  const [shouldBeMounted, setShouldBeMounted] = React.useState(isVisible);
-
-  useAnimateToastBasedOnVisibility(
-    isVisible,
+  const shouldBeMounted = useAnimateToastBasedOnVisibility(isVisible, {
     thisElement,
     animateOutTo,
-    onRemove ?? close,
-    setShouldBeMounted,
-  );
+    onRemove,
+  });
 
   return shouldBeMounted ? (
     <Box
@@ -276,28 +272,57 @@ export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
 
 /**
  * Animates in and out the toast based on `isVisible`.
- * It does so by calling `setShouldBeMounted` accordingly.
+ * Returns `shouldBeMounted`. It takes into account the animations (e.g. exit animations are finished before unmounting)
  */
 const useAnimateToastBasedOnVisibility = (
   isVisible: ToastProps['isVisible'],
-  thisElement: React.RefObject<HTMLDivElement | null>,
-  animateOutTo: ToastProps['animateOutTo'],
-  onRemove: ToastProps['onRemove'],
-  setShouldBeMounted: (value: boolean) => void,
+  args: {
+    thisElement: React.RefObject<HTMLDivElement | null>;
+    animateOutTo: ToastProps['animateOutTo'];
+    onRemove: ToastProps['onRemove'];
+  },
 ) => {
+  const { thisElement, animateOutTo, onRemove } = args;
+  const [shouldBeMounted, setShouldBeMounted] = React.useState(isVisible);
+
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
-  const motionOkRef = useLatestRef(motionOk);
   const animateOutToRef = useLatestRef(animateOutTo);
   const onRemoveRef = useLatestRef(onRemove);
   const setShouldBeMountedRef = useLatestRef(setShouldBeMounted);
-  const thisElementRef = useLatestRef(thisElement);
 
   const [prevIsVisible, setPrevIsVisible] = React.useState<
     typeof isVisible | undefined
   >(undefined);
 
-  const calculateOutAnimation = React.useCallback(
-    (node: HTMLElement) => {
+  React.useEffect(() => {
+    // if isVisible prop is changed, animate in or out.
+    if (prevIsVisible !== isVisible) {
+      setPrevIsVisible(isVisible);
+
+      if (isVisible) {
+        setShouldBeMountedRef.current(true);
+
+        // Mount *before* handling dialog entry.
+        queueMicrotask(() => {
+          animateIn();
+        });
+      } else {
+        if (!motionOk) {
+          setShouldBeMountedRef.current(false);
+          onRemoveRef.current?.();
+        } else {
+          const animation = animateOut();
+
+          // Unmount *after* handling dialog exit.
+          animation?.addEventListener('finish', () => {
+            setShouldBeMountedRef.current(false);
+            onRemoveRef.current?.();
+          });
+        }
+      }
+    }
+
+    function calculateOutAnimation(node: HTMLElement) {
       // calculation translate x and y pixels.
       let translateX = 0;
       let translateY = 0;
@@ -308,38 +333,33 @@ const useAnimateToastBasedOnVisibility = (
         translateY = endY - startY;
       }
       return { translateX, translateY };
-    },
-    [animateOutTo],
-  );
-  const calculateOutAnimationRef = useLatestRef(calculateOutAnimation);
+    }
 
-  // if isVisible prop is changed, animate in or out.
-  React.useEffect(() => {
-    const animateIn = () => {
-      if (!motionOkRef.current) {
+    function animateIn() {
+      if (!motionOk) {
         return;
       }
 
-      thisElementRef.current.current?.animate(
+      thisElement.current?.animate(
         [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
         {
           duration: 240,
           fill: 'forwards',
         },
       );
-    };
+    }
 
-    const animateOut = () => {
-      if (thisElementRef.current.current == null || !motionOkRef.current) {
+    function animateOut() {
+      if (thisElement.current == null || !motionOk) {
         return;
       }
 
-      const { translateX, translateY } = calculateOutAnimationRef.current(
-        thisElementRef.current.current,
+      const { translateX, translateY } = calculateOutAnimation(
+        thisElement.current,
       );
       const animationDuration = animateOutToRef.current ? 400 : 120;
 
-      const animation = thisElementRef.current.current?.animate(
+      const animation = thisElement.current?.animate(
         [
           {
             transform: animateOutToRef.current
@@ -358,43 +378,19 @@ const useAnimateToastBasedOnVisibility = (
       );
 
       return animation;
-    };
-
-    if (prevIsVisible !== isVisible) {
-      setPrevIsVisible(isVisible);
-
-      if (isVisible) {
-        setShouldBeMountedRef.current(true);
-
-        // Mount *before* handling dialog entry.
-        queueMicrotask(() => {
-          animateIn();
-        });
-      } else {
-        if (!motionOkRef.current) {
-          setShouldBeMountedRef.current(false);
-          onRemoveRef.current?.();
-        } else {
-          const animation = animateOut();
-
-          // Unmount *after* handling dialog exit.
-          animation?.addEventListener('finish', () => {
-            setShouldBeMountedRef.current(false);
-            onRemoveRef.current?.();
-          });
-        }
-      }
     }
   }, [
     isVisible,
     prevIsVisible,
+    animateOutTo,
+    motionOk,
+    thisElement,
 
     // Using latest refs to avoid unnecessary effect executions.
     animateOutToRef,
     onRemoveRef,
-    calculateOutAnimationRef,
-    motionOkRef,
-    thisElementRef,
     setShouldBeMountedRef,
   ]);
+
+  return shouldBeMounted;
 };
