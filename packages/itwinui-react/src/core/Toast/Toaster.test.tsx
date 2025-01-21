@@ -19,15 +19,6 @@ import {
 
 const mockOnClick = vi.fn();
 
-// Set reduced motion to not trigger animations since JSDom doesn't mock `animate()`.
-const originalMatchMedia = window.matchMedia;
-beforeAll(() => {
-  window.matchMedia = vi.fn().mockReturnValue({ matches: false });
-});
-afterAll(() => {
-  window.matchMedia = originalMatchMedia;
-});
-
 function toasterContraption() {
   const { result } = renderHook(() => useToaster(), {
     wrapper: ({ children }) => (
