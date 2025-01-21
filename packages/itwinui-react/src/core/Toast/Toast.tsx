@@ -288,7 +288,6 @@ const useAnimateToastBasedOnVisibility = (
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
   const animateOutToRef = useLatestRef(animateOutTo);
   const onRemoveRef = useLatestRef(onRemove);
-  const setShouldBeMountedRef = useLatestRef(setShouldBeMounted);
 
   const [prevIsVisible, setPrevIsVisible] = React.useState<
     typeof isVisible | undefined
@@ -300,25 +299,9 @@ const useAnimateToastBasedOnVisibility = (
       setPrevIsVisible(isVisible);
 
       if (isVisible) {
-        setShouldBeMountedRef.current(true);
-
-        // Mount *before* handling dialog entry.
-        queueMicrotask(() => {
-          animateIn();
-        });
+        safeAnimateIn();
       } else {
-        if (!motionOk) {
-          setShouldBeMountedRef.current(false);
-          onRemoveRef.current?.();
-        } else {
-          const animation = animateOut();
-
-          // Unmount *after* handling dialog exit.
-          animation?.addEventListener('finish', () => {
-            setShouldBeMountedRef.current(false);
-            onRemoveRef.current?.();
-          });
-        }
+        safeAnimateOut();
       }
     }
 
@@ -333,6 +316,30 @@ const useAnimateToastBasedOnVisibility = (
         translateY = endY - startY;
       }
       return { translateX, translateY };
+    }
+
+    function safeAnimateIn() {
+      setShouldBeMounted(true);
+
+      // Mount *before* handling dialog entry.
+      queueMicrotask(() => {
+        animateIn();
+      });
+    }
+
+    function safeAnimateOut() {
+      if (!motionOk) {
+        setShouldBeMounted(false);
+        onRemoveRef.current?.();
+      } else {
+        const animation = animateOut();
+
+        // Unmount *after* handling dialog exit.
+        animation?.addEventListener('finish', () => {
+          setShouldBeMounted(false);
+          onRemoveRef.current?.();
+        });
+      }
     }
 
     function animateIn() {
@@ -385,11 +392,11 @@ const useAnimateToastBasedOnVisibility = (
     animateOutTo,
     motionOk,
     thisElement,
+    setShouldBeMounted,
 
     // Using latest refs to avoid unnecessary effect executions.
     animateOutToRef,
     onRemoveRef,
-    setShouldBeMountedRef,
   ]);
 
   return shouldBeMounted;
