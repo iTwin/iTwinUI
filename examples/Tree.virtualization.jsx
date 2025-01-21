@@ -57,6 +57,7 @@ export default () => {
   return (
     <Tree
       className='demo-tree'
+      style={{ height: '400px' }}
       data={data}
       getNode={getNode}
       enableVirtualization
