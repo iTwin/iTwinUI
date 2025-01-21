@@ -180,8 +180,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  future.themeBridge ??=
-    themeProp === 'inherit' ? parent.context?.future?.themeBridge : undefined;
+  future.themeBridge ??= parent.context?.future?.themeBridge;
 
   const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
 
