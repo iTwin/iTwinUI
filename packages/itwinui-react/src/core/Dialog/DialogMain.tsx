@@ -157,6 +157,35 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
+  /** Focuses dialog when opened. */
+  const onEnter = React.useCallback(() => {
+    previousFocusedElement.current = dialogRef.current?.ownerDocument
+      .activeElement as HTMLElement;
+    setFocus && dialogRef.current?.focus({ preventScroll: true });
+  }, [setFocus]);
+
+  /** Brings back focus to the previously focused element when closed. */
+  const onExit = React.useCallback(() => {
+    if (
+      dialogRef.current?.contains(
+        dialogRef.current?.ownerDocument.activeElement,
+      )
+    ) {
+      previousFocusedElement.current?.focus();
+    }
+  }, []);
+
+  const mountRef = React.useCallback(
+    (element: HTMLElement | null) => {
+      if (element) {
+        onEnter();
+      } else {
+        onExit();
+      }
+    },
+    [onEnter, onExit],
+  );
+
   const content = (
     <Box
       className={cx(
@@ -170,7 +199,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
         className,
       )}
       role='dialog'
-      ref={useMergedRefs(dialogRef, ref)}
+      ref={useMergedRefs(dialogRef, mountRef, ref)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
       data-iui-placement={placement}
@@ -202,53 +231,12 @@ export const DialogMain = React.forwardRef((props, ref) => {
     </Box>
   );
 
-  /** Focuses dialog when opened. */
-  const onEnter = React.useCallback(() => {
-    previousFocusedElement.current = dialogRef.current?.ownerDocument
-      .activeElement as HTMLElement;
-    setFocus && dialogRef.current?.focus({ preventScroll: true });
-  }, [setFocus]);
-
-  /** Brings back focus to the previously focused element when closed. */
-  const onExit = React.useCallback(() => {
-    if (
-      dialogRef.current?.contains(
-        dialogRef.current?.ownerDocument.activeElement,
-      )
-    ) {
-      previousFocusedElement.current?.focus();
-    }
-  }, []);
-
-  const [prevIsOpen, setPrevIsOpen] = React.useState<typeof isOpen>(false);
-  const [shouldBeMounted, setShouldBeMounted] = React.useState(isOpen);
-
-  if (prevIsOpen !== isOpen) {
-    setPrevIsOpen(isOpen);
-
-    if (isOpen) {
-      // Mount *before* handling dialog entry.
-      queueMicrotask(() => {
-        onEnter();
-      });
-
-      setShouldBeMounted(true);
-    } else {
-      onExit();
-
-      // Wait for the animation to end
-      setTimeout(() => {
-        setShouldBeMounted(false);
-      }, 600);
-    }
-  }
-
-  return shouldBeMounted ? (
+  return (
     <DialogDragContext.Provider value={{ onPointerDown: handlePointerDown }}>
       {trapFocus && <FocusTrap>{content}</FocusTrap>}
       {!trapFocus && content}
     </DialogDragContext.Provider>
-  ) : null;
+  );
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
 if (process.env.NODE_ENV === 'development') {
   DialogMain.displayName = 'Dialog.Main';

@@ -12,6 +12,7 @@ import {
   useSafeContext,
   ButtonBase,
   useMediaQuery,
+  useLatestRef,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -103,6 +104,9 @@ export const Toast = (props: ToastProps) => {
     domProps,
   } = props;
 
+  const animateOutToRef = useLatestRef(animateOutTo);
+  const onRemoveRef = useLatestRef(onRemove);
+
   const closeTimeout = React.useRef(0);
   const { placement } = useSafeContext(ToasterStateContext).settings;
   const placementPosition = placement.startsWith('top') ? 'top' : 'bottom';
@@ -115,6 +119,7 @@ export const Toast = (props: ToastProps) => {
   const [margin, setMargin] = React.useState(0);
 
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+  const motionOkRef = useLatestRef(motionOk);
 
   const marginStyle = () => {
     if (placementPosition === 'top') {
@@ -186,6 +191,7 @@ export const Toast = (props: ToastProps) => {
     },
     [animateOutTo],
   );
+  const calculateOutAnimationRef = useLatestRef(calculateOutAnimation);
 
   const [shouldBeMounted, setShouldBeMounted] = React.useState(isVisible);
 
@@ -193,53 +199,53 @@ export const Toast = (props: ToastProps) => {
     typeof isVisible | undefined
   >(undefined);
 
-  const animateIn = React.useCallback(() => {
-    if (!motionOk) {
-      return;
-    }
-
-    thisElement.current?.animate(
-      [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
-      {
-        duration: 240,
-        fill: 'forwards',
-      },
-    );
-  }, [motionOk]);
-
-  const animateOut = React.useCallback(() => {
-    if (thisElement.current == null || !motionOk) {
-      return;
-    }
-
-    const { translateX, translateY } = calculateOutAnimation(
-      thisElement.current,
-    );
-    const animationDuration = animateOutTo ? 400 : 120;
-
-    const animation = thisElement.current?.animate(
-      [
-        {
-          transform: animateOutTo
-            ? `scale(0.9) translate(${translateX}px,${translateY}px)`
-            : `scale(0.9)`,
-          opacity: 0,
-          transitionDuration: `${animationDuration}ms`,
-          transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
-        },
-      ],
-      {
-        duration: animationDuration,
-        iterations: 1,
-        fill: 'forwards',
-      },
-    );
-
-    return animation;
-  }, [animateOutTo, calculateOutAnimation, motionOk]);
-
   // if isVisible prop is changed, animate in or out.
   React.useEffect(() => {
+    const animateIn = () => {
+      if (!motionOk) {
+        return;
+      }
+
+      thisElement.current?.animate(
+        [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
+        {
+          duration: 240,
+          fill: 'forwards',
+        },
+      );
+    };
+
+    const animateOut = () => {
+      if (thisElement.current == null || !motionOk) {
+        return;
+      }
+
+      const { translateX, translateY } = calculateOutAnimationRef.current(
+        thisElement.current,
+      );
+      const animationDuration = animateOutToRef.current ? 400 : 120;
+
+      const animation = thisElement.current?.animate(
+        [
+          {
+            transform: animateOutToRef.current
+              ? `scale(0.9) translate(${translateX}px,${translateY}px)`
+              : `scale(0.9)`,
+            opacity: 0,
+            transitionDuration: `${animationDuration}ms`,
+            transitionTimingFunction: 'cubic-bezier(0.4, 0, 1, 1)',
+          },
+        ],
+        {
+          duration: animationDuration,
+          iterations: 1,
+          fill: 'forwards',
+        },
+      );
+
+      return animation;
+    };
+
     if (prevIsVisible !== isVisible) {
       setPrevIsVisible(isVisible);
 
@@ -251,29 +257,28 @@ export const Toast = (props: ToastProps) => {
           animateIn();
         });
       } else {
-        if (!motionOk) {
+        if (!motionOkRef.current) {
           setShouldBeMounted(false);
-          onRemove?.();
+          onRemoveRef.current?.();
         } else {
           const animation = animateOut();
 
           // Unmount *after* handling dialog exit.
           animation?.addEventListener('finish', () => {
             setShouldBeMounted(false);
-            onRemove?.();
+            onRemoveRef.current?.();
           });
         }
       }
     }
   }, [
-    animateIn,
-    animateOut,
-    animateOutTo,
-    calculateOutAnimation,
+    animateOutToRef,
+    onRemoveRef,
+    calculateOutAnimationRef,
     isVisible,
-    motionOk,
-    onRemove,
     prevIsVisible,
+    motionOk,
+    motionOkRef,
   ]);
 
   return shouldBeMounted ? (
