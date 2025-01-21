@@ -241,7 +241,7 @@
   /* Footer */
 
   .iui-legal-footer-item {
-    // Since iTwinUI v5 anchors colors are not muted
+    // iTwinUI v5 anchors colors are not muted
     a {
       color: var(--iui-color-text-muted);
     }
@@ -251,21 +251,21 @@
   /* Input */
 
   .iui-input:not([role='combobox']) {
-    // Since iTwinUI v5 input background colors are different from global values
+    // iTwinUI v5 input background colors are different from global values
     --_iui-field-color-background: var(--kiwi-color-bg-surface-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-background-disabled: var(--kiwi-color-bg-surface-base);
   }
 
   .iui-input-flex-container {
-    // Since iTwinUI input v5 background colors are different from global values
+    // iTwinUI input v5 background colors are different from global values
     --_iui-input-background-color: var(--kiwi-color-bg-neutral-primary);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* ProgressRadial */
 
-  // Since iTwinUI v5 progress indicators's default color is not accent
+  // iTwinUI v5 progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
     --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
   }
@@ -275,7 +275,7 @@
   /* TODO: Since Slider is experimental in Kiwi, revisit this when stable on the Kiwi end */
   /* TODO: Are minLabel and maxLabel fills/colors correct? */
 
-  // To match iTwinUI v5 slider thumb colors
+  // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
     background-color: var(--kiwi-color-bg-neutral-faded);
     border-color: var(--kiwi-color-border-neutral-faded);
@@ -315,14 +315,15 @@
   .iui-tab {
     // To prevent outline from overlapping with the stripe
     outline-offset: -6px;
+    // To account for outline-offset
+    border-radius: calc(4px + 6px);
 
-    // To match iTwinUI v5 tab styles
+    // iTwinUI v5 tab has no background or border
     background-color: transparent;
     border: none;
-    border-radius: calc(4px + 6px); /* To account for outline-offset */
   }
 
-  // To match iTwinUI v5 tab styles
+  // iTwinUI v5 tabs content has no background or border
   .iui-tabs-content {
     background-color: transparent;
     border: none;
@@ -353,10 +354,12 @@
   /* ---------------------------------------------------------------------------- */
   /* Tooltip */
 
-  // To match iTwinUI v5 tooltip styles
   .iui-tooltip {
+    // Background and border colors are opaque
     background-color: var(--kiwi-color-bg-surface-emphasis);
     border-color: var(--kiwi-color-border-surface-primary);
+
+    // Use Kiwi's shadow instead of iTwinUI's
     box-shadow: var(--kiwi-shadow-tooltip-base);
   }
 }
