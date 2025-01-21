@@ -347,7 +347,7 @@ const useAnimateToastBasedOnVisibility = (
         return;
       }
 
-      thisElement.current?.animate(
+      thisElement.current?.animate?.(
         [{ transform: 'translateY(15%)' }, { transform: 'translateY(0)' }],
         {
           duration: 240,
@@ -366,7 +366,7 @@ const useAnimateToastBasedOnVisibility = (
       );
       const animationDuration = animateOutToRef.current ? 400 : 120;
 
-      const animation = thisElement.current?.animate(
+      const animation = thisElement.current?.animate?.(
         [
           {
             transform: animateOutToRef.current
