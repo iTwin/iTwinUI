@@ -35,6 +35,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    cssModuleSideEffectful(),
     {
       name: 'copy-files-after-build',
       closeBundle: async () => {
@@ -84,6 +85,21 @@ function postcssAddIuiVersion() {
     }),
     { postcss: true, postcssPlugin: 'add-iui-version' },
   );
+}
+
+// https://github.com/vitejs/vite/pull/16051#issuecomment-2076616816
+function cssModuleSideEffectful() {
+  return {
+    name: 'css-module-side-effectful',
+    enforce: 'post',
+    transform(_, id) {
+      if (id.endsWith('.module.css')) {
+        return {
+          moduleSideEffects: 'no-treeshake', // or true, which i think also works with slightly better treeshake
+        };
+      }
+    },
+  };
 }
 
 // ----------------------------------------------------------------------------
