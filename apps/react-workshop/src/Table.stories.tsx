@@ -1280,7 +1280,10 @@ export const Full = () => {
       {
         ...ActionColumn({ columnManager: true }),
         Cell: () => (
-          <DropdownMenu menuItems={menuItems}>
+          <DropdownMenu
+            menuItems={menuItems}
+            onClick={(e) => e.stopPropagation()}
+          >
             <IconButton
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
@@ -1485,7 +1488,10 @@ export const Full2 = () => {
       {
         ...ActionColumn({ columnManager: true }),
         Cell: (props: CellProps<TableStoryDataType>) => (
-          <DropdownMenu menuItems={menuItems}>
+          <DropdownMenu
+            menuItems={menuItems}
+            onClick={(e) => e.stopPropagation()}
+          >
             <IconButton
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
@@ -3321,7 +3327,10 @@ export const StickyColumns = () => {
       {
         ...ActionColumn({ columnManager: true }),
         Cell: () => (
-          <DropdownMenu menuItems={menuItems}>
+          <DropdownMenu
+            menuItems={menuItems}
+            onClick={(e) => e.stopPropagation()}
+          >
             <IconButton
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}

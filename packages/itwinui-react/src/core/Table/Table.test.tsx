@@ -30,7 +30,6 @@ import {
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
-import * as UseOverflow from '../../utils/hooks/useOverflow.js';
 import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,
@@ -2218,6 +2217,33 @@ it('should handle sub-rows selection', async () => {
   );
 });
 
+it('should show parent row being selected when all sub-rows are selected', async () => {
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+
+  await expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Select all sub-rows of row 2
+  await userEvent.click(checkboxes[7]);
+  await userEvent.click(checkboxes[8]);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+
+  expect(checkboxes[6].checked).toBe(true);
+});
+
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
   const onSelect = vi.fn();
   const data = mockedSubRowsData();
@@ -2585,41 +2611,6 @@ it('should handle unwanted actions on editable cell', async () => {
 
   await userEvent.click(editableCells[1]);
   expect(onSelect).not.toHaveBeenCalled();
-});
-
-it('should render data in pages', async () => {
-  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((itemsCount) => [
-    vi.fn(),
-    itemsCount,
-  ]);
-  const { container } = renderComponent({
-    data: mockedData(100),
-    pageSize: 10,
-    paginatorRenderer: (props) => <TablePaginator {...props} />,
-  });
-
-  let rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows).toHaveLength(10);
-  expect(rows[0].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name1',
-  );
-  expect(rows[9].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name10',
-  );
-
-  const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-table-paginator .iui-table-paginator-page-button',
-  );
-  expect(pages).toHaveLength(10);
-  await userEvent.click(pages[3]);
-  rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows).toHaveLength(10);
-  expect(rows[0].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name31',
-  );
-  expect(rows[9].querySelector('.iui-table-cell')?.textContent).toEqual(
-    'Name40',
-  );
 });
 
 it('should change page size', async () => {

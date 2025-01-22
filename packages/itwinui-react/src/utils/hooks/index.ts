@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 export * from './useEventListener.js';
 export * from './useMergedRefs.js';
-export * from './useOverflow.js';
 export * from './useResizeObserver.js';
 export * from './useContainerWidth.js';
 export * from './useGlobals.js';
@@ -18,4 +17,5 @@ export * from './useId.js';
 export * from './useControlledState.js';
 export * from './useSyncExternalStore.js';
 export * from './useVirtualScroll.js';
+export * from './useInstance.js';
 export * from './useWarningLogger.js';

@@ -1,0 +1,58 @@
+---
+title: SkipToContentLink
+description: A skip-to-content link helps keyboard users quickly navigate to the main content.
+thumbnail: #TODO
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='SkipToContentLink.main.jsx' hideCode={true}>
+  <AllExamples.SkipToContentLinkMainExample client:load />
+</LiveExample>
+
+In large applications, numerous navigation links and other focusable elements can require a lot of keyboard presses before users reach their desired content. What is more, if users navigate to another page with the same structure, they might need to tab through the same list of non-essential links again.
+
+While this may not be an issue for sighted mouse users, it can be cumbersome for those who rely on keyboard navigation. Therefore, a skip link is crucial to improve accessibility and streamline navigation for keyboard users.
+
+## Usage
+
+The `SkipToContentLink` component setup requires two elements:
+
+- The target element to skip to.
+- The link pointing to that target element.
+
+```jsx
+<SkipToContentLink href='#main-id' />
+```
+
+The `href` prop should be used to direct focus to the target element. This prop must be set to the `id` of the main content section, including the `"#"` prefix.
+
+```jsx {2}
+<div className='App'>
+  <SkipToContentLink href='#main-id' />
+  {/* Other elements such as header, navigation, etc. */}
+
+  <main id='main-id'>{/* Main content that will be skipped to */}</main>
+</div>
+```
+
+As the skip link is visually hidden from view until focused, users typically access the link by pressing <kbd>Tab</kbd> at the start of the page. The skip link component should appear on top of the page to make sure it is one of the first items that keyboard users are able to navigate to using the keyboard.
+
+### Custom Text
+
+The skip link component accepts custom text through its `children` prop, which is especially useful for providing a localized message.
+
+If no `children` is passed, the default text displayed is "Skip to main content".
+
+```jsx {2}
+<div className='App'>
+  <SkipToContentLink href='#main-id'>Skip main navigation</SkipToContentLink>
+  {/* Other elements such as header, navigation, etc. */}
+
+  <main id='main-id'>{/* Main content that will be skipped to */}</main>
+</div>
+```
+
+## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/SkipToContentLink/SkipToContentLink.d.ts' />

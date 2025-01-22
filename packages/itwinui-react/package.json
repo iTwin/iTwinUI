@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.15.5",
+  "version": "3.16.5",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -113,7 +113,7 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@swc/cli": "^0.3.12",
+    "@swc/cli": "^0.5.1",
     "@swc/core": "^1.5.28",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^13.2.0",
@@ -130,12 +130,12 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "typescript": "5",
-    "vite": "~5.4.10",
+    "vite": "~5.4.14",
     "vitest": "^1.2.1"
   },
   "peerDependencies": {
-    "react": ">= 17.0.0 < 19.0.0",
-    "react-dom": ">=17.0.0 < 19.0.0"
+    "react": ">=17.0.0 <19.0.0",
+    "react-dom": ">=17.0.0 <19.0.0"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
