@@ -286,7 +286,6 @@ const useAnimateToastBasedOnVisibility = (
   const [shouldBeMounted, setShouldBeMounted] = React.useState(isVisible);
 
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
-  const animateOutToRef = useLatestRef(animateOutTo);
   const onRemoveRef = useLatestRef(onRemove);
 
   const [prevIsVisible, setPrevIsVisible] = React.useState<
@@ -364,12 +363,13 @@ const useAnimateToastBasedOnVisibility = (
       const { translateX, translateY } = calculateOutAnimation(
         thisElement.current,
       );
-      const animationDuration = animateOutToRef.current ? 400 : 120;
+
+      const animationDuration = animateOutTo ? 400 : 120;
 
       const animation = thisElement.current?.animate?.(
         [
           {
-            transform: animateOutToRef.current
+            transform: animateOutTo
               ? `scale(0.9) translate(${translateX}px,${translateY}px)`
               : `scale(0.9)`,
             opacity: 0,
@@ -393,9 +393,6 @@ const useAnimateToastBasedOnVisibility = (
     motionOk,
     thisElement,
     setShouldBeMounted,
-
-    // Using latest refs to avoid unnecessary effect executions.
-    animateOutToRef,
     onRemoveRef,
   ]);
 
