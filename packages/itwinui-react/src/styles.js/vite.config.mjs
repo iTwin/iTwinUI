@@ -95,7 +95,7 @@ function cssModuleSideEffectful() {
     transform(_, id) {
       if (id.endsWith('.module.css')) {
         return {
-          moduleSideEffects: 'no-treeshake', // or true, which i think also works with slightly better treeshake
+          moduleSideEffects: 'no-treeshake',
         };
       }
     },
