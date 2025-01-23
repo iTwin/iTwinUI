@@ -108,3 +108,15 @@ type DialogContextProps = DialogContextPublicProps & DialogContextInternalProps;
 export const DialogContext = React.createContext<
   DialogContextProps | undefined
 >(undefined);
+
+export const useDialogContext = () => {
+  const fallbackDialogRef = React.useRef<HTMLDivElement>(null);
+  const fallbackPreviousFocusedElement = React.useRef<HTMLElement | null>();
+
+  return (
+    React.useContext(DialogContext) || {
+      dialogRef: fallbackDialogRef,
+      previousFocusedElement: fallbackPreviousFocusedElement,
+    }
+  );
+};

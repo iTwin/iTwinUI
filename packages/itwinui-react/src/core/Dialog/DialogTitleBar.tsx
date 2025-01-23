@@ -4,15 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  SvgClose,
-  mergeEventHandlers,
-  Box,
-  useSafeContext,
-} from '../../utils/index.js';
+import { SvgClose, mergeEventHandlers, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
-import { DialogContext } from './DialogContext.js';
+import { useDialogContext } from './DialogContext.js';
 import type { DialogContextPublicProps } from './DialogContext.js';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
 import { useDialogDragContext } from './DialogDragContext.js';
@@ -47,7 +42,7 @@ type DialogTitleBarProps = {
  */
 export const DialogTitleBar = Object.assign(
   React.forwardRef((props, ref) => {
-    const dialogContext = useSafeContext(DialogContext);
+    const dialogContext = useDialogContext();
     const {
       children,
       titleText,

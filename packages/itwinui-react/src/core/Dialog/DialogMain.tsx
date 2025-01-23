@@ -12,10 +12,9 @@ import {
   useLayoutEffect,
   Box,
   ShadowRoot,
-  useSafeContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { DialogContext } from './DialogContext.js';
+import { useDialogContext } from './DialogContext.js';
 import type { DialogContextPublicProps } from './DialogContext.js';
 import { DialogDragContext } from './DialogDragContext.js';
 import { useDragAndDrop } from '../../utils/hooks/useDragAndDrop.js';
@@ -53,7 +52,7 @@ export type DialogMainProps = {
  * </Dialog.Main>
  */
 export const DialogMain = React.forwardRef((props, ref) => {
-  const dialogContext = useSafeContext(DialogContext);
+  const dialogContext = useDialogContext();
   const {
     className,
     children,
@@ -73,7 +72,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { dialogRef, previousFocusedElement } = dialogContext;
+  const { dialogRootRef, dialogRef, previousFocusedElement } = dialogContext;
 
   const [style, setStyle] = React.useState<React.CSSProperties>();
   const hasBeenResized = React.useRef(false);
@@ -122,7 +121,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
 
   const { onPointerDown, transform } = useDragAndDrop(
     dialogRef,
-    dialogContext.dialogRootRef,
+    dialogRootRef,
     isDraggable,
   );
   const handlePointerDown = React.useCallback(
@@ -198,7 +197,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
         {isResizable && (
           <Resizer
             elementRef={dialogRef}
-            containerRef={dialogContext.dialogRootRef}
+            containerRef={dialogRootRef}
             onResizeStart={() => {
               if (!hasBeenResized.current) {
                 hasBeenResized.current = true;
