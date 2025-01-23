@@ -3,23 +3,28 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table, Text } from '@itwin/itwinui-react';
+import { Input, Table } from '@itwin/itwinui-react';
 
 export default () => {
-  const generateItem = React.useCallback((index, parentRow = '') => {
-    const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
-    return {
-      product: `Product ${keyValue}`,
-      price: ((index % 10) + 1) * 15,
-    };
-  }, []);
-
   const data = React.useMemo(
-    () =>
-      Array(3)
-        .fill(null)
-        .map((_, index) => generateItem(index)),
-    [generateItem],
+    () => [
+      {
+        product: 'Product 1',
+        price: 15,
+        date: '2021-05-31T21:00:00.000Z',
+      },
+      {
+        product: 'Product 2',
+        price: 45,
+        date: '2021-06-01T21:00:00.000Z',
+      },
+      {
+        product: 'Product 3',
+        price: 10,
+        date: '2021-06-02T21:00:00.000Z',
+      },
+    ],
+    [],
   );
 
   const columns = React.useMemo(
@@ -34,28 +39,30 @@ export default () => {
         Header: 'Price',
         accessor: 'price',
       },
+      {
+        id: 'date',
+        Header: 'Date',
+        accessor: 'date',
+      },
     ],
     [],
   );
 
-  const expandedSubComponent = React.useCallback(
-    (row) => (
-      <div style={{ padding: 16 }}>
-        <Text>
-          {row.original.product}: ${row.original.price}
-        </Text>
-      </div>
-    ),
-    [],
-  );
+  const [globalFilter, setGlobalFilter] = React.useState('');
 
   return (
     <div className='demo-container'>
+      <Input
+        style={{ marginBottom: '5px' }}
+        placeholder='Search...'
+        value={globalFilter}
+        onInput={(e) => setGlobalFilter(e.target.value)}
+      />
       <Table
         columns={columns}
-        emptyTableContent='No data.'
         data={data}
-        subComponent={expandedSubComponent}
+        emptyTableContent='No data.'
+        globalFilterValue={globalFilter}
       />
     </div>
   );

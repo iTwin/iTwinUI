@@ -217,7 +217,7 @@ To enable editing for each `Table` cell, the `EditableCell` component should be 
 ```jsx {7}
 const columns = React.useMemo(
   () => [
-    ...,
+    /* … */
     {
       Header: 'Name',
       accessor: 'name',
@@ -250,18 +250,18 @@ const onCellEdit = React.useCallback(
 
 ### Sorting
 
-To enable sorting in the `Table`, set the `isSortable` prop to `true`. This will allow the columns to display an arrow when hovered, indicating whether the column is sorted in ascending or descending order.
+To enable sorting in the `Table`, the `isSortable` prop can be set to `true`. This will allow the columns to display an arrow when hovered, indicating whether the column is sorted in ascending or descending order.
 
 <LiveExample src='Table.sorting.jsx'>
   <AllExamples.TableSortingExample client:load />
 </LiveExample>
 
-By default, columns are sorted in ascending order first when the arrow is clicked. To prioritize descending sorting instead, set the `sortDescFirst` property to `true` in the column object.
+By default, columns are sorted in ascending order first when the arrow is clicked. To prioritize descending sorting instead, you can set the `sortDescFirst` property to `true` in the column object.
 
 ```jsx {7}
 const columns = React.useMemo(
   () => [
-    ...,
+    /* … */
     {
       Header: 'Name',
       accessor: 'name',
@@ -271,6 +271,62 @@ const columns = React.useMemo(
   [],
 );
 ```
+
+If there is any column that does not allow sorting, the `disableSortBy` prop needs to be set to `true` in the column object.
+
+```jsx {7}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    {
+      Header: 'Name',
+      accessor: 'name',
+      disableSortBy: true,
+    },
+  ],
+  [],
+);
+```
+
+#### Manual sorting
+
+The `manualSortBy` prop is useful when sorting needs to be handled manually by the developer rather than automatically by the table library. This is particularly useful when you are fetching data from a server or need custom sorting logic.
+
+```jsx {6}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  manualSortBy
+/>
+```
+
+The `manualSortBy` prop must be used in conjunction with the `onSort` callback, allowing end users to implement custom sorting logic programmatically. This function must be memoized.
+
+### Filtering
+
+For basic filtering in the `Table`, you can pass the `Filter` prop to the column object. The `Filter` prop accepts a JSX element to display a filter component, which can be customized or use iTwinUI's pre-built `tableFilter` components. This `tableFilter` object provides three filter components:
+
+- `TextFilter`: a basic string filter with a single input field.
+- `NumberRangeFilter`: a number range filter. It only works with `number` type object properties. If the data is required to be different type e.g. `string`, you can use `accessor` property in column description: `accessor: (rowData) => Number(rowData.numberProp)`.
+- `DateRangeFilter`: a date range filter. By default it handles user input in `en-us` date format. If there are other specific formats that need to be displayed, date range options `formatDate`, `parseInput` and `placeholder` can passed into the filter component.
+
+<LiveExample src='Table.filtering.jsx'>
+  <AllExamples.TableFilteringExample client:load />
+</LiveExample>
+
+#### Global filtering
+
+In addition to filtering data in individual columns, global filtering can be useful for searching through the entire table. The `globalFilterValue` prop can be used to set a default filter value when the table is rendered or to update the table based on a state filter variable.
+
+<LiveExample src='Table.globalFiltering.jsx'>
+  <AllExamples.TableGlobalFilteringExample client:load />
+</LiveExample>
+
+**Note**: The `autoResetGlobalFilter` prop can be used to reset the table filter whenever a change is detected in the filter value.
+
+#### Custom filtering
 
 ## Props
 

@@ -13,7 +13,7 @@ import {
 import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const generateItem = React.useCallback((index, parentRow = '', depth = 0) => {
+  const generateItem = React.useCallback((index, parentRow = '') => {
     const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
     return {
       product: `Product ${keyValue}`,

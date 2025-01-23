@@ -1280,6 +1280,16 @@ import { default as TableSortingExampleRaw } from './Table.sorting';
 const TableSortingExample = withThemeProvider(TableSortingExampleRaw);
 export { TableSortingExample };
 
+import { default as TableFilteringExampleRaw } from './Table.filtering';
+const TableFilteringExample = withThemeProvider(TableFilteringExampleRaw);
+export { TableFilteringExample };
+
+import { default as TableGlobalFilteringExampleRaw } from './Table.globalFiltering';
+const TableGlobalFilteringExample = withThemeProvider(
+  TableGlobalFilteringExampleRaw,
+);
+export { TableGlobalFilteringExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';

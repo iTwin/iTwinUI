@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Table, TablePaginator } from '@itwin/itwinui-react';
 
 export default () => {
-  const generateItem = React.useCallback((index, parentRow = '', depth = 0) => {
+  const generateItem = React.useCallback((index, parentRow = '') => {
     const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
     return {
       product: `Product ${keyValue}`,

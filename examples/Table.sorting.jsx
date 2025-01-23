@@ -6,11 +6,21 @@ import * as React from 'react';
 import { Table } from '@itwin/itwinui-react';
 
 export default () => {
-  const data = [
-    { product: 'Product 1', price: '$15' },
-    { product: 'Product 2', price: '$45' },
-    { product: 'Product 3', price: '$30' },
-  ];
+  const generateItem = React.useCallback((index, parentRow = '') => {
+    const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
+    return {
+      product: `Product ${keyValue}`,
+      price: ((index % 10) + 1) * 15,
+    };
+  }, []);
+
+  const data = React.useMemo(
+    () =>
+      Array(3)
+        .fill(null)
+        .map((_, index) => generateItem(index)),
+    [generateItem],
+  );
 
   const columns = React.useMemo(
     () => [
