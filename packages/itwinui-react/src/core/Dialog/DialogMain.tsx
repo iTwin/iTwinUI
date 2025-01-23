@@ -78,7 +78,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const hasBeenResized = React.useRef(false);
 
   const originalBodyOverflow = React.useRef('');
-  React.useEffect(() => {
+  useLayoutEffect(() => {
     if (isOpen) {
       originalBodyOverflow.current = document.body.style.overflow;
     }
