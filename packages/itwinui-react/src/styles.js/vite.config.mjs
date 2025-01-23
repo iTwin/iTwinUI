@@ -35,18 +35,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    // https://github.com/vitejs/vite/pull/16051#issuecomment-2076616816
-    {
-      name: 'css-module-side-effectful',
-      enforce: 'post',
-      transform(_, id) {
-        if (id.endsWith('.module.css')) {
-          return {
-            moduleSideEffects: 'no-treeshake',
-          };
-        }
-      },
-    },
     {
       name: 'copy-files-after-build',
       closeBundle: async () => {
