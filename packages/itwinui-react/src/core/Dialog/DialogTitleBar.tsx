@@ -13,7 +13,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { DialogContext } from './DialogContext.js';
-import type { DialogContextProps } from './DialogContext.js';
+import type { DialogContextPublicProps } from './DialogContext.js';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
 import { useDialogDragContext } from './DialogDragContext.js';
 
@@ -26,7 +26,7 @@ type DialogTitleBarProps = {
    * Dialog title.
    */
   titleText?: React.ReactNode;
-} & Pick<DialogContextProps, 'isDismissible' | 'onClose' | 'isDraggable'>;
+} & Pick<DialogContextPublicProps, 'isDismissible' | 'onClose' | 'isDraggable'>;
 
 /**
  * Dialog title bar. Recommended to be used as a child of `Dialog`.

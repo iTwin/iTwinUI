@@ -16,7 +16,7 @@ import {
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { DialogContext } from './DialogContext.js';
-import type { DialogContextProps } from './DialogContext.js';
+import type { DialogContextPublicProps } from './DialogContext.js';
 import { DialogDragContext } from './DialogDragContext.js';
 import { useDragAndDrop } from '../../utils/hooks/useDragAndDrop.js';
 
@@ -30,7 +30,7 @@ export type DialogMainProps = {
    * Content of the dialog.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'closeOnExternalClick' | 'dialogRootRef'>;
+} & Omit<DialogContextPublicProps, 'closeOnExternalClick' | 'dialogRootRef'>;
 
 /**
  * Dialog component which can wrap any content.

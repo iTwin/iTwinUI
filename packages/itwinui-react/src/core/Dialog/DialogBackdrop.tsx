@@ -7,12 +7,15 @@ import { Backdrop } from '../Backdrop/Backdrop.js';
 import type { BackdropProps } from '../Backdrop/Backdrop.js';
 import { useMergedRefs, useSafeContext } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { DialogContext, type DialogContextProps } from './DialogContext.js';
+import {
+  DialogContext,
+  type DialogContextPublicProps,
+} from './DialogContext.js';
 import cx from 'classnames';
 
 type DialogBackdropProps = BackdropProps &
   Pick<
-    DialogContextProps,
+    DialogContextPublicProps,
     'onClose' | 'isDismissible' | 'closeOnExternalClick' | 'relativeTo'
   >;
 

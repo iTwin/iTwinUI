@@ -103,8 +103,7 @@ type DialogContextInternalProps = {
   >;
 };
 
-export type DialogContextProps = DialogContextPublicProps &
-  DialogContextInternalProps;
+type DialogContextProps = DialogContextPublicProps & DialogContextInternalProps;
 
 export const DialogContext = React.createContext<
   DialogContextProps | undefined
