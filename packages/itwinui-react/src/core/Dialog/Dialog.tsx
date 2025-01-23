@@ -8,7 +8,7 @@ import { DialogTitleBar } from './DialogTitleBar.js';
 import { DialogContent } from './DialogContent.js';
 import { DialogBackdrop } from './DialogBackdrop.js';
 import { DialogContext } from './DialogContext.js';
-import type { DialogContextProps } from './DialogContext.js';
+import type { DialogContextPublicProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
 import { useMergedRefs, Box, Portal } from '../../utils/index.js';
@@ -19,7 +19,7 @@ type DialogProps = {
    * Dialog content.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'dialogRootRef'>;
+} & DialogContextPublicProps;
 
 const DialogComponent = React.forwardRef((props, ref) => {
   const {
@@ -43,25 +43,30 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRefs = useMergedRefs(ref, dialogRootRef);
 
-  const [shouldBeMounted, setShouldBeMounted] = React.useState(isOpen);
+  const dialogRef = React.useRef<HTMLDivElement>(null);
+  const previousFocusedElement = React.useRef<HTMLElement | null>();
 
-  React.useEffect(() => {
-    if (isOpen) {
-      setShouldBeMounted(true);
+  /** Brings back focus to the previously focused element when closed. */
+  const beforeClose = React.useCallback(() => {
+    if (
+      dialogRef.current?.contains(
+        dialogRef.current?.ownerDocument.activeElement,
+      )
+    ) {
+      previousFocusedElement.current?.focus();
     }
-    // Wait for DialogMain to receive the isOpen=false to properly handle its exit. E.g. move focus to trigger.
-    else {
-      setTimeout(() => {
-        setShouldBeMounted(false);
-      }, 600);
-    }
-  }, [isOpen]);
+  }, []);
 
-  return shouldBeMounted ? (
+  const requestClose = React.useCallback(() => {
+    beforeClose();
+    onClose?.();
+  }, [beforeClose, onClose]);
+
+  return isOpen ? (
     <DialogContext.Provider
       value={{
         isOpen,
-        onClose,
+        onClose: requestClose,
         closeOnEsc,
         closeOnExternalClick,
         isDismissible,
@@ -71,8 +76,12 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isDraggable,
         isResizable,
         relativeTo,
-        dialogRootRef,
         placement,
+
+        // Internal props
+        dialogRootRef,
+        dialogRef,
+        previousFocusedElement,
       }}
     >
       <Portal portal={portal}>

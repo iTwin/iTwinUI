@@ -5,10 +5,9 @@
 import * as React from 'react';
 import { Backdrop } from '../Backdrop/Backdrop.js';
 import type { BackdropProps } from '../Backdrop/Backdrop.js';
-import { useMergedRefs } from '../../utils/index.js';
+import { useMergedRefs, useSafeContext } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { useDialogContext } from './DialogContext.js';
-import type { DialogContextProps } from './DialogContext.js';
+import { DialogContext, type DialogContextProps } from './DialogContext.js';
 import cx from 'classnames';
 
 type DialogBackdropProps = BackdropProps &
@@ -24,7 +23,7 @@ type DialogBackdropProps = BackdropProps &
  * <Dialog.Backdrop />
  */
 export const DialogBackdrop = React.forwardRef((props, ref) => {
-  const dialogContext = useDialogContext();
+  const dialogContext = useSafeContext(DialogContext);
   const {
     isVisible = dialogContext.isOpen,
     isDismissible = dialogContext.isDismissible,

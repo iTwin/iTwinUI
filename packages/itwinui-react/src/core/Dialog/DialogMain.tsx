@@ -12,9 +12,10 @@ import {
   useLayoutEffect,
   Box,
   ShadowRoot,
+  useSafeContext,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { useDialogContext } from './DialogContext.js';
+import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogDragContext } from './DialogDragContext.js';
 import { useDragAndDrop } from '../../utils/hooks/useDragAndDrop.js';
@@ -52,7 +53,7 @@ export type DialogMainProps = {
  * </Dialog.Main>
  */
 export const DialogMain = React.forwardRef((props, ref) => {
-  const dialogContext = useDialogContext();
+  const dialogContext = useSafeContext(DialogContext);
   const {
     className,
     children,
@@ -72,11 +73,10 @@ export const DialogMain = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [style, setStyle] = React.useState<React.CSSProperties>();
+  const { dialogRef, previousFocusedElement } = dialogContext;
 
-  const dialogRef = React.useRef<HTMLDivElement>(null);
+  const [style, setStyle] = React.useState<React.CSSProperties>();
   const hasBeenResized = React.useRef(false);
-  const previousFocusedElement = React.useRef<HTMLElement | null>();
 
   const originalBodyOverflow = React.useRef('');
   React.useEffect(() => {
@@ -106,7 +106,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     return () => {
       ownerDocument.body.style.overflow = originalBodyOverflow.current;
     };
-  }, [isOpen, preventDocumentScroll]);
+  }, [dialogRef, isOpen, preventDocumentScroll]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
@@ -148,7 +148,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
       insetBlockStart: dialogRef.current?.offsetTop,
       transform: `translate(${translateX}px,${translateY}px)`,
     }));
-  }, [isDraggable, isOpen]);
+  }, [dialogRef, isDraggable, isOpen]);
 
   const setResizeStyle = React.useCallback((newStyle: React.CSSProperties) => {
     setStyle((oldStyle) => ({
@@ -157,33 +157,16 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
-  /** Focuses dialog when opened. */
-  const onEnter = React.useCallback(() => {
-    previousFocusedElement.current = dialogRef.current?.ownerDocument
-      .activeElement as HTMLElement;
-    setFocus && dialogRef.current?.focus({ preventScroll: true });
-  }, [setFocus]);
-
-  /** Brings back focus to the previously focused element when closed. */
-  const onExit = React.useCallback(() => {
-    if (
-      dialogRef.current?.contains(
-        dialogRef.current?.ownerDocument.activeElement,
-      )
-    ) {
-      previousFocusedElement.current?.focus();
-    }
-  }, []);
-
   const mountRef = React.useCallback(
     (element: HTMLElement | null) => {
+      /** Focuses dialog when opened. */
       if (element) {
-        onEnter();
-      } else {
-        onExit();
+        previousFocusedElement.current = dialogRef.current?.ownerDocument
+          .activeElement as HTMLElement;
+        setFocus && dialogRef.current?.focus({ preventScroll: true });
       }
     },
-    [onEnter, onExit],
+    [dialogRef, previousFocusedElement, setFocus],
   );
 
   const content = (
