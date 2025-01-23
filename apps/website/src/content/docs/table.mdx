@@ -328,6 +328,8 @@ In addition to filtering data in individual columns, global filtering can be use
 
 #### Manual filtering
 
+The `Table` supports custom filtering, allowing users to filter columns based on their specific needs. To implement custom filtering, you can use the `BaseFilter` component as a wrapper for your custom filter component. Then, this custom filter component can be passed into the `Filter` option of the column object.
+
 <LiveExample src='Table.manualFiltering.jsx'>
   <AllExamples.TableManualFilteringExample client:load />
 </LiveExample>

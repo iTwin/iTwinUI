@@ -30,7 +30,10 @@ export default () => {
 
   const isPassFilter = React.useCallback((dataRow, filter) => {
     // check that the name passes a filter, if there is one
-    if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
+    if (
+      !filter.product ||
+      (filter.product && dataRow.product.includes(filter.product))
+    ) {
       return true;
     }
     return false;
