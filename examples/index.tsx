@@ -1290,6 +1290,12 @@ const TableGlobalFilteringExample = withThemeProvider(
 );
 export { TableGlobalFilteringExample };
 
+import { default as TableManualFilteringExampleRaw } from './Table.manualFiltering';
+const TableManualFilteringExample = withThemeProvider(
+  TableManualFilteringExampleRaw,
+);
+export { TableManualFilteringExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';
