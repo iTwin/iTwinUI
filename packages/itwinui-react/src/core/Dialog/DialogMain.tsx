@@ -18,6 +18,7 @@ import { useDialogContext } from './DialogContext.js';
 import type { DialogContextPublicProps } from './DialogContext.js';
 import { DialogDragContext } from './DialogDragContext.js';
 import { useDragAndDrop } from '../../utils/hooks/useDragAndDrop.js';
+import { DialogMainContext } from './DialogMainContext.js';
 
 export type DialogMainProps = {
   /**
@@ -72,7 +73,10 @@ export const DialogMain = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { dialogRootRef, dialogRef, previousFocusedElement } = dialogContext;
+  const { dialogRootRef } = dialogContext;
+
+  const dialogRef = React.useRef<HTMLDivElement>(null);
+  const previousFocusedElement = React.useRef<HTMLElement | null>();
 
   const [style, setStyle] = React.useState<React.CSSProperties>();
   const hasBeenResized = React.useRef(false);
@@ -114,6 +118,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     // Prevents React from resetting its properties
     event.persist();
     if (isDismissible && closeOnEsc && event.key === 'Escape' && onClose) {
+      beforeClose();
       onClose(event);
     }
     onKeyDown?.(event);
@@ -156,16 +161,31 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
+  const onEnter = React.useCallback(() => {
+    previousFocusedElement.current = dialogRef.current?.ownerDocument
+      .activeElement as HTMLElement;
+    setFocus && dialogRef.current?.focus({ preventScroll: true });
+  }, [dialogRef, previousFocusedElement, setFocus]);
+
+  /** Brings back focus to the previously focused element when closed. */
+  const beforeClose = React.useCallback(() => {
+    if (
+      dialogRef.current?.contains(
+        dialogRef.current?.ownerDocument.activeElement,
+      )
+    ) {
+      previousFocusedElement.current?.focus();
+    }
+  }, [dialogRef, previousFocusedElement]);
+
   const mountRef = React.useCallback(
     (element: HTMLElement | null) => {
       /** Focuses dialog when opened. */
       if (element) {
-        previousFocusedElement.current = dialogRef.current?.ownerDocument
-          .activeElement as HTMLElement;
-        setFocus && dialogRef.current?.focus({ preventScroll: true });
+        onEnter();
       }
     },
-    [dialogRef, previousFocusedElement, setFocus],
+    [onEnter],
   );
 
   const content = (
@@ -214,10 +234,16 @@ export const DialogMain = React.forwardRef((props, ref) => {
   );
 
   return (
-    <DialogDragContext.Provider value={{ onPointerDown: handlePointerDown }}>
-      {trapFocus && <FocusTrap>{content}</FocusTrap>}
-      {!trapFocus && content}
-    </DialogDragContext.Provider>
+    <DialogMainContext.Provider
+      value={{
+        beforeClose,
+      }}
+    >
+      <DialogDragContext.Provider value={{ onPointerDown: handlePointerDown }}>
+        {trapFocus && <FocusTrap>{content}</FocusTrap>}
+        {!trapFocus && content}
+      </DialogDragContext.Provider>
+    </DialogMainContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
 if (process.env.NODE_ENV === 'development') {

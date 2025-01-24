@@ -43,30 +43,11 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRefs = useMergedRefs(ref, dialogRootRef);
 
-  const dialogRef = React.useRef<HTMLDivElement>(null);
-  const previousFocusedElement = React.useRef<HTMLElement | null>();
-
-  /** Brings back focus to the previously focused element when closed. */
-  const beforeClose = React.useCallback(() => {
-    if (
-      dialogRef.current?.contains(
-        dialogRef.current?.ownerDocument.activeElement,
-      )
-    ) {
-      previousFocusedElement.current?.focus();
-    }
-  }, []);
-
-  const requestClose = React.useCallback(() => {
-    beforeClose();
-    onClose?.();
-  }, [beforeClose, onClose]);
-
   return isOpen ? (
     <DialogContext.Provider
       value={{
         isOpen,
-        onClose: requestClose,
+        onClose,
         closeOnEsc,
         closeOnExternalClick,
         isDismissible,
@@ -80,8 +61,6 @@ const DialogComponent = React.forwardRef((props, ref) => {
 
         // Internal props
         dialogRootRef,
-        dialogRef,
-        previousFocusedElement,
       }}
     >
       <Portal portal={portal}>

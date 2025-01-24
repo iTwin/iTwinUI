@@ -11,6 +11,7 @@ import {
   useDialogContext,
   type DialogContextPublicProps,
 } from './DialogContext.js';
+import { useDialogMainContext } from './DialogMainContext.js';
 import cx from 'classnames';
 
 type DialogBackdropProps = BackdropProps &
@@ -27,6 +28,8 @@ type DialogBackdropProps = BackdropProps &
  */
 export const DialogBackdrop = React.forwardRef((props, ref) => {
   const dialogContext = useDialogContext();
+  const dialogMainContext = useDialogMainContext();
+
   const {
     isVisible = dialogContext.isOpen,
     isDismissible = dialogContext.isDismissible,
@@ -49,6 +52,7 @@ export const DialogBackdrop = React.forwardRef((props, ref) => {
       return;
     }
     if (isDismissible && closeOnExternalClick && onClose) {
+      dialogMainContext?.beforeClose();
       onClose(event);
     }
     onMouseDown?.(event);
