@@ -138,6 +138,7 @@ export default () => {
       data={data}
       isLoading={isLoading}
       emptyTableContent='No data.'
+      style={{ height: '300px' }}
       manualFilters={true}
     />
   );

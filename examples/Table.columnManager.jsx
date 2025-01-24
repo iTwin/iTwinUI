@@ -60,6 +60,7 @@ export default () => {
             onClick={(e) => e.stopPropagation()}
           >
             <IconButton
+              aria-label='Column manager'
               styleType='borderless'
               onClick={(e) => e.stopPropagation()}
             >
