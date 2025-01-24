@@ -38,7 +38,7 @@ const config = {
   debugWindow: false,
   dockerCommandTemplate: `docker run --rm -i --add-host=host.docker.internal:host-gateway ${
     isCI ? '--user $(id -u):$(id -g) ' : ''
-  } --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:6.3.25 {backstopCommand} {args}`,
+  } --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:6.2.1 {backstopCommand} {args}`,
 };
 
 module.exports = config;
