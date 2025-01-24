@@ -5,7 +5,7 @@
 import * as React from 'react';
 import type { PortalProps } from '../../utils/index.js';
 
-export type DialogContextPublicProps = {
+export type DialogContextProps = {
   /**
    * Flag whether dialog should be shown.
    *
@@ -86,21 +86,19 @@ export type DialogContextPublicProps = {
    */
   portal?: PortalProps['portal'];
   /**
+   * Dialog root ref. For internal use.
+   */
+  dialogRootRef?: React.RefObject<HTMLDivElement>;
+  /**
    * Determines the positioning of Dialog on page.
    */
   placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 
-/** Props only for internal use */
-type DialogContextInternalProps = {
-  /** @private */
-  dialogRootRef?: React.RefObject<HTMLDivElement>;
-};
-
-type DialogContextProps = DialogContextPublicProps & DialogContextInternalProps;
-
 export const DialogContext = React.createContext<
   DialogContextProps | undefined
 >(undefined);
 
-export const useDialogContext = () => React.useContext(DialogContext) || {};
+export const useDialogContext = () => {
+  return React.useContext(DialogContext) || {};
+};

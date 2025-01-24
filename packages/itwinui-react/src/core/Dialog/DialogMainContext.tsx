@@ -7,4 +7,6 @@ type DialogMainContextProps = {
 export const DialogMainContext =
   React.createContext<DialogMainContextProps | null>(null);
 
-export const useDialogMainContext = () => React.useContext(DialogMainContext);
+export const useDialogMainContext = () => {
+  return React.useContext(DialogMainContext);
+};

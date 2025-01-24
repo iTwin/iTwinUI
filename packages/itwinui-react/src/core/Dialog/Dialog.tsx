@@ -8,7 +8,7 @@ import { DialogTitleBar } from './DialogTitleBar.js';
 import { DialogContent } from './DialogContent.js';
 import { DialogBackdrop } from './DialogBackdrop.js';
 import { DialogContext } from './DialogContext.js';
-import type { DialogContextPublicProps } from './DialogContext.js';
+import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
 import { useMergedRefs, Box, Portal } from '../../utils/index.js';
@@ -19,7 +19,7 @@ type DialogProps = {
    * Dialog content.
    */
   children: React.ReactNode;
-} & DialogContextPublicProps;
+} & DialogContextProps;
 
 const DialogComponent = React.forwardRef((props, ref) => {
   const {
@@ -58,9 +58,6 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isResizable,
         relativeTo,
         placement,
-
-        // Internal props
-        dialogRootRef,
       }}
     >
       <Portal portal={portal}>
