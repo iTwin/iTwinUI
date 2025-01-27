@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.16.6
+
+### Patch Changes
+
+- [#2411](https://github.com/iTwin/iTwinUI/pull/2411): Fixed `Panels.Trigger` not working in older React versions where `useId` is not available.
+- [#2407](https://github.com/iTwin/iTwinUI/pull/2407): Increased contrast (i.e. opacity) of light theme's text selection background. This also affects some other opacities of other components (e.g. shadows and hover backgrounds).
+
+## 3.16.5
+
+### Patch Changes
+
+- [#2402](https://github.com/iTwin/iTwinUI/pull/2402): Fixed an issue in `Tabs` where it wasn't recalculating the active stripe position when a new tab was asynchronously added to the tablist.
+
+## 3.16.4
+
+### Patch Changes
+
+- [#2389](https://github.com/iTwin/iTwinUI/pull/2389): Fixed `Table` bug where parent rows had indeterminate checkboxes even when all sub rows were selected.
+- [#2390](https://github.com/iTwin/iTwinUI/pull/2390): Fixed `ThemeProvider` bug of re-mounting its children and losing state when `portalContainer` is toggled between `undefined` and defined.
+- [#2396](https://github.com/iTwin/iTwinUI/pull/2396): Fixed rare bug where icons in button components (e.g. `Button`, `SidenavButton`, etc.) were becoming 0 in width when less space was available.
+
 ## 3.16.3
 
 ### Patch Changes
