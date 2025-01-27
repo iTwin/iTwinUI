@@ -2,5 +2,5 @@
   display: flex;
   flex-direction: column;
   gap: var(--iui-size-s);
-  width: min(100%, 200px);
+  width: min(100cqi, 200px);
 }
