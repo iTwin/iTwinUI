@@ -3,11 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  Box,
-  getReactVersionSafeInertProp,
-  polymorphic,
-} from '../../utils/index.js';
+import { Box, polymorphic } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type OverlayComponentProps = {
@@ -44,7 +40,12 @@ if (process.env.NODE_ENV === 'development') {
 const OverlayHiddenContent = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
   return (
-    <Box {...getReactVersionSafeInertProp()} ref={ref} {...rest}>
+    <Box
+      // @ts-expect-error - Supporting React 19 and 18
+      inert='true'
+      ref={ref}
+      {...rest}
+    >
       {children}
     </Box>
   );

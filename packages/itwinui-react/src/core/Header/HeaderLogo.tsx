@@ -5,7 +5,6 @@
 
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 
 import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -14,7 +13,7 @@ type HeaderLogoOwnProps = {
   /**
    * Logo shown before the main content.
    */
-  logo: JSX.Element;
+  logo: React.JSX.Element;
   /**
    * Click event handler.
    * If passed, the component will be rendered as a `<button>` rather than `<div>`.

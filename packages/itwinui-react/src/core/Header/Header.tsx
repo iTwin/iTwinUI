@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 import { IconButton } from '../Buttons/IconButton.js';
 
 import { SvgMoreVertical, Box } from '../../utils/index.js';
@@ -65,7 +64,7 @@ type HeaderProps = {
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
    */
-  menuItems?: (close: () => void) => JSX.Element[];
+  menuItems?: (close: () => void) => React.JSX.Element[];
   /**
    * If true, the header height is reduced, typically used when viewing 3D content.
    * @default false

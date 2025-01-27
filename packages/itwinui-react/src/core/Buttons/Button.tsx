@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 
 import { Box, ButtonBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -25,11 +24,11 @@ export type ButtonProps = {
   /**
    * Icon shown before the main button content.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Icon shown after the main button content.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * Passes props to the button label.
    */

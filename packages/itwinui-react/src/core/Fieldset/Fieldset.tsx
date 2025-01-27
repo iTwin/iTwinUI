@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { FieldsetBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -42,7 +41,9 @@ export const Fieldset = React.forwardRef((props, ref) => {
       {disabled
         ? React.Children.map(children, (child) =>
             React.isValidElement(child)
-              ? React.cloneElement(child as JSX.Element, { disabled: true })
+              ? React.cloneElement(child as React.JSX.Element, {
+                  disabled: true,
+                })
               : child,
           )
         : children}

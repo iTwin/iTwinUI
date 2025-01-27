@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { Button } from '../Buttons/Button.js';
 import { NonIdealState } from './NonIdealState.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
@@ -147,7 +146,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     ...translatedErrorMessages,
   } as ErrorTypeTranslations;
 
-  function getErrorIcon(): JSX.Element {
+  function getErrorIcon(): React.JSX.Element {
     switch (errorType) {
       case '300':
       case '301':
@@ -233,7 +232,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     }
   }
 
-  function getPrimaryButton(): JSX.Element | null {
+  function getPrimaryButton(): React.JSX.Element | null {
     if (!primaryButtonHandle || !primaryButtonLabel) {
       return null;
     }
@@ -244,7 +243,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getSecondaryButton(): JSX.Element | null {
+  function getSecondaryButton(): React.JSX.Element | null {
     if (!secondaryButtonHandle || !secondaryButtonLabel) {
       return null;
     }
@@ -255,7 +254,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getActions(): JSX.Element | null {
+  function getActions(): React.JSX.Element | null {
     const primaryButton = getPrimaryButton();
     const secondaryButton = getSecondaryButton();
 

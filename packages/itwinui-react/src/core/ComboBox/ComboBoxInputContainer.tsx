@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import {
   InputContainer,
@@ -36,7 +35,7 @@ export const ComboBoxInputContainer = React.forwardRef(
             <StatusMessage status={status}>{message}</StatusMessage>
           ) : (
             React.isValidElement(message) &&
-            React.cloneElement(message as JSX.Element, { status })
+            React.cloneElement(message as React.JSX.Element, { status })
           )
         }
         ref={forwardedRef}

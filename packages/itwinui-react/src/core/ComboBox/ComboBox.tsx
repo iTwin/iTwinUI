@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { MenuExtraContent } from '../Menu/MenuExtraContent.js';
 import type { SelectOption } from '../Select/Select.js';
 import { SelectTag } from '../Select/SelectTag.js';
@@ -137,7 +136,7 @@ export type ComboBoxProps<T> = {
   endIconProps?: React.ComponentProps<typeof ComboBoxEndIcon>;
   /**
    * Message shown when no options are available.
-   * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
+   * If `React.JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
    * @default 'No options found'
    */
   emptyStateMessage?: React.ReactNode;
@@ -156,7 +155,7 @@ export type ComboBoxProps<T> = {
       id: string;
       index: number;
     },
-  ) => JSX.Element;
+  ) => React.JSX.Element;
   /**
    * If enabled, virtualization is used for the scrollable dropdown list.
    * Use it if you expect a very long list of items.
@@ -653,7 +652,7 @@ export const ComboBox = React.forwardRef(
                             <SelectTag key={item.label} label={item.label} />
                           );
                         })
-                        .filter(Boolean) as JSX.Element[])
+                        .filter(Boolean) as React.JSX.Element[])
                     : undefined
                 }
               />
@@ -679,7 +678,7 @@ export const ComboBox = React.forwardRef(
   },
 ) as <T>(
   props: ComboBoxProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
-) => JSX.Element;
+) => React.JSX.Element;
 if (process.env.NODE_ENV === 'development') {
   (ComboBox as any).displayName = 'ComboBox';
 }

@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import cx from 'classnames';
 import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -84,7 +83,7 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
 
   const getAvatarList = (count: number) => {
     return childrenArray.slice(0, count).map((child) =>
-      React.cloneElement(child as JSX.Element, {
+      React.cloneElement(child as React.JSX.Element, {
         status: undefined,
         size: iconSize,
       }),

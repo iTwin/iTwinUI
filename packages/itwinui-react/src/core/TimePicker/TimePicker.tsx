@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -565,7 +564,9 @@ type TimePickerColumnProps<T = Date> = {
   [k: string]: unknown;
 };
 
-const TimePickerColumn = <T,>(props: TimePickerColumnProps<T>): JSX.Element => {
+const TimePickerColumn = <T,>(
+  props: TimePickerColumnProps<T>,
+): React.JSX.Element => {
   const {
     data,
     onFocusChange,

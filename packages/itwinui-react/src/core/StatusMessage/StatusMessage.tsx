@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { Box, StatusIconMap } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import cx from 'classnames';
@@ -16,7 +15,7 @@ type StatusMessageProps = {
    * - It will default to the `status` icon, if `status` is set.
    * - If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
    */
-  startIcon?: JSX.Element | null;
+  startIcon?: React.JSX.Element | null;
   /**
    * Message content.
    */

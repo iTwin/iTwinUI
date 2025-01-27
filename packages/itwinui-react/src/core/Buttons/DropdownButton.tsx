@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import cx from 'classnames';
 import { Button } from './Button.js';
 import type { ButtonProps } from './Button.js';
@@ -18,7 +17,7 @@ export type DropdownButtonProps = {
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
    */
-  menuItems: (close: () => void) => JSX.Element[];
+  menuItems: (close: () => void) => React.JSX.Element[];
   /**
    * Style of the dropdown button.
    * Use 'borderless' to hide outline.

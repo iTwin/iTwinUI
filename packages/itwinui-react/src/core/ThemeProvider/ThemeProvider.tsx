@@ -385,6 +385,7 @@ const PortalContainer = React.memo(
           themeOptions={{ ...themeOptions, applyBackground: false }}
           data-iui-portal
           style={{ display: 'contents' }}
+          // @ts-expect-error - TODO: Maybe update jotai since updated react?
           ref={setPortalContainer}
           id={id}
         >

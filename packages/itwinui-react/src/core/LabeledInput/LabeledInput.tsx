@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { Input } from '../Input/Input.js';
 import { InputWithIcon, StatusIconMap } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -29,7 +28,7 @@ export type LabeledInputProps = {
   /**
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: JSX.Element | null;
+  svgIcon?: React.JSX.Element | null;
   /**
    * Pass props to wrapper element.
    */

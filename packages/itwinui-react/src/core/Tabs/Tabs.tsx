@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 import {
   useSafeContext,
   Box,
@@ -607,7 +606,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         {labels.map((label, index) => {
           const tabValue = `${index}`;
           return React.isValidElement(label) ? (
-            React.cloneElement(label as JSX.Element, {
+            React.cloneElement(label as React.JSX.Element, {
               value: tabValue,
             })
           ) : (
@@ -646,7 +645,7 @@ type TabLegacyProps = {
   /**
    * Svg icon shown before the labels.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Control whether the tab is disabled.
    */

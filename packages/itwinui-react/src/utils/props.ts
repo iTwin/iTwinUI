@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import type * as React from 'react';
-import type { JSX } from 'react';
 
 // TODO: remove this once it's not used anywhere
 export type CommonProps = {
@@ -28,15 +27,15 @@ export interface PolymorphicForwardRefComponent<
   OwnProps = {}, // eslint-disable-line @typescript-eslint/ban-types
 > extends React.ForwardRefExoticComponent<
     Merge<
-      DefaultAs extends React.ElementType
+      DefaultAs extends React.ElementType<any>
         ? React.ComponentPropsWithRef<DefaultAs>
         : never,
       OwnProps & { as?: DefaultAs }
     >
   > {
   <As = DefaultAs>(
-    props: As extends keyof JSX.IntrinsicElements
-      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
+    props: As extends keyof React.JSX.IntrinsicElements
+      ? Merge<React.JSX.IntrinsicElements[As], OwnProps & { as: As }>
       : As extends React.ComponentType<infer P>
         ? Merge<P, OwnProps & { as: As }>
         : never,

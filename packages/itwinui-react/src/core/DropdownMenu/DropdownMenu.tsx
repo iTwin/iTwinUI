@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { mergeEventHandlers, useControlledState } from '../../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -19,9 +18,9 @@ export type DropdownMenuProps = {
    * You can pass function that takes argument `close` that closes the dropdown menu, or a list of MenuItems.
    */
   menuItems:
-    | ((close: () => void) => JSX.Element[])
-    | JSX.Element[]
-    | JSX.Element;
+    | ((close: () => void) => React.JSX.Element[])
+    | React.JSX.Element[]
+    | React.JSX.Element;
   /**
    * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
    * @default 'menu'

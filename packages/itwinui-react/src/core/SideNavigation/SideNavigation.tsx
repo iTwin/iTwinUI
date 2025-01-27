@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import cx from 'classnames';
 import { SvgChevronRight, Box, useControlledState } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -56,7 +55,7 @@ type SideNavigationProps = {
    *   isSubmenuOpen={true}
    * />
    */
-  submenu?: JSX.Element;
+  submenu?: React.JSX.Element;
   /**
    * Set to true to display the provided `submenu`.
    *

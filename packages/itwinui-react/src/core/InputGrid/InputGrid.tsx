@@ -150,12 +150,13 @@ const useSetup = (children: React.ReactNode) => {
     }
     // ComboBox input id is passed through `inputProps`
     if (child.type === ComboBox) {
-      return child.props.inputProps?.id || `${idPrefix}--input`;
+      // TODO: See if better way to get child props. It shoudl get it automatically.
+      return (child as any).props.inputProps?.id || `${idPrefix}--input`;
     }
     // Select input id would be passed through `triggerProps`, but we don't even
     // need it because, unlike other inputs, it gets labelled using `aria-labelledby`
     else if (child.type !== Select) {
-      return child.props.id || `${idPrefix}--input`;
+      return (child as any).props.id || `${idPrefix}--input`;
     }
   };
 
@@ -166,15 +167,15 @@ const useSetup = (children: React.ReactNode) => {
 
     if (child.type === Label || child.type === 'label') {
       hasLabel = true;
-      labelId ||= child.props.id || `${idPrefix}--label`;
+      labelId ||= (child as any).props.id || `${idPrefix}--label`;
     }
 
     if (child.type === StatusMessage) {
-      messageId ||= child.props.id || `${idPrefix}--message`;
+      messageId ||= (child as any).props.id || `${idPrefix}--message`;
     }
 
     if (child.type === InputWithDecorations || child.type === InputWithIcon) {
-      React.Children.forEach(child.props.children, (child) => {
+      React.Children.forEach((child as any).props.children, (child) => {
         if (isInput(child)) {
           inputId ||= findInputId(child);
         }

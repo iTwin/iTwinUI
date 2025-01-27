@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import type { SelectOption } from '../Select/Select.js';
 import type { usePopover } from '../Popover/Popover.js';
 
@@ -25,7 +24,10 @@ type ComboBoxStateContextProps<T = unknown> = {
   enableVirtualization: boolean;
   filteredOptions: SelectOption<T>[];
   onClickHandler?: (prop: number) => void;
-  getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
+  getMenuItem: (
+    option: SelectOption<T>,
+    filteredIndex?: number,
+  ) => React.JSX.Element;
   focusedIndex: number;
   setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
   multiple?: boolean;

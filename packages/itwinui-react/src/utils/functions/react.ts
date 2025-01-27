@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { mergeRefs } from '../hooks/useMergedRefs.js';
 
 /**
@@ -14,8 +13,16 @@ import { mergeRefs } from '../hooks/useMergedRefs.js';
  */
 export const cloneElementWithRef = (
   children: React.ReactNode,
-  getProps: (children: JSX.Element) => Record<string, unknown>,
+  getProps: (children: React.JSX.Element) => Record<string, unknown>,
 ) => {
+  // if (!children) {
+  //   return null;
+  // }
+
+  // if (!React.isValidElement(children)) {
+  //   return children;
+  // }
+
   if (!children) {
     return null;
   }
@@ -24,19 +31,7 @@ export const cloneElementWithRef = (
     return children;
   }
 
-  const childrenRef = (() => {
-    // React 19
-    if ('ref' in children.props) {
-      return children.props.ref;
-    }
-
-    // Other React versions
-    if ('ref' in children) {
-      return children.ref;
-    }
-
-    return null;
-  })();
+  const childrenRef = (children as any)?.props?.ref || (children as any)?.ref;
 
   const props = getProps(children);
   const ref = mergeRefs(
@@ -50,14 +45,4 @@ export const cloneElementWithRef = (
     // @ts-ignore
     ref,
   });
-};
-
-/**
- * Returns an object with `inert` if the `inert` argument is `true`.
- *
- * The value of the `inert` prop is adjusted to work with all React versions, including React 19+.
- */
-export const getReactVersionSafeInertProp = (inert = true) => {
-  const inertValue = Number(React.version.split('.')[0]) >= 19 ? true : '';
-  return inert ? { inert: inertValue } : {};
 };

@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import cx from 'classnames';
 import { Menu } from '../Menu/Menu.js';
 import {
@@ -77,7 +76,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
       const menuItem =
         filteredOptions.length > 0
           ? getMenuItem(filteredOptions[virtualItem.index], virtualItem.index)
-          : (children as JSX.Element); // Here is expected empty state content
+          : (children as React.JSX.Element); // Here is expected empty state content
       return React.cloneElement(menuItem, {
         key: virtualItem.key,
         ref: virtualizer.measureElement,

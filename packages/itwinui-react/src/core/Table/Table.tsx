@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -371,7 +370,7 @@ export const Table = <
   T extends Record<string, unknown> = Record<string, unknown>,
 >(
   props: TableProps<T>,
-): JSX.Element => {
+): React.JSX.Element => {
   const {
     data,
     columns,

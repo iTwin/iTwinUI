@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import cx from 'classnames';
 import { CarouselContext } from './CarouselContext.js';
 import {
@@ -33,7 +32,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     () =>
       React.Children.map(children, (child, index) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as JSX.Element, {
+          ? React.cloneElement(child as React.JSX.Element, {
               id: `${idPrefix}--slide-${index}`,
               'aria-labelledby': `${idPrefix}--dot-${index}`,
               index,

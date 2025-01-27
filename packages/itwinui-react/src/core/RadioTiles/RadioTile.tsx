@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 import { useMergedRefs, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -12,7 +11,7 @@ type RadioTileProps = {
   /**
    * Icon to be used.
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   /**
    * Label of the Radio tile.
    */

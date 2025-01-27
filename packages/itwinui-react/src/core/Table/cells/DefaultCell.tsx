@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
@@ -14,11 +13,11 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Custom icon to be displayed at the beginning of the cell.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Custom icon to be displayed at the end of the cell.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * Status of the cell.
    */

@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type { JSX } from 'react';
 import * as React from 'react';
 import { getTabbableElements } from '../functions/focusable.js';
 import { cloneElementWithRef } from '../functions/react.js';
@@ -11,7 +10,7 @@ export type FocusTrapProps = {
   /**
    * A single child element to trap focus in.
    */
-  children: JSX.Element;
+  children: React.JSX.Element;
 };
 
 /**

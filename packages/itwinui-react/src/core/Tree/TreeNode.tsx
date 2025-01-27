@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { JSX } from 'react';
 import {
   getFocusableElements,
   Box,
@@ -51,7 +50,7 @@ type TreeNodeProps = {
   /**
    * Icon shown before label and sublabel content.
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   /**
    * Props for TreeNode Icon
    */
@@ -309,7 +308,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
             className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
           >
             {React.isValidElement(checkbox)
-              ? React.cloneElement(checkbox as JSX.Element, {
+              ? React.cloneElement(checkbox as React.JSX.Element, {
                   tabIndex: isFocused ? 0 : -1,
                 })
               : checkbox}

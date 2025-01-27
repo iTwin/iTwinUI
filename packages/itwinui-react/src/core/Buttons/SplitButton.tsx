@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { JSX } from 'react';
 import { Button } from './Button.js';
 import type { ButtonProps } from './Button.js';
 import { IconButton } from './IconButton.js';
@@ -28,7 +27,7 @@ export type SplitButtonProps = ButtonProps & {
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
    */
-  menuItems: (close: () => void) => JSX.Element[];
+  menuItems: (close: () => void) => React.JSX.Element[];
   /**
    * Placement of the dropdown menu.
    * @default 'bottom-end'
