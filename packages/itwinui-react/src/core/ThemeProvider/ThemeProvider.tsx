@@ -338,7 +338,7 @@ const PortalContainer = React.memo(
     themeOptions,
   }: {
     portalContainerProp: HTMLElement | undefined;
-    portalContainerFromParent: HTMLElement | undefined;
+    portalContainerFromParent: HTMLElement | null;
     isInheritingTheme: boolean;
   } & RootProps) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
@@ -385,7 +385,6 @@ const PortalContainer = React.memo(
           themeOptions={{ ...themeOptions, applyBackground: false }}
           data-iui-portal
           style={{ display: 'contents' }}
-          // @ts-expect-error - TODO: Maybe update jotai since updated react?
           ref={setPortalContainer}
           id={id}
         >
