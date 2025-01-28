@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React, { useCallback, type JSX } from 'react';
+import React, { useCallback } from 'react';
 import type {
   CellProps,
   CellRendererProps,
@@ -3376,8 +3376,8 @@ export const StatusAndCellIcons = () => {
     name: string;
     modified: string;
     size: string;
-    startIcon?: JSX.Element;
-    endIcon?: JSX.Element;
+    startIcon?: React.JSX.Element;
+    endIcon?: React.JSX.Element;
     status?: 'positive' | 'negative' | 'warning';
     isLoading?: boolean;
   };

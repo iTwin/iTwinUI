@@ -15,23 +15,16 @@ export const cloneElementWithRef = (
   children: React.ReactNode,
   getProps: (children: React.JSX.Element) => Record<string, unknown>,
 ) => {
-  // if (!children) {
-  //   return null;
-  // }
-
-  // if (!React.isValidElement(children)) {
-  //   return children;
-  // }
-
   if (!children) {
     return null;
   }
 
-  if (!React.isValidElement(children)) {
+  if (!React.isValidElement<Record<string, any>>(children)) {
     return children;
   }
 
-  const childrenRef = (children as any)?.props?.ref || (children as any)?.ref;
+  // Supporting React 19 and 18
+  const childrenRef = children.props?.ref || (children as any)?.ref;
 
   const props = getProps(children);
   const ref = mergeRefs(

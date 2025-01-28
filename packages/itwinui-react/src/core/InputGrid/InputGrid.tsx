@@ -145,37 +145,36 @@ const useSetup = (children: React.ReactNode) => {
   let hasSelect = false;
 
   const findInputId = (child: React.ReactNode) => {
-    if (!React.isValidElement(child)) {
+    if (!React.isValidElement<Record<string, any>>(child)) {
       return;
     }
     // ComboBox input id is passed through `inputProps`
     if (child.type === ComboBox) {
-      // TODO: See if better way to get child props. It shoudl get it automatically.
-      return (child as any).props.inputProps?.id || `${idPrefix}--input`;
+      return child.props.inputProps?.id || `${idPrefix}--input`;
     }
     // Select input id would be passed through `triggerProps`, but we don't even
     // need it because, unlike other inputs, it gets labelled using `aria-labelledby`
     else if (child.type !== Select) {
-      return (child as any).props.id || `${idPrefix}--input`;
+      return child.props.id || `${idPrefix}--input`;
     }
   };
 
   React.Children.forEach(children, (child) => {
-    if (!React.isValidElement(child)) {
+    if (!React.isValidElement<Record<string, any>>(child)) {
       return;
     }
 
     if (child.type === Label || child.type === 'label') {
       hasLabel = true;
-      labelId ||= (child as any).props.id || `${idPrefix}--label`;
+      labelId ||= child.props.id || `${idPrefix}--label`;
     }
 
     if (child.type === StatusMessage) {
-      messageId ||= (child as any).props.id || `${idPrefix}--message`;
+      messageId ||= child.props.id || `${idPrefix}--message`;
     }
 
     if (child.type === InputWithDecorations || child.type === InputWithIcon) {
-      React.Children.forEach((child as any).props.children, (child) => {
+      React.Children.forEach(child.props.children, (child) => {
         if (isInput(child)) {
           inputId ||= findInputId(child);
         }
@@ -267,16 +266,15 @@ const handleCloningInputs = (
 /** @returns true if `child` is a form element that can be associated with a label using id  */
 const isInput = (child: React.ReactNode): boolean => {
   return (
-    // contains ComboBox.inputProps
-    React.isValidElement(child) && // contains Select.triggerProps
+    React.isValidElement(child) &&
     (child.type === 'input' ||
       child.type === 'textarea' ||
       child.type === 'select' ||
       child.type === Input ||
       child.type === Textarea ||
       child.type === InputWithDecorations.Input ||
-      child.type === Select ||
-      child.type === ComboBox)
+      child.type === Select || // contains ComboBox.inputProps
+      child.type === ComboBox) // contains Select.triggerProps
   );
 };
 

@@ -15,7 +15,7 @@ export const mergeRefs = <T>(
       if (typeof ref === 'function') {
         ref(instance);
       } else if (ref) {
-        (ref as React.MutableRefObject<T | null>).current = instance;
+        (ref as React.RefObject<T | null>).current = instance;
       }
     });
   };

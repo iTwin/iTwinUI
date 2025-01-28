@@ -76,10 +76,10 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const { dialogRootRef } = dialogContext;
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const hasBeenResized = React.useRef(false);
   const previousFocusedElement = React.useRef<HTMLElement>(undefined);
 
   const [style, setStyle] = React.useState<React.CSSProperties>();
+  const hasBeenResized = React.useRef(false);
 
   const originalBodyOverflow = React.useRef('');
   useLayoutEffect(() => {

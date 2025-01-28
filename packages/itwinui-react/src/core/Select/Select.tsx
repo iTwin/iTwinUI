@@ -816,11 +816,12 @@ const SelectListbox = React.forwardRef((props, forwardedRef) => {
 
   const children = React.useMemo(() => {
     return React.Children.map(childrenProp, (child, index) =>
-      React.isValidElement(child) ? (
+      React.isValidElement<Record<string, any>>(child) ? (
         <CompositeItem
           key={index}
           render={child}
-          ref={(child as any).props.ref || (child as any).ref}
+          // Supporting React 19 and 18
+          ref={child.props.ref || (child as any).ref}
         />
       ) : (
         child

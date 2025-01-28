@@ -112,7 +112,7 @@ type TooltipOwnProps = {
    */
   content: React.ReactNode;
   /**
-   * Element to have tooltip on. Has to be a valid React.JSX element and needs to forward its ref.
+   * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
    * If not specified, the `reference` prop should be used instead.
    */
   children?: React.ReactNode;
