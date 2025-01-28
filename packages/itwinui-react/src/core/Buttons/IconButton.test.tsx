@@ -2,8 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { SvgMore } from '../../utils/index.js';
+import * as React from 'react';
 
 import { IconButton } from './IconButton.js';
 import { userEvent } from '@testing-library/user-event';
@@ -124,7 +125,9 @@ it('should not leave behind tooltip in DOM when not visible', async () => {
 
   // unfocus the button
   await userEvent.tab();
-  expect(screen.queryAllByText('hello')).toHaveLength(1);
+  await waitFor(() => {
+    expect(screen.queryAllByText('hello')).toHaveLength(1);
+  });
 });
 
 it.each(['default', 'small', 'large'] as const)(
