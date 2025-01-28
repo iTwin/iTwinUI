@@ -8,6 +8,7 @@ import { SvgClose, mergeEventHandlers, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { useDialogContext } from './DialogContext.js';
+import { useDialogMainContext } from './DialogMainContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
 import { useDialogDragContext } from './DialogDragContext.js';
@@ -43,6 +44,8 @@ type DialogTitleBarProps = {
 export const DialogTitleBar = Object.assign(
   React.forwardRef((props, ref) => {
     const dialogContext = useDialogContext();
+    const dialogMainContext = useDialogMainContext();
+
     const {
       children,
       titleText,
@@ -55,6 +58,11 @@ export const DialogTitleBar = Object.assign(
     } = props;
 
     const { onPointerDown } = useDialogDragContext();
+
+    const onClick = React.useCallback(() => {
+      dialogMainContext?.beforeClose();
+      onClose?.();
+    }, [dialogMainContext, onClose]);
 
     return (
       <Box
@@ -74,7 +82,7 @@ export const DialogTitleBar = Object.assign(
               <IconButton
                 size='small'
                 styleType='borderless'
-                onClick={onClose}
+                onClick={onClick}
                 aria-label='Close'
                 data-iui-shift='right'
               >

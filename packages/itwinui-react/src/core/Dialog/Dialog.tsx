@@ -19,7 +19,7 @@ type DialogProps = {
    * Dialog content.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'dialogRootRef'>;
+} & DialogContextProps;
 
 const DialogComponent = React.forwardRef((props, ref) => {
   const {
@@ -43,21 +43,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRefs = useMergedRefs(ref, dialogRootRef);
 
-  const [shouldBeMounted, setShouldBeMounted] = React.useState(isOpen);
-
-  React.useEffect(() => {
-    if (isOpen) {
-      setShouldBeMounted(true);
-    }
-    // Wait for DialogMain to receive the isOpen=false to properly handle its exit. E.g. move focus to trigger.
-    else {
-      setTimeout(() => {
-        setShouldBeMounted(false);
-      }, 600);
-    }
-  }, [isOpen]);
-
-  return shouldBeMounted ? (
+  return isOpen ? (
     <DialogContext.Provider
       value={{
         isOpen,
@@ -71,7 +57,6 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isDraggable,
         isResizable,
         relativeTo,
-        dialogRootRef,
         placement,
       }}
     >

@@ -13,15 +13,6 @@ import {
 import { userEvent } from '@testing-library/user-event';
 import { ToastProvider } from './Toaster.js';
 
-// Set reduced motion to not trigger animations since JSDom doesn't mock `animate()`.
-const originalMatchMedia = window.matchMedia;
-beforeAll(() => {
-  window.matchMedia = vi.fn().mockReturnValue({ matches: false });
-});
-afterAll(() => {
-  window.matchMedia = originalMatchMedia;
-});
-
 it('renders the category classes & icons correctly', () => {
   const categories: Array<ToastCategory> = [
     'negative',
