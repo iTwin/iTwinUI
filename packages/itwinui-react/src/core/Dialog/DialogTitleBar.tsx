@@ -59,10 +59,13 @@ export const DialogTitleBar = Object.assign(
 
     const { onPointerDown } = useDialogDragContext();
 
-    const onClick = React.useCallback(() => {
-      dialogMainContext?.beforeClose();
-      onClose?.();
-    }, [dialogMainContext, onClose]);
+    const onClick = React.useCallback(
+      (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        dialogMainContext?.beforeClose();
+        onClose?.(e);
+      },
+      [dialogMainContext, onClose],
+    );
 
     return (
       <Box

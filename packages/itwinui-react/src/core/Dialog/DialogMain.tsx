@@ -161,10 +161,13 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
+  /** Focuses dialog when opened. */
   const onEnter = React.useCallback(() => {
     previousFocusedElement.current = dialogRef.current?.ownerDocument
       .activeElement as HTMLElement;
-    setFocus && dialogRef.current?.focus({ preventScroll: true });
+    if (setFocus) {
+      dialogRef.current?.focus({ preventScroll: true });
+    }
   }, [dialogRef, previousFocusedElement, setFocus]);
 
   /** Brings back focus to the previously focused element when closed. */
@@ -180,7 +183,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
 
   const mountRef = React.useCallback(
     (element: HTMLElement | null) => {
-      /** Focuses dialog when opened. */
       if (element) {
         onEnter();
       }
@@ -235,9 +237,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
 
   return (
     <DialogMainContext.Provider
-      value={{
-        beforeClose,
-      }}
+      value={React.useMemo(() => ({ beforeClose }), [beforeClose])}
     >
       <DialogDragContext.Provider value={{ onPointerDown: handlePointerDown }}>
         {trapFocus && <FocusTrap>{content}</FocusTrap>}
