@@ -211,7 +211,6 @@
       border-inline-end: 1px solid transparent;
       border-block-end: 1px solid var(--iui-color-border);
       flex-shrink: 0;
-      @include mixins.iui-transition-group;
     }
 
     // #region Selection
