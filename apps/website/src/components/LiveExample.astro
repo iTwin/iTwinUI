@@ -50,6 +50,7 @@ const cssCode = await (async () => {
     <style is:inline>
       astro-island {
         display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+        max-inline-size: 100cqi;
       }
     </style>
     <style set:html={cssCode}></style>
@@ -112,6 +113,7 @@ const cssCode = await (async () => {
 <style lang='scss'>
   @layer components {
     demo-box {
+      container-type: inline-size;
       position: relative;
       min-height: 300px;
       max-height: 500px;
