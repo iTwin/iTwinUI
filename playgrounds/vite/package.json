@@ -18,9 +18,9 @@
   "devDependencies": {
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "typescript": "5",
-    "vite": "^5"
+    "vite": "^6"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
