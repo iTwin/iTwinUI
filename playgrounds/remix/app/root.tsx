@@ -6,8 +6,15 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 import { ThemeProvider } from '@itwin/itwinui-react';
-import '@itwin/itwinui-react/styles.css';
-import './root.css';
+
+import iTwinUIStyles from '@itwin/itwinui-react/styles.css?url';
+import rootStyles from './root.css?url';
+import { LinksFunction } from '@remix-run/node';
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: iTwinUIStyles },
+  { rel: 'stylesheet', href: rootStyles },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
