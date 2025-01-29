@@ -21,7 +21,7 @@
     "clean": "rimraf dist && rimraf node_modules && rimraf .turbo",
     "approve": "backstop --config=./backstop/backstop.cjs approve",
     "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
-    "test": "pnpm run preview & pnpm run test:only"
+    "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
   },
   "prettier": "configs/prettier-astro-config.js"
 }
