@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  WithCSSTransition,
-  SvgChevronRight,
-  Box,
-  useControlledState,
-} from '../../utils/index.js';
+import { SvgChevronRight, Box, useControlledState } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 
@@ -45,12 +40,12 @@ type SideNavigationProps = {
    */
   onExpanderClick?: () => void;
   /**
-   * Submenu to show supplemental info assicated to the main item.
+   * Submenu to show supplemental info associated to the main item.
    *
    * Should be used with the `isSubmenuOpen` props from both `SideNavigation` and `SidenavButton`.
    * @example
    * <SideNavigation
-   *   // ...
+   *   // …
    *   submenu={(
    *     <SidenavSubmenu>
    *       <SidenavSubmenuHeader>Documents</SidenavSubmenuHeader>
@@ -178,16 +173,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
           {expanderPlacement === 'bottom' && ExpandButton}
         </Box>
 
-        {submenu && (
-          <WithCSSTransition
-            in={isSubmenuOpen}
-            dimension='width'
-            timeout={200}
-            classNames='iui'
-          >
-            {submenu}
-          </WithCSSTransition>
-        )}
+        {submenu && isSubmenuOpen ? submenu : null}
       </Box>
     </SidenavExpandedContext.Provider>
   );
