@@ -10,7 +10,7 @@ describe('Tooltip', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.wait(300);
+      cy.wait(500);
 
       cy.get('#tooltip-target').trigger('mouseenter');
       cy.wait(50);

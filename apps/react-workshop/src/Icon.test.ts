@@ -17,7 +17,7 @@ describe('Icon', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.wait(300);
+      cy.wait(500);
 
       cy.compareSnapshot(testName);
     });

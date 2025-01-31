@@ -20,7 +20,7 @@ describe('Slider', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.wait(300);
+      cy.wait(500);
 
       if (testName === 'Custom Tooltip') {
         cy.get('[role=slider').focus();
