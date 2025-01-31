@@ -5,7 +5,7 @@
 const spawn = require('child_process').spawn;
 const args = process.argv.slice(2).join(' ');
 
-const IMAGE_NAME = 'cypress/included:13.8.1'; // https://hub.docker.com/r/cypress/included
+const IMAGE_NAME = 'cypress/included:14.0.1'; // https://hub.docker.com/r/cypress/included
 
 // Need to use this script because current directory variable is different in different shells
 const dockerProcess = spawn(
