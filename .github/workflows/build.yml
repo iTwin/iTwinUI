@@ -330,7 +330,7 @@ jobs:
       - run: pnpm install
 
       - name: Install Cypress binary if not found
-        run: pnpx cypress@14.0.1 install
+        run: pnpx cypress@13.8.1 install
 
       - name: Run a11y tests
         run: pnpm run test --filter=a11y

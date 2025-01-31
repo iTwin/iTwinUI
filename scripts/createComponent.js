@@ -104,6 +104,8 @@ describe('${componentName}', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
+      cy.wait(300);
+      
       cy.compareSnapshot(testName);
     });
   });
