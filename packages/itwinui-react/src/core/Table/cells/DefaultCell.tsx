@@ -75,6 +75,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   return (
     <Box
       {...cellElementProps}
+      key={cellElementProps.key}
       {...rest}
       className={cx(cellElementClassName, className)}
       aria-disabled={isDisabled?.(cellProps.row.original) || undefined}

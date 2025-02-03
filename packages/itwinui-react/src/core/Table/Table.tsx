@@ -1034,7 +1034,7 @@ export const Table = <
                 {...headerProps}
                 className={cx('iui-table-header', headerProps?.className)}
               >
-                <Box {...headerGroupProps}>
+                <Box {...headerGroupProps} key={headerGroupProps.key}>
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
