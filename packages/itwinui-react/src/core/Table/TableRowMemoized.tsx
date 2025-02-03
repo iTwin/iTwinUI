@@ -127,6 +127,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     <>
       <Box
         {...mergedProps}
+        key={mergedProps.key}
         ref={refs}
         onClick={(event) => {
           mergedProps?.onClick?.(event);
