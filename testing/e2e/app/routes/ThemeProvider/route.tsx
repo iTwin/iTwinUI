@@ -55,11 +55,13 @@ const ThemeProviderTests = () => {
       portalContainer={portalContainer}
     >
       {popout && <button onClick={showPopOutWindow}>Pop out</button>}
+
       {!portaled && (
         <Tooltip content='main tooltip' visible>
           <button>hello</button>
         </Tooltip>
       )}
+
       {nested && (
         <ThemeProvider data-container='nested'>
           <Tooltip content='nested tooltip' visible>
@@ -67,14 +69,14 @@ const ThemeProviderTests = () => {
           </Tooltip>
         </ThemeProvider>
       )}
+
       {withPortalContainer && (
         <div
           data-container='custom'
-          ref={(element) => {
-            setPortalContainer(element || undefined);
-          }}
+          ref={(element) => setPortalContainer(element || undefined)}
         />
       )}
+
       {popoutDocumentBody &&
         ReactDOM.createPortal(
           <ThemeProvider data-container='popout'>
@@ -84,6 +86,7 @@ const ThemeProviderTests = () => {
           </ThemeProvider>,
           popoutDocumentBody,
         )}
+
       {portaled && <PortaledTest />}
     </ThemeProvider>
   );
