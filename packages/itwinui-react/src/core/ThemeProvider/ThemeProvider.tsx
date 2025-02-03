@@ -44,6 +44,8 @@ export type ThemeOptions = {
 
 export type FutureOptions = {
   /**
+   * @alpha
+   *
    * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) *whenever possible*.
    *
    * This is useful in making apps looks like future versions of iTwinUI to help with incremental adoption.
