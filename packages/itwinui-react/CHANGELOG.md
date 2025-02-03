@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.16.6
+
+### Patch Changes
+
+- [#2411](https://github.com/iTwin/iTwinUI/pull/2411): Fixed `Panels.Trigger` not working in older React versions where `useId` is not available.
+- [#2407](https://github.com/iTwin/iTwinUI/pull/2407): Increased contrast (i.e. opacity) of light theme's text selection background. This also affects some other opacities of other components (e.g. shadows and hover backgrounds).
+
 ## 3.16.5
 
 ### Patch Changes

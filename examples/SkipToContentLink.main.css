@@ -3,6 +3,6 @@
   align-items: center;
   justify-content: center;
   min-height: 300px;
-  width: 100%;
+  width: 100cqi;
   transform: translateX(0); /* creates containing block for position: fixed */
 }

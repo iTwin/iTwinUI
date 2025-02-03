@@ -22,11 +22,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview --host",
+    "preview": "npx -y serve dist --listen 3050 -L",
     "clean": "rimraf dist && rimraf node_modules && rimraf .turbo",
     "approve": "backstop --config=./backstop/backstop.cjs approve",
     "test:only": "backstop --config=./backstop/backstop.cjs test --docker",
-    "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
+    "test:only:wait-for-preview": "npx -y wait-on http://localhost:3050 && pnpm run test:only",
+    "test": "npm-run-all -p -r \"preview\" \"test:only:wait-for-preview {1}\" --"
   },
   "prettier": "configs/prettier-astro-config.js"
 }
