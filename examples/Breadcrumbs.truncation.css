@@ -1,5 +1,5 @@
 .demo-container {
-  inline-size: 75%;
+  inline-size: 75cqi;
   min-inline-size: 150px;
   max-inline-size: 450px;
   border: 1px solid pink;

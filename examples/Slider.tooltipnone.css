@@ -1,5 +1,5 @@
 .demo-input-grid {
-  width: min(100%, 300px);
+  width: min(100cqi, 300px);
 }
 
 .demo-text {

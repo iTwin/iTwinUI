@@ -1,5 +1,5 @@
 .demo-container {
-  min-width: min(100%, 400px);
+  min-width: min(100cqi, 400px);
   display: flex;
   flex-direction: column;
   gap: var(--iui-size-m);
