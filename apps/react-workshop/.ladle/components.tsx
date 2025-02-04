@@ -53,20 +53,20 @@ export const Provider: GlobalProvider = ({ children }) => {
 
   return (
     <React.StrictMode>
-      <ITwinUiV5Root colorScheme={theme} density='dense'>
-        <ThemeProvider
-          theme={theme}
-          themeOptions={{
-            applyBackground: false,
-            highContrast,
-          }}
-          future={{
-            themeBridge: futureThemeBridge,
-          }}
-        >
-          {children}
-        </ThemeProvider>
-      </ITwinUiV5Root>
+      <ThemeProvider
+        as={ITwinUiV5Root}
+        colorScheme={theme}
+        density='dense'
+        theme={theme}
+        themeOptions={{
+          applyBackground: false,
+          highContrast,
+        }}
+        future={{ themeBridge: futureThemeBridge }}
+        synchronizeColorScheme
+      >
+        {children}
+      </ThemeProvider>
     </React.StrictMode>
   );
 };
@@ -86,6 +86,6 @@ export const argTypes = {
   },
   'future.themeBridge': {
     control: { type: 'boolean' },
-    defaultValue: false,
+    defaultValue: true,
   },
 };
