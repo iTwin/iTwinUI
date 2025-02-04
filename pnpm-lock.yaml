@@ -90,6 +90,9 @@ importers:
       '@itwin/itwinui-icons-elements':
         specifier: 0.20.0
         version: 0.20.0
+      '@itwin/itwinui-react':
+        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.4
+        version: 5.0.0-alpha.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/react':
         specifier: 18.2.14
         version: 18.2.14

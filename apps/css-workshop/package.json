@@ -16,7 +16,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "@itwin/itwinui-react": "npm:@itwin/itwinui-react@5.0.0-alpha.4"
   },
   "scripts": {
     "dev": "astro dev",

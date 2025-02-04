@@ -96,3 +96,18 @@ ul {
   margin-block-start: revert;
   margin-block-end: revert;
 }
+
+:where(input, button, textarea, select) {
+  font: revert;
+  color: revert;
+}
+
+:where(img, picture, svg, video) {
+  display: revert;
+  max-inline-size: revert;
+  block-size: revert;
+}
+
+html {
+  background-color: revert;
+}
