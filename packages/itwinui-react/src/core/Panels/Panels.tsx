@@ -16,6 +16,7 @@ import {
   useWarningLogger,
   useLayoutEffect,
   useLatestRef,
+  useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -269,7 +270,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   } = useSafeContext(PanelsWrapperContext);
   const { id: panelId } = useSafeContext(PanelContext);
 
-  const fallbackId = React.useId();
+  const fallbackId = useId();
   const triggerId = children.props.id || fallbackId;
 
   const onClick = React.useCallback(() => {

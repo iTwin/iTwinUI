@@ -1,5 +1,11 @@
 # @itwin/itwinui-variables
 
+## 3.3.1
+
+### Patch Changes
+
+- [#2407](https://github.com/iTwin/iTwinUI/pull/2407): Slightly increased `--iui-opacity-5` in the light theme to increase its text selection background's contrast.
+
 ## 3.3.0
 
 ### Minor Changes
