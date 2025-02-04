@@ -51,22 +51,29 @@ export const Provider: GlobalProvider = ({ children }) => {
     }
   }, []);
 
+  const themeProviderProps = {
+    theme,
+    themeOptions: {
+      applyBackground: false,
+      highContrast,
+    },
+    future: { themeBridge: futureThemeBridge },
+    children,
+  } satisfies React.ComponentProps<typeof ThemeProvider>;
+
   return (
     <React.StrictMode>
-      <ThemeProvider
-        as={ITwinUiV5Root}
-        colorScheme={theme}
-        density='dense'
-        theme={theme}
-        themeOptions={{
-          applyBackground: false,
-          highContrast,
-        }}
-        future={{ themeBridge: futureThemeBridge }}
-        synchronizeColorScheme
-      >
-        {children}
-      </ThemeProvider>
+      {futureThemeBridge ? (
+        <ThemeProvider
+          as={ITwinUiV5Root}
+          colorScheme={theme}
+          density='dense'
+          synchronizeColorScheme
+          {...themeProviderProps}
+        />
+      ) : (
+        <ThemeProvider {...themeProviderProps} />
+      )}
     </React.StrictMode>
   );
 };
