@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Use `!important` to fix possible unintentional double focus rings when using custom `outline` styles. Components affected: `SearchBox`, `InputWithDecorations`
+Fixed an issue in `InputWithDecorations` and `SearchBox` where the component-level focus styling was colliding with global focus styling, leading to double focus outlines.

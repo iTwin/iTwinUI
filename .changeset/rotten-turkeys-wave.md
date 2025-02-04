@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': minor
 ---
 
-Use `!important` to fix possible unintentional double focus rings on `iui-input-container` and its input/textarea when using custom `outline` styles.
+Fixed an issue in `iui-input-flex-container` and  where the component-level focus styling was colliding with global focus styling, leading to double focus outlines.
