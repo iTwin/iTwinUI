@@ -106,7 +106,7 @@
     "@floating-ui/react": "^0.26.23",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@swc/helpers": "^0.5.11",
-    "@tanstack/react-virtual": "^3.8.2",
+    "@tanstack/react-virtual": "^3.12.0",
     "classnames": "^2.3.2",
     "jotai": "^2.8.0",
     "react-table": "^7.8.0"
@@ -114,9 +114,9 @@
   "devDependencies": {
     "@swc/cli": "^0.5.1",
     "@swc/core": "^1.5.28",
-    "@testing-library/jest-dom": "^6.3.0",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^14.5.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "16.2.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",

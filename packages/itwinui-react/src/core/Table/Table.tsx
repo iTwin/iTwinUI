@@ -889,7 +889,7 @@ export const Table = <
   const getPreparedRow = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem<Element>,
+      virtualItem?: VirtualItem,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const row = page[index];
