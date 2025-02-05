@@ -7,6 +7,8 @@ import cx from 'classnames';
 import { SvgChevronRight, Box, useControlledState } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
+import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 // ----------------------------------------------------------------------------
 
@@ -137,41 +139,43 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
         className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
         ref={forwardedRef}
       >
-        <Box
-          as='div'
-          className={cx(
-            'iui-side-navigation',
-            {
-              'iui-expanded': isExpanded,
-              'iui-collapsed': !isExpanded,
-            },
-            className,
-          )}
-          {...rest}
-        >
-          {expanderPlacement === 'top' && ExpandButton}
+        <FloatingDelayGroup delay={defaultTooltipDelay}>
           <Box
             as='div'
-            {...contentProps}
-            className={cx('iui-sidenav-content', contentProps?.className)}
+            className={cx(
+              'iui-side-navigation',
+              {
+                'iui-expanded': isExpanded,
+                'iui-collapsed': !isExpanded,
+              },
+              className,
+            )}
+            {...rest}
           >
+            {expanderPlacement === 'top' && ExpandButton}
             <Box
               as='div'
-              {...topProps}
-              className={cx('iui-top', topProps?.className)}
+              {...contentProps}
+              className={cx('iui-sidenav-content', contentProps?.className)}
             >
-              {items}
+              <Box
+                as='div'
+                {...topProps}
+                className={cx('iui-top', topProps?.className)}
+              >
+                {items}
+              </Box>
+              <Box
+                as='div'
+                {...bottomProps}
+                className={cx('iui-bottom', bottomProps?.className)}
+              >
+                {secondaryItems}
+              </Box>
             </Box>
-            <Box
-              as='div'
-              {...bottomProps}
-              className={cx('iui-bottom', bottomProps?.className)}
-            >
-              {secondaryItems}
-            </Box>
+            {expanderPlacement === 'bottom' && ExpandButton}
           </Box>
-          {expanderPlacement === 'bottom' && ExpandButton}
-        </Box>
+        </FloatingDelayGroup>
 
         {submenu && isSubmenuOpen ? submenu : null}
       </Box>

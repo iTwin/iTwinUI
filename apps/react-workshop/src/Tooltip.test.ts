@@ -13,7 +13,7 @@ describe('Tooltip', () => {
       cy.wait(500);
 
       cy.get('#tooltip-target').trigger('mouseenter');
-      cy.wait(50);
+      cy.wait(100);
       cy.compareSnapshot(testName);
     });
   });

@@ -15,7 +15,7 @@ describe('Stepper', () => {
       if (testName.includes('Tooltip')) {
         cy.get('#ladle-root').within(() => {
           cy.get('li').first().trigger('mouseenter'); // trigger tooltip
-          cy.wait(50);
+          cy.wait(100);
         });
       }
 
