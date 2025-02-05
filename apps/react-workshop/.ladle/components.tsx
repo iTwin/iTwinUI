@@ -93,6 +93,6 @@ export const argTypes = {
   },
   'future.themeBridge': {
     control: { type: 'boolean' },
-    defaultValue: true,
+    defaultValue: false,
   },
 };
