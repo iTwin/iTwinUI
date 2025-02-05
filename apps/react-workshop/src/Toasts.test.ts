@@ -22,7 +22,7 @@ describe('Toasts', () => {
       });
 
       // Wait for entry animation to complete
-      cy.wait(240);
+      cy.wait(300);
       cy.compareSnapshot(testName);
     });
   });
