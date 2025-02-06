@@ -8,7 +8,6 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
 import { styles } from '../../styles.js';
 
-// Tag extends keyof JSX.IntrinsicElements = keyof JSX.IntrinsicElements
 const _base = <As extends keyof React.JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
 ) => {

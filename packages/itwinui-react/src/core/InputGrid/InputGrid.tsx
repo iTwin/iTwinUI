@@ -273,8 +273,8 @@ const isInput = (child: React.ReactNode): boolean => {
       child.type === Input ||
       child.type === Textarea ||
       child.type === InputWithDecorations.Input ||
-      child.type === Select || // contains ComboBox.inputProps
-      child.type === ComboBox) // contains Select.triggerProps
+      child.type === Select || // contains Select.triggerProps
+      child.type === ComboBox) // contains ComboBox.inputProps
   );
 };
 

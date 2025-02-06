@@ -18,7 +18,6 @@ describe('Tabs', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.wait(500);
 
       cy.wait(1000); // wait for resize observer to be done
       cy.compareSnapshot(testName);
@@ -27,7 +26,7 @@ describe('Tabs', () => {
         cy.get('#ladle-root').within(() => {
           cy.get('[role=tab]').last().click();
         });
-        cy.wait(500);
+
         cy.compareSnapshot(`${testName} (Scroll end)`);
 
         // cy somehow loses tabs list and does not focus on first element so getting it again.
@@ -35,7 +34,7 @@ describe('Tabs', () => {
         cy.get('#ladle-root').within(() => {
           cy.get('[role=tab]').first().click();
         });
-        cy.wait(500);
+
         cy.compareSnapshot(`${testName} (Scroll start)`);
       }
     });

@@ -430,7 +430,7 @@ import {
           return (
             <Anchor
               as='button'
-              onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
                 console.log(props.row.original.name);
 
@@ -649,8 +649,9 @@ import {
   );
 
   const [globalFilter, setGlobalFilter] = React.useState('');
-  const tableInstance =
-    React.useRef<TableTypes.TableInstance<TableRowDataType>>(undefined);
+  const tableInstance = React.useRef<
+    TableTypes.TableInstance<TableRowDataType> | undefined
+  >(undefined);
 
   const [hoveredRowIndex, setHoveredRowIndex] = React.useState(0);
   const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(
