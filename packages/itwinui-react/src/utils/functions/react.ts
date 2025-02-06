@@ -13,22 +13,22 @@ import { mergeRefs } from '../hooks/useMergedRefs.js';
  */
 export const cloneElementWithRef = (
   children: React.ReactNode,
-  getProps: (children: JSX.Element) => Record<string, unknown>,
+  getProps: (children: React.JSX.Element) => Record<string, unknown>,
 ) => {
   if (!children) {
     return null;
   }
 
-  if (!React.isValidElement(children)) {
+  if (!React.isValidElement<Record<string, any>>(children)) {
     return children;
   }
 
+  // Supporting React 19 and 18
+  const childrenRef = children.props?.ref || (children as any)?.ref;
+
   const props = getProps(children);
   const ref = mergeRefs(
-    ...[
-      'ref' in children ? (children as any).ref : null,
-      'ref' in props ? props.ref : null,
-    ].filter(Boolean),
+    ...[childrenRef, 'ref' in props ? props.ref : null].filter(Boolean),
   );
 
   return React.cloneElement(children, {

@@ -76,7 +76,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const { dialogRootRef } = dialogContext;
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const previousFocusedElement = React.useRef<HTMLElement | null>();
+  const previousFocusedElement = React.useRef<HTMLElement | null>(null);
 
   const [style, setStyle] = React.useState<React.CSSProperties>();
   const hasBeenResized = React.useRef(false);

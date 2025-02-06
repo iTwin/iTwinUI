@@ -28,7 +28,7 @@ export type LabeledInputProps = {
   /**
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: JSX.Element | null;
+  svgIcon?: React.JSX.Element | null;
   /**
    * Pass props to wrapper element.
    */

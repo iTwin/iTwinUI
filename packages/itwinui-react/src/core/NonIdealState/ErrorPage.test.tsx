@@ -106,7 +106,7 @@ describe('ErrorPage', () => {
   ] as {
     errorType: ErrorPageType;
     errorName: string;
-    illustration: JSX.Element;
+    illustration: React.JSX.Element;
   }[];
 
   defaultTests.forEach((test) => {

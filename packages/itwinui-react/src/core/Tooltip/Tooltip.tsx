@@ -272,7 +272,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
         ...props,
         id,
       }),
-      popover: 'manual',
+      popover: 'manual' as const,
     }),
     [interactions, props, id, open],
   );

@@ -47,7 +47,7 @@ import type {
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(
-    ownerDocument: React.RefObject<Document | undefined>,
+    ownerDocument: React.RefObject<Document | undefined | null>,
   ) =>
   (hooks: Hooks<T>) => {
     hooks.getResizerProps = [defaultGetResizerProps(ownerDocument)];
@@ -62,7 +62,7 @@ const isTouchEvent = (
 };
 
 const defaultGetResizerProps =
-  (ownerDocument: React.RefObject<Document | undefined>) =>
+  (ownerDocument: React.RefObject<Document | undefined | null>) =>
   (
     props: TableKeyedProps,
     {

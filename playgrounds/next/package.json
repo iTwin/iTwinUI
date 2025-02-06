@@ -12,11 +12,11 @@
   "dependencies": {
     "@itwin/itwinui-react": "*",
     "@types/node": "*",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "react": "^19",
+    "react-dom": "^19",
     "next": "^15.1.6",
-    "react": "^18",
-    "react-dom": "^18",
     "typescript": "5"
   },
   "lint-staged": {
