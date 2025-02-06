@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { render, screen, waitFor } from '@testing-library/react';
 import { SvgMore } from '../../utils/index.js';
-import * as React from 'react';
 
 import { IconButton } from './IconButton.js';
 import { userEvent } from '@testing-library/user-event';

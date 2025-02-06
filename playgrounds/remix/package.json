@@ -20,9 +20,9 @@
     "react-dom": "^19"
   },
   "devDependencies": {
+    "@remix-run/dev": "^2.15.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@remix-run/dev": "^2.15.2",
     "typescript": "5",
     "vite": "^6",
     "vite-tsconfig-paths": "^5.1.4"
