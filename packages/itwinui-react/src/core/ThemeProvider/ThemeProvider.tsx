@@ -338,7 +338,7 @@ const PortalContainer = React.memo(
     themeOptions,
   }: {
     portalContainerProp: HTMLElement | undefined;
-    portalContainerFromParent: HTMLElement | null;
+    portalContainerFromParent: HTMLElement | undefined;
     isInheritingTheme: boolean;
   } & RootProps) => {
     const [ownerDocument] = useScopedAtom(ownerDocumentAtom);

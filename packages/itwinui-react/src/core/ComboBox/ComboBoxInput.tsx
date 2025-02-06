@@ -15,9 +15,9 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
-type ComboBoxInputProps = {
-  selectTags?: React.JSX.Element[];
-} & React.ComponentProps<typeof Input>;
+type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
+  typeof Input
+>;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
   const { selectTags, size, style, ...rest } = props;

@@ -50,7 +50,7 @@ type TreeNodeProps = {
   /**
    * Icon shown before label and sublabel content.
    */
-  icon?: React.JSX.Element;
+  icon?: JSX.Element;
   /**
    * Props for TreeNode Icon
    */
@@ -308,7 +308,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
             className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
           >
             {React.isValidElement(checkbox)
-              ? React.cloneElement(checkbox as React.JSX.Element, {
+              ? React.cloneElement(checkbox as JSX.Element, {
                   tabIndex: isFocused ? 0 : -1,
                 })
               : checkbox}

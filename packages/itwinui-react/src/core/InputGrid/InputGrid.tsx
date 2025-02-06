@@ -145,7 +145,7 @@ const useSetup = (children: React.ReactNode) => {
   let hasSelect = false;
 
   const findInputId = (child: React.ReactNode) => {
-    if (!React.isValidElement<Record<string, any>>(child)) {
+    if (!React.isValidElement(child)) {
       return;
     }
     // ComboBox input id is passed through `inputProps`
@@ -160,7 +160,7 @@ const useSetup = (children: React.ReactNode) => {
   };
 
   React.Children.forEach(children, (child) => {
-    if (!React.isValidElement<Record<string, any>>(child)) {
+    if (!React.isValidElement(child)) {
       return;
     }
 
@@ -201,7 +201,7 @@ const useSetup = (children: React.ReactNode) => {
  * Handles regular inputs, plus `InputWithDecorations`, `InputWithIcon`, `ComboBox` and `Select`.
  */
 const handleCloningInputs = (
-  child: React.ReactElement<any>,
+  child: React.ReactElement,
   {
     labelId,
     inputId,
@@ -225,7 +225,7 @@ const handleCloningInputs = (
     };
   };
 
-  const cloneInput = (child: React.ReactElement<any>) => {
+  const cloneInput = (child: React.ReactElement) => {
     if (child.type === ComboBox) {
       return cloneElementWithRef(child, (child) => ({
         inputProps: inputProps(child.props.inputProps),

@@ -222,8 +222,7 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header-title`}
           role='group'
-          // @ts-expect-error - Supporting React 19 and 18
-          inert={isInert ? 'true' : undefined}
+          {...{ inert: isInert ? '' : undefined }}
           data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
         >
@@ -254,7 +253,7 @@ if (process.env.NODE_ENV === 'development') {
 
 type PanelTriggerProps = {
   for: string;
-  children: React.ReactElement<any>;
+  children: React.ReactElement;
 };
 
 const PanelTrigger = (props: PanelTriggerProps) => {

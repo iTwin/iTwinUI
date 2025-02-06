@@ -1065,7 +1065,7 @@ export const ControlledState = () => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableInstance<DemoData>>(undefined);
+  const tableInstance = React.useRef<TableInstance<DemoData>>();
   const [selectedRows, setSelectedRows] = React.useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = React.useState<DemoData[]>([]);
 
@@ -3376,8 +3376,8 @@ export const StatusAndCellIcons = () => {
     name: string;
     modified: string;
     size: string;
-    startIcon?: React.JSX.Element;
-    endIcon?: React.JSX.Element;
+    startIcon?: JSX.Element;
+    endIcon?: JSX.Element;
     status?: 'positive' | 'negative' | 'warning';
     isLoading?: boolean;
   };

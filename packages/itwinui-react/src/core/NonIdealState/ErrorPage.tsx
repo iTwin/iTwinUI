@@ -146,7 +146,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     ...translatedErrorMessages,
   } as ErrorTypeTranslations;
 
-  function getErrorIcon(): React.JSX.Element {
+  function getErrorIcon(): JSX.Element {
     switch (errorType) {
       case '300':
       case '301':
@@ -232,7 +232,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     }
   }
 
-  function getPrimaryButton(): React.JSX.Element | null {
+  function getPrimaryButton(): JSX.Element | null {
     if (!primaryButtonHandle || !primaryButtonLabel) {
       return null;
     }
@@ -243,7 +243,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getSecondaryButton(): React.JSX.Element | null {
+  function getSecondaryButton(): JSX.Element | null {
     if (!secondaryButtonHandle || !secondaryButtonLabel) {
       return null;
     }
@@ -254,7 +254,7 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     );
   }
 
-  function getActions(): React.JSX.Element | null {
+  function getActions(): JSX.Element | null {
     const primaryButton = getPrimaryButton();
     const secondaryButton = getSecondaryButton();
 

@@ -70,11 +70,11 @@ const SearchBoxContext = React.createContext<
       /**
        * Ref for input subcomponent
        */
-      inputRef: React.RefObject<HTMLInputElement | null>;
+      inputRef: React.RefObject<HTMLInputElement>;
       /**
        * Ref for open button subcomponent
        */
-      openButtonRef: React.RefObject<HTMLButtonElement | null>;
+      openButtonRef: React.RefObject<HTMLButtonElement>;
     } & Pick<
       SearchBoxOwnProps,
       'size' | 'onCollapse' | 'expandable' | 'isExpanded' | 'onExpand'

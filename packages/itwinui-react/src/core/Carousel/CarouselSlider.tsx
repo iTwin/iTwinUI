@@ -32,7 +32,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     () =>
       React.Children.map(children, (child, index) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as React.JSX.Element, {
+          ? React.cloneElement(child as JSX.Element, {
               id: `${idPrefix}--slide-${index}`,
               'aria-labelledby': `${idPrefix}--dot-${index}`,
               index,
@@ -71,7 +71,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     });
   };
 
-  const scrollTimeout = React.useRef<number>(undefined);
+  const scrollTimeout = React.useRef<number>();
 
   // reset isManuallyUpdating.current to false after the last scroll event
   const handleOnScroll = React.useCallback(() => {

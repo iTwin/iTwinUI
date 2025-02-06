@@ -73,11 +73,11 @@ const ClientShadowRoot = ({ children, css }: ShadowRootProps) => {
  * The css will be added to the shadowRoot using `adoptedStyleSheets` (if supported).
  */
 function useShadowRoot(
-  templateRef: React.RefObject<HTMLElement | null>,
+  templateRef: React.RefObject<HTMLElement>,
   { css = '' },
 ) {
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot | null>(null);
-  const styleSheet = React.useRef<CSSStyleSheet>(undefined);
+  const styleSheet = React.useRef<CSSStyleSheet>();
   const latestCss = useLatestRef(css);
   const latestShadowRoot = useLatestRef(shadowRoot);
 

@@ -23,7 +23,7 @@ vi.spyOn(DomFunctions, 'getWindow').mockReturnValue({
 
 const TestComponent = (props: {
   isVisible?: boolean;
-  containerRef?: React.RefObject<HTMLElement | null>;
+  containerRef?: React.RefObject<HTMLElement>;
 }) => {
   const { isVisible = true, containerRef } = props;
   const ref = React.useRef<HTMLDivElement>(null);

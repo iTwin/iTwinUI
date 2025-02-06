@@ -47,7 +47,7 @@ type AvatarProps = {
   /**
    * User image to be displayed. Can be `<img>` or `<svg>` or anything else.
    */
-  image?: React.JSX.Element;
+  image?: JSX.Element;
   /**
    * Color of the icon. You can use `getUserColor` function to generate color from user name or email. If not provided, default background color from CSS styling will be used (hsl(72, 51%, 56%) / olive green).
    */

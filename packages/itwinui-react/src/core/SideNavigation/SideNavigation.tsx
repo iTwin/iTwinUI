@@ -57,7 +57,7 @@ type SideNavigationProps = {
    *   isSubmenuOpen={true}
    * />
    */
-  submenu?: React.JSX.Element;
+  submenu?: JSX.Element;
   /**
    * Set to true to display the provided `submenu`.
    *

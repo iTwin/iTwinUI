@@ -15,7 +15,7 @@ type StatusMessageProps = {
    * - It will default to the `status` icon, if `status` is set.
    * - If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
    */
-  startIcon?: React.JSX.Element | null;
+  startIcon?: JSX.Element | null;
   /**
    * Message content.
    */

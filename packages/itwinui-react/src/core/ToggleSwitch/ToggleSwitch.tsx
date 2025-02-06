@@ -33,7 +33,7 @@ type ToggleSwitchProps = {
        *
        * Will override the default checkmark icon.
        */
-      icon?: React.JSX.Element | null;
+      icon?: JSX.Element | null;
     }
   | {
       size: 'small';

@@ -17,7 +17,6 @@ describe('Toasts', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-
       cy.get('#ladle-root').within(() => {
         cy.get('button').first().click();
       });

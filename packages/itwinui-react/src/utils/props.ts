@@ -27,19 +27,19 @@ export interface PolymorphicForwardRefComponent<
   OwnProps = {}, // eslint-disable-line @typescript-eslint/ban-types
 > extends React.ForwardRefExoticComponent<
     Merge<
-      DefaultAs extends React.ElementType<any>
+      DefaultAs extends React.ElementType
         ? React.ComponentPropsWithRef<DefaultAs>
         : never,
       OwnProps & { as?: DefaultAs }
     >
   > {
   <As = DefaultAs>(
-    props: As extends keyof React.JSX.IntrinsicElements
-      ? Merge<React.JSX.IntrinsicElements[As], OwnProps & { as: As }>
+    props: As extends keyof JSX.IntrinsicElements
+      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
       : As extends React.ComponentType<infer P>
         ? Merge<P, OwnProps & { as: As }>
         : never,
-  ): React.ReactElement<any> | null;
+  ): React.ReactElement | null;
 }
 
 type Merge<P1, P2> = Omit<P1, keyof P2> & P2;

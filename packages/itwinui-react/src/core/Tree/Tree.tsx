@@ -79,7 +79,7 @@ export type TreeProps<T> = {
    *   />
    * ), [onNodeExpanded])
    */
-  nodeRenderer: (props: NodeRenderProps<T>) => React.JSX.Element;
+  nodeRenderer: (props: NodeRenderProps<T>) => JSX.Element;
   /**
    * Array of custom data used for `TreeNodes` inside `Tree`.
    */
@@ -262,7 +262,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   const itemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem,
+      virtualItem?: VirtualItem<Element>,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const node = flatNodesList[index];
@@ -387,9 +387,9 @@ type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
   itemRenderer: (
     index: number,
-    virtualItem?: VirtualItem,
+    virtualItem?: VirtualItem<Element>,
     virtualizer?: Virtualizer<Element, Element>,
-  ) => React.JSX.Element;
+  ) => JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
   onFocus: React.FocusEventHandler<HTMLDivElement>;

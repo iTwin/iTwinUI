@@ -62,7 +62,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const builderRef = React.useRef<HTMLDivElement>(undefined);
+  const builderRef = React.useRef<HTMLDivElement>();
   const refs = useMergedRefs(builderRef, ref);
 
   const {

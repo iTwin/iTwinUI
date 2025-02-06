@@ -225,7 +225,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     focusActivationMode,
   } = useSafeContext(TabsContext);
   const { tabsWidth, tablistRef } = useSafeContext(TabListContext);
-  const tabRef = React.useRef<HTMLButtonElement>(undefined);
+  const tabRef = React.useRef<HTMLButtonElement>();
 
   const isActive = activeValue === value;
   const isActiveRef = useLatestRef(isActive);
@@ -606,7 +606,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         {labels.map((label, index) => {
           const tabValue = `${index}`;
           return React.isValidElement(label) ? (
-            React.cloneElement(label as React.JSX.Element, {
+            React.cloneElement(label as JSX.Element, {
               value: tabValue,
             })
           ) : (
@@ -645,7 +645,7 @@ type TabLegacyProps = {
   /**
    * Svg icon shown before the labels.
    */
-  startIcon?: React.JSX.Element;
+  startIcon?: JSX.Element;
   /**
    * Control whether the tab is disabled.
    */
@@ -850,7 +850,7 @@ if (process.env.NODE_ENV === 'development') {
 const TabListContext = React.createContext<
   | {
       tabsWidth: number;
-      tablistRef: React.RefObject<HTMLDivElement | null>;
+      tablistRef: React.RefObject<HTMLDivElement>;
     }
   | undefined
 >(undefined);

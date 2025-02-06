@@ -59,8 +59,7 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
       aria-roledescription='slide'
       tabIndex={index === currentIndex ? 0 : undefined}
       ref={refs}
-      // @ts-expect-error - Supporting React 19 and 18
-      inert={index !== currentIndex ? 'true' : undefined}
+      {...{ inert: index !== currentIndex ? '' : undefined }}
       {...rest}
       onKeyDown={mergeEventHandlers(props.onKeyDown, (event) => {
         // prevent default browser scrolling on arrow keys because focus will get lost when slide switches

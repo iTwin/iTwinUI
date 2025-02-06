@@ -20,7 +20,7 @@ import { getWindow } from '../functions/dom.js';
 export const useResizeObserver = <T extends HTMLElement>(
   onResize: (size: DOMRectReadOnly) => void,
 ) => {
-  const resizeObserver = React.useRef<ResizeObserver>(undefined);
+  const resizeObserver = React.useRef<ResizeObserver>();
 
   const elementRef = React.useCallback(
     (element: T | null | undefined) => {

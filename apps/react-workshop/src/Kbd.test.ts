@@ -11,8 +11,6 @@ describe('Kbd', () => {
 
     it(testName, () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.wait(500);
-
       cy.compareSnapshot(testName);
     });
   });

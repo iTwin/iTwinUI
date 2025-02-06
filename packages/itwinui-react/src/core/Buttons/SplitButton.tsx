@@ -27,7 +27,7 @@ export type SplitButtonProps = ButtonProps & {
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
    */
-  menuItems: (close: () => void) => React.JSX.Element[];
+  menuItems: (close: () => void) => JSX.Element[];
   /**
    * Placement of the dropdown menu.
    * @default 'bottom-end'

@@ -83,7 +83,7 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
 
   const getAvatarList = (count: number) => {
     return childrenArray.slice(0, count).map((child) =>
-      React.cloneElement(child as React.JSX.Element, {
+      React.cloneElement(child as JSX.Element, {
         status: undefined,
         size: iconSize,
       }),

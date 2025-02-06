@@ -15,7 +15,7 @@ export type InputContainerProps = {
   required?: boolean;
   status?: 'positive' | 'warning' | 'negative';
   message?: React.ReactNode;
-  icon?: React.JSX.Element;
+  icon?: JSX.Element;
   isLabelInline?: boolean;
   statusMessage?: React.ReactNode;
   inputId?: string;

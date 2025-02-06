@@ -8,8 +8,8 @@ import type { usePopover } from '../Popover/Popover.js';
 
 export const ComboBoxRefsContext = React.createContext<
   | {
-      inputRef: React.RefObject<HTMLInputElement | null>;
-      menuRef: React.RefObject<HTMLElement | null>;
+      inputRef: React.RefObject<HTMLInputElement>;
+      menuRef: React.RefObject<HTMLElement>;
       optionsExtraInfo: Record<string, { __originalIndex: number }>;
     }
   | undefined
@@ -24,10 +24,7 @@ type ComboBoxStateContextProps<T = unknown> = {
   enableVirtualization: boolean;
   filteredOptions: SelectOption<T>[];
   onClickHandler?: (prop: number) => void;
-  getMenuItem: (
-    option: SelectOption<T>,
-    filteredIndex?: number,
-  ) => React.JSX.Element;
+  getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
   focusedIndex: number;
   setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
   multiple?: boolean;

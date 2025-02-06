@@ -13,11 +13,11 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Custom icon to be displayed at the beginning of the cell.
    */
-  startIcon?: React.JSX.Element;
+  startIcon?: JSX.Element;
   /**
    * Custom icon to be displayed at the end of the cell.
    */
-  endIcon?: React.JSX.Element;
+  endIcon?: JSX.Element;
   /**
    * Status of the cell.
    */
@@ -72,47 +72,36 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     ...rest
   } = props;
 
-  const { key: cellElementKey, ...cellElementPropsRest } = cellElementProps;
-
   return (
     <Box
-      {...cellElementPropsRest}
-      key={cellElementKey}
+      {...cellElementProps}
       {...rest}
       className={cx(cellElementClassName, className)}
       aria-disabled={isDisabled?.(cellProps.row.original) || undefined}
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
-      <ShadowRoot key={`${cellElementKey}-shadow-root`}>
-        <slot name='start' key={`${cellElementKey}-shadow-root-start`} />
+      <ShadowRoot>
+        <slot name='start' />
         {clamp ? (
-          <LineClamp key={`${cellElementKey}-shadow-root-slot`}>
+          <LineClamp>
             <slot />
           </LineClamp>
         ) : (
-          <slot key={`${cellElementKey}-shadow-root-slot`} />
+          <slot />
         )}
-        <slot name='end' key={`${cellElementKey}-shadow-root-end`} />
-        <slot name='shadows' key={`${cellElementKey}-shadow-root-shadows`} />
+        <slot name='end' />
+        <slot name='shadows' />
       </ShadowRoot>
 
       {startIcon && (
-        <Box
-          className='iui-table-cell-start-icon'
-          slot='start'
-          key={`${cellElementKey}-start`}
-        >
+        <Box className='iui-table-cell-start-icon' slot='start'>
           {startIcon}
         </Box>
       )}
       {children}
       {endIcon && (
-        <Box
-          className='iui-table-cell-end-icon'
-          slot='end'
-          key={`${cellElementKey}-end`}
-        >
+        <Box className='iui-table-cell-end-icon' slot='end'>
           {endIcon}
         </Box>
       )}

@@ -8,17 +8,15 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
 import { styles } from '../../styles.js';
 
-const _base = <As extends keyof React.JSX.IntrinsicElements = 'div'>(
+const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
 ) => {
-  return (className: string, attrs?: React.JSX.IntrinsicElements[As]) => {
-    // @ts-expect-error -- React 19 types WIP
+  return (className: string, attrs?: JSX.IntrinsicElements[As]) => {
     const Comp = React.forwardRef(({ as = defaultElement, ...props }, ref) => {
       props = {
         ...attrs, // Merge default attributes with passed props
         ...props,
         className: getScopedClassName(
-          // @ts-expect-error -- React 19 types WIP
           cx(className, attrs?.className, props.className),
         ),
       };
@@ -32,7 +30,6 @@ const _base = <As extends keyof React.JSX.IntrinsicElements = 'div'>(
         Element === 'a' ||
         (Element === 'input' && (props as any).type === 'checkbox')
       ) {
-        // @ts-expect-error -- React 19 types WIP
         props.tabIndex ??= 0;
       }
 
@@ -76,7 +73,7 @@ export const polymorphic = new Proxy({} as never, {
     return Reflect.get(target, prop);
   },
 }) as {
-  [key in keyof React.JSX.IntrinsicElements]: ReturnType<typeof _base<key>>;
+  [key in keyof JSX.IntrinsicElements]: ReturnType<typeof _base<key>>;
 };
 
 // e.g. iui-list-item-icon -> ListItemIcon

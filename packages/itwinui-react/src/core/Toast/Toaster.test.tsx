@@ -166,7 +166,7 @@ it.each([
     assertAddedToast('mockContentInfo', 'informational', options);
     assertAddedToast('mockContentPositive', 'positive', options);
 
-    const toasts = screen.getAllByText(/mockContent/);
+    const toasts = await screen.findAllByText(/mockContent/);
 
     if (order === 'descending' || (order === 'auto' && placement === 'top')) {
       expect(toasts[1]).toHaveTextContent('mockContentInfo');
@@ -193,7 +193,7 @@ it.each([
   act(() => {
     toaster().informational('mockContent', mockedOptions());
   });
-  expect(screen.getByText('mockContent'));
+  expect(await screen.findByText('mockContent'));
   expect(document.querySelector('.iui-toast-wrapper')).toHaveClass(
     `iui-placement-${placement}`,
   );

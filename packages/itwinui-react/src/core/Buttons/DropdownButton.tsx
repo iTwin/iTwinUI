@@ -17,7 +17,7 @@ export type DropdownButtonProps = {
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
    */
-  menuItems: (close: () => void) => React.JSX.Element[];
+  menuItems: (close: () => void) => JSX.Element[];
   /**
    * Style of the dropdown button.
    * Use 'borderless' to hide outline.

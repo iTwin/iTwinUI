@@ -10,7 +10,7 @@ import { useScopedAtom } from '../providers/ScopeProvider.js';
 
 // ----------------------------------------------------------------------------
 
-export const portalContainerAtom = atom<HTMLElement | null>(null);
+export const portalContainerAtom = atom<HTMLElement | undefined>(undefined);
 
 // ----------------------------------------------------------------------------
 
