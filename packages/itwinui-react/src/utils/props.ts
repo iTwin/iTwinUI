@@ -34,8 +34,8 @@ export interface PolymorphicForwardRefComponent<
     >
   > {
   <As = DefaultAs>(
-    props: As extends keyof JSX.IntrinsicElements
-      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
+    props: As extends keyof React.JSX.IntrinsicElements
+      ? Merge<React.JSX.IntrinsicElements[As], OwnProps & { as: As }>
       : As extends React.ComponentType<infer P>
         ? Merge<P, OwnProps & { as: As }>
         : never,

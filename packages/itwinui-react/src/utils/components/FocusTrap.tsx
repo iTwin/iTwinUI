@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { getTabbableElements } from '../functions/focusable.js';
-import { mergeRefs } from '../hooks/useMergedRefs.js';
+import { cloneElementWithRef } from '../functions/react.js';
 
 export type FocusTrapProps = {
   /**
    * A single child element to trap focus in.
    */
-  children: JSX.Element;
+  children: React.JSX.Element;
 };
 
 /**
@@ -49,12 +49,7 @@ export const FocusTrap = (props: FocusTrapProps) => {
   return (
     <>
       <div tabIndex={0} onFocus={onFirstFocus} aria-hidden />
-      {React.cloneElement(children, {
-        ref: mergeRefs(
-          (children as React.FunctionComponentElement<HTMLElement>).ref,
-          childRef,
-        ),
-      })}
+      {cloneElementWithRef(children, () => ({ ref: childRef }))}
       <div tabIndex={0} onFocus={onLastFocus} aria-hidden />
     </>
   );

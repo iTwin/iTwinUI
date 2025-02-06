@@ -8,10 +8,10 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
 import { styles } from '../../styles.js';
 
-const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
+const _base = <As extends keyof React.JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
 ) => {
-  return (className: string, attrs?: JSX.IntrinsicElements[As]) => {
+  return (className: string, attrs?: React.JSX.IntrinsicElements[As]) => {
     const Comp = React.forwardRef(({ as = defaultElement, ...props }, ref) => {
       props = {
         ...attrs, // Merge default attributes with passed props
@@ -73,7 +73,7 @@ export const polymorphic = new Proxy({} as never, {
     return Reflect.get(target, prop);
   },
 }) as {
-  [key in keyof JSX.IntrinsicElements]: ReturnType<typeof _base<key>>;
+  [key in keyof React.JSX.IntrinsicElements]: ReturnType<typeof _base<key>>;
 };
 
 // e.g. iui-list-item-icon -> ListItemIcon

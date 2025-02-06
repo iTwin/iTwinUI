@@ -24,7 +24,10 @@ type ComboBoxStateContextProps<T = unknown> = {
   enableVirtualization: boolean;
   filteredOptions: SelectOption<T>[];
   onClickHandler?: (prop: number) => void;
-  getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
+  getMenuItem: (
+    option: SelectOption<T>,
+    filteredIndex?: number,
+  ) => React.JSX.Element;
   focusedIndex: number;
   setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
   multiple?: boolean;

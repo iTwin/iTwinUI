@@ -11,7 +11,7 @@ type RadioTileProps = {
   /**
    * Icon to be used.
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   /**
    * Label of the Radio tile.
    */

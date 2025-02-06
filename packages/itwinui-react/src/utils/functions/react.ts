@@ -13,7 +13,7 @@ import { mergeRefs } from '../hooks/useMergedRefs.js';
  */
 export const cloneElementWithRef = (
   children: React.ReactNode,
-  getProps: (children: JSX.Element) => Record<string, unknown>,
+  getProps: (children: React.JSX.Element) => Record<string, unknown>,
 ) => {
   if (!children) {
     return null;
