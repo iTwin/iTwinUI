@@ -12,20 +12,20 @@
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
-    "@remix-run/node": "^2.8.0",
-    "@remix-run/react": "^2.8.0",
-    "@remix-run/serve": "^2.8.0",
-    "isbot": "^4.1.0",
+    "@remix-run/node": "^2.15.2",
+    "@remix-run/react": "^2.15.2",
+    "@remix-run/serve": "^2.15.2",
+    "isbot": "^5.1.22",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.8.0",
+    "@remix-run/dev": "^2.15.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "typescript": "5",
-    "vite": "^5",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite": "^6",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
