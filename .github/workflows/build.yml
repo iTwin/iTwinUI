@@ -411,6 +411,7 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@0.2.6
         with:
           appname: 'iTwinUI - UX (ITDW - 3418)'
+          createprofile: false
           filepath: 'itdw-veracode.zip'
           vid: ${{ secrets.VERACODE_ID }}
           vkey: ${{ secrets.VERACODE_SECRET_KEY }}
