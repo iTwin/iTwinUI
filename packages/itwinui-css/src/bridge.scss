@@ -74,8 +74,6 @@
   --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
 
   &[data-iui-theme='light'] {
-    --iui-opacity-5: 0.25; // TODO: fix opacity value in iTwinUI v3
-
     --iui-color-background-hsl: 209.21deg 17.09% 97.27%; // --kiwi-color-bg-surface-primary
     --iui-color-foreground-hsl: 214.23deg 9.08% 15.9%; // --kiwi-color-text-neutral-primary
     --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --kiwi-color-icon-accent-strong
