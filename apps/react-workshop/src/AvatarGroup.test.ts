@@ -16,7 +16,7 @@ describe('AvatarGroup', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.wait(500);
+      cy.wait(500); // TODO: Investigate
 
       if (testName.includes('Tooltip')) {
         cy.get('div').contains('3').trigger('mouseenter');

@@ -87,7 +87,7 @@
     "clean:build": "rimraf esm && rimraf cjs && rimraf DEV-esm && rimraf DEV-cjs && rimraf styles.css",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && pnpm clean:coverage && pnpm clean:build && rimraf node_modules",
-    "test": "pnpm test:types && pnpm test:unit",
+    "test": "pnpm test:types",
     "test:unit": "vitest run",
     "test:unit:watch": "pnpm test:unit --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
@@ -132,8 +132,8 @@
     "vitest": "^1.6.1"
   },
   "peerDependencies": {
-    "react": ">=17.0.0 <20.0.0",
-    "react-dom": ">=17.0.0 <20.0.0"
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [

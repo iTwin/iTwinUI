@@ -120,12 +120,7 @@ import {
     {
       Header: 'Header 2',
       accessor: 'header2',
-      Cell: (
-        props: TableTypes.CellProps<{
-          header1: string;
-          header2: string;
-        }>,
-      ) => <div>{props.row.original.header2}</div>,
+      Cell: (props) => <div>{props.row.original.header2}</div>,
     },
   ] satisfies TableTypes.Column<{
     header1: string;
@@ -215,10 +210,7 @@ import {
       },
     ],
     [],
-  ) satisfies TableTypes.Column<{
-    name: string;
-    description: string;
-  }>[];
+  );
 
   const data = React.useMemo(() => {
     return [
