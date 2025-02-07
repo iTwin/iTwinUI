@@ -13,11 +13,11 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Custom icon to be displayed at the beginning of the cell.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Custom icon to be displayed at the end of the cell.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * Status of the cell.
    */

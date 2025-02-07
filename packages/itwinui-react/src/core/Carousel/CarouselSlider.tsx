@@ -32,7 +32,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     () =>
       React.Children.map(children, (child, index) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as JSX.Element, {
+          ? React.cloneElement(child as React.JSX.Element, {
               id: `${idPrefix}--slide-${index}`,
               'aria-labelledby': `${idPrefix}--dot-${index}`,
               index,

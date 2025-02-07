@@ -198,7 +198,7 @@ const clearFilter = async (container: HTMLElement) => {
 
 const BooleanFilter = (
   props: TableFilterProps<Record<string, unknown>>,
-): JSX.Element => {
+): React.JSX.Element => {
   const [value, setValue] = React.useState<boolean | undefined>(
     props.column.filterValue as boolean | undefined,
   );
