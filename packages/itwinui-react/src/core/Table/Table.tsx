@@ -370,7 +370,7 @@ export const Table = <
   T extends Record<string, unknown> = Record<string, unknown>,
 >(
   props: TableProps<T>,
-): JSX.Element => {
+): React.JSX.Element => {
   const {
     data,
     columns,

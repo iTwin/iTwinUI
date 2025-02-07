@@ -107,7 +107,7 @@ export const Select = React.forwardRef((props, forwardedRef) => {
   return <Component {...rest} ref={forwardedRef} />;
 }) as <T>(
   props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
-) => JSX.Element;
+) => React.JSX.Element;
 if (process.env.NODE_ENV === 'development') {
   (Select as any).displayName = 'Select';
 }
@@ -328,7 +328,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
       const isSelected = isMultipleEnabled(value, multiple)
         ? value?.includes(option.value) ?? false
         : value === option.value;
-      const menuItem: JSX.Element = itemRenderer ? (
+      const menuItem: React.JSX.Element = itemRenderer ? (
         itemRenderer(option, { close: () => setIsOpen(false), isSelected })
       ) : (
         <MenuItem>{option.label}</MenuItem>
@@ -468,7 +468,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
               selectedItemsRenderer={
                 selectedItemRenderer as (
                   options: SelectOption<unknown>[],
-                ) => JSX.Element
+                ) => React.JSX.Element
               }
               tagRenderer={tagRenderer}
             />
@@ -478,7 +478,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
               selectedItemRenderer={
                 selectedItemRenderer as (
                   option: SelectOption<unknown>,
-                ) => JSX.Element
+                ) => React.JSX.Element
               }
             />
           )}
@@ -515,7 +515,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
   );
 }) as <T>(
   props: CustomSelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
-) => JSX.Element;
+) => React.JSX.Element;
 
 export type CustomSelectProps<T> = SelectCommonProps & {
   /**
@@ -532,7 +532,7 @@ export type CustomSelectProps<T> = SelectCommonProps & {
   itemRenderer?: (
     option: SelectOption<T>,
     itemProps: ItemRendererProps,
-  ) => JSX.Element;
+  ) => React.JSX.Element;
   /**
    * Custom class for menu.
    */
@@ -587,7 +587,7 @@ export type SelectMultipleTypeProps<T> =
        * Custom renderer for the selected item in select.
        * If `multiple` is enabled, it will give array of options to render.
        */
-      selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
+      selectedItemRenderer?: (option: SelectOption<T>) => React.JSX.Element;
       /**
        * Selected option value.
        * If `multiple` is enabled, it is an array of values.
@@ -602,7 +602,7 @@ export type SelectMultipleTypeProps<T> =
     }
   | {
       multiple: true;
-      selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
+      selectedItemRenderer?: (options: SelectOption<T>[]) => React.JSX.Element;
       value?: T[];
       onChange?: (value: T, event: SelectValueChangeEvent) => void;
     };
@@ -642,11 +642,11 @@ export type SelectOption<T> = {
    * @deprecated Use startIcon
    * SVG icon component shown on the left.
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   /**
    * SVG icon component shown on the left.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Item is disabled.
    */
@@ -754,7 +754,7 @@ const SingleSelectButton = <T,>({
 
 type SingleSelectButtonProps<T> = {
   selectedItem?: SelectOption<T>;
-  selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
+  selectedItemRenderer?: (option: SelectOption<T>) => React.JSX.Element;
 };
 
 // ----------------------------------------------------------------------------
@@ -788,8 +788,8 @@ const MultipleSelectButton = <T,>({
 
 type MultipleSelectButtonProps<T> = {
   selectedItems?: SelectOption<T>[];
-  selectedItemsRenderer?: (options: SelectOption<T>[]) => JSX.Element;
-  tagRenderer: (item: SelectOption<T>) => JSX.Element;
+  selectedItemsRenderer?: (options: SelectOption<T>[]) => React.JSX.Element;
+  tagRenderer: (item: SelectOption<T>) => React.JSX.Element;
 };
 
 // ----------------------------------------------------------------------------
