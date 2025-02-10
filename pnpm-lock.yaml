@@ -80,7 +80,7 @@ importers:
     devDependencies:
       '@astrojs/react':
         specifier: ^4.1.2
-        version: 4.2.0(@types/node@22.5.5)(@types/react-dom@18.2.18)(@types/react@18.2.14)(lightningcss@1.29.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
+        version: 4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
       '@fontsource/noto-sans':
         specifier: '5'
         version: 5.0.21
@@ -92,13 +92,13 @@ importers:
         version: 0.21.0
       '@itwin/itwinui-react':
         specifier: npm:@itwin/itwinui-react@5.0.0-alpha.4
-        version: 5.0.0-alpha.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 5.0.0-alpha.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/react':
-        specifier: 18.2.14
-        version: 18.2.14
+        specifier: ^19.0.7
+        version: 19.0.8
       '@types/react-dom':
-        specifier: 18.2.18
-        version: 18.2.18
+        specifier: ^19.0.3
+        version: 19.0.3(@types/react@19.0.8)
       astro:
         specifier: ~4.16.3
         version: 4.16.18(@types/node@22.5.5)(lightningcss@1.29.1)(rollup@4.34.3)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)
@@ -112,11 +112,11 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       react:
-        specifier: ^18
-        version: 18.2.0
+        specifier: ^19
+        version: 19.0.0
       react-dom:
-        specifier: ^18
-        version: 18.2.0(react@18.2.0)
+        specifier: ^19
+        version: 19.0.0(react@19.0.0)
 
   apps/portal:
     dependencies:
@@ -140,7 +140,7 @@ importers:
         version: link:../../packages/itwinui-react
       '@itwin/itwinui-react-v5':
         specifier: npm:@itwin/itwinui-react@5.0.0-alpha.4
-        version: '@itwin/itwinui-react@5.0.0-alpha.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)'
+        version: '@itwin/itwinui-react@5.0.0-alpha.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)'
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -14359,19 +14359,19 @@ snapshots:
 
   '@ariakit/core@0.4.14': {}
 
-  '@ariakit/react-core@0.4.15(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@ariakit/react-core@0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@ariakit/core': 0.4.14
       '@floating-ui/dom': 1.6.3
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      use-sync-external-store: 1.4.0(react@18.2.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      use-sync-external-store: 1.4.0(react@19.0.0)
 
-  '@ariakit/react@0.4.15(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@ariakit/react@0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@ariakit/react-core': 0.4.15(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      '@ariakit/react-core': 0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@astrojs/compiler@1.8.2': {}
 
@@ -15520,12 +15520,12 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@itwin/itwinui-react@5.0.0-alpha.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@itwin/itwinui-react@5.0.0-alpha.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@ariakit/react': 0.4.15(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@ariakit/react': 0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       classnames: 2.5.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@jest/schemas@29.6.3':
     dependencies:
@@ -23326,9 +23326,9 @@ snapshots:
 
   urlpattern-polyfill@10.0.0: {}
 
-  use-sync-external-store@1.4.0(react@18.2.0):
+  use-sync-external-store@1.4.0(react@19.0.0):
     dependencies:
-      react: 18.2.0
+      react: 19.0.0
 
   util-deprecate@1.0.2: {}
 
