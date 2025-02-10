@@ -516,7 +516,7 @@ const PopoverPortal = ({
   return (
     <FloatingPortal
       key={portalTo?.id} // workaround to force remount when `root` changes (see #2093)
-      root={portalTo}
+      root={portalTo ?? undefined}
     >
       <DisplayContents />
       {children}
