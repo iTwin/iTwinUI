@@ -44,7 +44,7 @@ export const ScopeProvider = ({ children }: { children: React.ReactNode }) => {
  */
 export const useScopedAtom = <T,>(atom: Atom<T>) => {
   const { store, parentStore } = React.useContext(ScopeContext);
-  const setAtom = useScopedSetAtom(atom as WritableAtom<T, unknown[], unknown>);
+  const setAtom = useScopedSetAtom(atom as WritableAtom<T, T[], void>);
 
   const value = useAtomValue(atom, { store });
   const inheritedValue = useAtomValue(atom, { store: parentStore || store });
@@ -62,9 +62,7 @@ export const useScopedAtom = <T,>(atom: Atom<T>) => {
  * Wrapper over `useSetAtom` that uses the store from the nearest `ScopeProvider`.
  * @private
  */
-export const useScopedSetAtom = <T,>(
-  atom: WritableAtom<T, unknown[], unknown>,
-) => {
+export const useScopedSetAtom = <T,>(atom: WritableAtom<T, T[], void>) => {
   const { store } = React.useContext(ScopeContext);
   return useSetAtom(atom, { store });
 };

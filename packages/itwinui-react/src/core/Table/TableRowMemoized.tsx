@@ -40,7 +40,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   scrollContainerRef: HTMLDivElement | null;
   tableRowRef?: React.Ref<HTMLDivElement>;
   density?: 'default' | 'condensed' | 'extra-condensed';
-  virtualItem?: VirtualItem<Element>;
+  virtualItem?: VirtualItem;
   virtualizer?: Virtualizer<Element, Element>;
 }) => {
   const {
@@ -127,6 +127,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     <>
       <Box
         {...mergedProps}
+        key={mergedProps.key}
         ref={refs}
         onClick={(event) => {
           mergedProps?.onClick?.(event);

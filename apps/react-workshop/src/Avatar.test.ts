@@ -17,6 +17,7 @@ describe('Avatar', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
+      cy.wait(500); // TODO: Investigate
 
       // Hide images if present to avoid uncertainties in testing
       if (testName === 'With Image') {

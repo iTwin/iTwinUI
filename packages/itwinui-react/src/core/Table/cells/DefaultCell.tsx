@@ -72,36 +72,47 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     ...rest
   } = props;
 
+  const { key: cellElementKey, ...cellElementPropsRest } = cellElementProps;
+
   return (
     <Box
-      {...cellElementProps}
+      {...cellElementPropsRest}
+      key={cellElementKey}
       {...rest}
       className={cx(cellElementClassName, className)}
       aria-disabled={isDisabled?.(cellProps.row.original) || undefined}
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
-      <ShadowRoot>
-        <slot name='start' />
+      <ShadowRoot key={`${cellElementKey}-shadow-root`}>
+        <slot name='start' key={`${cellElementKey}-shadow-root-start`} />
         {clamp ? (
-          <LineClamp>
+          <LineClamp key={`${cellElementKey}-shadow-root-slot`}>
             <slot />
           </LineClamp>
         ) : (
-          <slot />
+          <slot key={`${cellElementKey}-shadow-root-slot`} />
         )}
-        <slot name='end' />
-        <slot name='shadows' />
+        <slot name='end' key={`${cellElementKey}-shadow-root-end`} />
+        <slot name='shadows' key={`${cellElementKey}-shadow-root-shadows`} />
       </ShadowRoot>
 
       {startIcon && (
-        <Box className='iui-table-cell-start-icon' slot='start'>
+        <Box
+          className='iui-table-cell-start-icon'
+          slot='start'
+          key={`${cellElementKey}-start`}
+        >
           {startIcon}
         </Box>
       )}
       {children}
       {endIcon && (
-        <Box className='iui-table-cell-end-icon' slot='end'>
+        <Box
+          className='iui-table-cell-end-icon'
+          slot='end'
+          key={`${cellElementKey}-end`}
+        >
           {endIcon}
         </Box>
       )}
