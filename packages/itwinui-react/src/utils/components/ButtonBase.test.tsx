@@ -84,3 +84,19 @@ it('should allow `htmlDisabled` prop to override `disabled`', () => {
   expect(button).toBeDisabled();
   expect(button).not.toHaveAttribute('aria-disabled');
 });
+
+it('should not allow submitting form when disabled', async () => {
+  const formAction = vi.fn();
+
+  render(
+    <form action={formAction}>
+      <ButtonBase type='submit' disabled>
+        hi
+      </ButtonBase>
+    </form>,
+  );
+  await userEvent.tab();
+  await userEvent.keyboard('{Enter}');
+
+  expect(formAction).not.toHaveBeenCalled();
+});
