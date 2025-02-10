@@ -87,7 +87,7 @@
     "clean:build": "rimraf esm && rimraf cjs && rimraf DEV-esm && rimraf DEV-cjs && rimraf styles.css",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && pnpm clean:coverage && pnpm clean:build && rimraf node_modules",
-    "test": "pnpm test:types",
+    "test": "pnpm test:types && pnpm test:unit",
     "test:unit": "vitest run",
     "test:unit:watch": "pnpm test:unit --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
@@ -103,17 +103,17 @@
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.23",
+    "@floating-ui/react": "^0.27.4",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
-    "@swc/helpers": "^0.5.11",
-    "@tanstack/react-virtual": "^3.12.0",
-    "classnames": "^2.3.2",
+    "@swc/helpers": "^0.5.15",
+    "@tanstack/react-virtual": "^3.13.0",
+    "classnames": "^2.5.1",
     "jotai": "^2.8.0",
     "react-table": "^7.8.0"
   },
   "devDependencies": {
-    "@swc/cli": "^0.5.1",
-    "@swc/core": "^1.5.28",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.10.15",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "16.2.0",
     "@testing-library/user-event": "^14.6.1",
