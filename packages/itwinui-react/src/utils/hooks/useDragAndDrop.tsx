@@ -11,7 +11,7 @@ import { useEventListener } from './useEventListener.js';
 import { useResizeObserver } from './useResizeObserver.js';
 
 const getContainerRect = (
-  containerRef: React.RefObject<HTMLElement> | undefined,
+  containerRef: React.RefObject<HTMLElement | null> | undefined,
 ) => {
   const containerRect = containerRef?.current?.getBoundingClientRect();
   return {
@@ -31,14 +31,14 @@ const getContainerRect = (
  * `transform` - current transform of the element, it is used to preserve drag position when element visibility is being toggled.
  */
 export const useDragAndDrop = (
-  elementRef: React.RefObject<HTMLElement>,
-  containerRef?: React.RefObject<HTMLElement>,
+  elementRef: React.RefObject<HTMLElement | null>,
+  containerRef?: React.RefObject<HTMLElement | null>,
   enabled = true,
 ) => {
   const grabOffsetX = React.useRef(0);
   const grabOffsetY = React.useRef(0);
-  const translateX = React.useRef<number>();
-  const translateY = React.useRef<number>();
+  const translateX = React.useRef<number>(undefined);
+  const translateY = React.useRef<number>(undefined);
 
   const containerRectRef = React.useRef(getContainerRect(containerRef));
 

@@ -419,7 +419,7 @@ export const Table = <
 
   useGlobals();
 
-  const ownerDocument = React.useRef<Document | undefined>();
+  const ownerDocument = React.useRef<Document>(undefined);
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -889,7 +889,7 @@ export const Table = <
   const getPreparedRow = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem<Element>,
+      virtualItem?: VirtualItem,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const row = page[index];
@@ -1034,7 +1034,7 @@ export const Table = <
                 {...headerProps}
                 className={cx('iui-table-header', headerProps?.className)}
               >
-                <Box {...headerGroupProps}>
+                <Box {...headerGroupProps} key={headerGroupProps.key}>
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (

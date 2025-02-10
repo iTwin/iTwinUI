@@ -12,11 +12,13 @@ const _base = <As extends keyof React.JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
 ) => {
   return (className: string, attrs?: React.JSX.IntrinsicElements[As]) => {
+    // @ts-expect-error -- TODO: Make it work with React 19 types
     const Comp = React.forwardRef(({ as = defaultElement, ...props }, ref) => {
       props = {
         ...attrs, // Merge default attributes with passed props
         ...props,
         className: getScopedClassName(
+          // @ts-expect-error -- TODO: Make it work with React 19 types
           cx(className, attrs?.className, props.className),
         ),
       };
@@ -30,6 +32,7 @@ const _base = <As extends keyof React.JSX.IntrinsicElements = 'div'>(
         Element === 'a' ||
         (Element === 'input' && (props as any).type === 'checkbox')
       ) {
+        // @ts-expect-error -- TODO: Make it work with React 19 types
         props.tabIndex ??= 0;
       }
 
