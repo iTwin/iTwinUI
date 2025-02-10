@@ -87,7 +87,7 @@
     "clean:build": "rimraf esm && rimraf cjs && rimraf DEV-esm && rimraf DEV-cjs && rimraf styles.css",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && pnpm clean:coverage && pnpm clean:build && rimraf node_modules",
-    "test": "pnpm test:types",
+    "test": "pnpm test:types && pnpm test:unit",
     "test:unit": "vitest run",
     "test:unit:watch": "pnpm test:unit --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
