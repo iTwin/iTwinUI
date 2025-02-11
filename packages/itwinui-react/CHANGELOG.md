@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.17.0
+
+### Minor Changes
+
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Added a **theme bridge** which adjusts iTwinUI v3 visuals to blend in with iTwinUI v5's new look-and-feel.
+
+  To enable the theme bridge, use the `future.themeBridge` flag on `<ThemeProvider>`. See [full documentation](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) for more detailed instructions.
+
+  **Note**: The theme bridge is still considered an _alpha_ feature, so there may be breaking changes until it's stabilized.
+
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Fixed an issue in `InputWithDecorations` and `SearchBox` where the component-level focus styling was colliding with global focus styling, leading to double focus outlines.
+- [#2387](https://github.com/iTwin/iTwinUI/pull/2387): Added support for React 19.
+- [#2391](https://github.com/iTwin/iTwinUI/pull/2391): Removed dependency on `react-transition-group`. Notable changes in components:
+  - `useToaster`: Animations have been reworked to directly use the web animations API.
+  - `Dialog` and `Modal`: Exit animations have been temporarily removed.
+- [#2387](https://github.com/iTwin/iTwinUI/pull/2387): Bumped the minimum required versions of the following dependencies:
+  - `@tanstack/react-virtual` to `3.13.0`
+  - `@floating-ui/react` to `0.27.4`
+  - `classnames` to `2.5.1`
+
+### Patch Changes
+
+- [#2429](https://github.com/iTwin/iTwinUI/pull/2429): Fixed an issue where disabled buttons were still causing form submissions. Affects `Button`, `IconButton`, and all other button components.
+- [#2368](https://github.com/iTwin/iTwinUI/pull/2368): Fine-tuned the default Tooltip delay to `{ open: 100ms, close: 200ms }`.
+- [#2368](https://github.com/iTwin/iTwinUI/pull/2368): Added `Tooltip` delay grouping to components that use `Tooltip` internally. This prevents the tooltip from lingering when quickly hovering across different parts of the component.
+  - Components affected: `SideNavigation`, `Slider`, `Stepper`, `List`.
+
 ## 3.16.6
 
 ### Patch Changes
