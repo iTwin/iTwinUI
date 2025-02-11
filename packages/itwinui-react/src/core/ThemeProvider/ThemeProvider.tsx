@@ -67,8 +67,11 @@ type RootProps = {
    *
    * The 'inherit' option is intended to be used by packages, to enable incremental adoption
    * of iTwinUI while respecting the theme set by the consuming app. It will fall back to 'light'
-   * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`,
-   * `portalContainer`, and `future.themeBridge` (if possible).
+   * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`
+   * and `portalContainer` (if possible).
+   *
+   * `future.themeBridge` will be inherited regardless of `theme` value. To disable it, explicitly set
+   * `future.themeBridge` to false.
    *
    * @default 'inherit'
    */
