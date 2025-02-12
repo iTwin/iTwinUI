@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { Button } from './Button.js';
 import type { ButtonProps } from './Button.js';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
-import type { DropdownMenuProps } from '../DropdownMenu/DropdownMenu.js';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -25,9 +24,12 @@ export type DropdownButtonProps = {
    */
   styleType?: 'default' | 'borderless' | 'high-visibility';
   /**
-   * Props for the `DropdownMenu` which extends `PopoverProps`.
+   * Props for the `DropdownMenu` which extends the props of `Popover`.
    */
-  dropdownMenuProps?: Omit<DropdownMenuProps, 'menuItems' | 'children'>;
+  dropdownMenuProps?: Omit<
+    React.ComponentProps<typeof DropdownMenu>,
+    'menuItems' | 'children'
+  >;
 } & Omit<ButtonProps, 'styleType' | 'endIcon'>;
 
 /**
