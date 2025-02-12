@@ -6,16 +6,367 @@ thumbnail: Table
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='table--basic' />
+Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
+
+Bentley makes extensive use of tables and data grids throughout its web applications. Use the following flexible grid format below in most circumstances as it provides functionality “built in” to the design, and because users learning how to consistently sort, filter, and search tables is an important skill to leverage.
+
+## Usage
+
+The most basic `Table` can be implemented by passing three props:
+
+- `data`: an array containing table data displayed on the table. This array must be memoized.
+- `columns`: an array containing table column objects. Each column object require to have a `Header`, which will be displayed as a column title, and `id`.
+- `emptyTableContent`: a JSX element table content shown when there is no data.
 
 <LiveExample src='Table.main.jsx'>
   <AllExamples.TableMainExample client:load />
 </LiveExample>
 
-Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
+**Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see this [doc](https://react-table.tanstack.com/docs/api/overview).
 
-Bentley makes extensive use of tables and data grids throughout its web applications. Use the following flexible grid format below in most circumstances as it provides functionality “built in” to the design, and because users learning how to consistently sort, filter, and search tables is an important skill to leverage.
+#### `rowProps` vs. `getRowId`
+
+The `Table` component provides two important props, `rowProps` and `getRowId` which serve different purposes in customizing and managing the table row data.
+
+The `rowProps` prop is a function that allows passing additional properties to the rows, such as custom attributes, event handlers, or styles based on the data. This can be useful for customizing the behavior and appearance of each row. The type `React.ComponentPropsWithRef<'div'>` ensures that the properties passed are valid for a `div` element, which is the default element used for table rows. This prop provides the flexibility to customize the id of the HTML `div` row element.
+
+```jsx {3}
+const rowProps = React.useCallback((row) => {
+  return {
+    id: row.id,
+    status: row.original.status,
+  };
+}, []);
+```
+
+On the other hand, `getRowId` is used to specify a unique identifier in each row's internal data. This is particularly useful when the data does not have a unique `id` field for each object or when a different field is needed to be used as the unique identifier.
+
+```jsx {6}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  getRowId={(row) => 'my-id' + row.name}
+/>
+```
+
+### Subrow
+
+The `Table` component supports hierarchical data structures, allowing end users to display subrows, which can be expanded or collapsed. Each data entry in the `data` array should have `subRows` array.
+
+```jsx
+const data = React.useMemo(() => {
+  return [
+    {
+      name: 'Row 1',
+      description: 'Description',
+      subRows: [{ name: 'Subrow 1', description: 'Description 1' }],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description',
+      subRows: [
+        {
+          name: 'Subrow 2',
+          description: 'Description 2',
+          subRows: [{ name: 'Subrow 2.1', description: 'Description 2.1' }],
+        },
+      ],
+    },
+  ];
+}, []);
+```
+
+If subrows has any items, then expander will be shown for that row. This feature is useful for displaying related data in a structured and organized manner.
+
+<LiveExample src='Table.subRows.jsx'>
+  <AllExamples.TableSubRowsExample client:load />
+</LiveExample>
+
+### Expandable content
+
+The `Table` component allows end users to customize their own expandable content within rows by rendering a JSX element using the `subComponent` prop. This feature enables end users to provide additional details or complex data structures in a desired format that can be revealed when a row is expanded.
+
+<LiveExample src='Table.expandableContent.jsx'>
+  <AllExamples.TableExpandableContentExample client:load />
+</LiveExample>
+
+**Note**: As there are features that are designed exclusively for expandable content but not for subrows and vice versa, these two features cannot be passed into the `Table` at the same time.
+
+### Virtualization
+
+For tables with large datasets, the `enableVirtualization` prop can be set to `true` to enhance performance by only rendering the rows that are currently in the viewport. More importantly, height on the table is required for virtualization to work.
+
+<LiveExample src='Table.virtualization.jsx'>
+  <AllExamples.TableVirtualizationExample client:load />
+</LiveExample>
+
+### Selection
+
+The `Table` component supports row selection, allowing users to select one or more rows for actions by setting the `isSelectable` prop to `true`.
+
+```jsx {6}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  isSelectable
+/>
+```
+
+#### Single-row selection
+
+There are two available selection modes: `"single"` and `"multi"` (default). These modes can be specified using the `selectionMode` prop. For single row selection mode, users can select each row by clicking on the desired row.
+
+<LiveExample src='Table.selectSingle.jsx'>
+  <AllExamples.TableSelectSingleExample client:load />
+</LiveExample>
+
+#### Multiple-row selection
+
+Multiple-row selection can be enabled by setting the `selectionMode` prop to `"multi"` or by omitting the `selectionMode` prop altogether. When the `isSelectable` prop is set, the table defaults to multi-selectable. In this mode, a row with checkboxes for toggling selection is added. End users can select or deselect multiple rows by clicking on the row while holding the `Shift` or `Ctrl`/`Command` keys, or by using the checkboxes.
+
+<LiveExample src='Table.selectMulti.jsx'>
+  <AllExamples.TableSelectMultiExample client:load />
+</LiveExample>
+
+The `initialState` prop is useful when you want specific rows to be selected by default. This prop accepts an array of row IDs, ensuring that these rows are rendered with the appropriate selection styling.
+
+```jsx {7}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  // Pre-select the first two rows
+  initialState={{ selectedRowIds: [1, 2] }}
+/>
+```
+
+### Density
+
+There are three available density options which define the height of each row: `"default"`, `"condensed"`, and `"extra-condensed"`.
+
+<LiveExample src='Table.density.jsx'>
+  <AllExamples.TableDensityExample client:load />
+</LiveExample>
+
+### Pagination
+
+The `Table` component supports pagination, which allows end users to divide large datasets into pages. This feature enhances the user experience by making it easier to navigate, view and manage data in smaller and manageable chunks.
+
+#### Page size
+
+A memoized variable can be used to hold a list of page size options.
+
+```jsx
+const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+```
+
+The initial page size can be set using the `pageSize` prop, which defaults to 25. Additionally, the `initialState` prop can be used to specify the initial page size by setting a page size number to its `pageSize` option.
+
+```jsx {6}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  pageSize={10}
+/>
+```
+
+```jsx {6}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  initialState={{ pageSize: 50 }}
+/>
+```
+
+#### Paginator
+
+The `paginatorRenderer` can be used to take this page size list and render the corresponding selected rows per page as users change the option.
+
+```jsx
+const paginator = React.useCallback(
+  (props) => <TablePaginator {...props} pageSizeList={pageSizeList} />,
+  [pageSizeList],
+);
+```
+
+This prop is a function that takes `TablePaginatorRendererProps` as an argument and returns pagination component. It is highly recommended that the [`TablePaginator`](#tablepaginator) is returned by this function to handle all state management as it is efficient enough for basic use-cases.
+
+<LiveExample src='Table.pagination.jsx'>
+  <AllExamples.TablePaginationExample client:load />
+</LiveExample>
+
+### Column manager
+
+The `ActionColumn` component allows you to perform actions on column items by adding the column manager to the Table header. It is recommended to place this column at the end of the column object array with its `columnManager` option set to `"true"`. The column manager includes a popover that contains information about each column, enabling you to decide which columns should be visible.
+
+```jsx {4}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    ActionColumn({ columnManager: true }),
+  ],
+  [],
+);
+```
+
+Additionally, you can override the `Cell` prop of the `ActionColumn` to include a row action menu at the end of each table row. This menu enhances the user experience by providing convenient access to row-specific actions, such as editing or deleting entries.
+
+<LiveExample src='Table.columnManager.jsx'>
+  <AllExamples.TableColumnManagerExample client:load />
+</LiveExample>
+
+As a side note, the `initialState` prop allows you to initially hide specific columns in the column manager popover when the table is rendered by setting its `hiddenColumns` property to an array of the columns you want to hide.
+
+```jsx {7}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  // Hide the 'Price' column
+  initialState={{ hiddenColumns: ['price'] }}
+/>
+```
+
+### Editing
+
+To enable editing for each `Table` cell, the `EditableCell` component should be passed into `cellRenderer` of the column object.
+
+```jsx {7}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    {
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => <EditableCell {...props} onCellEdit={onCellEditHandler} />,
+    },
+  ],
+  [],
+);
+```
+
+This component takes the callback function `onCellEdit` which is used to handle cell edit events and update the table data accordingly.
+
+```jsx
+const onCellEdit = React.useCallback(
+  (columnId: string, value: string, rowData: T) => {
+  setData((oldData) => {
+    const newData = [...oldData];
+    const index = oldData.indexOf(rowData);
+      const newObject = { ...newData[index] };
+      newObject[columnId] = value;
+    newData[index] = newObject;
+    return newData;
+  });
+},[]);
+```
+
+<LiveExample src='Table.editing.jsx'>
+  <AllExamples.TableEditingExample client:load />
+</LiveExample>
+
+### Sorting
+
+To enable sorting in the `Table`, the `isSortable` prop can be set to `true`. This will allow the columns to display an arrow when hovered, indicating whether the column is sorted in ascending or descending order.
+
+<LiveExample src='Table.sorting.jsx'>
+  <AllExamples.TableSortingExample client:load />
+</LiveExample>
+
+By default, columns are sorted in ascending order first when the arrow is clicked. To prioritize descending sorting instead, you can set the `sortDescFirst` property to `true` in the column object.
+
+```jsx {7}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    {
+      Header: 'Name',
+      accessor: 'name',
+      sortDescFirst: true,
+    },
+  ],
+  [],
+);
+```
+
+If there is any column that does not allow sorting, the `disableSortBy` prop needs to be set to `true` in the column object.
+
+```jsx {7}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    {
+      Header: 'Name',
+      accessor: 'name',
+      disableSortBy: true,
+    },
+  ],
+  [],
+);
+```
+
+#### Manual sorting
+
+The `manualSortBy` prop is useful when sorting needs to be handled manually by the developer rather than automatically by the table library. This is particularly useful when you are fetching data from a server or need custom sorting logic.
+
+```jsx {6}
+<Table
+  /* … */
+  data={data}
+  columns={columns}
+  emptyTableContent='No data.'
+  manualSortBy
+/>
+```
+
+The `manualSortBy` prop must be used in conjunction with the `onSort` callback, allowing end users to implement custom sorting logic programmatically. This function must be memoized.
+
+### Filtering
+
+For basic filtering in the `Table`, you can pass the `Filter` prop to the column object. The `Filter` prop accepts a JSX element to display a filter component, which can be customized or use iTwinUI's pre-built `tableFilter` components. This `tableFilter` object provides three filter components:
+
+- `TextFilter`: a basic string filter with a single input field.
+- `NumberRangeFilter`: a number range filter. It only works with `number` type object properties. If the data is required to be different type e.g. `string`, you can use `accessor` property in column description: `accessor: (rowData) => Number(rowData.numberProp)`.
+- `DateRangeFilter`: a date range filter. By default, it handles user input in `en-us` date format. If there are other specific formats that need to be displayed, `formatDate`, `parseInput` and `placeholder` are the date range filter options that can passed into the filter component.
+
+<LiveExample src='Table.filtering.jsx'>
+  <AllExamples.TableFilteringExample client:load />
+</LiveExample>
+
+#### Global filtering
+
+In addition to filtering data in individual columns, global filtering can be useful for searching through the entire table. The `globalFilterValue` prop can be used to set a default filter value when the table is rendered or to update the table based on a state filter variable.
+
+<LiveExample src='Table.globalFiltering.jsx'>
+  <AllExamples.TableGlobalFilteringExample client:load />
+</LiveExample>
+
+**Note**: The `autoResetGlobalFilter` prop can be used to reset the table filter whenever a change is detected in the filter value.
+
+#### Manual filtering
+
+The `Table` supports custom filtering, allowing users to filter columns based on their specific needs. To implement custom filtering, you can use the `BaseFilter` component as a wrapper for your custom filter component. Then, this custom filter component can be passed into the `Filter` option of the column object.
+
+<LiveExample src='Table.manualFiltering.jsx'>
+  <AllExamples.TableManualFilteringExample client:load />
+</LiveExample>
 
 ## Props
 
+### Table
+
 <PropsTable path='@itwin/itwinui-react/esm/core/Table/Table.d.ts' />
+
+### TablePaginator
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Table/TablePaginator.d.ts' />
