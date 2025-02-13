@@ -2,95 +2,95 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 .iui-root:where([data-iui-bridge='true']) {
-  --iui-color-white: var(--kiwi-color-static-white);
+  --iui-color-white: var(--ids-color-static-white);
 
   --iui-color-background: var(--ids-color-bg-page-base);
-  --iui-color-background-disabled: var(--kiwi-color-bg-glow-on-surface-disabled);
+  --iui-color-background-disabled: var(--ids-color-bg-glow-on-surface-disabled);
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--iui-color-background);
   --iui-color-background-backdrop: var(--ids-color-bg-page-depth);
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
-  --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
+  --iui-color-background-accent: var(--ids-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
-  --iui-color-background-accent-muted: var(--kiwi-color-bg-glow-on-surface-accent-pressed);
+  --iui-color-background-accent-muted: var(--ids-color-bg-glow-on-surface-accent-pressed);
 
-  --iui-color-border-foreground: var(--kiwi-color-border-mono-muted);
+  --iui-color-border-foreground: var(--ids-color-border-mono-muted);
   --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
 
-  --iui-color-background-informational: var(--kiwi-color-bg-info-base);
+  --iui-color-background-informational: var(--ids-color-bg-info-base);
   --iui-color-background-informational-hover: var(--iui-color-background-informational);
-  --iui-color-background-informational-muted: var(--kiwi-color-bg-info-muted);
-  --iui-color-background-positive: var(--kiwi-color-bg-positive-base);
+  --iui-color-background-informational-muted: var(--ids-color-bg-info-muted);
+  --iui-color-background-positive: var(--ids-color-bg-positive-base);
   --iui-color-background-positive-hover: var(--iui-color-background-positive);
-  --iui-color-background-positive-muted: var(--kiwi-color-bg-positive-muted);
-  --iui-color-background-warning: var(--kiwi-color-bg-attention-base);
+  --iui-color-background-positive-muted: var(--ids-color-bg-positive-muted);
+  --iui-color-background-warning: var(--ids-color-bg-attention-base);
   --iui-color-background-warning-hover: var(--iui-color-background-warning);
-  --iui-color-background-warning-muted: var(--kiwi-color-bg-attention-muted);
-  --iui-color-background-negative: var(--kiwi-color-bg-critical-base);
+  --iui-color-background-warning-muted: var(--ids-color-bg-attention-muted);
+  --iui-color-background-negative: var(--ids-color-bg-critical-base);
   --iui-color-background-negative-hover: var(--iui-color-background-negative);
-  --iui-color-background-negative-muted: var(--kiwi-color-bg-critical-muted);
+  --iui-color-background-negative-muted: var(--ids-color-bg-critical-muted);
 
-  --iui-color-border-informational: var(--kiwi-color-border-info-faded);
-  --iui-color-border-positive: var(--kiwi-color-border-positive-faded);
-  --iui-color-border-warning: var(--kiwi-color-border-attention-faded);
-  --iui-color-border-negative: var(--kiwi-color-border-critical-faded);
+  --iui-color-border-informational: var(--ids-color-border-info-faded);
+  --iui-color-border-positive: var(--ids-color-border-positive-faded);
+  --iui-color-border-warning: var(--ids-color-border-attention-faded);
+  --iui-color-border-negative: var(--ids-color-border-critical-faded);
 
-  --iui-color-border: var(--kiwi-color-border-neutral-base);
+  --iui-color-border: var(--ids-color-border-neutral-base);
   --iui-color-border-hover: var(--iui-color-border);
-  --iui-color-border-disabled: var(--kiwi-color-border-glow-on-surface-disabled);
-  --iui-color-border-subtle: var(--kiwi-color-border-neutral-muted);
-  --iui-color-border-accent: var(--kiwi-color-border-accent-strong);
+  --iui-color-border-disabled: var(--ids-color-border-glow-on-surface-disabled);
+  --iui-color-border-subtle: var(--ids-color-border-neutral-muted);
+  --iui-color-border-accent: var(--ids-color-border-accent-strong);
 
-  --iui-color-icon-accent: var(--kiwi-color-icon-accent-strong);
-  --iui-color-icon-informational: var(--kiwi-color-icon-info-faded);
-  --iui-color-icon-positive: var(--kiwi-color-icon-positive-faded);
-  --iui-color-icon-warning: var(--kiwi-color-icon-attention-faded);
-  --iui-color-icon-negative: var(--kiwi-color-icon-critical-faded);
+  --iui-color-icon-accent: var(--ids-color-icon-accent-strong);
+  --iui-color-icon-informational: var(--ids-color-icon-info-faded);
+  --iui-color-icon-positive: var(--ids-color-icon-positive-faded);
+  --iui-color-icon-warning: var(--ids-color-icon-attention-faded);
+  --iui-color-icon-negative: var(--ids-color-icon-critical-faded);
 
-  --iui-color-icon: var(--kiwi-color-icon-neutral-base);
+  --iui-color-icon: var(--ids-color-icon-neutral-base);
   --iui-color-icon-hover: var(--iui-color-icon);
-  --iui-color-icon-muted: var(--kiwi-color-icon-neutral-secondary);
+  --iui-color-icon-muted: var(--ids-color-icon-neutral-secondary);
   --iui-color-icon-muted-hover: var(--iui-color-icon-muted);
-  --iui-color-icon-disabled: var(--kiwi-color-icon-neutral-disabled);
+  --iui-color-icon-disabled: var(--ids-color-icon-neutral-disabled);
   --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
 
-  --iui-color-text-informational: var(--kiwi-color-text-info-faded);
-  --iui-color-text-positive: var(--kiwi-color-text-positive-faded);
-  --iui-color-text-warning: var(--kiwi-color-text-attention-faded);
-  --iui-color-text-negative: var(--kiwi-color-text-critical-faded);
+  --iui-color-text-informational: var(--ids-color-text-info-faded);
+  --iui-color-text-positive: var(--ids-color-text-positive-faded);
+  --iui-color-text-warning: var(--ids-color-text-attention-faded);
+  --iui-color-text-negative: var(--ids-color-text-critical-faded);
 
   --iui-color-text-informational-hover: var(--iui-color-text-informational);
   --iui-color-text-positive-hover: var(--iui-color-text-positive);
   --iui-color-text-warning-hover: var(--iui-color-text-warning);
   --iui-color-text-negative-hover: var(--iui-color-text-negative);
 
-  --iui-color-text: var(--kiwi-color-text-neutral-primary);
+  --iui-color-text: var(--ids-color-text-neutral-primary);
   --iui-color-text-hover: var(--iui-color-text);
-  --iui-color-text-accent: var(--kiwi-color-text-accent-strong);
+  --iui-color-text-accent: var(--ids-color-text-accent-strong);
   --iui-color-text-accent-hover: var(--iui-color-text-accent);
-  --iui-color-text-muted: var(--kiwi-color-text-neutral-secondary);
-  --iui-color-text-disabled: var(--kiwi-color-text-neutral-disabled);
+  --iui-color-text-muted: var(--ids-color-text-neutral-secondary);
+  --iui-color-text-disabled: var(--ids-color-text-neutral-disabled);
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
-  --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
+  --iui-color-text-placeholder: var(--ids-color-text-neutral-secondary);
 
   &[data-iui-theme='light'] {
     --iui-color-background-hsl: 209.21deg 17.09% 97.27%; // --ids-color-bg-page-base
-    --iui-color-foreground-hsl: 214.23deg 9.08% 15.9%; // --kiwi-color-text-neutral-primary
-    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --kiwi-color-icon-accent-strong
-    --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --kiwi-color-icon-info-faded
-    --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --kiwi-color-icon-positive-faded
-    --iui-color-warning-hsl: 39.78deg 94.44% 25.8%; // --kiwi-color-icon-attention-faded
-    --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --kiwi-color-icon-critical-faded
+    --iui-color-foreground-hsl: 214.23deg 9.08% 15.9%; // --ids-color-text-neutral-primary
+    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --ids-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --ids-color-icon-info-faded
+    --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --ids-color-icon-positive-faded
+    --iui-color-warning-hsl: 39.78deg 94.44% 25.8%; // --ids-color-icon-attention-faded
+    --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --ids-color-icon-critical-faded
   }
 
   &[data-iui-theme='dark'] {
     --iui-color-background-hsl: 214.23deg 9.08% 15.9%; // --ids-color-bg-page-base
-    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --kiwi-color-text-neutral-primary
-    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --kiwi-color-icon-accent-strong
-    --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --kiwi-color-icon-info-faded
-    --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --kiwi-color-icon-positive-faded
-    --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --kiwi-color-icon-attention-faded
-    --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --kiwi-color-icon-critical-faded
+    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --ids-color-text-neutral-primary
+    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --ids-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --ids-color-icon-info-faded
+    --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --ids-color-icon-positive-faded
+    --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --ids-color-icon-attention-faded
+    --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --ids-color-icon-critical-faded
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -106,7 +106,7 @@
 
     // Neutral color instead of accent
     &:where(:not([data-iui-status])) {
-      color: var(--kiwi-color-text-neutral-primary);
+      color: var(--ids-color-text-neutral-primary);
     }
   }
 
@@ -143,12 +143,12 @@
 
     // CTA variant should use the same colors as high-visibility instead of using "positive" colors
     &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
-      --_iui-field-color-background: var(--kiwi-color-bg-accent-base);
+      --_iui-field-color-background: var(--ids-color-bg-accent-base);
       --_iui-field-color-background-hover: var(--_iui-field-color-background);
-      --_iui-field-color-icon: var(--kiwi-color-icon-neutral-emphasis);
+      --_iui-field-color-icon: var(--ids-color-icon-neutral-emphasis);
 
       // Extra visible border in Kiwi
-      --_iui-field-color-border: var(--kiwi-color-border-accent-base);
+      --_iui-field-color-border: var(--ids-color-border-accent-base);
     }
   }
 
@@ -168,15 +168,15 @@
     &:not(.iui-checkbox-visibility) {
       &:not(:disabled) {
         // Check mark is plain color and not accent
-        --_iui-checkbox-svg-color: var(--kiwi-color-icon-neutral-emphasis);
+        --_iui-checkbox-svg-color: var(--ids-color-icon-neutral-emphasis);
         // Override surface bg color with bg for interactive elements
-        --_iui-checkbox-background-color: var(--kiwi-color-bg-neutral-base);
+        --_iui-checkbox-background-color: var(--ids-color-bg-neutral-base);
 
         &:checked {
           // Checked checkbox is filled and not hollow
-          --_iui-checkbox-background-color: var(--kiwi-color-bg-accent-base);
+          --_iui-checkbox-background-color: var(--ids-color-bg-accent-base);
           // Border is accent color
-          --_iui-checkbox-border-color: var(--kiwi-color-border-accent-base);
+          --_iui-checkbox-border-color: var(--ids-color-border-accent-base);
         }
       }
 
@@ -196,7 +196,7 @@
   .iui-checkbox-wrapper {
     &:not(:where([data-iui-status])):not([data-iui-disabled='true']) {
       // Kiwi labels are slightly muted
-      color: var(--kiwi-color-text-neutral-secondary);
+      color: var(--ids-color-text-neutral-secondary);
     }
   }
 
@@ -209,7 +209,7 @@
 
     // Kiwi uses box shadow only
     border: none;
-    box-shadow: var(--kiwi-shadow-surface-xl);
+    box-shadow: var(--ids-shadow-surface-xl);
   }
 
   .iui-list-item {
@@ -257,7 +257,7 @@
 
   .iui-input-flex-container {
     // iTwinUI input v5 background colors are different from global values
-    --_iui-input-background-color: var(--kiwi-color-bg-neutral-primary);
+    --_iui-input-background-color: var(--ids-color-bg-neutral-primary);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -265,7 +265,7 @@
 
   // iTwinUI v5 progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
-    --_iui-progress-indicator-color-default-progress: var(--kiwi-color-icon-neutral-base);
+    --_iui-progress-indicator-color-default-progress: var(--ids-color-icon-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -275,8 +275,8 @@
 
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
-    background-color: var(--kiwi-color-bg-neutral-faded);
-    border-color: var(--kiwi-color-border-neutral-faded);
+    background-color: var(--ids-color-bg-neutral-faded);
+    border-color: var(--ids-color-border-neutral-faded);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -284,16 +284,16 @@
 
   :where(.iui-tabs-wrapper) {
     // The old accent stripe is now the regular stripe
-    --_iui-tab-color-stripe-blue: var(--kiwi-color-border-neutral-inverse);
+    --_iui-tab-color-stripe-blue: var(--ids-color-border-neutral-inverse);
     // The old positive stripe is now the accent stripe
-    --_iui-tab-color-stripe-green: var(--kiwi-color-border-accent-strong);
+    --_iui-tab-color-stripe-green: var(--ids-color-border-accent-strong);
 
     // iTwinUI v5 has muted color on its non selected tabs
-    --_iui-tab-color-default: var(--kiwi-color-text-neutral-tertiary);
+    --_iui-tab-color-default: var(--ids-color-text-neutral-tertiary);
     // iTwinUI v5 has no accent color on its selected tabs
-    --_iui-tab-color-selected: var(--kiwi-color-text-neutral-primary);
+    --_iui-tab-color-selected: var(--ids-color-text-neutral-primary);
     // The old positive color is now the accent color
-    --_iui-tab-color-green-selected: var(--kiwi-color-text-accent-strong);
+    --_iui-tab-color-green-selected: var(--ids-color-text-accent-strong);
 
     // Selected tab has stripe on the bottom instead of top
     &:where(.iui-horizontal) .iui-tab::after {
@@ -333,7 +333,7 @@
   .iui-toggle-switch {
     &:checked:not(:disabled) {
       // Checked toggle switches need accent border
-      border-color: var(--kiwi-color-border-accent-base);
+      border-color: var(--ids-color-border-accent-base);
     }
 
     &:disabled {
@@ -345,7 +345,7 @@
   .iui-toggle-switch-wrapper {
     // Kiwi labels are slightly muted
     &:not(.iui-disabled) {
-      color: var(--kiwi-color-text-neutral-secondary);
+      color: var(--ids-color-text-neutral-secondary);
     }
   }
 
@@ -358,6 +358,6 @@
     border-color: var(--ids-color-border-elevation-base);
 
     // Use Kiwi's shadow instead of iTwinUI's
-    box-shadow: var(--kiwi-shadow-tooltip-base);
+    box-shadow: var(--ids-shadow-tooltip-base);
   }
 }
