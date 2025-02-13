@@ -4,11 +4,11 @@
 .iui-root:where([data-iui-bridge='true']) {
   --iui-color-white: var(--kiwi-color-static-white);
 
-  --iui-color-background: var(--kiwi-color-bg-surface-primary);
+  --iui-color-background: var(--ids-color-bg-page-base);
   --iui-color-background-disabled: var(--kiwi-color-bg-glow-on-surface-disabled);
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--iui-color-background);
-  --iui-color-background-backdrop: var(--kiwi-color-bg-surface-secondary);
+  --iui-color-background-backdrop: var(--ids-color-bg-page-depth);
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
   --iui-color-background-accent: var(--kiwi-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
@@ -74,7 +74,7 @@
   --iui-color-text-placeholder: var(--kiwi-color-text-neutral-secondary);
 
   &[data-iui-theme='light'] {
-    --iui-color-background-hsl: 209.21deg 17.09% 97.27%; // --kiwi-color-bg-surface-primary
+    --iui-color-background-hsl: 209.21deg 17.09% 97.27%; // --ids-color-bg-page-base
     --iui-color-foreground-hsl: 214.23deg 9.08% 15.9%; // --kiwi-color-text-neutral-primary
     --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --kiwi-color-icon-accent-strong
     --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --kiwi-color-icon-info-faded
@@ -84,7 +84,7 @@
   }
 
   &[data-iui-theme='dark'] {
-    --iui-color-background-hsl: 214.23deg 9.08% 15.9%; // --kiwi-color-bg-surface-primary
+    --iui-color-background-hsl: 214.23deg 9.08% 15.9%; // --ids-color-bg-page-base
     --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --kiwi-color-text-neutral-primary
     --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --kiwi-color-icon-accent-strong
     --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --kiwi-color-icon-info-faded
@@ -205,7 +205,7 @@
 
   .iui-menu {
     // Kiwi uses different surface colors for the dropdowns
-    background-color: var(--kiwi-color-bg-surface-tertiary);
+    background-color: var(--ids-color-bg-elevation-elevation-level-1);
 
     // Kiwi uses box shadow only
     border: none;
@@ -250,9 +250,9 @@
 
   .iui-input:not([role='combobox']) {
     // iTwinUI v5 input background colors are different from global values
-    --_iui-field-color-background: var(--kiwi-color-bg-surface-base);
+    --_iui-field-color-background: var(--ids-color-bg-elevation-control);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
-    --_iui-field-color-background-disabled: var(--kiwi-color-bg-surface-base);
+    --_iui-field-color-background-disabled: var(--ids-color-bg-elevation-control);
   }
 
   .iui-input-flex-container {
@@ -354,8 +354,8 @@
 
   .iui-tooltip {
     // Background and border colors are opaque
-    background-color: var(--kiwi-color-bg-surface-emphasis);
-    border-color: var(--kiwi-color-border-surface-primary);
+    background-color: var(--ids-color-bg-elevation-emphasis);
+    border-color: var(--ids-color-border-elevation-base);
 
     // Use Kiwi's shadow instead of iTwinUI's
     box-shadow: var(--kiwi-shadow-tooltip-base);
