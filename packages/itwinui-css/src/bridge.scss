@@ -138,7 +138,7 @@
     // This is needed because for CTA buttons, border-hover variables are set to bg variables
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
 
-    // Disabled buttons in Kiwi do not have a visible border
+    // Disabled buttons in IDS do not have a visible border
     --_iui-field-color-border-disabled: transparent;
 
     // CTA variant should use the same colors as high-visibility instead of using "positive" colors
@@ -147,7 +147,7 @@
       --_iui-field-color-background-hover: var(--_iui-field-color-background);
       --_iui-field-color-icon: var(--ids-color-icon-neutral-emphasis);
 
-      // Extra visible border in Kiwi
+      // Extra visible border in IDS
       --_iui-field-color-border: var(--ids-color-border-accent-base);
     }
   }
@@ -195,7 +195,7 @@
 
   .iui-checkbox-wrapper {
     &:not(:where([data-iui-status])):not([data-iui-disabled='true']) {
-      // Kiwi labels are slightly muted
+      // IDS labels are slightly muted
       color: var(--ids-color-text-neutral-secondary);
     }
   }
@@ -204,10 +204,10 @@
   /* DropdownMenu */
 
   .iui-menu {
-    // Kiwi uses different surface colors for the dropdowns
+    // IDS uses different surface colors for the dropdowns
     background-color: var(--ids-color-bg-elevation-elevation-level-1);
 
-    // Kiwi uses box shadow only
+    // IDS uses box shadow only
     border: none;
     box-shadow: var(--ids-shadow-surface-xl);
   }
@@ -270,7 +270,7 @@
 
   /* ---------------------------------------------------------------------------- */
   /* Slider */
-  /* TODO: Since Slider is experimental in Kiwi, revisit this when stable on the Kiwi end */
+  /* TODO: Since Slider is experimental in IDS, revisit this when stable on the IDS end */
   /* TODO: Are minLabel and maxLabel fills/colors correct? */
 
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
@@ -343,7 +343,7 @@
   }
 
   .iui-toggle-switch-wrapper {
-    // Kiwi labels are slightly muted
+    // IDS labels are slightly muted
     &:not(.iui-disabled) {
       color: var(--ids-color-text-neutral-secondary);
     }
@@ -357,7 +357,7 @@
     background-color: var(--ids-color-bg-elevation-emphasis);
     border-color: var(--ids-color-border-elevation-base);
 
-    // Use Kiwi's shadow instead of iTwinUI's
+    // Use IDS's shadow instead of iTwinUI's
     box-shadow: var(--ids-shadow-tooltip-base);
   }
 }
