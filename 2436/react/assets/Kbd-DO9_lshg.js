@@ -1,0 +1,1 @@
+import{r as e,B as o,c as n}from"./index-D-ggi-L0.js";const b={Enter:"↵ Enter"},l=e.forwardRef((r,a)=>{let{className:s,children:t,...c}=r;return e.createElement(o,{as:"kbd",className:n("iui-keyboard",s),ref:a,...c},t)});export{l as K,b as a};
