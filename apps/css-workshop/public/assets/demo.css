@@ -107,7 +107,3 @@ ul {
   max-inline-size: revert;
   block-size: revert;
 }
-
-html {
-  background-color: revert;
-}
