@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 class ThemeButton extends HTMLElement {
+  #themeBridge = false;
+
   constructor() {
     super();
     const html = /* html */ `
@@ -141,11 +143,9 @@ class ThemeButton extends HTMLElement {
     ).checked = true;
 
     const root = document.body;
-    const v5Root = document.documentElement;
     const theme = prefersDark ? 'dark' : 'light';
 
     root.dataset.iuiTheme = theme;
-    v5Root.dataset.colorScheme = theme;
     root.dataset.iuiContrast = prefersHC ? 'high' : undefined;
     root.classList.toggle('iui-root', true);
   }
@@ -157,7 +157,7 @@ class ThemeButton extends HTMLElement {
     const isHighContrast = _theme.endsWith('-hc');
     const theme = isHighContrast ? _theme.split('-')[0] : _theme;
     root.dataset.iuiTheme = theme;
-    v5Root.dataset.colorScheme = theme;
+    if (this.#themeBridge) v5Root.dataset.colorScheme = theme;
     root.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
     this.shadowRoot.querySelector('#theme-color-scheme').innerHTML = `
       :host {
@@ -175,7 +175,9 @@ class ThemeButton extends HTMLElement {
   };
 
   changeBridge = ({ target: { checked } }) => {
+    this.#themeBridge = checked;
     document.body.dataset.iuiBridge = checked ? 'true' : 'false';
+    window.dispatchEvent(new CustomEvent('theme-bridge', { detail: checked }));
   };
 
   connectedCallback() {
