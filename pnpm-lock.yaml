@@ -91,8 +91,8 @@ importers:
         specifier: 0.21.0
         version: 0.21.0
       '@itwin/itwinui-react':
-        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.4
-        version: 5.0.0-alpha.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.6
+        version: 5.0.0-alpha.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -139,8 +139,8 @@ importers:
         specifier: '*'
         version: link:../../packages/itwinui-react
       '@itwin/itwinui-react-v5':
-        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.4
-        version: '@itwin/itwinui-react@5.0.0-alpha.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)'
+        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.6
+        version: '@itwin/itwinui-react@5.0.0-alpha.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)'
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -2797,10 +2797,10 @@ packages:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
 
-  '@itwin/itwinui-react@5.0.0-alpha.4':
+  '@itwin/itwinui-react@5.0.0-alpha.6':
     resolution:
       {
-        integrity: sha512-6sJLT8zpxBfY/jgFzcxXzXTo/wYwkKv64WC29JJ/eVp1ifsZ/wbdP6FQAksR08PfzlkvHHZbD9SbbtOi6uyfMA==,
+        integrity: sha512-g6ipvdbHQSlK7sXOvjfAzC3PC+BvFflZ03uY1AFAS//c/svzdbK1ygk9/9VhbUJ+upPHeVCsChMAIGE/ib+IKA==,
       }
     peerDependencies:
       react: '>=18.0.0'
@@ -15520,7 +15520,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@itwin/itwinui-react@5.0.0-alpha.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@itwin/itwinui-react@5.0.0-alpha.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@ariakit/react': 0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       classnames: 2.5.1
