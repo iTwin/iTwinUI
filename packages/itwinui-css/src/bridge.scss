@@ -74,8 +74,8 @@
   --iui-color-text-placeholder: var(--ids-color-text-neutral-secondary);
 
   &[data-iui-theme='light'] {
-    --iui-color-background-hsl: 209.21deg 17.09% 97.27%; // --ids-color-bg-page-base
-    --iui-color-foreground-hsl: 214.23deg 9.08% 15.9%; // --ids-color-text-neutral-primary
+    --iui-color-background-hsl: 209.2deg 40.21% 98.84%; // --ids-color-bg-page-base
+    --iui-color-foreground-hsl: 222.69deg 6.43% 12.92%; // --ids-color-text-neutral-primary
     --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --ids-color-icon-accent-strong
     --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --ids-color-icon-info-faded
     --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --ids-color-icon-positive-faded
@@ -84,7 +84,7 @@
   }
 
   &[data-iui-theme='dark'] {
-    --iui-color-background-hsl: 214.23deg 9.08% 15.9%; // --ids-color-bg-page-base
+    --iui-color-background-hsl: 222.69deg 6.43% 12.92%; // --ids-color-bg-page-base
     --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --ids-color-text-neutral-primary
     --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --ids-color-icon-accent-strong
     --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --ids-color-icon-info-faded
