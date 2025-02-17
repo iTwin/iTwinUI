@@ -31,5 +31,7 @@
   $type: if(map.has-key($sizes, $type), $type, body);
   font-size: map.get($sizes, $type);
   font-weight: map.get($weights, $type);
+
   overflow-wrap: anywhere;
+  hyphens: auto;
 }
