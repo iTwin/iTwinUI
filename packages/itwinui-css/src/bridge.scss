@@ -6,7 +6,7 @@
 
   --iui-color-background: var(--ids-color-bg-page-base);
   --iui-color-background-disabled: var(--ids-color-bg-glow-on-surface-disabled);
-  --iui-color-background-zebra: var(--ids-color-bg-page-zebra);
+  --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--iui-color-background);
   --iui-color-background-backdrop: var(--ids-color-bg-page-depth);
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
