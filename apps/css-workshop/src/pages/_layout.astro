@@ -1,5 +1,5 @@
 ---
-import { Root as ITwinUIV5Root } from '@itwin/itwinui-react-v5/bricks';
+import { ThemeBridge } from '../components/ThemeBridge.tsx';
 
 type Props = { title?: string };
 const { title } = Astro.props;
@@ -41,7 +41,7 @@ const slug = Astro.url.pathname.replace('/', '');
     <link rel='canonical' href=`https://itwin.github.io/iTwinUI/${slug}` />
 
     <style is:global>
-      @layer reset, kiwi;
+      @layer reset;
       @import '/assets/demo.css' layer(demo);
       @import '@itwin/itwinui-variables' layer(variables);
       @import '@itwin/itwinui-css/css/all.css';
@@ -54,7 +54,7 @@ const slug = Astro.url.pathname.replace('/', '');
   </head>
 
   <body class='iui-root' data-iui-theme>
-    <ITwinUIV5Root client:load colorScheme='dark' density='dense' />
+    <ThemeBridge client:load />
     <theme-button></theme-button>
     <slot />
   </body>
