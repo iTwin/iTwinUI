@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.17.1
+
+### Patch Changes
+
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Fixed bug in `SplitButton` where the `dropdownMenuProps.middleware` prop was not respected.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Fixed a `SplitButton` bug where `dropdownMenuProps` was accidentally being added to the DOM.
+- [#2436](https://github.com/iTwin/iTwinUI/pull/2436): The **theme bridge** has been updated to handle the breaking changes introduced in `@itwin/itwinui-react@5.0.0-alpha.6`.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Added missing `div` props in `dropdownMenuProps`'s type for `DropdownButton` and `SplitButton`.
+
 ## 3.17.0
 
 ### Minor Changes
