@@ -35,10 +35,8 @@ export default function ModalTest() {
           </InputGroup>
         </ModalContent>
         <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={async () => {}}>
-            Create
-          </Button>
-          <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+          <Button styleType='high-visibility'>Create</Button>
+          <Button>Cancel</Button>
         </ModalButtonBar>
       </Modal>
     </>
