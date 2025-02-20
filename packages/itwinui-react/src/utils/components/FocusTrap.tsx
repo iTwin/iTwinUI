@@ -18,7 +18,6 @@ export type FocusTrapProps = {
  */
 export const FocusTrap = (props: FocusTrapProps) => {
   const { children } = props;
-
   const firstFocusTrapRef = React.useRef<HTMLDivElement>(null);
 
   const getFirstLastFocusables = React.useCallback(() => {
