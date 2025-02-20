@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.17.2
+
+### Patch Changes
+
+- [#2443](https://github.com/iTwin/iTwinUI/pull/2443): Fixed bug in `Modal` where focus was sometimes jumping from a modal child to the modal itself.
+- [#2446](https://github.com/iTwin/iTwinUI/pull/2446): Fixed background color in menus when the [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) is enabled.
+- [#2431](https://github.com/iTwin/iTwinUI/pull/2431): Force text wrapping for long words. Affected components: `Text`, `NonIdealState`, `Stepper`, `WorkflowDiagram`.
+- [#2442](https://github.com/iTwin/iTwinUI/pull/2442): Removed a leftover `@layer` name, which was originally intended to support _very_ old versions of iTwinUI.
+
 ## 3.17.1
 
 ### Patch Changes
