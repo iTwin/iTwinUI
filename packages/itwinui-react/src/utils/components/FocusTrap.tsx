@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { getTabbableElements } from '../functions/focusable.js';
-import { cloneElementWithRef } from '../functions/react.js';
 
 export type FocusTrapProps = {
   /**
@@ -19,37 +18,55 @@ export type FocusTrapProps = {
  */
 export const FocusTrap = (props: FocusTrapProps) => {
   const { children } = props;
-  const childRef = React.useRef<HTMLElement>(undefined);
+  const firstFocusTrapRef = React.useRef<HTMLDivElement>(null);
 
-  const getFirstLastFocusables = () => {
-    const elements = getTabbableElements(childRef.current);
+  const getFirstLastFocusables = React.useCallback(() => {
+    // Get childrenRef via firstFocusTrapRef instead of by passing ref to cloneElementWithRef(children) to avoid re-renders.
+    // https://github.com/iTwin/iTwinUI/issues/2445
+    const childrenElement = firstFocusTrapRef.current?.nextElementSibling as
+      | HTMLElement
+      | null
+      | undefined;
+
+    const elements = getTabbableElements(childrenElement);
     const firstElement = elements[0];
     const lastElement = elements[(elements.length || 1) - 1];
     return [firstElement, lastElement] as const;
-  };
+  }, []);
 
-  const onFirstFocus = (event: React.FocusEvent) => {
-    const [firstElement, lastElement] = getFirstLastFocusables();
-    if (event.relatedTarget === firstElement) {
-      (lastElement as HTMLElement)?.focus();
-    } else {
-      (firstElement as HTMLElement)?.focus();
-    }
-  };
+  const onFirstFocus = React.useCallback(
+    (event: React.FocusEvent) => {
+      const [firstElement, lastElement] = getFirstLastFocusables();
+      if (event.relatedTarget === firstElement) {
+        (lastElement as HTMLElement)?.focus();
+      } else {
+        (firstElement as HTMLElement)?.focus();
+      }
+    },
+    [getFirstLastFocusables],
+  );
 
-  const onLastFocus = (event: React.FocusEvent) => {
-    const [firstElement, lastElement] = getFirstLastFocusables();
-    if (event.relatedTarget === lastElement) {
-      (firstElement as HTMLElement)?.focus();
-    } else {
-      (lastElement as HTMLElement)?.focus();
-    }
-  };
+  const onLastFocus = React.useCallback(
+    (event: React.FocusEvent) => {
+      const [firstElement, lastElement] = getFirstLastFocusables();
+      if (event.relatedTarget === lastElement) {
+        (firstElement as HTMLElement)?.focus();
+      } else {
+        (lastElement as HTMLElement)?.focus();
+      }
+    },
+    [getFirstLastFocusables],
+  );
 
   return (
     <>
-      <div tabIndex={0} onFocus={onFirstFocus} aria-hidden />
-      {cloneElementWithRef(children, () => ({ ref: childRef }))}
+      <div
+        ref={firstFocusTrapRef}
+        tabIndex={0}
+        onFocus={onFirstFocus}
+        aria-hidden
+      />
+      {children}
       <div tabIndex={0} onFocus={onLastFocus} aria-hidden />
     </>
   );

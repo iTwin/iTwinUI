@@ -168,7 +168,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     if (setFocus) {
       dialogRef.current?.focus({ preventScroll: true });
     }
-  }, [dialogRef, previousFocusedElement, setFocus]);
+  }, [setFocus]);
 
   /** Brings back focus to the previously focused element when closed. */
   const beforeClose = React.useCallback(() => {
