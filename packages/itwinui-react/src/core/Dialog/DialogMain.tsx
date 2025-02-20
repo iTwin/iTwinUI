@@ -168,14 +168,10 @@ export const DialogMain = React.forwardRef((props, ref) => {
     if (setFocus) {
       dialogRef.current?.focus({ preventScroll: true });
     }
-  }, [dialogRef, previousFocusedElement, setFocus]);
-
-  const mountedRef = React.useRef<HTMLElement | null>(null);
+  }, [setFocus]);
 
   /** Brings back focus to the previously focused element when closed. */
   const beforeClose = React.useCallback(() => {
-    mountedRef.current = null;
-
     if (
       dialogRef.current?.contains(
         dialogRef.current?.ownerDocument.activeElement,
@@ -187,9 +183,8 @@ export const DialogMain = React.forwardRef((props, ref) => {
 
   const mountRef = React.useCallback(
     (element: HTMLElement | null) => {
-      if (element && element !== mountedRef.current) {
+      if (element) {
         onEnter();
-        mountedRef.current = element;
       }
     },
     [onEnter],
