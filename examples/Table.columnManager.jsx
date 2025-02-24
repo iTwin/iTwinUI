@@ -3,7 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table } from '@itwin/itwinui-react';
+import {
+  ActionColumn,
+  DropdownMenu,
+  MenuItem,
+  IconButton,
+  Table,
+} from '@itwin/itwinui-react';
+import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const generateItem = React.useCallback((index, parentRow = '') => {
@@ -12,6 +19,17 @@ export default () => {
       product: `Product ${keyValue}`,
       price: ((index % 10) + 1) * 15,
     };
+  }, []);
+
+  const menuItems = React.useCallback((close) => {
+    return [
+      <MenuItem key={1} onClick={() => close()}>
+        Edit
+      </MenuItem>,
+      <MenuItem key={2} onClick={() => close()}>
+        Delete
+      </MenuItem>,
+    ];
   }, []);
 
   const data = React.useMemo(
@@ -33,6 +51,24 @@ export default () => {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
+      },
+      {
+        ...ActionColumn({ columnManager: true }),
+        Cell: () => (
+          <DropdownMenu
+            menuItems={menuItems}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <IconButton
+              aria-label='Column manager'
+              styleType='borderless'
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        ),
+        sticky: 'right',
       },
     ],
     [],
