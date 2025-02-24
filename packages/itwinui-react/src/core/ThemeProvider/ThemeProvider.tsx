@@ -200,7 +200,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     <ScopeProvider>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
-          <ToastProvider inherit={themeProp === 'inherit'}>
+          <ToastProvider>
             {includeCss && rootElement ? (
               <FallbackStyles root={rootElement} />
             ) : null}

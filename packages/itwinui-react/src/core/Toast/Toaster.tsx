@@ -89,13 +89,7 @@ export const Toaster = () => {
 
 // ----------------------------------------------------------------------------
 
-export const ToastProvider = ({
-  children,
-  inherit = false,
-}: {
-  children: React.ReactNode;
-  inherit?: boolean;
-}) => {
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasterState, dispatch] = React.useReducer(toastReducer, {
     toasts: [],
     settings: {
@@ -108,7 +102,7 @@ export const ToastProvider = ({
   const toasterStateContext = React.useContext(ToasterStateContext);
 
   // Re-use existing ToastProvider if found
-  const shouldReuse = toasterStateContext && inherit;
+  const shouldReuse = !!toasterStateContext;
   const toasterDispatchContextValue = shouldReuse
     ? toasterDispatchContext
     : dispatch;
