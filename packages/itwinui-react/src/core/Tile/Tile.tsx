@@ -65,6 +65,17 @@ if (process.env.NODE_ENV === 'development') {
   TileContext.displayName = 'TileContext';
 }
 
+/**
+ * To close nested subItems in Tile.MoreOptions
+ * https://github.com/iTwin/iTwinUI/issues/2451
+ */
+export const TileMoreOptionsContext = React.createContext<
+  | {
+      close: (() => void) | undefined;
+    }
+  | undefined
+>(undefined);
+
 // ----------------------------------------------------------------------------
 // Main Tile component
 
@@ -383,41 +394,41 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const { className, children = [], buttonProps, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
+  const close = React.useCallback(() => {
+    setIsMenuVisible(false);
+  }, []);
+
   return (
-    <Box
-      className={cx(
-        'iui-tile-more-options',
-        {
-          'iui-visible': isMenuVisible,
-        },
-        className,
-      )}
-      ref={forwardedRef}
-      {...rest}
+    <TileMoreOptionsContext.Provider
+      value={React.useMemo(() => ({ close }), [close])}
     >
-      <DropdownMenu
-        onVisibleChange={setIsMenuVisible}
-        menuItems={(close) =>
-          children?.map((option: React.ReactElement<any>) =>
-            React.cloneElement(option, {
-              onClick: (value: unknown) => {
-                close();
-                option.props.onClick?.(value);
-              },
-            }),
-          )
-        }
+      <Box
+        className={cx(
+          'iui-tile-more-options',
+          {
+            'iui-visible': isMenuVisible,
+          },
+          className,
+        )}
+        ref={forwardedRef}
+        {...rest}
       >
-        <IconButton
-          styleType='borderless'
-          size='small'
-          aria-label='More options'
-          {...buttonProps}
+        <DropdownMenu
+          visible={isMenuVisible}
+          onVisibleChange={setIsMenuVisible}
+          menuItems={children as React.ReactElement<any>[]}
         >
-          <SvgMore />
-        </IconButton>
-      </DropdownMenu>
-    </Box>
+          <IconButton
+            styleType='borderless'
+            size='small'
+            aria-label='More options'
+            {...buttonProps}
+          >
+            <SvgMore />
+          </IconButton>
+        </DropdownMenu>
+      </Box>
+    </TileMoreOptionsContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 if (process.env.NODE_ENV === 'development') {
