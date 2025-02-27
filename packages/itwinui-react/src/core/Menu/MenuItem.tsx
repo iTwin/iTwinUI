@@ -14,6 +14,7 @@ import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
+import { TileMoreOptionsContext } from '../Tile/Tile.js';
 
 export type MenuItemProps = {
   /**
@@ -111,6 +112,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }
 
   const parentMenu = React.useContext(MenuContext);
+  const tileMoreOptionsContext = React.useContext(TileMoreOptionsContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -133,6 +135,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     if (disabled) {
       return;
     }
+
+    // If a MenuItem is within a Tile.MoreOptions, should close the menu when the item is clicked
+    tileMoreOptionsContext?.close?.();
 
     onClickProp?.(value);
   };
