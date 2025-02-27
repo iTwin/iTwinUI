@@ -1,0 +1,1 @@
+import{r as e,B as u,c}from"./index-WIsAo_bj.js";const b=e.forwardRef((i,a)=>{let{displayStyle:r="block",required:l,disabled:s,className:t,children:d,...n}=i;return e.createElement(u,{as:"label",className:c("iui-input-label",{"iui-inline":r==="inline","iui-required":l},t),"data-iui-disabled":s?!0:void 0,ref:a,...n},d)});export{b as L};

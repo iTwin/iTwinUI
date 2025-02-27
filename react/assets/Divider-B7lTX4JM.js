@@ -1,0 +1,1 @@
+import{r,B as s,c as n}from"./index-B7gn4A1i.js";const l=r.forwardRef((e,a)=>{let{className:t,orientation:i="horizontal",...o}=e;return r.createElement(s,{as:"hr",className:n("iui-divider",t),"aria-orientation":i==="vertical"?"vertical":void 0,ref:a,...o})});export{l as D};
