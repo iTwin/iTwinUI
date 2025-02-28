@@ -66,7 +66,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 /**
- * To close nested subItems in Tile.MoreOptions
+ * To close nested Tile.MoreOptions menu when descendant MenuItem is clicked.
  * https://github.com/iTwin/iTwinUI/issues/2451
  */
 export const TileMoreOptionsContext = React.createContext<
