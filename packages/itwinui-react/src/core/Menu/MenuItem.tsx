@@ -136,9 +136,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       return;
     }
 
-    // If MenuCloseOnClickContext's value = true, should close the menu when the item is clicked
+    // If MenuCloseOnClickContext's value = true, should close the topmost menu when the `MenuItem` is clicked.
     if (menuCloseOnClickContext) {
-      menuContext?.close?.();
+      menuContext?.topmostClose?.();
     }
 
     onClickProp?.(value);

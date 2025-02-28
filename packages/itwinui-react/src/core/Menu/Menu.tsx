@@ -120,6 +120,8 @@ export const Menu = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const menuContext = React.useContext(MenuContext);
+
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
   const parentId = useFloatingParentNodeId();
@@ -321,8 +323,13 @@ export const Menu = React.forwardRef((props, ref) => {
     <>
       <MenuContext.Provider
         value={React.useMemo(
-          () => ({ popoverGetItemProps, focusableElements, close }),
-          [close, focusableElements, popoverGetItemProps],
+          () => ({
+            popoverGetItemProps,
+            focusableElements,
+            topmostClose:
+              menuContext != null ? menuContext.topmostClose : close,
+          }),
+          [close, focusableElements, menuContext, popoverGetItemProps],
         )}
       >
         <PopoverOpenContext.Provider value={popover.open}>
@@ -364,7 +371,7 @@ export const MenuContext = React.createContext<
   | {
       popoverGetItemProps: PopoverGetItemProps;
       focusableElements: HTMLElement[];
-      close?: () => void;
+      topmostClose?: () => void;
     }
   | undefined
 >(undefined);
@@ -373,7 +380,7 @@ export const MenuContext = React.createContext<
  * @private
  * Wraps around a `Menu` or a component that contains a `Menu`.
  *
- * If `true`, closes the menu when any descendant `MenuItem` is clicked.
+ * If `true`, closes the topmost menu when any descendant `MenuItem` is clicked.
  */
 export const MenuCloseOnClickContext = React.createContext<boolean | undefined>(
   undefined,
