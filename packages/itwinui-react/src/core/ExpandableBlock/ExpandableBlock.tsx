@@ -15,27 +15,31 @@ import {
   useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import type { ExpandableBlockTriggerOwnProps } from './ExpandableBlockTrigger.js';
 import { Icon } from '../Icon/Icon.js';
-import { LinkBox } from '../LinkAction/LinkAction.js';
+import { ExpandableBlockContent } from './ExpandableBlockContent.js';
+import { ExpandableBlockTrigger } from './ExpandableBlockTrigger.js';
+import { ExpandableBlockWrapper } from './ExpandableBlockWrapper.js';
+import { ExpandableBlockContext } from './ExpandableBlockContext.js';
 
-const ExpandableBlockContext = React.createContext<
-  | ({
-      setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
-      descriptionId: string | undefined;
-      setDescriptionId: React.Dispatch<
-        React.SetStateAction<string | undefined>
-      >;
-    } & ExpandableBlockOwnProps)
-  | undefined
->(undefined);
-if (process.env.NODE_ENV === 'development') {
-  ExpandableBlockContext.displayName = 'ExpandableBlockContext';
-}
+// const ExpandableBlockContext = React.createContext<
+//   | ({
+//       setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+//       descriptionId: string | undefined;
+//       setDescriptionId: React.Dispatch<
+//         React.SetStateAction<string | undefined>
+//       >;
+//     } & ExpandableBlockOwnProps)
+//   | undefined
+// >(undefined);
+// if (process.env.NODE_ENV === 'development') {
+//   ExpandableBlockContext.displayName = 'ExpandableBlockContext';
+// }
 
 // ----------------------------------------------------------------------------
 // Main ExpandableBlock component
 
-type ExpandableBlockOwnProps = {
+export type ExpandableBlockOwnProps = {
   /**
    * Status of the block.
    * When set, a colored status icon is shown at the end of the main text.
@@ -46,6 +50,11 @@ type ExpandableBlockOwnProps = {
    * @default false
    */
   isExpanded?: boolean;
+  /**
+   * Whether or not to show the block's content from the start.
+   * @default false
+   */
+  startExpanded?: boolean;
   /**
    * Callback function for toggling an expansion state.
    */
@@ -98,101 +107,104 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
-  const {
-    children,
-    className,
-    onToggle,
-    style,
-    isExpanded,
-    status,
-    size = 'default',
-    styleType = 'default',
-    disabled = false,
-    ...rest
-  } = props;
+// const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
+//   const {
+//     children,
+//     className,
+//     onToggle,
+//     style,
+//     isExpanded,
+//     status,
+//     size = 'default',
+//     styleType = 'default',
+//     disabled = false,
+//     startExpanded = false,
+//     ...rest
+//   } = props;
 
-  const [expandedState, setExpanded] = React.useState(isExpanded ?? false);
-  const expanded = isExpanded ?? expandedState;
+//   const [expandedState, setExpanded] = React.useState(
+//     startExpanded ?? isExpanded ?? false,
+//   );
+//   const expanded = isExpanded ?? expandedState;
 
-  const [descriptionId, setDescriptionId] = React.useState<string | undefined>(
-    undefined,
-  );
+//   const [descriptionId, setDescriptionId] = React.useState<string | undefined>(
+//     undefined,
+//   );
 
-  return (
-    <ExpandableBlockContext.Provider
-      value={{
-        status,
-        isExpanded: expanded,
-        onToggle,
-        size,
-        styleType,
-        disabled,
-        setExpanded,
-        children,
-        descriptionId,
-        setDescriptionId,
-      }}
-    >
-      <Box
-        className={cx('iui-expandable-block', className)}
-        data-iui-expanded={expanded}
-        data-iui-size={size}
-        data-iui-variant={styleType !== 'default' ? styleType : undefined}
-        style={style}
-        ref={forwardedRef}
-        {...rest}
-      >
-        {children}
-      </Box>
-    </ExpandableBlockContext.Provider>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
-if (process.env.NODE_ENV === 'development') {
-  ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
-}
+//   return (
+//     <ExpandableBlockContext.Provider
+//       value={{
+//         status,
+//         isExpanded: expanded,
+//         onToggle,
+//         size,
+//         styleType,
+//         disabled,
+//         setExpanded,
+//         children,
+//         descriptionId,
+//         setDescriptionId,
+//       }}
+//     >
+//       <Box
+//         className={cx('iui-expandable-block', className)}
+//         data-iui-expanded={expanded}
+//         data-iui-size={size}
+//         data-iui-variant={styleType !== 'default' ? styleType : undefined}
+//         style={style}
+//         ref={forwardedRef}
+//         {...rest}
+//       >
+//         {children}
+//       </Box>
+//     </ExpandableBlockContext.Provider>
+//   );
+// }) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
+// if (process.env.NODE_ENV === 'development') {
+//   ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
+// }
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Trigger component
-type ExpandableBlockTriggerOwnProps = {
-  label?: React.ReactNode;
-  caption?: React.ReactNode;
-  expandIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-};
+// type ExpandableBlockTriggerOwnProps = {
+//   label?: React.ReactNode;
+//   caption?: React.ReactNode;
+//   expandIcon?: React.ReactNode;
+//   endIcon?: React.ReactNode;
+// };
 
-const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
-  const { className, children, label, caption, expandIcon, endIcon, ...rest } =
-    props;
-  const { disabled, status } = useSafeContext(ExpandableBlockContext);
+// const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
+//   const { className, children, label, caption, expandIcon, endIcon, ...rest } =
+//     props;
+//   const { disabled, status } = useSafeContext(ExpandableBlockContext);
 
-  return (
-    <LinkBox
-      className={cx('iui-expandable-header', className)}
-      data-iui-disabled={disabled ? 'true' : undefined}
-      ref={forwardedRef}
-      {...rest}
-    >
-      {children ?? (
-        <>
-          {expandIcon ?? <ExpandableBlock.ExpandIcon />}
-          <ExpandableBlock.LabelArea>
-            <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
-            {caption && (
-              <ExpandableBlock.Caption>{caption}</ExpandableBlock.Caption>
-            )}
-          </ExpandableBlock.LabelArea>
-          {endIcon || status ? (
-            <ExpandableBlock.EndIcon>{endIcon}</ExpandableBlock.EndIcon>
-          ) : null}
-        </>
-      )}
-    </LinkBox>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockTriggerOwnProps>;
-if (process.env.NODE_ENV === 'development') {
-  ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
-}
+//   return (
+//     <LinkBox
+//       className={cx('iui-expandable-header', className)}
+//       data-iui-disabled={disabled ? 'true' : undefined}
+//       ref={forwardedRef}
+//       {...rest}
+//     >
+//       {children ?? (
+//         <>
+//           {expandIcon ?? <ExpandableBlock.ExpandIcon />}
+//           <ExpandableBlock.LabelArea>
+//             <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
+//             {caption && (
+//               <ExpandableBlock.Caption>{caption}</ExpandableBlock.Caption>
+//             )}
+//           </ExpandableBlock.LabelArea>
+//           {endIcon || status ? (
+//             <ExpandableBlock.EndIcon>{endIcon}</ExpandableBlock.EndIcon>
+//           ) : null}
+//         </>
+//       )}
+//     </LinkBox>
+//   );
+// }) as PolymorphicForwardRefComponent<'div', ExpandableBlockTriggerOwnProps>;
+// if (process.env.NODE_ENV === 'development') {
+//   ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
+// }
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.ExpandIcon component
@@ -303,26 +315,26 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Content component
-type ExpandableBlockContentOwnProps = {
-  innerProps?: React.ComponentPropsWithoutRef<'div'>;
-};
+// type ExpandableBlockContentOwnProps = {
+//   innerProps?: React.ComponentPropsWithoutRef<'div'>;
+// };
 
-const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
-  const { className, children, innerProps, ...rest } = props;
+// const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
+//   const { className, children, innerProps, ...rest } = props;
 
-  return (
-    <Box
-      className={cx('iui-expandable-content', className)}
-      ref={forwardedRef}
-      {...rest}
-    >
-      <Box {...innerProps}>{children}</Box>
-    </Box>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
-if (process.env.NODE_ENV === 'development') {
-  ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
-}
+//   return (
+//     <Box
+//       className={cx('iui-expandable-content', className)}
+//       ref={forwardedRef}
+//       {...rest}
+//     >
+//       <Box {...innerProps}>{children}</Box>
+//     </Box>
+//   );
+// }) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
+// if (process.env.NODE_ENV === 'development') {
+//   ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
+// }
 
 /**
  * Expandable block with customizable Title, Caption, Content and EndIcon subcomponents.
