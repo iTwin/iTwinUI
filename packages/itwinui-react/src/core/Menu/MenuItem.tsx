@@ -10,11 +10,10 @@ import {
   useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu, MenuContext } from './Menu.js';
+import { Menu, MenuCloseOnClickContext, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
-import { TileMoreOptionsContext } from '../Tile/Tile.js';
 
 export type MenuItemProps = {
   /**
@@ -112,7 +111,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }
 
   const parentMenu = React.useContext(MenuContext);
-  const tileMoreOptionsContext = React.useContext(TileMoreOptionsContext);
+  const menuContext = React.useContext(MenuContext);
+  const menuCloseOnClickContext = React.useContext(MenuCloseOnClickContext);
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -136,8 +136,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       return;
     }
 
-    // If a MenuItem is within a Tile.MoreOptions, should close the menu when the item is clicked
-    tileMoreOptionsContext?.close?.();
+    // If MenuCloseOnClickContext's value = true, should close the menu when the item is clicked
+    if (menuCloseOnClickContext) {
+      menuContext?.close?.();
+    }
 
     onClickProp?.(value);
   };

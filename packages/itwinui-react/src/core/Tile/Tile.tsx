@@ -19,6 +19,7 @@ import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import { LinkAction } from '../LinkAction/LinkAction.js';
+import { MenuCloseOnClickContext } from '../Menu/Menu.js';
 
 const TileContext = React.createContext<
   | {
@@ -64,17 +65,6 @@ const TileContext = React.createContext<
 if (process.env.NODE_ENV === 'development') {
   TileContext.displayName = 'TileContext';
 }
-
-/**
- * To close nested Tile.MoreOptions menu when descendant MenuItem is clicked.
- * https://github.com/iTwin/iTwinUI/issues/2451
- */
-export const TileMoreOptionsContext = React.createContext<
-  | {
-      close: (() => void) | undefined;
-    }
-  | undefined
->(undefined);
 
 // ----------------------------------------------------------------------------
 // Main Tile component
@@ -394,14 +384,8 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const { className, children = [], buttonProps, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
-  const close = React.useCallback(() => {
-    setIsMenuVisible(false);
-  }, []);
-
   return (
-    <TileMoreOptionsContext.Provider
-      value={React.useMemo(() => ({ close }), [close])}
-    >
+    <MenuCloseOnClickContext.Provider value={true}>
       <Box
         className={cx(
           'iui-tile-more-options',
@@ -414,7 +398,6 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
         {...rest}
       >
         <DropdownMenu
-          visible={isMenuVisible}
           onVisibleChange={setIsMenuVisible}
           menuItems={children as React.ReactElement<any>[]}
         >
@@ -428,7 +411,7 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
           </IconButton>
         </DropdownMenu>
       </Box>
-    </TileMoreOptionsContext.Provider>
+    </MenuCloseOnClickContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 if (process.env.NODE_ENV === 'development') {

@@ -95,6 +95,26 @@ export const AllProps = () => {
           <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
+          <MenuItem
+            key={3}
+            onClick={() => console.log('clicked item 3')}
+            subMenuItems={[
+              <MenuItem
+                key={1}
+                onClick={() => console.log('clicked sub item 1')}
+              >
+                Sub Item 1
+              </MenuItem>,
+              <MenuItem
+                key={2}
+                onClick={() => console.log('clicked sub item 2')}
+              >
+                Sub Item 2
+              </MenuItem>,
+            ]}
+          >
+            Item 3
+          </MenuItem>
         </Tile.MoreOptions>
         <Tile.Metadata>
           <SvgTag />
