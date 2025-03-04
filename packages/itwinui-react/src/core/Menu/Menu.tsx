@@ -126,7 +126,7 @@ export const Menu = React.forwardRef((props, ref) => {
   } = props;
 
   const menuContext = React.useContext(MenuContext);
-  const portal = portalProp || menuContext?.portal;
+  const portal = portalProp ?? menuContext?.portal;
 
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
