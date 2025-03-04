@@ -100,7 +100,7 @@
     --_iui-expandable-block-header-caption-color: var(--iui-color-text-disabled);
     --_iui-expandable-block-header-label-color: var(--iui-color-text-disabled);
 
-    cursor: not-allowed;
+    pointer-events: none;
     background-color: var(--_iui-expandable-block-header-background-color-disabled);
     border-color: var(--iui-color-border-disabled);
 
@@ -141,6 +141,11 @@
   transition: color var(--iui-duration-1) ease;
   @media (forced-colors: active) {
     transition: none;
+  }
+
+  &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
+    cursor: not-allowed;
+    pointer-events: auto;
   }
 }
 
