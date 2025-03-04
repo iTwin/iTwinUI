@@ -10,10 +10,14 @@ import {
   useWarningLogger,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Menu, MenuCloseOnClickContext, MenuContext } from './Menu.js';
+import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
+import {
+  DropdownMenuCloseOnClickContext,
+  DropdownMenuContext,
+} from '../DropdownMenu/DropdownMenu.js';
 
 export type MenuItemProps = {
   /**
@@ -111,8 +115,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }
 
   const parentMenu = React.useContext(MenuContext);
-  const menuContext = React.useContext(MenuContext);
-  const menuCloseOnClickContext = React.useContext(MenuCloseOnClickContext);
+  const dropdownMenu = React.useContext(DropdownMenuContext);
+  const dropdownMenuCloseOnClickContext = React.useContext(
+    DropdownMenuCloseOnClickContext,
+  );
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -136,9 +142,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       return;
     }
 
-    // If MenuCloseOnClickContext's value = true, should close the topmost menu when the `MenuItem` is clicked.
-    if (menuCloseOnClickContext) {
-      menuContext?.topmostClose?.();
+    // If DropdownMenuCloseOnClickContext's value = true, should close the `DropdownMenu` when the `MenuItem` is clicked
+    if (dropdownMenuCloseOnClickContext) {
+      dropdownMenu?.close();
     }
 
     onClickProp?.(value);

@@ -15,11 +15,13 @@ import {
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
+import {
+  DropdownMenu,
+  DropdownMenuCloseOnClickContext,
+} from '../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import { LinkAction } from '../LinkAction/LinkAction.js';
-import { MenuCloseOnClickContext } from '../Menu/Menu.js';
 
 const TileContext = React.createContext<
   | {
@@ -385,7 +387,7 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
-    <MenuCloseOnClickContext.Provider value={true}>
+    <DropdownMenuCloseOnClickContext.Provider value={true}>
       <Box
         className={cx(
           'iui-tile-more-options',
@@ -411,7 +413,7 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
           </IconButton>
         </DropdownMenu>
       </Box>
-    </MenuCloseOnClickContext.Provider>
+    </DropdownMenuCloseOnClickContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 if (process.env.NODE_ENV === 'development') {
