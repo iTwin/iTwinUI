@@ -15,7 +15,10 @@ import {
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
+import {
+  DropdownMenu,
+  DropdownMenuCloseOnClickContext,
+} from '../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import { LinkAction } from '../LinkAction/LinkAction.js';
@@ -384,40 +387,33 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
-    <Box
-      className={cx(
-        'iui-tile-more-options',
-        {
-          'iui-visible': isMenuVisible,
-        },
-        className,
-      )}
-      ref={forwardedRef}
-      {...rest}
-    >
-      <DropdownMenu
-        onVisibleChange={setIsMenuVisible}
-        menuItems={(close) =>
-          children?.map((option: React.ReactElement<any>) =>
-            React.cloneElement(option, {
-              onClick: (value: unknown) => {
-                close();
-                option.props.onClick?.(value);
-              },
-            }),
-          )
-        }
+    <DropdownMenuCloseOnClickContext.Provider value={true}>
+      <Box
+        className={cx(
+          'iui-tile-more-options',
+          {
+            'iui-visible': isMenuVisible,
+          },
+          className,
+        )}
+        ref={forwardedRef}
+        {...rest}
       >
-        <IconButton
-          styleType='borderless'
-          size='small'
-          aria-label='More options'
-          {...buttonProps}
+        <DropdownMenu
+          onVisibleChange={setIsMenuVisible}
+          menuItems={children as React.ReactElement<any>[]}
         >
-          <SvgMore />
-        </IconButton>
-      </DropdownMenu>
-    </Box>
+          <IconButton
+            styleType='borderless'
+            size='small'
+            aria-label='More options'
+            {...buttonProps}
+          >
+            <SvgMore />
+          </IconButton>
+        </DropdownMenu>
+      </Box>
+    </DropdownMenuCloseOnClickContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 if (process.env.NODE_ENV === 'development') {
