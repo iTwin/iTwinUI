@@ -60,7 +60,12 @@ type MenuProps = {
       listNavigation?: Partial<UseListNavigationProps>;
     };
   };
-} & Pick<PortalProps, 'portal'>;
+  /**
+   * If not passed, uses the `portal` from its parent `Menu`.
+   * @see {@link PortalProps.portal} for docs on the prop.
+   */
+  portal?: PortalProps['portal'];
+};
 
 /**
  * @private
@@ -114,11 +119,14 @@ export const Menu = React.forwardRef((props, ref) => {
     className,
     trigger,
     positionReference,
-    portal = true,
+    portal: portalProp,
     popoverProps: popoverPropsProp,
     children,
     ...rest
   } = props;
+
+  const menuContext = React.useContext(MenuContext);
+  const portal = portalProp || menuContext?.portal;
 
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
@@ -319,7 +327,9 @@ export const Menu = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <MenuContext.Provider value={{ popoverGetItemProps, focusableElements }}>
+      <MenuContext.Provider
+        value={{ popoverGetItemProps, focusableElements, portal }}
+      >
         <PopoverOpenContext.Provider value={popover.open}>
           {reference}
         </PopoverOpenContext.Provider>
@@ -357,6 +367,7 @@ export const MenuContext = React.createContext<
   | {
       popoverGetItemProps: PopoverGetItemProps;
       focusableElements: HTMLElement[];
+      portal: PortalProps['portal'];
     }
   | undefined
 >(undefined);
