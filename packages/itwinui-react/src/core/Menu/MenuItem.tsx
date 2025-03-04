@@ -116,7 +116,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const parentMenu = React.useContext(MenuContext);
   const dropdownMenu = React.useContext(DropdownMenuContext);
-  const dropdownMenuCloseOnClickContext = React.useContext(
+  const shouldCloseMenuOnClick = React.useContext(
     DropdownMenuCloseOnClickContext,
   );
 
@@ -142,8 +142,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       return;
     }
 
-    // If DropdownMenuCloseOnClickContext's value = true, should close the `DropdownMenu` when the `MenuItem` is clicked
-    if (dropdownMenuCloseOnClickContext) {
+    if (shouldCloseMenuOnClick) {
       dropdownMenu?.close();
     }
 
