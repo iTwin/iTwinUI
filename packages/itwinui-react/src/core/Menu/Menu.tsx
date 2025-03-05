@@ -243,51 +243,51 @@ export const Menu = React.forwardRef((props, ref) => {
     () => undefined,
   );
 
-  const popoverGetItemProps: PopoverGetItemProps = ({
-    focusableItemIndex,
-    userProps,
-  }) => {
-    return getItemProps({
-      ...userProps,
-      // Roving tabIndex
-      tabIndex:
-        activeIndex != null &&
-        activeIndex >= 0 &&
-        focusableItemIndex != null &&
-        focusableItemIndex >= 0 &&
-        activeIndex === focusableItemIndex
-          ? 0
-          : -1,
-      onFocus: mergeEventHandlers(userProps?.onFocus, () => {
-        // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
-        // E.g. Even when hovering into it rapidly.
-        queueMicrotask(() => {
-          setHasFocusedNodeInSubmenu(true);
-        });
-        tree?.events.emit('onNodeFocused', {
-          nodeId: nodeId,
-          parentId: parentId,
-        });
-      }),
+  const popoverGetItemProps: PopoverGetItemProps = React.useCallback(
+    ({ focusableItemIndex, userProps }) => {
+      return getItemProps({
+        ...userProps,
+        // Roving tabIndex
+        tabIndex:
+          activeIndex != null &&
+          activeIndex >= 0 &&
+          focusableItemIndex != null &&
+          focusableItemIndex >= 0 &&
+          activeIndex === focusableItemIndex
+            ? 0
+            : -1,
+        onFocus: mergeEventHandlers(userProps?.onFocus, () => {
+          // Set hasFocusedNodeInSubmenu in a microtask to ensure the submenu stays open reliably.
+          // E.g. Even when hovering into it rapidly.
+          queueMicrotask(() => {
+            setHasFocusedNodeInSubmenu(true);
+          });
+          tree?.events.emit('onNodeFocused', {
+            nodeId: nodeId,
+            parentId: parentId,
+          });
+        }),
 
-      // useListNavigation sets focusItemOnHover to false, since it doesn't work for us.
-      // Thus, we need to manually emulate the "focus on hover" behavior.
-      onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, (event) => {
-        // Updating the activeIndex will result in useListNavigation focusing the item.
-        if (focusableItemIndex != null && focusableItemIndex >= 0) {
-          setActiveIndex(focusableItemIndex);
-        }
+        // useListNavigation sets focusItemOnHover to false, since it doesn't work for us.
+        // Thus, we need to manually emulate the "focus on hover" behavior.
+        onMouseEnter: mergeEventHandlers(userProps?.onMouseEnter, (event) => {
+          // Updating the activeIndex will result in useListNavigation focusing the item.
+          if (focusableItemIndex != null && focusableItemIndex >= 0) {
+            setActiveIndex(focusableItemIndex);
+          }
 
-        // However, useListNavigation only focuses the item when the activeIndex changes.
-        // So, if we re-hover the parent MenuItem of an open submenu, the activeIndex won't change,
-        // and thus the hovered MenuItem won't be focused.
-        // As a result, we need to explicitly focus the item manually.
-        if (event.target === event.currentTarget) {
-          event.currentTarget.focus();
-        }
-      }),
-    });
-  };
+          // However, useListNavigation only focuses the item when the activeIndex changes.
+          // So, if we re-hover the parent MenuItem of an open submenu, the activeIndex won't change,
+          // and thus the hovered MenuItem won't be focused.
+          // As a result, we need to explicitly focus the item manually.
+          if (event.target === event.currentTarget) {
+            event.currentTarget.focus();
+          }
+        }),
+      });
+    },
+    [activeIndex, getItemProps, nodeId, parentId, tree?.events],
+  );
 
   const reference = cloneElementWithRef(trigger, (triggerChild) =>
     getReferenceProps(
@@ -319,7 +319,15 @@ export const Menu = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <MenuContext.Provider value={{ popoverGetItemProps, focusableElements }}>
+      <MenuContext.Provider
+        value={React.useMemo(
+          () => ({
+            popoverGetItemProps,
+            focusableElements,
+          }),
+          [focusableElements, popoverGetItemProps],
+        )}
+      >
         <PopoverOpenContext.Provider value={popover.open}>
           {reference}
         </PopoverOpenContext.Provider>
