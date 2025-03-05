@@ -108,18 +108,28 @@ Use a [hierarchy tree](tree) when:
 - There are only list items in the pattern
 - The hierarchy is not necessarily linear and may branch out
 
-## ExpandableBlock
+## Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts' />
 
-## ExpandableBlock.Wrapper
+## Subcomponents
+
+`ExpandableBlock` consists of subcomponents, which include but are not limited to the following.
+
+### ExpandableBlock.Wrapper
+
+`ExpandableBlock.Wrapper` should contain the `ExpandableBlock` and the component over which the block will overlay.
 
 <PropsTable path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlockWrapper.d.ts' />
 
-## ExpandableBlock.Content
+### ExpandableBlock.Content
+
+The `ExpandableBlock.Content` component is used for the content shown in the block's body when fully expanded.
 
 <PropsTable path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlockContent.d.ts' />
 
-## ExpandableBlock.Trigger
+### ExpandableBlock.Trigger
+
+`ExpandableBlock.Trigger` is the `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents.
 
 <PropsTable path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlockTrigger.d.ts' />
