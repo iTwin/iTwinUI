@@ -99,40 +99,67 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
   );
 
+  const close = React.useCallback(() => {
+    setVisible(false);
+  }, [setVisible]);
+
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      return menuItems(() => setVisible(false));
+      return menuItems(close);
     }
     return menuItems;
-  }, [menuItems, setVisible]);
+  }, [close, menuItems]);
+
+  const dropdownMenuContextValue = React.useMemo(() => ({ close }), [close]);
 
   return (
-    <Menu
-      trigger={children}
-      onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
-        if (e.defaultPrevented) {
-          return;
-        }
-        if (e.key === 'Tab') {
-          setVisible(false);
-        }
-      })}
-      role={role}
-      ref={forwardedRef}
-      portal={portal}
-      popoverProps={React.useMemo(
-        () => ({
-          placement,
-          matchWidth,
-          visible,
-          onVisibleChange: setVisible,
-          middleware,
-        }),
-        [matchWidth, middleware, placement, setVisible, visible],
-      )}
-      {...rest}
-    >
-      {menuContent}
-    </Menu>
+    <DropdownMenuContext.Provider value={dropdownMenuContextValue}>
+      <Menu
+        trigger={children}
+        onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
+          if (e.defaultPrevented) {
+            return;
+          }
+          if (e.key === 'Tab') {
+            setVisible(false);
+          }
+        })}
+        role={role}
+        ref={forwardedRef}
+        portal={portal}
+        popoverProps={React.useMemo(
+          () => ({
+            placement,
+            matchWidth,
+            visible,
+            onVisibleChange: setVisible,
+            middleware,
+          }),
+          [matchWidth, middleware, placement, setVisible, visible],
+        )}
+        {...rest}
+      >
+        {menuContent}
+      </Menu>
+    </DropdownMenuContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
+
+// ----------------------------------------------------------------------------
+
+export const DropdownMenuContext = React.createContext<
+  | {
+      close: () => void;
+    }
+  | undefined
+>(undefined);
+
+/**
+ * @private
+ * Wraps around a `DropdownMenu`.
+ *
+ * If `true`, closes the `DropdownMenu` when any descendant `MenuItem` is clicked.
+ */
+export const DropdownMenuCloseOnClickContext = React.createContext<
+  boolean | undefined
+>(undefined);
