@@ -328,14 +328,16 @@ export const Menu = React.forwardRef((props, ref) => {
   return (
     <>
       <MenuContext.Provider value={{ popoverGetItemProps, focusableElements }}>
-        <PopoverOpenContext.Provider value={popover.open}>
-          {reference}
-        </PopoverOpenContext.Provider>
-        {tree != null ? (
-          <FloatingNode id={nodeId}>{floating}</FloatingNode>
-        ) : (
-          floating
-        )}
+        <MenuPortalContext.Provider value={portal}>
+          <PopoverOpenContext.Provider value={popover.open}>
+            {reference}
+          </PopoverOpenContext.Provider>
+          {tree != null ? (
+            <FloatingNode id={nodeId}>{floating}</FloatingNode>
+          ) : (
+            floating
+          )}
+        </MenuPortalContext.Provider>
       </MenuContext.Provider>
     </>
   );
