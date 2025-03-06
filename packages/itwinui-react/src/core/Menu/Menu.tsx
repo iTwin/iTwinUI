@@ -125,8 +125,8 @@ export const Menu = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const menuContext = React.useContext(MenuContext);
-  const portal = portalProp ?? menuContext?.portal;
+  const menuPortalContext = React.useContext(MenuPortalContext);
+  const portal = portalProp ?? menuPortalContext;
 
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
@@ -327,9 +327,7 @@ export const Menu = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <MenuContext.Provider
-        value={{ popoverGetItemProps, focusableElements, portal }}
-      >
+      <MenuContext.Provider value={{ popoverGetItemProps, focusableElements }}>
         <PopoverOpenContext.Provider value={popover.open}>
           {reference}
         </PopoverOpenContext.Provider>
@@ -363,11 +361,16 @@ type PopoverGetItemProps = ({
   >[0];
 }) => ReturnType<ReturnType<typeof useInteractions>['getItemProps']>;
 
+// ----------------------------------------------------------------------------
+
 export const MenuContext = React.createContext<
   | {
       popoverGetItemProps: PopoverGetItemProps;
       focusableElements: HTMLElement[];
-      portal: PortalProps['portal'];
     }
   | undefined
+>(undefined);
+
+export const MenuPortalContext = React.createContext<
+  PortalProps['portal'] | undefined
 >(undefined);
