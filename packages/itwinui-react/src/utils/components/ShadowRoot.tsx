@@ -13,15 +13,31 @@ const supportsDSD =
 const supportsAdoptedStylesheets =
   isBrowser && 'adoptedStyleSheets' in Document.prototype;
 
-type ShadowRootProps = { children: React.ReactNode; css?: string };
+type ShadowRootProps = {
+  children: React.ReactNode;
+  css?: string;
+  /**
+   * Control whether the children are portaled synchronously into the shadow-root (by using
+   * `flushSync` inside `queueMicrotask`).
+   *
+   * NOTE: This can block the main thread if too many ShadowRoots are rendered at the same time.
+   *
+   * @default true
+   */
+  flush?: boolean;
+};
 
 /**
  * Wrapper around `<template>` element that attaches shadow root to its parent
- * and moves its children into the shadow root.
+ * and portals its children into the shadow root.
  *
  * @private
  */
-export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
+export const ShadowRoot = ({
+  children,
+  css,
+  flush = true,
+}: ShadowRootProps) => {
   const isHydrating = useHydration() === 'hydrating';
 
   if (!isBrowser) {
@@ -39,14 +55,18 @@ export const ShadowRoot = ({ children, css }: ShadowRootProps) => {
     return null;
   }
 
-  return <ClientShadowRoot css={css}>{children}</ClientShadowRoot>;
+  return (
+    <ClientShadowRoot css={css} flush={flush}>
+      {children}
+    </ClientShadowRoot>
+  );
 };
 
 // ----------------------------------------------------------------------------
 
-const ClientShadowRoot = ({ children, css }: ShadowRootProps) => {
+const ClientShadowRoot = ({ children, css, flush = true }: ShadowRootProps) => {
   const templateRef = React.useRef<HTMLTemplateElement>(null);
-  const shadowRoot = useShadowRoot(templateRef, { css });
+  const shadowRoot = useShadowRoot(templateRef, { css, flush });
 
   // fallback to <style> tag if adoptedStyleSheets is not supported
   const fallbackCss =
@@ -74,7 +94,7 @@ const ClientShadowRoot = ({ children, css }: ShadowRootProps) => {
  */
 function useShadowRoot(
   templateRef: React.RefObject<HTMLElement | null>,
-  { css = '' },
+  { css = '', flush = true },
 ) {
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot | null>(null);
   const styleSheet = React.useRef<CSSStyleSheet>(undefined);
@@ -122,15 +142,21 @@ function useShadowRoot(
       // measurements in parent component are correct.
       // Without this, the parent component may end up measuring the layout when the shadow-root
       // is attached in the DOM but React hasn't rendered any slots or content into it yet.
-      ReactDOM.flushSync(() => setShadowRoot(shadow));
+      if (flush) {
+        ReactDOM.flushSync(() => setShadowRoot(shadow));
+      } else {
+        setShadowRoot(shadow);
+      }
     };
 
-    queueMicrotask(() => {
+    if (flush) {
+      queueMicrotask(() => setupOrReuseShadowRoot());
+    } else {
       setupOrReuseShadowRoot();
-    });
+    }
 
     return () => void setShadowRoot(null);
-  }, [templateRef, createStyleSheet, latestShadowRoot]);
+  }, [templateRef, createStyleSheet, latestShadowRoot, flush]);
 
   // Synchronize `css` with contents of the existing stylesheet
   useLayoutEffect(() => {
