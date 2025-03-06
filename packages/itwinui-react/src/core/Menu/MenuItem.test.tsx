@@ -306,10 +306,10 @@ it('should portal submenu to same place as parent menu', async () => {
   await act(async () => parentMenuItem.click());
 
   const portaledParentMenuItem = document.querySelector(
-    "footer [data-testid='parent']",
+    "footer > [role='menu'] > [data-testid='parent']",
   );
   const portaledSubmenuItem = document.querySelector(
-    "footer [data-testid='sub']",
+    "footer > [role='menu'] > [data-testid='sub']",
   );
 
   expect(portaledParentMenuItem).toBeTruthy();
