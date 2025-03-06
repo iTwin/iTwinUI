@@ -14,6 +14,10 @@ import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
+import {
+  DropdownMenuCloseOnClickContext,
+  DropdownMenuContext,
+} from '../DropdownMenu/DropdownMenu.js';
 
 export type MenuItemProps = {
   /**
@@ -111,6 +115,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }
 
   const parentMenu = React.useContext(MenuContext);
+  const dropdownMenu = React.useContext(DropdownMenuContext);
+  const shouldCloseMenuOnClick = React.useContext(
+    DropdownMenuCloseOnClickContext,
+  );
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -132,6 +140,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const onClick = () => {
     if (disabled) {
       return;
+    }
+
+    if (shouldCloseMenuOnClick) {
+      dropdownMenu?.close();
     }
 
     onClickProp?.(value);
