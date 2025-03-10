@@ -8,4 +8,8 @@
   padding: 0;
   touch-action: manipulation;
   cursor: pointer;
+
+  &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
+    cursor: not-allowed;
+  }
 }
