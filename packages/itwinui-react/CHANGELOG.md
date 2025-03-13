@@ -5,8 +5,8 @@
 ### Patch Changes
 
 - [#2452](https://github.com/iTwin/iTwinUI/pull/2452): Fixed bug where nested `MenuItem`s in `Tile.MoreOptions` were not closing when clicked.
-- [#2457](https://github.com/iTwin/iTwinUI/pull/2457): Fixed bug in `ExpandableBlock` where cursor was `pointer` even when it was disabled.
 - [#2455](https://github.com/iTwin/iTwinUI/pull/2455): Submenus will now correctly portal to the same place as their parent menu (E.g. `DropdownMenu`, `SplitButton`)
+- [#2457](https://github.com/iTwin/iTwinUI/pull/2457): Fixed bug in `ExpandableBlock` where cursor was `pointer` even when it was disabled.
 
 ## 3.17.2
 
