@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fix `Tabs`'s stripe positioning when `Tabs.TabList` overflows (has a scrollbar).
+Fix `Tab`'s stripe positioning when `Tabs.TabList` overflows.
