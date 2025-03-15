@@ -1,0 +1,1 @@
+import{r,i as o,e as f}from"./index-CCFWHUhb.js";const C=(s=!0)=>{let[i,n]=r.useState(0),u=r.useCallback(e=>{e&&n(e.getBoundingClientRect().width)},[]),a=r.useCallback(({width:e})=>n(e),[]),[d,t]=o(a);return s||t==null||t.disconnect(),[f(u,s?d:void 0),i]};export{C as u};
