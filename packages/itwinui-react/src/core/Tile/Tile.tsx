@@ -288,17 +288,20 @@ if (process.env.NODE_ENV === 'development') {
 // Tile.Name component
 type TileNameOwnProps = {
   name?: React.ReactNode;
+  shouldTruncateOrWrap?: 'truncate' | 'wrap'; // for legacy support, to be removed in future
 };
 
 const TileName = React.forwardRef((props, forwardedRef) => {
-  const { className, children, name, ...rest } = props;
+  const { className, children, name, shouldTruncateOrWrap, ...rest } = props;
   return (
     <Box
       className={cx('iui-tile-name', className)}
       ref={forwardedRef}
+      data-iui-should-truncate-or-wrap={shouldTruncateOrWrap ?? 'truncate'}
       {...rest}
     >
-      {children ?? name}
+      {children ?? <Tile.NameLabel>{name}</Tile.NameLabel>}
+      {/* {children ?? name} */}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;

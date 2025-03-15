@@ -51,6 +51,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   &:hover,
   &:focus-within {
+    // .iui-tile-name that has a iui-tile-name-label inside it
+    .iui-tile-name[data-iui-should-truncate-or-wrap='truncate']:has(.iui-tile-name-label),
+    // .iui-tile-name[data-iui-should-truncate-or-wrap='truncate'],
+    // .iui-tile-metadata that is not the last child
     .iui-tile-metadata:not(:last-child) {
       inline-size: calc(100% - #{var(--iui-size-xl)});
     }
@@ -212,6 +216,14 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   flex-grow: 2;
   min-inline-size: 0;
 
+  // &:has(+ .iui-tile-name[data-iui-should-truncate-or-wrap='wrap']) {
+  //   min-block-size: var(--iui-component-height);
+  // }
+
+  .iui-tile-name[data-iui-should-truncate-or-wrap='wrap'] ~ & {
+    min-block-size: var(--iui-component-height);
+  }
+
   > * {
     grid-column: 1;
     max-inline-size: 100%;
@@ -228,6 +240,17 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   color: var(--_iui-tile-title-text-color);
   padding-inline: var(--iui-size-s);
   overflow-wrap: anywhere;
+
+  &[data-iui-should-truncate-or-wrap='truncate'] .iui-tile-name-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &[data-iui-should-truncate-or-wrap='wrap'] .iui-tile-name-label {
+    // overflow: hidden;
+    // white-space: nowrap;
+  }
 }
 
 @mixin iui-tile-status-icon {
@@ -245,9 +268,9 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   > .iui-link-action {
     inline-size: 100%;
     z-index: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
   }
 }
 
