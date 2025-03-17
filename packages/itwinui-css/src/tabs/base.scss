@@ -147,49 +147,53 @@ $borderless-horizontal-tab-min-height: calc(
   inline-size: 100%;
 
   .iui-tabs {
-    display: flex;
-    container-type: inline-size;
+    &.iui-horizontal {
+      display: flex;
+      container-type: inline-size;
 
-    &.iui-borderless {
-      min-block-size: $borderless-horizontal-tab-min-height;
-    }
+      overflow-x: auto;
+      animation-name: scroll-shadow-inset-horizontal;
+      animation-timing-function: linear;
+      /* stylelint-disable-next-line property-no-unknown */
+      animation-timeline: scroll(self inline);
 
-    overflow-x: auto;
-    animation-name: scroll-shadow-inset-horizontal;
-    animation-timing-function: linear;
-    /* stylelint-disable-next-line property-no-unknown */
-    animation-timeline: scroll(self inline);
+      @keyframes scroll-shadow-inset-horizontal {
+        from {
+          mask-image: linear-gradient(90deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
+        }
 
-    @keyframes scroll-shadow-inset-horizontal {
-      from {
-        mask-image: linear-gradient(90deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
+        5% {
+          mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+        }
+
+        95% {
+          mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+        }
+
+        to {
+          mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
+        }
       }
 
-      5% {
-        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-      }
-
-      95% {
-        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-      }
-
-      to {
-        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
+      &.iui-borderless {
+        min-block-size: $borderless-horizontal-tab-min-height;
       }
     }
   }
 
   .iui-tab {
-    flex-shrink: 0;
-    max-inline-size: 60cqi;
+    &.iui-horizontal {
+      flex-shrink: 0;
+      max-inline-size: 60cqi;
 
-    &::after {
-      inline-size: 100%;
-      block-size: 0;
-    }
+      &::after {
+        inline-size: 100%;
+        block-size: 0;
+      }
 
-    &[aria-selected='true']::after {
-      block-size: var(--iui-size-3xs);
+      &[aria-selected='true']::after {
+        block-size: var(--iui-size-3xs);
+      }
     }
   }
 }
@@ -201,46 +205,50 @@ $borderless-horizontal-tab-min-height: calc(
   block-size: 100%;
 
   .iui-tabs {
-    ~ .iui-tabs-content {
-      overflow: auto;
-    }
+    &.iui-vertical {
+      display: grid;
+      align-content: start;
+      overflow-y: auto;
+      overflow-x: hidden;
+      animation-name: scroll-shadow-inset-vertical;
+      animation-timing-function: linear;
+      /* stylelint-disable-next-line property-no-unknown */
+      animation-timeline: scroll(self inline);
 
-    display: grid;
-    align-content: start;
-    overflow-y: auto;
-    overflow-x: hidden;
-    animation-name: scroll-shadow-inset-vertical;
-    animation-timing-function: linear;
-    /* stylelint-disable-next-line property-no-unknown */
-    animation-timeline: scroll(self inline);
+      @keyframes scroll-shadow-inset-vertical {
+        from {
+          mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
+        }
 
-    @keyframes scroll-shadow-inset-vertical {
-      from {
-        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
+        5% {
+          mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+        }
+
+        95% {
+          mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+        }
+
+        to {
+          mask-image: linear-gradient(0deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
+        }
       }
 
-      5% {
-        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-      }
-
-      95% {
-        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-      }
-
-      to {
-        mask-image: linear-gradient(0deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
+      ~ .iui-tabs-content {
+        overflow: auto;
       }
     }
   }
 
   .iui-tab {
-    &::after {
-      inline-size: 0;
-      block-size: 100%;
-    }
+    &.iui-vertical {
+      &::after {
+        inline-size: 0;
+        block-size: 100%;
+      }
 
-    &[aria-selected='true']::after {
-      inline-size: var(--iui-size-3xs);
+      &[aria-selected='true']::after {
+        inline-size: var(--iui-size-3xs);
+      }
     }
   }
 }

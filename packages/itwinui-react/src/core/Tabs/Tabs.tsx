@@ -148,7 +148,7 @@ type TabListOwnProps = {
 const TabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { type, hasSublabel, color } = useSafeContext(TabsContext);
+  const { type, hasSublabel, color, orientation } = useSafeContext(TabsContext);
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
@@ -165,6 +165,7 @@ const TabList = React.forwardRef((props, ref) => {
       className={cx(
         'iui-tabs',
         `iui-${type}`,
+        `iui-${orientation}`,
         {
           'iui-green': color === 'green',
           'iui-animated': type !== 'default' && isClient,
@@ -353,7 +354,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ButtonBase
-      className={cx('iui-tab', className)}
+      className={cx('iui-tab', `iui-${orientation}`, className)}
       role='tab'
       tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}
