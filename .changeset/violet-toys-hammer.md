@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-Fixed incorrect orientation of nested `Tabs` components by specifying `.iui-horizontal` and `.iui-vertical` for relevant tabs subcomponents.
+Fixed incorrect orientation of nested `Tabs` components by specifying styling only for direct children of relevant `Tabs` subcomponents.
