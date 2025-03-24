@@ -33,6 +33,8 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 :is(.iui-list-item, .iui-menu-item-skeleton) {
+  --_iui-list-item-background-hover: var(--iui-color-background-hover);
+
   display: flex;
   align-items: center;
   gap: var(--iui-size-xs);
@@ -54,7 +56,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &:where([data-iui-actionable='true']:hover),
   &:where(:has(.iui-link-action):hover) {
     cursor: pointer;
-    background-color: var(--iui-color-background-hover);
+    background-color: var(--_iui-list-item-background-hover);
   }
 
   &:where(.iui-large, [data-iui-size='large']) {

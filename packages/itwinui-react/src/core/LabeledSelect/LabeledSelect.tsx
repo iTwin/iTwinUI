@@ -47,7 +47,7 @@ export type LabeledSelectProps<T> = {
    *
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: JSX.Element;
+  svgIcon?: React.JSX.Element;
   /**
    * If true, shows a red asterisk.
    *
@@ -177,7 +177,7 @@ export const LabeledSelect = React.forwardRef(
   },
 ) as <T>(
   props: LabeledSelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
-) => JSX.Element;
+) => React.JSX.Element;
 if (process.env.NODE_ENV === 'development') {
   (LabeledSelect as any).displayName = 'LabeledSelect';
 }

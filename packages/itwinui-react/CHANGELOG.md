@@ -1,5 +1,58 @@
 # Changelog
 
+## 3.17.3
+
+### Patch Changes
+
+- [#2452](https://github.com/iTwin/iTwinUI/pull/2452): Fixed bug where nested `MenuItem`s in `Tile.MoreOptions` were not closing when clicked.
+- [#2455](https://github.com/iTwin/iTwinUI/pull/2455): Submenus will now correctly portal to the same place as their parent menu (E.g. `DropdownMenu`, `SplitButton`)
+- [#2457](https://github.com/iTwin/iTwinUI/pull/2457): Fixed bug in `ExpandableBlock` where cursor was `pointer` even when it was disabled.
+
+## 3.17.2
+
+### Patch Changes
+
+- [#2442](https://github.com/iTwin/iTwinUI/pull/2442): Removed a leftover `@layer` name, which was originally intended to support _very_ old versions of iTwinUI.
+- [#2443](https://github.com/iTwin/iTwinUI/pull/2443): Fixed bug in `Modal` where focus was sometimes jumping from a modal child to the modal itself.
+- [#2431](https://github.com/iTwin/iTwinUI/pull/2431): Force text wrapping for long words. Affected components: `Text`, `NonIdealState`, `Stepper`, `WorkflowDiagram`.
+- [#2446](https://github.com/iTwin/iTwinUI/pull/2446): Fixed background color in menus when the [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) is enabled.
+
+## 3.17.1
+
+### Patch Changes
+
+- [#2436](https://github.com/iTwin/iTwinUI/pull/2436): The **theme bridge** has been updated to handle the breaking changes introduced in `@itwin/itwinui-react@5.0.0-alpha.6`.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Fixed bug in `SplitButton` where the `dropdownMenuProps.middleware` prop was not respected.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Fixed a `SplitButton` bug where `dropdownMenuProps` was accidentally being added to the DOM.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Added missing `div` props in `dropdownMenuProps`'s type for `DropdownButton` and `SplitButton`.
+
+## 3.17.0
+
+### Minor Changes
+
+- [#2387](https://github.com/iTwin/iTwinUI/pull/2387): Added support for React 19.
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Added a **theme bridge** which adjusts iTwinUI v3 visuals to blend in with iTwinUI v5's new look-and-feel.
+
+  To enable the theme bridge, use the `future.themeBridge` flag on `<ThemeProvider>`. See [full documentation](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) for more detailed instructions.
+
+  **Note**: The theme bridge is still considered an _alpha_ feature, so there may be breaking changes until it's stabilized.
+
+- [#2391](https://github.com/iTwin/iTwinUI/pull/2391): Removed dependency on `react-transition-group`. Notable changes in components:
+  - `useToaster`: Animations have been reworked to directly use the web animations API.
+  - `Dialog` and `Modal`: Exit animations have been temporarily removed.
+- [#2387](https://github.com/iTwin/iTwinUI/pull/2387): Bumped the minimum required versions of the following dependencies:
+  - `@tanstack/react-virtual` to `3.13.0`
+  - `@floating-ui/react` to `0.27.4`
+  - `classnames` to `2.5.1`
+
+### Patch Changes
+
+- [#2429](https://github.com/iTwin/iTwinUI/pull/2429): Fixed an issue where disabled buttons were still causing form submissions. Affects `Button`, `IconButton`, and all other button components.
+- [#2368](https://github.com/iTwin/iTwinUI/pull/2368): Fine-tuned the default Tooltip delay to `{ open: 100ms, close: 200ms }`.
+- [#2368](https://github.com/iTwin/iTwinUI/pull/2368): Added `Tooltip` delay grouping to components that use `Tooltip` internally. This prevents the tooltip from lingering when quickly hovering across different parts of the component.
+  - Components affected: `SideNavigation`, `Slider`, `Stepper`, `List`.
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Fixed an issue in `InputWithDecorations` and `SearchBox` where the component-level focus styling was colliding with global focus styling, leading to double focus outlines.
+
 ## 3.16.6
 
 ### Patch Changes

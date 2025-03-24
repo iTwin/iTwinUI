@@ -641,8 +641,9 @@ import {
   );
 
   const [globalFilter, setGlobalFilter] = React.useState('');
-  const tableInstance =
-    React.useRef<TableTypes.TableInstance<TableRowDataType>>();
+  const tableInstance = React.useRef<
+    TableTypes.TableInstance<TableRowDataType> | undefined
+  >(undefined);
 
   const [hoveredRowIndex, setHoveredRowIndex] = React.useState(0);
   const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(

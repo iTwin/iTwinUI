@@ -564,7 +564,9 @@ type TimePickerColumnProps<T = Date> = {
   [k: string]: unknown;
 };
 
-const TimePickerColumn = <T,>(props: TimePickerColumnProps<T>): JSX.Element => {
+const TimePickerColumn = <T,>(
+  props: TimePickerColumnProps<T>,
+): React.JSX.Element => {
   const {
     data,
     onFocusChange,

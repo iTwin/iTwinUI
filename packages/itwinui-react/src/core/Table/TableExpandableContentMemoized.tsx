@@ -10,7 +10,7 @@ import type { VirtualItem } from '@tanstack/react-virtual';
 
 type TableExpandableContentProps = {
   children: React.ReactNode;
-  virtualItem?: VirtualItem<Element>;
+  virtualItem?: VirtualItem;
   isDisabled?: boolean;
 };
 

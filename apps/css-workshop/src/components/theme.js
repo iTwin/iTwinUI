@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 class ThemeButton extends HTMLElement {
+  #themeBridge = false;
+
   constructor() {
     super();
     const html = /* html */ `
@@ -19,6 +21,8 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="theme" value="dark" /><span>Dark</span></label>
             <label tabindex="-1"><input type="radio" name="theme" value="light-hc" /><span>High contrast light</span></label>
             <label tabindex="-1"><input type="radio" name="theme" value="dark-hc" /><span>High contrast dark</span></label>
+            <br />
+            <label tabindex="-1"><input type="checkbox" name="theme-bridge" /><span>Theme Bridge</span></label>
           </fieldset>
 
           <fieldset>
@@ -137,16 +141,24 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelector(
       `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
     ).checked = true;
-    document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
-    document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
-    document.body.classList.toggle('iui-root', true);
+
+    const root = document.body;
+    const theme = prefersDark ? 'dark' : 'light';
+
+    root.dataset.iuiTheme = theme;
+    root.dataset.iuiContrast = prefersHC ? 'high' : undefined;
+    root.classList.toggle('iui-root', true);
   }
 
   changeTheme = ({ target: { value: _theme } }) => {
+    const root = document.body;
+    const v5Root = document.documentElement;
+
     const isHighContrast = _theme.endsWith('-hc');
     const theme = isHighContrast ? _theme.split('-')[0] : _theme;
-    document.body.dataset.iuiTheme = theme;
-    document.body.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
+    root.dataset.iuiTheme = theme;
+    if (this.#themeBridge) v5Root.dataset.colorScheme = theme;
+    root.dataset.iuiContrast = isHighContrast ? 'high' : undefined;
     this.shadowRoot.querySelector('#theme-color-scheme').innerHTML = `
       :host {
         color-scheme: ${theme.includes('light') ? 'light' : 'dark'};
@@ -162,6 +174,12 @@ class ThemeButton extends HTMLElement {
     }
   };
 
+  changeBridge = ({ target: { checked } }) => {
+    this.#themeBridge = checked;
+    document.body.dataset.iuiBridge = checked ? 'true' : 'false';
+    window.dispatchEvent(new CustomEvent('theme-bridge', { detail: checked }));
+  };
+
   connectedCallback() {
     this.shadowRoot.querySelectorAll('input[name="theme"]').forEach((radio) => {
       radio.addEventListener('change', this.changeTheme);
@@ -170,6 +188,10 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
       radio.addEventListener('change', this.changeBackground);
     });
+
+    this.shadowRoot
+      .querySelector('input[name="theme-bridge"]')
+      .addEventListener('change', this.changeBridge);
   }
 
   disconnectedCallback() {
@@ -180,6 +202,10 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
       radio.removeEventListener('change', this.changeBackground);
     });
+
+    this.shadowRoot
+      .querySelector('input[name="theme-bridge"]')
+      .removeEventListener('change', this.changeBridge);
   }
 }
 customElements.define('theme-button', ThemeButton);

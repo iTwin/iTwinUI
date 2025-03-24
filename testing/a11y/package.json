@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
-    "axe-core": "^4.8.2",
+    "axe-core": "^4.10.2",
     "cypress": "13.8.1",
     "cypress-axe": "^1.5.0",
     "examples": "workspace:*"

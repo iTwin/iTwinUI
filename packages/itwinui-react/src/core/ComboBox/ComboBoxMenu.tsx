@@ -72,11 +72,11 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   }, [virtualizer, focusedVisibleIndex]);
 
   const virtualItemRenderer = React.useCallback(
-    (virtualItem: VirtualItem<Element>) => {
+    (virtualItem: VirtualItem) => {
       const menuItem =
         filteredOptions.length > 0
           ? getMenuItem(filteredOptions[virtualItem.index], virtualItem.index)
-          : (children as JSX.Element); // Here is expected empty state content
+          : (children as React.JSX.Element); // Here is expected empty state content
       return React.cloneElement(menuItem, {
         key: virtualItem.key,
         ref: virtualizer.measureElement,

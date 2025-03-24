@@ -76,7 +76,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const { dialogRootRef } = dialogContext;
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const previousFocusedElement = React.useRef<HTMLElement | null>();
+  const previousFocusedElement = React.useRef<HTMLElement | null>(null);
 
   const [style, setStyle] = React.useState<React.CSSProperties>();
   const hasBeenResized = React.useRef(false);
@@ -168,7 +168,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     if (setFocus) {
       dialogRef.current?.focus({ preventScroll: true });
     }
-  }, [dialogRef, previousFocusedElement, setFocus]);
+  }, [setFocus]);
 
   /** Brings back focus to the previously focused element when closed. */
   const beforeClose = React.useCallback(() => {
