@@ -110,4 +110,37 @@ Use a [hierarchy tree](tree) when:
 
 ## Props
 
+### ExpandableBlock
+
+`ExpandableBlock` with customizable `Title`, `Caption`, `Content` and `EndIcon` subcomponents.
+
 <PropsTable path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts' />
+
+## Subcomponents
+
+### ExpandableBlock.Wrapper
+
+`ExpandableBlock.Wrapper` should contain the `ExpandableBlock` and the component over which the block will overlay.
+
+<PropsTable
+  componentName='ExpandableBlockWrapper'
+  path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts'
+/>
+
+### ExpandableBlock.Trigger
+
+The `ExpandableBlock.Trigger` is the `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents.
+
+<PropsTable
+  componentName='ExpandableBlockTrigger'
+  path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts'
+/>
+
+### ExpandableBlock.Content
+
+The `ExpandableBlock.Content` subcomponent is used for the content shown in the block's body when fully expanded.
+
+<PropsTable
+  componentName='ExpandableBlockContent'
+  path='@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts'
+/>
