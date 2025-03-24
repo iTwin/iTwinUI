@@ -60,7 +60,12 @@ type MenuProps = {
       listNavigation?: Partial<UseListNavigationProps>;
     };
   };
-} & Pick<PortalProps, 'portal'>;
+  /**
+   * If not passed, uses the `portal` from its parent `Menu`.
+   * @see {@link PortalProps.portal} for docs on the prop.
+   */
+  portal?: PortalProps['portal'];
+};
 
 /**
  * @private
@@ -114,11 +119,14 @@ export const Menu = React.forwardRef((props, ref) => {
     className,
     trigger,
     positionReference,
-    portal = true,
+    portal: portalProp,
     popoverProps: popoverPropsProp,
     children,
     ...rest
   } = props;
+
+  const menuPortalContext = React.useContext(MenuPortalContext);
+  const portal = portalProp ?? menuPortalContext;
 
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
@@ -328,14 +336,16 @@ export const Menu = React.forwardRef((props, ref) => {
           [focusableElements, popoverGetItemProps],
         )}
       >
-        <PopoverOpenContext.Provider value={popover.open}>
-          {reference}
-        </PopoverOpenContext.Provider>
-        {tree != null ? (
-          <FloatingNode id={nodeId}>{floating}</FloatingNode>
-        ) : (
-          floating
-        )}
+        <MenuPortalContext.Provider value={portal}>
+          <PopoverOpenContext.Provider value={popover.open}>
+            {reference}
+          </PopoverOpenContext.Provider>
+          {tree != null ? (
+            <FloatingNode id={nodeId}>{floating}</FloatingNode>
+          ) : (
+            floating
+          )}
+        </MenuPortalContext.Provider>
       </MenuContext.Provider>
     </>
   );
@@ -361,10 +371,16 @@ type PopoverGetItemProps = ({
   >[0];
 }) => ReturnType<ReturnType<typeof useInteractions>['getItemProps']>;
 
+// ----------------------------------------------------------------------------
+
 export const MenuContext = React.createContext<
   | {
       popoverGetItemProps: PopoverGetItemProps;
       focusableElements: HTMLElement[];
     }
   | undefined
+>(undefined);
+
+export const MenuPortalContext = React.createContext<
+  PortalProps['portal'] | undefined
 >(undefined);
