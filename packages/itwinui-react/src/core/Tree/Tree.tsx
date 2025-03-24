@@ -8,7 +8,6 @@ import {
   polymorphic,
   cloneElementWithRef,
   useVirtualScroll,
-  ShadowRoot,
   useMergedRefs,
   useLayoutEffect,
 } from '../../utils/index.js';
@@ -301,6 +300,9 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                   ...children.props.style,
                   '--_iui-width': '100%',
                   transform: `translateY(${virtualItem.start}px)`,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
                 },
               }))
             : nodeRenderer(node.nodeProps)}
@@ -415,7 +417,7 @@ const VirtualizedTree = React.forwardRef(
       [flatNodesList],
     );
 
-    const { virtualizer, css: virtualizerCss } = useVirtualScroll({
+    const { virtualizer } = useVirtualScroll({
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
@@ -430,21 +432,20 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
-        <ShadowRoot css={virtualizerCss}>
-          <div
-            data-iui-virtualizer='root'
-            style={{ minBlockSize: virtualizer.getTotalSize() }}
-          >
-            <slot />
-          </div>
-        </ShadowRoot>
-        <>
+        <div
+          data-iui-virtualizer='root'
+          style={{
+            minBlockSize: virtualizer.getTotalSize(),
+            minInlineSize: '100%',
+            position: 'relative',
+          }}
+        >
           {virtualizer
             .getVirtualItems()
             .map((virtualItem) =>
               itemRenderer(virtualItem.index, virtualItem, virtualizer),
             )}
-        </>
+        </div>
       </TreeElement>
     );
   },
