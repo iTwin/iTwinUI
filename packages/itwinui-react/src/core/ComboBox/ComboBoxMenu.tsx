@@ -81,9 +81,9 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
         ref: virtualizer.measureElement,
         'data-iui-virtualizer': 'item',
         style: {
-          ...menuItem.props.style,
           width: '100%',
           transform: `translateY(${virtualItem.start}px)`,
+          ...menuItem.props.style,
           position: 'absolute',
           top: 0,
           left: 0,
