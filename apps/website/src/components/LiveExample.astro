@@ -105,6 +105,21 @@ const cssCode = await (async () => {
           this.attachShadow({ mode: 'open' }).appendChild(template.content);
           template.remove();
         }
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-iui-theme') {
+              const element = mutation.target as HTMLElement;
+              this.style.background = element.dataset.iuiTheme === 'light' ? 'white' : 'inherit';
+            }
+          });
+        });
+        const themeProvider = this.shadowRoot?.querySelector('[data-iui-theme]');
+        if (themeProvider instanceof HTMLElement) {
+          observer.observe(themeProvider, {
+            attributes: true,
+            attributeFilter: ['data-iui-theme'],
+          });
+        }
       }
     },
   );
