@@ -1,5 +1,11 @@
 ---
-'@itwin/itwinui-css': patch
+'@itwin/itwinui-css': major
 ---
 
-Fixed `iui-tabs-wrapper` bug where orientation related styles of nested tabs were sometimes incorrect.
+`.iui-tabs` now requires setting a new `data-iui-orientation` attribute. This change helps support nested tabs correctly.
+
+```diff
+ <div
+   class='iui-tabs iui-default'
++  data-iui-orientation='horizontal' // or 'vertical'
+```
