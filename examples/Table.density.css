@@ -1,0 +1,6 @@
+.demo-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-xs);
+}

@@ -11,6 +11,12 @@ export default () => {
     return {
       product: `Product ${keyValue}`,
       price: ((index % 10) + 1) * 15,
+      subRows: [
+        {
+          product: `Sub Product ${keyValue}`,
+          price: (((index % 10) + 1) * 15) / 2,
+        },
+      ],
     };
   }, []);
 
