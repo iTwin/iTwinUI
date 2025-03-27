@@ -17,13 +17,42 @@ The expandable block has a label reflecting its content. On click, it expands to
 
 ## Usage
 
-The expandable block can be used in two ways:
+### Legacy API
 
-- Directly using `ExpandableBlock` along with `title`, `caption`, `endIcon` and children. This pattern can suffice for simple cases.
+You can use `ExpandableBlock` directly, without any subcomponents.
+
+- Directly using `ExpandableBlock` along with `title`, `caption`, `endIcon` and children.
+- Although this pattern can suffice for simple cases, we strongly recommend using composition API for more flexibility.
+
+```tsx
+<ExpandableBlock title='Expandable Block' caption='With caption!'>
+  Content in block!
+</ExpandableBlock>
+```
+
+### Composition API
+
+Alternatively, you can build expandable blocks with sub-components that are fully customizable.
+
 - Using subcomponents (`ExpandableBlock.Wrapper`, `ExpandableBlock.Trigger`, `ExpandableBlock.Content`, etc). This pattern is more verbose but allows full customization over all the parts.
   - `ExpandableBlock.Wrapper` is a wrapper around the subcomponents.
   - The `ExpandableBlock.Trigger` is the `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents.
   - The `ExpandableBlock.Content` is the content shown when `ExpandableBlock.Trigger` is triggered.
+
+The following code is equivalent to the [legacy example](#legacy-api) above:
+
+```tsx
+<ExpandableBlock.Wrapper>
+  <ExpandableBlock.Trigger>
+    <ExpandableBlock.ExpandIcon />
+    <ExpandableBlock.LabelArea>
+      <ExpandableBlock.Title>Expandable Block</ExpandableBlock.Title>
+      <ExpandableBlock.Caption>With caption!</ExpandableBlock.Caption>
+    </ExpandableBlock.LabelArea>
+  </ExpandableBlock.Trigger>
+  <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
+</ExpandableBlock.Wrapper>
+```
 
 ### With caption
 
