@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': minor
+'@itwin/itwinui-react': patch
 ---
 
-Fixed scroll on touch devices for virtualized `Tree` and `ComboBox` by adding an extra `div` around the shadow DOM and the scroll container, similar to `Table`.
+Fixed scrolling on touch devices when using the `enableVirtualization` prop in `Tree` and `ComboBox`.
