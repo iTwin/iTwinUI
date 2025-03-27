@@ -34,7 +34,7 @@
     }
   }
 
-  .iui-horizontal & {
+  .iui-horizontal &[data-iui-orientation='horizontal'] {
     .iui-tab[aria-selected='true'] {
       border-block-end-color: transparent;
     }
@@ -52,7 +52,7 @@
     }
   }
 
-  .iui-vertical & {
+  .iui-vertical &[data-iui-orientation='vertical'] {
     .iui-tab[aria-selected='true'] {
       border-inline-end-color: transparent;
     }
