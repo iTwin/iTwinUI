@@ -430,7 +430,7 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
-        <div>
+        <div style={{ display: 'contents' }}>
           <ShadowRoot css={virtualizerCss}>
             <div
               data-iui-virtualizer='root'

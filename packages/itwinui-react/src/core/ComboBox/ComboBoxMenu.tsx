@@ -91,7 +91,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   );
 
   return (
-    <div>
+    <div style={{ display: 'contents' }}>
       <ShadowRoot css={virtualizerCss}>
         <Box
           as='div'
