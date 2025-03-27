@@ -430,21 +430,23 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
-        <ShadowRoot css={virtualizerCss}>
-          <div
-            data-iui-virtualizer='root'
-            style={{ minBlockSize: virtualizer.getTotalSize() }}
-          >
-            <slot />
-          </div>
-        </ShadowRoot>
-        <>
-          {virtualizer
-            .getVirtualItems()
-            .map((virtualItem) =>
-              itemRenderer(virtualItem.index, virtualItem, virtualizer),
-            )}
-        </>
+        <div style={{ display: 'contents' }}>
+          <ShadowRoot css={virtualizerCss}>
+            <div
+              data-iui-virtualizer='root'
+              style={{ minBlockSize: virtualizer.getTotalSize() }}
+            >
+              <slot />
+            </div>
+          </ShadowRoot>
+          <>
+            {virtualizer
+              .getVirtualItems()
+              .map((virtualItem) =>
+                itemRenderer(virtualItem.index, virtualItem, virtualizer),
+              )}
+          </>
+        </div>
       </TreeElement>
     );
   },
