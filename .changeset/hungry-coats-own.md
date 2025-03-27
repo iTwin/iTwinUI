@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Fixed scroll on touch devices for virtualized `Tree` and `ComboBox`. Consequently, the overflowing `<div>` inside the shadow root is now in the light DOM.
+Fixed scroll on touch devices for virtualized `Tree` and `ComboBox` by adding an extra `div` around the shadow DOM and the scroll container, similar to `Table`.

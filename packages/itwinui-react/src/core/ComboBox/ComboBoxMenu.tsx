@@ -11,6 +11,7 @@ import {
   Portal,
   Box,
   useVirtualScroll,
+  ShadowRoot,
   useLayoutEffect,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -57,7 +58,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
     );
   }, [focusedIndex, menuRef]);
 
-  const { virtualizer } = useVirtualScroll({
+  const { virtualizer, css: virtualizerCss } = useVirtualScroll({
     // 'Fool' useVirtualScroll by passing length 1
     // whenever there is no elements, to show empty state message
     count: filteredOptions.length || 1,
@@ -83,10 +84,6 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
         style: {
           width: '100%',
           transform: `translateY(${virtualItem.start}px)`,
-          ...menuItem.props.style,
-          position: 'absolute',
-          top: 0,
-          left: 0,
         },
       });
     },
@@ -94,23 +91,26 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   );
 
   return (
-    <>
-      <Box
-        as='div'
-        data-iui-virtualizer='root'
-        {...rest}
-        style={{
-          minBlockSize: virtualizer.getTotalSize(),
-          minInlineSize: '100%',
-          position: 'relative',
-          ...props.style,
-        }}
-      >
+    <div>
+      <ShadowRoot css={virtualizerCss}>
+        <Box
+          as='div'
+          data-iui-virtualizer='root'
+          {...rest}
+          style={{
+            minBlockSize: virtualizer.getTotalSize(),
+            ...props.style,
+          }}
+        >
+          <slot />
+        </Box>
+      </ShadowRoot>
+      <>
         {virtualizer.getVirtualItems().map((virtualItem) => {
           return virtualItemRenderer(virtualItem);
         })}
-      </Box>
-    </>
+      </>
+    </div>
   );
 };
 
