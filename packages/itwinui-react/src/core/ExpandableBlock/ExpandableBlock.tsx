@@ -98,56 +98,58 @@ if (process.env.NODE_ENV === 'development') {
 
 // ----------------------------------------------------------------------------
 
-const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
-  const {
-    children,
-    className,
-    onToggle,
-    style,
-    isExpanded,
-    status,
-    size = 'default',
-    styleType = 'default',
-    disabled = false,
-    ...rest
-  } = props;
+export const ExpandableBlockWrapper = React.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      children,
+      className,
+      onToggle,
+      style,
+      isExpanded,
+      status,
+      size = 'default',
+      styleType = 'default',
+      disabled = false,
+      ...rest
+    } = props;
 
-  const [expandedState, setExpanded] = React.useState(isExpanded ?? false);
-  const expanded = isExpanded ?? expandedState;
+    const [expandedState, setExpanded] = React.useState(isExpanded ?? false);
+    const expanded = isExpanded ?? expandedState;
 
-  const [descriptionId, setDescriptionId] = React.useState<string | undefined>(
-    undefined,
-  );
+    const [descriptionId, setDescriptionId] = React.useState<
+      string | undefined
+    >(undefined);
 
-  return (
-    <ExpandableBlockContext.Provider
-      value={{
-        status,
-        isExpanded: expanded,
-        onToggle,
-        size,
-        styleType,
-        disabled,
-        setExpanded,
-        children,
-        descriptionId,
-        setDescriptionId,
-      }}
-    >
-      <Box
-        className={cx('iui-expandable-block', className)}
-        data-iui-expanded={expanded}
-        data-iui-size={size}
-        data-iui-variant={styleType !== 'default' ? styleType : undefined}
-        style={style}
-        ref={forwardedRef}
-        {...rest}
+    return (
+      <ExpandableBlockContext.Provider
+        value={{
+          status,
+          isExpanded: expanded,
+          onToggle,
+          size,
+          styleType,
+          disabled,
+          setExpanded,
+          children,
+          descriptionId,
+          setDescriptionId,
+        }}
       >
-        {children}
-      </Box>
-    </ExpandableBlockContext.Provider>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
+        <Box
+          className={cx('iui-expandable-block', className)}
+          data-iui-expanded={expanded}
+          data-iui-size={size}
+          data-iui-variant={styleType !== 'default' ? styleType : undefined}
+          style={style}
+          ref={forwardedRef}
+          {...rest}
+        >
+          {children}
+        </Box>
+      </ExpandableBlockContext.Provider>
+    );
+  },
+) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
 }
@@ -161,35 +163,44 @@ type ExpandableBlockTriggerOwnProps = {
   endIcon?: React.ReactNode;
 };
 
-const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
-  const { className, children, label, caption, expandIcon, endIcon, ...rest } =
-    props;
-  const { disabled, status } = useSafeContext(ExpandableBlockContext);
+export const ExpandableBlockTrigger = React.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      className,
+      children,
+      label,
+      caption,
+      expandIcon,
+      endIcon,
+      ...rest
+    } = props;
+    const { disabled, status } = useSafeContext(ExpandableBlockContext);
 
-  return (
-    <LinkBox
-      className={cx('iui-expandable-header', className)}
-      data-iui-disabled={disabled ? 'true' : undefined}
-      ref={forwardedRef}
-      {...rest}
-    >
-      {children ?? (
-        <>
-          {expandIcon ?? <ExpandableBlock.ExpandIcon />}
-          <ExpandableBlock.LabelArea>
-            <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
-            {caption && (
-              <ExpandableBlock.Caption>{caption}</ExpandableBlock.Caption>
-            )}
-          </ExpandableBlock.LabelArea>
-          {endIcon || status ? (
-            <ExpandableBlock.EndIcon>{endIcon}</ExpandableBlock.EndIcon>
-          ) : null}
-        </>
-      )}
-    </LinkBox>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockTriggerOwnProps>;
+    return (
+      <LinkBox
+        className={cx('iui-expandable-header', className)}
+        data-iui-disabled={disabled ? 'true' : undefined}
+        ref={forwardedRef}
+        {...rest}
+      >
+        {children ?? (
+          <>
+            {expandIcon ?? <ExpandableBlock.ExpandIcon />}
+            <ExpandableBlock.LabelArea>
+              <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
+              {caption && (
+                <ExpandableBlock.Caption>{caption}</ExpandableBlock.Caption>
+              )}
+            </ExpandableBlock.LabelArea>
+            {endIcon || status ? (
+              <ExpandableBlock.EndIcon>{endIcon}</ExpandableBlock.EndIcon>
+            ) : null}
+          </>
+        )}
+      </LinkBox>
+    );
+  },
+) as PolymorphicForwardRefComponent<'div', ExpandableBlockTriggerOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
 }
@@ -307,19 +318,21 @@ type ExpandableBlockContentOwnProps = {
   innerProps?: React.ComponentPropsWithoutRef<'div'>;
 };
 
-const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
-  const { className, children, innerProps, ...rest } = props;
+export const ExpandableBlockContent = React.forwardRef(
+  (props, forwardedRef) => {
+    const { className, children, innerProps, ...rest } = props;
 
-  return (
-    <Box
-      className={cx('iui-expandable-content', className)}
-      ref={forwardedRef}
-      {...rest}
-    >
-      <Box {...innerProps}>{children}</Box>
-    </Box>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
+    return (
+      <Box
+        className={cx('iui-expandable-content', className)}
+        ref={forwardedRef}
+        {...rest}
+      >
+        <Box {...innerProps}>{children}</Box>
+      </Box>
+    );
+  },
+) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
 }
