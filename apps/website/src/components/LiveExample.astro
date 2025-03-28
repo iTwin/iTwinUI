@@ -4,6 +4,7 @@ import OpenInCodePen from './OpenInCodePen.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
+import { ThemeProvider } from '@itwin/itwinui-react';
 
 const require = createRequire(import.meta.url);
 
@@ -45,28 +46,30 @@ const cssCode = await (async () => {
 })();
 ---
 
-<demo-box>
-  <template shadowrootmode='open'>
-    <style is:inline>
-      astro-island {
-        display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
-        max-inline-size: 100cqi;
-      }
-    </style>
-    <style set:html={cssCode}></style>
-    <link rel='stylesheet' href={itwinuiStyles} />
-    <slot />
-    <slot is:inline />
-  </template>
+<ThemeProvider theme='dark' themeOptions={{ applyBackground: true }}>
+  <demo-box>
+    <template shadowrootmode='open'>
+      <style is:inline>
+        astro-island {
+          display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+          max-inline-size: 100cqi;
+        }
+      </style>
+      <style set:html={cssCode}></style>
+      <link rel='stylesheet' href={itwinuiStyles} />
+      <slot />
+      <slot is:inline />
+    </template>
 
-  <OpenInCodePen
-    class='sandbox-link'
-    code={{
-      js: jsxCode,
-      css: cssCode,
-    }}
-  />
-</demo-box>
+    <OpenInCodePen
+      class='sandbox-link'
+      code={{
+        js: jsxCode,
+        css: cssCode,
+      }}
+    />
+  </demo-box>
+</ThemeProvider>
 
 {
   !hideCode && (
@@ -104,6 +107,23 @@ const cssCode = await (async () => {
           if (!template) return;
           this.attachShadow({ mode: 'open' }).appendChild(template.content);
           template.remove();
+        }
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-iui-theme') {
+              const element = mutation.target as HTMLElement;
+              const theme = element.dataset.iuiTheme;
+              const themeProvider = this.parentElement;
+              if (themeProvider && theme) themeProvider.setAttribute('data-iui-theme', theme);
+            }
+          });
+        });
+        const themeProvider = this.shadowRoot?.querySelector('[data-iui-theme]');
+        if (themeProvider instanceof HTMLElement) {
+          observer.observe(themeProvider, {
+            attributes: true,
+            attributeFilter: ['data-iui-theme'],
+          });
         }
       }
     },

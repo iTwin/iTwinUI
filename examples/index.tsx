@@ -4,18 +4,34 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ThemeProvider } from '@itwin/itwinui-react';
+import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
 
 const withThemeProvider = (Component: () => React.ReactElement<any>) => () => {
   const [portalContainer, setPortalContainer] = React.useState<HTMLElement>();
+  const [theme, setTheme] = React.useState<'light' | 'dark'>('dark');
   React.useEffect(() => void setPortalContainer(document.body), []);
 
   return (
     <ThemeProvider
-      theme='dark'
+      theme={theme}
       themeOptions={{ applyBackground: false }}
       portalContainer={portalContainer}
       style={{ display: 'contents' }}
     >
+      <button
+        aria-label='Toggle theme'
+        style={{
+          position: 'absolute',
+          top: '10px',
+          right: '10px',
+          display: 'flex',
+          alignItems: 'center',
+          cursor: 'pointer',
+        }}
+        onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+      >
+        {theme === 'dark' ? <SvgMoon /> : <SvgSun />}
+      </button>
       <Component />
     </ThemeProvider>
   );
