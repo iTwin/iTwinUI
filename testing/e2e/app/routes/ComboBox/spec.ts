@@ -336,7 +336,7 @@ test.describe('ComboBox (virtualization)', () => {
 
     await page.keyboard.press('Tab');
     const comboBoxList = page.getByRole('listbox');
-    const outerVirtualizedContainer = comboBoxList.locator('>div', {
+    const outerVirtualizedContainer = comboBoxList.locator('> div > div', {
       has: page.locator('slot'),
     });
     const items = page.getByRole('option');

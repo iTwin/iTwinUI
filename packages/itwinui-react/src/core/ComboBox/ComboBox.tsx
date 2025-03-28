@@ -636,27 +636,25 @@ export const ComboBox = React.forwardRef(
             disabled={inputProps?.disabled}
             {...rest}
           >
-            <>
-              <ComboBoxInput
-                value={inputValue}
-                disabled={inputProps?.disabled}
-                {...inputProps}
-                onChange={handleOnInput}
-                selectTags={
-                  isMultipleEnabled(selectedIndexes, multiple)
-                    ? (selectedIndexes
-                        ?.map((index) => {
-                          const item = options[index];
+            <ComboBoxInput
+              value={inputValue}
+              disabled={inputProps?.disabled}
+              {...inputProps}
+              onChange={handleOnInput}
+              selectTags={
+                isMultipleEnabled(selectedIndexes, multiple)
+                  ? (selectedIndexes
+                      ?.map((index) => {
+                        const item = options[index];
 
-                          return (
-                            <SelectTag key={item.label} label={item.label} />
-                          );
-                        })
-                        .filter(Boolean) as React.JSX.Element[])
-                    : undefined
-                }
-              />
-            </>
+                        return (
+                          <SelectTag key={item.label} label={item.label} />
+                        );
+                      })
+                      .filter(Boolean) as React.JSX.Element[])
+                  : undefined
+              }
+            />
             <ComboBoxEndIcon
               {...endIconProps}
               disabled={inputProps?.disabled}

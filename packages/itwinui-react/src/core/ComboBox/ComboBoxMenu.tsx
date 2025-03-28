@@ -91,7 +91,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   );
 
   return (
-    <>
+    <div style={{ display: 'contents' }}>
       <ShadowRoot css={virtualizerCss}>
         <Box
           as='div'
@@ -110,7 +110,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
           return virtualItemRenderer(virtualItem);
         })}
       </>
-    </>
+    </div>
   );
 };
 

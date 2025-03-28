@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.17.4
+
+### Patch Changes
+
+- [#2473](https://github.com/iTwin/iTwinUI/pull/2473): Fixed scrolling on touch devices when using the `enableVirtualization` prop in `Tree` and `ComboBox`.
+- [#2466](https://github.com/iTwin/iTwinUI/pull/2466): Fix `Tab`'s stripe positioning when `Tabs.TabList` overflows.
+- [#2469](https://github.com/iTwin/iTwinUI/pull/2469): Fixed `Tabs` bug where orientation related styles of nested tabs were sometimes incorrect.
+
 ## 3.17.3
 
 ### Patch Changes
