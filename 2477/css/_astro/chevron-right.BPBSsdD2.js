@@ -1,0 +1,1 @@
+class e extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="var(--iui-color-icon-muted, currentColor)"><path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"/></svg>'}}customElements.define("svg-chevron-right",e);
