@@ -1,0 +1,1 @@
+import{r as s,d as f,B as p,c as l}from"./index-DcTlL2oN.js";const d=s.forwardRef((e,t)=>{const{size:a,htmlSize:r,status:i,className:u,...n}=e,c=s.useRef(null),o=f(c,t);return s.createElement(p,{as:"input",className:l("iui-input",u),"data-iui-size":a,"data-iui-status":i,size:r,ref:o,...n})});export{d as I};
