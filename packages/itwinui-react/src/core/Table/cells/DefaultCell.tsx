@@ -84,7 +84,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
-      <ShadowRoot key={`${cellElementKey}-shadow-root`}>
+      <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false}>
         <slot name='start' key={`${cellElementKey}-shadow-root-start`} />
         {clamp ? (
           <LineClamp key={`${cellElementKey}-shadow-root-slot`}>
