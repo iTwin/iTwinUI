@@ -40,7 +40,9 @@ The submenu is the menu that expands when one of the menu items is clicked. It c
 
 ## Accessibility
 
-`<SideNavigation>` is rendered as a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) (using the `<nav>` HTML element). It can be optionally labelled using `wrapperProps['aria-labelledby']` or `wrapperProps['aria-label']`.
+`<SideNavigation>` is rendered as a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) (using the `<nav>` HTML element). In conjunction with other landmarks, this helps assistive technology users to quickly navigate between different parts of the page.
+
+This can be optionally labelled using `wrapperProps['aria-labelledby']` or `wrapperProps['aria-label']` to help distinguish it from other navigation landmarks on the page.
 
 ## Props
 
