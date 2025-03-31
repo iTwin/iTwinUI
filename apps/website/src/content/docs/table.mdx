@@ -6,7 +6,9 @@ thumbnail: Table
 
 <p>{frontmatter.description}</p>
 
-Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
+<Placeholder componentPageName='table--basic' />
+
+Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table configurations. This flexibility enables you to configure your `Table` with the necessary functionality without over-complicating the design.
 
 Bentley makes extensive use of tables and data grids throughout its web applications. Use the following flexible grid format below in most circumstances as it provides functionality “built in” to the design, and because users learning how to consistently sort, filter, and search tables is an important skill to leverage.
 
@@ -14,48 +16,48 @@ Bentley makes extensive use of tables and data grids throughout its web applicat
 
 The most basic `Table` can be implemented by passing three props:
 
-- `data`: an array containing table data displayed on the table. This array must be memoized.
-- `columns`: an array containing table column objects. Each column object require to have a `Header`, which will be displayed as a column title, and `id`.
+- `data`: an array containing table data displayed in the table. Each key in each object corresponds to each column's `accessor` property.
+  - Must be memoized.
+- `columns`: an array containing table column objects. Each column object requires a `Header`, which will be displayed as a column title, and `id`.
 - `emptyTableContent`: a JSX element table content shown when there is no data.
 
 <LiveExample src='Table.main.jsx'>
   <AllExamples.TableMainExample client:load />
 </LiveExample>
 
-**Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see this [doc](https://react-table.tanstack.com/docs/api/overview).
+**Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see their [docs](https://react-table.tanstack.com/docs/api/overview).
 
-#### `rowProps` vs. `getRowId`
+### `initialState`
 
-The `Table` component provides two important props, `rowProps` and `getRowId` which serve different purposes in customizing and managing the table row data.
-
-The `rowProps` prop is a function that allows passing additional properties to the rows, such as custom attributes, event handlers, or styles based on the data. This can be useful for customizing the behavior and appearance of each row. The type `React.ComponentPropsWithRef<'div'>` ensures that the properties passed are valid for a `div` element, which is the default element used for table rows. This prop provides the flexibility to customize the id of the HTML `div` row element.
-
-```jsx {3}
-const rowProps = React.useCallback((row) => {
-  return {
-    id: row.id,
-    status: row.original.status,
-  };
-}, []);
-```
-
-On the other hand, `getRowId` is used to specify a unique identifier in each row's internal data. This is particularly useful when the data does not have a unique `id` field for each object or when a different field is needed to be used as the unique identifier.
+Initial state can be set using the `initialState` prop. E.g. initial sort, initial filters, and initially selected rows.
 
 ```jsx {6}
 <Table
   /* … */
-  data={data}
-  columns={columns}
-  emptyTableContent='No data.'
-  getRowId={(row) => 'my-id' + row.name}
+  initialState={{
+    sortBy: [{ id: 'name', desc: false }], // Sort by name ascending
+    selectedRowIds: { 1: true, '2.0': true }, // Pre-select rows with IDs 1 and 2
+  }}
+/>
+```
+
+### `getRowId`
+
+By default, row ids are based on depth and row indexes (e.g. `3-0-1` for the fourth row's first subrow's second row). Use `getRowId` for custom ids (e.g. from data source) to have with 1-1 match between the data and the row. E.g. useful when want to select rows in `initialState.selectedRowIds`.
+
+```jsx {3}
+<Table
+  /* … */
+  getRowId={(rowData) => rowData.id}
+  initialState={{ selectedRowIds: { 28: true } }}
 />
 ```
 
 ### Subrow
 
-The `Table` component supports hierarchical data structures, allowing end users to display subrows, which can be expanded or collapsed. Each data entry in the `data` array should have `subRows` array.
+The `Table` component supports hierarchical data structures allowing end users to display collapsible subrows. Each data entry in the `data` array can have a `subRows` array.
 
-```jsx
+```jsx {6, 11}
 const data = React.useMemo(() => {
   return [
     {
@@ -78,25 +80,27 @@ const data = React.useMemo(() => {
 }, []);
 ```
 
-If subrows has any items, then expander will be shown for that row. This feature is useful for displaying related data in a structured and organized manner.
-
 <LiveExample src='Table.subRows.jsx'>
   <AllExamples.TableSubRowsExample client:load />
 </LiveExample>
 
 ### Expandable content
 
-The `Table` component allows end users to customize their own expandable content within rows by rendering a JSX element using the `subComponent` prop. This feature enables end users to provide additional details or complex data structures in a desired format that can be revealed when a row is expanded.
+**Note**: Subrows and Expandable content _cannot_ be used simultaneously.
+
+Apart from collapsible subrows, custom collapsible content can also be rendered right after the row if it is expanded. This is done by passing a function to the `subComponent` prop.
 
 <LiveExample src='Table.expandableContent.jsx'>
   <AllExamples.TableExpandableContentExample client:load />
 </LiveExample>
 
-**Note**: As there are features that are designed exclusively for expandable content but not for subrows and vice versa, these two features cannot be passed into the `Table` at the same time.
-
 ### Virtualization
 
-For tables with large datasets, the `enableVirtualization` prop can be set to `true` to enhance performance by only rendering the rows that are currently in the viewport. More importantly, height on the table is required for virtualization to work.
+**Note**: This feature is still considered _experimental_ and so may have some performance issues, bugs, future changes, etc. If If virtualization does not work, [pagination](#pagination) is the next best alternative for large datasets.
+
+For tables with large datasets, the `enableVirtualization` prop can be set to `true` to try to enhance performance by only rendering the rows that are currently in the viewport + some buffer rows.
+
+Having a height on the table is required for virtualization to work.
 
 <LiveExample src='Table.virtualization.jsx'>
   <AllExamples.TableVirtualizationExample client:load />
@@ -116,38 +120,27 @@ The `Table` component supports row selection, allowing users to select one or mo
 />
 ```
 
+There are two available selection modes passed using the `selectionMode` prop: `"single"` and `"multi"` (default).
+
 #### Single-row selection
 
-There are two available selection modes: `"single"` and `"multi"` (default). These modes can be specified using the `selectionMode` prop. For single row selection mode, users can select each row by clicking on the desired row.
+In single row selection mode (`selectionMode="single"`), users can select each row by clicking on the desired row.
 
 <LiveExample src='Table.selectSingle.jsx'>
   <AllExamples.TableSelectSingleExample client:load />
 </LiveExample>
 
-#### Multiple-row selection
+#### Multi-row selection
 
-Multiple-row selection can be enabled by setting the `selectionMode` prop to `"multi"` or by omitting the `selectionMode` prop altogether. When the `isSelectable` prop is set, the table defaults to multi-selectable. In this mode, a row with checkboxes for toggling selection is added. End users can select or deselect multiple rows by clicking on the row while holding the `Shift` or `Ctrl`/`Command` keys, or by using the checkboxes.
+In multi-row selection (`selectionMode="multi" | undefined`), a column with checkboxes for toggling a row's selection is added. This mode also supports <kbd>Ctrl</kbd>/<kbd>Command</kbd> + click and <kbd>Shift</kbd> + click shortcuts to select multiple rows.
 
 <LiveExample src='Table.selectMulti.jsx'>
   <AllExamples.TableSelectMultiExample client:load />
 </LiveExample>
 
-The `initialState` prop is useful when you want specific rows to be selected by default. This prop accepts an array of row IDs, ensuring that these rows are rendered with the appropriate selection styling.
-
-```jsx {7}
-<Table
-  /* … */
-  data={data}
-  columns={columns}
-  emptyTableContent='No data.'
-  // Pre-select the first two rows
-  initialState={{ selectedRowIds: [1, 2] }}
-/>
-```
-
 ### Density
 
-There are three available density options which define the height of each row: `"default"`, `"condensed"`, and `"extra-condensed"`.
+There are three available density options: `"default"`, `"condensed"`, and `"extra-condensed"`.
 
 <LiveExample src='Table.density.jsx'>
   <AllExamples.TableDensityExample client:load />
@@ -155,50 +148,25 @@ There are three available density options which define the height of each row: `
 
 ### Pagination
 
-The `Table` component supports pagination, which allows end users to divide large datasets into pages. This feature enhances the user experience by making it easier to navigate, view and manage data in smaller and manageable chunks.
+`Table` pagination allows end users to divide large datasets into pages. An alternative to pagination is [virtualization](#virtualization).
 
-#### Page size
+To enable pagination, pass the `paginatorRenderer` prop that takes `TablePaginatorRendererProps` as an argument and returns a pagination component (recommended: `<TablePaginator>`). It is highly recommended for `paginatorRenderer` to return `<TablePaginator>`. Passing/Spreading `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
 
-A memoized variable can be used to hold a list of page size options.
+Some of `Table`'s other pagination props:
+
+- `pageSize`: Number of rows per page (default: 25).
+- `paginateExpandedRows`: When false, it shows sub-rows in the current page instead of splitting them
 
 ```jsx
-const pageSizeList = React.useMemo(() => [10, 25, 50], []);
-```
+const paginator = React.useCallback((props) => <TablePaginator {...props} />, [pageSizeList]);
 
-The initial page size can be set using the `pageSize` prop, which defaults to 25. Additionally, the `initialState` prop can be used to specify the initial page size by setting a page size number to its `pageSize` option.
-
-```jsx {6}
 <Table
   /* … */
-  data={data}
-  columns={columns}
-  emptyTableContent='No data.'
   pageSize={10}
-/>
+  // initialState={{ pageSize: 10 }} // Alternatively, can set pageSize in initialState
+  paginatorRenderer={paginator}
+/>;
 ```
-
-```jsx {6}
-<Table
-  /* … */
-  data={data}
-  columns={columns}
-  emptyTableContent='No data.'
-  initialState={{ pageSize: 50 }}
-/>
-```
-
-#### Paginator
-
-The `paginatorRenderer` can be used to take this page size list and render the corresponding selected rows per page as users change the option.
-
-```jsx
-const paginator = React.useCallback(
-  (props) => <TablePaginator {...props} pageSizeList={pageSizeList} />,
-  [pageSizeList],
-);
-```
-
-This prop is a function that takes `TablePaginatorRendererProps` as an argument and returns pagination component. It is highly recommended that the [`TablePaginator`](#tablepaginator) is returned by this function to handle all state management as it is efficient enough for basic use-cases.
 
 <LiveExample src='Table.pagination.jsx'>
   <AllExamples.TablePaginationExample client:load />
@@ -206,69 +174,71 @@ This prop is a function that takes `TablePaginatorRendererProps` as an argument 
 
 ### Column manager
 
-The `ActionColumn` component allows you to perform actions on column items by adding the column manager to the Table header. It is recommended to place this column at the end of the column object array with its `columnManager` option set to `"true"`. The column manager includes a popover that contains information about each column, enabling you to decide which columns should be visible.
+The `ActionColumn` is a column that should be placed at the end to perform actions on each row. If `columnManager` is set to `true`, a column manager button is disabled in the action column's header cell to help toggle the visibility of certain columns.
 
-```jsx {4}
+```jsx
 const columns = React.useMemo(
   () => [
     /* … */
-    ActionColumn({ columnManager: true }),
+    {
+      // Shows the column manager button in the header cell
+      ...ActionColumn({ columnManager: true }),
+
+      // Shows actions for each row
+      Cell: () => (
+        <DropdownMenu menuItems={menuItems} onClick={(e) => e.stopPropagation()}>
+          <IconButton
+            styleType='borderless'
+            onClick={(e) => e.stopPropagation()}
+            aria-label='More options'
+          >
+            <SvgMore />
+          </IconButton>
+        </DropdownMenu>
+      ),
+    },
   ],
   [],
 );
-```
 
-Additionally, you can override the `Cell` prop of the `ActionColumn` to include a row action menu at the end of each table row. This menu enhances the user experience by providing convenient access to row-specific actions, such as editing or deleting entries.
+<Table
+  /* … */
+  columns={columns}
+/>;
+```
 
 <LiveExample src='Table.columnManager.jsx'>
   <AllExamples.TableColumnManagerExample client:load />
 </LiveExample>
 
-As a side note, the `initialState` prop allows you to initially hide specific columns in the column manager popover when the table is rendered by setting its `hiddenColumns` property to an array of the columns you want to hide.
-
-```jsx {7}
-<Table
-  /* … */
-  data={data}
-  columns={columns}
-  emptyTableContent='No data.'
-  // Hide the 'Price' column
-  initialState={{ hiddenColumns: ['price'] }}
-/>
-```
-
 ### Editing
 
 To enable editing for each `Table` cell, the `EditableCell` component should be passed into `cellRenderer` of the column object.
 
-```jsx {7}
+```jsx
+const onCellEdit = React.useCallback(
+  (columnId: string, value: string, rowData: T) => {
+    /* … */
+  },
+  []
+);
+
 const columns = React.useMemo(
   () => [
     /* … */
     {
       Header: 'Name',
       accessor: 'name',
-      cellRenderer: (props) => <EditableCell {...props} onCellEdit={onCellEditHandler} />,
+      cellRenderer: (props) => <EditableCell {...props} onCellEdit={onCellEdit} />,
     },
   ],
   [],
 );
-```
 
-This component takes the callback function `onCellEdit` which is used to handle cell edit events and update the table data accordingly.
-
-```jsx
-const onCellEdit = React.useCallback(
-  (columnId: string, value: string, rowData: T) => {
-  setData((oldData) => {
-    const newData = [...oldData];
-    const index = oldData.indexOf(rowData);
-      const newObject = { ...newData[index] };
-      newObject[columnId] = value;
-    newData[index] = newObject;
-    return newData;
-  });
-},[]);
+<Table
+  /* … */
+  columns={columns}
+/>
 ```
 
 <LiveExample src='Table.editing.jsx'>
@@ -277,15 +247,20 @@ const onCellEdit = React.useCallback(
 
 ### Sorting
 
-To enable sorting in the `Table`, the `isSortable` prop can be set to `true`. This will allow the columns to display an arrow when hovered, indicating whether the column is sorted in ascending or descending order.
+To enable sorting, set `isSortable` to `true`. To handle sorting manually (e.g. on the server-side), also pass `manualSortBy={true}` to `<Table>`. Can use in conjunction with `onSort` or `stateReducer` to listen to sorting changes.
 
-<LiveExample src='Table.sorting.jsx'>
-  <AllExamples.TableSortingExample client:load />
-</LiveExample>
+Sort arrows (`↑` for ascending or ↓ for descending) are displayed in the header cells according to the following:
 
-By default, columns are sorted in ascending order first when the arrow is clicked. To prioritize descending sorting instead, you can set the `sortDescFirst` property to `true` in the column object.
+- If a column is used for sorting, arrows are displayed regardless of hover.
+- If a column is not used for sorting but is sortable, the arrow appears only on hover to indicate the type of sorting that _will_ apply when clicked.
+- If a column is not sortable, no arrow will appear at all.
 
-```jsx {7}
+Column specific props:
+
+- First sort option is ascending. To make descending as the first choice, pass `sortDescFirst: true` to the column object.
+- To disable sorting for a column, pass `disableSortBy: true` to the column object.
+
+```jsx {7, 12, 21}
 const columns = React.useMemo(
   () => [
     /* … */
@@ -294,42 +269,25 @@ const columns = React.useMemo(
       accessor: 'name',
       sortDescFirst: true,
     },
-  ],
-  [],
-);
-```
-
-If there is any column that does not allow sorting, the `disableSortBy` prop needs to be set to `true` in the column object.
-
-```jsx {7}
-const columns = React.useMemo(
-  () => [
-    /* … */
     {
-      Header: 'Name',
-      accessor: 'name',
+      Header: 'Description',
+      accessor: 'description',
       disableSortBy: true,
     },
   ],
   [],
 );
-```
 
-#### Manual sorting
-
-The `manualSortBy` prop is useful when sorting needs to be handled manually by the developer rather than automatically by the table library. This is particularly useful when you are fetching data from a server or need custom sorting logic.
-
-```jsx {6}
 <Table
   /* … */
-  data={data}
   columns={columns}
-  emptyTableContent='No data.'
-  manualSortBy
-/>
+  isSortable
+/>;
 ```
 
-The `manualSortBy` prop must be used in conjunction with the `onSort` callback, allowing end users to implement custom sorting logic programmatically. This function must be memoized.
+<LiveExample src='Table.sorting.jsx'>
+  <AllExamples.TableSortingExample client:load />
+</LiveExample>
 
 ### Filtering
 
