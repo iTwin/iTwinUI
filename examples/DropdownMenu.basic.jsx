@@ -7,22 +7,19 @@ import { MenuItem, DropdownMenu, IconButton } from '@itwin/itwinui-react';
 import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const dropdownMenuItems = (close) => [
-    <MenuItem key={1} onClick={() => close()}>
-      Item #1
-    </MenuItem>,
-    <MenuItem key={2} onClick={() => close()}>
-      Item #2
-    </MenuItem>,
-    <MenuItem key={3} onClick={() => close()} disabled>
-      Item #3
-    </MenuItem>,
-  ];
-
   return (
     <>
-      <DropdownMenu menuItems={dropdownMenuItems}>
-        <IconButton aria-label='More options'>
+      <DropdownMenu
+        closeOnItemClick
+        menuItems={
+          <>
+            <MenuItem>Item #1</MenuItem>
+            <MenuItem>Item #2</MenuItem>
+            <MenuItem disabled>Item #3</MenuItem>
+          </>
+        }
+      >
+        <IconButton label='More options'>
           <SvgMore />
         </IconButton>
       </DropdownMenu>
