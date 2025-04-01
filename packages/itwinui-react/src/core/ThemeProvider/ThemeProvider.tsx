@@ -15,22 +15,21 @@ import {
   isUnitTest,
   HydrationProvider,
   useHydration,
-  ScopeProvider,
-  portalContainerAtom,
-  useScopedAtom,
+  PortalContainerContext,
   useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
-import { atom } from 'jotai';
 import { meta } from '../../utils/meta.js';
 
 const versionWithoutDots = meta.version.replace(/\./g, '');
 
 // ----------------------------------------------------------------------------
 
-const ownerDocumentAtom = atom<Document | undefined>(undefined);
+const OwnerDocumentContext = React.createContext<Document | undefined>(
+  undefined,
+);
 
 // ----------------------------------------------------------------------------
 
@@ -187,7 +186,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 
   future.themeBridge ??= parent.context?.future?.themeBridge;
 
-  const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
+  const portalContainerFromParent = React.useContext(PortalContainerContext);
 
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, future }),
@@ -196,8 +195,11 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     [theme, JSON.stringify(themeOptions), JSON.stringify(future)],
   );
 
+  const [portalContainer, setPortalContainer] =
+    React.useState<HTMLElement | null>(portalContainerProp || null);
+
   return (
-    <ScopeProvider>
+    <PortalContainerContext.Provider value={portalContainer}>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
           <ToastProvider
@@ -222,13 +224,14 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
                 future={future}
                 portalContainerProp={portalContainerProp}
                 portalContainerFromParent={portalContainerFromParent}
+                setPortalContainer={setPortalContainer}
                 isInheritingTheme={themeProp === 'inherit'}
               />
             </MainRoot>
           </ToastProvider>
         </ThemeContext.Provider>
       </HydrationProvider>
-    </ScopeProvider>
+    </PortalContainerContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 if (process.env.NODE_ENV === 'development') {
@@ -238,7 +241,9 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 
 const MainRoot = React.forwardRef((props, forwardedRef) => {
-  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const [ownerDocument, setOwnerDocument] = React.useState<
+    Document | undefined
+  >(undefined);
   const findOwnerDocumentFromRef = React.useCallback(
     (el: HTMLElement | null): void => {
       if (el && el.ownerDocument !== ownerDocument) {
@@ -249,10 +254,12 @@ const MainRoot = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <Root
-      {...props}
-      ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
-    />
+    <OwnerDocumentContext.Provider value={ownerDocument}>
+      <Root
+        {...props}
+        ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
+      />
+    </OwnerDocumentContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 
@@ -359,6 +366,7 @@ const PortalContainer = React.memo(
   ({
     portalContainerProp,
     portalContainerFromParent,
+    setPortalContainer,
     isInheritingTheme,
     theme,
     themeOptions,
@@ -366,11 +374,10 @@ const PortalContainer = React.memo(
   }: {
     portalContainerProp: HTMLElement | undefined;
     portalContainerFromParent: HTMLElement | null;
+    setPortalContainer: (container: HTMLElement | null) => void;
     isInheritingTheme: boolean;
   } & RootProps) => {
-    const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const [portalContainer, setPortalContainer] =
-      useScopedAtom(portalContainerAtom);
+    const ownerDocument = React.useContext(OwnerDocumentContext);
 
     // Create a new portal container only if necessary:
     // - no explicit portalContainer prop
@@ -386,7 +393,7 @@ const PortalContainer = React.memo(
 
     const id = useId();
 
-    // Synchronize atom with the correct portal target if necessary.
+    // Synchronize atom with the correct portal target.
     React.useEffect(() => {
       if (shouldSetupPortalContainer) {
         return;
@@ -394,10 +401,15 @@ const PortalContainer = React.memo(
 
       const portalTarget = portalContainerProp || portalContainerFromParent;
 
-      if (portalTarget && portalTarget !== portalContainer) {
+      if (portalTarget) {
         setPortalContainer(portalTarget);
       }
-    });
+    }, [
+      portalContainerProp,
+      portalContainerFromParent,
+      shouldSetupPortalContainer,
+      setPortalContainer,
+    ]);
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';

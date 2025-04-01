@@ -108,7 +108,6 @@
     "@swc/helpers": "^0.5.15",
     "@tanstack/react-virtual": "^3.13.0",
     "classnames": "^2.5.1",
-    "jotai": "^2.8.0",
     "react-table": "^7.8.0"
   },
   "devDependencies": {

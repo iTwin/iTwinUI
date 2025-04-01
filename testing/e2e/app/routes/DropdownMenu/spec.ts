@@ -2,7 +2,7 @@ import { test, expect, Page } from '@playwright/test';
 
 test.describe('DropdownMenu', () => {
   test('should render menu items', async ({ page }) => {
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withSubmenu');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
@@ -16,7 +16,7 @@ test.describe('DropdownMenu', () => {
   });
 
   test('should support deep level submenus', async ({ page }) => {
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withSubmenu');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
@@ -161,7 +161,7 @@ test.describe('DropdownMenu', () => {
   });
 
   test('should respect the click trigger', async ({ page }) => {
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withSubmenu');
 
     // open the whole menu
     const trigger = page.getByTestId('trigger');
@@ -183,8 +183,7 @@ test.describe('DropdownMenu', () => {
     await expect(page.getByTestId('Item 2_1')).toBeVisible();
 
     // click outside to close
-    const outside = page.getByTestId('outside');
-    await outside.click();
+    await page.locator('body').click();
     await expect(page.getByTestId('Item 1_1')).toBeHidden();
 
     // click again to open whole menu
@@ -194,7 +193,7 @@ test.describe('DropdownMenu', () => {
   });
 
   test('should respect the keyboard enter/space triggers', async ({ page }) => {
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withSubmenu');
 
     // open the whole menu (using Enter)
     await page.keyboard.press('Tab');
@@ -234,7 +233,7 @@ test.describe('DropdownMenu', () => {
       await page.keyboard.press('ArrowRight', { delay: 30 });
     };
 
-    await page.goto('/DropdownMenu');
+    await page.goto('/DropdownMenu?menuType=withSubmenu');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');
@@ -310,6 +309,29 @@ test.describe('DropdownMenu', () => {
     await page.locator('button').nth(10).scrollIntoViewIfNeeded();
 
     await expect(page.getByRole('menu')).toHaveCount(1);
+  });
+
+  test('should support closeOnItemClick prop', async ({ page }) => {
+    await page.goto('/DropdownMenu?closeOnItemClick=true');
+
+    const trigger = page.getByRole('button', { name: 'More' });
+    const menu = page.getByRole('menu');
+
+    // open
+    await trigger.click();
+    await expect(menu).toBeVisible();
+
+    // click on item => close
+    await page.getByRole('menuitem', { name: 'Item #1' }).click();
+    await expect(menu).not.toBeVisible();
+
+    // click on disabled item => do not close
+    await trigger.click();
+    await expect(menu).toBeVisible();
+    await page
+      .getByRole('menuitem', { name: 'Item #3' })
+      .click({ force: true });
+    await expect(menu).toBeVisible();
   });
 });
 
