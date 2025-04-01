@@ -148,7 +148,7 @@ type TabListOwnProps = {
 const TabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { type, hasSublabel, color } = useSafeContext(TabsContext);
+  const { type, hasSublabel, color, orientation } = useSafeContext(TabsContext);
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
@@ -173,6 +173,7 @@ const TabList = React.forwardRef((props, ref) => {
         },
         className,
       )}
+      data-iui-orientation={orientation}
       role='tablist'
       ref={refs}
       {...rest}
@@ -249,6 +250,10 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       const currentTabRect = tabRef.current?.getBoundingClientRect();
       const tabslistRect = tablistRef.current?.getBoundingClientRect();
 
+      // https://github.com/iTwin/iTwinUI/issues/2465
+      const currentTabLeftIncludingScroll =
+        (currentTabRect?.x ?? 0) + (tablistRef.current?.scrollLeft ?? 0);
+
       // Using getBoundingClientRect() to get decimal granularity.
       // Not using offsetLeft/offsetTop because they round to the nearest integer.
       // Even minor inaccuracies in the stripe position can cause unexpected scroll/scrollbar.
@@ -256,7 +261,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       const tabsStripePosition =
         currentTabRect != null && tabslistRect != null
           ? {
-              horizontal: currentTabRect.x - tabslistRect.x,
+              horizontal: currentTabLeftIncludingScroll - tabslistRect.x,
               vertical: currentTabRect.y - tabslistRect.y,
             }
           : {
