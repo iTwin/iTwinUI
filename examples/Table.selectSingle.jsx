@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table } from '@itwin/itwinui-react';
+import { Table, Anchor } from '@itwin/itwinui-react';
 
 export default () => {
   const generateItem = React.useCallback((index, parentRow = '') => {
@@ -28,6 +28,16 @@ export default () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
+        Cell: ({ value }) => {
+          return (
+            <Anchor
+              as='button'
+              onClick={() => console.log(`Selected ${value}`)}
+            >
+              {value}
+            </Anchor>
+          );
+        },
       },
       {
         id: 'price',

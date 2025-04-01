@@ -162,6 +162,31 @@ There are two available selection modes passed using the `selectionMode` prop: `
 
 In single row selection mode (`selectionMode="single"`), users can select each row by clicking on the desired row.
 
+**Note**: For accessibility reasons, in single-selection Tables, it is highly recommended to include a button in each selectable row. [More info](https://github.com/iTwin/iTwinUI/issues/2130#issuecomment-2209287280).
+
+```jsx
+const columns = React.useMemo(
+  () =>
+    [
+      /* … */
+      {
+        /* … */
+        Cell: ({ value }) => {
+          return (
+            <Anchor
+              as="button"
+              onClick={() => console.log(`Selected ${value}`)}
+            >
+              {value}
+            </Anchor>
+          );
+        },
+      },
+    ] satisfies Column[],
+  []
+);
+```
+
 <LiveExample src='Table.selectSingle.jsx'>
   <AllExamples.TableSelectSingleExample client:load />
 </LiveExample>
