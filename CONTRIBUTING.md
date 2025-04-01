@@ -101,8 +101,6 @@ By default, a portal will be opened containing links to all the different dev se
 
 - docs website: `http://localhost:1700`
 - vite playground: `http://localhost:1701`
-- next playground: `http://localhost:1702`
-- astro playground: `http://localhost:1703`
 - react workshop (stories): `http://localhost:6006`
 - css workshop (html pages): `http://localhost:3050`
 

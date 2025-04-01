@@ -30,12 +30,6 @@
     },
     "1701": {
       "label": "vite playground"
-    },
-    "1702": {
-      "label": "next playground"
-    },
-    "1703": {
-      "label": "astro playground"
     }
   },
   "onCreateCommand": "pnpm install"
