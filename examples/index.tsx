@@ -1280,21 +1280,9 @@ import { default as TableSortingExampleRaw } from './Table.sorting';
 const TableSortingExample = withThemeProvider(TableSortingExampleRaw);
 export { TableSortingExample };
 
-import { default as TableFilteringExampleRaw } from './Table.filtering';
-const TableFilteringExample = withThemeProvider(TableFilteringExampleRaw);
-export { TableFilteringExample };
-
-import { default as TableGlobalFilteringExampleRaw } from './Table.globalFiltering';
-const TableGlobalFilteringExample = withThemeProvider(
-  TableGlobalFilteringExampleRaw,
-);
-export { TableGlobalFilteringExample };
-
-import { default as TableManualFilteringExampleRaw } from './Table.manualFiltering';
-const TableManualFilteringExample = withThemeProvider(
-  TableManualFilteringExampleRaw,
-);
-export { TableManualFilteringExample };
+import { default as TableInitialStateExampleRaw } from './Table.initialState';
+const TableInitialStateExample = withThemeProvider(TableInitialStateExampleRaw);
+export { TableInitialStateExample };
 
 // ----------------------------------------------------------------------------
 

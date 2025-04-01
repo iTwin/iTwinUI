@@ -234,7 +234,7 @@ export type TableProps<
    */
   selectRowOnClick?: boolean;
   /**
-   * Function that takes `TablePaginatorRendererProps` as an argument and returns pagination component.
+   * Function that takes `TablePaginatorRendererProps` as an argument and returns a pagination component.
    *
    * Recommended to use `TablePaginator`. Passing `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
    * @example

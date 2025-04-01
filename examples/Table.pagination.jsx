@@ -51,6 +51,7 @@ export default () => {
         emptyTableContent='No data.'
         data={data}
         pageSize={50}
+        density='condensed'
         paginatorRenderer={paginator}
         style={{ height: '300px' }}
       />

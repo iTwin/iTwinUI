@@ -26,13 +26,13 @@ The most basic `Table` can be implemented by passing three props:
   <AllExamples.TableMainExample client:load />
 </LiveExample>
 
-**Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see their [docs](https://react-table.tanstack.com/docs/api/overview).
+**Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see their [docs](https://react-table-v7-docs.netlify.app/).
 
 ### `initialState`
 
 Initial state can be set using the `initialState` prop. E.g. initial sort, initial filters, and initially selected rows.
 
-```jsx {6}
+```jsx
 <Table
   /* … */
   initialState={{
@@ -42,9 +42,13 @@ Initial state can be set using the `initialState` prop. E.g. initial sort, initi
 />
 ```
 
+<LiveExample src='Table.initialState.jsx'>
+  <AllExamples.TableInitialStateExample client:load />
+</LiveExample>
+
 ### `getRowId`
 
-By default, row ids are based on depth and row indexes (e.g. `3-0-1` for the fourth row's first subrow's second row). Use `getRowId` for custom ids (e.g. from data source) to have with 1-1 match between the data and the row. E.g. useful when want to select rows in `initialState.selectedRowIds`.
+By default, row ids are based on depth and row indexes (e.g. `3-0-1` for the fourth row's first subrow's second row). Use `getRowId` for custom ids (e.g. from data source) to have a 1-to-1 match between the data and the row. E.g. useful when you want to select rows in `initialState.selectedRowIds`.
 
 ```jsx {3}
 <Table
@@ -97,7 +101,7 @@ Apart from collapsible subrows, custom collapsible content can also be rendered 
 
 ### Virtualization
 
-**Note**: This feature is still considered _experimental_ and so may have some performance issues, bugs, future changes, etc. If If virtualization does not work, [pagination](#pagination) is the next best alternative for large datasets.
+**Note**: This feature is still considered _experimental_ and so may have some performance issues, bugs, future changes, etc. If virtualization does not work, [pagination](#pagination) is the next best alternative for large datasets.
 
 For tables with large datasets, the `enableVirtualization` prop can be set to `true` to try to enhance performance by only rendering the rows that are currently in the viewport + some buffer rows.
 
@@ -182,7 +186,7 @@ There are three available density options: `"default"`, `"condensed"`, and `"ext
 
 `Table` pagination allows end users to divide large datasets into pages. An alternative to pagination is [virtualization](#virtualization).
 
-To enable pagination, pass the `paginatorRenderer` prop that takes `TablePaginatorRendererProps` as an argument and returns a pagination component (recommended: `<TablePaginator>`). It is highly recommended for `paginatorRenderer` to return `<TablePaginator>`. Passing/Spreading `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
+To enable pagination, pass the `paginatorRenderer` prop that takes `TablePaginatorRendererProps` as an argument and returns a pagination component (recommended: `<TablePaginator>`). Passing/Spreading `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
 
 Some of `Table`'s other pagination props:
 
@@ -190,7 +194,12 @@ Some of `Table`'s other pagination props:
 - `paginateExpandedRows`: When false, it shows sub-rows in the current page instead of splitting them
 
 ```jsx
-const paginator = React.useCallback((props) => <TablePaginator {...props} />, [pageSizeList]);
+const paginator = React.useCallback(
+  (props) => {
+    return <TablePaginator {...props} />;
+  },
+  [pageSizeList],
+);
 
 <Table
   /* … */
@@ -206,12 +215,14 @@ const paginator = React.useCallback((props) => <TablePaginator {...props} />, [p
 
 ### Column manager
 
-The `ActionColumn` is a column that should be placed at the end to perform actions on each row. If `columnManager` is set to `true`, a column manager button is disabled in the action column's header cell to help toggle the visibility of certain columns.
+The `ActionColumn` is an optional last column to perform actions on each row. If `columnManager` is set to `true`, a column manager button is displayed in the action column's header cell to help toggle the visibility of certain columns.
 
 ```jsx
 const columns = React.useMemo(
   () => [
     /* … */
+
+    // Action column should be the last column.
     {
       // Shows the column manager button in the header cell
       ...ActionColumn({ columnManager: true }),
@@ -247,7 +258,7 @@ const columns = React.useMemo(
 
 To enable editing for each `Table` cell, the `EditableCell` component should be passed into `cellRenderer` of the column object.
 
-```jsx
+```jsx {13}
 const onCellEdit = React.useCallback(
   (columnId: string, value: string, rowData: T) => {
     /* … */
@@ -259,8 +270,7 @@ const columns = React.useMemo(
   () => [
     /* … */
     {
-      Header: 'Name',
-      accessor: 'name',
+      /* … */
       cellRenderer: (props) => <EditableCell {...props} onCellEdit={onCellEdit} />,
     },
   ],
@@ -281,7 +291,7 @@ const columns = React.useMemo(
 
 To enable sorting, set `isSortable` to `true`. To handle sorting manually (e.g. on the server-side), also pass `manualSortBy={true}` to `<Table>`. Can use in conjunction with `onSort` or `stateReducer` to listen to sorting changes.
 
-Sort arrows (`↑` for ascending or ↓ for descending) are displayed in the header cells according to the following:
+Sort arrows (↑ for ascending and ↓ for descending) are displayed in the header cells according to the following:
 
 - If a column is used for sorting, arrows are displayed regardless of hover.
 - If a column is not used for sorting but is sortable, the arrow appears only on hover to indicate the type of sorting that _will_ apply when clicked.
