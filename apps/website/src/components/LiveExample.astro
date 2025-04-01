@@ -29,6 +29,10 @@ const { src, truncate = true, hideCode = false } = Astro.props;
 
 const jsxPath = require.resolve(`examples/${src}`);
 const cssPath = jsxPath.replace(/\.jsx$/, '.css');
+const srcName = src
+  .replace(/\.jsx$/, '')
+  .replace(/\./, '-')
+  .toLowerCase();
 
 let jsxCode = await fs.promises.readFile(jsxPath, 'utf8');
 
@@ -44,21 +48,35 @@ const cssCode = await (async () => {
     return '';
   }
 })();
+const defaultTheme = 'dark';
 ---
 
-<ThemeProvider theme='dark' themeOptions={{ applyBackground: true }}>
-  <demo-box>
+<ThemeProvider theme={defaultTheme} themeOptions={{ applyBackground: true }}>
+  <demo-box class='demo-box'>
+    <theme-button
+      ><fieldset class='theme-toggle'>
+        <legend>Theme</legend>
+        <label><input type='radio' name=`theme-${srcName}` value='light' /><span>Light</span></label
+        >
+        <label
+          ><input type='radio' name=`theme-${srcName}` value='dark' checked /><span>Dark</span
+          ></label
+        >
+      </fieldset></theme-button
+    >
     <template shadowrootmode='open'>
-      <style is:inline>
-        astro-island {
-          display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
-          max-inline-size: 100cqi;
-        }
-      </style>
-      <style set:html={cssCode}></style>
-      <link rel='stylesheet' href={itwinuiStyles} />
-      <slot />
-      <slot is:inline />
+      <ThemeProvider theme={defaultTheme} themeOptions={{ applyBackground: false }}>
+        <style is:inline>
+          astro-island {
+            display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+            max-inline-size: 100cqi;
+          }
+        </style>
+        <style set:html={cssCode}></style>
+        <link rel='stylesheet' href={itwinuiStyles} />
+        <slot />
+        <slot is:inline />
+      </ThemeProvider>
     </template>
 
     <OpenInCodePen
@@ -81,6 +99,32 @@ const cssCode = await (async () => {
 }
 
 <script>
+  customElements.define(
+    'theme-button',
+    class extends HTMLElement {
+      connectedCallback() {
+        const themeToggle = this.querySelector('.theme-toggle');
+        if (themeToggle) {
+          const themeToggles = themeToggle.querySelectorAll('input[name^="theme"]');
+
+          themeToggles.forEach((radio) => {
+            radio.addEventListener('change', () => {
+              const theme = radio.getAttribute('value');
+              const demoBox = this.parentElement;
+              const demoBoxTheme = demoBox?.parentElement;
+              const shadowRootTheme = demoBox?.shadowRoot?.children[0];
+
+              if (demoBoxTheme && shadowRootTheme && theme) {
+                demoBoxTheme.setAttribute('data-iui-theme', theme);
+                shadowRootTheme.setAttribute('data-iui-theme', theme);
+              }
+            });
+          });
+        }
+      }
+    },
+  );
+
   customElements.define(
     'demo-code',
     class extends HTMLElement {
@@ -108,23 +152,6 @@ const cssCode = await (async () => {
           this.attachShadow({ mode: 'open' }).appendChild(template.content);
           template.remove();
         }
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'data-iui-theme') {
-              const element = mutation.target as HTMLElement;
-              const theme = element.dataset.iuiTheme;
-              const themeProvider = this.parentElement;
-              if (themeProvider && theme) themeProvider.setAttribute('data-iui-theme', theme);
-            }
-          });
-        });
-        const themeProvider = this.shadowRoot?.querySelector('[data-iui-theme]');
-        if (themeProvider instanceof HTMLElement) {
-          observer.observe(themeProvider, {
-            attributes: true,
-            attributeFilter: ['data-iui-theme'],
-          });
-        }
       }
     },
   );
@@ -150,6 +177,28 @@ const cssCode = await (async () => {
       bottom: 0.25rem;
       right: 0.25rem;
       z-index: 1;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: var(--iui-border-radius-1);
+      border: 1px solid var(--iui-color-border);
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+      }
+
+      input {
+        cursor: pointer;
+      }
     }
 
     demo-code {
