@@ -24,9 +24,7 @@ import { polymorphic } from '../../utils/index.js';
  *   ]}
  * </Menu>
  */
-export const MenuExtraContent = polymorphic.li('iui-menu-content', {
-  role: 'presentation',
-});
+export const MenuExtraContent = polymorphic.div('iui-menu-content');
 if (process.env.NODE_ENV === 'development') {
   MenuExtraContent.displayName = 'MenuExtraContent';
 }
