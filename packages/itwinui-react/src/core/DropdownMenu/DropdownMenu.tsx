@@ -41,6 +41,11 @@ export type DropdownMenuProps = {
   middleware?: {
     hide?: boolean;
   };
+  /**
+   * If `true`, closes the `DropdownMenu` when any descendant `MenuItem` is clicked.
+   * @default false
+   */
+  closeOnItemClick?: boolean;
 } & Pick<
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
@@ -90,6 +95,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     portal = true,
     middleware,
+    closeOnItemClick = false,
     ...rest
   } = props;
 
@@ -113,35 +119,37 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
   const dropdownMenuContextValue = React.useMemo(() => ({ close }), [close]);
 
   return (
-    <DropdownMenuContext.Provider value={dropdownMenuContextValue}>
-      <Menu
-        trigger={children}
-        onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
-          if (e.defaultPrevented) {
-            return;
-          }
-          if (e.key === 'Tab') {
-            setVisible(false);
-          }
-        })}
-        role={role}
-        ref={forwardedRef}
-        portal={portal}
-        popoverProps={React.useMemo(
-          () => ({
-            placement,
-            matchWidth,
-            visible,
-            onVisibleChange: setVisible,
-            middleware,
-          }),
-          [matchWidth, middleware, placement, setVisible, visible],
-        )}
-        {...rest}
-      >
-        {menuContent}
-      </Menu>
-    </DropdownMenuContext.Provider>
+    <DropdownMenuCloseOnClickContext.Provider value={closeOnItemClick}>
+      <DropdownMenuContext.Provider value={dropdownMenuContextValue}>
+        <Menu
+          trigger={children}
+          onKeyDown={mergeEventHandlers(props.onKeyDown, (e) => {
+            if (e.defaultPrevented) {
+              return;
+            }
+            if (e.key === 'Tab') {
+              setVisible(false);
+            }
+          })}
+          role={role}
+          ref={forwardedRef}
+          portal={portal}
+          popoverProps={React.useMemo(
+            () => ({
+              placement,
+              matchWidth,
+              visible,
+              onVisibleChange: setVisible,
+              middleware,
+            }),
+            [matchWidth, middleware, placement, setVisible, visible],
+          )}
+          {...rest}
+        >
+          {menuContent}
+        </Menu>
+      </DropdownMenuContext.Provider>
+    </DropdownMenuCloseOnClickContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
 

@@ -16,28 +16,47 @@ import { SvgMore } from '@itwin/itwinui-icons-react';
 export default () => {
   const [searchParams] = useSearchParams();
 
-  const menuType = (searchParams.get('menuType') || 'withSubmenu') as
+  const menuType = searchParams.get('menuType') as
     | 'withSubmenu'
     | 'withHideMiddleware'
-    | 'withExtraContent';
+    | 'withExtraContent'
+    | undefined;
   const hideMiddleware =
     searchParams.get('hideMiddleware') === 'false' ? false : undefined;
+  const closeOnItemClick = searchParams.get('closeOnItemClick') === 'true';
 
-  return (
-    <>
-      {menuType === 'withExtraContent' ? (
-        <DropdownMenuWithExtraContent />
-      ) : menuType === 'withHideMiddleware' ? (
-        <DropdownMenuHideMiddleware hideMiddleware={hideMiddleware} />
-      ) : (
-        <DropdownMenuWithSubmenus />
-      )}
-      <div data-testid='outside'>Outside</div>
-    </>
-  );
+  if (menuType === 'withSubmenu') {
+    return <DropdownMenuWithSubmenus />;
+  }
+  if (menuType === 'withHideMiddleware') {
+    return <DropdownMenuHideMiddleware hideMiddleware={hideMiddleware} />;
+  }
+  if (menuType === 'withExtraContent') {
+    return <DropdownMenuWithExtraContent />;
+  }
+  return <DropdownMenuBasic closeOnItemClick={closeOnItemClick} />;
 };
 
 // ----------------------------------------------------------------------------
+
+const DropdownMenuBasic = ({ closeOnItemClick = false }) => {
+  return (
+    <DropdownMenu
+      closeOnItemClick={closeOnItemClick}
+      menuItems={
+        <>
+          <MenuItem>Item #1</MenuItem>
+          <MenuItem>Item #2</MenuItem>
+          <MenuItem disabled>Item #3</MenuItem>
+        </>
+      }
+    >
+      <IconButton label='More'>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
+  );
+};
 
 const DropdownMenuWithSubmenus = () => {
   return (
