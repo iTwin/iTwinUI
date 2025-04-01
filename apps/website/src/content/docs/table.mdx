@@ -14,10 +14,11 @@ Bentley makes extensive use of tables and data grids throughout its web applicat
 
 ## Usage
 
+**Note**: To avoid bugs, always try **memoizing** props.
+
 The most basic `Table` can be implemented by passing three props:
 
 - `data`: an array containing table data displayed in the table. Each key in each object corresponds to each column's `accessor` property.
-  - Must be memoized.
 - `columns`: an array containing table column objects. Each column object requires a `Header`, which will be displayed as a column title, and `id`.
 - `emptyTableContent`: a JSX element table content shown when there is no data.
 
@@ -105,6 +106,37 @@ Having a height on the table is required for virtualization to work.
 <LiveExample src='Table.virtualization.jsx'>
   <AllExamples.TableVirtualizationExample client:load />
 </LiveExample>
+
+### Controlled state / `stateReducer`
+
+The uncontrolled Table state is sufficient for most use-cases. However, for advanced control over the table state, pass a `stateReducer` function. This function receives the `action`, `prevState`, and `newState` and thus allows to run custom logic based on these arguments and return a custom new state.
+
+The `stateReducer` function also provides the Table's `instance`. This allows manually triggering actions on the Table.
+
+```jsx
+const tableInstance = React.useRef<TableInstance<DemoData>>(undefined);
+
+// Example of manually triggering an action
+const toggleRowSelected = (id: string, checked: boolean) => {
+  tableInstance.current?.toggleRowSelected(id, checked);
+}
+
+<Table
+  /* … */
+  stateReducer={
+    useCallback((newState, action, prevState, instance) => {
+      tableInstance.current = instance;
+
+      // Some custom logic depending on action
+      // if (action.type === "…") {
+      //   …
+      // }
+
+      return newState;
+    }, []) satisfies NonNullable<TableOptions<DemoData>['stateReducer']>
+  }
+/>
+```
 
 ### Selection
 
@@ -287,36 +319,6 @@ const columns = React.useMemo(
 
 <LiveExample src='Table.sorting.jsx'>
   <AllExamples.TableSortingExample client:load />
-</LiveExample>
-
-### Filtering
-
-For basic filtering in the `Table`, you can pass the `Filter` prop to the column object. The `Filter` prop accepts a JSX element to display a filter component, which can be customized or use iTwinUI's pre-built `tableFilter` components. This `tableFilter` object provides three filter components:
-
-- `TextFilter`: a basic string filter with a single input field.
-- `NumberRangeFilter`: a number range filter. It only works with `number` type object properties. If the data is required to be different type e.g. `string`, you can use `accessor` property in column description: `accessor: (rowData) => Number(rowData.numberProp)`.
-- `DateRangeFilter`: a date range filter. By default, it handles user input in `en-us` date format. If there are other specific formats that need to be displayed, `formatDate`, `parseInput` and `placeholder` are the date range filter options that can passed into the filter component.
-
-<LiveExample src='Table.filtering.jsx'>
-  <AllExamples.TableFilteringExample client:load />
-</LiveExample>
-
-#### Global filtering
-
-In addition to filtering data in individual columns, global filtering can be useful for searching through the entire table. The `globalFilterValue` prop can be used to set a default filter value when the table is rendered or to update the table based on a state filter variable.
-
-<LiveExample src='Table.globalFiltering.jsx'>
-  <AllExamples.TableGlobalFilteringExample client:load />
-</LiveExample>
-
-**Note**: The `autoResetGlobalFilter` prop can be used to reset the table filter whenever a change is detected in the filter value.
-
-#### Manual filtering
-
-The `Table` supports custom filtering, allowing users to filter columns based on their specific needs. To implement custom filtering, you can use the `BaseFilter` component as a wrapper for your custom filter component. Then, this custom filter component can be passed into the `Filter` option of the column object.
-
-<LiveExample src='Table.manualFiltering.jsx'>
-  <AllExamples.TableManualFilteringExample client:load />
 </LiveExample>
 
 ## Props
