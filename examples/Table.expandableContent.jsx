@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table } from '@itwin/itwinui-react';
+import { Table, Text } from '@itwin/itwinui-react';
 
 export default () => {
   const generateItem = React.useCallback((index, parentRow = '') => {
@@ -38,9 +38,25 @@ export default () => {
     [],
   );
 
+  const expandedSubComponent = React.useCallback(
+    (row) => (
+      <div style={{ padding: 16 }}>
+        <Text>
+          {row.original.product}: ${row.original.price}
+        </Text>
+      </div>
+    ),
+    [],
+  );
+
   return (
     <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
+      <Table
+        columns={columns}
+        emptyTableContent='No data.'
+        data={data}
+        subComponent={expandedSubComponent}
+      />
     </div>
   );
 };

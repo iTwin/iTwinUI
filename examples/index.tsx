@@ -1234,6 +1234,56 @@ import { default as TableMainExampleRaw } from './Table.main';
 const TableMainExample = withThemeProvider(TableMainExampleRaw);
 export { TableMainExample };
 
+import { default as TableSubRowsExampleRaw } from './Table.subRows';
+const TableSubRowsExample = withThemeProvider(TableSubRowsExampleRaw);
+export { TableSubRowsExample };
+
+import { default as TableVirtualizationExampleRaw } from './Table.virtualization';
+const TableVirtualizationExample = withThemeProvider(
+  TableVirtualizationExampleRaw,
+);
+export { TableVirtualizationExample };
+
+import { default as TableExpandableContentExampleRaw } from './Table.expandableContent';
+const TableExpandableContentExample = withThemeProvider(
+  TableExpandableContentExampleRaw,
+);
+export { TableExpandableContentExample };
+
+import { default as TableSelectMultiExampleRaw } from './Table.selectMulti';
+const TableSelectMultiExample = withThemeProvider(TableSelectMultiExampleRaw);
+export { TableSelectMultiExample };
+
+import { default as TableSelectSingleExampleRaw } from './Table.selectSingle';
+const TableSelectSingleExample = withThemeProvider(TableSelectSingleExampleRaw);
+export { TableSelectSingleExample };
+
+import { default as TableDensityExampleRaw } from './Table.density';
+const TableDensityExample = withThemeProvider(TableDensityExampleRaw);
+export { TableDensityExample };
+
+import { default as TablePaginationExampleRaw } from './Table.pagination';
+const TablePaginationExample = withThemeProvider(TablePaginationExampleRaw);
+export { TablePaginationExample };
+
+import { default as TableColumnManagerExampleRaw } from './Table.columnManager';
+const TableColumnManagerExample = withThemeProvider(
+  TableColumnManagerExampleRaw,
+);
+export { TableColumnManagerExample };
+
+import { default as TableEditingExampleRaw } from './Table.editing';
+const TableEditingExample = withThemeProvider(TableEditingExampleRaw);
+export { TableEditingExample };
+
+import { default as TableSortingExampleRaw } from './Table.sorting';
+const TableSortingExample = withThemeProvider(TableSortingExampleRaw);
+export { TableSortingExample };
+
+import { default as TableInitialStateExampleRaw } from './Table.initialState';
+const TableInitialStateExample = withThemeProvider(TableInitialStateExampleRaw);
+export { TableInitialStateExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as TabsMainExampleRaw } from './Tabs.main';

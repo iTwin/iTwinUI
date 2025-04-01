@@ -11,6 +11,8 @@ import type {
 import { Checkbox } from '../../Checkbox/Checkbox.js';
 import { DefaultCell } from '../cells/index.js';
 import { iuiId } from '../Table.js';
+import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
+import { Label } from '../../Label/Label.js';
 
 export const SELECTION_CELL_ID = 'iui-table-checkbox-selector';
 
@@ -62,45 +64,54 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
       const indeterminate =
         !checked && Object.keys(state.selectedRowIds).length > 0;
       return (
-        <Checkbox
-          {...getToggleAllRowsSelectedProps()}
-          style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
-          title='' // Removes default title that comes from react-table
-          checked={checked && !disabled}
-          indeterminate={indeterminate}
-          disabled={disabled}
-          onChange={() =>
-            toggleAllRowsSelected(!rows.some((row) => row.isSelected))
-          }
-        />
+        <Label>
+          <VisuallyHidden>Toggle all</VisuallyHidden>
+          <Checkbox
+            {...getToggleAllRowsSelectedProps()}
+            style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
+            title='' // Removes default title that comes from react-table
+            checked={checked && !disabled}
+            indeterminate={indeterminate}
+            disabled={disabled}
+            onChange={() =>
+              toggleAllRowsSelected(!rows.some((row) => row.isSelected))
+            }
+          />
+        </Label>
       );
     },
     Cell: ({ row, selectSubRows = true }: CellProps<T>) => (
-      <Checkbox
-        {...row.getToggleRowSelectedProps()}
-        style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
-        title='' // Removes default title that comes from react-table
-        disabled={isDisabled?.(row.original)}
-        onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
-        onChange={() => {
-          // Only goes through sub-rows if they are available and not sub-components
-          if (
-            row.subRows.length > 0 &&
-            selectSubRows &&
-            row.initialSubRows[0].original[iuiId as any] === undefined
-          ) {
-            //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
-            //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
-            row.toggleRowSelected(
-              !row.subRows.every(
-                (subRow) => subRow.isSelected || isDisabled?.(subRow.original),
-              ),
-            );
-          } else {
-            row.toggleRowSelected(!row.isSelected);
-          }
-        }}
-      />
+      <Label>
+        <VisuallyHidden>
+          {row.isSelected ? 'Deselect' : 'Select'} row
+        </VisuallyHidden>
+        <Checkbox
+          {...row.getToggleRowSelectedProps()}
+          style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
+          title='' // Removes default title that comes from react-table
+          disabled={isDisabled?.(row.original)}
+          onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
+          onChange={() => {
+            // Only goes through sub-rows if they are available and not sub-components
+            if (
+              row.subRows.length > 0 &&
+              selectSubRows &&
+              row.initialSubRows[0].original[iuiId as any] === undefined
+            ) {
+              //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
+              //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
+              row.toggleRowSelected(
+                !row.subRows.every(
+                  (subRow) =>
+                    subRow.isSelected || isDisabled?.(subRow.original),
+                ),
+              );
+            } else {
+              row.toggleRowSelected(!row.isSelected);
+            }
+          }}
+        />
+      </Label>
     ),
     cellRenderer: (props: CellRendererProps<T>) => (
       <DefaultCell

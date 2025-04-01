@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table } from '@itwin/itwinui-react';
+import { Table, TablePaginator } from '@itwin/itwinui-react';
 
 export default () => {
   const generateItem = React.useCallback((index, parentRow = '') => {
@@ -16,7 +16,7 @@ export default () => {
 
   const data = React.useMemo(
     () =>
-      Array(3)
+      Array(100)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -38,9 +38,23 @@ export default () => {
     [],
   );
 
+  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+  const paginator = React.useCallback(
+    (props) => <TablePaginator {...props} pageSizeList={pageSizeList} />,
+    [pageSizeList],
+  );
+
   return (
     <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
+      <Table
+        columns={columns}
+        emptyTableContent='No data.'
+        data={data}
+        pageSize={50}
+        density='condensed'
+        paginatorRenderer={paginator}
+        style={{ height: '300px' }}
+      />
     </div>
   );
 };

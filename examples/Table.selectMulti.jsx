@@ -40,7 +40,12 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
+      <Table
+        columns={columns}
+        emptyTableContent='No data.'
+        data={data}
+        isSelectable
+      />
     </div>
   );
 };

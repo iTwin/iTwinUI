@@ -234,7 +234,7 @@ export type TableProps<
    */
   selectRowOnClick?: boolean;
   /**
-   * Function that takes `TablePaginatorRendererProps` as an argument and returns pagination component.
+   * Function that takes `TablePaginatorRendererProps` as an argument and returns a pagination component.
    *
    * Recommended to use `TablePaginator`. Passing `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
    * @example
@@ -1005,6 +1005,7 @@ export const Table = <
             ...style,
           },
         })}
+        tabIndex={0}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
@@ -1081,9 +1082,9 @@ export const Table = <
               bodyProps?.className,
             ),
           })}
-          aria-multiselectable={
-            (isSelectable && selectionMode === 'multi') || undefined
-          }
+          // aria-multiselectable={
+          //   (isSelectable && selectionMode === 'multi') || undefined
+          // }
         >
           <ShadowRoot css={virtualizerCss}>
             {enableVirtualization && data.length !== 0 ? (
