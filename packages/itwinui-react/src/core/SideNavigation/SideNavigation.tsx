@@ -69,7 +69,7 @@ type SideNavigationProps = {
   /**
    * Passes props for SideNav wrapper.
    */
-  wrapperProps?: React.ComponentProps<'div'>;
+  wrapperProps?: React.ComponentProps<'nav'>;
   /**
    * Passes props for SideNav content.
    */
@@ -86,6 +86,10 @@ type SideNavigationProps = {
 
 /**
  * Left side navigation menu component.
+ *
+ * Renders a `<nav>` landmark, which can be labelled using `wrapperProps['aria-labelledby']`
+ * or `wrapperProps['aria-label']`.
+ *
  * @example
  * <SideNavigation
  *   items={[
@@ -135,13 +139,13 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
   return (
     <SidenavExpandedContext.Provider value={isExpanded}>
       <Box
+        as='nav'
         {...wrapperProps}
         className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
         ref={forwardedRef}
       >
         <FloatingDelayGroup delay={defaultTooltipDelay}>
           <Box
-            as='div'
             className={cx(
               'iui-side-navigation',
               {
