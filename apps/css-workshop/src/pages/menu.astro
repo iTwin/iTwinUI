@@ -38,15 +38,15 @@ import ListItem_ from '../components/ListItem.astro';
 
   <h2>Default</h2>
   <section id='demo-default'>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_ actionable id='test-menu-1' role='menuitem' tabindex='0'>Option 1</ListItem_>
       <ListItem_ actionable role='menuitem' tabindex='0'>Option 2</ListItem_>
       <ListItem_ actionable disabled role='menuitem' tabindex='0'>Option 3</ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_ isActive actionable tabindex='0' role='menuitem' tabindex='0'>
         Option 1
         <svg-checkmark slot='end-icon'></svg-checkmark>
@@ -56,11 +56,11 @@ import ListItem_ from '../components/ListItem.astro';
         Option 3
         <svg-checkmark slot='end-icon'></svg-checkmark>
       </ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' id='demo-scrollable'>
+    <div class='iui-menu' id='demo-scrollable'>
       <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         Option 1
         <svg-checkmark slot='end-icon'></svg-checkmark>
@@ -87,11 +87,11 @@ import ListItem_ from '../components/ListItem.astro';
       <ListItem_ actionable role='menuitem' tabindex='0'>Option 12</ListItem_>
       <ListItem_ actionable role='menuitem' tabindex='0'>Option 13</ListItem_>
       <ListItem_ actionable role='menuitem' tabindex='0'>Option 14</ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_ actionable tabindex='0' id='test-menu-2' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 1
@@ -104,11 +104,11 @@ import ListItem_ from '../components/ListItem.astro';
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Option 3
       </ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_ isActive actionable tabindex='0' role='menuitem'>
         <svg-placeholder slot='start-icon'></svg-placeholder>
          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -128,11 +128,11 @@ import ListItem_ from '../components/ListItem.astro';
          Option 3
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         isActive
         actionable
@@ -165,14 +165,14 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
-      <li class='iui-menu-content' role='presentation'>
+    <div class='iui-menu' role='menu'>
+      <div class='iui-menu-content' role='presentation'>
         <div class='iui-text-leading'>Terry Rivers</div>
         <div class='iui-text-muted' style='margin-bottom: 8px;'>terry.rivers@email.com</div>
         <label class='iui-input-grid'>
@@ -183,26 +183,26 @@ import ListItem_ from '../components/ListItem.astro';
             <Icon_ svg='caret-down-small' class='iui-end-icon' />
           </div>
         </label>
-      </li>
-      <li class='iui-menu-divider' role='separator'></li>
+      </div>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>View profile</ListItem_>
       <ListItem_ actionable role='menuitem' tabindex='0'>Sign out</ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
-      <li class='iui-menu-content' role='presentation'>
+    <div class='iui-menu' role='menu'>
+      <div class='iui-menu-content' role='presentation'>
         <div class='iui-text-muted'>No results, try refining your search&mldr;</div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </section>
 
   <hr />
 
   <h2>Skeleton</h2>
   <section id='demo-skeleton'>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         class='iui-menu-item-skeleton'
         contentProps={{ class: 'iui-content' }}
@@ -231,11 +231,11 @@ import ListItem_ from '../components/ListItem.astro';
         <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
         <div class='iui-visually-hidden'>Loading...</div>
       </ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         class='iui-menu-item-skeleton'
         contentProps={{ class: 'iui-content' }}
@@ -272,11 +272,11 @@ import ListItem_ from '../components/ListItem.astro';
         <div class='iui-menu-label iui-skeleton' aria-hidden='true'></div>
         <div class='iui-visually-hidden'>Loading...</div>
       </ListItem_>
-    </ul>
+    </div>
 
     <br />
 
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         class='iui-menu-item-skeleton'
         contentProps={{ class: 'iui-content' }}
@@ -319,7 +319,7 @@ import ListItem_ from '../components/ListItem.astro';
         <div class='iui-menu-description iui-skeleton' aria-hidden='true'></div>
         <div class='iui-visually-hidden'>Loading...</div>
       </ListItem_>
-    </ul>
+    </div>
   </section>
 
   <hr />
@@ -387,7 +387,7 @@ import ListItem_ from '../components/ListItem.astro';
         </nav>
       </div>
     </header>
-    <ul class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
+    <div class='iui-menu' style='width: 370px;' id='demo-header-imodel-menu'>
       <ListItem_
         size='large'
         role='menuitem'
@@ -423,9 +423,9 @@ import ListItem_ from '../components/ListItem.astro';
         <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
          Model Lorem ipsum dolor sit amet, consectetur adipiscing elit
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
 
     <br />
 
@@ -489,7 +489,7 @@ import ListItem_ from '../components/ListItem.astro';
         </nav>
       </div>
     </header>
-    <ul class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
+    <div class='iui-menu' style='width: 370px;' id='demo-header-slim-imodel-menu'>
       <ListItem_
         size='large'
         role='menuitem'
@@ -525,9 +525,9 @@ import ListItem_ from '../components/ListItem.astro';
         <div class='iui-header-menu-icon demo-picture' slot='start-icon'></div>
          Model Lorem ipsum dolor sit amet, consectetur adipiscing elit
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
   </section>
   <br />
 
@@ -543,7 +543,7 @@ import ListItem_ from '../components/ListItem.astro';
         <Icon_ svg='caret-down-small' class='iui-end-icon' />
       </div>
     </label>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -576,9 +576,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
     <br />
 
     <label class='iui-input-grid'>
@@ -591,7 +591,7 @@ import ListItem_ from '../components/ListItem.astro';
         <Icon_ svg='caret-down-small' class='iui-end-icon iui-open' />
       </div>
     </label>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -624,9 +624,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
     <br />
 
     <label class='iui-input-grid'>
@@ -639,7 +639,7 @@ import ListItem_ from '../components/ListItem.astro';
         <Icon_ svg='caret-down-small' class='iui-end-icon iui-open' />
       </div>
     </label>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -672,9 +672,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
   </section>
   <br />
 
@@ -685,7 +685,7 @@ import ListItem_ from '../components/ListItem.astro';
        Small dropdown
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -718,9 +718,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
     <br />
 
     <Button_ dropdown>
@@ -728,7 +728,7 @@ import ListItem_ from '../components/ListItem.astro';
        Default dropdown
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -761,9 +761,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
     <br />
 
     <Button_ dropdown size='large'>
@@ -771,7 +771,7 @@ import ListItem_ from '../components/ListItem.astro';
        Large dropdown
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -804,9 +804,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
   </section>
   <br />
 
@@ -817,7 +817,7 @@ import ListItem_ from '../components/ListItem.astro';
        Small dropdown
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -850,9 +850,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
     <br />
 
     <Button_ dropdown variant='borderless'>
@@ -860,7 +860,7 @@ import ListItem_ from '../components/ListItem.astro';
        Default dropdown
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -893,9 +893,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
     <br />
 
     <Button_ dropdown variant='borderless' size='large'>
@@ -903,7 +903,7 @@ import ListItem_ from '../components/ListItem.astro';
        Large dropdown
       <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
     </Button_>
-    <ul class='iui-menu' role='menu'>
+    <div class='iui-menu' role='menu'>
       <ListItem_
         size='large'
         tabindex='0'
@@ -936,9 +936,9 @@ import ListItem_ from '../components/ListItem.astro';
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         <svg-caret-right-small slot='end-icon'></svg-caret-right-small>
       </ListItem_>
-      <li class='iui-menu-divider' role='separator'></li>
+      <div class='iui-menu-divider' role='separator'></div>
       <ListItem_ actionable role='menuitem' tabindex='0'>My projects</ListItem_>
-    </ul>
+    </div>
   </section>
   <script is:inline>
     window.onload = () => {
