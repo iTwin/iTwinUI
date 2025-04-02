@@ -1101,7 +1101,7 @@ export const Table = <
           //   (isSelectable && selectionMode === 'multi') || undefined
           // }
         >
-          <ShadowRoot css={virtualizerCss}>
+          <ShadowRoot css={virtualizerCss} flush={false}>
             {enableVirtualization && data.length !== 0 ? (
               <div
                 data-iui-virtualizer='root'
