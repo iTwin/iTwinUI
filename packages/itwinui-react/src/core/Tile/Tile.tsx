@@ -15,10 +15,7 @@ import {
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import {
-  DropdownMenu,
-  DropdownMenuCloseOnClickContext,
-} from '../DropdownMenu/DropdownMenu.js';
+import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import { LinkAction } from '../LinkAction/LinkAction.js';
@@ -387,33 +384,32 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
-    <DropdownMenuCloseOnClickContext.Provider value={true}>
-      <Box
-        className={cx(
-          'iui-tile-more-options',
-          {
-            'iui-visible': isMenuVisible,
-          },
-          className,
-        )}
-        ref={forwardedRef}
-        {...rest}
+    <Box
+      className={cx(
+        'iui-tile-more-options',
+        {
+          'iui-visible': isMenuVisible,
+        },
+        className,
+      )}
+      ref={forwardedRef}
+      {...rest}
+    >
+      <DropdownMenu
+        onVisibleChange={setIsMenuVisible}
+        menuItems={children as React.ReactElement<any>[]}
+        closeOnItemClick
       >
-        <DropdownMenu
-          onVisibleChange={setIsMenuVisible}
-          menuItems={children as React.ReactElement<any>[]}
+        <IconButton
+          styleType='borderless'
+          size='small'
+          aria-label='More options'
+          {...buttonProps}
         >
-          <IconButton
-            styleType='borderless'
-            size='small'
-            aria-label='More options'
-            {...buttonProps}
-          >
-            <SvgMore />
-          </IconButton>
-        </DropdownMenu>
-      </Box>
-    </DropdownMenuCloseOnClickContext.Provider>
+          <SvgMore />
+        </IconButton>
+      </DropdownMenu>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 if (process.env.NODE_ENV === 'development') {
