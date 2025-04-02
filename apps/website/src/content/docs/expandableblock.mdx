@@ -17,13 +17,11 @@ The expandable block has a label reflecting its content. On click, it expands to
 
 ## Usage
 
-### Legacy API
+### Props API
 
-**Note**: Although this pattern can suffice for simple cases, we strongly recommend using composition API for more flexibility.
+The `<ExpandableBlock>` component can be used directly, without any subcomponents.
 
-You can use `ExpandableBlock` directly, without any subcomponents.
-
-- Directly using `ExpandableBlock` along with `title`, `caption`, `endIcon` and `children`.
+It accepts `title`, `caption`, `endIcon` and `children` props.
 
 ```tsx
 <ExpandableBlock title='Expandable Block' caption='With caption!'>
@@ -31,16 +29,20 @@ You can use `ExpandableBlock` directly, without any subcomponents.
 </ExpandableBlock>
 ```
 
+**Note**: Although this pattern can suffice for simple cases, we recommend using composition API for more flexibility.
+
 ### Composition API
 
-Alternatively, you can build expandable blocks with sub-components that are fully customizable.
+Alternatively, you can use subcomponents that are fully customizable. This pattern is more verbose but allows full customization over all the parts.
 
-- Using subcomponents (`ExpandableBlock.Wrapper`, `ExpandableBlock.Trigger`, `ExpandableBlock.Content`, etc). This pattern is more verbose but allows full customization over all the parts.
-  - `ExpandableBlock.Wrapper` is a wrapper around the subcomponents.
-  - The `ExpandableBlock.Trigger` is the `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents.
-  - The `ExpandableBlock.Content` is the content shown when `ExpandableBlock.Trigger` is triggered.
+- `<ExpandableBlock.Wrapper>` is a wrapper around the subcomponents.
+- `<ExpandableBlock.Trigger>` is the "trigger" element that's always shown.
+  - `<ExpandableBlock.ExpandIcon>`, `<ExpandableBlock.LabelArea>` and `<ExpandableBlock.EndIcon>` can be used inside `<ExpandableBlock.Trigger>`.
+  - `<ExpandableBlock.Title>` and `<ExpandableBlock.Caption>` can be used inside `<ExpandableBlock.LabelArea>`.
+  - Alternatively, `label`, `caption`, `expandIcon`, and `endIcon` props can be passed to `<ExpandableBlock.Trigger>`.
+- `<ExpandableBlock.Content>` is the content that gets revealed when `<ExpandableBlock.Trigger>` is clicked.
 
-The following code is equivalent to the [legacy example](#legacy-api) above:
+The following code is equivalent to the [props example](#props-api) above:
 
 ```tsx
 <ExpandableBlock.Wrapper>
