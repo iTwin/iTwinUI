@@ -63,9 +63,13 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
       );
       const indeterminate =
         !checked && Object.keys(state.selectedRowIds).length > 0;
+      const nextToggleState = !rows.some((row) => row.isSelected);
+
       return (
         <Label>
-          <VisuallyHidden>Toggle all</VisuallyHidden>
+          <VisuallyHidden>
+            {nextToggleState ? 'Select' : 'Deselect'} all rows
+          </VisuallyHidden>
           <Checkbox
             {...getToggleAllRowsSelectedProps()}
             style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
@@ -73,9 +77,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
             checked={checked && !disabled}
             indeterminate={indeterminate}
             disabled={disabled}
-            onChange={() =>
-              toggleAllRowsSelected(!rows.some((row) => row.isSelected))
-            }
+            onChange={() => toggleAllRowsSelected(nextToggleState)}
           />
         </Label>
       );
