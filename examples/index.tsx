@@ -1234,6 +1234,100 @@ import { default as TableMainExampleRaw } from './Table.main';
 const TableMainExample = withThemeProvider(TableMainExampleRaw);
 export { TableMainExample };
 
+import { default as TableControlledStateRaw } from './Table.controlledState';
+const TableControlledState = withThemeProvider(TableControlledStateRaw);
+export { TableControlledState };
+
+import { default as TableCustomFilterRaw } from './Table.customFilter';
+const TableCustomFilter = withThemeProvider(TableCustomFilterRaw);
+export { TableCustomFilter };
+
+import { default as TableCustomizedColumnsRaw } from './Table.customFilter';
+const TableCustomizedColumns = withThemeProvider(TableCustomizedColumnsRaw);
+export { TableCustomizedColumns };
+
+import { default as TableDisabledRaw } from './Table.disabled.jsx';
+const TableDisabled = withThemeProvider(TableDisabledRaw);
+export { TableDisabled };
+
+import { default as TableDraggableColumnRaw } from './Table.draggableColumns';
+const TableDraggableColumn = withThemeProvider(TableDraggableColumnRaw);
+export { TableDraggableColumn };
+
+import { default as TableFilteringRaw } from './Table.filtering';
+const TableFiltering = withThemeProvider(TableFilteringRaw);
+export { TableFiltering };
+
+import { default as TableFullRaw } from './Table.main';
+const TableFull = withThemeProvider(TableFullRaw);
+export { TableFull };
+
+import { default as TableFull2Raw } from './Table.main';
+const TableFull2 = withThemeProvider(TableFull2Raw);
+export { TableFull2 };
+
+import { default as TableGlobalFilteringRaw } from './Table.main';
+const TableGlobalFiltering = withThemeProvider(TableGlobalFilteringRaw);
+export { TableGlobalFiltering };
+
+import { default as TableHorizontalScrollRaw } from './Table.main';
+const TableHorizontalScroll = withThemeProvider(TableHorizontalScrollRaw);
+export { TableHorizontalScroll };
+
+import { default as TableLazyLoadingRaw } from './Table.main';
+const TableLazyLoading = withThemeProvider(TableLazyLoadingRaw);
+export { TableLazyLoading };
+
+import { default as TableLoadingRaw } from './Table.main';
+const TableLoading = withThemeProvider(TableLoadingRaw);
+export { TableLoading };
+
+import { default as TableLocalizedRaw } from './Table.main';
+const TableLocalized = withThemeProvider(TableLocalizedRaw);
+export { TableLocalized };
+
+import { default as TableManualFilteringRaw } from './Table.main';
+const TableManualFiltering = withThemeProvider(TableManualFilteringRaw);
+export { TableManualFiltering };
+
+import { default as TableNoDataRaw } from './Table.main';
+const TableNoData = withThemeProvider(TableNoDataRaw);
+export { TableNoData };
+
+import { default as TableResizableColumnsRaw } from './Table.main';
+const TableResizableColumns = withThemeProvider(TableResizableColumnsRaw);
+export { TableResizableColumns };
+
+import { default as TableRowInViewportRaw } from './Table.main';
+const TableRowInViewport = withThemeProvider(TableRowInViewportRaw);
+export { TableRowInViewport };
+
+import { default as TableScrollToRowRaw } from './Table.main';
+const TableScrollToRow = withThemeProvider(TableScrollToRowRaw);
+export { TableScrollToRow };
+
+import { default as TableStatusAndCellIconsRaw } from './Table.main';
+const TableStatusAndCellIcons = withThemeProvider(TableStatusAndCellIconsRaw);
+export { TableStatusAndCellIcons };
+
+import { default as TableStickyColumnsRaw } from './Table.main';
+const TableStickyColumns = withThemeProvider(TableStickyColumnsRaw);
+export { TableStickyColumns };
+
+import { default as TableVirtualizedSubRowsRaw } from './Table.main';
+const TableVirtualizedSubRows = withThemeProvider(TableVirtualizedSubRowsRaw);
+export { TableVirtualizedSubRows };
+
+import { default as TableWithManualPaginatorAndFilterRaw } from './Table.main';
+const TableWithManualPaginatorAndFilter = withThemeProvider(
+  TableWithManualPaginatorAndFilterRaw,
+);
+export { TableWithManualPaginatorAndFilter };
+
+import { default as TableZebraStripedRowsRaw } from './Table.main';
+const TableZebraStripedRows = withThemeProvider(TableZebraStripedRowsRaw);
+export { TableZebraStripedRows };
+
 import { default as TableSubRowsExampleRaw } from './Table.subRows';
 const TableSubRowsExample = withThemeProvider(TableSubRowsExampleRaw);
 export { TableSubRowsExample };

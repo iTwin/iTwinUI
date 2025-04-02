@@ -3,7 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table } from '@itwin/itwinui-react';
+import { useCallback } from 'react';
+import { Table, Anchor } from '@itwin/itwinui-react';
 
 export default () => {
   const onRowClick = useCallback(
