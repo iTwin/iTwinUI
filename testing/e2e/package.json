@@ -13,16 +13,16 @@
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
-    "@remix-run/node": "^2.8.0",
-    "@remix-run/react": "^2.8.0",
-    "@remix-run/serve": "^2.8.0",
+    "@remix-run/node": "^2.16.4",
+    "@remix-run/react": "^2.16.4",
+    "@remix-run/serve": "^2.16.4",
     "isbot": "^4.1.0",
     "react": "^19",
     "react-dom": "^19"
   },
   "devDependencies": {
     "@playwright/test": "^1.42.1",
-    "@remix-run/dev": "^2.8.0",
+    "@remix-run/dev": "^2.16.4",
     "@types/node": "*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
