@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.17.3",
+  "version": "3.17.4",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -108,7 +108,6 @@
     "@swc/helpers": "^0.5.15",
     "@tanstack/react-virtual": "^3.13.0",
     "classnames": "^2.5.1",
-    "jotai": "^2.8.0",
     "react-table": "^7.8.0"
   },
   "devDependencies": {
@@ -128,7 +127,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "5",
-    "vite": "~5.4.15",
+    "vite": "~5.4.16",
     "vitest": "^1.6.1"
   },
   "peerDependencies": {
