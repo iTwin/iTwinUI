@@ -68,7 +68,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
       return (
         <Label>
           <VisuallyHidden>
-            {nextToggleState ? 'Select' : 'Deselect'} all rows
+            {`${nextToggleState ? 'Select' : 'Deselect'} all rows`}
           </VisuallyHidden>
           <Checkbox
             {...getToggleAllRowsSelectedProps()}
@@ -85,7 +85,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
     Cell: ({ row, selectSubRows = true }: CellProps<T>) => (
       <Label>
         <VisuallyHidden>
-          {row.isSelected ? 'Deselect' : 'Select'} row
+          {`${row.isSelected ? 'Deselect' : 'Select'} row`}
         </VisuallyHidden>
         <Checkbox
           {...row.getToggleRowSelectedProps()}

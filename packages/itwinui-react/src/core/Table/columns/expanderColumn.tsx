@@ -57,7 +57,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
     maxWidth: 48,
     columnClassName: 'iui-slot',
     cellClassName: 'iui-slot',
-    Header: () => <VisuallyHidden>Expand row</VisuallyHidden>,
+    Header: () => <VisuallyHidden>Expand/Collapse row</VisuallyHidden>,
     Cell: (props: CellProps<T>) => {
       const { row } = props;
       if (!subComponent?.(row)) {
