@@ -1009,11 +1009,10 @@ export const Table = <
         tabIndex={0}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
-        {...ariaDataAttributes}
       >
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
-          <div role='table'>
+          <div role='table' {...ariaDataAttributes}>
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
             <slot name='iui-table-body-extra' />
