@@ -66,6 +66,7 @@ import { SELECTION_CELL_ID } from './columns/index.js';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -313,6 +314,12 @@ export type TableProps<
    * />
    */
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
+  /**
+   * Table caption. Serves as a label for the region landmark that wraps the `role="table"`.
+   *
+   * Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+   */
+  caption?: string;
 } & Omit<CommonProps, 'title'>;
 
 const flattenColumns = <T extends Record<string, unknown>>(
@@ -414,6 +421,7 @@ export const Table = <
     bodyProps,
     emptyTableContentProps,
     getRowId,
+    caption,
     ...rest
   } = props;
 
@@ -985,6 +993,8 @@ export const Table = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const captionId = React.useId();
+
   return (
     <TableInstanceContext.Provider
       value={instance as TableInstance<Record<string, unknown>>}
@@ -1005,7 +1015,8 @@ export const Table = <
             ...style,
           },
         })}
-        role={undefined} // To override the role="table" set by getTableProps()
+        role='region'
+        aria-labelledby={captionId}
         tabIndex={0}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
@@ -1013,6 +1024,7 @@ export const Table = <
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
           <div role='table' {...ariaDataAttributes}>
+            <slot name='caption' />
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
             <slot name='iui-table-body-extra' />
@@ -1021,6 +1033,10 @@ export const Table = <
           {/* Paginator should not be within role="table" */}
           <slot />
         </ShadowRoot>
+
+        <VisuallyHidden slot='caption' id={captionId}>
+          {caption ?? 'Table'}
+        </VisuallyHidden>
 
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
           // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id
