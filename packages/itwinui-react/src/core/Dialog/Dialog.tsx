@@ -11,7 +11,12 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import { useMergedRefs, Box, Portal } from '../../utils/index.js';
+import {
+  useMergedRefs,
+  Box,
+  Portal,
+  PortalContainerContext,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type DialogProps = {
@@ -41,7 +46,10 @@ const DialogComponent = React.forwardRef((props, ref) => {
   } = props;
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
-  const mergedRefs = useMergedRefs(ref, dialogRootRef);
+  const [dialogElement, setDialogElement] = React.useState<HTMLElement | null>(
+    null,
+  );
+  const mergedRefs = useMergedRefs(ref, dialogRootRef, setDialogElement);
 
   return isOpen ? (
     <DialogContext.Provider
@@ -61,12 +69,14 @@ const DialogComponent = React.forwardRef((props, ref) => {
       }}
     >
       <Portal portal={portal}>
-        <Box
-          className={cx('iui-dialog-wrapper', className)}
-          data-iui-relative={relativeTo === 'container'}
-          ref={mergedRefs}
-          {...rest}
-        />
+        <PortalContainerContext.Provider value={dialogElement}>
+          <Box
+            className={cx('iui-dialog-wrapper', className)}
+            data-iui-relative={relativeTo === 'container'}
+            ref={mergedRefs}
+            {...rest}
+          />
+        </PortalContainerContext.Provider>
       </Portal>
     </DialogContext.Provider>
   ) : null;
