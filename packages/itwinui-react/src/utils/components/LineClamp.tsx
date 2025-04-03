@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 import { ShadowRoot } from './ShadowRoot.js';
@@ -14,11 +15,12 @@ export const LineClamp = React.forwardRef((props, forwardedRef) => {
     <Box
       ref={forwardedRef}
       {...rest}
+      className={cx('iui-line-clamp', props.className)}
       style={
         { '--_iui-line-clamp': lines, ...props.style } as React.CSSProperties
       }
     >
-      <ShadowRoot css={css}>
+      <ShadowRoot css={css} flush={false}>
         <slot />
       </ShadowRoot>
       {children}
