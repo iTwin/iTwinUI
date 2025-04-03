@@ -1112,6 +1112,7 @@ export const Table = <
               bodyProps?.className,
             ),
           })}
+          role={undefined} // To remove the role="rowgroup" from `getTableBodyProps()`
         >
           <ShadowRoot css={virtualizerCss} flush={false}>
             {enableVirtualization && data.length !== 0 ? (
