@@ -65,18 +65,16 @@ const defaultTheme = 'dark';
       </fieldset></theme-button
     >
     <template shadowrootmode='open'>
-      <ThemeProvider theme={defaultTheme} themeOptions={{ applyBackground: false }}>
-        <style is:inline>
-          astro-island {
-            display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
-            max-inline-size: 100cqi;
-          }
-        </style>
-        <style set:html={cssCode}></style>
-        <link rel='stylesheet' href={itwinuiStyles} />
-        <slot />
-        <slot is:inline />
-      </ThemeProvider>
+      <style is:inline>
+        astro-island {
+          display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+          max-inline-size: 100cqi;
+        }
+      </style>
+      <style set:html={cssCode}></style>
+      <link rel='stylesheet' href={itwinuiStyles} />
+      <slot />
+      <slot is:inline />
     </template>
 
     <OpenInCodePen
@@ -112,11 +110,11 @@ const defaultTheme = 'dark';
               const theme = radio.getAttribute('value');
               const demoBox = this.parentElement;
               const demoBoxTheme = demoBox?.parentElement;
-              const shadowRootTheme = demoBox?.shadowRoot?.children[0];
+              const demoTheme = demoBox?.shadowRoot?.querySelector('[data-iui-theme]');
 
-              if (demoBoxTheme && shadowRootTheme && theme) {
+              if (demoBoxTheme && demoTheme && theme) {
                 demoBoxTheme.setAttribute('data-iui-theme', theme);
-                shadowRootTheme.setAttribute('data-iui-theme', theme);
+                demoTheme.setAttribute('data-iui-theme', theme);
               }
             });
           });

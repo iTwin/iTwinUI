@@ -11,7 +11,7 @@ const withThemeProvider = (Component: () => React.ReactElement<any>) => () => {
 
   return (
     <ThemeProvider
-      theme='inherit'
+      theme='dark'
       themeOptions={{ applyBackground: false }}
       portalContainer={portalContainer}
       style={{ display: 'contents' }}
