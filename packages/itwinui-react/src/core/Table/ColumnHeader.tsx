@@ -134,18 +134,16 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
       }}
     >
       <>
-        <ShadowRoot>
-          {typeof column.Header === 'string' ? (
+        {typeof column.Header === 'string' ? (
+          <ShadowRoot>
             <LineClamp>
               <slot />
             </LineClamp>
-          ) : (
-            <slot />
-          )}
-          <slot name='actions' />
-          <slot name='resizers' />
-          <slot name='shadows' />
-        </ShadowRoot>
+            <slot name='actions' />
+            <slot name='resizers' />
+            <slot name='shadows' />
+          </ShadowRoot>
+        ) : null}
 
         {column.render('Header')}
         {(showFilterButton(column) || showSortButton(column)) && (

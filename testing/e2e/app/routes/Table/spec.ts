@@ -10,6 +10,28 @@ test('un-virtualized table should scroll to provided row', async ({ page }) => {
   await expect(page.getByText('Name51')).toBeInViewport();
 });
 
+test.describe('Clamping', () => {
+  test('should apply clamp, if cell is string value and no custom Cell is rendered', async ({
+    page,
+  }) => {
+    await page.goto('/Table');
+
+    const host = page.locator('.name-cell').first();
+    await expect(await host.evaluate((el) => el.shadowRoot)).not.toBeNull();
+    const lineClamp = await host.evaluate(
+      (el) => el.shadowRoot?.querySelector('div'),
+    );
+    await expect(lineClamp).not.toBeNull();
+  });
+
+  test('should not apply clamp, if custom Cell is used', async ({ page }) => {
+    await page.goto('/Table');
+
+    const host = page.locator('.custom-cell').first();
+    await expect(await host.evaluate((el) => el.shadowRoot)).toBeNull();
+  });
+});
+
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
@@ -17,6 +39,7 @@ test.describe('Table sorting', () => {
     const firstColumnCells = page.locator('[role="cell"]:first-child');
     await expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
 
     // ascending
@@ -830,6 +853,56 @@ test.describe('Virtual Scroll Tests', () => {
 });
 
 test.describe('Table filters', () => {
+  test('should work with keyboard', async ({ page }) => {
+    await page.goto('/Table?exampleType=allFilters');
+
+    // No filter applied
+    await expect(page.getByText('Name1')).toBeVisible();
+    await expect(page.getByText('Name2')).toBeVisible();
+    await expect(page.getByText('Name3')).toBeVisible();
+
+    await page.keyboard.press('Tab'); // Focus table
+    await page.keyboard.press('Tab'); // Focus filter button
+    await page.keyboard.press('Enter'); // open filter popover
+
+    await page.keyboard.type('2'); // min filter
+    await page.keyboard.press('Tab');
+    await page.keyboard.type('3'); // max filter
+    await page.keyboard.press('Tab');
+
+    const onFilterArguments = page.waitForEvent('console');
+    await page.keyboard.press('Enter'); // apply filter
+
+    const expectedArguments = JSON.stringify([
+      // filters
+      [
+        {
+          id: 'index',
+          value: [2, 3],
+          fieldType: 'number',
+          filterType: 'between',
+        },
+      ],
+      // state.filters
+      [
+        {
+          id: 'index',
+          value: [2, 3],
+        },
+      ],
+      // filteredData?.map((r) => r.original.index)
+      [2, 3],
+    ]);
+
+    // Confirm onFilter is called with the correct arguments
+    await expect((await onFilterArguments).text()).toBe(expectedArguments);
+
+    // Filter applied
+    await expect(page.getByText('Name1')).not.toBeVisible();
+    await expect(page.getByText('Name2')).toBeVisible();
+    await expect(page.getByText('Name3')).toBeVisible();
+  });
+
   test('DateRangeFilter should show DatePicker', async ({ page }) => {
     await page.goto('/Table?exampleType=allFilters');
 

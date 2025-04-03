@@ -1005,10 +1005,24 @@ export const Table = <
             ...style,
           },
         })}
+        role={undefined} // To override the role="table" set by getTableProps()
+        tabIndex={0}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
       >
+        <ShadowRoot>
+          {/* Inner wrapper with role="table" to only include table elements */}
+          <div role='table'>
+            <slot name='iui-table-header-wrapper' />
+            <slot name='iui-table-body' />
+            <slot name='iui-table-body-extra' />
+          </div>
+
+          {/* Paginator should not be within role="table" */}
+          <slot />
+        </ShadowRoot>
+
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
           // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id
           headerGroup.headers = headerGroup.headers.filter(
@@ -1021,6 +1035,7 @@ export const Table = <
           });
           return (
             <Box
+              slot='iui-table-header-wrapper'
               as='div'
               key={headerGroupProps.key}
               {...headerWrapperProps}
@@ -1070,6 +1085,7 @@ export const Table = <
           );
         })}
         <Box
+          slot='iui-table-body'
           as='div'
           {...bodyProps}
           {...getTableBodyProps({
@@ -1081,11 +1097,8 @@ export const Table = <
               bodyProps?.className,
             ),
           })}
-          aria-multiselectable={
-            (isSelectable && selectionMode === 'multi') || undefined
-          }
         >
-          <ShadowRoot css={virtualizerCss}>
+          <ShadowRoot css={virtualizerCss} flush={false}>
             {enableVirtualization && data.length !== 0 ? (
               <div
                 data-iui-virtualizer='root'
@@ -1152,7 +1165,11 @@ export const Table = <
             )}
         </Box>
         {isLoading && data.length !== 0 && (
-          <Box className='iui-table-body-extra' data-iui-loading='true'>
+          <Box
+            slot='iui-table-body-extra'
+            className='iui-table-body-extra'
+            data-iui-loading='true'
+          >
             <ProgressRadial indeterminate size='small' />
           </Box>
         )}

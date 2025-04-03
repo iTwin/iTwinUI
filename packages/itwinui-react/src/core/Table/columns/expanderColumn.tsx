@@ -11,6 +11,7 @@ import type {
 } from '../../../react-table/react-table.js';
 import { IconButton } from '../../Buttons/IconButton.js';
 import { DefaultCell } from '../cells/index.js';
+import { VisuallyHidden } from '../../VisuallyHidden/VisuallyHidden.js';
 
 export const EXPANDER_CELL_ID = 'iui-table-expander';
 
@@ -56,6 +57,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
     maxWidth: 48,
     columnClassName: 'iui-slot',
     cellClassName: 'iui-slot',
+    Header: () => <VisuallyHidden>Expand/Collapse row</VisuallyHidden>,
     Cell: (props: CellProps<T>) => {
       const { row } = props;
       if (!subComponent?.(row)) {
