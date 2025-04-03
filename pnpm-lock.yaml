@@ -489,14 +489,14 @@ importers:
         specifier: '*'
         version: link:../../packages/itwinui-react
       '@remix-run/node':
-        specifier: ^2.8.0
-        version: 2.15.3(typescript@5.5.2)
+        specifier: ^2.16.4
+        version: 2.16.4(typescript@5.5.2)
       '@remix-run/react':
-        specifier: ^2.8.0
-        version: 2.15.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)
+        specifier: ^2.16.4
+        version: 2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)
       '@remix-run/serve':
-        specifier: ^2.8.0
-        version: 2.15.3(typescript@5.5.2)
+        specifier: ^2.16.4
+        version: 2.16.4(typescript@5.5.2)
       isbot:
         specifier: ^4.1.0
         version: 4.4.0
@@ -511,8 +511,8 @@ importers:
         specifier: ^1.42.1
         version: 1.42.1
       '@remix-run/dev':
-        specifier: ^2.8.0
-        version: 2.15.3(@remix-run/react@2.15.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2))(@remix-run/serve@2.15.3(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))
+        specifier: ^2.16.4
+        version: 2.16.4(@remix-run/react@2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2))(@remix-run/serve@2.16.4(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -2496,18 +2496,18 @@ packages:
     engines: { node: '>=18' }
     hasBin: true
 
-  '@remix-run/dev@2.15.3':
+  '@remix-run/dev@2.16.4':
     resolution:
       {
-        integrity: sha512-agndQJHs7qISPXXH/Zet0VHWvcwtQGoEOXxltjerNQ2zWcAJQBm9i06tS6n6v/ZP0sHIVdo/IsvgAA4wetqmNw==,
+        integrity: sha512-MzmcIjeEQkWAamSqWZm0tCdxxcK4HPFzaL8XCqkcRHVfhwJJXOZLp1GN/dHaokekI0cUvNIgCtm/bvHgjHb3Ng==,
       }
     engines: { node: '>=18.0.0' }
     hasBin: true
     peerDependencies:
-      '@remix-run/react': ^2.15.3
-      '@remix-run/serve': ^2.15.3
+      '@remix-run/react': ^2.16.4
+      '@remix-run/serve': ^2.16.4
       typescript: ~5.5.2
-      vite: ^5.1.0
+      vite: ^5.1.0 || ^6.0.0
       wrangler: ^3.28.2
     peerDependenciesMeta:
       '@remix-run/serve':
@@ -2519,10 +2519,10 @@ packages:
       wrangler:
         optional: true
 
-  '@remix-run/express@2.15.3':
+  '@remix-run/express@2.16.4':
     resolution:
       {
-        integrity: sha512-6a4S5KrRNiLDiaOneuoMpMMFo9ztB4gZ1AOJSX6BmqpXmcq/P+WhRXOqXrUYeL4fMstJhTVM8CzlInlfpem8Vw==,
+        integrity: sha512-VQ78Jq1BctEDXRkkPsR1ixMDuwUzW89MaPa+dFJ5f7V2et+0LMXEKmriLFWdCqToN88QM0GjMhSi5UkUUWLIjQ==,
       }
     engines: { node: '>=18.0.0' }
     peerDependencies:
@@ -2532,10 +2532,10 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/node@2.15.3':
+  '@remix-run/node@2.16.4':
     resolution:
       {
-        integrity: sha512-TYfS6BPhbABBpSRZ6WBA4qIWSwWvJhRVQGXCHUtgOwkuW863rcFmjh9g2Xj/IHyTmbOYPdcjHsIgZ9el4CHOKQ==,
+        integrity: sha512-scZwpc78cJS8dx6LMLemVHqnaAVbPWasx36TxYWUASA63hxPx5XbGbb6pe4cSpT8dWqhBtsPpHZoFTrM1aqx7A==,
       }
     engines: { node: '>=18.0.0' }
     peerDependencies:
@@ -2544,10 +2544,10 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/react@2.15.3':
+  '@remix-run/react@2.16.4':
     resolution:
       {
-        integrity: sha512-AynCltIk8KLlxV9a+4dORtEMNtF5wJAzBNBZLJMdw3FCJNQZRYQSen8rDnIovOOiz9UNZ2SmBTFERiFMKS16jw==,
+        integrity: sha512-sGQCrNGL8mlY7wKcW1zly+Hx9fSoDTYaAtt7INo54T1ubCIUKHlaVSfD2Ty67aZWYkyHBHgqAM8ZKtTJc1Uj8g==,
       }
     engines: { node: '>=18.0.0' }
     peerDependencies:
@@ -2558,25 +2558,25 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/router@1.22.0':
+  '@remix-run/router@1.23.0':
     resolution:
       {
-        integrity: sha512-MBOl8MeOzpK0HQQQshKB7pABXbmyHizdTpqnrIseTbsv0nAepwC2ENZa1aaBExNQcpLoXmWthhak8SABLzvGPw==,
+        integrity: sha512-O3rHJzAQKamUz1fvE0Qaw0xSFqsA/yafi2iqeE0pvdFtCO1viYx8QL6f3Ln/aCCTLxs68SLf0KPM9eSeM8yBnA==,
       }
     engines: { node: '>=14.0.0' }
 
-  '@remix-run/serve@2.15.3':
+  '@remix-run/serve@2.16.4':
     resolution:
       {
-        integrity: sha512-7P0FWeNu1NEaSJpL2Xn8fZbr4zxkrOR6Qg03p7iYbipcQ1L0zr9Nxe5KKG4m9n8EyRWWxDV2L+wXHI7Ul9HiMw==,
+        integrity: sha512-9jYxxMI1RTKv7t1N53XzG3vQruWAaj6AYg4G5OoejtO7PZ6CbgbbHEiNa/f5ww3vhfcqZH7dfetDBdUYQ5PxVQ==,
       }
     engines: { node: '>=18.0.0' }
     hasBin: true
 
-  '@remix-run/server-runtime@2.15.3':
+  '@remix-run/server-runtime@2.16.4':
     resolution:
       {
-        integrity: sha512-taHBe1DEqxZNjjj6OfkSYbup+sZPjbTgUhykaI+nHqrC2NDQuTiisBXhLwtx60GctONR/x0lWhF7R9ZGC5WsHw==,
+        integrity: sha512-6M1Lq2mrH5zfGN++ay+a2KzdPqOh2TB7n6wYPPXA0rxQan8c5NZCvDFF635KS65LSzZDB+2VfFTgoPBERdYkYg==,
       }
     engines: { node: '>=18.0.0' }
     peerDependencies:
@@ -10529,20 +10529,20 @@ packages:
       }
     engines: { node: '>=0.10.0' }
 
-  react-router-dom@6.29.0:
+  react-router-dom@6.30.0:
     resolution:
       {
-        integrity: sha512-pkEbJPATRJ2iotK+wUwHfy0xs2T59YPEN8BQxVCPeBZvK7kfPESRc/nyxzdcxR17hXgUPYx2whMwl+eo9cUdnQ==,
+        integrity: sha512-x30B78HV5tFk8ex0ITwzC9TTZMua4jGyA9IUlH1JLQYQTFyxr/ZxwOJq7evg1JX1qGVUcvhsmQSKdPncQrjTgA==,
       }
     engines: { node: '>=14.0.0' }
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  react-router@6.29.0:
+  react-router@6.30.0:
     resolution:
       {
-        integrity: sha512-DXZJoE0q+KyeVw75Ck6GkPxFak63C4fGqZGNijnWgzB/HzSP1ZfTlBj5COaGWwhrMQ/R8bXiq5Ooy4KG+ReyjQ==,
+        integrity: sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==,
       }
     engines: { node: '>=14.0.0' }
     peerDependencies:
@@ -12759,6 +12759,14 @@ packages:
     engines: { node: ^18.0.0 || >=20.0.0 }
     hasBin: true
 
+  vite-node@3.0.0-beta.2:
+    resolution:
+      {
+        integrity: sha512-ofTf6cfRdL30Wbl9n/BX81EyIR5s4PReLmSurrxQ+koLaWUNOEo8E0lCM53OJkb8vpa2URM2nSrxZsIFyvY1rg==,
+      }
+    engines: { node: ^18.0.0 || ^20.0.0 || >=22.0.0 }
+    hasBin: true
+
   vite-tsconfig-paths@4.3.2:
     resolution:
       {
@@ -14756,7 +14764,7 @@ snapshots:
       - bare-buffer
       - supports-color
 
-  '@remix-run/dev@2.15.3(@remix-run/react@2.15.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2))(@remix-run/serve@2.15.3(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))':
+  '@remix-run/dev@2.16.4(@remix-run/react@2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2))(@remix-run/serve@2.16.4(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/generator': 7.26.3
@@ -14768,10 +14776,10 @@ snapshots:
       '@babel/types': 7.26.10
       '@mdx-js/mdx': 2.3.0
       '@npmcli/package-json': 4.0.1
-      '@remix-run/node': 2.15.3(typescript@5.5.2)
-      '@remix-run/react': 2.15.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)
-      '@remix-run/router': 1.22.0
-      '@remix-run/server-runtime': 2.15.3(typescript@5.5.2)
+      '@remix-run/node': 2.16.4(typescript@5.5.2)
+      '@remix-run/react': 2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)
+      '@remix-run/router': 1.23.0
+      '@remix-run/server-runtime': 2.16.4(typescript@5.5.2)
       '@types/mdx': 2.0.11
       '@vanilla-extract/integration': 6.5.0(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)
       arg: 5.0.2
@@ -14795,6 +14803,7 @@ snapshots:
       lodash.debounce: 4.0.8
       minimatch: 9.0.3
       ora: 5.4.1
+      pathe: 1.1.2
       picocolors: 1.1.1
       picomatch: 2.3.1
       pidtree: 0.6.0
@@ -14812,10 +14821,10 @@ snapshots:
       tar-fs: 2.1.2
       tsconfig-paths: 4.2.0
       valibot: 0.41.0(typescript@5.5.2)
-      vite-node: 1.6.1(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)
+      vite-node: 3.0.0-beta.2(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)
       ws: 7.5.10
     optionalDependencies:
-      '@remix-run/serve': 2.15.3(typescript@5.5.2)
+      '@remix-run/serve': 2.16.4(typescript@5.5.2)
       typescript: 5.5.2
       vite: 5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)
     transitivePeerDependencies:
@@ -14833,16 +14842,16 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  '@remix-run/express@2.15.3(express@4.21.2)(typescript@5.5.2)':
+  '@remix-run/express@2.16.4(express@4.21.2)(typescript@5.5.2)':
     dependencies:
-      '@remix-run/node': 2.15.3(typescript@5.5.2)
+      '@remix-run/node': 2.16.4(typescript@5.5.2)
       express: 4.21.2
     optionalDependencies:
       typescript: 5.5.2
 
-  '@remix-run/node@2.15.3(typescript@5.5.2)':
+  '@remix-run/node@2.16.4(typescript@5.5.2)':
     dependencies:
-      '@remix-run/server-runtime': 2.15.3(typescript@5.5.2)
+      '@remix-run/server-runtime': 2.16.4(typescript@5.5.2)
       '@remix-run/web-fetch': 4.4.2
       '@web3-storage/multipart-parser': 1.0.0
       cookie-signature: 1.2.1
@@ -14852,24 +14861,24 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.2
 
-  '@remix-run/react@2.15.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)':
+  '@remix-run/react@2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)':
     dependencies:
-      '@remix-run/router': 1.22.0
-      '@remix-run/server-runtime': 2.15.3(typescript@5.5.2)
+      '@remix-run/router': 1.23.0
+      '@remix-run/server-runtime': 2.16.4(typescript@5.5.2)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      react-router: 6.29.0(react@19.0.0)
-      react-router-dom: 6.29.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-router: 6.30.0(react@19.0.0)
+      react-router-dom: 6.30.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       turbo-stream: 2.4.0
     optionalDependencies:
       typescript: 5.5.2
 
-  '@remix-run/router@1.22.0': {}
+  '@remix-run/router@1.23.0': {}
 
-  '@remix-run/serve@2.15.3(typescript@5.5.2)':
+  '@remix-run/serve@2.16.4(typescript@5.5.2)':
     dependencies:
-      '@remix-run/express': 2.15.3(express@4.21.2)(typescript@5.5.2)
-      '@remix-run/node': 2.15.3(typescript@5.5.2)
+      '@remix-run/express': 2.16.4(express@4.21.2)(typescript@5.5.2)
+      '@remix-run/node': 2.16.4(typescript@5.5.2)
       chokidar: 3.6.0
       compression: 1.7.4
       express: 4.21.2
@@ -14880,9 +14889,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@remix-run/server-runtime@2.15.3(typescript@5.5.2)':
+  '@remix-run/server-runtime@2.16.4(typescript@5.5.2)':
     dependencies:
-      '@remix-run/router': 1.22.0
+      '@remix-run/router': 1.23.0
       '@types/cookie': 0.6.0
       '@web3-storage/multipart-parser': 1.0.0
       cookie: 0.7.2
@@ -20443,16 +20452,16 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@6.29.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-router-dom@6.30.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@remix-run/router': 1.22.0
+      '@remix-run/router': 1.23.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      react-router: 6.29.0(react@19.0.0)
+      react-router: 6.30.0(react@19.0.0)
 
-  react-router@6.29.0(react@19.0.0):
+  react-router@6.30.0(react@19.0.0):
     dependencies:
-      '@remix-run/router': 1.22.0
+      '@remix-run/router': 1.23.0
       react: 19.0.0
 
   react-table@7.8.0(react@19.0.0):
@@ -21976,6 +21985,24 @@ snapshots:
       debug: 4.4.0(supports-color@8.1.1)
       pathe: 1.1.2
       picocolors: 1.1.1
+      vite: 5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite-node@3.0.0-beta.2(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.4.0(supports-color@8.1.1)
+      es-module-lexer: 1.5.4
+      pathe: 1.1.2
       vite: 5.4.16(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)
     transitivePeerDependencies:
       - '@types/node'
