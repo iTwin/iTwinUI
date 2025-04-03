@@ -202,9 +202,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     <PortalContainerContext.Provider value={portalContainer}>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
-          <ToastProvider
-            inherit={themeProp === 'inherit' && !portalContainerProp}
-          >
+          <ToastProvider>
             {includeCss && rootElement ? (
               <FallbackStyles root={rootElement} />
             ) : null}
@@ -432,8 +430,6 @@ const PortalContainer = React.memo(
         </Root>,
         ownerDocument.body,
       );
-    } else if (portalContainerProp) {
-      return ReactDOM.createPortal(<Toaster />, portalContainerProp);
     }
 
     return null;
