@@ -55,6 +55,18 @@
     color: inherit;
   }
 
+  &:where([data-iui-multi]) ~ :where(.iui-content) {
+    grid-area: 1 / -1;
+    padding-inline-start: var(--iui-size-s);
+    padding-inline-end: var(--iui-component-height);
+    z-index: 1;
+    pointer-events: none; // to prevent blocking clicks on the select-button
+
+    > * {
+      pointer-events: auto; // this is mainly for custom renderer (as a fallback).
+    }
+  }
+
   &.iui-placeholder,
   &:has(option[value='']:checked) {
     color: var(--iui-color-text-placeholder);
@@ -94,6 +106,7 @@
   align-items: center;
   gap: var(--iui-size-2xs);
   overflow: hidden;
+  pointer-events: none; // to prevent blocking clicks on the select-button (nested container)
 
   > * + * {
     margin-inline-start: var(--iui-size-2xs);
@@ -111,10 +124,11 @@
   block-size: 80%;
   max-inline-size: 100%;
   max-block-size: calc(var(--iui-size-s) * 3);
+  pointer-events: auto; // parent has pointer-events: none
 }
 
 @mixin iui-select-tag-label {
-  .iui-select-button[data-iui-size='small'] & {
+  .iui-select-tag-container[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
   }
 }
@@ -126,7 +140,7 @@
   block-size: 100%;
   aspect-ratio: 1 / 1;
 
-  .iui-select-button[data-iui-size='small'] & {
+  .iui-select-tag-container[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
 
     svg {
