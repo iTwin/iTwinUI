@@ -232,6 +232,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     open,
     onOpenChange,
     strategy: 'fixed',
+    transform: false,
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when the popover is open
@@ -310,7 +311,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
             availableHeight && {
               maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
             }),
-          zIndex: 9999,
+          zIndex: 999,
           ...(matchWidth && referenceWidth
             ? {
                 minInlineSize: `${referenceWidth}px`,

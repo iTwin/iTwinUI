@@ -39,7 +39,7 @@ type ModalProps = {
    */
   onKeyDown?: React.KeyboardEventHandler;
   /**
-   * If true, the dialog will be portaled into a <div> inside the nearest `ThemeProvider`.
+   * If true, the dialog will be portaled to the end of `<body>` or to the nearest popover.
    *
    * Can be set to an object with a `to` property to portal into a specific element.
    * If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).

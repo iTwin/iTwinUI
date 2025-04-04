@@ -44,8 +44,8 @@ export type PortalProps = {
 /**
  * Helper component that portals children according to the following conditions:
  *   - renders null on server
- *   - if `portal` is set to true, renders into nearest ThemeProvider's portalContainer
- *   - if `portal` is set to false, renders as-is without portal
+ *   - if `portal` is set to true, renders into the element provided by PortalContainerContext.
+ *   - if `portal` is set to false, renders as-is without portal.
  *   - otherwise renders into `portal.to` (can be an element or a function)
  *     - If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
  *     - E.g. `portal={{ to: () => document.querySelector('.may-not-exist') }}`.
