@@ -1020,9 +1020,7 @@ export const Table = <
             ...style,
           },
         })}
-        role='group'
         aria-labelledby={captionId}
-        tabIndex={0}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
       >
