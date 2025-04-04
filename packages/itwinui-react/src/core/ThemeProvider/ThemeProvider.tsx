@@ -15,22 +15,21 @@ import {
   isUnitTest,
   HydrationProvider,
   useHydration,
-  ScopeProvider,
-  portalContainerAtom,
-  useScopedAtom,
+  PortalContainerContext,
   useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
-import { atom } from 'jotai';
 import { meta } from '../../utils/meta.js';
 
 const versionWithoutDots = meta.version.replace(/\./g, '');
 
 // ----------------------------------------------------------------------------
 
-const ownerDocumentAtom = atom<Document | undefined>(undefined);
+const OwnerDocumentContext = React.createContext<Document | undefined>(
+  undefined,
+);
 
 // ----------------------------------------------------------------------------
 
@@ -40,6 +39,19 @@ export type ThemeOptions = {
    * Will default to user preference if browser supports it.
    */
   highContrast?: boolean;
+};
+
+export type FutureOptions = {
+  /**
+   * @alpha
+   *
+   * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) *whenever possible*.
+   *
+   * This is useful in making apps looks like future versions of iTwinUI to help with incremental adoption.
+   *
+   * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
+   */
+  themeBridge?: boolean;
 };
 
 export type ThemeType = 'light' | 'dark' | 'os';
@@ -56,6 +68,9 @@ type RootProps = {
    * of iTwinUI while respecting the theme set by the consuming app. It will fall back to 'light'
    * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`
    * and `portalContainer` (if possible).
+   *
+   * `future.themeBridge` will be inherited regardless of `theme` value. To disable it, explicitly set
+   * `future.themeBridge` to false.
    *
    * @default 'inherit'
    */
@@ -74,9 +89,13 @@ type RootProps = {
      */
     applyBackground?: boolean;
   };
+  /**
+   * Options to help with early adoption of features from future versions.
+   */
+  future?: FutureOptions;
 };
 
-type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
+type ThemeProviderOwnProps = Pick<RootProps, 'theme' | 'future'> & {
   themeOptions?: RootProps['themeOptions'];
   children: Required<React.ReactNode>;
   /**
@@ -146,6 +165,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     themeOptions = {},
     portalContainer: portalContainerProp,
     includeCss = themeProp === 'inherit',
+    future = {},
     ...rest
   } = props;
 
@@ -164,17 +184,22 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  const [portalContainerFromParent] = useScopedAtom(portalContainerAtom);
+  future.themeBridge ??= parent.context?.future?.themeBridge;
+
+  const portalContainerFromParent = React.useContext(PortalContainerContext);
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions }),
+    () => ({ theme, themeOptions, future }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, JSON.stringify(themeOptions)],
+    [theme, JSON.stringify(themeOptions), JSON.stringify(future)],
   );
 
+  const [portalContainer, setPortalContainer] =
+    React.useState<HTMLElement | null>(portalContainerProp || null);
+
   return (
-    <ScopeProvider>
+    <PortalContainerContext.Provider value={portalContainer}>
       <HydrationProvider>
         <ThemeContext.Provider value={contextValue}>
           <ToastProvider
@@ -187,6 +212,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
             <MainRoot
               theme={theme}
               themeOptions={themeOptions}
+              future={future}
               ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
               {...rest}
             >
@@ -195,15 +221,17 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
               <PortalContainer
                 theme={theme}
                 themeOptions={themeOptions}
+                future={future}
                 portalContainerProp={portalContainerProp}
                 portalContainerFromParent={portalContainerFromParent}
+                setPortalContainer={setPortalContainer}
                 isInheritingTheme={themeProp === 'inherit'}
               />
             </MainRoot>
           </ToastProvider>
         </ThemeContext.Provider>
       </HydrationProvider>
-    </ScopeProvider>
+    </PortalContainerContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 if (process.env.NODE_ENV === 'development') {
@@ -213,7 +241,9 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 
 const MainRoot = React.forwardRef((props, forwardedRef) => {
-  const [ownerDocument, setOwnerDocument] = useScopedAtom(ownerDocumentAtom);
+  const [ownerDocument, setOwnerDocument] = React.useState<
+    Document | undefined
+  >(undefined);
   const findOwnerDocumentFromRef = React.useCallback(
     (el: HTMLElement | null): void => {
       if (el && el.ownerDocument !== ownerDocument) {
@@ -224,17 +254,19 @@ const MainRoot = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <Root
-      {...props}
-      ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
-    />
+    <OwnerDocumentContext.Provider value={ownerDocument}>
+      <Root
+        {...props}
+        ref={useMergedRefs(findOwnerDocumentFromRef, forwardedRef)}
+      />
+    </OwnerDocumentContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
-  const { theme, children, themeOptions, className, ...rest } = props;
+  const { theme, children, themeOptions, className, future, ...rest } = props;
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
@@ -251,6 +283,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
+      data-iui-bridge={!!future?.themeBridge ? true : undefined}
       ref={forwardedRef}
       {...rest}
     >
@@ -333,17 +366,18 @@ const PortalContainer = React.memo(
   ({
     portalContainerProp,
     portalContainerFromParent,
+    setPortalContainer,
     isInheritingTheme,
     theme,
     themeOptions,
+    future,
   }: {
     portalContainerProp: HTMLElement | undefined;
-    portalContainerFromParent: HTMLElement | undefined;
+    portalContainerFromParent: HTMLElement | null;
+    setPortalContainer: (container: HTMLElement | null) => void;
     isInheritingTheme: boolean;
   } & RootProps) => {
-    const [ownerDocument] = useScopedAtom(ownerDocumentAtom);
-    const [portalContainer, setPortalContainer] =
-      useScopedAtom(portalContainerAtom);
+    const ownerDocument = React.useContext(OwnerDocumentContext);
 
     // Create a new portal container only if necessary:
     // - no explicit portalContainer prop
@@ -359,7 +393,7 @@ const PortalContainer = React.memo(
 
     const id = useId();
 
-    // Synchronize atom with the correct portal target if necessary.
+    // Synchronize atom with the correct portal target.
     React.useEffect(() => {
       if (shouldSetupPortalContainer) {
         return;
@@ -367,10 +401,15 @@ const PortalContainer = React.memo(
 
       const portalTarget = portalContainerProp || portalContainerFromParent;
 
-      if (portalTarget && portalTarget !== portalContainer) {
+      if (portalTarget) {
         setPortalContainer(portalTarget);
       }
-    });
+    }, [
+      portalContainerProp,
+      portalContainerFromParent,
+      shouldSetupPortalContainer,
+      setPortalContainer,
+    ]);
 
     // bail if not hydrated, because portals don't work on server
     const isHydrated = useHydration() === 'hydrated';
@@ -383,6 +422,7 @@ const PortalContainer = React.memo(
         <Root
           theme={theme}
           themeOptions={{ ...themeOptions, applyBackground: false }}
+          future={future}
           data-iui-portal
           style={{ display: 'contents' }}
           ref={setPortalContainer}

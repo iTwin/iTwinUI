@@ -13,6 +13,7 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
     as: asProp = 'button',
     disabled: disabledProp,
     htmlDisabled,
+    type: typeProp = asProp === 'button' ? 'button' : undefined,
     ...rest
   } = props;
 
@@ -33,10 +34,13 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
       handler?.(e);
     };
 
+  // Set the type to 'button' for disabled button, to prevent form submission
+  const type = asProp === 'button' && disabledProp ? 'button' : typeProp;
+
   return (
     <Box
       as={asProp}
-      type={asProp === 'button' ? 'button' : undefined}
+      type={type}
       ref={forwardedRef}
       aria-disabled={ariaDisabled ? 'true' : undefined}
       data-iui-disabled={disabledProp ? 'true' : undefined}

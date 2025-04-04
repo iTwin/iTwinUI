@@ -13,7 +13,7 @@ type HeaderLogoOwnProps = {
   /**
    * Logo shown before the main content.
    */
-  logo: JSX.Element;
+  logo: React.JSX.Element;
   /**
    * Click event handler.
    * If passed, the component will be rendered as a `<button>` rather than `<div>`.

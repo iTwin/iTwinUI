@@ -1,0 +1,159 @@
+---
+title: Panels
+description: Generic and simplistic component for most sliding multi-panel UIs.
+group: utilities
+---
+
+<UnstableApiCard />
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Panels.main.jsx'>
+  <AllExamples.PanelsMainExample client:load />
+</LiveExample>
+
+## Usage
+
+### Import
+
+Since this API is released with the unstable flag, you can consider using an import alias to the make least amount of code changes when the API becomes stable.
+
+```jsx
+import { unstable_Panels as Panels } from '@itwin/itwinui-react';
+```
+
+### Composition API
+
+You can build sliding multi-panel UIs with subcomponents that are fully customizable.
+
+We provide four _required_ subcomponents:
+
+- `Panels.Wrapper`: Wraps around all the `Panels.Panel`.
+- `Panels.Panel`: A single panel that can be shown or hidden depending on the active panel.
+- `Panels.Header`: The header of a panel that contains the title and the back button.
+  - Provides the accessible name for the panel.
+- `Panels.Trigger`: Wrapper around an interactable element that transitions to a different panel when clicked.
+
+```tsx
+<Panels.Wrapper>
+  <Panels.Panel id={panelIdRoot}>
+    <Panels.Header>Root</Panels.Header>
+    <Panels.Trigger for={panelIdMoreInfo}>
+      <Button>More details</Button>
+    </Panels.Trigger>
+  </Panels.Panel>
+
+  <Panels.Panel id={panelIdMoreInfo}>
+    <Panels.Header>More details</Panels.Header>
+    {/* Content */}
+  </Panels.Panel>
+</Panels.Wrapper>
+```
+
+### Polymorphic `as` prop
+
+`Panels` is intentionally generic and does not provide much UI. That way you can use the `as` prop to render the panels to your needs and preferences. E.g. using [`Surface`](surface) to render the panels:
+
+```tsx {2, 9, 20}
+<Panels.Wrapper
+  as={Surface}
+  style={{
+    inlineSize: 'min(300px, 30vw)',
+    blockSize: 'min(500px, 50vh)',
+  }}
+>
+  <Panels.Panel id={panelIdRoot}>
+    <Surface.Header as={Panels.Header}>Root</Surface.Header>
+    <Surface.Body as={List}>
+      <ListItem>
+        <Panels.Trigger for={panelIdMoreInfo}>
+          <ListItem.Action>More details</ListItem.Action>
+        </Panels.Trigger>
+      </ListItem>
+    </Surface.Body>
+  </Panels.Panel>
+
+  <Panels.Panel id={panelIdMoreInfo}>
+    <Surface.Header as={Panels.Header}>More details</Surface.Header>
+    <Surface.Body isPadded>
+      <Text>Content</Text>
+    </Surface.Body>
+  </Panels.Panel>
+</Panels.Wrapper>
+```
+
+### Instance methods
+
+You can use methods from `Panels.useInstance()` to control the state programmatically.
+
+```tsx
+const panels = Panels.useInstance();
+
+<Button onClick={() => panels.goBack()}>Go back</Button>
+<Panels.Wrapper instance={panels}>{/* … */}</Panels.Wrapper>;
+```
+
+<LiveExample src='Panels.nestedPanels.jsx'>
+  <AllExamples.PanelsNestedPanels client:load />
+</LiveExample>
+
+## API Requirements and assumptions
+
+The `Panels` API requires the following:
+
+- The initial displayed `Panel` should be the first `Panel` in the `Panels.Wrapper`.
+
+  ```jsx
+  <Panels.Wrapper>
+    {/* This is the first panel shown */}
+    <Panels.Panel id='initial-panel'>{/* … */}</Panels.Panel>
+  </Panels.Wrapper>
+  ```
+
+- A panel can have only one trigger pointing to it. i.e. out of all the triggers across all panels, only one can point to a particular panel.
+
+  ```jsx
+  <Panels.Wrapper>
+    <Panels.Panel id='panel-1'>
+      <Panels.Trigger for='panel-more-details'>More details</Panels.Trigger>
+    </Panels.Panel>
+
+    <Panels.Panel id='panel-2'>
+      {/* This trigger should not exist since there is already is a trigger
+      to panel-more-details in panel-1 */}
+      <Panels.Trigger for='panel-more-details'>More details</Panels.Trigger>
+    </Panels.Panel>
+
+    <Panels.Panel id='panel-more-details'>{/* … */}</Panels.Panel>
+  </Panels.Wrapper>
+  ```
+
+- The `Panels.Panel`s within the wrapper should be in the order of the navigation. E.g.:
+
+  ```jsx
+  <Panels.Wrapper>
+    {/* Must come before more-details since it contains the trigger to more-details */}
+    <Panels.Panel id='root' />
+
+    {/* Must come after root since it is navigated to from root */}
+    <Panels.Panel id='more-details'>
+  </Panels.Wrapper>
+  ```
+
+## Examples
+
+### Multi-level List
+
+<LiveExample src='Panels.multiLevelList.jsx'>
+  <AllExamples.PanelsMultiLevelList client:load />
+</LiveExample>
+
+### Multi panel information panel
+
+<LiveExample src='Panels.multiPanelInformationPanel.jsx'>
+  <AllExamples.PanelsMultiPanelInformationPanel client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Panels/Panels.d.ts' componentName='PanelsWrapper' />

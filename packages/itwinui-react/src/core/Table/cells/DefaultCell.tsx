@@ -13,11 +13,11 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Custom icon to be displayed at the beginning of the cell.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Custom icon to be displayed at the end of the cell.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * Status of the cell.
    */
@@ -72,36 +72,45 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     ...rest
   } = props;
 
+  const { key: cellElementKey, ...cellElementPropsRest } = cellElementProps;
+
   return (
     <Box
-      {...cellElementProps}
+      {...cellElementPropsRest}
+      key={cellElementKey}
       {...rest}
       className={cx(cellElementClassName, className)}
       aria-disabled={isDisabled?.(cellProps.row.original) || undefined}
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
-      <ShadowRoot>
-        <slot name='start' />
-        {clamp ? (
+      {clamp ? (
+        <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false}>
+          <slot name='start' />
           <LineClamp>
             <slot />
           </LineClamp>
-        ) : (
-          <slot />
-        )}
-        <slot name='end' />
-        <slot name='shadows' />
-      </ShadowRoot>
+          <slot name='end' />
+          <slot name='shadows' />
+        </ShadowRoot>
+      ) : null}
 
       {startIcon && (
-        <Box className='iui-table-cell-start-icon' slot='start'>
+        <Box
+          className='iui-table-cell-start-icon'
+          slot='start'
+          key={`${cellElementKey}-start`}
+        >
           {startIcon}
         </Box>
       )}
       {children}
       {endIcon && (
-        <Box className='iui-table-cell-end-icon' slot='end'>
+        <Box
+          className='iui-table-cell-end-icon'
+          slot='end'
+          key={`${cellElementKey}-end`}
+        >
           {endIcon}
         </Box>
       )}

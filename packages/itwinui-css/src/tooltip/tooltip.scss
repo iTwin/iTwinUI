@@ -9,7 +9,7 @@
   text-align: center;
   border-radius: var(--iui-border-radius-1);
   font-size: var(--iui-font-size-0);
-  overflow: hidden;
+  overflow: visible;
   max-inline-size: 400px;
   inline-size: max-content;
   overflow-wrap: break-word;
@@ -20,6 +20,12 @@
   box-shadow: var(--iui-shadow-3);
   color: var(--iui-color-white);
   border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+  }
 
   @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
 

@@ -14,6 +14,10 @@ import { Menu, MenuContext } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import cx from 'classnames';
+import {
+  DropdownMenuCloseOnClickContext,
+  DropdownMenuContext,
+} from '../DropdownMenu/DropdownMenu.js';
 
 export type MenuItemProps = {
   /**
@@ -46,21 +50,21 @@ export type MenuItemProps = {
   /**
    * SVG icon component shown on the left.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * @deprecated Use startIcon.
    * SVG icon component shown on the left.
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   /**
    * SVG icon component shown on the right.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * @deprecated Use endIcon.
    * SVG icon component shown on the right.
    */
-  badge?: JSX.Element;
+  badge?: React.JSX.Element;
   /**
    * ARIA role. For menu item use 'menuitem', for select item use 'option'.
    * @default 'menuitem'
@@ -69,7 +73,7 @@ export type MenuItemProps = {
   /**
    * Items to be shown in the submenu when hovered over the item.
    */
-  subMenuItems?: JSX.Element[];
+  subMenuItems?: React.JSX.Element[];
   /**
    * Content of the menu item.
    */
@@ -111,6 +115,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   }
 
   const parentMenu = React.useContext(MenuContext);
+  const dropdownMenu = React.useContext(DropdownMenuContext);
+  const shouldCloseMenuOnClick = React.useContext(
+    DropdownMenuCloseOnClickContext,
+  );
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -132,6 +140,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const onClick = () => {
     if (disabled) {
       return;
+    }
+
+    if (shouldCloseMenuOnClick) {
+      dropdownMenu?.close();
     }
 
     onClickProp?.(value);

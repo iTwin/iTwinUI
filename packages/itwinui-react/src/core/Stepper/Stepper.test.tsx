@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { screen, render, fireEvent, act } from '@testing-library/react';
 import { Stepper } from './Stepper.js';
+import { SvgCheckmarkSmall } from '../../utils/index.js';
 
 it('should render all step names and numbers in default stepper', () => {
   const stepper = (
@@ -67,6 +68,44 @@ it('should add custom props to Stepper', () => {
   expect(
     container.querySelector('.iui-stepper-steps-label-count.some-count'),
   ).toBeTruthy();
+});
+
+it('should pass custom icon for completed steps', () => {
+  const stepper = (
+    <Stepper
+      currentStep={3}
+      steps={[
+        {
+          name: 'Step One',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
+        },
+        {
+          name: 'Step Two',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
+        },
+        {
+          name: 'Step Three',
+          stepContent: () => (
+            <span className={`test-icon`}>
+              <SvgCheckmarkSmall />
+            </span>
+          ),
+        },
+      ]}
+    />
+  );
+
+  const { container } = render(stepper);
+  const completedSteps = container.querySelectorAll('.test-icon');
+  expect(completedSteps).toHaveLength(3);
 });
 
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {
@@ -234,7 +273,7 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
   fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
-  act(() => void vi.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(100));
   const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
   expect(tooltip).toBeVisible();
   expect(tooltip).toHaveTextContent('Step one tooltip');
@@ -243,7 +282,7 @@ it('should display tooltip upon hovering step if description provided', async ()
   act(() => void vi.advanceTimersByTime(250));
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
-  act(() => void vi.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(200));
   expect(tooltip).not.toBeVisible();
 
   vi.useRealTimers();

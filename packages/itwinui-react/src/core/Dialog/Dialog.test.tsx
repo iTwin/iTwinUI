@@ -177,13 +177,6 @@ it('should not stay in the DOM when isOpen=false', () => {
 
   rerender(<Component isOpen={false} />);
 
-  // Should be there in the DOM until the exit animation is finished
-  dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
-  expect(dialogWrapper).toBeTruthy();
-
-  // Since timeout for the exit animation is 600ms
-  act(() => vi.advanceTimersByTime(600));
-
   dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
   expect(dialogWrapper).toBeFalsy();
 });

@@ -397,16 +397,8 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
     >
       <DropdownMenu
         onVisibleChange={setIsMenuVisible}
-        menuItems={(close) =>
-          children?.map((option: React.ReactElement) =>
-            React.cloneElement(option, {
-              onClick: (value: unknown) => {
-                close();
-                option.props.onClick?.(value);
-              },
-            }),
-          )
-        }
+        menuItems={children as React.ReactElement<any>[]}
+        closeOnItemClick
       >
         <IconButton
           styleType='borderless'

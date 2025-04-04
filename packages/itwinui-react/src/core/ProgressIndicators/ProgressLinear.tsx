@@ -16,7 +16,7 @@ type ProgressLinearProps = {
   /**
    * Progress variant. If true, `value` will be ignored.
    *
-   * Defaults to true if `value` is passed, otherwise false.
+   * Defaults to false if `value` is passed, otherwise true.
    */
   indeterminate?: boolean;
   /**

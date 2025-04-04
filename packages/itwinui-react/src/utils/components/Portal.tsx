@@ -5,12 +5,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useIsClient } from '../hooks/useIsClient.js';
-import { atom } from 'jotai';
-import { useScopedAtom } from '../providers/ScopeProvider.js';
 
 // ----------------------------------------------------------------------------
 
-export const portalContainerAtom = atom<HTMLElement | undefined>(undefined);
+export const PortalContainerContext = React.createContext<HTMLElement | null>(
+  null,
+);
 
 // ----------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 // ----------------------------------------------------------------------------
 
 export const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
-  const [portalContainer] = useScopedAtom(portalContainerAtom);
+  const portalContainer = React.useContext(PortalContainerContext);
 
   if (typeof portal === 'boolean') {
     return portal ? portalContainer : null;

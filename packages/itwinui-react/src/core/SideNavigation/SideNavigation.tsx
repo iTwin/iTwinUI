@@ -4,14 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  WithCSSTransition,
-  SvgChevronRight,
-  Box,
-  useControlledState,
-} from '../../utils/index.js';
+import { SvgChevronRight, Box, useControlledState } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
+import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 // ----------------------------------------------------------------------------
 
@@ -45,12 +42,12 @@ type SideNavigationProps = {
    */
   onExpanderClick?: () => void;
   /**
-   * Submenu to show supplemental info assicated to the main item.
+   * Submenu to show supplemental info associated to the main item.
    *
    * Should be used with the `isSubmenuOpen` props from both `SideNavigation` and `SidenavButton`.
    * @example
    * <SideNavigation
-   *   // ...
+   *   // …
    *   submenu={(
    *     <SidenavSubmenu>
    *       <SidenavSubmenuHeader>Documents</SidenavSubmenuHeader>
@@ -60,7 +57,7 @@ type SideNavigationProps = {
    *   isSubmenuOpen={true}
    * />
    */
-  submenu?: JSX.Element;
+  submenu?: React.JSX.Element;
   /**
    * Set to true to display the provided `submenu`.
    *
@@ -72,7 +69,7 @@ type SideNavigationProps = {
   /**
    * Passes props for SideNav wrapper.
    */
-  wrapperProps?: React.ComponentProps<'div'>;
+  wrapperProps?: React.ComponentProps<'nav'>;
   /**
    * Passes props for SideNav content.
    */
@@ -89,6 +86,10 @@ type SideNavigationProps = {
 
 /**
  * Left side navigation menu component.
+ *
+ * Renders a `<nav>` landmark, which can be labelled using `wrapperProps['aria-labelledby']`
+ * or `wrapperProps['aria-label']`.
+ *
  * @example
  * <SideNavigation
  *   items={[
@@ -138,56 +139,49 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
   return (
     <SidenavExpandedContext.Provider value={isExpanded}>
       <Box
+        as='nav'
         {...wrapperProps}
         className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
         ref={forwardedRef}
       >
-        <Box
-          as='div'
-          className={cx(
-            'iui-side-navigation',
-            {
-              'iui-expanded': isExpanded,
-              'iui-collapsed': !isExpanded,
-            },
-            className,
-          )}
-          {...rest}
-        >
-          {expanderPlacement === 'top' && ExpandButton}
+        <FloatingDelayGroup delay={defaultTooltipDelay}>
           <Box
-            as='div'
-            {...contentProps}
-            className={cx('iui-sidenav-content', contentProps?.className)}
+            className={cx(
+              'iui-side-navigation',
+              {
+                'iui-expanded': isExpanded,
+                'iui-collapsed': !isExpanded,
+              },
+              className,
+            )}
+            {...rest}
           >
+            {expanderPlacement === 'top' && ExpandButton}
             <Box
               as='div'
-              {...topProps}
-              className={cx('iui-top', topProps?.className)}
+              {...contentProps}
+              className={cx('iui-sidenav-content', contentProps?.className)}
             >
-              {items}
+              <Box
+                as='div'
+                {...topProps}
+                className={cx('iui-top', topProps?.className)}
+              >
+                {items}
+              </Box>
+              <Box
+                as='div'
+                {...bottomProps}
+                className={cx('iui-bottom', bottomProps?.className)}
+              >
+                {secondaryItems}
+              </Box>
             </Box>
-            <Box
-              as='div'
-              {...bottomProps}
-              className={cx('iui-bottom', bottomProps?.className)}
-            >
-              {secondaryItems}
-            </Box>
+            {expanderPlacement === 'bottom' && ExpandButton}
           </Box>
-          {expanderPlacement === 'bottom' && ExpandButton}
-        </Box>
+        </FloatingDelayGroup>
 
-        {submenu && (
-          <WithCSSTransition
-            in={isSubmenuOpen}
-            dimension='width'
-            timeout={200}
-            classNames='iui'
-          >
-            {submenu}
-          </WithCSSTransition>
-        )}
+        {submenu && isSubmenuOpen ? submenu : null}
       </Box>
     </SidenavExpandedContext.Provider>
   );

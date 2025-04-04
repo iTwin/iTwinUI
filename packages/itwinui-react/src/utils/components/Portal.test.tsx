@@ -98,7 +98,11 @@ it('should respect ThemeProvider.portalContainer', () => {
         <main>
           <Portal>my foot</Portal>
         </main>
-        <footer ref={(node) => node && setFooter(node)} />
+        <footer
+          ref={(node) => {
+            node && setFooter(node);
+          }}
+        />
       </ThemeProvider>
     );
   };

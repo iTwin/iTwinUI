@@ -14,7 +14,6 @@ import type {
   EffectCallback,
   MouseEvent,
   ReactElement,
-  ReactFragment,
   ReactNode,
 } from 'react';
 
@@ -1257,10 +1256,10 @@ export type CellValue<V = any> = V;
 
 export type Renderer<Props> =
   | ComponentType<Props>
-  | ReactElement
+  | ReactElement<any>
   | string
   | number
-  | ReactFragment;
+  | Iterable<ReactNode>;
 
 export interface PluginHook<D extends Record<string, unknown>> {
   (hooks: Hooks<D>): void;
@@ -1321,4 +1320,4 @@ export declare function makeRenderer(
   instance: TableInstance,
   column: ColumnInstance,
   meta?: any,
-): ReactElement;
+): ReactElement<any>;

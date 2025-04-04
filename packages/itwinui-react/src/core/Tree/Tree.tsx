@@ -68,7 +68,8 @@ export type TreeProps<T> = {
   /**
    * Render function that should return the node element.
    * Recommended to use `TreeNode` component.
-   * Must be memoized.
+   *
+   ***Note**: When virtualization is enabled, the return value of `nodeRenderer()` is cloned and a `ref` is passed to it. Thus, you would need a `React.forwardRef` in the component returned by `nodeRenderer()`, except if you are returning `TreeNode` since that already forwards its ref.
    * @example
    * const nodeRenderer = React.useCallback(({ node, ...rest }: NodeRenderProps<DataType>) => (
    *   <TreeNode
@@ -78,7 +79,7 @@ export type TreeProps<T> = {
    *   />
    * ), [onNodeExpanded])
    */
-  nodeRenderer: (props: NodeRenderProps<T>) => JSX.Element;
+  nodeRenderer: (props: NodeRenderProps<T>) => React.JSX.Element;
   /**
    * Array of custom data used for `TreeNodes` inside `Tree`.
    */
@@ -261,7 +262,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   const itemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem<Element>,
+      virtualItem?: VirtualItem,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const node = flatNodesList[index];
@@ -386,9 +387,9 @@ type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
   itemRenderer: (
     index: number,
-    virtualItem?: VirtualItem<Element>,
+    virtualItem?: VirtualItem,
     virtualizer?: Virtualizer<Element, Element>,
-  ) => JSX.Element;
+  ) => React.JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
   onFocus: React.FocusEventHandler<HTMLDivElement>;
@@ -429,21 +430,23 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
-        <ShadowRoot css={virtualizerCss}>
-          <div
-            data-iui-virtualizer='root'
-            style={{ minBlockSize: virtualizer.getTotalSize() }}
-          >
-            <slot />
-          </div>
-        </ShadowRoot>
-        <>
-          {virtualizer
-            .getVirtualItems()
-            .map((virtualItem) =>
-              itemRenderer(virtualItem.index, virtualItem, virtualizer),
-            )}
-        </>
+        <div style={{ display: 'contents' }}>
+          <ShadowRoot css={virtualizerCss}>
+            <div
+              data-iui-virtualizer='root'
+              style={{ minBlockSize: virtualizer.getTotalSize() }}
+            >
+              <slot />
+            </div>
+          </ShadowRoot>
+          <>
+            {virtualizer
+              .getVirtualItems()
+              .map((virtualItem) =>
+                itemRenderer(virtualItem.index, virtualItem, virtualizer),
+              )}
+          </>
+        </div>
       </TreeElement>
     );
   },

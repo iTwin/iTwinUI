@@ -12,12 +12,12 @@ export type ResizerProps = {
   /**
    * Ref of the element that is being resized.
    */
-  elementRef: React.RefObject<HTMLElement>;
+  elementRef: React.RefObject<HTMLElement | null>;
   /**
    * Ref of the container element in order to avoid resizing past container boundaries.
    * If not passed, viewport will be used.
    */
-  containerRef?: React.RefObject<HTMLElement>;
+  containerRef?: React.RefObject<HTMLElement | null>;
   /**
    * Callback that is being called on resize start.
    * Useful to set state, style, or other properties when resizing is started.

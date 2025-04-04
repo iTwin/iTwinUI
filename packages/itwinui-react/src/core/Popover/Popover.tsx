@@ -516,7 +516,8 @@ const PopoverPortal = ({
   return (
     <FloatingPortal
       key={portalTo?.id} // workaround to force remount when `root` changes (see #2093)
-      root={portalTo}
+      // Don't pass `null` to FloatingPortal to ensure correct portaling (workaround for `floating-ui/react@0.26.27`+)
+      root={portalTo ?? undefined}
     >
       <DisplayContents />
       {children}

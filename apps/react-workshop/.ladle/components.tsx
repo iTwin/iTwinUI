@@ -3,16 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ThemeProvider } from '@itwin/itwinui-react';
 import {
   useLadleContext,
   ActionType,
   ThemeState,
   type GlobalProvider,
 } from '@ladle/react';
-import '@itwin/itwinui-variables';
-import '@itwin/itwinui-react/styles.css';
 import './global.css';
+import '@itwin/itwinui-react/styles.css';
+import { ThemeProvider } from '@itwin/itwinui-react';
+import { Root as ITwinUiV5Root } from '@itwin/itwinui-react-v5/bricks';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -20,6 +20,7 @@ export const Provider: GlobalProvider = ({ children }) => {
   const { globalState, dispatch } = useLadleContext();
   const theme = globalState.theme === 'dark' ? 'dark' : 'light';
   const highContrast = globalState.control?.['high-contrast']?.value;
+  const futureThemeBridge = globalState.control?.['future.themeBridge']?.value;
 
   // default to OS theme
   React.useLayoutEffect(() => {
@@ -31,11 +32,12 @@ export const Provider: GlobalProvider = ({ children }) => {
 
   // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
+    document.documentElement.dataset.colorScheme = theme;
     document.documentElement.dataset.iuiTheme = theme;
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-  }, [theme, highContrast]);
+  }, [theme, highContrast, futureThemeBridge]);
 
   // redirect old storybook paths to new ones
   React.useEffect(() => {
@@ -49,14 +51,29 @@ export const Provider: GlobalProvider = ({ children }) => {
     }
   }, []);
 
+  const themeProviderProps = {
+    theme,
+    themeOptions: {
+      applyBackground: false,
+      highContrast,
+    },
+    future: { themeBridge: futureThemeBridge },
+    children,
+  } satisfies React.ComponentProps<typeof ThemeProvider>;
+
   return (
     <React.StrictMode>
-      <ThemeProvider
-        theme={theme}
-        themeOptions={{ applyBackground: false, highContrast }}
-      >
-        {children}
-      </ThemeProvider>
+      {futureThemeBridge ? (
+        <ThemeProvider
+          as={ITwinUiV5Root}
+          colorScheme={theme}
+          density='dense'
+          synchronizeColorScheme
+          {...themeProviderProps}
+        />
+      ) : (
+        <ThemeProvider {...themeProviderProps} />
+      )}
     </React.StrictMode>
   );
 };
@@ -71,6 +88,10 @@ export const argTypes = {
     defaultValue: 'var(--iui-color-background-backdrop)',
   },
   'high-contrast': {
+    control: { type: 'boolean' },
+    defaultValue: false,
+  },
+  'future.themeBridge': {
     control: { type: 'boolean' },
     defaultValue: false,
   },

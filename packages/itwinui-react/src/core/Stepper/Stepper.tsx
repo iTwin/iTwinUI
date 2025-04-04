@@ -7,6 +7,8 @@ import * as React from 'react';
 import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { StepperStep } from './StepperStep.js';
+import { FloatingDelayGroup } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 export type StepperLocalization = {
   stepsCountLabel: (currentStep: number, totalSteps: number) => string;
@@ -21,6 +23,10 @@ export type StepProperties = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
+  /**
+   * Custom content displayed in the step's circle.
+   */
+  stepContent?: () => React.ReactNode;
 } & React.ComponentProps<'li'>;
 
 export type StepperProps = {
@@ -99,30 +105,33 @@ export const Stepper = React.forwardRef((props, ref) => {
 
   return (
     <Box className={'iui-stepper'} ref={ref} {...rest}>
-      <ol>
-        {steps.map((s, index) => {
-          const thisStepProps = stepProps?.(index);
-          const thisTrackContentProps = trackContentProps?.(index);
-          const thisCircleProps = circleProps?.(index);
-          const thisNameProps = nameProps?.(index);
-          return (
-            <StepperStep
-              stepProps={thisStepProps}
-              trackContentProps={thisTrackContentProps}
-              circleProps={thisCircleProps}
-              nameProps={thisNameProps}
-              key={index}
-              index={index}
-              title={type === 'long' ? '' : s.name}
-              currentStepNumber={boundedCurrentStep}
-              totalSteps={steps.length}
-              type={type}
-              onClick={onStepClick}
-              description={s.description}
-            />
-          );
-        })}
-      </ol>
+      <FloatingDelayGroup delay={defaultTooltipDelay}>
+        <ol>
+          {steps.map((s, index) => {
+            const thisStepProps = stepProps?.(index);
+            const thisTrackContentProps = trackContentProps?.(index);
+            const thisCircleProps = circleProps?.(index);
+            const thisNameProps = nameProps?.(index);
+            return (
+              <StepperStep
+                stepProps={thisStepProps}
+                trackContentProps={thisTrackContentProps}
+                circleProps={thisCircleProps}
+                nameProps={thisNameProps}
+                key={index}
+                index={index}
+                title={type === 'long' ? '' : s.name}
+                currentStepNumber={boundedCurrentStep}
+                totalSteps={steps.length}
+                type={type}
+                onClick={onStepClick}
+                description={s.description}
+                stepContent={s.stepContent}
+              />
+            );
+          })}
+        </ol>
+      </FloatingDelayGroup>
       {type === 'long' && (
         <Box
           as='div'

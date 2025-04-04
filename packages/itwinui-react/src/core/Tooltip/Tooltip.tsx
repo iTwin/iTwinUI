@@ -21,7 +21,7 @@ import {
   inline,
   useDelayGroup,
 } from '@floating-ui/react';
-import type { Placement } from '@floating-ui/react';
+import type { FloatingDelayGroup, Placement } from '@floating-ui/react';
 import {
   Box,
   Portal,
@@ -36,6 +36,13 @@ import type {
 } from '../../utils/index.js';
 
 // ----------------------------------------------------------------------------
+
+export const defaultTooltipDelay: React.ComponentPropsWithoutRef<
+  typeof FloatingDelayGroup
+>['delay'] = {
+  open: 100,
+  close: 200,
+};
 
 type TooltipOptions = {
   /**
@@ -197,7 +204,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const interactions = useInteractions([
     useHover(floating.context, {
-      delay: delay !== 0 ? delay : { open: 50, close: 250 }, // If FloatingDelayGroup exists, use its delay
+      delay: delay !== 0 ? delay : defaultTooltipDelay, // If FloatingDelayGroup exists, use its delay
       handleClose: safePolygon({ buffer: -Infinity }),
       move: false,
     }),
@@ -265,7 +272,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
         ...props,
         id,
       }),
-      popover: 'manual',
+      popover: 'manual' as const,
     }),
     [interactions, props, id, open],
   );
