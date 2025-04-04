@@ -287,6 +287,10 @@ export type TableProps<
    */
   bodyProps?: React.ComponentProps<'div'>;
   /**
+   * Passes props to the `role="table"` element.
+   */
+  tableProps?: React.ComponentProps<'div'>;
+  /**
    * Passes custom props to empty table.
    */
   emptyTableContentProps?: React.ComponentProps<'div'>;
@@ -419,6 +423,7 @@ export const Table = <
     headerWrapperProps,
     headerProps,
     bodyProps,
+    tableProps,
     emptyTableContentProps,
     getRowId,
     caption,
@@ -1023,7 +1028,7 @@ export const Table = <
       >
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
-          <div role='table' {...ariaDataAttributes}>
+          <div role='table' {...ariaDataAttributes} {...tableProps}>
             <slot name='caption' />
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
