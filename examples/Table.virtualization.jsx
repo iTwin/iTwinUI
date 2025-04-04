@@ -16,7 +16,7 @@ export default () => {
 
   const data = React.useMemo(
     () =>
-      Array(3)
+      Array(1000)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -40,7 +40,13 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
+      <Table
+        columns={columns}
+        emptyTableContent='No data.'
+        data={data}
+        style={{ height: '300px' }}
+        enableVirtualization
+      />
     </div>
   );
 };
