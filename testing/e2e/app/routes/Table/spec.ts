@@ -10,6 +10,28 @@ test('un-virtualized table should scroll to provided row', async ({ page }) => {
   await expect(page.getByText('Name51')).toBeInViewport();
 });
 
+test.describe('Clamping', () => {
+  test('should apply clamp, if cell is string value and no custom Cell is rendered', async ({
+    page,
+  }) => {
+    await page.goto('/Table');
+
+    const host = page.locator('.name-cell').first();
+    await expect(await host.evaluate((el) => el.shadowRoot)).not.toBeNull();
+    const lineClamp = await host.evaluate(
+      (el) => el.shadowRoot?.querySelector('div'),
+    );
+    await expect(lineClamp).not.toBeNull();
+  });
+
+  test('should not apply clamp, if custom Cell is used', async ({ page }) => {
+    await page.goto('/Table');
+
+    const host = page.locator('.custom-cell').first();
+    await expect(await host.evaluate((el) => el.shadowRoot)).toBeNull();
+  });
+});
+
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
@@ -17,6 +39,7 @@ test.describe('Table sorting', () => {
     const firstColumnCells = page.locator('[role="cell"]:first-child');
     await expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
 
     // ascending
@@ -723,7 +746,7 @@ test.describe('Virtual Scroll Tests', () => {
   }) => {
     await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     expect((await rows.all()).length).toBe(12);
     await expect(rows.nth(0)).toContainText('Name0');
     await expect(rows.nth(11)).toContainText('Name11');
@@ -753,8 +776,10 @@ test.describe('Virtual Scroll Tests', () => {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
-    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
+    const emptyContent = page
+      .locator("[slot='iui-table-body']")
+      .getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
 
     //Checks empty content to make sure it appears correctly.
@@ -766,7 +791,7 @@ test.describe('Virtual Scroll Tests', () => {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     const row50NameCell = page.getByText('Name50');
     expect((await rows.all()).length).toBe(13);
     await expect(rows.nth(0)).toContainText('Name49');
@@ -780,7 +805,7 @@ test.describe('Virtual Scroll Tests', () => {
     await page.goto('/Table?virtualization=true&oneRow=true', {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     expect((await rows.all()).length).toBe(1);
   });
 
@@ -794,7 +819,7 @@ test.describe('Virtual Scroll Tests', () => {
       },
     ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     await expect(rows.nth(1)).toContainText('Name50');
     await expect(rows.nth(4)).toContainText('Name53');
 
@@ -830,6 +855,56 @@ test.describe('Virtual Scroll Tests', () => {
 });
 
 test.describe('Table filters', () => {
+  test('should work with keyboard', async ({ page }) => {
+    await page.goto('/Table?exampleType=allFilters');
+
+    // No filter applied
+    await expect(page.getByText('Name1')).toBeVisible();
+    await expect(page.getByText('Name2')).toBeVisible();
+    await expect(page.getByText('Name3')).toBeVisible();
+
+    await page.keyboard.press('Tab'); // Focus table
+    await page.keyboard.press('Tab'); // Focus filter button
+    await page.keyboard.press('Enter'); // open filter popover
+
+    await page.keyboard.type('2'); // min filter
+    await page.keyboard.press('Tab');
+    await page.keyboard.type('3'); // max filter
+    await page.keyboard.press('Tab');
+
+    const onFilterArguments = page.waitForEvent('console');
+    await page.keyboard.press('Enter'); // apply filter
+
+    const expectedArguments = JSON.stringify([
+      // filters
+      [
+        {
+          id: 'index',
+          value: [2, 3],
+          fieldType: 'number',
+          filterType: 'between',
+        },
+      ],
+      // state.filters
+      [
+        {
+          id: 'index',
+          value: [2, 3],
+        },
+      ],
+      // filteredData?.map((r) => r.original.index)
+      [2, 3],
+    ]);
+
+    // Confirm onFilter is called with the correct arguments
+    await expect((await onFilterArguments).text()).toBe(expectedArguments);
+
+    // Filter applied
+    await expect(page.getByText('Name1')).not.toBeVisible();
+    await expect(page.getByText('Name2')).toBeVisible();
+    await expect(page.getByText('Name3')).toBeVisible();
+  });
+
   test('DateRangeFilter should show DatePicker', async ({ page }) => {
     await page.goto('/Table?exampleType=allFilters');
 

@@ -66,6 +66,7 @@ import { SELECTION_CELL_ID } from './columns/index.js';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -286,6 +287,10 @@ export type TableProps<
    */
   bodyProps?: React.ComponentProps<'div'>;
   /**
+   * Passes props to the `role="table"` element.
+   */
+  tableProps?: React.ComponentProps<'div'>;
+  /**
    * Passes custom props to empty table.
    */
   emptyTableContentProps?: React.ComponentProps<'div'>;
@@ -313,6 +318,12 @@ export type TableProps<
    * />
    */
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
+  /**
+   * Table caption. Serves as a label for the region landmark that wraps the `role="table"`.
+   *
+   * Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+   */
+  caption?: string;
 } & Omit<CommonProps, 'title'>;
 
 const flattenColumns = <T extends Record<string, unknown>>(
@@ -412,8 +423,10 @@ export const Table = <
     headerWrapperProps,
     headerProps,
     bodyProps,
+    tableProps,
     emptyTableContentProps,
     getRowId,
+    caption,
     ...rest
   } = props;
 
@@ -985,6 +998,8 @@ export const Table = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const captionId = React.useId();
+
   return (
     <TableInstanceContext.Provider
       value={instance as TableInstance<Record<string, unknown>>}
@@ -1005,10 +1020,27 @@ export const Table = <
             ...style,
           },
         })}
+        aria-labelledby={captionId}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
-        {...ariaDataAttributes}
       >
+        <ShadowRoot>
+          {/* Inner wrapper with role="table" to only include table elements */}
+          <div role='table' {...ariaDataAttributes} {...tableProps}>
+            <slot name='caption' />
+            <slot name='iui-table-header-wrapper' />
+            <slot name='iui-table-body' />
+          </div>
+
+          {/* Non-table elements (e.g. Lazy loading row, Paginator) should not be within role="table" */}
+          <slot name='iui-table-body-extra' />
+          <slot />
+        </ShadowRoot>
+
+        <VisuallyHidden slot='caption' id={captionId}>
+          {caption ?? 'Table'}
+        </VisuallyHidden>
+
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
           // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id
           headerGroup.headers = headerGroup.headers.filter(
@@ -1021,6 +1053,7 @@ export const Table = <
           });
           return (
             <Box
+              slot='iui-table-header-wrapper'
               as='div'
               key={headerGroupProps.key}
               {...headerWrapperProps}
@@ -1070,6 +1103,7 @@ export const Table = <
           );
         })}
         <Box
+          slot='iui-table-body'
           as='div'
           {...bodyProps}
           {...getTableBodyProps({
@@ -1081,9 +1115,7 @@ export const Table = <
               bodyProps?.className,
             ),
           })}
-          aria-multiselectable={
-            (isSelectable && selectionMode === 'multi') || undefined
-          }
+          role={undefined} // To remove the role="rowgroup" from `getTableBodyProps()`
         >
           <ShadowRoot css={virtualizerCss} flush={false}>
             {enableVirtualization && data.length !== 0 ? (
@@ -1152,7 +1184,11 @@ export const Table = <
             )}
         </Box>
         {isLoading && data.length !== 0 && (
-          <Box className='iui-table-body-extra' data-iui-loading='true'>
+          <Box
+            slot='iui-table-body-extra'
+            className='iui-table-body-extra'
+            data-iui-loading='true'
+          >
             <ProgressRadial indeterminate size='small' />
           </Box>
         )}

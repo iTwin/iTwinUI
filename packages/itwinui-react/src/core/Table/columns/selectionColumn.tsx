@@ -61,6 +61,8 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
       );
       const indeterminate =
         !checked && Object.keys(state.selectedRowIds).length > 0;
+      const nextToggleState = !rows.some((row) => row.isSelected);
+
       return (
         <Checkbox
           {...getToggleAllRowsSelectedProps()}
@@ -69,9 +71,8 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
           checked={checked && !disabled}
           indeterminate={indeterminate}
           disabled={disabled}
-          onChange={() =>
-            toggleAllRowsSelected(!rows.some((row) => row.isSelected))
-          }
+          aria-label={`${nextToggleState ? 'Select' : 'Deselect'} all rows`}
+          onChange={() => toggleAllRowsSelected(nextToggleState)}
         />
       );
     },
@@ -82,6 +83,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         title='' // Removes default title that comes from react-table
         disabled={isDisabled?.(row.original)}
         onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
+        aria-label={`${row.isSelected ? 'Deselect' : 'Select'} row`}
         onChange={() => {
           // Only goes through sub-rows if they are available and not sub-components
           if (

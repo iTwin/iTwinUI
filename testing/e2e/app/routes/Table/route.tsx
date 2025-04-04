@@ -1,10 +1,15 @@
 import {
   Table,
   tableFilters,
+  TableFilterValue,
   TablePaginator,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
-import type { CellProps } from '@itwin/itwinui-react/react-table';
+import type {
+  CellProps,
+  Row,
+  TableState,
+} from '@itwin/itwinui-react/react-table';
 import { useSearchParams } from '@remix-run/react';
 import React from 'react';
 
@@ -54,6 +59,22 @@ function FiltersTest() {
             },
           },
         ],
+        [],
+      )}
+      onFilter={React.useCallback(
+        (
+          filters: TableFilterValue<Record<string, unknown>>[],
+          state: TableState<Record<string, unknown>>,
+          filteredData?: Row<Record<string, unknown>>[] | undefined,
+        ) => {
+          console.log(
+            JSON.stringify([
+              filters,
+              state.filters,
+              filteredData?.map((r) => r.original.index),
+            ]),
+          );
+        },
         [],
       )}
       data={baseData}
@@ -182,6 +203,7 @@ const Default = ({
           {
             Header: 'Name',
             accessor: 'name',
+            cellClassName: 'name-cell',
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
             disableResizing,
@@ -196,6 +218,12 @@ const Default = ({
             Header: 'ID',
             accessor: 'id',
             width: '8rem',
+          },
+          {
+            Header: 'Custom',
+            accessor: 'custom',
+            cellClassName: 'custom-cell',
+            Cell: () => 'my custom content',
           },
         ]}
         data={enableVirtualization ? virtualizedData : data}
@@ -307,6 +335,7 @@ const baseData = [
     description: 'Description1',
     id: '111',
     date: new Date('Aug 1, 2023'),
+    custom: 'custom',
   },
   {
     index: 2,
@@ -314,6 +343,7 @@ const baseData = [
     description: 'Description2',
     id: '222',
     date: new Date('Aug 2, 2024'),
+    custom: 'custom',
   },
   {
     index: 3,
@@ -321,6 +351,7 @@ const baseData = [
     description: 'Description3',
     id: '333',
     date: new Date('Aug 3, 2025'),
+    custom: 'custom',
   },
 ];
 
