@@ -1020,7 +1020,7 @@ export const Table = <
             ...style,
           },
         })}
-        role='region'
+        role='group'
         aria-labelledby={captionId}
         tabIndex={0}
         onScroll={() => updateStickyState()}
