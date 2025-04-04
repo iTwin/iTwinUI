@@ -128,7 +128,7 @@
 }
 
 @mixin iui-select-tag-label {
-  .iui-select-button[data-iui-size='small'] & {
+  .iui-select-tag-container[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
   }
 }
@@ -140,7 +140,7 @@
   block-size: 100%;
   aspect-ratio: 1 / 1;
 
-  .iui-select-button[data-iui-size='small'] & {
+  .iui-select-tag-container[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
 
     svg {

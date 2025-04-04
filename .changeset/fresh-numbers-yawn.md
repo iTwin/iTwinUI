@@ -2,7 +2,10 @@
 '@itwin/itwinui-css': major
 ---
 
-Multi-select with now requires the tag-container to be rendered outside the select-button, and also requires an additional `data-iui-multi` attribute on the select-button.
+Multi-select now requires different markup:
+- The tag-container should be be rendered outside the select-button.
+- The select-button requires an additional `data-iui-multi` attribute.
+- For small size only, the tag-container requires an additional `data-iui-size` attribute.
 
 <details>
 <summary>Diff</summary>
@@ -13,6 +16,7 @@ Multi-select with now requires the tag-container to be rendered outside the sele
       role='combobox'
       tabindex='0'
       class='iui-select-button iui-field'
+      data-iui-size='small'
 +     data-iui-multi
     >
 -     <span class='iui-content'>
@@ -21,7 +25,7 @@ Multi-select with now requires the tag-container to be rendered outside the sele
     </div>
     <svg class='iui-end-icon'>…</svg>
 +   <span class='iui-content'>
-+     <div class='iui-select-tag-container'>…</div>
++     <div class='iui-select-tag-container' data-iui-size='small'>…</div>
 +   </span>
   </div>
 ```

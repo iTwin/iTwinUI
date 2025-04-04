@@ -486,6 +486,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
               ) => React.JSX.Element
             }
             tagRenderer={tagRenderer}
+            size={size === 'small' ? 'small' : undefined}
           />
         ) : null}
       </InputWithIcon>
@@ -763,6 +764,7 @@ const MultipleSelectButton = <T,>({
   selectedItems,
   selectedItemsRenderer,
   tagRenderer,
+  size,
 }: MultipleSelectButtonProps<T>) => {
   const selectedItemsElements = React.useMemo(() => {
     if (!selectedItems) {
@@ -779,7 +781,10 @@ const MultipleSelectButton = <T,>({
           {selectedItemsRenderer ? (
             selectedItemsRenderer(selectedItems)
           ) : (
-            <SelectTagContainer tags={selectedItemsElements} />
+            <SelectTagContainer
+              tags={selectedItemsElements}
+              data-iui-size={size}
+            />
           )}
         </Box>
       )}
@@ -791,6 +796,7 @@ type MultipleSelectButtonProps<T> = {
   selectedItems?: SelectOption<T>[];
   selectedItemsRenderer?: (options: SelectOption<T>[]) => React.JSX.Element;
   tagRenderer: (item: SelectOption<T>) => React.JSX.Element;
+  size?: 'small';
 };
 
 // ----------------------------------------------------------------------------
