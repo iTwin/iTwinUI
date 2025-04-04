@@ -144,6 +144,30 @@ The `Tabs.Action` subcomponent can be used to add action buttons to the end of t
   <AllExamples.TabsActionsExample client:load />
 </LiveExample>
 
+## Presentational
+
+In cases where the [ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) is not desirable, the `unstable_TabsPresentation` component can be used.
+
+This may be imported as an alias:
+
+```js
+import { unstable_TabsPresentation as TabsPresentation } from '@itwin/itwinui-react';
+```
+
+Usage:
+
+```jsx
+<TabsPresentation.Wrapper>
+  <TabsPresentation.TabList color='green'>
+    <TabsPresentation.Tab aria-current='true'>…</TabsPresentation.Tab>
+    <TabsPresentation.Tab>…</TabsPresentation.Tab>
+    <TabsPresentation.Tab>…</TabsPresentation.Tab>
+  </TabsPresentation.TabList>
+</TabsPresentation.Wrapper>
+```
+
+**Important**: When using the presentational version of Tabs, it is your responsibility to ensure that the resulting pattern is still accessible.
+
 ## Props
 
 Unfinished

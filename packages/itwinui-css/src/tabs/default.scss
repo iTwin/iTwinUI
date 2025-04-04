@@ -3,8 +3,6 @@
 @use 'base';
 
 @mixin iui-tabs-default {
-  @include base.iui-tab-not-animated;
-
   .iui-tab {
     padding-block: var(--iui-size-2xs);
     padding-inline: var(--iui-size-m);
@@ -20,7 +18,7 @@
       background-color: var(--iui-color-background-backdrop-hover);
     }
 
-    &[aria-selected='true'] {
+    &:is([aria-selected='true'], [aria-current]) {
       background-color: var(--iui-color-background);
     }
 
@@ -35,7 +33,7 @@
   }
 
   .iui-horizontal &[data-iui-orientation='horizontal'] {
-    .iui-tab[aria-selected='true'] {
+    .iui-tab:is([aria-selected='true'], [aria-current]) {
       border-block-end-color: transparent;
     }
 
@@ -53,7 +51,7 @@
   }
 
   .iui-vertical &[data-iui-orientation='vertical'] {
-    .iui-tab[aria-selected='true'] {
+    .iui-tab:is([aria-selected='true'], [aria-current]) {
       border-inline-end-color: transparent;
     }
 
