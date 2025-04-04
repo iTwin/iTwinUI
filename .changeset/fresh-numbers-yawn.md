@@ -15,9 +15,9 @@ Multi-select with now requires the tag-container to be rendered outside the sele
       class='iui-select-button iui-field'
 +     data-iui-multi
     >
--   <span class='iui-content'>
--     <div class='iui-select-tag-container'>…</div>
--   </span>
+-     <span class='iui-content'>
+-       <div class='iui-select-tag-container'>…</div>
+-     </span>
     </div>
     <svg class='iui-end-icon'>…</svg>
 +   <span class='iui-content'>
