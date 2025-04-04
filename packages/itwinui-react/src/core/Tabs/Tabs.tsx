@@ -82,7 +82,6 @@ type TabsWrapperOwnProps = {
 
 const TabsWrapper = React.forwardRef((props, ref) => {
   const {
-    className,
     children,
     orientation = 'horizontal',
     type = 'default',
@@ -105,9 +104,9 @@ const TabsWrapper = React.forwardRef((props, ref) => {
   const idPrefix = useId();
 
   return (
-    <Box
-      className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
+    <TabsWrapperPresentation
       {...rest}
+      orientation={orientation}
       style={{ ...stripeProperties, ...props?.style }}
       ref={ref}
     >
@@ -127,12 +126,28 @@ const TabsWrapper = React.forwardRef((props, ref) => {
       >
         {children}
       </TabsContext.Provider>
-    </Box>
+    </TabsWrapperPresentation>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsWrapperOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   TabsWrapper.displayName = 'Tabs.Wrapper';
 }
+
+const TabsWrapperPresentation = React.forwardRef((props, forwardedRef) => {
+  const { orientation = 'horizontal', ...rest } = props;
+
+  return (
+    <Box
+      {...rest}
+      className={cx('iui-tabs-wrapper', `iui-${orientation}`, props.className)}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsWrapperPresentationOwnProps>;
+
+type TabsWrapperPresentationOwnProps = {
+  orientation?: 'horizontal' | 'vertical';
+};
 
 // #endregion
 // ----------------------------------------------------------------------------
@@ -161,22 +176,19 @@ const TabList = React.forwardRef((props, ref) => {
   );
 
   return (
-    <Box
+    <TabListPresentation
       className={cx(
-        'iui-tabs',
-        `iui-${type}`,
-        {
-          'iui-green': color === 'green',
-          'iui-animated': type !== 'default' && isClient,
-          'iui-not-animated': type !== 'default' && !isClient,
-          'iui-large': hasSublabel,
-        },
+        { 'iui-animated': type !== 'default' && isClient },
         className,
       )}
       data-iui-orientation={orientation}
       role='tablist'
       ref={refs}
       {...rest}
+      type={type}
+      color={color}
+      size={hasSublabel ? 'large' : undefined}
+      orientation={orientation}
     >
       <TabListContext.Provider
         value={{
@@ -186,12 +198,46 @@ const TabList = React.forwardRef((props, ref) => {
       >
         {children}
       </TabListContext.Provider>
-    </Box>
+    </TabListPresentation>
   );
 }) as PolymorphicForwardRefComponent<'div', TabListOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   TabList.displayName = 'Tabs.TabList';
 }
+
+const TabListPresentation = React.forwardRef((props, forwardedRef) => {
+  const {
+    type = 'default',
+    color,
+    size,
+    orientation = 'horizontal',
+    ...rest
+  } = props;
+
+  return (
+    <Box
+      {...rest}
+      className={cx(
+        'iui-tabs',
+        `iui-${type}`,
+        {
+          'iui-green': color === 'green',
+          'iui-large': size === 'large',
+        },
+        props.className,
+      )}
+      data-iui-orientation={orientation}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', TabListPresentationOwnProps>;
+
+type TabListPresentationOwnProps = {
+  type?: 'default' | 'borderless' | 'pill';
+  color?: 'blue' | 'green';
+  orientation?: 'horizontal' | 'vertical';
+  size?: 'default' | 'large';
+};
 
 // #endregion
 // ----------------------------------------------------------------------------
@@ -214,7 +260,7 @@ type TabOwnProps = {
 };
 
 const Tab = React.forwardRef((props, forwardedRef) => {
-  const { className, children, value, label, ...rest } = props;
+  const { children, value, label, ...rest } = props;
 
   const {
     orientation,
@@ -357,8 +403,8 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <ButtonBase
-      className={cx('iui-tab', className)}
+    <TabPresentation
+      as={ButtonBase}
       role='tab'
       tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}
@@ -376,12 +422,23 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       })}
     >
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
-    </ButtonBase>
+    </TabPresentation>
   );
 }) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   Tab.displayName = 'Tabs.Tab';
 }
+
+const TabPresentation = React.forwardRef((props, forwardedRef) => {
+  return (
+    <Box
+      as='button'
+      {...props}
+      className={cx('iui-tab', props.className)}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'button'>;
 
 // #endregion
 // ----------------------------------------------------------------------------
@@ -695,7 +752,7 @@ const LegacyTab = React.forwardRef((props, forwardedRef) => {
 
 // #endregion
 // ----------------------------------------------------------------------------
-// #region exports and helpers
+// #region exports
 
 export { LegacyTab as Tab };
 
@@ -798,6 +855,39 @@ export const Tabs = Object.assign(LegacyTabsComponent, {
    */
   Panel: TabsPanel,
 });
+
+/**
+ * Presentational version of `Tabs`. It renders purely static elements, without any associated behaviors.
+ */
+export const unstable_TabsPresentation = {
+  Wrapper: TabsWrapperPresentation,
+  /**
+   * This could be used with `role="list"` or `role="tablist"`.
+   */
+  TabList: TabListPresentation,
+  /**
+   * This renders a button without any role by default. The rendered element can be changed using the `as` prop
+   * (e.g. `as="a"` or `as="div"`)
+   *
+   * When _not_ using `role="tab"`, the selected state can be set using `aria-current="true"` (or `aria-current="page"`).
+   *
+   * When using `role="tab"`, the selected state can be set using `aria-selected="true"`.
+   *
+   * Example:
+   * ```jsx
+   * <TabsPresentation.Tab
+   *   as="a"
+   *   href=""
+   *   aria-current="true"
+   * />
+   * ```
+   */
+  Tab: TabPresentation,
+};
+
+// #endregion
+// ----------------------------------------------------------------------------
+// #region helpers
 
 const TabsContext = React.createContext<
   | {
