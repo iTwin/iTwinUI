@@ -15,7 +15,7 @@
       background-color: var(--iui-color-background-transparent-hover);
     }
 
-    &[aria-selected='true']:hover {
+    &:is([aria-selected='true'], [aria-current]):hover {
       background-color: var(--iui-color-background-positive-muted);
     }
   }
@@ -37,7 +37,7 @@
       background-color: var(--iui-color-background-transparent-hover);
     }
 
-    &[aria-selected='true']:hover {
+    &:is([aria-selected='true'], [aria-current]):hover {
       background-color: var(--iui-color-background-accent-muted);
     }
 
