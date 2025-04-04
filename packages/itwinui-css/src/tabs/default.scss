@@ -3,8 +3,6 @@
 @use 'base';
 
 @mixin iui-tabs-default {
-  @include base.iui-tab-not-animated;
-
   .iui-tab {
     padding-block: var(--iui-size-2xs);
     padding-inline: var(--iui-size-m);
