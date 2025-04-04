@@ -20,6 +20,12 @@ const axeConfigPerExample = (example) => {
         rules: [{ id: 'color-contrast', enabled: !Cypress.env('CI') }],
       };
     }
+
+    // ExpanderColumn header can be empty since it has no data and buttons inside it are labeled
+    case 'TableDisabled':
+    case 'TableExpandableContentExample': {
+      return { rules: [{ id: 'empty-table-header', enabled: false }] };
+    }
   }
 };
 
