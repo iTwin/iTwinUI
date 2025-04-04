@@ -4086,7 +4086,5 @@ it('should not apply clamp, if custom Cell is used', () => {
     data,
   });
   const host = container.querySelector('.test-cell');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('div');
-  expect(lineClamp).toBeNull();
+  expect(host?.shadowRoot).toBeFalsy();
 });

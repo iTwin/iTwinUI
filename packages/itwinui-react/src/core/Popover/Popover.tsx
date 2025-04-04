@@ -47,7 +47,10 @@ import {
   useMergedRefs,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { usePortalTo } from '../../utils/components/Portal.js';
+import {
+  PortalContainerContext,
+  usePortalTo,
+} from '../../utils/components/Portal.js';
 import type { PortalProps } from '../../utils/components/Portal.js';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
@@ -431,7 +434,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     middleware,
   });
 
-  const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
+  const [popoverElement, setPopoverElement] =
+    React.useState<HTMLElement | null>(null);
 
   const popoverRef = useMergedRefs(
     popover.refs.setFloating,
@@ -469,31 +473,31 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       {popover.open ? (
         <PopoverInitialFocusContext.Provider value={initialFocusContextValue}>
           <PopoverPortal portal={portal}>
-            <ThemeProvider
-              portalContainer={popoverElement} // portal nested popovers into this one
-            >
-              <DisplayContents />
-              <FloatingFocusManager
-                context={popover.context}
-                modal={false}
-                initialFocus={initialFocus}
-              >
-                <Box
-                  className={cx(
-                    { 'iui-popover-surface': applyBackground },
-                    className,
-                  )}
-                  aria-labelledby={
-                    !hasAriaLabel
-                      ? popover.refs.domReference.current?.id
-                      : undefined
-                  }
-                  {...popover.getFloatingProps(rest)}
-                  ref={popoverRef}
+            <ThemeProvider>
+              <PortalContainerContext.Provider value={popoverElement}>
+                <DisplayContents />
+                <FloatingFocusManager
+                  context={popover.context}
+                  modal={false}
+                  initialFocus={initialFocus}
                 >
-                  {content}
-                </Box>
-              </FloatingFocusManager>
+                  <Box
+                    className={cx(
+                      { 'iui-popover-surface': applyBackground },
+                      className,
+                    )}
+                    aria-labelledby={
+                      !hasAriaLabel
+                        ? popover.refs.domReference.current?.id
+                        : undefined
+                    }
+                    {...popover.getFloatingProps(rest)}
+                    ref={popoverRef}
+                  >
+                    {content}
+                  </Box>
+                </FloatingFocusManager>
+              </PortalContainerContext.Provider>
             </ThemeProvider>
           </PopoverPortal>
         </PopoverInitialFocusContext.Provider>
