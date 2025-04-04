@@ -746,7 +746,7 @@ test.describe('Virtual Scroll Tests', () => {
   }) => {
     await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     expect((await rows.all()).length).toBe(12);
     await expect(rows.nth(0)).toContainText('Name0');
     await expect(rows.nth(11)).toContainText('Name11');
@@ -776,8 +776,10 @@ test.describe('Virtual Scroll Tests', () => {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
-    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
+    const emptyContent = page
+      .locator("[slot='iui-table-body']")
+      .getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
 
     //Checks empty content to make sure it appears correctly.
@@ -789,7 +791,7 @@ test.describe('Virtual Scroll Tests', () => {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     const row50NameCell = page.getByText('Name50');
     expect((await rows.all()).length).toBe(13);
     await expect(rows.nth(0)).toContainText('Name49');
@@ -803,7 +805,7 @@ test.describe('Virtual Scroll Tests', () => {
     await page.goto('/Table?virtualization=true&oneRow=true', {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     expect((await rows.all()).length).toBe(1);
   });
 
@@ -817,7 +819,7 @@ test.describe('Virtual Scroll Tests', () => {
       },
     ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator("[slot='iui-table-body']").getByRole('row');
     await expect(rows.nth(1)).toContainText('Name50');
     await expect(rows.nth(4)).toContainText('Name53');
 

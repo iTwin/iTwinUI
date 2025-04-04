@@ -59,7 +59,7 @@ describe('Table', () => {
             break;
           }
           case 'Condensed': {
-            cy.get('[role=rowgroup] button').first().click();
+            cy.get('[slot="iui-table-body"] button').first().click();
             break;
           }
           case 'Custom Filter': {
@@ -67,12 +67,12 @@ describe('Table', () => {
             break;
           }
           case 'Customized Columns': {
-            cy.get('[role=rowgroup] button').last().click();
+            cy.get('[slot="iui-table-body"] button').last().click();
             break;
           }
           case 'Expandable':
           case 'Expandable Subrows': {
-            cy.get('[role=rowgroup] button').first().click();
+            cy.get('[slot="iui-table-body"] button').first().click();
             break;
           }
           case 'Editable': {
