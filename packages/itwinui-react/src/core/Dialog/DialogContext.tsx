@@ -76,7 +76,7 @@ export type DialogContextProps = {
    */
   relativeTo?: 'container' | 'viewport';
   /**
-   * If true, the dialog will be portaled into a <div> inside the nearest `ThemeProvider`.
+   * If true, the dialog will be portaled to the end of `<body>` or to the nearest popover.
    * Recommended to set to true when for modal dialogs that use `relativeTo='viewport'`.
    *
    * Can be set to an object with a `to` property to portal into a specific element.
