@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.18.0
+
+### Minor Changes
+
+- [#2480](https://github.com/iTwin/iTwinUI/pull/2480): `<MenuExtraContent>` now renders a `<div>` instead of `<li>` to prevent invalid markup.
+- [#2482](https://github.com/iTwin/iTwinUI/pull/2482): Added a new `closeItemOnClick` prop to `<DropdownMenu>`. When set to `true`, the menu will automatically close when any menu-item is clicked, without having to explicitly call `close()`.
+- [#2490](https://github.com/iTwin/iTwinUI/pull/2490): `Dialog`, `Modal` and `Popover` will now correctly handle portaling of nested floating elements.
+- [#2481](https://github.com/iTwin/iTwinUI/pull/2481): `<SideNavigation>` now renders a `<nav>` as the topmost element. This creates a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) for assistive technology.
+- [#2485](https://github.com/iTwin/iTwinUI/pull/2485): Removed dependency on `jotai`.
+- [#2493](https://github.com/iTwin/iTwinUI/pull/2493): Added a new `unstable_TabsPresentation` component. This can be used in cases where the [ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) is not desirable.
+  - Includes the following subcomponents: `Wrapper`, `TabList`, and `Tab`.
+- [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Adjusted the `z-index` value of `Popover` and other floating elements to match `Dialog`.
+
+### Patch Changes
+
+- [#2490](https://github.com/iTwin/iTwinUI/pull/2490): Fixed an issue in `toaster` where toasts was portaling into a new container when used inside `<Popover>`. With this change, the global toaster container will be correctly reused.
+- [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Fixed an issue where `Dialog` nested inside `Popover` was not appearing correctly.
+- [#2462](https://github.com/iTwin/iTwinUI/pull/2462): Fixed a "Maximum update depth exceeded" error in `Table`.
+
 ## 3.17.4
 
 ### Patch Changes
