@@ -311,7 +311,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
             availableHeight && {
               maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
             }),
-          zIndex: 9999,
+          zIndex: 999,
           ...(matchWidth && referenceWidth
             ? {
                 minInlineSize: `${referenceWidth}px`,
