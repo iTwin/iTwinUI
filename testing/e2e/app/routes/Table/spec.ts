@@ -40,7 +40,6 @@ test.describe('Table sorting', () => {
     await expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
     await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
 
     // ascending
     await page.keyboard.press('Enter');
@@ -817,7 +816,7 @@ test.describe('Virtual Scroll Tests', () => {
       },
     ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.locator('table-body').getByRole('row');
+    const rows = page.locator('.table-body').getByRole('row');
     await expect(rows.nth(1)).toContainText('Name50');
     await expect(rows.nth(4)).toContainText('Name53');
 
@@ -861,7 +860,6 @@ test.describe('Table filters', () => {
     await expect(page.getByText('Name2')).toBeVisible();
     await expect(page.getByText('Name3')).toBeVisible();
 
-    await page.keyboard.press('Tab'); // Focus table
     await page.keyboard.press('Tab'); // Focus filter button
     await page.keyboard.press('Enter'); // open filter popover
 
