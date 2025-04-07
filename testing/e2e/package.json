@@ -28,7 +28,7 @@
     "@types/react-dom": "^19",
     "playwright": "1.42.1",
     "typescript": "5",
-    "vite": "^5",
+    "vite": "^6",
     "vite-tsconfig-paths": "^4.2.1"
   },
   "lint-staged": {
