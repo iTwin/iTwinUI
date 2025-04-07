@@ -456,23 +456,14 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             },
             triggerProps?.className,
           )}
+          data-iui-multi={multiple}
         >
           {(!selectedItems || selectedItems.length === 0) && (
             <Box as='span' className='iui-content'>
               {placeholder}
             </Box>
           )}
-          {isMultipleEnabled(selectedItems, multiple) ? (
-            <MultipleSelectButton
-              selectedItems={selectedItems}
-              selectedItemsRenderer={
-                selectedItemRenderer as (
-                  options: SelectOption<unknown>[],
-                ) => React.JSX.Element
-              }
-              tagRenderer={tagRenderer}
-            />
-          ) : (
+          {!isMultipleEnabled(selectedItems, multiple) ? (
             <SingleSelectButton
               selectedItem={selectedItems}
               selectedItemRenderer={
@@ -481,12 +472,22 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
                 ) => React.JSX.Element
               }
             />
+          ) : (
+            <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
           )}
         </SelectButton>
         <SelectEndIcon disabled={disabled} isOpen={isOpen} />
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+        {isMultipleEnabled(selectedItems, multiple) ? (
+          <MultipleSelectButton
+            selectedItems={selectedItems}
+            selectedItemsRenderer={
+              selectedItemRenderer as (
+                options: SelectOption<unknown>[],
+              ) => React.JSX.Element
+            }
+            tagRenderer={tagRenderer}
+            size={size === 'small' ? 'small' : undefined}
+          />
         ) : null}
       </InputWithIcon>
 
@@ -763,6 +764,7 @@ const MultipleSelectButton = <T,>({
   selectedItems,
   selectedItemsRenderer,
   tagRenderer,
+  size,
 }: MultipleSelectButtonProps<T>) => {
   const selectedItemsElements = React.useMemo(() => {
     if (!selectedItems) {
@@ -774,12 +776,16 @@ const MultipleSelectButton = <T,>({
 
   return (
     <>
-      {selectedItems &&
-        selectedItemsRenderer &&
-        selectedItemsRenderer(selectedItems)}
-      {selectedItems && !selectedItemsRenderer && (
+      {selectedItems && (
         <Box as='span' className='iui-content'>
-          <SelectTagContainer tags={selectedItemsElements} />
+          {selectedItemsRenderer ? (
+            selectedItemsRenderer(selectedItems)
+          ) : (
+            <SelectTagContainer
+              tags={selectedItemsElements}
+              data-iui-size={size}
+            />
+          )}
         </Box>
       )}
     </>
@@ -790,6 +796,7 @@ type MultipleSelectButtonProps<T> = {
   selectedItems?: SelectOption<T>[];
   selectedItemsRenderer?: (options: SelectOption<T>[]) => React.JSX.Element;
   tagRenderer: (item: SelectOption<T>) => React.JSX.Element;
+  size?: 'small';
 };
 
 // ----------------------------------------------------------------------------

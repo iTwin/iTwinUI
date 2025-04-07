@@ -516,13 +516,13 @@ it('should use custom render for selected item (multiple)', async () => {
     <Select
       value={['green', 'red']}
       selectedItemRenderer={(options) => (
-        <>
+        <div className='selected-container'>
           {options.map((option) => (
             <span key={option.label} style={{ color: option?.value }}>
               {option.label}
             </span>
           ))}
-        </>
+        </div>
       )}
       options={[
         { value: 'yellow', label: 'Yellow' },
@@ -534,7 +534,7 @@ it('should use custom render for selected item (multiple)', async () => {
   );
 
   const selectedValues = container.querySelectorAll(
-    '.iui-select-button > span',
+    '.selected-container > span',
   );
   expect(selectedValues.length).toBe(2);
   expect((selectedValues[0] as HTMLElement).style.color).toEqual('green');
@@ -612,7 +612,7 @@ it.each([true, false] as const)(
 
     // deselect option A
     if (multiple) {
-      expect(selectButton).toHaveTextContent('AB');
+      expect(selectButton).toHaveTextContent('A, B');
       await userEvent.click((await findAllByRole(document.body, 'option'))[0]);
     }
 
