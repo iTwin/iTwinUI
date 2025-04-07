@@ -714,14 +714,32 @@ export const Table = <
     );
   }
 
-  const ariaDataAttributes = Object.entries(rest).reduce(
-    (result, [key, value]) => {
-      if (key.startsWith('data-') || key.startsWith('aria-')) {
-        result[key] = value;
-      }
-      return result;
-    },
-    {} as Record<string, unknown>,
+  const ariaAttributes = React.useMemo(
+    () =>
+      Object.entries(rest).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('aria-')) {
+            result[key] = value;
+          }
+          return result;
+        },
+        {} as Record<string, unknown>,
+      ),
+    [rest],
+  );
+
+  const dataAttributes = React.useMemo(
+    () =>
+      Object.entries(rest).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('data-')) {
+            result[key] = value;
+          }
+          return result;
+        },
+        {} as Record<string, unknown>,
+      ),
+    [rest],
   );
 
   const areFiltersSet =
@@ -1023,10 +1041,11 @@ export const Table = <
         aria-labelledby={captionId}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
+        {...dataAttributes}
       >
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
-          <div role='table' {...ariaDataAttributes} {...tableProps}>
+          <div role='table' {...ariaAttributes} {...tableProps}>
             <slot name='caption' />
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
