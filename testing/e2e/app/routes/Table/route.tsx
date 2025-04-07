@@ -237,6 +237,9 @@ const Default = ({
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
         style={{ maxHeight: '90vh' }}
+        bodyProps={{
+          className: 'table-body',
+        }}
         scrollToRow={
           scroll
             ? (rows, data) =>
