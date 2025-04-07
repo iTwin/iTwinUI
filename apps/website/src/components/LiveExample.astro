@@ -4,6 +4,7 @@ import OpenInCodePen from './OpenInCodePen.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
+import { ThemeProvider } from '@itwin/itwinui-react';
 
 const require = createRequire(import.meta.url);
 
@@ -28,6 +29,10 @@ const { src, truncate = true, hideCode = false } = Astro.props;
 
 const jsxPath = require.resolve(`examples/${src}`);
 const cssPath = jsxPath.replace(/\.jsx$/, '.css');
+const srcName = src
+  .replace(/\.jsx$/, '')
+  .replace(/\./, '-')
+  .toLowerCase();
 
 let jsxCode = await fs.promises.readFile(jsxPath, 'utf8');
 
@@ -43,30 +48,44 @@ const cssCode = await (async () => {
     return '';
   }
 })();
+const defaultTheme = 'dark';
 ---
 
-<demo-box>
-  <template shadowrootmode='open'>
-    <style is:inline>
-      astro-island {
-        display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
-        max-inline-size: 100cqi;
-      }
-    </style>
-    <style set:html={cssCode}></style>
-    <link rel='stylesheet' href={itwinuiStyles} />
-    <slot />
-    <slot is:inline />
-  </template>
+<ThemeProvider theme={defaultTheme} themeOptions={{ applyBackground: true }}>
+  <demo-box class='demo-box'>
+    <theme-button
+      ><fieldset class='theme-toggle'>
+        <legend>Theme</legend>
+        <label><input type='radio' name=`theme-${srcName}` value='light' /><span>Light</span></label
+        >
+        <label
+          ><input type='radio' name=`theme-${srcName}` value='dark' checked /><span>Dark</span
+          ></label
+        >
+      </fieldset></theme-button
+    >
+    <template shadowrootmode='open'>
+      <style is:inline>
+        astro-island {
+          display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+          max-inline-size: 100cqi;
+        }
+      </style>
+      <style set:html={cssCode}></style>
+      <link rel='stylesheet' href={itwinuiStyles} />
+      <slot />
+      <slot is:inline />
+    </template>
 
-  <OpenInCodePen
-    class='sandbox-link'
-    code={{
-      js: jsxCode,
-      css: cssCode,
-    }}
-  />
-</demo-box>
+    <OpenInCodePen
+      class='sandbox-link'
+      code={{
+        js: jsxCode,
+        css: cssCode,
+      }}
+    />
+  </demo-box>
+</ThemeProvider>
 
 {
   !hideCode && (
@@ -78,6 +97,32 @@ const cssCode = await (async () => {
 }
 
 <script>
+  customElements.define(
+    'theme-button',
+    class extends HTMLElement {
+      connectedCallback() {
+        const themeToggle = this.querySelector('.theme-toggle');
+        if (themeToggle) {
+          const themeToggles = themeToggle.querySelectorAll('input[name^="theme"]');
+
+          themeToggles.forEach((radio) => {
+            radio.addEventListener('change', () => {
+              const theme = radio.getAttribute('value');
+              const demoBox = this.parentElement;
+              const demoBoxTheme = demoBox?.parentElement;
+              const demoTheme = demoBox?.shadowRoot?.querySelector('[data-iui-theme]');
+
+              if (demoBoxTheme && demoTheme && theme) {
+                demoBoxTheme.setAttribute('data-iui-theme', theme);
+                demoTheme.setAttribute('data-iui-theme', theme);
+              }
+            });
+          });
+        }
+      }
+    },
+  );
+
   customElements.define(
     'demo-code',
     class extends HTMLElement {
@@ -115,7 +160,7 @@ const cssCode = await (async () => {
     demo-box {
       container-type: inline-size;
       position: relative;
-      min-height: 300px;
+      min-height: 400px;
       max-height: 500px;
       display: grid;
       place-items: center;
@@ -130,6 +175,31 @@ const cssCode = await (async () => {
       bottom: 0.25rem;
       right: 0.25rem;
       z-index: 1;
+    }
+
+    theme-button {
+      position: absolute;
+      right: 6px;
+      top: 2px;
+
+      .theme-toggle {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: var(--iui-border-radius-1);
+        border: 1px solid var(--iui-color-border);
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 3px;
+          cursor: pointer;
+        }
+
+        input {
+          cursor: pointer;
+        }
+      }
     }
 
     demo-code {
