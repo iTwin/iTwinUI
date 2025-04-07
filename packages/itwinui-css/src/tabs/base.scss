@@ -63,7 +63,7 @@ $borderless-horizontal-tab-min-height: calc(
       background-color: var(--_iui-tab-color-stripe);
     }
 
-    &[aria-selected='true'] {
+    &:is([aria-selected='true'], [aria-current]) {
       --_iui-tab-color: var(--_iui-tab-color-selected);
 
       .iui-tab-icon svg {
@@ -118,7 +118,7 @@ $borderless-horizontal-tab-min-height: calc(
       outline-color: var(--iui-color-text-positive);
     }
 
-    &[aria-selected='true'] {
+    &:is([aria-selected='true'], [aria-current]) {
       --_iui-tab-color: var(--_iui-tab-color-green-selected);
 
       .iui-tab-icon svg {
@@ -187,7 +187,7 @@ $borderless-horizontal-tab-min-height: calc(
         block-size: 0;
       }
 
-      &[aria-selected='true']::after {
+      &:is([aria-selected='true'], [aria-current])::after {
         block-size: var(--iui-size-3xs);
       }
     }
@@ -238,7 +238,7 @@ $borderless-horizontal-tab-min-height: calc(
         block-size: 100%;
       }
 
-      &[aria-selected='true']::after {
+      &:is([aria-selected='true'], [aria-current])::after {
         inline-size: var(--iui-size-3xs);
       }
     }
@@ -253,7 +253,7 @@ $borderless-horizontal-tab-min-height: calc(
     --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-blue);
   }
 
-  [aria-selected='true']::after {
+  :is([aria-selected='true'], [aria-current])::after {
     @media (prefers-reduced-motion: no-preference) {
       transition:
         width var(--iui-duration-1) ease,
