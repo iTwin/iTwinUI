@@ -295,7 +295,7 @@ const TileName = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       {...rest}
     >
-      {children ?? name}
+      {children ?? <Tile.NameLabel>{name}</Tile.NameLabel>}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
