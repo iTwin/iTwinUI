@@ -21,6 +21,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, './index.mjs'),
       fileName: (format) => `${format}/styles.js`,
       formats: ['esm', 'cjs'],
+      cssFileName: 'styles',
     },
     rollupOptions: {
       output: {
