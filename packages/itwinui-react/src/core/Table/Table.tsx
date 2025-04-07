@@ -714,30 +714,21 @@ export const Table = <
     );
   }
 
-  const ariaAttributes = React.useMemo(
+  const { ariaAttributes, dataAttributes } = React.useMemo(
     () =>
       Object.entries(rest).reduce(
         (result, [key, value]) => {
           if (key.startsWith('aria-')) {
-            result[key] = value;
+            result.ariaAttributes[key] = value;
+          } else if (key.startsWith('data-')) {
+            result.dataAttributes[key] = value;
           }
           return result;
         },
-        {} as Record<string, unknown>,
-      ),
-    [rest],
-  );
-
-  const dataAttributes = React.useMemo(
-    () =>
-      Object.entries(rest).reduce(
-        (result, [key, value]) => {
-          if (key.startsWith('data-')) {
-            result[key] = value;
-          }
-          return result;
+        { ariaAttributes: {}, dataAttributes: {} } as {
+          ariaAttributes: Record<string, unknown>;
+          dataAttributes: Record<string, unknown>;
         },
-        {} as Record<string, unknown>,
       ),
     [rest],
   );
