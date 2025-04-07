@@ -81,7 +81,7 @@ importers:
     devDependencies:
       '@astrojs/react':
         specifier: ^4.1.2
-        version: 4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
+        version: 4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
       '@fontsource/noto-sans':
         specifier: '5'
         version: 5.0.21
@@ -93,7 +93,7 @@ importers:
         version: 0.21.0
       '@itwin/itwinui-react':
         specifier: npm:@itwin/itwinui-react@5.0.0-alpha.6
-        version: 5.0.0-alpha.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 5.0.0-alpha.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -114,10 +114,10 @@ importers:
         version: 4.1.5
       react:
         specifier: ^19
-        version: 19.0.0
+        version: 19.1.0
       react-dom:
         specifier: ^19
-        version: 19.0.0(react@19.0.0)
+        version: 19.1.0(react@19.1.0)
 
   apps/portal:
     dependencies:
@@ -189,7 +189,7 @@ importers:
         version: 2.2.0(astro@4.16.18(@types/node@22.5.5)(lightningcss@1.29.1)(rollup@4.38.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2))
       '@astrojs/react':
         specifier: '4'
-        version: 4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
+        version: 4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
       '@astrojs/sitemap':
         specifier: '3'
         version: 3.1.1
@@ -198,7 +198,7 @@ importers:
         version: 3.6.0
       '@docsearch/js':
         specifier: '3'
-        version: 3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(search-insights@2.13.0)
+        version: 3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.13.0)
       '@fontsource/noto-sans':
         specifier: '5'
         version: 5.0.21
@@ -216,7 +216,7 @@ importers:
         version: 3.0.2
       '@tippyjs/react':
         specifier: 4.2.6
-        version: 4.2.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 4.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -252,7 +252,7 @@ importers:
         version: 9.5.2(postcss@8.5.3)
       react:
         specifier: '*'
-        version: 19.0.0
+        version: 19.1.0
       react-docgen:
         specifier: ^6.0.0-alpha.3
         version: 6.0.0-alpha.3
@@ -261,7 +261,7 @@ importers:
         version: 2.2.2(typescript@5.5.2)
       react-dom:
         specifier: '*'
-        version: 19.0.0(react@19.0.0)
+        version: 19.1.0(react@19.1.0)
       rehype-autolink-headings:
         specifier: ^7
         version: 7.1.0
@@ -438,16 +438,16 @@ importers:
     dependencies:
       '@itwin/itwinui-icons-react':
         specifier: '2'
-        version: 2.9.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 2.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@itwin/itwinui-react':
         specifier: '*'
         version: link:../../packages/itwinui-react
       react:
         specifier: ^19.0.0
-        version: 19.0.0
+        version: 19.1.0
       react-dom:
         specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
+        version: 19.1.0(react@19.1.0)
     devDependencies:
       '@types/react':
         specifier: ^19.0.7
@@ -493,7 +493,7 @@ importers:
         version: 2.16.4(typescript@5.5.2)
       '@remix-run/react':
         specifier: ^2.16.4
-        version: 2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)
+        version: 2.16.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.5.2)
       '@remix-run/serve':
         specifier: ^2.16.4
         version: 2.16.4(typescript@5.5.2)
@@ -502,17 +502,17 @@ importers:
         version: 4.4.0
       react:
         specifier: ^19
-        version: 19.0.0
+        version: 19.1.0
       react-dom:
         specifier: ^19
-        version: 19.0.0(react@19.0.0)
+        version: 19.1.0(react@19.1.0)
     devDependencies:
       '@playwright/test':
         specifier: ^1.42.1
         version: 1.42.1
       '@remix-run/dev':
         specifier: ^2.16.4
-        version: 2.16.4(@remix-run/react@2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2))(@remix-run/serve@2.16.4(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.17(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))(yaml@2.5.0)
+        version: 2.16.4(@remix-run/react@2.16.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.5.2))(@remix-run/serve@2.16.4(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.17(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))(yaml@2.5.0)
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -10637,14 +10637,6 @@ packages:
     engines: { node: '>=12.0.0' }
     hasBin: true
 
-  react-dom@19.0.0:
-    resolution:
-      {
-        integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==,
-      }
-    peerDependencies:
-      react: ^19.0.0
-
   react-dom@19.1.0:
     resolution:
       {
@@ -10715,13 +10707,6 @@ packages:
       }
     peerDependencies:
       react: ^16.8.3 || ^17.0.0-0 || ^18.0.0
-
-  react@19.0.0:
-    resolution:
-      {
-        integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==,
-      }
-    engines: { node: '>=0.10.0' }
 
   react@19.1.0:
     resolution:
@@ -11366,12 +11351,6 @@ packages:
         integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==,
       }
     engines: { node: '>=v12.22.7' }
-
-  scheduler@0.25.0:
-    resolution:
-      {
-        integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==,
-      }
 
   scheduler@0.26.0:
     resolution:
@@ -13662,14 +13641,6 @@ snapshots:
 
   '@ariakit/core@0.4.14': {}
 
-  '@ariakit/react-core@0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      '@ariakit/core': 0.4.14
-      '@floating-ui/dom': 1.6.3
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      use-sync-external-store: 1.4.0(react@19.0.0)
-
   '@ariakit/react-core@0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ariakit/core': 0.4.14
@@ -13677,12 +13648,6 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.4.0(react@19.1.0)
-
-  '@ariakit/react@0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      '@ariakit/react-core': 0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
 
   '@ariakit/react@0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -13775,13 +13740,13 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)':
+  '@astrojs/react@4.2.0(@types/node@22.5.5)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)':
     dependencies:
       '@types/react': 19.0.8
       '@types/react-dom': 19.0.3(@types/react@19.0.8)
       '@vitejs/plugin-react': 4.3.4(vite@6.2.4(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0))
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       ultrahtml: 1.5.3
       vite: 6.2.4(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0)
     transitivePeerDependencies:
@@ -14341,9 +14306,9 @@ snapshots:
 
   '@docsearch/css@3.6.0': {}
 
-  '@docsearch/js@3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(search-insights@2.13.0)':
+  '@docsearch/js@3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.13.0)':
     dependencies:
-      '@docsearch/react': 3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(search-insights@2.13.0)
+      '@docsearch/react': 3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.13.0)
       preact: 10.19.7
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -14352,7 +14317,7 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@docsearch/react@3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(search-insights@2.13.0)':
+  '@docsearch/react@3.6.0(@algolia/client-search@4.22.1)(@types/react@19.0.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.13.0)':
     dependencies:
       '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.22.1)(algoliasearch@4.22.1)(search-insights@2.13.0)
       '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.22.1)(algoliasearch@4.22.1)
@@ -14360,8 +14325,8 @@ snapshots:
       algoliasearch: 4.22.1
     optionalDependencies:
       '@types/react': 19.0.8
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       search-insights: 2.13.0
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -14651,11 +14616,6 @@ snapshots:
 
   '@itwin/itwinui-icons-elements@0.21.0': {}
 
-  '@itwin/itwinui-icons-react@2.9.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-
   '@itwin/itwinui-icons-react@2.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       react: 19.1.0
@@ -14665,13 +14625,6 @@ snapshots:
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-
-  '@itwin/itwinui-react@5.0.0-alpha.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      '@ariakit/react': 0.4.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      classnames: 2.5.1
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
 
   '@itwin/itwinui-react@5.0.0-alpha.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -15065,7 +15018,7 @@ snapshots:
       - bare-buffer
       - supports-color
 
-  '@remix-run/dev@2.16.4(@remix-run/react@2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2))(@remix-run/serve@2.16.4(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.17(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))(yaml@2.5.0)':
+  '@remix-run/dev@2.16.4(@remix-run/react@2.16.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.5.2))(@remix-run/serve@2.16.4(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@5.4.17(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0))(yaml@2.5.0)':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/generator': 7.26.3
@@ -15078,7 +15031,7 @@ snapshots:
       '@mdx-js/mdx': 2.3.0
       '@npmcli/package-json': 4.0.1
       '@remix-run/node': 2.16.4(typescript@5.5.2)
-      '@remix-run/react': 2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)
+      '@remix-run/react': 2.16.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.5.2)
       '@remix-run/router': 1.23.0
       '@remix-run/server-runtime': 2.16.4(typescript@5.5.2)
       '@types/mdx': 2.0.11
@@ -15165,14 +15118,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.2
 
-  '@remix-run/react@2.16.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.5.2)':
+  '@remix-run/react@2.16.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.5.2)':
     dependencies:
       '@remix-run/router': 1.23.0
       '@remix-run/server-runtime': 2.16.4(typescript@5.5.2)
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-router: 6.30.0(react@19.0.0)
-      react-router-dom: 6.30.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-router: 6.30.0(react@19.1.0)
+      react-router-dom: 6.30.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       turbo-stream: 2.4.0
     optionalDependencies:
       typescript: 5.5.2
@@ -15461,10 +15414,10 @@ snapshots:
     dependencies:
       '@testing-library/dom': 8.13.0
 
-  '@tippyjs/react@4.2.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@tippyjs/react@4.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       tippy.js: 6.3.7
 
   '@tokenizer/token@0.3.0': {}
@@ -20805,11 +20758,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-dom@19.0.0(react@19.0.0):
-    dependencies:
-      react: 19.0.0
-      scheduler: 0.25.0
-
   react-dom@19.1.0(react@19.1.0):
     dependencies:
       react: 19.1.0
@@ -20830,23 +20778,21 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@6.30.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-router-dom@6.30.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@remix-run/router': 1.23.0
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-router: 6.30.0(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-router: 6.30.0(react@19.1.0)
 
-  react-router@6.30.0(react@19.0.0):
+  react-router@6.30.0(react@19.1.0):
     dependencies:
       '@remix-run/router': 1.23.0
-      react: 19.0.0
+      react: 19.1.0
 
   react-table@7.8.0(react@19.1.0):
     dependencies:
       react: 19.1.0
-
-  react@19.0.0: {}
 
   react@19.1.0: {}
 
@@ -21350,8 +21296,6 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
-
-  scheduler@0.25.0: {}
 
   scheduler@0.26.0: {}
 
@@ -22289,10 +22233,6 @@ snapshots:
       requires-port: 1.0.0
 
   urlpattern-polyfill@10.0.0: {}
-
-  use-sync-external-store@1.4.0(react@19.0.0):
-    dependencies:
-      react: 19.0.0
 
   use-sync-external-store@1.4.0(react@19.1.0):
     dependencies:
