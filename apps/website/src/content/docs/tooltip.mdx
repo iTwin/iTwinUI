@@ -37,7 +37,9 @@ There are some advanced props available for more granular control over positioni
 
 ### Portals
 
-It is important to know that before calculating the position, the tooltip gets [portaled](https://react.dev/reference/react-dom/createPortal) to the end of `<body>`. This is done to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues in browsers where the [`popover` API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) is not supported. This portaling behavior can be controlled using the Tooltip's `portal` prop or the ThemeProvider's [`portalContainer`](themeprovider#portals) prop.
+It is important to know that before calculating the position, the tooltip gets [portaled](https://react.dev/reference/react-dom/createPortal) to the end of `<body>` or to the nearest popover. This helps avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues in browsers where the [`popover` API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) is not supported.
+
+The portaling behavior can be controlled using the Tooltip's `portal` prop or the ThemeProvider's [`portalContainer`](themeprovider#portals) prop.
 
 ## Accessibility
 
