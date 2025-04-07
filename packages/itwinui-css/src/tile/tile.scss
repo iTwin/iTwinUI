@@ -51,7 +51,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   &:hover,
   &:focus-within {
-    .iui-tile-metadata:not(:last-child) {
+    // If iui-tile-name is alone with iui-tile-more-options that shows up on hover and is absolutely positioned.
+    .iui-tile-name:has(.iui-tile-name-label):has(~ .iui-tile-content .iui-tile-more-options:only-child),  
+    // Target the iui-tile-metadata if there is a iui-tile-more-options sibling (after or before)
+    .iui-tile-metadata:has(~ .iui-tile-more-options),
+    .iui-tile-more-options ~ .iui-tile-metadata {
       inline-size: calc(100% - #{var(--iui-size-xl)});
     }
   }
