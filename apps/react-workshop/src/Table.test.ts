@@ -59,7 +59,7 @@ describe('Table', () => {
             break;
           }
           case 'Condensed': {
-            cy.get('[slot="iui-table-body"] button').first().click();
+            cy.get('.table-body button').first().click();
             break;
           }
           case 'Custom Filter': {
@@ -67,12 +67,12 @@ describe('Table', () => {
             break;
           }
           case 'Customized Columns': {
-            cy.get('[slot="iui-table-body"] button').last().click();
+            cy.get('.table-body button').last().click();
             break;
           }
           case 'Expandable':
           case 'Expandable Subrows': {
-            cy.get('[slot="iui-table-body"] button').first().click();
+            cy.get('.table-body button').first().click();
             break;
           }
           case 'Editable': {
@@ -101,7 +101,7 @@ describe('Table', () => {
       cy.compareSnapshot(testName);
 
       if (testName === 'Full2') {
-        cy.get('[slot="iui-table-body"]').parent().scrollTo('right');
+        cy.get('.table-body').parent().scrollTo('right');
         cy.compareSnapshot(`${testName} (scrolled right)`);
       }
     });
