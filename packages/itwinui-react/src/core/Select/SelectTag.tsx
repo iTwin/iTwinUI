@@ -25,7 +25,10 @@ export const SelectTag = React.forwardRef((props, forwardedRef) => {
     <Tag
       className={cx('iui-select-tag', className)}
       labelProps={{ className: 'iui-select-tag-label' }}
-      removeButtonProps={{ className: 'iui-select-tag-button' }}
+      removeButtonProps={{
+        className: 'iui-select-tag-button',
+        'aria-label': `Deselect ${label}`,
+      }}
       ref={forwardedRef}
       {...rest}
     >

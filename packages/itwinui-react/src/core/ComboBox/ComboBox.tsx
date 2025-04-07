@@ -463,7 +463,7 @@ export const ComboBox = React.forwardRef(
       [multiple, onChangeProp, optionsRef],
     );
 
-    const onClickHandler = React.useCallback(
+    const handleOptionSelection = React.useCallback(
       (__originalIndex: number) => {
         inputRef.current?.focus({ preventScroll: true }); // return focus to input
 
@@ -542,7 +542,7 @@ export const ComboBox = React.forwardRef(
         return customItem ? (
           React.cloneElement(customItem, {
             onClick: (e: unknown) => {
-              onClickHandler(__originalIndex);
+              handleOptionSelection(__originalIndex);
               customItem.props.onClick?.(e);
             },
             // ComboBox.MenuItem handles scrollIntoView, data-iui-index and focused through context
@@ -564,7 +564,7 @@ export const ComboBox = React.forwardRef(
             {...restOptions}
             isSelected={isMenuItemSelected(__originalIndex)}
             onClick={() => {
-              onClickHandler(__originalIndex);
+              handleOptionSelection(__originalIndex);
             }}
             index={__originalIndex}
             data-iui-filtered-index={filteredIndex}
@@ -579,7 +579,7 @@ export const ComboBox = React.forwardRef(
         id,
         isMenuItemSelected,
         itemRenderer,
-        onClickHandler,
+        handleOptionSelection,
         optionsExtraInfo,
       ],
     );
@@ -621,7 +621,7 @@ export const ComboBox = React.forwardRef(
             isOpen,
             focusedIndex,
             setFocusedIndex,
-            onClickHandler,
+            onClickHandler: handleOptionSelection,
             enableVirtualization,
             filteredOptions,
             getMenuItem,
@@ -641,14 +641,29 @@ export const ComboBox = React.forwardRef(
               disabled={inputProps?.disabled}
               {...inputProps}
               onChange={handleOnInput}
+              aria-describedby={[
+                multiple ? `${id}-selected-live` : undefined,
+                inputProps?.['aria-describedby'],
+              ]
+                .filter(Boolean)
+                .join(' ')}
               selectTags={
                 isMultipleEnabled(selectedIndexes, multiple)
                   ? (selectedIndexes
                       ?.map((index) => {
-                        const item = options[index];
+                        const option = options[index];
+                        const optionId = getOptionId(option, id);
+                        const { __originalIndex } = optionsExtraInfo[optionId];
 
                         return (
-                          <SelectTag key={item.label} label={item.label} />
+                          <SelectTag
+                            key={option.label}
+                            label={option.label}
+                            onRemove={() => {
+                              handleOptionSelection(__originalIndex);
+                              hide(); // do not keep the dropdown open if the tag is clicked
+                            }}
+                          />
                         );
                       })
                       .filter(Boolean) as React.JSX.Element[])
@@ -662,7 +677,10 @@ export const ComboBox = React.forwardRef(
             />
 
             {multiple ? (
-              <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+              <AutoclearingHiddenLiveRegion
+                text={liveRegionSelection}
+                id={`${id}-selected-live`}
+              />
             ) : null}
           </ComboBoxInputContainer>
           <ComboBoxMenu as='div' {...dropdownMenuProps}>
