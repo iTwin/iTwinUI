@@ -323,9 +323,11 @@ export type TableProps<
      */
     scrollToRow?: (rows: Row<T>[], data: T[]) => number;
     /**
-     * Table caption. Serves as a label for the region landmark that wraps the `role="table"`.
+     * Caption for the table.
      *
      * Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+     *
+     * @default "Table"
      */
     caption?: string;
     /**
@@ -441,7 +443,7 @@ export const Table = <
     tableProps,
     emptyTableContentProps,
     getRowId,
-    caption,
+    caption = 'Table',
     role,
     ..._rest
   } = props;
@@ -1063,7 +1065,7 @@ export const Table = <
             ...style,
           },
         })}
-        role={role} // To override role="table" from `getTableProps()`
+        role={role} // To remove the role="table" from getTableProps()
         aria-labelledby={captionId}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
@@ -1084,7 +1086,7 @@ export const Table = <
         </ShadowRoot>
 
         <VisuallyHidden slot='caption' id={captionId}>
-          {caption ?? 'Table'}
+          {caption}
         </VisuallyHidden>
 
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
@@ -1161,7 +1163,7 @@ export const Table = <
               bodyProps?.className,
             ),
           })}
-          role={undefined} // To remove the role="rowgroup" from `getTableBodyProps()`
+          role={undefined} // To remove the role="rowgroup" from getTableBodyProps()
         >
           <ShadowRoot css={virtualizerCss} flush={false}>
             {enableVirtualization && data.length !== 0 ? (
