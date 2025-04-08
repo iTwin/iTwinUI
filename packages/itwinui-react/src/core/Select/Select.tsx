@@ -323,6 +323,40 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     popoverProps?.onVisibleChange?.(false);
   }, [popoverProps]);
 
+  const handleOptionSelection = React.useCallback(
+    (option: SelectOption<any>, { isSelected = false } = {}) => {
+      // update internal value state and also call external onChange
+      if (isSingleOnChange(onChangeRef.current, multiple)) {
+        setUncontrolledValue(option.value);
+        onChangeRef.current?.(option.value);
+        hide();
+      } else {
+        setUncontrolledValue((prev: unknown[]) =>
+          isSelected
+            ? prev?.filter((i) => option.value !== i)
+            : [...(prev ?? []), option.value],
+        );
+        onChangeRef.current?.(option.value, isSelected ? 'removed' : 'added');
+      }
+
+      // update live region
+      if (isMultipleEnabled(value, multiple)) {
+        const prevSelectedValue = value || [];
+        const newSelectedValue = isSelected
+          ? prevSelectedValue.filter((i) => option.value !== i)
+          : [...prevSelectedValue, option.value];
+        setLiveRegionSelection(
+          options
+            .filter((i) => newSelectedValue.includes(i.value))
+            .map((item) => item.label)
+            .filter(Boolean)
+            .join(', '),
+        );
+      }
+    },
+    [hide, multiple, onChangeRef, options, value],
+  );
+
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
       const isSelected = isMultipleEnabled(value, multiple)
@@ -348,37 +382,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             return;
           }
 
-          // update internal value state and also call external onChange
-          if (isSingleOnChange(onChangeRef.current, multiple)) {
-            setUncontrolledValue(option.value);
-            onChangeRef.current?.(option.value);
-            hide();
-          } else {
-            setUncontrolledValue((prev: unknown[]) =>
-              isSelected
-                ? prev?.filter((i) => option.value !== i)
-                : [...(prev ?? []), option.value],
-            );
-            onChangeRef.current?.(
-              option.value,
-              isSelected ? 'removed' : 'added',
-            );
-          }
-
-          // update live region
-          if (isMultipleEnabled(value, multiple)) {
-            const prevSelectedValue = value || [];
-            const newSelectedValue = isSelected
-              ? prevSelectedValue.filter((i) => option.value !== i)
-              : [...prevSelectedValue, option.value];
-            setLiveRegionSelection(
-              options
-                .filter((i) => newSelectedValue.includes(i.value))
-                .map((item) => item.label)
-                .filter(Boolean)
-                .join(', '),
-            );
-          }
+          handleOptionSelection(option, { isSelected });
         },
         ref: (el: HTMLElement) => {
           if (isSelected && !multiple) {
@@ -390,7 +394,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         ...menuItem.props,
       });
     });
-  }, [hide, itemRenderer, multiple, onChangeRef, options, value]);
+  }, [handleOptionSelection, itemRenderer, multiple, options, value]);
 
   const selectedItems = React.useMemo(() => {
     if (value == null) {
@@ -411,9 +415,21 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     return index >= 0 ? index : 0;
   }, [options, value]);
 
-  const tagRenderer = React.useCallback((item: SelectOption<unknown>) => {
-    return <SelectTag key={item.label} label={item.label} />;
-  }, []);
+  const tagRenderer = React.useCallback(
+    (option: SelectOption<unknown>) => {
+      return (
+        <SelectTag
+          key={option.label}
+          label={option.label}
+          onRemove={() => {
+            handleOptionSelection(option, { isSelected: true });
+            selectRef.current?.focus();
+          }}
+        />
+      );
+    },
+    [handleOptionSelection],
+  );
 
   const popover = usePopover({
     visible: isOpen,

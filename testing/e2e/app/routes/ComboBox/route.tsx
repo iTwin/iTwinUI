@@ -23,6 +23,7 @@ const Default = ({
     showChangeValueButton,
     virtualization,
     clearFilterOnOptionToggle,
+    controlled,
   } = config;
   const [value, setValue] = React.useState(initialValue);
 
@@ -38,9 +39,10 @@ const Default = ({
       )}
 
       <ComboBox
-        options={options}
+        options={options as any[]}
         id='test-component'
         value={value as any}
+        onChange={controlled ? (setValue as any) : undefined}
         multiple={multiple}
         enableVirtualization={virtualization}
         clearFilterOnOptionToggle={clearFilterOnOptionToggle as any}
@@ -138,6 +140,8 @@ function getConfigFromSearchParams() {
         : (JSON.parse(initialValueSearchParam) as number | number[])
       : undefined;
 
+  const controlled = searchParams.get('controlled') === 'true';
+
   return {
     exampleType,
     virtualization,
@@ -146,5 +150,6 @@ function getConfigFromSearchParams() {
     options,
     initialValue,
     clearFilterOnOptionToggle,
+    controlled,
   };
 }
