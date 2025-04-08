@@ -287,7 +287,7 @@ export type TableProps<
    */
   bodyProps?: React.ComponentProps<'div'>;
   /**
-   * Passes props to the `role="table"` element.
+   * Passes props to the `role="table"` element within the wrapper.
    */
   tableProps?: React.ComponentProps<'div'>;
   /**
@@ -324,7 +324,8 @@ export type TableProps<
    * Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
    */
   caption?: string;
-} & Omit<CommonProps, 'title'>;
+} & Omit<CommonProps, 'title'> &
+  React.ComponentPropsWithoutRef<'div'>;
 
 const flattenColumns = <T extends Record<string, unknown>>(
   columns: Column<T>[],
@@ -427,8 +428,46 @@ export const Table = <
     emptyTableContentProps,
     getRowId,
     caption,
-    ...rest
+    role,
+    ..._rest
   } = props;
+
+  const { ariaRestAttributes, nonAriaRestAttributes } = React.useMemo(
+    () =>
+      Object.entries(_rest).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('aria-')) {
+            result.ariaRestAttributes[key] = value;
+          } else {
+            result.nonAriaRestAttributes[key] = value;
+          }
+          return result;
+        },
+        { ariaRestAttributes: {}, nonAriaRestAttributes: {} } as {
+          ariaRestAttributes: Record<string, unknown>;
+          nonAriaRestAttributes: Record<string, unknown>;
+        },
+      ),
+    [_rest],
+  );
+
+  // Conditional behavior for ARIA attributes:
+  // If tableProps or role is passed, keep all ARIA attributes on the outer element
+  // Otherwise apply them on the inner table element
+  const { outerAriaRestAttributes, innerAriaRestAttributes } =
+    React.useMemo(() => {
+      if (tableProps || role) {
+        return {
+          outerAriaRestAttributes: { ...ariaRestAttributes },
+          innerAriaRestAttributes: {},
+        };
+      }
+
+      return {
+        outerAriaRestAttributes: {},
+        innerAriaRestAttributes: { ...ariaRestAttributes },
+      };
+    }, [ariaRestAttributes, role, tableProps]);
 
   useGlobals();
 
@@ -713,25 +752,6 @@ export const Table = <
       `Passing both \`subComponent\` and \`data\` with \`subRows\` is not supported. There are features designed for \`subRows\` that are not compatible with \`subComponent\` and vice versa.`,
     );
   }
-
-  const { ariaAttributes, dataAttributes } = React.useMemo(
-    () =>
-      Object.entries(rest).reduce(
-        (result, [key, value]) => {
-          if (key.startsWith('aria-')) {
-            result.ariaAttributes[key] = value;
-          } else if (key.startsWith('data-')) {
-            result.dataAttributes[key] = value;
-          }
-          return result;
-        },
-        { ariaAttributes: {}, dataAttributes: {} } as {
-          ariaAttributes: Record<string, unknown>;
-          dataAttributes: Record<string, unknown>;
-        },
-      ),
-    [rest],
-  );
 
   const areFiltersSet =
     allColumns.some(
@@ -1029,14 +1049,16 @@ export const Table = <
             ...style,
           },
         })}
+        role={role} // To override role="table" from `getTableProps()`
         aria-labelledby={captionId}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
-        {...dataAttributes}
+        {...outerAriaRestAttributes}
+        {...nonAriaRestAttributes}
       >
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
-          <div role='table' {...ariaAttributes} {...tableProps}>
+          <div role='table' {...innerAriaRestAttributes} {...tableProps}>
             <slot name='caption' />
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
