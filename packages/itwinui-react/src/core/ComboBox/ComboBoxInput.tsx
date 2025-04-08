@@ -218,7 +218,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           ...(multiple && { paddingInlineStart: tagContainerWidth + 18 }),
           ...style,
         }}
-        aria-describedby={multiple ? `${id}-selected-live` : undefined}
         size={size}
         {...popover.getReferenceProps({
           ...rest,
@@ -235,7 +234,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         <ComboBoxMultipleContainer
           ref={tagContainerWidthRef}
           selectedItems={selectTags}
-          id={`${id}-selected-live`}
         />
       ) : null}
     </>

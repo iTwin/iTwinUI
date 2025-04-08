@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Select } from '@itwin/itwinui-react';
 import { useSearchParams } from '@remix-run/react';
 
@@ -28,7 +29,7 @@ export default function SelectTest() {
   const searchParamValue = searchParams.get('value') as
     | ('all' & string & {})
     | null;
-  const value = (() => {
+  const [value, setValue] = React.useState(() => {
     if (searchParamValue == null) {
       return undefined;
     }
@@ -37,13 +38,28 @@ export default function SelectTest() {
       return options.map((option) => option.value);
     }
     return JSON.parse(searchParamValue) as number | number[];
-  })();
+  });
   const multiple = searchParams.get('multiple') === 'true';
+  const controlled = searchParams.get('controlled') === 'true';
+
+  const onChange = (val: any, event: 'added' | 'removed') =>
+    multiple
+      ? setValue((prev: any) =>
+          event === 'removed'
+            ? prev.filter((value: any) => val !== value)
+            : [...prev, val],
+        )
+      : setValue(val);
 
   return (
     <>
       <div id='container'>
-        <Select options={options} value={value as any} multiple={multiple} />
+        <Select
+          options={options}
+          value={value as any}
+          onChange={controlled ? (onChange as any) : undefined}
+          multiple={multiple}
+        />
       </div>
     </>
   );
