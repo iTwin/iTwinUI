@@ -379,6 +379,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-thumbnail-badge {
+  z-index: 2;
   place-self: end;
   margin-block-end: calc(var(--iui-size-s) * 0.5);
   inline-size: calc(100% - 2 * #{var(--iui-size-s)});
