@@ -613,23 +613,41 @@ export const ComboBox = React.forwardRef(
 
     return (
       <ComboBoxRefsContext.Provider
-        value={{ inputRef, menuRef, optionsExtraInfo }}
+        value={React.useMemo(
+          () => ({ inputRef, menuRef, optionsExtraInfo }),
+          [optionsExtraInfo],
+        )}
       >
         <ComboBoxStateContext.Provider
-          value={{
-            id,
-            isOpen,
-            focusedIndex,
-            setFocusedIndex,
-            onClickHandler: handleOptionSelection,
-            enableVirtualization,
-            filteredOptions,
-            getMenuItem,
-            multiple,
-            popover,
-            show,
-            hide,
-          }}
+          value={React.useMemo(
+            () => ({
+              id,
+              isOpen,
+              focusedIndex,
+              setFocusedIndex,
+              onClickHandler: handleOptionSelection,
+              enableVirtualization,
+              filteredOptions,
+              getMenuItem,
+              multiple,
+              popover,
+              show,
+              hide,
+            }),
+            [
+              enableVirtualization,
+              filteredOptions,
+              focusedIndex,
+              getMenuItem,
+              handleOptionSelection,
+              hide,
+              id,
+              isOpen,
+              multiple,
+              popover,
+              show,
+            ],
+          )}
         >
           <ComboBoxInputContainer
             ref={forwardedRef}
