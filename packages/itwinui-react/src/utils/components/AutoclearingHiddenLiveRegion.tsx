@@ -14,7 +14,10 @@ import { getWindow } from '../functions/index.js';
  *
  * @private
  */
-export const AutoclearingHiddenLiveRegion = ({ text = '' }) => {
+export const AutoclearingHiddenLiveRegion = ({
+  text,
+  ...props
+}: React.ComponentProps<'div'> & { text: string }) => {
   const [maybeText, setMaybeText] = React.useState(text);
 
   React.useEffect(() => {
@@ -25,7 +28,7 @@ export const AutoclearingHiddenLiveRegion = ({ text = '' }) => {
   }, [text]);
 
   return (
-    <VisuallyHidden as='div' aria-live='polite' aria-atomic='true'>
+    <VisuallyHidden as='div' aria-live='polite' aria-atomic='true' {...props}>
       {maybeText}
     </VisuallyHidden>
   );
