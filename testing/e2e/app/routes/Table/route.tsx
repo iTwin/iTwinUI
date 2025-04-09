@@ -86,6 +86,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
   const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
+  const onSelect = searchParams.get('onSelect') === 'true';
 
   return {
     exampleType,
@@ -105,6 +106,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     stateReducer,
     scrollRow,
     hasSubComponent,
+    onSelect,
   };
 };
 
@@ -130,6 +132,7 @@ const Default = ({
     stateReducer,
     rows,
     hasSubComponent,
+    onSelect,
   } = config;
 
   const virtualizedData = React.useMemo(() => {
@@ -209,7 +212,7 @@ const Default = ({
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
         style={{ maxHeight: '90vh' }}
-        onSelect={() => console.log('onSelect')}
+        onSelect={onSelect ? () => console.log('onSelect') : undefined}
         scrollToRow={
           scroll
             ? (rows, data) =>

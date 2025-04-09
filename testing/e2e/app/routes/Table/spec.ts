@@ -427,7 +427,7 @@ test.describe('Table row selection', () => {
   });
 
   test('should not call onSelect when clicking on text', async ({ page }) => {
-    await page.goto('/Table?isSelectable=true');
+    await page.goto('/Table?isSelectable=true&onSelect=true');
 
     const row1 = page.getByText('1Name1Description1');
     const row1Cell = row1.getByText('Name1');
