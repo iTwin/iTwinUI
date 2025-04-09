@@ -320,9 +320,9 @@
   align-items: center;
   justify-content: center;
 
-  // To center the table-body-extra even when scrolling horizontally
-  // (when `isLoading && data.length !== 0`)
-  &[data-iui-loading='true'] {
+  // 1. To center the table-body-extra even when scrolling horizontally (when `isLoading && data.length !== 0`)
+  // 2. Be sticky only when no rows exist
+  &:where([data-iui-loading='true'], :has(> .iui-table-empty)) {
     position: sticky;
     inset-inline-start: 0;
   }
@@ -350,12 +350,6 @@
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
 
-  // Table body should be sticky only when no rows exist
-  &:has(> .iui-table-empty) {
-    position: sticky;
-    inset-inline-start: 0;
-  }
-
   &.iui-scroll-snapping {
     scroll-snap-type: y mandatory;
 
@@ -371,19 +365,18 @@
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']):hover .iui-table-cell {
     background-color: var(--iui-color-background-hover);
   }
+}
 
-  // Empty & loading states
-  > .iui-table-empty {
-    text-align: center;
-    margin-inline: auto;
-    padding: var(--iui-size-xl);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 1;
-    color: var(--iui-color-text-muted);
-    background-color: var(--iui-color-background);
-  }
+// Empty & loading states
+@mixin iui-table-empty {
+  text-align: center;
+  margin-inline: auto;
+  padding: var(--iui-size-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--iui-color-text-muted);
+  background-color: var(--iui-color-background);
 }
 
 @mixin iui-table-cell {

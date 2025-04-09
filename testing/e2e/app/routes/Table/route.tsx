@@ -262,6 +262,9 @@ const Default = ({
                 rows.findIndex((row) => row.original === data[scrollRow])
             : undefined
         }
+        emptyTableContentProps={{
+          className: 'empty-table-content',
+        }}
         stateReducer={
           stateReducer
             ? (newState, action, previousState, instance) => {

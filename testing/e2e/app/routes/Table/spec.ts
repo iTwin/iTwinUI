@@ -804,7 +804,9 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.locator('.table-body').getByRole('row');
-    const emptyContent = page.locator('.table-body').getByText('No Data.');
+    const emptyContent = page
+      .locator('.empty-table-content')
+      .getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
 
     //Checks empty content to make sure it appears correctly.
