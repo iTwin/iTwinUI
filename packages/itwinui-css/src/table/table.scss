@@ -34,6 +34,10 @@
   @include base.iui-table-body;
 }
 
+.iui-table-empty {
+  @include base.iui-table-empty;
+}
+
 .iui-table-body-extra {
   @include base.iui-table-body-extra;
 }

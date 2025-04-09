@@ -1,10 +1,15 @@
 import {
   Table,
   tableFilters,
+  TableFilterValue,
   TablePaginator,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
-import type { CellProps } from '@itwin/itwinui-react/react-table';
+import type {
+  CellProps,
+  Row,
+  TableState,
+} from '@itwin/itwinui-react/react-table';
 import { useSearchParams } from '@remix-run/react';
 import React from 'react';
 
@@ -56,6 +61,22 @@ function FiltersTest() {
         ],
         [],
       )}
+      onFilter={React.useCallback(
+        (
+          filters: TableFilterValue<Record<string, unknown>>[],
+          state: TableState<Record<string, unknown>>,
+          filteredData?: Row<Record<string, unknown>>[] | undefined,
+        ) => {
+          console.log(
+            JSON.stringify([
+              filters,
+              state.filters,
+              filteredData?.map((r) => r.original.index),
+            ]),
+          );
+        },
+        [],
+      )}
       data={baseData}
       emptyTableContent='No data.'
     />
@@ -86,6 +107,8 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
   const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
+  const passTableProps = searchParams.get('passTableProps') === 'true';
+  const role = searchParams.get('role');
   const onSelect = searchParams.get('onSelect') === 'true';
 
   return {
@@ -106,6 +129,8 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     stateReducer,
     scrollRow,
     hasSubComponent,
+    passTableProps,
+    role,
     onSelect,
   };
 };
@@ -132,6 +157,8 @@ const Default = ({
     stateReducer,
     rows,
     hasSubComponent,
+    passTableProps,
+    role,
     onSelect,
   } = config;
 
@@ -185,6 +212,7 @@ const Default = ({
           {
             Header: 'Name',
             accessor: 'name',
+            cellClassName: 'name-cell',
             maxWidth: parseInt(maxWidths[1]) || undefined,
             minWidth: parseInt(minWidths[1]) || undefined,
             disableResizing,
@@ -200,6 +228,12 @@ const Default = ({
             accessor: 'id',
             width: '8rem',
           },
+          {
+            Header: 'Custom',
+            accessor: 'custom',
+            cellClassName: 'custom-cell',
+            Cell: () => 'my custom content',
+          },
         ]}
         data={enableVirtualization ? virtualizedData : data}
         emptyTableContent='No data.'
@@ -213,12 +247,28 @@ const Default = ({
         enableVirtualization={enableVirtualization}
         style={{ maxHeight: '90vh' }}
         onSelect={onSelect ? () => console.log('onSelect') : undefined}
+        aria-readonly='true'
+        className='outer-div'
+        role={role as any}
+        tableProps={
+          passTableProps
+            ? {
+                className: 'inner-div-role-table',
+              }
+            : undefined
+        }
+        bodyProps={{
+          className: 'table-body',
+        }}
         scrollToRow={
           scroll
             ? (rows, data) =>
                 rows.findIndex((row) => row.original === data[scrollRow])
             : undefined
         }
+        emptyTableContentProps={{
+          className: 'empty-table-content',
+        }}
         stateReducer={
           stateReducer
             ? (newState, action, previousState, instance) => {
@@ -311,6 +361,7 @@ const baseData = [
     description: 'Description1',
     id: '111',
     date: new Date('Aug 1, 2023'),
+    custom: 'custom',
   },
   {
     index: 2,
@@ -318,6 +369,7 @@ const baseData = [
     description: 'Description2',
     id: '222',
     date: new Date('Aug 2, 2024'),
+    custom: 'custom',
   },
   {
     index: 3,
@@ -325,6 +377,7 @@ const baseData = [
     description: 'Description3',
     id: '333',
     date: new Date('Aug 3, 2025'),
+    custom: 'custom',
   },
 ];
 
