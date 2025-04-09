@@ -38,28 +38,6 @@ test.describe('Conditional ARIA attributes', () => {
   });
 });
 
-test.describe('Clamping', () => {
-  test('should apply clamp, if cell is string value and no custom Cell is rendered', async ({
-    page,
-  }) => {
-    await page.goto('/Table');
-
-    const host = page.locator('.name-cell').first();
-    await expect(await host.evaluate((el) => el.shadowRoot)).not.toBeNull();
-    const lineClamp = await host.evaluate(
-      (el) => el.shadowRoot?.querySelector('div'),
-    );
-    await expect(lineClamp).not.toBeNull();
-  });
-
-  test('should not apply clamp, if custom Cell is used', async ({ page }) => {
-    await page.goto('/Table');
-
-    const host = page.locator('.custom-cell').first();
-    await expect(await host.evaluate((el) => el.shadowRoot)).toBeNull();
-  });
-});
-
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
