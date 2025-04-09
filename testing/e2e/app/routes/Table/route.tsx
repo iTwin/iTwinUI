@@ -209,6 +209,7 @@ const Default = ({
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
         style={{ maxHeight: '90vh' }}
+        onSelect={() => console.log('onSelect')}
         scrollToRow={
           scroll
             ? (rows, data) =>

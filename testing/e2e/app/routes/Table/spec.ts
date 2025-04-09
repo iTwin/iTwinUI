@@ -426,6 +426,31 @@ test.describe('Table row selection', () => {
     expect((await secondParentRowMessage).text()).toBe('false');
   });
 
+  test('should not call onSelect when clicking on text', async ({ page }) => {
+    await page.goto('/Table?isSelectable=true');
+
+    const row1 = page.getByText('1Name1Description1');
+    const row1Cell = row1.getByText('Name1');
+
+    let consoleText = '';
+    page.on('console', (msg) => {
+      if (msg.type() === 'log') {
+        consoleText = msg.text();
+      }
+    });
+
+    const row1CellBox = (await row1Cell.boundingBox())!;
+    // Approximate the positionn of the text
+    await page.mouse.click(
+      row1CellBox.x + 24, // A few pixels from the left edge
+      row1CellBox.y + row1CellBox.height / 2, // Vertically middle of the cell
+    );
+    expect(consoleText).not.toContain('onSelect');
+
+    await row1.click();
+    expect(consoleText).toContain('onSelect');
+  });
+
   //#region Helpers for row selection tests
   const filter = async (page: Page) => {
     const filterButton = page.getByLabel('Filter');
