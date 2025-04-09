@@ -427,8 +427,8 @@
     align-items: center;
     flex-basis: calc(var(--iui-size-l) * 2);
 
-    // make the checkbox bigger (32x32) to prevent accidentally clicking on the row
-    --iui-checkbox-target-size: 32px;
+    // make the checkbox bigger to prevent accidentally clicking on the row
+    --iui-checkbox-target-size: var(--_iui-table-row-size);
   }
 
   &.iui-table-cell-sticky {

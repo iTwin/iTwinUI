@@ -109,6 +109,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
   const passTableProps = searchParams.get('passTableProps') === 'true';
   const role = searchParams.get('role');
+  const onSelect = searchParams.get('onSelect') === 'true';
 
   return {
     exampleType,
@@ -130,6 +131,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     hasSubComponent,
     passTableProps,
     role,
+    onSelect,
   };
 };
 
@@ -157,6 +159,7 @@ const Default = ({
     hasSubComponent,
     passTableProps,
     role,
+    onSelect,
   } = config;
 
   const virtualizedData = React.useMemo(() => {
@@ -225,12 +228,6 @@ const Default = ({
             accessor: 'id',
             width: '8rem',
           },
-          {
-            Header: 'Custom',
-            accessor: 'custom',
-            cellClassName: 'custom-cell',
-            Cell: () => 'my custom content',
-          },
         ]}
         data={enableVirtualization ? virtualizedData : data}
         emptyTableContent='No data.'
@@ -243,6 +240,7 @@ const Default = ({
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
         style={{ maxHeight: '90vh' }}
+        onSelect={onSelect ? () => console.log('onSelect') : undefined}
         aria-readonly='true'
         className='outer-div'
         role={role as any}
