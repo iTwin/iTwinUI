@@ -321,7 +321,7 @@
   justify-content: center;
 
   // If has at least one child
-  &:has(*) {
+  &:not(:empty) {
     flex-grow: 1;
   }
 
@@ -355,7 +355,7 @@
   align-items: flex-start;
 
   // If has at least one child
-  &:has(*) {
+  &:not(:empty) {
     flex-grow: 1;
   }
 
