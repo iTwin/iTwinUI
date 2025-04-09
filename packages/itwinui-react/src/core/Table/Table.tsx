@@ -1080,7 +1080,7 @@ export const Table = <
             <slot name='iui-table-body' />
           </div>
 
-          {/* Non-table elements (e.g. Lazy loading row, Paginator) should not be within role="table" */}
+          {/* Non-table elements (e.g. paginator, loading indicator, empty state) should not be within role="table" */}
           <slot name='iui-table-body-extra' />
           <slot />
         </ShadowRoot>
