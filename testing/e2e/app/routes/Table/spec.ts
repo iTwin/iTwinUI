@@ -440,7 +440,7 @@ test.describe('Table row selection', () => {
     });
 
     const row1CellBox = (await row1Cell.boundingBox())!;
-    // Approximate the positionn of the text
+    // Approximate the position of the text
     await page.mouse.click(
       row1CellBox.x + 24, // A few pixels from the left edge
       row1CellBox.y + row1CellBox.height / 2, // Vertically middle of the cell
