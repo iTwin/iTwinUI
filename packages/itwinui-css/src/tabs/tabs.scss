@@ -48,7 +48,7 @@
     @include base.iui-tab-animated;
   }
 
-  &.iui-not-animated {
+  &:not(.iui-animated) {
     @include base.iui-tab-not-animated;
   }
 }

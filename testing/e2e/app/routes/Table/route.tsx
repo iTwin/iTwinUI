@@ -107,6 +107,8 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const stateReducer = searchParams.get('stateReducer') === 'true';
   const scrollRow = Number(searchParams.get('scrollRow'));
   const hasSubComponent = searchParams.get('hasSubComponent') === 'true';
+  const passTableProps = searchParams.get('passTableProps') === 'true';
+  const role = searchParams.get('role');
 
   return {
     exampleType,
@@ -126,6 +128,8 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     stateReducer,
     scrollRow,
     hasSubComponent,
+    passTableProps,
+    role,
   };
 };
 
@@ -151,6 +155,8 @@ const Default = ({
     stateReducer,
     rows,
     hasSubComponent,
+    passTableProps,
+    role,
   } = config;
 
   const virtualizedData = React.useMemo(() => {
@@ -237,6 +243,19 @@ const Default = ({
         selectSubRows={selectSubRows}
         enableVirtualization={enableVirtualization}
         style={{ maxHeight: '90vh' }}
+        aria-readonly='true'
+        className='outer-div'
+        role={role as any}
+        tableProps={
+          passTableProps
+            ? {
+                className: 'inner-div-role-table',
+              }
+            : undefined
+        }
+        bodyProps={{
+          className: 'table-body',
+        }}
         scrollToRow={
           scroll
             ? (rows, data) =>

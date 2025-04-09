@@ -323,6 +323,40 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     popoverProps?.onVisibleChange?.(false);
   }, [popoverProps]);
 
+  const handleOptionSelection = React.useCallback(
+    (option: SelectOption<any>, { isSelected = false } = {}) => {
+      // update internal value state and also call external onChange
+      if (isSingleOnChange(onChangeRef.current, multiple)) {
+        setUncontrolledValue(option.value);
+        onChangeRef.current?.(option.value);
+        hide();
+      } else {
+        setUncontrolledValue((prev: unknown[]) =>
+          isSelected
+            ? prev?.filter((i) => option.value !== i)
+            : [...(prev ?? []), option.value],
+        );
+        onChangeRef.current?.(option.value, isSelected ? 'removed' : 'added');
+      }
+
+      // update live region
+      if (isMultipleEnabled(value, multiple)) {
+        const prevSelectedValue = value || [];
+        const newSelectedValue = isSelected
+          ? prevSelectedValue.filter((i) => option.value !== i)
+          : [...prevSelectedValue, option.value];
+        setLiveRegionSelection(
+          options
+            .filter((i) => newSelectedValue.includes(i.value))
+            .map((item) => item.label)
+            .filter(Boolean)
+            .join(', '),
+        );
+      }
+    },
+    [hide, multiple, onChangeRef, options, value],
+  );
+
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
       const isSelected = isMultipleEnabled(value, multiple)
@@ -348,37 +382,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             return;
           }
 
-          // update internal value state and also call external onChange
-          if (isSingleOnChange(onChangeRef.current, multiple)) {
-            setUncontrolledValue(option.value);
-            onChangeRef.current?.(option.value);
-            hide();
-          } else {
-            setUncontrolledValue((prev: unknown[]) =>
-              isSelected
-                ? prev?.filter((i) => option.value !== i)
-                : [...(prev ?? []), option.value],
-            );
-            onChangeRef.current?.(
-              option.value,
-              isSelected ? 'removed' : 'added',
-            );
-          }
-
-          // update live region
-          if (isMultipleEnabled(value, multiple)) {
-            const prevSelectedValue = value || [];
-            const newSelectedValue = isSelected
-              ? prevSelectedValue.filter((i) => option.value !== i)
-              : [...prevSelectedValue, option.value];
-            setLiveRegionSelection(
-              options
-                .filter((i) => newSelectedValue.includes(i.value))
-                .map((item) => item.label)
-                .filter(Boolean)
-                .join(', '),
-            );
-          }
+          handleOptionSelection(option, { isSelected });
         },
         ref: (el: HTMLElement) => {
           if (isSelected && !multiple) {
@@ -390,7 +394,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         ...menuItem.props,
       });
     });
-  }, [hide, itemRenderer, multiple, onChangeRef, options, value]);
+  }, [handleOptionSelection, itemRenderer, multiple, options, value]);
 
   const selectedItems = React.useMemo(() => {
     if (value == null) {
@@ -411,9 +415,21 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     return index >= 0 ? index : 0;
   }, [options, value]);
 
-  const tagRenderer = React.useCallback((item: SelectOption<unknown>) => {
-    return <SelectTag key={item.label} label={item.label} />;
-  }, []);
+  const tagRenderer = React.useCallback(
+    (option: SelectOption<unknown>) => {
+      return (
+        <SelectTag
+          key={option.label}
+          label={option.label}
+          onRemove={() => {
+            handleOptionSelection(option, { isSelected: true });
+            selectRef.current?.focus();
+          }}
+        />
+      );
+    },
+    [handleOptionSelection],
+  );
 
   const popover = usePopover({
     visible: isOpen,
@@ -456,23 +472,14 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
             },
             triggerProps?.className,
           )}
+          data-iui-multi={multiple}
         >
           {(!selectedItems || selectedItems.length === 0) && (
             <Box as='span' className='iui-content'>
               {placeholder}
             </Box>
           )}
-          {isMultipleEnabled(selectedItems, multiple) ? (
-            <MultipleSelectButton
-              selectedItems={selectedItems}
-              selectedItemsRenderer={
-                selectedItemRenderer as (
-                  options: SelectOption<unknown>[],
-                ) => React.JSX.Element
-              }
-              tagRenderer={tagRenderer}
-            />
-          ) : (
+          {!isMultipleEnabled(selectedItems, multiple) ? (
             <SingleSelectButton
               selectedItem={selectedItems}
               selectedItemRenderer={
@@ -481,12 +488,22 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
                 ) => React.JSX.Element
               }
             />
+          ) : (
+            <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
           )}
         </SelectButton>
         <SelectEndIcon disabled={disabled} isOpen={isOpen} />
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+        {isMultipleEnabled(selectedItems, multiple) ? (
+          <MultipleSelectButton
+            selectedItems={selectedItems}
+            selectedItemsRenderer={
+              selectedItemRenderer as (
+                options: SelectOption<unknown>[],
+              ) => React.JSX.Element
+            }
+            tagRenderer={tagRenderer}
+            size={size === 'small' ? 'small' : undefined}
+          />
         ) : null}
       </InputWithIcon>
 
@@ -763,6 +780,7 @@ const MultipleSelectButton = <T,>({
   selectedItems,
   selectedItemsRenderer,
   tagRenderer,
+  size,
 }: MultipleSelectButtonProps<T>) => {
   const selectedItemsElements = React.useMemo(() => {
     if (!selectedItems) {
@@ -774,12 +792,16 @@ const MultipleSelectButton = <T,>({
 
   return (
     <>
-      {selectedItems &&
-        selectedItemsRenderer &&
-        selectedItemsRenderer(selectedItems)}
-      {selectedItems && !selectedItemsRenderer && (
+      {selectedItems && (
         <Box as='span' className='iui-content'>
-          <SelectTagContainer tags={selectedItemsElements} />
+          {selectedItemsRenderer ? (
+            selectedItemsRenderer(selectedItems)
+          ) : (
+            <SelectTagContainer
+              tags={selectedItemsElements}
+              data-iui-size={size}
+            />
+          )}
         </Box>
       )}
     </>
@@ -790,6 +812,7 @@ type MultipleSelectButtonProps<T> = {
   selectedItems?: SelectOption<T>[];
   selectedItemsRenderer?: (options: SelectOption<T>[]) => React.JSX.Element;
   tagRenderer: (item: SelectOption<T>) => React.JSX.Element;
+  size?: 'small';
 };
 
 // ----------------------------------------------------------------------------

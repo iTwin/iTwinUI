@@ -21,8 +21,7 @@ beforeAll(() => {
   window.ResizeObserver = vi.fn((cb) => ({
     disconnect,
     unobserve: vi.fn(),
-    observe: (el) => {
-      // @ts-expect-error: Only testing contentRect from the callback
+    observe: (el: Element) => {
       resizeCallback = cb;
       observe(el);
     },
