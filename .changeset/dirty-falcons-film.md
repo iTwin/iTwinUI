@@ -2,8 +2,8 @@
 '@itwin/itwinui-react': minor
 ---
 
-Fixed `Table` markup by moving `role="table"` from the wrapper to a new `<div>` hidden in a shadow-root in the wrapper. Only the table elements will be slotted into this inner div with `role="table"` leaving non table elements (e.g. paginator, iui-table-body-extra) outside `role="table"`.
+`Table`'s accessibility tree structure has been fixed. This required moving the `role="table"` attribute from the outermost element to a new element inside the Table's shadow DOM. Elements that are not allowed within `role="table" (e.g. paginator, empty state) will now remain outside `role="table"`, thus resulting in a valid accessibility tree.
 
-Added a new `tableProps` prop to pass props to the new inner `<div>`.
+A new `tableProps` prop has been added, which allows passing props to the inner `role="table"` element.
 
-**NOTE**: To preserve accessibility, ARIA attributes passed to `Table` will now automatically be passed to the new inner `<div>` that has `role="table"`. However, passing `tableProps` or `role` to the `Table` will apply the ARIA attributes on the *wrapper* instead.
+**NOTE**: For backwards compatibility, ARIA attributes passed directly to `<Table>` will now be automatically propagated to the inner `role="table"` element by default. However, when `tableProps` or `role` is also passed, then the ARIA attributes passed directly to `<Table>` will remain on the outermost element to keep the behavior more predictable.
