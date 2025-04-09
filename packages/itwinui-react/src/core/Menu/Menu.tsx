@@ -47,7 +47,9 @@ type MenuProps = {
   trigger: React.ReactNode;
   /**
    * You can use this optional prop when the position reference is not the trigger.
-   * (Equivalent to using FloatingUI's `floating.refs.setPositionReference`)
+   *
+   * This can be either a real element, or a [virtual element](https://floating-ui.com/docs/virtual-elements)
+   * containing a `getBoundingClientRect` method.
    */
   positionReference?: Parameters<
     ReturnType<typeof usePopover>['refs']['setPositionReference']

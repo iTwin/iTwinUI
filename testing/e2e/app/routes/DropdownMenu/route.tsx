@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Button,
   Checkbox,
@@ -33,6 +34,9 @@ export default () => {
   }
   if (menuType === 'withExtraContent') {
     return <DropdownMenuWithExtraContent />;
+  }
+  if (menuType === 'contextMenu') {
+    return <ContextMenu />;
   }
   return <DropdownMenuBasic closeOnItemClick={closeOnItemClick} />;
 };
@@ -206,5 +210,58 @@ const DropdownMenuHideMiddleware = ({
         ))}
       </Surface.Body>
     </Surface>
+  );
+};
+
+const ContextMenu = () => {
+  const [visible, setVisible] = React.useState(false);
+  const [positionReference, setPositionReference] = React.useState<{
+    getBoundingClientRect: () => Omit<DOMRectReadOnly, 'toJSON'>;
+  } | null>(null);
+
+  return (
+    <div
+      data-testid='context-menu-container'
+      style={{ padding: 8, outline: 'solid' }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setVisible((prev) => !prev);
+        setPositionReference({
+          getBoundingClientRect() {
+            return {
+              width: 0,
+              height: 0,
+              x: e.clientX,
+              y: e.clientY,
+              top: e.clientY,
+              right: e.clientX,
+              bottom: e.clientY,
+              left: e.clientX,
+            };
+          },
+        });
+      }}
+    >
+      <DropdownMenu
+        closeOnItemClick
+        visible={visible}
+        onVisibleChange={(visible) => {
+          setPositionReference(null);
+          setVisible(visible);
+        }}
+        positionReference={positionReference}
+        menuItems={
+          <>
+            <MenuItem>Item 1</MenuItem>
+            <MenuItem>Item 2</MenuItem>
+            <MenuItem>Item 3</MenuItem>
+          </>
+        }
+      >
+        <IconButton label='More'>
+          <SvgMore />
+        </IconButton>
+      </DropdownMenu>
+    </div>
   );
 };
