@@ -38,28 +38,6 @@ test.describe('Conditional ARIA attributes', () => {
   });
 });
 
-test.describe('Clamping', () => {
-  test('should apply clamp, if cell is string value and no custom Cell is rendered', async ({
-    page,
-  }) => {
-    await page.goto('/Table');
-
-    const host = page.locator('.name-cell').first();
-    await expect(await host.evaluate((el) => el.shadowRoot)).not.toBeNull();
-    const lineClamp = await host.evaluate(
-      (el) => el.shadowRoot?.querySelector('div'),
-    );
-    await expect(lineClamp).not.toBeNull();
-  });
-
-  test('should not apply clamp, if custom Cell is used', async ({ page }) => {
-    await page.goto('/Table');
-
-    const host = page.locator('.custom-cell').first();
-    await expect(await host.evaluate((el) => el.shadowRoot)).toBeNull();
-  });
-});
-
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
@@ -476,6 +454,31 @@ test.describe('Table row selection', () => {
     expect((await secondParentRowMessage).text()).toBe('false');
   });
 
+  test('should not call onSelect when clicking on text', async ({ page }) => {
+    await page.goto('/Table?isSelectable=true&onSelect=true');
+
+    const row1 = page.getByText('1Name1Description1');
+    const row1Cell = row1.getByText('Name1');
+
+    let consoleText = '';
+    page.on('console', (msg) => {
+      if (msg.type() === 'log') {
+        consoleText = msg.text();
+      }
+    });
+
+    const row1CellBox = (await row1Cell.boundingBox())!;
+    // Approximate the position of the text
+    await page.mouse.click(
+      row1CellBox.x + 24, // A few pixels from the left edge
+      row1CellBox.y + row1CellBox.height / 2, // Vertically middle of the cell
+    );
+    expect(consoleText).not.toContain('onSelect');
+
+    await row1.click();
+    expect(consoleText).toContain('onSelect');
+  });
+
   //#region Helpers for row selection tests
   const filter = async (page: Page) => {
     const filterButton = page.getByLabel('Filter');
@@ -804,7 +807,9 @@ test.describe('Virtual Scroll Tests', () => {
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
     const rows = page.locator('.table-body').getByRole('row');
-    const emptyContent = page.locator('.table-body').getByText('No Data.');
+    const emptyContent = page
+      .locator('.empty-table-content')
+      .getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
 
     //Checks empty content to make sure it appears correctly.

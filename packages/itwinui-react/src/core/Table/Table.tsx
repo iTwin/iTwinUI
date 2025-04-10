@@ -1080,7 +1080,7 @@ export const Table = <
             <slot name='iui-table-body' />
           </div>
 
-          {/* Non-table elements (e.g. Lazy loading row, Paginator) should not be within role="table" */}
+          {/* Non-table elements (e.g. paginator, loading indicator, empty state) should not be within role="table" */}
           <slot name='iui-table-body-extra' />
           <slot />
         </ShadowRoot>
@@ -1192,53 +1192,34 @@ export const Table = <
                 : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
-          {isLoading && data.length === 0 && (
-            <Box
-              as='div'
-              {...emptyTableContentProps}
-              className={cx(
-                'iui-table-empty',
-                emptyTableContentProps?.className,
-              )}
-            >
-              <ProgressRadial indeterminate={true} />
-            </Box>
-          )}
-          {!isLoading && data.length === 0 && !areFiltersSet && (
-            <Box
-              as='div'
-              {...emptyTableContentProps}
-              className={cx(
-                'iui-table-empty',
-                emptyTableContentProps?.className,
-              )}
-            >
-              <div>{emptyTableContent}</div>
-            </Box>
-          )}
-          {!isLoading &&
-            (data.length === 0 || rows.length === 0) &&
-            areFiltersSet && (
-              <Box
-                as='div'
-                {...emptyTableContentProps}
-                className={cx(
-                  'iui-table-empty',
-                  emptyTableContentProps?.className,
-                )}
-              >
-                <div>{emptyFilteredTableContent}</div>
-              </Box>
-            )}
         </Box>
+        {isLoading && data.length === 0 && (
+          <TableBodyExtraWrapper>
+            <TableEmptyWrapper {...emptyTableContentProps}>
+              <ProgressRadial indeterminate={true} />
+            </TableEmptyWrapper>
+          </TableBodyExtraWrapper>
+        )}
+        {!isLoading && data.length === 0 && !areFiltersSet && (
+          <TableBodyExtraWrapper>
+            <TableEmptyWrapper {...emptyTableContentProps}>
+              <div>{emptyTableContent}</div>
+            </TableEmptyWrapper>
+          </TableBodyExtraWrapper>
+        )}
+        {!isLoading &&
+          (data.length === 0 || rows.length === 0) &&
+          areFiltersSet && (
+            <TableBodyExtraWrapper>
+              <TableEmptyWrapper {...emptyTableContentProps}>
+                <div>{emptyFilteredTableContent}</div>
+              </TableEmptyWrapper>
+            </TableBodyExtraWrapper>
+          )}
         {isLoading && data.length !== 0 && (
-          <Box
-            slot='iui-table-body-extra'
-            className='iui-table-body-extra'
-            data-iui-loading='true'
-          >
+          <TableBodyExtraWrapper data-iui-loading='true'>
             <ProgressRadial indeterminate size='small' />
-          </Box>
+          </TableBodyExtraWrapper>
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
@@ -1248,3 +1229,44 @@ export const Table = <
 if (process.env.NODE_ENV === 'development') {
   Table.displayName = 'Table';
 }
+
+// ----------------------------------------------------------------------------
+
+const TableBodyExtraWrapper = React.forwardRef(
+  (
+    props: React.PropsWithChildren<React.ComponentProps<'div'>>,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const { children, ...rest } = props;
+    return (
+      <Box
+        as='div'
+        ref={ref}
+        slot='iui-table-body-extra'
+        {...rest}
+        className={cx('iui-table-body-extra', rest.className)}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
+
+const TableEmptyWrapper = React.forwardRef(
+  (
+    props: React.PropsWithChildren<React.ComponentProps<'div'>>,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const { children, ...rest } = props;
+    return (
+      <Box
+        as='div'
+        ref={ref}
+        {...rest}
+        className={cx('iui-table-empty', rest.className)}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
