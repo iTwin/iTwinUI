@@ -602,6 +602,9 @@ export const Expandable = () => {
       subComponent={expandedSubComponent}
       onExpand={onExpand}
       isSelectable
+      bodyProps={{
+        className: 'table-body',
+      }}
     />
   );
 };
@@ -697,6 +700,9 @@ export const ExpandableSubrows = () => {
         data={data}
         columns={columns}
         onExpand={onExpand}
+        bodyProps={{
+          className: 'table-body',
+        }}
       />
     </>
   );
@@ -1550,6 +1556,9 @@ export const Full2 = () => {
           style={{ height: '100%' }}
           enableVirtualization
           rowProps={rowProps}
+          bodyProps={{
+            className: 'table-body',
+          }}
           globalFilterValue={globalFilterValue}
         />
       </div>
@@ -1743,6 +1752,9 @@ export const Condensed = () => {
       isSortable
       columns={columns}
       data={data}
+      bodyProps={{
+        className: 'table-body',
+      }}
       emptyTableContent='No data.'
       density='condensed'
       onExpand={onExpand}
@@ -3023,6 +3035,9 @@ export const CustomizedColumns = () => {
       rowProps={({ index }) => ({
         onClick: (e) => index === 0 && e.preventDefault(),
       })}
+      bodyProps={{
+        className: 'table-body',
+      }}
     />
   );
 };
