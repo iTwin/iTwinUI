@@ -291,7 +291,10 @@ export const Menu = React.forwardRef((props, ref) => {
           // and thus the hovered MenuItem won't be focused.
           // As a result, we need to explicitly focus the item manually.
           if (event.target === event.currentTarget) {
-            event.currentTarget.focus();
+            event.currentTarget.focus(
+              // @ts-expect-error -- https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#focusvisible
+              { focusVisible: false },
+            );
           }
         }),
       });
