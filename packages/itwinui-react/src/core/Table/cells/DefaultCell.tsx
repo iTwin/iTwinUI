@@ -84,16 +84,23 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
-      {clamp ? (
-        <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false}>
-          <slot name='start' />
-          <LineClamp>
+      <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
+        <slot name='start' />
+        <div
+          className='_iui-table-cell-main-content'
+          onClick={(e) => e.stopPropagation()}
+        >
+          {clamp ? (
+            <LineClamp>
+              <slot />
+            </LineClamp>
+          ) : (
             <slot />
-          </LineClamp>
-          <slot name='end' />
-          <slot name='shadows' />
-        </ShadowRoot>
-      ) : null}
+          )}
+        </div>
+        <slot name='end' />
+        <slot name='shadows' />
+      </ShadowRoot>
 
       {startIcon && (
         <Box
@@ -120,3 +127,21 @@ export const DefaultCell = <T extends Record<string, unknown>>(
 if (process.env.NODE_ENV === 'development') {
   DefaultCell.displayName = 'DefaultCell';
 }
+
+/**
+ * Increase hit target size of the cell content.
+ * This helps prevent accidental row selection when selecting text.
+ */
+const css = /* css */ `
+._iui-table-cell-main-content {
+  position: relative;
+  isolation: isolate;
+}
+._iui-table-cell-main-content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: -6px;
+  z-index: -1;
+}
+`;

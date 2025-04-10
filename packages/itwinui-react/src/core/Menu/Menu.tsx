@@ -47,7 +47,9 @@ type MenuProps = {
   trigger: React.ReactNode;
   /**
    * You can use this optional prop when the position reference is not the trigger.
-   * (Equivalent to using FloatingUI's `floating.refs.setPositionReference`)
+   *
+   * This can be either a real element, or a [virtual element](https://floating-ui.com/docs/virtual-elements)
+   * containing a `getBoundingClientRect` method.
    */
   positionReference?: Parameters<
     ReturnType<typeof usePopover>['refs']['setPositionReference']
@@ -289,7 +291,10 @@ export const Menu = React.forwardRef((props, ref) => {
           // and thus the hovered MenuItem won't be focused.
           // As a result, we need to explicitly focus the item manually.
           if (event.target === event.currentTarget) {
-            event.currentTarget.focus();
+            event.currentTarget.focus(
+              // @ts-expect-error -- https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#focusvisible
+              { focusVisible: false },
+            );
           }
         }),
       });
