@@ -20,6 +20,18 @@ const axeConfigPerExample = (example) => {
         rules: [{ id: 'color-contrast', enabled: !Cypress.env('CI') }],
       };
     }
+
+    // ExpanderColumn header can be empty since it has no data and buttons inside it are labeled
+    case 'TableDisabled':
+    case 'TableExpandableContentExample': {
+      return { rules: [{ id: 'empty-table-header', enabled: false }] };
+    }
+
+    // Since it's mostly for Safari desktop, putting onus on Safari team to fix it. Can also be fixed in user-land.
+    // https://github.com/iTwin/iTwinUI/pull/2487#discussion_r2028998623
+    case 'TableVirtualizationExample': {
+      return { rules: [{ id: 'scrollable-region-focusable', enabled: false }] };
+    }
   }
 };
 

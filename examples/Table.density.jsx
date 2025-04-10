@@ -3,9 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table } from '@itwin/itwinui-react';
+import { Flex, LabeledSelect, Table } from '@itwin/itwinui-react';
 
 export default () => {
+  const [density, setDensity] = React.useState('default');
   const generateItem = React.useCallback((index, parentRow = '') => {
     const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
     return {
@@ -40,7 +41,21 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
+      <LabeledSelect
+        label='Density'
+        options={[
+          { value: 'default', label: 'Default' },
+          { value: 'condensed', label: 'Condensed' },
+          { value: 'extra-condensed', label: 'Extra-condensed' },
+        ]}
+        onChange={(value) => setDensity(value)}
+      />
+      <Table
+        columns={columns}
+        emptyTableContent='No data.'
+        data={data}
+        density={density}
+      />
     </div>
   );
 };
