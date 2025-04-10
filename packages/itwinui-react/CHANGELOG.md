@@ -5,6 +5,7 @@
 ### Minor Changes
 
 - [#2498](https://github.com/iTwin/iTwinUI/pull/2498): **ComboBox, Select**: Added the ability to deselect options in the closed state when using `multiple` selection mode. The tags will now each have a deselect ("❌") button.
+  - [#2346](https://github.com/iTwin/iTwinUI/pull/2346): `<Select multiple>` now renders the tag container outside the select-button. While this shouldn't make a noticeable difference in most cases, it might affect the use of `selectedItemRenderer`.
 - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): `Table`'s accessibility tree structure has been fixed. This required moving the `role="table"` attribute from the outermost element to a new element inside the Table's shadow DOM. Elements that are not allowed within `role="table"` (e.g. paginator, loading indicator, empty state) will now remain outside `role="table"`, thus resulting in a valid accessibility tree.
 
   A new `tableProps` prop has been added, which allows passing props to the inner `role="table"` element.
@@ -12,6 +13,7 @@
   **NOTE**: For backwards compatibility, ARIA attributes passed directly to `<Table>` will now be automatically propagated to the inner `role="table"` element by default. However, when `tableProps` or `role` is also passed, the ARIA attributes passed directly to `<Table>` will remain on the outermost element to keep the behavior more predictable.
 
 - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Added a `caption` prop to `Table` that serves as the table caption. Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+
 - **Nested popovers**:
 
   - [#2490](https://github.com/iTwin/iTwinUI/pull/2490): `Dialog`, `Modal` and `Popover` will now correctly handle portaling of nested floating elements.
@@ -53,13 +55,12 @@
 
 ### Patch Changes
 
-- [#2346](https://github.com/iTwin/iTwinUI/pull/2346): `<Select multiple>` now renders the tag container outside the select-button. While this shouldn't make a noticeable difference in most cases, it might affect the use of `selectedItemRenderer`.
-- [#2497](https://github.com/iTwin/iTwinUI/pull/2497): Fixed `Tile` bug where `Badge` is not visible within `Tile.ThumbnailArea`.
+- [#2497](https://github.com/iTwin/iTwinUI/pull/2497): Fixed a `Tile` bug where `Badge` is not visible within `Tile.ThumbnailArea`.
 - [#2503](https://github.com/iTwin/iTwinUI/pull/2503): Updated `--iui-color-background-backdrop` [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) mapping to match latest designs.
 - **Table**:
   - [#2462](https://github.com/iTwin/iTwinUI/pull/2462): Fixed a "Maximum update depth exceeded" error in `Table`.
   - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Fixed an issue in `Table` where `onSelect` was being incorrectly called when selecting text inside cells.
-  - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Table: Increased the hit target size of checkboxes and text inside cells to prevent accidental row clicks when clicking the checkbox or selecting the text.
+  - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Increased the hit target size of checkboxes and text inside cells to prevent accidental row clicks when clicking the checkbox or selecting the text.
   - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Add missing labels to row checkboxes and to the select all checkbox.
   - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Removed invalid and unsupported ARIA attributes from `Table` and its internal elements. Notably, `aria-multiselectable` and `role="rowgroup"` were removed.
 
