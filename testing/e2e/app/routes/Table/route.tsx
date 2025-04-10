@@ -228,12 +228,6 @@ const Default = ({
             accessor: 'id',
             width: '8rem',
           },
-          {
-            Header: 'Custom',
-            accessor: 'custom',
-            cellClassName: 'custom-cell',
-            Cell: () => 'my custom content',
-          },
         ]}
         data={enableVirtualization ? virtualizedData : data}
         emptyTableContent='No data.'

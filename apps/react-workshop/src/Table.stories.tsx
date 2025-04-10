@@ -126,7 +126,6 @@ export const SelectableSingle = () => {
           );
         },
       },
-
       {
         id: 'description',
         Header: 'Description',
