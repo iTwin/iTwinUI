@@ -97,6 +97,14 @@ If the menu gets hidden even when it shouldn't (e.g. due to some custom styles i
 </DropdownMenu>
 ```
 
+### Positioning
+
+The `positionReference` prop can be used to change the position of the menu. Accepts a real element or a [virtual element](https://floating-ui.com/docs/virtual-elements) containing a `getBoundingClientRect` method.
+
+This is useful when you want the menu to be positioned relative to a different element than the trigger (e.g. a wrapping element) or for building context menus.
+
+{/* TODO: add proper example */}
+
 ## Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/DropdownMenu/DropdownMenu.d.ts' />

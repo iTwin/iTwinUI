@@ -50,6 +50,7 @@ export type DropdownMenuProps = {
   Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
 > &
+  Pick<React.ComponentProps<typeof Menu>, 'positionReference'> &
   Pick<PortalProps, 'portal'>;
 
 /**
