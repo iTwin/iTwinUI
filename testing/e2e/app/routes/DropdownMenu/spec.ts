@@ -333,6 +333,31 @@ test.describe('DropdownMenu', () => {
       .click({ force: true });
     await expect(menu).toBeVisible();
   });
+
+  test('should support positionReference prop for context menus', async ({
+    page,
+  }) => {
+    await page.goto('/DropdownMenu?menuType=contextMenu');
+
+    const container = page.getByTestId('context-menu-container');
+    const menu = page.getByRole('menu');
+
+    // open with right click
+    await container.click({ button: 'right' });
+    await expect(menu).toBeVisible();
+
+    // menu should be near the center of the container
+    const containerBox = await container.boundingBox();
+    const menuBox = await menu.boundingBox();
+    if (containerBox && menuBox) {
+      expect(menuBox.x).toBeCloseTo(containerBox.x + containerBox.width / 2);
+      expect(menuBox.y).toBeCloseTo(containerBox.y + containerBox.height / 2);
+    }
+
+    // close
+    await page.locator('body').click();
+    await expect(menu).not.toBeVisible();
+  });
 });
 
 // ----------------------------------------------------------------------------

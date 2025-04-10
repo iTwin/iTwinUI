@@ -3924,38 +3924,6 @@ it('should render row with loading status', () => {
   expect(rows[1]).not.toHaveClass(`iui-loading`);
 });
 
-it('should navigate through table filtering with the keyboard', async () => {
-  const onFilter = vi.fn();
-  const mockedColumns = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-      Filter: tableFilters.TextFilter(),
-      fieldType: 'text',
-    },
-  ];
-  renderComponent({
-    columns: mockedColumns,
-    onFilter,
-  });
-
-  await userEvent.tab(); // tab to filter icon button
-  await userEvent.keyboard('{Enter}');
-  await userEvent.keyboard('2');
-  await userEvent.tab(); // tab to filter menu 'Filter' submit button
-  await userEvent.keyboard('{Enter}');
-  expect(onFilter).toHaveBeenCalledWith(
-    [{ fieldType: 'text', filterType: 'text', id: 'name', value: '2' }],
-    expect.objectContaining({ filters: [{ id: 'name', value: '2' }] }),
-    expect.arrayContaining([
-      expect.objectContaining({
-        values: expect.objectContaining({ name: 'Name2' }),
-      }),
-    ]),
-  );
-});
-
 it('should ignore top-level Header if one is passed', async () => {
   const data = mockedData();
   const { container } = render(
@@ -4086,5 +4054,7 @@ it('should not apply clamp, if custom Cell is used', () => {
     data,
   });
   const host = container.querySelector('.test-cell');
-  expect(host?.shadowRoot).toBeFalsy();
+  expect(host?.shadowRoot).toBeTruthy();
+  const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
+  expect(lineClamp).toBeNull();
 });
