@@ -92,8 +92,8 @@ importers:
         specifier: 0.21.0
         version: 0.21.0
       '@itwin/itwinui-react':
-        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.6
-        version: 5.0.0-alpha.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.13
+        version: 5.0.0-alpha.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -2143,6 +2143,15 @@ packages:
     peerDependencies:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
+
+  '@itwin/itwinui-react@5.0.0-alpha.13':
+    resolution:
+      {
+        integrity: sha512-81lNt804oI0Uwch4LDPnF3bucktMkmffHloHH15SFSlm8/9NjT1P2qRjyj3fNcpFN51KDxS7Q7h94f1UJ7+Z0w==,
+      }
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   '@itwin/itwinui-react@5.0.0-alpha.6':
     resolution:
@@ -14580,6 +14589,13 @@ snapshots:
 
   '@itwin/itwinui-illustrations-react@2.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@itwin/itwinui-react@5.0.0-alpha.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ariakit/react': 0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
