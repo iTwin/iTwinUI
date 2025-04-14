@@ -1,5 +1,69 @@
 # Changelog
 
+## 3.18.0
+
+### Minor Changes
+
+- [#2498](https://github.com/iTwin/iTwinUI/pull/2498): **ComboBox, Select**: Added the ability to deselect options in the closed state when using `multiple` selection mode. The tags will now each have a deselect ("❌") button.
+  - [#2346](https://github.com/iTwin/iTwinUI/pull/2346): `<Select multiple>` now renders the tag container outside the select-button. While this shouldn't make a noticeable difference in most cases, it might affect the use of `selectedItemRenderer`.
+- [#2487](https://github.com/iTwin/iTwinUI/pull/2487): `Table`'s accessibility tree structure has been fixed. This required moving the `role="table"` attribute from the outermost element to a new element inside the Table's shadow DOM. Elements that are not allowed within `role="table"` (e.g. paginator, loading indicator, empty state) will now remain outside `role="table"`, thus resulting in a valid accessibility tree.
+
+  A new `tableProps` prop has been added, which allows passing props to the inner `role="table"` element.
+
+  **NOTE**: For backwards compatibility, ARIA attributes passed directly to `<Table>` will now be automatically propagated to the inner `role="table"` element by default. However, when `tableProps` or `role` is also passed, the ARIA attributes passed directly to `<Table>` will remain on the outermost element to keep the behavior more predictable.
+
+- [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Added a `caption` prop to `Table` that serves as the table caption. Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+
+- **Nested popovers**:
+
+  - [#2490](https://github.com/iTwin/iTwinUI/pull/2490): `Dialog`, `Modal` and `Popover` will now correctly handle portaling of nested floating elements.
+  - [#2490](https://github.com/iTwin/iTwinUI/pull/2490): Fixed an issue in `toaster` where toasts was portaling into a new container when used inside `<Popover>`. With this change, the global toaster container will be correctly reused.
+  - [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Fixed an issue where `Dialog` nested inside `Popover` was not appearing correctly.
+  - [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Adjusted the `z-index` value of `Popover` and other floating elements to match `Dialog`.
+
+- **Markup changes**:
+  - [#2480](https://github.com/iTwin/iTwinUI/pull/2480): `<MenuExtraContent>` now renders a `<div>` instead of `<li>` to prevent invalid markup.
+  - [#2481](https://github.com/iTwin/iTwinUI/pull/2481): `<SideNavigation>` now renders a `<nav>` as the topmost element. This creates a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) for assistive technology.
+
+- [#2482](https://github.com/iTwin/iTwinUI/pull/2482): Added a new `closeItemOnClick` prop to `<DropdownMenu>`. When set to `true`, the menu will automatically close when any menu-item is clicked, without having to explicitly call `close()`.
+- [#2506](https://github.com/iTwin/iTwinUI/pull/2506): Added a new `positionReference` prop to `DropdownMenu`. This prop changes the position of the dropdown menu, which may be useful for building context menus.
+
+- [#2493](https://github.com/iTwin/iTwinUI/pull/2493): Added a new `unstable_TabsPresentation` component. This can be used in cases where the [ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) is not desirable. Includes the following subcomponents: `Wrapper`, `TabList`, and `Tab`.
+
+- [#2499](https://github.com/iTwin/iTwinUI/pull/2499): Passing the `name` prop to `<Tile.Name>` now internally wraps the name with `<Tile.NameLabel>` to make the behavior consistent with the composition API.
+
+  <details>
+    <summary>Code</summary>
+
+  The following two examples are now equivalent:
+
+  ```tsx
+  <Tile.Name name='My Tile' />
+  ```
+
+  ```tsx
+  <Tile.Name>
+    <Tile.NameLabel>My Tile</Tile.NameLabel>
+  </Tile.Name>
+  ```
+
+  </details>
+
+- **Dependencies**:
+  - [#2485](https://github.com/iTwin/iTwinUI/pull/2485): Removed dependency on `jotai`.
+  - [#2496](https://github.com/iTwin/iTwinUI/pull/2496): Bumped the minimum required versions of `@floating-ui/react` and `@tanstack/react-virtual`.
+
+### Patch Changes
+
+- [#2497](https://github.com/iTwin/iTwinUI/pull/2497): Fixed a `Tile` bug where `Badge` is not visible within `Tile.ThumbnailArea`.
+- [#2503](https://github.com/iTwin/iTwinUI/pull/2503): Updated `--iui-color-background-backdrop` [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) mapping to match latest designs.
+- **Table**:
+  - [#2462](https://github.com/iTwin/iTwinUI/pull/2462): Fixed a "Maximum update depth exceeded" error in `Table`.
+  - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Fixed an issue in `Table` where `onSelect` was being incorrectly called when selecting text inside cells.
+  - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Increased the hit target size of checkboxes and text inside cells to prevent accidental row clicks when clicking the checkbox or selecting the text.
+  - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Add missing labels to row checkboxes and to the select all checkbox.
+  - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Removed invalid and unsupported ARIA attributes from `Table` and its internal elements. Notably, `aria-multiselectable` and `role="rowgroup"` were removed.
+
 ## 3.17.4
 
 ### Patch Changes
