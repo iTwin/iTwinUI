@@ -121,6 +121,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const parentMenu = React.useContext(MenuContext);
   const dropdownMenu = React.useContext(DropdownMenuContext);
+
+  // When submenu is present, clicking on item should show submenu instead of closing main menu. (https://github.com/iTwin/iTwinUI/issues/2504)
+  // Thus, also including `!hasSubMenu`.
   const shouldCloseMenuOnClick =
     React.useContext(DropdownMenuCloseOnClickContext) && !hasSubMenu;
 
