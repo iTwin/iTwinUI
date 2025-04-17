@@ -115,6 +115,16 @@ export const SelectableSingle = () => {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
+        Cell: ({ value }: { value: string }) => {
+          return (
+            <Anchor
+              as='button'
+              onClick={() => console.log(`Selected ${value}`)}
+            >
+              {value}
+            </Anchor>
+          );
+        },
       },
       {
         id: 'description',
