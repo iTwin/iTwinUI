@@ -5,7 +5,7 @@ group: intro
 
 iTwinUI is built and tested to be inclusive and usable with assistive technologies. iTwinUI aims to be **accessible by default** where possible. However, iTwinUI also lacks the necessary context to handle everything out-of-the-box in every case. For example:
 
-- [iTwinUI's color palette](/docs/variables#color) is carefully chosen to satisfy [WCAG](https://www.w3.org/WAI/WCAG22/Understanding/) color contrast requirements. This assumption requires that the right color pairings are used depending the scenario.
+- [iTwinUI's color palette](/docs/variables#color) is carefully chosen to satisfy [WCAG](https://www.w3.org/WAI/WCAG22/Understanding/) color contrast requirements. This assumption requires that the right color pairings are used depending on the scenario.
 - iTwinUI components have accessibility features baked in, adhering to established [WAI-ARIA](https://www.w3.org/TR/wai-aria-1.2/) patterns where applicable. This requires applications to pass the recommended props (e.g. labels) and not combine components in an incompatible manner.
 
 There are some additional accessibility considerations for applications, described below. In all cases, the final user experience should be tested to ensure that it is actually accessible. We recommend running automated tests on every screen (using a tool like [Lighthouse](https://developer.chrome.com/docs/lighthouse)), and supplementing those automated tests with a manual audit to find issues that are difficult to detect automatically.
@@ -58,7 +58,7 @@ iTwinUI provides an [iTwinUI-layouts package](https://itwin.github.io/iTwinUI-la
 - Every major section of the page might contain an `<h2>` element.
 - Sub-sections of the major sections might be identified with `<h3>`.
 
-It is important to _not_ skip heading levels (e.g. going from `<h2>` to `<h4>`). iTwinUI's [`<Text>`](/docs/typography) component decouples the heading's visual presentation from its semantics, which helps ensure that a proper heading structured can be utilized regardless of the desired visuals.
+It is important to _not_ skip heading levels (e.g. going from `<h2>` to `<h4>`). iTwinUI's [`<Text>`](/docs/typography) component decouples the heading's visual presentation from its semantics, which helps ensure that a proper heading structure can be utilized regardless of the desired visuals.
 
 In some designs, the page might not have an obvious candidate to be used as the `<h1>`. Since every page is required to have an `<h1>`, this heading can be rendered as [`<VisuallyHidden>`](/docs/visuallyhidden) to maintain a sensible heading structure without impacting visuals.
 
