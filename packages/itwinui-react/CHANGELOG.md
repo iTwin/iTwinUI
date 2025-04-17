@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.18.1
+
+### Patch Changes
+
+- [#2512](https://github.com/iTwin/iTwinUI/pull/2512): Clicking a `MenuItem` with a submenu no longer closes the parent menu, regardless of `DropdownMenu`'s `closeOnItemClick` prop, for example.
+
 ## 3.18.0
 
 ### Minor Changes
@@ -22,6 +28,7 @@
   - [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Adjusted the `z-index` value of `Popover` and other floating elements to match `Dialog`.
 
 - **Markup changes**:
+
   - [#2480](https://github.com/iTwin/iTwinUI/pull/2480): `<MenuExtraContent>` now renders a `<div>` instead of `<li>` to prevent invalid markup.
   - [#2481](https://github.com/iTwin/iTwinUI/pull/2481): `<SideNavigation>` now renders a `<nav>` as the topmost element. This creates a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) for assistive technology.
 
