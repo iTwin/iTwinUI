@@ -142,7 +142,6 @@
 
 @mixin iui-table-column-manager {
   padding: var(--iui-size-xs);
-  max-block-size: 17.25rem; // Show approximately 8.5 checkboxes
 }
 
 @mixin iui-table-row {
