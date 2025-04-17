@@ -37,25 +37,32 @@ export default function TileTest() {
           station. This is the largest sample iModel.
         </Tile.Description>
         <Tile.MoreOptions data-testid='tile-more-options'>
-          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
+          <MenuItem onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
+          <MenuItem onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
           <MenuItem
-            key={3}
             onClick={() => console.log('clicked item 3')}
             subMenuItems={[
-              <MenuItem
-                key={1}
-                onClick={() => console.log('clicked sub item 1')}
-              >
+              <MenuItem onClick={() => console.log('clicked sub item 1')}>
                 Sub Item 1
               </MenuItem>,
               <MenuItem
-                key={2}
                 onClick={() => console.log('clicked sub item 2')}
+                subMenuItems={[
+                  <MenuItem
+                    onClick={() => console.log('clicked sub sub item 1')}
+                  >
+                    Sub Sub Item 1
+                  </MenuItem>,
+                  <MenuItem
+                    onClick={() => console.log('clicked sub sub item 2')}
+                  >
+                    Sub Sub Item 2
+                  </MenuItem>,
+                ]}
               >
                 Sub Item 2
               </MenuItem>,
@@ -73,10 +80,10 @@ export default function TileTest() {
         </Tile.Metadata>
       </Tile.ContentArea>
       <Tile.Buttons>
-        <Button key={1} onClick={() => console.log('clicked left button')}>
+        <Button onClick={() => console.log('clicked left button')}>
           Manage
         </Button>
-        <Button key={2} onClick={() => console.log('clicked right button')}>
+        <Button onClick={() => console.log('clicked right button')}>
           Projects
         </Button>
       </Tile.Buttons>

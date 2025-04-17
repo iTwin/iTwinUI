@@ -104,10 +104,15 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const logWarning = useWarningLogger();
 
+  const hasSubMenu = React.useMemo(
+    () => subMenuItems.length > 0,
+    [subMenuItems.length],
+  );
+
   if (
     process.env.NODE_ENV === 'development' &&
     onClickProp != null &&
-    subMenuItems.length > 0
+    hasSubMenu
   ) {
     logWarning(
       'Passing a non-empty submenuItems array and onClick to MenuItem at the same time is not supported. This is because when a non empty submenuItems array is passed, clicking the MenuItem toggles the submenu visibility.',
@@ -116,9 +121,11 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   const parentMenu = React.useContext(MenuContext);
   const dropdownMenu = React.useContext(DropdownMenuContext);
-  const shouldCloseMenuOnClick = React.useContext(
-    DropdownMenuCloseOnClickContext,
-  );
+
+  // When submenu is present, clicking on item should show submenu instead of closing main menu. (https://github.com/iTwin/iTwinUI/issues/2504)
+  // Thus, also including `!hasSubMenu`.
+  const shouldCloseMenuOnClick =
+    React.useContext(DropdownMenuCloseOnClickContext) && !hasSubMenu;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
   const submenuId = useId();
@@ -130,12 +137,12 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         click: true,
         hover: true,
         listNavigation: {
-          nested: subMenuItems.length > 0,
+          nested: hasSubMenu,
           openOnArrowKeyDown: true,
         },
       },
     } satisfies Parameters<typeof Menu>[0]['popoverProps'];
-  }, [subMenuItems.length]);
+  }, [hasSubMenu]);
 
   const onClick = () => {
     if (disabled) {
@@ -169,8 +176,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       role={role}
       tabIndex={isSelected ? 0 : -1}
       aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
-      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+      aria-haspopup={hasSubMenu ? 'true' : undefined}
+      aria-controls={hasSubMenu ? submenuId : undefined}
       aria-disabled={disabled}
       {...(parentMenu?.popoverGetItemProps != null
         ? parentMenu.popoverGetItemProps({
@@ -189,7 +196,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         <div>{children}</div>
         {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
       </ListItem.Content>
-      {!endIcon && subMenuItems.length > 0 && (
+      {!endIcon && hasSubMenu && (
         <ListItem.Icon as='span' aria-hidden>
           <SvgCaretRightSmall />
         </ListItem.Icon>
@@ -204,7 +211,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {subMenuItems.length > 0 && !disabled ? (
+      {hasSubMenu && !disabled ? (
         <Menu id={submenuId} trigger={trigger} popoverProps={popoverProps}>
           {subMenuItems}
         </Menu>
