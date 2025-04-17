@@ -310,6 +310,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           ...(middleware.size &&
             availableHeight && {
               maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
+              overflowY: 'auto', // If enforcing a maxHeight, should also scroll on overflow
             }),
           zIndex: 999,
           ...(matchWidth && referenceWidth
