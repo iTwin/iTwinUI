@@ -1,0 +1,73 @@
+---
+title: Accessibility
+group: intro
+---
+
+iTwinUI is built and tested to be inclusive and usable with assistive technologies. iTwinUI aims to be **accessible by default** where possible. However, iTwinUI also lacks the necessary context to handle everything out-of-the-box in every case. For example:
+
+- [iTwinUI's color palette](/docs/variables#color) is carefully chosen to satisfy [WCAG](https://www.w3.org/WAI/WCAG22/Understanding/) color contrast requirements. This assumption requires that the right color pairings are used depending the scenario.
+- iTwinUI components have accessibility features baked in, adhering to established [WAI-ARIA](https://www.w3.org/TR/wai-aria-1.2/) patterns where applicable. This requires applications to pass the recommended props (e.g. labels) and not combine components in an incompatible manner.
+
+There are some additional accessibility considerations for applications, described below. In all cases, the final user experience should be tested to ensure that it is actually accessible. We recommend running automated tests on every screen (using a tool like [Lighthouse](https://developer.chrome.com/docs/lighthouse)), and supplementing those automated tests with a manual audit to find issues that are difficult to detect automatically.
+
+## Metadata
+
+Applications should set the [`lang` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang) on the `<html>` element. This can be done from the application entrypoint (whether that's a plain HTML file or a JSX root layout). The value of the `lang` attribute should coincide with the current language of the interface.
+
+```html
+<html lang="en">
+  …
+</html>
+```
+
+Every page must have a unique `<title>` that identifies the page. For example, the application's home page might have the title "Home — Acme Application", and a projects page might have the title "Projects — Acme Application".
+
+```html
+<title>{pageName} — {applicationName}</title>
+```
+
+### Single-page applications
+
+When working with single-page applications, setting the title might require using your framework's built-in metadata API, or a third-party library like [`react-helmet`](https://github.com/nfl/react-helmet).
+
+When navigating between pages on a regular website, screen-readers will automatically announce the page title. Within a single-page application, you might need to use a [live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) to emulate the same functionality. Some frameworks come with a [built-in route announcer](https://nextjs.org/docs/architecture/accessibility#route-announcements), while others might require implementing this manually.
+
+In some cases, it may be necessary to programmatically move focus after a client-side navigation occurs. This helps ensure that the new content can be easily reached by keyboard users.
+
+## Landmarks
+
+[Landmarks](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/) are a set of eight roles that identify the major sections of a page. Landmarks allow assistive technology users to quickly browse and skip to relevant content.
+
+The main content of the page must be wrapped in a [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/main) element. This works well when combined with iTwinUI's [`<Header>`](/docs/header), [`<SideNavigation>`](/docs/sidenavigation), and [`<Footer>`](/docs/footer) components.
+
+```jsx
+<Header>…</Header>
+<SideNavigation>…</SideNavigation>
+<main>…</main>
+<Footer />
+```
+
+iTwinUI provides an [iTwinUI-layouts package](https://itwin.github.io/iTwinUI-layouts/) which automatically sets up these landmarks, and also includes a [`<SkipToContentLink>`](/docs/skiptocontentlink) by default. Depending on the complexity of the content, you may need to set up additional landmarks for a better user experience.
+
+## Headings
+
+[Headings](https://www.w3.org/WAI/tutorials/page-structure/headings/) communicate the organization of the page content. Assistive technology users rely on headings, in addition to landmarks, to navigate and understand the page.
+
+- Every page must have one `<h1>` element that identifies the page.
+  - This heading often coincides with the page title.
+- Every major section of the page might contain an `<h2>` element.
+- Sub-sections of the major sections might be identified with `<h3>`.
+
+It is important to _not_ skip heading levels (e.g. going from `<h2>` to `<h4>`). iTwinUI's [`<Text>`](/docs/typography) component decouples the heading's visual presentation from its semantics, which helps ensure that a proper heading structured can be utilized regardless of the desired visuals.
+
+In some designs, the page might not have an obvious candidate to be used as the `<h1>`. Since every page is required to have an `<h1>`, this heading can be rendered as [`<VisuallyHidden>`](/docs/visuallyhidden) to maintain a sensible heading structure without impacting visuals.
+
+```jsx
+<VisuallyHidden as='h1'>Projects</VisuallyHidden>
+```
+
+## Resources
+
+- [Accessible Landmarks — Scott O'Hara](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [SPAs: Notes on Accessibility — City of Helsinki](https://saavutettavuusmalli.hel.fi/en/saavutettavuus-palvelukehityksessa/toteutus-ja-ohjelmistotestaus/single-page-applications-spas-notes-on-accessibility/)
+- [Léonie Watson on why semantic HTML document landmarks assist her using a screenreader](https://www.youtube.com/watch?v=iUCYPM6up9M)
