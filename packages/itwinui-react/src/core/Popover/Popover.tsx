@@ -306,6 +306,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       interactions.getFloatingProps({
         ...userProps,
         style: {
+          // Since using layout instead of transform for floating styles, setting width to prevent unintended resizing (https://github.com/iTwin/iTwinUI/issues/2523)
+          // https://floating-ui.com/docs/usefloating#transform
+          width: 'max-content',
+
           ...floating.floatingStyles,
           ...(middleware.size &&
             availableHeight && {
