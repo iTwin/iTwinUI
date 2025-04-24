@@ -28,11 +28,11 @@ export const DialogBackdrop = React.forwardRef((props, ref) => {
   const dialogMainContext = useDialogMainContext();
 
   const {
-    isVisible = dialogContext.isOpen,
-    isDismissible = dialogContext.isDismissible,
-    onClose = dialogContext.onClose,
-    closeOnExternalClick = dialogContext.closeOnExternalClick,
-    relativeTo = dialogContext.relativeTo,
+    isVisible = dialogContext?.isOpen,
+    isDismissible = dialogContext?.isDismissible,
+    onClose = dialogContext?.onClose,
+    closeOnExternalClick = dialogContext?.closeOnExternalClick,
+    relativeTo = dialogContext?.relativeTo,
     onMouseDown,
     className,
     style,

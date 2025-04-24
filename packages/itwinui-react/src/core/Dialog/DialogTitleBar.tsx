@@ -49,9 +49,9 @@ export const DialogTitleBar = Object.assign(
     const {
       children,
       titleText,
-      isDismissible = dialogContext.isDismissible,
-      onClose = dialogContext.onClose,
-      isDraggable = dialogContext.isDraggable,
+      isDismissible = dialogContext?.isDismissible,
+      onClose = dialogContext?.onClose,
+      isDraggable = dialogContext?.isDraggable,
       className,
       onPointerDown: onPointerDownProp,
       ...rest
