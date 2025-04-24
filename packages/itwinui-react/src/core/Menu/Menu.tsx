@@ -316,10 +316,10 @@ export const Menu = React.forwardRef((props, ref) => {
     <Portal portal={portal}>
       <Box
         as='div'
-        className={cx('iui-menu', className)}
         ref={refs}
         {...getFloatingProps(
           popover.getFloatingProps({
+            className: cx('iui-menu', className),
             role: 'menu',
             ...rest,
           }),

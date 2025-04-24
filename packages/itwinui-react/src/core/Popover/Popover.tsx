@@ -305,11 +305,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     (userProps?: React.HTMLProps<HTMLElement>) =>
       interactions.getFloatingProps({
         ...userProps,
+        className: cx('iui-popover', userProps?.className),
         style: {
-          // Since using layout instead of transform for floating styles, setting width to prevent unintended resizing (https://github.com/iTwin/iTwinUI/issues/2523)
-          // https://floating-ui.com/docs/usefloating#transform
-          width: 'max-content',
-
           ...floating.floatingStyles,
           ...(middleware.size &&
             availableHeight && {
@@ -487,16 +484,18 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
                   initialFocus={initialFocus}
                 >
                   <Box
-                    className={cx(
-                      { 'iui-popover-surface': applyBackground },
-                      className,
-                    )}
                     aria-labelledby={
                       !hasAriaLabel
                         ? popover.refs.domReference.current?.id
                         : undefined
                     }
-                    {...popover.getFloatingProps(rest)}
+                    {...popover.getFloatingProps({
+                      className: cx(
+                        { 'iui-popover-surface': applyBackground },
+                        className,
+                      ),
+                      ...rest,
+                    })}
                     ref={popoverRef}
                   >
                     {content}

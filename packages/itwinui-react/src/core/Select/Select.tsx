@@ -511,10 +511,10 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         <Portal portal={portal}>
           <SelectListbox
             defaultFocusedIndex={defaultFocusedIndex}
-            className={menuClassName}
             id={`${uid}-menu`}
             key={`${uid}-menu`}
             {...popover.getFloatingProps({
+              className: menuClassName,
               style: menuStyle,
               onKeyDown: ({ key }) => {
                 if (key === 'Tab') {
