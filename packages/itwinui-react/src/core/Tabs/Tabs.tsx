@@ -69,7 +69,8 @@ type TabsWrapperOwnProps = {
    */
   value?: string;
   /**
-   * Function that gets called when active tab is changed.
+   * Function that gets called when active tab is *changed*.
+   * If need to listen to each tab click, use `onClick` prop on `Tabs.Tab`.
    *
    * Should be used alongside `value` prop.
    */
@@ -89,9 +90,26 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     color = 'blue',
     defaultValue,
     value: activeValueProp,
-    onValueChange,
+    onValueChange: onValueChangeProp,
     ...rest
   } = props;
+
+  const [oldActiveValue, setOldActiveValue] = React.useState<
+    string | undefined
+  >(undefined);
+
+  /**
+   * Called only when the value *changes*.
+   */
+  const onValueChange = React.useCallback(
+    (value: string) => {
+      if (value !== oldActiveValue) {
+        setOldActiveValue(value);
+        onValueChangeProp?.(value);
+      }
+    },
+    [oldActiveValue, onValueChangeProp],
+  );
 
   const [activeValue, setActiveValue] = useControlledState(
     defaultValue,
