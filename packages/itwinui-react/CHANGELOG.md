@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.18.1
+
+### Patch Changes
+
+- [#2525](https://github.com/iTwin/iTwinUI/pull/2525): Fixed an issue in `Dialog`/`Modal` where nested floating elements (e.g. `Select` dropdown) were not interactable because they were being portaled incorrectly.
+- [#2526](https://github.com/iTwin/iTwinUI/pull/2526): `Tooltip`'s entry delay has been increased to match the exit delay. This change will help reduce the chances of a user accidentally triggering the tooltip, while also preventing multiple tooltips from showing at the same time.
+- [#2521](https://github.com/iTwin/iTwinUI/pull/2521): Fixed `Table` not working in older React versions where `useId` is not available.
+- [#2527](https://github.com/iTwin/iTwinUI/pull/2527): Fixed `Table` bug where it unintentionally tried to add `scrollToRow` to the DOM and thus led to a console error.
+- [#2512](https://github.com/iTwin/iTwinUI/pull/2512): Clicking a `MenuItem` with a submenu no longer closes the parent menu, regardless of `DropdownMenu`'s `closeOnItemClick` prop, for example.
+
 ## 3.18.0
 
 ### Minor Changes
@@ -22,6 +32,7 @@
   - [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Adjusted the `z-index` value of `Popover` and other floating elements to match `Dialog`.
 
 - **Markup changes**:
+
   - [#2480](https://github.com/iTwin/iTwinUI/pull/2480): `<MenuExtraContent>` now renders a `<div>` instead of `<li>` to prevent invalid markup.
   - [#2481](https://github.com/iTwin/iTwinUI/pull/2481): `<SideNavigation>` now renders a `<nav>` as the topmost element. This creates a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) for assistive technology.
 
