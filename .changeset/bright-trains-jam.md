@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-`Tooltip` delays have been adjusted to use the same values for open and close.
+`Tooltip`'s entry delay has been increased to match the exit delay. This change will help reduce the chances of a user accidentally triggering the tooltip, while also preventing multiple tooltips from showing at the same time.
