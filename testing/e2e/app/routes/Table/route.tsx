@@ -10,7 +10,7 @@ import type {
   Row,
   TableState,
 } from '@itwin/itwinui-react/react-table';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import React from 'react';
 
 export default function Page() {

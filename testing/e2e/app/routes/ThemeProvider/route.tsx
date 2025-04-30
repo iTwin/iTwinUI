@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import { ThemeProvider, Tooltip } from '@itwin/itwinui-react';
 
 export default function Page() {
