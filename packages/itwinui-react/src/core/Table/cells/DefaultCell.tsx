@@ -32,6 +32,9 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 } & CellRendererProps<T> &
   React.ComponentPropsWithoutRef<'div'>;
 
+/** Context for whether the DefaultCell is called from a custom renderer or not. */
+export const DefaultCellIsCustomRenderer = React.createContext<boolean>(false);
+
 /**
  * Default cell.
  * It should be passed to `cellRenderer`.
@@ -47,12 +50,15 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
   const instance = React.useContext(TableInstanceContext);
+
   const isCustomCell = React.useMemo(
     () =>
       instance?.columns.find(({ id }) => props.cellProps.column.id === id)
         ?.Cell !== defaultColumn.Cell,
     [instance, props.cellProps.column.id],
   );
+  const isCustomRenderer =
+    React.useContext(DefaultCellIsCustomRenderer) ?? false;
 
   const {
     cellElementProps: {
@@ -68,7 +74,9 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' && !isCustomCell,
+    clamp = typeof cellProps.value === 'string' &&
+      !isCustomCell &&
+      !isCustomRenderer,
     ...rest
   } = props;
 
@@ -86,18 +94,22 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     >
       <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
-        <div
-          className='_iui-table-cell-main-content'
-          onClick={(e) => e.stopPropagation()}
+
+        <TableCellContent
+          isCustomCell={isCustomCell}
+          isCustomRenderer={isCustomRenderer}
         >
           {clamp ? (
             <LineClamp>
               <slot />
             </LineClamp>
           ) : (
-            <slot />
+            <>
+              <slot />
+            </>
           )}
-        </div>
+        </TableCellContent>
+
         <slot name='end' />
         <slot name='shadows' />
       </ShadowRoot>
@@ -128,16 +140,43 @@ if (process.env.NODE_ENV === 'development') {
   DefaultCell.displayName = 'DefaultCell';
 }
 
+// ----------------------------------------------------------------------------
+
+/**
+ * - When a custom `Cell` or custom `cellRenderer` is used, returns children as-is.
+ * - Else, wraps children in a _iui-table-cell-default-content div that increases the hit target size.
+ */
+const TableCellContent = (props: {
+  children: React.ReactNode;
+  isCustomCell: boolean;
+  isCustomRenderer: boolean;
+}) => {
+  const { children, isCustomCell, isCustomRenderer } = props;
+
+  return isCustomCell || isCustomRenderer ? (
+    children
+  ) : (
+    <div
+      className='_iui-table-cell-default-content'
+      onClick={(e) => e.stopPropagation()}
+    >
+      {children}
+    </div>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
 /**
  * Increase hit target size of the cell content.
  * This helps prevent accidental row selection when selecting text.
  */
 const css = /* css */ `
-._iui-table-cell-main-content {
+._iui-table-cell-default-content {
   position: relative;
   isolation: isolate;
 }
-._iui-table-cell-main-content::before {
+._iui-table-cell-default-content::before {
   content: '';
   display: block;
   position: absolute;

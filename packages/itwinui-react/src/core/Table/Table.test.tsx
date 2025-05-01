@@ -4020,7 +4020,7 @@ it('should pass custom props to different parts of Table', () => {
   expect(emptyTableContent.style.fontSize).toBe('12px');
 });
 
-it('should apply clamp, if cell is string value and no custom Cell is rendered', () => {
+it('should apply clamp and increase hit target if no custom Cell or cellRenderer is rendered. Additionally, for clamp, value must be a string', () => {
   const data = [{ name: 'name' }];
   const columns: Column<TestDataType>[] = [
     {
@@ -4039,7 +4039,7 @@ it('should apply clamp, if cell is string value and no custom Cell is rendered',
   expect(lineClamp).toBeTruthy();
 });
 
-it('should not apply clamp, if custom Cell is used', () => {
+it('should not apply clamp or increase hit target, if custom Cell is used', () => {
   const data = [{ name: 'name' }];
   const columns: Column<TestDataType>[] = [
     {
@@ -4056,5 +4056,36 @@ it('should not apply clamp, if custom Cell is used', () => {
   const host = container.querySelector('.test-cell');
   expect(host?.shadowRoot).toBeTruthy();
   const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
+  const increaseHitTarget = host?.shadowRoot?.querySelector(
+    '._iui-table-cell-default-content',
+  );
   expect(lineClamp).toBeNull();
+  expect(increaseHitTarget).toBeNull();
+});
+
+it('should not apply clamp or increase hit target, if custom cellRenderer is used', () => {
+  const data = [{ name: 'name' }];
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Name',
+      accessor: 'name',
+      cellClassName: 'test-cell',
+      cellRenderer: (props) => (
+        <DefaultCell {...props}>my custom content</DefaultCell>
+      ),
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+    data,
+  });
+
+  const host = container.querySelector('.test-cell');
+  expect(host?.shadowRoot).toBeTruthy();
+  const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
+  const increaseHitTarget = host?.shadowRoot?.querySelector(
+    '._iui-table-cell-default-content',
+  );
+  expect(lineClamp).toBeNull();
+  expect(increaseHitTarget).toBeNull();
 });

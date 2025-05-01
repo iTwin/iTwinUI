@@ -15,6 +15,7 @@ import { SubRowExpander } from './SubRowExpander.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { DefaultCell } from './cells/index.js';
 import { Box } from '../../utils/index.js';
+import { DefaultCellIsCustomRenderer } from './cells/DefaultCell.js';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;
@@ -102,10 +103,12 @@ export const TableCell = <T extends Record<string, unknown>>(
   return (
     <>
       {cell.column.cellRenderer ? (
-        cell.column.cellRenderer({
-          ...cellRendererProps,
-          isDisabled: () => isDisabled,
-        })
+        <DefaultCellIsCustomRenderer.Provider value={true}>
+          {cell.column.cellRenderer({
+            ...cellRendererProps,
+            isDisabled: () => isDisabled,
+          })}
+        </DefaultCellIsCustomRenderer.Provider>
       ) : (
         <DefaultCell {...cellRendererProps} isDisabled={() => isDisabled} />
       )}
