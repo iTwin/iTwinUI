@@ -7,11 +7,11 @@
   "devDependencies": {
     "@fontsource/noto-sans": "5",
     "@fontsource/noto-sans-mono": "5",
-    "@itwin/itwinui-icons-elements": "0.21.0",
+    "@itwin/itwinui-icons-elements": "0.22.0",
     "@itwin/itwinui-react": "npm:@itwin/itwinui-react@5.0.0-alpha.13",
     "astro": "^5",
     "astro-relative-links": "^0.4.2",
-    "@astrojs/react": "^4.1.2",
+    "@astrojs/react": "^4.2.7",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "react": "^19",

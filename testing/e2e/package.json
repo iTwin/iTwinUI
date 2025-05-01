@@ -13,24 +13,24 @@
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
-    "@react-router/node": "^7.0.0",
-    "@react-router/serve": "^7.0.0",
-    "isbot": "^4.1.0",
+    "@react-router/node": "^7.5.3",
+    "@react-router/serve": "^7.5.3",
+    "isbot": "^5.1.27",
     "react": "^19",
     "react-dom": "^19",
     "react-router": "^7.5.3",
     "@react-router/fs-routes": "^7.5.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
-    "@react-router/dev": "^7.0.0",
+    "@playwright/test": "^1.52.0",
+    "@react-router/dev": "^7.5.3",
     "@types/node": "*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "playwright": "1.42.1",
+    "playwright": "1.52.0",
     "typescript": "5",
     "vite": "^6",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
