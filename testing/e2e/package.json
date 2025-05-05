@@ -21,12 +21,12 @@
     "react-dom": "^19"
   },
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
+    "@playwright/test": "1.52.0",
     "@remix-run/dev": "^2.16.5",
     "@types/node": "*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "playwright": "1.42.1",
+    "playwright": "1.52.0",
     "typescript": "5",
     "vite": "^6",
     "vite-tsconfig-paths": "^4.2.1"
