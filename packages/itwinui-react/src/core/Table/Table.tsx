@@ -446,6 +446,7 @@ export const Table = <
     getRowId,
     caption = 'Table',
     role,
+    scrollToRow,
     ..._rest
   } = props;
 
@@ -875,7 +876,11 @@ export const Table = <
 
   const tableRef = React.useRef<HTMLDivElement>(null);
 
-  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
+  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({
+    ...props,
+    scrollToRow,
+    page,
+  });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
