@@ -250,14 +250,9 @@
 
   .iui-input:not([role='combobox']) {
     // iTwinUI v5 input background colors are different from global values
-    --_iui-field-color-background: var(--ids-color-bg-elevation-control);
+    --_iui-field-color-background: var(--ids-color-bg-control-textbox);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
-    --_iui-field-color-background-disabled: var(--ids-color-bg-elevation-control);
-  }
-
-  .iui-input-flex-container {
-    // iTwinUI input v5 background colors are different from global values
-    --_iui-input-background-color: var(--ids-color-bg-neutral-primary);
+    --_iui-field-color-background-disabled: var(--ids-color-bg-control-textbox);
   }
 
   /* ---------------------------------------------------------------------------- */

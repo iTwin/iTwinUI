@@ -12,7 +12,7 @@ import {
 import './global.css';
 import '@itwin/itwinui-react/styles.css';
 import { ThemeProvider } from '@itwin/itwinui-react';
-import { Root as ITwinUiV5Root } from '@itwin/itwinui-react-v5/bricks';
+import { Root as ITwinUiV5Root } from '@stratakit/foundations';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 

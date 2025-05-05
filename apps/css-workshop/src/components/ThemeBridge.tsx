@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Root as ITwinUIV5Root } from '@itwin/itwinui-react-v5/bricks';
+import { Root as ITwinUIV5Root } from '@stratakit/foundations';
 
 export const ThemeBridge = () => {
   const themeBridgeEnabled = useThemeBridge();
