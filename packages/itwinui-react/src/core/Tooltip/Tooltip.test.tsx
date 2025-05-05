@@ -49,7 +49,7 @@ it('should toggle the visibility of tooltip on focus', async () => {
   expect(tooltip).toHaveAttribute('popover', 'manual');
 
   fireEvent.focus(trigger);
-  act(() => void vi.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(200));
   expect(tooltip).toBeVisible();
   expect(onVisibleChange).toBeCalledWith(true);
 

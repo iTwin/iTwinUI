@@ -30,7 +30,7 @@ export type DialogMainProps = {
    * Content of the dialog.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'closeOnExternalClick' | 'dialogRootRef'>;
+} & Omit<DialogContextProps, 'closeOnExternalClick'>;
 
 /**
  * Dialog component which can wrap any content.
@@ -52,28 +52,28 @@ export type DialogMainProps = {
  *   </Dialog.ButtonBar>
  * </Dialog.Main>
  */
-export const DialogMain = React.forwardRef((props, ref) => {
+export const DialogMain = React.forwardRef((props, forwardedRef) => {
   const dialogContext = useDialogContext();
   const {
     className,
     children,
     styleType = 'default',
-    isOpen = dialogContext.isOpen,
-    isDismissible = dialogContext.isDismissible,
-    onClose = dialogContext.onClose,
-    closeOnEsc = dialogContext.closeOnEsc,
-    trapFocus = dialogContext.trapFocus,
-    setFocus = dialogContext.setFocus,
-    preventDocumentScroll = dialogContext.preventDocumentScroll,
+    isOpen = dialogContext?.isOpen,
+    isDismissible = dialogContext?.isDismissible,
+    onClose = dialogContext?.onClose,
+    closeOnEsc = dialogContext?.closeOnEsc,
+    trapFocus = dialogContext?.trapFocus,
+    setFocus = dialogContext?.setFocus,
+    preventDocumentScroll = dialogContext?.preventDocumentScroll,
     onKeyDown,
-    isDraggable = dialogContext.isDraggable,
-    isResizable = dialogContext.isResizable,
+    isDraggable = dialogContext?.isDraggable,
+    isResizable = dialogContext?.isResizable,
     style: propStyle,
-    placement = dialogContext.placement,
+    placement = dialogContext?.placement,
     ...rest
   } = props;
 
-  const { dialogRootRef } = dialogContext;
+  const { dialogRootRef, setDialogElement } = dialogContext || {};
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
   const previousFocusedElement = React.useRef<HTMLElement | null>(null);
@@ -203,7 +203,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
         className,
       )}
       role='dialog'
-      ref={useMergedRefs(dialogRef, mountRef, ref)}
+      ref={useMergedRefs(dialogRef, mountRef, setDialogElement, forwardedRef)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
       data-iui-placement={placement}
