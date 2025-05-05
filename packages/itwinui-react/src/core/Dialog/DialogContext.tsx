@@ -86,19 +86,20 @@ export type DialogContextProps = {
    */
   portal?: PortalProps['portal'];
   /**
-   * Dialog root ref. For internal use.
-   */
-  dialogRootRef?: React.RefObject<HTMLDivElement | null>;
-  /**
    * Determines the positioning of Dialog on page.
    */
   placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 
+type DialogContextInternalProps = {
+  dialogRootRef: React.RefObject<HTMLDivElement | null>;
+  setDialogElement: (dialogElement: HTMLElement | null) => void;
+};
+
 export const DialogContext = React.createContext<
-  DialogContextProps | undefined
+  (DialogContextProps & DialogContextInternalProps) | undefined
 >(undefined);
 
 export const useDialogContext = () => {
-  return React.useContext(DialogContext) || {};
+  return React.useContext(DialogContext);
 };

@@ -12,7 +12,7 @@ describe('Tooltip', () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
 
       cy.get('#tooltip-target').trigger('mouseenter');
-      cy.wait(100);
+      cy.wait(200);
       cy.compareSnapshot(testName);
     });
   });

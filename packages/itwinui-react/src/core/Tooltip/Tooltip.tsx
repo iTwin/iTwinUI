@@ -40,7 +40,7 @@ import type {
 export const defaultTooltipDelay: React.ComponentPropsWithoutRef<
   typeof FloatingDelayGroup
 >['delay'] = {
-  open: 100,
+  open: 200,
   close: 200,
 };
 
