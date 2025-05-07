@@ -5,24 +5,25 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
-    "dev": "remix vite:dev",
-    "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc",
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc",
     "test": "playwright test --pass-with-no-tests"
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
-    "@remix-run/node": "^2.16.5",
-    "@remix-run/react": "^2.16.5",
-    "@remix-run/serve": "^2.16.5",
+    "@react-router/node": "^7.0.0",
+    "@react-router/serve": "^7.0.0",
     "isbot": "^4.1.0",
     "react": "^19",
-    "react-dom": "^19"
+    "react-dom": "^19",
+    "react-router": "^7.5.3",
+    "@react-router/fs-routes": "^7.5.3"
   },
   "devDependencies": {
     "@playwright/test": "1.52.0",
-    "@remix-run/dev": "^2.16.5",
+    "@react-router/dev": "^7.0.0",
     "@types/node": "*",
     "@types/react": "^19",
     "@types/react-dom": "^19",

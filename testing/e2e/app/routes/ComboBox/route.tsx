@@ -1,5 +1,5 @@
 import { Button, ComboBox, Flex } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import * as React from 'react';
 
 export default function ComboBoxTest() {
