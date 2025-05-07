@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Root as ITwinUIV5Root } from '@stratakit/foundations';
+import { Root as SkRoot } from '@stratakit/foundations';
 
 export const ThemeBridge = () => {
   const themeBridgeEnabled = useThemeBridge();
@@ -13,7 +13,7 @@ export const ThemeBridge = () => {
   }
 
   // TODO: Synchronize colorScheme here instead of hardcoding 'dark'
-  return <ITwinUIV5Root colorScheme='dark' density='dense' synchronizeColorScheme />;
+  return <SkRoot colorScheme='dark' density='dense' synchronizeColorScheme />;
 };
 
 function useThemeBridge() {

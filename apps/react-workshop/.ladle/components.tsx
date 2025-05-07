@@ -12,7 +12,7 @@ import {
 import './global.css';
 import '@itwin/itwinui-react/styles.css';
 import { ThemeProvider } from '@itwin/itwinui-react';
-import { Root as ITwinUiV5Root } from '@stratakit/foundations';
+import { Root as SkRoot } from '@stratakit/foundations';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -65,7 +65,7 @@ export const Provider: GlobalProvider = ({ children }) => {
     <React.StrictMode>
       {futureThemeBridge ? (
         <ThemeProvider
-          as={ITwinUiV5Root}
+          as={SkRoot}
           colorScheme={theme}
           density='dense'
           synchronizeColorScheme
