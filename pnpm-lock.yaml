@@ -91,9 +91,9 @@ importers:
       '@itwin/itwinui-icons-elements':
         specifier: 0.21.0
         version: 0.21.0
-      '@itwin/itwinui-react':
-        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.13
-        version: 5.0.0-alpha.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@stratakit/foundations':
+        specifier: ^0.1.0
+        version: 0.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -139,15 +139,15 @@ importers:
       '@itwin/itwinui-react':
         specifier: '*'
         version: link:../../packages/itwinui-react
-      '@itwin/itwinui-react-v5':
-        specifier: npm:@itwin/itwinui-react@5.0.0-alpha.13
-        version: '@itwin/itwinui-react@5.0.0-alpha.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)'
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
       '@ladle/react':
         specifier: ^5.0.1
         version: 5.0.1(@swc/helpers@0.5.15)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.14.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)
+      '@stratakit/foundations':
+        specifier: ^0.1.0
+        version: 0.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -675,25 +675,25 @@ packages:
       }
     engines: { node: '>=6.0.0' }
 
-  '@ariakit/core@0.4.14':
+  '@ariakit/core@0.4.15':
     resolution:
       {
-        integrity: sha512-hpzZvyYzGhP09S9jW1XGsU/FD5K3BKsH1eG/QJ8rfgEeUdPS7BvHPt5lHbOeJ2cMrRzBEvsEzLi1ivfDifHsVA==,
+        integrity: sha512-vvxmZvkNhiisKM+Y1TbGMUfVVchV/sWu9F0xw0RYADXcimWPK31dd9JnIZs/OQ5pwAryAHmERHwuGQVESkSjwQ==,
       }
 
-  '@ariakit/react-core@0.4.15':
+  '@ariakit/react-core@0.4.17':
     resolution:
       {
-        integrity: sha512-Up8+U97nAPJdyUh9E8BCEhJYTA+eVztWpHoo1R9zZfHd4cnBWAg5RHxEmMH+MamlvuRxBQA71hFKY/735fDg+A==,
+        integrity: sha512-kFF6n+gC/5CRQIyaMTFoBPio2xUe0k9rZhMNdUobWRmc/twfeLVkODx+8UVYaNyKilTge8G0JFqwvFKku/jKEw==,
       }
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@ariakit/react@0.4.15':
+  '@ariakit/react@0.4.17':
     resolution:
       {
-        integrity: sha512-0V2LkNPFrGRT+SEIiObx/LQjR6v3rR+mKEDUu/3tq7jfCZ+7+6Q6EMR1rFaK+XMkaRY1RWUcj/rRDWAUWnsDww==,
+        integrity: sha512-HQaIboE2axtlncJz1hRTaiQfJ1GGjhdtNcAnPwdjvl2RybfmlHowIB+HTVBp36LzroKPs/M4hPCxk7XTaqRZGg==,
       }
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2162,15 +2162,6 @@ packages:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
 
-  '@itwin/itwinui-react@5.0.0-alpha.13':
-    resolution:
-      {
-        integrity: sha512-81lNt804oI0Uwch4LDPnF3bucktMkmffHloHH15SFSlm8/9NjT1P2qRjyj3fNcpFN51KDxS7Q7h94f1UJ7+Z0w==,
-      }
-    peerDependencies:
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
-
   '@jridgewell/gen-mapping@0.3.5':
     resolution:
       {
@@ -2847,6 +2838,15 @@ packages:
         integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==,
       }
     engines: { node: '>=18' }
+
+  '@stratakit/foundations@0.1.0':
+    resolution:
+      {
+        integrity: sha512-2TxB8JemLoFsP+ptVOLTg9fJhbuw2lsnUtGpesc/MihENwV462LshUdL+zpqeX5yIiMjMfENPv3ojTxBpj7odg==,
+      }
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   '@swc/cli@0.6.0':
     resolution:
@@ -12516,19 +12516,19 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@ariakit/core@0.4.14': {}
+  '@ariakit/core@0.4.15': {}
 
-  '@ariakit/react-core@0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ariakit/react-core@0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@ariakit/core': 0.4.14
+      '@ariakit/core': 0.4.15
       '@floating-ui/dom': 1.6.3
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.4.0(react@19.1.0)
 
-  '@ariakit/react@0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ariakit/react@0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@ariakit/react-core': 0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ariakit/react-core': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -13511,13 +13511,6 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@itwin/itwinui-react@5.0.0-alpha.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@ariakit/react': 0.4.15(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      classnames: 2.5.1
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
       '@jridgewell/set-array': 1.2.1
@@ -14074,6 +14067,13 @@ snapshots:
   '@sindresorhus/is@5.6.0': {}
 
   '@sindresorhus/merge-streams@2.3.0': {}
+
+  '@stratakit/foundations@0.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ariakit/react': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   '@swc/cli@0.6.0(@swc/core@1.11.18(@swc/helpers@0.5.15))(chokidar@4.0.3)':
     dependencies:
