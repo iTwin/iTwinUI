@@ -310,6 +310,21 @@
     }
   }
 
+  .iui-tabs {
+    --_iui-tab-bg-color: transparent;
+    --_iui-tab-bg-color-hover: var(--ids-color-bg-glow-on-surface-neutral-hover);
+    --_iui-tab-bg-color-selected: transparent;
+    --_iui-tab-bg-color-selected-hover: var(--ids-color-bg-glow-on-surface-neutral-hover);
+    --_iui-tab-bg-color-disabled: transparent;
+    --_iui-tab-color-hover: var(--iui-color-text);
+
+    &.iui-green {
+      --_iui-tab-bg-color-hover: var(--ids-color-bg-glow-on-surface-accent-hover);
+      --_iui-tab-bg-color-selected-hover: var(--ids-color-bg-glow-on-surface-accent-hover);
+      --_iui-tab-color-hover: var(--iui-color-text-accent);
+    }
+  }
+
   .iui-tab {
     // To prevent outline from overlapping with the stripe
     outline-offset: -6px;
@@ -317,7 +332,6 @@
     border-radius: calc(4px + 6px);
 
     // iTwinUI v5 tab has no background or border
-    background-color: transparent;
     border: none;
   }
 

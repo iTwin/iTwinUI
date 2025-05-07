@@ -3,18 +3,24 @@
 @use 'base';
 
 @mixin iui-tabs-borderless {
+  --_iui-tab-bg-color: transparent;
+  --_iui-tab-bg-color-hover: var(--iui-color-background-transparent-hover);
+  --_iui-tab-bg-color-selected: var(--iui-color-background-accent-muted);
+  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-accent-muted);
+  --_iui-tab-bg-color-disabled: transparent;
+
+  &.iui-green {
+    --_iui-tab-bg-color-selected: var(--iui-color-background-positive-muted);
+    --_iui-tab-bg-color-selected-hover: var(--iui-color-background-positive-muted);
+  }
+
   .iui-tab {
     padding-block: var(--iui-size-2xs);
     padding-inline: calc(var(--iui-size-s) * 2);
-    background-color: transparent;
 
     &::after {
       inset-block-end: 0;
       inset-inline-end: 0;
-    }
-
-    &:hover {
-      background-color: var(--iui-color-background-transparent-hover);
     }
   }
 
@@ -38,9 +44,5 @@
     .iui-tab-description {
       display: -webkit-box; /* stylelint-disable-line */
     }
-  }
-
-  .iui-tab:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']):hover {
-    background-color: transparent;
   }
 }
