@@ -59,13 +59,15 @@ const cssCode = await (async () => {
     <slot is:inline />
   </template>
 
+  <div class='demo-actions'>
+    <button type='button' data-theme-toggle>Toggle theme</button>
   <OpenInCodePen
-    class='sandbox-link'
     code={{
       js: jsxCode,
       css: cssCode,
     }}
   />
+  </div>
 </demo-box>
 
 {
@@ -78,6 +80,8 @@ const cssCode = await (async () => {
 }
 
 <script>
+  import { demoTheme, toggleDemoTheme } from '~/stores/theme.store.js';
+
   customElements.define(
     'demo-code',
     class extends HTMLElement {
@@ -105,6 +109,13 @@ const cssCode = await (async () => {
           this.attachShadow({ mode: 'open' }).appendChild(template.content);
           template.remove();
         }
+
+        // wire up theme toggle
+        const themeToggle = this.querySelector('button[data-theme-toggle]') as HTMLButtonElement;
+        themeToggle.addEventListener('click', () => {
+          toggleDemoTheme();
+          this.dataset.theme = demoTheme.get();
+        });
       }
     },
   );
@@ -123,13 +134,19 @@ const cssCode = await (async () => {
       isolation: isolate;
       border-radius: var(--border-radius-1);
       outline: 1px solid var(--color-line-2);
+
+      &[data-theme='light'] {
+        background-color: #eef0f1; /* hardcoding --iui-color-background-backdrop */
+      }
     }
 
-    .sandbox-link {
+    .demo-actions {
       position: absolute;
       bottom: 0.25rem;
       right: 0.25rem;
       z-index: 1;
+      display: flex;
+      gap: 4px;
     }
 
     demo-code {
