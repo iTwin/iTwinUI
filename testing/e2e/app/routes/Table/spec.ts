@@ -10,6 +10,24 @@ test('un-virtualized table should scroll to provided row', async ({ page }) => {
   await expect(page.getByText('Name51')).toBeInViewport();
 });
 
+test.describe('Caption', () => {
+  test('should have a default caption if no caption is passed', async ({
+    page,
+  }) => {
+    await page.goto('/Table');
+
+    const table = page.getByRole('table');
+    await expect(table).toHaveAccessibleName('Table');
+  });
+
+  test('should respect the caption prop', async ({ page }) => {
+    await page.goto('/Table?caption=My Custom Table');
+
+    const table = page.getByRole('table');
+    await expect(table).toHaveAccessibleName('My Custom Table');
+  });
+});
+
 test.describe('Conditional ARIA attributes', () => {
   test('if tableProps or role is passed, aria attributes should be passed to the outer div', async ({
     page,
