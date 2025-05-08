@@ -4,6 +4,7 @@ import OpenInCodePen from './OpenInCodePen.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
+import DemoThemeProvider from './DemoThemeProvider.tsx';
 
 const require = createRequire(import.meta.url);
 
@@ -55,7 +56,9 @@ const cssCode = await (async () => {
     </style>
     <style set:html={cssCode}></style>
     <link rel='stylesheet' href={itwinuiStyles} />
+    <DemoThemeProvider client:load>
     <slot />
+    </DemoThemeProvider>
     <slot is:inline />
   </template>
 
