@@ -101,6 +101,7 @@ export default () => {
 
   return (
     <Table
+      caption='Files'
       columns={columns}
       data={data}
       emptyTableContent='No data.'

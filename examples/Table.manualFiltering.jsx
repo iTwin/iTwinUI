@@ -133,6 +133,7 @@ export default () => {
 
   return (
     <Table
+      caption='Products'
       className='demo-container'
       columns={columns}
       data={data}

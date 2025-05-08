@@ -148,6 +148,7 @@ export default () => {
         ))}
       </InputGroup>
       <Table
+        caption='Demo'
         columns={columns}
         emptyTableContent='No data.'
         stateReducer={useCallback((newState, action, prevState, instance) => {

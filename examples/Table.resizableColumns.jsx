@@ -114,6 +114,7 @@ export default () => {
         />
       </InputGroup>
       <Table
+        caption='Products'
         columns={columns}
         data={data}
         emptyTableContent='No data.'

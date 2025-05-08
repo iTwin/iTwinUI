@@ -25,6 +25,7 @@ export default () => {
 
   return (
     <Table
+      caption='Products'
       columns={columns}
       data={[]}
       isLoading={true}

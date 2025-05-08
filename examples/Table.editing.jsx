@@ -56,6 +56,7 @@ export default () => {
 
   return (
     <Table
+      caption='Products'
       className='demo-container'
       emptyTableContent='No data.'
       columns={columns}

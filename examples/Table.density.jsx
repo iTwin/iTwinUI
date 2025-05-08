@@ -51,6 +51,7 @@ export default () => {
         onChange={(value) => setDensity(value)}
       />
       <Table
+        caption='Products'
         columns={columns}
         emptyTableContent='No data.'
         data={data}

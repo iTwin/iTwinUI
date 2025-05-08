@@ -122,6 +122,7 @@ export default () => {
 
   return (
     <Table
+      caption='Products'
       enableColumnReordering
       columns={columns}
       data={data}

@@ -1230,6 +1230,10 @@ export { SurfaceNoPaddingExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as TableBasicExampleRaw } from './Table.basic';
+const TableBasicExample = withThemeProvider(TableBasicExampleRaw);
+export { TableBasicExample };
+
 import { default as TableMainExampleRaw } from './Table.main';
 const TableMainExample = withThemeProvider(TableMainExampleRaw);
 export { TableMainExample };

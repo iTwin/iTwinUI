@@ -50,6 +50,7 @@ export default () => {
   return (
     <>
       <Table
+        caption='Products'
         emptyTableContent='No data.'
         isSelectable
         isSortable

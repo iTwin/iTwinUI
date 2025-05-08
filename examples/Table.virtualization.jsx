@@ -41,10 +41,11 @@ export default () => {
   return (
     <div className='demo-container'>
       <Table
+        caption='Products'
+        className='table'
         columns={columns}
         emptyTableContent='No data.'
         data={data}
-        style={{ height: '300px' }}
         enableVirtualization
       />
     </div>

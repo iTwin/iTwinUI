@@ -54,7 +54,12 @@ export default () => {
 
   return (
     <div className='demo-container'>
-      <Table columns={columns} emptyTableContent='No data.' data={data} />
+      <Table
+        caption='Products'
+        columns={columns}
+        emptyTableContent='No data.'
+        data={data}
+      />
     </div>
   );
 };

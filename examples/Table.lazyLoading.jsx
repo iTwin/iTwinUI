@@ -64,6 +64,7 @@ export default () => {
 
   return (
     <Table
+      caption='Products'
       enableVirtualization
       columns={columns}
       emptyTableContent='No data.'

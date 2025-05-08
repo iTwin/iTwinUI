@@ -47,6 +47,7 @@ export default () => {
   return (
     <div className='demo-container'>
       <Table
+        caption='Products'
         columns={columns}
         emptyTableContent='No data.'
         data={data}

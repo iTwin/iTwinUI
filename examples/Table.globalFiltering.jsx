@@ -59,6 +59,7 @@ export default () => {
         onInput={(e) => setGlobalFilter(e.target.value)}
       />
       <Table
+        caption='Products'
         columns={columns}
         data={data}
         emptyTableContent='No data.'

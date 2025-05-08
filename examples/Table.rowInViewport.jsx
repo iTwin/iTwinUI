@@ -73,6 +73,7 @@ export default () => {
       </div>
       <br />
       <Table
+        caption='Products'
         columns={columns}
         emptyTableContent='No data.'
         onRowInViewport={onRowInViewport}

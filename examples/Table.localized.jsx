@@ -65,6 +65,7 @@ export default () => {
   return (
     <div style={{ height: '90vh' }}>
       <Table
+        caption='Products'
         emptyTableContent='No localized data.'
         isSelectable
         isSortable
