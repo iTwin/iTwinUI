@@ -125,7 +125,7 @@
       }
     }
 
-    // Bring back iTwinUI v3 accent styling for non-current breadcrumbs
+    // Bring back iTwinUI accent styling for non-current breadcrumbs
     .iui-breadcrumbs-content:not([aria-current]) {
       color: var(--iui-color-text-accent);
     }
@@ -138,7 +138,7 @@
     // This is needed because for CTA buttons, border-hover variables are set to bg variables
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
 
-    // Disabled buttons in v5 do not have a visible border
+    // Disabled buttons in StrataKit do not have a visible border
     --_iui-field-color-border-disabled: transparent;
 
     // CTA variant should use the same colors as high-visibility instead of using "positive" colors
@@ -147,7 +147,7 @@
       --_iui-field-color-background-hover: var(--_iui-field-color-background);
       --_iui-field-color-icon: var(--ids-color-icon-neutral-emphasis);
 
-      // Extra visible border in v5
+      // Extra visible border in StrataKit
       --_iui-field-color-border: var(--ids-color-border-accent-base);
     }
   }
@@ -195,7 +195,7 @@
 
   .iui-checkbox-wrapper {
     &:not(:where([data-iui-status])):not([data-iui-disabled='true']) {
-      // v5 labels are slightly muted
+      // StrataKit labels are slightly muted
       color: var(--ids-color-text-neutral-secondary);
     }
   }
@@ -204,10 +204,10 @@
   /* DropdownMenu */
 
   .iui-menu {
-    // v5 uses different surface colors for the dropdowns
+    // StrataKit uses different surface colors for the dropdowns
     background-color: var(--ids-color-bg-elevation-level-1);
 
-    // v5 uses box shadow only
+    // StrataKit uses box shadow only
     border: none;
     box-shadow: var(--ids-shadow-surface-xl);
   }
@@ -229,7 +229,7 @@
   /* FileUpload */
 
   .iui-file-upload.iui-drag > .iui-content {
-    // To give anchor text the accent color since iTwinUI v5 anchors are regular color.
+    // To give anchor text the accent color since StrataKit anchors are regular color.
     .iui-anchor {
       color: var(--iui-color-text-accent);
     }
@@ -239,7 +239,7 @@
   /* Footer */
 
   .iui-legal-footer-item {
-    // iTwinUI v5 anchors colors are not muted
+    // StrataKit anchors colors are not muted
     a {
       color: var(--iui-color-text-muted);
     }
@@ -249,28 +249,23 @@
   /* Input */
 
   .iui-input:not([role='combobox']) {
-    // iTwinUI v5 input background colors are different from global values
-    --_iui-field-color-background: var(--ids-color-bg-elevation-control);
+    // StrataKit input background colors are different from global values
+    --_iui-field-color-background: var(--ids-color-bg-control-textbox);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
-    --_iui-field-color-background-disabled: var(--ids-color-bg-elevation-control);
-  }
-
-  .iui-input-flex-container {
-    // iTwinUI input v5 background colors are different from global values
-    --_iui-input-background-color: var(--ids-color-bg-neutral-primary);
+    --_iui-field-color-background-disabled: var(--ids-color-bg-control-textbox);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* ProgressRadial */
 
-  // iTwinUI v5 progress indicators's default color is not accent
+  // StrataKit progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
     --_iui-progress-indicator-color-default-progress: var(--ids-color-icon-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Slider */
-  /* TODO: Since Slider is experimental in v5, revisit this when stable on the v5 end */
+  /* TODO: Since Slider is experimental in StrataKit, revisit this when stable on the StrataKit end */
   /* TODO: Are minLabel and maxLabel fills/colors correct? */
 
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
@@ -288,9 +283,9 @@
     // The old positive stripe is now the accent stripe
     --_iui-tab-color-stripe-green: var(--ids-color-border-accent-strong);
 
-    // iTwinUI v5 has muted color on its non selected tabs
+    // StrataKit has muted color on its non selected tabs
     --_iui-tab-color-default: var(--ids-color-text-neutral-tertiary);
-    // iTwinUI v5 has no accent color on its selected tabs
+    // StrataKit has no accent color on its selected tabs
     --_iui-tab-color-selected: var(--ids-color-text-neutral-primary);
     // The old positive color is now the accent color
     --_iui-tab-color-green-selected: var(--ids-color-text-accent-strong);
@@ -316,12 +311,12 @@
     // To account for outline-offset
     border-radius: calc(4px + 6px);
 
-    // iTwinUI v5 tab has no background or border
+    // StrataKit tab has no background or border
     background-color: transparent;
     border: none;
   }
 
-  // iTwinUI v5 tabs content has no background or border
+  // StrataKit tabs content has no background or border
   .iui-tabs-content {
     background-color: transparent;
     border: none;
@@ -343,7 +338,7 @@
   }
 
   .iui-toggle-switch-wrapper {
-    // v5 labels are slightly muted
+    // StrataKit labels are slightly muted
     &:not(.iui-disabled) {
       color: var(--ids-color-text-neutral-secondary);
     }
@@ -357,7 +352,7 @@
     background-color: var(--ids-color-bg-elevation-emphasis);
     border-color: var(--ids-color-border-elevation-base);
 
-    // Use v5's shadow instead of iTwinUI's
+    // Use StrataKit's shadow instead of iTwinUI's
     box-shadow: var(--ids-shadow-tooltip-base);
   }
 }

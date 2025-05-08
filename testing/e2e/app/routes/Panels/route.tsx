@@ -8,7 +8,7 @@ import {
   Surface,
   Text,
 } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 export default function ButtonGroupTest() {
   const [searchParams] = useSearchParams();

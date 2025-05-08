@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ComboBox, Popover } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 export default function Page() {
   const [searchParams] = useSearchParams();
