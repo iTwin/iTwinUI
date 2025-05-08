@@ -121,11 +121,15 @@ const cssCode = await (async () => {
           template.remove();
         }
 
+        // subscribe to demoTheme atom for store changes to update background-color
+        demoTheme.subscribe((theme) => {
+          this.dataset.theme = theme;
+        });
+
         // wire up theme toggle
         const themeToggle = this.querySelector('button[data-theme-toggle]') as HTMLButtonElement;
         themeToggle.addEventListener('click', () => {
           toggleDemoTheme();
-          this.dataset.theme = demoTheme.get();
         });
       }
     },
