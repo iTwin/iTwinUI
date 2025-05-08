@@ -20,8 +20,9 @@ Related sections: [Commonly Used Props](#commonly-used-props), [All Props](#prop
 
 **Note**: To avoid bugs, always try **memoizing** props.
 
-The most basic `Table` can be implemented by passing three props:
+The most basic `Table` can be implemented by passing four props:
 
+- `caption`: The caption/title of the table. This prop is marked as optional for backward compatibility but still **should** be used in all cases.
 - `data`: an array containing table data displayed in the table. Each key in each object corresponds to each column's `accessor` property.
 - `columns`: an array containing table column objects. Each column object requires a `Header`, which will be displayed as a column title, and `id`.
 - `emptyTableContent`: a JSX element table content shown when there is no data.
