@@ -74,46 +74,5 @@ const html = '<body style="margin: 0"></body>';
     form {
       position: relative;
     }
-
-    button {
-      display: grid;
-      place-items: center;
-      min-width: 2rem;
-      min-height: 2rem;
-      color: var(--color-text);
-      background: transparent;
-      border-radius: 9e9px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      padding: 0.25rem;
-
-      &:hover {
-        background: hsl(0 0% 0% / 0.2);
-      }
-
-      > svg {
-        width: 1rem;
-        height: 1rem;
-      }
-    }
-
-    .tooltip {
-      visibility: hidden;
-
-      position: absolute;
-      top: -100%;
-      left: 50%;
-      transform: translate(-66%);
-      font-size: var(--type--2);
-      padding: 0.5rem;
-      white-space: nowrap;
-      background-color: var(--color-background-2);
-      border: 1px solid var(--color-line-2);
-      border-radius: 4px;
-
-      button:is(:hover, :focus-within) > & {
-        visibility: visible;
-      }
-    }
   }
 </style>
