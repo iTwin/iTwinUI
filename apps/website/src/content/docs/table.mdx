@@ -47,6 +47,36 @@ The `Table` component supports row selection, allowing users to select one or mo
 />
 ```
 
+Since clicking the row selects it, you may need to stop click event propagations in the rows' children to prevent the row from being selected when clicking on its children.
+
+```jsx {10, 14}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    {
+      ...ActionColumn(),
+      Cell: () => {
+        return (
+          <DropdownMenu
+            menuItems={menuItems}
+            onClick={(e) => e.stopPropagation()} // 👈
+          >
+            <IconButton
+              styleType='borderless'
+              onClick={(e) => e.stopPropagation()} // 👈
+              aria-label='More options'
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        );
+      },
+    },
+  ],
+  [],
+);
+```
+
 There are two available selection modes passed using the `selectionMode` prop: `"single"` and `"multi"` (default).
 
 ### Multi-row selection
