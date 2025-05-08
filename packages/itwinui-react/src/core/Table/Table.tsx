@@ -37,6 +37,7 @@ import {
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
+  useId,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TableInstanceContext } from './utils.js';
@@ -445,6 +446,7 @@ export const Table = <
     getRowId,
     caption = 'Table',
     role,
+    scrollToRow,
     ..._rest
   } = props;
 
@@ -874,7 +876,11 @@ export const Table = <
 
   const tableRef = React.useRef<HTMLDivElement>(null);
 
-  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
+  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({
+    ...props,
+    scrollToRow,
+    page,
+  });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
@@ -1043,7 +1049,7 @@ export const Table = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const captionId = React.useId();
+  const captionId = useId();
 
   return (
     <TableInstanceContext.Provider
@@ -1066,7 +1072,6 @@ export const Table = <
           },
         })}
         role={role} // To remove the role="table" from getTableProps()
-        aria-labelledby={captionId}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...outerAriaRestAttributes}
@@ -1074,8 +1079,14 @@ export const Table = <
       >
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
-          <div role='table' {...innerAriaRestAttributes} {...tableProps}>
-            <slot name='caption' />
+          <div
+            role='table'
+            {...innerAriaRestAttributes}
+            {...tableProps}
+            aria-labelledby={captionId}
+          >
+            <VisuallyHidden id={captionId}>{caption}</VisuallyHidden>
+
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
           </div>
@@ -1084,10 +1095,6 @@ export const Table = <
           <slot name='iui-table-body-extra' />
           <slot />
         </ShadowRoot>
-
-        <VisuallyHidden slot='caption' id={captionId}>
-          {caption}
-        </VisuallyHidden>
 
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
           // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id

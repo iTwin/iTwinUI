@@ -81,7 +81,7 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
   fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
-  act(() => void vi.advanceTimersByTime(100));
+  act(() => void vi.advanceTimersByTime(200));
   const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
   expect(tooltip).toBeVisible();
   expect(tooltip).toHaveTextContent('Step one tooltip');
@@ -90,7 +90,7 @@ it('should display tooltip upon hovering step if description provided', async ()
   act(() => void vi.advanceTimersByTime(250));
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
-  act(() => void vi.advanceTimersByTime(100));
+  act(() => void vi.advanceTimersByTime(200));
   expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 
   vi.useRealTimers();

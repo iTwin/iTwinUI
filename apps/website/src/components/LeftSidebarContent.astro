@@ -6,7 +6,9 @@ const currentPage = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname.slice(0, -1)
   : Astro.url.pathname;
 
-const introPages = await getCollection('docs', ({ data: { group } }) => group === 'intro');
+const introPages = (await getCollection('docs', ({ data: { group } }) => group === 'intro')).sort(
+  (a, b) => a.slug.localeCompare(b.slug),
+);
 const mainComponents = await getCollection(
   'docs',
   ({ data: { group, title } }) => group === undefined && title !== 'Typography',

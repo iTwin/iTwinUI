@@ -81,8 +81,7 @@
     "cypress": "13.8.1",
     "ws@8": "^8.17.1",
     "cookie@<0.7.0": ">=0.7.0",
-    "esbuild": "0.25.0",
-    "estree-util-value-to-estree@<3.3.3": ">=3.3.3"
+    "esbuild": "0.25.0"
   },
   "engines": {
     "node": ">=18.14.1"

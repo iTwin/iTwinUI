@@ -5,7 +5,7 @@ import {
   TreeNode,
   Checkbox,
 } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import React from 'react';
 
 type TestData = {

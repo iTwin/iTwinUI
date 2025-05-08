@@ -26,7 +26,7 @@ type DialogProps = {
   children: React.ReactNode;
 } & DialogContextProps;
 
-const DialogComponent = React.forwardRef((props, ref) => {
+const DialogComponent = React.forwardRef((props, forwardedRef) => {
   const {
     trapFocus = false,
     setFocus = trapFocus,
@@ -45,11 +45,11 @@ const DialogComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const dialogRootRef = React.useRef<HTMLDivElement>(null);
+  const dialogRootRef = React.useRef<HTMLDivElement | null>(null);
   const [dialogElement, setDialogElement] = React.useState<HTMLElement | null>(
     null,
   );
-  const mergedRefs = useMergedRefs(ref, dialogRootRef, setDialogElement);
+  const mergedRefs = useMergedRefs(forwardedRef, dialogRootRef);
 
   return isOpen ? (
     <DialogContext.Provider
@@ -66,6 +66,8 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isResizable,
         relativeTo,
         placement,
+        dialogRootRef,
+        setDialogElement,
       }}
     >
       <Portal portal={portal}>

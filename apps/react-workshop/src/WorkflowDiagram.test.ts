@@ -15,7 +15,7 @@ describe('WorkflowDiagram', () => {
       if (testName.includes('Tooltip')) {
         cy.get('#ladle-root').within(() => {
           cy.get('li').first().trigger('mouseenter'); // trigger tooltip
-          cy.wait(100);
+          cy.wait(200);
         });
       }
 
