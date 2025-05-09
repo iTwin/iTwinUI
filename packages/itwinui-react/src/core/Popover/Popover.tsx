@@ -232,7 +232,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     open,
     onOpenChange,
     strategy: 'fixed',
-    transform: false,
     whileElementsMounted: React.useMemo(
       () =>
         // autoUpdate is expensive and should only be called when the popover is open
@@ -305,7 +304,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     (userProps?: React.HTMLProps<HTMLElement>) =>
       interactions.getFloatingProps({
         ...userProps,
-        className: cx('iui-popover', userProps?.className),
         style: {
           ...floating.floatingStyles,
           ...(middleware.size &&
@@ -434,6 +432,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     closeOnOutsideClick,
     role: 'dialog',
     middleware,
+    transform: false,
   });
 
   const [popoverElement, setPopoverElement] =
@@ -491,6 +490,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
                     }
                     {...popover.getFloatingProps({
                       className: cx(
+                        'iui-popover',
                         { 'iui-popover-surface': applyBackground },
                         className,
                       ),
