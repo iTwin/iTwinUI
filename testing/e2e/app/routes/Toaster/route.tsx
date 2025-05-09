@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import { Popover, ThemeProvider, useToaster } from '@itwin/itwinui-react';
 
 export default function Page() {

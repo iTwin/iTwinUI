@@ -10,7 +10,7 @@ import type {
   Row,
   TableState,
 } from '@itwin/itwinui-react/react-table';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import React from 'react';
 
 export default function Page() {
@@ -110,6 +110,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
   const passTableProps = searchParams.get('passTableProps') === 'true';
   const role = searchParams.get('role');
   const onSelect = searchParams.get('onSelect') === 'true';
+  const caption = searchParams.get('caption') ?? undefined;
 
   return {
     exampleType,
@@ -132,6 +133,7 @@ const getConfigFromSearchParams = (searchParams: URLSearchParams) => {
     passTableProps,
     role,
     onSelect,
+    caption,
   };
 };
 
@@ -160,6 +162,7 @@ const Default = ({
     passTableProps,
     role,
     onSelect,
+    caption,
   } = config;
 
   const virtualizedData = React.useMemo(() => {
@@ -231,6 +234,7 @@ const Default = ({
         ]}
         data={enableVirtualization ? virtualizedData : data}
         emptyTableContent='No data.'
+        caption={caption}
         isResizable
         isRowDisabled={isRowDisabled}
         isSelectable={isSelectable}
