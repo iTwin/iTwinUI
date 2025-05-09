@@ -22,12 +22,12 @@
     "@react-router/fs-routes": "^7.5.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
+    "@playwright/test": "1.52.0",
     "@react-router/dev": "^7.0.0",
     "@types/node": "*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "playwright": "1.42.1",
+    "playwright": "1.52.0",
     "typescript": "5",
     "vite": "^6",
     "vite-tsconfig-paths": "^4.2.1"
