@@ -6,13 +6,8 @@
   --_iui-tab-bg-color: transparent;
   --_iui-tab-bg-color-hover: var(--iui-color-background-transparent-hover);
   --_iui-tab-bg-color-selected: transparent;
-  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-accent-muted);
+  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-transparent-hover);
   --_iui-tab-bg-color-disabled: transparent;
-
-  &.iui-green {
-    --_iui-tab-bg-color-selected: transparent;
-    --_iui-tab-bg-color-selected-hover: var(--iui-color-background-positive-muted);
-  }
 
   justify-content: space-evenly;
   gap: var(--iui-size-3xs);

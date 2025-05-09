@@ -5,14 +5,9 @@
 @mixin iui-tabs-borderless {
   --_iui-tab-bg-color: transparent;
   --_iui-tab-bg-color-hover: var(--iui-color-background-transparent-hover);
-  --_iui-tab-bg-color-selected: var(--iui-color-background-accent-muted);
-  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-accent-muted);
+  --_iui-tab-bg-color-selected: transparent;
+  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-transparent-hover);
   --_iui-tab-bg-color-disabled: transparent;
-
-  &.iui-green {
-    --_iui-tab-bg-color-selected: var(--iui-color-background-positive-muted);
-    --_iui-tab-bg-color-selected-hover: var(--iui-color-background-positive-muted);
-  }
 
   .iui-tab {
     padding-block: var(--iui-size-2xs);
