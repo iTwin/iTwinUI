@@ -3,6 +3,7 @@ const { ...props } = Astro.props;
 ---
 
 <button {...props}>
+  <div class='tooltip'><slot name='tooltip' /></div>
   <slot />
 </button>
 
@@ -31,7 +32,7 @@ const { ...props } = Astro.props;
       }
     }
 
-    :global(.tooltip) {
+    .tooltip {
       visibility: hidden;
 
       position: absolute;
