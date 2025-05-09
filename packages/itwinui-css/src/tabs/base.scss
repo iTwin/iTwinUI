@@ -71,10 +71,6 @@ $borderless-horizontal-tab-min-height: calc(
     &:hover {
       --_iui-tab-bg-color: var(--_iui-tab-bg-color-hover);
       --_iui-tab-color: var(--_iui-tab-color-hover);
-
-      .iui-tab-icon svg {
-        fill: currentColor;
-      }
     }
 
     &:is([aria-selected='true'], [aria-current]) {
@@ -84,7 +80,10 @@ $borderless-horizontal-tab-min-height: calc(
       &:hover {
         --_iui-tab-bg-color: var(--_iui-tab-bg-color-selected-hover);
       }
+    }
 
+    &:hover,
+    &:is([aria-selected='true'], [aria-current]) {
       .iui-tab-icon svg {
         fill: currentColor;
       }
@@ -131,6 +130,7 @@ $borderless-horizontal-tab-min-height: calc(
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
     grid-area: description;
+    transition: color var(--iui-duration-1) ease-out;
   }
 
   &.iui-green .iui-tab {
