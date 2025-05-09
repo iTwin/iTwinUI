@@ -32,8 +32,8 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 } & CellRendererProps<T> &
   React.ComponentPropsWithoutRef<'div'>;
 
-/** Context for whether the DefaultCell is called from a custom renderer or not. */
-export const DefaultCellIsCustomRenderer = React.createContext<boolean>(false);
+export const DefaultCellRendererPropsChildren =
+  React.createContext<React.ReactNode>(undefined);
 
 /**
  * Default cell.
@@ -58,7 +58,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     [instance, props.cellProps.column.id],
   );
   const isCustomRenderer =
-    React.useContext(DefaultCellIsCustomRenderer) ?? false;
+    React.useContext(DefaultCellRendererPropsChildren) !== props.children;
 
   const {
     cellElementProps: {
@@ -74,9 +74,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' &&
-      !isCustomCell &&
-      !isCustomRenderer,
+    clamp = typeof cellProps.value === 'string' && !isCustomCell,
     ...rest
   } = props;
 
@@ -95,10 +93,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
 
-        <TableCellContent
-          isCustomCell={isCustomCell}
-          isCustomRenderer={isCustomRenderer}
-        >
+        <TableCellContent isCustomRenderer={isCustomRenderer}>
           {clamp ? (
             <LineClamp>
               <slot />
@@ -143,17 +138,16 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 
 /**
- * - When a custom `Cell` or custom `cellRenderer` is used, returns children as-is.
+ * - When `cellRenderer` is passed and the `DefaultCell` in `cellRenderer` has custom children, returns children as-is.
  * - Else, wraps children in a _iui-table-cell-default-content div that increases the hit target size.
  */
 const TableCellContent = (props: {
   children: React.ReactNode;
-  isCustomCell: boolean;
   isCustomRenderer: boolean;
 }) => {
-  const { children, isCustomCell, isCustomRenderer } = props;
+  const { children, isCustomRenderer } = props;
 
-  return isCustomCell || isCustomRenderer ? (
+  return isCustomRenderer ? (
     children
   ) : (
     <div
