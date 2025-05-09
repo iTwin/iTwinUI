@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import OpenInCodePen from './OpenInCodePen.astro';
+import IconButton from './IconButton.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
@@ -64,14 +65,14 @@ const cssCode = await (async () => {
   </template>
 
   <div class='demo-actions'>
-    <button type='button' data-theme-toggle>
+    <IconButton data-theme-toggle>
       <span class='tooltip'>Toggle theme</span>
       <VisuallyHidden>Toggle theme</VisuallyHidden>
       <svg width='16' height='16' viewBox='0 0 20 20' aria-hidden='true'>
         <path fill='currentColor' d='M10 3.5a6.5 6.5 0 1 1 0 13zM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16'
         ></path>
       </svg>
-    </button>
+    </IconButton>
     <OpenInCodePen
       code={{
         js: jsxCode,
@@ -152,6 +153,7 @@ const cssCode = await (async () => {
 
       &[data-theme='light'] {
         background-color: #eef0f1; /* hardcoding --iui-color-background-backdrop */
+        color-scheme: light;
       }
     }
 
@@ -161,50 +163,6 @@ const cssCode = await (async () => {
       right: 0.25rem;
       z-index: 1;
       display: flex;
-      gap: 4px;
-
-      :global(button) {
-        display: grid;
-        place-items: center;
-        min-width: 2rem;
-        min-height: 2rem;
-        color: var(--color-text);
-        background: transparent;
-        border-radius: 9e9px;
-        border: 1px solid transparent;
-        cursor: pointer;
-        padding: 0.25rem;
-
-        &:hover {
-          background: hsl(0 0% 0% / 0.2);
-        }
-
-        &:is(:hover, :focus-within) {
-          :global(.tooltip) {
-            visibility: visible;
-          }
-        }
-
-        > svg {
-          width: 1rem;
-          height: 1rem;
-        }
-      }
-
-      :global(.tooltip) {
-        visibility: hidden;
-
-        position: absolute;
-        top: -100%;
-        left: 50%;
-        transform: translate(-66%);
-        font-size: var(--type--2);
-        padding: 0.5rem;
-        white-space: nowrap;
-        background-color: var(--color-background-2);
-        border: 1px solid var(--color-line-2);
-        border-radius: 4px;
-      }
     }
 
     demo-code {
