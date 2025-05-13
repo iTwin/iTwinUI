@@ -60,9 +60,15 @@ type ToggleSwitchProps = {
 /**
  * A switch for turning on and off.
  *
+ * ---
+ *
  * Note: `className` and `style` props are applied depending on the `ThemeProvider`'s `future.consistentPropsSpread` prop:
  * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
  * - `consistentPropsSpread=true`: `className` and `style` applied on the `input` element where all the other props are applied.
+ *
+ * Also consider the `wrapperProps` props for passing `className`, `style`, and other props to the wrapper.
+ *
+ * ---
  *
  * @example
  * <caption>Basic toggle</caption>
@@ -86,6 +92,10 @@ type ToggleSwitchProps = {
  *   <ToggleSwitch
  *     className='my-class' // applied to wrapper
  *     style={{ width: 80 }} // applied to wrapper
+ *     wrapperProps={{
+ *       className: 'my-wrapper-class', // applied to wrapper
+ *       style: { width: 80 }, // applied to wrapper
+ *     }}
  *
  *     // Other props are applied to input
  *     data-dummy='value' // applied to input
@@ -98,6 +108,10 @@ type ToggleSwitchProps = {
  *   <ToggleSwitch
  *     className='my-class' // applied to input
  *     style={{ width: 80 }} // applied to input
+ *     wrapperProps={{
+ *       className: 'my-wrapper-class', // applied to wrapper
+ *       style: { width: 80 }, // applied to wrapper
+ *     }}
  *
  *     // Other props are applied to input
  *     data-dummy='value' // applied to input
