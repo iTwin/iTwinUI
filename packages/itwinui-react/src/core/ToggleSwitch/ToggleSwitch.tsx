@@ -64,6 +64,30 @@ type ToggleSwitchProps = {
  * @example
  * <caption>Toggle with icon</caption>
  * <ToggleSwitch label='With icon toggle' icon={<svg viewBox='0 0 16 16'><path d='M1 1v14h14V1H1zm13 1.7v10.6L8.7 8 14 2.7zM8 7.3L2.7 2h10.6L8 7.3zm-.7.7L2 13.3V2.7L7.3 8zm.7.7l5.3 5.3H2.7L8 8.7z' /></svg>} />
+ *
+ * @example
+ * <caption>ThemeProvider's consistentPropsSpread: false/undefined</caption>
+ * <ThemeProvider>
+ *   <ToggleSwitch
+ *     className='my-class' // applied to wrapper
+ *     style={{ width: 80 }} // applied to wrapper
+ *
+ *     // Other props are applied to input
+ *     data-dummy='value' // applied to input
+ *   />
+ * </ThemeProvider>
+ *
+ * @example
+ * <caption>ThemeProvider's consistentPropsSpread: true</caption>
+ * <ThemeProvider future={{ consistentPropsSpread: true }}>
+ *   <ToggleSwitch
+ *     className='my-class' // applied to input
+ *     style={{ width: 80 }} // applied to input
+ *
+ *     // Other props are applied to input
+ *     data-dummy='value' // applied to input
+ *   />
+ * </ThemeProvider>
  */
 export const ToggleSwitch = React.forwardRef((props, ref) => {
   const {
