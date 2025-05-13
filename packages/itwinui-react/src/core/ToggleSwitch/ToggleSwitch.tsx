@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, SvgCheckmark } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { ThemeProviderFutureContext } from '../ThemeProvider/ThemeProvider.js';
 
 type ToggleSwitchProps = {
   /**
@@ -72,13 +73,32 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const consistentPropsSpread =
+    React.useContext(ThemeProviderFutureContext)?.consistentPropsSpread ===
+    true;
+
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
     iconProp === undefined || (iconProp !== null && size !== 'small');
 
+  const consistencyRelatedProps = React.useMemo(() => {
+    if (consistentPropsSpread) {
+      return {
+        outerProps: {},
+        innerProps: { rest, className, style },
+      };
+    }
+
+    return {
+      outerProps: { className, style },
+      innerProps: { rest },
+    };
+  }, [className, consistentPropsSpread, rest, style]);
+
   return (
     <Box
       as={label ? 'label' : 'div'}
+      {...consistencyRelatedProps.outerProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -86,19 +106,21 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        className,
+        consistencyRelatedProps.outerProps.className,
       )}
       data-iui-size={size}
-      style={style}
     >
       <Box
         as='input'
-        className='iui-toggle-switch'
+        {...consistencyRelatedProps.innerProps}
+        className={cx(
+          'iui-toggle-switch',
+          consistencyRelatedProps.innerProps.className,
+        )}
         type='checkbox'
         role='switch'
         disabled={disabled}
         ref={ref}
-        {...rest}
       />
       {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
