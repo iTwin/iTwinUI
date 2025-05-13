@@ -142,3 +142,28 @@ it('should correctly pass labelProps', () => {
     (container.querySelector('.switch-class') as HTMLElement).style.color,
   ).toBe('blue');
 });
+
+it('should correctly pass wrapperProps', () => {
+  const { container } = render(
+    <ToggleSwitch
+      wrapperProps={{
+        className: 'wrapper-class-from-wrapper-props',
+        style: { color: 'blue' },
+      }}
+      className='wrapper-class-from-root'
+      style={{ color: 'red' }}
+    />,
+  );
+
+  const wrapper = container.querySelector(
+    '.iui-toggle-switch-wrapper',
+  ) as HTMLElement;
+
+  expect(wrapper).toBeTruthy();
+
+  expect(wrapper.className).toContain('wrapper-class-from-wrapper-props');
+  expect(wrapper.className).toContain('wrapper-class-from-root');
+
+  expect(wrapper.style.color).toBe('blue');
+  expect(wrapper.style.color).not.toBe('red');
+});
