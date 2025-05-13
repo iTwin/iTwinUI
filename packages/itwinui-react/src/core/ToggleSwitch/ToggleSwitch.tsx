@@ -9,10 +9,6 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type ToggleSwitchProps = {
   /**
-   * Label for the toggle switch.
-   */
-  label?: React.ReactNode;
-  /**
    * Passes properties for ToggleSwitch label.
    */
   labelProps?: React.ComponentProps<'span'>;
@@ -24,22 +20,41 @@ type ToggleSwitchProps = {
 } & (
   | {
       /**
-       * Size of the toggle switch.
-       *  @default 'default'
+       * Label for the toggle switch.
        */
-      size?: 'default';
+      label: React.ReactNode;
       /**
-       * Custom icon inside the toggle switch. Shown only when toggle is checked and size is not small.
+       * Passes props to wrapper.
        *
-       * Will override the default checkmark icon.
+       * The wrapper is a `label` element when label is provided, and a `div` otherwise.
+       * The prop type changes accordingly.
        */
-      icon?: React.JSX.Element | null;
+      wrapperProps?: React.ComponentProps<'label'>;
     }
   | {
-      size: 'small';
-      icon?: never;
+      label?: null | undefined;
+      wrapperProps?: React.ComponentProps<'div'>;
     }
-);
+) &
+  (
+    | {
+        /**
+         * Size of the toggle switch.
+         *  @default 'default'
+         */
+        size?: 'default';
+        /**
+         * Custom icon inside the toggle switch. Shown only when toggle is checked and size is not small.
+         *
+         * Will override the default checkmark icon.
+         */
+        icon?: React.JSX.Element | null;
+      }
+    | {
+        size: 'small';
+        icon?: never;
+      }
+  );
 
 /**
  * A switch for turning on and off.
@@ -68,6 +83,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     style,
     size = 'default',
     labelProps = {},
+    wrapperProps,
     icon: iconProp,
     ...rest
   } = props;
@@ -79,6 +95,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
+      {...(wrapperProps as any)}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -87,9 +104,13 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-left': label && labelPosition === 'left',
         },
         className,
+        wrapperProps?.className,
       )}
       data-iui-size={size}
-      style={style}
+      style={{
+        ...style,
+        ...wrapperProps?.style,
+      }}
     >
       <Box
         as='input'
