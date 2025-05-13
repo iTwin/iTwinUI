@@ -3,7 +3,7 @@ const { ...props } = Astro.props;
 ---
 
 <button {...props}>
-  <div class='tooltip'><slot name='tooltip' /></div>
+  <span aria-hidden='true' class='tooltip'><slot name='tooltip' /></span>
   <slot />
 </button>
 
