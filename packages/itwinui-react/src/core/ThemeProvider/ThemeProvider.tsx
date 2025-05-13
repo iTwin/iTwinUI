@@ -53,14 +53,13 @@ export type FutureOptions = {
    */
   themeBridge?: boolean;
   /**
-   * There are some iTwinUI components with quirks where some props are applied on an element different from where the `rest` props are applied.
-   * E.g. `ToggleSwitch`.
+   * There are some iTwinUI components where some props are applied on an element different from where the `rest` props are applied.
    *
-   * Setting this to `true` will apply all props on the same element, wherever possible.
+   * Setting this to `true` will apply all props on the same element. Component affected: `ToggleSwitch`.
    *
-   * E.g. `ToggleSwitch`:
+   * `ToggleSwitch`:
    * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
-   * - `consistentPropsSpread=true`: `className` and `style` applied on the `input` element, where all the other props are applied.
+   * - `consistentPropsSpread=true`: `className` and `style` applied on the `input` element where all the other props are applied.
    */
   consistentPropsSpread?: boolean;
 };

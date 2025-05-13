@@ -44,6 +44,11 @@ type ToggleSwitchProps = {
 
 /**
  * A switch for turning on and off.
+ *
+ * Note: `className` and `style` props are applied depending on the `ThemeProvider`'s `future.consistentPropsSpread` prop:
+ * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
+ * - `consistentPropsSpread=true`: `className` and `style` applied on the `input` element where all the other props are applied.
+ *
  * @example
  * <caption>Basic toggle</caption>
  * <ToggleSwitch onChange={(e) => console.log(e.target.checked)} defaultChecked />
@@ -84,21 +89,21 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const consistencyRelatedProps = React.useMemo(() => {
     if (consistentPropsSpread) {
       return {
-        outerProps: {},
-        innerProps: { rest, className, style },
+        wrapperProps: { className: undefined, style: undefined },
+        inputProps: { ...rest, className, style },
       };
     }
 
     return {
-      outerProps: { className, style },
-      innerProps: { rest },
+      wrapperProps: { className, style },
+      inputProps: { ...rest, className: undefined, style: undefined },
     };
   }, [className, consistentPropsSpread, rest, style]);
 
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...consistencyRelatedProps.outerProps}
+      {...consistencyRelatedProps.wrapperProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -106,16 +111,16 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        consistencyRelatedProps.outerProps.className,
+        consistencyRelatedProps.wrapperProps.className,
       )}
       data-iui-size={size}
     >
       <Box
         as='input'
-        {...consistencyRelatedProps.innerProps}
+        {...consistencyRelatedProps.inputProps}
         className={cx(
           'iui-toggle-switch',
-          consistencyRelatedProps.innerProps.className,
+          consistencyRelatedProps.inputProps.className,
         )}
         type='checkbox'
         role='switch'
