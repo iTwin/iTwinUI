@@ -214,6 +214,9 @@ importers:
       '@jsdevtools/rehype-toc':
         specifier: 3.0.2
         version: 3.0.2
+      '@nanostores/react':
+        specifier: ^1.0.0
+        version: 1.0.0(nanostores@1.0.1)(react@19.1.0)
       '@tippyjs/react':
         specifier: 4.2.6
         version: 4.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -242,8 +245,8 @@ importers:
         specifier: '*'
         version: 3.3.11
       nanostores:
-        specifier: ^0.11.3
-        version: 0.11.3
+        specifier: ^1.0.1
+        version: 1.0.1
       outdent:
         specifier: ^0.8.0
         version: 0.8.0
@@ -2255,6 +2258,16 @@ packages:
         integrity: sha512-wK+5pLK5XFmgtH3aQ2YVvA3HohS3xqV/OxuVOdNx9Wpnz7VE/fnC+e1A7ln6LFYeck7gOJ/dsZV6OLplOtAJ2w==,
       }
     engines: { node: '>=18' }
+
+  '@nanostores/react@1.0.0':
+    resolution:
+      {
+        integrity: sha512-eDduyNy+lbQJMg6XxZ/YssQqF6b4OXMFEZMYKPJCCmBevp1lg0g+4ZRi94qGHirMtsNfAWKNwsjOhC+q1gvC+A==,
+      }
+    engines: { node: ^20.0.0 || >=22.0.0 }
+    peerDependencies:
+      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^1.0.0
+      react: '>=18.0.0'
 
   '@nodelib/fs.scandir@2.1.5':
     resolution:
@@ -8469,12 +8482,12 @@ packages:
     engines: { node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1 }
     hasBin: true
 
-  nanostores@0.11.3:
+  nanostores@1.0.1:
     resolution:
       {
-        integrity: sha512-TUes3xKIX33re4QzdxwZ6tdbodjmn3tWXCEc1uokiEmo14sI1EaGYNs2k3bU2pyyGNmBqFGAVl6jAGWd06AVIg==,
+        integrity: sha512-kNZ9xnoJYKg/AfxjrVL4SS0fKX++4awQReGqWnwTRHxeHGZ1FJFVgTqr/eMrNQdp0Tz7M7tG/TDaX8QfHDwVCw==,
       }
-    engines: { node: ^18.0.0 || >=20.0.0 }
+    engines: { node: ^20.0.0 || >=22.0.0 }
 
   natural-compare-lite@1.4.0:
     resolution:
@@ -13663,6 +13676,11 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
+  '@nanostores/react@1.0.0(nanostores@1.0.1)(react@19.1.0)':
+    dependencies:
+      nanostores: 1.0.1
+      react: 19.1.0
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -18012,7 +18030,7 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  nanostores@0.11.3: {}
+  nanostores@1.0.1: {}
 
   natural-compare-lite@1.4.0: {}
 
