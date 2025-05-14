@@ -103,7 +103,10 @@ export const TableCell = <T extends Record<string, unknown>>(
   return (
     <>
       <DefaultCellRendererPropsChildren.Provider
-        value={cellRendererProps.children}
+        value={React.useMemo(
+          () => cellRendererProps.children,
+          [cellRendererProps.children],
+        )}
       >
         {cell.column.cellRenderer ? (
           cell.column.cellRenderer({

@@ -57,7 +57,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
         ?.Cell !== defaultColumn.Cell,
     [instance, props.cellProps.column.id],
   );
-  const isCustomRenderer =
+  const isCellRendererChildrenCustom =
     React.useContext(DefaultCellRendererPropsChildren) !== props.children;
 
   const {
@@ -76,7 +76,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     status,
     clamp = typeof cellProps.value === 'string' &&
       !isCustomCell &&
-      !isCustomRenderer,
+      !isCellRendererChildrenCustom,
     ...rest
   } = props;
 
@@ -95,15 +95,13 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
 
-        <TableCellContent isCustomRenderer={isCustomRenderer}>
+        <TableCellContent shouldRenderWrapper={isCellRendererChildrenCustom}>
           {clamp ? (
             <LineClamp>
               <slot />
             </LineClamp>
           ) : (
-            <>
-              <slot />
-            </>
+            <slot />
           )}
         </TableCellContent>
 
@@ -145,11 +143,11 @@ if (process.env.NODE_ENV === 'development') {
  */
 const TableCellContent = (props: {
   children: React.ReactNode;
-  isCustomRenderer: boolean;
+  shouldRenderWrapper: boolean;
 }) => {
-  const { children, isCustomRenderer } = props;
+  const { children, shouldRenderWrapper } = props;
 
-  return isCustomRenderer ? (
+  return shouldRenderWrapper ? (
     children
   ) : (
     <div
