@@ -228,6 +228,10 @@ export interface ColumnInterface<D extends Record<string, unknown> = {}>
    * Side on which column should be sticked to.
    */
   sticky?: 'left' | 'right';
+  /**
+   * If maxWidth was initially not defined.
+   */
+  maxWidthDefault?: boolean;
 }
 
 export interface ColumnInterfaceBasedOnValue<
