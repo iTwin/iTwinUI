@@ -20,15 +20,15 @@
   }
 
   .iui-horizontal & ~ .iui-tabs-content {
-    margin-block-start: calc(0px - var(--iui-size-3xs));
-    border-block-start: var(--iui-size-3xs) solid var(--iui-color-border);
+    margin-block-start: -1px;
+    border-block-start: 1px solid var(--iui-color-border);
   }
 
   .iui-vertical & ~ .iui-tabs-content {
-    margin-inline-start: calc(0px - var(--iui-size-3xs));
+    margin-inline-start: -1px;
     padding-inline-start: var(--iui-size-s);
     padding-inline-end: var(--iui-size-s);
-    border-inline-start: var(--iui-size-3xs) solid var(--iui-color-border);
+    border-inline-start: 1px solid var(--iui-color-border);
   }
 
   &.iui-large {
