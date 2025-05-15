@@ -138,8 +138,9 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 
 /**
- * - When `cellRenderer` is passed and the `DefaultCell` in `cellRenderer` has custom children, returns children as-is.
- * - Else, wraps children in a _iui-table-cell-default-content div that increases the hit target size.
+ * If `shouldRenderWrapper` is true, `children` will be wrapped in a `div` with `_iui-table-cell-default-content` class.
+ *
+ * The `_iui-table-cell-default-content` div increases the hit target size.
  */
 const TableCellContent = (props: {
   children: React.ReactNode;
