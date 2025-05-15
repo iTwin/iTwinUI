@@ -82,7 +82,7 @@
     }
 
     // Use negative margin to make adjacent borders overlap
-    ~ :where(.iui-field, .iui-input-flex-container) {
+    ~ :where(.iui-field, .iui-input-flex-container):where(:not([data-iui-variant='borderless'])) {
       @if $orientation == 'horizontal' {
         margin-inline-start: -1px;
       } @else {
