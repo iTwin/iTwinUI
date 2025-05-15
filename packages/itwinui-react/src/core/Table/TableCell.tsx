@@ -61,52 +61,78 @@ export const TableCell = <T extends Record<string, unknown>>(
     },
   });
 
-  const cellProps: CellProps<T> = {
-    ...tableInstance,
-    ...{ cell, row: cell.row, value: cell.value, column: cell.column },
-  };
-
-  const cellContent = (
-    <>
-      {tableHasSubRows && hasSubRowExpander && cell.row.canExpand && (
-        <SubRowExpander
-          cell={cell}
-          isDisabled={isDisabled}
-          cellProps={cellProps}
-          expanderCell={expanderCell}
-          density={density}
-          slot='start'
-        />
-      )}
-      {cell.render('Cell')}
-    </>
+  const cellProps: CellProps<T> = React.useMemo(
+    () => ({
+      ...tableInstance,
+      ...{ cell, row: cell.row, value: cell.value, column: cell.column },
+    }),
+    [cell, tableInstance],
   );
 
-  const cellRendererProps: CellRendererProps<T> = {
-    cellElementProps,
-    cellProps,
-    children: (
+  const cellContent = React.useMemo(
+    () => (
       <>
-        {cellContent}
-        {cell.column.sticky === 'left' &&
-          tableInstance.state.sticky.isScrolledToRight && (
-            <Box className='iui-table-cell-shadow-right' slot='shadows' />
-          )}
-        {cell.column.sticky === 'right' &&
-          tableInstance.state.sticky.isScrolledToLeft && (
-            <Box className='iui-table-cell-shadow-left' slot='shadows' />
-          )}
+        {tableHasSubRows && hasSubRowExpander && cell.row.canExpand && (
+          <SubRowExpander
+            cell={cell}
+            isDisabled={isDisabled}
+            cellProps={cellProps}
+            expanderCell={expanderCell}
+            density={density}
+            slot='start'
+          />
+        )}
+        {cell.render('Cell')}
       </>
     ),
-  };
+    [
+      cell,
+      cellProps,
+      density,
+      expanderCell,
+      hasSubRowExpander,
+      isDisabled,
+      tableHasSubRows,
+    ],
+  );
+
+  const cellRendererProps: CellRendererProps<T> = React.useMemo(
+    () => ({
+      cellElementProps,
+      cellProps,
+      children: (
+        <>
+          {cellContent}
+          {cell.column.sticky === 'left' &&
+            tableInstance.state.sticky.isScrolledToRight && (
+              <Box className='iui-table-cell-shadow-right' slot='shadows' />
+            )}
+          {cell.column.sticky === 'right' &&
+            tableInstance.state.sticky.isScrolledToLeft && (
+              <Box className='iui-table-cell-shadow-left' slot='shadows' />
+            )}
+        </>
+      ),
+    }),
+    [
+      cell.column.sticky,
+      cellContent,
+      cellElementProps,
+      cellProps,
+      tableInstance.state.sticky.isScrolledToLeft,
+      tableInstance.state.sticky.isScrolledToRight,
+    ],
+  );
+
+  const defaultCellRendererPropsChildrenContextValue = React.useMemo(
+    () => cellRendererProps.children,
+    [cellRendererProps.children],
+  );
 
   return (
     <>
       <DefaultCellRendererPropsChildren.Provider
-        value={React.useMemo(
-          () => cellRendererProps.children,
-          [cellRendererProps.children],
-        )}
+        value={defaultCellRendererPropsChildrenContextValue}
       >
         {cell.column.cellRenderer ? (
           cell.column.cellRenderer({
