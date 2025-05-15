@@ -4,9 +4,9 @@
 
 ### Patch Changes
 
+- [#2535](https://github.com/iTwin/iTwinUI/pull/2535): Fixed `Table` regression where custom content passed into `DefaultCell` was not stretching to the full cell width.
 - [#2524](https://github.com/iTwin/iTwinUI/pull/2524): Fixed `Popover` regression of unintended automatic resizing of floating content when opened.
 - [#2538](https://github.com/iTwin/iTwinUI/pull/2538): `Table`'s `caption` prop is now correctly applied.
-- [#2535](https://github.com/iTwin/iTwinUI/pull/2535): Fixed `Table` regression where custom content passed into `DefaultCell` was not stretching to the full cell width.
 
 ## 3.18.1
 
