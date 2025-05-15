@@ -2,7 +2,7 @@
 '@itwin/itwinui-react': minor
 ---
 
-Visual changes to tabs for better accessibility and appearance when in theme bridge mode.
+Visual changes to `Tabs` for better accessibility and appearance when in theme bridge mode.
 
 - `Tabs.Wrapper` without `type` declared focus `outline-offset` inset more so to not obstruct the active tab stripe.
 - `Tabs.Wrapper type='borderless'` dividing line reduced to give the active tab stripe a visual difference.
