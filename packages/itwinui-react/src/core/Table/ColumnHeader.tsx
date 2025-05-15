@@ -79,42 +79,6 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
     }
   }
 
-  // track if the maxWidth for the column was initially set
-  const currCol = instance?.columns.find((c) => c.id === column.id);
-  if (currCol && column.maxWidth === 0) {
-    currCol.maxWidthDefault = true;
-  }
-
-  // calculate maxWidth for sticky columns if not manually defined before
-  // ensure total width of sticky columns does not exceed 75% of table width
-
-  // do not calculate maxWidth for action column since it is fixed
-  if (
-    currCol?.maxWidthDefault &&
-    column.id !== 'iui-table-action' &&
-    column.sticky &&
-    instance
-  ) {
-    const stickyCols = instance.columns.filter((c) => c.sticky);
-    // get sum of widths of sticky columns besides current sticky column
-    const stickyColsRest = stickyCols.filter((c) => column.id !== c.id);
-    const stickyColsWidthRest = stickyColsRest.reduce(
-      // handle for when width is not number?
-      (sum, c) => sum + (Number(c.width) || 0),
-      0,
-    );
-    // calculate total remaining width to set as maxWidth
-    if (instance.tableWidth && stickyColsWidthRest) {
-      const remainingWidth = Math.floor(
-        instance.tableWidth * 0.75 - stickyColsWidthRest,
-      );
-      // update maxWidth for the current column
-      if (currCol) {
-        currCol.maxWidth = remainingWidth;
-      }
-    }
-  }
-
   const columnProps = column.getHeaderProps({
     ...restSortProps,
     className: cx(
@@ -140,6 +104,7 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
       {...columnProps}
       {...rest}
       key={columnProps.key}
+      data-iui-header={column.id}
       title={undefined}
       ref={useMergedRefs(
         React.useCallback(

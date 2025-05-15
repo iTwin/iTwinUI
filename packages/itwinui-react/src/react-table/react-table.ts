@@ -228,10 +228,6 @@ export interface ColumnInterface<D extends Record<string, unknown> = {}>
    * Side on which column should be sticked to.
    */
   sticky?: 'left' | 'right';
-  /**
-   * If maxWidth was initially not defined.
-   */
-  maxWidthDefault?: boolean;
 }
 
 export interface ColumnInterfaceBasedOnValue<
@@ -489,7 +485,7 @@ export interface UseTableColumnOptions<D extends Record<string, unknown>> {
   Footer?: Renderer<FooterProps<D>> | undefined;
   width?: number | string | undefined;
   minWidth?: number | undefined;
-  maxWidth?: number | undefined;
+  maxWidth?: number | string | undefined;
 }
 
 type UpdateHiddenColumns<D extends Record<string, unknown>> = (
