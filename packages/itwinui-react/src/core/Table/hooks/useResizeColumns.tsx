@@ -370,10 +370,75 @@ const isNewColumnWidthsValid = <T extends Record<string, unknown>>(
     }
 
     const minWidth = header.minWidth || 0;
-    const maxWidth = header.maxWidth || Infinity;
-    if (width < minWidth || width > maxWidth) {
+    if (width < minWidth) {
       return false;
     }
+    let maxWidth = header.maxWidth || Infinity;
+
+    // method 1: use existing header element
+    // does not automatically compute css values including calc(), %, etc.
+
+    // if (typeof maxWidth === 'string') {
+    //   maxWidth = Infinity;
+    //   const el = document.querySelector(`[data-iui-header="${headerId}"]`);
+
+    //   if (el) {
+    //     const computedEl = getComputedStyle(el);
+    //     const elWidth =
+    //       parseFloat(computedEl.width) || el.getBoundingClientRect().width;
+    //     let elMaxWidth: string | number = computedEl.maxWidth;
+    //     if (elMaxWidth.endsWith('%')) {
+    //       const parent = el.parentElement;
+    //       if (parent) {
+    //         const computedParent = getComputedStyle(parent);
+    //         const parentWidth =
+    //           parseFloat(computedParent.width) ||
+    //           parent.getBoundingClientRect().width;
+    //         elMaxWidth = parentWidth * (parseFloat(elMaxWidth) / 100);
+    //       }
+    //     } else {
+    //       elMaxWidth = parseFloat(elMaxWidth);
+    //     }
+    //     elMaxWidth = Number(elMaxWidth);
+    //     if (!isNaN(elMaxWidth)) {
+    //       maxWidth = elMaxWidth;
+    //     }
+    //   }
+    // }
+
+    // method 2: apply styles to a temporary element
+    // automatically computes css string values not handled in method 1 (e.g. calc(), %, etc)
+
+    if (typeof maxWidth === 'string') {
+      const parEl = document.querySelector(`[data-iui-header="${headerId}"]`)
+        ?.parentElement;
+      const el = document.createElement('div');
+      Object.assign(el.style, {
+        position: 'absolute',
+        visibility: 'hidden',
+        height: '0',
+        maxWidth: maxWidth,
+        width: maxWidth,
+      });
+      parEl?.appendChild(el);
+
+      const elMaxWidth = parseFloat(getComputedStyle(el).width);
+      if (isNaN(elMaxWidth)) {
+        maxWidth = Infinity;
+      } else {
+        maxWidth = elMaxWidth === 0 ? Infinity : elMaxWidth;
+      }
+
+      parEl?.removeChild(el);
+    }
+    if (width > maxWidth) {
+      return false;
+    }
+
+    // if (typeof maxWidth === 'string') {
+    //   const n = maxWidth.match(/[\d.]+/);
+    //   maxWidth = n ? parseFloat(n[0]) : Infinity;
+    // }
   }
 
   return true;

@@ -104,6 +104,7 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
       {...columnProps}
       {...rest}
       key={columnProps.key}
+      data-iui-header={column.id}
       title={undefined}
       ref={useMergedRefs(
         React.useCallback(

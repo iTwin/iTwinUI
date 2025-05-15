@@ -485,7 +485,7 @@ export interface UseTableColumnOptions<D extends Record<string, unknown>> {
   Footer?: Renderer<FooterProps<D>> | undefined;
   width?: number | string | undefined;
   minWidth?: number | undefined;
-  maxWidth?: number | undefined;
+  maxWidth?: number | string | undefined;
 }
 
 type UpdateHiddenColumns<D extends Record<string, unknown>> = (
