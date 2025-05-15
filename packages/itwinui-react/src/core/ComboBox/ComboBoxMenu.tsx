@@ -127,11 +127,11 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
       <Portal portal={portal}>
         <List
           as='div'
+          className={cx('iui-menu', className)}
           id={`${id}-list`}
           role='listbox'
           ref={refs}
           {...popover.getFloatingProps({
-            className: cx('iui-menu', className),
             style: !enableVirtualization
               ? style
               : ({
