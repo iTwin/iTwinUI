@@ -1,5 +1,6 @@
 ---
 import outdent from 'outdent';
+import IconButton from './IconButton.astro';
 import VisuallyHidden from './utils/VisuallyHidden.astro';
 
 type Props = { code: { js: string; css?: string } } & astroHTML.JSX.HTMLAttributes;
@@ -54,9 +55,9 @@ const html = '<body style="margin: 0"></body>';
     }).replace(/"/g, '&quot;')}
   />
 
-  <button>
-    <span class='tooltip'>Open in CodePen</span>
-    <VisuallyHidden>in new tab</VisuallyHidden>
+  <IconButton>
+    <Fragment slot='tooltip'>Open in CodePen</Fragment>
+    <VisuallyHidden>Open in CodePen in new tab</VisuallyHidden>
     <svg aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'>
       <path
         fill='none'
@@ -66,54 +67,13 @@ const html = '<body style="margin: 0"></body>';
         stroke-width='2'
         d='M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path>
     </svg>
-  </button>
+  </IconButton>
 </form>
 
 <style lang='scss'>
   @layer components {
     form {
       position: relative;
-    }
-
-    button {
-      display: grid;
-      place-items: center;
-      min-width: 2rem;
-      min-height: 2rem;
-      color: var(--color-text);
-      background: transparent;
-      border-radius: 9e9px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      padding: 0.25rem;
-
-      &:hover {
-        background: hsl(0 0% 0% / 0.2);
-      }
-
-      > svg {
-        width: 1rem;
-        height: 1rem;
-      }
-    }
-
-    .tooltip {
-      visibility: hidden;
-
-      position: absolute;
-      top: -100%;
-      left: 50%;
-      transform: translate(-66%);
-      font-size: var(--type--2);
-      padding: 0.5rem;
-      white-space: nowrap;
-      background-color: var(--color-background-2);
-      border: 1px solid var(--color-line-2);
-      border-radius: 4px;
-
-      button:is(:hover, :focus-within) > & {
-        visibility: visible;
-      }
     }
   }
 </style>
