@@ -483,19 +483,17 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
                   initialFocus={initialFocus}
                 >
                   <Box
+                    className={cx(
+                      'iui-popover',
+                      { 'iui-popover-surface': applyBackground },
+                      className,
+                    )}
                     aria-labelledby={
                       !hasAriaLabel
                         ? popover.refs.domReference.current?.id
                         : undefined
                     }
-                    {...popover.getFloatingProps({
-                      className: cx(
-                        'iui-popover',
-                        { 'iui-popover-surface': applyBackground },
-                        className,
-                      ),
-                      ...rest,
-                    })}
+                    {...popover.getFloatingProps(rest)}
                     ref={popoverRef}
                   >
                     {content}
