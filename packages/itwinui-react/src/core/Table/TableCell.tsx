@@ -96,43 +96,41 @@ export const TableCell = <T extends Record<string, unknown>>(
     ],
   );
 
-  const cellRendererProps: CellRendererProps<T> = React.useMemo(
-    () => ({
-      cellElementProps,
-      cellProps,
-      children: (
-        <>
-          {cellContent}
-          {cell.column.sticky === 'left' &&
-            tableInstance.state.sticky.isScrolledToRight && (
-              <Box className='iui-table-cell-shadow-right' slot='shadows' />
-            )}
-          {cell.column.sticky === 'right' &&
-            tableInstance.state.sticky.isScrolledToLeft && (
-              <Box className='iui-table-cell-shadow-left' slot='shadows' />
-            )}
-        </>
-      ),
-    }),
+  const defaultCellRendererChildren = React.useMemo(
+    () => (
+      <>
+        {cellContent}
+        {cell.column.sticky === 'left' &&
+          tableInstance.state.sticky.isScrolledToRight && (
+            <Box className='iui-table-cell-shadow-right' slot='shadows' />
+          )}
+        {cell.column.sticky === 'right' &&
+          tableInstance.state.sticky.isScrolledToLeft && (
+            <Box className='iui-table-cell-shadow-left' slot='shadows' />
+          )}
+      </>
+    ),
     [
       cell.column.sticky,
       cellContent,
-      cellElementProps,
-      cellProps,
       tableInstance.state.sticky.isScrolledToLeft,
       tableInstance.state.sticky.isScrolledToRight,
     ],
   );
 
-  const defaultCellRendererPropsChildrenContextValue = React.useMemo(
-    () => cellRendererProps.children,
-    [cellRendererProps.children],
+  const cellRendererProps: CellRendererProps<T> = React.useMemo(
+    () => ({
+      cellElementProps,
+      cellProps,
+      children: defaultCellRendererChildren,
+    }),
+    [cellElementProps, cellProps, defaultCellRendererChildren],
   );
 
   return (
     <>
       <DefaultCellRendererPropsChildren.Provider
-        value={defaultCellRendererPropsChildrenContextValue}
+        value={defaultCellRendererChildren}
       >
         {cell.column.cellRenderer ? (
           cell.column.cellRenderer({
