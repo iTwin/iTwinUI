@@ -14,6 +14,10 @@ describe('ColorPicker', () => {
       cy.get('#ladle-root').within(() => {
         cy.get('button').first().click();
       });
+
+      // Wait for focus to move to the correct element after the click
+      cy.wait(100);
+
       cy.compareSnapshot(testName);
     });
   });
