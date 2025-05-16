@@ -1,0 +1,1 @@
+import{r as a,B as l,c,V as o}from"./index-DcTlL2oN.js";const d=a.forwardRef((e,n)=>{const{isExternal:r,underline:t,children:i,...s}=e;return a.createElement(l,{as:"a","data-iui-underline":t?"true":void 0,...s,ref:n,className:c("iui-anchor",{"iui-anchor-external":r},e.className)},i,e.target==="_blank"&&a.createElement(o,null," (opens in new tab)"))});export{d as A};
