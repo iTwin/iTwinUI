@@ -63,6 +63,14 @@ export const ActionColumn = <T extends Record<string, unknown>>({
     Header: ({ allColumns, dispatch, state }: HeaderProps<T>) => {
       const buttonRef = React.useRef<HTMLButtonElement>(null);
 
+      const middleware = React.useMemo(() => {
+        return {
+          size: {
+            maxHeight: '17.25rem', // Show approximately 8.5 checkboxes
+          },
+        };
+      }, []);
+
       if (!columnManager) {
         return null;
       }
@@ -113,10 +121,10 @@ export const ActionColumn = <T extends Record<string, unknown>>({
       return (
         <Popover
           applyBackground
+          className='iui-table-column-manager'
           content={
             <Flex
               as={FieldsetBase}
-              className='iui-table-column-manager'
               flexDirection='column'
               alignItems='flex-start'
             >
@@ -124,6 +132,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
               {headerCheckBoxes()}
             </Flex>
           }
+          middleware={middleware}
           {...popoverProps}
         >
           <IconButton
