@@ -16,10 +16,6 @@ Bentley makes extensive use of tables and data grids throughout its web applicat
 
 ## Basic Usage
 
-Related sections: [Commonly Used Props](#commonly-used-props), [All Props](#props).
-
-**Note**: To avoid bugs, always try **memoizing** props.
-
 The most basic `Table` can be implemented by passing four props:
 
 - `caption`: The caption/title of the table. This prop is marked as optional for backward compatibility but still **should** be used in all cases.
@@ -27,11 +23,59 @@ The most basic `Table` can be implemented by passing four props:
 - `columns`: an array containing table column objects. Each column object requires a `Header`, which will be displayed as a column title, and `id`.
 - `emptyTableContent`: a JSX element table content shown when there is no data.
 
+**Note**: To avoid bugs, always try **memoizing** props.
+
 <LiveExample src='Table.basic.jsx'>
   <AllExamples.TableBasicExample client:load />
 </LiveExample>
 
 **Note**: The `Table` component is built based on `react-table` v7. For more information about `react-table`, see their [docs](https://react-table-v7-docs.netlify.app/).
+
+Related sections: [Commonly Used Props](#commonly-used-props), [All Props](#props).
+
+## Sorting
+
+To enable sorting, set `isSortable` to `true`. To handle sorting manually (e.g. on the server-side), also pass `manualSortBy={true}` to `<Table>`. Can use in conjunction with `onSort` or `stateReducer` to listen to sorting changes.
+
+Sort arrows (↑ for ascending and ↓ for descending) are displayed in the header cells according to the following:
+
+- If a column is used for sorting, arrows are displayed regardless of hover.
+- If a column is not used for sorting but is sortable, the arrow appears only on hover to indicate the type of sorting that _will_ apply when clicked.
+- If a column is not sortable, no arrow will appear at all.
+
+Column specific props:
+
+- First sort option is ascending. To make descending as the first choice, pass `sortDescFirst: true` to the column object.
+- To disable sorting for a column, pass `disableSortBy: true` to the column object.
+
+```jsx {7, 12, 21}
+const columns = React.useMemo(
+  () => [
+    /* … */
+    {
+      Header: 'Name',
+      accessor: 'name',
+      sortDescFirst: true,
+    },
+    {
+      Header: 'Description',
+      accessor: 'description',
+      disableSortBy: true,
+    },
+  ],
+  [],
+);
+
+<Table
+  /* … */
+  columns={columns}
+  isSortable
+/>;
+```
+
+<LiveExample src='Table.sorting.jsx'>
+  <AllExamples.TableSortingExample client:load />
+</LiveExample>
 
 ## Selection
 
@@ -101,7 +145,7 @@ By default, `selectRowOnClick` is `true`. This is ideal for most cases. However,
 />
 ```
 
-To prevent the selection of the row when just hoping to select the cell content, we add a wrapper to increase the hit size of the cell content. However, this does not happen if a `cellRenderer` is passed with custom children.
+To prevent the selection of the row when just hoping to select the cell content, iTwinUI adds a wrapper to increase the hit size of the cell content. However, this does not happen if a `cellRenderer` is passed with custom children.
 
 ```jsx
 const columns = React.useMemo(
@@ -163,50 +207,6 @@ const columns = React.useMemo(
 );
 ```
 
-## Sorting
-
-To enable sorting, set `isSortable` to `true`. To handle sorting manually (e.g. on the server-side), also pass `manualSortBy={true}` to `<Table>`. Can use in conjunction with `onSort` or `stateReducer` to listen to sorting changes.
-
-Sort arrows (↑ for ascending and ↓ for descending) are displayed in the header cells according to the following:
-
-- If a column is used for sorting, arrows are displayed regardless of hover.
-- If a column is not used for sorting but is sortable, the arrow appears only on hover to indicate the type of sorting that _will_ apply when clicked.
-- If a column is not sortable, no arrow will appear at all.
-
-Column specific props:
-
-- First sort option is ascending. To make descending as the first choice, pass `sortDescFirst: true` to the column object.
-- To disable sorting for a column, pass `disableSortBy: true` to the column object.
-
-```jsx {7, 12, 21}
-const columns = React.useMemo(
-  () => [
-    /* … */
-    {
-      Header: 'Name',
-      accessor: 'name',
-      sortDescFirst: true,
-    },
-    {
-      Header: 'Description',
-      accessor: 'description',
-      disableSortBy: true,
-    },
-  ],
-  [],
-);
-
-<Table
-  /* … */
-  columns={columns}
-  isSortable
-/>;
-```
-
-<LiveExample src='Table.sorting.jsx'>
-  <AllExamples.TableSortingExample client:load />
-</LiveExample>
-
 ## Subrow
 
 The `Table` component supports hierarchical data structures allowing end users to display collapsible subrows. Each data entry in the `data` array can have a `subRows` array.
@@ -240,13 +240,13 @@ const data = React.useMemo(() => {
 
 ## Expandable content
 
-**Note**: Subrows and Expandable content _cannot_ be used simultaneously.
-
 Apart from collapsible subrows, custom collapsible content can also be rendered right after the row if it is expanded. This is done by passing a function to the `subComponent` prop.
 
 <LiveExample src='Table.expandableContent.jsx'>
   <AllExamples.TableExpandableContentExample client:load />
 </LiveExample>
+
+**Note**: Subrows and Expandable content _cannot_ be used simultaneously.
 
 ## Virtualization
 
