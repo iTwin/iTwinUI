@@ -18,7 +18,12 @@ import {
   type TableFilterProps,
   tableFilters,
 } from './filters/index.js';
-import type { CellProps, Column, Row } from '../../react-table/react-table.js';
+import type {
+  CellProps,
+  CellRendererProps,
+  Column,
+  Row,
+} from '../../react-table/react-table.js';
 import { InputGroup } from '../InputGroup/InputGroup.js';
 import { Radio } from '../Radio/Radio.js';
 import {
@@ -4020,41 +4025,70 @@ it('should pass custom props to different parts of Table', () => {
   expect(emptyTableContent.style.fontSize).toBe('12px');
 });
 
-it('should apply clamp, if cell is string value and no custom Cell is rendered', () => {
-  const data = [{ name: 'name' }];
-  const columns: Column<TestDataType>[] = [
-    {
-      Header: 'Name',
-      accessor: 'name',
-      cellClassName: 'test-cell',
-    },
-  ];
-  const { container } = renderComponent({
-    columns,
-    data,
-  });
-  const host = container.querySelector('.test-cell');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('div');
-  expect(lineClamp).toBeTruthy();
-});
+it.each([
+  ['no-custom-Cell', 'no-custom-cellRenderer', true, true],
+  ['custom-Cell', 'no-custom-cellRenderer', false, true],
+  ['no-custom-Cell', 'custom-cellRenderer', false, false],
+  ['no-custom-Cell', 'default-children-cellRenderer', true, true],
+  ['custom-Cell', 'custom-cellRenderer', false, false],
+  ['custom-Cell', 'default-children-cellRenderer', false, true],
+] as const)(
+  'if %s and %s are used, then shouldClamp: %s and shouldIncreaseHitTarget: %s',
+  (isCustomCell, isCustomRenderer, shouldClamp, shouldIncreaseHitTarget) => {
+    const data = [{ name: 'name' }];
 
-it('should not apply clamp, if custom Cell is used', () => {
-  const data = [{ name: 'name' }];
-  const columns: Column<TestDataType>[] = [
-    {
-      Header: 'Name',
-      accessor: 'name',
-      cellClassName: 'test-cell',
-      Cell: () => 'my custom content',
-    },
-  ];
-  const { container } = renderComponent({
-    columns,
-    data,
-  });
-  const host = container.querySelector('.test-cell');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
-  expect(lineClamp).toBeNull();
-});
+    const cellRenderer = (() => {
+      if (isCustomRenderer === 'custom-cellRenderer') {
+        return (props: CellRendererProps<TestDataType>) => (
+          <DefaultCell {...props}>my custom content</DefaultCell>
+        );
+      }
+      if (isCustomRenderer === 'default-children-cellRenderer') {
+        return (props: CellRendererProps<TestDataType>) => (
+          <DefaultCell {...props} className='default-cell' />
+        );
+      }
+      return undefined;
+    })();
+
+    const columns: Column<TestDataType>[] = [
+      isCustomCell === 'custom-Cell'
+        ? {
+            Header: 'Name',
+            accessor: 'name',
+            Cell: () => 'my custom content',
+            cellClassName: 'test-cell',
+            cellRenderer: cellRenderer,
+          }
+        : {
+            Header: 'Name',
+            accessor: 'name',
+            cellClassName: 'test-cell',
+            cellRenderer: cellRenderer,
+          },
+    ];
+    const { container } = renderComponent({
+      columns,
+      data,
+    });
+
+    const host = container.querySelector('.test-cell');
+    expect(host?.shadowRoot).toBeTruthy();
+    const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
+    const increaseHitTarget = host?.shadowRoot?.querySelector(
+      '._iui-table-cell-default-content',
+    );
+
+    if (shouldClamp) {
+      expect(lineClamp).toBeTruthy();
+    } else {
+      expect(lineClamp).toBeNull();
+    }
+
+    if (shouldIncreaseHitTarget) {
+      expect(increaseHitTarget).toBeTruthy();
+    } else {
+      expect(increaseHitTarget).toBeNull();
+    }
+  },
+);

@@ -11,7 +11,7 @@ import {
   MenuItem,
   Surface,
 } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {

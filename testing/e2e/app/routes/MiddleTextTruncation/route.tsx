@@ -1,5 +1,5 @@
 import { MiddleTextTruncation } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 const longText =
   'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html';
