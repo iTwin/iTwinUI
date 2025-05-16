@@ -9,9 +9,18 @@ const withThemeProvider = (Component: () => React.ReactElement<any>) => () => {
   const [portalContainer, setPortalContainer] = React.useState<HTMLElement>();
   React.useEffect(() => void setPortalContainer(document.body), []);
 
+  // Use "dark" theme for initial render. Then switch to "inherit" for the docs theme toggle.
+  // This helps avoid a flicker of light theme if using `"inherit"` directly during initial render.
+  const [theme, setTheme] = React.useState<'dark' | 'inherit'>('dark');
+  React.useEffect(() => {
+    if (theme === 'dark') {
+      setTheme('inherit');
+    }
+  }, [theme]);
+
   return (
     <ThemeProvider
-      theme='dark'
+      theme={theme}
       themeOptions={{ applyBackground: false }}
       portalContainer={portalContainer}
       style={{ display: 'contents' }}
