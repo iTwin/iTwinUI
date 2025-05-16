@@ -294,12 +294,14 @@ export const Tree = <T,>(props: TreeProps<T>) => {
             ? cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
                 ...children.props,
                 key: virtualItem.key,
-                'data-iui-index': virtualItem.index,
+                // 'data-iui-index': virtualItem.index,
                 'data-iui-virtualizer': 'item',
                 ref: virtualizer.measureElement,
                 style: {
                   ...children.props.style,
                   '--_iui-width': '100%',
+                  width: 'min-content',
+                  minWidth: '100%',
                   transform: `translateY(${virtualItem.start}px)`,
                 },
               }))
