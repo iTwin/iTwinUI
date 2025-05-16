@@ -716,6 +716,9 @@ export const VirtualizedWithHorizontalScroll = () => {
     'Node-0-0': true,
     'Node-0-0-0': true,
     'Node-0-0-0-0': true,
+    'Node-0-0-0-0-0': true,
+    'Node-0-0-0-0-0-0': true,
+    'Node-0-0-0-0-0-0-0': true,
     'Node-2': true,
     'Node-2-1': true,
     'Node-3': true,
@@ -751,7 +754,7 @@ export const VirtualizedWithHorizontalScroll = () => {
 
   const data = useMemo(
     () =>
-      Array(100000)
+      Array(50)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -784,7 +787,7 @@ export const VirtualizedWithHorizontalScroll = () => {
             onSelected={onSelectedNodeChange}
             checkbox={<Checkbox variant='eyeball' disabled={rest.isDisabled} />}
             icon={<SvgPlaceholder />}
-            style={{ width: 'fit-content', minWidth: '100%' }}
+            // style={{ width: 'fit-content', minWidth: '100%' }}
             {...rest}
           />
         ),

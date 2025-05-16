@@ -287,6 +287,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
       })}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
     >
+      {/* {Math.random() > 0.5 ? 'HELLO' : 'HELLO'.repeat(10)} */}
       <Box
         as='div'
         style={{ '--level': nodeDepth } as React.CSSProperties}
