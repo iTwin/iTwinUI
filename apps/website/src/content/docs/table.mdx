@@ -47,7 +47,48 @@ The `Table` component supports row selection, allowing users to select one or mo
 />
 ```
 
-Since clicking the row selects it, you may need to stop click event propagations in the rows' children to prevent the row from being selected when clicking on its children.
+By default, `selectRowOnClick` is `true`. This is ideal for most cases. However, this can be disabled in use-cases where the loss of the selection state due to an accidental row click is too disruptive.
+
+```jsx {3}
+<Table
+  /* … */
+  selectRowOnClick={false}
+/>
+```
+
+To prevent selection of the row when just hoping to select the cell content, we add a wrapper to increase the hit size of the cell content. However, this does not happen if a `cellRenderer` is passed with custom children.
+
+```jsx
+const columns = React.useMemo(
+  () => [
+    // hit-size increasing wrapper added since no cellRenderer.
+    {
+      /* … */
+    },
+
+    // hit-size increasing wrapper added since
+    // <DefaultCell> children is not overridden.
+    {
+      /* … */
+      cellRenderer: (props) => <DefaultCell {...props} />,
+    },
+
+    // hit-size increasing wrapper NOT added since
+    // <DefaultCell> children is overridden.
+    {
+      /* … */
+      cellRenderer: (props) => (
+        <DefaultCell {...props}>
+          <span>{props.value}</span>
+        </DefaultCell>
+      ),
+    },
+  ],
+  [],
+);
+```
+
+To prevent the selection of the row when clicking on custom content in `Cell` or `cellRenderer`, you may need to stop click event propagations.
 
 ```jsx {10, 14}
 const columns = React.useMemo(
