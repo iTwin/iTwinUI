@@ -23,6 +23,7 @@ $borderless-horizontal-tab-min-height: calc(
   --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-blue);
 
   --_iui-tab-color-default: var(--iui-color-text);
+  --_iui-tab-color-hover: var(--iui-color-text);
   --_iui-tab-color-selected: var(--iui-color-text-accent);
   --_iui-tab-color-disabled: var(--iui-color-text-disabled);
   --_iui-tab-color-green-selected: var(--iui-color-text-positive);
@@ -55,17 +56,33 @@ $borderless-horizontal-tab-min-height: calc(
     block-size: 100%;
     cursor: pointer;
     color: var(--_iui-tab-color);
-    transition: background-color var(--iui-duration-1) ease-out;
+    transition:
+      background-color var(--iui-duration-1) ease-out,
+      color var(--iui-duration-1) ease-out;
     text-align: start;
     scroll-margin: var(--iui-size-m);
+    background-color: var(--_iui-tab-bg-color);
 
     &::after {
       background-color: var(--_iui-tab-color-stripe);
     }
 
+    &:hover {
+      --_iui-tab-bg-color: var(--_iui-tab-bg-color-hover);
+      --_iui-tab-color: var(--_iui-tab-color-hover);
+    }
+
     &:is([aria-selected='true'], [aria-current]) {
+      --_iui-tab-bg-color: var(--_iui-tab-bg-color-selected);
       --_iui-tab-color: var(--_iui-tab-color-selected);
 
+      &:hover {
+        --_iui-tab-bg-color: var(--_iui-tab-bg-color-selected-hover);
+      }
+    }
+
+    &:hover,
+    &:is([aria-selected='true'], [aria-current]) {
       .iui-tab-icon svg {
         fill: currentColor;
       }
@@ -77,6 +94,7 @@ $borderless-horizontal-tab-min-height: calc(
 
     &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       cursor: not-allowed;
+      --_iui-tab-bg-color: var(--_iui-tab-bg-color-disabled);
       --_iui-tab-color: var(--_iui-tab-color-disabled);
 
       .iui-tab-description {
@@ -111,6 +129,7 @@ $borderless-horizontal-tab-min-height: calc(
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
     grid-area: description;
+    transition: color var(--iui-duration-1) ease-out;
   }
 
   &.iui-green .iui-tab {
