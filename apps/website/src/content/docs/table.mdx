@@ -250,11 +250,11 @@ Apart from collapsible subrows, custom collapsible content can also be rendered 
 
 ## Virtualization
 
-**Note**: This feature is still considered _experimental_ and so may have some performance issues, bugs, future changes, etc. If virtualization does not work, [pagination](#pagination) is the next best alternative for large datasets.
-
 For tables with large datasets, the `enableVirtualization` prop can be set to `true` to try to enhance performance by only rendering the rows that are currently in the viewport + some buffer rows.
 
 Having a height on the table is required for virtualization to work.
+
+**Note**: This feature is still considered _experimental_ and so may have some performance issues, bugs, future changes, etc. If virtualization does not work, [pagination](#pagination) is the next best alternative for large datasets.
 
 <LiveExample src='Table.virtualization.jsx'>
   <AllExamples.TableVirtualizationExample client:load />

@@ -15,7 +15,6 @@ export default () => {
     const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
     return {
       product: `Product ${keyValue}`,
-      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
       price: ((index % 10) + 1) * 15,
       stock: (index % 3) * 10,
       status: (index % 3) * 10 === 0 ? 'negative' : undefined,
@@ -29,7 +28,7 @@ export default () => {
 
   const data = React.useMemo(
     () =>
-      Array(100)
+      Array(20)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -43,13 +42,6 @@ export default () => {
         accessor: 'product',
         Filter: tableFilters.TextFilter(),
         minWidth: 150,
-      },
-      {
-        id: 'description',
-        Header: 'Description',
-        accessor: 'description',
-        disableSortBy: true,
-        minWidth: 200,
       },
       {
         id: 'price',
@@ -154,7 +146,6 @@ export default () => {
         isResizable
         isSortable
         columnResizeMode='expand'
-        paginatorRenderer={paginatorRenderer}
         rowProps={rowProps}
       />
     </div>
