@@ -47,6 +47,51 @@ The `Table` component supports row selection, allowing users to select one or mo
 />
 ```
 
+There are two available selection modes passed using the `selectionMode` prop: `"single"` and `"multi"` (default).
+
+### Multi-row selection
+
+In multi-row selection (`selectionMode="multi" | undefined`), a column with checkboxes for toggling a row's selection is added. This mode also supports <kbd>Ctrl</kbd>/<kbd>Command</kbd> + click and <kbd>Shift</kbd> + click shortcuts to select multiple rows.
+
+<LiveExample src='Table.selectMulti.jsx'>
+  <AllExamples.TableSelectMultiExample client:load />
+</LiveExample>
+
+### Single-row selection
+
+In single row selection mode (`selectionMode="single"`), users can select each row by clicking on the desired row.
+
+**Note**: For accessibility reasons, in single-selection Tables, it is highly recommended to include a button in the primary cell of each row. [More info](https://github.com/iTwin/iTwinUI/issues/2130#issuecomment-2209287280).
+
+```jsx
+const columns = React.useMemo(
+  () =>
+    [
+      /* … */
+      {
+        /* … */
+        Cell: ({ value }) => {
+          return (
+            <Anchor
+              as="button"
+              onClick={() => console.log(`Selected ${value}`)}
+            >
+              {value}
+            </Anchor>
+          );
+        },
+      },
+    ] satisfies Column[],
+  []
+);
+```
+
+<LiveExample src='Table.selectSingle.jsx'>
+  <AllExamples.TableSelectSingleExample client:load />
+</LiveExample>
+
+### Prevent accidental row selection
+
 By default, `selectRowOnClick` is `true`. This is ideal for most cases. However, this can be disabled in use-cases where the loss of the selection state due to an accidental row click is too disruptive.
 
 ```jsx {3}
@@ -56,7 +101,7 @@ By default, `selectRowOnClick` is `true`. This is ideal for most cases. However,
 />
 ```
 
-To prevent selection of the row when just hoping to select the cell content, we add a wrapper to increase the hit size of the cell content. However, this does not happen if a `cellRenderer` is passed with custom children.
+To prevent the selection of the row when just hoping to select the cell content, we add a wrapper to increase the hit size of the cell content. However, this does not happen if a `cellRenderer` is passed with custom children.
 
 ```jsx
 const columns = React.useMemo(
@@ -117,49 +162,6 @@ const columns = React.useMemo(
   [],
 );
 ```
-
-There are two available selection modes passed using the `selectionMode` prop: `"single"` and `"multi"` (default).
-
-### Multi-row selection
-
-In multi-row selection (`selectionMode="multi" | undefined`), a column with checkboxes for toggling a row's selection is added. This mode also supports <kbd>Ctrl</kbd>/<kbd>Command</kbd> + click and <kbd>Shift</kbd> + click shortcuts to select multiple rows.
-
-<LiveExample src='Table.selectMulti.jsx'>
-  <AllExamples.TableSelectMultiExample client:load />
-</LiveExample>
-
-### Single-row selection
-
-In single row selection mode (`selectionMode="single"`), users can select each row by clicking on the desired row.
-
-**Note**: For accessibility reasons, in single-selection Tables, it is highly recommended to include a button in the primary cell of each row. [More info](https://github.com/iTwin/iTwinUI/issues/2130#issuecomment-2209287280).
-
-```jsx
-const columns = React.useMemo(
-  () =>
-    [
-      /* … */
-      {
-        /* … */
-        Cell: ({ value }) => {
-          return (
-            <Anchor
-              as="button"
-              onClick={() => console.log(`Selected ${value}`)}
-            >
-              {value}
-            </Anchor>
-          );
-        },
-      },
-    ] satisfies Column[],
-  []
-);
-```
-
-<LiveExample src='Table.selectSingle.jsx'>
-  <AllExamples.TableSelectSingleExample client:load />
-</LiveExample>
 
 ## Sorting
 
