@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { VisuallyHidden, ThemeProvider } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 export default function Page() {
   const [searchParams] = useSearchParams();

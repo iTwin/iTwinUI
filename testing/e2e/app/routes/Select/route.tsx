@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Select } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 export default function SelectTest() {
   const [searchParams] = useSearchParams();

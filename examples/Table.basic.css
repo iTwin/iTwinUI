@@ -1,0 +1,3 @@
+.demo-container {
+  min-inline-size: min(100cqi, 350px);
+}
