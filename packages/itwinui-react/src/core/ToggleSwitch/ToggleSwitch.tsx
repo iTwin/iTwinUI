@@ -30,7 +30,7 @@ type ToggleSwitchProps = {
    *
    * Regardless of whether `wrapperProps` is provided or not, `...rest` props will always be applied on the `input`.
    */
-  wrapperProps?: React.ComponentProps<'div'>;
+  wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
   | {
       /**
@@ -104,7 +104,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...(wrapperSpecificProps as any)}
+      {...wrapperSpecificProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
