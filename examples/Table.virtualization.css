@@ -1,0 +1,8 @@
+.demo-container {
+  inline-size: 500px;
+  overflow: auto;
+}
+
+.table {
+  block-size: 300px;
+}
