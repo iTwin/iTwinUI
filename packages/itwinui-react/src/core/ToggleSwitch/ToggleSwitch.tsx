@@ -24,7 +24,11 @@ type ToggleSwitchProps = {
   /**
    * Passes props to wrapper.
    *
-   * The wrapper is a `label` element when label is provided, and a `div` otherwise.
+   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` are
+   * applied on the wrapper.
+   * - Else, `className` and `style` will be applied on the wrapper.
+   *
+   * Regardless of whether `wrapperProps` is provided or not, `...rest` props will always be applied on the `input`.
    */
   wrapperProps?: React.ComponentProps<'div'>;
 } & (
@@ -83,10 +87,24 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const shouldShowIcon =
     iconProp === undefined || (iconProp !== null && size !== 'small');
 
+  const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
+    if (wrapperProps != null) {
+      return {
+        wrapperSpecificProps: { ...wrapperProps },
+        inputSpecificProps: { className, style, ...rest },
+      };
+    }
+
+    return {
+      wrapperSpecificProps: { className, style },
+      inputSpecificProps: { className: undefined, style: undefined, ...rest },
+    };
+  }, [className, rest, style, wrapperProps]);
+
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...(wrapperProps as any)}
+      {...(wrapperSpecificProps as any)}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -94,18 +112,15 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        className,
-        wrapperProps?.className,
+        wrapperSpecificProps.className,
       )}
       data-iui-size={size}
-      style={{
-        ...style,
-        ...wrapperProps?.style,
-      }}
+      style={wrapperSpecificProps.style}
     >
       <Box
         as='input'
-        className='iui-toggle-switch'
+        {...inputSpecificProps}
+        className={cx('iui-toggle-switch', inputSpecificProps.className)}
         type='checkbox'
         role='switch'
         disabled={disabled}
