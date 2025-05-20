@@ -9,6 +9,10 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type ToggleSwitchProps = {
   /**
+   * Label for the toggle switch.
+   */
+  label?: React.ReactNode;
+  /**
    * Passes properties for ToggleSwitch label.
    */
   labelProps?: React.ComponentProps<'span'>;
@@ -17,44 +21,31 @@ type ToggleSwitchProps = {
    * @default 'right'
    */
   labelPosition?: 'left' | 'right';
+  /**
+   * Passes props to wrapper.
+   *
+   * The wrapper is a `label` element when label is provided, and a `div` otherwise.
+   */
+  wrapperProps?: React.ComponentProps<'div'>;
 } & (
   | {
       /**
-       * Label for the toggle switch.
+       * Size of the toggle switch.
+       *  @default 'default'
        */
-      label: React.ReactNode;
+      size?: 'default';
       /**
-       * Passes props to wrapper.
+       * Custom icon inside the toggle switch. Shown only when toggle is checked and size is not small.
        *
-       * The wrapper is a `label` element when label is provided, and a `div` otherwise.
-       * The prop type changes accordingly.
+       * Will override the default checkmark icon.
        */
-      wrapperProps?: React.ComponentProps<'label'>;
+      icon?: React.JSX.Element | null;
     }
   | {
-      label?: null | undefined;
-      wrapperProps?: React.ComponentProps<'div'>;
+      size: 'small';
+      icon?: never;
     }
-) &
-  (
-    | {
-        /**
-         * Size of the toggle switch.
-         *  @default 'default'
-         */
-        size?: 'default';
-        /**
-         * Custom icon inside the toggle switch. Shown only when toggle is checked and size is not small.
-         *
-         * Will override the default checkmark icon.
-         */
-        icon?: React.JSX.Element | null;
-      }
-    | {
-        size: 'small';
-        icon?: never;
-      }
-  );
+);
 
 /**
  * A switch for turning on and off.
