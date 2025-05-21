@@ -306,8 +306,6 @@
   }
 
   .iui-tab {
-    // To prevent outline from overlapping with the stripe
-    outline-offset: -6px;
     // To account for outline-offset
     border-radius: calc(4px + 6px);
 
