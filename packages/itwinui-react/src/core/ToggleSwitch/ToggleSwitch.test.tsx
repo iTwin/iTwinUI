@@ -5,7 +5,6 @@
 import { SvgMore as SvgPlaceholder } from '../../utils/index.js';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch.js';
-import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 const assertBaseElements = (
   container: HTMLElement,
