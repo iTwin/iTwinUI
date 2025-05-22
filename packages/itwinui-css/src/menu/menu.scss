@@ -129,6 +129,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 :is(.iui-menu-item-skeleton > .iui-icon, .iui-list-item-icon) {
   flex: 0 0 auto;
+  color: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
 
   &,
   svg {
