@@ -22,6 +22,16 @@ type ToggleSwitchProps = {
    * @default 'right'
    */
   labelPosition?: 'left' | 'right';
+  /**
+   * Passes props to wrapper.
+   *
+   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` are
+   * applied on the wrapper.
+   * - Else, `className` and `style` will be applied on the wrapper.
+   *
+   * Regardless of whether `wrapperProps` is provided or not, `...rest` props will always be applied on the `input`.
+   */
+  wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
   | {
       /**
@@ -47,9 +57,9 @@ type ToggleSwitchProps = {
  *
  * ---
  *
- * Note: `className` and `style` props are applied depending on the `ThemeProvider`'s `future.consistentPropsSpread` prop:
+ * Note: `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s `future.consistentPropsSpread` prop:
+ * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where all the other props are applied.
  * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
- * - `consistentPropsSpread=true`: `className` and `style` applied on the `input` element where all the other props are applied.
  *
  * ---
  *
@@ -70,7 +80,7 @@ type ToggleSwitchProps = {
  * <ToggleSwitch label='With icon toggle' icon={<svg viewBox='0 0 16 16'><path d='M1 1v14h14V1H1zm13 1.7v10.6L8.7 8 14 2.7zM8 7.3L2.7 2h10.6L8 7.3zm-.7.7L2 13.3V2.7L7.3 8zm.7.7l5.3 5.3H2.7L8 8.7z' /></svg>} />
  *
  * @example
- * <caption>ThemeProvider's consistentPropsSpread: false/undefined</caption>
+ * <caption>ThemeProvider's consistentPropsSpread=false/undefined</caption>
  * <ThemeProvider>
  *   <ToggleSwitch
  *     className='my-class' // applied to wrapper
@@ -82,7 +92,7 @@ type ToggleSwitchProps = {
  * </ThemeProvider>
  *
  * @example
- * <caption>ThemeProvider's consistentPropsSpread: true</caption>
+ * <caption>ThemeProvider's consistentPropsSpread=true or wrapperProps != null</caption>
  * <ThemeProvider future={{ consistentPropsSpread: true }}>
  *   <ToggleSwitch
  *     className='my-class' // applied to input
@@ -92,6 +102,18 @@ type ToggleSwitchProps = {
  *     data-dummy='value' // applied to input
  *   />
  * </ThemeProvider>
+ *
+ * <ToggleSwitch
+ *   className='my-class' // applied to input
+ *   style={{ width: 80 }} // applied to input
+ *   wrapperProps={{
+ *     className: 'my-wrapper-class', // applied to wrapper
+ *     style: { width: 80 }, // applied to wrapper
+ *   }}
+ *
+ *   // Other props are applied to input
+ *   data-dummy='value' // applied to input
+ * />
  */
 export const ToggleSwitch = React.forwardRef((props, ref) => {
   const {
@@ -102,6 +124,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     style,
     size = 'default',
     labelProps = {},
+    wrapperProps,
     icon: iconProp,
     ...rest
   } = props;
@@ -110,28 +133,30 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     React.useContext(ThemeProviderFutureContext)?.consistentPropsSpread ===
     true;
 
-  // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
-  const shouldShowIcon =
-    iconProp === undefined || (iconProp !== null && size !== 'small');
-
-  const consistencyRelatedProps = React.useMemo(() => {
-    if (consistentPropsSpread) {
+  const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
+    if (wrapperProps != null || consistentPropsSpread) {
       return {
-        wrapperProps: { className: undefined, style: undefined },
-        inputProps: { ...rest, className, style },
+        wrapperSpecificProps: {
+          ...wrapperProps,
+        },
+        inputSpecificProps: { ...rest, className, style },
       };
     }
 
     return {
-      wrapperProps: { className, style },
-      inputProps: { ...rest, className: undefined, style: undefined },
+      wrapperSpecificProps: { className, style },
+      inputSpecificProps: { className: undefined, style: undefined, ...rest },
     };
-  }, [className, consistentPropsSpread, rest, style]);
+  }, [className, consistentPropsSpread, rest, style, wrapperProps]);
+
+  // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
+  const shouldShowIcon =
+    iconProp === undefined || (iconProp !== null && size !== 'small');
 
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...consistencyRelatedProps.wrapperProps}
+      {...wrapperSpecificProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -139,22 +164,18 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        consistencyRelatedProps.wrapperProps.className,
+        wrapperSpecificProps.className,
       )}
       data-iui-size={size}
     >
       <Box
         as='input'
-        {...consistencyRelatedProps.inputProps}
-        className={cx(
-          'iui-toggle-switch',
-          consistencyRelatedProps.inputProps.className,
-        )}
+        {...inputSpecificProps}
+        className={cx('iui-toggle-switch', inputSpecificProps.className)}
         type='checkbox'
         role='switch'
         disabled={disabled}
         ref={ref}
-        {...rest}
       />
       {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
