@@ -5,6 +5,7 @@
 import { SvgMore as SvgPlaceholder } from '../../utils/index.js';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch.js';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 const assertBaseElements = (
   container: HTMLElement,
@@ -141,4 +142,58 @@ it('should correctly pass labelProps', () => {
   expect(
     (container.querySelector('.switch-class') as HTMLElement).style.color,
   ).toBe('blue');
+});
+
+it('should apply className and style to wrapper when future.consistentPropsSpread is false/undefined. Rest applied to input.', () => {
+  const { container } = render(
+    <ToggleSwitch
+      className='switch-class'
+      style={{ width: 80 }}
+      label='my label'
+      data-dummy-attribute='dummy'
+    />,
+  );
+
+  assertBaseElements(container, 'right');
+  const wrapper = container.querySelector(
+    '.iui-toggle-switch-wrapper',
+  ) as HTMLElement;
+  const input = container.querySelector('.iui-toggle-switch') as HTMLElement;
+
+  expect(wrapper).toHaveClass('switch-class');
+  expect(input).not.toHaveClass('switch-class');
+
+  expect(wrapper.style.width).toBe('80px');
+  expect(input.style.width).not.toBe('80px');
+
+  expect(wrapper).not.toHaveAttribute('data-dummy-attribute', 'dummy');
+  expect(input).toHaveAttribute('data-dummy-attribute', 'dummy');
+});
+
+it('should apply className and style to input when future.consistentPropsSpread is true. Rest applied to input.', () => {
+  const { container } = render(
+    <ThemeProvider future={{ consistentPropsSpread: true }}>
+      <ToggleSwitch
+        className='switch-class'
+        style={{ width: 80 }}
+        label='my label'
+        data-dummy-attribute='dummy'
+      />
+    </ThemeProvider>,
+  );
+
+  assertBaseElements(container, 'right');
+  const wrapper = container.querySelector(
+    '.iui-toggle-switch-wrapper',
+  ) as HTMLElement;
+  const input = container.querySelector('.iui-toggle-switch') as HTMLElement;
+
+  expect(wrapper).not.toHaveClass('switch-class');
+  expect(input).toHaveClass('switch-class');
+
+  expect(wrapper.style.width).not.toBe('80px');
+  expect(input.style.width).toBe('80px');
+
+  expect(wrapper).not.toHaveAttribute('data-dummy-attribute', 'dummy');
+  expect(input).toHaveAttribute('data-dummy-attribute', 'dummy');
 });
