@@ -18,8 +18,8 @@ const { ...props } = Astro.props;
         const tooltip = button.querySelector('.tooltip') as HTMLElement;
         const buttonId = button.id;
 
-        button.style.setProperty('anchor-name', `--anchor-${buttonId}`);
-        tooltip.style.setProperty('position-anchor', `--anchor-${buttonId}`);
+        button.setAttribute('style', `anchor-name: --anchor-${buttonId}`);
+        tooltip.setAttribute('style', `position-anchor: --anchor-${buttonId}`);
       }
     },
   );
@@ -51,13 +51,12 @@ const { ...props } = Astro.props;
     }
 
     @position-try --fallback-tooltip-position {
-      position-area: top left;
       right: anchor(right);
     }
 
     .tooltip {
       visibility: hidden;
-      position: fixed;
+      position: absolute;
       font-size: var(--type--2);
       padding: 0.5rem;
       white-space: nowrap;
@@ -66,10 +65,10 @@ const { ...props } = Astro.props;
       border-radius: 4px;
       margin-block-end: 5px;
 
-      position-area: top;
+      position-area: top center;
       position-try-fallbacks: --fallback-tooltip-position;
 
-      button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
+      button:is(:hover, :focus-visible, :has(:focus-visible)) & {
         visibility: visible;
       }
     }

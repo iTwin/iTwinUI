@@ -31,7 +31,7 @@ const { src, truncate = true, hideCode = false } = Astro.props;
 
 const jsxPath = require.resolve(`examples/${src}`);
 const cssPath = jsxPath.replace(/\.jsx$/, '.css');
-const exampleName = src.split('.').slice(0, -1).join('-');
+const exampleName = src.toLowerCase().split('.').slice(0, -1).join('-');
 let jsxCode = await fs.promises.readFile(jsxPath, 'utf8');
 
 // strip copyright header (first 4 lines)
