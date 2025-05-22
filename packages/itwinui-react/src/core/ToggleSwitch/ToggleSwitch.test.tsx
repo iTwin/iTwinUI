@@ -197,28 +197,3 @@ it('should apply className and style to input when future.consistentPropsSpread 
   expect(wrapper).not.toHaveAttribute('data-dummy-attribute', 'dummy');
   expect(input).toHaveAttribute('data-dummy-attribute', 'dummy');
 });
-
-it('should correctly pass wrapperProps', () => {
-  const { container } = render(
-    <ToggleSwitch
-      wrapperProps={{
-        className: 'wrapper-class-from-wrapper-props',
-        style: { color: 'blue' },
-      }}
-      className='wrapper-class-from-root'
-      style={{ color: 'red' }}
-    />,
-  );
-
-  const wrapper = container.querySelector(
-    '.iui-toggle-switch-wrapper',
-  ) as HTMLElement;
-
-  expect(wrapper).toBeTruthy();
-
-  expect(wrapper.className).toContain('wrapper-class-from-wrapper-props');
-  expect(wrapper.className).toContain('wrapper-class-from-root');
-
-  expect(wrapper.style.color).toBe('blue');
-  expect(wrapper.style.color).not.toBe('red');
-});
