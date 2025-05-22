@@ -21,16 +21,6 @@ type ToggleSwitchProps = {
    * @default 'right'
    */
   labelPosition?: 'left' | 'right';
-  /**
-   * Passes props to wrapper.
-   *
-   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` are
-   * applied on the wrapper.
-   * - Else, `className` and `style` will be applied on the wrapper.
-   *
-   * Regardless of whether `wrapperProps` is provided or not, `...rest` props will always be applied on the `input`.
-   */
-  wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
   | {
       /**
@@ -78,7 +68,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     style,
     size = 'default',
     labelProps = {},
-    wrapperProps,
     icon: iconProp,
     ...rest
   } = props;
@@ -87,24 +76,9 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const shouldShowIcon =
     iconProp === undefined || (iconProp !== null && size !== 'small');
 
-  const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
-    if (wrapperProps != null) {
-      return {
-        wrapperSpecificProps: { ...wrapperProps },
-        inputSpecificProps: { className, style, ...rest },
-      };
-    }
-
-    return {
-      wrapperSpecificProps: { className, style },
-      inputSpecificProps: { className: undefined, style: undefined, ...rest },
-    };
-  }, [className, rest, style, wrapperProps]);
-
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...wrapperSpecificProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -112,15 +86,14 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        wrapperSpecificProps.className,
+        className,
       )}
       data-iui-size={size}
-      style={wrapperSpecificProps.style}
+      style={style}
     >
       <Box
         as='input'
-        {...inputSpecificProps}
-        className={cx('iui-toggle-switch', inputSpecificProps.className)}
+        className='iui-toggle-switch'
         type='checkbox'
         role='switch'
         disabled={disabled}
