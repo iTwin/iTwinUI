@@ -15,6 +15,7 @@ import { SubRowExpander } from './SubRowExpander.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { DefaultCell } from './cells/index.js';
 import { Box } from '../../utils/index.js';
+import { DefaultCellRendererPropsChildren } from './cells/DefaultCell.js';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;
@@ -60,31 +61,43 @@ export const TableCell = <T extends Record<string, unknown>>(
     },
   });
 
-  const cellProps: CellProps<T> = {
-    ...tableInstance,
-    ...{ cell, row: cell.row, value: cell.value, column: cell.column },
-  };
-
-  const cellContent = (
-    <>
-      {tableHasSubRows && hasSubRowExpander && cell.row.canExpand && (
-        <SubRowExpander
-          cell={cell}
-          isDisabled={isDisabled}
-          cellProps={cellProps}
-          expanderCell={expanderCell}
-          density={density}
-          slot='start'
-        />
-      )}
-      {cell.render('Cell')}
-    </>
+  const cellProps: CellProps<T> = React.useMemo(
+    () => ({
+      ...tableInstance,
+      ...{ cell, row: cell.row, value: cell.value, column: cell.column },
+    }),
+    [cell, tableInstance],
   );
 
-  const cellRendererProps: CellRendererProps<T> = {
-    cellElementProps,
-    cellProps,
-    children: (
+  const cellContent = React.useMemo(
+    () => (
+      <>
+        {tableHasSubRows && hasSubRowExpander && cell.row.canExpand && (
+          <SubRowExpander
+            cell={cell}
+            isDisabled={isDisabled}
+            cellProps={cellProps}
+            expanderCell={expanderCell}
+            density={density}
+            slot='start'
+          />
+        )}
+        {cell.render('Cell')}
+      </>
+    ),
+    [
+      cell,
+      cellProps,
+      density,
+      expanderCell,
+      hasSubRowExpander,
+      isDisabled,
+      tableHasSubRows,
+    ],
+  );
+
+  const defaultCellRendererChildren = React.useMemo(
+    () => (
       <>
         {cellContent}
         {cell.column.sticky === 'left' &&
@@ -97,18 +110,37 @@ export const TableCell = <T extends Record<string, unknown>>(
           )}
       </>
     ),
-  };
+    [
+      cell.column.sticky,
+      cellContent,
+      tableInstance.state.sticky.isScrolledToLeft,
+      tableInstance.state.sticky.isScrolledToRight,
+    ],
+  );
+
+  const cellRendererProps: CellRendererProps<T> = React.useMemo(
+    () => ({
+      cellElementProps,
+      cellProps,
+      children: defaultCellRendererChildren,
+    }),
+    [cellElementProps, cellProps, defaultCellRendererChildren],
+  );
 
   return (
     <>
-      {cell.column.cellRenderer ? (
-        cell.column.cellRenderer({
-          ...cellRendererProps,
-          isDisabled: () => isDisabled,
-        })
-      ) : (
-        <DefaultCell {...cellRendererProps} isDisabled={() => isDisabled} />
-      )}
+      <DefaultCellRendererPropsChildren.Provider
+        value={defaultCellRendererChildren}
+      >
+        {cell.column.cellRenderer ? (
+          cell.column.cellRenderer({
+            ...cellRendererProps,
+            isDisabled: () => isDisabled,
+          })
+        ) : (
+          <DefaultCell {...cellRendererProps} isDisabled={() => isDisabled} />
+        )}
+      </DefaultCellRendererPropsChildren.Provider>
     </>
   );
 };

@@ -7,6 +7,19 @@ import { Popover } from './Popover.js';
 import { userEvent } from '@testing-library/user-event';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
+it('renders correctly', async () => {
+  render(
+    <Popover content='Popped over'>
+      <button>Click me</button>
+    </Popover>,
+  );
+
+  await userEvent.click(screen.getByText('Click me'));
+
+  const popover = screen.getByRole('dialog');
+  expect(popover).toHaveClass('iui-popover');
+});
+
 it('should open on click', async () => {
   render(
     <Popover content='Popped over'>
