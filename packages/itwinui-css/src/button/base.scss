@@ -41,6 +41,7 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
 @mixin iui-button-icon {
   display: inline-flex;
   flex-shrink: 0;
+  color: var(--_iui-button-icon-color, currentColor);
 
   svg {
     @include mixins.iui-icon-style('m');
