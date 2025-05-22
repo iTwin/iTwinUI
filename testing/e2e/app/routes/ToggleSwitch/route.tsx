@@ -3,12 +3,13 @@ import { useSearchParams } from 'react-router';
 
 export default function Page() {
   const [searchParams] = useSearchParams();
-  const shouldPassWrapperProps =
-    searchParams.get('shouldPassWrapperProps') === 'true';
+
   const themeProviderConsistentPropsSpread =
     searchParams.get('themeProviderConsistentPropsSpread') != null
       ? searchParams.get('themeProviderConsistentPropsSpread') === 'true'
       : undefined;
+  const shouldPassWrapperProps =
+    searchParams.get('shouldPassWrapperProps') === 'true';
 
   return (
     <ThemeProvider
