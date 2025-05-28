@@ -134,7 +134,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &,
   svg {
     @include mixins.iui-icon-style('m');
-    fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
+    fill: currentColor;
   }
 }
 

@@ -46,7 +46,7 @@ $disabledButtonSelectors: '[disabled], :disabled, [aria-disabled="true"], [data-
   svg {
     @include mixins.iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
-    fill: inherit;
+    fill: currentColor;
   }
 }
 
