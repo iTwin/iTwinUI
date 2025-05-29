@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': minor
+'@itwin/itwinui-react': patch
 ---
 
-Added support for font icons to the `IconButton` and `MenuItem` components by using the `color` property instead of the `fill` property.
+Fixed color mismatch between font icons and svg icons in `IconButton` and `MenuItem`. (NOTE: Despite this fix, use of font icons is still discouraged).
