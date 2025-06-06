@@ -41,9 +41,19 @@ const { content = {} } = Astro.props;
         }
       }
     </style>
+    <script>
+      import polyfill from '@oddbird/css-anchor-positioning/fn';
 
-    <script type='module' is:inline>
-      import('https://unpkg.com/@oddbird/css-anchor-positioning');
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!('anchorName' in document.documentElement.style)) {
+          const anchorStyles: HTMLElement[] = Array.from(
+            document.querySelectorAll('[id^="anchor-styles"]'),
+          );
+          polyfill({
+            elements: anchorStyles,
+          });
+        }
+      });
     </script>
   </head>
 
