@@ -54,7 +54,7 @@ const { id, ...props } = Astro.props;
       bottom: anchor(--anchor-button top);
       position-try-fallbacks: --fallback-tooltip-position;
 
-      button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
+      .toggle-button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
         visibility: visible;
       }
     }
