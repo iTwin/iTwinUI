@@ -87,5 +87,8 @@
     "node": ">=18.14.1"
   },
   "packageManager": "pnpm@9.1.0",
-  "prettier": "configs/prettier-config"
+  "prettier": "configs/prettier-config",
+  "dependencies": {
+    "@microsoft/api-extractor": "^7.52.8"
+  }
 }
