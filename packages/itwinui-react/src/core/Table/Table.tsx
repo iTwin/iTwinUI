@@ -447,6 +447,41 @@ export const Table = <
     caption = 'Table',
     role,
     scrollToRow,
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    useControlledState,
+    autoResetExpanded,
+    autoResetFilters,
+    autoResetGlobalFilter,
+    autoResetHiddenColumns,
+    autoResetPage,
+    autoResetResize,
+    autoResetSelectedRows,
+    autoResetSortBy,
+    defaultCanFilter,
+    defaultCanSort,
+    disableFilters,
+    disableGlobalFilter,
+    disableMultiSort,
+    disableSortRemove,
+    disabledMultiRemove,
+    expandSubRows,
+    globalFilter,
+    initialState,
+    isMultiSortEvent,
+    manualExpandedKey,
+    manualFilters,
+    manualGlobalFilter,
+    manualPagination,
+    manualRowSelectedKey,
+    manualSortBy,
+    maxMultiSortColCount,
+    orderByFn,
+    pageCount,
+    paginateExpandedRows,
+    sortTypes,
+    /* eslint-enable @typescript-eslint/no-unused-vars */
+
     ..._rest
   } = props;
 
@@ -702,7 +737,38 @@ export const Table = <
     {
       manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
       paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
-      ...props,
+
+      // --- START --- Unused props from TableOptions<T> ------
+      useControlledState,
+      autoResetExpanded,
+      autoResetFilters,
+      autoResetGlobalFilter,
+      autoResetHiddenColumns,
+      autoResetPage,
+      autoResetResize,
+      autoResetSelectedRows,
+      autoResetSortBy,
+      defaultCanFilter,
+      defaultCanSort,
+      disableFilters,
+      disableGlobalFilter,
+      disableMultiSort,
+      disableSortRemove,
+      disabledMultiRemove,
+      expandSubRows,
+      globalFilter,
+      isMultiSortEvent,
+      manualExpandedKey,
+      manualFilters,
+      manualGlobalFilter,
+      manualRowSelectedKey,
+      manualSortBy,
+      maxMultiSortColCount,
+      orderByFn,
+      pageCount,
+      sortTypes,
+      // --- END --- Unused props from TableOptions<T> ------
+
       columns,
       defaultColumn,
       disableSortBy: !isSortable,
