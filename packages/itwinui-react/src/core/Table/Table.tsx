@@ -447,8 +447,6 @@ export const Table = <
     caption = 'Table',
     role,
     scrollToRow,
-
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     useControlledState,
     autoResetExpanded,
     autoResetFilters,
@@ -472,14 +470,16 @@ export const Table = <
     manualExpandedKey,
     manualFilters,
     manualGlobalFilter,
-    manualPagination,
     manualRowSelectedKey,
     manualSortBy,
     maxMultiSortColCount,
     orderByFn,
     pageCount,
-    paginateExpandedRows,
     sortTypes,
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    manualPagination,
+    paginateExpandedRows,
     /* eslint-enable @typescript-eslint/no-unused-vars */
 
     ..._rest
@@ -737,8 +737,6 @@ export const Table = <
     {
       manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
       paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
-
-      // --- START --- Unused props from TableOptions<T> ------
       useControlledState,
       autoResetExpanded,
       autoResetFilters,
@@ -767,8 +765,6 @@ export const Table = <
       orderByFn,
       pageCount,
       sortTypes,
-      // --- END --- Unused props from TableOptions<T> ------
-
       columns,
       defaultColumn,
       disableSortBy: !isSortable,
@@ -777,7 +773,7 @@ export const Table = <
       selectSubRows,
       data,
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
-      initialState: { pageSize, ...props.initialState },
+      initialState: { pageSize, ...initialState },
       columnResizeMode,
       getRowId: subComponent ? getRowIdWithSubComponents : getRowId, // only call this wrapper function when sub-component is present
     },
