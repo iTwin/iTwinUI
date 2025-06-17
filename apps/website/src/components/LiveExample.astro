@@ -31,7 +31,6 @@ const { src, truncate = true, hideCode = false } = Astro.props;
 
 const jsxPath = require.resolve(`examples/${src}`);
 const cssPath = jsxPath.replace(/\.jsx$/, '.css');
-const exampleName = src.toLowerCase().split('.').slice(0, -1).join('-');
 let jsxCode = await fs.promises.readFile(jsxPath, 'utf8');
 
 // strip copyright header (first 4 lines)
@@ -65,7 +64,7 @@ const cssCode = await (async () => {
   </template>
 
   <div class='demo-actions'>
-    <IconButton id=`${exampleName}-theme-toggle` data-theme-toggle>
+    <IconButton data-theme-toggle>
       <Fragment slot='tooltip'>Toggle theme</Fragment>
       <VisuallyHidden>Toggle theme</VisuallyHidden>
       <svg width='16' height='16' viewBox='0 0 20 20' aria-hidden='true'>
@@ -74,7 +73,6 @@ const cssCode = await (async () => {
       </svg>
     </IconButton>
     <OpenInCodePen
-      id=`${exampleName}-code-pen`
       code={{
         js: jsxCode,
         css: cssCode,

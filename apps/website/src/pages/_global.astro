@@ -46,11 +46,11 @@ const { content = {} } = Astro.props;
 
       document.addEventListener('DOMContentLoaded', () => {
         if (!('anchorName' in document.documentElement.style)) {
-          const anchorStyles: HTMLElement[] = Array.from(
-            document.querySelectorAll('[id^="anchor-styles"]'),
+          const anchorElements: HTMLElement[] = Array.from(
+            document.querySelectorAll('.icon-button'),
           );
           polyfill({
-            elements: anchorStyles,
+            elements: anchorElements,
           });
         }
       });

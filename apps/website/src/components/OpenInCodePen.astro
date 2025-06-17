@@ -3,8 +3,8 @@ import outdent from 'outdent';
 import IconButton from './IconButton.astro';
 import VisuallyHidden from './utils/VisuallyHidden.astro';
 
-type Props = { id: string; code: { js: string; css?: string } } & astroHTML.JSX.HTMLAttributes;
-const { id, code, ...rest } = Astro.props;
+type Props = { code: { js: string; css?: string } } & astroHTML.JSX.HTMLAttributes;
+const { code, ...rest } = Astro.props;
 
 code.js ||= 'export default () => "hello";';
 code.css ||= '';
@@ -55,7 +55,7 @@ const html = '<body style="margin: 0"></body>';
     }).replace(/"/g, '&quot;')}
   />
 
-  <IconButton id={id}>
+  <IconButton>
     <Fragment slot='tooltip'>Open in CodePen</Fragment>
     <VisuallyHidden>Open in CodePen in new tab</VisuallyHidden>
     <svg aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'>
