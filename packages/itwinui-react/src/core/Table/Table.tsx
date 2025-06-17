@@ -447,6 +447,9 @@ export const Table = <
     caption = 'Table',
     role,
     scrollToRow,
+
+    // Destructing remaining TableOptions<T> props to prevent passing them to the DOM.
+    // https://github.com/iTwin/iTwinUI/issues/2553
     useControlledState,
     autoResetExpanded,
     autoResetFilters,
@@ -458,6 +461,7 @@ export const Table = <
     autoResetSortBy,
     defaultCanFilter,
     defaultCanSort,
+    defaultColumn: defaultColumnProp,
     disableFilters,
     disableGlobalFilter,
     disableMultiSort,
@@ -476,11 +480,8 @@ export const Table = <
     orderByFn,
     pageCount,
     sortTypes,
-
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     manualPagination,
     paginateExpandedRows,
-    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     ..._rest
   } = props;
@@ -531,8 +532,9 @@ export const Table = <
       maxWidth: 0,
       minWidth: 0,
       width: 0,
+      ...defaultColumnProp,
     }),
-    [],
+    [defaultColumnProp],
   );
 
   const rowHeight = React.useMemo(() => {
@@ -735,8 +737,8 @@ export const Table = <
 
   const instance = useTable<T>(
     {
-      manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
-      paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
+      manualPagination: manualPagination ?? !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
+      paginateExpandedRows: paginateExpandedRows ?? false, // When false, it shows sub-rows in the current page instead of splitting them
       useControlledState,
       autoResetExpanded,
       autoResetFilters,
