@@ -1,3 +1,7 @@
 .demo-container {
-  min-width: min(100cqi, 350px);
+  min-inline-size: min(100cqi, 350px);
+}
+
+.table {
+  block-size: 220px;
 }

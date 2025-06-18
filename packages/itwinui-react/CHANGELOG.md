@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.18.3
+
+### Patch Changes
+
+- [#2554](https://github.com/iTwin/iTwinUI/pull/2554): Fixed color mismatch between font icons and svg icons in `IconButton` and `MenuItem`. (NOTE: Despite this fix, use of font icons is still discouraged).
+
+## 3.18.2
+
+### Patch Changes
+
+- [#2535](https://github.com/iTwin/iTwinUI/pull/2535): Fixed `Table` regression where custom content passed into `DefaultCell` was not stretching to the full cell width.
+- [#2524](https://github.com/iTwin/iTwinUI/pull/2524): Fixed `Popover` regression of unintended automatic resizing of floating content when opened.
+- [#2538](https://github.com/iTwin/iTwinUI/pull/2538): `Table`'s `caption` prop is now correctly applied.
+
 ## 3.18.1
 
 ### Patch Changes

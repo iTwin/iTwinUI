@@ -1072,7 +1072,6 @@ export const Table = <
           },
         })}
         role={role} // To remove the role="table" from getTableProps()
-        aria-labelledby={captionId}
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...outerAriaRestAttributes}
@@ -1080,8 +1079,14 @@ export const Table = <
       >
         <ShadowRoot>
           {/* Inner wrapper with role="table" to only include table elements */}
-          <div role='table' {...innerAriaRestAttributes} {...tableProps}>
-            <slot name='caption' />
+          <div
+            role='table'
+            {...innerAriaRestAttributes}
+            {...tableProps}
+            aria-labelledby={captionId}
+          >
+            <VisuallyHidden id={captionId}>{caption}</VisuallyHidden>
+
             <slot name='iui-table-header-wrapper' />
             <slot name='iui-table-body' />
           </div>
@@ -1090,10 +1095,6 @@ export const Table = <
           <slot name='iui-table-body-extra' />
           <slot />
         </ShadowRoot>
-
-        <VisuallyHidden slot='caption' id={captionId}>
-          {caption}
-        </VisuallyHidden>
 
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
           // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id

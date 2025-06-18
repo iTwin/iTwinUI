@@ -8,7 +8,7 @@
     "@fontsource/noto-sans-mono": "5",
     "@itwin/itwinui-icons-react": "2.10.0",
     "@itwin/itwinui-variables": "*",
-    "@itwin/itwinui-react-v5": "npm:@itwin/itwinui-react@5.0.0-alpha.13",
+    "@stratakit/foundations": "^0.1.0",
     "@itwin/itwinui-react": "*",
     "@ladle/react": "^5.0.2",
     "@types/node": "*",

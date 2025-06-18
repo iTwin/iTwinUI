@@ -21,6 +21,7 @@
     "@itwin/itwinui-react": "*",
     "@itwin/itwinui-variables": "*",
     "@jsdevtools/rehype-toc": "3.0.2",
+    "@nanostores/react": "^1.0.0",
     "@tippyjs/react": "4.2.6",
     "@types/react": "*",
     "astro": "^5",

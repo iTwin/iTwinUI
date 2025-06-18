@@ -32,6 +32,9 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
 } & CellRendererProps<T> &
   React.ComponentPropsWithoutRef<'div'>;
 
+export const DefaultCellRendererPropsChildren =
+  React.createContext<React.ReactNode>(undefined);
+
 /**
  * Default cell.
  * It should be passed to `cellRenderer`.
@@ -47,12 +50,15 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
   const instance = React.useContext(TableInstanceContext);
+
   const isCustomCell = React.useMemo(
     () =>
       instance?.columns.find(({ id }) => props.cellProps.column.id === id)
         ?.Cell !== defaultColumn.Cell,
     [instance, props.cellProps.column.id],
   );
+  const isCellRendererChildrenCustom =
+    React.useContext(DefaultCellRendererPropsChildren) !== props.children;
 
   const {
     cellElementProps: {
@@ -68,7 +74,9 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' && !isCustomCell,
+    clamp = typeof cellProps.value === 'string' &&
+      !isCustomCell &&
+      !isCellRendererChildrenCustom,
     ...rest
   } = props;
 
@@ -86,10 +94,8 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     >
       <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
-        <div
-          className='_iui-table-cell-main-content'
-          onClick={(e) => e.stopPropagation()}
-        >
+
+        <TableCellContent shouldRenderWrapper={isCellRendererChildrenCustom}>
           {clamp ? (
             <LineClamp>
               <slot />
@@ -97,7 +103,8 @@ export const DefaultCell = <T extends Record<string, unknown>>(
           ) : (
             <slot />
           )}
-        </div>
+        </TableCellContent>
+
         <slot name='end' />
         <slot name='shadows' />
       </ShadowRoot>
@@ -128,16 +135,43 @@ if (process.env.NODE_ENV === 'development') {
   DefaultCell.displayName = 'DefaultCell';
 }
 
+// ----------------------------------------------------------------------------
+
+/**
+ * If `shouldRenderWrapper` is true, `children` will be wrapped in a `div` with `_iui-table-cell-default-content` class.
+ *
+ * The `_iui-table-cell-default-content` div increases the hit target size.
+ */
+const TableCellContent = (props: {
+  children: React.ReactNode;
+  shouldRenderWrapper: boolean;
+}) => {
+  const { children, shouldRenderWrapper } = props;
+
+  return shouldRenderWrapper ? (
+    children
+  ) : (
+    <div
+      className='_iui-table-cell-default-content'
+      onClick={(e) => e.stopPropagation()}
+    >
+      {children}
+    </div>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
 /**
  * Increase hit target size of the cell content.
  * This helps prevent accidental row selection when selecting text.
  */
 const css = /* css */ `
-._iui-table-cell-main-content {
+._iui-table-cell-default-content {
   position: relative;
   isolation: isolate;
 }
-._iui-table-cell-main-content::before {
+._iui-table-cell-default-content::before {
   content: '';
   display: block;
   position: absolute;

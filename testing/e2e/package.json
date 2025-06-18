@@ -22,7 +22,7 @@
     "@react-router/fs-routes": "^7.5.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "1.52.0",
     "@react-router/dev": "^7.5.3",
     "@types/node": "*",
     "@types/react": "^19",
