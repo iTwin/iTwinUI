@@ -24,7 +24,7 @@
     "@nanostores/react": "^1.0.0",
     "@tippyjs/react": "4.2.6",
     "@types/react": "*",
-    "astro": "^5",
+    "astro": "^5.9.4",
     "astro-auto-import": "^0.4.4",
     "astro-expressive-code": "^0.41.2",
     "examples": "workspace:*",
@@ -35,12 +35,12 @@
     "outdent": "^0.8.0",
     "postcss-preset-env": "^10.1.6",
     "react": "*",
-    "react-docgen": "^8.0.0",
+    "react-docgen": "^6.0.0-alpha.3",
     "react-docgen-typescript": "^2.2.2",
     "react-dom": "*",
     "rehype-autolink-headings": "^7",
     "rehype-slug": "^6",
-    "sass": "*",
+    "sass": "1.89.2",
     "snarkdown": "2.0.0"
   },
   "prettier": "configs/prettier-astro-config.js"

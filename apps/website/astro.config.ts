@@ -19,6 +19,7 @@ import { itwinuiReactAliases } from 'helpers';
 export default defineConfig({
   site: 'https://itwinui.bentley.com',
   integrations: [
+    react(),
     AutoImport({
       imports: [
         './src/components/PropsTable.astro',
@@ -28,7 +29,6 @@ export default defineConfig({
         { examples: 'AllExamples' },
       ],
     }),
-    react(),
     astroExpressiveCode({
       themes: ['github-dark'],
       cascadeLayer: 'thirdparty.ec',
