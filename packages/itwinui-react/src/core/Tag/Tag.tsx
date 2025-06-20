@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { SvgCloseSmall, Box, ButtonBase } from '../../utils/index.js';
+import {
+  SvgCloseSmall,
+  Box,
+  ButtonBase,
+  mergeEventHandlers,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { LinkAction, LinkBox } from '../LinkAction/LinkAction.js';
@@ -93,8 +98,11 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
       {variant === 'default' ? (
         <Box
           as={(shouldUseLinkAction ? LinkAction : 'span') as 'span'}
-          onClick={shouldUseLinkAction ? onClick : undefined}
           {...labelProps}
+          onClick={mergeEventHandlers(
+            shouldUseLinkAction ? onClick : undefined,
+            labelProps?.onClick,
+          )}
           className={cx('iui-tag-label', labelProps?.className)}
         >
           {children}
@@ -106,9 +114,9 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
         <IconButton
           styleType='borderless'
           size='small'
-          onClick={onRemove}
           aria-label='Delete tag'
           {...removeButtonProps}
+          onClick={mergeEventHandlers(onRemove, removeButtonProps?.onClick)}
           className={cx('iui-tag-button', removeButtonProps?.className)}
         >
           <SvgCloseSmall aria-hidden />
