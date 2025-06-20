@@ -24,7 +24,12 @@ export const cloneElementWithRef = (
   }
 
   // Supporting React 19 and 18
-  const childrenRef = children.props?.ref || (children as any)?.ref;
+  const childrenRef = (() => {
+    if (React.version.startsWith('19.')) {
+      return children.props?.ref;
+    }
+    return (children as any)?.ref;
+  })();
 
   const props = getProps(children);
   const ref = mergeRefs(
