@@ -23,7 +23,7 @@ export const cloneElementWithRef = (
     return children;
   }
 
-  // Supporting React 19 and 18
+  // Supporting React 19 and earlier versions
   const childrenRef = (() => {
     if (React.version.startsWith('19.')) {
       return children.props?.ref;
