@@ -100,8 +100,8 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
           as={(shouldUseLinkAction ? LinkAction : 'span') as 'span'}
           {...labelProps}
           onClick={mergeEventHandlers(
-            shouldUseLinkAction ? onClick : undefined,
             labelProps?.onClick,
+            shouldUseLinkAction ? onClick : undefined,
           )}
           className={cx('iui-tag-label', labelProps?.className)}
         >
@@ -116,7 +116,7 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
           size='small'
           aria-label='Delete tag'
           {...removeButtonProps}
-          onClick={mergeEventHandlers(onRemove, removeButtonProps?.onClick)}
+          onClick={mergeEventHandlers(removeButtonProps?.onClick, onRemove)}
           className={cx('iui-tag-button', removeButtonProps?.className)}
         >
           <SvgCloseSmall aria-hidden />
