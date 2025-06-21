@@ -129,6 +129,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     pageSize,
     onPageChange,
     totalSelectedRowsCount = 0,
+    pageCount,
     focusActivationMode = 'manual',
     isLoading = false,
     size = 'default',
@@ -171,7 +172,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   }, [focusedIndex]);
 
   const buttonSize = size != 'default' ? 'small' : undefined;
-  const totalPagesCount = Math.ceil(totalRowsCount / pageSize);
+  const totalPagesCount = pageCount ?? Math.ceil(totalRowsCount / pageSize);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser/assistive technologies

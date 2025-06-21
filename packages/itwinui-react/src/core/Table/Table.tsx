@@ -110,6 +110,10 @@ export type TablePaginatorRendererProps = {
    * Total number of rows selected (for mutli-selection mode only)
    */
   totalSelectedRowsCount?: number;
+  /**
+   * Total number of pages.
+   */
+  pageCount?: number;
 };
 
 /**
@@ -765,7 +769,7 @@ export const Table = <
       manualSortBy,
       maxMultiSortColCount,
       orderByFn,
-      pageCount: manualPagination ? pageCount : -1,
+      pageCount: pageCount ?? -1,
       sortTypes,
       columns,
       defaultColumn,
@@ -918,6 +922,7 @@ export const Table = <
       currentPage: state.pageIndex,
       pageSize: state.pageSize,
       totalRowsCount: rows.length,
+      pageCount,
       size: density !== 'default' ? 'small' : 'default',
       isLoading,
       onPageChange: gotoPage,
@@ -930,6 +935,7 @@ export const Table = <
       gotoPage,
       isLoading,
       rows.length,
+      pageCount,
       setPageSize,
       state.pageIndex,
       state.pageSize,
