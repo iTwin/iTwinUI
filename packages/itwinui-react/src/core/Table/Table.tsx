@@ -765,7 +765,7 @@ export const Table = <
       manualSortBy,
       maxMultiSortColCount,
       orderByFn,
-      pageCount,
+      pageCount: manualPagination ? pageCount : -1,
       sortTypes,
       columns,
       defaultColumn,
