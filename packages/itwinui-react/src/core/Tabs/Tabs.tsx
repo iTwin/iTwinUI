@@ -90,26 +90,9 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     color = 'blue',
     defaultValue,
     value: activeValueProp,
-    onValueChange: onValueChangeProp,
+    onValueChange,
     ...rest
   } = props;
-
-  const [oldActiveValue, setOldActiveValue] = React.useState<
-    string | undefined
-  >(undefined);
-
-  /**
-   * Called only when the value *changes*.
-   */
-  const onValueChange = React.useCallback(
-    (value: string) => {
-      if (value !== oldActiveValue) {
-        setOldActiveValue(value);
-        onValueChangeProp?.(value);
-      }
-    },
-    [oldActiveValue, onValueChangeProp],
-  );
 
   const [activeValue, setActiveValue] = useControlledState(
     defaultValue,
