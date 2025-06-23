@@ -52,14 +52,6 @@ export type FutureOptions = {
    * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
    */
   themeBridge?: boolean;
-  /**
-   * There are some iTwinUI components where some props are applied on an element different from where the `rest` props are applied. Setting this to `true` will apply all props on the same element.
-   *
-   * Component affected: `ToggleSwitch`.
-   *
-   * See component JSDocs for more details.
-   */
-  consistentPropsSpread?: boolean;
 };
 
 export type ThemeType = 'light' | 'dark' | 'os';
@@ -193,8 +185,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
   future.themeBridge ??= parent.context?.future?.themeBridge;
-  future.consistentPropsSpread ??=
-    parent.context?.future?.consistentPropsSpread;
 
   const portalContainerFromParent = React.useContext(PortalContainerContext);
 
@@ -285,24 +275,20 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyBackground = themeOptions?.applyBackground;
 
   return (
-    <ThemeProviderFutureContext.Provider
-      value={React.useMemo(() => future, [future])}
+    <Box
+      className={cx(
+        'iui-root',
+        { 'iui-root-background': shouldApplyBackground },
+        className,
+      )}
+      data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
+      data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
+      data-iui-bridge={!!future?.themeBridge ? true : undefined}
+      ref={forwardedRef}
+      {...rest}
     >
-      <Box
-        className={cx(
-          'iui-root',
-          { 'iui-root-background': shouldApplyBackground },
-          className,
-        )}
-        data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
-        data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-        data-iui-bridge={!!future?.themeBridge ? true : undefined}
-        ref={forwardedRef}
-        {...rest}
-      >
-        {children}
-      </Box>
-    </ThemeProviderFutureContext.Provider>
+      {children}
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 
@@ -563,9 +549,3 @@ const useInertPolyfill = () => {
     })();
   }, []);
 };
-
-// ----------------------------------------------------------------------------
-
-export const ThemeProviderFutureContext = React.createContext<
-  FutureOptions | undefined
->(undefined);
