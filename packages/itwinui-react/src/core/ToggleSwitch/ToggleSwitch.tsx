@@ -24,11 +24,12 @@ type ToggleSwitchProps = {
   /**
    * Passes props to wrapper.
    *
-   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` is
-   * applied on the wrapper.
-   * - Else, `className` and `style` will be applied on the wrapper.
+   * `className` and `style` props are applied depending on `wrapperProps`:
+   * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where all the other props are applied.
+   * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
+   * element where all the other props are applied.
    *
-   * Regardless of whether `wrapperProps` is provided or not, `...rest` props will always be applied on the `input`.
+   * `...rest` props will always be applied on the `input`.
    */
   wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
@@ -56,9 +57,11 @@ type ToggleSwitchProps = {
  *
  * ---
  *
- * Note: `className` and `style` props are applied depending on `wrapperProps`:
- * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where all the other props are applied.
- * - Else: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
+ * `className` and `style` props are applied depending on `wrapperProps`:
+ * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where
+ * all the other props are applied.
+ * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
+ * element where all the other props are applied.
  *
  * ---
  *
