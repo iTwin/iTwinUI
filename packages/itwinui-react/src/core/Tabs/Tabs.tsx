@@ -69,8 +69,7 @@ type TabsWrapperOwnProps = {
    */
   value?: string;
   /**
-   * Function that gets called when active tab *changes* (uncontrolled mode) or should *change* (when in
-   * controlled mode).
+   * Function that gets called when active tab *changes* (uncontrolled mode) or should *change* (controlled mode).
    *
    * Should be used alongside `value` prop.
    *

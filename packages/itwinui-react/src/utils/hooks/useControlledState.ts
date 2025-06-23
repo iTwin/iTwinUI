@@ -12,8 +12,8 @@ import * as React from 'react';
  * and controlled states. If controlled value/setter is not passed,
  * then it will work just like a regular `useState`.
  *
- * **NOTE**: `setControlledState` is called only when the value **changes**.
- * So, if `setState` is called with the same value as the current `state`, `setControlledState` is not called.
+ * **NOTE**: `setControlledState` is called only when the value *changes* (uncontrolled mode) or should *change*
+ * (controlled mode).
  *
  * @example
  * const [state, setState] = useControlledState(null, props.value, props.onChange);
@@ -41,7 +41,7 @@ export const useControlledState = <T>(
         return value;
       })();
 
-      // Called only when the value *changes*.
+      // Called only when the value *changes* (uncontrolled mode) or should *change* (controlled mode).
       if (newValue === oldState.current) {
         return;
       }

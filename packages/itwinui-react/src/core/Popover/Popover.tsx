@@ -65,7 +65,7 @@ type PopoverOptions = {
    */
   visible?: boolean;
   /**
-   * Callback invoked every time the popover visibility **changes** (uncontrolled mode) or should *change*
+   * Callback invoked every time the popover visibility *changes* (uncontrolled mode) or should *change*
    * (controlled mode) as a result of internal logic.
    *
    * Should be used alongside `visible` prop.
