@@ -138,7 +138,7 @@ importers:
         version: 2.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -207,7 +207,7 @@ importers:
         version: 5.0.19
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -217,6 +217,9 @@ importers:
       '@nanostores/react':
         specifier: ^1.0.0
         version: 1.0.0(nanostores@1.0.1)(react@19.1.0)
+      '@oddbird/css-anchor-positioning':
+        specifier: ^0.6.0
+        version: 0.6.0
       '@tippyjs/react':
         specifier: 4.2.6
         version: 4.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -282,7 +285,7 @@ importers:
     dependencies:
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../packages/itwinui-react
+        version: 3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
   internal/configs:
     dependencies:
@@ -444,7 +447,7 @@ importers:
         version: 2.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -472,7 +475,7 @@ importers:
     dependencies:
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axe-core:
         specifier: ^4.10.2
         version: 4.10.2
@@ -490,7 +493,7 @@ importers:
     dependencies:
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-router/fs-routes':
         specifier: ^7.5.3
         version: 7.5.3(@react-router/dev@7.5.3(@react-router/serve@7.5.3(react-router@7.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(react-router@7.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@6.3.4(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0))(yaml@2.5.0))(typescript@5.5.2)
@@ -1858,10 +1861,22 @@ packages:
         integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==,
       }
 
+  '@floating-ui/core@1.7.1':
+    resolution:
+      {
+        integrity: sha512-azI0DrjMMfIug/ExbBaeDVJXcY0a7EPvPjb2xAJPa4HeimBX+Z18HK8QQR3jb6356SnDDdxx+hinMLcJEDdOjw==,
+      }
+
   '@floating-ui/dom@1.6.3':
     resolution:
       {
         integrity: sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==,
+      }
+
+  '@floating-ui/dom@1.7.1':
+    resolution:
+      {
+        integrity: sha512-cwsmW/zyw5ltYTUeeYJ60CnQuPqmGwuGVhG9w0PRaRKkAyi38BT5CKrpIbb+jtahSwUl04cWzSx9ZOIxeS6RsQ==,
       }
 
   '@floating-ui/react-dom@2.1.2':
@@ -2164,6 +2179,15 @@ packages:
     peerDependencies:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
+
+  '@itwin/itwinui-react@3.18.3':
+    resolution:
+      {
+        integrity: sha512-zCrDaHmh1F28K6iBY7QSq+SInxmfkeVgEXbyEpTmbJz8K6PjFHdwpqxuzpD55h2WDrp7kBTWIKcNLuvJ2RhDjg==,
+      }
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
 
   '@jridgewell/gen-mapping@0.3.5':
     resolution:
@@ -2492,6 +2516,12 @@ packages:
         integrity: sha512-vk0jnc5k0/mLMUI4IA9LfSYkLs3OHtfa7B3h4aRG6to912V3wIG8lS/wKwatwYxRkAug4oE8is0ERRI8pzoYTw==,
       }
     engines: { node: '>= 18' }
+
+  '@oddbird/css-anchor-positioning@0.6.0':
+    resolution:
+      {
+        integrity: sha512-5r6AhCHSW/bU45gCwOdaei04WPn2E7oeztC8o0z6euyAPBbAeiYQda5ByIiMRfOf13sa8rVqiCsKpwx/QNyHbw==,
+      }
 
   '@open-draft/deferred-promise@2.2.0':
     resolution:
@@ -3124,6 +3154,12 @@ packages:
     resolution:
       {
         integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==,
+      }
+
+  '@types/css-tree@2.3.10':
+    resolution:
+      {
+        integrity: sha512-WcaBazJ84RxABvRttQjjFWgTcHvZR9jGr0Y3hccPkHjFyk/a3N8EuxjKr+QfrwjoM5b1yI1Uj1i7EzOAAwBwag==,
       }
 
   '@types/debug@4.1.10':
@@ -4783,6 +4819,13 @@ packages:
     resolution:
       {
         integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==,
+      }
+    engines: { node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0 }
+
+  css-tree@3.1.0:
+    resolution:
+      {
+        integrity: sha512-0eW44TGN5SQXU1mWSkKwFstI/22X2bG1nYzZTYMAWjylYURhse752YgbE4Cx46AC+bAvI+/dYTPRk1LqSUnu6w==,
       }
     engines: { node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0 }
 
@@ -8040,6 +8083,12 @@ packages:
         integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==,
       }
 
+  mdn-data@2.12.2:
+    resolution:
+      {
+        integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==,
+      }
+
   media-typer@0.3.0:
     resolution:
       {
@@ -8480,6 +8529,14 @@ packages:
         integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==,
       }
     engines: { node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1 }
+    hasBin: true
+
+  nanoid@5.1.5:
+    resolution:
+      {
+        integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==,
+      }
+    engines: { node: ^18 || >=20 }
     hasBin: true
 
   nanostores@1.0.1:
@@ -13378,9 +13435,18 @@ snapshots:
     dependencies:
       '@floating-ui/utils': 0.2.9
 
+  '@floating-ui/core@1.7.1':
+    dependencies:
+      '@floating-ui/utils': 0.2.9
+
   '@floating-ui/dom@1.6.3':
     dependencies:
       '@floating-ui/core': 1.6.0
+      '@floating-ui/utils': 0.2.9
+
+  '@floating-ui/dom@1.7.1':
+    dependencies:
+      '@floating-ui/core': 1.7.1
       '@floating-ui/utils': 0.2.9
 
   '@floating-ui/react-dom@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
@@ -13538,6 +13604,17 @@ snapshots:
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
+
+  '@itwin/itwinui-react@3.18.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@floating-ui/react': 0.27.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@itwin/itwinui-illustrations-react': 2.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@swc/helpers': 0.5.15
+      '@tanstack/react-virtual': 3.13.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-table: 7.8.0(react@19.1.0)
 
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
@@ -13868,6 +13945,13 @@ snapshots:
       '@octokit/openapi-webhooks-types': 9.1.0
       '@octokit/request-error': 6.1.7
       '@octokit/webhooks-methods': 5.1.1
+
+  '@oddbird/css-anchor-positioning@0.6.0':
+    dependencies:
+      '@floating-ui/dom': 1.7.1
+      '@types/css-tree': 2.3.10
+      css-tree: 3.1.0
+      nanoid: 5.1.5
 
   '@open-draft/deferred-promise@2.2.0': {}
 
@@ -14267,6 +14351,8 @@ snapshots:
       '@babel/types': 7.26.10
 
   '@types/cookie@0.6.0': {}
+
+  '@types/css-tree@2.3.10': {}
 
   '@types/debug@4.1.10':
     dependencies:
@@ -15409,6 +15495,11 @@ snapshots:
   css-tree@2.3.1:
     dependencies:
       mdn-data: 2.0.30
+      source-map-js: 1.2.1
+
+  css-tree@3.1.0:
+    dependencies:
+      mdn-data: 2.12.2
       source-map-js: 1.2.1
 
   css.escape@1.5.1: {}
@@ -17639,6 +17730,8 @@ snapshots:
 
   mdn-data@2.0.30: {}
 
+  mdn-data@2.12.2: {}
+
   media-typer@0.3.0: {}
 
   memorystream@0.3.1: {}
@@ -18029,6 +18122,8 @@ snapshots:
   mute-stream@2.0.0: {}
 
   nanoid@3.3.11: {}
+
+  nanoid@5.1.5: {}
 
   nanostores@1.0.1: {}
 

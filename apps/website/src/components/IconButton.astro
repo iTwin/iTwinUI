@@ -2,14 +2,23 @@
 const { ...props } = Astro.props;
 ---
 
-<button {...props}>
-  <span aria-hidden='true' class='tooltip'><slot name='tooltip' /></span>
+<button
+  class='icon-button'
+  style='anchor-scope: --anchor-button; anchor-name: --anchor-button;'
+  {...props}
+>
+  <span
+    aria-hidden='true'
+    class='tooltip'
+    style='position-anchor: --anchor-button; bottom: anchor(--anchor-button top);'
+    ><slot name='tooltip' />
+  </span>
   <slot />
 </button>
 
 <style lang='scss'>
   @layer components {
-    button {
+    .icon-button {
       display: grid;
       place-items: center;
       min-width: 2rem;
@@ -32,21 +41,25 @@ const { ...props } = Astro.props;
       }
     }
 
+    @position-try --fallback-tooltip-position {
+      right: anchor(--anchor-button right);
+    }
+
     .tooltip {
       visibility: hidden;
-
       position: absolute;
-      top: -100%;
-      left: 50%;
-      transform: translate(-66%);
       font-size: var(--type--2);
       padding: 0.5rem;
       white-space: nowrap;
       background-color: var(--color-background-2);
       border: 1px solid var(--color-line-2);
       border-radius: 4px;
+      margin-block-end: 5px;
+      transition: visibility 0.2s ease-in-out;
 
-      button:is(:hover, :focus-within) > & {
+      position-try-fallbacks: --fallback-tooltip-position;
+
+      .icon-button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
         visibility: visible;
       }
     }
