@@ -63,6 +63,39 @@ it('should be usable as a button', () => {
   expect(button).toHaveTextContent('Tag');
 });
 
+it('should properly merge onClick from DOM props with internal `onClick` handlers', () => {
+  const onClickMock = vi.fn();
+  const onRemoveMock = vi.fn();
+  const onLabelClickMock = vi.fn();
+  const onRemoveClickMock = vi.fn();
+
+  const { container } = render(
+    <Tag
+      onClick={onClickMock}
+      onRemove={onRemoveMock}
+      labelProps={{ onClick: onLabelClickMock, id: 'label' }}
+      removeButtonProps={{ onClick: onRemoveClickMock, id: 'remove' }}
+    >
+      Tag
+    </Tag>,
+  );
+
+  const label = container.querySelector('#label') as HTMLButtonElement;
+  const removeButton = container.querySelector('#remove') as HTMLButtonElement;
+
+  expect(onClickMock).toHaveBeenCalledTimes(0);
+  expect(onLabelClickMock).toHaveBeenCalledTimes(0);
+  fireEvent.click(label);
+  expect(onClickMock).toHaveBeenCalledTimes(1);
+  expect(onLabelClickMock).toHaveBeenCalledTimes(1);
+
+  expect(onRemoveMock).toHaveBeenCalledTimes(0);
+  expect(onRemoveClickMock).toHaveBeenCalledTimes(0);
+  fireEvent.click(removeButton);
+  expect(onRemoveMock).toHaveBeenCalledTimes(1);
+  expect(onRemoveClickMock).toHaveBeenCalledTimes(1);
+});
+
 it('should not produce invalid markup when using both onClick and onRemove', () => {
   const { container } = render(
     <Tag

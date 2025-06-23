@@ -28,6 +28,11 @@
   --_iui-field-state--disabled: var(--_iui-field-state,);
   --_iui-field-state--disabled-hover: var(--_iui-field-state,);
 
+  --_iui-field-icon-color: var(--_iui-field-state--default, var(--_iui-field-color-icon))
+    var(--_iui-field-state--hover, var(--_iui-field-color-icon-hover))
+    var(--_iui-field-state--disabled, var(--_iui-field-color-icon-disabled))
+    var(--_iui-field-state--disabled-hover, var(--_iui-field-color-icon-disabled-hover));
+
   background-color: var(--_iui-field-state--default, var(--_iui-field-color-background))
     var(--_iui-field-state--hover, var(--_iui-field-color-background-hover))
     var(--_iui-field-state--disabled, var(--_iui-field-color-background-disabled))
@@ -42,10 +47,7 @@
     var(--_iui-field-state--hover, var(--_iui-field-color-text-hover))
     var(--_iui-field-state--disabled, var(--_iui-field-color-text-disabled))
     var(--_iui-field-state--disabled-hover, var(--_iui-field-color-text-disabled-hover));
-  fill: var(--_iui-field-state--default, var(--_iui-field-color-icon))
-    var(--_iui-field-state--hover, var(--_iui-field-color-icon-hover))
-    var(--_iui-field-state--disabled, var(--_iui-field-color-icon-disabled))
-    var(--_iui-field-state--disabled-hover, var(--_iui-field-color-icon-disabled-hover));
+  fill: var(--_iui-field-icon-color);
   font: inherit;
   font-size: var(--_iui-field-font-size);
   font-weight: var(--iui-font-weight-normal);
