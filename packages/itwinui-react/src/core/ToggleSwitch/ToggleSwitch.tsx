@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, SvgCheckmark } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { ThemeProviderFutureContext } from '../ThemeProvider/ThemeProvider.js';
 
 type ToggleSwitchProps = {
   /**
@@ -24,11 +25,14 @@ type ToggleSwitchProps = {
   /**
    * Passes props to wrapper.
    *
-   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` is
-   * applied on the wrapper.
-   * - Else, `className` and `style` will be applied on the wrapper.
+   * `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s
+   * `future.consistentPropsSpread` prop:
+   * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where
+   * all the other props are applied.
+   * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
+   * element where all the other props are applied.
    *
-   * Regardless of whether `wrapperProps` is provided or not, `...rest` props will always be applied on the `input`.
+   * `...rest` props will always be applied on the `input`.
    */
   wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
@@ -56,9 +60,12 @@ type ToggleSwitchProps = {
  *
  * ---
  *
- * Note: `className` and `style` props are applied depending on `wrapperProps`:
- * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where all the other props are applied.
- * - Else: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
+ * `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s
+ * `future.consistentPropsSpread` prop:
+ * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where
+ * all the other props are applied.
+ * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
+ * element where all the other props are applied.
  *
  * ---
  *
@@ -91,6 +98,30 @@ type ToggleSwitchProps = {
  *   // Other props are applied to input
  *   data-dummy='value' // applied to input
  * />
+ *
+ * @example
+ * <caption>ThemeProvider's consistentPropsSpread=true or wrapperProps != null</caption>
+ * <ThemeProvider future={{ consistentPropsSpread: true }}>
+ *   <ToggleSwitch
+ *     className='my-class' // applied to input
+ *     style={{ width: 80 }} // applied to input
+ *
+ *     // Other props are applied to input
+ *     data-dummy='value' // applied to input
+ *   />
+ * </ThemeProvider>
+ *
+ * @example
+ * <caption>ThemeProvider's consistentPropsSpread=false/undefined</caption>
+ * <ThemeProvider>
+ *   <ToggleSwitch
+ *     className='my-class' // applied to wrapper
+ *     style={{ width: 80 }} // applied to wrapper
+ *
+ *     // Other props are applied to input
+ *     data-dummy='value' // applied to input
+ *   />
+ * </ThemeProvider>
  */
 export const ToggleSwitch = React.forwardRef((props, ref) => {
   const {
@@ -106,8 +137,12 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const consistentPropsSpread =
+    React.useContext(ThemeProviderFutureContext)?.consistentPropsSpread ===
+    true;
+
   const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
-    if (wrapperProps != null) {
+    if (wrapperProps != null || consistentPropsSpread) {
       return {
         wrapperSpecificProps: {
           ...wrapperProps,
@@ -120,7 +155,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
       wrapperSpecificProps: { className, style },
       inputSpecificProps: { className: undefined, style: undefined, ...rest },
     };
-  }, [className, rest, style, wrapperProps]);
+  }, [className, consistentPropsSpread, rest, style, wrapperProps]);
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
