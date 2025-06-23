@@ -30,7 +30,6 @@ export const useControlledState = <T>(
     () => (controlledState !== undefined ? controlledState : uncontrolledState),
     [controlledState, uncontrolledState],
   );
-  // const [oldState, setOldState] = React.useState<T>(state);
   const oldState = React.useRef<T>(state);
 
   const setState = React.useCallback(
@@ -46,7 +45,6 @@ export const useControlledState = <T>(
       if (newValue === oldState.current) {
         return;
       }
-      // setOldState(value);
       oldState.current = newValue;
 
       setUncontrolledState(value);
@@ -54,6 +52,11 @@ export const useControlledState = <T>(
     },
     [setControlledState, state],
   ) as React.Dispatch<React.SetStateAction<T>>;
+
+  // If in controlled mode, sync oldState with controlledState
+  if (controlledState != null) {
+    oldState.current = controlledState;
+  }
 
   return [state, setState] as const;
 };

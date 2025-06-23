@@ -65,7 +65,7 @@ type PopoverOptions = {
    */
   visible?: boolean;
   /**
-   * Callback invoked every time the popover visibility changes as a result
+   * Callback invoked every time the popover visibility **changes** as a result
    * of internal logic. Should be used alongside `visible` prop.
    */
   onVisibleChange?: (visible: boolean) => void;
