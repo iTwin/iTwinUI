@@ -17,6 +17,7 @@ import {
   useLatestRef,
   InputWithIcon,
   mergeEventHandlers,
+  isReact17or18,
 } from '../../utils/index.js';
 import type {
   CommonProps,
@@ -842,7 +843,7 @@ const SelectListbox = React.forwardRef((props, forwardedRef) => {
       if (React.isValidElement<Record<string, any>>(child)) {
         // Supporting React 19 and earlier versions
         const ref = (() => {
-          if (React.version.startsWith('19.')) {
+          if (isReact17or18) {
             return child.props.ref;
           }
           return (child as any).ref;
