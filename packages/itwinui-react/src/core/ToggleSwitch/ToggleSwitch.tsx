@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, SvgCheckmark } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { ThemeProviderFutureContext } from '../ThemeProvider/ThemeProvider.js';
 
 type ToggleSwitchProps = {
   /**
@@ -25,7 +24,7 @@ type ToggleSwitchProps = {
   /**
    * Passes props to wrapper.
    *
-   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` are
+   * - If `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` is
    * applied on the wrapper.
    * - Else, `className` and `style` will be applied on the wrapper.
    *
@@ -57,9 +56,9 @@ type ToggleSwitchProps = {
  *
  * ---
  *
- * Note: `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s `future.consistentPropsSpread` prop:
- * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where all the other props are applied.
- * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
+ * Note: `className` and `style` props are applied depending on `wrapperProps`:
+ * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where all the other props are applied.
+ * - Else: `className` and `style` applied on the wrapper instead of the `input` element where all the other props are applied.
  *
  * ---
  *
@@ -80,29 +79,7 @@ type ToggleSwitchProps = {
  * <ToggleSwitch label='With icon toggle' icon={<svg viewBox='0 0 16 16'><path d='M1 1v14h14V1H1zm13 1.7v10.6L8.7 8 14 2.7zM8 7.3L2.7 2h10.6L8 7.3zm-.7.7L2 13.3V2.7L7.3 8zm.7.7l5.3 5.3H2.7L8 8.7z' /></svg>} />
  *
  * @example
- * <caption>ThemeProvider's consistentPropsSpread=false/undefined</caption>
- * <ThemeProvider>
- *   <ToggleSwitch
- *     className='my-class' // applied to wrapper
- *     style={{ width: 80 }} // applied to wrapper
- *
- *     // Other props are applied to input
- *     data-dummy='value' // applied to input
- *   />
- * </ThemeProvider>
- *
- * @example
- * <caption>ThemeProvider's consistentPropsSpread=true or wrapperProps != null</caption>
- * <ThemeProvider future={{ consistentPropsSpread: true }}>
- *   <ToggleSwitch
- *     className='my-class' // applied to input
- *     style={{ width: 80 }} // applied to input
- *
- *     // Other props are applied to input
- *     data-dummy='value' // applied to input
- *   />
- * </ThemeProvider>
- *
+ * <caption>ToggleSwitch with wrapperProps</caption>
  * <ToggleSwitch
  *   className='my-class' // applied to input
  *   style={{ width: 80 }} // applied to input
@@ -129,12 +106,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const consistentPropsSpread =
-    React.useContext(ThemeProviderFutureContext)?.consistentPropsSpread ===
-    true;
-
   const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
-    if (wrapperProps != null || consistentPropsSpread) {
+    if (wrapperProps != null) {
       return {
         wrapperSpecificProps: {
           ...wrapperProps,
@@ -147,7 +120,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
       wrapperSpecificProps: { className, style },
       inputSpecificProps: { className: undefined, style: undefined, ...rest },
     };
-  }, [className, consistentPropsSpread, rest, style, wrapperProps]);
+  }, [className, rest, style, wrapperProps]);
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
