@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.18.3
+
+### Patch Changes
+
+- [#2554](https://github.com/iTwin/iTwinUI/pull/2554): Fixed color mismatch between font icons and svg icons in `IconButton` and `MenuItem`. (NOTE: Despite this fix, use of font icons is still discouraged).
+
 ## 3.18.2
 
 ### Patch Changes
