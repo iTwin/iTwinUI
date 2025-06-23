@@ -253,7 +253,7 @@ it('should add .iui-large if tabs have sublabel', () => {
 });
 
 it.each(['horizontal', 'vertical'] as const)(
-  'should handle keypresses',
+  'should handle keypresses (orientation=%s)',
   async (orientation) => {
     const mockonActivated = vi.fn();
 
@@ -288,27 +288,32 @@ it.each(['horizontal', 'vertical'] as const)(
     expect(mockonActivated).not.toHaveBeenCalled();
 
     // 0 -> 1
+    expect(mockonActivated).toBeCalledTimes(0);
     fireEvent.keyDown(tabs[0], { key: nextTabKey });
+    expect(mockonActivated).toBeCalledTimes(1);
     expect(mockonActivated).toBeCalledWith('tab1');
     expect(document.activeElement).toBe(tabs[1]);
 
     // 1 -> 2
     fireEvent.keyDown(tabs[1], { key: nextTabKey });
+    expect(mockonActivated).toBeCalledTimes(2);
     expect(mockonActivated).toBeCalledWith('tab2');
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 0
     fireEvent.keyDown(tabs[2], { key: nextTabKey });
-    expect(mockonActivated).toBeCalledWith('tab0');
+    expect(mockonActivated).toBeCalledTimes(2); // No extra call since the value was already set to 'tab0'
     expect(document.activeElement).toBe(tabs[0]);
 
     // 0 -> 2
     fireEvent.keyDown(tabs[0], { key: previousTabKey });
+    expect(mockonActivated).toBeCalledTimes(3);
     expect(mockonActivated).toBeCalledWith('tab2');
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 1
     fireEvent.keyDown(tabs[2], { key: previousTabKey });
+    expect(mockonActivated).toBeCalledTimes(4);
     expect(mockonActivated).toBeCalledWith('tab1');
     expect(document.activeElement).toBe(tabs[1]);
   },

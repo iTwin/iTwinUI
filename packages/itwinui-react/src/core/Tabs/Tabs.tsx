@@ -69,10 +69,13 @@ type TabsWrapperOwnProps = {
    */
   value?: string;
   /**
-   * Function that gets called when active tab is *changed*.
-   * If need to listen to each tab click, use `onClick` prop on `Tabs.Tab`.
+   * Function that gets called when active tab *changes* (uncontrolled mode) or should *change* (when in
+   * controlled mode).
    *
    * Should be used alongside `value` prop.
+   *
+   * If need to listen to each tab click, use `onClick` prop on `Tabs.Tab`.
+   * Similarly, for each focus, use `onFocus` prop on `Tabs.Tab`.
    */
   onValueChange?: (value: string) => void;
   /**
