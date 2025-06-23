@@ -45,18 +45,25 @@ export const useControlledState = <T>(
       if (newValue === oldState.current) {
         return;
       }
-      oldState.current = newValue;
+
+      // If in controlled mode, defer updating oldState to the sync effect.
+      // Else, update oldState here since uncontrolledState is guaranteed to be set to value.
+      if (controlledState == null) {
+        oldState.current = newValue;
+      }
 
       setUncontrolledState(value);
       setControlledState?.(value);
     },
-    [setControlledState, state],
+    [controlledState, setControlledState, state],
   ) as React.Dispatch<React.SetStateAction<T>>;
 
   // If in controlled mode, sync oldState with controlledState
-  if (controlledState != null) {
-    oldState.current = controlledState;
-  }
+  React.useEffect(() => {
+    if (controlledState != null) {
+      oldState.current = controlledState;
+    }
+  }, [controlledState]);
 
   return [state, setState] as const;
 };
