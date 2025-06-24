@@ -34,3 +34,4 @@ export * from './SvgFilter.js';
 export * from './SvgFilterHollow.js';
 export * from './SvgCalendar.js';
 export * from './SvgDocument.js';
+export * from './SvgHourGlass.js';

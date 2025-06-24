@@ -5,6 +5,7 @@
 import * as React from 'react';
 import type { SelectOption } from '../Select/Select.js';
 import type { usePopover } from '../Popover/Popover.js';
+import type { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 
 export const ComboBoxRefsContext = React.createContext<
   | {
@@ -31,10 +32,16 @@ type ComboBoxStateContextProps<T = unknown> = {
   focusedIndex: number;
   setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
   setSelectedIndexes: React.Dispatch<React.SetStateAction<number | number[]>>;
+  setPositionReference: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null>
+  >;
   multiple?: boolean;
   popover: ReturnType<typeof usePopover>;
   show: () => void;
   hide: () => void;
+  endIconProps?: React.ComponentProps<typeof ComboBoxEndIcon>;
+  loading?: boolean;
+  showClearButton?: boolean;
 };
 
 export const ComboBoxStateContext = React.createContext<

@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import { SvgCaretDownSmall } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Icon } from '../Icon/Icon.js';
+import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
 
 type ComboBoxEndIconProps = {
   disabled?: boolean;
@@ -17,7 +17,7 @@ export const ComboBoxEndIcon = React.forwardRef((props, forwardedRef) => {
   const { className, children, disabled, isOpen, ...rest } = props;
 
   return (
-    <Icon
+    <InputWithDecorations.Icon
       as='span'
       ref={forwardedRef}
       className={cx(
@@ -31,7 +31,7 @@ export const ComboBoxEndIcon = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       {children ?? <SvgCaretDownSmall aria-hidden />}
-    </Icon>
+    </InputWithDecorations.Icon>
   );
 }) as PolymorphicForwardRefComponent<'span', ComboBoxEndIconProps>;
 if (process.env.NODE_ENV === 'development') {

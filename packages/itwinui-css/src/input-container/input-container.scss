@@ -37,7 +37,7 @@
 }
 
 @each $status in positive, warning, negative {
-  .iui-input-grid[data-iui-status='#{$status}'] :where(.iui-input, .iui-select-button),
+  .iui-input-grid[data-iui-status='#{$status}'] :where(.iui-input, .iui-select-button, .iui-input-flex-container),
   :is(.iui-input, .iui-input-with-icon > .iui-select-button):where([data-iui-status='#{$status}']) {
     @include iui-text-selection($status);
     --_iui-field-color-focus-outline: var(--iui-color-text-#{$status});

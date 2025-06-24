@@ -535,6 +535,10 @@ export const MultipleSelect = () => {
         setSelectedOptions(selected);
       }}
       clearFilterOnOptionToggle={clearFilterOnOptionToggle}
+      status='positive'
+      message='Status message'
+      showClearButton
+      loading
     />
   );
 };

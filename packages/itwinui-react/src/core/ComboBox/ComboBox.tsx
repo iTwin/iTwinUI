@@ -15,9 +15,6 @@ import {
   AutoclearingHiddenLiveRegion,
   useId,
   useControlledState,
-  SvgCaretDownSmall,
-  SvgCloseSmall,
-  useContainerWidth,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
 import type {
@@ -31,8 +28,6 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
-import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
-import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -176,6 +171,16 @@ export type ComboBoxProps<T> = {
    * Callback fired when dropdown menu is closed.
    */
   onHide?: () => void;
+  /**
+   * Specify a loading state for the ComboBox.
+   * @default false
+   */
+  loading?: boolean;
+  /**
+   * Show clear button that will clear the selected value(s).
+   * @default false
+   */
+  showClearButton?: boolean;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
   CommonProps;
@@ -231,6 +236,8 @@ export const ComboBox = React.forwardRef(
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
       clearFilterOnOptionToggle = true,
+      loading = false,
+      showClearButton = false,
       ...rest
     } = props;
 
@@ -240,6 +247,9 @@ export const ComboBox = React.forwardRef(
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
     const filterFunctionRef = useLatestRef(filterFunction);
+
+    const [positionReference, setPositionReference] =
+      React.useState<HTMLDivElement | null>(null);
 
     const optionsExtraInfo = React.useMemo(() => {
       const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
@@ -616,40 +626,9 @@ export const ComboBox = React.forwardRef(
       interactions: { click: false, focus: true },
     });
 
-    const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
-
-    const selectTags = React.useMemo(() => {
-      if (!isMultipleEnabled(selectedIndexes, multiple)) {
-        return undefined;
-      }
-
-      return selectedIndexes
-        ?.map((index) => {
-          const option = options[index];
-          const optionId = getOptionId(option, id);
-          const { __originalIndex } = optionsExtraInfo[optionId];
-
-          return (
-            <SelectTag
-              key={option.label}
-              label={option.label}
-              onRemove={() => {
-                handleOptionSelection(__originalIndex);
-                hide(); // do not keep the dropdown open if the tag is clicked
-              }}
-            />
-          );
-        })
-        .filter(Boolean) as React.JSX.Element[];
-    }, [
-      handleOptionSelection,
-      hide,
-      id,
-      multiple,
-      options,
-      optionsExtraInfo,
-      selectedIndexes,
-    ]);
+    React.useEffect(() => {
+      return popover.refs.setPositionReference(positionReference);
+    }, [popover.refs, positionReference]);
 
     return (
       <ComboBoxRefsContext.Provider
@@ -666,6 +645,7 @@ export const ComboBox = React.forwardRef(
               focusedIndex,
               setFocusedIndex,
               setSelectedIndexes,
+              setPositionReference,
               onClickHandler: handleOptionSelection,
               enableVirtualization,
               filteredOptions,
@@ -674,9 +654,13 @@ export const ComboBox = React.forwardRef(
               popover,
               show,
               hide,
+              endIconProps,
+              loading,
+              showClearButton,
             }),
             [
               enableVirtualization,
+              endIconProps,
               filteredOptions,
               focusedIndex,
               getMenuItem,
@@ -684,10 +668,12 @@ export const ComboBox = React.forwardRef(
               hide,
               id,
               isOpen,
+              loading,
               multiple,
               popover,
               setSelectedIndexes,
               show,
+              showClearButton,
             ],
           )}
         >
