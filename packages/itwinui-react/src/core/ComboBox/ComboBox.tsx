@@ -15,6 +15,9 @@ import {
   AutoclearingHiddenLiveRegion,
   useId,
   useControlledState,
+  SvgCaretDownSmall,
+  SvgCloseSmall,
+  useContainerWidth,
 } from '../../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
 import type {
@@ -28,6 +31,8 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
+import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
+import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -611,6 +616,41 @@ export const ComboBox = React.forwardRef(
       interactions: { click: false, focus: true },
     });
 
+    const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
+
+    const selectTags = React.useMemo(() => {
+      if (!isMultipleEnabled(selectedIndexes, multiple)) {
+        return undefined;
+      }
+
+      return selectedIndexes
+        ?.map((index) => {
+          const option = options[index];
+          const optionId = getOptionId(option, id);
+          const { __originalIndex } = optionsExtraInfo[optionId];
+
+          return (
+            <SelectTag
+              key={option.label}
+              label={option.label}
+              onRemove={() => {
+                handleOptionSelection(__originalIndex);
+                hide(); // do not keep the dropdown open if the tag is clicked
+              }}
+            />
+          );
+        })
+        .filter(Boolean) as React.JSX.Element[];
+    }, [
+      handleOptionSelection,
+      hide,
+      id,
+      multiple,
+      options,
+      optionsExtraInfo,
+      selectedIndexes,
+    ]);
+
     return (
       <ComboBoxRefsContext.Provider
         value={React.useMemo(
@@ -625,6 +665,7 @@ export const ComboBox = React.forwardRef(
               isOpen,
               focusedIndex,
               setFocusedIndex,
+              setSelectedIndexes,
               onClickHandler: handleOptionSelection,
               enableVirtualization,
               filteredOptions,
@@ -645,11 +686,80 @@ export const ComboBox = React.forwardRef(
               isOpen,
               multiple,
               popover,
+              setSelectedIndexes,
               show,
             ],
           )}
         >
           <ComboBoxInputContainer
+            ref={forwardedRef}
+            disabled={inputProps?.disabled}
+            {...rest}
+          >
+            <ComboBoxInput
+              value={inputValue}
+              disabled={inputProps?.disabled}
+              {...inputProps}
+              onChange={handleOnInput}
+              aria-describedby={[
+                multiple ? `${id}-selected-live` : undefined,
+                inputProps?.['aria-describedby'],
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              selectTags={
+                isMultipleEnabled(selectedIndexes, multiple)
+                  ? (selectedIndexes
+                      ?.map((index) => {
+                        const option = options[index];
+                        const optionId = getOptionId(option, id);
+                        const { __originalIndex } = optionsExtraInfo[optionId];
+
+                        return (
+                          <SelectTag
+                            key={option.label}
+                            label={option.label}
+                            onRemove={() => {
+                              handleOptionSelection(__originalIndex);
+                              hide(); // do not keep the dropdown open if the tag is clicked
+                            }}
+                          />
+                        );
+                      })
+                      .filter(Boolean) as React.JSX.Element[])
+                  : undefined
+              }
+            />
+            {/* <InputWithDecorations>
+              <InputWithDecorations.Input
+                value={inputValue}
+                disabled={inputProps?.disabled}
+                {...inputProps}
+                onChange={handleOnInput}
+                aria-describedby={[
+                  multiple ? `${id}-selected-live` : undefined,
+                  inputProps?.['aria-describedby'],
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              />
+              <InputWithDecorations.Button>
+                <SvgCloseSmall />
+              </InputWithDecorations.Button>
+              <InputWithDecorations.Icon>
+                <SvgCaretDownSmall />
+              </InputWithDecorations.Icon>
+            </InputWithDecorations> */}
+
+            {/* {multiple && selectTags ? (
+              <ComboBoxMultipleContainer
+                ref={tagContainerWidthRef}
+                selectedItems={selectTags}
+              />
+            ) : null} */}
+          </ComboBoxInputContainer>
+
+          {/* <ComboBoxInputContainer
             ref={forwardedRef}
             disabled={inputProps?.disabled}
             {...rest}
@@ -694,13 +804,13 @@ export const ComboBox = React.forwardRef(
               isOpen={isOpen}
             />
 
-            {multiple ? (
-              <AutoclearingHiddenLiveRegion
-                text={liveRegionSelection}
-                id={`${id}-selected-live`}
-              />
-            ) : null}
-          </ComboBoxInputContainer>
+            </ComboBoxInputContainer> */}
+          {multiple ? (
+            <AutoclearingHiddenLiveRegion
+              text={liveRegionSelection}
+              id={`${id}-selected-live`}
+            />
+          ) : null}
           <ComboBoxMenu as='div' {...dropdownMenuProps}>
             {filteredOptions.length > 0 && !enableVirtualization
               ? filteredOptions.map(getMenuItem)

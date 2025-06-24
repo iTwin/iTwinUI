@@ -30,6 +30,7 @@ type ComboBoxStateContextProps<T = unknown> = {
   ) => React.JSX.Element;
   focusedIndex: number;
   setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedIndexes: React.Dispatch<React.SetStateAction<number | number[]>>;
   multiple?: boolean;
   popover: ReturnType<typeof usePopover>;
   show: () => void;

@@ -10,10 +10,14 @@ import {
   useContainerWidth,
   mergeEventHandlers,
   useLatestRef,
+  SvgCloseSmall,
+  SvgCaretDownSmall,
+  SvgMore,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
+import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
 
 type ComboBoxInputProps = {
   selectTags?: React.JSX.Element[];
@@ -27,6 +31,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     id,
     focusedIndex,
     setFocusedIndex,
+    setSelectedIndexes,
     enableVirtualization,
     multiple,
     onClickHandler,
@@ -196,11 +201,15 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     wasOpenBeforeClick.current = false;
   }, [hide, show]);
 
+  const handleClear = React.useCallback(() => {
+    setSelectedIndexes(multiple ? [] : -1);
+  }, [multiple, setSelectedIndexes]);
+
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
   return (
     <>
-      <Input
+      {/* <Input
         ref={refs}
         aria-expanded={isOpen}
         aria-activedescendant={
@@ -228,7 +237,58 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           onClick: mergeEventHandlers(props.onClick, handleClick),
           onKeyDown: mergeEventHandlers(props.onKeyDown, handleKeyDown),
         })}
-      />
+      /> */}
+
+      <InputWithDecorations>
+        <InputWithDecorations.Input
+          // value={inputValue}
+          // disabled={inputProps?.disabled}
+          // {...inputProps}
+          // onChange={handleOnInput}
+          // aria-describedby={[
+          //   multiple ? `${id}-selected-live` : undefined,
+          //   inputProps?.['aria-describedby'],
+          // ]
+          //   .filter(Boolean)
+          //   .join(' ')}
+          ref={refs}
+          aria-expanded={isOpen}
+          aria-activedescendant={
+            isOpen && focusedIndex != undefined && focusedIndex > -1
+              ? getIdFromIndex(focusedIndex)
+              : undefined
+          }
+          role='combobox'
+          aria-controls={isOpen ? `${id}-list` : undefined}
+          aria-autocomplete='list'
+          spellCheck={false}
+          autoCapitalize='none'
+          autoCorrect='off'
+          style={{
+            ...(multiple && { paddingInlineStart: tagContainerWidth + 18 }),
+            ...style,
+          }}
+          size={size}
+          {...popover.getReferenceProps({
+            ...rest,
+            onPointerDown: mergeEventHandlers(
+              props.onPointerDown,
+              handlePointerDown,
+            ),
+            onClick: mergeEventHandlers(props.onClick, handleClick),
+            onKeyDown: mergeEventHandlers(props.onKeyDown, handleKeyDown),
+          })}
+        />
+        <InputWithDecorations.Icon>
+          <SvgMore />
+        </InputWithDecorations.Icon>
+        <InputWithDecorations.Button onClick={handleClear}>
+          <SvgCloseSmall />
+        </InputWithDecorations.Button>
+        <InputWithDecorations.Icon>
+          <SvgCaretDownSmall />
+        </InputWithDecorations.Icon>
+      </InputWithDecorations>
 
       {multiple && selectTags ? (
         <ComboBoxMultipleContainer
