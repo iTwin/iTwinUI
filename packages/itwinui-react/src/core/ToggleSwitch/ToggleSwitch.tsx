@@ -85,10 +85,10 @@ type ToggleSwitchProps = {
  * <caption>ToggleSwitch with wrapperProps</caption>
  * <ToggleSwitch
  *   className='my-class' // applied to input
- *   style={{ width: 80 }} // applied to input
+ *   style={{ padding: 16 }} // applied to input
  *   wrapperProps={{
  *     className: 'my-wrapper-class', // applied to wrapper
- *     style: { width: 80 }, // applied to wrapper
+ *     style: { padding: 16 }, // applied to wrapper
  *   }}
  *
  *   // Other props are applied to input
@@ -146,12 +146,12 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     >
       <Box
         as='input'
-        {...inputSpecificProps}
-        className={cx('iui-toggle-switch', inputSpecificProps.className)}
         type='checkbox'
         role='switch'
         disabled={disabled}
         ref={ref}
+        {...inputSpecificProps}
+        className={cx('iui-toggle-switch', inputSpecificProps.className)}
       />
       {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
