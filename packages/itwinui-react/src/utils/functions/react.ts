@@ -5,6 +5,17 @@
 import * as React from 'react';
 import { mergeRefs } from '../hooks/useMergedRefs.js';
 
+const _React = React;
+
+/**
+ * `true` if the current React version is 17 or 18. Else, is `false`.
+ * @private
+ */
+export const isReact17or18 = (() => {
+  const version = _React.version?.split('.')?.[0];
+  return ['17', '18'].includes(version);
+})();
+
 /**
  * Wrapper over `cloneElement` that automatically checks for `isValidElement`
  * and automatically merges `children.ref` with the ref passed in props.
@@ -23,8 +34,10 @@ export const cloneElementWithRef = (
     return children;
   }
 
-  // Supporting React 19 and 18
-  const childrenRef = children.props?.ref || (children as any)?.ref;
+  // Supporting React 19 and earlier versions
+  const childrenRef = isReact17or18
+    ? (children as any)?.ref
+    : children.props?.ref;
 
   const props = getProps(children);
   const ref = mergeRefs(
