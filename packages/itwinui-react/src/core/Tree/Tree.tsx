@@ -290,22 +290,41 @@ export const Tree = <T,>(props: TreeProps<T>) => {
             size,
           }}
         >
-          {virtualItem && virtualizer
-            ? cloneElementWithRef(nodeRenderer(node.nodeProps), (children) => ({
-                ...children.props,
-                key: virtualItem.key,
-                // 'data-iui-index': virtualItem.index,
-                'data-iui-virtualizer': 'item',
-                ref: virtualizer.measureElement,
-                style: {
-                  ...children.props.style,
-                  '--_iui-width': '100%',
-                  width: 'min-content',
-                  minWidth: '100%',
-                  transform: `translateY(${virtualItem.start}px)`,
-                },
-              }))
-            : nodeRenderer(node.nodeProps)}
+          {virtualItem && virtualizer ? (
+            <>
+              {cloneElementWithRef(
+                nodeRenderer(node.nodeProps),
+                (children) => ({
+                  ...children.props,
+                  key: virtualItem.key,
+                  'data-iui-index': virtualItem.index,
+                  'data-iui-virtualizer': 'item',
+                  ref: virtualizer.measureElement,
+                  style: {
+                    ...children.props.style,
+                    '--_iui-width': '100%',
+                    transform: `translateY(${virtualItem.start}px)`,
+                  },
+                }),
+              )}
+              {cloneElementWithRef(
+                nodeRenderer(node.nodeProps),
+                (children) => ({
+                  ...children.props,
+                  key: `${virtualItem.key}-dummy`,
+                  style: {
+                    ...children.props.style,
+                    '--_iui-width': '100%',
+                    opacity: 0,
+                  },
+                  inert: 'true',
+                  ['aria-hidden']: 'true',
+                }),
+              )}
+            </>
+          ) : (
+            nodeRenderer(node.nodeProps)
+          )}
         </TreeContext.Provider>
       );
     },
@@ -430,23 +449,36 @@ const VirtualizedTree = React.forwardRef(
       }
     }, [virtualizer, scrollToIndex]);
 
+    // const [treeElementWidth, setTreeElementWidth] = React.useState<
+    //   number | undefined
+    // >(undefined);
+
+    // const onResize = React.useCallback((size: DOMRectReadOnly) => {
+    //   setTreeElementWidth(parentRef.current?.scrollWidth);
+    //   console.log(size, parentRef.current?.scrollWidth);
+    // }, []);
+    // const [resizeRef] = useResizeObserver(onResize);
+
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
         <div style={{ display: 'contents' }}>
           <ShadowRoot css={virtualizerCss}>
             <div
               data-iui-virtualizer='root'
-              style={{ minBlockSize: virtualizer.getTotalSize() }}
+              style={{
+                minBlockSize: virtualizer.getTotalSize(),
+                // inlineSize: treeElementWidth,
+              }}
             >
               <slot />
             </div>
           </ShadowRoot>
           <>
-            {virtualizer
-              .getVirtualItems()
-              .map((virtualItem) =>
-                itemRenderer(virtualItem.index, virtualItem, virtualizer),
-              )}
+            {virtualizer.getVirtualItems().map((virtualItem) => {
+              return (
+                <>{itemRenderer(virtualItem.index, virtualItem, virtualizer)}</>
+              );
+            })}
           </>
         </div>
       </TreeElement>

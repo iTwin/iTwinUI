@@ -13,14 +13,18 @@ const css = /*css*/ `
   background-color: var(--iui-color-background);
 }
 [data-iui-virtualizer='root'] {
-  min-inline-size: 100%;
+  // min-inline-size: 100%;
   position: relative;
 }
-::slotted([data-iui-virtualizer='item']) {
+::slotted([data-iui-virtualizer='item']:not([data-iui-is-dummy='true'])) {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
+}
+::slotted([data-iui-is-dummy='true']) {
+  // visibility: hidden;
+  // opacity: 0;
 }
 `;
 
