@@ -910,7 +910,7 @@ const TabsContext = React.createContext<
       /**
        * Handler for setting the value of the active tab.
        */
-      setActiveValue: React.Dispatch<React.SetStateAction<string>>;
+      setActiveValue: (value: string) => void;
       /**
        * Handler for setting the hasSublabel flag.
        */

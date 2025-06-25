@@ -11,6 +11,7 @@ import * as React from 'react';
  * This is helpful when a component needs to support both uncontrolled
  * and controlled states. If controlled value/setter is not passed,
  * then it will work just like a regular `useState`.
+ * The only exception is that the set function only accepts the new state. It does not accept a function.
  *
  * **NOTE**: `setControlledState` is called only when the value *changes* (uncontrolled mode) or should *change*
  * (controlled mode).
@@ -21,7 +22,7 @@ import * as React from 'react';
 export const useControlledState = <T>(
   initialValue: T,
   controlledState: T | undefined,
-  setControlledState?: React.Dispatch<React.SetStateAction<T>>,
+  setControlledState?: (value: T) => void,
 ) => {
   const [uncontrolledState, setUncontrolledState] =
     React.useState<T>(initialValue);
@@ -30,19 +31,12 @@ export const useControlledState = <T>(
     () => (controlledState !== undefined ? controlledState : uncontrolledState),
     [controlledState, uncontrolledState],
   );
-  const oldState = React.useRef<T>(state);
+  const oldState = React.useRef(state);
 
   const setState = React.useCallback(
-    (value) => {
-      const newValue = (() => {
-        if (typeof value === 'function') {
-          return (value as (prevState: T) => T)(state);
-        }
-        return value;
-      })();
-
+    (value: T) => {
       // Called only when the value *changes* (uncontrolled mode) or should *change* (controlled mode).
-      if (newValue === oldState.current) {
+      if (value === oldState.current) {
         return;
       }
 
@@ -51,14 +45,14 @@ export const useControlledState = <T>(
       // Thus, when in controlled state, do *not* update `oldState` when `setState` is called.
       // Instead, only do so when the controlled value is changed (the effect for syncing oldState with controlledState).
       if (controlledState == null) {
-        oldState.current = newValue;
+        oldState.current = value;
       }
 
       setUncontrolledState(value);
       setControlledState?.(value);
     },
-    [controlledState, setControlledState, state],
-  ) as React.Dispatch<React.SetStateAction<T>>;
+    [controlledState, setControlledState],
+  );
 
   // If in controlled mode, sync oldState with controlledState
   React.useEffect(() => {
