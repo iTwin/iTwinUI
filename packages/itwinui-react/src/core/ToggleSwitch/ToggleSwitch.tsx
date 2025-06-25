@@ -109,21 +109,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
-    if (wrapperProps != null) {
-      return {
-        wrapperSpecificProps: {
-          ...wrapperProps,
-        },
-        inputSpecificProps: { ...rest, className, style },
-      };
-    }
-
-    return {
-      wrapperSpecificProps: { className, style },
-      inputSpecificProps: { className: undefined, style: undefined, ...rest },
-    };
-  }, [className, rest, style, wrapperProps]);
+  const shouldApplyClassNameAndStyleOnWrapper = wrapperProps == null;
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
@@ -132,15 +118,26 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...wrapperSpecificProps}
+      {...wrapperProps}
+      style={
+        shouldApplyClassNameAndStyleOnWrapper || wrapperProps.style != null
+          ? {
+              ...(shouldApplyClassNameAndStyleOnWrapper ? style : {}),
+              ...(wrapperProps?.style != null ? wrapperProps.style : {}),
+            }
+          : undefined
+      }
       className={cx(
         'iui-toggle-switch-wrapper',
         {
           'iui-disabled': disabled,
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
+          ...(className != null
+            ? { [className]: shouldApplyClassNameAndStyleOnWrapper }
+            : {}),
         },
-        wrapperSpecificProps.className,
+        wrapperProps?.className,
       )}
       data-iui-size={size}
     >
@@ -148,10 +145,15 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         as='input'
         type='checkbox'
         role='switch'
+        style={!shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+        {...rest}
+        className={cx('iui-toggle-switch', {
+          ...(className != null
+            ? { [className]: !shouldApplyClassNameAndStyleOnWrapper }
+            : {}),
+        })}
         disabled={disabled}
         ref={ref}
-        {...inputSpecificProps}
-        className={cx('iui-toggle-switch', inputSpecificProps.className)}
       />
       {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
