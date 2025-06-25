@@ -46,8 +46,10 @@ export const useControlledState = <T>(
         return;
       }
 
-      // If in controlled mode, defer updating oldState to the sync effect.
-      // Else, update oldState here since uncontrolledState is guaranteed to be set to value.
+      // If in controlled mode, calling `setState` does *not* guarantee that the `controlledState` will change.
+      // i.e. the consumer may just ignore the `value` they receive in `setControlledState`.
+      // Thus, when in controlled state, do *not* update `oldState` when `setState` is called.
+      // Instead, only do so when the controlled value is changed (the effect for syncing oldState with controlledState).
       if (controlledState == null) {
         oldState.current = newValue;
       }
