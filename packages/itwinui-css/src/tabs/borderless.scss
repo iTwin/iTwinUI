@@ -3,41 +3,32 @@
 @use 'base';
 
 @mixin iui-tabs-borderless {
+  --_iui-tab-bg-color: transparent;
+  --_iui-tab-bg-color-hover: var(--iui-color-background-transparent-hover);
+  --_iui-tab-bg-color-selected: transparent;
+  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-transparent-hover);
+  --_iui-tab-bg-color-disabled: transparent;
+
   .iui-tab {
     padding-block: var(--iui-size-2xs);
     padding-inline: calc(var(--iui-size-s) * 2);
-    background-color: transparent;
 
     &::after {
       inset-block-end: 0;
       inset-inline-end: 0;
     }
-
-    &:hover {
-      background-color: var(--iui-color-background-transparent-hover);
-    }
-
-    &:is([aria-selected='true'], [aria-current]) {
-      background-color: var(--iui-color-background-accent-muted);
-    }
   }
 
   .iui-horizontal & ~ .iui-tabs-content {
-    margin-block-start: calc(0px - var(--iui-size-3xs));
-    border-block-start: var(--iui-size-3xs) solid var(--iui-color-border);
+    margin-block-start: -1px;
+    border-block-start: 1px solid var(--iui-color-border);
   }
 
   .iui-vertical & ~ .iui-tabs-content {
-    margin-inline-start: calc(0px - var(--iui-size-3xs));
+    margin-inline-start: -1px;
     padding-inline-start: var(--iui-size-s);
     padding-inline-end: var(--iui-size-s);
-    border-inline-start: var(--iui-size-3xs) solid var(--iui-color-border);
-  }
-
-  &.iui-green {
-    :is([aria-selected='true'], [aria-current]) {
-      background-color: var(--iui-color-background-positive-muted);
-    }
+    border-inline-start: 1px solid var(--iui-color-border);
   }
 
   &.iui-large {
@@ -48,9 +39,5 @@
     .iui-tab-description {
       display: -webkit-box; /* stylelint-disable-line */
     }
-  }
-
-  .iui-tab:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']):hover {
-    background-color: transparent;
   }
 }
