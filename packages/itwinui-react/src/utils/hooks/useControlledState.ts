@@ -40,18 +40,12 @@ export const useControlledState = <T>(
       if (value === oldState.current) {
         return;
       }
-      oldState.current = value;
 
       setUncontrolledState(value);
       setControlledState?.(value);
     },
     [oldState, setControlledState],
   );
-
-  // If in controlled mode, sync oldState with controlledState when it changes.
-  if (controlledState != null && oldState.current !== controlledState) {
-    oldState.current = controlledState;
-  }
 
   return [state, setState] as const;
 };
