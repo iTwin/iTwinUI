@@ -89,10 +89,10 @@ type ToggleSwitchProps = {
  * <caption>ToggleSwitch with wrapperProps</caption>
  * <ToggleSwitch
  *   className='my-class' // applied to input
- *   style={{ width: 80 }} // applied to input
+ *   style={{ padding: 16 }} // applied to input
  *   wrapperProps={{
  *     className: 'my-wrapper-class', // applied to wrapper
- *     style: { width: 80 }, // applied to wrapper
+ *     style: { padding: 16 }, // applied to wrapper
  *   }}
  *
  *   // Other props are applied to input
@@ -140,22 +140,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const consistentPropsSpread =
     React.useContext(ThemeProviderFutureContext)?.consistentPropsSpread ===
     true;
-
-  const { wrapperSpecificProps, inputSpecificProps } = React.useMemo(() => {
-    if (wrapperProps != null || consistentPropsSpread) {
-      return {
-        wrapperSpecificProps: {
-          ...wrapperProps,
-        },
-        inputSpecificProps: { ...rest, className, style },
-      };
-    }
-
-    return {
-      wrapperSpecificProps: { className, style },
-      inputSpecificProps: { className: undefined, style: undefined, ...rest },
-    };
-  }, [className, consistentPropsSpread, rest, style, wrapperProps]);
+  const shouldApplyClassNameAndStyleOnWrapper =
+    wrapperProps == null || consistentPropsSpread;
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
@@ -164,24 +150,40 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
-      {...wrapperSpecificProps}
+      {...wrapperProps}
+      style={
+        shouldApplyClassNameAndStyleOnWrapper || wrapperProps.style != null
+          ? {
+              ...(shouldApplyClassNameAndStyleOnWrapper ? style : {}),
+              ...(wrapperProps?.style != null ? wrapperProps.style : {}),
+            }
+          : undefined
+      }
       className={cx(
         'iui-toggle-switch-wrapper',
         {
           'iui-disabled': disabled,
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
+          ...(className != null
+            ? { [className]: shouldApplyClassNameAndStyleOnWrapper }
+            : {}),
         },
-        wrapperSpecificProps.className,
+        wrapperProps?.className,
       )}
       data-iui-size={size}
     >
       <Box
         as='input'
-        {...inputSpecificProps}
-        className={cx('iui-toggle-switch', inputSpecificProps.className)}
         type='checkbox'
         role='switch'
+        style={!shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+        {...rest}
+        className={cx('iui-toggle-switch', {
+          ...(className != null
+            ? { [className]: !shouldApplyClassNameAndStyleOnWrapper }
+            : {}),
+        })}
         disabled={disabled}
         ref={ref}
       />
