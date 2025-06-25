@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { useLatestRef } from './useLatestRef.js';
 
 /**
  * Wrapper over `useState` that always gives preference to the
@@ -31,7 +32,7 @@ export const useControlledState = <T>(
     () => (controlledState !== undefined ? controlledState : uncontrolledState),
     [controlledState, uncontrolledState],
   );
-  const oldState = React.useRef(state);
+  const oldState = useLatestRef(state);
 
   const setState = React.useCallback(
     (value: T) => {
@@ -39,27 +40,18 @@ export const useControlledState = <T>(
       if (value === oldState.current) {
         return;
       }
-
-      // If in controlled mode, calling `setState` does *not* guarantee that the `controlledState` will change.
-      // i.e. the consumer may just ignore the `value` they receive in `setControlledState`.
-      // Thus, when in controlled state, do *not* update `oldState` when `setState` is called.
-      // Instead, only do so when the controlled value is changed (the effect for syncing oldState with controlledState).
-      if (controlledState == null) {
-        oldState.current = value;
-      }
+      oldState.current = value;
 
       setUncontrolledState(value);
       setControlledState?.(value);
     },
-    [controlledState, setControlledState],
+    [oldState, setControlledState],
   );
 
-  // If in controlled mode, sync oldState with controlledState
-  React.useEffect(() => {
-    if (controlledState != null) {
-      oldState.current = controlledState;
-    }
-  }, [controlledState]);
+  // If in controlled mode, sync oldState with controlledState when it changes.
+  if (controlledState != null && oldState.current !== controlledState) {
+    oldState.current = controlledState;
+  }
 
   return [state, setState] as const;
 };
