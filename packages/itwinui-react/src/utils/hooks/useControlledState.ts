@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useLatestRef } from './useLatestRef.js';
 
 /**
  * Wrapper over `useState` that always gives preference to the
@@ -31,7 +30,7 @@ export const useControlledState = <T>(
     () => (controlledState !== undefined ? controlledState : uncontrolledState),
     [controlledState, uncontrolledState],
   );
-  const oldState = useLatestRef<T>(state);
+  const oldState = React.useRef<T>(state);
 
   const setState = React.useCallback(
     (value) => {
@@ -58,7 +57,7 @@ export const useControlledState = <T>(
       setUncontrolledState(value);
       setControlledState?.(value);
     },
-    [controlledState, oldState, setControlledState, state],
+    [controlledState, setControlledState, state],
   ) as React.Dispatch<React.SetStateAction<T>>;
 
   // If in controlled mode, sync oldState with controlledState
@@ -66,7 +65,7 @@ export const useControlledState = <T>(
     if (controlledState != null) {
       oldState.current = controlledState;
     }
-  }, [controlledState, oldState]);
+  }, [controlledState]);
 
   return [state, setState] as const;
 };
