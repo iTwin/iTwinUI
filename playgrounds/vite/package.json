@@ -12,13 +12,13 @@
   "dependencies": {
     "@itwin/itwinui-react": "*",
     "@itwin/itwinui-icons-react": "2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^4.4.1",
     "typescript": "5",
     "vite": "^6"
   },
