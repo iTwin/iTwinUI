@@ -842,12 +842,7 @@ const SelectListbox = React.forwardRef((props, forwardedRef) => {
     return React.Children.map(childrenProp, (child, index) => {
       if (React.isValidElement<Record<string, any>>(child)) {
         // Supporting React 19 and earlier versions
-        const ref = (() => {
-          if (isReact17or18) {
-            return child.props.ref;
-          }
-          return (child as any).ref;
-        })();
+        const ref = isReact17or18 ? (child as any).ref : child.props.ref;
 
         return <CompositeItem key={index} ref={ref} render={child} />;
       }
