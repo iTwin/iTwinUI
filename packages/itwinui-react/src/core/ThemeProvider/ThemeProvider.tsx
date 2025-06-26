@@ -17,8 +17,13 @@ import {
   useHydration,
   PortalContainerContext,
   useId,
+  FutureFlagsProvider,
+  useFutureFlag,
 } from '../../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import type {
+  FutureOptions,
+  PolymorphicForwardRefComponent,
+} from '../../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 import { meta } from '../../utils/meta.js';
@@ -39,28 +44,6 @@ export type ThemeOptions = {
    * Will default to user preference if browser supports it.
    */
   highContrast?: boolean;
-};
-
-export type FutureOptions = {
-  /**
-   * @alpha
-   *
-   * If enabled, the theme resembles the future iTwinUI version's theme (including alphas) *whenever possible*.
-   *
-   * This is useful in making apps looks like future versions of iTwinUI to help with incremental adoption.
-   *
-   * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
-   */
-  themeBridge?: boolean;
-  /**
-   * There are some iTwinUI components where some props are applied on an element different from where the `rest` props
-   * are applied. Setting this to `true` will apply all props on the same element.
-   *
-   * Component affected: `ToggleSwitch`.
-   *
-   * See component JSDocs for more details.
-   */
-  consistentPropsSpread?: boolean;
 };
 
 export type ThemeType = 'light' | 'dark' | 'os';
@@ -98,13 +81,9 @@ type RootProps = {
      */
     applyBackground?: boolean;
   };
-  /**
-   * Options to help with early adoption of features from future versions.
-   */
-  future?: FutureOptions;
 };
 
-type ThemeProviderOwnProps = Pick<RootProps, 'theme' | 'future'> & {
+type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
   themeOptions?: RootProps['themeOptions'];
   children: Required<React.ReactNode>;
   /**
@@ -135,6 +114,12 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme' | 'future'> & {
    * If true or false is passed, it will override the default behavior.
    */
   includeCss?: boolean;
+  /**
+   * Options to help with early adoption of features from future versions.
+   *
+   * All future options will be automatically inherited across nested ThemeProviders, unless explicitly overridden.
+   */
+  future?: true | FutureOptions;
 };
 
 // ----------------------------------------------------------------------------
@@ -174,7 +159,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     themeOptions = {},
     portalContainer: portalContainerProp,
     includeCss = themeProp === 'inherit',
-    future = {},
+    future: futureProp = {},
     ...rest
   } = props;
 
@@ -193,56 +178,56 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  future.themeBridge ??= parent.context?.future?.themeBridge;
-  future.consistentPropsSpread ??=
-    parent.context?.future?.consistentPropsSpread;
-
   const portalContainerFromParent = React.useContext(PortalContainerContext);
 
-  const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, future }),
+  const themeContextValue = React.useMemo(
+    () => ({ theme, themeOptions }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, JSON.stringify(themeOptions), JSON.stringify(future)],
+    [theme, JSON.stringify(themeOptions)],
   );
 
   const [portalContainer, setPortalContainer] =
     React.useState<HTMLElement | null>(portalContainerProp || null);
 
   return (
-    <PortalContainerContext.Provider value={portalContainer}>
-      <HydrationProvider>
-        <ThemeContext.Provider value={contextValue}>
-          <ToastProvider
-            inherit={themeProp === 'inherit' && !portalContainerProp}
-          >
-            {includeCss && rootElement ? (
-              <FallbackStyles root={rootElement} />
-            ) : null}
-
-            <MainRoot
-              theme={theme}
-              themeOptions={themeOptions}
-              future={future}
-              ref={useMergedRefs(forwardedRef, setRootElement, useIuiDebugRef)}
-              {...rest}
+    <FutureFlagsProvider value={futureProp}>
+      <PortalContainerContext.Provider value={portalContainer}>
+        <HydrationProvider>
+          <ThemeContext.Provider value={themeContextValue}>
+            <ToastProvider
+              inherit={themeProp === 'inherit' && !portalContainerProp}
             >
-              {children}
+              {includeCss && rootElement ? (
+                <FallbackStyles root={rootElement} />
+              ) : null}
 
-              <PortalContainer
+              <MainRoot
                 theme={theme}
                 themeOptions={themeOptions}
-                future={future}
-                portalContainerProp={portalContainerProp}
-                portalContainerFromParent={portalContainerFromParent}
-                setPortalContainer={setPortalContainer}
-                isInheritingTheme={themeProp === 'inherit'}
-              />
-            </MainRoot>
-          </ToastProvider>
-        </ThemeContext.Provider>
-      </HydrationProvider>
-    </PortalContainerContext.Provider>
+                ref={useMergedRefs(
+                  forwardedRef,
+                  setRootElement,
+                  useIuiDebugRef,
+                )}
+                {...rest}
+              >
+                {children}
+
+                <PortalContainer
+                  theme={theme}
+                  themeOptions={themeOptions}
+                  portalContainerProp={portalContainerProp}
+                  portalContainerFromParent={portalContainerFromParent}
+                  setPortalContainer={setPortalContainer}
+                  isInheritingTheme={themeProp === 'inherit'}
+                />
+              </MainRoot>
+            </ToastProvider>
+          </ThemeContext.Provider>
+        </HydrationProvider>
+      </PortalContainerContext.Provider>
+    </FutureFlagsProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 if (process.env.NODE_ENV === 'development') {
@@ -277,7 +262,7 @@ const MainRoot = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
-  const { theme, children, themeOptions, className, future, ...rest } = props;
+  const { theme, children, themeOptions, className, ...rest } = props;
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
@@ -285,25 +270,23 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
 
+  const themeBridge = useFutureFlag('themeBridge');
+
   return (
-    <ThemeProviderFutureContext.Provider
-      value={React.useMemo(() => future, [future])}
+    <Box
+      className={cx(
+        'iui-root',
+        { 'iui-root-background': shouldApplyBackground },
+        className,
+      )}
+      data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
+      data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
+      data-iui-bridge={themeBridge ? 'true' : undefined}
+      ref={forwardedRef}
+      {...rest}
     >
-      <Box
-        className={cx(
-          'iui-root',
-          { 'iui-root-background': shouldApplyBackground },
-          className,
-        )}
-        data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
-        data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-        data-iui-bridge={!!future?.themeBridge ? true : undefined}
-        ref={forwardedRef}
-        {...rest}
-      >
-        {children}
-      </Box>
-    </ThemeProviderFutureContext.Provider>
+      {children}
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 
@@ -385,7 +368,6 @@ const PortalContainer = React.memo(
     isInheritingTheme,
     theme,
     themeOptions,
-    future,
   }: {
     portalContainerProp: HTMLElement | undefined;
     portalContainerFromParent: HTMLElement | null;
@@ -437,7 +419,6 @@ const PortalContainer = React.memo(
         <Root
           theme={theme}
           themeOptions={{ ...themeOptions, applyBackground: false }}
-          future={future}
           data-iui-portal
           style={{ display: 'contents' }}
           ref={setPortalContainer}
@@ -564,9 +545,3 @@ const useInertPolyfill = () => {
     })();
   }, []);
 };
-
-// ----------------------------------------------------------------------------
-
-export const ThemeProviderFutureContext = React.createContext<
-  FutureOptions | undefined
->(undefined);
