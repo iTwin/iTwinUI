@@ -31,7 +31,7 @@ const FutureFlagsContext = React.createContext<FutureOptions>({});
  */
 export function useFutureFlag<K extends keyof FutureOptions>(key: K) {
   const context = useSafeContext(FutureFlagsContext);
-  return (context[key] ?? {}) as NonNullable<FutureOptions[K]>;
+  return context[key];
 }
 
 /** @private */
@@ -39,9 +39,9 @@ export const FutureFlagsProvider = ({
   children,
   value,
 }: React.PropsWithChildren<{ value: true | FutureOptions }>) => {
-  if (typeof value === 'boolean') {
+  if (value === true) {
     value = {
-      themeBridge: value,
+      themeBridge: true,
     };
   }
 
