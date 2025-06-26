@@ -31,3 +31,27 @@ test('tab stripe is positioned correctly when tablist overflows/scrolls', async 
 
   await expect(stripePosition).toEqual(`${expectedStripePosition}px`);
 });
+
+test('onValueChange is called only when the value *changes*', async ({
+  page,
+}) => {
+  await page.goto('/Tabs');
+
+  const counter = page.getByTestId('counter');
+  const tabs = page.getByRole('tab');
+
+  await expect(counter).toHaveText('1'); // Always called once in the beginning
+  await tabs.nth(0).click();
+  await expect(counter).toHaveText('1'); // No change since the first tab is already selected, so no call
+
+  await tabs.nth(1).click();
+  await expect(counter).toHaveText('2');
+
+  await tabs.nth(1).click();
+  await expect(counter).toHaveText('2'); // No change, so no call
+  await tabs.nth(1).focus();
+  await expect(counter).toHaveText('2'); // No change, so no call
+
+  await tabs.nth(2).focus();
+  await expect(counter).toHaveText('3');
+});
