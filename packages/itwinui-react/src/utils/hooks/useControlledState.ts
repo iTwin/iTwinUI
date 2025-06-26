@@ -40,6 +40,7 @@ export const useControlledState = <T>(
       if (value === oldState.current) {
         return;
       }
+      oldState.current = value;
 
       setUncontrolledState(value);
       setControlledState?.(value);
