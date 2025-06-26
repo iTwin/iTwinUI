@@ -40,6 +40,8 @@ export const useControlledState = <T>(
       if (value === oldState.current) {
         return;
       }
+
+      // Immediately update oldValue, in case setState is called multiple times before the next render.
       oldState.current = value;
 
       setUncontrolledState(value);
