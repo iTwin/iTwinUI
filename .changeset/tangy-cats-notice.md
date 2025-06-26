@@ -2,6 +2,11 @@
 '@itwin/itwinui-react': minor
 ---
 
-Some `on[Foo]Change` props and similar props are now only called when the value of `foo` *changes* (uncontrolled mode) or should change (controlled mode). Some of the affected components:
-* `Tabs.Wrapper`'s `onValueChange` and `Tabs`'s `onTabSelected`. (To listen to each click, use `onClick` on `Tabs.Tab` instead.)
-* `DropdownMenu`'s, `Popover`'s, and `Tooltip`'s `onVisibleChange` prop.
+The behavior of all `on[Value]Change` props has been made consistent such that they are only called when `[value]` actually *changes* (uncontrolled mode) or should *change* (controlled mode).
+
+Affected props include:
+* `Tabs.Wrapper`: `onValueChange` prop
+* `Tabs`: `onTabSelected` prop
+* `DropdownMenu`: `onVisibleChange` prop
+* `Popover`: `onVisibleChange` prop
+* `Tooltip`: `onVisibleChange` prop
