@@ -8,19 +8,20 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
 .iui-tree {
-  @include mixins.iui-reset;
+  // @include mixins.iui-reset;
   --_iui-tree-node-padding-inline: var(--iui-size-xs);
   --_iui-tree-row-height: calc(var(--iui-size-3xs) * 18);
 
-  list-style: none;
-  border-radius: var(--iui-border-radius-1);
-  background-color: var(--iui-color-background);
+  // list-style: none;
+  // border-radius: var(--iui-border-radius-1);
+  // background-color: var(--iui-color-background);
   overflow: auto;
+  display: grid;
 
-  &[data-iui-size='small'] {
-    --_iui-tree-node-padding-inline: var(--iui-size-2xs);
-    --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
-  }
+  // &[data-iui-size='small'] {
+  //   --_iui-tree-node-padding-inline: var(--iui-size-2xs);
+  //   --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
+  // }
 }
 
 .iui-sub-tree {
@@ -29,6 +30,8 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 }
 
 .iui-tree-item {
+  background-color: var(--iui-color-background-positive);
+
   &:focus-visible {
     outline: none;
 
