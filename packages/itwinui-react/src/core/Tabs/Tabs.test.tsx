@@ -253,14 +253,13 @@ it('should add .iui-large if tabs have sublabel', () => {
 });
 
 it.each(['horizontal', 'vertical'] as const)(
-  'should handle keypresses',
+  'should handle keypresses (orientation=%s)',
   async (orientation) => {
     const mockonActivated = vi.fn();
 
     const { container } = renderComponent(
       {
         orientation: orientation,
-        value: 'tab0',
         onValueChange: mockonActivated,
       },
       {},
@@ -284,31 +283,38 @@ it.each(['horizontal', 'vertical'] as const)(
     const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
 
     // alt key
+    expect(mockonActivated).toBeCalledTimes(1); // Always one call when in uncontrolled mode
+    expect(mockonActivated).toBeCalledWith('tab0');
     fireEvent.keyDown(tabs[0], { key: nextTabKey, altKey: true });
-    expect(mockonActivated).not.toHaveBeenCalled();
+    expect(mockonActivated).toBeCalledTimes(1);
 
     // 0 -> 1
     fireEvent.keyDown(tabs[0], { key: nextTabKey });
+    expect(mockonActivated).toBeCalledTimes(2);
     expect(mockonActivated).toBeCalledWith('tab1');
     expect(document.activeElement).toBe(tabs[1]);
 
     // 1 -> 2
     fireEvent.keyDown(tabs[1], { key: nextTabKey });
+    expect(mockonActivated).toBeCalledTimes(3);
     expect(mockonActivated).toBeCalledWith('tab2');
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 0
     fireEvent.keyDown(tabs[2], { key: nextTabKey });
+    expect(mockonActivated).toBeCalledTimes(4);
     expect(mockonActivated).toBeCalledWith('tab0');
     expect(document.activeElement).toBe(tabs[0]);
 
     // 0 -> 2
     fireEvent.keyDown(tabs[0], { key: previousTabKey });
+    expect(mockonActivated).toBeCalledTimes(5);
     expect(mockonActivated).toBeCalledWith('tab2');
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 1
     fireEvent.keyDown(tabs[2], { key: previousTabKey });
+    expect(mockonActivated).toBeCalledTimes(6);
     expect(mockonActivated).toBeCalledWith('tab1');
     expect(document.activeElement).toBe(tabs[1]);
   },
