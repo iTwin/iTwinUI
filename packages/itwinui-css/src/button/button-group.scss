@@ -86,9 +86,9 @@
     // Use negative margin to make adjacent borders overlap
     ~ :where(.iui-field, .iui-input-flex-container) {
       @if $orientation == 'horizontal' {
-        margin-inline-start: var(--_iui-button-group-item-offset); // To prevent double adjacent borders
+        margin-inline-start: var(--_iui-button-group-item-offset);
       } @else {
-        margin-block-start: var(--_iui-button-group-item-offset); // To prevent double adjacent borders
+        margin-block-start: var(--_iui-button-group-item-offset);
       }
 
       // Add slight border between disabled items
