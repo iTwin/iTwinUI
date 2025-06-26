@@ -104,7 +104,7 @@ type ToggleSwitchProps = {
  * <ThemeProvider future={{ consistentPropsSpread: true }}>
  *   <ToggleSwitch
  *     className='my-class' // applied to input
- *     style={{ width: 80 }} // applied to input
+ *     style={{ padding: 16 }} // applied to input
  *
  *     // Other props are applied to input
  *     data-dummy='value' // applied to input
@@ -116,7 +116,7 @@ type ToggleSwitchProps = {
  * <ThemeProvider>
  *   <ToggleSwitch
  *     className='my-class' // applied to wrapper
- *     style={{ width: 80 }} // applied to wrapper
+ *     style={{ padding: 16 }} // applied to wrapper
  *
  *     // Other props are applied to input
  *     data-dummy='value' // applied to input
