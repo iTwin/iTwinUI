@@ -128,9 +128,9 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
       className='iui-sidenav-button iui-expand'
       size='small'
       onClick={React.useCallback(() => {
-        setIsExpanded((expanded) => !expanded);
+        setIsExpanded(!isExpanded);
         onExpanderClick?.();
-      }, [onExpanderClick, setIsExpanded])}
+      }, [isExpanded, onExpanderClick, setIsExpanded])}
     >
       <SvgChevronRight />
     </IconButton>
