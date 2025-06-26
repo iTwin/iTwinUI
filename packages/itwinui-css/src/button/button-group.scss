@@ -5,6 +5,8 @@
 /// @arg $orientation must be one of: horizontal, vertical
 /// Note: Vertical button-group should be used for icon buttons only.
 @mixin iui-button-group($orientation: horizontal) {
+  --_iui-button-group-item-offset: -1px; // To prevent double adjacent borders
+
   display: inline-flex;
   align-items: center;
   isolation: isolate;
@@ -84,9 +86,9 @@
     // Use negative margin to make adjacent borders overlap
     ~ :where(.iui-field, .iui-input-flex-container) {
       @if $orientation == 'horizontal' {
-        margin-inline-start: -1px;
+        margin-inline-start: var(--_iui-button-group-item-offset); // To prevent double adjacent borders
       } @else {
-        margin-block-start: -1px;
+        margin-block-start: var(--_iui-button-group-item-offset); // To prevent double adjacent borders
       }
 
       // Add slight border between disabled items
