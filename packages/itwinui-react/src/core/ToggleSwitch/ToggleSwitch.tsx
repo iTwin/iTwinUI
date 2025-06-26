@@ -118,25 +118,16 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
+      style={shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
       {...wrapperProps}
-      style={
-        shouldApplyClassNameAndStyleOnWrapper || wrapperProps.style != null
-          ? {
-              ...(shouldApplyClassNameAndStyleOnWrapper ? style : {}),
-              ...(wrapperProps?.style != null ? wrapperProps.style : {}),
-            }
-          : undefined
-      }
       className={cx(
         'iui-toggle-switch-wrapper',
         {
           'iui-disabled': disabled,
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
-          ...(className != null
-            ? { [className]: shouldApplyClassNameAndStyleOnWrapper }
-            : {}),
         },
+        shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
         wrapperProps?.className,
       )}
       data-iui-size={size}
@@ -147,11 +138,10 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         role='switch'
         style={!shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
         {...rest}
-        className={cx('iui-toggle-switch', {
-          ...(className != null
-            ? { [className]: !shouldApplyClassNameAndStyleOnWrapper }
-            : {}),
-        })}
+        className={cx(
+          'iui-toggle-switch',
+          !shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+        )}
         disabled={disabled}
         ref={ref}
       />
