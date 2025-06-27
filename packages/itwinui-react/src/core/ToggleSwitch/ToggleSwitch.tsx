@@ -24,14 +24,11 @@ type ToggleSwitchProps = {
   /**
    * Passes props to wrapper.
    *
-   * `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s
-   * `future.ToggleSwitch.consistentPropsSpread` prop:
-   * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where
-   * all the other props are applied.
-   * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
-   * element where all the other props are applied.
+   * By default, `className` and `style` are applied on the wrapper element, and all other DOM props are passed to
+   * `<input>` element.
    *
-   * `...rest` props will always be applied on the `input`.
+   * When `wrapperProps` is passed or when the `ToggleSwitch.consistentPropsSpread` future flag is enabled, `className`
+   * and `style` are applied on the `<input>` element, similar to other DOM props.
    */
   wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
@@ -59,12 +56,11 @@ type ToggleSwitchProps = {
  *
  * ---
  *
- * `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s
- * `future.consistentPropsSpread` prop:
- * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where
- * all the other props are applied.
- * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
- * element where all the other props are applied.
+ * By default, `className` and `style` are applied on the wrapper element, and all other DOM props are passed to `<input>`
+ * element.
+ *
+ * When `wrapperProps` is passed or when the `ToggleSwitch.consistentPropsSpread` future flag is enabled, `className`
+ * and `style` are applied on the `<input>` element, similar to other DOM props.
  *
  * ---
  *
@@ -83,44 +79,6 @@ type ToggleSwitchProps = {
  * @example
  * <caption>Toggle with icon</caption>
  * <ToggleSwitch label='With icon toggle' icon={<svg viewBox='0 0 16 16'><path d='M1 1v14h14V1H1zm13 1.7v10.6L8.7 8 14 2.7zM8 7.3L2.7 2h10.6L8 7.3zm-.7.7L2 13.3V2.7L7.3 8zm.7.7l5.3 5.3H2.7L8 8.7z' /></svg>} />
- *
- * @example
- * <caption>ToggleSwitch with wrapperProps</caption>
- * <ToggleSwitch
- *   className='my-class' // applied to input
- *   style={{ padding: 16 }} // applied to input
- *   wrapperProps={{
- *     className: 'my-wrapper-class', // applied to wrapper
- *     style: { padding: 16 }, // applied to wrapper
- *   }}
- *
- *   // Other props are applied to input
- *   data-dummy='value' // applied to input
- * />
- *
- * @example
- * <caption>ThemeProvider's consistentPropsSpread=true or wrapperProps != null</caption>
- * <ThemeProvider future={{ consistentPropsSpread: true }}>
- *   <ToggleSwitch
- *     className='my-class' // applied to input
- *     style={{ padding: 16 }} // applied to input
- *
- *     // Other props are applied to input
- *     data-dummy='value' // applied to input
- *   />
- * </ThemeProvider>
- *
- * @example
- * <caption>ThemeProvider's consistentPropsSpread=false/undefined</caption>
- * <ThemeProvider>
- *   <ToggleSwitch
- *     className='my-class' // applied to wrapper
- *     style={{ padding: 16 }} // applied to wrapper
- *
- *     // Other props are applied to input
- *     data-dummy='value' // applied to input
- *   />
- * </ThemeProvider>
  */
 export const ToggleSwitch = React.forwardRef((props, ref) => {
   const {
