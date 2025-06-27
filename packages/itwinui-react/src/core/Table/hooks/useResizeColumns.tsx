@@ -286,6 +286,28 @@ const reducer = <T extends Record<string, unknown>>(
       deltaX / columnWidth,
     );
 
+    const stickyColsWidth = calculateStickyColsWidth(instance.flatHeaders);
+    const resizedCol = instance.flatHeaders.find(
+      (h) => h.id === headerIdWidths[0][0],
+    );
+    console.log(stickyColsWidth, instance.tableWidth);
+    if (resizedCol) {
+      // console.log(resizedCol.sticky, resizedCol.originalSticky);
+      if (stickyColsWidth >= instance.tableWidth) {
+        // un-sticky if total width of sticky columns is greater than table width
+        console.log('entered');
+        // resizedCol.originalSticky = 'none';
+        resizedCol.sticky = undefined;
+      }
+      // else if (
+      //   resizedCol.sticky === 'resize' &&
+      //   resizedCol.originalSticky !== 'none'
+      // ) {
+      //   // revert back to original sticky
+      //   resizedCol.sticky = resizedCol.originalSticky;
+      // }
+    }
+
     const isTableWidthDecreasing =
       calculateTableWidth(newColumnWidths, instance.flatHeaders) <
       instance.tableWidth;
@@ -517,6 +539,17 @@ const calculateTableWidth = <T extends Record<string, unknown>>(
       : getHeaderWidth(header);
   }
   return newTableWidth;
+};
+
+const calculateStickyColsWidth = <T extends Record<string, unknown>>(
+  headers: ColumnInstance<T>[],
+) => {
+  let stickyColsWidth = 0;
+  for (const header of headers) {
+    stickyColsWidth +=
+      header.originalSticky !== 'none' ? getHeaderWidth(header) : 0;
+  }
+  return stickyColsWidth;
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#safely_detecting_option_support

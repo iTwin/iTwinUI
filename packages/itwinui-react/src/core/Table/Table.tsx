@@ -960,9 +960,46 @@ export const Table = <
       }
       previousTableWidth.current = width;
 
+      const stickyColsWidth = flatHeaders.reduce((total, header) => {
+        return columnRefs.current[header.id] && header.originalSticky !== 'none'
+          ? total + columnRefs.current[header.id].getBoundingClientRect().width
+          : total;
+      }, 0);
+
+      // let rightMostStickyColOnLeft: ColumnInstance<T>;
+
+      // for (const header of flatHeaders) {
+      //   if (header.originalSticky) {
+      //     rightMostStickyColOnLeft = header;
+      //   } else {
+      //     break;
+      //   }
+      // }
+
+      console.log(stickyColsWidth, instance.tableWidth);
       // Update column widths when table was resized
       flatHeaders.forEach((header) => {
         if (columnRefs.current[header.id]) {
+          // if (
+          //   rightMostStickyColOnLeft &&
+          //   rightMostStickyColOnLeft.id === header.id
+          // ) {
+          if (header.sticky === 'left') {
+            // console.log(header.sticky, header.originalSticky);
+            if (stickyColsWidth >= instance.tableWidth) {
+              // un-sticky if total width of sticky columns is greater than table width
+              // header.originalSticky = 'none';
+              header.sticky = undefined;
+            }
+            // else if (
+            //   header.sticky === 'resize' &&
+            //   header.originalSticky !== 'none'
+            // ) {
+            //   console.log('REVERT STAGE');
+            //   // revert back to original sticky
+            //   header.sticky = header.originalSticky;
+            // }
+          }
           header.resizeWidth =
             columnRefs.current[header.id].getBoundingClientRect().width;
         }
