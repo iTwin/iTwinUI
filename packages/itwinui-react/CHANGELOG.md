@@ -1,5 +1,40 @@
 # Changelog
 
+## 3.19.0
+
+### Minor Changes
+
+- [#2544](https://github.com/iTwin/iTwinUI/pull/2544): Added a new `wrapperProps` prop to `ToggleSwitch` to pass props to the wrapper. To prevent breaking changes:
+  - If this new `wrapperProps` is provided, `className` and `style` will be applied on the `input` and `wrapperProps` will be applied on the wrapper.
+  - Else, `className` and `style` continue to be applied on the wrapper.
+- [#2573](https://github.com/iTwin/iTwinUI/pull/2573): Added the ability to pass `future={true}` to `ThemeProvider` to enable _all_ future options.
+- [#2541](https://github.com/iTwin/iTwinUI/pull/2541): Visual changes to `Tabs` for better accessibility and appearance when in theme bridge mode.
+
+  - `Tabs.Wrapper` without `type` declared focus `outline-offset` inset more so to not obstruct the active tab stripe.
+  - `Tabs.Wrapper type='borderless'` dividing line reduced to give the active tab stripe a visual difference.
+  - `Tabs.Wrapper type='borderless'` active tab no longer has `background-color` change.
+  - `Tabs.TabDescription` has `color` change with `transition`.
+
+- [#2528](https://github.com/iTwin/iTwinUI/pull/2528): The behavior of all `on[Value]Change` props has been made consistent such that they are only called when `[value]` actually _changes_ (uncontrolled mode) or should _change_ (controlled mode).
+
+  Affected props include:
+
+  - `Tabs.Wrapper`: `onValueChange` prop
+  - `Tabs`: `onTabSelected` prop
+  - `DropdownMenu`: `onVisibleChange` prop
+  - `Popover`: `onVisibleChange` prop
+  - `Tooltip`: `onVisibleChange` prop
+
+### Patch Changes
+
+- [#2568](https://github.com/iTwin/iTwinUI/pull/2568): `Table`'s `defaultColumn` prop is now respected.
+- [#2575](https://github.com/iTwin/iTwinUI/pull/2575): `DropdownButton`'s `menuItems` now also allows directly passing `React.JSX.Element[]` or `React.JSX.Element` (like `DropdownMenu`'s `menuItems`). If doing so, can be used with `dropdownMenuProps` prop's `closeOnItemClick`.
+- [#2568](https://github.com/iTwin/iTwinUI/pull/2568): Fixed `Table` bug where it unintentionally tried to add non-DOM props (e.g. `useControlledState` and `autoResetResize`) to the DOM which lead to a React console warning.
+- [#2571](https://github.com/iTwin/iTwinUI/pull/2571): Fixed `DropdownMenu` and other components to no longer result in a React warning of `ref` being incorrectly accessed as a prop in React 18 or earlier.
+- [#2575](https://github.com/iTwin/iTwinUI/pull/2575): Fixed `DropdownMenu`'s `children` type to be `React.JSX.Element` instead of `React.ReactNode`.
+- [#2570](https://github.com/iTwin/iTwinUI/pull/2570): Fixed `Tag` to correctly merge `labelProps.onClick` and `removeButtonProps.onClick` with the internal `onClick` handlers.
+- [#2574](https://github.com/iTwin/iTwinUI/pull/2574): `ButtonGroup` no longer has overlapping borders between adjacent iTwinUI borderless buttons.
+
 ## 3.18.3
 
 ### Patch Changes
