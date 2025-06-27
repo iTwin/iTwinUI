@@ -251,7 +251,7 @@ const reducer = <T extends Record<string, unknown>>(
       nextHeaderIdWidths,
     } = action;
 
-    return {
+    const _toReturn = {
       ...newState,
       columnResizing: {
         ...newState.columnResizing,
@@ -261,8 +261,18 @@ const reducer = <T extends Record<string, unknown>>(
         headerIdWidths,
         nextHeaderIdWidths,
         isResizingColumn: columnId,
+        // previousTableWidths: instance?.flatHeaders.map((h) => [
+        //   h.id,
+        //   getHeaderWidth(h),
+        // ]),
       },
     };
+    const toReturn = {
+      ..._toReturn,
+      previousState: _toReturn,
+    };
+
+    return toReturn;
   }
 
   if (action.type === actions.columnResizing) {
@@ -273,7 +283,9 @@ const reducer = <T extends Record<string, unknown>>(
       nextColumnWidth = 1,
       headerIdWidths = [],
       nextHeaderIdWidths = [],
+      previousState,
     } = newState.columnResizing;
+    console.log('HELLO', headerIdWidths, nextHeaderIdWidths);
 
     if (!instance) {
       return newState;
@@ -294,6 +306,50 @@ const reducer = <T extends Record<string, unknown>>(
       (instance?.columnResizeMode === 'expand' && isTableWidthDecreasing)
         ? getColumnWidths(nextHeaderIdWidths, -deltaX / nextColumnWidth)
         : {};
+
+    let el;
+    try {
+      el = document.querySelector(
+        `[data-iui-header="${headerIdWidths[0][0]}"]`,
+      ) as HTMLElement;
+    } catch (e) {
+      console.error(e);
+      console.warn(headerIdWidths);
+      throw e;
+    }
+    // if (
+
+    //   newColumnWidths[]
+    //   getBoundingClientRect().width
+    // )
+
+    // console.log(
+    //   '123',
+    //   newColumnWidths[headerIdWidths[0][0]],
+    //   el.getBoundingClientRect().width,
+    // );
+
+    // If overshot
+    if (headerIdWidths[0][1] > el.getBoundingClientRect().width) {
+      const realMaxWidth = el.getBoundingClientRect().width;
+      const header = instance.flatHeaders.find(
+        (h) => h.id === headerIdWidths[0][0],
+      );
+      // if (header) {
+      //   header.maxWidth = realMaxWidth;
+      // }
+
+      console.log(
+        'HELLO',
+        'OVERSHOT',
+        headerIdWidths,
+        headerIdWidths[0][0],
+        headerIdWidths[0][1],
+        el.getBoundingClientRect().width,
+        instance.flatHeaders.find((h) => h.id === headerIdWidths[0][0])?.width,
+      );
+      // return previousState;
+    }
 
     if (
       !isNewColumnWidthsValid(newColumnWidths, instance.flatHeaders) ||

@@ -86,7 +86,7 @@ export default function App() {
         Header: 'Product',
         accessor: 'product',
         minWidth: 150,
-        maxWidth: '50%',
+        maxWidth: '20%',
         sticky: 'left',
       },
       {
