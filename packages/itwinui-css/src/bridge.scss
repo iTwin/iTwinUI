@@ -119,6 +119,15 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Badge */
+
+  .iui-badge {
+    // --iui-badge-background-color: var(--stratakit-color-bg-mono-base);
+    // --_iui-badge-border-color: var(--stratakit-color-border-glow-strong-default);
+    // --_iui-badge-text-color: var(--stratakit-color-text-neutral-emphasis);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Breadcrumbs */
 
   .iui-breadcrumbs {
@@ -143,6 +152,11 @@
   /* Button */
 
   .iui-button {
+    &:not(.iui-input-flex-container-icon) {
+      --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
+      --_iui-field-color-background-hover: var(--_iui-field-color-background);
+    }
+
     // This is needed because for CTA buttons, border-hover variables are set to bg variables
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
 
@@ -209,6 +223,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* ComboBox */
+
+  .iui-field:where([role='combobox']) {
+    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
+    --_iui-field-color-background-hover: var(--_iui-field-color-background);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* DropdownMenu */
 
   .iui-menu {
@@ -263,12 +285,34 @@
     --_iui-field-color-background-disabled: var(--stratakit-color-bg-control-textbox);
   }
 
+  .iui-input-flex-container[data-iui-disabled='true'] {
+    --_iui-input-background-color: var(--iui-color-background);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+
+    input {
+      color: var(--stratakit-color-text-neutral-disabled);
+    }
+
+    svg {
+      fill: var(--stratakit-color-text-neutral-disabled);
+    }
+  }
+
   /* ---------------------------------------------------------------------------- */
   /* ProgressRadial */
 
   // StrataKit progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
     --_iui-progress-indicator-color-default-progress: var(--stratakit-color-icon-neutral-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Select */
+
+  .iui-select-button {
+    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
+    --_iui-field-color-background-hover: var(--_iui-field-color-background);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -333,6 +377,14 @@
   .iui-tabs-content {
     background-color: transparent;
     border: none;
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tag */
+
+  .iui-tag {
+    // StrataKit tag background color is different from iTwinUI's
+    background-color: var(--stratakit-color-bg-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
