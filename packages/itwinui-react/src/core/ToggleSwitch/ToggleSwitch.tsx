@@ -4,9 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, SvgCheckmark } from '../../utils/index.js';
+import { Box, SvgCheckmark, useFutureFlag } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { ThemeProviderFutureContext } from '../ThemeProvider/ThemeProvider.js';
 
 type ToggleSwitchProps = {
   /**
@@ -26,7 +25,7 @@ type ToggleSwitchProps = {
    * Passes props to wrapper.
    *
    * `className` and `style` props are applied depending on `wrapperProps` and `ThemeProvider`'s
-   * `future.consistentPropsSpread` prop:
+   * `future.ToggleSwitch.consistentPropsSpread` prop:
    * - `wrapperProps!=null || consistentPropsSpread=true`: `className` and `style` applied on the `input` element where
    * all the other props are applied.
    * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
@@ -137,11 +136,10 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const consistentPropsSpread =
-    React.useContext(ThemeProviderFutureContext)?.consistentPropsSpread ===
-    true;
-  const shouldApplyClassNameAndStyleOnWrapper =
-    wrapperProps == null || consistentPropsSpread;
+  const { consistentPropsSpread } = useFutureFlag('ToggleSwitch') || {};
+
+  const shouldApplyClassNameAndStyleOnInput =
+    wrapperProps != null || consistentPropsSpread;
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
@@ -150,7 +148,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
-      style={shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+      style={!shouldApplyClassNameAndStyleOnInput ? style : undefined}
       {...wrapperProps}
       className={cx(
         'iui-toggle-switch-wrapper',
@@ -159,7 +157,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+        !shouldApplyClassNameAndStyleOnInput ? className : undefined,
         wrapperProps?.className,
       )}
       data-iui-size={size}
@@ -168,11 +166,11 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         as='input'
         type='checkbox'
         role='switch'
-        style={!shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+        style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
         {...rest}
         className={cx(
           'iui-toggle-switch',
-          !shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+          shouldApplyClassNameAndStyleOnInput ? className : undefined,
         )}
         disabled={disabled}
         ref={ref}

@@ -16,6 +16,15 @@ export type FutureOptions = {
    * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
    */
   themeBridge?: boolean;
+  ToggleSwitch?: {
+    /**
+     * By default, `className` and `style` props are applied on the wrapper while other props are applied on the input.
+     * This inconsistency can lead to confusion.
+     *
+     * Thus, setting this flag to `true` or passing `wrapperProps` will apply all props on the input.
+     */
+    consistentPropsSpread?: boolean;
+  };
 };
 
 const FutureFlagsContext = React.createContext<FutureOptions>({});

@@ -13,7 +13,11 @@ export default function Page() {
 
   return (
     <ThemeProvider
-      future={{ consistentPropsSpread: themeProviderConsistentPropsSpread }}
+      future={{
+        ToggleSwitch: {
+          consistentPropsSpread: themeProviderConsistentPropsSpread,
+        },
+      }}
     >
       <ToggleSwitch
         className='my-class'
