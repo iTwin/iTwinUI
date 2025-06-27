@@ -21,11 +21,17 @@ export default () => {
     | 'withSubmenu'
     | 'withHideMiddleware'
     | 'withExtraContent'
+    | 'multipleCloseCalls'
     | undefined;
   const hideMiddleware =
     searchParams.get('hideMiddleware') === 'false' ? false : undefined;
   const closeOnItemClick = searchParams.get('closeOnItemClick') === 'true';
 
+  if (menuType === 'multipleCloseCalls') {
+    return (
+      <DropdownMenuMultipleCloseCalls closeOnItemClick={closeOnItemClick} />
+    );
+  }
   if (menuType === 'withSubmenu') {
     return <DropdownMenuWithSubmenus />;
   }
@@ -55,10 +61,44 @@ const DropdownMenuBasic = ({ closeOnItemClick = false }) => {
         </>
       }
     >
-      <IconButton label='More'>
+      <IconButton label='More' data-testid='trigger'>
         <SvgMore />
       </IconButton>
     </DropdownMenu>
+  );
+};
+
+const DropdownMenuMultipleCloseCalls = ({ closeOnItemClick = false }) => {
+  const [callsCount, setCallsCount] = React.useState(0);
+
+  const onClick = (close: () => void) => () => {
+    close();
+    close();
+    close();
+    close();
+  };
+
+  return (
+    <div>
+      <p data-testid='calls-count'>{callsCount}</p>
+      <DropdownMenu
+        closeOnItemClick={closeOnItemClick}
+        onVisibleChange={React.useCallback(() => {
+          setCallsCount((prev) => prev + 1);
+        }, [setCallsCount])}
+        menuItems={(close) => [
+          <MenuItem onClick={onClick(close)}>Item #1</MenuItem>,
+          <MenuItem onClick={onClick(close)}>Item #2</MenuItem>,
+          <MenuItem disabled onClick={onClick(close)}>
+            Item #3
+          </MenuItem>,
+        ]}
+      >
+        <IconButton label='More' data-testid='trigger'>
+          <SvgMore />
+        </IconButton>
+      </DropdownMenu>
+    </div>
   );
 };
 

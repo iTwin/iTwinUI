@@ -334,6 +334,24 @@ test.describe('DropdownMenu', () => {
     await expect(menu).toBeVisible();
   });
 
+  test('should call onVisibleChange only when the visibility changes', async ({
+    page,
+  }) => {
+    await page.goto('/DropdownMenu?menuType=multipleCloseCalls');
+
+    const trigger = page.getByTestId('trigger');
+    const onVisibleChangeCounter = page.getByTestId('calls-count');
+
+    // open
+    await expect(onVisibleChangeCounter).toHaveText('0');
+    await trigger.click();
+    await expect(onVisibleChangeCounter).toHaveText('1');
+
+    // click first item
+    await page.getByRole('menuitem', { name: 'Item #1' }).click();
+    await expect(onVisibleChangeCounter).toHaveText('2');
+  });
+
   test('should support positionReference prop for context menus', async ({
     page,
   }) => {

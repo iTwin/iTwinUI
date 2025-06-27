@@ -447,6 +447,42 @@ export const Table = <
     caption = 'Table',
     role,
     scrollToRow,
+
+    // Destructing remaining TableOptions<T> props to prevent passing them to the DOM.
+    // https://github.com/iTwin/iTwinUI/issues/2553
+    useControlledState,
+    autoResetExpanded,
+    autoResetFilters,
+    autoResetGlobalFilter,
+    autoResetHiddenColumns,
+    autoResetPage,
+    autoResetResize,
+    autoResetSelectedRows,
+    autoResetSortBy,
+    defaultCanFilter,
+    defaultCanSort,
+    defaultColumn: defaultColumnProp,
+    disableFilters,
+    disableGlobalFilter,
+    disableMultiSort,
+    disableSortRemove,
+    disabledMultiRemove,
+    expandSubRows,
+    globalFilter,
+    initialState,
+    isMultiSortEvent,
+    manualExpandedKey,
+    manualFilters,
+    manualGlobalFilter,
+    manualRowSelectedKey,
+    manualSortBy,
+    maxMultiSortColCount,
+    orderByFn,
+    pageCount,
+    sortTypes,
+    manualPagination,
+    paginateExpandedRows,
+
     ..._rest
   } = props;
 
@@ -496,8 +532,9 @@ export const Table = <
       maxWidth: 0,
       minWidth: 0,
       width: 0,
+      ...defaultColumnProp,
     }),
-    [],
+    [defaultColumnProp],
   );
 
   const rowHeight = React.useMemo(() => {
@@ -700,9 +737,36 @@ export const Table = <
 
   const instance = useTable<T>(
     {
-      manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
-      paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
-      ...props,
+      manualPagination: manualPagination ?? !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
+      paginateExpandedRows: paginateExpandedRows ?? false, // When false, it shows sub-rows in the current page instead of splitting them
+      useControlledState,
+      autoResetExpanded,
+      autoResetFilters,
+      autoResetGlobalFilter,
+      autoResetHiddenColumns,
+      autoResetPage,
+      autoResetResize,
+      autoResetSelectedRows,
+      autoResetSortBy,
+      defaultCanFilter,
+      defaultCanSort,
+      disableFilters,
+      disableGlobalFilter,
+      disableMultiSort,
+      disableSortRemove,
+      disabledMultiRemove,
+      expandSubRows,
+      globalFilter,
+      isMultiSortEvent,
+      manualExpandedKey,
+      manualFilters,
+      manualGlobalFilter,
+      manualRowSelectedKey,
+      manualSortBy,
+      maxMultiSortColCount,
+      orderByFn,
+      pageCount: pageCount ?? -1,
+      sortTypes,
       columns,
       defaultColumn,
       disableSortBy: !isSortable,
@@ -711,7 +775,7 @@ export const Table = <
       selectSubRows,
       data,
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
-      initialState: { pageSize, ...props.initialState },
+      initialState: { pageSize, ...initialState },
       columnResizeMode,
       getRowId: subComponent ? getRowIdWithSubComponents : getRowId, // only call this wrapper function when sub-component is present
     },
