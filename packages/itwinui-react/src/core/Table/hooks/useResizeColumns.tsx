@@ -44,6 +44,7 @@ import type {
   TableKeyedProps,
   TableState,
 } from '../../../react-table/react-table.js';
+import { calculateStickyColsWidth, getHeaderWidth } from '../utils.js';
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(
@@ -290,22 +291,11 @@ const reducer = <T extends Record<string, unknown>>(
     const resizedCol = instance.flatHeaders.find(
       (h) => h.id === headerIdWidths[0][0],
     );
-    console.log(stickyColsWidth, instance.tableWidth);
     if (resizedCol) {
-      // console.log(resizedCol.sticky, resizedCol.originalSticky);
       if (stickyColsWidth >= instance.tableWidth) {
         // un-sticky if total width of sticky columns is greater than table width
-        console.log('entered');
-        // resizedCol.originalSticky = 'none';
         resizedCol.sticky = undefined;
       }
-      // else if (
-      //   resizedCol.sticky === 'resize' &&
-      //   resizedCol.originalSticky !== 'none'
-      // ) {
-      //   // revert back to original sticky
-      //   resizedCol.sticky = resizedCol.originalSticky;
-      // }
     }
 
     const isTableWidthDecreasing =
@@ -513,21 +503,6 @@ function getLeafHeaders(header: HeaderGroup) {
   return leafHeaders;
 }
 
-const getHeaderWidth = <T extends Record<string, unknown>>(
-  header: ColumnInstance<T>,
-) => {
-  if (!header) {
-    return 0;
-  }
-
-  // `header.width` can be a string if the user specifies it in the column definition,
-  // but then becomes a number (pixels) when the user resizes the column, or when the table is resized, etc.
-  // So if `header.width` is ever a string that cannot be converted to a number, we shouldn't use `header.width`.
-  return typeof header.width === 'string' && Number.isNaN(Number(header.width))
-    ? Number(header.resizeWidth || 0)
-    : Number(header.width || header.resizeWidth || 0);
-};
-
 const calculateTableWidth = <T extends Record<string, unknown>>(
   columnWidths: Record<string, number>,
   headers: ColumnInstance<T>[],
@@ -539,17 +514,6 @@ const calculateTableWidth = <T extends Record<string, unknown>>(
       : getHeaderWidth(header);
   }
   return newTableWidth;
-};
-
-const calculateStickyColsWidth = <T extends Record<string, unknown>>(
-  headers: ColumnInstance<T>[],
-) => {
-  let stickyColsWidth = 0;
-  for (const header of headers) {
-    stickyColsWidth +=
-      header.originalSticky !== 'none' ? getHeaderWidth(header) : 0;
-  }
-  return stickyColsWidth;
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#safely_detecting_option_support

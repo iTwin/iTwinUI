@@ -5,11 +5,11 @@
 import { actions } from 'react-table';
 import type {
   ActionType,
-  ColumnInstance,
   Hooks,
   TableInstance,
   TableState,
 } from '../../../react-table/react-table.js';
+import { calculateStickyColsWidth } from '../utils.js';
 
 actions.setScrolledLeft = 'setScrolledLeft';
 actions.setScrolledRight = 'setScrolledRight';
@@ -61,32 +61,6 @@ const reducer = <T extends Record<string, unknown>>(
   return newState;
 };
 
-const getHeaderWidth = <T extends Record<string, unknown>>(
-  header: ColumnInstance<T>,
-) => {
-  if (!header) {
-    return 0;
-  }
-
-  // `header.width` can be a string if the user specifies it in the column definition,
-  // but then becomes a number (pixels) when the user resizes the column, or when the table is resized, etc.
-  // So if `header.width` is ever a string that cannot be converted to a number, we shouldn't use `header.width`.
-  return typeof header.width === 'string' && Number.isNaN(Number(header.width))
-    ? Number(header.resizeWidth || 0)
-    : Number(header.width || header.resizeWidth || 0);
-};
-
-const calculateStickyColsWidth = <T extends Record<string, unknown>>(
-  headers: ColumnInstance<T>[],
-) => {
-  let stickyColsWidth = 0;
-  for (const header of headers) {
-    stickyColsWidth +=
-      header.originalSticky !== 'none' ? getHeaderWidth(header) : 0;
-  }
-  return stickyColsWidth;
-};
-
 const useInstance = <T extends Record<string, unknown>>(
   instance: TableInstance<T>,
 ) => {
@@ -102,7 +76,6 @@ const useInstance = <T extends Record<string, unknown>>(
       (stickyColsWidth >= tableWidth && !header.sticky)
         ? undefined
         : header.originalSticky;
-    console.log(header.id, 'new header.sticky', header.sticky);
   });
 
   // If there is a column that is sticked to the left, make every column prior to that sticky too.
