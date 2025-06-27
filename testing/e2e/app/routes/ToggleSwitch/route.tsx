@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router';
 export default function Page() {
   const [searchParams] = useSearchParams();
 
+  const withThemeProvider = searchParams.get('withThemeProvider') === 'true';
   const themeProviderConsistentPropsSpread =
     searchParams.get('themeProviderConsistentPropsSpread') != null
       ? searchParams.get('themeProviderConsistentPropsSpread') === 'true'
@@ -11,9 +12,30 @@ export default function Page() {
   const shouldPassWrapperProps =
     searchParams.get('shouldPassWrapperProps') === 'true';
 
+  if (withThemeProvider) {
+    return (
+      <WithThemeProviderTest
+        shouldPassWrapperProps={shouldPassWrapperProps}
+        themeProviderConsistentPropsSpread={themeProviderConsistentPropsSpread}
+      />
+    );
+  }
+  return <DefaultTest shouldPassWrapperProps={shouldPassWrapperProps} />;
+}
+
+function WithThemeProviderTest(props: {
+  shouldPassWrapperProps?: boolean;
+  themeProviderConsistentPropsSpread?: boolean;
+}) {
+  const { shouldPassWrapperProps, themeProviderConsistentPropsSpread } = props;
+
   return (
-    <ConditionalThemeProvider
-      themeProviderConsistentPropsSpread={themeProviderConsistentPropsSpread}
+    <ThemeProvider
+      future={{
+        ToggleSwitch: {
+          consistentPropsSpread: themeProviderConsistentPropsSpread,
+        },
+      }}
     >
       <ToggleSwitch
         className='my-class'
@@ -31,27 +53,29 @@ export default function Page() {
             : undefined
         }
       />
-    </ConditionalThemeProvider>
+    </ThemeProvider>
   );
 }
 
-function ConditionalThemeProvider(props: {
-  children?: React.ReactNode;
-  themeProviderConsistentPropsSpread?: boolean;
-}) {
-  const { children, themeProviderConsistentPropsSpread } = props;
+function DefaultTest(props: { shouldPassWrapperProps?: boolean }) {
+  const { shouldPassWrapperProps } = props;
 
-  return themeProviderConsistentPropsSpread != null ? (
-    <ThemeProvider
-      future={{
-        ToggleSwitch: {
-          consistentPropsSpread: themeProviderConsistentPropsSpread,
-        },
+  return (
+    <ToggleSwitch
+      className='my-class'
+      style={{
+        backgroundColor: 'red',
       }}
-    >
-      {children}
-    </ThemeProvider>
-  ) : (
-    children
+      data-dummy-data-attr='dummy-value-root'
+      wrapperProps={
+        shouldPassWrapperProps
+          ? ({
+              className: 'wrapper-class',
+              style: { backgroundColor: 'blue' },
+              'data-dummy-data-attr': 'dummy-value-wrapper-props',
+            } as React.ComponentProps<typeof ToggleSwitch>['wrapperProps'])
+          : undefined
+      }
+    />
   );
 }
