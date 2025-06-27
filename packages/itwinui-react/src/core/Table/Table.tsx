@@ -985,6 +985,56 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
+  // React.useLayoutEffect(() => {
+  //   const observers: ResizeObserver[] = [];
+  //   const cols = columnRefs.current;
+  //   if (!cols) {
+  //     return;
+  //   }
+  //   for (const [id, el] of Object.entries(cols)) {
+  //     if (!el) {
+  //       continue;
+  //     }
+
+  //     const observer = new ResizeObserver(([entry]) => {
+  //       const enforcedWidth = entry.contentRect.width;
+  //       const header = flatHeaders.find((h) => h.id === id);
+  //       console.log(
+  //         'WITHIN RESIZE OBSERVER FOR ',
+  //         id,
+  //         ': ----> ',
+  //         enforcedWidth,
+  //       );
+  //       if (header) {
+  //         header.resizeWidth = el.getBoundingClientRect().width;
+  //       }
+  //     });
+  //     observer.observe(el);
+  //     observers.push(observer);
+  //   }
+  //   return () => {
+  //     observers.forEach((observer) => observer.disconnect());
+  //   };
+  // }, [flatHeaders]);
+
+  // useLayoutEffect(() => {
+  //   flatHeaders.forEach((h) => {
+  //     // console.log(
+  //     //   'before paint',
+  //     //   columnRefs.current[h.id].getBoundingClientRect().width,
+  //     //   'vs',
+  //     //   h.width,
+  //     // );
+  //     if (
+  //       Math.round(Number(h.width)) >
+  //       Math.round(columnRefs.current[h.id].getBoundingClientRect().width)
+  //     ) {
+  //       // console.log('NEED TO FIX WIDTH');
+  //       // h.resizeWidth = columnRefs.current[h.id].getBoundingClientRect().width;
+  //     }
+  //   });
+  // });
+
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useLayoutEffect(() => {
     if (state.isTableResizing) {
@@ -1211,6 +1261,19 @@ export const Table = <
                         ref={(el) => {
                           if (el) {
                             columnRefs.current[column.id] = el;
+                            if (column.width !== 0) {
+                              if (el && column.id === 'product') {
+                                if (
+                                  Math.round(
+                                    el.getBoundingClientRect().width,
+                                  ) !== Math.round(Number(column.width))
+                                ) {
+                                  console.log(
+                                    '----------MISMATCH-------------------------',
+                                  );
+                                }
+                              }
+                            }
                           }
                         }}
                       />
