@@ -94,6 +94,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Alert */
+
+  .iui-alert {
+    // StrataKit alert background color is different from iTwinUI's
+    background-color: var(--stratakit-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Anchor */
 
   .iui-anchor {
@@ -275,6 +283,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Surface */
+
+  .iui-surface {
+    // StrataKit surface background color is different from iTwinUI's
+    background-color: var(--stratakit-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Tabs */
 
   :where(.iui-tabs-wrapper) {
@@ -317,6 +333,14 @@
   .iui-tabs-content {
     background-color: transparent;
     border: none;
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tile */
+
+  .iui-tile:not(.iui-selected) {
+    // StrataKit tile background color is different from iTwinUI's
+    background-color: var(--stratakit-color-bg-elevation-base);
   }
 
   /* ---------------------------------------------------------------------------- */
