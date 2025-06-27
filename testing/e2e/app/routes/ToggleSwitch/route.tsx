@@ -12,12 +12,8 @@ export default function Page() {
     searchParams.get('shouldPassWrapperProps') === 'true';
 
   return (
-    <ThemeProvider
-      future={{
-        ToggleSwitch: {
-          consistentPropsSpread: themeProviderConsistentPropsSpread,
-        },
-      }}
+    <ConditionalThemeProvider
+      themeProviderConsistentPropsSpread={themeProviderConsistentPropsSpread}
     >
       <ToggleSwitch
         className='my-class'
@@ -35,6 +31,27 @@ export default function Page() {
             : undefined
         }
       />
+    </ConditionalThemeProvider>
+  );
+}
+
+function ConditionalThemeProvider(props: {
+  children?: React.ReactNode;
+  themeProviderConsistentPropsSpread?: boolean;
+}) {
+  const { children, themeProviderConsistentPropsSpread } = props;
+
+  return themeProviderConsistentPropsSpread != null ? (
+    <ThemeProvider
+      future={{
+        ToggleSwitch: {
+          consistentPropsSpread: themeProviderConsistentPropsSpread,
+        },
+      }}
+    >
+      {children}
     </ThemeProvider>
+  ) : (
+    children
   );
 }
