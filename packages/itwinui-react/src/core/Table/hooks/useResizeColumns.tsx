@@ -287,17 +287,6 @@ const reducer = <T extends Record<string, unknown>>(
       deltaX / columnWidth,
     );
 
-    const stickyColsWidth = calculateStickyColsWidth(instance.flatHeaders);
-    const resizedCol = instance.flatHeaders.find(
-      (h) => h.id === headerIdWidths[0][0],
-    );
-    if (resizedCol) {
-      if (stickyColsWidth >= instance.tableWidth) {
-        // un-sticky if total width of sticky columns is greater than table width
-        resizedCol.sticky = undefined;
-      }
-    }
-
     const isTableWidthDecreasing =
       calculateTableWidth(newColumnWidths, instance.flatHeaders) <
       instance.tableWidth;
@@ -325,6 +314,17 @@ const reducer = <T extends Record<string, unknown>>(
         h.width = h.resizeWidth;
       }
     });
+
+    const stickyColsWidth = calculateStickyColsWidth(instance.flatHeaders);
+    const resizedCol = instance.flatHeaders.find(
+      (h) => h.id === headerIdWidths[0][0],
+    );
+    if (resizedCol) {
+      if (stickyColsWidth >= instance.tableWidth) {
+        // un-sticky if total width of sticky columns is greater than table width
+        resizedCol.sticky = undefined;
+      }
+    }
 
     return {
       ...newState,
