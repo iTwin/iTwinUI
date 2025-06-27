@@ -291,8 +291,8 @@ export type TableProps<
     /**
      * Passes props to the `role="table"` element within the wrapper.
      *
-     * If `tableProps` or `role` is passed to `Table`, all ARIA attributes passed to `Table` will be passed to the wrapper.
-     * Else, all ARIA attributes will be passed to the inner element with `role="table"`.
+     * - If `tableProps` or `role` is passed to `Table`, all ARIA attributes passed to `Table` will be passed to the wrapper.
+     * - Else, all ARIA attributes will be passed to the inner element with `role="table"`.
      */
     tableProps?: React.ComponentProps<'div'>;
     /**
