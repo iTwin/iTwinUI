@@ -162,7 +162,7 @@ export interface TableState<D extends Record<string, unknown> = {}>
     columnWidths: Record<string, number>;
     isResizingColumn?: string;
     // previousTableWidths?: Array<[string, number]>; // used to calculate the difference in widths when resizing columns
-    previousState: TableState<D>;
+    previousState?: TableState<D>;
   };
   /**
    *

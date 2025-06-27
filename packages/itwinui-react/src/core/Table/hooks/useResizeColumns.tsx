@@ -269,7 +269,10 @@ const reducer = <T extends Record<string, unknown>>(
     };
     const toReturn = {
       ..._toReturn,
-      previousState: _toReturn,
+      columnResizing: {
+        ..._toReturn.columnResizing,
+        previousState: _toReturn,
+      },
     };
 
     return toReturn;
@@ -329,15 +332,52 @@ const reducer = <T extends Record<string, unknown>>(
     //   el.getBoundingClientRect().width,
     // );
 
+    const baseTableWidth = calculateTableWidth(
+      getColumnWidths(headerIdWidths, 0),
+      instance.flatHeaders,
+    );
+    const incTableWidth = calculateTableWidth(
+      newColumnWidths,
+      instance.flatHeaders,
+    );
+    const decTableWidth = calculateTableWidth(
+      newNextColumnWidths,
+      instance.flatHeaders,
+    );
+
+    const header = instance.flatHeaders.find(
+      (h) => h.id === headerIdWidths[0][0],
+    );
+    // console.log(
+    //   'HELLOOOO',
+    //   headerIdWidths,
+    //   headerIdWidths[0][0],
+    //   headerIdWidths[0][1],
+    //   el.getBoundingClientRect().width,
+    //   header?.width,
+    //   header?.resizeWidth,
+    //   baseTableWidth,
+    //   incTableWidth,
+    //   decTableWidth,
+    //   instance.tableWidth,
+    //   instance.totalColumnsWidth,
+    // );
+
     // If overshot
-    if (headerIdWidths[0][1] > el.getBoundingClientRect().width) {
+    console.log(typeof header?.maxWidth);
+    if (
+      header &&
+      header.maxWidth &&
+      typeof header.maxWidth !== 'number' &&
+      Number(header?.width) > el.getBoundingClientRect().width
+    ) {
       const realMaxWidth = el.getBoundingClientRect().width;
-      const header = instance.flatHeaders.find(
-        (h) => h.id === headerIdWidths[0][0],
-      );
-      // if (header) {
-      //   header.maxWidth = realMaxWidth;
-      // }
+      // const header = instance.flatHeaders.find(
+      //   (h) => h.id === headerIdWidths[0][0],
+      // );
+      if (header) {
+        header.maxWidth = realMaxWidth;
+      }
 
       console.log(
         'HELLO',
@@ -346,9 +386,16 @@ const reducer = <T extends Record<string, unknown>>(
         headerIdWidths[0][0],
         headerIdWidths[0][1],
         el.getBoundingClientRect().width,
-        instance.flatHeaders.find((h) => h.id === headerIdWidths[0][0])?.width,
+        header?.width,
+        header?.resizeWidth,
+        baseTableWidth,
+        incTableWidth,
+        decTableWidth,
+        instance.tableWidth,
+        instance.totalColumnsWidth,
       );
-      // return previousState;
+      console.log('object', previousState);
+      return previousState;
     }
 
     if (
@@ -431,7 +478,7 @@ const isNewColumnWidthsValid = <T extends Record<string, unknown>>(
     // const maxWidth = header.maxWidth : Infinity;
     let maxWidth;
     if (header.maxWidth) {
-      if (typeof header.maxWidth === 'string') {
+      if (typeof header.maxWidth !== 'number') {
         maxWidth = Infinity;
       } else {
         maxWidth = header.maxWidth;
@@ -443,28 +490,28 @@ const isNewColumnWidthsValid = <T extends Record<string, unknown>>(
       return false;
     }
 
-    const el = document.querySelector(
-      `[data-iui-header="${header.id}"]`,
-    ) as HTMLElement;
-    const clientWidth = el.getBoundingClientRect().width;
-    console.log(
-      header.id,
-      'updated HERE -------------- ',
-      width,
-      header.width,
-      el.getBoundingClientRect().width,
-    );
-    console.log(
-      'final check:',
-      Math.round(Number(header.width)),
-      Math.round(clientWidth),
-    );
-    if (Math.round(Number(header.width)) > Math.round(clientWidth)) {
-      maxWidth = clientWidth;
-      // header.width = clientWidth;
-      // header.maxWidth = clientWidth;
-      // return false;
-    }
+    // const el = document.querySelector(
+    //   `[data-iui-header="${header.id}"]`,
+    // ) as HTMLElement;
+    // const clientWidth = el.getBoundingClientRect().width;
+    // console.log(
+    //   header.id,
+    //   'updated HERE -------------- ',
+    //   width,
+    //   header.width,
+    //   el.getBoundingClientRect().width,
+    // );
+    // console.log(
+    //   'final check:',
+    //   Math.round(Number(header.width)),
+    //   Math.round(clientWidth),
+    // );
+    // if (Math.round(Number(header.width)) > Math.round(clientWidth)) {
+    //   maxWidth = clientWidth;
+    //   // header.width = clientWidth;
+    //   // header.maxWidth = clientWidth;
+    //   // return false;
+    // }
     if (width > maxWidth) {
       return false;
     }
