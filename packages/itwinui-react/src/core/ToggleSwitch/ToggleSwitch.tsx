@@ -109,7 +109,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const shouldApplyClassNameAndStyleOnWrapper = wrapperProps == null;
+  const shouldApplyClassNameAndStyleOnInput = wrapperProps != null;
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
@@ -118,7 +118,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
-      style={shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+      style={!shouldApplyClassNameAndStyleOnInput ? style : undefined}
       {...wrapperProps}
       className={cx(
         'iui-toggle-switch-wrapper',
@@ -127,7 +127,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+        !shouldApplyClassNameAndStyleOnInput ? className : undefined,
         wrapperProps?.className,
       )}
       data-iui-size={size}
@@ -136,11 +136,11 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         as='input'
         type='checkbox'
         role='switch'
-        style={!shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+        style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
         {...rest}
         className={cx(
           'iui-toggle-switch',
-          !shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+          shouldApplyClassNameAndStyleOnInput ? className : undefined,
         )}
         disabled={disabled}
         ref={ref}
