@@ -95,7 +95,8 @@ export const calculateStickyColsWidth = <T extends Record<string, unknown>>(
       columnRefs && columnRefs.current[header.id]
         ? columnRefs.current[header.id].getBoundingClientRect().width
         : getHeaderWidth(header);
-    stickyColsWidth += header.originalSticky !== 'none' ? colWidth : 0;
+    stickyColsWidth +=
+      header.originalSticky !== 'none' || header.sticky ? colWidth : 0;
   }
   return stickyColsWidth;
 };
