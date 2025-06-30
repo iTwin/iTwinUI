@@ -43,6 +43,7 @@ export const ComboBoxInputContainer = React.forwardRef(
         id={id}
       >
         <InputWithIcon>{children}</InputWithIcon>
+        {/* {children} */}
       </InputContainer>
     );
   },
