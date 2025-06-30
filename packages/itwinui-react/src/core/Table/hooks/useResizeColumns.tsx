@@ -315,7 +315,7 @@ const reducer = <T extends Record<string, unknown>>(
       }
     });
 
-    const stickyColsWidth = calculateStickyColsWidth(instance.flatHeaders);
+    const stickyColsWidth = calculateStickyColsWidth(0.8, instance.flatHeaders);
     const resizedCol = instance.flatHeaders.find(
       (h) => h.id === headerIdWidths[0][0],
     );

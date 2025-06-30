@@ -65,7 +65,7 @@ const useInstance = <T extends Record<string, unknown>>(
   instance: TableInstance<T>,
 ) => {
   const { flatHeaders, tableWidth } = instance;
-  const stickyColsWidth = calculateStickyColsWidth(flatHeaders);
+  const stickyColsWidth = calculateStickyColsWidth(0.8, flatHeaders);
   // Edge case. Saving original sticky state in case sticky columns are reordered.
   flatHeaders.forEach((header) => {
     if (!header.originalSticky) {

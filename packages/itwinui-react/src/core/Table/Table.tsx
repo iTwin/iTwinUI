@@ -960,7 +960,11 @@ export const Table = <
       }
       previousTableWidth.current = width;
 
-      const stickyColsWidth = calculateStickyColsWidth(flatHeaders, columnRefs);
+      const stickyColsWidth = calculateStickyColsWidth(
+        0.8,
+        flatHeaders,
+        columnRefs,
+      );
 
       // Update column widths when table was resized
       flatHeaders.forEach((header) => {

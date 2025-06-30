@@ -86,6 +86,7 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
 };
 
 export const calculateStickyColsWidth = <T extends Record<string, unknown>>(
+  tableWidthBuffer = 1,
   headers: ColumnInstance<T>[],
   columnRefs?: React.RefObject<Record<string, HTMLDivElement>>,
 ) => {
@@ -98,7 +99,7 @@ export const calculateStickyColsWidth = <T extends Record<string, unknown>>(
     stickyColsWidth +=
       header.originalSticky !== 'none' || header.sticky ? colWidth : 0;
   }
-  return stickyColsWidth;
+  return stickyColsWidth / tableWidthBuffer;
 };
 
 export const getHeaderWidth = <T extends Record<string, unknown>>(
