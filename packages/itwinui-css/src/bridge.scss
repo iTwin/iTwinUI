@@ -96,8 +96,8 @@
   /* ---------------------------------------------------------------------------- */
   /* Alert */
 
+  // StrataKit Banner background color is not iTwinUI's --iui-color-background's global mapping
   .iui-alert {
-    // StrataKit alert background color is different from iTwinUI's
     background-color: var(--stratakit-color-bg-elevation-base);
   }
 
@@ -121,32 +121,10 @@
   /* ---------------------------------------------------------------------------- */
   /* Avatar */
 
+  // StrataKit Avatar background and text colors are different from iTwinUI's global mappings.
   .iui-avatar-count {
-    // StrataKit colors different from iTwinUI's
     background-color: var(--stratakit-color-bg-mono-base);
     color: var(--stratakit-color-text-neutral-emphasis);
-
-    // 0px 0px 0px 1px var(--stratakit-color-border-glow-strong-default)inset
-    // border-color: var(--stratakit-color-border-glow-strong-default);
-    // border-color: red;
-
-    &::before {
-      // ids-color-border-neutral-base
-      // box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--stratakit-color-border-glow-strong-default);
-    }
-  }
-
-  .avatar::before {
-    // box-shadow: 0px 0px 0px 1px var(--stratakit-color-border-glow-strong-default) inset;
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Badge */
-
-  .iui-badge {
-    // --iui-badge-background-color: var(--stratakit-color-bg-mono-base);
-    // --_iui-badge-border-color: var(--stratakit-color-border-glow-strong-default);
-    // --_iui-badge-text-color: var(--stratakit-color-text-neutral-emphasis);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -174,6 +152,7 @@
   /* Button */
 
   .iui-button {
+    // StrataKit button background color is not iTwinUI's --iui-color-background global mapping
     &:not(.iui-input-flex-container-icon):not([data-iui-variant]) {
       --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
       --_iui-field-color-background-hover: var(--_iui-field-color-background);
@@ -247,6 +226,7 @@
   /* ---------------------------------------------------------------------------- */
   /* ComboBox */
 
+  // To match StrataKit Select instead of StrataKit Input
   .iui-field:where([role='combobox']) {
     --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
@@ -256,9 +236,6 @@
   /* DropdownMenu/Menu */
 
   .iui-menu {
-    // // StrataKit uses different surface colors for the dropdowns
-    // background-color: var(--stratakit-color-bg-elevation-level-1);
-
     // StrataKit uses box shadow only
     border: none;
     box-shadow: var(--stratakit-shadow-surface-xl);
@@ -277,15 +254,18 @@
     --_iui-expandable-block-header-caption-color-hover: var(--iui-color-text-muted);
   }
 
+  // StrataKit AccordionItem border is muted
   .iui-expandable-block {
     --_iui-expandable-block-border-color: var(--stratakit-color-border-neutral-muted);
   }
 
+  // StrataKit AccordionItem button background color is transparent
   .iui-expandable-header {
     --_iui-expandable-block-background-color: transparent;
     --_iui-expandable-block-header-background-color-hover: var(--_iui-expandable-block-background-color);
   }
 
+  // StrataKit AccordionItem content background color is transparent
   .iui-expandable-content {
     --_iui-expandable-block-background-color: transparent;
   }
@@ -329,14 +309,10 @@
   }
 
   .iui-input-flex-container[data-iui-disabled='true'] {
+    // StrataKit disabled inputs don't have a different background color
     --_iui-input-background-color: var(--iui-color-background);
-    // --_iui-input-border-color: var(--iui-color-border-disabled);
-    // --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
 
-    // input {
-    //   color: var(--stratakit-color-text-neutral-disabled);
-    // }
-
+    // iTwinUI disabled icons don't change color, but StrataKit does. Thus, handling disabled case manually.
     svg {
       fill: var(--stratakit-color-icon-neutral-disabled);
     }
@@ -345,17 +321,10 @@
   /* ---------------------------------------------------------------------------- */
   /* Label */
 
+  // StrataKit labels are slightly muted
   .iui-input-label:not([data-iui-disabled='true']) {
-    // StrataKit labels are slightly muted
     --_iui-input-label-color: var(--stratakit-color-text-neutral-secondary);
   }
-
-  // /* ---------------------------------------------------------------------------- */
-  // /* Popover */
-
-  // .iui-popover-surface {
-  //   background-color: var(--stratakit-color-bg-elevation-level-1);
-  // }
 
   /* ---------------------------------------------------------------------------- */
   /* ProgressLinear, ProgressRadial */
@@ -368,6 +337,7 @@
   /* ---------------------------------------------------------------------------- */
   /* Select */
 
+  // StrataKit Select background is not --iui-color-background's global mapping.
   .iui-select-button {
     --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
@@ -376,20 +346,24 @@
   /* ---------------------------------------------------------------------------- */
   /* SideNavigation */
 
+  // iTwinUI background color (--iui-color-background-backdrop)'s global mapping doesn't look correct in this context
   .iui-side-navigation
     .iui-sidenav-button:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
-    // ITwinUI background color doesn't look correct in this context
     background-color: var(--iui-color-background-disabled);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Slider */
-  /* TODO: Since Slider is experimental in StrataKit, revisit this when stable on the StrataKit end */
-  /* TODO: Are minLabel and maxLabel fills/colors correct? */
+  /* TODO: Since StrataKit Slider tokens are not added, revisit this when those tokens are added on the StrataKit end */
+
+  // Track color is not --iui-color-border-accent's global mapping
+  .iui-slider {
+    --_iui-slider-track-color: var(--stratakit-color-bg-accent-base);
+  }
 
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
-    background-color: var(--stratakit-color-bg-neutral-faded);
+    background-color: var(--stratakit-color-bg-neutral-inverse);
     border-color: var(--stratakit-color-border-neutral-faded);
   }
 
@@ -397,8 +371,29 @@
   /* Surface */
 
   .iui-surface {
-    // StrataKit surface background color is different from iTwinUI's
+    // To match the surface similar to StrataKit's dropdown menu
     background-color: var(--stratakit-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Table */
+
+  // StrataKit table and unselected rows match the backdrop color
+  :is(.iui-table, .iui-table-row:not([aria-selected='true']) .iui-table-cell, .iui-table-paginator, .iui-table-empty) {
+    background-color: var(--iui-color-background-backdrop);
+  }
+
+  // StrataKit table cell border color is muted, unlike iTwinUI's
+  .iui-table-row:not([aria-selected='true']) .iui-table-cell {
+    border-color: var(--stratakit-color-border-neutral-muted);
+  }
+
+  // Manually undoing iTwinUI case where last selected row has no border-block-end. This is because we overrode
+  // border-color for *all* non-selected rows' cells, even the first non-selected row after the
+  // last selected row that used to provide the border-block-start.
+  /* stylelint-disable-next-line selector-max-compound-selectors */
+  .iui-table-body .iui-table-row[aria-selected='true'] + [aria-selected='true'] .iui-table-cell {
+    border-block-end-color: var(--iui-color-border-accent);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -438,28 +433,22 @@
 
     // StrataKit tab has no background or border
     border: none;
+    background-color: transparent;
   }
 
-  // StrataKit tabs content has no background or border
   .iui-tabs-content {
+    // StrataKit tabs content has no background
     background-color: transparent;
-    border: none;
+    // StrataKit border color here is not equal to --iui-color-border's global mapping
+    border-color: var(--stratakit-color-border-neutral-muted);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Tag */
 
   .iui-tag {
-    // StrataKit tag background color is different from iTwinUI's
-    background-color: var(--stratakit-color-bg-neutral-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Tile */
-
-  .iui-tile:not(.iui-selected) {
-    // StrataKit tile background color is different from iTwinUI's
-    // background-color: var(--stratakit-color-bg-elevation-base);
+    // StrataKit tag background color is not iTwinUI's --iui-color-background global mapping
+    // background-color: var(--stratakit-color-bg-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
