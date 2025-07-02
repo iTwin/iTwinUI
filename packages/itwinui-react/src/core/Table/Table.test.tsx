@@ -32,6 +32,7 @@ import {
   SvgClose,
   SvgSortUp,
   SvgSortDown,
+  lineClamp,
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
@@ -4074,21 +4075,23 @@ it.each([
 
     const host = container.querySelector('.test-cell');
     expect(host?.shadowRoot).toBeTruthy();
-    const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
-    const increaseHitTarget = host?.shadowRoot?.querySelector(
+    const lineClampElement = host?.shadowRoot?.querySelector(
+      `.${lineClamp.className}`,
+    );
+    const increaseHitTargetElement = host?.shadowRoot?.querySelector(
       '._iui-table-cell-default-content',
     );
 
     if (shouldClamp) {
-      expect(lineClamp).toBeTruthy();
+      expect(lineClampElement).toBeTruthy();
     } else {
-      expect(lineClamp).toBeNull();
+      expect(lineClampElement).toBeNull();
     }
 
     if (shouldIncreaseHitTarget) {
-      expect(increaseHitTarget).toBeTruthy();
+      expect(increaseHitTargetElement).toBeTruthy();
     } else {
-      expect(increaseHitTarget).toBeNull();
+      expect(increaseHitTargetElement).toBeNull();
     }
   },
 );
