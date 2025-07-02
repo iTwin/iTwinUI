@@ -1,9 +1,20 @@
-import { Tabs } from '@itwin/itwinui-react';
+import { Tabs, Text } from '@itwin/itwinui-react';
+import * as React from 'react';
 
 export default function TabsTest() {
+  const [onValueChangeCallCount, setOnValueChangeCallCount] = React.useState(0);
+  const onValueChange = React.useCallback(() => {
+    setOnValueChangeCallCount((prev) => prev + 1);
+  }, []);
+
   return (
     <div data-testid='test-wrapper'>
-      <Tabs.Wrapper type='borderless' data-testid='tabs-wrapper'>
+      <Text data-testid='counter'>{onValueChangeCallCount}</Text>
+      <Tabs.Wrapper
+        type='borderless'
+        data-testid='tabs-wrapper'
+        onValueChange={onValueChange}
+      >
         <Tabs.TabList>
           <Tabs.Tab
             value='apple'

@@ -3,6 +3,8 @@
 @use 'base';
 
 @mixin iui-button-borderless {
+  --_iui-button-group-item-offset: 0; // To prevent border overlap between adjacent borderless buttons
+
   &[data-iui-shift='left'] {
     margin-inline-start: calc(-1 * var(--_iui-button-padding-inline));
   }

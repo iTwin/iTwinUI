@@ -69,9 +69,12 @@ type TabsWrapperOwnProps = {
    */
   value?: string;
   /**
-   * Function that gets called when active tab is changed.
+   * Function that gets called when active tab *changes* (uncontrolled mode) or should *change* (controlled mode).
    *
    * Should be used alongside `value` prop.
+   *
+   * If need to listen to each tab click, use `onClick` prop on `Tabs.Tab`.
+   * Similarly, for each focus, use `onFocus` prop on `Tabs.Tab`.
    */
   onValueChange?: (value: string) => void;
   /**
@@ -907,7 +910,7 @@ const TabsContext = React.createContext<
       /**
        * Handler for setting the value of the active tab.
        */
-      setActiveValue: React.Dispatch<React.SetStateAction<string>>;
+      setActiveValue: (value: string) => void;
       /**
        * Handler for setting the hasSublabel flag.
        */

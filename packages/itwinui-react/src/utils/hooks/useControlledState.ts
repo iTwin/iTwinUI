@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { useLatestRef } from './useLatestRef.js';
 
 /**
  * Wrapper over `useState` that always gives preference to the
@@ -11,6 +12,10 @@ import * as React from 'react';
  * This is helpful when a component needs to support both uncontrolled
  * and controlled states. If controlled value/setter is not passed,
  * then it will work just like a regular `useState`.
+ * The only exception is that the set function only accepts the new state. It does not accept a function.
+ *
+ * **NOTE**: `setControlledState` is called only when the value *changes* (uncontrolled mode) or should *change*
+ * (controlled mode).
  *
  * @example
  * const [state, setState] = useControlledState(null, props.value, props.onChange);
@@ -18,7 +23,7 @@ import * as React from 'react';
 export const useControlledState = <T>(
   initialValue: T,
   controlledState: T | undefined,
-  setControlledState?: React.Dispatch<React.SetStateAction<T>>,
+  setControlledState?: (value: T) => void,
 ) => {
   const [uncontrolledState, setUncontrolledState] =
     React.useState<T>(initialValue);
@@ -27,14 +32,23 @@ export const useControlledState = <T>(
     () => (controlledState !== undefined ? controlledState : uncontrolledState),
     [controlledState, uncontrolledState],
   );
+  const oldState = useLatestRef(state);
 
   const setState = React.useCallback(
-    (value) => {
+    (value: T) => {
+      // Called only when the value *changes* (uncontrolled mode) or should *change* (controlled mode).
+      if (value === oldState.current) {
+        return;
+      }
+
+      // Immediately update oldValue, in case setState is called multiple times before the next render.
+      oldState.current = value;
+
       setUncontrolledState(value);
       setControlledState?.(value);
     },
-    [setControlledState, setUncontrolledState],
-  ) as React.Dispatch<React.SetStateAction<T>>;
+    [oldState, setControlledState],
+  );
 
   return [state, setState] as const;
 };

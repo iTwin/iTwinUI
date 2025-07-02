@@ -21,6 +21,17 @@ type ToggleSwitchProps = {
    * @default 'right'
    */
   labelPosition?: 'left' | 'right';
+  /**
+   * Passes props to wrapper.
+   *
+   * `className` and `style` props are applied depending on `wrapperProps`:
+   * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where all the other props are applied.
+   * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
+   * element where all the other props are applied.
+   *
+   * `...rest` props will always be applied on the `input`.
+   */
+  wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
   | {
       /**
@@ -43,6 +54,17 @@ type ToggleSwitchProps = {
 
 /**
  * A switch for turning on and off.
+ *
+ * ---
+ *
+ * `className` and `style` props are applied depending on `wrapperProps`:
+ * - `wrapperProps!=null`: `className` and `style` applied on the `input` element where
+ * all the other props are applied.
+ * - `consistentPropsSpread=false/undefined`: `className` and `style` applied on the wrapper instead of the `input`
+ * element where all the other props are applied.
+ *
+ * ---
+ *
  * @example
  * <caption>Basic toggle</caption>
  * <ToggleSwitch onChange={(e) => console.log(e.target.checked)} defaultChecked />
@@ -58,6 +80,20 @@ type ToggleSwitchProps = {
  * @example
  * <caption>Toggle with icon</caption>
  * <ToggleSwitch label='With icon toggle' icon={<svg viewBox='0 0 16 16'><path d='M1 1v14h14V1H1zm13 1.7v10.6L8.7 8 14 2.7zM8 7.3L2.7 2h10.6L8 7.3zm-.7.7L2 13.3V2.7L7.3 8zm.7.7l5.3 5.3H2.7L8 8.7z' /></svg>} />
+ *
+ * @example
+ * <caption>ToggleSwitch with wrapperProps</caption>
+ * <ToggleSwitch
+ *   className='my-class' // applied to input
+ *   style={{ padding: 16 }} // applied to input
+ *   wrapperProps={{
+ *     className: 'my-wrapper-class', // applied to wrapper
+ *     style: { padding: 16 }, // applied to wrapper
+ *   }}
+ *
+ *   // Other props are applied to input
+ *   data-dummy='value' // applied to input
+ * />
  */
 export const ToggleSwitch = React.forwardRef((props, ref) => {
   const {
@@ -68,9 +104,12 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     style,
     size = 'default',
     labelProps = {},
+    wrapperProps,
     icon: iconProp,
     ...rest
   } = props;
+
+  const shouldApplyClassNameAndStyleOnWrapper = wrapperProps == null;
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
@@ -79,6 +118,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
+      style={shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+      {...wrapperProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -86,19 +127,23 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        className,
+        shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+        wrapperProps?.className,
       )}
       data-iui-size={size}
-      style={style}
     >
       <Box
         as='input'
-        className='iui-toggle-switch'
         type='checkbox'
         role='switch'
+        style={!shouldApplyClassNameAndStyleOnWrapper ? style : undefined}
+        {...rest}
+        className={cx(
+          'iui-toggle-switch',
+          !shouldApplyClassNameAndStyleOnWrapper ? className : undefined,
+        )}
         disabled={disabled}
         ref={ref}
-        {...rest}
       />
       {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
