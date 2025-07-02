@@ -4,7 +4,7 @@
 .iui-root:where([data-iui-bridge='true']) {
   --iui-color-white: var(--stratakit-color-static-white);
 
-  --iui-color-background: var(--stratakit-color-bg-elevation-level-1);
+  --iui-color-background: var(--stratakit-color-bg-page-base);
   --iui-color-background-disabled: var(--stratakit-color-bg-glow-on-surface-disabled);
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--iui-color-background);
