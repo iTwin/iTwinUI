@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type {
-  CellProps,
   CellRendererProps,
   HeaderProps,
 } from '../../../react-table/react-table.js';
@@ -76,39 +75,48 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         />
       );
     },
-    Cell: ({ row, selectSubRows = true }: CellProps<T>) => (
-      <Checkbox
-        {...row.getToggleRowSelectedProps()}
-        style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
-        title='' // Removes default title that comes from react-table
-        disabled={isDisabled?.(row.original)}
-        onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
-        aria-label={`${row.isSelected ? 'Deselect' : 'Select'} row`}
-        onChange={() => {
-          // Only goes through sub-rows if they are available and not sub-components
-          if (
-            row.subRows.length > 0 &&
-            selectSubRows &&
-            row.initialSubRows[0].original[iuiId as any] === undefined
-          ) {
-            //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
-            //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
-            row.toggleRowSelected(
-              !row.subRows.every(
-                (subRow) => subRow.isSelected || isDisabled?.(subRow.original),
-              ),
-            );
-          } else {
-            row.toggleRowSelected(!row.isSelected);
-          }
-        }}
-      />
-    ),
-    cellRenderer: (props: CellRendererProps<T>) => (
-      <DefaultCell
-        {...props}
-        isDisabled={(rowData) => !!isDisabled?.(rowData)}
-      />
-    ),
+    Cell: () => null,
+    cellRenderer: (props: CellRendererProps<T>) => {
+      const { row, selectSubRows = true } = props.cellProps;
+
+      const children = (
+        <Checkbox
+          {...row.getToggleRowSelectedProps()}
+          style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
+          title='' // Removes default title that comes from react-table
+          disabled={isDisabled?.(row.original)}
+          onClick={(e) => e.stopPropagation()} // Prevents triggering on row click
+          aria-label={`${row.isSelected ? 'Deselect' : 'Select'} row`}
+          onChange={() => {
+            // Only goes through sub-rows if they are available and not sub-components
+            if (
+              row.subRows.length > 0 &&
+              selectSubRows &&
+              row.initialSubRows[0].original[iuiId as any] === undefined
+            ) {
+              //This code ignores any sub-rows that are not currently available(i.e disabled or filtered out).
+              //If all available sub-rows are selected, then it deselects them all, otherwise it selects them all.
+              row.toggleRowSelected(
+                !row.subRows.every(
+                  (subRow) =>
+                    subRow.isSelected || isDisabled?.(subRow.original),
+                ),
+              );
+            } else {
+              row.toggleRowSelected(!row.isSelected);
+            }
+          }}
+        />
+      );
+
+      return (
+        <DefaultCell
+          {...props}
+          isDisabled={(rowData) => !!isDisabled?.(rowData)}
+        >
+          {children}
+        </DefaultCell>
+      );
+    },
   };
 };

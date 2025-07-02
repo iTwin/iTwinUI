@@ -10,6 +10,7 @@ import type {
   Row,
 } from '../../../react-table/react-table.js';
 import { ExpanderColumn, EXPANDER_CELL_ID } from '../columns/index.js';
+import { DefaultCell } from '../cells/DefaultCell.js';
 
 export const useExpanderCell =
   <T extends Record<string, unknown>>(
@@ -33,9 +34,16 @@ export const useExpanderCell =
       return [
         {
           ...expanderColumn,
-          Cell: expanderCell
-            ? (cellProps: CellProps<T>) => <>{expanderCell(cellProps)}</>
-            : expanderColumn.Cell,
+          cellRenderer: expanderCell
+            ? (props) => (
+                <DefaultCell
+                  {...props}
+                  isDisabled={(rowData) => !!isRowDisabled?.(rowData)}
+                >
+                  {expanderCell(props.cellProps)}
+                </DefaultCell>
+              )
+            : expanderColumn.cellRenderer,
         },
         ...columns,
       ];

@@ -29,7 +29,7 @@ export type DropdownMenuProps = {
   /**
    * Child element to wrap dropdown with.
    */
-  children: React.ReactNode;
+  children: React.JSX.Element;
   /**
    * Middleware options.
    *
