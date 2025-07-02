@@ -2,95 +2,95 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 .iui-root:where([data-iui-bridge='true']) {
-  --iui-color-white: var(--ids-color-static-white);
+  --iui-color-white: var(--stratakit-color-static-white);
 
-  --iui-color-background: var(--ids-color-bg-elevation-level-1);
-  --iui-color-background-disabled: var(--ids-color-bg-glow-on-surface-disabled);
+  --iui-color-background: var(--stratakit-color-bg-elevation-level-1);
+  --iui-color-background-disabled: var(--stratakit-color-bg-glow-on-surface-disabled);
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--iui-color-background);
-  --iui-color-background-backdrop: var(--ids-color-bg-page-base);
+  --iui-color-background-backdrop: var(--stratakit-color-bg-page-base);
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
-  --iui-color-background-accent: var(--ids-color-bg-accent-base);
+  --iui-color-background-accent: var(--stratakit-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
-  --iui-color-background-accent-muted: var(--ids-color-bg-glow-on-surface-accent-pressed);
+  --iui-color-background-accent-muted: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
 
-  --iui-color-border-foreground: var(--ids-color-border-mono-muted);
+  --iui-color-border-foreground: var(--stratakit-color-border-mono-muted);
   --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
 
-  --iui-color-background-informational: var(--ids-color-bg-info-base);
+  --iui-color-background-informational: var(--stratakit-color-bg-info-base);
   --iui-color-background-informational-hover: var(--iui-color-background-informational);
-  --iui-color-background-informational-muted: var(--ids-color-bg-info-muted);
-  --iui-color-background-positive: var(--ids-color-bg-positive-base);
+  --iui-color-background-informational-muted: var(--stratakit-color-bg-info-muted);
+  --iui-color-background-positive: var(--stratakit-color-bg-positive-base);
   --iui-color-background-positive-hover: var(--iui-color-background-positive);
-  --iui-color-background-positive-muted: var(--ids-color-bg-positive-muted);
-  --iui-color-background-warning: var(--ids-color-bg-attention-base);
+  --iui-color-background-positive-muted: var(--stratakit-color-bg-positive-muted);
+  --iui-color-background-warning: var(--stratakit-color-bg-attention-base);
   --iui-color-background-warning-hover: var(--iui-color-background-warning);
-  --iui-color-background-warning-muted: var(--ids-color-bg-attention-muted);
-  --iui-color-background-negative: var(--ids-color-bg-critical-base);
+  --iui-color-background-warning-muted: var(--stratakit-color-bg-attention-muted);
+  --iui-color-background-negative: var(--stratakit-color-bg-critical-base);
   --iui-color-background-negative-hover: var(--iui-color-background-negative);
-  --iui-color-background-negative-muted: var(--ids-color-bg-critical-muted);
+  --iui-color-background-negative-muted: var(--stratakit-color-bg-critical-muted);
 
-  --iui-color-border-informational: var(--ids-color-border-info-faded);
-  --iui-color-border-positive: var(--ids-color-border-positive-faded);
-  --iui-color-border-warning: var(--ids-color-border-attention-faded);
-  --iui-color-border-negative: var(--ids-color-border-critical-faded);
+  --iui-color-border-informational: var(--stratakit-color-border-info-faded);
+  --iui-color-border-positive: var(--stratakit-color-border-positive-faded);
+  --iui-color-border-warning: var(--stratakit-color-border-attention-faded);
+  --iui-color-border-negative: var(--stratakit-color-border-critical-faded);
 
-  --iui-color-border: var(--ids-color-border-neutral-base);
+  --iui-color-border: var(--stratakit-color-border-neutral-base);
   --iui-color-border-hover: var(--iui-color-border);
-  --iui-color-border-disabled: var(--ids-color-border-glow-on-surface-disabled);
-  --iui-color-border-subtle: var(--ids-color-border-neutral-muted);
-  --iui-color-border-accent: var(--ids-color-border-accent-strong);
+  --iui-color-border-disabled: var(--stratakit-color-border-glow-on-surface-disabled);
+  --iui-color-border-subtle: var(--stratakit-color-border-neutral-muted);
+  --iui-color-border-accent: var(--stratakit-color-border-accent-strong);
 
-  --iui-color-icon-accent: var(--ids-color-icon-accent-strong);
-  --iui-color-icon-informational: var(--ids-color-icon-info-faded);
-  --iui-color-icon-positive: var(--ids-color-icon-positive-faded);
-  --iui-color-icon-warning: var(--ids-color-icon-attention-faded);
-  --iui-color-icon-negative: var(--ids-color-icon-critical-faded);
+  --iui-color-icon-accent: var(--stratakit-color-icon-accent-strong);
+  --iui-color-icon-informational: var(--stratakit-color-icon-info-faded);
+  --iui-color-icon-positive: var(--stratakit-color-icon-positive-faded);
+  --iui-color-icon-warning: var(--stratakit-color-icon-attention-faded);
+  --iui-color-icon-negative: var(--stratakit-color-icon-critical-faded);
 
-  --iui-color-icon: var(--ids-color-icon-neutral-base);
+  --iui-color-icon: var(--stratakit-color-icon-neutral-base);
   --iui-color-icon-hover: var(--iui-color-icon);
-  --iui-color-icon-muted: var(--ids-color-icon-neutral-secondary);
+  --iui-color-icon-muted: var(--stratakit-color-icon-neutral-secondary);
   --iui-color-icon-muted-hover: var(--iui-color-icon-muted);
-  --iui-color-icon-disabled: var(--ids-color-icon-neutral-disabled);
+  --iui-color-icon-disabled: var(--stratakit-color-icon-neutral-disabled);
   --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
 
-  --iui-color-text-informational: var(--ids-color-text-info-faded);
-  --iui-color-text-positive: var(--ids-color-text-positive-faded);
-  --iui-color-text-warning: var(--ids-color-text-attention-faded);
-  --iui-color-text-negative: var(--ids-color-text-critical-faded);
+  --iui-color-text-informational: var(--stratakit-color-text-info-faded);
+  --iui-color-text-positive: var(--stratakit-color-text-positive-faded);
+  --iui-color-text-warning: var(--stratakit-color-text-attention-faded);
+  --iui-color-text-negative: var(--stratakit-color-text-critical-faded);
 
   --iui-color-text-informational-hover: var(--iui-color-text-informational);
   --iui-color-text-positive-hover: var(--iui-color-text-positive);
   --iui-color-text-warning-hover: var(--iui-color-text-warning);
   --iui-color-text-negative-hover: var(--iui-color-text-negative);
 
-  --iui-color-text: var(--ids-color-text-neutral-primary);
+  --iui-color-text: var(--stratakit-color-text-neutral-primary);
   --iui-color-text-hover: var(--iui-color-text);
-  --iui-color-text-accent: var(--ids-color-text-accent-strong);
+  --iui-color-text-accent: var(--stratakit-color-text-accent-strong);
   --iui-color-text-accent-hover: var(--iui-color-text-accent);
-  --iui-color-text-muted: var(--ids-color-text-neutral-secondary);
-  --iui-color-text-disabled: var(--ids-color-text-neutral-disabled);
+  --iui-color-text-muted: var(--stratakit-color-text-neutral-secondary);
+  --iui-color-text-disabled: var(--stratakit-color-text-neutral-disabled);
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
-  --iui-color-text-placeholder: var(--ids-color-text-neutral-secondary);
+  --iui-color-text-placeholder: var(--stratakit-color-text-neutral-secondary);
 
   &[data-iui-theme='light'] {
-    --iui-color-background-hsl: 209.2deg 40.21% 98.84%; // --ids-color-bg-page-base
-    --iui-color-foreground-hsl: 222.69deg 6.43% 12.92%; // --ids-color-text-neutral-primary
-    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --ids-color-icon-accent-strong
-    --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --ids-color-icon-info-faded
-    --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --ids-color-icon-positive-faded
-    --iui-color-warning-hsl: 39.78deg 94.44% 25.8%; // --ids-color-icon-attention-faded
-    --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --ids-color-icon-critical-faded
+    --iui-color-background-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-bg-page-base
+    --iui-color-foreground-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-text-neutral-primary
+    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --stratakit-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --stratakit-color-icon-info-faded
+    --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --stratakit-color-icon-positive-faded
+    --iui-color-warning-hsl: 39.78deg 94.44% 25.8%; // --stratakit-color-icon-attention-faded
+    --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --stratakit-color-icon-critical-faded
   }
 
   &[data-iui-theme='dark'] {
-    --iui-color-background-hsl: 222.69deg 6.43% 12.92%; // --ids-color-bg-page-base
-    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --ids-color-text-neutral-primary
-    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --ids-color-icon-accent-strong
-    --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --ids-color-icon-info-faded
-    --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --ids-color-icon-positive-faded
-    --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --ids-color-icon-attention-faded
-    --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --ids-color-icon-critical-faded
+    --iui-color-background-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-bg-page-base
+    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-text-neutral-primary
+    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --stratakit-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --stratakit-color-icon-info-faded
+    --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --stratakit-color-icon-positive-faded
+    --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --stratakit-color-icon-attention-faded
+    --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --stratakit-color-icon-critical-faded
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -106,7 +106,7 @@
 
     // Neutral color instead of accent
     &:where(:not([data-iui-status])) {
-      color: var(--ids-color-text-neutral-primary);
+      color: var(--stratakit-color-text-neutral-primary);
     }
   }
 
@@ -115,8 +115,8 @@
 
   // StrataKit Avatar background and text colors are different from iTwinUI's global mappings.
   .iui-avatar-count {
-    background-color: var(--ids-color-bg-mono-base);
-    color: var(--ids-color-text-neutral-emphasis);
+    background-color: var(--stratakit-color-bg-mono-base);
+    color: var(--stratakit-color-text-neutral-emphasis);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -146,7 +146,7 @@
   .iui-button {
     // StrataKit button background color is not iTwinUI's --iui-color-background global mapping
     &:not(.iui-input-flex-container-icon):not([data-iui-variant]) {
-      --_iui-field-color-background: var(--ids-color-bg-neutral-base);
+      --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
       --_iui-field-color-background-hover: var(--_iui-field-color-background);
     }
 
@@ -158,12 +158,12 @@
 
     // CTA variant should use the same colors as high-visibility instead of using "positive" colors
     &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
-      --_iui-field-color-background: var(--ids-color-bg-accent-base);
+      --_iui-field-color-background: var(--stratakit-color-bg-accent-base);
       --_iui-field-color-background-hover: var(--_iui-field-color-background);
-      --_iui-field-color-icon: var(--ids-color-icon-neutral-emphasis);
+      --_iui-field-color-icon: var(--stratakit-color-icon-neutral-emphasis);
 
       // Extra visible border in StrataKit
-      --_iui-field-color-border: var(--ids-color-border-accent-base);
+      --_iui-field-color-border: var(--stratakit-color-border-accent-base);
     }
   }
 
@@ -183,15 +183,15 @@
     &:not(.iui-checkbox-visibility) {
       &:not(:disabled) {
         // Check mark is plain color and not accent
-        --_iui-checkbox-svg-color: var(--ids-color-icon-neutral-emphasis);
+        --_iui-checkbox-svg-color: var(--stratakit-color-icon-neutral-emphasis);
         // Override surface bg color with bg for interactive elements
-        --_iui-checkbox-background-color: var(--ids-color-bg-neutral-base);
+        --_iui-checkbox-background-color: var(--stratakit-color-bg-neutral-base);
 
         &:checked {
           // Checked checkbox is filled and not hollow
-          --_iui-checkbox-background-color: var(--ids-color-bg-accent-base);
+          --_iui-checkbox-background-color: var(--stratakit-color-bg-accent-base);
           // Border is accent color
-          --_iui-checkbox-border-color: var(--ids-color-border-accent-base);
+          --_iui-checkbox-border-color: var(--stratakit-color-border-accent-base);
         }
       }
 
@@ -211,7 +211,7 @@
   .iui-checkbox-wrapper {
     &:not(:where([data-iui-status])):not([data-iui-disabled='true']) {
       // StrataKit labels are slightly muted
-      color: var(--ids-color-text-neutral-secondary);
+      color: var(--stratakit-color-text-neutral-secondary);
     }
   }
 
@@ -220,7 +220,7 @@
 
   // To match StrataKit Select instead of StrataKit Input
   .iui-field:where([role='combobox']) {
-    --_iui-field-color-background: var(--ids-color-bg-neutral-base);
+    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
   }
 
@@ -230,7 +230,7 @@
   .iui-menu {
     // StrataKit uses box shadow only
     border: none;
-    box-shadow: var(--ids-shadow-surface-xl);
+    box-shadow: var(--stratakit-shadow-surface-xl);
   }
 
   .iui-list-item {
@@ -248,7 +248,7 @@
 
   // StrataKit AccordionItem border is muted
   .iui-expandable-block {
-    --_iui-expandable-block-border-color: var(--ids-color-border-neutral-muted);
+    --_iui-expandable-block-border-color: var(--stratakit-color-border-neutral-muted);
   }
 
   // StrataKit AccordionItem button background color is transparent
@@ -295,14 +295,14 @@
 
   .iui-input:not([role='combobox']) {
     // StrataKit input background colors are different from global values
-    --_iui-field-color-background: var(--ids-color-bg-page-base);
+    --_iui-field-color-background: var(--stratakit-color-bg-page-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-background-disabled: var(--_iui-field-color-background);
   }
 
   .iui-input-flex-container {
     // StrataKit input background colors are different from global values
-    background-color: var(--ids-color-bg-page-base);
+    background-color: var(--stratakit-color-bg-page-base);
   }
 
   .iui-input-flex-container[data-iui-disabled='true'] {
@@ -311,7 +311,7 @@
 
     // iTwinUI disabled icons don't change color, but StrataKit does. Thus, handling disabled case manually.
     svg {
-      fill: var(--ids-color-icon-neutral-disabled);
+      fill: var(--stratakit-color-icon-neutral-disabled);
     }
   }
 
@@ -320,7 +320,7 @@
 
   // StrataKit labels are slightly muted
   .iui-input-label:not([data-iui-disabled='true']) {
-    --_iui-input-label-color: var(--ids-color-text-neutral-secondary);
+    --_iui-input-label-color: var(--stratakit-color-text-neutral-secondary);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -328,7 +328,7 @@
 
   // StrataKit progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
-    --_iui-progress-indicator-color-default-progress: var(--ids-color-icon-neutral-base);
+    --_iui-progress-indicator-color-default-progress: var(--stratakit-color-icon-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -336,7 +336,7 @@
 
   // StrataKit Select background is not --iui-color-background's global mapping.
   .iui-select-button {
-    --_iui-field-color-background: var(--ids-color-bg-neutral-base);
+    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
   }
 
@@ -355,13 +355,13 @@
 
   // Track color is not --iui-color-border-accent's global mapping
   .iui-slider {
-    --_iui-slider-track-color: var(--ids-color-bg-accent-base);
+    --_iui-slider-track-color: var(--stratakit-color-bg-accent-base);
   }
 
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
-    background-color: var(--ids-color-bg-neutral-inverse);
-    border-color: var(--ids-color-border-neutral-faded);
+    background-color: var(--stratakit-color-bg-neutral-inverse);
+    border-color: var(--stratakit-color-border-neutral-faded);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -369,7 +369,7 @@
 
   .iui-surface {
     // To match the surface similar to StrataKit's dropdown menu
-    background-color: var(--ids-color-bg-elevation-base);
+    background-color: var(--stratakit-color-bg-elevation-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -382,7 +382,7 @@
 
   // StrataKit table cell border color is muted, unlike iTwinUI's
   .iui-table-row:not([aria-selected='true']) .iui-table-cell {
-    border-color: var(--ids-color-border-neutral-muted);
+    border-color: var(--stratakit-color-border-neutral-muted);
   }
 
   // Manually undoing iTwinUI case where last selected row has no border-block-end. This is because we overrode
@@ -398,16 +398,16 @@
 
   :where(.iui-tabs-wrapper) {
     // The old accent stripe is now the regular stripe
-    --_iui-tab-color-stripe-blue: var(--ids-color-border-neutral-inverse);
+    --_iui-tab-color-stripe-blue: var(--stratakit-color-border-neutral-inverse);
     // The old positive stripe is now the accent stripe
-    --_iui-tab-color-stripe-green: var(--ids-color-border-accent-strong);
+    --_iui-tab-color-stripe-green: var(--stratakit-color-border-accent-strong);
 
     // StrataKit has muted color on its non selected tabs
-    --_iui-tab-color-default: var(--ids-color-text-neutral-tertiary);
+    --_iui-tab-color-default: var(--stratakit-color-text-neutral-tertiary);
     // StrataKit has no accent color on its selected tabs
-    --_iui-tab-color-selected: var(--ids-color-text-neutral-primary);
+    --_iui-tab-color-selected: var(--stratakit-color-text-neutral-primary);
     // The old positive color is now the accent color
-    --_iui-tab-color-green-selected: var(--ids-color-text-accent-strong);
+    --_iui-tab-color-green-selected: var(--stratakit-color-text-accent-strong);
 
     // Selected tab has stripe on the bottom instead of top
     &:where(.iui-horizontal) .iui-tab::after {
@@ -438,7 +438,7 @@
     background-color: transparent;
     border: none;
     // StrataKit border color here is not equal to --iui-color-border's global mapping
-    border-color: var(--ids-color-border-neutral-muted);
+    border-color: var(--stratakit-color-border-neutral-muted);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -446,7 +446,7 @@
 
   .iui-tag {
     // StrataKit tag background color is not iTwinUI's --iui-color-background global mapping
-    background-color: var(--ids-color-bg-neutral-base);
+    background-color: var(--stratakit-color-bg-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -463,24 +463,24 @@
   .iui-toggle-switch {
     &:not(:checked) {
       // StrataKit unchecked toggle switch background color is not iTwinUI's --iui-color-background global mapping
-      background-color: var(--ids-color-bg-page-base);
+      background-color: var(--stratakit-color-bg-page-base);
     }
 
     &:checked:not(:disabled) {
       // Checked toggle switches need accent border
-      border-color: var(--ids-color-border-accent-base);
+      border-color: var(--stratakit-color-border-accent-base);
     }
 
     &:disabled {
       // Disabled and non-disabled switches have the same background color
-      background-color: var(--ids-color-bg-page-base);
+      background-color: var(--stratakit-color-bg-page-base);
     }
   }
 
   .iui-toggle-switch-wrapper {
     // StrataKit labels are slightly muted
     &:not(.iui-disabled) {
-      color: var(--ids-color-text-neutral-secondary);
+      color: var(--stratakit-color-text-neutral-secondary);
     }
   }
 
@@ -489,10 +489,10 @@
 
   .iui-tooltip {
     // Background and border colors are opaque
-    background-color: var(--ids-color-bg-elevation-emphasis);
-    border-color: var(--ids-color-border-elevation-base);
+    background-color: var(--stratakit-color-bg-elevation-emphasis);
+    border-color: var(--stratakit-color-border-elevation-base);
 
     // Use StrataKit's shadow instead of iTwinUI's
-    box-shadow: var(--ids-shadow-tooltip-base);
+    box-shadow: var(--stratakit-shadow-tooltip-base);
   }
 }
