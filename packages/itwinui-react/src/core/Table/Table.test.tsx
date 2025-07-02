@@ -4027,11 +4027,11 @@ it('should pass custom props to different parts of Table', () => {
 
 it.each([
   ['no-custom-Cell', 'no-custom-cellRenderer', true, true],
-  ['custom-Cell', 'no-custom-cellRenderer', false, true],
+  ['custom-Cell', 'no-custom-cellRenderer', false, false],
   ['no-custom-Cell', 'custom-cellRenderer', false, false],
   ['no-custom-Cell', 'default-children-cellRenderer', true, true],
   ['custom-Cell', 'custom-cellRenderer', false, false],
-  ['custom-Cell', 'default-children-cellRenderer', false, true],
+  ['custom-Cell', 'default-children-cellRenderer', false, false],
 ] as const)(
   'if %s and %s are used, then shouldClamp: %s and shouldIncreaseHitTarget: %s',
   (isCustomCell, isCustomRenderer, shouldClamp, shouldIncreaseHitTarget) => {
