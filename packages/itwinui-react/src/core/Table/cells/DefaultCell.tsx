@@ -60,6 +60,11 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   const isCellRendererChildrenCustom =
     React.useContext(DefaultCellRendererPropsChildren) !== props.children;
 
+  const isDefaultTextCell =
+    typeof props.cellProps.value === 'string' &&
+    !isCustomCell &&
+    !isCellRendererChildrenCustom;
+  
   const {
     cellElementProps: {
       className: cellElementClassName,
@@ -74,9 +79,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' &&
-      !isCustomCell &&
-      !isCellRendererChildrenCustom,
+    clamp = isDefaultTextCell,
     ...rest
   } = props;
 
@@ -95,7 +98,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
 
-        <TableCellContent shouldRenderWrapper={isCellRendererChildrenCustom}>
+        <TableCellContent shouldRenderWrapper={isDefaultTextCell}>
           {clamp ? (
             <div className={lineClamp.className}>
               <slot />
@@ -148,7 +151,7 @@ const TableCellContent = (props: {
 }) => {
   const { children, shouldRenderWrapper } = props;
 
-  return shouldRenderWrapper ? (
+  return !shouldRenderWrapper ? (
     children
   ) : (
     <div
