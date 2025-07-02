@@ -6,7 +6,7 @@ import * as React from 'react';
 import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
-import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
+import { Box, lineClamp, ShadowRoot } from '../../../utils/index.js';
 import { TableInstanceContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
@@ -97,9 +97,9 @@ export const DefaultCell = <T extends Record<string, unknown>>(
 
         <TableCellContent shouldRenderWrapper={isCellRendererChildrenCustom}>
           {clamp ? (
-            <LineClamp>
+            <div className={lineClamp.className}>
               <slot />
-            </LineClamp>
+            </div>
           ) : (
             <slot />
           )}
@@ -178,4 +178,5 @@ const css = /* css */ `
   inset: -6px;
   z-index: -1;
 }
+${lineClamp.css}
 `;
