@@ -452,6 +452,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Tile */
+
+  // To make buttons match Tile background color
+  .iui-tile-buttons button {
+    background-color: var(--iui-color-background);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* ToggleSwitch */
 
   .iui-toggle-switch {

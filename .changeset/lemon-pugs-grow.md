@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-css': patch
+'@itwin/itwinui-css': minor
 ---
 
-Updated [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) variable mappings to match latest designs.
+Added a [**theme bridge**]((https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge)) which adjusts iTwinUI v3 visuals to blend in with StrataKit's new look-and-feel.
