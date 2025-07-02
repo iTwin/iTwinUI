@@ -94,14 +94,6 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* Alert */
-
-  // StrataKit Banner background color is not iTwinUI's --iui-color-background's global mapping
-  .iui-alert {
-    background-color: var(--ids-color-bg-elevation-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
   /* Anchor */
 
   .iui-anchor {
@@ -308,6 +300,11 @@
     --_iui-field-color-background-disabled: var(--_iui-field-color-background);
   }
 
+  .iui-input-flex-container {
+    // StrataKit input background colors are different from global values
+    background-color: var(--ids-color-bg-page-base);
+  }
+
   .iui-input-flex-container[data-iui-disabled='true'] {
     // StrataKit disabled inputs don't have a different background color
     --_iui-input-background-color: var(--iui-color-background);
@@ -437,8 +434,9 @@
   }
 
   .iui-tabs-content {
-    // StrataKit tabs content has no background
+    // StrataKit tabs content has no background or border
     background-color: transparent;
+    border: none;
     // StrataKit border color here is not equal to --iui-color-border's global mapping
     border-color: var(--ids-color-border-neutral-muted);
   }
@@ -448,7 +446,7 @@
 
   .iui-tag {
     // StrataKit tag background color is not iTwinUI's --iui-color-background global mapping
-    // background-color: var(--ids-color-bg-neutral-base);
+    background-color: var(--ids-color-bg-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -463,6 +461,11 @@
   /* ToggleSwitch */
 
   .iui-toggle-switch {
+    &:not(:checked) {
+      // StrataKit unchecked toggle switch background color is not iTwinUI's --iui-color-background global mapping
+      background-color: var(--ids-color-bg-page-base);
+    }
+
     &:checked:not(:disabled) {
       // Checked toggle switches need accent border
       border-color: var(--ids-color-border-accent-base);
@@ -470,7 +473,7 @@
 
     &:disabled {
       // Disabled and non-disabled switches have the same background color
-      background-color: var(--iui-color-background);
+      background-color: var(--ids-color-bg-page-base);
     }
   }
 
