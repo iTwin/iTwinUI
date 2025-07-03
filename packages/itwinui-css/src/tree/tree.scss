@@ -17,7 +17,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   background-color: var(--iui-color-background);
   overflow: auto;
   display: grid;
-  grid-template-columns: 100%;
+  align-content: start;
 
   &[data-iui-size='small'] {
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
