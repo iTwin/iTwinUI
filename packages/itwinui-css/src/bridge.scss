@@ -446,11 +446,6 @@
   /* ToggleSwitch */
 
   .iui-toggle-switch {
-    &:not(:checked) {
-      // StrataKit unchecked toggle switch background color is not iTwinUI's --iui-color-background global mapping
-      background-color: var(--ids-color-bg-page-base);
-    }
-
     &:checked:not(:disabled) {
       // Checked toggle switches need accent border
       border-color: var(--ids-color-border-accent-base);
