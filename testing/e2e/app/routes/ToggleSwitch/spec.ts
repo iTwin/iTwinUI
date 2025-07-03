@@ -34,7 +34,7 @@ test.describe('className, style, ...rest, and wrapperProps are applied on the co
         page,
       }) => {
         await page.goto(
-          `/ToggleSwitch?shouldPassWrapperProps=${shouldPassWrapperProps}&themeProviderConsistentPropsSpread=${themeProviderConsistentPropsSpread}`,
+          `/ToggleSwitch?withThemeProvider=true&shouldPassWrapperProps=${shouldPassWrapperProps}&themeProviderConsistentPropsSpread=${themeProviderConsistentPropsSpread}`,
         );
 
         const wrapper = page.locator("div:has(> input[role='switch'])");
