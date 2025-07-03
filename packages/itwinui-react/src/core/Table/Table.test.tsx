@@ -32,6 +32,7 @@ import {
   SvgClose,
   SvgSortUp,
   SvgSortDown,
+  lineClamp,
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
@@ -4027,11 +4028,11 @@ it('should pass custom props to different parts of Table', () => {
 
 it.each([
   ['no-custom-Cell', 'no-custom-cellRenderer', true, true],
-  ['custom-Cell', 'no-custom-cellRenderer', false, true],
+  ['custom-Cell', 'no-custom-cellRenderer', false, false],
   ['no-custom-Cell', 'custom-cellRenderer', false, false],
   ['no-custom-Cell', 'default-children-cellRenderer', true, true],
   ['custom-Cell', 'custom-cellRenderer', false, false],
-  ['custom-Cell', 'default-children-cellRenderer', false, true],
+  ['custom-Cell', 'default-children-cellRenderer', false, false],
 ] as const)(
   'if %s and %s are used, then shouldClamp: %s and shouldIncreaseHitTarget: %s',
   (isCustomCell, isCustomRenderer, shouldClamp, shouldIncreaseHitTarget) => {
@@ -4074,21 +4075,23 @@ it.each([
 
     const host = container.querySelector('.test-cell');
     expect(host?.shadowRoot).toBeTruthy();
-    const lineClamp = host?.shadowRoot?.querySelector('.iui-line-clamp');
-    const increaseHitTarget = host?.shadowRoot?.querySelector(
+    const lineClampElement = host?.shadowRoot?.querySelector(
+      `.${lineClamp.className}`,
+    );
+    const increaseHitTargetElement = host?.shadowRoot?.querySelector(
       '._iui-table-cell-default-content',
     );
 
     if (shouldClamp) {
-      expect(lineClamp).toBeTruthy();
+      expect(lineClampElement).toBeTruthy();
     } else {
-      expect(lineClamp).toBeNull();
+      expect(lineClampElement).toBeNull();
     }
 
     if (shouldIncreaseHitTarget) {
-      expect(increaseHitTarget).toBeTruthy();
+      expect(increaseHitTargetElement).toBeTruthy();
     } else {
-      expect(increaseHitTarget).toBeNull();
+      expect(increaseHitTargetElement).toBeNull();
     }
   },
 );
