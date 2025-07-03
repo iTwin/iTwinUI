@@ -31,6 +31,8 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 }
 
 .iui-tree-item {
+  min-inline-size: max-content;
+
   &:focus-visible {
     outline: none;
 
