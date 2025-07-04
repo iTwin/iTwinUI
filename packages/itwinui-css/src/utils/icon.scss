@@ -11,7 +11,7 @@ $icon-sizes: (
 );
 
 $default-size: #{map.get($icon-sizes, m)};
-$default-fill: var(--iui-color-icon-muted);
+$default-fill: var(--_iui-svg-icon-default-fill, var(--iui-color-icon-muted));
 
 .iui-svg-icon {
   display: inline-flex;

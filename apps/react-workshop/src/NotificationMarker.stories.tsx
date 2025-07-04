@@ -122,7 +122,7 @@ Status.decorators = [
         placeItems: 'start',
         rowGap: '20px',
         columnGap: '30px',
-        gridTemplateColumns: 'fit-content(1px) auto',
+        gridTemplateColumns: 'fit-content(50%) auto',
         alignItems: 'center',
       }}
     >
