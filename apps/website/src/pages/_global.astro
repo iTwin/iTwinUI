@@ -41,6 +41,20 @@ const { content = {} } = Astro.props;
         }
       }
     </style>
+    <script>
+      import polyfill from '@oddbird/css-anchor-positioning/fn';
+
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!('anchorName' in document.documentElement.style)) {
+          const anchorElements: HTMLElement[] = Array.from(
+            document.querySelectorAll('.icon-button'),
+          );
+          polyfill({
+            elements: anchorElements,
+          });
+        }
+      });
+    </script>
   </head>
 
   <body data-iui-theme='dark'>
