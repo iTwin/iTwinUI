@@ -8,3 +8,4 @@ Visual changes to `Tabs` for better accessibility and appearance when in theme b
 - `Tabs.Wrapper type='borderless'` dividing line reduced to give the active tab stripe a visual difference.
 - `Tabs.Wrapper type='borderless'` active tab no longer has `background-color` change.
 - `Tabs.TabDescription` has `color` change with `transition`.
+- `Tabs.Wrapper type='default'` disabled tab will now have the same background color as the non-disabled tab.
