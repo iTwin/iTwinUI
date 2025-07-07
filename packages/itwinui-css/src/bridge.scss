@@ -295,11 +295,6 @@
   .iui-input-flex-container:where([data-iui-disabled='true']) {
     // StrataKit disabled inputs don't have a different background color
     --_iui-input-background-color: var(--iui-color-background);
-
-    // iTwinUI disabled icons don't change color, but StrataKit does. Thus, handling disabled case manually.
-    svg {
-      fill: var(--ids-color-icon-neutral-disabled);
-    }
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -347,22 +342,6 @@
   .iui-surface {
     // To match the surface similar to StrataKit's dropdown menu
     background-color: var(--ids-color-bg-elevation-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Table */
-
-  // StrataKit table cell border color is muted, unlike iTwinUI's
-  .iui-table-row:where(:not([aria-selected='true'])) .iui-table-cell {
-    border-color: var(--ids-color-border-neutral-muted);
-  }
-
-  // Manually undoing iTwinUI case where last selected row has no border-block-end. This is because we overrode
-  // border-color for *all* non-selected rows' cells, even the first non-selected row after the
-  // last selected row that used to provide the border-block-start.
-  /* stylelint-disable-next-line selector-max-compound-selectors */
-  .iui-table-body .iui-table-row:where([aria-selected='true']) + [aria-selected='true'] .iui-table-cell {
-    border-block-end-color: var(--iui-color-border-accent);
   }
 
   /* ---------------------------------------------------------------------------- */
