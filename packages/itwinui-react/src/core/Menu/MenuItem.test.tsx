@@ -315,3 +315,15 @@ it('should portal submenu to same place as parent menu', async () => {
   expect(portaledParentMenuItem).toBeTruthy();
   expect(portaledSubmenuItem).toBeTruthy();
 });
+
+it('should call onClick with event argument', async () => {
+  const onClick = vi.fn();
+  render(<MenuItem onClick={onClick}>Test</MenuItem>);
+
+  const menuItem = screen.getByRole('menuitem');
+  await userEvent.click(menuItem);
+
+  expect(onClick).toHaveBeenCalledWith(
+    expect.objectContaining({ target: menuItem }), // event-like object
+  );
+});
