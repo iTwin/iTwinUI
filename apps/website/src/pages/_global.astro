@@ -46,11 +46,16 @@ const { content = {} } = Astro.props;
 
       document.addEventListener('DOMContentLoaded', () => {
         if (!('anchorName' in document.documentElement.style)) {
-          const anchorElements: HTMLElement[] = Array.from(
-            document.querySelectorAll('.icon-button'),
+          const anchorStyles = [...document.querySelectorAll('style')].find(
+            (styleEl) =>
+              styleEl.textContent &&
+              styleEl.textContent.includes('.icon-button') &&
+              styleEl.textContent.includes('.tooltip') &&
+              styleEl.textContent.includes('anchor-name') &&
+              styleEl.textContent.includes('position-anchor'),
           );
           polyfill({
-            elements: anchorElements,
+            elements: anchorStyles ? [anchorStyles] : [],
           });
         }
       });

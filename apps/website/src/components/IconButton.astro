@@ -1,20 +1,14 @@
 ---
-const { ...props } = Astro.props;
+type Props = { id: string } & astroHTML.JSX.HTMLAttributes;
+const { id, ...props } = Astro.props;
 ---
 
-<button
-  class='icon-button'
-  style='anchor-scope: --anchor-button; anchor-name: --anchor-button;'
-  {...props}
->
-  <span
-    aria-hidden='true'
-    class='tooltip'
-    style='position-anchor: --anchor-button; bottom: anchor(--anchor-button top);'
-    ><slot name='tooltip' />
-  </span>
-  <slot />
-</button>
+<>
+  <button class='icon-button' {...props}>
+    <span aria-hidden='true' class='tooltip'><slot name='tooltip' /></span>
+    <slot />
+  </button>
+</>
 
 <style lang='scss'>
   @layer components {
@@ -29,6 +23,8 @@ const { ...props } = Astro.props;
       border: 1px solid transparent;
       cursor: pointer;
       padding: 0.25rem;
+      anchor-scope: --anchor-button;
+      anchor-name: --anchor-button;
 
       &:hover {
         background: hsl(0 0% 0% / 0.2);
@@ -56,7 +52,8 @@ const { ...props } = Astro.props;
       border-radius: 4px;
       margin-block-end: 5px;
       transition: visibility 0.2s ease-in-out;
-
+      position-anchor: --anchor-button;
+      bottom: anchor(--anchor-button top);
       position-try-fallbacks: --fallback-tooltip-position;
 
       .icon-button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
