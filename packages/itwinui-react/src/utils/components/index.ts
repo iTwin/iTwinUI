@@ -13,6 +13,6 @@ export * from './Box.js';
 export * from './ButtonBase.js';
 export * from './Portal.js';
 export * from './ShadowRoot.js';
-export * from './LineClamp.js';
+export * from './lineClamp.js';
 export * from './FieldsetBase.js';
 export * from './OverflowContainer.js';

@@ -225,9 +225,20 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Dialog/Modal */
+
+  .iui-dialog {
+    // StrataKit Dialog background color is not iTwinUI's --iui-color-background global mapping
+    background-color: var(--ids-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* DropdownMenu/Menu */
 
   .iui-menu {
+    // StrataKit uses different surface colors for the dropdowns
+    background-color: var(--ids-color-bg-elevation-level-1);
+
     // StrataKit uses box shadow only
     border: none;
     box-shadow: var(--stratakit-shadow-surface-xl);
@@ -244,22 +255,6 @@
   // Caption color should stay muted when hovering since trigger background color also doesn't change on hover
   .iui-expandable-header:where(:not([data-iui-disabled='true'])):where(:hover) {
     --_iui-expandable-block-header-caption-color-hover: var(--iui-color-text-muted);
-  }
-
-  // StrataKit AccordionItem border is muted
-  .iui-expandable-block {
-    --_iui-expandable-block-border-color: var(--stratakit-color-border-neutral-muted);
-  }
-
-  // StrataKit AccordionItem button background color is transparent
-  .iui-expandable-header {
-    --_iui-expandable-block-background-color: transparent;
-    --_iui-expandable-block-header-background-color-hover: var(--_iui-expandable-block-background-color);
-  }
-
-  // StrataKit AccordionItem content background color is transparent
-  .iui-expandable-content {
-    --_iui-expandable-block-background-color: transparent;
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -283,26 +278,18 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* Icon */
-
-  .iui-svg-icon {
-    // StrataKit icons are text color by default
-    --_iui-svg-icon-default-fill: currentColor;
-  }
-
-  /* ---------------------------------------------------------------------------- */
   /* Input */
 
   .iui-input:not([role='combobox']) {
     // StrataKit input background colors are different from global values
-    --_iui-field-color-background: var(--stratakit-color-bg-page-base);
+    --_iui-field-color-background: var(--ids-color-bg-control-textbox);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-background-disabled: var(--_iui-field-color-background);
   }
 
   .iui-input-flex-container {
     // StrataKit input background colors are different from global values
-    background-color: var(--stratakit-color-bg-page-base);
+    background-color: var(--ids-color-bg-control-textbox);
   }
 
   .iui-input-flex-container[data-iui-disabled='true'] {
@@ -324,20 +311,27 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Popover */
+
+  .iui-popover-surface {
+    // StrataKit background color is different from global values
+    background-color: var(--ids-color-bg-elevation-level-1);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Popover */
+
+  .iui-popover-surface {
+    // StrataKit background color is different from global values
+    background-color: var(--ids-color-bg-elevation-level-1);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* ProgressLinear, ProgressRadial */
 
   // StrataKit progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
     --_iui-progress-indicator-color-default-progress: var(--stratakit-color-icon-neutral-base);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Select */
-
-  // StrataKit Select background is not --iui-color-background's global mapping.
-  .iui-select-button {
-    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
-    --_iui-field-color-background-hover: var(--_iui-field-color-background);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -428,9 +422,8 @@
     // To account for outline-offset
     border-radius: calc(4px + 6px);
 
-    // StrataKit tab has no background or border
+    // StrataKit tab has no border
     border: none;
-    background-color: transparent;
   }
 
   .iui-tabs-content {
@@ -461,11 +454,6 @@
   /* ToggleSwitch */
 
   .iui-toggle-switch {
-    &:not(:checked) {
-      // StrataKit unchecked toggle switch background color is not iTwinUI's --iui-color-background global mapping
-      background-color: var(--stratakit-color-bg-page-base);
-    }
-
     &:checked:not(:disabled) {
       // Checked toggle switches need accent border
       border-color: var(--stratakit-color-border-accent-base);

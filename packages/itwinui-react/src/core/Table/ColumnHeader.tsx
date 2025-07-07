@@ -6,7 +6,7 @@ import * as React from 'react';
 import {
   Box,
   ShadowRoot,
-  LineClamp,
+  lineClamp,
   SvgSortDown,
   SvgSortUp,
   useMergedRefs,
@@ -135,10 +135,10 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
     >
       <>
         {typeof column.Header === 'string' ? (
-          <ShadowRoot>
-            <LineClamp>
+          <ShadowRoot css={lineClamp.css}>
+            <div className={lineClamp.className}>
               <slot />
-            </LineClamp>
+            </div>
             <slot name='actions' />
             <slot name='resizers' />
             <slot name='shadows' />

@@ -14,6 +14,58 @@ Toggle switches are instant action components used to toggle an option instantly
 
 It fulfills a role similar to that of a [checkbox](checkbox), though they are not necessarily used in the same contexts. To learn more about when to use a toggle switch or a checkbox, please read [Checkbox vs Toggle Switch by Saadia Minhas](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8).
 
+## Application of props
+
+By default, `className` and `style` are applied on the wrapper element, and all other DOM props are passed to `<input>` element.
+
+When `wrapperProps` is passed or when the `ToggleSwitch.consistentPropsSpread` future flag is enabled, `className` and `style` are applied on the `<input>` element, similar to other DOM props.
+
+Below are some examples of how props are applied in different scenarios:
+
+Default:
+
+```jsx
+<ThemeProvider>
+  <ToggleSwitch
+    className='my-class' // applied to wrapper
+    style={{ padding: 16 }} // applied to wrapper
+    //
+    // Other props are applied to input
+    data-dummy='value' // applied to input
+  />
+</ThemeProvider>
+```
+
+With `wrapperProps`:
+
+```jsx
+<ToggleSwitch
+  className='my-class' // applied to input
+  style={{ padding: 16 }} // applied to input
+  wrapperProps={{
+    className: 'my-wrapper-class', // applied to wrapper
+    style: { padding: 16 }, // applied to wrapper
+  }}
+  //
+  // Other props are applied to input
+  data-dummy='value' // applied to input
+/>
+```
+
+`ThemeProvider`'s `ToggleSwitch.consistentPropsSpread` is enabled:
+
+```jsx
+<ThemeProvider future={{ ToggleSwitch: { consistentPropsSpread: true } }}>
+  <ToggleSwitch
+    className='my-class' // applied to input
+    style={{ padding: 16 }} // applied to input
+    //
+    // Other props are applied to input
+    data-dummy='value' // applied to input
+  />
+</ThemeProvider>
+```
+
 ## Usage
 
 ### Sizes
