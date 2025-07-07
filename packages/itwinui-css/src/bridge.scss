@@ -229,7 +229,7 @@
 
   .iui-dialog {
     // StrataKit Dialog background color is not iTwinUI's --iui-color-background global mapping
-    background-color: var(--ids-color-bg-elevation-base);
+    background-color: var(--stratakit-color-bg-elevation-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -237,7 +237,7 @@
 
   .iui-menu {
     // StrataKit uses different surface colors for the dropdowns
-    background-color: var(--ids-color-bg-elevation-level-1);
+    background-color: var(--stratakit-color-bg-elevation-level-1);
 
     // StrataKit uses box shadow only
     border: none;
@@ -282,14 +282,14 @@
 
   .iui-input:not([role='combobox']) {
     // StrataKit input background colors are different from global values
-    --_iui-field-color-background: var(--ids-color-bg-control-textbox);
+    --_iui-field-color-background: var(--stratakit-color-bg-control-textbox);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
     --_iui-field-color-background-disabled: var(--_iui-field-color-background);
   }
 
   .iui-input-flex-container {
     // StrataKit input background colors are different from global values
-    background-color: var(--ids-color-bg-control-textbox);
+    background-color: var(--stratakit-color-bg-control-textbox);
   }
 
   .iui-input-flex-container[data-iui-disabled='true'] {
@@ -315,15 +315,7 @@
 
   .iui-popover-surface {
     // StrataKit background color is different from global values
-    background-color: var(--ids-color-bg-elevation-level-1);
-  }
-
-  /* ---------------------------------------------------------------------------- */
-  /* Popover */
-
-  .iui-popover-surface {
-    // StrataKit background color is different from global values
-    background-color: var(--ids-color-bg-elevation-level-1);
+    background-color: var(--stratakit-color-bg-elevation-level-1);
   }
 
   /* ---------------------------------------------------------------------------- */
