@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { SvgChevronRight } from '../../../utils/index.js';
 import type {
-  CellProps,
   CellRendererProps,
   Row,
 } from '../../../react-table/react-table.js';
@@ -56,34 +55,35 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
     maxWidth: 48,
     columnClassName: 'iui-slot',
     cellClassName: 'iui-slot',
-    Cell: (props: CellProps<T>) => {
-      const { row } = props;
-      if (!subComponent?.(row)) {
-        return null;
-      } else {
-        return (
-          <IconButton
-            aria-label='Toggle expandable content'
-            className='iui-table-row-expander'
-            styleType='borderless'
-            size='small'
-            onClick={(e) => {
-              e.stopPropagation();
-              row.toggleRowExpanded();
-            }}
-            disabled={isDisabled?.(props.row.original)}
-            aria-expanded={row.isExpanded}
-          >
-            {<SvgChevronRight />}
-          </IconButton>
-        );
-      }
+    Cell: () => null,
+    cellRenderer: (props: CellRendererProps<T>) => {
+      const { row } = props.cellProps;
+
+      const children = !subComponent?.(row) ? null : (
+        <IconButton
+          aria-label='Toggle expandable content'
+          className='iui-table-row-expander'
+          styleType='borderless'
+          size='small'
+          onClick={(e) => {
+            e.stopPropagation();
+            row.toggleRowExpanded();
+          }}
+          disabled={isDisabled?.(row.original)}
+          aria-expanded={row.isExpanded}
+        >
+          {<SvgChevronRight />}
+        </IconButton>
+      );
+
+      return (
+        <DefaultCell
+          {...props}
+          isDisabled={(rowData) => !!isDisabled?.(rowData)}
+        >
+          {children}
+        </DefaultCell>
+      );
     },
-    cellRenderer: (props: CellRendererProps<T>) => (
-      <DefaultCell
-        {...props}
-        isDisabled={(rowData) => !!isDisabled?.(rowData)}
-      />
-    ),
   };
 };

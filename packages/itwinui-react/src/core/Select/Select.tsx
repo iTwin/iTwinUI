@@ -17,6 +17,7 @@ import {
   useLatestRef,
   InputWithIcon,
   mergeEventHandlers,
+  isReact17or18,
 } from '../../utils/index.js';
 import type {
   CommonProps,
@@ -368,7 +369,13 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         <MenuItem>{option.label}</MenuItem>
       );
 
-      const { label, icon, startIcon: startIconProp, ...restOption } = option;
+      const {
+        label,
+        icon,
+        startIcon: startIconProp,
+        value: _, // eslint-disable-line -- Unused. We do not want to pass `value` to `MenuItem`.
+        ...restOption
+      } = option;
 
       const startIcon = startIconProp ?? icon;
 
@@ -838,18 +845,15 @@ const SelectListbox = React.forwardRef((props, forwardedRef) => {
   }, []);
 
   const children = React.useMemo(() => {
-    return React.Children.map(childrenProp, (child, index) =>
-      React.isValidElement<Record<string, any>>(child) ? (
-        <CompositeItem
-          key={index}
-          render={child}
-          // Supporting React 19 and 18
-          ref={child.props.ref || (child as any).ref}
-        />
-      ) : (
-        child
-      ),
-    );
+    return React.Children.map(childrenProp, (child, index) => {
+      if (React.isValidElement<Record<string, any>>(child)) {
+        // Supporting React 19 and earlier versions
+        const ref = isReact17or18 ? (child as any).ref : child.props.ref;
+
+        return <CompositeItem key={index} ref={ref} render={child} />;
+      }
+      return child;
+    });
   }, [childrenProp]);
 
   return (

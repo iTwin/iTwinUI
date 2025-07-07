@@ -103,10 +103,10 @@
     "dev:styles": "pnpm build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.6",
+    "@floating-ui/react": "^0.27.13",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
-    "@swc/helpers": "^0.5.15",
-    "@tanstack/react-virtual": "^3.13.6",
+    "@swc/helpers": "^0.5.17",
+    "@tanstack/react-virtual": "^3.13.12",
     "classnames": "^2.5.1",
     "react-table": "^7.8.0"
   },
