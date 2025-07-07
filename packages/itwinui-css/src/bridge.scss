@@ -94,6 +94,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Alert */
+
+  .iui-alert {
+    // StrataKit Banner background is not --iui-color-background's global mapping
+    background-color: var(--ids-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Anchor */
 
   .iui-anchor {
