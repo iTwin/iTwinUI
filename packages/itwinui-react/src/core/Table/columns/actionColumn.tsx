@@ -53,6 +53,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
   return {
     id: ACTION_CELL_ID,
     disableResizing: true,
+    canResize: false,
     disableGroupBy: true,
     minWidth: 48,
     width: 48,
