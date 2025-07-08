@@ -22,7 +22,7 @@
     "@itwin/itwinui-variables": "*",
     "@jsdevtools/rehype-toc": "3.0.2",
     "@nanostores/react": "^1.0.0",
-    "@oddbird/css-anchor-positioning": "^0.6.0",
+    "@oddbird/css-anchor-positioning": "^0.6.1",
     "@tippyjs/react": "4.2.6",
     "@types/react": "*",
     "astro": "^4",
