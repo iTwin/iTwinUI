@@ -132,7 +132,13 @@
   },
   "peerDependencies": {
     "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
+    "react-dom": ">=17.0.0",
+    "@stratakit/foundations": ">=0.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@stratakit/foundations": {
+      "optional": true
+    }
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [

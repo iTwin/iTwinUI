@@ -92,8 +92,8 @@ importers:
         specifier: 0.21.0
         version: 0.21.0
       '@stratakit/foundations':
-        specifier: ^0.1.6
-        version: 0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.2.0
+        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -146,8 +146,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(@swc/helpers@0.5.17)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.14.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)
       '@stratakit/foundations':
-        specifier: ^0.1.6
-        version: 0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.2.0
+        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -363,6 +363,9 @@ importers:
       '@itwin/itwinui-illustrations-react':
         specifier: ^2.1.0
         version: 2.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@stratakit/foundations':
+        specifier: '>=0.2.0'
+        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@swc/helpers':
         specifier: ^0.5.17
         version: 0.5.17
@@ -1852,22 +1855,10 @@ packages:
         integrity: sha512-LsirF7M4F2yWgrFXEocD74F/MaVXsOsHVsRxBLhXQJemSSkWkDp/EZPt//OaqQ8ExnqWZ2lH7E1/KiN46unKjg==,
       }
 
-  '@floating-ui/core@1.6.0':
-    resolution:
-      {
-        integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==,
-      }
-
   '@floating-ui/core@1.7.2':
     resolution:
       {
         integrity: sha512-wNB5ooIKHQc+Kui96jE/n69rHFWAVoxn5CAzL1Xdd8FG03cgY3MLO+GF9U3W737fYDSgPWA6MReKhBQBop6Pcw==,
-      }
-
-  '@floating-ui/dom@1.6.3':
-    resolution:
-      {
-        integrity: sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==,
       }
 
   '@floating-ui/dom@1.7.2':
@@ -1898,12 +1889,6 @@ packages:
     resolution:
       {
         integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==,
-      }
-
-  '@floating-ui/utils@0.2.9':
-    resolution:
-      {
-        integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==,
       }
 
   '@fontsource/noto-sans-mono@5.0.19':
@@ -2869,10 +2854,10 @@ packages:
       }
     engines: { node: '>=18' }
 
-  '@stratakit/foundations@0.1.6':
+  '@stratakit/foundations@0.2.0':
     resolution:
       {
-        integrity: sha512-3AeXTpl6I/Ee9xTfTGKUgTrH6HSyodIIerBHvaPcH3EiuIfYRKsO5xSiAXS8Sq/JCTF4dNw829m2mjblnpruxw==,
+        integrity: sha512-eSkvX9M1hnR6L1xwzS3r/uhZ4e18PPFieooSqxuw4wrqqpXA6w0zVtnEqXV6pxgCQnThcgBaMjjRhArFvXHCsw==,
       }
     peerDependencies:
       react: '>=18.0.0'
@@ -12567,7 +12552,7 @@ snapshots:
   '@ariakit/react-core@0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ariakit/core': 0.4.15
-      '@floating-ui/dom': 1.6.3
+      '@floating-ui/dom': 1.7.2
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.4.0(react@19.1.0)
@@ -13392,18 +13377,9 @@ snapshots:
     dependencies:
       '@expressive-code/core': 0.40.1
 
-  '@floating-ui/core@1.6.0':
-    dependencies:
-      '@floating-ui/utils': 0.2.9
-
   '@floating-ui/core@1.7.2':
     dependencies:
       '@floating-ui/utils': 0.2.10
-
-  '@floating-ui/dom@1.6.3':
-    dependencies:
-      '@floating-ui/core': 1.6.0
-      '@floating-ui/utils': 0.2.9
 
   '@floating-ui/dom@1.7.2':
     dependencies:
@@ -13425,8 +13401,6 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.10': {}
-
-  '@floating-ui/utils@0.2.9': {}
 
   '@fontsource/noto-sans-mono@5.0.19': {}
 
@@ -14130,7 +14104,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@stratakit/foundations@0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@stratakit/foundations@0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ariakit/react': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1

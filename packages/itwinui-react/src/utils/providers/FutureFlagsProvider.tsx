@@ -20,7 +20,7 @@ export type FutureOptions = {
     /**
      * When `true`, `className` and `style` will be applied on the
      * input element, along with the rest of the DOM props.
-     * 
+     *
      * By default (without this flag), `className` and `style` get
      * applied on the wrapper element, unless `wrapperProps` is also passed.
      */

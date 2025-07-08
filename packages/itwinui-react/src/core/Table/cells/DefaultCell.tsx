@@ -64,7 +64,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     typeof props.cellProps.value === 'string' &&
     !isCustomCell &&
     !isCellRendererChildrenCustom;
-  
+
   const {
     cellElementProps: {
       className: cellElementClassName,
