@@ -145,14 +145,28 @@ export interface TableState<D extends Record<string, unknown> = {}>
 
   // UseResizeColumnsState with fixed typings
   columnResizing: {
+    /**
+     * Width at the first time the mouse was clicked on the dragger.
+     */
     startX?: number;
+    /**
+     * Width of the column we're resizing
+     */
     columnWidth?: number;
+    /**
+     * Width of the next column (column on the right) of the column we're resizing
+     */
     nextColumnWidth?: number;
     headerIdWidths?: Array<[string, number]>;
     nextHeaderIdWidths?: Array<[string, number]>;
     columnWidths: Record<string, number>;
     isResizingColumn?: string;
+    // previousTableWidths?: Array<[string, number]>; // used to calculate the difference in widths when resizing columns
+    previousState?: TableState<D>;
   };
+  /**
+   *
+   */
   isTableResizing?: boolean;
   columnReorderStartIndex: number;
   sticky: {
@@ -485,7 +499,7 @@ export interface UseTableColumnOptions<D extends Record<string, unknown>> {
   Footer?: Renderer<FooterProps<D>> | undefined;
   width?: number | string | undefined;
   minWidth?: number | undefined;
-  maxWidth?: number | undefined;
+  maxWidth?: number | string | undefined;
 }
 
 type UpdateHiddenColumns<D extends Record<string, unknown>> = (
