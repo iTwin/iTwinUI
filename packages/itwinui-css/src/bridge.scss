@@ -94,6 +94,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Alert */
+
+  .iui-alert {
+    // StrataKit Banner background is not --iui-color-background's global mapping
+    background-color: var(--ids-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Anchor */
 
   .iui-anchor {
@@ -111,12 +119,21 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Avatar */
+
+  // StrataKit Avatar background and text colors are different from iTwinUI's global mappings.
+  .iui-avatar-count {
+    background-color: var(--ids-color-bg-mono-base);
+    color: var(--ids-color-text-neutral-emphasis);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Breadcrumbs */
 
   .iui-breadcrumbs {
     .iui-breadcrumbs-content {
       // Manually add underline for any non iui-anchor links (since we don't have underline prop)
-      &:any-link {
+      &:where(:any-link) {
         text-decoration: underline;
 
         &:where(:hover) {
@@ -126,7 +143,7 @@
     }
 
     // Bring back iTwinUI accent styling for non-current breadcrumbs
-    .iui-breadcrumbs-content:not([aria-current]) {
+    .iui-breadcrumbs-content:is(button, a):not([aria-current]) {
       color: var(--iui-color-text-accent);
     }
   }
@@ -135,6 +152,12 @@
   /* Button */
 
   .iui-button {
+    // StrataKit button background color is not iTwinUI's --iui-color-background global mapping
+    &:where(:not([data-iui-variant])):not(.iui-sidenav-button) {
+      --_iui-field-color-background: var(--ids-color-bg-neutral-base);
+      --_iui-field-color-background-hover: var(--_iui-field-color-background);
+    }
+
     // This is needed because for CTA buttons, border-hover variables are set to bg variables
     --_iui-field-color-border-hover: var(--_iui-field-color-border);
 
@@ -201,7 +224,24 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* DropdownMenu */
+  /* ComboBox */
+
+  // To match StrataKit Select instead of StrataKit Input
+  .iui-field:where([role='combobox']) {
+    --_iui-field-color-background: var(--ids-color-bg-neutral-base);
+    --_iui-field-color-background-hover: var(--_iui-field-color-background);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Dialog/Modal */
+
+  .iui-dialog {
+    // StrataKit Dialog background color is not iTwinUI's --iui-color-background global mapping
+    background-color: var(--ids-color-bg-elevation-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* DropdownMenu/Menu */
 
   .iui-menu {
     // StrataKit uses different surface colors for the dropdowns
@@ -248,15 +288,41 @@
   /* ---------------------------------------------------------------------------- */
   /* Input */
 
-  .iui-input:not([role='combobox']) {
+  .iui-input:where(:not([role='combobox'])) {
     // StrataKit input background colors are different from global values
     --_iui-field-color-background: var(--ids-color-bg-control-textbox);
     --_iui-field-color-background-hover: var(--_iui-field-color-background);
-    --_iui-field-color-background-disabled: var(--ids-color-bg-control-textbox);
+    --_iui-field-color-background-disabled: var(--_iui-field-color-background);
+  }
+
+  .iui-input-flex-container {
+    // StrataKit input background colors are different from global values
+    background-color: var(--ids-color-bg-control-textbox);
+  }
+
+  .iui-input-flex-container:where([data-iui-disabled='true']) {
+    // StrataKit disabled inputs don't have a different background color
+    --_iui-input-background-color: var(--iui-color-background);
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* ProgressRadial */
+  /* Label */
+
+  // StrataKit labels are slightly muted
+  .iui-input-label:where(:not([data-iui-disabled='true'])) {
+    --_iui-input-label-color: var(--ids-color-text-neutral-secondary);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Popover */
+
+  .iui-popover-surface {
+    // StrataKit background color is different from global values
+    background-color: var(--ids-color-bg-elevation-level-1);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* ProgressLinear, ProgressRadial */
 
   // StrataKit progress indicators's default color is not accent
   :is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
@@ -265,19 +331,31 @@
 
   /* ---------------------------------------------------------------------------- */
   /* Slider */
-  /* TODO: Since Slider is experimental in StrataKit, revisit this when stable on the StrataKit end */
-  /* TODO: Are minLabel and maxLabel fills/colors correct? */
+  /* TODO: Since StrataKit Slider tokens are not added, revisit this when those tokens are added on the StrataKit end */
+
+  // Track color is not --iui-color-border-accent's global mapping
+  .iui-slider {
+    --_iui-slider-track-color: var(--ids-color-bg-accent-base);
+  }
 
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
-    background-color: var(--ids-color-bg-neutral-faded);
+    background-color: var(--ids-color-bg-neutral-inverse);
     border-color: var(--ids-color-border-neutral-faded);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Surface */
+
+  .iui-surface {
+    // To match the surface similar to StrataKit's dropdown menu
+    background-color: var(--ids-color-bg-elevation-base);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* Tabs */
 
-  :where(.iui-tabs-wrapper) {
+  .iui-tabs-wrapper {
     // The old accent stripe is now the regular stripe
     --_iui-tab-color-stripe-blue: var(--ids-color-border-neutral-inverse);
     // The old positive stripe is now the accent stripe
@@ -291,14 +369,14 @@
     --_iui-tab-color-green-selected: var(--ids-color-text-accent-strong);
 
     // Selected tab has stripe on the bottom instead of top
-    &:where(.iui-horizontal) .iui-tab::after {
+    &.iui-horizontal .iui-tab::after {
       inset-inline: 4px;
       inline-size: calc(100% - 4px * 2);
       inset-block-start: calc(100% - var(--iui-size-3xs));
     }
 
     // Selected tab has stripe on the right instead of left
-    &:where(.iui-vertical) .iui-tab::after {
+    &.iui-vertical .iui-tab::after {
       inset-block: 4px;
       block-size: calc(100% - 4px * 2);
       inset-inline-start: calc(100% - var(--iui-size-3xs));
@@ -309,28 +387,51 @@
     // To account for outline-offset
     border-radius: calc(4px + 6px);
 
-    // StrataKit tab has no background or border
+    // StrataKit tab has no border
     border: none;
   }
 
-  // StrataKit tabs content has no background or border
   .iui-tabs-content {
+    // StrataKit tabs content has no background or border
     background-color: transparent;
     border: none;
+    // StrataKit border color here is not equal to --iui-color-border's global mapping
+    border-color: var(--ids-color-border-neutral-muted);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tag */
+
+  .iui-tag {
+    // StrataKit tag background color is not iTwinUI's --iui-color-background global mapping
+    background-color: var(--ids-color-bg-neutral-base);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Tile */
+
+  // Background not --iui-color-background's global mapping
+  :is(.iui-tile, .iui-tile-thumbnail) {
+    background-color: var(--ids-color-bg-elevation-base);
+  }
+
+  // To make buttons match Tile background color
+  .iui-tile-buttons button {
+    background-color: var(--ids-color-bg-elevation-base);
   }
 
   /* ---------------------------------------------------------------------------- */
   /* ToggleSwitch */
 
   .iui-toggle-switch {
-    &:checked:not(:disabled) {
+    &:where(:checked:not(:disabled)) {
       // Checked toggle switches need accent border
       border-color: var(--ids-color-border-accent-base);
     }
 
     &:disabled {
       // Disabled and non-disabled switches have the same background color
-      background-color: var(--iui-color-background);
+      background-color: var(--ids-color-bg-page-base);
     }
   }
 
