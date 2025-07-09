@@ -44,6 +44,15 @@ const { id, ...props } = Astro.props;
     .tooltip {
       visibility: hidden;
       position: absolute;
+
+      // CSS anchor positioning fallbacks apply for browsers that natively
+      // support it when the tooltip position is fixed
+
+      // apply position fixed for browsers that support CSS anchor positioning
+      @supports (position-anchor: --foo) {
+        position: fixed;
+      }
+
       font-size: var(--type--2);
       padding: 0.5rem;
       white-space: nowrap;
