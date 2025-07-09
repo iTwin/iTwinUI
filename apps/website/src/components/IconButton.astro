@@ -51,6 +51,11 @@ const { id, ...props } = Astro.props;
       // apply position fixed for browsers that support CSS anchor positioning
       @supports (position-anchor: --foo) {
         position: fixed;
+
+        // Switching back to default position when reaching a certain width
+        @media (min-width: 400px) {
+          bottom: anchor(--anchor-button top);
+        }
       }
 
       font-size: var(--type--2);
@@ -63,7 +68,7 @@ const { id, ...props } = Astro.props;
       transition: visibility 0.2s ease-in-out;
       position-anchor: --anchor-button;
       bottom: anchor(--anchor-button top);
-      position-try-fallbacks: --fallback-tooltip-position;
+      position-try: --fallback-tooltip-position;
 
       .icon-button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
         visibility: visible;
