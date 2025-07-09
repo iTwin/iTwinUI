@@ -41,30 +41,12 @@ const { content = {} } = Astro.props;
         }
       }
     </style>
-    <script>
-      import polyfill from '@oddbird/css-anchor-positioning/fn';
-
-      document.addEventListener('DOMContentLoaded', () => {
-        if (!('anchorName' in document.documentElement.style)) {
-          const anchorStyles = [...document.querySelectorAll('style')].find(
-            (styleEl) =>
-              styleEl.textContent &&
-              styleEl.textContent.includes('.icon-button') &&
-              styleEl.textContent.includes('.tooltip') &&
-              styleEl.textContent.includes('anchor-name') &&
-              styleEl.textContent.includes('position-anchor'),
-          );
-          polyfill({
-            elements: anchorStyles ? [anchorStyles] : [],
-          });
-        }
-      });
-    </script>
   </head>
 
   <body data-iui-theme='dark'>
     <slot />
 
     <MoveOnVisible />
+    <script src='~/components/AnchorPositioning.js'></script>
   </body>
 </html>

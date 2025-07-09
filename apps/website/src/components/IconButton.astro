@@ -1,14 +1,20 @@
 ---
-type Props = { id: string } & astroHTML.JSX.HTMLAttributes;
-const { id, ...props } = Astro.props;
+const { ...props } = Astro.props;
 ---
 
-<>
-  <button class='icon-button' {...props}>
-    <span aria-hidden='true' class='tooltip'><slot name='tooltip' /></span>
-    <slot />
-  </button>
-</>
+<button
+  class='icon-button'
+  style='anchor-scope: --anchor-button; anchor-name: --anchor-button;'
+  {...props}
+>
+  <span
+    aria-hidden='true'
+    class='tooltip'
+    style='position-anchor: --anchor-button; bottom: anchor(top); right: var(--_right, anchor(right))'
+    ><slot name='tooltip' /></span
+  >
+  <slot />
+</button>
 
 <style lang='scss'>
   @layer components {
@@ -23,8 +29,6 @@ const { id, ...props } = Astro.props;
       border: 1px solid transparent;
       cursor: pointer;
       padding: 0.25rem;
-      anchor-scope: --anchor-button;
-      anchor-name: --anchor-button;
 
       &:hover {
         background: hsl(0 0% 0% / 0.2);
@@ -37,25 +41,18 @@ const { id, ...props } = Astro.props;
       }
     }
 
-    @position-try --fallback-tooltip-position {
-      right: anchor(--anchor-button right);
-    }
-
     .tooltip {
       visibility: hidden;
-      position: absolute;
+      position: fixed;
+      --_right: auto;
 
-      // CSS anchor positioning fallbacks apply for browsers that natively
-      // support it when the tooltip position is fixed
-
-      // apply position fixed for browsers that support CSS anchor positioning
-      @supports (position-anchor: --foo) {
-        position: fixed;
-
-        // Switching back to default position when reaching a certain width
-        @media (min-width: 400px) {
-          bottom: anchor(--anchor-button top);
-        }
+      // Polyfill breaks when using position:fixed and a custom position-try.
+      // So we set position:absolute and do not use position-try with the polyfill.
+      // Resetting the --_right CSS variable triggers the fallback in the inline style,
+      // which ensures that the tooltip is unconditionally using the fallback.
+      @supports not (position-anchor: --foo) {
+        position: absolute;
+        --_right: initial;
       }
 
       font-size: var(--type--2);
@@ -66,13 +63,15 @@ const { id, ...props } = Astro.props;
       border-radius: 4px;
       margin-block-end: 5px;
       transition: visibility 0.2s ease-in-out;
-      position-anchor: --anchor-button;
-      bottom: anchor(--anchor-button top);
       position-try: --fallback-tooltip-position;
 
       .icon-button:is(:hover, :focus-visible, :has(:focus-visible)) > & {
         visibility: visible;
       }
     }
+  }
+
+  @position-try --fallback-tooltip-position {
+    right: anchor(right);
   }
 </style>
