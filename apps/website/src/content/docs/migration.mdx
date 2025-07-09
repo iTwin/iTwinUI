@@ -1,0 +1,42 @@
+---
+title: Future Flags
+group: intro
+---
+
+To help migrate to the future versions of iTwinUI, we provide future flags for some components and scenarios. These flags help reduce the _future_ migration burden by trying to match the potential future behavior _now itself_. We recommend enabling these flags wherever possible.
+
+Pass `true` to `ThemeProvider`'s `future` prop to enable _all_ future flags for all descendants of the `ThemeProvider`. Alternatively, pass an object to either enable _specific_ future flags or opt out of previously enabled future flags.
+
+```jsx
+import { ThemeProvider } from '@itwin/itwinui-react';
+
+// All future flags enabled
+<ThemeProvider future={true}>
+  <App1 />
+</ThemeProvider>
+
+// Only themeBridge future flag enabled
+<ThemeProvider future={{ themeBridge: true }}>
+  <App2 />
+</ThemeProvider>
+
+// All future flags enabled
+<ThemeProvider future={true}>
+  <App3 />
+
+  {/* All future flags enabled except ToggleSwitch.consistentPropsSpread */}
+  <ThemeProvider future={{ ToggleSwitch: { consistentPropsSpread: false } }}>
+    <App4 />
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+## Available Flags
+
+### `themeBridge`
+
+Enabling this flag enables the [theme bridge](https://github.com/iTwin/iTwinUI/wiki/StrataKit-theme-bridge) which allows iTwinUI components to try to match StrataKit's visual language without changing the component APIs or rendered markup.
+
+### `ToggleSwitch.consistentPropsSpread`
+
+Setting this to `true` will result in all `ToggleSwitch` DOM props being applied on the input element. ([more info](/docs/toggleswitch#application-of-props))
