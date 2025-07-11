@@ -1,0 +1,19 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Typography | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Typography"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/typography.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/typography.html"><link rel="stylesheet" href="./_astro/alert.DIQyz1En.css" />
+<link rel="stylesheet" href="./_astro/typography.CC0zyav6.css" /><script type="module" src="./_astro/hoisted.Dj2e2qZ5.js"></script></head> <body class="iui-root" data-iui-theme> <theme-button></theme-button>   <h1>Typography</h1> <hr> <label id="skeleton-toggle" class="iui-toggle-switch-wrapper iui-label-on-right" style="margin-bottom: 22px;"> <input class="iui-toggle-switch" type="checkbox" role="switch"> <span class="iui-toggle-switch-label">Skeleton text</span> </label> <section id="demo-typography"> <h1 class="iui-text-headline iui-text-spacing">Headline</h1> <h2 class="iui-text-title iui-text-spacing">Title</h2> <h3 class="iui-text-subheading iui-text-spacing">Subheading</h3> <h4 class="iui-text-leading iui-text-spacing">Leading</h4> <p class="iui-text-block iui-text-spacing">Body</p> <p class="iui-text-block iui-text-muted iui-text-spacing">Muted</p> <p class="iui-text-small iui-text-spacing">Small</p> <!-- Paragraph with no content --> <p class="iui-text-spacing" style="width: 127.53px; height: 22px;"></p> </section> <script>
+    document
+      .querySelector('#skeleton-toggle input[type=checkbox]')
+      .addEventListener('change', (e) => {
+        document.querySelectorAll('.iui-text-spacing').forEach((skeletonText) => {
+          skeletonText.classList.toggle('iui-skeleton');
+
+          if (skeletonText.getAttribute('aria-hidden')) {
+            skeletonText.removeAttribute('aria-hidden');
+          } else {
+            skeletonText.setAttribute('aria-hidden', 'true');
+          }
+        });
+      });
+  </script>  </body></html>

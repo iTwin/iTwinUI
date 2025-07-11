@@ -1,0 +1,1 @@
+import{r as t,B as l,c as x}from"./index-7nKTUIFH.js";const u=t.forwardRef((s,a)=>{const{variant:e="body",className:o,isMuted:r=!1,isSkeleton:i=!1,...c}=s;return t.createElement(l,{className:x({[`iui-text-${e}`]:e!=="body","iui-text-block":e==="body","iui-text-muted":r,"iui-skeleton":i},o),ref:a,...c})});export{u as T};
