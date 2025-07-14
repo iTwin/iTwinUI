@@ -46,6 +46,7 @@ export type IconButtonProps = {
   | 'endIconProps'
   | 'labelProps'
   | 'loading'
+  | 'stretched'
 >;
 
 /**
