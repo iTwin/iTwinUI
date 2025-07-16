@@ -21,7 +21,7 @@ export const ComboBoxMenuItem = React.memo(
       children,
       isSelected,
       disabled,
-      value,
+      value, // eslint-disable-line -- Unused.
       onClick,
       sublabel,
       size = !!sublabel ? 'large' : 'default',
@@ -52,7 +52,7 @@ export const ComboBoxMenuItem = React.memo(
         disabled={disabled}
         focused={focusedIndex === index}
         ref={refs}
-        onClick={() => onClick?.(value)}
+        onClick={() => onClick?.()}
         role={role}
         tabIndex={role === 'presentation' ? undefined : -1}
         aria-selected={isSelected}

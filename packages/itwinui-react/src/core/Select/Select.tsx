@@ -369,7 +369,13 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         <MenuItem>{option.label}</MenuItem>
       );
 
-      const { label, icon, startIcon: startIconProp, ...restOption } = option;
+      const {
+        label,
+        icon,
+        startIcon: startIconProp,
+        value: _, // eslint-disable-line -- Unused. We do not want to pass `value` to `MenuItem`.
+        ...restOption
+      } = option;
 
       const startIcon = startIconProp ?? icon;
 

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
-import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
+import { Box, lineClamp, ShadowRoot } from '../../../utils/index.js';
 import { TableInstanceContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
@@ -60,6 +60,11 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   const isCellRendererChildrenCustom =
     React.useContext(DefaultCellRendererPropsChildren) !== props.children;
 
+  const isDefaultTextCell =
+    typeof props.cellProps.value === 'string' &&
+    !isCustomCell &&
+    !isCellRendererChildrenCustom;
+
   const {
     cellElementProps: {
       className: cellElementClassName,
@@ -74,9 +79,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' &&
-      !isCustomCell &&
-      !isCellRendererChildrenCustom,
+    clamp = isDefaultTextCell,
     ...rest
   } = props;
 
@@ -95,11 +98,11 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
 
-        <TableCellContent shouldRenderWrapper={isCellRendererChildrenCustom}>
+        <TableCellContent shouldRenderWrapper={isDefaultTextCell}>
           {clamp ? (
-            <LineClamp>
+            <div className={lineClamp.className}>
               <slot />
-            </LineClamp>
+            </div>
           ) : (
             <slot />
           )}
@@ -148,7 +151,7 @@ const TableCellContent = (props: {
 }) => {
   const { children, shouldRenderWrapper } = props;
 
-  return shouldRenderWrapper ? (
+  return !shouldRenderWrapper ? (
     children
   ) : (
     <div
@@ -178,4 +181,5 @@ const css = /* css */ `
   inset: -6px;
   z-index: -1;
 }
+${lineClamp.css}
 `;
