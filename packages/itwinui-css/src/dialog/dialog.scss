@@ -162,7 +162,7 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   border-block-end: 1px solid var(--iui-color-border);
   border-start-start-radius: var(--iui-border-radius-1);
   border-start-end-radius: var(--iui-border-radius-1);
-  touch-action: pinch-zoom; // Prevent panning on touch devices since it interferes with dragging logic
+  touch-action: pinch-zoom; // Prevent panning on touch devices since it interferes with useDragAndDrop dragging logic
 
   &:active {
     cursor: grabbing;
