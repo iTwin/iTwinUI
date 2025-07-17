@@ -7,7 +7,7 @@
   --iui-color-background: var(--stratakit-color-bg-page-base);
   --iui-color-background-disabled: var(--stratakit-color-bg-glow-on-surface-disabled);
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
-  --iui-color-background-hover: var(--iui-color-background);
+  --iui-color-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   --iui-color-background-backdrop: var(--stratakit-color-bg-page-base);
   --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
   --iui-color-background-accent: var(--stratakit-color-bg-accent-base);
@@ -149,6 +149,15 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Field */
+  .iui-field {
+    // Borderless variants need a hover state due to lack of touch target area
+    &:where([data-iui-variant='borderless']) {
+      --_iui-field-color-background-hover: var(--iui-color-background-hover);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Button */
 
   .iui-button {
@@ -250,11 +259,6 @@
     // StrataKit uses box shadow only
     border: none;
     box-shadow: var(--stratakit-shadow-surface-xl);
-  }
-
-  .iui-list-item {
-    // Disabling hover to keep the code simple
-    --_iui-list-item-background-hover: transparent;
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -381,6 +385,11 @@
       block-size: calc(100% - 4px * 2);
       inset-inline-start: calc(100% - var(--iui-size-3xs));
     }
+  }
+
+  .iui-tabs {
+    --_iui-tab-bg-color-hover: var(--iui-color-background-hover);
+    --_iui-tab-bg-color-selected-hover: var(--iui-color-background-hover);
   }
 
   .iui-tab {
