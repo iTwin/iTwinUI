@@ -16,7 +16,6 @@
 
   - [#2573](https://github.com/iTwin/iTwinUI/pull/2573): Added the ability to pass `future={true}` to `ThemeProvider` to enable _all_ future flags.
   - [#2543](https://github.com/iTwin/iTwinUI/pull/2543): Added a new future flag to `ThemeProvider`'s `future` prop: `ToggleSwitch.consistentPropsSpread`. Setting this to `true` will result in all `ToggleSwitch` DOM props being applied on the input element.
-
 - [#2544](https://github.com/iTwin/iTwinUI/pull/2544): Added a new `wrapperProps` prop to `ToggleSwitch` to pass props to the wrapper. To prevent breaking changes:
   - If this new `wrapperProps` is provided or `ThemeProvider`'s `ToggleSwitch.consistentPropsSpread` future flag is `true`, `className` and `style` will be applied on the `input` and `wrapperProps` will be applied on the wrapper.
   - Else, `className` and `style` continue to be applied on the wrapper.
