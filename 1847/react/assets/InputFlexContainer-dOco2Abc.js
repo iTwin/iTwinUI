@@ -1,0 +1,1 @@
+import{R as e,B as l,c as o}from"./index-7nKTUIFH.js";const m=e.forwardRef((a,t)=>{const{isDisabled:s,status:i,children:r,className:n,size:u,style:c,...d}=a;return e.createElement(l,{className:o("iui-input-flex-container",n),"data-iui-status":i,"data-iui-size":u,"data-iui-disabled":s?"true":void 0,ref:t,style:c,...d},r)});export{m as I};
