@@ -4,7 +4,7 @@
 
 .iui-transfer-list-wrapper {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   column-gap: var(--iui-size-xs);
 }
@@ -14,7 +14,6 @@
   flex-direction: column;
   flex: 1;
   gap: var(--iui-size-2xs);
-  min-inline-size: 0;
 }
 
 .iui-transfer-list-listbox {
