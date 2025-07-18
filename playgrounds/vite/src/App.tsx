@@ -97,18 +97,22 @@ export default function App() {
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>${props.value}</>;
         },
+        sticky: 'left',
       },
       {
         id: 'quantity',
         Header: 'Quantity',
         accessor: 'quantity',
         width: 400,
+        // sticky: 'left',
+        // sticky: 'right',
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
         width: 400,
+        sticky: 'right',
       },
       {
         id: 'deliveryTime',
@@ -118,12 +122,13 @@ export default function App() {
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{props.value} day(s)</>;
         },
-      },
-      {
-        ...ActionColumn({ columnManager: true }),
-
         sticky: 'right',
       },
+      // {
+      //   ...ActionColumn({ columnManager: true }),
+
+      //   sticky: 'right',
+      // },
     ],
     [],
   ) satisfies Column<(typeof data)[number]>[];

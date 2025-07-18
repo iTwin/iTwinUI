@@ -9,7 +9,7 @@ import type {
   TableInstance,
   TableState,
 } from '../../../react-table/react-table.js';
-import { calculateStickyColsWidth } from '../utils.js';
+import { calculateCurrentStickyColsWidth, getHeaderWidth } from '../utils.js';
 
 actions.setScrolledLeft = 'setScrolledLeft';
 actions.setScrolledRight = 'setScrolledRight';
@@ -64,18 +64,68 @@ const reducer = <T extends Record<string, unknown>>(
 const useInstance = <T extends Record<string, unknown>>(
   instance: TableInstance<T>,
 ) => {
-  const { flatHeaders, tableWidth } = instance;
-  const stickyColsWidth = calculateStickyColsWidth(0.8, flatHeaders);
+  const { flatHeaders, tableWidth, state } = instance;
+  const currentStickyColsWidth = calculateCurrentStickyColsWidth(flatHeaders);
   // Edge case. Saving original sticky state in case sticky columns are reordered.
   flatHeaders.forEach((header) => {
     if (!header.originalSticky) {
       header.originalSticky = header.sticky ?? 'none';
     }
-    header.sticky =
-      header.originalSticky === 'none' ||
-      (stickyColsWidth >= tableWidth && !header.sticky)
-        ? undefined
-        : header.originalSticky;
+    let remainUnsticky = true;
+    if (!header.sticky && header.originalSticky !== 'none') {
+      const nextResizingColId = state.columnResizing.nextHeaderIdWidths
+        ? state.columnResizing.nextHeaderIdWidths[0][0]
+        : '';
+      if (
+        (header.originalSticky === 'right' &&
+          header.id === nextResizingColId) ||
+        (header.originalSticky === 'left' &&
+          header.id === state.columnResizing.headerIdWidths?.[0][0])
+      ) {
+        if (
+          currentStickyColsWidth + getHeaderWidth(header) <
+          tableWidth * 0.8
+        ) {
+          remainUnsticky = false;
+        }
+      }
+    }
+
+    // header.sticky =
+    //   header.originalSticky === 'none' ||
+    //   (remainUnsticky &&
+    //     !header.sticky &&
+    //     (header.originalSticky === 'left' || header.originalSticky === 'right'))
+    //     ? undefined
+    //     : header.originalSticky;
+
+    if (header.originalSticky === 'none') {
+      header.sticky = undefined;
+    } else if (!header.sticky) {
+      if (remainUnsticky) {
+        header.sticky = undefined;
+      } else {
+        if (
+          (instance.scrolledLeft && header.originalSticky === 'left') ||
+          (instance.scrolledRight && header.originalSticky === 'right')
+        ) {
+          header.sticky = header.originalSticky;
+        } else {
+          header.sticky = undefined;
+        }
+      }
+    } else {
+      header.sticky = header.originalSticky;
+    }
+
+    console.log(
+      header.id,
+      header.sticky,
+      header.originalSticky,
+      'in useStickyColumns, SCROLL VALS',
+      instance.scrolledLeft,
+      instance.scrolledRight,
+    );
   });
 
   // If there is a column that is sticked to the left, make every column prior to that sticky too.
@@ -86,6 +136,9 @@ const useInstance = <T extends Record<string, unknown>>(
     }
     if (hasLeftStickyColumn) {
       header.sticky = 'left';
+      if (header.originalSticky === 'none') {
+        header.originalSticky = header.sticky;
+      }
     }
   });
 
@@ -97,6 +150,9 @@ const useInstance = <T extends Record<string, unknown>>(
     }
     if (hasRightStickyColumn) {
       header.sticky = 'right';
+      if (header.originalSticky === 'none') {
+        header.originalSticky = header.sticky;
+      }
     }
   });
 };

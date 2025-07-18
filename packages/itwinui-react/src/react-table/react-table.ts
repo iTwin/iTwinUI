@@ -129,6 +129,8 @@ export interface TableInstance<D extends Record<string, unknown> = {}>
   initialRows: Row<D>[];
   columnResizeMode: TableOptions<D>['columnResizeMode'];
   tableWidth: number;
+  scrolledLeft?: boolean;
+  scrolledRight?: boolean;
 }
 
 export interface TableState<D extends Record<string, unknown> = {}>

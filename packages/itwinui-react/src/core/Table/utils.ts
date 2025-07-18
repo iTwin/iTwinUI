@@ -85,21 +85,37 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
   } satisfies React.CSSProperties;
 };
 
-export const calculateStickyColsWidth = <T extends Record<string, unknown>>(
-  tableWidthBuffer = 1,
+export const calculateUnstickyColsWidth = <T extends Record<string, unknown>>(
   headers: ColumnInstance<T>[],
   columnRefs?: React.RefObject<Record<string, HTMLDivElement>>,
 ) => {
-  let stickyColsWidth = 0;
+  let unstickyColsWidth = 0;
   for (const header of headers) {
     const colWidth =
       columnRefs && columnRefs.current[header.id]
         ? columnRefs.current[header.id].getBoundingClientRect().width
         : getHeaderWidth(header);
-    stickyColsWidth +=
-      header.originalSticky !== 'none' || header.sticky ? colWidth : 0;
+    unstickyColsWidth +=
+      header.originalSticky !== 'none' && !header.sticky ? colWidth : 0;
   }
-  return stickyColsWidth / tableWidthBuffer;
+  return unstickyColsWidth;
+};
+
+export const calculateCurrentStickyColsWidth = <
+  T extends Record<string, unknown>,
+>(
+  headers: ColumnInstance<T>[],
+  columnRefs?: React.RefObject<Record<string, HTMLDivElement>>,
+) => {
+  let currentStickyColsWidth = 0;
+  for (const header of headers) {
+    const colWidth =
+      columnRefs && columnRefs.current[header.id]
+        ? columnRefs.current[header.id].getBoundingClientRect().width
+        : getHeaderWidth(header);
+    currentStickyColsWidth += header.sticky ? colWidth : 0;
+  }
+  return currentStickyColsWidth;
 };
 
 export const getHeaderWidth = <T extends Record<string, unknown>>(

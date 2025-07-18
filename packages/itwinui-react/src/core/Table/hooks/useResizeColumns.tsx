@@ -44,7 +44,11 @@ import type {
   TableKeyedProps,
   TableState,
 } from '../../../react-table/react-table.js';
-import { calculateStickyColsWidth, getHeaderWidth } from '../utils.js';
+import {
+  calculateUnstickyColsWidth,
+  calculateCurrentStickyColsWidth,
+  getHeaderWidth,
+} from '../utils.js';
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(
@@ -315,15 +319,40 @@ const reducer = <T extends Record<string, unknown>>(
       }
     });
 
-    const stickyColsWidth = calculateStickyColsWidth(0.8, instance.flatHeaders);
+    const unstickyColsWidth = calculateUnstickyColsWidth(instance.flatHeaders);
+    const currentStickyColsWidth = calculateCurrentStickyColsWidth(
+      instance.flatHeaders,
+    );
+    const maxTableWidth = instance.tableWidth * 0.8;
     const resizedCol = instance.flatHeaders.find(
       (h) => h.id === headerIdWidths[0][0],
     );
-    if (resizedCol) {
-      if (stickyColsWidth >= instance.tableWidth) {
-        // un-sticky if total width of sticky columns is greater than table width
-        resizedCol.sticky = undefined;
-      }
+    const nextCol = instance.flatHeaders.find(
+      (h) => h.id === nextHeaderIdWidths[0][0],
+    );
+    console.log(
+      'resize',
+      currentStickyColsWidth,
+      instance.tableWidth,
+      unstickyColsWidth,
+    );
+    // un-sticky if total width of sticky columns is greater than table width
+    if (
+      resizedCol &&
+      resizedCol.sticky &&
+      currentStickyColsWidth >= maxTableWidth
+    ) {
+      console.log('resizedCol sticky updated', resizedCol.id);
+      resizedCol.sticky = undefined;
+      console.log('-----------------------', resizedCol.sticky);
+    } else if (
+      nextCol &&
+      nextCol.sticky &&
+      currentStickyColsWidth >= maxTableWidth
+    ) {
+      console.log('resizedCol sticky updated', nextCol.id);
+      nextCol.sticky = undefined;
+      console.log('-----------------------', nextCol.sticky);
     }
 
     return {
