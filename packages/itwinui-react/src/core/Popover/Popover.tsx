@@ -99,6 +99,12 @@ type PopoverOptions = {
            * @default "400px"
            */
           maxHeight?: string;
+          /**
+           * Override the maximum width of the popover. Must be a CSS-compatible value.
+           *
+           * By default, it is all the available width to prevent the popover from overflowing the viewport.
+           */
+          maxWidth?: string;
         };
     autoPlacement?: boolean;
     hide?: boolean;
@@ -220,8 +226,21 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     [options.middleware],
   );
 
-  const maxHeight =
-    typeof middleware.size === 'boolean' ? '400px' : middleware.size?.maxHeight;
+  const [referenceWidth, setReferenceWidth] = React.useState<number>();
+  const [availableHeight, setAvailableHeight] = React.useState<number>();
+  const [availableWidth, setAvailableWidth] = React.useState<number>();
+
+  const maxDimensions = React.useMemo(
+    () => ({
+      // Defaults
+      maxHeight: '400px',
+      maxWidth: `${availableWidth}px`,
+
+      // Overrides
+      ...(typeof middleware.size !== 'boolean' ? middleware.size : {}),
+    }),
+    [availableWidth, middleware.size],
+  );
 
   const [open, onOpenChange] = useControlledState(
     false,
@@ -250,9 +269,10 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           (matchWidth || middleware.size) &&
             size({
               padding: 4,
-              apply: ({ rects, availableHeight }) => {
+              apply: ({ rects, availableHeight, availableWidth }) => {
                 if (middleware.size) {
                   setAvailableHeight(Math.round(availableHeight));
+                  setAvailableWidth(Math.round(availableWidth));
                 }
 
                 if (matchWidth) {
@@ -299,9 +319,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     }),
   ]);
 
-  const [referenceWidth, setReferenceWidth] = React.useState<number>();
-  const [availableHeight, setAvailableHeight] = React.useState<number>();
-
   const getFloatingProps = React.useCallback(
     (userProps?: React.HTMLProps<HTMLElement>) =>
       interactions.getFloatingProps({
@@ -310,13 +327,16 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
           ...floating.floatingStyles,
           ...(middleware.size &&
             availableHeight && {
-              maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
+              maxBlockSize: `min(${availableHeight}px, ${maxDimensions.maxHeight})`,
+              maxInlineSize: maxDimensions.maxWidth,
             }),
           zIndex: 999,
           ...(matchWidth && referenceWidth
             ? {
                 minInlineSize: `${referenceWidth}px`,
-                maxInlineSize: `min(${referenceWidth * 2}px, 90vw)`,
+                maxInlineSize: `min(${referenceWidth * 2}px, ${
+                  maxDimensions.maxWidth
+                })`,
               }
             : {}),
           ...(middleware.hide &&
@@ -333,7 +353,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       middleware.size,
       middleware.hide,
       availableHeight,
-      maxHeight,
+      maxDimensions.maxHeight,
+      maxDimensions.maxWidth,
       matchWidth,
       referenceWidth,
     ],
