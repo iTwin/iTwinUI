@@ -40,7 +40,12 @@ import {
   useId,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TableInstanceContext } from './utils.js';
+import {
+  calculateUnstickyColsWidth,
+  calculateCurrentStickyColsWidth,
+  TableInstanceContext,
+  getHeaderWidth,
+} from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
@@ -953,19 +958,119 @@ export const Table = <
       if (!isResizable) {
         return;
       }
-
+      const prevWidth = instance.tableWidth;
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
       }
       previousTableWidth.current = width;
 
-      // Update column widths when table was resized
       flatHeaders.forEach((header) => {
         if (columnRefs.current[header.id]) {
           header.resizeWidth =
             columnRefs.current[header.id].getBoundingClientRect().width;
         }
+      });
+
+      const currentStickyColsWidth = calculateCurrentStickyColsWidth(
+        flatHeaders,
+        columnRefs,
+      );
+      const unstickyColsWidth = calculateUnstickyColsWidth(
+        flatHeaders,
+        columnRefs,
+      );
+
+      const maxTableWidth = instance.tableWidth * 0.8;
+
+      console.log(
+        'table',
+        instance.tableWidth,
+        currentStickyColsWidth,
+        unstickyColsWidth,
+      );
+
+      let rightMostLeftSticky = null;
+      for (const header of [...flatHeaders].reverse()) {
+        if (header.sticky === 'left') {
+          rightMostLeftSticky = header;
+          break;
+        }
+      }
+
+      let prevRightMostLeftSticky = null;
+      for (const header of flatHeaders) {
+        if (!header.sticky && header.originalSticky === 'left') {
+          prevRightMostLeftSticky = header;
+          break;
+        }
+      }
+
+      let leftMostRightSticky = null;
+      for (const header of flatHeaders) {
+        if (header.sticky === 'right') {
+          leftMostRightSticky = header;
+          break;
+        }
+      }
+
+      let prevLeftMostRightSticky = null;
+      for (const header of [...flatHeaders].reverse()) {
+        if (!header.sticky && header.originalSticky === 'right') {
+          prevLeftMostRightSticky = header;
+          break;
+        }
+      }
+
+      console.log('right most left', rightMostLeftSticky);
+      console.log('prev right most left', prevRightMostLeftSticky);
+      console.log('left most right', leftMostRightSticky);
+      console.log('prev left most right', prevLeftMostRightSticky);
+
+      // const lastStickyCol =
+      //   (rightMostLeftSticky &&
+      //     !leftMostRightSticky &&
+      //     prevRightMostLeftSticky !== null) ||
+      //   (leftMostRightSticky &&
+      //     !rightMostLeftSticky &&
+      //     prevLeftMostRightSticky !== null);
+
+      if (currentStickyColsWidth >= maxTableWidth) {
+        if (rightMostLeftSticky) {
+          rightMostLeftSticky.sticky = undefined;
+        } else if (leftMostRightSticky) {
+          leftMostRightSticky.sticky = undefined;
+        }
+        // handle making un-sticky columns sticky again only if table width is increasing
+        // prevent unnecessary un-sticky to sticky changes
+      } else if (prevWidth < instance.tableWidth) {
+        console.log('enter case 2');
+        if (
+          prevRightMostLeftSticky &&
+          prevRightMostLeftSticky.originalSticky !== 'none' &&
+          getHeaderWidth(prevRightMostLeftSticky) + currentStickyColsWidth <
+            maxTableWidth
+        ) {
+          prevRightMostLeftSticky.sticky =
+            prevRightMostLeftSticky.originalSticky;
+        } else if (
+          prevLeftMostRightSticky &&
+          prevLeftMostRightSticky.originalSticky !== 'none' &&
+          getHeaderWidth(prevLeftMostRightSticky) + currentStickyColsWidth <
+            maxTableWidth
+        ) {
+          prevLeftMostRightSticky.sticky =
+            prevLeftMostRightSticky.originalSticky;
+        }
+      }
+
+      flatHeaders.forEach((header) => {
+        console.log(
+          header.id,
+          '======================>>>>>>>>>>>>>>>',
+          header.sticky,
+          header.originalSticky,
+        );
       });
 
       // If no column was resized then leave table resize handling to the flexbox
@@ -1088,6 +1193,19 @@ export const Table = <
   const updateStickyState = () => {
     if (!tableRef.current || flatHeaders.every((header) => !header.sticky)) {
       return;
+    }
+
+    if (tableRef.current.scrollLeft === 0) {
+      instance.scrolledLeft = true;
+    } else if (
+      tableRef.current.scrollLeft ===
+      tableRef.current.scrollWidth - tableRef.current.offsetWidth
+    ) {
+      instance.scrolledRight = true;
+      dispatch({ type: TableActions.setScrolledRight, value: true });
+    } else {
+      instance.scrolledLeft = false;
+      instance.scrolledRight = false;
     }
 
     if (tableRef.current.scrollLeft !== 0) {

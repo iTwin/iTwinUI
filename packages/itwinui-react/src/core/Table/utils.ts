@@ -85,6 +85,54 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
   } satisfies React.CSSProperties;
 };
 
+export const calculateUnstickyColsWidth = <T extends Record<string, unknown>>(
+  headers: ColumnInstance<T>[],
+  columnRefs?: React.RefObject<Record<string, HTMLDivElement>>,
+) => {
+  let unstickyColsWidth = 0;
+  for (const header of headers) {
+    const colWidth =
+      columnRefs && columnRefs.current[header.id]
+        ? columnRefs.current[header.id].getBoundingClientRect().width
+        : getHeaderWidth(header);
+    unstickyColsWidth +=
+      header.originalSticky !== 'none' && !header.sticky ? colWidth : 0;
+  }
+  return unstickyColsWidth;
+};
+
+export const calculateCurrentStickyColsWidth = <
+  T extends Record<string, unknown>,
+>(
+  headers: ColumnInstance<T>[],
+  columnRefs?: React.RefObject<Record<string, HTMLDivElement>>,
+) => {
+  let currentStickyColsWidth = 0;
+  for (const header of headers) {
+    const colWidth =
+      columnRefs && columnRefs.current[header.id]
+        ? columnRefs.current[header.id].getBoundingClientRect().width
+        : getHeaderWidth(header);
+    currentStickyColsWidth += header.sticky ? colWidth : 0;
+  }
+  return currentStickyColsWidth;
+};
+
+export const getHeaderWidth = <T extends Record<string, unknown>>(
+  header: ColumnInstance<T>,
+) => {
+  if (!header) {
+    return 0;
+  }
+
+  // `header.width` can be a string if the user specifies it in the column definition,
+  // but then becomes a number (pixels) when the user resizes the column, or when the table is resized, etc.
+  // So if `header.width` is ever a string that cannot be converted to a number, we shouldn't use `header.width`.
+  return typeof header.width === 'string' && Number.isNaN(Number(header.width))
+    ? Number(header.resizeWidth || 0)
+    : Number(header.width || header.resizeWidth || 0);
+};
+
 export const TableInstanceContext = React.createContext<
   TableInstance<Record<string, unknown>> | undefined
 >(undefined);
