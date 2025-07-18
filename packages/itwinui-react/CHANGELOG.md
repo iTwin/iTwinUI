@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.19.1
+
+### Patch Changes
+
+- [#2590](https://github.com/iTwin/iTwinUI/pull/2590): Fix draggable `Dialog` to also work properly on touch devices.
+- [#2596](https://github.com/iTwin/iTwinUI/pull/2596): Fixed `TransferList.Item` to now properly handle long strings.
+- [#2589](https://github.com/iTwin/iTwinUI/pull/2589): Removed the accidentally added `stretched` prop from `IconButton`.
+
 ## 3.19.0
 
 ### Minor Changes
