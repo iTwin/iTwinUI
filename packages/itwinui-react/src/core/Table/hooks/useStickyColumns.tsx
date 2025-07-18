@@ -71,16 +71,26 @@ const useInstance = <T extends Record<string, unknown>>(
     if (!header.originalSticky) {
       header.originalSticky = header.sticky ?? 'none';
     }
+    // determine if sticky columns should remain un-sticky or not
     let remainUnsticky = true;
     if (!header.sticky && header.originalSticky !== 'none') {
       const nextResizingColId = state.columnResizing.nextHeaderIdWidths
         ? state.columnResizing.nextHeaderIdWidths[0][0]
         : '';
+      console.log(
+        'currently CHECK',
+        header.id,
+        nextResizingColId,
+        state.columnResizing.headerIdWidths?.[0][0],
+        state.columnResizing.isResizingColumn,
+      );
+      // handle only if a particular column is being resized (not table resize)
       if (
-        (header.originalSticky === 'right' &&
+        state.columnResizing.isResizingColumn &&
+        ((header.originalSticky === 'right' &&
           header.id === nextResizingColId) ||
-        (header.originalSticky === 'left' &&
-          header.id === state.columnResizing.headerIdWidths?.[0][0])
+          (header.originalSticky === 'left' &&
+            header.id === state.columnResizing.headerIdWidths?.[0][0]))
       ) {
         if (
           currentStickyColsWidth + getHeaderWidth(header) <
@@ -104,15 +114,13 @@ const useInstance = <T extends Record<string, unknown>>(
     } else if (!header.sticky) {
       if (remainUnsticky) {
         header.sticky = undefined;
+      } else if (
+        (instance.scrolledLeft && header.originalSticky === 'left') ||
+        (instance.scrolledRight && header.originalSticky === 'right')
+      ) {
+        header.sticky = header.originalSticky;
       } else {
-        if (
-          (instance.scrolledLeft && header.originalSticky === 'left') ||
-          (instance.scrolledRight && header.originalSticky === 'right')
-        ) {
-          header.sticky = header.originalSticky;
-        } else {
-          header.sticky = undefined;
-        }
+        header.sticky = undefined;
       }
     } else {
       header.sticky = header.originalSticky;

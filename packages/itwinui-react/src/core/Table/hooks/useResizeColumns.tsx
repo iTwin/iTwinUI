@@ -336,23 +336,21 @@ const reducer = <T extends Record<string, unknown>>(
       instance.tableWidth,
       unstickyColsWidth,
     );
-    // un-sticky if total width of sticky columns is greater than table width
+    // un-sticky if total width of sticky columns is at least the table width
     if (
       resizedCol &&
       resizedCol.sticky &&
       currentStickyColsWidth >= maxTableWidth
     ) {
-      console.log('resizedCol sticky updated', resizedCol.id);
+      // case where current column is sticky
       resizedCol.sticky = undefined;
-      console.log('-----------------------', resizedCol.sticky);
     } else if (
       nextCol &&
       nextCol.sticky &&
       currentStickyColsWidth >= maxTableWidth
     ) {
-      console.log('resizedCol sticky updated', nextCol.id);
+      // case where next column is sticky
       nextCol.sticky = undefined;
-      console.log('-----------------------', nextCol.sticky);
     }
 
     return {

@@ -958,7 +958,7 @@ export const Table = <
       if (!isResizable) {
         return;
       }
-
+      const prevWidth = instance.tableWidth;
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -1027,17 +1027,23 @@ export const Table = <
       console.log('left most right', leftMostRightSticky);
       console.log('prev left most right', prevLeftMostRightSticky);
 
+      // const lastStickyCol =
+      //   (rightMostLeftSticky &&
+      //     !leftMostRightSticky &&
+      //     prevRightMostLeftSticky !== null) ||
+      //   (leftMostRightSticky &&
+      //     !rightMostLeftSticky &&
+      //     prevLeftMostRightSticky !== null);
+
       if (currentStickyColsWidth >= maxTableWidth) {
         if (rightMostLeftSticky) {
-          console.log(
-            rightMostLeftSticky.id,
-            '============================>>>>> enter right most left',
-          );
           rightMostLeftSticky.sticky = undefined;
         } else if (leftMostRightSticky) {
           leftMostRightSticky.sticky = undefined;
         }
-      } else {
+        // handle making un-sticky columns sticky again only if table width is increasing
+        // prevent unnecessary un-sticky to sticky changes
+      } else if (prevWidth < instance.tableWidth) {
         console.log('enter case 2');
         if (
           prevRightMostLeftSticky &&
