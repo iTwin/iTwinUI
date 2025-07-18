@@ -48,6 +48,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   position: relative;
   inline-size: 100%;
   text-align: start;
+  overflow-wrap: anywhere;
 
   + #{&} {
     margin-block-start: -1px;

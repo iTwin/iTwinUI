@@ -185,7 +185,7 @@ const TransferListItem = React.forwardRef((props, ref) => {
       disabled={disabled}
       {...rest}
     >
-      <ListItem.Content>{children}</ListItem.Content>
+      {children}
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'li', TransferListItemOwnProps>;
