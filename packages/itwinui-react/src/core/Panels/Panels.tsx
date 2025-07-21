@@ -9,7 +9,6 @@ import {
   cloneElementWithRef,
   mergeEventHandlers,
   SvgChevronLeft,
-  useInstance,
   useMergedRefs,
   useSafeContext,
   useMediaQuery,
@@ -24,8 +23,10 @@ import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { Flex } from '../Flex/Flex.js';
 import { Text } from '../Typography/Text.js';
 import cx from 'classnames';
-import { PanelsInstanceContext, PanelsInstanceProvider } from './helpers.js';
-import type { FocusEntry, PanelsInstance, TriggerMapEntry } from './helpers.js';
+import { createStore, useStore } from 'zustand';
+import { combine } from 'zustand/middleware';
+import type { ExtractState } from 'zustand';
+import type { FocusEntry, TriggerMapEntry } from './helpers.js';
 
 // #region PanelsWrapper
 
@@ -56,118 +57,57 @@ export const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
 
   const onActiveIdChange = useLatestRef(onActiveIdChangeProp);
 
-  const ref = React.useRef<HTMLDivElement | null>(null);
-
-  const [activePanelId, setActivePanelId] = React.useState<string | undefined>(
-    undefined,
-  );
-
-  const [triggers, setTriggers] = React.useState<
-    Record<string, TriggerMapEntry>
-  >({});
-  const panels = React.useRef(new Set<string>());
-
-  const [shouldFocus, setShouldFocus] = React.useState<FocusEntry>(undefined);
-
-  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
-
-  const changeActivePanel = React.useCallback(
-    (newActiveId: string) => {
-      if (
-        // Only if forProp is a panel, go to the new panel.
-        !panels.current.has(newActiveId) ||
-        // Same panel
-        newActiveId === activePanelId
-      ) {
-        return;
-      }
-
-      ReactDOM.flushSync(() => setActivePanelId(newActiveId));
-      onActiveIdChange.current?.(newActiveId);
-
-      (ref.current?.getRootNode() as Document | ShadowRoot)
-        .getElementById(newActiveId)
-        ?.scrollIntoView({
-          block: 'nearest',
-          inline: 'center',
-          behavior: motionOk ? 'smooth' : 'instant',
-        });
-    },
-    [activePanelId, motionOk, onActiveIdChange],
-  );
+  console.log(children);
 
   return (
-    <PanelsWrapperContext.Provider
-      value={React.useMemo(
-        () => ({
-          activePanelId,
-          setActivePanelId,
-          changeActivePanel,
-          triggers,
-          setTriggers,
-          shouldFocus,
-          setShouldFocus,
-          panels,
-        }),
-        [
-          activePanelId,
-          changeActivePanel,
-          setActivePanelId,
-          setTriggers,
-          shouldFocus,
-          triggers,
-        ],
-      )}
-    >
-      <PanelsInstanceProvider instance={instance}>
-        <Box
-          ref={useMergedRefs(ref, forwardedRef)}
-          {...rest}
-          className={cx('iui-panel-wrapper', className)}
-        >
-          {children}
-        </Box>
-      </PanelsInstanceProvider>
-    </PanelsWrapperContext.Provider>
+    <PanelsProvider instance={instance}>
+      <Box
+        // ref={useMergedRefs(ref, forwardedRef)}
+        ref={useMergedRefs(forwardedRef)} // TODO: Rehandle ref
+        {...rest}
+        className={cx('iui-panel-wrapper', className)}
+      >
+        {children}
+      </Box>
+    </PanelsProvider>
   );
 }) as PolymorphicForwardRefComponent<'div', PanelsWrapperProps>;
 if (process.env.NODE_ENV === 'development') {
   PanelsWrapper.displayName = 'Panels.Wrapper';
 }
 
-export const PanelsWrapperContext = React.createContext<
-  | {
-      activePanelId: string | undefined;
-      setActivePanelId: React.Dispatch<React.SetStateAction<string>>;
-      /**
-       * Simpler alternative to a full history stack.
-       *
-       * ```
-       * Record<
-       *   string, // Id of a panel
-       *   {
-       *     triggerId: string, // Id of the trigger element that points to this panel
-       *     panelId: string, // Id of the panel element in which the trigger is present
-       *   }
-       * >
-       * ```
-       */
-      triggers: Record<string, TriggerMapEntry>;
-      setTriggers: React.Dispatch<
-        React.SetStateAction<Record<string, TriggerMapEntry>>
-      >;
-      changeActivePanel: (newActiveId: string) => void;
-      shouldFocus: FocusEntry;
-      setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
-      panels: React.MutableRefObject<Set<string>>;
-    }
-  | undefined
->(undefined);
-if (process.env.NODE_ENV === 'development') {
-  PanelsWrapperContext.displayName = 'PanelsWrapperContext';
-}
+// export const PanelsWrapperContext = React.createContext<
+//   | {
+//       activePanelId: string | undefined;
+//       setActivePanelId: React.Dispatch<React.SetStateAction<string>>;
+//       /**
+//        * Simpler alternative to a full history stack.
+//        *
+//        * ```
+//        * Record<
+//        *   string, // Id of a panel
+//        *   {
+//        *     triggerId: string, // Id of the trigger element that points to this panel
+//        *     panelId: string, // Id of the panel element in which the trigger is present
+//        *   }
+//        * >
+//        * ```
+//        */
+//       triggers: Record<string, TriggerMapEntry>;
+//       setTriggers: React.Dispatch<
+//         React.SetStateAction<Record<string, TriggerMapEntry>>
+//       >;
+//       changeActivePanel: (newActiveId: string) => void;
+//       shouldFocus: FocusEntry;
+//       setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
+//       panels: React.MutableRefObject<Set<string>>;
+//     }
+//   | undefined
+// >(undefined);
+// if (process.env.NODE_ENV === 'development') {
+//   PanelsWrapperContext.displayName = 'PanelsWrapperContext';
+// }
 
-// #endregion PanelsWrapper
 // ----------------------------------------------------------------------------
 // #region Panel
 
@@ -178,8 +118,13 @@ type PanelProps = {
 const Panel = React.forwardRef((props, forwardedRef) => {
   const { id, children, className, ...rest } = props;
 
+  // const { activePanelId, triggers, panels, setActivePanelId } =
+  //   useSafeContext(PanelsWrapperContext);
+  const store = useSafeContext(PanelsContext);
   const { activePanelId, triggers, panels, setActivePanelId } =
-    useSafeContext(PanelsWrapperContext);
+    store.getState();
+
+  console.log(store.getState());
 
   const associatedTrigger = React.useMemo(() => triggers[id], [id, triggers]);
 
@@ -248,7 +193,6 @@ if (process.env.NODE_ENV === 'development') {
   PanelContext.displayName = 'PanelContext';
 }
 
-// #endregion Panel
 // ----------------------------------------------------------------------------
 // #region PanelTrigger
 
@@ -260,6 +204,16 @@ type PanelTriggerProps = {
 const PanelTrigger = (props: PanelTriggerProps) => {
   const { children, for: forProp } = props;
 
+  // const {
+  //   changeActivePanel,
+  //   triggers,
+  //   setTriggers,
+  //   activePanelId: activePanel,
+  //   shouldFocus,
+  //   setShouldFocus,
+  //   panels,
+  // } = useSafeContext(PanelsWrapperContext);
+  const store = useSafeContext(PanelsContext);
   const {
     changeActivePanel,
     triggers,
@@ -268,7 +222,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
     shouldFocus,
     setShouldFocus,
     panels,
-  } = useSafeContext(PanelsWrapperContext);
+  } = store.getState();
   const { id: panelId } = useSafeContext(PanelContext);
 
   const fallbackId = useId();
@@ -348,7 +302,6 @@ if (process.env.NODE_ENV === 'development') {
   PanelTrigger.displayName = 'Panels.Trigger';
 }
 
-// #endregion PanelTrigger
 // ----------------------------------------------------------------------------
 // #region PanelHeader
 
@@ -359,7 +312,8 @@ type PanelHeaderProps = {
 const PanelHeader = React.forwardRef((props, forwardedRef) => {
   const { titleProps, children, ...rest } = props;
 
-  const { shouldFocus, setShouldFocus } = useSafeContext(PanelsWrapperContext);
+  const store = useSafeContext(PanelsContext);
+  const { shouldFocus, setShouldFocus } = store.getState();
   const { id: panelId, associatedTrigger: panelAssociatedTrigger } =
     useSafeContext(PanelContext);
 
@@ -395,7 +349,6 @@ if (process.env.NODE_ENV === 'development') {
   PanelHeader.displayName = 'Panels.Header';
 }
 
-// #endregion PanelHeader
 // ----------------------------------------------------------------------------
 // #region PanelBackButton
 
@@ -417,7 +370,7 @@ if (process.env.NODE_ENV === 'development') {
 const PanelBackButton = React.forwardRef((props, forwardedRef) => {
   const { children, onClick, ...rest } = props;
 
-  const { instance: panelInstance } = useSafeContext(PanelsInstanceContext);
+  // const { instance: panelInstance } = useSafeContext(PanelsInstanceContext);
 
   return (
     <IconButton
@@ -428,7 +381,7 @@ const PanelBackButton = React.forwardRef((props, forwardedRef) => {
       data-iui-shift='left'
       {...rest}
       onClick={mergeEventHandlers(
-        React.useCallback(() => panelInstance?.goBack(), [panelInstance]),
+        // React.useCallback(() => panelInstance?.goBack(), [panelInstance]),
         onClick,
       )}
     >
@@ -440,7 +393,212 @@ if (process.env.NODE_ENV === 'development') {
   PanelBackButton.displayName = 'Panels.BackButton';
 }
 
-// #endregion PanelBackButton
+// ----------------------------------------------------------------------------
+// #region useInstance
+
+// type ChipState = ExtractState<ReturnType<typeof createChipStore>>;
+
+// function createChipStore(initialState: { labelId: string }) {
+// 	return createStore(
+// 		combine(initialState, (set, _, store) => ({
+// 			setLabelId: (labelId?: string) => {
+// 				set({ labelId: labelId || store.getInitialState().labelId });
+// 			},
+// 		})),
+// 	);
+// }
+
+// const ChipContext = React.createContext<
+// 	ReturnType<typeof createChipStore> | undefined
+// >(undefined);
+
+// function ChipProvider(props: React.PropsWithChildren) {
+// 	const defaultLabelId = React.useId();
+// 	const [store] = React.useState(() =>
+// 		createChipStore({ labelId: defaultLabelId }),
+// 	);
+
+// 	return (
+// 		<ChipContext.Provider value={store}>{props.children}</ChipContext.Provider>
+// 	);
+// }
+
+// function useChipState<P>(selectorFn: (state: ChipState) => P): P {
+// 	const store = useSafeContext(ChipContext);
+// 	return useStore(store, selectorFn);
+// }
+
+// ----------------------------------------------------------------------------
+
+type InitialPanelsState = {
+  activePanelId: string | undefined;
+  setActivePanelId: React.Dispatch<React.SetStateAction<string>>;
+  ref: React.RefObject<HTMLDivElement | null>;
+  panels: React.RefObject<Set<string>>;
+  /**
+   * Simpler alternative to a full history stack.
+   *
+   * ```tsx
+   * Record<
+   *   string, // Id of a panel
+   *   {
+   *     triggerId: string, // Id of the trigger element that points to this panel
+   *     panelId: string, // Id of the panel element in which the trigger is present
+   *   }
+   * >
+   * ```
+   */
+  triggers: Record<string, TriggerMapEntry>;
+  setTriggers: React.Dispatch<
+    React.SetStateAction<Record<string, TriggerMapEntry>>
+  >;
+  shouldFocus: FocusEntry;
+  setShouldFocus: React.Dispatch<React.SetStateAction<FocusEntry>>;
+  motionOk: boolean | undefined;
+  changeActivePanel: (newActiveId: string) => void;
+};
+// type PanelsInstance = ExtractState<ReturnType<typeof createPanelsStore>>;
+type PanelsInstance = ReturnType<typeof createPanelsStore>;
+type PanelsState = ExtractState<PanelsInstance>;
+
+// TODO: Fix/Confirm all types
+function createPanelsStore(initialState: InitialPanelsState) {
+  return createStore(
+    combine(initialState, (_, get) => ({
+      goBack: () => {
+        const { activePanelId, changeActivePanel, triggers, setShouldFocus } =
+          get();
+
+        if (activePanelId == null) {
+          return;
+        }
+
+        const trigger = triggers[activePanelId];
+        if (trigger.triggerId != null) {
+          setShouldFocus({
+            fromPanelId: activePanelId,
+            toPanelId: trigger.panelId,
+            direction: 'backward',
+          });
+          changeActivePanel(trigger.panelId);
+        }
+      },
+    })),
+  );
+}
+
+const PanelsContext = React.createContext<
+  ReturnType<typeof createPanelsStore> | undefined
+>(undefined);
+if (process.env.NODE_ENV === 'development') {
+  PanelsContext.displayName = 'PanelsContext';
+}
+
+const PanelsProvider = (
+  props: React.PropsWithChildren & {
+    instance?: PanelsInstance;
+  },
+) => {
+  const { children, instance: instanceProp } = props;
+
+  const instanceBackup = Panels.useInstance();
+  const instance = instanceProp || instanceBackup;
+
+  return (
+    <PanelsContext.Provider value={React.useMemo(() => instance, [instance])}>
+      {children}
+    </PanelsContext.Provider>
+  );
+};
+
+function usePanelsState<P>(selectorFn: (state: PanelsState) => P): P {
+  const store = useSafeContext(PanelsContext);
+  return useStore(store, selectorFn);
+}
+
+export function useInstance() {
+  // // TODO: Use correct function
+  // const onActiveIdChangeProp = (newActiveId: string) => {};
+  // const onActiveIdChange = useLatestRef(onActiveIdChangeProp);
+
+  const [activePanelId, setActivePanelId] = React.useState<string | undefined>(
+    undefined,
+  );
+
+  const [triggers, setTriggers] = React.useState<
+    Record<string, TriggerMapEntry>
+  >({});
+  const panels = React.useRef(new Set<string>());
+
+  const [shouldFocus, setShouldFocus] = React.useState<FocusEntry>(undefined);
+
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
+  const ref = React.useRef<HTMLDivElement | null>(null);
+
+  const changeActivePanel = React.useCallback(
+    (newActiveId: string) => {
+      if (
+        // Only if forProp is a panel, go to the new panel.
+        !panels.current.has(newActiveId) ||
+        // Same panel
+        newActiveId === activePanelId
+      ) {
+        return;
+      }
+
+      ReactDOM.flushSync(() => setActivePanelId(newActiveId));
+      // onActiveIdChange.current?.(newActiveId); // TODO: Get correct function then handle this.
+
+      (ref.current?.getRootNode() as Document | ShadowRoot)
+        .getElementById(newActiveId)
+        ?.scrollIntoView({
+          block: 'nearest',
+          inline: 'center',
+          behavior: motionOk ? 'smooth' : 'instant',
+        });
+    },
+    [activePanelId, motionOk],
+  );
+
+  const [store] = React.useState(() =>
+    createPanelsStore({
+      activePanelId,
+      setActivePanelId,
+      panels,
+      triggers,
+      setTriggers,
+      shouldFocus,
+      setShouldFocus,
+      ref,
+      motionOk,
+      changeActivePanel,
+    }),
+  );
+
+  // Only returns goBack
+  return React.useMemo(() => store, [store]);
+}
+
+// ----------------------------------------------------------------------------
+// Zustand experimentation
+
+// export const createFishSlice = (set, get, store) => ({
+//   fishes: 0,
+//   addFish: () => set((state) => ({ fishes: state.fishes + 1 })),
+// });
+
+// export const createBearSlice = (set, get, store) => ({
+//   bears: 0,
+//   addBear: () => set((state) => ({ bears: state.bears + 1 })),
+//   eatFish: () => set((state) => ({ fishes: state.fishes - 1 })),
+// });
+
+// export const useBoundStore = create((...a) => ({
+//   ...createBearSlice(...a),
+//   ...createFishSlice(...a),
+// }));
+
 // ----------------------------------------------------------------------------
 
 export const Panels = {
@@ -558,7 +716,7 @@ export const Panels = {
    * <Button onClick={() => panels.goBack()}>Go back</Button>
    * <Panels.Wrapper instance={panels}>{…}</Panels.Wrapper>;
    */
-  useInstance: useInstance as () => PanelsInstance,
+  useInstance: useInstance,
 };
 
 // ----------------------------------------------------------------------------

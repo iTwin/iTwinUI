@@ -125,6 +125,7 @@ export const MultiLevelList = () => {
   >([]);
 
   const panels = Panels.useInstance();
+  const { goBack } = panels.getState();
 
   const _Item = React.useCallback(
     ({
@@ -143,7 +144,7 @@ export const MultiLevelList = () => {
           active={selected}
           aria-selected={selected}
           onClick={() => {
-            panels.goBack();
+            goBack();
           }}
         >
           <ListItem.Action onClick={() => setState(content)}>
@@ -153,7 +154,7 @@ export const MultiLevelList = () => {
         </ListItem>
       );
     },
-    [panels],
+    [goBack],
   );
 
   const _ItemQuality = React.useCallback(
@@ -290,6 +291,7 @@ export const MultiLevelList = () => {
 
 export const NestedPanels = () => {
   const panels = Panels.useInstance();
+  const { goBack } = panels.getState();
 
   const initialActiveId = 'root';
   const panel1Id = 'panel-1';
@@ -300,7 +302,7 @@ export const NestedPanels = () => {
 
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      <Button id='instance-go-back' onClick={() => panels.goBack()}>
+      <Button id='instance-go-back' onClick={() => goBack()}>
         Go Back
       </Button>
       <Panels.Wrapper
