@@ -83,7 +83,6 @@ export const Avatar = React.forwardRef((props, ref) => {
     abbreviation,
     image,
     backgroundColor,
-    title,
     translatedStatusTitles,
     className,
     style,
@@ -98,7 +97,6 @@ export const Avatar = React.forwardRef((props, ref) => {
       className={cx('iui-avatar', className)}
       data-iui-size={size !== 'medium' ? size : undefined}
       data-iui-status={status}
-      title={title}
       style={{ backgroundColor: getBackground(backgroundColor), ...style }}
       ref={ref}
       {...rest}
