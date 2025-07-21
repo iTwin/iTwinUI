@@ -44,11 +44,7 @@ import type {
   TableKeyedProps,
   TableState,
 } from '../../../react-table/react-table.js';
-import {
-  calculateUnstickyColsWidth,
-  calculateCurrentStickyColsWidth,
-  getHeaderWidth,
-} from '../utils.js';
+import { calculateCurrentStickyColsWidth, getHeaderWidth } from '../utils.js';
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(
@@ -229,10 +225,19 @@ const reducer = <T extends Record<string, unknown>>(
   instance?: TableInstance<T>,
 ) => {
   if (action.type === actions.init) {
+    const columnWidths: Record<string, number> = {};
+    if (instance) {
+      console.log(instance.columns);
+      instance.columns.forEach((column) => {
+        if (typeof column.width === 'number') {
+          columnWidths[column.id] = column.width;
+        }
+      });
+    }
     return {
       ...newState,
       columnResizing: {
-        columnWidths: {},
+        columnWidths,
       },
     };
   }
@@ -319,7 +324,6 @@ const reducer = <T extends Record<string, unknown>>(
       }
     });
 
-    const unstickyColsWidth = calculateUnstickyColsWidth(instance.flatHeaders);
     const currentStickyColsWidth = calculateCurrentStickyColsWidth(
       instance.flatHeaders,
     );
@@ -330,13 +334,9 @@ const reducer = <T extends Record<string, unknown>>(
     const nextCol = instance.flatHeaders.find(
       (h) => h.id === nextHeaderIdWidths[0][0],
     );
-    console.log(
-      'resize',
-      currentStickyColsWidth,
-      instance.tableWidth,
-      unstickyColsWidth,
-    );
-    // un-sticky if total width of sticky columns is at least the table width
+    console.log('resize', currentStickyColsWidth, instance.tableWidth);
+
+    // un-sticky if total width of sticky columns is at least the max table width (with buffer)
     if (
       resizedCol &&
       resizedCol.sticky &&

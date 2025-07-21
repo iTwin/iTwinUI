@@ -71,9 +71,13 @@ const useInstance = <T extends Record<string, unknown>>(
     if (!header.originalSticky) {
       header.originalSticky = header.sticky ?? 'none';
     }
-    // determine if sticky columns should remain un-sticky or not
+    // determine if un-sticky columns should remain un-sticky or made sticky again
     let remainUnsticky = true;
+    // Only need to check for currently un-sticky columns (current .sticky is undefined, but .originalSticky is defined)
+    // In other words, the column's .sticky has been currently assigned to be undefined so it is no longer visibly sticky, but
+    // the column was originally assigned to be sticky so should be made sticky whenever there is enough width.
     if (!header.sticky && header.originalSticky !== 'none') {
+      // get the column id of the next (adjacent) column to the resizing column
       const nextResizingColId = state.columnResizing.nextHeaderIdWidths
         ? state.columnResizing.nextHeaderIdWidths[0][0]
         : '';
@@ -84,14 +88,27 @@ const useInstance = <T extends Record<string, unknown>>(
         state.columnResizing.headerIdWidths?.[0][0],
         state.columnResizing.isResizingColumn,
       );
-      // handle only if a particular column is being resized (not table resize)
+      // Handle only if a particular column is being resized (not table resize).
+      // This is done by checking if isResizingColumn is defined.
+
+      // For the case of if the current un-sticky column was originally 'right' sticky,
+      // only proceed if the current header id matches next column id.
+      const rightSticky =
+        header.originalSticky === 'right' && header.id === nextResizingColId;
+
+      // Otherwise, if the current un-sticky column was 'left' sticky, proceed only if
+      // the current header id matches the current resizing column id.
+      const leftSticky =
+        header.originalSticky === 'left' &&
+        header.id === state.columnResizing.headerIdWidths?.[0][0];
+
       if (
         state.columnResizing.isResizingColumn &&
-        ((header.originalSticky === 'right' &&
-          header.id === nextResizingColId) ||
-          (header.originalSticky === 'left' &&
-            header.id === state.columnResizing.headerIdWidths?.[0][0]))
+        (rightSticky || leftSticky)
       ) {
+        // If the sum of the total width of the currently sticky columns and the
+        // current header is less than the max table width that the sticky columns
+        // can take up, then the un-sticky header should be made sticky again.
         if (
           currentStickyColsWidth + getHeaderWidth(header) <
           tableWidth * 0.8
@@ -101,23 +118,21 @@ const useInstance = <T extends Record<string, unknown>>(
       }
     }
 
-    // header.sticky =
-    //   header.originalSticky === 'none' ||
-    //   (remainUnsticky &&
-    //     !header.sticky &&
-    //     (header.originalSticky === 'left' || header.originalSticky === 'right'))
-    //     ? undefined
-    //     : header.originalSticky;
-
+    // Determine what the header.sticky value should be
     if (header.originalSticky === 'none') {
       header.sticky = undefined;
     } else if (!header.sticky) {
+      // Case for when the header is un-sticky
       if (remainUnsticky) {
+        // Case for when the un-sticky column has been determined to remain un-sticky above
         header.sticky = undefined;
       } else if (
         (instance.scrolledLeft && header.originalSticky === 'left') ||
         (instance.scrolledRight && header.originalSticky === 'right')
       ) {
+        // Only make the un-sticky column sticky again if scrolled all the way to the left or right.
+        // Otherwise, there is a visual disruption/jump when resizing an un-sticky column that
+        // becomes sticky again.
         header.sticky = header.originalSticky;
       } else {
         header.sticky = undefined;

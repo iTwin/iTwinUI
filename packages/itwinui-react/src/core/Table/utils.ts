@@ -85,22 +85,10 @@ export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
   } satisfies React.CSSProperties;
 };
 
-export const calculateUnstickyColsWidth = <T extends Record<string, unknown>>(
-  headers: ColumnInstance<T>[],
-  columnRefs?: React.RefObject<Record<string, HTMLDivElement>>,
-) => {
-  let unstickyColsWidth = 0;
-  for (const header of headers) {
-    const colWidth =
-      columnRefs && columnRefs.current[header.id]
-        ? columnRefs.current[header.id].getBoundingClientRect().width
-        : getHeaderWidth(header);
-    unstickyColsWidth +=
-      header.originalSticky !== 'none' && !header.sticky ? colWidth : 0;
-  }
-  return unstickyColsWidth;
-};
-
+/**
+ * Function to calculate the total width of all the currently sticky columns.
+ * Only sums up headers where header.sticky is defined ('left' or 'right').
+ */
 export const calculateCurrentStickyColsWidth = <
   T extends Record<string, unknown>,
 >(

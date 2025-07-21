@@ -41,7 +41,6 @@ import {
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import {
-  calculateUnstickyColsWidth,
   calculateCurrentStickyColsWidth,
   TableInstanceContext,
   getHeaderWidth,
@@ -976,19 +975,10 @@ export const Table = <
         flatHeaders,
         columnRefs,
       );
-      const unstickyColsWidth = calculateUnstickyColsWidth(
-        flatHeaders,
-        columnRefs,
-      );
-
+      // define a max tableWith with buffer to compare with the total width of sticky columns
       const maxTableWidth = instance.tableWidth * 0.8;
 
-      console.log(
-        'table',
-        instance.tableWidth,
-        currentStickyColsWidth,
-        unstickyColsWidth,
-      );
+      console.log('table', instance.tableWidth, currentStickyColsWidth);
 
       let rightMostLeftSticky = null;
       for (const header of [...flatHeaders].reverse()) {
@@ -1022,19 +1012,11 @@ export const Table = <
         }
       }
 
-      console.log('right most left', rightMostLeftSticky);
-      console.log('prev right most left', prevRightMostLeftSticky);
-      console.log('left most right', leftMostRightSticky);
-      console.log('prev left most right', prevLeftMostRightSticky);
-
-      // const lastStickyCol =
-      //   (rightMostLeftSticky &&
-      //     !leftMostRightSticky &&
-      //     prevRightMostLeftSticky !== null) ||
-      //   (leftMostRightSticky &&
-      //     !rightMostLeftSticky &&
-      //     prevLeftMostRightSticky !== null);
-
+      // If sticky columns are too wide, un-sticky the appropriate sticky column.
+      // The order of columns to unsticky when resizing the table starts with
+      // the left sticky columns, from right-most to left-most. Once all left
+      // sticky columns are un-sticky, the right sticky columns are made un-sticky,
+      // left-most to right-most.
       if (currentStickyColsWidth >= maxTableWidth) {
         if (rightMostLeftSticky) {
           rightMostLeftSticky.sticky = undefined;
@@ -1044,7 +1026,13 @@ export const Table = <
         // handle making un-sticky columns sticky again only if table width is increasing
         // prevent unnecessary un-sticky to sticky changes
       } else if (prevWidth < instance.tableWidth) {
-        console.log('enter case 2');
+        // When determining whether or not to make an un-sticky column sticky again if
+        // there is enough table width remaining, ensure the sum of the total width of currently
+        // sticky columns and the un-sticky column is less than the max table width that
+        // the sticky columns can take up. The order of un-sticky columns to sticky again
+        // starts with the left un-sticky columns (left-most to right-most) and then right
+        // un-sticky columns (right-most to left-most).
+
         if (
           prevRightMostLeftSticky &&
           prevRightMostLeftSticky.originalSticky !== 'none' &&
@@ -1063,15 +1051,6 @@ export const Table = <
             prevLeftMostRightSticky.originalSticky;
         }
       }
-
-      flatHeaders.forEach((header) => {
-        console.log(
-          header.id,
-          '======================>>>>>>>>>>>>>>>',
-          header.sticky,
-          header.originalSticky,
-        );
-      });
 
       // If no column was resized then leave table resize handling to the flexbox
       if (Object.keys(state.columnResizing.columnWidths).length === 0) {
@@ -1195,6 +1174,7 @@ export const Table = <
       return;
     }
 
+    // determine if scrolled all the way to the left, right, or neither
     if (tableRef.current.scrollLeft === 0) {
       instance.scrolledLeft = true;
     } else if (
@@ -1202,7 +1182,6 @@ export const Table = <
       tableRef.current.scrollWidth - tableRef.current.offsetWidth
     ) {
       instance.scrolledRight = true;
-      dispatch({ type: TableActions.setScrolledRight, value: true });
     } else {
       instance.scrolledLeft = false;
       instance.scrolledRight = false;
@@ -1226,6 +1205,23 @@ export const Table = <
   };
 
   React.useEffect(() => {
+    // Un-sticky all sticky columns if not all columns are visible from initial render
+    const currentStickyColsWidth = calculateCurrentStickyColsWidth(
+      flatHeaders,
+      columnRefs,
+    );
+    // Don't use buffer for table width in this case since it is initial render.
+    // Avoids unnecessarily making all sticky columns un-sticky when all columns are initially visible.
+    if (
+      tableRef.current &&
+      currentStickyColsWidth >= tableRef.current.clientWidth
+    ) {
+      flatHeaders.forEach((header) => {
+        if (header.sticky) {
+          header.sticky = undefined;
+        }
+      });
+    }
     updateStickyState();
     // Call only on init
     // eslint-disable-next-line react-hooks/exhaustive-deps
