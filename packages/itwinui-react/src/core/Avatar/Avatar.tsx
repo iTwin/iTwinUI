@@ -37,10 +37,6 @@ type AvatarProps = {
    */
   status?: AvatarStatus;
   /**
-   * Text which will appear when hovering over the icon.
-   */
-  title?: string;
-  /**
    * Abbreviation to be displayed.
    */
   abbreviation?: string;
@@ -69,16 +65,16 @@ export const defaultStatusTitles: StatusTitles = {
  * Basic avatar component
  * @example
  * <caption>Small icon with abbreviation</caption>
- * <Avatar size='small' title='Terry Rivers' abbreviation='TR' backgroundColor='green'/>
+ * <Avatar size='small' abbreviation='TR' backgroundColor='green'/>
  * @example
  * <caption>Medium icon with image</caption>
- * <Avatar size='medium' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
+ * <Avatar size='medium' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  * @example
  * <caption>Large icon with status</caption>
- * <Avatar size='large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' status='online' />
+ * <Avatar size='large' abbreviation='TR' backgroundColor='green' status='online' />
  * @example
  * <caption>X-large icon with image</caption>
- * <Avatar size='x-large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
+ * <Avatar size='x-large' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  */
 export const Avatar = React.forwardRef((props, ref) => {
   const {

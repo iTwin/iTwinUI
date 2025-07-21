@@ -37,7 +37,7 @@ type KbdProps = {
  * A keyboard key element.
  * @example
  * <Kbd>A</Kbd>
- * <Kbd title='Enter'>{KbdKeys.Enter}</Kbd>
+ * <Kbd>{KbdKeys.Enter}</Kbd>
  */
 export const Kbd = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;

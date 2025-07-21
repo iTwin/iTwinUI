@@ -228,7 +228,6 @@ export const WithAvatar = () => {
             image={
               <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
             }
-            title='Terry Rivers'
           />
         </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>
