@@ -162,7 +162,6 @@ export const Full = () => {
               image={
                 <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
               }
-              title='Terry Rivers'
             />
           </IconButton>
         </DropdownMenu>,
@@ -226,7 +225,6 @@ export const Basic = () => {
           size='medium'
           abbreviation='TR'
           backgroundColor={getUserColor('Terry Rivers')}
-          title='Terry Rivers'
         />,
       ]}
     />
@@ -288,7 +286,6 @@ export const Slim = () => {
           size='medium'
           abbreviation='TR'
           backgroundColor={getUserColor('Terry Rivers')}
-          title='Terry Rivers'
         />,
       ]}
     />
@@ -349,7 +346,6 @@ export const CenterContent = () => {
           size='medium'
           abbreviation='TR'
           backgroundColor={getUserColor('Terry Rivers')}
-          title='Terry Rivers'
         />,
       ]}
       menuItems={buildMenu('More')}

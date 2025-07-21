@@ -12,25 +12,21 @@ export default () => {
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         size='small'
-        title='Terry Rivers'
       />
       <Avatar
         abbreviation='RM'
         backgroundColor={getUserColor('Robin Mercer')}
         size='medium'
-        title='Robin Mercer'
       />
       <Avatar
         abbreviation='MV'
         backgroundColor={getUserColor('Morgan Vera')}
         size='large'
-        title='Morgan Vera'
       />
       <Avatar
         abbreviation='JM'
         backgroundColor={getUserColor('Jean Mullins')}
         size='x-large'
-        title='Jean Mullins'
       />
     </div>
   );
