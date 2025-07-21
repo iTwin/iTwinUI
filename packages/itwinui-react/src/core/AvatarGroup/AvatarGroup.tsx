@@ -51,17 +51,14 @@ type AvatarGroupProps = {
  *  <Avatar
  *    abbreviation="TR"
  *    backgroundColor={getUserColor("Terry Rivers")}
- *    title="Terry Rivers"
  *  />
  *  <Avatar
  *    abbreviation="RM"
  *    backgroundColor={getUserColor("Robin Mercer")}
- *    title="Robin Mercer"
  *  />
  *  <Avatar
  *    abbreviation="JM"
  *    backgroundColor={getUserColor("Jean Mullins")}
- *    title="Jean Mullins"
  *  />
  * </AvatarGroup>
  */
