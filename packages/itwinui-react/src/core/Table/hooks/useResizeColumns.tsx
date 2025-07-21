@@ -227,7 +227,6 @@ const reducer = <T extends Record<string, unknown>>(
   if (action.type === actions.init) {
     const columnWidths: Record<string, number> = {};
     if (instance) {
-      console.log(instance.columns);
       instance.columns.forEach((column) => {
         if (typeof column.width === 'number') {
           columnWidths[column.id] = column.width;
@@ -334,7 +333,6 @@ const reducer = <T extends Record<string, unknown>>(
     const nextCol = instance.flatHeaders.find(
       (h) => h.id === nextHeaderIdWidths[0][0],
     );
-    console.log('resize', currentStickyColsWidth, instance.tableWidth);
 
     // un-sticky if total width of sticky columns is at least the max table width (with buffer)
     if (

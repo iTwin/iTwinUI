@@ -978,8 +978,6 @@ export const Table = <
       // define a max tableWith with buffer to compare with the total width of sticky columns
       const maxTableWidth = instance.tableWidth * 0.8;
 
-      console.log('table', instance.tableWidth, currentStickyColsWidth);
-
       let rightMostLeftSticky = null;
       for (const header of [...flatHeaders].reverse()) {
         if (header.sticky === 'left') {

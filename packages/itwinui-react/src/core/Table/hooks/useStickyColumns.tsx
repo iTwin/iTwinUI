@@ -81,13 +81,7 @@ const useInstance = <T extends Record<string, unknown>>(
       const nextResizingColId = state.columnResizing.nextHeaderIdWidths
         ? state.columnResizing.nextHeaderIdWidths[0][0]
         : '';
-      console.log(
-        'currently CHECK',
-        header.id,
-        nextResizingColId,
-        state.columnResizing.headerIdWidths?.[0][0],
-        state.columnResizing.isResizingColumn,
-      );
+
       // Handle only if a particular column is being resized (not table resize).
       // This is done by checking if isResizingColumn is defined.
 
@@ -140,15 +134,6 @@ const useInstance = <T extends Record<string, unknown>>(
     } else {
       header.sticky = header.originalSticky;
     }
-
-    console.log(
-      header.id,
-      header.sticky,
-      header.originalSticky,
-      'in useStickyColumns, SCROLL VALS',
-      instance.scrolledLeft,
-      instance.scrolledRight,
-    );
   });
 
   // If there is a column that is sticked to the left, make every column prior to that sticky too.
