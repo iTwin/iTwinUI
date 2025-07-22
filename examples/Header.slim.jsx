@@ -60,7 +60,7 @@ export default () => {
       }
       actions={[
         <IconButton styleType='borderless' aria-label='View profile'>
-          <Avatar abbreviation='TR' title='Terry Rivers' />
+          <Avatar abbreviation='TR' />
         </IconButton>,
       ]}
     />

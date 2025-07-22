@@ -11,11 +11,7 @@ export default {
 
 export const Basic = () => {
   return (
-    <Avatar
-      abbreviation='TR'
-      backgroundColor={getUserColor('Terry Rivers')}
-      title='Terry Rivers'
-    />
+    <Avatar abbreviation='TR' backgroundColor={getUserColor('Terry Rivers')} />
   );
 };
 
@@ -28,7 +24,6 @@ export const WithImage = () => {
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
-      title='Terry Rivers'
     />
   );
 };
@@ -40,7 +35,6 @@ export const WithIcon = () => {
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
       image={<SvgUser />}
-      title='Terry Rivers'
     />
   );
 };
@@ -52,25 +46,21 @@ export const Sizes = () => {
         size='small'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
       <Avatar
         size='medium'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
       <Avatar
         size='large'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
       <Avatar
         size='x-large'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
     </div>
   );
@@ -84,28 +74,24 @@ export const Statuses = () => {
         status='online'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
       <Avatar
         size='large'
         status='offline'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
       <Avatar
         size='large'
         status='busy'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
       <Avatar
         size='large'
         status='away'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
       />
     </div>
   );
@@ -118,7 +104,6 @@ export const CustomStatusTranslation = () => {
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
       status='away'
-      title='Terry Rivers'
       translatedStatusTitles={{
         away: 'AFK',
         busy: 'Do not disturb!',

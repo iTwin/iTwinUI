@@ -49,7 +49,6 @@ export default () => {
               .map((token) => token[0])
               .join('')}
             backgroundColor={getUserColor(name)}
-            title={name}
           />
         ))}
       </AvatarGroup>
