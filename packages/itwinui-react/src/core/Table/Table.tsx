@@ -40,7 +40,11 @@ import {
   useId,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TableInstanceContext } from './utils.js';
+import {
+  calculateCurrentStickyColsWidth,
+  TableInstanceContext,
+  getHeaderWidth,
+} from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import type { TableFilterValue } from './filters/index.js';
 import { customFilterFunctions } from './filters/customFilterFunctions.js';
@@ -953,20 +957,98 @@ export const Table = <
       if (!isResizable) {
         return;
       }
-
+      const prevWidth = instance.tableWidth;
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
       }
       previousTableWidth.current = width;
 
-      // Update column widths when table was resized
       flatHeaders.forEach((header) => {
         if (columnRefs.current[header.id]) {
           header.resizeWidth =
             columnRefs.current[header.id].getBoundingClientRect().width;
         }
       });
+
+      const currentStickyColsWidth = calculateCurrentStickyColsWidth(
+        flatHeaders,
+        columnRefs,
+      );
+      // define a max tableWith with buffer to compare with the total width of sticky columns
+      const maxTableWidth = instance.tableWidth * 0.8;
+
+      let rightMostLeftSticky = null;
+      for (const header of [...flatHeaders].reverse()) {
+        if (header.sticky === 'left') {
+          rightMostLeftSticky = header;
+          break;
+        }
+      }
+
+      let prevRightMostLeftSticky = null;
+      for (const header of flatHeaders) {
+        if (!header.sticky && header.originalSticky === 'left') {
+          prevRightMostLeftSticky = header;
+          break;
+        }
+      }
+
+      let leftMostRightSticky = null;
+      for (const header of flatHeaders) {
+        if (header.sticky === 'right') {
+          leftMostRightSticky = header;
+          break;
+        }
+      }
+
+      let prevLeftMostRightSticky = null;
+      for (const header of [...flatHeaders].reverse()) {
+        if (!header.sticky && header.originalSticky === 'right') {
+          prevLeftMostRightSticky = header;
+          break;
+        }
+      }
+
+      // If sticky columns are too wide, un-sticky the appropriate sticky column.
+      // The order of columns to unsticky when resizing the table starts with
+      // the left sticky columns, from right-most to left-most. Once all left
+      // sticky columns are un-sticky, the right sticky columns are made un-sticky,
+      // left-most to right-most.
+      if (currentStickyColsWidth >= maxTableWidth) {
+        if (rightMostLeftSticky) {
+          rightMostLeftSticky.sticky = undefined;
+        } else if (leftMostRightSticky) {
+          leftMostRightSticky.sticky = undefined;
+        }
+        // handle making un-sticky columns sticky again only if table width is increasing
+        // prevent unnecessary un-sticky to sticky changes
+      } else if (prevWidth < instance.tableWidth) {
+        // When determining whether or not to make an un-sticky column sticky again if
+        // there is enough table width remaining, ensure the sum of the total width of currently
+        // sticky columns and the un-sticky column is less than the max table width that
+        // the sticky columns can take up. The order of un-sticky columns to sticky again
+        // starts with the left un-sticky columns (left-most to right-most) and then right
+        // un-sticky columns (right-most to left-most).
+
+        if (
+          prevRightMostLeftSticky &&
+          prevRightMostLeftSticky.originalSticky !== 'none' &&
+          getHeaderWidth(prevRightMostLeftSticky) + currentStickyColsWidth <
+            maxTableWidth
+        ) {
+          prevRightMostLeftSticky.sticky =
+            prevRightMostLeftSticky.originalSticky;
+        } else if (
+          prevLeftMostRightSticky &&
+          prevLeftMostRightSticky.originalSticky !== 'none' &&
+          getHeaderWidth(prevLeftMostRightSticky) + currentStickyColsWidth <
+            maxTableWidth
+        ) {
+          prevLeftMostRightSticky.sticky =
+            prevLeftMostRightSticky.originalSticky;
+        }
+      }
 
       // If no column was resized then leave table resize handling to the flexbox
       if (Object.keys(state.columnResizing.columnWidths).length === 0) {
@@ -1090,6 +1172,19 @@ export const Table = <
       return;
     }
 
+    // determine if scrolled all the way to the left, right, or neither
+    if (tableRef.current.scrollLeft === 0) {
+      instance.scrolledLeft = true;
+    } else if (
+      tableRef.current.scrollLeft ===
+      tableRef.current.scrollWidth - tableRef.current.offsetWidth
+    ) {
+      instance.scrolledRight = true;
+    } else {
+      instance.scrolledLeft = false;
+      instance.scrolledRight = false;
+    }
+
     if (tableRef.current.scrollLeft !== 0) {
       dispatch({ type: TableActions.setScrolledRight, value: true });
     } else {
@@ -1108,6 +1203,23 @@ export const Table = <
   };
 
   React.useEffect(() => {
+    // Un-sticky all sticky columns if not all columns are visible from initial render
+    const currentStickyColsWidth = calculateCurrentStickyColsWidth(
+      flatHeaders,
+      columnRefs,
+    );
+    // Don't use buffer for table width in this case since it is initial render.
+    // Avoids unnecessarily making all sticky columns un-sticky when all columns are initially visible.
+    if (
+      tableRef.current &&
+      currentStickyColsWidth >= tableRef.current.clientWidth
+    ) {
+      flatHeaders.forEach((header) => {
+        if (header.sticky) {
+          header.sticky = undefined;
+        }
+      });
+    }
     updateStickyState();
     // Call only on init
     // eslint-disable-next-line react-hooks/exhaustive-deps
