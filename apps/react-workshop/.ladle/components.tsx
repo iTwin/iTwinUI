@@ -20,7 +20,8 @@ export const Provider: GlobalProvider = ({ children }) => {
   const { globalState, dispatch } = useLadleContext();
   const theme = globalState.theme === 'dark' ? 'dark' : 'light';
   const highContrast = globalState.control?.['high-contrast']?.value;
-  const futureThemeBridge = globalState.control?.['future.themeBridge']?.value;
+  const futureThemeBridgeArg = globalState.control?.['future.themeBridge']
+    ?.value as boolean;
 
   // default to OS theme
   React.useLayoutEffect(() => {
@@ -37,7 +38,7 @@ export const Provider: GlobalProvider = ({ children }) => {
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-  }, [theme, highContrast, futureThemeBridge]);
+  }, [theme, highContrast]);
 
   // redirect old storybook paths to new ones
   React.useEffect(() => {
@@ -50,6 +51,16 @@ export const Provider: GlobalProvider = ({ children }) => {
       }
     }
   }, []);
+
+  // Adding intermediate state updated in effect to workaround Ladle's infinite re-renders when DOM changes
+  // upon changing args.
+  const [futureThemeBridge, setFutureThemeBridge] =
+    React.useState(futureThemeBridgeArg);
+  React.useEffect(() => {
+    if (futureThemeBridgeArg !== futureThemeBridge) {
+      setFutureThemeBridge(futureThemeBridgeArg);
+    }
+  }, [futureThemeBridgeArg, futureThemeBridge]);
 
   const themeProviderProps = {
     theme,

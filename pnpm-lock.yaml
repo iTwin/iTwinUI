@@ -143,8 +143,8 @@ importers:
         specifier: '*'
         version: link:../../packages/itwinui-variables
       '@ladle/react':
-        specifier: ^5.0.1
-        version: 5.0.1(@swc/helpers@0.5.17)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.14.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)
+        specifier: ^5.0.3
+        version: 5.0.3(@swc/helpers@0.5.17)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.14.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)
       '@stratakit/foundations':
         specifier: ^0.2.0
         version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2196,10 +2196,10 @@ packages:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
 
-  '@ladle/react@5.0.1':
+  '@ladle/react@5.0.3':
     resolution:
       {
-        integrity: sha512-i1eNwttR+Y1ISoQqlfLNC00k6x4tYQVcoKr/s6e/tYbJr8wUKnYUvH5YzlVTp53oUgNVRWOXP8d4MNM/oOqMdw==,
+        integrity: sha512-8Zl+n3GREf6riIUU/xybYwZrDRhbJ0vl/Ulfz6M75zsWgP/0dqW4sxSZnd6lB4EksRyKT2jqeeLYsRqdUK9f/Q==,
       }
     engines: { node: '>=20.0.0' }
     hasBin: true
@@ -13416,7 +13416,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@ladle/react@5.0.1(@swc/helpers@0.5.17)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.14.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)':
+  '@ladle/react@5.0.3(@swc/helpers@0.5.17)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.14.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)':
     dependencies:
       '@babel/code-frame': 7.27.1
       '@babel/core': 7.26.0
