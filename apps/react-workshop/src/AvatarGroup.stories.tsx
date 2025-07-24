@@ -35,7 +35,6 @@ export const Basic = () => {
             .map((token) => token[0])
             .join('')}
           backgroundColor={getUserColor(name)}
-          title={name}
         />
       ))}
     </AvatarGroup>
@@ -61,7 +60,6 @@ export const Animated = () => {
             .map((token) => token[0])
             .join('')}
           backgroundColor={getUserColor(name)}
-          title={name}
         />
       ))}
     </AvatarGroup>
@@ -101,7 +99,6 @@ export const ManyAvatars = () => {
                 .map((token) => token[0])
                 .join('')}
               backgroundColor={getUserColor(name)}
-              title={name}
             />
           ))}
       </AvatarGroup>
@@ -131,7 +128,6 @@ export const NonStacked = () => {
             .map((token) => token[0])
             .join('')}
           backgroundColor={getUserColor(name)}
-          title={name}
         />
       ))}
     </AvatarGroup>
@@ -169,7 +165,6 @@ export const WithTooltip = () => {
               .map((token) => token[0])
               .join('')}
             backgroundColor={getUserColor(name)}
-            title={name}
           />
         ))}
       </AvatarGroup>

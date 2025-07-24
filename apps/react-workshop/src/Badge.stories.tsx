@@ -14,9 +14,7 @@ export const Basic = () => {
 
 export const LongLabel = () => {
   return (
-    <Badge backgroundColor='skyblue' title='Long label that gets truncated'>
-      Long label that gets truncated
-    </Badge>
+    <Badge backgroundColor='skyblue'>Long label that gets truncated</Badge>
   );
 };
 

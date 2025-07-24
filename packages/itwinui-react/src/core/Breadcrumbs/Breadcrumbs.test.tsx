@@ -172,6 +172,21 @@ it('should accept currentIndex prop', () => {
   assertBaseElement(container, { currentIndex: 1 });
 });
 
+it('should use custom aria-current, if provided', () => {
+  const { container } = render(
+    <Breadcrumbs>
+      <Breadcrumbs.Item>Item 1</Breadcrumbs.Item>
+      <Breadcrumbs.Item aria-current='page'>Item 2</Breadcrumbs.Item>
+    </Breadcrumbs>,
+  );
+
+  const itemContents = container.querySelectorAll(
+    '.iui-breadcrumbs-item > .iui-breadcrumbs-content',
+  );
+  expect(itemContents[0].getAttribute('aria-current')).toBeFalsy();
+  expect(itemContents[1].getAttribute('aria-current')).toEqual('page');
+});
+
 it('should support legacy api', async () => {
   const onClick = vi.fn();
 

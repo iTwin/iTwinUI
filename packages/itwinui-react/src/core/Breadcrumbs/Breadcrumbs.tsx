@@ -9,6 +9,7 @@ import {
   Box,
   OverflowContainer,
   useWarningLogger,
+  cloneElementWithRef,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
@@ -232,13 +233,20 @@ const ListItem = ({
     children = <BreadcrumbsItem {...children.props} />;
   }
 
+  const getProps = React.useCallback(
+    (children: React.JSX.Element) => {
+      const defaultAriaCurrent = isActive ? 'location' : undefined;
+
+      return {
+        'aria-current': children.props['aria-current'] ?? defaultAriaCurrent,
+      };
+    },
+    [isActive],
+  );
+
   return (
     <Box as='li' className={'iui-breadcrumbs-item'}>
-      {children &&
-        React.cloneElement(children, {
-          'aria-current':
-            children.props['aria-current'] ?? isActive ? 'location' : undefined,
-        })}
+      {children ? cloneElementWithRef(children, getProps) : null}
     </Box>
   );
 };

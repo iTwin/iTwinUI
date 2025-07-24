@@ -263,23 +263,25 @@ if (process.env.NODE_ENV === 'development') {
  */
 export const TransferList = Object.assign(TransferListComponent, {
   /**
-   * 	TransferList listbox wrapper subcomponent
+   * TransferList listbox wrapper subcomponent
    */
   ListboxWrapper: TransferListListboxWrapper,
   /**
-   * 	TransferList listbox subcomponent
+   * TransferList listbox subcomponent
    */
   Listbox: TransferListListbox,
   /**
-   * 	TransferList item subcomponent
+   * TransferList item subcomponent.
+   *
+   * Renders a `ListItem` and is compatible with `ListItem`'s [subcomponents](https://itwinui.bentley.com/docs/list#with-subcomponents).
    */
   Item: TransferListItem,
   /**
-   * 	TransferList listbox label subcomponent
+   * TransferList listbox label subcomponent
    */
   ListboxLabel: TransferListListboxLabel,
   /**
-   * 	TransferList toolbar subcomponent
+   * TransferList toolbar subcomponent
    */
   Toolbar: TransferListToolbar,
 });
