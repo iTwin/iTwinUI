@@ -10,7 +10,7 @@
     "@itwin/itwinui-variables": "*",
     "@stratakit/foundations": "^0.2.0",
     "@itwin/itwinui-react": "*",
-    "@ladle/react": "^5.0.1",
+    "@ladle/react": "^5.0.3",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
