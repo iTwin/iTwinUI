@@ -52,15 +52,8 @@ export const Provider: GlobalProvider = ({ children }) => {
     }
   }, []);
 
-  // Adding intermediate state updated in effect to workaround Ladle's infinite re-renders when DOM changes
-  // upon changing args.
-  const [futureThemeBridge, setFutureThemeBridge] =
-    React.useState(futureThemeBridgeArg);
-  React.useEffect(() => {
-    if (futureThemeBridgeArg !== futureThemeBridge) {
-      setFutureThemeBridge(futureThemeBridgeArg);
-    }
-  }, [futureThemeBridgeArg, futureThemeBridge]);
+  // Deferring futureThemeBridge updates to work around Ladle's infinite re-renders when DOM changes upon changing args.
+  const futureThemeBridge = React.useDeferredValue(futureThemeBridgeArg);
 
   const themeProviderProps = {
     theme,
