@@ -31,6 +31,21 @@ export const Provider: GlobalProvider = ({ children }) => {
     });
   }, []);
 
+  // Deferring control to work around Ladle's reset of controls when changing stories.
+  const control = React.useDeferredValue(globalState.control);
+
+  // When changing stories, retain the controls
+  const [currentStory, setCurrentStory] = React.useState(globalState.story);
+  if (globalState.story !== currentStory) {
+    setTimeout(() => {
+      dispatch({
+        type: ActionType.UpdateControl,
+        value: control,
+      });
+    }, 0);
+    setCurrentStory(globalState.story);
+  }
+
   // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
     document.documentElement.dataset.colorScheme = theme;
