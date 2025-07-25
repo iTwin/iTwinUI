@@ -31,3 +31,14 @@ main {
   position: relative;
   transform: translateZ(0);
 }
+
+/* Manually added background theme bridge mappings for Ladle elements outside the ThemeProvider/Root. */
+:is(
+    .ladle-background:has(
+        + #ladle-root > .ladle-main > [data-iui-bridge='true']
+      ),
+    .ladle-main:has(> [data-iui-bridge='true']) ~ .ladle-addons
+  ) {
+  --iui-color-background: var(--stratakit-color-bg-page-base);
+  --iui-color-background-backdrop: var(--stratakit-color-bg-page-base);
+}

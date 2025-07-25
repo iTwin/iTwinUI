@@ -41,32 +41,6 @@ export const Provider: GlobalProvider = ({ children }) => {
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-
-    // Manually added background theme bridge mappings since they are outside the ThemeProvider/Root.
-    const ladleBackground = document.querySelector('.ladle-background') as
-      | HTMLElement
-      | undefined;
-    const ladleAddons = document.querySelector('.ladle-addons') as
-      | HTMLElement
-      | undefined;
-    if (futureThemeBridge) {
-      ladleBackground?.style.setProperty(
-        '--iui-color-background',
-        'var(--stratakit-color-bg-page-base)',
-      );
-      ladleBackground?.style.setProperty(
-        '--iui-color-background-backdrop',
-        'var(--stratakit-color-bg-page-base)',
-      );
-      ladleAddons?.style.setProperty(
-        '--iui-color-background-backdrop',
-        'var(--stratakit-color-bg-page-base)',
-      );
-    } else {
-      ladleBackground?.style.removeProperty('--iui-color-background');
-      ladleBackground?.style.removeProperty('--iui-color-background-backdrop');
-      ladleAddons?.style.removeProperty('--iui-color-background-backdrop');
-    }
   }, [theme, highContrast, futureThemeBridge]);
 
   // redirect old storybook paths to new ones
