@@ -31,9 +31,6 @@ export const Provider: GlobalProvider = ({ children }) => {
     });
   }, []);
 
-  // Deferring futureThemeBridge updates to work around Ladle's infinite re-renders when DOM changes upon changing args.
-  const futureThemeBridge = React.useDeferredValue(futureThemeBridgeArg);
-
   // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
     document.documentElement.dataset.colorScheme = theme;
@@ -41,7 +38,7 @@ export const Provider: GlobalProvider = ({ children }) => {
     document.documentElement.dataset.iuiContrast = highContrast
       ? 'high'
       : 'default';
-  }, [theme, highContrast, futureThemeBridge]);
+  }, [theme, highContrast]);
 
   // redirect old storybook paths to new ones
   React.useEffect(() => {
@@ -54,6 +51,9 @@ export const Provider: GlobalProvider = ({ children }) => {
       }
     }
   }, []);
+
+  // Deferring futureThemeBridge updates to work around Ladle's infinite re-renders when DOM changes upon changing args.
+  const futureThemeBridge = React.useDeferredValue(futureThemeBridgeArg);
 
   const themeProviderProps = {
     theme,
