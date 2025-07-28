@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.19.2
+
+### Patch Changes
+
+- [#2612](https://github.com/iTwin/iTwinUI/pull/2612): Fixed theme bridge to use StrataKit fonts.
+- [#2603](https://github.com/iTwin/iTwinUI/pull/2603): `Breadcrumbs.Item` now respects the `aria-current` prop.
+- [#2616](https://github.com/iTwin/iTwinUI/pull/2616): Reverted the internal change made in [v3.19.0](https://github.com/iTwin/iTwinUI/releases/tag/%40itwin%2Fitwinui-react%403.19.0) where `Table`'s `SelectionColumn` and `ExpanderColumn` had been fixed to use `cellRenderer` instead of `Cell`.
+- [#2615](https://github.com/iTwin/iTwinUI/pull/2615): `Table` row and header separators made more subtle.
+
 ## 3.19.1
 
 ### Patch Changes
@@ -16,6 +25,7 @@
 
   - [#2573](https://github.com/iTwin/iTwinUI/pull/2573): Added the ability to pass `future={true}` to `ThemeProvider` to enable _all_ future flags.
   - [#2543](https://github.com/iTwin/iTwinUI/pull/2543): Added a new future flag to `ThemeProvider`'s `future` prop: `ToggleSwitch.consistentPropsSpread`. Setting this to `true` will result in all `ToggleSwitch` DOM props being applied on the input element.
+
 - [#2544](https://github.com/iTwin/iTwinUI/pull/2544): Added a new `wrapperProps` prop to `ToggleSwitch` to pass props to the wrapper. To prevent breaking changes:
   - If this new `wrapperProps` is provided or `ThemeProvider`'s `ToggleSwitch.consistentPropsSpread` future flag is `true`, `className` and `style` will be applied on the `input` and `wrapperProps` will be applied on the wrapper.
   - Else, `className` and `style` continue to be applied on the wrapper.
