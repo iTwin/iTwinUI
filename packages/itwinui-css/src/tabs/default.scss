@@ -7,7 +7,7 @@
   --_iui-tab-bg-color-hover: var(--iui-color-background-backdrop-hover);
   --_iui-tab-bg-color-selected: var(--iui-color-background);
   --_iui-tab-bg-color-selected-hover: var(--iui-color-background);
-  --_iui-tab-bg-color-disabled: transparent;
+  --_iui-tab-bg-color-disabled: var(--iui-color-background-backdrop);
 
   .iui-tab {
     padding-block: var(--iui-size-2xs);
