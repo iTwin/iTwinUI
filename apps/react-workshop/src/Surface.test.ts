@@ -10,6 +10,7 @@ describe('Surface', () => {
     'Overflow With Button Footer',
     'No Padding',
     'Empty State',
+    'Elevations',
   ];
 
   tests.forEach((testName) => {

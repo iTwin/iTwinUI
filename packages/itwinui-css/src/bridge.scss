@@ -353,6 +353,31 @@
   .iui-surface {
     // To match the surface similar to StrataKit's dropdown menu
     background-color: var(--stratakit-color-bg-elevation-base);
+
+    &:where(:not([data-iui-elevation]), [data-iui-elevation='0']) {
+      background-color: var(--stratakit-color-bg-page-base);
+      box-shadow: none;
+    }
+
+    &:where([data-iui-elevation='1']) {
+      box-shadow: var(--stratakit-shadow-surface-xs);
+    }
+
+    &:where([data-iui-elevation='2']) {
+      box-shadow: var(--stratakit-shadow-surface-sm);
+    }
+
+    &:where([data-iui-elevation='3']) {
+      box-shadow: var(--stratakit-shadow-surface-md);
+    }
+
+    &:where([data-iui-elevation='4']) {
+      box-shadow: var(--stratakit-shadow-surface-lg);
+    }
+
+    &:where([data-iui-elevation='5']) {
+      box-shadow: var(--stratakit-shadow-surface-xl);
+    }
   }
 
   /* ---------------------------------------------------------------------------- */
