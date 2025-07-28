@@ -354,9 +354,9 @@
     // To match the surface similar to StrataKit's dropdown menu
     background-color: var(--stratakit-color-bg-elevation-base);
 
-    &:where(:not([data-iui-elevation]), [data-iui-elevation='0']) {
-      background-color: var(--stratakit-color-bg-page-base);
+    &:where([data-iui-elevation='0']) {
       box-shadow: none;
+      background-color: var(--stratakit-color-bg-page-base);
     }
 
     &:where([data-iui-elevation='1']) {
