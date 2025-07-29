@@ -5,8 +5,8 @@
 ### Patch Changes
 
 - [#2612](https://github.com/iTwin/iTwinUI/pull/2612): Fixed theme bridge to use StrataKit fonts.
-- [#2603](https://github.com/iTwin/iTwinUI/pull/2603): `Breadcrumbs.Item` now respects the `aria-current` prop.
 - [#2616](https://github.com/iTwin/iTwinUI/pull/2616): Reverted the internal change made in [v3.19.0](https://github.com/iTwin/iTwinUI/releases/tag/%40itwin%2Fitwinui-react%403.19.0) where `Table`'s `SelectionColumn` and `ExpanderColumn` had been fixed to use `cellRenderer` instead of `Cell`.
+- [#2603](https://github.com/iTwin/iTwinUI/pull/2603): `Breadcrumbs.Item` now respects the `aria-current` prop.
 - [#2615](https://github.com/iTwin/iTwinUI/pull/2615): `Table` row and header separators made more subtle.
 
 ## 3.19.1
