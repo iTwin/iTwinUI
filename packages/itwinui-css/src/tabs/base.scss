@@ -197,7 +197,7 @@ $borderless-horizontal-tab-min-height: calc(
       }
     }
 
-    .iui-tab {
+    .iui-tab[data-iui-orientation='horizontal'] {
       flex-shrink: 0;
       max-inline-size: 60cqi;
 
@@ -251,7 +251,7 @@ $borderless-horizontal-tab-min-height: calc(
       }
     }
 
-    .iui-tab {
+    .iui-tab[data-iui-orientation='vertical'] {
       &::after {
         inline-size: 0;
         block-size: 100%;
@@ -297,7 +297,7 @@ $borderless-horizontal-tab-min-height: calc(
     --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 
-  .iui-horizontal &::after {
+  &:where([data-iui-orientation='horizontal'])::after {
     inset-block-start: calc(100% - #{var(--iui-size-3xs)});
     block-size: var(--iui-size-3xs);
     inset-inline-start: var(--iui-tabs-stripe-position);
@@ -309,7 +309,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
   }
 
-  .iui-vertical &::after {
+  &:where([data-iui-orientation='vertical'])::after {
     inset-inline-start: calc(100% - #{var(--iui-size-3xs)});
     inline-size: var(--iui-size-3xs);
     inset-block-start: var(--iui-tabs-stripe-position);
@@ -326,7 +326,7 @@ $borderless-horizontal-tab-min-height: calc(
   flex-direction: column;
   justify-content: center;
 
-  :where(.iui-tabs-wrapper.iui-horizontal) & {
+  &:where([data-iui-orientation='horizontal']) {
     margin-inline-start: $tabs-actions-gap;
 
     &::before,
@@ -337,20 +337,20 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   // Smaller min content-actions spacing for default horizontal tabs
-  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-default) + & {
+  :where(.iui-tabs[data-iui-orientation='horizontal'].iui-default) + & {
     &::after {
       min-block-size: $content-actions-min-gap-default-horizontal-tabs;
     }
   }
 
   // Larger min content-actions spacing for borderless horizontal tabs
-  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
+  :where(.iui-tabs[data-iui-orientation='horizontal'].iui-borderless) + & {
     &::after {
       min-block-size: $content-actions-min-gap-borderless-horizontal-tabs;
     }
   }
 
-  :where(.iui-tabs-wrapper.iui-vertical) & {
+  &:where([data-iui-orientation='vertical']) {
     margin-block-start: $tabs-actions-gap;
     padding-inline: $content-actions-gap-vertical-tabs;
   }
@@ -359,12 +359,12 @@ $borderless-horizontal-tab-min-height: calc(
 @mixin iui-tabs-actions {
   display: flex;
 
-  :where(.iui-tabs-wrapper.iui-horizontal) & {
+  &:where([data-iui-orientation='horizontal']) {
     align-items: center;
     column-gap: var(--iui-size-xs);
   }
 
-  :where(.iui-tabs-wrapper.iui-vertical) & {
+  &:where([data-iui-orientation='vertical']) {
     flex-direction: column;
     align-items: stretch;
     row-gap: var(--iui-size-xs);

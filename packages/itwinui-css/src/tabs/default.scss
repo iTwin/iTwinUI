@@ -25,16 +25,16 @@
     }
   }
 
-  .iui-horizontal &[data-iui-orientation='horizontal'] {
-    .iui-tab:is([aria-selected='true'], [aria-current]) {
+  [data-iui-orientation='horizontal'] {
+    &.iui-tab:is([aria-selected='true'], [aria-current]) {
       border-block-end-color: transparent;
     }
 
-    .iui-tab:not(:first-child) {
+    &.iui-tab:not(:first-child) {
       border-inline-start: none;
     }
 
-    ~ .iui-tabs-content {
+    &.iui-tabs-content {
       margin-block-start: -1px;
     }
 
@@ -43,16 +43,16 @@
     }
   }
 
-  .iui-vertical &[data-iui-orientation='vertical'] {
-    .iui-tab:is([aria-selected='true'], [aria-current]) {
+  [data-iui-orientation='vertical'] {
+    &.iui-tab:is([aria-selected='true'], [aria-current]) {
       border-inline-end-color: transparent;
     }
 
-    .iui-tab:not(:first-child) {
+    &.iui-tab:not(:first-child) {
       border-block-start: none;
     }
 
-    ~ .iui-tabs-content {
+    &.iui-tabs-content {
       margin-inline-start: -1px;
     }
 

@@ -142,7 +142,8 @@ const TabsWrapperPresentation = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       {...rest}
-      className={cx('iui-tabs-wrapper', `iui-${orientation}`, props.className)}
+      className={cx('iui-tabs-wrapper', props.className)}
+      data-iui-orientation={orientation}
       ref={forwardedRef}
     />
   );
@@ -423,6 +424,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
           setActiveValue(value);
         }
       })}
+      data-iui-orientation={orientation}
     >
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
     </TabPresentation>
@@ -511,13 +513,20 @@ type TabsActionsOwnProps = {
 
 const TabsActions = React.forwardRef((props, ref) => {
   const { wrapperProps, className, children, ...rest } = props;
+  const { orientation } = useSafeContext(TabsContext);
 
   return (
     <Box
       {...wrapperProps}
       className={cx('iui-tabs-actions-wrapper', wrapperProps?.className)}
+      data-iui-orientation={orientation}
     >
-      <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
+      <Box
+        className={cx('iui-tabs-actions', className)}
+        ref={ref}
+        data-iui-orientation={orientation}
+        {...rest}
+      >
         {children}
       </Box>
     </Box>
