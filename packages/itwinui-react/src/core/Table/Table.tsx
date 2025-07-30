@@ -1203,23 +1203,6 @@ export const Table = <
   };
 
   React.useEffect(() => {
-    // Un-sticky all sticky columns if not all columns are visible from initial render
-    const currentStickyColsWidth = calculateCurrentStickyColsWidth(
-      flatHeaders,
-      columnRefs,
-    );
-    // Don't use buffer for table width in this case since it is initial render.
-    // Avoids unnecessarily making all sticky columns un-sticky when all columns are initially visible.
-    if (
-      tableRef.current &&
-      currentStickyColsWidth >= tableRef.current.clientWidth
-    ) {
-      flatHeaders.forEach((header) => {
-        if (header.sticky) {
-          header.sticky = undefined;
-        }
-      });
-    }
     updateStickyState();
     // Call only on init
     // eslint-disable-next-line react-hooks/exhaustive-deps
