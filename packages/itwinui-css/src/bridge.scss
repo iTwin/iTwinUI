@@ -2,6 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 .iui-root:where([data-iui-bridge='true']) {
+  --iui-font-sans: var(--stratakit-font-family-sans);
+  --iui-font-mono: var(--stratakit-font-family-mono);
+
   --iui-color-white: var(--stratakit-color-static-white);
 
   --iui-color-background: var(--stratakit-color-bg-page-base);
