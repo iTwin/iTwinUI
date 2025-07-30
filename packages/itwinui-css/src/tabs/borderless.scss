@@ -19,12 +19,12 @@
     }
   }
 
-  .iui-tabs-content[data-iui-orientation='horizontal'] {
+  ~ .iui-tabs-content:where([data-iui-orientation='horizontal']) {
     margin-block-start: -1px;
     border-block-start: 1px solid var(--iui-color-border);
   }
 
-  .iui-tabs-content[data-iui-orientation='vertical'] {
+  ~ .iui-tabs-content:where([data-iui-orientation='vertical']) {
     margin-inline-start: -1px;
     padding-inline-start: var(--iui-size-s);
     padding-inline-end: var(--iui-size-s);

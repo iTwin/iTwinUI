@@ -554,7 +554,7 @@ type TabsPanelOwnProps = {
 const TabsPanel = React.forwardRef((props, ref) => {
   const { value, className, children, ...rest } = props;
 
-  const { activeValue, idPrefix } = useSafeContext(TabsContext);
+  const { activeValue, idPrefix, orientation } = useSafeContext(TabsContext);
 
   return (
     <Box
@@ -565,6 +565,7 @@ const TabsPanel = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
       id={`${idPrefix}-panel-${value.replaceAll(' ', '-')}`}
+      data-iui-orientation={orientation}
     >
       {children}
     </Box>

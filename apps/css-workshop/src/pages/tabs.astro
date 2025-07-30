@@ -691,7 +691,7 @@ import IconButton_ from '../components/IconButton.astro';
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-tab iui-button-base' role='tab'>
+        <button class='iui-tab iui-button-base' role='tab' data-iui-orientation='horizontal'>
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>#5 item</span>
           <span class='iui-tab-description'>Sublabel</span>
@@ -1789,7 +1789,7 @@ import IconButton_ from '../components/IconButton.astro';
   <script type='module'>
     document.querySelectorAll('.iui-tabs').forEach((tabs) => {
       const wrapper = tabs.parentElement;
-      const isVertical = wrapper.classList.contains('iui-vertical');
+      const isVertical = wrapper.dataset.iuiOrientation === 'vertical';
       const isAnimated = tabs.classList.contains('iui-animated');
       const activeTab = tabs.querySelector('[aria-selected="true"]');
       const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
