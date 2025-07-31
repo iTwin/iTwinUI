@@ -90,12 +90,10 @@ import Layout from './_layout.astro';
             checked
             data-iui-size='small'
           />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 1</span>
         </label>
         <label class='iui-toggle-switch-wrapper iui-label-on-right'>
           <input class='iui-toggle-switch' type='checkbox' role='switch' data-iui-size='small' />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 2</span>
         </label>
         <label class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'>
@@ -107,7 +105,6 @@ import Layout from './_layout.astro';
             disabled
             data-iui-size='small'
           />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 3</span>
         </label>
         <label class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'>
@@ -118,7 +115,6 @@ import Layout from './_layout.astro';
             disabled
             data-iui-size='small'
           />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 4</span>
         </label>
       </div>
@@ -176,24 +172,9 @@ import Layout from './_layout.astro';
 
   <h3>No label</h3>
   <section id='demo-toggle-no-label'>
-    <div class='iui-toggle-switch-wrapper'>
-      <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
-      <svg-placeholder class='iui-toggle-switch-icon' aria-hidden='true'></svg-placeholder>
-    </div>
-
-    <div class='iui-toggle-switch-wrapper'>
-      <input class='iui-toggle-switch' type='checkbox' role='switch' />
-      <svg-placeholder class='iui-toggle-switch-icon' aria-hidden='true'></svg-placeholder>
-    </div>
-
-    <div class='iui-toggle-switch-wrapper'>
-      <input class='iui-toggle-switch' type='checkbox' role='switch' checked disabled />
-      <svg-placeholder class='iui-toggle-switch-icon' aria-hidden='true'></svg-placeholder>
-    </div>
-
-    <div class='iui-toggle-switch-wrapper'>
-      <input class='iui-toggle-switch' type='checkbox' role='switch' disabled />
-      <svg-placeholder class='iui-toggle-switch-icon' aria-hidden='true'></svg-placeholder>
-    </div>
+    <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
+    <input class='iui-toggle-switch' type='checkbox' role='switch' />
+    <input class='iui-toggle-switch' type='checkbox' role='switch' checked disabled />
+    <input class='iui-toggle-switch' type='checkbox' role='switch' disabled />
   </section>
 </Layout>

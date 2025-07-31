@@ -39,6 +39,8 @@ type ToggleSwitchProps = {
        */
       size?: 'default';
       /**
+       * @deprecated
+       *
        * Custom icon inside the toggle switch. Shown only when toggle is checked and size is not small.
        *
        * Will override the default checkmark icon.
@@ -53,6 +55,10 @@ type ToggleSwitchProps = {
 
 /**
  * A switch for turning on and off.
+ *
+ * ---
+ *
+ * Wrapper only rendered if `label` or `icon` (deprecated) is provided.
  *
  * ---
  *
@@ -99,10 +105,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const shouldApplyClassNameAndStyleOnInput =
     wrapperProps != null || consistentPropsSpread;
 
-  // Disallow custom icon for small size
+  // Custom icon only allowed for default size.
   const shouldShowCustomIcon = iconProp != null && size !== 'small';
-  // Keep the default checkmark when prop is not passed
-  // const shouldShowDefaultIcon = iconProp === undefined;
 
   const input = React.useMemo(
     () => (
@@ -135,8 +139,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   if (!shouldShowCustomIcon && !label) {
     return input;
   }
-
-  console.log('HERE', shouldShowCustomIcon);
 
   return (
     <Box
