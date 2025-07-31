@@ -5,8 +5,8 @@
 ### Patch Changes
 
 - [#2622](https://github.com/iTwin/iTwinUI/pull/2622): Fixed `ComboBox` and `Select` bug by no longer rendering the deselect ("❌") button in the tags when the multiselect `ComboBox`'s input or the multiselect `Select` is disabled.
-- [#2624](https://github.com/iTwin/iTwinUI/pull/2624): Floating elements will try to prefer a best fit placement.
 - [#2618](https://github.com/iTwin/iTwinUI/pull/2618): `TreeNode` hover styles only applied when hover is supported.
+- [#2624](https://github.com/iTwin/iTwinUI/pull/2624): Floating elements will try to prefer a best fit placement.
 
 ## 3.19.2
 
