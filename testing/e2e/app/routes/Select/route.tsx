@@ -41,6 +41,7 @@ export default function SelectTest() {
   });
   const multiple = searchParams.get('multiple') === 'true';
   const controlled = searchParams.get('controlled') === 'true';
+  const disabled = searchParams.get('disabled') === 'true';
 
   const onChange = (val: any, event: 'added' | 'removed') =>
     multiple
@@ -59,6 +60,7 @@ export default function SelectTest() {
           value={value as any}
           onChange={controlled ? (onChange as any) : undefined}
           multiple={multiple}
+          disabled={disabled}
         />
       </div>
     </>
