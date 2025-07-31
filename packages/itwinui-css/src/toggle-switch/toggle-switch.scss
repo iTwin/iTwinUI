@@ -45,6 +45,11 @@
   &.iui-label-on-right {
     grid-template-areas: 'toggle label';
   }
+
+  // If using custom icon, hide the default checkmark
+  &:has(.iui-toggle-switch-icon) .iui-toggle-switch::before {
+    content: none;
+  }
 }
 
 .iui-toggle-switch {
@@ -75,6 +80,25 @@
 
   &-label {
     grid-area: label;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    inset-inline-start: var(--iui-size-2xs);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    aspect-ratio: 1;
+    inline-size: var(--_iui-toggle-switch-handle-size);
+    mask: var(--_checkmark) no-repeat center;
+    background-color: var(--iui-color-white);
+  }
+
+  &:where([data-iui-size='small']) {
+    &::before {
+      inset-inline-start: var(--iui-size-3xs);
+    }
   }
 
   &::after {
@@ -166,6 +190,11 @@
       }
     }
 
+    &::before {
+      opacity: 0;
+      background-color: var(--iui-color-icon);
+    }
+
     &:checked {
       @media (forced-colors: active) {
         background-color: GrayText;
@@ -187,6 +216,14 @@
           svg {
             fill: Canvas;
           }
+        }
+      }
+
+      &::before {
+        opacity: var(--iui-opacity-5);
+
+        @media (forced-colors: active) {
+          opacity: 0.75;
         }
       }
     }
