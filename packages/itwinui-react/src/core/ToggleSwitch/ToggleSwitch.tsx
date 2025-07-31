@@ -99,9 +99,44 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const shouldApplyClassNameAndStyleOnInput =
     wrapperProps != null || consistentPropsSpread;
 
-  // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
-  const shouldShowIcon =
-    iconProp === undefined || (iconProp !== null && size !== 'small');
+  // Disallow custom icon for small size
+  const shouldShowCustomIcon = iconProp != null && size !== 'small';
+  // Keep the default checkmark when prop is not passed
+  // const shouldShowDefaultIcon = iconProp === undefined;
+
+  const input = React.useMemo(
+    () => (
+      <Box
+        as='input'
+        type='checkbox'
+        role='switch'
+        style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
+        {...rest}
+        className={cx(
+          'iui-toggle-switch',
+          shouldApplyClassNameAndStyleOnInput ? className : undefined,
+        )}
+        disabled={disabled}
+        ref={ref}
+        data-iui-size={size}
+      />
+    ),
+    [
+      className,
+      disabled,
+      ref,
+      rest,
+      shouldApplyClassNameAndStyleOnInput,
+      size,
+      style,
+    ],
+  );
+
+  if (!shouldShowCustomIcon && !label) {
+    return input;
+  }
+
+  console.log('HERE', shouldShowCustomIcon);
 
   return (
     <Box
@@ -118,27 +153,14 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         !shouldApplyClassNameAndStyleOnInput ? className : undefined,
         wrapperProps?.className,
       )}
-      data-iui-size={size}
     >
-      <Box
-        as='input'
-        type='checkbox'
-        role='switch'
-        style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
-        {...rest}
-        className={cx(
-          'iui-toggle-switch',
-          shouldApplyClassNameAndStyleOnInput ? className : undefined,
-        )}
-        disabled={disabled}
-        ref={ref}
-      />
-      {shouldShowIcon && (
+      {input}
+      {shouldShowCustomIcon ? (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
           {iconProp || <SvgCheckmark />}
         </Box>
-      )}
-      {label && (
+      ) : null}
+      {label ? (
         <Box
           as='span'
           {...labelProps}
@@ -146,7 +168,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         >
           {label}
         </Box>
-      )}
+      ) : null}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', ToggleSwitchProps>;

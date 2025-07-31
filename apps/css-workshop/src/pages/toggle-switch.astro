@@ -27,22 +27,18 @@ import Layout from './_layout.astro';
       <div class='iui-input-group'>
         <label class='iui-toggle-switch-wrapper iui-label-on-right'>
           <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 1</span>
         </label>
         <label class='iui-toggle-switch-wrapper iui-label-on-right'>
           <input class='iui-toggle-switch' type='checkbox' role='switch' />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 2</span>
         </label>
         <label class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'>
           <input class='iui-toggle-switch' type='checkbox' role='switch' checked disabled />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 3</span>
         </label>
         <label class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'>
           <input class='iui-toggle-switch' type='checkbox' role='switch' disabled />
-          <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 4</span>
         </label>
       </div>
@@ -86,29 +82,42 @@ import Layout from './_layout.astro';
     <div class='iui-input-grid'>
       <div class='iui-input-label iui-required'>Toggle switch group label</div>
       <div class='iui-input-group'>
-        <label class='iui-toggle-switch-wrapper iui-label-on-right' data-iui-size='small'>
-          <input class='iui-toggle-switch' type='checkbox' role='switch' checked />
+        <label class='iui-toggle-switch-wrapper iui-label-on-right'>
+          <input
+            class='iui-toggle-switch'
+            type='checkbox'
+            role='switch'
+            checked
+            data-iui-size='small'
+          />
           <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 1</span>
         </label>
-        <label class='iui-toggle-switch-wrapper iui-label-on-right' data-iui-size='small'>
-          <input class='iui-toggle-switch' type='checkbox' role='switch' />
+        <label class='iui-toggle-switch-wrapper iui-label-on-right'>
+          <input class='iui-toggle-switch' type='checkbox' role='switch' data-iui-size='small' />
           <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 2</span>
         </label>
-        <label
-          class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'
-          data-iui-size='small'
-        >
-          <input class='iui-toggle-switch' type='checkbox' role='switch' checked disabled />
+        <label class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'>
+          <input
+            class='iui-toggle-switch'
+            type='checkbox'
+            role='switch'
+            checked
+            disabled
+            data-iui-size='small'
+          />
           <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 3</span>
         </label>
-        <label
-          class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'
-          data-iui-size='small'
-        >
-          <input class='iui-toggle-switch' type='checkbox' role='switch' disabled />
+        <label class='iui-toggle-switch-wrapper iui-label-on-right iui-disabled'>
+          <input
+            class='iui-toggle-switch'
+            type='checkbox'
+            role='switch'
+            disabled
+            data-iui-size='small'
+          />
           <svg-checkmark class='iui-toggle-switch-icon' aria-hidden='true'></svg-checkmark>
           <span class='iui-toggle-switch-label'>Option 4</span>
         </label>

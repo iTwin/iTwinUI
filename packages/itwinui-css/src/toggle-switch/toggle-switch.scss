@@ -2,10 +2,19 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-.iui-toggle-switch-wrapper {
-  --_iui-toggle-switch-handle-size: var(--iui-size-m);
-  --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+.iui-toggle-switch {
+  &:where(:not([data-iui-size='small'])) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-m);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+  }
 
+  &:where([data-iui-size='small']) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-s);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+  }
+}
+
+.iui-toggle-switch-wrapper {
   @include mixins.iui-reset;
   display: grid;
   grid-template-areas: 'toggle';
@@ -37,14 +46,25 @@
     grid-template-areas: 'toggle label';
   }
 
-  &:where([data-iui-size='small']) {
-    --_iui-toggle-switch-handle-size: var(--iui-size-s);
-    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+  // If using custom icon, hide the default checkmark
+  &:has(.iui-toggle-switch-icon) .iui-toggle-switch::before {
+    content: none;
   }
 }
 
 .iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
+  --_checkmark: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
+
+  &:where(:not([data-iui-size='small'])) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-m);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+  }
+
+  &:where([data-iui-size='small']) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-s);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+  }
 
   @include mixins.iui-reset;
   @include mixins.iui-focus(
@@ -70,6 +90,21 @@
 
   &-label {
     grid-area: label;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: var(--iui-size-2xs);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+
+    display: inline-block;
+    aspect-ratio: 1;
+    inline-size: 1rem;
+
+    mask: var(--_checkmark) no-repeat center;
+    background-color: var(--iui-color-white);
   }
 
   &::after {
