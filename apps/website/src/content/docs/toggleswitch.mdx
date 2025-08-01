@@ -14,11 +14,19 @@ Toggle switches are instant action components used to toggle an option instantly
 
 It fulfills a role similar to that of a [checkbox](checkbox), though they are not necessarily used in the same contexts. To learn more about when to use a toggle switch or a checkbox, please read [Checkbox vs Toggle Switch by Saadia Minhas](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8).
 
+## Rendering of wrapper
+
+By default, `ToggleSwitch` renders a wrapper around the `<input>` element. If the `ToggleSwitch.preferRenderingWithoutWrapper` future flag is enabled, the wrapper is only rendered when `label` or `icon` (deprecated) is passed.
+
+The conditional rendering behavior of the wrapper when the `ToggleSwitch.preferRenderingWithoutWrapper` future flag is enabled is consistent with the same behavior in `Checkbox` and `Radio` where the wrapper is rendered only when `label` is passed.
+
 ## Application of props
 
 By default, `className` and `style` are applied on the wrapper element, and all other DOM props are passed to `<input>` element.
 
 When `wrapperProps` is passed or when the `ToggleSwitch.consistentPropsSpread` future flag is enabled, `className` and `style` are applied on the `<input>` element, similar to other DOM props.
+
+But when the wrapper is not rendered ([more info](#rendering-of-wrapper)), `className` and `style` are always applied on the `<input>` element.
 
 Below are some examples of how props are applied in different scenarios:
 
@@ -29,6 +37,20 @@ Default:
   <ToggleSwitch
     className='my-class' // applied to wrapper
     style={{ padding: 16 }} // applied to wrapper
+    //
+    // Other props are applied to input
+    data-dummy='value' // applied to input
+  />
+</ThemeProvider>
+```
+
+`ThemeProvider`'s `ToggleSwitch.preferRenderingWithoutWrapper` is enabled:
+
+```jsx
+<ThemeProvider future={{ ToggleSwitch: { preferRenderingWithoutWrapper: true } }}>
+  <ToggleSwitch
+    className='my-class' // applied to input
+    style={{ padding: 16 }} // applied to input
     //
     // Other props are applied to input
     data-dummy='value' // applied to input

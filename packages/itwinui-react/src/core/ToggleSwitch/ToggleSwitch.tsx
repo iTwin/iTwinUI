@@ -100,13 +100,15 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { consistentPropsSpread } = useFutureFlag('ToggleSwitch') || {};
-
-  const shouldApplyClassNameAndStyleOnInput =
-    wrapperProps != null || consistentPropsSpread;
+  const { consistentPropsSpread, preferRenderingWithoutWrapper } =
+    useFutureFlag('ToggleSwitch') || {};
 
   // Custom icon only allowed for default size.
   const shouldShowCustomIcon = iconProp != null && size !== 'small';
+  const shouldRenderOnlyInput =
+    preferRenderingWithoutWrapper && !shouldShowCustomIcon && !label;
+  const shouldApplyClassNameAndStyleOnInput =
+    shouldRenderOnlyInput || wrapperProps != null || consistentPropsSpread;
 
   const input = React.useMemo(
     () => (
@@ -136,7 +138,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ],
   );
 
-  if (!shouldShowCustomIcon && !label) {
+  if (shouldRenderOnlyInput) {
     return input;
   }
 

@@ -25,6 +25,12 @@ export type FutureOptions = {
      * applied on the wrapper element, unless `wrapperProps` is also passed.
      */
     consistentPropsSpread?: boolean;
+    /**
+     * When `true`, the `ToggleSwitch` will render a wrapper only when `label` or `icon` are passed.
+     *
+     * This makes the wrapper behavior similar to `Checkbox` and `Radio` that render their wrapper only when `label` are passed.
+     */
+    preferRenderingWithoutWrapper?: boolean;
   };
 };
 
