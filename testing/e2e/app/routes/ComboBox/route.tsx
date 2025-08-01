@@ -24,6 +24,7 @@ const Default = ({
     virtualization,
     clearFilterOnOptionToggle,
     controlled,
+    disabled,
   } = config;
   const [value, setValue] = React.useState(initialValue);
 
@@ -46,6 +47,9 @@ const Default = ({
         multiple={multiple}
         enableVirtualization={virtualization}
         clearFilterOnOptionToggle={clearFilterOnOptionToggle as any}
+        inputProps={{
+          disabled: disabled,
+        }}
       />
     </div>
   );
@@ -119,6 +123,7 @@ function getConfigFromSearchParams() {
       : undefined;
   const showChangeValueButton =
     searchParams.get('showChangeValueButton') === 'true';
+  const disabled = searchParams.get('disabled') === 'true';
 
   const options = [
     { label: 'Item 0', value: 0 },
@@ -151,5 +156,6 @@ function getConfigFromSearchParams() {
     initialValue,
     clearFilterOnOptionToggle,
     controlled,
+    disabled,
   };
 }

@@ -67,7 +67,7 @@ export default () => {
           <SvgNotification />
         </IconButton>,
         <IconButton styleType='borderless' aria-label='View Profile'>
-          <Avatar abbreviation='TR' title='Terry Rivers' />
+          <Avatar abbreviation='TR' />
         </IconButton>,
       ]}
       menuItems={menuItems}

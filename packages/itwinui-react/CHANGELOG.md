@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.19.3
+
+### Patch Changes
+
+- [#2622](https://github.com/iTwin/iTwinUI/pull/2622): Fixed `ComboBox` and `Select` bug by no longer rendering the deselect ("❌") button in the tags when the multiselect `ComboBox`'s input or the multiselect `Select` is disabled.
+- [#2618](https://github.com/iTwin/iTwinUI/pull/2618): `TreeNode` hover styles only applied when hover is supported.
+- [#2624](https://github.com/iTwin/iTwinUI/pull/2624): Floating elements will try to prefer a best fit placement.
+
+## 3.19.2
+
+### Patch Changes
+
+- [#2612](https://github.com/iTwin/iTwinUI/pull/2612): Fixed theme bridge to use StrataKit fonts.
+- [#2616](https://github.com/iTwin/iTwinUI/pull/2616): Reverted the internal change made in [v3.19.0](https://github.com/iTwin/iTwinUI/releases/tag/%40itwin%2Fitwinui-react%403.19.0) where `Table`'s `SelectionColumn` and `ExpanderColumn` had been fixed to use `cellRenderer` instead of `Cell`.
+- [#2603](https://github.com/iTwin/iTwinUI/pull/2603): `Breadcrumbs.Item` now respects the `aria-current` prop.
+- [#2615](https://github.com/iTwin/iTwinUI/pull/2615): `Table` row and header separators made more subtle.
+
+## 3.19.1
+
+### Patch Changes
+
+- [#2590](https://github.com/iTwin/iTwinUI/pull/2590): Fix draggable `Dialog` to also work properly on touch devices.
+- [#2596](https://github.com/iTwin/iTwinUI/pull/2596): Fixed `TransferList.Item` to now properly handle long strings.
+- [#2589](https://github.com/iTwin/iTwinUI/pull/2589): Removed the accidentally added `stretched` prop from `IconButton`.
+
 ## 3.19.0
 
 ### Minor Changes
@@ -8,6 +33,7 @@
 
   - [#2573](https://github.com/iTwin/iTwinUI/pull/2573): Added the ability to pass `future={true}` to `ThemeProvider` to enable _all_ future flags.
   - [#2543](https://github.com/iTwin/iTwinUI/pull/2543): Added a new future flag to `ThemeProvider`'s `future` prop: `ToggleSwitch.consistentPropsSpread`. Setting this to `true` will result in all `ToggleSwitch` DOM props being applied on the input element.
+
 - [#2544](https://github.com/iTwin/iTwinUI/pull/2544): Added a new `wrapperProps` prop to `ToggleSwitch` to pass props to the wrapper. To prevent breaking changes:
   - If this new `wrapperProps` is provided or `ThemeProvider`'s `ToggleSwitch.consistentPropsSpread` future flag is `true`, `className` and `style` will be applied on the `input` and `wrapperProps` will be applied on the wrapper.
   - Else, `className` and `style` continue to be applied on the wrapper.

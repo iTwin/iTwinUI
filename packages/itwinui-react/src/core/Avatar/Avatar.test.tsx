@@ -13,7 +13,6 @@ function assertBaseElements({
   abbreviation = 'TR',
 } = {}) {
   const avatar = screen.getByText(abbreviation);
-  expect(avatar).toHaveAttribute('title', 'Terry Rivers');
   if (size !== 'medium') {
     expect(avatar).toHaveAttribute('data-iui-size', size);
   } else {
@@ -29,26 +28,26 @@ function assertBaseElements({
 }
 
 it('should render with given abbreviation', () => {
-  render(<Avatar abbreviation='TR' title='Terry Rivers' />);
+  render(<Avatar abbreviation='TR' />);
   assertBaseElements();
 });
 
 it('should render with given abbreviation (longer than 2 chars)', () => {
-  render(<Avatar abbreviation='TRivers' title='Terry Rivers' />);
+  render(<Avatar abbreviation='TRivers' />);
   assertBaseElements();
 });
 
 it.each(['small', 'medium', 'large', 'x-large'] as Array<
   'small' | 'medium' | 'large' | 'x-large'
 >)('should render with %s size', (size) => {
-  render(<Avatar abbreviation='TR' title='Terry Rivers' size={size} />);
+  render(<Avatar abbreviation='TR' size={size} />);
   assertBaseElements({ size });
 });
 
 it.each(['', 'online', 'busy', 'away', 'offline'] as Array<AvatarStatus>)(
   'should render with the %s status',
   (status) => {
-    render(<Avatar abbreviation='TR' title='Terry Rivers' status={status} />);
+    render(<Avatar abbreviation='TR' status={status} />);
     const avatar = assertBaseElements();
 
     if (status) {
@@ -62,7 +61,6 @@ it('should render with translated statuses', () => {
   render(
     <Avatar
       abbreviation='TR'
-      title='Terry Rivers'
       status='offline'
       translatedStatusTitles={{
         ...defaultStatusTitles,
@@ -77,14 +75,12 @@ it('should render with translated statuses', () => {
 });
 
 it('should render with custom color', () => {
-  render(
-    <Avatar abbreviation='TR' title='Terry Rivers' backgroundColor={'pink'} />,
-  );
+  render(<Avatar abbreviation='TR' backgroundColor={'pink'} />);
   assertBaseElements({ backgroundColor: 'pink' });
 });
 
 it('renders with image', () => {
-  const { container } = render(<Avatar image={<img />} title='Terry Rivers' />);
+  const { container } = render(<Avatar image={<img />} />);
   const img = container.querySelector('img');
   expect(img).toBeTruthy();
 });
@@ -94,19 +90,13 @@ it('image prop also supports passing <svg>', () => {
     container: { firstChild: userIcon },
   } = render(<SvgUser />);
 
-  const { container } = render(
-    <Avatar image={<SvgUser />} title='Terry Rivers' />,
-  );
+  const { container } = render(<Avatar image={<SvgUser />} />);
   expect(container.querySelector('.iui-avatar > svg')).toEqual(userIcon);
 });
 
 it('should render with custom className', () => {
   const { container } = render(
-    <Avatar
-      abbreviation='TR'
-      title='Terry Rivers'
-      className='test-classname'
-    />,
+    <Avatar abbreviation='TR' className='test-classname' />,
   );
 
   const avatarContainer = container.querySelector('.test-classname');

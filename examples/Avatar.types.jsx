@@ -15,7 +15,6 @@ export default () => {
       <Avatar
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
-        title='Terry Rivers'
         size='x-large'
         status='online'
       />
@@ -23,7 +22,6 @@ export default () => {
         abbreviation='AU'
         backgroundColor={getUserColor('Anonymous user')}
         image={<SvgUser aria-hidden='true' />}
-        title='Anonymous user'
         size='x-large'
         status='away'
       />
@@ -31,7 +29,6 @@ export default () => {
         abbreviation='RR'
         backgroundColor={getUserColor('Robbie Robot')}
         image={<img src={imgSrc} alt='' />}
-        title='Robbie Robot'
         size='x-large'
         status='busy'
       />

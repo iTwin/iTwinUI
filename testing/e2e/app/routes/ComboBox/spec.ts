@@ -60,6 +60,19 @@ test.describe('Combobox (multiple)', () => {
     await expect(combobox).toHaveValue('');
     await expect(combobox).toBeFocused();
   });
+
+  test('should not render deselect button when input is disabled', async ({
+    page,
+  }) => {
+    await page.goto('/ComboBox?multiple=true&disabled=true&initialValue=all');
+
+    const tags = getSelectTagContainerTags(page);
+    await expect(tags).toHaveCount(defaultOptions.length);
+
+    for (let i = 0; i < (await tags.count()); i++) {
+      await expect(tags.nth(i).getByRole('button')).toHaveCount(0);
+    }
+  });
 });
 
 [true, false].forEach((multiple) => {
