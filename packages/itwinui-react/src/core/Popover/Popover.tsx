@@ -245,7 +245,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       () =>
         [
           middleware.offset !== undefined && offset(middleware.offset),
-          middleware.flip && flip({ padding: 4 }),
+          middleware.flip && flip({ padding: 5 }), // one higher than `size` padding to prefer best fit (see #2597)
           middleware.shift && shift({ padding: 4 }),
           (matchWidth || middleware.size) &&
             size({
