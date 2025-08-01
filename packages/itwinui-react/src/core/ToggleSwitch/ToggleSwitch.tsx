@@ -58,7 +58,10 @@ type ToggleSwitchProps = {
  *
  * ---
  *
- * Wrapper only rendered if `label` or `icon` (deprecated) is provided.
+ * By default, `ToggleSwitch` renders a wrapper around the `<input>` element.
+ *
+ * When the `ToggleSwitch.preferRenderingWithoutWrapper` future flag is enabled, the wrapper is only rendered when
+ * `label` or `icon` (deprecated) is provided.
  *
  * ---
  *
@@ -110,32 +113,21 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const shouldApplyClassNameAndStyleOnInput =
     shouldRenderOnlyInput || wrapperProps != null || consistentPropsSpread;
 
-  const input = React.useMemo(
-    () => (
-      <Box
-        as='input'
-        type='checkbox'
-        role='switch'
-        style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
-        {...rest}
-        className={cx(
-          'iui-toggle-switch',
-          shouldApplyClassNameAndStyleOnInput ? className : undefined,
-        )}
-        disabled={disabled}
-        ref={ref}
-        data-iui-size={size}
-      />
-    ),
-    [
-      className,
-      disabled,
-      ref,
-      rest,
-      shouldApplyClassNameAndStyleOnInput,
-      size,
-      style,
-    ],
+  const input = (
+    <Box
+      as='input'
+      type='checkbox'
+      role='switch'
+      style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
+      {...rest}
+      className={cx(
+        'iui-toggle-switch',
+        shouldApplyClassNameAndStyleOnInput ? className : undefined,
+      )}
+      disabled={disabled}
+      ref={ref}
+      data-iui-size={size}
+    />
   );
 
   if (shouldRenderOnlyInput) {

@@ -2,18 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-:is(.iui-toggle-switch-wrapper, .iui-toggle-switch) {
-  &:where(:not([data-iui-size='small'])) {
-    --_iui-toggle-switch-handle-size: var(--iui-size-m);
-    --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
-  }
-
-  &:where([data-iui-size='small']) {
-    --_iui-toggle-switch-handle-size: var(--iui-size-s);
-    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
-  }
-}
-
 .iui-toggle-switch-wrapper {
   @include mixins.iui-reset;
   display: grid;
@@ -54,7 +42,7 @@
 
 .iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
-  --_checkmark: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
+  --_iui-toggle-switch-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
 
   @include mixins.iui-reset;
   @include mixins.iui-focus(
@@ -82,6 +70,7 @@
     grid-area: label;
   }
 
+  // Checkmark
   &::before {
     content: '';
     position: absolute;
@@ -91,7 +80,7 @@
     transform: translateY(-50%);
     aspect-ratio: 1;
     inline-size: var(--_iui-toggle-switch-handle-size);
-    mask: var(--_checkmark) no-repeat center;
+    mask: var(--_iui-toggle-switch-checkmark-svg) no-repeat center;
     background-color: var(--iui-color-white);
   }
 
@@ -101,6 +90,7 @@
     }
   }
 
+  // Handle
   &::after {
     content: '';
     block-size: var(--_iui-toggle-switch-handle-size);
@@ -115,6 +105,17 @@
         transform var(--iui-duration-1) ease-out,
         background-color var(--iui-duration-1) ease-out;
     }
+  }
+
+  // #MARK: Handle sizes
+  &:where(:not([data-iui-size='small'])) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-m);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+  }
+
+  &:where([data-iui-size='small']) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-s);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
   }
 
   // #MARK: Unchecked toggle switch
