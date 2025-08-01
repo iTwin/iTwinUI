@@ -152,15 +152,6 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* Field */
-  .iui-field {
-    // Borderless variants need a hover state due to lack of touch target area
-    &:where([data-iui-variant='borderless']) {
-      --_iui-field-color-background-hover: var(--iui-color-background-hover);
-    }
-  }
-
-  /* ---------------------------------------------------------------------------- */
   /* Button */
 
   .iui-button {
@@ -270,6 +261,15 @@
   // Caption color should stay muted when hovering since trigger background color also doesn't change on hover
   .iui-expandable-header:where(:not([data-iui-disabled='true'])):where(:hover) {
     --_iui-expandable-block-header-caption-color-hover: var(--iui-color-text-muted);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Field */
+  .iui-field {
+    // Borderless variants need a hover state due to lack of touch target area
+    &:where([data-iui-variant='borderless']) {
+      --_iui-field-color-background-hover: var(--iui-color-background-hover);
+    }
   }
 
   /* ---------------------------------------------------------------------------- */
