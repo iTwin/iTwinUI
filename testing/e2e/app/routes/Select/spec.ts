@@ -57,6 +57,17 @@ test.describe('Select (multiple)', () => {
     await expect(tags).toHaveCount(0);
     await expect(combobox).toBeFocused();
   });
+
+  test('should not render deselect button when disabled', async ({ page }) => {
+    await page.goto('/Select?multiple=true&value=[3,4]&disabled=true');
+
+    const tags = getSelectTagContainerTags(page);
+    await expect(tags).toHaveCount(2);
+
+    for (let i = 0; i < (await tags.count()); i++) {
+      await expect(tags.nth(i).getByRole('button')).toHaveCount(0);
+    }
+  });
 });
 
 test.describe('Select (overflow)', () => {
