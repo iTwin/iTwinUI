@@ -9,10 +9,9 @@ export default function Page() {
     searchParams.get('themeProviderConsistentPropsSpread') != null
       ? searchParams.get('themeProviderConsistentPropsSpread') === 'true'
       : undefined;
-  const themeProviderPreferRenderingWithoutWrapper =
-    searchParams.get('themeProviderPreferRenderingWithoutWrapper') != null
-      ? searchParams.get('themeProviderPreferRenderingWithoutWrapper') ===
-        'true'
+  const themeProviderNoUnnecessaryWrapper =
+    searchParams.get('themeProviderNoUnnecessaryWrapper') != null
+      ? searchParams.get('themeProviderNoUnnecessaryWrapper') === 'true'
       : undefined;
   const shouldPassWrapperProps =
     searchParams.get('shouldPassWrapperProps') === 'true';
@@ -22,9 +21,7 @@ export default function Page() {
       <WithThemeProviderTest
         shouldPassWrapperProps={shouldPassWrapperProps}
         themeProviderConsistentPropsSpread={themeProviderConsistentPropsSpread}
-        themeProviderPreferRenderingWithoutWrapper={
-          themeProviderPreferRenderingWithoutWrapper
-        }
+        themeProviderNoUnnecessaryWrapper={themeProviderNoUnnecessaryWrapper}
       />
     );
   }
@@ -34,12 +31,12 @@ export default function Page() {
 function WithThemeProviderTest(props: {
   shouldPassWrapperProps?: boolean;
   themeProviderConsistentPropsSpread?: boolean;
-  themeProviderPreferRenderingWithoutWrapper?: boolean;
+  themeProviderNoUnnecessaryWrapper?: boolean;
 }) {
   const {
     shouldPassWrapperProps,
     themeProviderConsistentPropsSpread,
-    themeProviderPreferRenderingWithoutWrapper,
+    themeProviderNoUnnecessaryWrapper,
   } = props;
 
   return (
@@ -47,8 +44,7 @@ function WithThemeProviderTest(props: {
       future={{
         ToggleSwitch: {
           consistentPropsSpread: themeProviderConsistentPropsSpread,
-          preferRenderingWithoutWrapper:
-            themeProviderPreferRenderingWithoutWrapper,
+          noUnnecessaryWrapper: themeProviderNoUnnecessaryWrapper,
         },
       }}
       className='theme-provider'

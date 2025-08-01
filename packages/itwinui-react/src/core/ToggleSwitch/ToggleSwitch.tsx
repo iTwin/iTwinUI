@@ -60,7 +60,7 @@ type ToggleSwitchProps = {
  *
  * By default, `ToggleSwitch` renders a wrapper around the `<input>` element.
  *
- * When the `ToggleSwitch.preferRenderingWithoutWrapper` future flag is enabled, the wrapper is only rendered when
+ * When the `ToggleSwitch.noUnnecessaryWrapper` future flag is enabled, the wrapper is only rendered when
  * `label` or `icon` (deprecated) is provided.
  *
  * ---
@@ -103,13 +103,13 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { consistentPropsSpread, preferRenderingWithoutWrapper } =
+  const { consistentPropsSpread, noUnnecessaryWrapper } =
     useFutureFlag('ToggleSwitch') || {};
 
   // Custom icon only allowed for default size.
   const shouldShowCustomIcon = iconProp != null && size !== 'small';
   const shouldRenderOnlyInput =
-    preferRenderingWithoutWrapper && !shouldShowCustomIcon && !label;
+    noUnnecessaryWrapper && !shouldShowCustomIcon && !label;
   const shouldApplyClassNameAndStyleOnInput =
     shouldRenderOnlyInput || wrapperProps != null || consistentPropsSpread;
 

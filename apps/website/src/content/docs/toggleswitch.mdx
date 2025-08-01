@@ -16,9 +16,9 @@ It fulfills a role similar to that of a [checkbox](checkbox), though they are no
 
 ## Rendering of wrapper
 
-By default, `ToggleSwitch` renders a wrapper around the `<input>` element. If the `ToggleSwitch.preferRenderingWithoutWrapper` future flag is enabled, the wrapper is only rendered when `label` or `icon` (deprecated) is passed.
+By default, `ToggleSwitch` renders a wrapper around the `<input>` element. If the `ToggleSwitch.noUnnecessaryWrapper` future flag is enabled, the wrapper is only rendered when `label` or `icon` (deprecated) is passed.
 
-The conditional rendering behavior of the wrapper when the `ToggleSwitch.preferRenderingWithoutWrapper` future flag is enabled is consistent with the same behavior in `Checkbox` and `Radio` where the wrapper is rendered only when `label` is passed.
+The conditional rendering behavior of the wrapper when the `ToggleSwitch.noUnnecessaryWrapper` future flag is enabled is consistent with the same behavior in `Checkbox` and `Radio` where the wrapper is rendered only when `label` is passed.
 
 ## Application of props
 
@@ -44,10 +44,10 @@ Default:
 </ThemeProvider>
 ```
 
-`ThemeProvider`'s `ToggleSwitch.preferRenderingWithoutWrapper` is enabled:
+`ThemeProvider`'s `ToggleSwitch.noUnnecessaryWrapper` is enabled:
 
 ```jsx
-<ThemeProvider future={{ ToggleSwitch: { preferRenderingWithoutWrapper: true } }}>
+<ThemeProvider future={{ ToggleSwitch: { noUnnecessaryWrapper: true } }}>
   <ToggleSwitch
     className='my-class' // applied to input
     style={{ padding: 16 }} // applied to input

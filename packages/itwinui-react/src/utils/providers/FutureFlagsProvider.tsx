@@ -30,7 +30,7 @@ export type FutureOptions = {
      *
      * This makes the wrapper behavior similar to `Checkbox` and `Radio` that render their wrapper only when `label` are passed.
      */
-    preferRenderingWithoutWrapper?: boolean;
+    noUnnecessaryWrapper?: boolean;
   };
 };
 

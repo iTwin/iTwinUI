@@ -6,37 +6,37 @@ test.describe('className, style, ...rest, and wrapperProps are applied on the co
       {
         shouldPassWrapperProps: false,
         themeProviderConsistentPropsSpread: false,
-        themeProviderPreferRenderingWithoutWrapper: false,
+        themeProviderNoUnnecessaryWrapper: false,
         expectedClassNameAndStyleLocation: 'wrapper',
       },
       {
         shouldPassWrapperProps: false,
         themeProviderConsistentPropsSpread: false,
-        themeProviderPreferRenderingWithoutWrapper: true,
+        themeProviderNoUnnecessaryWrapper: true,
         expectedClassNameAndStyleLocation: 'input',
       },
       {
         shouldPassWrapperProps: true,
         themeProviderConsistentPropsSpread: false,
-        themeProviderPreferRenderingWithoutWrapper: false,
+        themeProviderNoUnnecessaryWrapper: false,
         expectedClassNameAndStyleLocation: 'input',
       },
       {
         shouldPassWrapperProps: true,
         themeProviderConsistentPropsSpread: false,
-        themeProviderPreferRenderingWithoutWrapper: true,
+        themeProviderNoUnnecessaryWrapper: true,
         expectedClassNameAndStyleLocation: 'input',
       },
       {
         shouldPassWrapperProps: false,
         themeProviderConsistentPropsSpread: true,
-        themeProviderPreferRenderingWithoutWrapper: false,
+        themeProviderNoUnnecessaryWrapper: false,
         expectedClassNameAndStyleLocation: 'input',
       },
       {
         shouldPassWrapperProps: true,
         themeProviderConsistentPropsSpread: true,
-        themeProviderPreferRenderingWithoutWrapper: true,
+        themeProviderNoUnnecessaryWrapper: true,
         expectedClassNameAndStyleLocation: 'input',
       },
     ] as const
@@ -44,14 +44,14 @@ test.describe('className, style, ...rest, and wrapperProps are applied on the co
     ({
       shouldPassWrapperProps,
       themeProviderConsistentPropsSpread,
-      themeProviderPreferRenderingWithoutWrapper,
+      themeProviderNoUnnecessaryWrapper,
       expectedClassNameAndStyleLocation,
     }) => {
-      test(`shouldPassWrapperProps: ${shouldPassWrapperProps}, themeProviderConsistentPropsSpread: ${themeProviderConsistentPropsSpread}, themeProviderPreferRenderingWithoutWrapper: ${themeProviderPreferRenderingWithoutWrapper}`, async ({
+      test(`shouldPassWrapperProps: ${shouldPassWrapperProps}, themeProviderConsistentPropsSpread: ${themeProviderConsistentPropsSpread}, themeProviderNoUnnecessaryWrapper: ${themeProviderNoUnnecessaryWrapper}`, async ({
         page,
       }) => {
         await page.goto(
-          `/ToggleSwitch?withThemeProvider=true&shouldPassWrapperProps=${shouldPassWrapperProps}&themeProviderConsistentPropsSpread=${themeProviderConsistentPropsSpread}&themeProviderPreferRenderingWithoutWrapper=${themeProviderPreferRenderingWithoutWrapper}`,
+          `/ToggleSwitch?withThemeProvider=true&shouldPassWrapperProps=${shouldPassWrapperProps}&themeProviderConsistentPropsSpread=${themeProviderConsistentPropsSpread}&themeProviderNoUnnecessaryWrapper=${themeProviderNoUnnecessaryWrapper}`,
         );
 
         const wrapper = page.locator(
@@ -59,10 +59,10 @@ test.describe('className, style, ...rest, and wrapperProps are applied on the co
         );
         const input = page.locator('input[role="switch"]');
 
-        const shouldRenderWrapper = !themeProviderPreferRenderingWithoutWrapper;
+        const shouldRenderWrapper = !themeProviderNoUnnecessaryWrapper;
 
-        // 1. If no label and no icon and the preferRenderingWithoutWrapper future flag is enabled, then only input should be rendered.
-        if (themeProviderPreferRenderingWithoutWrapper) {
+        // 1. If no label and no icon and the noUnnecessaryWrapper future flag is enabled, then only input should be rendered.
+        if (themeProviderNoUnnecessaryWrapper) {
           await expect(wrapper).toHaveCount(0);
           await expect(input).toHaveCount(1);
         } else {
