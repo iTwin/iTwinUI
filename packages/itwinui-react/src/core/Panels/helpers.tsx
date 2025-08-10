@@ -3,7 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useSafeContext, useSynchronizeInstance } from '../../utils/index.js';
+// import { useSafeContext, useSynchronizeInstance } from '../../utils/index.js';
+import { useSafeContext } from '../../utils/index.js';
 import { Panels, PanelsWrapperContext } from './Panels.js';
 
 export type PanelsInstance = {
@@ -26,7 +27,7 @@ export type FocusEntry =
 
 // ----------------------------------------------------------------------------
 
-export const PanelsInstanceContext = React.createContext<
+const PanelsInstanceContext = React.createContext<
   | {
       instance: PanelsInstance;
     }
@@ -41,7 +42,7 @@ type PanelInstanceProviderProps = {
   instance: PanelsInstance | undefined;
 };
 
-export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
+const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
   const { children, instance: instanceProp } = props;
 
   const instanceBackup = Panels.useInstance();
@@ -66,19 +67,21 @@ export const PanelsInstanceProvider = (props: PanelInstanceProviderProps) => {
     }
   }, [activePanelId, changeActivePanel, setShouldFocus, triggers]);
 
-  useSynchronizeInstance(
-    instance,
-    React.useMemo(
-      () => ({
-        goBack,
-      }),
-      [goBack],
-    ),
-  );
+  // useSynchronizeInstance(
+  //   instance,
+  //   React.useMemo(
+  //     () => ({
+  //       goBack,
+  //     }),
+  //     [goBack],
+  //   ),
+  // );
 
-  return (
-    <PanelsInstanceContext.Provider value={{ instance }}>
-      {children}
-    </PanelsInstanceContext.Provider>
-  );
+  // return (
+  //   <PanelsInstanceContext.Provider value={{ instance }}>
+  //     {children}
+  //   </PanelsInstanceContext.Provider>
+  // );
+
+  return <>div</>;
 };
