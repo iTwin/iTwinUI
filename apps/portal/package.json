@@ -11,6 +11,6 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "astro": "5"
+    "astro": "4"
   }
 }

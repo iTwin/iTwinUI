@@ -9,7 +9,7 @@
     "@fontsource/noto-sans-mono": "5",
     "@itwin/itwinui-icons-elements": "0.21.0",
     "@stratakit/foundations": "^0.2.0",
-    "astro": "^5",
+    "astro": "^4",
     "astro-relative-links": "^0.4.2",
     "@astrojs/react": "^4.1.2",
     "@types/react": "^19",
