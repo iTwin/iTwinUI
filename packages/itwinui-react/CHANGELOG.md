@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.4
+
+### Patch Changes
+
+- 6d73dbecc2a5d57d1c4979ddbc7ef931744aebeb: Added `aria-haspopup` attribute to `DropdownMenu`'s trigger.
+
 ## 3.19.3
 
 ### Patch Changes
