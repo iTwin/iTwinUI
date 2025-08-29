@@ -1,0 +1,1 @@
+import{r as e,L as l,M as o,B as i,c}from"./index-C1_65VfN.js";const n=e.forwardRef((a,t)=>{let{className:s,...r}=a;return e.createElement(l,{delay:o},e.createElement(i,{as:"div",ref:t,role:"list",...r,className:c("iui-list",s)}))});export{n as L};
