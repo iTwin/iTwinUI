@@ -251,7 +251,7 @@ const reducer = <T extends Record<string, unknown>>(
       nextHeaderIdWidths,
     } = action;
 
-    return {
+    const _toReturn = {
       ...newState,
       columnResizing: {
         ...newState.columnResizing,
@@ -261,8 +261,21 @@ const reducer = <T extends Record<string, unknown>>(
         headerIdWidths,
         nextHeaderIdWidths,
         isResizingColumn: columnId,
+        // previousTableWidths: instance?.flatHeaders.map((h) => [
+        //   h.id,
+        //   getHeaderWidth(h),
+        // ]),
       },
     };
+    const toReturn = {
+      ..._toReturn,
+      columnResizing: {
+        ..._toReturn.columnResizing,
+        previousState: _toReturn,
+      },
+    };
+
+    return toReturn;
   }
 
   if (action.type === actions.columnResizing) {
@@ -273,7 +286,9 @@ const reducer = <T extends Record<string, unknown>>(
       nextColumnWidth = 1,
       headerIdWidths = [],
       nextHeaderIdWidths = [],
+      previousState,
     } = newState.columnResizing;
+    console.log('HELLO', headerIdWidths, nextHeaderIdWidths);
 
     if (!instance) {
       return newState;
@@ -294,6 +309,94 @@ const reducer = <T extends Record<string, unknown>>(
       (instance?.columnResizeMode === 'expand' && isTableWidthDecreasing)
         ? getColumnWidths(nextHeaderIdWidths, -deltaX / nextColumnWidth)
         : {};
+
+    let el;
+    try {
+      el = document.querySelector(
+        `[data-iui-header="${headerIdWidths[0][0]}"]`,
+      ) as HTMLElement;
+    } catch (e) {
+      console.error(e);
+      console.warn(headerIdWidths);
+      throw e;
+    }
+    // if (
+
+    //   newColumnWidths[]
+    //   getBoundingClientRect().width
+    // )
+
+    // console.log(
+    //   '123',
+    //   newColumnWidths[headerIdWidths[0][0]],
+    //   el.getBoundingClientRect().width,
+    // );
+
+    const baseTableWidth = calculateTableWidth(
+      getColumnWidths(headerIdWidths, 0),
+      instance.flatHeaders,
+    );
+    const incTableWidth = calculateTableWidth(
+      newColumnWidths,
+      instance.flatHeaders,
+    );
+    const decTableWidth = calculateTableWidth(
+      newNextColumnWidths,
+      instance.flatHeaders,
+    );
+
+    const header = instance.flatHeaders.find(
+      (h) => h.id === headerIdWidths[0][0],
+    );
+    // console.log(
+    //   'HELLOOOO',
+    //   headerIdWidths,
+    //   headerIdWidths[0][0],
+    //   headerIdWidths[0][1],
+    //   el.getBoundingClientRect().width,
+    //   header?.width,
+    //   header?.resizeWidth,
+    //   baseTableWidth,
+    //   incTableWidth,
+    //   decTableWidth,
+    //   instance.tableWidth,
+    //   instance.totalColumnsWidth,
+    // );
+
+    // If overshot
+    console.log(typeof header?.maxWidth);
+    if (
+      header &&
+      header.maxWidth &&
+      typeof header.maxWidth !== 'number' &&
+      Number(header?.width) > el.getBoundingClientRect().width
+    ) {
+      const realMaxWidth = el.getBoundingClientRect().width;
+      // const header = instance.flatHeaders.find(
+      //   (h) => h.id === headerIdWidths[0][0],
+      // );
+      if (header) {
+        header.maxWidth = realMaxWidth;
+      }
+
+      console.log(
+        'HELLO',
+        'OVERSHOT',
+        headerIdWidths,
+        headerIdWidths[0][0],
+        headerIdWidths[0][1],
+        el.getBoundingClientRect().width,
+        header?.width,
+        header?.resizeWidth,
+        baseTableWidth,
+        incTableWidth,
+        decTableWidth,
+        instance.tableWidth,
+        instance.totalColumnsWidth,
+      );
+      console.log('object', previousState);
+      return previousState;
+    }
 
     if (
       !isNewColumnWidthsValid(newColumnWidths, instance.flatHeaders) ||
@@ -369,9 +472,47 @@ const isNewColumnWidthsValid = <T extends Record<string, unknown>>(
       continue;
     }
 
+    // console.log('header---------', header.width, header);
+    // console.log('columnWidths---------', columnWidths);
     const minWidth = header.minWidth || 0;
-    const maxWidth = header.maxWidth || Infinity;
-    if (width < minWidth || width > maxWidth) {
+    // const maxWidth = header.maxWidth : Infinity;
+    let maxWidth;
+    if (header.maxWidth) {
+      if (typeof header.maxWidth !== 'number') {
+        maxWidth = Infinity;
+      } else {
+        maxWidth = header.maxWidth;
+      }
+    } else {
+      maxWidth = Infinity;
+    }
+    if (width < minWidth) {
+      return false;
+    }
+
+    // const el = document.querySelector(
+    //   `[data-iui-header="${header.id}"]`,
+    // ) as HTMLElement;
+    // const clientWidth = el.getBoundingClientRect().width;
+    // console.log(
+    //   header.id,
+    //   'updated HERE -------------- ',
+    //   width,
+    //   header.width,
+    //   el.getBoundingClientRect().width,
+    // );
+    // console.log(
+    //   'final check:',
+    //   Math.round(Number(header.width)),
+    //   Math.round(clientWidth),
+    // );
+    // if (Math.round(Number(header.width)) > Math.round(clientWidth)) {
+    //   maxWidth = clientWidth;
+    //   // header.width = clientWidth;
+    //   // header.maxWidth = clientWidth;
+    //   // return false;
+    // }
+    if (width > maxWidth) {
       return false;
     }
   }

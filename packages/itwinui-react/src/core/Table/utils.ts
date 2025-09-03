@@ -26,7 +26,12 @@ export const getCellStyle = <T extends Record<string, unknown>>(
     }
   }
   if (column.maxWidth) {
-    style.maxWidth = `${column.maxWidth}px`;
+    const maxWidth =
+      typeof column.maxWidth === 'string'
+        ? column.maxWidth
+        : `${column.maxWidth}px`;
+    style.maxWidth = maxWidth;
+    // style.maxWidth = `${column.maxWidth}px`;
   }
   if (column.minWidth) {
     style.minWidth = `${column.minWidth}px`;
