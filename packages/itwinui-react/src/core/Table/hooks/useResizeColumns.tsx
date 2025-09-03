@@ -44,6 +44,7 @@ import type {
   TableKeyedProps,
   TableState,
 } from '../../../react-table/react-table.js';
+import { calculateCurrentStickyColsWidth, getHeaderWidth } from '../utils.js';
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(
@@ -224,10 +225,18 @@ const reducer = <T extends Record<string, unknown>>(
   instance?: TableInstance<T>,
 ) => {
   if (action.type === actions.init) {
+    const columnWidths: Record<string, number> = {};
+    if (instance) {
+      instance.columns.forEach((column) => {
+        if (typeof column.width === 'number') {
+          columnWidths[column.id] = column.width;
+        }
+      });
+    }
     return {
       ...newState,
       columnResizing: {
-        columnWidths: {},
+        columnWidths,
       },
     };
   }
@@ -313,6 +322,34 @@ const reducer = <T extends Record<string, unknown>>(
         h.width = h.resizeWidth;
       }
     });
+
+    const currentStickyColsWidth = calculateCurrentStickyColsWidth(
+      instance.flatHeaders,
+    );
+    const maxTableWidth = instance.tableWidth * 0.8;
+    const resizedCol = instance.flatHeaders.find(
+      (h) => h.id === headerIdWidths[0][0],
+    );
+    const nextCol = instance.flatHeaders.find(
+      (h) => h.id === nextHeaderIdWidths[0][0],
+    );
+
+    // un-sticky if total width of sticky columns is at least the max table width (with buffer)
+    if (
+      resizedCol &&
+      resizedCol.sticky &&
+      currentStickyColsWidth >= maxTableWidth
+    ) {
+      // case where current column is sticky
+      resizedCol.sticky = undefined;
+    } else if (
+      nextCol &&
+      nextCol.sticky &&
+      currentStickyColsWidth >= maxTableWidth
+    ) {
+      // case where next column is sticky
+      nextCol.sticky = undefined;
+    }
 
     return {
       ...newState,
@@ -490,21 +527,6 @@ function getLeafHeaders(header: HeaderGroup) {
   recurseHeader(header);
   return leafHeaders;
 }
-
-const getHeaderWidth = <T extends Record<string, unknown>>(
-  header: ColumnInstance<T>,
-) => {
-  if (!header) {
-    return 0;
-  }
-
-  // `header.width` can be a string if the user specifies it in the column definition,
-  // but then becomes a number (pixels) when the user resizes the column, or when the table is resized, etc.
-  // So if `header.width` is ever a string that cannot be converted to a number, we shouldn't use `header.width`.
-  return typeof header.width === 'string' && Number.isNaN(Number(header.width))
-    ? Number(header.resizeWidth || 0)
-    : Number(header.width || header.resizeWidth || 0);
-};
 
 const calculateTableWidth = <T extends Record<string, unknown>>(
   columnWidths: Record<string, number>,
