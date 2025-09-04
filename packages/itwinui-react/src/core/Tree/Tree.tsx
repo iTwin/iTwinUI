@@ -13,7 +13,7 @@ import {
   useLayoutEffect,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TreeContext } from './TreeContext.js';
+import { TreeContext, VirtualizedTreeContext } from './TreeContext.js';
 import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
@@ -419,14 +419,21 @@ const VirtualizedTree = React.forwardRef(
     /** Sets the virtualizer width to that of the widest element, so that all items are same width. */
     const onVirtualizerChange = React.useMemo(
       () =>
-        debounce((virtualizer: Virtualizer<Element, Element>) => {
+        debounce((virtualizer?: Virtualizer<Element, Element>) => {
+          if (!virtualizer || !virtualizerRootRef.current) {
+            return;
+          }
+
+          // Reset width first so that it can shrink back.
+          virtualizerRootRef.current.style.width = '';
+
           let widestNodeWidth = 0;
           virtualizer.elementsCache.forEach((el) => {
             if (el.clientWidth > widestNodeWidth) {
               widestNodeWidth = el.clientWidth;
             }
           });
-          if (widestNodeWidth && virtualizerRootRef.current) {
+          if (widestNodeWidth) {
             virtualizerRootRef.current.style.width = `${widestNodeWidth}px`;
           }
         }, 100),
@@ -459,13 +466,18 @@ const VirtualizedTree = React.forwardRef(
               <slot />
             </div>
           </ShadowRoot>
-          <>
+          <VirtualizedTreeContext.Provider
+            value={React.useMemo(
+              () => ({ virtualizer, onVirtualizerChange }),
+              [virtualizer, onVirtualizerChange],
+            )}
+          >
             {virtualizer
               .getVirtualItems()
               .map((virtualItem) =>
                 itemRenderer(virtualItem.index, virtualItem, virtualizer),
               )}
-          </>
+          </VirtualizedTreeContext.Provider>
         </div>
       </TreeElement>
     );
