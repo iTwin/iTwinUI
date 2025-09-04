@@ -407,6 +407,7 @@ const VirtualizedTree = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
+    const virtualizerRootRef = React.useRef<HTMLDivElement | null>(null);
 
     const getItemKey = React.useCallback(
       (index: number) => {
@@ -415,11 +416,29 @@ const VirtualizedTree = React.forwardRef(
       [flatNodesList],
     );
 
+    /** Sets the virtualizer width to that of the widest element, so that all items are same width. */
+    const onVirtualizerChange = React.useMemo(
+      () =>
+        debounce((virtualizer: Virtualizer<Element, Element>) => {
+          let widestNodeWidth = 0;
+          virtualizer.elementsCache.forEach((el) => {
+            if (el.clientWidth > widestNodeWidth) {
+              widestNodeWidth = el.clientWidth;
+            }
+          });
+          if (widestNodeWidth && virtualizerRootRef.current) {
+            virtualizerRootRef.current.style.width = `${widestNodeWidth}px`;
+          }
+        }, 100),
+      [],
+    );
+
     const { virtualizer, css: virtualizerCss } = useVirtualScroll({
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
       getItemKey,
+      onChange: onVirtualizerChange,
     });
 
     useLayoutEffect(() => {
@@ -435,6 +454,7 @@ const VirtualizedTree = React.forwardRef(
             <div
               data-iui-virtualizer='root'
               style={{ minBlockSize: virtualizer.getTotalSize() }}
+              ref={virtualizerRootRef}
             >
               <slot />
             </div>
@@ -451,3 +471,22 @@ const VirtualizedTree = React.forwardRef(
     );
   },
 );
+
+// ----------------------------------------------------------------------------
+
+function debounce<T extends (...args: any[]) => any>(
+  callback: T,
+  delay: number,
+) {
+  let timeoutId: number;
+
+  return (...args: Parameters<T>) => {
+    if (timeoutId) {
+      window.clearTimeout(timeoutId);
+    }
+
+    timeoutId = window.setTimeout(() => {
+      callback(...args);
+    }, delay);
+  };
+}
