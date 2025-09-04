@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.19.4
+
+### Patch Changes
+
+- c07a7166f1cbf5d8ec6c86389da2f9e1870af6d6: Fixed a theme bridge issue where `<Checkbox indeterminate>` was not displaying correctly in light theme.
+- 6d73dbecc2a5d57d1c4979ddbc7ef931744aebeb: Added `aria-haspopup` attribute to `DropdownMenu`'s trigger.
+- [#2633](https://github.com/iTwin/iTwinUI/pull/2633): Fixed horizontal scroll in `Tree` with `enableVirtualization` so that all nodes are equally wide instead of using their intrinsic width.
+
 ## 3.19.3
 
 ### Patch Changes
