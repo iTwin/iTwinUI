@@ -193,14 +193,14 @@
 
     &:not(.iui-checkbox-visibility) {
       &:not(:disabled) {
-        // Check mark is plain color and not accent
-        --_iui-checkbox-svg-color: var(--stratakit-color-icon-neutral-emphasis);
         // Override surface bg color with bg for interactive elements
         --_iui-checkbox-background-color: var(--stratakit-color-bg-neutral-base);
 
-        &:checked {
-          // Checked checkbox is filled and not hollow
+        &:where(:checked, :indeterminate) {
+          // Checked and indeterminate states use a filled accent background
           --_iui-checkbox-background-color: var(--stratakit-color-bg-accent-base);
+          // Emphasis color when atop accent background
+          --_iui-checkbox-svg-color: var(--stratakit-color-icon-neutral-emphasis);
           // Border is accent color
           --_iui-checkbox-border-color: var(--stratakit-color-border-accent-base);
         }
