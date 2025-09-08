@@ -21,9 +21,7 @@ export const WithImage = () => {
       size='large'
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
-      image={
-        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
-      }
+      image={<img src='/assets/user-placeholder.png' />}
     />
   );
 };

@@ -30,9 +30,7 @@ export default () => {
             <HeaderButton
               key='iModel'
               name='iModel B'
-              startIcon={
-                <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-              }
+              startIcon={<img src='/assets/stadium.png' />}
               onClick={() => {}}
             />,
           ]}

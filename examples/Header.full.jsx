@@ -45,9 +45,7 @@ export default () => {
               href=''
               key='iModel'
               name='iModel B'
-              startIcon={
-                <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-              }
+              startIcon={<img src='/assets/stadium.png' />}
             />,
             <HeaderButton
               key='version'

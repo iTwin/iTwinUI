@@ -19,7 +19,7 @@ export default function TileTest() {
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
-        <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
+        <Tile.ThumbnailPicture url='/assets/stadium.png' />
         <Tile.TypeIndicator>
           <Tile.IconButton>
             <SvgStar />

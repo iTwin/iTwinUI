@@ -11,7 +11,7 @@ export default () => {
     <Tile.Wrapper>
       <Tile.Name name='Tile name' />
       <Tile.ThumbnailArea>
-        <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
+        <Tile.ThumbnailPicture url='/assets/stadium.png' />
         <Tile.TypeIndicator>
           <Tile.IconButton label='Favorite'>
             <SvgStar />

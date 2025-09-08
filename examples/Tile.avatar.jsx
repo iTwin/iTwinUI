@@ -25,12 +25,7 @@ export default () => {
             status='online'
             abbreviation='TR'
             backgroundColor={getUserColor('Terry Rivers')}
-            image={
-              <img
-                src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png'
-                alt=''
-              />
-            }
+            image={<img src='/assets/user-placeholder.png' alt='' />}
             title='Terry Rivers'
           />
         </Tile.ThumbnailPicture>
