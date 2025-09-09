@@ -33,7 +33,7 @@ export const Basic = () => {
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
-        <Tile.ThumbnailPicture url='/assets/stadium.png' />
+        <Tile.ThumbnailPicture url='./assets/stadium.png' />
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
         <Tile.Description>
@@ -71,7 +71,7 @@ export const AllProps = () => {
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
-        <Tile.ThumbnailPicture url='/assets/stadium.png' />
+        <Tile.ThumbnailPicture url='./assets/stadium.png' />
         <Tile.TypeIndicator>
           <Tile.IconButton>
             <SvgStar />
@@ -128,7 +128,7 @@ export const Actionable = () => {
         </Tile.NameLabel>
       </Tile.Name>
       <Tile.ThumbnailArea>
-        <Tile.ThumbnailPicture url='/assets/stadium.png' />
+        <Tile.ThumbnailPicture url='./assets/stadium.png' />
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
@@ -164,7 +164,7 @@ export const AnchorLink = () => {
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
-        <Tile.ThumbnailPicture url='/assets/stadium.png' />
+        <Tile.ThumbnailPicture url='./assets/stadium.png' />
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
         <Tile.Description>
@@ -225,7 +225,7 @@ export const WithAvatar = () => {
             status='online'
             abbreviation='TR'
             backgroundColor={getUserColor('Terry Rivers')}
-            image={<img src='/assets/user-placeholder.png' />}
+            image={<img src='./assets/user-placeholder.png' />}
           />
         </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>

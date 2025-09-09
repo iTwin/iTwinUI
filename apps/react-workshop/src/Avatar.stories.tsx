@@ -21,7 +21,7 @@ export const WithImage = () => {
       size='large'
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
-      image={<img src='/assets/user-placeholder.png' />}
+      image={<img src='./assets/user-placeholder.png' />}
     />
   );
 };

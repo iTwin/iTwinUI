@@ -123,7 +123,7 @@ export const Full = () => {
               menuItems={buildMenu('iModel')}
               name='iModel B'
               startIcon={
-                <img src='/assets/stadium.png' style={{ objectFit: 'cover' }} />
+                <img src='./assets/stadium.png' style={{ objectFit: 'cover' }} />
               }
               isActive={true}
             />,
@@ -156,7 +156,7 @@ export const Full = () => {
               size='medium'
               abbreviation='TR'
               backgroundColor={getUserColor('Terry Rivers')}
-              image={<img src='/assets/user-placeholder.png' />}
+              image={<img src='./assets/user-placeholder.png' />}
             />
           </IconButton>
         </DropdownMenu>,
@@ -197,7 +197,7 @@ export const Basic = () => {
               key='iModel'
               name='iModel B'
               startIcon={
-                <img src='/assets/stadium.png' style={{ objectFit: 'cover' }} />
+                <img src='./assets/stadium.png' style={{ objectFit: 'cover' }} />
               }
               onClick={() => console.log('Clicked on the iModel')}
             />,
@@ -255,7 +255,7 @@ export const Slim = () => {
               key='iModel'
               name='iModel B'
               startIcon={
-                <img src='/assets/stadium.png' style={{ objectFit: 'cover' }} />
+                <img src='./assets/stadium.png' style={{ objectFit: 'cover' }} />
               }
               onClick={() => console.log('Clicked on the iModel')}
             />,
@@ -312,7 +312,7 @@ export const CenterContent = () => {
               key='iModel'
               name='iModel B'
               startIcon={
-                <img src='/assets/stadium.png' style={{ objectFit: 'cover' }} />
+                <img src='./assets/stadium.png' style={{ objectFit: 'cover' }} />
               }
               onClick={() => console.log('Clicked on the iModel')}
             />,
