@@ -25,7 +25,7 @@ export default () => {
             status='online'
             abbreviation='TR'
             backgroundColor={getUserColor('Terry Rivers')}
-            image={<img src='/assets/user-placeholder.png' alt='' />}
+            image={<img src='https://thispersondoesnotexist.com/' alt='' />}
             title='Terry Rivers'
           />
         </Tile.ThumbnailPicture>

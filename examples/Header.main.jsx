@@ -30,7 +30,7 @@ export default () => {
             <HeaderButton
               key='iModel'
               name='iModel B'
-              startIcon={<img src='/assets/stadium.png' />}
+              startIcon={<img src='https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=1167' />}
               onClick={() => {}}
             />,
           ]}
