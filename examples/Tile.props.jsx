@@ -10,7 +10,7 @@ export default () => {
   return (
     <Tile
       name='Tile Name'
-      thumbnail='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png'
+      thumbnail='https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=1167'
       leftIcon={
         <IconButton styleType='borderless' size='small' label='Favorite'>
           <SvgStar />
