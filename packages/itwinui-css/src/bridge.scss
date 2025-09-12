@@ -12,10 +12,11 @@
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
   --iui-color-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   --iui-color-background-backdrop: var(--stratakit-color-bg-page-base);
-  --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
+  --iui-color-background-backdrop-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   --iui-color-background-accent: var(--stratakit-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
   --iui-color-background-accent-muted: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
+  --iui-color-background-transparent-hover: var(--stratakit-color-bg-mono-transparent);
 
   --iui-color-border-foreground: var(--stratakit-color-border-mono-muted);
   --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
