@@ -363,52 +363,9 @@
   /* Tabs */
 
   .iui-tabs-wrapper {
-    // The old accent stripe is now the regular stripe
-    --_iui-tab-color-stripe-blue: var(--stratakit-color-border-neutral-inverse);
-    // The old positive stripe is now the accent stripe
-    --_iui-tab-color-stripe-green: var(--stratakit-color-border-accent-strong);
-
-    // StrataKit has muted color on its non selected tabs
-    --_iui-tab-color-default: var(--stratakit-color-text-neutral-tertiary);
-    // StrataKit has no accent color on its selected tabs
-    --_iui-tab-color-selected: var(--stratakit-color-text-neutral-primary);
-    // The old positive color is now the accent color
-    --_iui-tab-color-green-selected: var(--stratakit-color-text-accent-strong);
-
-    // Selected tab has stripe on the bottom instead of top
-    &.iui-horizontal .iui-tab::after {
-      inset-inline: 4px;
-      inline-size: calc(100% - 4px * 2);
-      inset-block-start: calc(100% - var(--iui-size-3xs));
-    }
-
-    // Selected tab has stripe on the right instead of left
-    &.iui-vertical .iui-tab::after {
-      inset-block: 4px;
-      block-size: calc(100% - 4px * 2);
-      inset-inline-start: calc(100% - var(--iui-size-3xs));
-    }
-  }
-
-  .iui-tabs {
-    --_iui-tab-bg-color-hover: var(--iui-color-background-hover);
-    --_iui-tab-bg-color-selected-hover: var(--iui-color-background-hover);
-  }
-
-  .iui-tab {
-    // To account for outline-offset
-    border-radius: calc(4px + 6px);
-
-    // StrataKit tab has no border
-    border: none;
-  }
-
-  .iui-tabs-content {
-    // StrataKit tabs content has no background or border
-    background-color: transparent;
-    border: none;
-    // StrataKit border color here is not equal to --iui-color-border's global mapping
-    border-color: var(--stratakit-color-border-neutral-muted);
+    // Remove "positive" green
+    --_iui-tab-color-green-selected: var(--iui-color-text-accent);
+    --_iui-tab-color-stripe-green: var(--iui-color-border-accent);
   }
 
   /* ---------------------------------------------------------------------------- */
