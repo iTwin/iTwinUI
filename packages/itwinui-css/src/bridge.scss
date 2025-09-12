@@ -10,12 +10,13 @@
   --iui-color-background: var(--stratakit-color-bg-page-base);
   --iui-color-background-disabled: var(--stratakit-color-bg-glow-on-surface-disabled);
   --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
-  --iui-color-background-hover: var(--iui-color-background);
+  --iui-color-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   --iui-color-background-backdrop: var(--stratakit-color-bg-page-base);
-  --iui-color-background-backdrop-hover: var(--iui-color-background-backdrop);
+  --iui-color-background-backdrop-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   --iui-color-background-accent: var(--stratakit-color-bg-accent-base);
   --iui-color-background-accent-hover: var(--iui-color-background-accent);
   --iui-color-background-accent-muted: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
+  --iui-color-background-transparent-hover: var(--stratakit-color-bg-mono-transparent);
 
   --iui-color-border-foreground: var(--stratakit-color-border-mono-muted);
   --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
@@ -255,17 +256,21 @@
     box-shadow: var(--stratakit-shadow-surface-xl);
   }
 
-  .iui-list-item {
-    // Disabling hover to keep the code simple
-    --_iui-list-item-background-hover: transparent;
-  }
-
   /* ---------------------------------------------------------------------------- */
   /* ExpandableBlock */
 
   // Caption color should stay muted when hovering since trigger background color also doesn't change on hover
   .iui-expandable-header:where(:not([data-iui-disabled='true'])):where(:hover) {
     --_iui-expandable-block-header-caption-color-hover: var(--iui-color-text-muted);
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Field */
+  .iui-field {
+    // Borderless variants need a hover state due to lack of touch target area
+    &:where([data-iui-variant='borderless']) {
+      --_iui-field-color-background-hover: var(--iui-color-background-hover);
+    }
   }
 
   /* ---------------------------------------------------------------------------- */
