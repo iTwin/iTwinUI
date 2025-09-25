@@ -43,7 +43,7 @@
     "approve:css": "pnpm --filter css-workshop approve",
     "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
-    "changeset": "npx -y @changesets/cli",
+    "changeset": "npx -y @changesets/cli@2.29.6",
     "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm node ./scripts/publish-packages.mjs"
   },
   "devDependencies": {
