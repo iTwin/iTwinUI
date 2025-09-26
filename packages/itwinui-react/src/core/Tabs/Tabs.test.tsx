@@ -38,18 +38,54 @@ const renderComponent = (
   return render(<Tabs.Wrapper {...props}>{children}</Tabs.Wrapper>);
 };
 
-it('should render tabs', () => {
-  const { container } = renderComponent();
+(['horizontal', 'vertical'] as const).forEach((orientation) => {
+  it('should render %s tabs', () => {
+    const { container } = renderComponent(
+      { orientation: orientation },
+      undefined,
+      <>
+        <Tabs.TabList>
+          <Tabs.Tab value={'tab1'} key={1} label='Label 1' />
+          <Tabs.Tab value={'tab2'} key={2} label='Label 2' />
+          <Tabs.Tab value={'tab3'} key={3} label='Label 3' />
+        </Tabs.TabList>
 
-  expect(
-    container.querySelector('.iui-tabs-wrapper.iui-horizontal'),
-  ).toBeTruthy();
+        <Tabs.Actions>
+          <Button size={'small'}>Small size button</Button>
+          <Button>Normal size button</Button>
+        </Tabs.Actions>
 
-  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
-  expect(tabContainer).toBeTruthy();
-  expect(tabContainer).toHaveClass('iui-default');
-  expect(tabContainer.querySelectorAll('.iui-tab').length).toBe(3);
-  screen.getByText('Test Content 1');
+        <Tabs.Panel value={'tab1'}>Test Content 1</Tabs.Panel>
+        <Tabs.Panel value={'tab2'}>Test Content 2</Tabs.Panel>
+        <Tabs.Panel value={'tab3'}>Test Content 3</Tabs.Panel>
+      </>,
+    );
+
+    const tabsWrapper = container.querySelector('.iui-tabs-wrapper');
+    const tabList = container.querySelector('.iui-tabs') as HTMLElement;
+    const tabs = container.querySelectorAll('.iui-tab');
+    const tabActionsWrapper = container.querySelector(
+      '.iui-tabs-actions-wrapper',
+    );
+    const tabActions = container.querySelector('.iui-tabs-actions');
+
+    // Elements that need data-iui-orientation attribute to be set have that attribute set.
+    expect(tabsWrapper).toHaveAttribute('data-iui-orientation', orientation);
+    expect(tabList).toHaveAttribute('data-iui-orientation', orientation);
+    expect(tabActionsWrapper).toHaveAttribute(
+      'data-iui-orientation',
+      orientation,
+    );
+    expect(tabActions).toHaveAttribute('data-iui-orientation', orientation);
+    tabs.forEach((tab) => {
+      expect(tab).toHaveAttribute('data-iui-orientation', orientation);
+    });
+
+    expect(tabList).toBeTruthy();
+    expect(tabList).toHaveClass('iui-default');
+    expect(tabList.querySelectorAll('.iui-tab').length).toBe(3);
+    screen.getByText('Test Content 1');
+  });
 });
 
 it('should render animated borderless tabs', () => {
@@ -67,19 +103,6 @@ it('should render pill tabs', () => {
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
   expect(tabContainer.className).toContain('iui-tabs iui-pill');
-});
-
-it('should render vertical tabs', () => {
-  const { container, queryByText } = renderComponent({
-    orientation: 'vertical',
-  });
-
-  expect(
-    container.querySelector('.iui-tabs-wrapper.iui-vertical'),
-  ).toBeTruthy();
-  expect(container.querySelector('.iui-tabs')).toBeTruthy();
-  expect(container.querySelector('.iui-tab')).toBeTruthy();
-  expect(queryByText('Test Content 1')).toHaveClass('iui-tabs-content');
 });
 
 it('should allow horizontal scrolling when overflowOptions useOverflow is true', () => {
@@ -540,7 +563,7 @@ it('should show the stripe in the correct position', () => {
   );
 
   const tabsWrapper = container.querySelector(
-    '.iui-tabs-wrapper.iui-horizontal',
+    '.iui-tabs-wrapper',
   ) as HTMLElement;
 
   // The values should be exact and not rounded
