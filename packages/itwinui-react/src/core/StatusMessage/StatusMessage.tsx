@@ -12,7 +12,7 @@ type StatusMessageProps = {
   /**
    * Custom icon to be displayed at the beginning.
    *
-   * - It will default to the `status` icon, if `status` is set.
+   * - It will default to the `status` icon, if `status` is set. Else, it defaults to no icon.
    * - If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
    */
   startIcon?: React.JSX.Element | null;
