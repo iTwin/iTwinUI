@@ -16,14 +16,26 @@
     var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
   );
   --iui-color-background-backdrop: var(--stratakit-color-bg-page-base);
-  --iui-color-background-backdrop-hover: var(--iui-color-background-hover);
+  --iui-color-background-backdrop-hover: color-mix(
+    in oklch,
+    var(--iui-color-background-backdrop) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
+  );
   --iui-color-background-accent: var(--stratakit-color-bg-accent-base);
-  --iui-color-background-accent-hover: var(--iui-color-background-accent);
+  --iui-color-background-accent-hover: color-mix(
+    in oklch,
+    var(--iui-color-background-accent) 100%,
+    var(--✨glow--bg-hover)
+  );
   --iui-color-background-accent-muted: var(--stratakit-color-bg-accent-muted);
   --iui-color-background-transparent-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
 
-  --iui-color-border-foreground: var(--stratakit-color-border-mono-muted);
-  --iui-color-border-foreground-hover: var(--iui-color-border-foreground);
+  --iui-color-border-foreground: var(--stratakit-color-border-neutral-base);
+  --iui-color-border-foreground-hover: color-mix(
+    in oklch,
+    var(--iui-color-border-foreground) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-border-glow-base-hover-\%)
+  );
 
   --iui-color-background-informational: var(--stratakit-color-bg-info-base);
   --iui-color-background-informational-hover: var(--iui-color-background-informational);
@@ -44,7 +56,11 @@
   --iui-color-border-negative: var(--stratakit-color-border-critical-faded);
 
   --iui-color-border: var(--stratakit-color-border-neutral-base);
-  --iui-color-border-hover: var(--iui-color-border);
+  --iui-color-border-hover: color-mix(
+    in oklch,
+    var(--iui-color-border) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-border-glow-base-hover-\%)
+  );
   --iui-color-border-disabled: var(--stratakit-color-border-glow-on-surface-disabled);
   --iui-color-border-subtle: var(--stratakit-color-border-neutral-muted);
   --iui-color-border-accent: var(--stratakit-color-border-accent-strong);
@@ -56,7 +72,7 @@
   --iui-color-icon-negative: var(--stratakit-color-icon-critical-faded);
 
   --iui-color-icon: var(--stratakit-color-icon-neutral-base);
-  --iui-color-icon-hover: var(--iui-color-icon);
+  --iui-color-icon-hover: var(--stratakit-color-icon-neutral-hover);
   --iui-color-icon-muted: var(--stratakit-color-icon-neutral-secondary);
   --iui-color-icon-muted-hover: var(--iui-color-icon-muted);
   --iui-color-icon-disabled: var(--stratakit-color-icon-neutral-disabled);
@@ -67,15 +83,35 @@
   --iui-color-text-warning: var(--stratakit-color-text-attention-faded);
   --iui-color-text-negative: var(--stratakit-color-text-critical-faded);
 
-  --iui-color-text-informational-hover: var(--iui-color-text-informational);
-  --iui-color-text-positive-hover: var(--iui-color-text-positive);
-  --iui-color-text-warning-hover: var(--iui-color-text-warning);
-  --iui-color-text-negative-hover: var(--iui-color-text-negative);
+  --iui-color-text-informational-hover: color-mix(
+    in oklch,
+    var(--iui-color-text-informational) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-text-glow-strong-hover-\%)
+  );
+  --iui-color-text-positive-hover: color-mix(
+    in oklch,
+    var(--iui-color-text-positive) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-text-glow-strong-hover-\%)
+  );
+  --iui-color-text-warning-hover: color-mix(
+    in oklch,
+    var(--iui-color-text-warning) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-text-glow-strong-hover-\%)
+  );
+  --iui-color-text-negative-hover: color-mix(
+    in oklch,
+    var(--iui-color-text-negative) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-text-glow-strong-hover-\%)
+  );
 
   --iui-color-text: var(--stratakit-color-text-neutral-primary);
   --iui-color-text-hover: var(--iui-color-text);
   --iui-color-text-accent: var(--stratakit-color-text-accent-strong);
-  --iui-color-text-accent-hover: var(--iui-color-text-accent);
+  --iui-color-text-accent-hover: color-mix(
+    in oklch,
+    var(--iui-color-text-accent) 100%,
+    var(--stratakit-color-glow-hue) var(--stratakit-color-text-glow-strong-hover-\%)
+  );
   --iui-color-text-muted: var(--stratakit-color-text-neutral-secondary);
   --iui-color-text-disabled: var(--stratakit-color-text-neutral-disabled);
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
