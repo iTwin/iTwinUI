@@ -5,9 +5,6 @@
   &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
     --_iui-field-color-text: var(--iui-color-white);
     --_iui-field-color-text-hover: var(--iui-color-white);
-    --_iui-field-color-focus-outline: var(--iui-color-white);
-    --_iui-field-focus-outline-offset: -3px;
-    --_iui-field-focus-outline-width: 1px;
     --_iui-field-color-icon: var(--iui-color-white);
     --_iui-field-color-icon-hover: var(--iui-color-white);
   }
@@ -17,6 +14,7 @@
     --_iui-field-color-background-hover: var(--iui-color-background-accent-hover);
     --_iui-field-color-border: var(--iui-color-background-accent);
     --_iui-field-color-border-hover: var(--iui-color-background-accent-hover);
+    --_iui-field-color-focus-outline: var(--iui-color-border-accent);
   }
 
   &:where([data-iui-variant='cta']) {
@@ -24,5 +22,6 @@
     --_iui-field-color-background-hover: var(--iui-color-background-positive-hover);
     --_iui-field-color-border: var(--iui-color-background-positive);
     --_iui-field-color-border-hover: var(--iui-color-background-positive-hover);
+    --_iui-field-color-focus-outline: var(--iui-color-border-positive);
   }
 }
