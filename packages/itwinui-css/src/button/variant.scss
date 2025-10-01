@@ -7,6 +7,8 @@
     --_iui-field-color-text-hover: var(--iui-color-white);
     --_iui-field-color-icon: var(--iui-color-white);
     --_iui-field-color-icon-hover: var(--iui-color-white);
+    --_iui-field-focus-outline-offset: 1px;
+    --_iui-field-focus-outline-width: 2px;
   }
 
   &:where([data-iui-variant='high-visibility']) {
