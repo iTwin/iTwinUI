@@ -207,7 +207,6 @@
     // StrataKit uses a consistent background for all active states.
     &:where([data-iui-active='true']) {
       --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
-      --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
     }
 
     // Disabled buttons in StrataKit do not have a visible border
@@ -353,10 +352,6 @@
         var(--stratakit-color-bg-control-textbox) 100%,
         var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
       );
-    }
-
-    &:where([data-iui-disabled='true']) {
-      --_iui-input-background-color: var(--iui-color-background-disabled);
     }
   }
 
