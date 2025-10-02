@@ -291,14 +291,14 @@
     // StrataKit uses different surface colors for the dropdowns
     background-color: var(--stratakit-color-bg-elevation-level-1);
 
-    // Hover state background color
-    :is(.iui-list-item, .iui-menu-item-skeleton) {
-      --_iui-list-item-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
-    }
-
     // StrataKit uses box shadow only
     border: none;
     box-shadow: var(--stratakit-shadow-surface-xl);
+  }
+
+  // Menu item hover state background color
+  .iui-list-item {
+    --_iui-list-item-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   }
 
   /* ---------------------------------------------------------------------------- */
