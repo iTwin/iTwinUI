@@ -83,7 +83,7 @@
   --iui-color-text-warning: var(--stratakit-color-text-attention-faded);
   --iui-color-text-negative: var(--stratakit-color-text-critical-faded);
 
-   // Unused
+  // Unused
   --iui-color-text-informational-hover: var(--iui-color-text-informational);
   --iui-color-text-positive-hover: var(--iui-color-text-positive);
   --iui-color-text-warning-hover: var(--iui-color-text-warning);
@@ -120,6 +120,23 @@
     --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --stratakit-color-icon-positive-faded
     --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --stratakit-color-icon-attention-faded
     --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --stratakit-color-icon-critical-faded
+  }
+
+  /* ---------------------------------------------------------------------------- */
+  /* Field */
+  .iui-field {
+    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
+    --_iui-field-color-background-hover: color-mix(
+      in oklch,
+      var(--_iui-field-color-background) 100%,
+      var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
+    );
+
+    // Borderless variants need a hover state due to lack of touch target area
+    &:where([data-iui-variant='borderless']) {
+      --_iui-field-color-background: transparent;
+      --_iui-field-color-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
+    }
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -182,13 +199,13 @@
 
   .iui-button {
     // StrataKit button background color is not iTwinUI's --iui-color-background global mapping
-    &:where(:not([data-iui-variant])):not(.iui-sidenav-button) {
-      --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
-      --_iui-field-color-background-hover: var(--_iui-field-color-background);
+    &:where(.iui-sidenav-button) {
+      --_iui-field-color-background: var(--iui-color-background);
     }
 
-    // This is needed because for CTA buttons, border-hover variables are set to bg variables
-    --_iui-field-color-border-hover: var(--_iui-field-color-border);
+    &:where([data-iui-active='true']) {
+      --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
+    }
 
     // Disabled buttons in StrataKit do not have a visible border
     --_iui-field-color-border-disabled: transparent;
@@ -196,11 +213,15 @@
     // CTA variant should use the same colors as high-visibility instead of using "positive" colors
     &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
       --_iui-field-color-background: var(--stratakit-color-bg-accent-base);
-      --_iui-field-color-background-hover: var(--_iui-field-color-background);
       --_iui-field-color-icon: var(--stratakit-color-icon-neutral-emphasis);
 
       // Extra visible border in StrataKit
       --_iui-field-color-border: var(--stratakit-color-border-accent-base);
+      --_iui-field-color-border-hover: color-mix(
+        in oklch,
+        var(--_iui-field-color-border) 100%,
+        var(--stratakit-color-glow-hue) var(--stratakit-color-border-glow-strong-hover-\%)
+      );
     }
   }
 
@@ -253,15 +274,6 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* ComboBox */
-
-  // To match StrataKit Select instead of StrataKit Input
-  .iui-field:where([role='combobox']) {
-    --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
-    --_iui-field-color-background-hover: var(--_iui-field-color-background);
-  }
-
-  /* ---------------------------------------------------------------------------- */
   /* Dialog/Modal */
 
   .iui-dialog {
@@ -295,15 +307,6 @@
   }
 
   /* ---------------------------------------------------------------------------- */
-  /* Field */
-  .iui-field {
-    // Borderless variants need a hover state due to lack of touch target area
-    &:where([data-iui-variant='borderless']) {
-      --_iui-field-color-background-hover: var(--iui-color-background-hover);
-    }
-  }
-
-  /* ---------------------------------------------------------------------------- */
   /* FileUpload */
 
   .iui-file-upload.iui-drag > .iui-content {
@@ -328,14 +331,24 @@
 
   .iui-input:where(:not([role='combobox'])) {
     // StrataKit input background colors are different from global values
-    --_iui-field-color-background: var(--stratakit-color-bg-control-textbox);
-    --_iui-field-color-background-hover: var(--_iui-field-color-background);
-    --_iui-field-color-background-disabled: var(--_iui-field-color-background);
+    --_iui-field-color-background-disabled: var(--stratakit-color-bg-control-textbox);
   }
 
   .iui-input-flex-container {
     // StrataKit input background colors are different from global values
-    background-color: var(--stratakit-color-bg-control-textbox);
+    --_iui-input-background-color: var(--stratakit-color-bg-neutral-base);
+
+    &:hover {
+      --_iui-input-background-color: color-mix(
+        in oklch,
+        var(--stratakit-color-bg-neutral-base) 100%,
+        var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
+      );
+    }
+
+    &[data-iui-disabled='true'] {
+      --_iui-input-background-color: var(--iui-color-background-disabled);
+    }
   }
 
   .iui-input-flex-container:where([data-iui-disabled='true']) {
