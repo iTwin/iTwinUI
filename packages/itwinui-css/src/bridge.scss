@@ -102,7 +102,7 @@
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
   --iui-color-text-placeholder: var(--stratakit-color-text-neutral-secondary);
 
-  &[data-iui-theme='light'] {
+  &:where([data-iui-theme='light']) {
     --iui-color-background-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-bg-page-base
     --iui-color-foreground-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-text-neutral-primary
     --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --stratakit-color-icon-accent-strong
@@ -112,7 +112,7 @@
     --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --stratakit-color-icon-critical-faded
   }
 
-  &[data-iui-theme='dark'] {
+  &:where([data-iui-theme='dark']) {
     --iui-color-background-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-bg-page-base
     --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-text-neutral-primary
     --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --stratakit-color-icon-accent-strong
@@ -253,13 +253,13 @@
         }
       }
 
-      &:disabled {
+      &:where(:disabled) {
         // No border when disabled
         --_iui-checkbox-border-color: transparent;
       }
     }
 
-    &.iui-checkbox-visibility {
+    &:where(.iui-checkbox-visibility) {
       /* TODO: What to do about indeterminate? */
       --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.961 6.807a.5.5 0 0 0-.922.386L1.5 7l-.461.193v.002l.002.004.006.013a3.404 3.404 0 0 0 .094.202A9.478 9.478 0 0 0 2.923 9.87l-1.277 1.277a.5.5 0 1 0 .708.707l1.326-1.326a7.13 7.13 0 0 0 2.174 1.145l-.801 1.603a.5.5 0 1 0 .894.448l.907-1.814a7.253 7.253 0 0 0 2.292 0l.907 1.814a.5.5 0 1 0 .894-.448l-.801-1.603a7.13 7.13 0 0 0 2.174-1.145l1.326 1.326a.5.5 0 0 0 .708-.707L13.077 9.87a9.479 9.479 0 0 0 1.782-2.456 5.53 5.53 0 0 0 .074-.158l.02-.044.006-.013.001-.004.001-.001L14.5 7l.461.193a.5.5 0 0 0-.922-.386l-.003.007-.014.03a7.227 7.227 0 0 1-.319.605c-.234.4-.593.93-1.086 1.46C11.63 9.968 10.13 11 8 11S4.369 9.968 3.383 8.91A8.478 8.478 0 0 1 2.04 6.972a4.479 4.479 0 0 1-.075-.16l-.003-.006Z"/></svg>');
       --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.14 7.849C2.736 6.774 4.616 4 8 4c3.383 0 5.263 2.774 5.86 3.849a.304.304 0 0 1 0 .302C13.264 9.226 11.384 12 8 12c-3.383 0-5.263-2.774-5.86-3.849a.304.304 0 0 1 0-.302ZM8 3C4.023 3 1.887 6.244 1.265 7.363a1.304 1.304 0 0 0 0 1.274C1.887 9.756 4.023 13 8 13c3.977 0 6.113-3.244 6.735-4.363a1.304 1.304 0 0 0 0-1.274C14.113 6.244 11.977 3 8 3ZM7 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>');
@@ -448,7 +448,7 @@
       border-color: var(--stratakit-color-border-accent-base);
     }
 
-    &:disabled {
+    &:where(:disabled) {
       // Disabled and non-disabled switches have the same background color
       background-color: var(--stratakit-color-bg-page-base);
     }
