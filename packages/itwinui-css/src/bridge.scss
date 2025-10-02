@@ -125,6 +125,7 @@
   /* ---------------------------------------------------------------------------- */
   /* Field */
   .iui-field {
+    // StrataKit uses neutral colors for field, to differentiate from page.
     --_iui-field-color-background: var(--stratakit-color-bg-neutral-base);
     --_iui-field-color-background-hover: color-mix(
       in oklch,
@@ -203,7 +204,9 @@
       --_iui-field-color-background: var(--iui-color-background);
     }
 
+    // StrataKit uses a consistent background for all active states.
     &:where([data-iui-active='true']) {
+      --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
       --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
     }
 
