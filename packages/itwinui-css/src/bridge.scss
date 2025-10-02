@@ -331,22 +331,28 @@
 
   .iui-input:where(:not([role='combobox'])) {
     // StrataKit input background colors are different from global values
+    --_iui-field-color-background: var(--stratakit-color-bg-control-textbox);
+    --_iui-field-color-background-hover: color-mix(
+      in oklch,
+      var(--stratakit-color-bg-control-textbox) 100%,
+      var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
+    );
     --_iui-field-color-background-disabled: var(--stratakit-color-bg-control-textbox);
   }
 
   .iui-input-flex-container {
     // StrataKit input background colors are different from global values
-    --_iui-input-background-color: var(--stratakit-color-bg-neutral-base);
+    --_iui-input-background-color: var(--stratakit-color-bg-control-textbox);
 
-    &:hover {
+    &:where(:hover) {
       --_iui-input-background-color: color-mix(
         in oklch,
-        var(--stratakit-color-bg-neutral-base) 100%,
+        var(--stratakit-color-bg-control-textbox) 100%,
         var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
       );
     }
 
-    &[data-iui-disabled='true'] {
+    &:where([data-iui-disabled='true']) {
       --_iui-input-background-color: var(--iui-color-background-disabled);
     }
   }
