@@ -198,7 +198,7 @@
   /* Button */
 
   .iui-button {
-    // StrataKit button background color is not iTwinUI's --iui-color-background global mapping
+    // StrataKit side navigation button background color shouldn't match other buttons
     &:where(.iui-sidenav-button) {
       --_iui-field-color-background: var(--iui-color-background);
     }
