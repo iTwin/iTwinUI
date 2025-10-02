@@ -9,6 +9,10 @@ export default function Page() {
     searchParams.get('themeProviderConsistentPropsSpread') != null
       ? searchParams.get('themeProviderConsistentPropsSpread') === 'true'
       : undefined;
+  const themeProviderNoUnnecessaryWrapper =
+    searchParams.get('themeProviderNoUnnecessaryWrapper') != null
+      ? searchParams.get('themeProviderNoUnnecessaryWrapper') === 'true'
+      : undefined;
   const shouldPassWrapperProps =
     searchParams.get('shouldPassWrapperProps') === 'true';
 
@@ -17,6 +21,7 @@ export default function Page() {
       <WithThemeProviderTest
         shouldPassWrapperProps={shouldPassWrapperProps}
         themeProviderConsistentPropsSpread={themeProviderConsistentPropsSpread}
+        themeProviderNoUnnecessaryWrapper={themeProviderNoUnnecessaryWrapper}
       />
     );
   }
@@ -26,16 +31,23 @@ export default function Page() {
 function WithThemeProviderTest(props: {
   shouldPassWrapperProps?: boolean;
   themeProviderConsistentPropsSpread?: boolean;
+  themeProviderNoUnnecessaryWrapper?: boolean;
 }) {
-  const { shouldPassWrapperProps, themeProviderConsistentPropsSpread } = props;
+  const {
+    shouldPassWrapperProps,
+    themeProviderConsistentPropsSpread,
+    themeProviderNoUnnecessaryWrapper,
+  } = props;
 
   return (
     <ThemeProvider
       future={{
         ToggleSwitch: {
           consistentPropsSpread: themeProviderConsistentPropsSpread,
+          noUnnecessaryWrapper: themeProviderNoUnnecessaryWrapper,
         },
       }}
+      className='theme-provider'
     >
       <ToggleSwitch
         className='my-class'
