@@ -246,7 +246,7 @@
         // Override surface bg color with bg for interactive elements
         --_iui-checkbox-background-color: var(--stratakit-color-bg-neutral-base);
 
-        &:where(:checked, :indeterminate) {
+        &:where(:checked, :not(.iui-radio):indeterminate) {
           // Checked and indeterminate states use a filled accent background
           --_iui-checkbox-background-color: var(--stratakit-color-bg-accent-base);
           // Emphasis color when atop accent background
