@@ -33,7 +33,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 :is(.iui-list-item, .iui-menu-item-skeleton) {
-  --_iui-list-item-background-hover: var(--iui-color-background-hover);
+  --_iui-list-item-background-hover: var(--iui-color-background-transparent-hover);
 
   display: flex;
   align-items: center;
