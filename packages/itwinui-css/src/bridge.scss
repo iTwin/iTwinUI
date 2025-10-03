@@ -199,13 +199,8 @@
   /* Button */
 
   .iui-button {
-    // StrataKit side navigation button background color shouldn't match other buttons
-    &:where(.iui-sidenav-button) {
-      --_iui-field-color-background: var(--iui-color-background);
-    }
-
     // StrataKit uses a consistent background for all active states.
-    &:where([data-iui-active='true']) {
+    &[data-iui-active='true'] {
       --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
     }
 
@@ -226,6 +221,12 @@
         var(--stratakit-color-glow-hue) var(--stratakit-color-border-glow-strong-hover-\%)
       );
     }
+  }
+
+  // StrataKit side navigation and tile buttons match the surrounding background
+  :is(.iui-button:where(.iui-sidenav-button), :where(.iui-tile-buttons) .iui-button) {
+    --_iui-field-color-background: transparent;
+    --_iui-field-color-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
   }
 
   // For button-group, add back borders that we removed above
@@ -426,19 +427,6 @@
   // Background not --iui-color-background's global mapping
   :is(.iui-tile, .iui-tile-thumbnail) {
     background-color: var(--stratakit-color-bg-elevation-base);
-  }
-
-  // To make buttons match Tile background color
-  .iui-tile-buttons button {
-    background-color: var(--stratakit-color-bg-elevation-base);
-
-    &:where(:hover) {
-      background-color: color-mix(
-        in oklch,
-        var(--stratakit-color-bg-elevation-base) 100%,
-        var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
-      );
-    }
   }
 
   /* ---------------------------------------------------------------------------- */
