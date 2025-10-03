@@ -216,6 +216,7 @@
     &:where([data-iui-variant='high-visibility'], [data-iui-variant='cta']) {
       --_iui-field-color-background: var(--stratakit-color-bg-accent-base);
       --_iui-field-color-icon: var(--stratakit-color-icon-neutral-emphasis);
+      --_iui-field-color-focus-outline: var(--iui-color-border-accent);
 
       // Extra visible border in StrataKit
       --_iui-field-color-border: var(--stratakit-color-border-accent-base);
