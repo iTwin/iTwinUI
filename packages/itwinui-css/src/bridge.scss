@@ -331,7 +331,7 @@
   /* ---------------------------------------------------------------------------- */
   /* Input */
 
-  .iui-input:where(:not([role='combobox'])) {
+  .iui-input {
     // StrataKit input background colors are different from global values
     --_iui-field-color-background: var(--stratakit-color-bg-control-textbox);
     --_iui-field-color-background-hover: color-mix(
