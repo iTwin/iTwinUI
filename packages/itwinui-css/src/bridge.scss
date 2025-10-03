@@ -343,7 +343,7 @@
     // StrataKit input background colors are different from global values
     --_iui-input-background-color: var(--stratakit-color-bg-control-textbox);
 
-    &:where(:not([data-iui-disabled='true']):hover) {
+    &:where(:hover:not([data-iui-disabled='true'])) {
       --_iui-input-background-color: color-mix(
         in oklch,
         var(--stratakit-color-bg-control-textbox) 100%,
