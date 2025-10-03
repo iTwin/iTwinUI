@@ -203,11 +203,6 @@
   /* Button */
 
   .iui-button {
-    // StrataKit uses a consistent background for all active states.
-    &[data-iui-active='true'] {
-      --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
-    }
-
     // Disabled buttons in StrataKit do not have a visible border
     --_iui-field-color-border-disabled: transparent;
 
@@ -231,6 +226,11 @@
   :is(.iui-button:where(.iui-sidenav-button), :where(.iui-tile-buttons) .iui-button) {
     --_iui-field-color-background: transparent;
     --_iui-field-color-background-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
+  }
+
+  // StrataKit uses a consistent background for all active states.
+  .iui-button[data-iui-active='true'] {
+    --_iui-field-color-background: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
   }
 
   // For button-group, add back borders that we removed above
