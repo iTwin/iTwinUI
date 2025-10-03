@@ -432,7 +432,7 @@
   /* Tile */
 
   // Background not --iui-color-background's global mapping
-  :is(.iui-tile, .iui-tile-thumbnail) {
+  .iui-tile {
     background-color: var(--stratakit-color-bg-elevation-base);
   }
 
