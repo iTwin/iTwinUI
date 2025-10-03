@@ -430,6 +430,14 @@
   // To make buttons match Tile background color
   .iui-tile-buttons button {
     background-color: var(--stratakit-color-bg-elevation-base);
+
+    &:where(:hover) {
+      background-color: color-mix(
+        in oklch,
+        var(--stratakit-color-bg-elevation-base) 100%,
+        var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
+      );
+    }
   }
 
   /* ---------------------------------------------------------------------------- */
