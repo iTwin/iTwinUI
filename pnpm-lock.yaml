@@ -92,8 +92,8 @@ importers:
         specifier: 0.21.0
         version: 0.21.0
       '@stratakit/foundations':
-        specifier: ^0.2.0
-        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.3.5
+        version: 0.3.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -146,8 +146,8 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@swc/helpers@0.5.17)(@types/node@22.5.5)(@types/react@19.0.8)(acorn@8.15.0)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(yaml@2.5.0)
       '@stratakit/foundations':
-        specifier: ^0.2.0
-        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.3.5
+        version: 0.3.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/node':
         specifier: '*'
         version: 22.5.5
@@ -696,10 +696,28 @@ packages:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
 
+  '@ariakit/react-core@0.4.18':
+    resolution:
+      {
+        integrity: sha512-wHtojXF7KPRwGTSbPg50l203Qngg2aGYCzCut+mYEwe3S0ZzuYVpiY+2Yh15HssnQ/S5yiDGRL4q94UEXsyO+w==,
+      }
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
   '@ariakit/react@0.4.17':
     resolution:
       {
         integrity: sha512-HQaIboE2axtlncJz1hRTaiQfJ1GGjhdtNcAnPwdjvl2RybfmlHowIB+HTVBp36LzroKPs/M4hPCxk7XTaqRZGg==,
+      }
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@ariakit/react@0.4.18':
+    resolution:
+      {
+        integrity: sha512-r38DFvdv6JzjC/8mHekTaJEXO6hmx+YPIiyjq9oL7DckLmqGkAKbFrmQd2CeKZZ1c372DDVw7lLhYjj/VYCBZQ==,
       }
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2849,6 +2867,20 @@ packages:
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
+
+  '@stratakit/foundations@0.3.5':
+    resolution:
+      {
+        integrity: sha512-3HIYC6Kh9HMqAd2moWD1mgYVSaxXSo+fTxJZyy/5FKcbDGea2rtQZtx1I/VR764sskSqlf8EEXGEegkCvTv0sg==,
+      }
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   '@swc/cli@0.6.0':
     resolution:
@@ -12462,9 +12494,23 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.4.0(react@19.1.0)
 
+  '@ariakit/react-core@0.4.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ariakit/core': 0.4.15
+      '@floating-ui/dom': 1.7.2
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      use-sync-external-store: 1.4.0(react@19.1.0)
+
   '@ariakit/react@0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ariakit/react-core': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@ariakit/react@0.4.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ariakit/react-core': 0.4.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -14004,6 +14050,14 @@ snapshots:
     dependencies:
       '@ariakit/react': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@stratakit/foundations@0.3.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ariakit/react': 0.4.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+    optionalDependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
