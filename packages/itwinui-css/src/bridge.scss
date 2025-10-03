@@ -382,6 +382,14 @@
   }
 
   /* ---------------------------------------------------------------------------- */
+  /* Side navigation */
+
+  .iui-side-navigation {
+    // StrataKit side navigation is darker than page background
+    background-color: var(--stratakit-color-bg-page-depth);
+  }
+
+  /* ---------------------------------------------------------------------------- */
   /* Slider */
   /* TODO: Since StrataKit Slider tokens are not added, revisit this when those tokens are added on the StrataKit end */
 
