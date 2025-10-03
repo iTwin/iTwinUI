@@ -9,7 +9,11 @@
 
   --iui-color-background: var(--stratakit-color-bg-page-base);
   --iui-color-background-disabled: var(--stratakit-color-bg-glow-on-surface-disabled);
-  --iui-color-background-zebra: var(--iui-color-background); /* TODO: Use proper value when added */
+  --iui-color-background-zebra: color-mix(
+    in oklch,
+    var(--stratakit-color-bg-page-base),
+    var(--stratakit-color-bg-page-zebra)
+  );
   --iui-color-background-hover: color-mix(
     in oklch,
     var(--iui-color-background) 100%,
