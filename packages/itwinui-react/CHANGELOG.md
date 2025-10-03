@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.19.5
+
+### Patch Changes
+
+- [#2636](https://github.com/iTwin/iTwinUI/pull/2636): Added `color` to all text `::selection` styles. This fixes a theme bridge issue with text selection color contrast.
+- [#2598](https://github.com/iTwin/iTwinUI/pull/2598): Added theme bridge hover state to all components as well as other minor visual updates to reflect the latest version of StrataKit.
+- [#2641](https://github.com/iTwin/iTwinUI/pull/2641): Changed menu item's background-color on hover state.
+- [#2637](https://github.com/iTwin/iTwinUI/pull/2637): Updated theme bridge styling for `Tabs` to use accent colors.
+
 ## 3.19.4
 
 ### Patch Changes
