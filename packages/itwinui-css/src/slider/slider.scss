@@ -217,7 +217,7 @@ $iui-slider-tick-thickness: 1px;
   border-radius: 100%;
   z-index: 1;
   cursor: grab;
-  @include mixins.iui-focus($thickness: 2px);
+  @include mixins.iui-focus($thickness: 2px, $offset: 1px);
   background: var(--iui-color-background);
   border: 1px solid var(--iui-color-border-foreground);
 
