@@ -20,6 +20,7 @@
   all: unset;
   color: inherit;
   cursor: pointer;
+  outline: none !important;
 
   &::after {
     content: '';
