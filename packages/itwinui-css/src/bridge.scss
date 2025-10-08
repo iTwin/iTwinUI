@@ -31,7 +31,7 @@
     var(--iui-color-background-accent) 100%,
     var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
   );
-  --iui-color-background-accent-muted: var(--stratakit-color-bg-accent-muted);
+  --iui-color-background-accent-muted: var(--stratakit-color-bg-glow-on-surface-accent-pressed);
   --iui-color-background-transparent-hover: var(--stratakit-color-bg-glow-on-surface-neutral-hover);
 
   --iui-color-border-foreground: var(--stratakit-color-border-neutral-base);
