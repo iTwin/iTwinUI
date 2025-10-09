@@ -171,6 +171,16 @@ export type ComboBoxProps<T> = {
    * Callback fired when dropdown menu is closed.
    */
   onHide?: () => void;
+  /**
+   * Specify a loading state for the ComboBox.
+   * @default false
+   */
+  loading?: boolean;
+  /**
+   * Show clear button that will clear the selected value(s).
+   * @default false
+   */
+  showClearButton?: boolean;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
   CommonProps;
@@ -226,6 +236,8 @@ export const ComboBox = React.forwardRef(
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
       clearFilterOnOptionToggle = true,
+      loading = false,
+      showClearButton = false,
       ...rest
     } = props;
 
@@ -235,6 +247,9 @@ export const ComboBox = React.forwardRef(
     const onChangeProp = useLatestRef(onChange);
     const optionsRef = useLatestRef(options);
     const filterFunctionRef = useLatestRef(filterFunction);
+
+    const [positionReference, setPositionReference] =
+      React.useState<HTMLDivElement | null>(null);
 
     const optionsExtraInfo = React.useMemo(() => {
       const newOptionsExtraInfo: Record<string, { __originalIndex: number }> =
@@ -611,6 +626,10 @@ export const ComboBox = React.forwardRef(
       interactions: { click: false, focus: true },
     });
 
+    React.useEffect(() => {
+      return popover.refs.setPositionReference(positionReference);
+    }, [popover.refs, positionReference]);
+
     return (
       <ComboBoxRefsContext.Provider
         value={React.useMemo(
@@ -625,6 +644,8 @@ export const ComboBox = React.forwardRef(
               isOpen,
               focusedIndex,
               setFocusedIndex,
+              setSelectedIndexes,
+              setPositionReference,
               onClickHandler: handleOptionSelection,
               enableVirtualization,
               filteredOptions,
@@ -633,9 +654,13 @@ export const ComboBox = React.forwardRef(
               popover,
               show,
               hide,
+              endIconProps,
+              loading,
+              showClearButton,
             }),
             [
               enableVirtualization,
+              endIconProps,
               filteredOptions,
               focusedIndex,
               getMenuItem,
@@ -643,9 +668,12 @@ export const ComboBox = React.forwardRef(
               hide,
               id,
               isOpen,
+              loading,
               multiple,
               popover,
+              setSelectedIndexes,
               show,
+              showClearButton,
             ],
           )}
         >
@@ -692,19 +720,87 @@ export const ComboBox = React.forwardRef(
                   : undefined
               }
             />
+            {/* <InputWithDecorations>
+              <InputWithDecorations.Input
+                value={inputValue}
+                disabled={inputProps?.disabled}
+                {...inputProps}
+                onChange={handleOnInput}
+                aria-describedby={[
+                  multiple ? `${id}-selected-live` : undefined,
+                  inputProps?.['aria-describedby'],
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              />
+              <InputWithDecorations.Button>
+                <SvgCloseSmall />
+              </InputWithDecorations.Button>
+              <InputWithDecorations.Icon>
+                <SvgCaretDownSmall />
+              </InputWithDecorations.Icon>
+            </InputWithDecorations> */}
+
+            {/* {multiple && selectTags ? (
+              <ComboBoxMultipleContainer
+                ref={tagContainerWidthRef}
+                selectedItems={selectTags}
+              />
+            ) : null} */}
+          </ComboBoxInputContainer>
+
+          {/* <ComboBoxInputContainer
+            ref={forwardedRef}
+            disabled={inputProps?.disabled}
+            {...rest}
+          >
+            <ComboBoxInput
+              value={inputValue}
+              disabled={inputProps?.disabled}
+              {...inputProps}
+              onChange={handleOnInput}
+              aria-describedby={[
+                multiple ? `${id}-selected-live` : undefined,
+                inputProps?.['aria-describedby'],
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              selectTags={
+                isMultipleEnabled(selectedIndexes, multiple)
+                  ? (selectedIndexes
+                      ?.map((index) => {
+                        const option = options[index];
+                        const optionId = getOptionId(option, id);
+                        const { __originalIndex } = optionsExtraInfo[optionId];
+
+                        return (
+                          <SelectTag
+                            key={option.label}
+                            label={option.label}
+                            onRemove={() => {
+                              handleOptionSelection(__originalIndex);
+                              hide(); // do not keep the dropdown open if the tag is clicked
+                            }}
+                          />
+                        );
+                      })
+                      .filter(Boolean) as React.JSX.Element[])
+                  : undefined
+              }
+            />
             <ComboBoxEndIcon
               {...endIconProps}
               disabled={inputProps?.disabled}
               isOpen={isOpen}
             />
 
-            {multiple ? (
-              <AutoclearingHiddenLiveRegion
-                text={liveRegionSelection}
-                id={`${id}-selected-live`}
-              />
-            ) : null}
-          </ComboBoxInputContainer>
+            </ComboBoxInputContainer> */}
+          {multiple ? (
+            <AutoclearingHiddenLiveRegion
+              text={liveRegionSelection}
+              id={`${id}-selected-live`}
+            />
+          ) : null}
           <ComboBoxMenu as='div' {...dropdownMenuProps}>
             {filteredOptions.length > 0 && !enableVirtualization
               ? filteredOptions.map(getMenuItem)
