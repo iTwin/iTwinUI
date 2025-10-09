@@ -13,22 +13,25 @@ it('should render in its most basic state', () => {
   expect(surface.textContent).toBe('Surface Content');
 });
 
-it.each([
-  [0, 'none'],
-  [1, 'var(--iui-shadow-1)'],
-  [2, 'var(--iui-shadow-2)'],
-  [3, 'var(--iui-shadow-3)'],
-  [4, 'var(--iui-shadow-4)'],
-  [5, 'var(--iui-shadow-5)'],
-] as const)('should render elevation %d surface.', (key, value) => {
-  const { container } = render(
-    <Surface elevation={key}>Surface Content</Surface>,
-  );
-  const surface = container.querySelector('.iui-surface') as HTMLElement;
-  expect(surface.style.getPropertyValue('--iui-surface-elevation')).toEqual(
-    value,
-  );
-});
+it.each(['undefined', 'custom'] as const)(
+  'should render elevation surface (elevation: %s)',
+  (elevationArg) => {
+    const elevation = elevationArg === 'undefined' ? undefined : 1;
+
+    const { container } = render(
+      <Surface elevation={elevation}>Surface Content</Surface>,
+    );
+    const surface = container.querySelector('.iui-surface') as HTMLElement;
+
+    if (elevation === undefined) {
+      expect(surface.getAttribute('data-iui-elevation')).toBeNull();
+    } else {
+      expect(surface.getAttribute('data-iui-elevation')).toEqual(
+        `${elevation}`,
+      );
+    }
+  },
+);
 
 it('should allow customizing border', () => {
   const { container: container1 } = render(
