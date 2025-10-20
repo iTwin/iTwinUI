@@ -365,7 +365,7 @@ importers:
         version: 2.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@stratakit/foundations':
         specifier: '>=0.2.0'
-        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 0.3.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@swc/helpers':
         specifier: ^0.5.17
         version: 0.5.17
@@ -517,8 +517,8 @@ importers:
         version: 7.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       '@playwright/test':
-        specifier: 1.52.0
-        version: 1.52.0
+        specifier: 1.55.1
+        version: 1.55.1
       '@react-router/dev':
         specifier: ^7.0.0
         version: 7.5.3(@react-router/serve@7.5.3(react-router@7.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.5.2))(@types/node@22.5.5)(lightningcss@1.29.1)(react-router@7.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(sass-embedded@1.64.1)(sass@1.72.0)(typescript@5.5.2)(vite@6.3.6(@types/node@22.5.5)(lightningcss@1.29.1)(sass-embedded@1.64.1)(sass@1.72.0)(yaml@2.5.0))(yaml@2.5.0)
@@ -532,8 +532,8 @@ importers:
         specifier: ^19.0.3
         version: 19.0.3(@types/react@19.0.8)
       playwright:
-        specifier: 1.52.0
-        version: 1.52.0
+        specifier: 1.55.1
+        version: 1.55.1
       typescript:
         specifier: ~5.5.2
         version: 5.5.2
@@ -687,28 +687,10 @@ packages:
         integrity: sha512-vvxmZvkNhiisKM+Y1TbGMUfVVchV/sWu9F0xw0RYADXcimWPK31dd9JnIZs/OQ5pwAryAHmERHwuGQVESkSjwQ==,
       }
 
-  '@ariakit/react-core@0.4.17':
-    resolution:
-      {
-        integrity: sha512-kFF6n+gC/5CRQIyaMTFoBPio2xUe0k9rZhMNdUobWRmc/twfeLVkODx+8UVYaNyKilTge8G0JFqwvFKku/jKEw==,
-      }
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
-
   '@ariakit/react-core@0.4.18':
     resolution:
       {
         integrity: sha512-wHtojXF7KPRwGTSbPg50l203Qngg2aGYCzCut+mYEwe3S0ZzuYVpiY+2Yh15HssnQ/S5yiDGRL4q94UEXsyO+w==,
-      }
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  '@ariakit/react@0.4.17':
-    resolution:
-      {
-        integrity: sha512-HQaIboE2axtlncJz1hRTaiQfJ1GGjhdtNcAnPwdjvl2RybfmlHowIB+HTVBp36LzroKPs/M4hPCxk7XTaqRZGg==,
       }
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2524,10 +2506,10 @@ packages:
       }
     engines: { node: '>=14' }
 
-  '@playwright/test@1.52.0':
+  '@playwright/test@1.55.1':
     resolution:
       {
-        integrity: sha512-uh6W7sb55hl7D6vsAeA+V2p5JnlAqzhqFyF0VcJkKZXkgnFcVG9PziERRHQfPLfNGx1C292a4JqbWzhR8L4R1g==,
+        integrity: sha512-IVAh/nOJaw6W9g+RJVlIQJ6gSiER+ae6mKQ5CX1bERzQgbC1VSeBlwdvczT7pxb0GWiyrxH4TGKbMfDb4Sq/ig==,
       }
     engines: { node: '>=18' }
     hasBin: true
@@ -2858,15 +2840,6 @@ packages:
         integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==,
       }
     engines: { node: '>=18' }
-
-  '@stratakit/foundations@0.2.0':
-    resolution:
-      {
-        integrity: sha512-eSkvX9M1hnR6L1xwzS3r/uhZ4e18PPFieooSqxuw4wrqqpXA6w0zVtnEqXV6pxgCQnThcgBaMjjRhArFvXHCsw==,
-      }
-    peerDependencies:
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
 
   '@stratakit/foundations@0.3.5':
     resolution:
@@ -9157,18 +9130,18 @@ packages:
       }
     engines: { node: '>=8' }
 
-  playwright-core@1.52.0:
+  playwright-core@1.55.1:
     resolution:
       {
-        integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==,
+        integrity: sha512-Z6Mh9mkwX+zxSlHqdr5AOcJnfp+xUWLCt9uKV18fhzA8eyxUd8NUWzAjxUh55RZKSYwDGX0cfaySdhZJGMoJ+w==,
       }
     engines: { node: '>=18' }
     hasBin: true
 
-  playwright@1.52.0:
+  playwright@1.55.1:
     resolution:
       {
-        integrity: sha512-JAwMNMBlxJ2oD1kce4KPtMkDeKGHQstdpFPcPH3maElAXon/QZeTvtsfXmTMRyO9TslfoYOXkSsvao2nE1ilTw==,
+        integrity: sha512-cJW4Xd/G3v5ovXtJJ52MAOclqeac9S/aGGgRzLabuF8TnIb6xHvMzKIa6JmrRzUkeXJgfL1MhukP0NK6l39h3A==,
       }
     engines: { node: '>=18' }
     hasBin: true
@@ -9677,7 +9650,7 @@ packages:
         integrity: sha512-XjCY1SiSEi1T7iSYuxS82ft85kwDJUS7wj1Z0eGVXKdtr5g4xnVcbjwxhq5xBnpK/E7x1VZZoJDxpjAOasHT4Q==,
       }
     engines: { node: '>=18' }
-    deprecated: < 24.10.2 is no longer supported
+    deprecated: < 24.15.0 is no longer supported
     hasBin: true
 
   qs@6.13.0:
@@ -12486,14 +12459,6 @@ snapshots:
 
   '@ariakit/core@0.4.15': {}
 
-  '@ariakit/react-core@0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@ariakit/core': 0.4.15
-      '@floating-ui/dom': 1.7.2
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      use-sync-external-store: 1.4.0(react@19.1.0)
-
   '@ariakit/react-core@0.4.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ariakit/core': 0.4.15
@@ -12501,12 +12466,6 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.4.0(react@19.1.0)
-
-  '@ariakit/react@0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@ariakit/react-core': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
 
   '@ariakit/react@0.4.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -13825,9 +13784,9 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@playwright/test@1.52.0':
+  '@playwright/test@1.55.1':
     dependencies:
-      playwright: 1.52.0
+      playwright: 1.55.1
 
   '@popperjs/core@2.11.8': {}
 
@@ -14045,13 +14004,6 @@ snapshots:
   '@sindresorhus/is@5.6.0': {}
 
   '@sindresorhus/merge-streams@2.3.0': {}
-
-  '@stratakit/foundations@0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@ariakit/react': 0.4.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      classnames: 2.5.1
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
 
   '@stratakit/foundations@0.3.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -14853,7 +14805,7 @@ snapshots:
       opn: 6.0.0
       p-map: 4.0.0
       path: 0.12.7
-      playwright: 1.52.0
+      playwright: 1.55.1
       portfinder: 1.0.32
       puppeteer: 22.15.0(typescript@5.5.2)
       super-simple-web-server: 1.1.4
@@ -18344,11 +18296,11 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  playwright-core@1.52.0: {}
+  playwright-core@1.55.1: {}
 
-  playwright@1.52.0:
+  playwright@1.55.1:
     dependencies:
-      playwright-core: 1.52.0
+      playwright-core: 1.55.1
     optionalDependencies:
       fsevents: 2.3.2
 
