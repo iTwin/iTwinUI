@@ -102,10 +102,10 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       astro:
         specifier: ^5
-        version: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+        version: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
       astro-relative-links:
         specifier: ^0.4.2
-        version: 0.4.2(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
+        version: 0.4.2(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
       backstopjs:
         specifier: ~6.3.25
         version: 6.3.25(typescript@5.5.2)
@@ -123,7 +123,7 @@ importers:
     dependencies:
       astro:
         specifier: '5'
-        version: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+        version: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
 
   apps/react-workshop:
     devDependencies:
@@ -186,7 +186,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: '4'
-        version: 4.3.7(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
+        version: 4.3.7(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
       '@astrojs/react':
         specifier: '4'
         version: 4.4.0(@types/node@24.9.0)(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(lightningcss@1.29.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(yaml@2.5.0)
@@ -225,13 +225,13 @@ importers:
         version: 19.0.8
       astro:
         specifier: ^5
-        version: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+        version: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
       astro-auto-import:
         specifier: ^0.4.5
-        version: 0.4.5(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
+        version: 0.4.5(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
       astro-expressive-code:
         specifier: ^0.41.3
-        version: 0.41.3(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
+        version: 0.41.3(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))
       examples:
         specifier: workspace:*
         version: link:../../examples
@@ -3872,10 +3872,10 @@ packages:
     peerDependencies:
       astro: '>=3.0.0'
 
-  astro@5.14.7:
+  astro@5.14.6:
     resolution:
       {
-        integrity: sha512-vdZmRN2MFf60ZTjFkZNrQQkrmeeZzTI1c6N3ZRQN55rPGHjywM2VplJwJ68q496DfpaoDoAroDBpdm+eTgHUtQ==,
+        integrity: sha512-MSdjKt2W2a56x868DqDWgbfw4D689/8EGhHG4465h7eivTI237u1aBx4iJvgI6WfgdUE61+coAvMjUkEvOWbpA==,
       }
     engines:
       { node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0' }
@@ -12585,12 +12585,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.7(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))':
+  '@astrojs/mdx@4.3.7(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.8
       '@mdx-js/mdx': 3.1.1
       acorn: 8.15.0
-      astro: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+      astro: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
       es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -14712,23 +14712,23 @@ snapshots:
 
   astring@1.8.4: {}
 
-  astro-auto-import@0.4.5(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)):
+  astro-auto-import@0.4.5(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)):
     dependencies:
       '@types/node': 18.19.26
       acorn: 8.15.0
-      astro: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+      astro: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
 
-  astro-expressive-code@0.41.3(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)):
+  astro-expressive-code@0.41.3(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)):
     dependencies:
-      astro: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+      astro: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
       rehype-expressive-code: 0.41.3
 
-  astro-relative-links@0.4.2(astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)):
+  astro-relative-links@0.4.2(astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)):
     dependencies:
-      astro: 5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
+      astro: 5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0)
       glob: 10.4.5
 
-  astro@5.14.7(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0):
+  astro@5.14.6(@types/node@24.9.0)(lightningcss@1.29.1)(rollup@4.52.5)(sass-embedded@1.93.2)(sass-embedded@1.93.2)(typescript@5.5.2)(yaml@2.5.0):
     dependencies:
       '@astrojs/compiler': 2.13.0
       '@astrojs/internal-helpers': 0.7.4
