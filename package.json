@@ -77,11 +77,11 @@
     "typescript": "~5.5.2",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
-    "astro": "~4.16.19",
     "cypress": "13.8.1",
     "ws@8": "^8.17.1",
     "cookie@<0.7.0": ">=0.7.0",
-    "esbuild": "0.25.0"
+    "esbuild": "0.25.0",
+    "sass": "npm:sass-embedded@^1.93.2"
   },
   "engines": {
     "node": ">=18.14.1"
