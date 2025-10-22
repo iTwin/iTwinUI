@@ -5,6 +5,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import { findHeadings } from '@jsdevtools/rehype-toc/lib/fiind-headings.js';
+import { findMainNode } from '@jsdevtools/rehype-toc/lib/find-main-node.js';
 import { createTOC } from '@jsdevtools/rehype-toc/lib/create-toc.js';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -104,7 +105,9 @@ function rehypeToc() {
 
   return (tree, file) => {
     const headings = findHeadings(tree, tocOptions);
-    if (!headings.length) return tree;
+    const [main] = findMainNode(tree);
+    if (!main?.children || !headings.length) return;
+
     const toc = createTOC(
       [
         {
@@ -117,23 +120,34 @@ function rehypeToc() {
       ],
       tocOptions,
     );
-    return {
-      type: 'root',
-      children: [
-        // <aside> element with toc
-        {
-          type: 'element',
-          tagName: 'aside',
-          children: [toc],
-          properties: { className: 'toc-wrapper', 'aria-label': 'Table of contents' },
-        },
-        // <main> element for the actual page content
-        {
-          type: 'element',
-          tagName: 'main',
-          children: tree?.children,
-        },
-      ].filter(Boolean),
-    };
+
+    const firstParagraphOrHeadingIndex = main.children.findIndex((node) => {
+      return (
+        (node.type === 'element' && (node.tagName === 'p' || node.tagName === 'h2')) ||
+        (node.type === 'mdxJsxFlowElement' && (node.name === 'p' || node.name === 'h2'))
+      );
+    });
+
+    main.children = [
+      // MDX imports
+      ...main.children.slice(0, firstParagraphOrHeadingIndex),
+
+      // <aside> element with toc
+      {
+        type: 'element',
+        tagName: 'aside',
+        children: [toc],
+        properties: { className: 'toc-wrapper', 'aria-label': 'Table of contents' },
+      },
+
+      // <main> element for the actual page content
+      {
+        type: 'element',
+        tagName: 'main',
+        children: main.children.slice(firstParagraphOrHeadingIndex),
+      },
+    ];
+
+    return tree;
   };
 }
