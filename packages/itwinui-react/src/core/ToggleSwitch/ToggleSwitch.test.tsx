@@ -37,7 +37,7 @@ it('should render toggle with small size', () => {
   expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
   expect(
     container
-      .querySelector('.iui-toggle-switch-wrapper')
+      .querySelector('.iui-toggle-switch')
       ?.getAttribute('data-iui-size'),
   ).toBe('small');
 });
