@@ -12,7 +12,7 @@
   --iui-color-background-zebra: color-mix(
     in oklch,
     var(--stratakit-color-bg-page-base),
-    var(--stratakit-color-bg-page-zebra)
+    var(--stratakit-color-bg-control-table-zebra, var(--stratakit-color-bg-page-zebra))
   );
   --iui-color-background-hover: color-mix(
     in oklch,
@@ -76,9 +76,9 @@
   --iui-color-icon-negative: var(--stratakit-color-icon-critical-faded);
 
   --iui-color-icon: var(--stratakit-color-icon-neutral-base);
-  --iui-color-icon-hover: var(--stratakit-color-icon-neutral-hover);
+  --iui-color-icon-hover: var(--stratakit-color-icon-neutral-primary, var(--stratakit-color-icon-neutral-hover));
   --iui-color-icon-muted: var(--stratakit-color-icon-neutral-secondary);
-  --iui-color-icon-muted-hover: var(--stratakit-color-icon-neutral-hover);
+  --iui-color-icon-muted-hover: var(--stratakit-color-icon-neutral-primary, var(--stratakit-color-icon-neutral-hover));
   --iui-color-icon-disabled: var(--stratakit-color-icon-neutral-disabled);
   --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
 
@@ -467,6 +467,6 @@
     border-color: var(--stratakit-color-border-elevation-base);
 
     // Use StrataKit's shadow instead of iTwinUI's
-    box-shadow: var(--stratakit-shadow-tooltip-base);
+    box-shadow: var(--stratakit-shadow-control-tooltip-base, var(--stratakit-shadow-tooltip-base));
   }
 }
