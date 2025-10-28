@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.6
+
+### Patch Changes
+
+- [#2647](https://github.com/iTwin/iTwinUI/pull/2647): Updated theme bridge to use latest token values.
+
 ## 3.19.5
 
 ### Patch Changes
