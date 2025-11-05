@@ -6,7 +6,7 @@ import type {
   ColumnInstance,
   Hooks,
 } from '../../../react-table/react-table.js';
-import { SelectionColumn, SELECTION_CELL_ID } from '../columns/index.js';
+import { SELECTION_CELL_ID, SelectionColumn } from '../columns/index.js';
 
 export const useSelectionCell =
   <T extends Record<string, unknown>>(
@@ -14,6 +14,7 @@ export const useSelectionCell =
     selectionMode: 'multi' | 'single',
     isRowDisabled?: (rowData: T) => boolean,
     density: 'default' | 'condensed' | 'extra-condensed' = 'default',
+    selectRowOnAllSubRows?: boolean,
   ) =>
   (hooks: Hooks<T>) => {
     if (!isSelectable) {
@@ -25,7 +26,11 @@ export const useSelectionCell =
       columns.find((c) => c.id === SELECTION_CELL_ID)
         ? columns
         : [
-            SelectionColumn({ isDisabled: isRowDisabled, density: density }),
+            SelectionColumn({
+              isDisabled: isRowDisabled,
+              density: density,
+              selectRowOnAllSubRows: selectRowOnAllSubRows,
+            }),
             ...columns,
           ],
     );

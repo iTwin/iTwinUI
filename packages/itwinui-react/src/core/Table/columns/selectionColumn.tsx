@@ -31,9 +31,10 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
     /** Function that returns whether row checkbox should be disabled. */
     isDisabled?: (rowData: T) => boolean;
     density?: 'default' | 'condensed' | 'extra-condensed';
+    selectRowOnAllSubRows?: boolean;
   } = {},
 ) => {
-  const { isDisabled, density } = props;
+  const { isDisabled, density, selectRowOnAllSubRows } = props;
   const densityWidth =
     density === 'condensed' ? 42 : density === 'extra-condensed' ? 34 : 48;
   return {
@@ -79,6 +80,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
     Cell: ({ row, selectSubRows = true }: CellProps<T>) => (
       <Checkbox
         {...row.getToggleRowSelectedProps()}
+        {...(selectRowOnAllSubRows === false && { indeterminate: false })}
         style={{}} // Removes pointer cursor as we have it in CSS and it is also showing pointer when disabled
         title='' // Removes default title that comes from react-table
         disabled={isDisabled?.(row.original)}
