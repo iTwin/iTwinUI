@@ -3,9 +3,6 @@
 @use '../mixins';
 
 .iui-toggle-switch-wrapper {
-  --_iui-toggle-switch-handle-size: var(--iui-size-m);
-  --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
-
   @include mixins.iui-reset;
   display: grid;
   grid-template-areas: 'toggle';
@@ -37,14 +34,15 @@
     grid-template-areas: 'toggle label';
   }
 
-  &:where([data-iui-size='small']) {
-    --_iui-toggle-switch-handle-size: var(--iui-size-s);
-    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+  // If using custom icon, hide the default checkmark
+  &:has(.iui-toggle-switch-icon) .iui-toggle-switch::before {
+    content: none;
   }
 }
 
 .iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
+  --_iui-toggle-switch-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
 
   @include mixins.iui-reset;
   @include mixins.iui-focus(
@@ -72,6 +70,27 @@
     grid-area: label;
   }
 
+  // Checkmark
+  &::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    inset-inline-start: var(--iui-size-2xs);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    aspect-ratio: 1;
+    inline-size: var(--_iui-toggle-switch-handle-size);
+    mask: var(--_iui-toggle-switch-checkmark-svg) no-repeat center;
+    background-color: var(--iui-color-white);
+  }
+
+  &:where([data-iui-size='small']) {
+    &::before {
+      inset-inline-start: var(--iui-size-3xs);
+    }
+  }
+
+  // Handle
   &::after {
     content: '';
     block-size: var(--_iui-toggle-switch-handle-size);
@@ -88,7 +107,18 @@
     }
   }
 
-  // #region Unchecked toggle switch
+  // #MARK: Handle sizes
+  &:where(:not([data-iui-size='small'])) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-m);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+  }
+
+  &:where([data-iui-size='small']) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-s);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+  }
+
+  // #MARK: Unchecked toggle switch
   background-color: var(--iui-color-background);
   border-color: var(--iui-color-border-foreground);
   @media (forced-colors: active) {
@@ -112,9 +142,8 @@
       background-color: var(--iui-color-icon-hover);
     }
   }
-  // #endregion Unchecked toggle switch
 
-  // #region Checked toggle switch
+  // #MARK: Checked toggle switch
   &:checked {
     background-color: var(--iui-color-background-accent);
     border-color: var(--iui-color-background-accent);
@@ -135,9 +164,8 @@
       opacity: var(--iui-opacity-1);
     }
   }
-  // #endregion Checked toggle switch
 
-  // #region Disabled toggle switch
+  // #MARK: Disabled toggle switch
   &:disabled {
     cursor: not-allowed;
     background-color: var(--iui-color-background-disabled);
@@ -163,6 +191,11 @@
       }
     }
 
+    &::before {
+      opacity: 0;
+      background-color: var(--iui-color-icon);
+    }
+
     &:checked {
       @media (forced-colors: active) {
         background-color: GrayText;
@@ -186,9 +219,16 @@
           }
         }
       }
+
+      &::before {
+        opacity: var(--iui-opacity-5);
+
+        @media (forced-colors: active) {
+          opacity: 0.75;
+        }
+      }
     }
   }
-  // #endregion Disabled toggle switch
 
   &-icon {
     opacity: 0;
