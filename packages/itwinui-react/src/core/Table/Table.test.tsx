@@ -2250,6 +2250,34 @@ it('should show parent row being selected when all sub-rows are selected', async
   expect(checkboxes[6].checked).toBe(true);
 });
 
+it('should not show parent row being selected when all sub-rows are selected and selectRowOnAllSubRows is false', async () => {
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    isSelectable: true,
+    selectRowOnAllSubRows: false,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+
+  await expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Select all sub-rows of row 2
+  await userEvent.click(checkboxes[7]);
+  await userEvent.click(checkboxes[8]);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+
+  expect(checkboxes[6].checked).toBe(false);
+});
+
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
   const onSelect = vi.fn();
   const data = mockedSubRowsData();
@@ -2315,6 +2343,47 @@ it('should show indeterminate checkbox when a sub-row of a sub-row is selected',
   expect(checkboxes[0].indeterminate).toBe(true);
   // Row 1.2
   expect(checkboxes[2].indeterminate).toBe(true);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index === 3),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith(
+    [data[0].subRows[1].subRows[0]],
+    expect.any(Object),
+  );
+});
+
+it('should not show indeterminate checkbox on row when a sub-row is selected and selectRowOnAllSubRows is false', async () => {
+  const onSelect = vi.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onSelect,
+    isSelectable: true,
+    selectRowOnAllSubRows: false,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+
+  await expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Click row 1.2.1 checkbox
+  await userEvent.click(checkboxes[3]);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Row 1
+  expect(checkboxes[0].indeterminate).toBe(false);
+  // Row 1.2
+  expect(checkboxes[2].indeterminate).toBe(false);
+
   Array.from(checkboxes).forEach((checkbox, index) =>
     expect(!!checkbox.checked).toBe(index === 3),
   );
