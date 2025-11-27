@@ -21,6 +21,12 @@ type OverflowContainerProps = {
    * Count of the *original* items (i.e. when sufficient space is available).
    */
   itemsCount: number;
+  /**
+   * Value of the `justify-content` property.
+   * Useful for aligning items to the right when overflowOrientation is 'horizontal'.
+   * @default 'flex-start'
+   */
+  justifyContent?: React.CSSProperties['justifyContent'];
 };
 
 /**
@@ -56,9 +62,10 @@ type OverflowContainerProps = {
  * };
  */
 const OverflowContainerMain = React.forwardRef((props, forwardedRef) => {
-  const { itemsCount, children, overflowOrientation, ...rest } = props;
+  const { itemsCount, children, overflowOrientation, justifyContent, ...rest } =
+    props;
 
-  const [containerRef, visibleCount] = useOverflow(
+  const [containerRef, visibleCount, isStabilized] = useOverflow(
     itemsCount,
     overflowOrientation,
   );
@@ -68,9 +75,22 @@ const OverflowContainerMain = React.forwardRef((props, forwardedRef) => {
     [itemsCount, visibleCount],
   );
 
+  // Only apply justifyContent after overflow detection is stabilized
+  // to avoid interfering with the measurement algorithm
+  const appliedJustifyContent = isStabilized ? justifyContent : undefined;
+
   return (
     <OverflowContainerContext.Provider value={overflowContainerContextValue}>
-      <Box ref={useMergedRefs(forwardedRef, containerRef)} {...rest}>
+      <Box
+        ref={useMergedRefs(forwardedRef, containerRef)}
+        {...rest}
+        style={
+          {
+            ...rest.style,
+            justifyContent: appliedJustifyContent,
+          } as React.CSSProperties
+        }
+      >
         {children}
       </Box>
     </OverflowContainerContext.Provider>
@@ -105,7 +125,12 @@ const OverflowContainerOverflowNode = (
 // ----------------------------------------------------------------------------
 
 const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
-  const { itemsCount, overflowOrientation = 'horizontal', ...rest } = props;
+  const {
+    itemsCount,
+    overflowOrientation = 'horizontal',
+    justifyContent,
+    ...rest
+  } = props;
 
   const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
   const [resizeRef] = useResizeObserver(setSize);
@@ -123,6 +148,7 @@ const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
       ref={ref}
       itemsCount={itemsCount}
       overflowOrientation={overflowOrientation}
+      justifyContent={justifyContent}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
@@ -284,7 +310,11 @@ const useOverflow = (
     }
   }, [guessState, itemsCount, orientation]);
 
-  return [containerRef, guessState.visibleCount] as const;
+  return [
+    containerRef,
+    guessState.visibleCount,
+    guessState.isStabilized,
+  ] as const;
 };
 
 // ----------------------------------------------------------------------------
