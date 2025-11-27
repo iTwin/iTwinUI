@@ -162,13 +162,6 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   background-color: var(--iui-color-background);
   border-inline-end: 1px solid var(--iui-color-border);
 
-  @include mixins.iui-transition-group;
-
-  &.iui-enter-active,
-  &.iui-exit-active {
-    display: flex;
-  }
-
   &-content {
     padding-block: 0 var(--iui-size-s);
     padding-inline: var(--iui-size-s);

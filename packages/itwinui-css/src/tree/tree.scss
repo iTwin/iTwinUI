@@ -16,6 +16,8 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
   overflow: auto;
+  display: grid;
+  align-content: start;
 
   &[data-iui-size='small'] {
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
@@ -29,8 +31,10 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 }
 
 .iui-tree-item {
+  min-inline-size: max-content;
+
   &:focus-visible {
-    outline: none;
+    outline: none !important;
 
     > .iui-tree-node {
       outline: 1px solid var(--iui-color-border-accent);
@@ -117,13 +121,15 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     }
   }
 
-  &:hover {
-    background-color: var(--iui-color-background-hover);
-    color: var(--iui-color-text-hover);
-
-    .iui-tree-node-content-caption {
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--iui-color-background-hover);
       color: var(--iui-color-text-hover);
-      transition: color var(--iui-duration-1) ease;
+
+      .iui-tree-node-content-caption {
+        color: var(--iui-color-text-hover);
+        transition: color var(--iui-duration-1) ease;
+      }
     }
   }
 
@@ -135,7 +141,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
   &.iui-disabled {
     cursor: not-allowed;
-    outline: none;
+    outline: none !important;
     background-color: transparent;
 
     &,

@@ -24,11 +24,11 @@ export type ButtonProps = {
   /**
    * Icon shown before the main button content.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Icon shown after the main button content.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * Passes props to the button label.
    */

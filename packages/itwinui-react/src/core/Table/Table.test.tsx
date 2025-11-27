@@ -18,7 +18,12 @@ import {
   type TableFilterProps,
   tableFilters,
 } from './filters/index.js';
-import type { CellProps, Column, Row } from '../../react-table/react-table.js';
+import type {
+  CellProps,
+  CellRendererProps,
+  Column,
+  Row,
+} from '../../react-table/react-table.js';
 import { InputGroup } from '../InputGroup/InputGroup.js';
 import { Radio } from '../Radio/Radio.js';
 import {
@@ -27,6 +32,7 @@ import {
   SvgClose,
   SvgSortUp,
   SvgSortDown,
+  lineClamp,
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
@@ -198,7 +204,7 @@ const clearFilter = async (container: HTMLElement) => {
 
 const BooleanFilter = (
   props: TableFilterProps<Record<string, unknown>>,
-): JSX.Element => {
+): React.JSX.Element => {
   const [value, setValue] = React.useState<boolean | undefined>(
     props.column.filterValue as boolean | undefined,
   );
@@ -2217,6 +2223,33 @@ it('should handle sub-rows selection', async () => {
   );
 });
 
+it('should show parent row being selected when all sub-rows are selected', async () => {
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+
+  await expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Select all sub-rows of row 2
+  await userEvent.click(checkboxes[7]);
+  await userEvent.click(checkboxes[8]);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+
+  expect(checkboxes[6].checked).toBe(true);
+});
+
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
   const onSelect = vi.fn();
   const data = mockedSubRowsData();
@@ -3897,38 +3930,6 @@ it('should render row with loading status', () => {
   expect(rows[1]).not.toHaveClass(`iui-loading`);
 });
 
-it('should navigate through table filtering with the keyboard', async () => {
-  const onFilter = vi.fn();
-  const mockedColumns = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-      Filter: tableFilters.TextFilter(),
-      fieldType: 'text',
-    },
-  ];
-  renderComponent({
-    columns: mockedColumns,
-    onFilter,
-  });
-
-  await userEvent.tab(); // tab to filter icon button
-  await userEvent.keyboard('{Enter}');
-  await userEvent.keyboard('2');
-  await userEvent.tab(); // tab to filter menu 'Filter' submit button
-  await userEvent.keyboard('{Enter}');
-  expect(onFilter).toHaveBeenCalledWith(
-    [{ fieldType: 'text', filterType: 'text', id: 'name', value: '2' }],
-    expect.objectContaining({ filters: [{ id: 'name', value: '2' }] }),
-    expect.arrayContaining([
-      expect.objectContaining({
-        values: expect.objectContaining({ name: 'Name2' }),
-      }),
-    ]),
-  );
-});
-
 it('should ignore top-level Header if one is passed', async () => {
   const data = mockedData();
   const { container } = render(
@@ -4025,41 +4026,72 @@ it('should pass custom props to different parts of Table', () => {
   expect(emptyTableContent.style.fontSize).toBe('12px');
 });
 
-it('should apply clamp, if cell is string value and no custom Cell is rendered', () => {
-  const data = [{ name: 'name' }];
-  const columns: Column<TestDataType>[] = [
-    {
-      Header: 'Name',
-      accessor: 'name',
-      cellClassName: 'test-cell',
-    },
-  ];
-  const { container } = renderComponent({
-    columns,
-    data,
-  });
-  const host = container.querySelector('.test-cell');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('div');
-  expect(lineClamp).toBeTruthy();
-});
+it.each([
+  ['no-custom-Cell', 'no-custom-cellRenderer', true, true],
+  ['custom-Cell', 'no-custom-cellRenderer', false, false],
+  ['no-custom-Cell', 'custom-cellRenderer', false, false],
+  ['no-custom-Cell', 'default-children-cellRenderer', true, true],
+  ['custom-Cell', 'custom-cellRenderer', false, false],
+  ['custom-Cell', 'default-children-cellRenderer', false, false],
+] as const)(
+  'if %s and %s are used, then shouldClamp: %s and shouldIncreaseHitTarget: %s',
+  (isCustomCell, isCustomRenderer, shouldClamp, shouldIncreaseHitTarget) => {
+    const data = [{ name: 'name' }];
 
-it('should not apply clamp, if custom Cell is used', () => {
-  const data = [{ name: 'name' }];
-  const columns: Column<TestDataType>[] = [
-    {
-      Header: 'Name',
-      accessor: 'name',
-      cellClassName: 'test-cell',
-      Cell: () => 'my custom content',
-    },
-  ];
-  const { container } = renderComponent({
-    columns,
-    data,
-  });
-  const host = container.querySelector('.test-cell');
-  expect(host?.shadowRoot).toBeTruthy();
-  const lineClamp = host?.shadowRoot?.querySelector('div');
-  expect(lineClamp).toBeNull();
-});
+    const cellRenderer = (() => {
+      if (isCustomRenderer === 'custom-cellRenderer') {
+        return (props: CellRendererProps<TestDataType>) => (
+          <DefaultCell {...props}>my custom content</DefaultCell>
+        );
+      }
+      if (isCustomRenderer === 'default-children-cellRenderer') {
+        return (props: CellRendererProps<TestDataType>) => (
+          <DefaultCell {...props} className='default-cell' />
+        );
+      }
+      return undefined;
+    })();
+
+    const columns: Column<TestDataType>[] = [
+      isCustomCell === 'custom-Cell'
+        ? {
+            Header: 'Name',
+            accessor: 'name',
+            Cell: () => 'my custom content',
+            cellClassName: 'test-cell',
+            cellRenderer: cellRenderer,
+          }
+        : {
+            Header: 'Name',
+            accessor: 'name',
+            cellClassName: 'test-cell',
+            cellRenderer: cellRenderer,
+          },
+    ];
+    const { container } = renderComponent({
+      columns,
+      data,
+    });
+
+    const host = container.querySelector('.test-cell');
+    expect(host?.shadowRoot).toBeTruthy();
+    const lineClampElement = host?.shadowRoot?.querySelector(
+      `.${lineClamp.className}`,
+    );
+    const increaseHitTargetElement = host?.shadowRoot?.querySelector(
+      '._iui-table-cell-default-content',
+    );
+
+    if (shouldClamp) {
+      expect(lineClampElement).toBeTruthy();
+    } else {
+      expect(lineClampElement).toBeNull();
+    }
+
+    if (shouldIncreaseHitTarget) {
+      expect(increaseHitTargetElement).toBeTruthy();
+    } else {
+      expect(increaseHitTargetElement).toBeNull();
+    }
+  },
+);

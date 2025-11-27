@@ -12,7 +12,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import cx from 'classnames';
 import { TreeNodeExpander } from './TreeNodeExpander.js';
-import { useTreeContext } from './TreeContext.js';
+import { useTreeContext, VirtualizedTreeContext } from './TreeContext.js';
 
 type TreeNodeProps = {
   /**
@@ -50,7 +50,7 @@ type TreeNodeProps = {
   /**
    * Icon shown before label and sublabel content.
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   /**
    * Props for TreeNode Icon
    */
@@ -179,6 +179,9 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
     indexInGroup,
   } = useTreeContext();
 
+  const { virtualizer, onVirtualizerChange } =
+    React.useContext(VirtualizedTreeContext) ?? {};
+
   const [isFocused, setIsFocused] = React.useState(false);
   const nodeRef = React.useRef<HTMLDivElement>(null);
 
@@ -194,6 +197,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
         if (isNodeFocused) {
           if (isExpanded) {
             onExpanded(nodeId, false);
+            onVirtualizerChange?.(virtualizer);
             break;
           }
           if (parentNodeId) {
@@ -221,6 +225,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
         if (isNodeFocused) {
           if (!isExpanded && hasSubNodes) {
             onExpanded(nodeId, true);
+            onVirtualizerChange?.(virtualizer);
             break;
           }
           (focusableElements[0] as HTMLElement)?.focus();
@@ -257,9 +262,10 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
   const onExpanderClick = React.useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       onExpanded(nodeId, !isExpanded);
+      onVirtualizerChange?.(virtualizer);
       event.stopPropagation();
     },
-    [isExpanded, nodeId, onExpanded],
+    [isExpanded, nodeId, onExpanded, onVirtualizerChange, virtualizer],
   );
 
   return (
@@ -308,7 +314,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
             className={cx('iui-tree-node-checkbox', checkboxProps?.className)}
           >
             {React.isValidElement(checkbox)
-              ? React.cloneElement(checkbox as JSX.Element, {
+              ? React.cloneElement(checkbox as React.JSX.Element, {
                   tabIndex: isFocused ? 0 : -1,
                 })
               : checkbox}

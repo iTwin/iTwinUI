@@ -18,6 +18,7 @@ describe('Breadcrumbs', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
+      cy.wait(500); // TODO: Investigate
 
       if (testName.includes('Overflow')) {
         cy.get('small').hide();
@@ -27,7 +28,7 @@ describe('Breadcrumbs', () => {
         cy.get('button').eq(1).click();
       } else if (testName === 'Custom Overflow Back Button') {
         cy.get('button').eq(1).trigger('mouseenter');
-        cy.wait(60);
+        cy.wait(200);
       }
 
       cy.compareSnapshot(testName);

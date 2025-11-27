@@ -37,6 +37,7 @@ import {
   useMergedRefs,
   useLatestRef,
   useVirtualScroll,
+  useId,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { TableInstanceContext } from './utils.js';
@@ -66,6 +67,7 @@ import { SELECTION_CELL_ID } from './columns/index.js';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
@@ -116,204 +118,225 @@ export type TablePaginatorRendererProps = {
  */
 export type TableProps<
   T extends Record<string, unknown> = Record<string, unknown>,
-> = Omit<TableOptions<T>, 'disableSortBy'> & {
-  /**
-   * Flag whether data is loading.
-   * @default false
-   */
-  isLoading?: boolean;
-  /**
-   * Content shown when there is no data.
-   */
-  emptyTableContent: React.ReactNode;
-  /**
-   * Flag whether table rows can be selectable.
-   * @default false
-   */
-  isSelectable?: boolean;
-  /**
-   * Handler for rows selection. Must be memoized.
-   * This is triggered only by user initiated actions (i.e. data change will not call it).
-   */
-  onSelect?: (
-    selectedData: T[] | undefined,
-    tableState?: TableState<T>,
-  ) => void;
-  /**
-   * Handler for when a row is clicked. Must be memoized.
-   */
-  onRowClick?: (event: React.MouseEvent, row: Row<T>) => void;
-  /**
-   * Modify the selection mode of the table.
-   * The column with checkboxes will not be present with 'single' selection mode.
-   * @default 'multi'
-   */
-  selectionMode?: 'multi' | 'single';
-  /**
-   * Flag whether table columns can be sortable.
-   * @default false
-   */
-  isSortable?: boolean;
-  /**
-   * Callback function when sort changes.
-   * Use with `manualSortBy` to handle sorting yourself e.g. sort in server-side.
-   * Must be memoized.
-   */
-  onSort?: (state: TableState<T>) => void;
-  /**
-   * Callback function when scroll reaches bottom. Can be used for lazy-loading the data.
-   */
-  onBottomReached?: () => void;
-  /**
-   * Callback function when row is in viewport.
-   */
-  onRowInViewport?: (rowData: T) => void;
-  /**
-   * Margin in pixels when row is considered to be already in viewport. Used for `onBottomReached` and `onRowInViewport`.
-   * @default 300
-   */
-  intersectionMargin?: number;
-  /**
-   * A function that will be used for rendering a component for each row if that row is expanded.
-   * Component will be placed right after the row. Can return false/null if row should not be expandable.
-   */
-  subComponent?: (row: Row<T>) => React.ReactNode;
-  /**
-   * A function used for overriding default expander cell. `subComponent` must be present.
-   * Make sure to trigger `cellProps.row.toggleRowExpanded()`.
-   */
-  expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
-  /**
-   * Handler for row expand events. Will trigger when expanding and collapsing rows.
-   */
-  onExpand?: (
-    expandedData: T[] | undefined,
-    tableState?: TableState<T>,
-  ) => void;
-  /**
-   * Callback function when filters change.
-   * Use with `manualFilters` to handle filtering yourself e.g. filter in server-side.
-   * Must be memoized.
-   */
-  onFilter?: (
-    filters: TableFilterValue<T>[],
-    state: TableState<T>,
-    filteredData?: Row<T>[],
-  ) => void;
-  /**
-   * Value used for global filtering.
-   * Use with `globalFilter` and/or `manualGlobalFilter` to handle filtering yourself e.g. filter in server-side.
-   * Must be memoized.
-   */
-  globalFilterValue?: unknown;
-  /**
-   * Content shown when there is no data after filtering.
-   */
-  emptyFilteredTableContent?: React.ReactNode;
-  /**
-   * Function that should return true if a row is disabled (i.e. cannot be selected or expanded).
-   * If not specified, all rows are enabled.
-   */
-  isRowDisabled?: (rowData: T) => boolean;
-  /**
-   * Function that should return custom props passed to the each row.
-   * Must be memoized.
-   */
-  rowProps?: (row: Row<T>) => React.ComponentPropsWithRef<'div'> & {
-    status?: 'positive' | 'warning' | 'negative';
+> = Omit<TableOptions<T>, 'disableSortBy'> &
+  Omit<React.ComponentPropsWithoutRef<'div'>, 'role' | 'onSelect'> & {
+    /**
+     * Flag whether data is loading.
+     * @default false
+     */
     isLoading?: boolean;
-  };
-  /**
-   * Modify the density of the table (adjusts the row height).
-   * @default 'default'
-   */
-  density?: 'default' | 'condensed' | 'extra-condensed';
-  /**
-   * Flag whether to select a row when clicked anywhere inside of it.
-   * @default true
-   */
-  selectRowOnClick?: boolean;
-  /**
-   * Function that takes `TablePaginatorRendererProps` as an argument and returns pagination component.
-   *
-   * Recommended to use `TablePaginator`. Passing `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
-   * @example
-   * (props: TablePaginatorRendererProps) => (
-   *   <TablePaginator {...props} />
-   * )
-   */
-  paginatorRenderer?: (props: TablePaginatorRendererProps) => React.ReactNode;
-  /**
-   * Number of rows per page.
-   * @default 25
-   */
-  pageSize?: number;
-  /**
-   * Flag whether columns are resizable.
-   * In order to disable resizing for specific column, set `disableResizing: true` for that column.
-   * @default false
-   */
-  isResizable?: boolean;
-  /**
-   * Style of the table.
-   * @default 'default'
-   */
-  styleType?: 'default' | 'zebra-rows';
-  /**
-   * Virtualization is used for the scrollable table body.
-   * Height on the table is required for virtualization to work.
-   * @example
-   * <Table enableVirtualization style={{height: 400}} {...} />
-   * @default false
-   * @beta
-   */
-  enableVirtualization?: boolean;
-  /**
-   * Flag whether columns can be reordered.
-   * @default false
-   */
-  enableColumnReordering?: boolean;
-  /**
-   * Passes props to Table header wrapper.
-   */
-  headerWrapperProps?: React.ComponentProps<'div'>;
-  /**
-   * Passes props to Table header.
-   */
-  headerProps?: React.ComponentProps<'div'>;
-  /**
-   * Passes custom props to Table body.
-   */
-  bodyProps?: React.ComponentProps<'div'>;
-  /**
-   * Passes custom props to empty table.
-   */
-  emptyTableContentProps?: React.ComponentProps<'div'>;
-  /**
-   * Function that returns index of the row that you want to scroll to.
-   *
-   * When using with lazy-loading table, you need to take care that row is already loaded.
-   * It doesn't work with paginated tables.
-   * @beta
-   * @example
-   * <Table
-   *   scrollToRow={React.useCallback(
-   *     (rows, data) => rows.findIndex((row) => row.original === data[250]),
-   *     []
-   *   )}
-   *   {...restProps}
-   * />
-   * @example
-   * <Table
-   *   scrollToRow={React.useCallback(
-   *     (rows, data) => rows.findIndex((row) => row.original.id === data[250].id),
-   *     []
-   *   )}
-   *   {...restProps}
-   * />
-   */
-  scrollToRow?: (rows: Row<T>[], data: T[]) => number;
-} & Omit<CommonProps, 'title'>;
+    /**
+     * Content shown when there is no data.
+     */
+    emptyTableContent: React.ReactNode;
+    /**
+     * Flag whether table rows can be selectable.
+     * @default false
+     */
+    isSelectable?: boolean;
+    /**
+     * Handler for rows selection. Must be memoized.
+     * This is triggered only by user initiated actions (i.e. data change will not call it).
+     */
+    onSelect?: (
+      selectedData: T[] | undefined,
+      tableState?: TableState<T>,
+    ) => void;
+    /**
+     * Handler for when a row is clicked. Must be memoized.
+     */
+    onRowClick?: (event: React.MouseEvent, row: Row<T>) => void;
+    /**
+     * Modify the selection mode of the table.
+     * The column with checkboxes will not be present with 'single' selection mode.
+     * @default 'multi'
+     */
+    selectionMode?: 'multi' | 'single';
+    /**
+     * Flag whether table columns can be sortable.
+     * @default false
+     */
+    isSortable?: boolean;
+    /**
+     * Callback function when sort changes.
+     * Use with `manualSortBy` to handle sorting yourself e.g. sort in server-side.
+     * Must be memoized.
+     */
+    onSort?: (state: TableState<T>) => void;
+    /**
+     * Callback function when scroll reaches bottom. Can be used for lazy-loading the data.
+     */
+    onBottomReached?: () => void;
+    /**
+     * Callback function when row is in viewport.
+     */
+    onRowInViewport?: (rowData: T) => void;
+    /**
+     * Margin in pixels when row is considered to be already in viewport. Used for `onBottomReached` and `onRowInViewport`.
+     * @default 300
+     */
+    intersectionMargin?: number;
+    /**
+     * A function that will be used for rendering a component for each row if that row is expanded.
+     * Component will be placed right after the row. Can return false/null if row should not be expandable.
+     */
+    subComponent?: (row: Row<T>) => React.ReactNode;
+    /**
+     * A function used for overriding default expander cell. `subComponent` must be present.
+     * Make sure to trigger `cellProps.row.toggleRowExpanded()`.
+     */
+    expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
+    /**
+     * Handler for row expand events. Will trigger when expanding and collapsing rows.
+     */
+    onExpand?: (
+      expandedData: T[] | undefined,
+      tableState?: TableState<T>,
+    ) => void;
+    /**
+     * Callback function when filters change.
+     * Use with `manualFilters` to handle filtering yourself e.g. filter in server-side.
+     * Must be memoized.
+     */
+    onFilter?: (
+      filters: TableFilterValue<T>[],
+      state: TableState<T>,
+      filteredData?: Row<T>[],
+    ) => void;
+    /**
+     * Value used for global filtering.
+     * Use with `globalFilter` and/or `manualGlobalFilter` to handle filtering yourself e.g. filter in server-side.
+     * Must be memoized.
+     */
+    globalFilterValue?: unknown;
+    /**
+     * Content shown when there is no data after filtering.
+     */
+    emptyFilteredTableContent?: React.ReactNode;
+    /**
+     * Function that should return true if a row is disabled (i.e. cannot be selected or expanded).
+     * If not specified, all rows are enabled.
+     */
+    isRowDisabled?: (rowData: T) => boolean;
+    /**
+     * Function that should return custom props passed to the each row.
+     * Must be memoized.
+     */
+    rowProps?: (row: Row<T>) => React.ComponentPropsWithRef<'div'> & {
+      status?: 'positive' | 'warning' | 'negative';
+      isLoading?: boolean;
+    };
+    /**
+     * Modify the density of the table (adjusts the row height).
+     * @default 'default'
+     */
+    density?: 'default' | 'condensed' | 'extra-condensed';
+    /**
+     * Flag whether to select a row when clicked anywhere inside of it.
+     * @default true
+     */
+    selectRowOnClick?: boolean;
+    /**
+     * Function that takes `TablePaginatorRendererProps` as an argument and returns pagination component.
+     *
+     * Recommended to use `TablePaginator`. Passing `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
+     * @example
+     * (props: TablePaginatorRendererProps) => (
+     *   <TablePaginator {...props} />
+     * )
+     */
+    paginatorRenderer?: (props: TablePaginatorRendererProps) => React.ReactNode;
+    /**
+     * Number of rows per page.
+     * @default 25
+     */
+    pageSize?: number;
+    /**
+     * Flag whether columns are resizable.
+     * In order to disable resizing for specific column, set `disableResizing: true` for that column.
+     * @default false
+     */
+    isResizable?: boolean;
+    /**
+     * Style of the table.
+     * @default 'default'
+     */
+    styleType?: 'default' | 'zebra-rows';
+    /**
+     * Virtualization is used for the scrollable table body.
+     * Height on the table is required for virtualization to work.
+     * @example
+     * <Table enableVirtualization style={{height: 400}} {...} />
+     * @default false
+     * @beta
+     */
+    enableVirtualization?: boolean;
+    /**
+     * Flag whether columns can be reordered.
+     * @default false
+     */
+    enableColumnReordering?: boolean;
+    /**
+     * Passes props to Table header wrapper.
+     */
+    headerWrapperProps?: React.ComponentProps<'div'>;
+    /**
+     * Passes props to Table header.
+     */
+    headerProps?: React.ComponentProps<'div'>;
+    /**
+     * Passes custom props to Table body.
+     */
+    bodyProps?: React.ComponentProps<'div'>;
+    /**
+     * Passes props to the `role="table"` element within the wrapper.
+     *
+     * - If `tableProps` or `role` is passed to `Table`, all ARIA attributes passed to `Table` will be passed to the wrapper.
+     * - Else, all ARIA attributes will be passed to the inner element with `role="table"`.
+     */
+    tableProps?: React.ComponentProps<'div'>;
+    /**
+     * Passes custom props to empty table.
+     */
+    emptyTableContentProps?: React.ComponentProps<'div'>;
+    /**
+     * Function that returns index of the row that you want to scroll to.
+     *
+     * When using with lazy-loading table, you need to take care that row is already loaded.
+     * It doesn't work with paginated tables.
+     * @beta
+     * @example
+     * <Table
+     *   scrollToRow={React.useCallback(
+     *     (rows, data) => rows.findIndex((row) => row.original === data[250]),
+     *     []
+     *   )}
+     *   {...restProps}
+     * />
+     * @example
+     * <Table
+     *   scrollToRow={React.useCallback(
+     *     (rows, data) => rows.findIndex((row) => row.original.id === data[250].id),
+     *     []
+     *   )}
+     *   {...restProps}
+     * />
+     */
+    scrollToRow?: (rows: Row<T>[], data: T[]) => number;
+    /**
+     * Caption for the table.
+     *
+     * Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+     *
+     * @default "Table"
+     */
+    caption?: string;
+    /**
+     * If `tableProps` or `role` is passed to `Table`, all ARIA attributes passed to `Table` will be passed to the wrapper.
+     * Else, all ARIA attributes will be passed to the inner element with `role="table"`.
+     */
+    role?: React.AriaRole;
+  } & Omit<CommonProps, 'title'>;
 
 const flattenColumns = <T extends Record<string, unknown>>(
   columns: Column<T>[],
@@ -331,6 +354,12 @@ const flattenColumns = <T extends Record<string, unknown>>(
 
 /**
  * Table based on [react-table](https://react-table.tanstack.com/docs/api/overview).
+ *
+ * **Note**: If `tableProps` or `role` is passed to `Table`, all ARIA attributes passed to `Table` will be passed to the wrapper.
+ * Else, all ARIA attributes will be passed to the inner element with `role="table"`.
+ *
+ * ---
+ *
  * @example
  * const columns = React.useMemo(() => [
  *   {
@@ -370,7 +399,7 @@ export const Table = <
   T extends Record<string, unknown> = Record<string, unknown>,
 >(
   props: TableProps<T>,
-): JSX.Element => {
+): React.JSX.Element => {
   const {
     data,
     columns,
@@ -412,22 +441,100 @@ export const Table = <
     headerWrapperProps,
     headerProps,
     bodyProps,
+    tableProps,
     emptyTableContentProps,
     getRowId,
-    ...rest
+    caption = 'Table',
+    role,
+    scrollToRow,
+
+    // Destructing remaining TableOptions<T> props to prevent passing them to the DOM.
+    // https://github.com/iTwin/iTwinUI/issues/2553
+    useControlledState,
+    autoResetExpanded,
+    autoResetFilters,
+    autoResetGlobalFilter,
+    autoResetHiddenColumns,
+    autoResetPage,
+    autoResetResize,
+    autoResetSelectedRows,
+    autoResetSortBy,
+    defaultCanFilter,
+    defaultCanSort,
+    defaultColumn: defaultColumnProp,
+    disableFilters,
+    disableGlobalFilter,
+    disableMultiSort,
+    disableSortRemove,
+    disabledMultiRemove,
+    expandSubRows,
+    globalFilter,
+    initialState,
+    isMultiSortEvent,
+    manualExpandedKey,
+    manualFilters,
+    manualGlobalFilter,
+    manualRowSelectedKey,
+    manualSortBy,
+    maxMultiSortColCount,
+    orderByFn,
+    pageCount,
+    sortTypes,
+    manualPagination,
+    paginateExpandedRows,
+
+    ..._rest
   } = props;
+
+  const { ariaRestAttributes, nonAriaRestAttributes } = React.useMemo(
+    () =>
+      Object.entries(_rest).reduce(
+        (result, [key, value]) => {
+          if (key.startsWith('aria-')) {
+            result.ariaRestAttributes[key] = value;
+          } else {
+            result.nonAriaRestAttributes[key] = value;
+          }
+          return result;
+        },
+        { ariaRestAttributes: {}, nonAriaRestAttributes: {} } as {
+          ariaRestAttributes: Record<string, unknown>;
+          nonAriaRestAttributes: Record<string, unknown>;
+        },
+      ),
+    [_rest],
+  );
+
+  // Conditional behavior for ARIA attributes:
+  // If tableProps or role is passed, keep all ARIA attributes on the outer element
+  // Otherwise apply them on the inner table element
+  const { outerAriaRestAttributes, innerAriaRestAttributes } =
+    React.useMemo(() => {
+      if (tableProps || role) {
+        return {
+          outerAriaRestAttributes: { ...ariaRestAttributes },
+          innerAriaRestAttributes: {},
+        };
+      }
+
+      return {
+        outerAriaRestAttributes: {},
+        innerAriaRestAttributes: { ...ariaRestAttributes },
+      };
+    }, [ariaRestAttributes, role, tableProps]);
 
   useGlobals();
 
-  const ownerDocument = React.useRef<Document | undefined>();
+  const ownerDocument = React.useRef<Document>(undefined);
 
   const defaultColumn = React.useMemo(
     () => ({
       maxWidth: 0,
       minWidth: 0,
       width: 0,
+      ...defaultColumnProp,
     }),
-    [],
+    [defaultColumnProp],
   );
 
   const rowHeight = React.useMemo(() => {
@@ -630,9 +737,36 @@ export const Table = <
 
   const instance = useTable<T>(
     {
-      manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
-      paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
-      ...props,
+      manualPagination: manualPagination ?? !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
+      paginateExpandedRows: paginateExpandedRows ?? false, // When false, it shows sub-rows in the current page instead of splitting them
+      useControlledState,
+      autoResetExpanded,
+      autoResetFilters,
+      autoResetGlobalFilter,
+      autoResetHiddenColumns,
+      autoResetPage,
+      autoResetResize,
+      autoResetSelectedRows,
+      autoResetSortBy,
+      defaultCanFilter,
+      defaultCanSort,
+      disableFilters,
+      disableGlobalFilter,
+      disableMultiSort,
+      disableSortRemove,
+      disabledMultiRemove,
+      expandSubRows,
+      globalFilter,
+      isMultiSortEvent,
+      manualExpandedKey,
+      manualFilters,
+      manualGlobalFilter,
+      manualRowSelectedKey,
+      manualSortBy,
+      maxMultiSortColCount,
+      orderByFn,
+      pageCount: pageCount ?? -1,
+      sortTypes,
       columns,
       defaultColumn,
       disableSortBy: !isSortable,
@@ -641,7 +775,7 @@ export const Table = <
       selectSubRows,
       data,
       getSubRows: subComponent ? getSubRowsWithSubComponents : getSubRows,
-      initialState: { pageSize, ...props.initialState },
+      initialState: { pageSize, ...initialState },
       columnResizeMode,
       getRowId: subComponent ? getRowIdWithSubComponents : getRowId, // only call this wrapper function when sub-component is present
     },
@@ -700,16 +834,6 @@ export const Table = <
       `Passing both \`subComponent\` and \`data\` with \`subRows\` is not supported. There are features designed for \`subRows\` that are not compatible with \`subComponent\` and vice versa.`,
     );
   }
-
-  const ariaDataAttributes = Object.entries(rest).reduce(
-    (result, [key, value]) => {
-      if (key.startsWith('data-') || key.startsWith('aria-')) {
-        result[key] = value;
-      }
-      return result;
-    },
-    {} as Record<string, unknown>,
-  );
 
   const areFiltersSet =
     allColumns.some(
@@ -816,7 +940,11 @@ export const Table = <
 
   const tableRef = React.useRef<HTMLDivElement>(null);
 
-  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
+  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({
+    ...props,
+    scrollToRow,
+    page,
+  });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
@@ -889,7 +1017,7 @@ export const Table = <
   const getPreparedRow = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem<Element>,
+      virtualItem?: VirtualItem,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const row = page[index];
@@ -985,6 +1113,8 @@ export const Table = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const captionId = useId();
+
   return (
     <TableInstanceContext.Provider
       value={instance as TableInstance<Record<string, unknown>>}
@@ -1005,10 +1135,31 @@ export const Table = <
             ...style,
           },
         })}
+        role={role} // To remove the role="table" from getTableProps()
         onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
-        {...ariaDataAttributes}
+        {...outerAriaRestAttributes}
+        {...nonAriaRestAttributes}
       >
+        <ShadowRoot>
+          {/* Inner wrapper with role="table" to only include table elements */}
+          <div
+            role='table'
+            {...innerAriaRestAttributes}
+            {...tableProps}
+            aria-labelledby={captionId}
+          >
+            <VisuallyHidden id={captionId}>{caption}</VisuallyHidden>
+
+            <slot name='iui-table-header-wrapper' />
+            <slot name='iui-table-body' />
+          </div>
+
+          {/* Non-table elements (e.g. paginator, loading indicator, empty state) should not be within role="table" */}
+          <slot name='iui-table-body-extra' />
+          <slot />
+        </ShadowRoot>
+
         {headerGroups.map((headerGroup: HeaderGroup<T>) => {
           // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id
           headerGroup.headers = headerGroup.headers.filter(
@@ -1021,6 +1172,7 @@ export const Table = <
           });
           return (
             <Box
+              slot='iui-table-header-wrapper'
               as='div'
               key={headerGroupProps.key}
               {...headerWrapperProps}
@@ -1034,7 +1186,7 @@ export const Table = <
                 {...headerProps}
                 className={cx('iui-table-header', headerProps?.className)}
               >
-                <Box {...headerGroupProps}>
+                <Box {...headerGroupProps} key={headerGroupProps.key}>
                   {headerGroup.headers.map((column, index) => {
                     const dragAndDropProps = column.getDragAndDropProps();
                     return (
@@ -1070,6 +1222,7 @@ export const Table = <
           );
         })}
         <Box
+          slot='iui-table-body'
           as='div'
           {...bodyProps}
           {...getTableBodyProps({
@@ -1081,11 +1234,9 @@ export const Table = <
               bodyProps?.className,
             ),
           })}
-          aria-multiselectable={
-            (isSelectable && selectionMode === 'multi') || undefined
-          }
+          role={undefined} // To remove the role="rowgroup" from getTableBodyProps()
         >
-          <ShadowRoot css={virtualizerCss}>
+          <ShadowRoot css={virtualizerCss} flush={false}>
             {enableVirtualization && data.length !== 0 ? (
               <div
                 data-iui-virtualizer='root'
@@ -1112,49 +1263,34 @@ export const Table = <
                 : page.map((_, index) => getPreparedRow(index))}
             </>
           )}
-          {isLoading && data.length === 0 && (
-            <Box
-              as='div'
-              {...emptyTableContentProps}
-              className={cx(
-                'iui-table-empty',
-                emptyTableContentProps?.className,
-              )}
-            >
-              <ProgressRadial indeterminate={true} />
-            </Box>
-          )}
-          {!isLoading && data.length === 0 && !areFiltersSet && (
-            <Box
-              as='div'
-              {...emptyTableContentProps}
-              className={cx(
-                'iui-table-empty',
-                emptyTableContentProps?.className,
-              )}
-            >
-              <div>{emptyTableContent}</div>
-            </Box>
-          )}
-          {!isLoading &&
-            (data.length === 0 || rows.length === 0) &&
-            areFiltersSet && (
-              <Box
-                as='div'
-                {...emptyTableContentProps}
-                className={cx(
-                  'iui-table-empty',
-                  emptyTableContentProps?.className,
-                )}
-              >
-                <div>{emptyFilteredTableContent}</div>
-              </Box>
-            )}
         </Box>
+        {isLoading && data.length === 0 && (
+          <TableBodyExtraWrapper>
+            <TableEmptyWrapper {...emptyTableContentProps}>
+              <ProgressRadial indeterminate={true} />
+            </TableEmptyWrapper>
+          </TableBodyExtraWrapper>
+        )}
+        {!isLoading && data.length === 0 && !areFiltersSet && (
+          <TableBodyExtraWrapper>
+            <TableEmptyWrapper {...emptyTableContentProps}>
+              <div>{emptyTableContent}</div>
+            </TableEmptyWrapper>
+          </TableBodyExtraWrapper>
+        )}
+        {!isLoading &&
+          (data.length === 0 || rows.length === 0) &&
+          areFiltersSet && (
+            <TableBodyExtraWrapper>
+              <TableEmptyWrapper {...emptyTableContentProps}>
+                <div>{emptyFilteredTableContent}</div>
+              </TableEmptyWrapper>
+            </TableBodyExtraWrapper>
+          )}
         {isLoading && data.length !== 0 && (
-          <Box className='iui-table-body-extra' data-iui-loading='true'>
+          <TableBodyExtraWrapper data-iui-loading='true'>
             <ProgressRadial indeterminate size='small' />
-          </Box>
+          </TableBodyExtraWrapper>
         )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
@@ -1164,3 +1300,44 @@ export const Table = <
 if (process.env.NODE_ENV === 'development') {
   Table.displayName = 'Table';
 }
+
+// ----------------------------------------------------------------------------
+
+const TableBodyExtraWrapper = React.forwardRef(
+  (
+    props: React.PropsWithChildren<React.ComponentProps<'div'>>,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const { children, ...rest } = props;
+    return (
+      <Box
+        as='div'
+        ref={ref}
+        slot='iui-table-body-extra'
+        {...rest}
+        className={cx('iui-table-body-extra', rest.className)}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
+
+const TableEmptyWrapper = React.forwardRef(
+  (
+    props: React.PropsWithChildren<React.ComponentProps<'div'>>,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const { children, ...rest } = props;
+    return (
+      <Box
+        as='div'
+        ref={ref}
+        {...rest}
+        className={cx('iui-table-empty', rest.className)}
+      >
+        {children}
+      </Box>
+    );
+  },
+);

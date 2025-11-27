@@ -1,9 +1,12 @@
 ---
 import fs from 'node:fs';
 import OpenInCodePen from './OpenInCodePen.astro';
+import IconButton from './IconButton.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
+import DemoThemeProvider from './DemoThemeProvider.tsx';
+import VisuallyHidden from './utils/VisuallyHidden.astro';
 
 const require = createRequire(import.meta.url);
 
@@ -50,21 +53,33 @@ const cssCode = await (async () => {
     <style is:inline>
       astro-island {
         display: block !important; /* https://github.com/iTwin/iTwinUI/pull/2353 */
+        max-inline-size: 100cqi;
       }
     </style>
     <style set:html={cssCode}></style>
     <link rel='stylesheet' href={itwinuiStyles} />
-    <slot />
+    <DemoThemeProvider client:load>
+      <slot />
+    </DemoThemeProvider>
     <slot is:inline />
   </template>
 
-  <OpenInCodePen
-    class='sandbox-link'
-    code={{
-      js: jsxCode,
-      css: cssCode,
-    }}
-  />
+  <div class='demo-actions'>
+    <IconButton data-theme-toggle>
+      <Fragment slot='tooltip'>Toggle theme</Fragment>
+      <VisuallyHidden>Toggle theme</VisuallyHidden>
+      <svg width='16' height='16' viewBox='0 0 20 20' aria-hidden='true'>
+        <path fill='currentColor' d='M10 3.5a6.5 6.5 0 1 1 0 13zM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16'
+        ></path>
+      </svg>
+    </IconButton>
+    <OpenInCodePen
+      code={{
+        js: jsxCode,
+        css: cssCode,
+      }}
+    />
+  </div>
 </demo-box>
 
 {
@@ -77,6 +92,8 @@ const cssCode = await (async () => {
 }
 
 <script>
+  import { demoTheme, toggleDemoTheme } from '~/stores/theme.store.js';
+
   customElements.define(
     'demo-code',
     class extends HTMLElement {
@@ -104,6 +121,17 @@ const cssCode = await (async () => {
           this.attachShadow({ mode: 'open' }).appendChild(template.content);
           template.remove();
         }
+
+        // subscribe to demoTheme atom for store changes to update background-color
+        demoTheme.subscribe((theme) => {
+          this.dataset.theme = theme;
+        });
+
+        // wire up theme toggle
+        const themeToggle = this.querySelector('button[data-theme-toggle]') as HTMLButtonElement;
+        themeToggle.addEventListener('click', () => {
+          toggleDemoTheme();
+        });
       }
     },
   );
@@ -112,6 +140,7 @@ const cssCode = await (async () => {
 <style lang='scss'>
   @layer components {
     demo-box {
+      container-type: inline-size;
       position: relative;
       min-height: 300px;
       max-height: 500px;
@@ -121,13 +150,19 @@ const cssCode = await (async () => {
       isolation: isolate;
       border-radius: var(--border-radius-1);
       outline: 1px solid var(--color-line-2);
+
+      &[data-theme='light'] {
+        background-color: #eef0f1; /* hardcoding --iui-color-background-backdrop */
+        color-scheme: light;
+      }
     }
 
-    .sandbox-link {
+    .demo-actions {
       position: absolute;
       bottom: 0.25rem;
       right: 0.25rem;
       z-index: 1;
+      display: flex;
     }
 
     demo-code {

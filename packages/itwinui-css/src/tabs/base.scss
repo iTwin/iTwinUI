@@ -18,6 +18,17 @@ $borderless-horizontal-tab-min-height: calc(
 );
 
 @mixin iui-tabs-wrapper {
+  --_iui-tab-color-stripe-blue: var(--iui-color-border-accent);
+  --_iui-tab-color-stripe-green: var(--iui-color-border-positive);
+  --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-blue);
+
+  --_iui-tab-color-default: var(--iui-color-text);
+  --_iui-tab-color-hover: var(--iui-color-text);
+  --_iui-tab-color-selected: var(--iui-color-text-accent);
+  --_iui-tab-color-disabled: var(--iui-color-text-disabled);
+  --_iui-tab-color-green-selected: var(--iui-color-text-positive);
+  --_iui-tab-color: var(--_iui-tab-color-default);
+
   display: grid;
   position: relative;
 }
@@ -44,14 +55,34 @@ $borderless-horizontal-tab-min-height: calc(
     min-block-size: calc(var(--iui-size-m) * 2.5);
     block-size: 100%;
     cursor: pointer;
-    color: var(--iui-color-text);
-    transition: background-color var(--iui-duration-1) ease-out;
+    color: var(--_iui-tab-color);
+    transition:
+      background-color var(--iui-duration-1) ease-out,
+      color var(--iui-duration-1) ease-out;
     text-align: start;
     scroll-margin: var(--iui-size-m);
+    background-color: var(--_iui-tab-bg-color);
 
-    &[aria-selected='true'] {
-      color: var(--iui-color-text-accent);
+    &::after {
+      background-color: var(--_iui-tab-color-stripe);
+    }
 
+    &:hover {
+      --_iui-tab-bg-color: var(--_iui-tab-bg-color-hover);
+      --_iui-tab-color: var(--_iui-tab-color-hover);
+    }
+
+    &:is([aria-selected='true'], [aria-current]) {
+      --_iui-tab-bg-color: var(--_iui-tab-bg-color-selected);
+      --_iui-tab-color: var(--_iui-tab-color-selected);
+
+      &:hover {
+        --_iui-tab-bg-color: var(--_iui-tab-bg-color-selected-hover);
+      }
+    }
+
+    &:hover,
+    &:is([aria-selected='true'], [aria-current]) {
       .iui-tab-icon svg {
         fill: currentColor;
       }
@@ -63,7 +94,8 @@ $borderless-horizontal-tab-min-height: calc(
 
     &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       cursor: not-allowed;
-      color: var(--iui-color-text-disabled);
+      --_iui-tab-bg-color: var(--_iui-tab-bg-color-disabled);
+      --_iui-tab-color: var(--_iui-tab-color-disabled);
 
       .iui-tab-description {
         color: inherit;
@@ -97,15 +129,12 @@ $borderless-horizontal-tab-min-height: calc(
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
     grid-area: description;
+    transition: color var(--iui-duration-1) ease-out;
   }
 
   &.iui-green .iui-tab {
-    &:focus {
-      outline-color: var(--iui-color-text-positive);
-    }
-
-    &[aria-selected='true'] {
-      color: var(--iui-color-text-positive);
+    &:is([aria-selected='true'], [aria-current]) {
+      --_iui-tab-color: var(--_iui-tab-color-green-selected);
 
       .iui-tab-icon svg {
         fill: currentColor;
@@ -132,7 +161,7 @@ $borderless-horizontal-tab-min-height: calc(
   contain: inline-size;
   inline-size: 100%;
 
-  .iui-tabs {
+  .iui-tabs[data-iui-orientation='horizontal'] {
     display: flex;
     container-type: inline-size;
 
@@ -163,19 +192,19 @@ $borderless-horizontal-tab-min-height: calc(
         mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
       }
     }
-  }
 
-  .iui-tab {
-    flex-shrink: 0;
-    max-inline-size: 60cqi;
+    .iui-tab {
+      flex-shrink: 0;
+      max-inline-size: 60cqi;
 
-    &::after {
-      inline-size: 100%;
-      block-size: 0;
-    }
+      &::after {
+        inline-size: 100%;
+        block-size: 0;
+      }
 
-    &[aria-selected='true']::after {
-      block-size: var(--iui-size-3xs);
+      &:is([aria-selected='true'], [aria-current])::after {
+        block-size: var(--iui-size-3xs);
+      }
     }
   }
 }
@@ -186,7 +215,7 @@ $borderless-horizontal-tab-min-height: calc(
   grid-template-rows: 1fr auto;
   block-size: 100%;
 
-  .iui-tabs {
+  .iui-tabs[data-iui-orientation='vertical'] {
     ~ .iui-tabs-content {
       overflow: auto;
     }
@@ -217,16 +246,16 @@ $borderless-horizontal-tab-min-height: calc(
         mask-image: linear-gradient(0deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
       }
     }
-  }
 
-  .iui-tab {
-    &::after {
-      inline-size: 0;
-      block-size: 100%;
-    }
+    .iui-tab {
+      &::after {
+        inline-size: 0;
+        block-size: 100%;
+      }
 
-    &[aria-selected='true']::after {
-      inline-size: var(--iui-size-3xs);
+      &:is([aria-selected='true'], [aria-current])::after {
+        inline-size: var(--iui-size-3xs);
+      }
     }
   }
 }
@@ -235,10 +264,11 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-tab::after {
     content: '';
     position: absolute;
-    background-color: var(--iui-color-border-accent);
+
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-blue);
   }
 
-  [aria-selected='true']::after {
+  :is([aria-selected='true'], [aria-current])::after {
     @media (prefers-reduced-motion: no-preference) {
       transition:
         width var(--iui-duration-1) ease,
@@ -247,7 +277,7 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-border-positive);
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 }
 
@@ -255,11 +285,12 @@ $borderless-horizontal-tab-min-height: calc(
   &::after {
     position: absolute;
     content: ' ';
-    background-color: var(--iui-color-border-accent);
+
+    background-color: var(--_iui-tab-color-stripe);
   }
 
   &.iui-green::after {
-    background-color: var(--iui-color-border-positive);
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 
   .iui-horizontal &::after {

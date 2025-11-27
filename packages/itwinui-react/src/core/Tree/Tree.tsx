@@ -13,7 +13,7 @@ import {
   useLayoutEffect,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { TreeContext } from './TreeContext.js';
+import { TreeContext, VirtualizedTreeContext } from './TreeContext.js';
 import type { Virtualizer, VirtualItem } from '@tanstack/react-virtual';
 
 export type NodeData<T> = {
@@ -79,7 +79,7 @@ export type TreeProps<T> = {
    *   />
    * ), [onNodeExpanded])
    */
-  nodeRenderer: (props: NodeRenderProps<T>) => JSX.Element;
+  nodeRenderer: (props: NodeRenderProps<T>) => React.JSX.Element;
   /**
    * Array of custom data used for `TreeNodes` inside `Tree`.
    */
@@ -262,7 +262,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   const itemRenderer = React.useCallback(
     (
       index: number,
-      virtualItem?: VirtualItem<Element>,
+      virtualItem?: VirtualItem,
       virtualizer?: Virtualizer<Element, Element>,
     ) => {
       const node = flatNodesList[index];
@@ -387,9 +387,9 @@ type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
   itemRenderer: (
     index: number,
-    virtualItem?: VirtualItem<Element>,
+    virtualItem?: VirtualItem,
     virtualizer?: Virtualizer<Element, Element>,
-  ) => JSX.Element;
+  ) => React.JSX.Element;
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
   onFocus: React.FocusEventHandler<HTMLDivElement>;
@@ -407,6 +407,7 @@ const VirtualizedTree = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
+    const virtualizerRootRef = React.useRef<HTMLDivElement | null>(null);
 
     const getItemKey = React.useCallback(
       (index: number) => {
@@ -415,11 +416,36 @@ const VirtualizedTree = React.forwardRef(
       [flatNodesList],
     );
 
+    /** Sets the virtualizer width to that of the widest element, so that all items are same width. */
+    const onVirtualizerChange = React.useMemo(
+      () =>
+        debounce((virtualizer?: Virtualizer<Element, Element>) => {
+          if (!virtualizer || !virtualizerRootRef.current) {
+            return;
+          }
+
+          // Reset width first so that it can shrink back.
+          virtualizerRootRef.current.style.width = '';
+
+          let widestNodeWidth = 0;
+          virtualizer.elementsCache.forEach((el) => {
+            if (el.clientWidth > widestNodeWidth) {
+              widestNodeWidth = el.clientWidth;
+            }
+          });
+          if (widestNodeWidth) {
+            virtualizerRootRef.current.style.width = `${widestNodeWidth}px`;
+          }
+        }, 100),
+      [],
+    );
+
     const { virtualizer, css: virtualizerCss } = useVirtualScroll({
       count: flatNodesList.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 39, //Set to 39px since that is the height of a treeNode with a sub label with the default font size.
       getItemKey,
+      onChange: onVirtualizerChange,
     });
 
     useLayoutEffect(() => {
@@ -430,22 +456,49 @@ const VirtualizedTree = React.forwardRef(
 
     return (
       <TreeElement {...rest} ref={useMergedRefs(ref, parentRef)}>
-        <ShadowRoot css={virtualizerCss}>
-          <div
-            data-iui-virtualizer='root'
-            style={{ minBlockSize: virtualizer.getTotalSize() }}
-          >
-            <slot />
-          </div>
-        </ShadowRoot>
-        <>
-          {virtualizer
-            .getVirtualItems()
-            .map((virtualItem) =>
-              itemRenderer(virtualItem.index, virtualItem, virtualizer),
+        <div style={{ display: 'contents' }}>
+          <ShadowRoot css={virtualizerCss}>
+            <div
+              data-iui-virtualizer='root'
+              style={{ minBlockSize: virtualizer.getTotalSize() }}
+              ref={virtualizerRootRef}
+            >
+              <slot />
+            </div>
+          </ShadowRoot>
+          <VirtualizedTreeContext.Provider
+            value={React.useMemo(
+              () => ({ virtualizer, onVirtualizerChange }),
+              [virtualizer, onVirtualizerChange],
             )}
-        </>
+          >
+            {virtualizer
+              .getVirtualItems()
+              .map((virtualItem) =>
+                itemRenderer(virtualItem.index, virtualItem, virtualizer),
+              )}
+          </VirtualizedTreeContext.Provider>
+        </div>
       </TreeElement>
     );
   },
 );
+
+// ----------------------------------------------------------------------------
+
+function debounce<T extends (...args: any[]) => any>(
+  callback: T,
+  delay: number,
+) {
+  let timeoutId: number;
+
+  return (...args: Parameters<T>) => {
+    if (timeoutId) {
+      window.clearTimeout(timeoutId);
+    }
+
+    timeoutId = window.setTimeout(() => {
+      callback(...args);
+    }, delay);
+  };
+}

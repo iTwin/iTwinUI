@@ -16,6 +16,7 @@ import {
   useWarningLogger,
   useLayoutEffect,
   useLatestRef,
+  useId,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
@@ -84,11 +85,13 @@ export const PanelsWrapper = React.forwardRef((props, forwardedRef) => {
       ReactDOM.flushSync(() => setActivePanelId(newActiveId));
       onActiveIdChange.current?.(newActiveId);
 
-      ref.current?.ownerDocument.getElementById(newActiveId)?.scrollIntoView({
-        block: 'nearest',
-        inline: 'center',
-        behavior: motionOk ? 'smooth' : 'instant',
-      });
+      (ref.current?.getRootNode() as Document | ShadowRoot)
+        .getElementById(newActiveId)
+        ?.scrollIntoView({
+          block: 'nearest',
+          inline: 'center',
+          behavior: motionOk ? 'smooth' : 'instant',
+        });
     },
     [activePanelId, motionOk, onActiveIdChange],
   );
@@ -219,7 +222,8 @@ const Panel = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-panel', className)}
           aria-labelledby={`${id}-header-title`}
           role='group'
-          {...{ inert: isInert ? '' : undefined }}
+          // @ts-expect-error - Supporting React 19 and 18
+          inert={isInert ? 'true' : undefined}
           data-iui-transitioning={isTransitioning ? 'true' : undefined}
           {...rest}
         >
@@ -250,7 +254,7 @@ if (process.env.NODE_ENV === 'development') {
 
 type PanelTriggerProps = {
   for: string;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
 };
 
 const PanelTrigger = (props: PanelTriggerProps) => {
@@ -267,7 +271,7 @@ const PanelTrigger = (props: PanelTriggerProps) => {
   } = useSafeContext(PanelsWrapperContext);
   const { id: panelId } = useSafeContext(PanelContext);
 
-  const fallbackId = React.useId();
+  const fallbackId = useId();
   const triggerId = children.props.id || fallbackId;
 
   const onClick = React.useCallback(() => {

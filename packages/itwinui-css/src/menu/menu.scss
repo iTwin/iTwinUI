@@ -33,6 +33,8 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 :is(.iui-list-item, .iui-menu-item-skeleton) {
+  --_iui-list-item-background-hover: var(--iui-color-background-transparent-hover);
+
   display: flex;
   align-items: center;
   gap: var(--iui-size-xs);
@@ -46,6 +48,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   position: relative;
   inline-size: 100%;
   text-align: start;
+  overflow-wrap: anywhere;
 
   + #{&} {
     margin-block-start: -1px;
@@ -54,7 +57,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &:where([data-iui-actionable='true']:hover),
   &:where(:has(.iui-link-action):hover) {
     cursor: pointer;
-    background-color: var(--iui-color-background-hover);
+    background-color: var(--_iui-list-item-background-hover);
   }
 
   &:where(.iui-large, [data-iui-size='large']) {
@@ -86,7 +89,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &:where(.iui-disabled, [data-iui-disabled='true']) {
     z-index: -1;
     cursor: not-allowed;
-    outline: none;
     background-color: transparent;
     color: var(--iui-color-text-disabled);
     --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
@@ -102,13 +104,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &:where(:focus-visible, .iui-focused, [data-iui-focused='true']),
   &:where(:has(.iui-link-action:focus-visible)) {
     outline: $iui-active-outline;
-    outline-offset: -1px;
+    outline-width: 2px;
+    outline-offset: -2px;
     z-index: 2;
-
-    &:where(.iui-active, [data-iui-active='true']) {
-      outline-width: var(--iui-size-3xs);
-      outline-offset: -2px;
-    }
   }
 
   @supports not selector(:has(+ *)) {
@@ -127,11 +125,12 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 :is(.iui-menu-item-skeleton > .iui-icon, .iui-list-item-icon) {
   flex: 0 0 auto;
+  color: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
 
   &,
   svg {
     @include mixins.iui-icon-style('m');
-    fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
+    fill: currentColor;
   }
 }
 

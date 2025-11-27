@@ -74,7 +74,7 @@ export { ListItem } from './core/List/ListItem.js';
 
 export { TransferList } from './core/TransferList/TransferList.js';
 
-export { Tabs, Tab } from './core/Tabs/Tabs.js';
+export { Tabs, Tab, unstable_TabsPresentation } from './core/Tabs/Tabs.js';
 
 export { InformationPanel } from './core/InformationPanel/InformationPanel.js';
 export { InformationPanelWrapper } from './core/InformationPanel/InformationPanelWrapper.js';

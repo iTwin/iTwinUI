@@ -6,7 +6,7 @@ import * as React from 'react';
 import {
   Box,
   ShadowRoot,
-  LineClamp,
+  lineClamp,
   SvgSortDown,
   SvgSortUp,
   useMergedRefs,
@@ -134,18 +134,16 @@ export const ColumnHeader = React.forwardRef((props, forwardedRef) => {
       }}
     >
       <>
-        <ShadowRoot>
-          {typeof column.Header === 'string' ? (
-            <LineClamp>
+        {typeof column.Header === 'string' ? (
+          <ShadowRoot css={lineClamp.css}>
+            <div className={lineClamp.className}>
               <slot />
-            </LineClamp>
-          ) : (
-            <slot />
-          )}
-          <slot name='actions' />
-          <slot name='resizers' />
-          <slot name='shadows' />
-        </ShadowRoot>
+            </div>
+            <slot name='actions' />
+            <slot name='resizers' />
+            <slot name='shadows' />
+          </ShadowRoot>
+        ) : null}
 
         {column.render('Header')}
         {(showFilterButton(column) || showSortButton(column)) && (

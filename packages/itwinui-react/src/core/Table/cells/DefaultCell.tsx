@@ -6,18 +6,18 @@ import * as React from 'react';
 import { defaultColumn } from 'react-table';
 import type { CellRendererProps } from '../../../react-table/react-table.js';
 import cx from 'classnames';
-import { Box, LineClamp, ShadowRoot } from '../../../utils/index.js';
+import { Box, lineClamp, ShadowRoot } from '../../../utils/index.js';
 import { TableInstanceContext } from '../utils.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
    * Custom icon to be displayed at the beginning of the cell.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Custom icon to be displayed at the end of the cell.
    */
-  endIcon?: JSX.Element;
+  endIcon?: React.JSX.Element;
   /**
    * Status of the cell.
    */
@@ -31,6 +31,9 @@ export type DefaultCellProps<T extends Record<string, unknown>> = {
   clamp?: boolean;
 } & CellRendererProps<T> &
   React.ComponentPropsWithoutRef<'div'>;
+
+export const DefaultCellRendererPropsChildren =
+  React.createContext<React.ReactNode>(undefined);
 
 /**
  * Default cell.
@@ -47,12 +50,20 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   props: DefaultCellProps<T>,
 ) => {
   const instance = React.useContext(TableInstanceContext);
+
   const isCustomCell = React.useMemo(
     () =>
       instance?.columns.find(({ id }) => props.cellProps.column.id === id)
         ?.Cell !== defaultColumn.Cell,
     [instance, props.cellProps.column.id],
   );
+  const isCellRendererChildrenCustom =
+    React.useContext(DefaultCellRendererPropsChildren) !== props.children;
+
+  const isDefaultTextCell =
+    typeof props.cellProps.value === 'string' &&
+    !isCustomCell &&
+    !isCellRendererChildrenCustom;
 
   const {
     cellElementProps: {
@@ -68,40 +79,55 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     className,
     style,
     status,
-    clamp = typeof cellProps.value === 'string' && !isCustomCell,
+    clamp = isDefaultTextCell,
     ...rest
   } = props;
 
+  const { key: cellElementKey, ...cellElementPropsRest } = cellElementProps;
+
   return (
     <Box
-      {...cellElementProps}
+      {...cellElementPropsRest}
+      key={cellElementKey}
       {...rest}
       className={cx(cellElementClassName, className)}
       aria-disabled={isDisabled?.(cellProps.row.original) || undefined}
       data-iui-status={status}
       style={{ ...cellElementStyle, ...style }}
     >
-      <ShadowRoot>
+      <ShadowRoot key={`${cellElementKey}-shadow-root`} flush={false} css={css}>
         <slot name='start' />
-        {clamp ? (
-          <LineClamp>
+
+        <TableCellContent shouldRenderWrapper={isDefaultTextCell}>
+          {clamp ? (
+            <div className={lineClamp.className}>
+              <slot />
+            </div>
+          ) : (
             <slot />
-          </LineClamp>
-        ) : (
-          <slot />
-        )}
+          )}
+        </TableCellContent>
+
         <slot name='end' />
         <slot name='shadows' />
       </ShadowRoot>
 
       {startIcon && (
-        <Box className='iui-table-cell-start-icon' slot='start'>
+        <Box
+          className='iui-table-cell-start-icon'
+          slot='start'
+          key={`${cellElementKey}-start`}
+        >
           {startIcon}
         </Box>
       )}
       {children}
       {endIcon && (
-        <Box className='iui-table-cell-end-icon' slot='end'>
+        <Box
+          className='iui-table-cell-end-icon'
+          slot='end'
+          key={`${cellElementKey}-end`}
+        >
           {endIcon}
         </Box>
       )}
@@ -111,3 +137,49 @@ export const DefaultCell = <T extends Record<string, unknown>>(
 if (process.env.NODE_ENV === 'development') {
   DefaultCell.displayName = 'DefaultCell';
 }
+
+// ----------------------------------------------------------------------------
+
+/**
+ * If `shouldRenderWrapper` is true, `children` will be wrapped in a `div` with `_iui-table-cell-default-content` class.
+ *
+ * The `_iui-table-cell-default-content` div increases the hit target size.
+ */
+const TableCellContent = (props: {
+  children: React.ReactNode;
+  shouldRenderWrapper: boolean;
+}) => {
+  const { children, shouldRenderWrapper } = props;
+
+  return !shouldRenderWrapper ? (
+    children
+  ) : (
+    <div
+      className='_iui-table-cell-default-content'
+      onClick={(e) => e.stopPropagation()}
+    >
+      {children}
+    </div>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Increase hit target size of the cell content.
+ * This helps prevent accidental row selection when selecting text.
+ */
+const css = /* css */ `
+._iui-table-cell-default-content {
+  position: relative;
+  isolation: isolate;
+}
+._iui-table-cell-default-content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: -6px;
+  z-index: -1;
+}
+${lineClamp.css}
+`;

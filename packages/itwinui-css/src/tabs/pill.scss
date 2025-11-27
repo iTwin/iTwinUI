@@ -3,6 +3,12 @@
 @use 'base';
 
 @mixin iui-tabs-pill {
+  --_iui-tab-bg-color: transparent;
+  --_iui-tab-bg-color-hover: var(--iui-color-background-transparent-hover);
+  --_iui-tab-bg-color-selected: transparent;
+  --_iui-tab-bg-color-selected-hover: var(--iui-color-background-transparent-hover);
+  --_iui-tab-bg-color-disabled: transparent;
+
   justify-content: space-evenly;
   gap: var(--iui-size-3xs);
 
@@ -10,20 +16,9 @@
     flex: 1 1 0;
   }
 
-  &.iui-green .iui-tab {
-    &:hover {
-      background-color: var(--iui-color-background-transparent-hover);
-    }
-
-    &[aria-selected='true']:hover {
-      background-color: var(--iui-color-background-positive-muted);
-    }
-  }
-
   .iui-tab {
     display: flex;
     padding: var(--iui-size-2xs);
-    background-color: transparent;
     inline-size: 100%;
     justify-content: center;
     border-radius: var(--iui-border-radius-1);
@@ -31,18 +26,6 @@
     &::after {
       inset-block-end: 0;
       inset-inline-start: 0;
-    }
-
-    &:hover {
-      background-color: var(--iui-color-background-transparent-hover);
-    }
-
-    &[aria-selected='true']:hover {
-      background-color: var(--iui-color-background-accent-muted);
-    }
-
-    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']):hover {
-      background-color: transparent;
     }
   }
 }

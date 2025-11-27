@@ -68,12 +68,9 @@ it('should add className and style correctly', () => {
 it('should work with long labels', () => {
   const label = 'Long label that gets truncated';
   const { container } = render(
-    <Badge backgroundColor='skyblue' title={label}>
-      {label}
-    </Badge>,
+    <Badge backgroundColor='skyblue'>{label}</Badge>,
   );
   const badge = container.querySelector('.iui-badge') as HTMLElement;
   expect(badge).toBeTruthy();
   expect(badge.textContent).toBe(label);
-  expect(badge.title).toBe(label);
 });

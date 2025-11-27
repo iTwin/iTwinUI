@@ -69,9 +69,12 @@ type TabsWrapperOwnProps = {
    */
   value?: string;
   /**
-   * Function that gets called when active tab is changed.
+   * Function that gets called when active tab *changes* (uncontrolled mode) or should *change* (controlled mode).
    *
    * Should be used alongside `value` prop.
+   *
+   * If need to listen to each tab click, use `onClick` prop on `Tabs.Tab`.
+   * Similarly, for each focus, use `onFocus` prop on `Tabs.Tab`.
    */
   onValueChange?: (value: string) => void;
   /**
@@ -82,7 +85,6 @@ type TabsWrapperOwnProps = {
 
 const TabsWrapper = React.forwardRef((props, ref) => {
   const {
-    className,
     children,
     orientation = 'horizontal',
     type = 'default',
@@ -105,9 +107,9 @@ const TabsWrapper = React.forwardRef((props, ref) => {
   const idPrefix = useId();
 
   return (
-    <Box
-      className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
+    <TabsWrapperPresentation
       {...rest}
+      orientation={orientation}
       style={{ ...stripeProperties, ...props?.style }}
       ref={ref}
     >
@@ -127,12 +129,28 @@ const TabsWrapper = React.forwardRef((props, ref) => {
       >
         {children}
       </TabsContext.Provider>
-    </Box>
+    </TabsWrapperPresentation>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsWrapperOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   TabsWrapper.displayName = 'Tabs.Wrapper';
 }
+
+const TabsWrapperPresentation = React.forwardRef((props, forwardedRef) => {
+  const { orientation = 'horizontal', ...rest } = props;
+
+  return (
+    <Box
+      {...rest}
+      className={cx('iui-tabs-wrapper', `iui-${orientation}`, props.className)}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsWrapperPresentationOwnProps>;
+
+type TabsWrapperPresentationOwnProps = {
+  orientation?: 'horizontal' | 'vertical';
+};
 
 // #endregion
 // ----------------------------------------------------------------------------
@@ -148,7 +166,7 @@ type TabListOwnProps = {
 const TabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { type, hasSublabel, color } = useSafeContext(TabsContext);
+  const { type, hasSublabel, color, orientation } = useSafeContext(TabsContext);
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
@@ -161,21 +179,19 @@ const TabList = React.forwardRef((props, ref) => {
   );
 
   return (
-    <Box
+    <TabListPresentation
       className={cx(
-        'iui-tabs',
-        `iui-${type}`,
-        {
-          'iui-green': color === 'green',
-          'iui-animated': type !== 'default' && isClient,
-          'iui-not-animated': type !== 'default' && !isClient,
-          'iui-large': hasSublabel,
-        },
+        { 'iui-animated': type !== 'default' && isClient },
         className,
       )}
+      data-iui-orientation={orientation}
       role='tablist'
       ref={refs}
       {...rest}
+      type={type}
+      color={color}
+      size={hasSublabel ? 'large' : undefined}
+      orientation={orientation}
     >
       <TabListContext.Provider
         value={{
@@ -185,12 +201,46 @@ const TabList = React.forwardRef((props, ref) => {
       >
         {children}
       </TabListContext.Provider>
-    </Box>
+    </TabListPresentation>
   );
 }) as PolymorphicForwardRefComponent<'div', TabListOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   TabList.displayName = 'Tabs.TabList';
 }
+
+const TabListPresentation = React.forwardRef((props, forwardedRef) => {
+  const {
+    type = 'default',
+    color,
+    size,
+    orientation = 'horizontal',
+    ...rest
+  } = props;
+
+  return (
+    <Box
+      {...rest}
+      className={cx(
+        'iui-tabs',
+        `iui-${type}`,
+        {
+          'iui-green': color === 'green',
+          'iui-large': size === 'large',
+        },
+        props.className,
+      )}
+      data-iui-orientation={orientation}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', TabListPresentationOwnProps>;
+
+type TabListPresentationOwnProps = {
+  type?: 'default' | 'borderless' | 'pill';
+  color?: 'blue' | 'green';
+  orientation?: 'horizontal' | 'vertical';
+  size?: 'default' | 'large';
+};
 
 // #endregion
 // ----------------------------------------------------------------------------
@@ -213,7 +263,7 @@ type TabOwnProps = {
 };
 
 const Tab = React.forwardRef((props, forwardedRef) => {
-  const { className, children, value, label, ...rest } = props;
+  const { children, value, label, ...rest } = props;
 
   const {
     orientation,
@@ -225,7 +275,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     focusActivationMode,
   } = useSafeContext(TabsContext);
   const { tabsWidth, tablistRef } = useSafeContext(TabListContext);
-  const tabRef = React.useRef<HTMLButtonElement>();
+  const tabRef = React.useRef<HTMLButtonElement>(undefined);
 
   const isActive = activeValue === value;
   const isActiveRef = useLatestRef(isActive);
@@ -249,6 +299,10 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       const currentTabRect = tabRef.current?.getBoundingClientRect();
       const tabslistRect = tablistRef.current?.getBoundingClientRect();
 
+      // https://github.com/iTwin/iTwinUI/issues/2465
+      const currentTabLeftIncludingScroll =
+        (currentTabRect?.x ?? 0) + (tablistRef.current?.scrollLeft ?? 0);
+
       // Using getBoundingClientRect() to get decimal granularity.
       // Not using offsetLeft/offsetTop because they round to the nearest integer.
       // Even minor inaccuracies in the stripe position can cause unexpected scroll/scrollbar.
@@ -256,7 +310,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       const tabsStripePosition =
         currentTabRect != null && tabslistRect != null
           ? {
-              horizontal: currentTabRect.x - tabslistRect.x,
+              horizontal: currentTabLeftIncludingScroll - tabslistRect.x,
               vertical: currentTabRect.y - tabslistRect.y,
             }
           : {
@@ -286,6 +340,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     tabsWidth, // to fix visual artifact on initial render
     setStripeProperties,
     tablistRef,
+    value, // since Tab with a different value might be later added to the same position
   ]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -351,8 +406,8 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <ButtonBase
-      className={cx('iui-tab', className)}
+    <TabPresentation
+      as={ButtonBase}
       role='tab'
       tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}
@@ -370,12 +425,23 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       })}
     >
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
-    </ButtonBase>
+    </TabPresentation>
   );
 }) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
 if (process.env.NODE_ENV === 'development') {
   Tab.displayName = 'Tabs.Tab';
 }
+
+const TabPresentation = React.forwardRef((props, forwardedRef) => {
+  return (
+    <Box
+      as='button'
+      {...props}
+      className={cx('iui-tab', props.className)}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'button'>;
 
 // #endregion
 // ----------------------------------------------------------------------------
@@ -605,7 +671,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         {labels.map((label, index) => {
           const tabValue = `${index}`;
           return React.isValidElement(label) ? (
-            React.cloneElement(label as JSX.Element, {
+            React.cloneElement(label as React.JSX.Element, {
               value: tabValue,
             })
           ) : (
@@ -644,7 +710,7 @@ type TabLegacyProps = {
   /**
    * Svg icon shown before the labels.
    */
-  startIcon?: JSX.Element;
+  startIcon?: React.JSX.Element;
   /**
    * Control whether the tab is disabled.
    */
@@ -689,7 +755,7 @@ const LegacyTab = React.forwardRef((props, forwardedRef) => {
 
 // #endregion
 // ----------------------------------------------------------------------------
-// #region exports and helpers
+// #region exports
 
 export { LegacyTab as Tab };
 
@@ -793,6 +859,39 @@ export const Tabs = Object.assign(LegacyTabsComponent, {
   Panel: TabsPanel,
 });
 
+/**
+ * Presentational version of `Tabs`. It renders purely static elements, without any associated behaviors.
+ */
+export const unstable_TabsPresentation = {
+  Wrapper: TabsWrapperPresentation,
+  /**
+   * This could be used with `role="list"` or `role="tablist"`.
+   */
+  TabList: TabListPresentation,
+  /**
+   * This renders a button without any role by default. The rendered element can be changed using the `as` prop
+   * (e.g. `as="a"` or `as="div"`)
+   *
+   * When _not_ using `role="tab"`, the selected state can be set using `aria-current="true"` (or `aria-current="page"`).
+   *
+   * When using `role="tab"`, the selected state can be set using `aria-selected="true"`.
+   *
+   * Example:
+   * ```jsx
+   * <TabsPresentation.Tab
+   *   as="a"
+   *   href=""
+   *   aria-current="true"
+   * />
+   * ```
+   */
+  Tab: TabPresentation,
+};
+
+// #endregion
+// ----------------------------------------------------------------------------
+// #region helpers
+
 const TabsContext = React.createContext<
   | {
       /**
@@ -811,7 +910,7 @@ const TabsContext = React.createContext<
       /**
        * Handler for setting the value of the active tab.
        */
-      setActiveValue: React.Dispatch<React.SetStateAction<string>>;
+      setActiveValue: (value: string) => void;
       /**
        * Handler for setting the hasSublabel flag.
        */
@@ -849,7 +948,7 @@ if (process.env.NODE_ENV === 'development') {
 const TabListContext = React.createContext<
   | {
       tabsWidth: number;
-      tablistRef: React.RefObject<HTMLDivElement>;
+      tablistRef: React.RefObject<HTMLDivElement | null>;
     }
   | undefined
 >(undefined);

@@ -1,5 +1,293 @@
 # Changelog
 
+## 3.19.6
+
+### Patch Changes
+
+- [#2647](https://github.com/iTwin/iTwinUI/pull/2647): Updated theme bridge to use latest token values.
+
+## 3.19.5
+
+### Patch Changes
+
+- [#2636](https://github.com/iTwin/iTwinUI/pull/2636): Added `color` to all text `::selection` styles. This fixes a theme bridge issue with text selection color contrast.
+- [#2598](https://github.com/iTwin/iTwinUI/pull/2598): Added theme bridge hover state to all components.
+- [#2598](https://github.com/iTwin/iTwinUI/pull/2598): Minor theme bridge visual changes in various components to reflect the latest version of StrataKit.
+- [#2637](https://github.com/iTwin/iTwinUI/pull/2637): Updated theme bridge styling for `Tabs` to use accent colors.
+- [#2642](https://github.com/iTwin/iTwinUI/pull/2642): Updated focus outline styles in some components.
+- [#2641](https://github.com/iTwin/iTwinUI/pull/2641): Changed menu item's background-color on hover state.
+
+## 3.19.4
+
+### Patch Changes
+
+- [#2633](https://github.com/iTwin/iTwinUI/pull/2633): Fixed horizontal scroll in `Tree` with `enableVirtualization` so that all nodes are equally wide instead of using their intrinsic width.
+- c07a7166f1cbf5d8ec6c86389da2f9e1870af6d6: Fixed a theme bridge issue where `<Checkbox indeterminate>` was not displaying correctly in light theme.
+- 6d73dbecc2a5d57d1c4979ddbc7ef931744aebeb: Added `aria-haspopup` attribute to `DropdownMenu`'s trigger.
+
+## 3.19.3
+
+### Patch Changes
+
+- [#2622](https://github.com/iTwin/iTwinUI/pull/2622): Fixed `ComboBox` and `Select` bug by no longer rendering the deselect ("❌") button in the tags when the multiselect `ComboBox`'s input or the multiselect `Select` is disabled.
+- [#2618](https://github.com/iTwin/iTwinUI/pull/2618): `TreeNode` hover styles only applied when hover is supported.
+- [#2624](https://github.com/iTwin/iTwinUI/pull/2624): Floating elements will try to prefer a best fit placement.
+
+## 3.19.2
+
+### Patch Changes
+
+- [#2612](https://github.com/iTwin/iTwinUI/pull/2612): Fixed theme bridge to use StrataKit fonts.
+- [#2616](https://github.com/iTwin/iTwinUI/pull/2616): Reverted the internal change made in [v3.19.0](https://github.com/iTwin/iTwinUI/releases/tag/%40itwin%2Fitwinui-react%403.19.0) where `Table`'s `SelectionColumn` and `ExpanderColumn` had been fixed to use `cellRenderer` instead of `Cell`.
+- [#2603](https://github.com/iTwin/iTwinUI/pull/2603): `Breadcrumbs.Item` now respects the `aria-current` prop.
+- [#2615](https://github.com/iTwin/iTwinUI/pull/2615): `Table` row and header separators made more subtle.
+
+## 3.19.1
+
+### Patch Changes
+
+- [#2590](https://github.com/iTwin/iTwinUI/pull/2590): Fix draggable `Dialog` to also work properly on touch devices.
+- [#2596](https://github.com/iTwin/iTwinUI/pull/2596): Fixed `TransferList.Item` to now properly handle long strings.
+- [#2589](https://github.com/iTwin/iTwinUI/pull/2589): Removed the accidentally added `stretched` prop from `IconButton`.
+
+## 3.19.0
+
+### Minor Changes
+
+- **Future flags**:
+
+  - [#2573](https://github.com/iTwin/iTwinUI/pull/2573): Added the ability to pass `future={true}` to `ThemeProvider` to enable _all_ future flags.
+  - [#2543](https://github.com/iTwin/iTwinUI/pull/2543): Added a new future flag to `ThemeProvider`'s `future` prop: `ToggleSwitch.consistentPropsSpread`. Setting this to `true` will result in all `ToggleSwitch` DOM props being applied on the input element.
+
+- [#2544](https://github.com/iTwin/iTwinUI/pull/2544): Added a new `wrapperProps` prop to `ToggleSwitch` to pass props to the wrapper. To prevent breaking changes:
+  - If this new `wrapperProps` is provided or `ThemeProvider`'s `ToggleSwitch.consistentPropsSpread` future flag is `true`, `className` and `style` will be applied on the `input` and `wrapperProps` will be applied on the wrapper.
+  - Else, `className` and `style` continue to be applied on the wrapper.
+- [#2576](https://github.com/iTwin/iTwinUI/pull/2576): `MenuItem`'s `value` prop has been deprecated. When the `value` is not passed, the `onClick` prop will now be called with the `event` instead of `value`.
+- [#2551](https://github.com/iTwin/iTwinUI/pull/2551): `Tree` now horizontally scrolls instead of truncation of `TreeNode`s when in horizontally overflowing `Tree`s.
+- [#2528](https://github.com/iTwin/iTwinUI/pull/2528): The behavior of all `on[Value]Change` props has been made consistent such that they are only called when `[value]` actually _changes_ (uncontrolled mode) or should _change_ (controlled mode).
+  Affected props include:
+  - `Tabs.Wrapper`: `onValueChange` prop
+  - `Tabs`: `onTabSelected` prop
+  - `DropdownMenu`: `onVisibleChange` prop
+  - `Popover`: `onVisibleChange` prop
+  - `Tooltip`: `onVisibleChange` prop
+- [#2541](https://github.com/iTwin/iTwinUI/pull/2541), [#2584](https://github.com/iTwin/iTwinUI/pull/2584): Visual changes to `Tabs` for better accessibility and appearance when in theme bridge mode.
+  - `Tabs.Wrapper` without `type` declared focus `outline-offset` inset more so to not obstruct the active tab stripe.
+  - `Tabs.Wrapper type='borderless'` dividing line reduced to give the active tab stripe a visual difference.
+  - `Tabs.Wrapper type='borderless'` active tab no longer has `background-color` change.
+  - `Tabs.TabDescription` has `color` change with `transition`.
+  - `Tabs.Wrapper type='default'` disabled tab will now have the same background color as the non-disabled tab.
+- [#2585](https://github.com/iTwin/iTwinUI/pull/2585): Bumped the minimum required versions of `@floating-ui/react`, `@tanstack/react-virtual`, and `@swc/helpers`.
+
+### Patch Changes
+
+- [#2569](https://github.com/iTwin/iTwinUI/pull/2569), [#2578](https://github.com/iTwin/iTwinUI/pull/2578): The [**theme bridge**](https://github.com/iTwin/iTwinUI/wiki/StrataKit-theme-bridge) has been updated to more closely match the latest StrataKit visuals. The most prominent change is in the background-color of various components.
+- [#2551](https://github.com/iTwin/iTwinUI/pull/2551): Fixed non-virtualized `Tree` where the `TreeNode`s now stretch to the full width of the horizontally scrolling `Tree`.
+- **Table**:
+  - [#2568](https://github.com/iTwin/iTwinUI/pull/2568): Fixed `Table` bug where it unintentionally tried to add non-DOM props (e.g. `useControlledState` and `autoResetResize`) to the DOM which lead to a React console warning.
+  - [#2579](https://github.com/iTwin/iTwinUI/pull/2579): Changed the internal implementation of `Table` cells so that an extra wrapper element is rendered when the cell contains _text only_. Any custom cell content (passed via `Cell`) will now be rendered as-is.
+  - [#2568](https://github.com/iTwin/iTwinUI/pull/2568): `Table`'s `defaultColumn` prop is now respected.
+  - [#2583](https://github.com/iTwin/iTwinUI/pull/2583): Fixed `Table` to no longer give a hydration mismatch error when using `ActionColumn`.
+- [#2575](https://github.com/iTwin/iTwinUI/pull/2575): `DropdownButton`'s `menuItems` now also allows directly passing `React.JSX.Element[]` or `React.JSX.Element` (like `DropdownMenu`'s `menuItems`). If doing so, can be used with `dropdownMenuProps` prop's `closeOnItemClick`.
+- [#2571](https://github.com/iTwin/iTwinUI/pull/2571): Fixed `DropdownMenu` and other components to no longer result in a React warning of `ref` being incorrectly accessed as a prop in React 18 or earlier.
+- [#2575](https://github.com/iTwin/iTwinUI/pull/2575): Fixed `DropdownMenu`'s `children` type to be `React.JSX.Element` instead of `React.ReactNode`.
+- [#2574](https://github.com/iTwin/iTwinUI/pull/2574): `ButtonGroup` no longer has overlapping borders between adjacent iTwinUI borderless buttons.
+- [#2570](https://github.com/iTwin/iTwinUI/pull/2570): Fixed `Tag` to correctly merge `labelProps.onClick` and `removeButtonProps.onClick` with the internal `onClick` handlers.
+- [#2581](https://github.com/iTwin/iTwinUI/pull/2581): Moved legacy `::-webkit-scrollbar` styles under a `@supports` block.
+
+## 3.18.3
+
+### Patch Changes
+
+- [#2554](https://github.com/iTwin/iTwinUI/pull/2554): Fixed color mismatch between font icons and svg icons in `IconButton` and `MenuItem`. (NOTE: Despite this fix, use of font icons is still discouraged).
+
+## 3.18.2
+
+### Patch Changes
+
+- [#2535](https://github.com/iTwin/iTwinUI/pull/2535): Fixed `Table` regression where custom content passed into `DefaultCell` was not stretching to the full cell width.
+- [#2524](https://github.com/iTwin/iTwinUI/pull/2524): Fixed `Popover` regression of unintended automatic resizing of floating content when opened.
+- [#2538](https://github.com/iTwin/iTwinUI/pull/2538): `Table`'s `caption` prop is now correctly applied.
+
+## 3.18.1
+
+### Patch Changes
+
+- [#2525](https://github.com/iTwin/iTwinUI/pull/2525): Fixed an issue in `Dialog`/`Modal` where nested floating elements (e.g. `Select` dropdown) were not interactable because they were being portaled incorrectly.
+- [#2526](https://github.com/iTwin/iTwinUI/pull/2526): `Tooltip`'s entry delay has been increased to match the exit delay. This change will help reduce the chances of a user accidentally triggering the tooltip, while also preventing multiple tooltips from showing at the same time.
+- [#2521](https://github.com/iTwin/iTwinUI/pull/2521): Fixed `Table` not working in older React versions where `useId` is not available.
+- [#2527](https://github.com/iTwin/iTwinUI/pull/2527): Fixed `Table` bug where it unintentionally tried to add `scrollToRow` to the DOM and thus led to a console error.
+- [#2512](https://github.com/iTwin/iTwinUI/pull/2512): Clicking a `MenuItem` with a submenu no longer closes the parent menu, regardless of `DropdownMenu`'s `closeOnItemClick` prop, for example.
+
+## 3.18.0
+
+### Minor Changes
+
+- [#2498](https://github.com/iTwin/iTwinUI/pull/2498): **ComboBox, Select**: Added the ability to deselect options in the closed state when using `multiple` selection mode. The tags will now each have a deselect ("❌") button.
+  - [#2346](https://github.com/iTwin/iTwinUI/pull/2346): `<Select multiple>` now renders the tag container outside the select-button. While this shouldn't make a noticeable difference in most cases, it might affect the use of `selectedItemRenderer`.
+- [#2487](https://github.com/iTwin/iTwinUI/pull/2487): `Table`'s accessibility tree structure has been fixed. This required moving the `role="table"` attribute from the outermost element to a new element inside the Table's shadow DOM. Elements that are not allowed within `role="table"` (e.g. paginator, loading indicator, empty state) will now remain outside `role="table"`, thus resulting in a valid accessibility tree.
+
+  A new `tableProps` prop has been added, which allows passing props to the inner `role="table"` element.
+
+  **NOTE**: For backwards compatibility, ARIA attributes passed directly to `<Table>` will now be automatically propagated to the inner `role="table"` element by default. However, when `tableProps` or `role` is also passed, the ARIA attributes passed directly to `<Table>` will remain on the outermost element to keep the behavior more predictable.
+
+- [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Added a `caption` prop to `Table` that serves as the table caption. Although optional for backward compatibility, it is **recommended** to use it for accessibility purposes.
+
+- **Nested popovers**:
+
+  - [#2490](https://github.com/iTwin/iTwinUI/pull/2490): `Dialog`, `Modal` and `Popover` will now correctly handle portaling of nested floating elements.
+  - [#2490](https://github.com/iTwin/iTwinUI/pull/2490): Fixed an issue in `toaster` where toasts was portaling into a new container when used inside `<Popover>`. With this change, the global toaster container will be correctly reused.
+  - [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Fixed an issue where `Dialog` nested inside `Popover` was not appearing correctly.
+  - [#2491](https://github.com/iTwin/iTwinUI/pull/2491): Adjusted the `z-index` value of `Popover` and other floating elements to match `Dialog`.
+
+- **Markup changes**:
+
+  - [#2480](https://github.com/iTwin/iTwinUI/pull/2480): `<MenuExtraContent>` now renders a `<div>` instead of `<li>` to prevent invalid markup.
+  - [#2481](https://github.com/iTwin/iTwinUI/pull/2481): `<SideNavigation>` now renders a `<nav>` as the topmost element. This creates a [navigation landmark](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html) for assistive technology.
+
+- [#2482](https://github.com/iTwin/iTwinUI/pull/2482): Added a new `closeItemOnClick` prop to `<DropdownMenu>`. When set to `true`, the menu will automatically close when any menu-item is clicked, without having to explicitly call `close()`.
+- [#2506](https://github.com/iTwin/iTwinUI/pull/2506): Added a new `positionReference` prop to `DropdownMenu`. This prop changes the position of the dropdown menu, which may be useful for building context menus.
+
+- [#2493](https://github.com/iTwin/iTwinUI/pull/2493): Added a new `unstable_TabsPresentation` component. This can be used in cases where the [ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) is not desirable. Includes the following subcomponents: `Wrapper`, `TabList`, and `Tab`.
+
+- [#2499](https://github.com/iTwin/iTwinUI/pull/2499): Passing the `name` prop to `<Tile.Name>` now internally wraps the name with `<Tile.NameLabel>` to make the behavior consistent with the composition API.
+
+  <details>
+    <summary>Code</summary>
+
+  The following two examples are now equivalent:
+
+  ```tsx
+  <Tile.Name name='My Tile' />
+  ```
+
+  ```tsx
+  <Tile.Name>
+    <Tile.NameLabel>My Tile</Tile.NameLabel>
+  </Tile.Name>
+  ```
+
+  </details>
+
+- **Dependencies**:
+  - [#2485](https://github.com/iTwin/iTwinUI/pull/2485): Removed dependency on `jotai`.
+  - [#2496](https://github.com/iTwin/iTwinUI/pull/2496): Bumped the minimum required versions of `@floating-ui/react` and `@tanstack/react-virtual`.
+
+### Patch Changes
+
+- [#2497](https://github.com/iTwin/iTwinUI/pull/2497): Fixed a `Tile` bug where `Badge` is not visible within `Tile.ThumbnailArea`.
+- [#2503](https://github.com/iTwin/iTwinUI/pull/2503): Updated `--iui-color-background-backdrop` [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) mapping to match latest designs.
+- **Table**:
+  - [#2462](https://github.com/iTwin/iTwinUI/pull/2462): Fixed a "Maximum update depth exceeded" error in `Table`.
+  - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Fixed an issue in `Table` where `onSelect` was being incorrectly called when selecting text inside cells.
+  - [#2505](https://github.com/iTwin/iTwinUI/pull/2505): Increased the hit target size of checkboxes and text inside cells to prevent accidental row clicks when clicking the checkbox or selecting the text.
+  - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Add missing labels to row checkboxes and to the select all checkbox.
+  - [#2487](https://github.com/iTwin/iTwinUI/pull/2487): Removed invalid and unsupported ARIA attributes from `Table` and its internal elements. Notably, `aria-multiselectable` and `role="rowgroup"` were removed.
+
+## 3.17.4
+
+### Patch Changes
+
+- [#2473](https://github.com/iTwin/iTwinUI/pull/2473): Fixed scrolling on touch devices when using the `enableVirtualization` prop in `Tree` and `ComboBox`.
+- [#2466](https://github.com/iTwin/iTwinUI/pull/2466): Fix `Tab`'s stripe positioning when `Tabs.TabList` overflows.
+- [#2469](https://github.com/iTwin/iTwinUI/pull/2469): Fixed `Tabs` bug where orientation related styles of nested tabs were sometimes incorrect.
+
+## 3.17.3
+
+### Patch Changes
+
+- [#2452](https://github.com/iTwin/iTwinUI/pull/2452): Fixed bug where nested `MenuItem`s in `Tile.MoreOptions` were not closing when clicked.
+- [#2455](https://github.com/iTwin/iTwinUI/pull/2455): Submenus will now correctly portal to the same place as their parent menu (E.g. `DropdownMenu`, `SplitButton`)
+- [#2457](https://github.com/iTwin/iTwinUI/pull/2457): Fixed bug in `ExpandableBlock` where cursor was `pointer` even when it was disabled.
+
+## 3.17.2
+
+### Patch Changes
+
+- [#2442](https://github.com/iTwin/iTwinUI/pull/2442): Removed a leftover `@layer` name, which was originally intended to support _very_ old versions of iTwinUI.
+- [#2443](https://github.com/iTwin/iTwinUI/pull/2443): Fixed bug in `Modal` where focus was sometimes jumping from a modal child to the modal itself.
+- [#2431](https://github.com/iTwin/iTwinUI/pull/2431): Force text wrapping for long words. Affected components: `Text`, `NonIdealState`, `Stepper`, `WorkflowDiagram`.
+- [#2446](https://github.com/iTwin/iTwinUI/pull/2446): Fixed background color in menus when the [theme bridge](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) is enabled.
+
+## 3.17.1
+
+### Patch Changes
+
+- [#2436](https://github.com/iTwin/iTwinUI/pull/2436): The **theme bridge** has been updated to handle the breaking changes introduced in `@itwin/itwinui-react@5.0.0-alpha.6`.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Fixed bug in `SplitButton` where the `dropdownMenuProps.middleware` prop was not respected.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Fixed a `SplitButton` bug where `dropdownMenuProps` was accidentally being added to the DOM.
+- [#2430](https://github.com/iTwin/iTwinUI/pull/2430): Added missing `div` props in `dropdownMenuProps`'s type for `DropdownButton` and `SplitButton`.
+
+## 3.17.0
+
+### Minor Changes
+
+- [#2387](https://github.com/iTwin/iTwinUI/pull/2387): Added support for React 19.
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Added a **theme bridge** which adjusts iTwinUI v3 visuals to blend in with iTwinUI v5's new look-and-feel.
+
+  To enable the theme bridge, use the `future.themeBridge` flag on `<ThemeProvider>`. See [full documentation](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-v5-theme-bridge) for more detailed instructions.
+
+  **Note**: The theme bridge is still considered an _alpha_ feature, so there may be breaking changes until it's stabilized.
+
+- [#2391](https://github.com/iTwin/iTwinUI/pull/2391): Removed dependency on `react-transition-group`. Notable changes in components:
+  - `useToaster`: Animations have been reworked to directly use the web animations API.
+  - `Dialog` and `Modal`: Exit animations have been temporarily removed.
+- [#2387](https://github.com/iTwin/iTwinUI/pull/2387): Bumped the minimum required versions of the following dependencies:
+  - `@tanstack/react-virtual` to `3.13.0`
+  - `@floating-ui/react` to `0.27.4`
+  - `classnames` to `2.5.1`
+
+### Patch Changes
+
+- [#2429](https://github.com/iTwin/iTwinUI/pull/2429): Fixed an issue where disabled buttons were still causing form submissions. Affects `Button`, `IconButton`, and all other button components.
+- [#2368](https://github.com/iTwin/iTwinUI/pull/2368): Fine-tuned the default Tooltip delay to `{ open: 100ms, close: 200ms }`.
+- [#2368](https://github.com/iTwin/iTwinUI/pull/2368): Added `Tooltip` delay grouping to components that use `Tooltip` internally. This prevents the tooltip from lingering when quickly hovering across different parts of the component.
+  - Components affected: `SideNavigation`, `Slider`, `Stepper`, `List`.
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Fixed an issue in `InputWithDecorations` and `SearchBox` where the component-level focus styling was colliding with global focus styling, leading to double focus outlines.
+
+## 3.16.6
+
+### Patch Changes
+
+- [#2411](https://github.com/iTwin/iTwinUI/pull/2411): Fixed `Panels.Trigger` not working in older React versions where `useId` is not available.
+- [#2407](https://github.com/iTwin/iTwinUI/pull/2407): Increased contrast (i.e. opacity) of light theme's text selection background. This also affects some other opacities of other components (e.g. shadows and hover backgrounds).
+
+## 3.16.5
+
+### Patch Changes
+
+- [#2402](https://github.com/iTwin/iTwinUI/pull/2402): Fixed an issue in `Tabs` where it wasn't recalculating the active stripe position when a new tab was asynchronously added to the tablist.
+
+## 3.16.4
+
+### Patch Changes
+
+- [#2389](https://github.com/iTwin/iTwinUI/pull/2389): Fixed `Table` bug where parent rows had indeterminate checkboxes even when all sub rows were selected.
+- [#2390](https://github.com/iTwin/iTwinUI/pull/2390): Fixed `ThemeProvider` bug of re-mounting its children and losing state when `portalContainer` is toggled between `undefined` and defined.
+- [#2396](https://github.com/iTwin/iTwinUI/pull/2396): Fixed rare bug where icons in button components (e.g. `Button`, `SidenavButton`, etc.) were becoming 0 in width when less space was available.
+
+## 3.16.3
+
+### Patch Changes
+
+- [#2384](https://github.com/iTwin/iTwinUI/pull/2384): Fixed the syntax for `react` and `react-dom` version ranges declared in `peerDependencies`.
+- [#2386](https://github.com/iTwin/iTwinUI/pull/2386): Fixed a visual issue in `Tile.Name` where a long string without spaces wasn't wrapping properly.
+
+## 3.16.2
+
+### Patch Changes
+
+- [#2378](https://github.com/iTwin/iTwinUI/pull/2378): Fixed folder variant `Tile`'s broken layout when it has a long name.
+
+## 3.16.1
+
+### Patch Changes
+
+- [#2362](https://github.com/iTwin/iTwinUI/pull/2362): `Select` with "small" size now has the same height (`24px`) as other input elements with "small" size (e.g. `ComboBox`)
+- [#2370](https://github.com/iTwin/iTwinUI/pull/2370): Fixed `Panels` animations not working in some rare cases.
+- [#2374](https://github.com/iTwin/iTwinUI/pull/2374): Fixed `HeaderButton`'s `startIcon` and `endIcon` fill color.
+- [#2359](https://github.com/iTwin/iTwinUI/pull/2359): `Tooltip` now remains visible when hovered up to `4px` outside its border.
+
 ## 3.16.0
 
 ### Minor Changes

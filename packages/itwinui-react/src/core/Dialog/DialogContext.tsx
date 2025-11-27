@@ -76,7 +76,7 @@ export type DialogContextProps = {
    */
   relativeTo?: 'container' | 'viewport';
   /**
-   * If true, the dialog will be portaled into a <div> inside the nearest `ThemeProvider`.
+   * If true, the dialog will be portaled to the end of `<body>` or to the nearest popover.
    * Recommended to set to true when for modal dialogs that use `relativeTo='viewport'`.
    *
    * Can be set to an object with a `to` property to portal into a specific element.
@@ -86,19 +86,20 @@ export type DialogContextProps = {
    */
   portal?: PortalProps['portal'];
   /**
-   * Dialog root ref. For internal use.
-   */
-  dialogRootRef?: React.RefObject<HTMLDivElement>;
-  /**
    * Determines the positioning of Dialog on page.
    */
   placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 
+type DialogContextInternalProps = {
+  dialogRootRef: React.RefObject<HTMLDivElement | null>;
+  setDialogElement: (dialogElement: HTMLElement | null) => void;
+};
+
 export const DialogContext = React.createContext<
-  DialogContextProps | undefined
+  (DialogContextProps & DialogContextInternalProps) | undefined
 >(undefined);
 
 export const useDialogContext = () => {
-  return React.useContext(DialogContext) || {};
+  return React.useContext(DialogContext);
 };

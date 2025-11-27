@@ -47,7 +47,10 @@ import {
   useMergedRefs,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { usePortalTo } from '../../utils/components/Portal.js';
+import {
+  PortalContainerContext,
+  usePortalTo,
+} from '../../utils/components/Portal.js';
 import type { PortalProps } from '../../utils/components/Portal.js';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
@@ -62,8 +65,10 @@ type PopoverOptions = {
    */
   visible?: boolean;
   /**
-   * Callback invoked every time the popover visibility changes as a result
-   * of internal logic. Should be used alongside `visible` prop.
+   * Callback invoked every time the popover visibility *changes* (uncontrolled mode) or should *change*
+   * (controlled mode) as a result of internal logic.
+   *
+   * Should be used alongside `visible` prop.
    */
   onVisibleChange?: (visible: boolean) => void;
   /**
@@ -240,7 +245,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       () =>
         [
           middleware.offset !== undefined && offset(middleware.offset),
-          middleware.flip && flip({ padding: 4 }),
+          middleware.flip && flip({ padding: 5 }), // one higher than `size` padding to prefer best fit (see #2597)
           middleware.shift && shift({ padding: 4 }),
           (matchWidth || middleware.size) &&
             size({
@@ -307,7 +312,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
             availableHeight && {
               maxBlockSize: `min(${availableHeight}px, ${maxHeight})`,
             }),
-          zIndex: 9999,
+          zIndex: 999,
           ...(matchWidth && referenceWidth
             ? {
                 minInlineSize: `${referenceWidth}px`,
@@ -429,9 +434,11 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     closeOnOutsideClick,
     role: 'dialog',
     middleware,
+    transform: false,
   });
 
-  const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
+  const [popoverElement, setPopoverElement] =
+    React.useState<HTMLElement | null>(null);
 
   const popoverRef = useMergedRefs(
     popover.refs.setFloating,
@@ -469,31 +476,32 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       {popover.open ? (
         <PopoverInitialFocusContext.Provider value={initialFocusContextValue}>
           <PopoverPortal portal={portal}>
-            <ThemeProvider
-              portalContainer={popoverElement} // portal nested popovers into this one
-            >
-              <DisplayContents />
-              <FloatingFocusManager
-                context={popover.context}
-                modal={false}
-                initialFocus={initialFocus}
-              >
-                <Box
-                  className={cx(
-                    { 'iui-popover-surface': applyBackground },
-                    className,
-                  )}
-                  aria-labelledby={
-                    !hasAriaLabel
-                      ? popover.refs.domReference.current?.id
-                      : undefined
-                  }
-                  {...popover.getFloatingProps(rest)}
-                  ref={popoverRef}
+            <ThemeProvider>
+              <PortalContainerContext.Provider value={popoverElement}>
+                <DisplayContents />
+                <FloatingFocusManager
+                  context={popover.context}
+                  modal={false}
+                  initialFocus={initialFocus}
                 >
-                  {content}
-                </Box>
-              </FloatingFocusManager>
+                  <Box
+                    className={cx(
+                      'iui-popover',
+                      { 'iui-popover-surface': applyBackground },
+                      className,
+                    )}
+                    aria-labelledby={
+                      !hasAriaLabel
+                        ? popover.refs.domReference.current?.id
+                        : undefined
+                    }
+                    {...popover.getFloatingProps(rest)}
+                    ref={popoverRef}
+                  >
+                    {content}
+                  </Box>
+                </FloatingFocusManager>
+              </PortalContainerContext.Provider>
             </ThemeProvider>
           </PopoverPortal>
         </PopoverInitialFocusContext.Provider>
@@ -516,7 +524,8 @@ const PopoverPortal = ({
   return (
     <FloatingPortal
       key={portalTo?.id} // workaround to force remount when `root` changes (see #2093)
-      root={portalTo}
+      // Don't pass `null` to FloatingPortal to ensure correct portaling (workaround for `floating-ui/react@0.26.27`+)
+      root={portalTo ?? undefined}
     >
       <DisplayContents />
       {children}

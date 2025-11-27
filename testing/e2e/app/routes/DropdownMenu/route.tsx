@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Button,
   Checkbox,
@@ -10,34 +11,96 @@ import {
   MenuItem,
   Surface,
 } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import { SvgMore } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [searchParams] = useSearchParams();
 
-  const menuType = (searchParams.get('menuType') || 'withSubmenu') as
+  const menuType = searchParams.get('menuType') as
     | 'withSubmenu'
     | 'withHideMiddleware'
-    | 'withExtraContent';
+    | 'withExtraContent'
+    | 'multipleCloseCalls'
+    | undefined;
   const hideMiddleware =
     searchParams.get('hideMiddleware') === 'false' ? false : undefined;
+  const closeOnItemClick = searchParams.get('closeOnItemClick') === 'true';
 
-  return (
-    <>
-      {menuType === 'withExtraContent' ? (
-        <DropdownMenuWithExtraContent />
-      ) : menuType === 'withHideMiddleware' ? (
-        <DropdownMenuHideMiddleware hideMiddleware={hideMiddleware} />
-      ) : (
-        <DropdownMenuWithSubmenus />
-      )}
-      <div data-testid='outside'>Outside</div>
-    </>
-  );
+  if (menuType === 'multipleCloseCalls') {
+    return (
+      <DropdownMenuMultipleCloseCalls closeOnItemClick={closeOnItemClick} />
+    );
+  }
+  if (menuType === 'withSubmenu') {
+    return <DropdownMenuWithSubmenus />;
+  }
+  if (menuType === 'withHideMiddleware') {
+    return <DropdownMenuHideMiddleware hideMiddleware={hideMiddleware} />;
+  }
+  if (menuType === 'withExtraContent') {
+    return <DropdownMenuWithExtraContent />;
+  }
+  if (menuType === 'contextMenu') {
+    return <ContextMenu />;
+  }
+  return <DropdownMenuBasic closeOnItemClick={closeOnItemClick} />;
 };
 
 // ----------------------------------------------------------------------------
+
+const DropdownMenuBasic = ({ closeOnItemClick = false }) => {
+  return (
+    <DropdownMenu
+      closeOnItemClick={closeOnItemClick}
+      menuItems={
+        <>
+          <MenuItem>Item #1</MenuItem>
+          <MenuItem>Item #2</MenuItem>
+          <MenuItem disabled>Item #3</MenuItem>
+        </>
+      }
+    >
+      <IconButton label='More' data-testid='trigger'>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
+  );
+};
+
+const DropdownMenuMultipleCloseCalls = ({ closeOnItemClick = false }) => {
+  const [callsCount, setCallsCount] = React.useState(0);
+
+  const onClick = (close: () => void) => () => {
+    close();
+    close();
+    close();
+    close();
+  };
+
+  return (
+    <div>
+      <p data-testid='calls-count'>{callsCount}</p>
+      <DropdownMenu
+        closeOnItemClick={closeOnItemClick}
+        onVisibleChange={React.useCallback(() => {
+          setCallsCount((prev) => prev + 1);
+        }, [setCallsCount])}
+        menuItems={(close) => [
+          <MenuItem onClick={onClick(close)}>Item #1</MenuItem>,
+          <MenuItem onClick={onClick(close)}>Item #2</MenuItem>,
+          <MenuItem disabled onClick={onClick(close)}>
+            Item #3
+          </MenuItem>,
+        ]}
+      >
+        <IconButton label='More' data-testid='trigger'>
+          <SvgMore />
+        </IconButton>
+      </DropdownMenu>
+    </div>
+  );
+};
 
 const DropdownMenuWithSubmenus = () => {
   return (
@@ -187,5 +250,58 @@ const DropdownMenuHideMiddleware = ({
         ))}
       </Surface.Body>
     </Surface>
+  );
+};
+
+const ContextMenu = () => {
+  const [visible, setVisible] = React.useState(false);
+  const [positionReference, setPositionReference] = React.useState<{
+    getBoundingClientRect: () => Omit<DOMRectReadOnly, 'toJSON'>;
+  } | null>(null);
+
+  return (
+    <div
+      data-testid='context-menu-container'
+      style={{ padding: 8, outline: 'solid' }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setVisible((prev) => !prev);
+        setPositionReference({
+          getBoundingClientRect() {
+            return {
+              width: 0,
+              height: 0,
+              x: e.clientX,
+              y: e.clientY,
+              top: e.clientY,
+              right: e.clientX,
+              bottom: e.clientY,
+              left: e.clientX,
+            };
+          },
+        });
+      }}
+    >
+      <DropdownMenu
+        closeOnItemClick
+        visible={visible}
+        onVisibleChange={(visible) => {
+          setPositionReference(null);
+          setVisible(visible);
+        }}
+        positionReference={positionReference}
+        menuItems={
+          <>
+            <MenuItem>Item 1</MenuItem>
+            <MenuItem>Item 2</MenuItem>
+            <MenuItem>Item 3</MenuItem>
+          </>
+        }
+      >
+        <IconButton label='More'>
+          <SvgMore />
+        </IconButton>
+      </DropdownMenu>
+    </div>
   );
 };

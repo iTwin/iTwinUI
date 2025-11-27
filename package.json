@@ -43,7 +43,7 @@
     "approve:css": "pnpm --filter css-workshop approve",
     "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
-    "changeset": "npx -y @changesets/cli",
+    "changeset": "npx -y @changesets/cli@2.29.6",
     "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm node ./scripts/publish-packages.mjs"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
     "helpers": "workspace:*",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.9",
-    "octokit": "^3.1.2",
+    "octokit": "^4.1.2",
     "prettier": "~3.1.0",
     "rimraf": "^5.0.5",
     "turbo": "~1.12.3"
@@ -75,12 +75,13 @@
     "autoprefixer": "^10.4.17",
     "semver": "^7.5.4",
     "typescript": "~5.5.2",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.18",
-    "astro": "~4.16.3",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
     "cypress": "13.8.1",
     "ws@8": "^8.17.1",
-    "cookie@<0.7.0": ">=0.7.0"
+    "cookie@<0.7.0": ">=0.7.0",
+    "esbuild": "0.25.0",
+    "sass": "npm:sass-embedded@^1.93.2"
   },
   "engines": {
     "node": ">=18.14.1"

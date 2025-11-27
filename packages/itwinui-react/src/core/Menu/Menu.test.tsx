@@ -83,10 +83,15 @@ const clickTrigger = async () => {
 };
 
 it('should render menu items', async () => {
-  const { container } = renderComponent();
-  await clickTrigger();
+  renderComponent();
 
-  const menu = container.querySelector('.iui-menu') as HTMLElement;
+  const button = screen.getByRole('button');
+  expect(button).toHaveAttribute('aria-haspopup', 'menu');
+
+  await clickTrigger();
+  expect(button).toHaveAttribute('aria-expanded', 'true');
+
+  const menu = screen.getByRole('menu');
   assertBaseElement(menu);
 });
 

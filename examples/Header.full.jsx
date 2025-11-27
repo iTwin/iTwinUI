@@ -45,9 +45,7 @@ export default () => {
               href=''
               key='iModel'
               name='iModel B'
-              startIcon={
-                <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-              }
+              startIcon={<img src='https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=1167' />}
             />,
             <HeaderButton
               key='version'
@@ -67,7 +65,7 @@ export default () => {
           <SvgNotification />
         </IconButton>,
         <IconButton styleType='borderless' aria-label='View Profile'>
-          <Avatar abbreviation='TR' title='Terry Rivers' />
+          <Avatar abbreviation='TR' />
         </IconButton>,
       ]}
       menuItems={menuItems}

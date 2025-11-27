@@ -275,3 +275,55 @@ it('should show sub menu on hover', () => {
 
   vi.useRealTimers();
 });
+
+it('should portal submenu to same place as parent menu', async () => {
+  render(
+    <>
+      <Menu
+        trigger={<Button data-testid='trigger'>Trigger</Button>}
+        portal={{ to: () => document.querySelector('footer') }}
+      >
+        <MenuItem
+          value='test_value'
+          data-testid='parent'
+          subMenuItems={[
+            <MenuItem key={1} data-testid='sub' value='test_value_sub'>
+              Test sub
+            </MenuItem>,
+          ]}
+        >
+          Test item
+        </MenuItem>
+      </Menu>
+      <footer />
+    </>,
+  );
+
+  const trigger = screen.getByTestId('trigger');
+  await act(async () => trigger.click());
+
+  const parentMenuItem = screen.getByTestId('parent');
+  await act(async () => parentMenuItem.click());
+
+  const portaledParentMenuItem = document.querySelector(
+    "footer > [role='menu'] > [data-testid='parent']",
+  );
+  const portaledSubmenuItem = document.querySelector(
+    "footer > [role='menu'] > [data-testid='sub']",
+  );
+
+  expect(portaledParentMenuItem).toBeTruthy();
+  expect(portaledSubmenuItem).toBeTruthy();
+});
+
+it('should call onClick with event argument', async () => {
+  const onClick = vi.fn();
+  render(<MenuItem onClick={onClick}>Test</MenuItem>);
+
+  const menuItem = screen.getByRole('menuitem');
+  await userEvent.click(menuItem);
+
+  expect(onClick).toHaveBeenCalledWith(
+    expect.objectContaining({ target: menuItem }), // event-like object
+  );
+});

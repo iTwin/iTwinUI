@@ -51,17 +51,14 @@ type AvatarGroupProps = {
  *  <Avatar
  *    abbreviation="TR"
  *    backgroundColor={getUserColor("Terry Rivers")}
- *    title="Terry Rivers"
  *  />
  *  <Avatar
  *    abbreviation="RM"
  *    backgroundColor={getUserColor("Robin Mercer")}
- *    title="Robin Mercer"
  *  />
  *  <Avatar
  *    abbreviation="JM"
  *    backgroundColor={getUserColor("Jean Mullins")}
- *    title="Jean Mullins"
  *  />
  * </AvatarGroup>
  */
@@ -83,7 +80,7 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
 
   const getAvatarList = (count: number) => {
     return childrenArray.slice(0, count).map((child) =>
-      React.cloneElement(child as JSX.Element, {
+      React.cloneElement(child as React.JSX.Element, {
         status: undefined,
         size: iconSize,
       }),

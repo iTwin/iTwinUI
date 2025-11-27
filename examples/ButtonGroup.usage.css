@@ -1,5 +1,5 @@
 .demo-container {
-  width: 60%;
+  width: 60cqi;
   display: flex;
   gap: var(--iui-size-xs);
 }

@@ -14,6 +14,7 @@ import {
   CompositeItem,
   FloatingDelayGroup,
 } from '@floating-ui/react';
+import { defaultTooltipDelay } from '../Tooltip/Tooltip.js';
 
 // ----------------------------------------------------------------------------
 
@@ -139,7 +140,7 @@ export const ButtonGroup = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
+    <FloatingDelayGroup delay={defaultTooltipDelay}>
       <ButtonGroupContext.Provider value={orientation}>
         {props.role === 'toolbar' ? (
           <Composite

@@ -2,8 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:meta';
 
-@layer itwinui.v3 {
+@layer itwinui.foundations.v3 {
   @include meta.load-css('global');
+}
+
+@layer itwinui.v3.components {
   @include meta.load-css('field');
   @include meta.load-css('alert/alert');
   @include meta.load-css('anchor/anchor');
@@ -31,6 +34,7 @@
   @include meta.load-css('menu/menu');
   @include meta.load-css('non-ideal-state/non-ideal-state');
   @include meta.load-css('overlay/overlay');
+  @include meta.load-css('popover/popover');
   @include meta.load-css('progress-indicator/progress-indicator');
   @include meta.load-css('radio/radio');
   @include meta.load-css('radio-tile/radio-tile');
@@ -56,4 +60,8 @@
   @include meta.load-css('tree/tree');
   @include meta.load-css('utils/utils');
   @include meta.load-css('workflow-diagram/workflow-diagram');
+}
+
+@layer itwinui.v3.bridge {
+  @include meta.load-css('./bridge');
 }

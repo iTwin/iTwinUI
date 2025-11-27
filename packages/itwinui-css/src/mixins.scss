@@ -19,7 +19,8 @@
 @mixin iui-text-selection($status: accent) {
   &::selection,
   *::selection {
-    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
+    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-4));
+    color: var(--iui-color-text);
   }
 }
 
@@ -38,37 +39,6 @@
   @supports (backdrop-filter: blur(5px)) {
     background-color: Hsl($hsl / var(--iui-opacity-#{$opacity}));
     backdrop-filter: blur(5px);
-  }
-}
-
-/// Classes for react-transition-group
-/// Used for expand/collapse transitions. Needs height/width to be set in JS.
-@mixin iui-transition-group {
-  $transition-rule:
-    opacity var(--iui-duration-1) ease-out,
-    width var(--iui-duration-1) ease-out,
-    height var(--iui-duration-1) ease-out;
-
-  &.iui-enter {
-    opacity: 0;
-  }
-
-  &.iui-enter-active {
-    opacity: 1;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: $transition-rule;
-    }
-  }
-
-  &.iui-exit {
-    opacity: 1;
-  }
-
-  &.iui-exit-active {
-    opacity: 0;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: $transition-rule;
-    }
   }
 }
 

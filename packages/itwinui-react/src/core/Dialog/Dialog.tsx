@@ -11,18 +11,22 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import { useMergedRefs, Box, Portal } from '../../utils/index.js';
+import {
+  useMergedRefs,
+  Box,
+  Portal,
+  PortalContainerContext,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Transition } from 'react-transition-group';
 
 type DialogProps = {
   /**
    * Dialog content.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'dialogRootRef'>;
+} & DialogContextProps;
 
-const DialogComponent = React.forwardRef((props, ref) => {
+const DialogComponent = React.forwardRef((props, forwardedRef) => {
   const {
     trapFocus = false,
     setFocus = trapFocus,
@@ -41,38 +45,43 @@ const DialogComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const dialogRootRef = React.useRef<HTMLDivElement>(null);
+  const dialogRootRef = React.useRef<HTMLDivElement | null>(null);
+  const [dialogElement, setDialogElement] = React.useState<HTMLElement | null>(
+    null,
+  );
+  const mergedRefs = useMergedRefs(forwardedRef, dialogRootRef);
 
-  return (
-    <Transition in={isOpen} timeout={{ exit: 600 }} mountOnEnter unmountOnExit>
-      <DialogContext.Provider
-        value={{
-          isOpen,
-          onClose,
-          closeOnEsc,
-          closeOnExternalClick,
-          isDismissible,
-          preventDocumentScroll,
-          trapFocus,
-          setFocus,
-          isDraggable,
-          isResizable,
-          relativeTo,
-          dialogRootRef,
-          placement,
-        }}
-      >
-        <Portal portal={portal}>
+  return isOpen ? (
+    <DialogContext.Provider
+      value={{
+        isOpen,
+        onClose,
+        closeOnEsc,
+        closeOnExternalClick,
+        isDismissible,
+        preventDocumentScroll,
+        trapFocus,
+        setFocus,
+        isDraggable,
+        isResizable,
+        relativeTo,
+        placement,
+        dialogRootRef,
+        setDialogElement,
+      }}
+    >
+      <Portal portal={portal}>
+        <PortalContainerContext.Provider value={dialogElement}>
           <Box
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
-            ref={useMergedRefs(ref, dialogRootRef)}
+            ref={mergedRefs}
             {...rest}
           />
-        </Portal>
-      </DialogContext.Provider>
-    </Transition>
-  );
+        </PortalContainerContext.Provider>
+      </Portal>
+    </DialogContext.Provider>
+  ) : null;
 }) as PolymorphicForwardRefComponent<'div', DialogProps>;
 if (process.env.NODE_ENV === 'development') {
   DialogComponent.displayName = 'Dialog';

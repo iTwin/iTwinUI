@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { VisuallyHidden, ThemeProvider } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 
 export default function Page() {
   const [searchParams] = useSearchParams();
@@ -16,16 +16,18 @@ export default function Page() {
 /** https://github.com/iTwin/iTwinUI/pull/2252#discussion_r1766676900 */
 function PopoutTest() {
   const popout = usePopout();
+  const root = popout.popout?.document.body
+    ? createRoot(popout.popout.document.body)
+    : null;
 
   return (
     <>
       <button onClick={popout.open}>Open popout</button>
       {popout.popout &&
-        ReactDOM.render(
+        root?.render(
           <ThemeProvider>
             <VisuallyHidden>Hello</VisuallyHidden>
           </ThemeProvider>,
-          popout.popout.document.body,
         )}
     </>
   );

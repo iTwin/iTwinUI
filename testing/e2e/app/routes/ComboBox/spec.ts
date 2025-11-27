@@ -10,24 +10,69 @@ const defaultOptions = [
   { label: 'Item 11', value: 11 },
 ];
 
-test('should select multiple options', async ({ page }) => {
-  await page.goto('/ComboBox?multiple=true');
+test.describe('Combobox (multiple)', () => {
+  test('should select multiple options', async ({ page }) => {
+    await page.goto('/ComboBox?multiple=true');
 
-  await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
 
-  const options = await page.locator('[role="option"]').all();
-  for (const option of options) {
-    await option.click();
-  }
+    const options = await page.locator('[role="option"]').all();
+    for (const option of options) {
+      await option.click();
+    }
 
-  const tags = getSelectTagContainerTags(page);
-  await expect(tags).toHaveCount(options.length);
+    const tags = getSelectTagContainerTags(page);
+    await expect(tags).toHaveCount(options.length);
 
-  for (let i = 0; i < (await tags.count()); i++) {
-    await expect(tags.nth(i)).toHaveText(
-      (await options[i].textContent()) ?? '',
+    for (let i = 0; i < (await tags.count()); i++) {
+      await expect(tags.nth(i)).toHaveText(
+        (await options[i].textContent()) ?? '',
+      );
+    }
+  });
+
+  test('should allow deselecting options by clicking tags', async ({
+    page,
+  }) => {
+    await page.goto(
+      '/ComboBox?controlled=true&multiple=true&initialValue=[3,4]',
     );
-  }
+
+    const tags = getSelectTagContainerTags(page);
+    const combobox = page.getByRole('combobox');
+
+    await expect(tags).toHaveCount(2);
+    await expect(tags.first()).toHaveText('Item 3');
+    await expect(tags.last()).toHaveText('Item 4');
+
+    // Using mouse
+    await page.getByRole('button', { name: 'Deselect Item 3' }).click();
+    await expect(tags).toHaveCount(1);
+    await expect(tags.first()).toHaveText('Item 4');
+
+    // Using keyboard
+    await expect(combobox).toBeFocused();
+    await page.keyboard.press('Tab');
+    const deselect4 = page.getByRole('button', { name: 'Deselect Item 4' });
+    await expect(deselect4).toBeFocused();
+    await deselect4.press('Enter');
+    await expect(tags).toHaveCount(0);
+    await expect(combobox).toHaveValue('');
+    await expect(combobox).toBeFocused();
+  });
+
+  test('should not render deselect button when input is disabled', async ({
+    page,
+  }) => {
+    await page.goto('/ComboBox?multiple=true&disabled=true&initialValue=all');
+
+    const tags = getSelectTagContainerTags(page);
+    await expect(tags).toHaveCount(defaultOptions.length);
+
+    for (let i = 0; i < (await tags.count()); i++) {
+      await expect(tags.nth(i).getByRole('button')).toHaveCount(0);
+    }
+  });
 });
 
 [true, false].forEach((multiple) => {
@@ -336,7 +381,7 @@ test.describe('ComboBox (virtualization)', () => {
 
     await page.keyboard.press('Tab');
     const comboBoxList = page.getByRole('listbox');
-    const outerVirtualizedContainer = comboBoxList.locator('>div', {
+    const outerVirtualizedContainer = comboBoxList.locator('> div > div', {
       has: page.locator('slot'),
     });
     const items = page.getByRole('option');
@@ -370,8 +415,8 @@ test.describe('ComboBox (virtualization)', () => {
 
       await expectOverflowState({
         page,
-        expectedItemLength: 4,
-        expectedLastTagTextContent: '+4 item(s)',
+        expectedItemLength: 3,
+        expectedLastTagTextContent: '+5 item(s)',
       });
     });
 

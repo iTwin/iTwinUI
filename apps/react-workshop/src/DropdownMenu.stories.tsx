@@ -26,23 +26,22 @@ export default {
 };
 
 export const Basic = () => {
-  const onClick = (index: number, close: () => void) => () => {
+  const handleItemClick = (index: number) => () => {
     console.log(`Item #${index} clicked!`);
-    close();
   };
-  const dropdownMenuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={onClick(1, close)}>
-      Item #1
-    </MenuItem>,
-    <MenuItem key={2} onClick={onClick(2, close)}>
-      Item #2
-    </MenuItem>,
-    <MenuItem key={3} onClick={onClick(3, close)} disabled>
-      Item #3
-    </MenuItem>,
-  ];
   return (
-    <DropdownMenu menuItems={dropdownMenuItems}>
+    <DropdownMenu
+      closeOnItemClick
+      menuItems={
+        <>
+          <MenuItem onClick={handleItemClick(1)}>Item #1</MenuItem>
+          <MenuItem onClick={handleItemClick(2)}>Item #2</MenuItem>
+          <MenuItem onClick={handleItemClick(3)} disabled>
+            Item #3
+          </MenuItem>
+        </>
+      }
+    >
       <IconButton label='More options'>
         <SvgMore />
       </IconButton>

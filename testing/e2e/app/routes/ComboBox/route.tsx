@@ -1,5 +1,5 @@
 import { Button, ComboBox, Flex } from '@itwin/itwinui-react';
-import { useSearchParams } from '@remix-run/react';
+import { useSearchParams } from 'react-router';
 import * as React from 'react';
 
 export default function ComboBoxTest() {
@@ -23,6 +23,8 @@ const Default = ({
     showChangeValueButton,
     virtualization,
     clearFilterOnOptionToggle,
+    controlled,
+    disabled,
   } = config;
   const [value, setValue] = React.useState(initialValue);
 
@@ -38,12 +40,16 @@ const Default = ({
       )}
 
       <ComboBox
-        options={options}
+        options={options as any[]}
         id='test-component'
         value={value as any}
+        onChange={controlled ? (setValue as any) : undefined}
         multiple={multiple}
         enableVirtualization={virtualization}
         clearFilterOnOptionToggle={clearFilterOnOptionToggle as any}
+        inputProps={{
+          disabled: disabled,
+        }}
       />
     </div>
   );
@@ -117,6 +123,7 @@ function getConfigFromSearchParams() {
       : undefined;
   const showChangeValueButton =
     searchParams.get('showChangeValueButton') === 'true';
+  const disabled = searchParams.get('disabled') === 'true';
 
   const options = [
     { label: 'Item 0', value: 0 },
@@ -138,6 +145,8 @@ function getConfigFromSearchParams() {
         : (JSON.parse(initialValueSearchParam) as number | number[])
       : undefined;
 
+  const controlled = searchParams.get('controlled') === 'true';
+
   return {
     exampleType,
     virtualization,
@@ -146,5 +155,7 @@ function getConfigFromSearchParams() {
     options,
     initialValue,
     clearFilterOnOptionToggle,
+    controlled,
+    disabled,
   };
 }

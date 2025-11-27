@@ -7,8 +7,8 @@ import { Backdrop } from '../Backdrop/Backdrop.js';
 import type { BackdropProps } from '../Backdrop/Backdrop.js';
 import { useMergedRefs } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { useDialogContext } from './DialogContext.js';
-import type { DialogContextProps } from './DialogContext.js';
+import { useDialogContext, type DialogContextProps } from './DialogContext.js';
+import { useDialogMainContext } from './DialogMainContext.js';
 import cx from 'classnames';
 
 type DialogBackdropProps = BackdropProps &
@@ -25,12 +25,14 @@ type DialogBackdropProps = BackdropProps &
  */
 export const DialogBackdrop = React.forwardRef((props, ref) => {
   const dialogContext = useDialogContext();
+  const dialogMainContext = useDialogMainContext();
+
   const {
-    isVisible = dialogContext.isOpen,
-    isDismissible = dialogContext.isDismissible,
-    onClose = dialogContext.onClose,
-    closeOnExternalClick = dialogContext.closeOnExternalClick,
-    relativeTo = dialogContext.relativeTo,
+    isVisible = dialogContext?.isOpen,
+    isDismissible = dialogContext?.isDismissible,
+    onClose = dialogContext?.onClose,
+    closeOnExternalClick = dialogContext?.closeOnExternalClick,
+    relativeTo = dialogContext?.relativeTo,
     onMouseDown,
     className,
     style,
@@ -47,6 +49,7 @@ export const DialogBackdrop = React.forwardRef((props, ref) => {
       return;
     }
     if (isDismissible && closeOnExternalClick && onClose) {
+      dialogMainContext?.beforeClose();
       onClose(event);
     }
     onMouseDown?.(event);

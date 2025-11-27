@@ -15,9 +15,9 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
-type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
-  typeof Input
->;
+type ComboBoxInputProps = {
+  selectTags?: React.JSX.Element[];
+} & React.ComponentProps<typeof Input>;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
   const { selectTags, size, style, ...rest } = props;
@@ -218,7 +218,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           ...(multiple && { paddingInlineStart: tagContainerWidth + 18 }),
           ...style,
         }}
-        aria-describedby={multiple ? `${id}-selected-live` : undefined}
         size={size}
         {...popover.getReferenceProps({
           ...rest,
@@ -235,7 +234,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         <ComboBoxMultipleContainer
           ref={tagContainerWidthRef}
           selectedItems={selectTags}
-          id={`${id}-selected-live`}
         />
       ) : null}
     </>

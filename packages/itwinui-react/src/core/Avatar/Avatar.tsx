@@ -37,17 +37,13 @@ type AvatarProps = {
    */
   status?: AvatarStatus;
   /**
-   * Text which will appear when hovering over the icon.
-   */
-  title?: string;
-  /**
    * Abbreviation to be displayed.
    */
   abbreviation?: string;
   /**
    * User image to be displayed. Can be `<img>` or `<svg>` or anything else.
    */
-  image?: JSX.Element;
+  image?: React.JSX.Element;
   /**
    * Color of the icon. You can use `getUserColor` function to generate color from user name or email. If not provided, default background color from CSS styling will be used (hsl(72, 51%, 56%) / olive green).
    */
@@ -69,16 +65,16 @@ export const defaultStatusTitles: StatusTitles = {
  * Basic avatar component
  * @example
  * <caption>Small icon with abbreviation</caption>
- * <Avatar size='small' title='Terry Rivers' abbreviation='TR' backgroundColor='green'/>
+ * <Avatar size='small' abbreviation='TR' backgroundColor='green'/>
  * @example
  * <caption>Medium icon with image</caption>
- * <Avatar size='medium' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
+ * <Avatar size='medium' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  * @example
  * <caption>Large icon with status</caption>
- * <Avatar size='large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' status='online' />
+ * <Avatar size='large' abbreviation='TR' backgroundColor='green' status='online' />
  * @example
  * <caption>X-large icon with image</caption>
- * <Avatar size='x-large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
+ * <Avatar size='x-large' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  */
 export const Avatar = React.forwardRef((props, ref) => {
   const {
@@ -87,7 +83,6 @@ export const Avatar = React.forwardRef((props, ref) => {
     abbreviation,
     image,
     backgroundColor,
-    title,
     translatedStatusTitles,
     className,
     style,
@@ -102,7 +97,6 @@ export const Avatar = React.forwardRef((props, ref) => {
       className={cx('iui-avatar', className)}
       data-iui-size={size !== 'medium' ? size : undefined}
       data-iui-status={status}
-      title={title}
       style={{ backgroundColor: getBackground(backgroundColor), ...style }}
       ref={ref}
       {...rest}

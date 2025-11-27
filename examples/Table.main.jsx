@@ -3,30 +3,32 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Table, DefaultCell } from '@itwin/itwinui-react';
+import {
+  Table,
+  TablePaginator,
+  tableFilters,
+  DefaultCell,
+} from '@itwin/itwinui-react';
 
 export default () => {
-  const generateItem = React.useCallback((index, parentRow = '', depth = 0) => {
+  const generateItem = React.useCallback((index, parentRow = '') => {
     const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
-    const rating = Math.round(Math.random() * 5);
     return {
       product: `Product ${keyValue}`,
       price: ((index % 10) + 1) * 15,
-      quantity: ((index % 10) + 1) * 150,
-      rating: rating,
-      status: rating >= 4 ? 'positive' : rating === 3 ? 'warning' : 'negative',
-      subRows:
-        depth < 1
-          ? Array(Math.round(index % 2))
-              .fill(null)
-              .map((_, index) => generateItem(index, keyValue, depth + 1))
-          : [],
+      stock: (index % 3) * 10,
+      status: (index % 3) * 10 === 0 ? 'negative' : undefined,
+      height: ((index % 10) + 1) * 10,
+      width: ((index % 10) + 1) * 5,
+      depth: ((index % 10) + 1) * 2,
+      weight: ((index % 10) + 1) * 3,
+      volume: ((index % 10) + 1) * 4,
     };
   }, []);
 
   const data = React.useMemo(
     () =>
-      Array(3)
+      Array(20)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -38,34 +40,93 @@ export default () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
-        width: '40%',
+        Filter: tableFilters.TextFilter(),
+        minWidth: 150,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
         Cell: (props) => {
           return <>${props.value}</>;
         },
       },
       {
-        id: 'rating',
-        Header: 'Rating',
-        accessor: 'rating',
+        id: 'stock',
+        Header: 'Stock',
+        accessor: 'stock',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
         cellRenderer: (props) => {
           return (
             <DefaultCell
               {...props}
               status={props.cellProps.row.original.status}
             >
-              {props.cellProps.row.original.rating}/5
+              {props.cellProps.row.original.stock}
             </DefaultCell>
           );
+        },
+      },
+      {
+        id: 'height',
+        Header: 'Height',
+        accessor: 'height',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
+        Cell: (props) => {
+          return <>{props.value}m</>;
+        },
+      },
+      {
+        id: 'width',
+        Header: 'Width',
+        accessor: 'width',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
+        Cell: (props) => {
+          return <>{props.value}m</>;
+        },
+      },
+      {
+        id: 'depth',
+        Header: 'Depth',
+        accessor: 'depth',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
+        Cell: (props) => {
+          return <>{props.value}m</>;
+        },
+      },
+      {
+        id: 'weight',
+        Header: 'Weight',
+        accessor: 'weight',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
+        Cell: (props) => {
+          return <>{props.value}kg</>;
+        },
+      },
+      {
+        id: 'volume',
+        Header: 'Volume',
+        accessor: 'volume',
+        minWidth: 150,
+        Filter: tableFilters.NumberRangeFilter(),
+        Cell: (props) => {
+          return <>{props.value} cubic meter</>;
         },
       },
     ],
     [],
   );
+
+  const paginatorRenderer = React.useCallback((props) => {
+    return <TablePaginator {...props} />;
+  }, []);
 
   const rowProps = React.useCallback((row) => {
     return {
@@ -76,11 +137,16 @@ export default () => {
   return (
     <div className='demo-container'>
       <Table
+        caption='Products'
+        className='table'
         columns={columns}
         emptyTableContent='No data.'
         data={data}
+        isSelectable
+        isResizable
+        isSortable
+        columnResizeMode='expand'
         rowProps={rowProps}
-        density='condensed'
       />
     </div>
   );

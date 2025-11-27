@@ -115,6 +115,16 @@ export const SelectableSingle = () => {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
+        Cell: ({ value }: { value: string }) => {
+          return (
+            <Anchor
+              as='button'
+              onClick={() => console.log(`Selected ${value}`)}
+            >
+              {value}
+            </Anchor>
+          );
+        },
       },
       {
         id: 'description',
@@ -602,6 +612,9 @@ export const Expandable = () => {
       subComponent={expandedSubComponent}
       onExpand={onExpand}
       isSelectable
+      bodyProps={{
+        className: 'table-body',
+      }}
     />
   );
 };
@@ -697,6 +710,9 @@ export const ExpandableSubrows = () => {
         data={data}
         columns={columns}
         onExpand={onExpand}
+        bodyProps={{
+          className: 'table-body',
+        }}
       />
     </>
   );
@@ -1065,7 +1081,7 @@ export const ControlledState = () => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableInstance<DemoData>>();
+  const tableInstance = React.useRef<TableInstance<DemoData>>(undefined);
   const [selectedRows, setSelectedRows] = React.useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = React.useState<DemoData[]>([]);
 
@@ -1550,6 +1566,9 @@ export const Full2 = () => {
           style={{ height: '100%' }}
           enableVirtualization
           rowProps={rowProps}
+          bodyProps={{
+            className: 'table-body',
+          }}
           globalFilterValue={globalFilterValue}
         />
       </div>
@@ -1743,6 +1762,9 @@ export const Condensed = () => {
       isSortable
       columns={columns}
       data={data}
+      bodyProps={{
+        className: 'table-body',
+      }}
       emptyTableContent='No data.'
       density='condensed'
       onExpand={onExpand}
@@ -3023,6 +3045,9 @@ export const CustomizedColumns = () => {
       rowProps={({ index }) => ({
         onClick: (e) => index === 0 && e.preventDefault(),
       })}
+      bodyProps={{
+        className: 'table-body',
+      }}
     />
   );
 };
@@ -3376,8 +3401,8 @@ export const StatusAndCellIcons = () => {
     name: string;
     modified: string;
     size: string;
-    startIcon?: JSX.Element;
-    endIcon?: JSX.Element;
+    startIcon?: React.JSX.Element;
+    endIcon?: React.JSX.Element;
     status?: 'positive' | 'negative' | 'warning';
     isLoading?: boolean;
   };

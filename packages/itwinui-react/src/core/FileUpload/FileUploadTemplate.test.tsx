@@ -45,7 +45,7 @@ it('should render FileUploadTemplate', () => {
 it('should accept input props', () => {
   const { container } = render(
     <FileUploadTemplate
-      onChange={vi.fn}
+      onChange={vi.fn()}
       acceptMultiple={false}
       acceptType='.txt, .png'
     />,

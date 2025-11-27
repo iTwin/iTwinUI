@@ -21,7 +21,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Date</h2>
   <section id='demo-date'>
-    <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
+    <div class='iui-date-picker iui-popover iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
           <IconButton_
@@ -367,7 +367,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h3>Year skipping buttons</h3>
   <section id='demo-date-year-skipping'>
-    <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
+    <div class='iui-date-picker iui-popover iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
           <IconButton_
@@ -812,7 +812,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Date & time</h2>
   <section id='demo-date-and-time'>
-    <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
+    <div class='iui-date-picker iui-popover iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
           <IconButton_
@@ -1307,7 +1307,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h3>24hr format</h3>
   <section id='demo-date-and-time-24h'>
-    <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
+    <div class='iui-date-picker iui-popover iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
           <IconButton_
@@ -1841,7 +1841,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Date range</h2>
   <section id='demo-date-range'>
-    <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
+    <div class='iui-date-picker iui-popover iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
           <IconButton_
@@ -2284,7 +2284,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h3>Some dates disabled</h3>
   <section id='demo-dates-disabled'>
-    <div class='iui-date-picker iui-popover-surface' role='dialog' aria-modal='true'>
+    <div class='iui-date-picker iui-popover iui-popover-surface' role='dialog' aria-modal='true'>
       <div>
         <div class='iui-calendar-month-year'>
           <IconButton_
@@ -2292,7 +2292,7 @@ import IconButton_ from '../components/IconButton.astro';
             role='year-previous'
             variant='borderless'
             size='small'
-            disabled=''
+            disabled
           >
             <svg-chevron-left-double></svg-chevron-left-double>
           </IconButton_>
@@ -2301,7 +2301,7 @@ import IconButton_ from '../components/IconButton.astro';
             role='month-previous'
             variant='borderless'
             size='small'
-            disabled=''
+            disabled
           >
             <svg-chevron-left></svg-chevron-left>
           </IconButton_>
@@ -2313,7 +2313,7 @@ import IconButton_ from '../components/IconButton.astro';
             role='month-next'
             variant='borderless'
             size='small'
-            disabled=''
+            disabled
           >
             <svg-chevron-right></svg-chevron-right>
           </IconButton_>
@@ -2322,7 +2322,7 @@ import IconButton_ from '../components/IconButton.astro';
             role='year-next'
             variant='borderless'
             size='small'
-            disabled=''
+            disabled
           >
             <svg-chevron-right-double></svg-chevron-right-double>
           </IconButton_>

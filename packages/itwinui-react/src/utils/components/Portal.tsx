@@ -5,12 +5,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useIsClient } from '../hooks/useIsClient.js';
-import { atom } from 'jotai';
-import { useScopedAtom } from '../providers/ScopeProvider.js';
 
 // ----------------------------------------------------------------------------
 
-export const portalContainerAtom = atom<HTMLElement | undefined>(undefined);
+export const PortalContainerContext = React.createContext<HTMLElement | null>(
+  null,
+);
 
 // ----------------------------------------------------------------------------
 
@@ -44,8 +44,8 @@ export type PortalProps = {
 /**
  * Helper component that portals children according to the following conditions:
  *   - renders null on server
- *   - if `portal` is set to true, renders into nearest ThemeProvider's portalContainer
- *   - if `portal` is set to false, renders as-is without portal
+ *   - if `portal` is set to true, renders into the element provided by PortalContainerContext.
+ *   - if `portal` is set to false, renders as-is without portal.
  *   - otherwise renders into `portal.to` (can be an element or a function)
  *     - If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
  *     - E.g. `portal={{ to: () => document.querySelector('.may-not-exist') }}`.
@@ -68,7 +68,7 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 // ----------------------------------------------------------------------------
 
 export const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
-  const [portalContainer] = useScopedAtom(portalContainerAtom);
+  const portalContainer = React.useContext(PortalContainerContext);
 
   if (typeof portal === 'boolean') {
     return portal ? portalContainer : null;

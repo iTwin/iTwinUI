@@ -40,7 +40,12 @@ if (process.env.NODE_ENV === 'development') {
 const OverlayHiddenContent = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
   return (
-    <Box {...{ inert: '' }} ref={ref} {...rest}>
+    <Box
+      // @ts-expect-error - Supporting React 19 and 18
+      inert='true'
+      ref={ref}
+      {...rest}
+    >
       {children}
     </Box>
   );

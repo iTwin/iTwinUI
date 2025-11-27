@@ -10,6 +10,52 @@ test('un-virtualized table should scroll to provided row', async ({ page }) => {
   await expect(page.getByText('Name51')).toBeInViewport();
 });
 
+test.describe('Caption', () => {
+  test('should have a default caption if no caption is passed', async ({
+    page,
+  }) => {
+    await page.goto('/Table');
+
+    const table = page.getByRole('table');
+    await expect(table).toHaveAccessibleName('Table');
+  });
+
+  test('should respect the caption prop', async ({ page }) => {
+    await page.goto('/Table?caption=My Custom Table');
+
+    const table = page.getByRole('table');
+    await expect(table).toHaveAccessibleName('My Custom Table');
+  });
+});
+
+test.describe('Conditional ARIA attributes', () => {
+  test('if tableProps or role is passed, aria attributes should be passed to the outer div', async ({
+    page,
+  }) => {
+    const urls = ['/Table?passTableProps=true', '/Table?role="group"'];
+
+    for (const url of urls) {
+      await page.goto(url);
+
+      const outerDiv = page.locator('.outer-div[aria-readonly="true"]');
+      const innerDiv = page.locator('[role="table"][aria-readonly="true"]');
+      await expect(outerDiv).toHaveCount(1);
+      await expect(innerDiv).toHaveCount(0);
+    }
+  });
+
+  test('if tableProps or role is *not* passed, aria attributes should be passed to the inner div', async ({
+    page,
+  }) => {
+    await page.goto('/Table');
+
+    const outerDiv = page.locator('.outer-div[aria-readonly="true"]');
+    const innerDiv = page.locator('[role="table"][aria-readonly="true"]');
+    await expect(outerDiv).toHaveCount(0);
+    await expect(innerDiv).toHaveCount(1);
+  });
+});
+
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
@@ -426,6 +472,31 @@ test.describe('Table row selection', () => {
     expect((await secondParentRowMessage).text()).toBe('false');
   });
 
+  test('should not call onSelect when clicking on text', async ({ page }) => {
+    await page.goto('/Table?isSelectable=true&onSelect=true');
+
+    const row1 = page.getByText('1Name1Description1');
+    const row1Cell = row1.getByText('Name1');
+
+    let consoleText = '';
+    page.on('console', (msg) => {
+      if (msg.type() === 'log') {
+        consoleText = msg.text();
+      }
+    });
+
+    const row1CellBox = (await row1Cell.boundingBox())!;
+    // Approximate the position of the text
+    await page.mouse.click(
+      row1CellBox.x + 24, // A few pixels from the left edge
+      row1CellBox.y + row1CellBox.height / 2, // Vertically middle of the cell
+    );
+    expect(consoleText).not.toContain('onSelect');
+
+    await row1.click();
+    expect(consoleText).toContain('onSelect');
+  });
+
   //#region Helpers for row selection tests
   const filter = async (page: Page) => {
     const filterButton = page.getByLabel('Filter');
@@ -723,7 +794,7 @@ test.describe('Virtual Scroll Tests', () => {
   }) => {
     await page.goto('/Table?virtualization=true', { waitUntil: 'networkidle' }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator('.table-body').getByRole('row');
     expect((await rows.all()).length).toBe(12);
     await expect(rows.nth(0)).toContainText('Name0');
     await expect(rows.nth(11)).toContainText('Name11');
@@ -753,8 +824,10 @@ test.describe('Virtual Scroll Tests', () => {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
-    const emptyContent = page.getByRole('rowgroup').getByText('No Data.');
+    const rows = page.locator('.table-body').getByRole('row');
+    const emptyContent = page
+      .locator('.empty-table-content')
+      .getByText('No Data.');
     expect((await rows.all()).length).toBe(0);
 
     //Checks empty content to make sure it appears correctly.
@@ -766,7 +839,7 @@ test.describe('Virtual Scroll Tests', () => {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator('.table-body').getByRole('row');
     const row50NameCell = page.getByText('Name50');
     expect((await rows.all()).length).toBe(13);
     await expect(rows.nth(0)).toContainText('Name49');
@@ -780,7 +853,7 @@ test.describe('Virtual Scroll Tests', () => {
     await page.goto('/Table?virtualization=true&oneRow=true', {
       waitUntil: 'networkidle',
     }); //Need to wait until the virtual rows are able to be rendered for the tests to work.
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator('.table-body').getByRole('row');
     expect((await rows.all()).length).toBe(1);
   });
 
@@ -794,7 +867,7 @@ test.describe('Virtual Scroll Tests', () => {
       },
     ); //Need to wait until the virtual rows are able to be rendered for the tests to work.
 
-    const rows = page.getByRole('rowgroup').getByRole('row');
+    const rows = page.locator('.table-body').getByRole('row');
     await expect(rows.nth(1)).toContainText('Name50');
     await expect(rows.nth(4)).toContainText('Name53');
 
@@ -830,6 +903,55 @@ test.describe('Virtual Scroll Tests', () => {
 });
 
 test.describe('Table filters', () => {
+  test('should work with keyboard', async ({ page }) => {
+    await page.goto('/Table?exampleType=allFilters');
+
+    // No filter applied
+    await expect(page.getByText('Name1')).toBeVisible();
+    await expect(page.getByText('Name2')).toBeVisible();
+    await expect(page.getByText('Name3')).toBeVisible();
+
+    await page.keyboard.press('Tab'); // Focus filter button
+    await page.keyboard.press('Enter'); // open filter popover
+
+    await page.keyboard.type('2'); // min filter
+    await page.keyboard.press('Tab');
+    await page.keyboard.type('3'); // max filter
+    await page.keyboard.press('Tab');
+
+    const onFilterArguments = page.waitForEvent('console');
+    await page.keyboard.press('Enter'); // apply filter
+
+    const expectedArguments = JSON.stringify([
+      // filters
+      [
+        {
+          id: 'index',
+          value: [2, 3],
+          fieldType: 'number',
+          filterType: 'between',
+        },
+      ],
+      // state.filters
+      [
+        {
+          id: 'index',
+          value: [2, 3],
+        },
+      ],
+      // filteredData?.map((r) => r.original.index)
+      [2, 3],
+    ]);
+
+    // Confirm onFilter is called with the correct arguments
+    await expect((await onFilterArguments).text()).toBe(expectedArguments);
+
+    // Filter applied
+    await expect(page.getByText('Name1')).not.toBeVisible();
+    await expect(page.getByText('Name2')).toBeVisible();
+    await expect(page.getByText('Name3')).toBeVisible();
+  });
+
   test('DateRangeFilter should show DatePicker', async ({ page }) => {
     await page.goto('/Table?exampleType=allFilters');
 

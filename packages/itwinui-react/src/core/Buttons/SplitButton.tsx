@@ -9,6 +9,7 @@ import type { ButtonProps } from './Button.js';
 import { IconButton } from './IconButton.js';
 import {
   Box,
+  mergeEventHandlers,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
   useId,
@@ -27,7 +28,7 @@ export type SplitButtonProps = ButtonProps & {
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
    */
-  menuItems: (close: () => void) => JSX.Element[];
+  menuItems: (close: () => void) => React.JSX.Element[];
   /**
    * Placement of the dropdown menu.
    * @default 'bottom-end'
@@ -51,7 +52,8 @@ export type SplitButtonProps = ButtonProps & {
   /**
    * Props to customize menu behavior.
    */
-  dropdownMenuProps?: Pick<Parameters<typeof usePopover>[0], 'middleware'>;
+  dropdownMenuProps?: Pick<Parameters<typeof usePopover>[0], 'middleware'> &
+    React.ComponentProps<'div'>;
 } & Pick<PortalProps, 'portal'>;
 
 /**
@@ -79,9 +81,11 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     children,
     wrapperProps,
     menuButtonProps,
+    dropdownMenuProps,
     portal = true,
     ...rest
   } = props;
+  const { middleware, ...dropdownMenuPropsRest } = dropdownMenuProps || {};
 
   const [visible, setVisible] = React.useState(false);
 
@@ -97,6 +101,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     onVisibleChange: setVisible,
     placement: menuPlacement,
     matchWidth: true,
+    middleware,
   } satisfies Parameters<typeof Menu>[0]['popoverProps'];
 
   const labelId = useId();
@@ -145,11 +150,15 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         trigger={trigger}
         portal={portal}
         positionReference={positionReference}
-        onKeyDown={({ key }) => {
-          if (key === 'Tab') {
-            setVisible(false);
-          }
-        }}
+        {...dropdownMenuPropsRest}
+        onKeyDown={mergeEventHandlers(
+          dropdownMenuPropsRest?.onKeyDown,
+          ({ key }) => {
+            if (key === 'Tab') {
+              setVisible(false);
+            }
+          },
+        )}
       >
         {menuContent}
       </Menu>

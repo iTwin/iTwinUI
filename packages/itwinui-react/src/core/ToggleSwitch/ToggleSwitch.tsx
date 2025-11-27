@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, SvgCheckmark } from '../../utils/index.js';
+import { Box, SvgCheckmark, useFutureFlag } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 type ToggleSwitchProps = {
@@ -21,6 +21,16 @@ type ToggleSwitchProps = {
    * @default 'right'
    */
   labelPosition?: 'left' | 'right';
+  /**
+   * Passes props to wrapper.
+   *
+   * By default, `className` and `style` are applied on the wrapper element, and all other DOM props are passed to
+   * `<input>` element.
+   *
+   * When `wrapperProps` is passed or when the `ToggleSwitch.consistentPropsSpread` future flag is enabled, `className`
+   * and `style` are applied on the `<input>` element, similar to other DOM props.
+   */
+  wrapperProps?: React.HTMLAttributes<HTMLElement>;
 } & (
   | {
       /**
@@ -33,7 +43,7 @@ type ToggleSwitchProps = {
        *
        * Will override the default checkmark icon.
        */
-      icon?: JSX.Element | null;
+      icon?: React.JSX.Element | null;
     }
   | {
       size: 'small';
@@ -43,6 +53,17 @@ type ToggleSwitchProps = {
 
 /**
  * A switch for turning on and off.
+ *
+ * ---
+ *
+ * By default, `className` and `style` are applied on the wrapper element, and all other DOM props are passed to `<input>`
+ * element.
+ *
+ * When `wrapperProps` is passed or when the `ToggleSwitch.consistentPropsSpread` future flag is enabled, `className`
+ * and `style` are applied on the `<input>` element, similar to other DOM props.
+ *
+ * ---
+ *
  * @example
  * <caption>Basic toggle</caption>
  * <ToggleSwitch onChange={(e) => console.log(e.target.checked)} defaultChecked />
@@ -68,9 +89,15 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     style,
     size = 'default',
     labelProps = {},
+    wrapperProps,
     icon: iconProp,
     ...rest
   } = props;
+
+  const { consistentPropsSpread } = useFutureFlag('ToggleSwitch') || {};
+
+  const shouldApplyClassNameAndStyleOnInput =
+    wrapperProps != null || consistentPropsSpread;
 
   // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
   const shouldShowIcon =
@@ -79,6 +106,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   return (
     <Box
       as={label ? 'label' : 'div'}
+      style={!shouldApplyClassNameAndStyleOnInput ? style : undefined}
+      {...wrapperProps}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -86,19 +115,23 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           'iui-label-on-right': label && labelPosition === 'right',
           'iui-label-on-left': label && labelPosition === 'left',
         },
-        className,
+        !shouldApplyClassNameAndStyleOnInput ? className : undefined,
+        wrapperProps?.className,
       )}
       data-iui-size={size}
-      style={style}
     >
       <Box
         as='input'
-        className='iui-toggle-switch'
         type='checkbox'
         role='switch'
+        style={shouldApplyClassNameAndStyleOnInput ? style : undefined}
+        {...rest}
+        className={cx(
+          'iui-toggle-switch',
+          shouldApplyClassNameAndStyleOnInput ? className : undefined,
+        )}
         disabled={disabled}
         ref={ref}
-        {...rest}
       />
       {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>

@@ -3,12 +3,15 @@
 @use 'base';
 
 @mixin iui-tabs-default {
-  @include base.iui-tab-not-animated;
+  --_iui-tab-bg-color: var(--iui-color-background-backdrop);
+  --_iui-tab-bg-color-hover: var(--iui-color-background-backdrop-hover);
+  --_iui-tab-bg-color-selected: var(--iui-color-background);
+  --_iui-tab-bg-color-selected-hover: var(--iui-color-background);
+  --_iui-tab-bg-color-disabled: var(--iui-color-background-backdrop);
 
   .iui-tab {
     padding-block: var(--iui-size-2xs);
     padding-inline: var(--iui-size-m);
-    background-color: var(--iui-color-background-backdrop);
     border: 1px solid var(--iui-color-border);
 
     &::after {
@@ -16,26 +19,14 @@
       inset-inline-start: 0;
     }
 
-    &:hover {
-      background-color: var(--iui-color-background-backdrop-hover);
-    }
-
-    &[aria-selected='true'] {
-      background-color: var(--iui-color-background);
-    }
-
-    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
-      background-color: var(--iui-color-background-disabled);
-    }
-
     &:focus {
       outline-width: 2px;
-      outline-offset: -2px;
+      outline-offset: -6px;
     }
   }
 
-  .iui-horizontal & {
-    .iui-tab[aria-selected='true'] {
+  .iui-horizontal &[data-iui-orientation='horizontal'] {
+    .iui-tab:is([aria-selected='true'], [aria-current]) {
       border-block-end-color: transparent;
     }
 
@@ -52,8 +43,8 @@
     }
   }
 
-  .iui-vertical & {
-    .iui-tab[aria-selected='true'] {
+  .iui-vertical &[data-iui-orientation='vertical'] {
+    .iui-tab:is([aria-selected='true'], [aria-current]) {
       border-inline-end-color: transparent;
     }
 
@@ -81,7 +72,7 @@
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-border-positive);
+    --_iui-tab-color-stripe: var(--_iui-tab-color-stripe-green);
   }
 
   ~ .iui-tabs-content {

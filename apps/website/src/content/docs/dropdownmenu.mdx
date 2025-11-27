@@ -26,6 +26,8 @@ The basic dropdown menu displays a list of clickable options when expanded. Addi
   <AllExamples.DropdownMenuBasicExample client:load />
 </LiveExample>
 
+The `closeOnItemClick` prop can be set to `true` if you want to automatically close the menu when an item is clicked.
+
 ### Start icon
 
 An icon may be display on the left side of option for better visualization of common menu items.
@@ -94,6 +96,14 @@ If the menu gets hidden even when it shouldn't (e.g. due to some custom styles i
   …
 </DropdownMenu>
 ```
+
+### Positioning
+
+The `positionReference` prop can be used to change the position of the menu. Accepts a real element or a [virtual element](https://floating-ui.com/docs/virtual-elements) containing a `getBoundingClientRect` method.
+
+This is useful when you want the menu to be positioned relative to a different element than the trigger (e.g. a wrapping element) or for building context menus.
+
+{/* TODO: add proper example */}
 
 ## Props
 
