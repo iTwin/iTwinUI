@@ -54,12 +54,6 @@ type ButtonGroupProps = {
    */
   orientation?: 'horizontal' | 'vertical';
   /**
-   * Value of the `justify-content` property.
-   * Useful for aligning buttons to the right when orientation is 'horizontal'.
-   * @default 'flex-start'
-   */
-  justifyContent?: React.CSSProperties['justifyContent'];
-  /**
    * ARIA role for the ButtonGroup.
    *
    * If set to toolbar', it will automatically support arrow-key navigation.
@@ -104,7 +98,6 @@ export const ButtonGroup = React.forwardRef((props, forwardedRef) => {
     overflowButton,
     overflowPlacement = 'end',
     orientation = 'horizontal',
-    justifyContent,
     ...rest
   } = props;
 
@@ -127,7 +120,6 @@ export const ButtonGroup = React.forwardRef((props, forwardedRef) => {
       orientation={orientation}
       overflowButton={overflowButton}
       overflowPlacement={overflowPlacement}
-      justifyContent={justifyContent}
       ref={forwardedRef}
       {...rest}
     >
@@ -183,7 +175,7 @@ const BaseGroup = React.forwardRef((props, forwardedRef) => {
 
 type OverflowGroupProps = Pick<
   ButtonGroupProps,
-  'children' | 'orientation' | 'overflowPlacement' | 'justifyContent'
+  'children' | 'orientation' | 'overflowPlacement'
 > &
   Required<Pick<ButtonGroupProps, 'overflowButton'>>;
 
@@ -193,7 +185,6 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
     orientation,
     overflowButton,
     overflowPlacement,
-    justifyContent,
     ...rest
   } = props;
 
@@ -208,7 +199,6 @@ const OverflowGroup = React.forwardRef((props, forwardedRef) => {
       itemsCount={items.length}
       overflowOrientation={orientation}
       orientation={orientation}
-      justifyContent={justifyContent}
       {...rest}
       className={cx(
         {

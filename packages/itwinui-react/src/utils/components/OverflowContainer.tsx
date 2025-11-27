@@ -21,12 +21,6 @@ type OverflowContainerProps = {
    * Count of the *original* items (i.e. when sufficient space is available).
    */
   itemsCount: number;
-  /**
-   * Value of the `justify-content` property.
-   * Useful for aligning items to the right when overflowOrientation is 'horizontal'.
-   * @default 'flex-start'
-   */
-  justifyContent?: React.CSSProperties['justifyContent'];
 };
 
 /**
@@ -62,8 +56,7 @@ type OverflowContainerProps = {
  * };
  */
 const OverflowContainerMain = React.forwardRef((props, forwardedRef) => {
-  const { itemsCount, children, overflowOrientation, justifyContent, ...rest } =
-    props;
+  const { itemsCount, children, overflowOrientation, ...rest } = props;
 
   const [containerRef, visibleCount, isStabilized] = useOverflow(
     itemsCount,
@@ -77,7 +70,9 @@ const OverflowContainerMain = React.forwardRef((props, forwardedRef) => {
 
   // Only apply justifyContent after overflow detection is stabilized
   // to avoid interfering with the measurement algorithm
-  const appliedJustifyContent = isStabilized ? justifyContent : undefined;
+  const appliedJustifyContent = isStabilized
+    ? rest.style?.justifyContent
+    : undefined;
 
   return (
     <OverflowContainerContext.Provider value={overflowContainerContextValue}>
@@ -125,12 +120,7 @@ const OverflowContainerOverflowNode = (
 // ----------------------------------------------------------------------------
 
 const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
-  const {
-    itemsCount,
-    overflowOrientation = 'horizontal',
-    justifyContent,
-    ...rest
-  } = props;
+  const { itemsCount, overflowOrientation = 'horizontal', ...rest } = props;
 
   const [size, setSize] = React.useState<DOMRectReadOnly | null>(null);
   const [resizeRef] = useResizeObserver(setSize);
@@ -148,7 +138,6 @@ const OverflowContainerComponent = React.forwardRef((props, forwardedRef) => {
       ref={ref}
       itemsCount={itemsCount}
       overflowOrientation={overflowOrientation}
-      justifyContent={justifyContent}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', OverflowContainerProps>;
