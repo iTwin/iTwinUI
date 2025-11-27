@@ -111,67 +111,6 @@ Overflow.decorators = [
   ),
 ];
 
-export const OverflowJustifyEnd = () => {
-  const items = Array.from({ length: 10 }, (_, index) => (
-    <IconButton key={index} label={`Item #${index}`}>
-      <SvgPlaceholder />
-    </IconButton>
-  ));
-
-  return (
-    <ButtonGroup
-      orientation='horizontal'
-      justifyContent='flex-end'
-      overflowButton={(overflowStart) => (
-        <DropdownMenu
-          menuItems={(close) =>
-            Array(items.length - overflowStart)
-              .fill(null)
-              .map((_, _index) => {
-                const index = overflowStart + _index;
-                return (
-                  <MenuItem
-                    key={index}
-                    onClick={close}
-                    startIcon={<SvgPlaceholder />}
-                  >
-                    Item #{index}
-                  </MenuItem>
-                );
-              })
-          }
-        >
-          <IconButton label='More'>
-            <SvgMore />
-          </IconButton>
-        </DropdownMenu>
-      )}
-    >
-      {items}
-    </ButtonGroup>
-  );
-};
-OverflowJustifyEnd.decorators = [
-  (Story: () => React.ReactNode) => (
-    <>
-      <Text variant='small' as='small' isMuted>
-        Resize the container to see overflow behavior.
-      </Text>
-      <div
-        style={{
-          width: 'min(30rem, 100%)',
-          border: '1px solid hotpink',
-          padding: 8,
-          overflow: 'hidden',
-          resize: 'inline',
-        }}
-      >
-        <Story />
-      </div>
-    </>
-  ),
-];
-
 export const InputButtonCombo = () => {
   return (
     <ButtonGroup>
@@ -232,7 +171,6 @@ export const VerticalOverflow = () => {
   return (
     <ButtonGroup
       orientation='vertical'
-      justifyContent='center'
       style={{ blockSize: '100%' }}
       overflowButton={(overflowStart) => (
         <DropdownMenu
