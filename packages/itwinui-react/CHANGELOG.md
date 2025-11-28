@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- [#2655](https://github.com/iTwin/iTwinUI/pull/2655): Force text wrapping for long words. Affected components: 'Tile'
+
 ## 3.19.6
 
 ### Patch Changes
