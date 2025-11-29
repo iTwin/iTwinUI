@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import type {
   ActionType,
+  IdType,
   Row,
   TableInstance,
   TableState,
-  IdType,
 } from '../../../react-table/react-table.js';
 import { iuiId } from '../Table.js';
 
@@ -25,6 +25,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     tableState?: TableState<T>,
   ) => void,
   isRowDisabled?: (rowData: T) => boolean,
+  selectRowOnAllSubRows?: boolean,
 ) => {
   if (!instance?.rows.length) {
     onSelect?.([], newState);
@@ -65,12 +66,22 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     const case1 = isRowSelected && (!instance.selectSubRows || !hasSubRows);
     const case2 = hasSubRows && isAllSubSelected;
 
-    if (case1 || case2) {
+    let shouldSelect = false;
+    if (case1) {
+      // Explicitly selected
+      shouldSelect = true;
+    } else if (case2 && selectRowOnAllSubRows) {
+      // Implicitly selected (all subrows selected)
+      shouldSelect = true;
+    }
+
+    if (shouldSelect) {
       newSelectedRowIds[row.id as IdType<T>] = true;
     }
 
-    return !!newSelectedRowIds[row.id];
+    return shouldSelect;
   };
+
   instance.initialRows.forEach((row) => handleRow(row));
 
   const selectedData = getSelectedData(newSelectedRowIds, instance);
@@ -91,8 +102,15 @@ export const onToggleHandler = <T extends Record<string, unknown>>(
     tableState?: TableState<T>,
   ) => void,
   isRowDisabled?: (rowData: T) => boolean,
+  selectRowOnAllSubRows?: boolean,
 ) => {
-  onSelectHandler(newState, instance, onSelect, isRowDisabled);
+  onSelectHandler(
+    newState,
+    instance,
+    onSelect,
+    isRowDisabled,
+    selectRowOnAllSubRows,
+  );
 
   // Toggling a row (ctrl click or checkbox click) updates the lastSelectedRowId
   newState.lastSelectedRowId = action.id;
@@ -110,6 +128,7 @@ export const onSingleSelectHandler = <T extends Record<string, unknown>>(
     tableState?: TableState<T>,
   ) => void,
   isRowDisabled?: (rowData: T) => boolean,
+  selectRowOnAllSubRows?: boolean,
 ) => {
   const selectedRowIds = { [action.id]: true } as Record<string, boolean>;
   if (instance?.selectSubRows) {
@@ -126,7 +145,13 @@ export const onSingleSelectHandler = <T extends Record<string, unknown>>(
     selectedRowIds,
   };
   // Passing to `onSelectHandler` to handle filtered sub-rows
-  onSelectHandler(newState, instance, onSelect, isRowDisabled);
+  onSelectHandler(
+    newState,
+    instance,
+    onSelect,
+    isRowDisabled,
+    selectRowOnAllSubRows,
+  );
 
   return newState;
 };

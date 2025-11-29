@@ -153,6 +153,12 @@ export type TableProps<
      */
     selectionMode?: 'multi' | 'single';
     /**
+     * Flag whether the row should be automatically selected when all the sub-rows are selected.
+     * By default, when all the sub-rows are selected, the parent row is also selected.
+     * @default true
+     */
+    selectRowOnAllSubRows?: boolean;
+    /**
      * Flag whether table columns can be sortable.
      * @default false
      */
@@ -429,6 +435,7 @@ export const Table = <
     rowProps,
     density = 'default',
     selectSubRows = true,
+    selectRowOnAllSubRows = true,
     getSubRows,
     selectRowOnClick = true,
     paginatorRenderer,
@@ -624,6 +631,7 @@ export const Table = <
             onSelect,
             // If it has manual selection column, then we can't check whether row is disabled
             hasManualSelectionColumn ? undefined : isRowDisabled,
+            selectRowOnAllSubRows,
           );
           break;
         }
@@ -648,6 +656,7 @@ export const Table = <
             onSelect,
             // If it has manual selection column, then we can't check whether row is disabled
             hasManualSelectionColumn ? undefined : isRowDisabled,
+            selectRowOnAllSubRows,
           );
           break;
         }
@@ -673,6 +682,7 @@ export const Table = <
       onSelect,
       onSort,
       stateReducer,
+      selectRowOnAllSubRows,
     ],
   );
 
@@ -790,7 +800,13 @@ export const Table = <
     useRowSelect,
     useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
-    useSelectionCell(isSelectable, selectionMode, isRowDisabled, density),
+    useSelectionCell(
+      isSelectable,
+      selectionMode,
+      isRowDisabled,
+      density,
+      selectRowOnAllSubRows,
+    ),
     useColumnOrder,
     useColumnDragAndDrop(enableColumnReordering),
     useStickyColumns,
