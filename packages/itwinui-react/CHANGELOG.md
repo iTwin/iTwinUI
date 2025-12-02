@@ -1,16 +1,14 @@
 # Changelog
 
-## 3.20.0
-
-### Minor Changes
-
-- [#2655](https://github.com/iTwin/iTwinUI/pull/2655): Force text wrapping for long words. Affected components: 'Tile'
+## 3.19.7
 
 ### Patch Changes
 
+- [#2655](https://github.com/iTwin/iTwinUI/pull/2655): Force text wrapping for long words in `Tile.Description`.
 - 611d8d5e2b3ea63652ab36024043ef8826821c60: Fixed a bug in `Table` where the SelectionColumn Header would incorrectly calculate the indeterminate state if `state.selectedRowIds` contained any `false` values.
-- cfe6f8896c46d290695a459cd979e4aa7c75d6bb: Fixed `FileUpload` background transparency issue in theme bridge.
-- d1e28aa80ab429008d65e1ff7a23faaf70aecadc: Updated the minimum required version of `@stratakit/foundations` to `>=0.4.0`.
+- Theme bridge:
+  - cfe6f8896c46d290695a459cd979e4aa7c75d6bb: Fixed `FileUpload` background transparency issue.
+  - d1e28aa80ab429008d65e1ff7a23faaf70aecadc: Updated the minimum required version of `@stratakit/foundations` to `>=0.4.0`.
 
 ## 3.19.6
 
