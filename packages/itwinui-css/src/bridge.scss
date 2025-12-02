@@ -317,6 +317,9 @@
     .iui-anchor {
       color: var(--iui-color-text-accent);
     }
+
+    // Use an opaque background instead of the translucent on-surface one.
+    background-color: var(--stratakit-color-bg-accent-muted);
   }
 
   /* ---------------------------------------------------------------------------- */
