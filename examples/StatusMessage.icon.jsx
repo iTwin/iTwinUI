@@ -4,13 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { StatusMessage } from '@itwin/itwinui-react';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
     <div className='demo-container'>
-      <StatusMessage status='positive'>Positive message</StatusMessage>
-      <StatusMessage status='warning'>Warning message</StatusMessage>
-      <StatusMessage status='negative'>Negative message</StatusMessage>
+      <StatusMessage>No status + No startIcon</StatusMessage>
+      <StatusMessage status='positive'>status + default icon</StatusMessage>
+      <StatusMessage status='positive' startIcon={<SvgPlaceholder />}>
+        status + custom startIcon
+      </StatusMessage>
     </div>
   );
 };
