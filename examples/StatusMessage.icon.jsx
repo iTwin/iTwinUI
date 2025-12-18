@@ -10,9 +10,9 @@ export default () => {
   return (
     <div className='demo-container'>
       <StatusMessage>No status + No startIcon</StatusMessage>
-      <StatusMessage status='positive'>status + No startIcon</StatusMessage>
+      <StatusMessage status='positive'>status + default icon</StatusMessage>
       <StatusMessage status='positive' startIcon={<SvgPlaceholder />}>
-        status + startIcon
+        status + custom startIcon
       </StatusMessage>
     </div>
   );

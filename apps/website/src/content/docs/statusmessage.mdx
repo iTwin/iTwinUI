@@ -11,13 +11,12 @@ group: utilities
   <AllExamples.StatusMessageMainExample client:load />
 </LiveExample>
 
-You can pass `StatusMessage` to any component that has `message` prop (e.g. form fields such as inputs, selects, etc.) to fully customize the rendered message.
+The `StatusMessage` can be used with form components that have a `message` prop (e.g. `LabeledInput`, `LabeledTextarea`, `LabeledSelect`, `ComboBox`, `InputGroup`)
 
 ```jsx
 <LabeledInput
-  placeholder='Enter text here...'
-  label='This is a label'
-  message={<StatusMessage startIcon={<SvgCamera />}>⬅ This is a custom icon</StatusMessage>}
+  label='This is the label'
+  message={<StatusMessage>This is the message</StatusMessage>}
 />
 ```
 
@@ -25,9 +24,9 @@ It can also be used as a child of [`InputGrid`](/input-grid) to display messages
 
 ```jsx
 <InputGrid>
-  <Label>This is label</Label>
+  <Label>This is the label</Label>
   <Input />
-  <StatusMessage>This is message</StatusMessage>
+  <StatusMessage>This is the message</StatusMessage>
 </InputGrid>
 ```
 
@@ -41,10 +40,11 @@ Use `status` prop to set proper color to the message.
 
 ### Icon
 
-Use the `startIcon` prop to customize the icon.
+By default, a status icon will be displayed if the `status` prop is set.
 
-- It will default to the `status` icon, if `status` is set. Else, it defaults to no icon.
-- If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
+Use the `startIcon` prop to add a custom icon.
+
+If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
 
 <LiveExample src='StatusMessage.icon.jsx'>
   <AllExamples.StatusMessageIconExample client:load />
