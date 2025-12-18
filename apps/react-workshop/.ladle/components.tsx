@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {
   useLadleContext,
   ActionType,
@@ -70,29 +71,35 @@ export const Provider: GlobalProvider = ({ children }) => {
   // Deferring futureThemeBridge updates to work around Ladle's infinite re-renders when DOM changes upon changing args.
   const futureThemeBridge = React.useDeferredValue(futureThemeBridgeArg);
 
-  const themeProviderProps = {
-    theme,
-    themeOptions: {
-      applyBackground: false,
-      highContrast,
-    },
-    future: { themeBridge: futureThemeBridge },
-    children,
-  } satisfies React.ComponentProps<typeof ThemeProvider>;
-
-  return (
-    <React.StrictMode>
-      {futureThemeBridge ? (
+  if (futureThemeBridge) {
+    return (
+      <React.StrictMode>
         <ThemeProvider
+          theme={theme}
+          themeOptions={{ applyBackground: false, highContrast }}
+          future={{ themeBridge: true }}
           as={SkRoot}
           colorScheme={theme}
           density='dense'
           synchronizeColorScheme
-          {...themeProviderProps}
-        />
-      ) : (
-        <ThemeProvider {...themeProviderProps} />
-      )}
+        >
+          {children}
+
+          {/* Hide the background addon because it does not work with theme bridge. */}
+          <style>{`.ladle-background { display: none !important }`}</style>
+        </ThemeProvider>
+      </React.StrictMode>
+    );
+  }
+
+  return (
+    <React.StrictMode>
+      <ThemeProvider
+        theme={theme}
+        themeOptions={{ applyBackground: false, highContrast }}
+      >
+        {children}
+      </ThemeProvider>
     </React.StrictMode>
   );
 };
