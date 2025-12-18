@@ -11,7 +11,7 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@astrojs/mdx": "2",
+    "@astrojs/mdx": "4",
     "@astrojs/react": "4",
     "@astrojs/sitemap": "3",
     "@docsearch/css": "3",
@@ -24,9 +24,9 @@
     "@nanostores/react": "^1.0.0",
     "@tippyjs/react": "4.2.6",
     "@types/react": "*",
-    "astro": "^4",
-    "astro-auto-import": "^0.4.4",
-    "astro-expressive-code": "^0.40.1",
+    "astro": "^5",
+    "astro-auto-import": "^0.4.5",
+    "astro-expressive-code": "^0.41.3",
     "examples": "workspace:*",
     "htm": "^3",
     "lightningcss": "^1.29.1",

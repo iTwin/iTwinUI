@@ -133,10 +133,6 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   &.iui-green .iui-tab {
-    &:focus {
-      outline-color: var(--iui-color-text-positive);
-    }
-
     &:is([aria-selected='true'], [aria-current]) {
       --_iui-tab-color: var(--_iui-tab-color-green-selected);
 

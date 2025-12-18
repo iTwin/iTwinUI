@@ -11,16 +11,43 @@ group: utilities
   <AllExamples.StatusMessageMainExample client:load />
 </LiveExample>
 
-The StatusMessage component can be used with form fields, such as inputs, selects, etc.
+The `StatusMessage` can be used with form components that have a `message` prop (e.g. `LabeledInput`, `LabeledTextarea`, `LabeledSelect`, `ComboBox`, `InputGroup`)
 
-You can pass `StatusMessage` to any component that has `message` prop to fully customize rendered message.
+```jsx
+<LabeledInput
+  label='This is the label'
+  message={<StatusMessage>This is the message</StatusMessage>}
+/>
+```
+
+It can also be used as a child of [`InputGrid`](/input-grid) to display messages below the form fields.
+
+```jsx
+<InputGrid>
+  <Label>This is the label</Label>
+  <Input />
+  <StatusMessage>This is the message</StatusMessage>
+</InputGrid>
+```
 
 ### Status
 
-Use `status` prop to set proper color to the message and its icon.
+Use `status` prop to set proper color to the message.
 
 <LiveExample src='StatusMessage.status.jsx'>
   <AllExamples.StatusMessageStatusExample client:load />
+</LiveExample>
+
+### Icon
+
+By default, a status icon will be displayed if the `status` prop is set.
+
+Use the `startIcon` prop to add a custom icon.
+
+If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
+
+<LiveExample src='StatusMessage.icon.jsx'>
+  <AllExamples.StatusMessageIconExample client:load />
 </LiveExample>
 
 ## Props

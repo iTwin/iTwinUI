@@ -259,6 +259,8 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   max-block-size: 3lh;
   @include mixins.iui-line-clamp(3);
   color: var(--_iui-tile-body-text-color);
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 @mixin iui-tile-metadata {

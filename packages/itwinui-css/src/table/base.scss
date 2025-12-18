@@ -37,7 +37,7 @@
   min-inline-size: 100%;
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
-  border-block-end: 1px solid var(--iui-color-border);
+  border-block-end: 1px solid var(--iui-color-border-subtle);
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -163,7 +163,7 @@
     .iui-table-cell {
       border-block-start: solid 1px transparent;
       border-block-end: solid 1px transparent;
-      border-block-end-color: var(--iui-color-border);
+      border-block-end-color: var(--iui-color-border-subtle);
       background-color: var(--iui-color-background);
       transition: border var(--iui-duration-1) ease-out;
     }

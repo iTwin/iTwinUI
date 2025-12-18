@@ -1183,6 +1183,11 @@ import { default as StatusMessageStatusExampleRaw } from './StatusMessage.status
 const StatusMessageStatusExample = withThemeProvider(
   StatusMessageStatusExampleRaw,
 );
+
+import { default as StatusMessageIconExampleRaw } from './StatusMessage.icon';
+const StatusMessageIconExample = withThemeProvider(StatusMessageIconExampleRaw);
+export { StatusMessageIconExample };
+
 export { StatusMessageStatusExample };
 
 // ----------------------------------------------------------------------------

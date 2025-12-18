@@ -677,10 +677,14 @@ export const ComboBox = React.forwardRef(
                           <SelectTag
                             key={option.label}
                             label={option.label}
-                            onRemove={() => {
-                              handleOptionSelection(__originalIndex);
-                              hide(); // do not keep the dropdown open if the tag is clicked
-                            }}
+                            onRemove={
+                              inputProps?.disabled
+                                ? undefined
+                                : () => {
+                                    handleOptionSelection(__originalIndex);
+                                    hide(); // do not keep the dropdown open if the tag is clicked
+                                  }
+                            }
                           />
                         );
                       })
