@@ -133,10 +133,10 @@
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0",
-    "@stratakit/foundations": ">=0.4.0"
+    "@stratakit/mui": ">=0.1.1"
   },
   "peerDependenciesMeta": {
-    "@stratakit/foundations": {
+    "@stratakit/mui": {
       "optional": true
     }
   },
