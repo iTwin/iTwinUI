@@ -1,5 +1,48 @@
 # Changelog
 
+## 3.19.7
+
+### Patch Changes
+
+- [#2655](https://github.com/iTwin/iTwinUI/pull/2655): Force text wrapping for long words in `Tile.Description`.
+- 611d8d5e2b3ea63652ab36024043ef8826821c60: Fixed a bug in `Table` where the SelectionColumn Header would incorrectly calculate the indeterminate state if `state.selectedRowIds` contained any `false` values.
+- Theme bridge:
+  - cfe6f8896c46d290695a459cd979e4aa7c75d6bb: Fixed `FileUpload` background transparency issue.
+  - d1e28aa80ab429008d65e1ff7a23faaf70aecadc: Updated the minimum required version of `@stratakit/foundations` to `>=0.4.0`.
+
+## 3.19.6
+
+### Patch Changes
+
+- [#2647](https://github.com/iTwin/iTwinUI/pull/2647): Updated theme bridge to use latest token values.
+
+## 3.19.5
+
+### Patch Changes
+
+- [#2636](https://github.com/iTwin/iTwinUI/pull/2636): Added `color` to all text `::selection` styles. This fixes a theme bridge issue with text selection color contrast.
+- [#2598](https://github.com/iTwin/iTwinUI/pull/2598): Added theme bridge hover state to all components.
+- [#2598](https://github.com/iTwin/iTwinUI/pull/2598): Minor theme bridge visual changes in various components to reflect the latest version of StrataKit.
+- [#2637](https://github.com/iTwin/iTwinUI/pull/2637): Updated theme bridge styling for `Tabs` to use accent colors.
+- [#2642](https://github.com/iTwin/iTwinUI/pull/2642): Updated focus outline styles in some components.
+- [#2641](https://github.com/iTwin/iTwinUI/pull/2641): Changed menu item's background-color on hover state.
+
+## 3.19.4
+
+### Patch Changes
+
+- [#2633](https://github.com/iTwin/iTwinUI/pull/2633): Fixed horizontal scroll in `Tree` with `enableVirtualization` so that all nodes are equally wide instead of using their intrinsic width.
+- c07a7166f1cbf5d8ec6c86389da2f9e1870af6d6: Fixed a theme bridge issue where `<Checkbox indeterminate>` was not displaying correctly in light theme.
+- 6d73dbecc2a5d57d1c4979ddbc7ef931744aebeb: Added `aria-haspopup` attribute to `DropdownMenu`'s trigger.
+
+## 3.19.3
+
+### Patch Changes
+
+- [#2622](https://github.com/iTwin/iTwinUI/pull/2622): Fixed `ComboBox` and `Select` bug by no longer rendering the deselect ("❌") button in the tags when the multiselect `ComboBox`'s input or the multiselect `Select` is disabled.
+- [#2618](https://github.com/iTwin/iTwinUI/pull/2618): `TreeNode` hover styles only applied when hover is supported.
+- [#2624](https://github.com/iTwin/iTwinUI/pull/2624): Floating elements will try to prefer a best fit placement.
+
 ## 3.19.2
 
 ### Patch Changes

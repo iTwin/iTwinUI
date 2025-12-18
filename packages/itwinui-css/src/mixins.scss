@@ -19,7 +19,8 @@
 @mixin iui-text-selection($status: accent) {
   &::selection,
   *::selection {
-    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
+    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-4));
+    color: var(--iui-color-text);
   }
 }
 

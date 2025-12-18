@@ -25,6 +25,10 @@
       border-inline-end-color: var(--iui-color-border-subtle);
       z-index: -1;
     }
+
+    &:focus-visible {
+      z-index: 1;
+    }
   }
 
   :where(.iui-button:last-child) {
