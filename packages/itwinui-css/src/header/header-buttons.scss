@@ -14,7 +14,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   box-sizing: border-box;
 
   &:is(a, button, [role='button']) {
-    @include mixins.iui-focus;
+    @include mixins.iui-focus($thickness: 2px, $offset: -2px);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: background-color var(--iui-duration-1) ease-out;
@@ -122,7 +122,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-header-breadcrumb-button {
   @include mixins.iui-reset;
-  @include mixins.iui-focus;
+  @include mixins.iui-focus($thickness: 2px, $offset: -2px);
   display: inline-flex;
   align-items: center;
   vertical-align: middle;

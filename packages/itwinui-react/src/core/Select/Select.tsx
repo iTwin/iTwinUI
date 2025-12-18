@@ -428,14 +428,18 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         <SelectTag
           key={option.label}
           label={option.label}
-          onRemove={() => {
-            handleOptionSelection(option, { isSelected: true });
-            selectRef.current?.focus();
-          }}
+          onRemove={
+            disabled
+              ? undefined
+              : () => {
+                  handleOptionSelection(option, { isSelected: true });
+                  selectRef.current?.focus();
+                }
+          }
         />
       );
     },
-    [handleOptionSelection],
+    [disabled, handleOptionSelection],
   );
 
   const popover = usePopover({

@@ -18,7 +18,7 @@ export default () => {
         </Tile.NameLabel>
       </Tile.Name>
       <Tile.ThumbnailArea>
-        <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
+        <Tile.ThumbnailPicture url='https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=1167' />
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>

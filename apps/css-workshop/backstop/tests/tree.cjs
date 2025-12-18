@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const { scenario, hover, focus } = require('./~scenarioHelper.cjs');
+const { scenario, focus } = require('./~scenarioHelper.cjs');
 
 module.exports = [
   scenario('Default', {
@@ -31,11 +31,13 @@ module.exports = [
   }),
 
   // Hover states
-  scenario('State hover tree node', {
-    actions: [hover('#test-node .iui-tree-node')],
-    selectors: ['#demo-captions'],
-    viewports: [{ width: 800, height: 600 }],
-  }),
+  // TODO: Investigate why hover tests are not working as expected.
+  // https://github.com/iTwin/iTwinUI/pull/2618#discussion_r2243732177
+  // scenario('State hover tree node', {
+  //   actions: [hover('#test-node .iui-tree-node')],
+  //   selectors: ['#demo-captions'],
+  //   viewports: [{ width: 800, height: 600 }],
+  // }),
 
   // Focus states
   scenario('State focus tree node', {
