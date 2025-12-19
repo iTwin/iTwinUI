@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import {
   useLadleContext,
   ActionType,
@@ -13,7 +12,7 @@ import {
 import './global.css';
 import '@itwin/itwinui-react/styles.css';
 import { ThemeProvider } from '@itwin/itwinui-react';
-import { Root as SkRoot } from '@stratakit/foundations';
+import { Root as SkRoot } from '@stratakit/mui';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -80,8 +79,6 @@ export const Provider: GlobalProvider = ({ children }) => {
           future={{ themeBridge: true }}
           as={SkRoot}
           colorScheme={theme}
-          density='dense'
-          synchronizeColorScheme
         >
           {children}
 
