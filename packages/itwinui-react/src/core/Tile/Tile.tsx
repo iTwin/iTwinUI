@@ -343,7 +343,7 @@ if (process.env.NODE_ENV === 'development') {
 // ----------------------------------------------------------------------------
 // Tile.NameLabel component
 
-const TileNameLabel = polymorphic.span('iui-tile-name-label');
+const TileNameLabel = polymorphic.h2('iui-tile-name-label');
 if (process.env.NODE_ENV === 'development') {
   TileNameLabel.displayName = 'Tile.NameLabel';
 }

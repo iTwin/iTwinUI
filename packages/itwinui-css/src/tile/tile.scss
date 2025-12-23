@@ -241,6 +241,9 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-name-label {
+  margin-block: 0;
+  font: inherit;
+
   &,
   > .iui-link-action {
     inline-size: 100%;

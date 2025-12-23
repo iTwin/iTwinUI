@@ -24,7 +24,9 @@ export default () => {
         isOpen={openRowIndex != undefined && openRowIndex !== -1}
       >
         <InformationPanelHeader onClose={() => setOpenRowIndex(-1)}>
-          <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
+          <Text variant='subheading' as='h2'>
+            Row {openRowIndex ?? 0}
+          </Text>
         </InformationPanelHeader>
         <InformationPanelBody>
           <Text as='p'>Content for row {openRowIndex ?? 0} goes here.</Text>

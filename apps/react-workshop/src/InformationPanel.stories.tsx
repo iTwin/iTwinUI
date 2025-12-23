@@ -58,7 +58,9 @@ export const Basic = () => {
             console.log('Panel closed');
           }}
         >
-          <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
+          <Text variant='subheading' as='h2'>
+            Row {openRowIndex ?? 0}
+          </Text>
         </InformationPanelHeader>
         <InformationPanelBody>
           <InformationPanelContent displayStyle='inline'>
@@ -139,7 +141,9 @@ export const Horizontal = () => {
             console.log('Panel closed');
           }}
         >
-          <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
+          <Text variant='subheading' as='h2'>
+            Row {openRowIndex ?? 0}
+          </Text>
         </InformationPanelHeader>
         <InformationPanelBody>
           <InformationPanelContent displayStyle='inline'>
@@ -223,7 +227,9 @@ export const CustomActions = () => {
             </IconButton>
           }
         >
-          <Text variant='subheading'>Row details</Text>
+          <Text variant='subheading' as='h2'>
+            Row details
+          </Text>
         </InformationPanelHeader>
         <InformationPanelBody>
           {openRowIndex != undefined && (
@@ -298,7 +304,9 @@ export const CustomWidth = () => {
             console.log('Panel closed');
           }}
         >
-          <Text variant='subheading'>Details</Text>
+          <Text variant='subheading' as='h2'>
+            Details
+          </Text>
         </InformationPanelHeader>
         <InformationPanelBody>
           <Text>{lorem100}</Text>
