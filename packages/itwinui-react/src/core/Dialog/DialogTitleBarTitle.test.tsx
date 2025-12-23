@@ -10,7 +10,7 @@ it('should render in its most basic state', () => {
   const { container } = render(
     <DialogTitleBarTitle>test-title</DialogTitleBarTitle>,
   );
-  const title = container.querySelector('.iui-dialog-title') as HTMLElement;
+  const title = container.querySelector('h2.iui-dialog-title') as HTMLElement;
   expect(title).toBeTruthy();
   expect(title).toHaveTextContent('test-title');
 });

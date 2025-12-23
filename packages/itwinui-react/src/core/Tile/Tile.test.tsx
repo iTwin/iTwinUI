@@ -24,7 +24,7 @@ it('should render in its most basic state', () => {
   expect(container.querySelector('.iui-tile-thumbnail')).toBeFalsy();
   expect(container.querySelector('.iui-tile-content')).toBeTruthy();
 
-  const label = container.querySelector('.iui-tile-name') as HTMLSpanElement;
+  const label = container.querySelector('h2') as HTMLElement;
   expect(label.textContent).toBe('test-name');
 });
 

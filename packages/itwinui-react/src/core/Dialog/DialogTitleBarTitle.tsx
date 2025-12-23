@@ -11,7 +11,7 @@ import { polymorphic } from '../../utils/index.js';
  *   <Dialog.TitleBar.Title>My dialog title</Dialog.TitleBar.Title>
  * </Dialog.TitleBar>
  */
-export const DialogTitleBarTitle = polymorphic.div('iui-dialog-title');
+export const DialogTitleBarTitle = polymorphic.h2('iui-dialog-title');
 if (process.env.NODE_ENV === 'development') {
   DialogTitleBarTitle.displayName = 'Dialog.TitleBar.Title';
 }

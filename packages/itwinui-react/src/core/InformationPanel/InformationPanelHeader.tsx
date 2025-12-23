@@ -45,7 +45,7 @@ type InformationPanelHeaderProps = {
  *     </>
  *   )}
  * >
- *   <Text variant='subheading'>InfoPanel heading</Text>
+ *   <Text variant='subheading' as='h2'>InfoPanel heading</Text>
  * </InformationPanelHeader>
  */
 export const InformationPanelHeader = React.forwardRef(
@@ -58,9 +58,7 @@ export const InformationPanelHeader = React.forwardRef(
         ref={forwardedRef}
         {...rest}
       >
-        <Box as='span' className='iui-information-header-label'>
-          {children}
-        </Box>
+        <Box className='iui-information-header-label'>{children}</Box>
         <Box className='iui-information-header-actions'>
           {actions}
           {onClose && (

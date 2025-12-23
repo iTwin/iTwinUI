@@ -42,7 +42,9 @@ export default () => {
             </IconButton>
           }
         >
-          <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
+          <Text variant='subheading' as='h2'>
+            Row {openRowIndex ?? 0}
+          </Text>
         </InformationPanelHeader>
         <InformationPanelBody>
           <InformationPanelContent displayStyle='inline'>
