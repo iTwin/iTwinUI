@@ -241,7 +241,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-0',
+      'test-component-option-0',
     );
     await expect(items.first()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -249,7 +249,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowUp');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-0',
+      'test-component-option-0',
     );
     await expect(items.first()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -257,7 +257,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-1',
+      'test-component-option-1',
     );
     await expect(items.first()).not.toHaveAttribute('data-iui-focused', 'true');
     await expect(items.nth(1)).toHaveAttribute('data-iui-focused', 'true');
@@ -268,7 +268,7 @@ test.describe('ComboBox (virtualization)', () => {
     }
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-11',
+      'test-component-option-11',
     );
     await expect(items.last()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -276,7 +276,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-11',
+      'test-component-option-11',
     );
     await expect(items.last()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -300,7 +300,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-1',
+      'test-component-option-1',
     );
     await expect(items.first()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -308,7 +308,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowUp');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-1',
+      'test-component-option-1',
     );
     await expect(items.first()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -316,7 +316,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-10',
+      'test-component-option-10',
     );
     await expect(items.first()).not.toHaveAttribute('data-iui-focused', 'true');
     await expect(items.nth(1)).toHaveAttribute('data-iui-focused', 'true');
@@ -325,7 +325,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-11',
+      'test-component-option-11',
     );
     await expect(items.last()).toHaveAttribute('data-iui-focused', 'true');
 
@@ -333,7 +333,7 @@ test.describe('ComboBox (virtualization)', () => {
     await page.keyboard.press('ArrowDown');
     await expect(comboBoxInput).toHaveAttribute(
       'aria-activedescendant',
-      'test-component-option-Item-11',
+      'test-component-option-11',
     );
     await expect(items.last()).toHaveAttribute('data-iui-focused', 'true');
 
