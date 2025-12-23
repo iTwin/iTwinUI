@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { Breadcrumbs } from './Breadcrumbs.js';
-import { SvgChevronRight } from '../../utils/index.js';
+import { SvgChevronRightSmall } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
 
@@ -58,7 +58,7 @@ it('should render all elements in default state', () => {
   const { container } = renderComponent();
   assertBaseElement(container);
 
-  const { container: chevron } = render(<SvgChevronRight />); // default separator
+  const { container: chevron } = render(<SvgChevronRightSmall />); // default separator
 
   const separators = container.querySelectorAll('.iui-breadcrumbs-separator');
   expect(separators.length).toEqual(2);

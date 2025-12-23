@@ -6,13 +6,13 @@ import cx from 'classnames';
 import * as React from 'react';
 import {
   StatusIconMap,
-  SvgChevronRight,
   Box,
   useSafeContext,
   polymorphic,
   mergeEventHandlers,
   ButtonBase,
   useId,
+  SvgChevronRightSmall,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
@@ -216,7 +216,7 @@ const ExpandableBlockExpandIcon = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       {...rest}
     >
-      {children ?? <SvgChevronRight aria-hidden />}
+      {children ?? <SvgChevronRightSmall aria-hidden />}
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span'>;
