@@ -43,7 +43,7 @@ export type DropdownMenuProps = {
   };
   /**
    * If `true`, closes the `DropdownMenu` when any descendant `MenuItem` is clicked.
-   * @default false
+   * @default true
    */
   closeOnItemClick?: boolean;
 } & Pick<
@@ -96,7 +96,7 @@ const DropdownMenuContent = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     portal = true,
     middleware,
-    closeOnItemClick = false,
+    closeOnItemClick = true,
     ...rest
   } = props;
 

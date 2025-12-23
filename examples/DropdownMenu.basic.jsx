@@ -10,7 +10,6 @@ export default () => {
   return (
     <>
       <DropdownMenu
-        closeOnItemClick
         menuItems={
           <>
             <MenuItem>Item #1</MenuItem>

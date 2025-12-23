@@ -31,7 +31,6 @@ export const Basic = () => {
   };
   return (
     <DropdownMenu
-      closeOnItemClick
       menuItems={
         <>
           <MenuItem onClick={handleItemClick(1)}>Item #1</MenuItem>
