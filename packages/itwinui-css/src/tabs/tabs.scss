@@ -8,11 +8,11 @@
 .iui-tabs-wrapper {
   @include base.iui-tabs-wrapper;
 
-  &.iui-horizontal {
+  &[data-iui-orientation='horizontal'] {
     @include base.iui-tabs-horizontal;
   }
 
-  &.iui-vertical {
+  &[data-iui-orientation='vertical'] {
     @include base.iui-tabs-vertical;
   }
 }

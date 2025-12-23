@@ -25,7 +25,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Default</h2>
   <section id='demo-default'>
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-default'
         data-iui-orientation='horizontal'
@@ -37,6 +37,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -47,6 +48,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -58,6 +60,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -68,6 +71,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -76,8 +80,8 @@ import IconButton_ from '../components/IconButton.astro';
         </IconButton_>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_ dropdown size='small'>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -85,24 +89,44 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-default iui-green'
         data-iui-orientation='horizontal'
@@ -114,6 +138,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -124,6 +149,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -135,6 +161,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -145,6 +172,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -153,8 +181,8 @@ import IconButton_ from '../components/IconButton.astro';
         </IconButton_>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_ dropdown>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -162,24 +190,44 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal' id='demo-default-2'>
+    <div class='iui-tabs-wrapper' id='demo-default-2' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-default iui-large'
         data-iui-orientation='horizontal'
@@ -191,6 +239,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -202,6 +251,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='left-tab'
           id='test-tab-1'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -213,6 +263,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -224,6 +275,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='none-tab'
           id='test-tab-2'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -232,32 +284,52 @@ import IconButton_ from '../components/IconButton.astro';
         </IconButton_>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_>Trial</Button_>
 
           <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-default iui-large'
         data-iui-orientation='horizontal'
@@ -269,6 +341,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'
@@ -282,6 +355,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -296,6 +370,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -306,6 +381,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -314,25 +390,45 @@ import IconButton_ from '../components/IconButton.astro';
         </IconButton_>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_>Trial</Button_>
 
           <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
@@ -341,7 +437,7 @@ import IconButton_ from '../components/IconButton.astro';
   <br />
 
   <section id='demo-default-vertical'>
-    <div class='iui-tabs-wrapper iui-vertical'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='vertical'>
       <div
         class='iui-tabs iui-default'
         data-iui-orientation='vertical'
@@ -353,6 +449,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -363,6 +460,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -374,6 +472,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -384,6 +483,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='vertical'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -392,8 +492,8 @@ import IconButton_ from '../components/IconButton.astro';
         </IconButton_>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='vertical'>
+        <div class='iui-tabs-actions' data-iui-orientation='vertical'>
           <Button_ dropdown>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -401,24 +501,44 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='vertical'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-vertical'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='vertical'>
       <div
         class='iui-tabs iui-default iui-large'
         data-iui-orientation='vertical'
@@ -430,6 +550,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -440,6 +561,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -451,6 +573,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -461,6 +584,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='vertical'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -469,25 +593,45 @@ import IconButton_ from '../components/IconButton.astro';
         </IconButton_>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='vertical'>
+        <div class='iui-tabs-actions' data-iui-orientation='vertical'>
           <Button_>Trial</Button_>
 
           <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='vertical'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the none tab's content.
       </div>
     </div>
@@ -497,7 +641,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Overflow</h2>
   <section id='demo-overflow'>
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-default'
         data-iui-orientation='horizontal'
@@ -509,6 +653,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -519,6 +664,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -530,6 +676,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -540,10 +687,11 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
-        <button class='iui-tab iui-button-base' role='tab'>
+        <button class='iui-tab iui-button-base' role='tab' data-iui-orientation='horizontal'>
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>#5 item</span>
           <span class='iui-tab-description'>Sublabel</span>
@@ -553,6 +701,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>#6 Item</span>
@@ -564,6 +713,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>#7 Item</span>
@@ -574,10 +724,11 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>#8 Item</span>
         </button>
-        <button class='iui-tab iui-button-base' role='tab'>
+        <button class='iui-tab iui-button-base' role='tab' data-iui-orientation='horizontal'>
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>#9 Item</span>
           <span class='iui-tab-description'>Sublabel</span>
@@ -587,6 +738,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>#10 Item</span>
@@ -594,8 +746,8 @@ import IconButton_ from '../components/IconButton.astro';
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_ dropdown size='small'>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -603,23 +755,43 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
-    <div class='iui-tabs-wrapper iui-vertical' id='demo-overflow-vertical'>
+    <div class='iui-tabs-wrapper' id='demo-overflow-vertical' data-iui-orientation='vertical'>
       <div
         class='iui-tabs iui-default'
         data-iui-orientation='vertical'
@@ -631,6 +803,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -641,6 +814,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -652,6 +826,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -662,6 +837,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='vertical'
         >
           <span class='iui-tab-label'>None</span>
         </button>
@@ -671,6 +847,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled 2</span>
@@ -681,13 +858,14 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='vertical'
         >
           <span class='iui-tab-label'>None 2</span>
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='vertical'>
+        <div class='iui-tabs-actions' data-iui-orientation='vertical'>
           <Button_ dropdown>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -695,17 +873,37 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='vertical'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the none tab's content.
       </div>
     </div>
@@ -715,7 +913,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Borderless</h2>
   <section id='demo-borderless'>
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-borderless iui-animated'
         data-iui-orientation='horizontal'
@@ -727,6 +925,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -737,6 +936,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -748,6 +948,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -763,8 +964,8 @@ import IconButton_ from '../components/IconButton.astro';
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_ dropdown size='small'>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -772,24 +973,44 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-borderless iui-green'
         data-iui-orientation='horizontal'
@@ -801,6 +1022,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -811,6 +1033,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -822,6 +1045,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -832,13 +1056,14 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_ dropdown>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -846,24 +1071,44 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal' id='demo-borderless-2'>
+    <div class='iui-tabs-wrapper' id='demo-borderless-2' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-borderless iui-large iui-animated'
         data-iui-orientation='horizontal'
@@ -875,6 +1120,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -886,6 +1132,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='left-tab'
           id='test-tab-3'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -897,6 +1144,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -908,48 +1156,71 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='none-tab'
           id='test-tab-4'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_>Trial</Button_>
 
           <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-borderless iui-large iui-animated'
         data-iui-orientation='horizontal'
         role='tablist'
         aria-label='Tab group name'
+        data-iui-orientation='horizontal'
       >
         <button
           class='iui-tab iui-button-base'
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'
@@ -963,6 +1234,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -977,6 +1249,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -988,30 +1261,51 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='none-tab'
           id='test-tab-4'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='horizontal'>
+        <div class='iui-tabs-actions' data-iui-orientation='horizontal'>
           <Button_>Trial</Button_>
 
           <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
@@ -1020,7 +1314,7 @@ import IconButton_ from '../components/IconButton.astro';
   <br />
 
   <section id='demo-borderless-vertical'>
-    <div class='iui-tabs-wrapper iui-vertical'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='vertical'>
       <div
         class='iui-tabs iui-borderless iui-animated'
         data-iui-orientation='vertical'
@@ -1032,6 +1326,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -1042,6 +1337,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -1053,6 +1349,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -1063,13 +1360,14 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='vertical'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='vertical'>
+        <div class='iui-tabs-actions' data-iui-orientation='vertical'>
           <Button_ dropdown>
             Actions
             <svg-caret-down-small aria-hidden='true' slot='end-icon'></svg-caret-down-small>
@@ -1077,24 +1375,44 @@ import IconButton_ from '../components/IconButton.astro';
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='vertical'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-vertical'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='vertical'>
       <div
         class='iui-tabs iui-borderless iui-large iui-animated'
         data-iui-orientation='vertical'
@@ -1106,6 +1424,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -1116,6 +1435,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -1127,6 +1447,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='vertical'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -1137,30 +1458,51 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='vertical'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-actions-wrapper'>
-        <div class='iui-tabs-actions'>
+      <div class='iui-tabs-actions-wrapper' data-iui-orientation='vertical'>
+        <div class='iui-tabs-actions' data-iui-orientation='vertical'>
           <Button_>Trial</Button_>
 
           <Button_ variant='high-visibility'>Purchase</Button_>
         </div>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='vertical'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='vertical'
+      >
         This is the none tab's content.
       </div>
     </div>
@@ -1170,7 +1512,7 @@ import IconButton_ from '../components/IconButton.astro';
 
   <h2>Pill</h2>
   <section id='demo-pill'>
-    <div class='iui-tabs-wrapper iui-horizontal' id='demo-pill-2'>
+    <div class='iui-tabs-wrapper' id='demo-pill-2' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-pill iui-animated'
         data-iui-orientation='horizontal'
@@ -1182,6 +1524,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -1193,6 +1536,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='left-tab'
           id='test-tab-5'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -1204,6 +1548,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -1215,29 +1560,50 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='none-tab'
           id='test-tab-6'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-pill iui-green'
         data-iui-orientation='horizontal'
@@ -1249,6 +1615,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Active</span>
@@ -1259,6 +1626,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Left</span>
@@ -1270,6 +1638,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -1280,29 +1649,50 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
 
     <br />
 
-    <div class='iui-tabs-wrapper iui-horizontal'>
+    <div class='iui-tabs-wrapper' data-iui-orientation='horizontal'>
       <div
         class='iui-tabs iui-pill iui-green'
         data-iui-orientation='horizontal'
@@ -1314,6 +1704,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='true'
           aria-controls='active-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'
@@ -1327,6 +1718,7 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='left-tab'
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'
@@ -1341,6 +1733,7 @@ import IconButton_ from '../components/IconButton.astro';
           aria-selected='false'
           aria-controls='disabled-tab'
           disabled
+          data-iui-orientation='horizontal'
         >
           <Icon_ svg='placeholder' class='iui-tab-icon' />
           <span class='iui-tab-label'>Disabled</span>
@@ -1351,22 +1744,43 @@ import IconButton_ from '../components/IconButton.astro';
           role='tab'
           aria-selected='false'
           aria-controls='none-tab'
+          data-iui-orientation='horizontal'
         >
           <span class='iui-tab-label'>None</span>
         </button>
       </div>
 
-      <div class='iui-tabs-content' role='tabpanel' id='active-tab' aria-labelledby='active'>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='active-tab'
+        aria-labelledby='active'
+        data-iui-orientation='horizontal'
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
         cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='left-tab' aria-labelledby='left' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='left-tab'
+        aria-labelledby='left'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the left tab's content.
       </div>
-      <div class='iui-tabs-content' role='tabpanel' id='none-tab' aria-labelledby='none' hidden>
+      <div
+        class='iui-tabs-content'
+        role='tabpanel'
+        id='none-tab'
+        aria-labelledby='none'
+        hidden
+        data-iui-orientation='horizontal'
+      >
         This is the none tab's content.
       </div>
     </div>
@@ -1375,7 +1789,7 @@ import IconButton_ from '../components/IconButton.astro';
   <script type='module'>
     document.querySelectorAll('.iui-tabs').forEach((tabs) => {
       const wrapper = tabs.parentElement;
-      const isVertical = wrapper.classList.contains('iui-vertical');
+      const isVertical = wrapper.dataset.iuiOrientation === 'vertical';
       const isAnimated = tabs.classList.contains('iui-animated');
       const activeTab = tabs.querySelector('[aria-selected="true"]');
       const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
@@ -1384,13 +1798,13 @@ import IconButton_ from '../components/IconButton.astro';
           tabs.style.setProperty('--iui-tabs-stripe-position', `${activeEl.offsetTop}px`);
           tabs.style.setProperty(
             '--iui-tabs-stripe-size',
-            `${activeEl.getBoundingClientRect().height}px`,
+            `${activeEl.getBoundingClientRect().height}px`
           );
         } else {
           tabs.style.setProperty('--iui-tabs-stripe-position', `${activeEl.offsetLeft}px`);
           tabs.style.setProperty(
             '--iui-tabs-stripe-size',
-            `${activeEl.getBoundingClientRect().width}px`,
+            `${activeEl.getBoundingClientRect().width}px`
           );
         }
       };
