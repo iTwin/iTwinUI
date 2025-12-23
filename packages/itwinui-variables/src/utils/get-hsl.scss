@@ -4,5 +4,7 @@
 
 /// returns the HSL values of a color as a space-separated list
 @function get-hsl($color) {
-  @return color.hue($color) color.saturation($color) color.lightness($color);
+  @return color.channel($color, 'hue', $space: hsl)
+    color.channel($color, 'saturation', $space: hsl)
+    color.channel($color, 'lightness', $space: hsl);
 }
