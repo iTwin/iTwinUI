@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SvgChevronRight } from '../../../utils/index.js';
+import { SvgChevronRightSmall } from '../../../utils/index.js';
 import type {
   CellProps,
   CellRendererProps,
@@ -74,7 +74,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
             disabled={isDisabled?.(props.row.original)}
             aria-expanded={row.isExpanded}
           >
-            {<SvgChevronRight />}
+            <SvgChevronRightSmall />
           </IconButton>
         );
       }

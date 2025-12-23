@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SvgChevronRight } from '../../utils/index.js';
+import { SvgChevronRightSmall } from '../../utils/index.js';
 import type { Cell, CellProps } from '../../react-table/react-table.js';
 import { IconButton } from '../Buttons/IconButton.js';
 
@@ -44,7 +44,7 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
           {...rest}
         >
           {
-            <SvgChevronRight
+            <SvgChevronRightSmall
               style={{
                 transform: cell.row.isExpanded ? 'rotate(90deg)' : undefined,
               }}
