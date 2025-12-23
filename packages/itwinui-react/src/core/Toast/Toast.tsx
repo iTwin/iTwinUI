@@ -63,6 +63,8 @@ export type ToastProps = {
   /**
    * Boolean indicating when the close button is visible.
    * When false, the toast will not have any close button.
+   *
+   * This prop has no effect when the toast `type` is set to `persisting`.
    */
   hasCloseButton?: boolean;
   /**
