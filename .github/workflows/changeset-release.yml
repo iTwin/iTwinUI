@@ -54,7 +54,7 @@ jobs:
 
       - name: Create or update release PR
         if: steps.changesets_branch.outputs.exists == 'true' || steps.changesets_files.outputs.exists == 'true'
-        uses: changesets/action@v1
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
         with:
           version: pnpm changeset version --ignore @itwin/itwinui-css
           publish: pnpm release

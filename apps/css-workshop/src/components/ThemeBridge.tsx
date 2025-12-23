@@ -13,7 +13,7 @@ export const ThemeBridge = () => {
   }
 
   // TODO: Synchronize colorScheme here instead of hardcoding 'dark'
-  return <SkRoot colorScheme='dark' density='dense' synchronizeColorScheme />;
+  return <SkRoot colorScheme='dark' />;
 };
 
 function useThemeBridge() {

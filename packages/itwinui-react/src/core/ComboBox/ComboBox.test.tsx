@@ -61,7 +61,7 @@ it('should render in its most basic state', () => {
   list.querySelectorAll('.iui-list-item').forEach((item, index) => {
     expect(item).toHaveTextContent(`Item ${index}`);
     expect(item).toHaveAttribute('aria-selected', 'false');
-    expect(item.id).toEqual(`${id}-option-Item-${index}`);
+    expect(item.id).toEqual(`${id}-option-${index}`);
   });
 });
 
@@ -230,46 +230,46 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
 
   // focus index 0
   await userEvent.keyboard('{ArrowDown}');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-0`);
   items = document.querySelectorAll('.iui-list-item');
   expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
 
   // 0 -> 1
   await userEvent.keyboard('{ArrowDown}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-1`);
   expect(items[1]).toHaveAttribute('data-iui-focused', 'true');
   expect(items[0]).not.toHaveAttribute('data-iui-focused', 'true');
 
   // 1 -> 2
   await userEvent.keyboard('{ArrowDown}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-2`);
   expect(items[2]).toHaveAttribute('data-iui-focused', 'true');
 
   // 2 -> 0
   await userEvent.keyboard('{ArrowDown}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-0`);
   expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
 
   // 0 -> 2
   await userEvent.keyboard('{ArrowUp}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-2`);
   expect(items[2]).toHaveAttribute('data-iui-focused', 'true');
 
   // 2 -> 1
   await userEvent.keyboard('{ArrowUp}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-1`);
   expect(items[1]).toHaveAttribute('data-iui-focused', 'true');
   expect(items[2]).not.toHaveAttribute('data-iui-focused', 'true');
 
   // 1 -> 0
   await userEvent.keyboard('{ArrowUp}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-0`);
   expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
 
   // select 0
@@ -295,7 +295,7 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
     'data-iui-focused',
     'true',
   );
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-2`);
 
   // select 2
   await userEvent.keyboard('{Enter}');
@@ -745,27 +745,27 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
 
   // focus index 0
   await userEvent.keyboard('{ArrowDown}');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-0`);
   items = document.querySelectorAll('.iui-list-item');
   expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
 
   // 0 -> 2
   await userEvent.keyboard('{ArrowUp}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-2`);
   expect(items[2]).toHaveAttribute('data-iui-focused', 'true');
 
   // 2 -> 1
   await userEvent.keyboard('{ArrowUp}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-1`);
   expect(items[1]).toHaveAttribute('data-iui-focused', 'true');
   expect(items[2]).not.toHaveAttribute('data-iui-focused', 'true');
 
   // 1 -> 0
   await userEvent.keyboard('{ArrowUp}');
   items = document.querySelectorAll('.iui-list-item');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-0`);
   expect(items[0]).toHaveAttribute('data-iui-focused', 'true');
   // select 0
   await userEvent.keyboard('{Enter}');
@@ -784,7 +784,7 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
     'data-iui-focused',
     'true',
   );
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-2`);
 
   // select 2
   await userEvent.keyboard('{Enter}');
@@ -852,7 +852,7 @@ it('should not select disabled items', async () => {
   expect(input).toHaveFocus();
 
   // focus first disabled item, then press Enter
-  const disabled1Id = `${id}-option-A-disabled-item`;
+  const disabled1Id = `${id}-option-1`;
   await userEvent.keyboard('{ArrowDown}');
   await userEvent.keyboard('{ArrowDown}');
   expect(input).toHaveAttribute('aria-activedescendant', disabled1Id);
@@ -873,7 +873,7 @@ it('should not select disabled items', async () => {
   expect(input).toHaveValue('An');
 
   // and with keyboard
-  const disabled2Id = `${id}-option-Another-disabled-item`;
+  const disabled2Id = `${id}-option-3`;
   await userEvent.keyboard('{ArrowDown}');
   await userEvent.keyboard('{ArrowDown}');
   await userEvent.keyboard('{ArrowDown}');

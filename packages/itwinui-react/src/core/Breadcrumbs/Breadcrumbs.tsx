@@ -5,11 +5,11 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  SvgChevronRight,
   Box,
   OverflowContainer,
   useWarningLogger,
   cloneElementWithRef,
+  SvgChevronRightSmall,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import { Button } from '../Buttons/Button.js';
@@ -255,7 +255,7 @@ const ListItem = ({
 
 const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
   <Box as='li' className='iui-breadcrumbs-separator' aria-hidden>
-    {separator ?? <SvgChevronRight />}
+    {separator ?? <SvgChevronRightSmall />}
   </Box>
 );
 

@@ -305,6 +305,7 @@ export const Menu = React.forwardRef((props, ref) => {
   const reference = cloneElementWithRef(trigger, (triggerChild) =>
     getReferenceProps(
       popover.getReferenceProps({
+        'aria-haspopup': 'menu',
         ...triggerChild.props,
         'aria-expanded': popover.open,
         ref: mergeRefs(triggerRef, popover.refs.setReference),

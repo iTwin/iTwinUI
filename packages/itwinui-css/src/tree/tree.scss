@@ -34,7 +34,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   min-inline-size: max-content;
 
   &:focus-visible {
-    outline: none;
+    outline: none !important;
 
     > .iui-tree-node {
       outline: 1px solid var(--iui-color-border-accent);
@@ -141,7 +141,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
   &.iui-disabled {
     cursor: not-allowed;
-    outline: none;
+    outline: none !important;
     background-color: transparent;
 
     &,

@@ -175,9 +175,18 @@ export type ComboBoxProps<T> = {
   Pick<InputContainerProps, 'status'> &
   CommonProps;
 
-/** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
+/** Returns either `option.id` or derives a stable id using `idPrefix` and `option.value` or `option.label` (without whitespace) */
 const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
-  return option.id ?? `${idPrefix}-option-${option.label.replace(/\s/g, '-')}`;
+  if (option.id) {
+    return option.id;
+  }
+
+  // Attempt to use `option.value` if it is serializable
+  if (typeof option.value === 'string' || typeof option.value === 'number') {
+    return `${idPrefix}-option-${option.value.toString().replace(/\s/g, '-')}`;
+  }
+
+  return `${idPrefix}-option-${option.label.replace(/\s/g, '-')}`;
 };
 
 /**

@@ -60,7 +60,9 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
         (row) => state.selectedRowIds[row.id] || isDisabled?.(row.original),
       );
       const indeterminate =
-        !checked && Object.keys(state.selectedRowIds).length > 0;
+        !checked &&
+        Object.keys(state.selectedRowIds).length > 0 &&
+        Object.values(state.selectedRowIds).some((v) => v === true);
       const nextToggleState = !rows.some((row) => row.isSelected);
 
       return (

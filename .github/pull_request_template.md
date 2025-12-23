@@ -20,12 +20,3 @@ If your PR has visual changes, then make sure they are demonstrated in css-works
 
 If not applicable, you can write "N/A".
 -->
-
-## Docs
-
-<!--
-If your PR includes user-facing changes, then update docs in all places (JSDoc, website, stories, etc).
-Make sure to include a changeset (`pnpm changeset`).
-
-If not applicable, you can write "N/A".
--->

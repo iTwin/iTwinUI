@@ -27,12 +27,12 @@ import type {
 import { InputGroup } from '../InputGroup/InputGroup.js';
 import { Radio } from '../Radio/Radio.js';
 import {
-  SvgChevronRight,
   SvgMore,
   SvgClose,
   SvgSortUp,
   SvgSortDown,
   lineClamp,
+  SvgChevronRightSmall,
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
@@ -1725,7 +1725,7 @@ it('should expand correctly', async () => {
   });
   const {
     container: { firstChild: expanderIcon },
-  } = render(<SvgChevronRight />);
+  } = render(<SvgChevronRightSmall />);
 
   const buttonIcons = container.querySelectorAll(
     '.iui-button[data-iui-variant="borderless"] > .iui-button-icon',

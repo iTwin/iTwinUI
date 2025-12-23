@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 @layer reset, itwinui.v1, itwinui.v2;
+@layer mui, stratakit;
 
 @import '@itwin/itwinui-variables' layer(itwinui.foundations.v3);
 @import '@itwin/itwinui-css';

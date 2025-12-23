@@ -12,7 +12,7 @@ import {
 import './global.css';
 import '@itwin/itwinui-react/styles.css';
 import { ThemeProvider } from '@itwin/itwinui-react';
-import { Root as SkRoot } from '@stratakit/foundations';
+import { Root as SkRoot } from '@stratakit/mui';
 
 const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -30,6 +30,21 @@ export const Provider: GlobalProvider = ({ children }) => {
       value: ThemeState[prefersDark ? 'Dark' : 'Light'],
     });
   }, []);
+
+  // Deferring control to work around Ladle's reset of controls when changing stories.
+  const control = React.useDeferredValue(globalState.control);
+
+  // When changing stories, retain the controls
+  const [currentStory, setCurrentStory] = React.useState(globalState.story);
+  if (globalState.story !== currentStory) {
+    setTimeout(() => {
+      dispatch({
+        type: ActionType.UpdateControl,
+        value: control,
+      });
+    }, 0);
+    setCurrentStory(globalState.story);
+  }
 
   // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
@@ -55,29 +70,33 @@ export const Provider: GlobalProvider = ({ children }) => {
   // Deferring futureThemeBridge updates to work around Ladle's infinite re-renders when DOM changes upon changing args.
   const futureThemeBridge = React.useDeferredValue(futureThemeBridgeArg);
 
-  const themeProviderProps = {
-    theme,
-    themeOptions: {
-      applyBackground: false,
-      highContrast,
-    },
-    future: { themeBridge: futureThemeBridge },
-    children,
-  } satisfies React.ComponentProps<typeof ThemeProvider>;
+  if (futureThemeBridge) {
+    return (
+      <React.StrictMode>
+        <ThemeProvider
+          theme={theme}
+          themeOptions={{ applyBackground: false, highContrast }}
+          future={{ themeBridge: true }}
+          as={SkRoot}
+          colorScheme={theme}
+        >
+          {children}
+
+          {/* Hide the background addon because it does not work with theme bridge. */}
+          <style>{`.ladle-background { display: none !important }`}</style>
+        </ThemeProvider>
+      </React.StrictMode>
+    );
+  }
 
   return (
     <React.StrictMode>
-      {futureThemeBridge ? (
-        <ThemeProvider
-          as={SkRoot}
-          colorScheme={theme}
-          density='dense'
-          synchronizeColorScheme
-          {...themeProviderProps}
-        />
-      ) : (
-        <ThemeProvider {...themeProviderProps} />
-      )}
+      <ThemeProvider
+        theme={theme}
+        themeOptions={{ applyBackground: false, highContrast }}
+      >
+        {children}
+      </ThemeProvider>
     </React.StrictMode>
   );
 };
