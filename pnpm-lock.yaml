@@ -155,8 +155,8 @@ importers:
         specifier: ^7.3.6
         version: 7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@stratakit/mui':
-        specifier: ^0.1.1
-        version: 0.1.1(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^0.1.2
+        version: 0.1.2(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@types/node':
         specifier: '*'
         version: 24.9.0
@@ -374,7 +374,7 @@ importers:
         version: 2.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@stratakit/mui':
         specifier: '>=0.1.1'
-        version: 0.1.1(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 0.1.2(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@swc/helpers':
         specifier: ^0.5.17
         version: 0.5.17
@@ -3074,10 +3074,10 @@ packages:
         integrity: sha512-CXv2z0PhC+KU1dqZ//1gxZe2LTToO5WbhFmI65H1+VNDeZ+WH9GnaWHhOnmY54s0jQjOwut7jjSKkYXJbL8llg==,
       }
 
-  '@stratakit/mui@0.1.1':
+  '@stratakit/mui@0.1.2':
     resolution:
       {
-        integrity: sha512-FMDwNUime8H8L8QWSSaL60Bmnh3aEs1dgbrlbwWcFp0Dr6rqi4TX9znVLkWsn+BlldPs23LWpS3jp04Qx3OXoQ==,
+        integrity: sha512-HwUL0KjdEZTPX1/5Xp3l4AU8t2Uf2wUOQttZt/N0X4MoHU78WeIWn70jW/SHt0ACSUaD5rw4JzMhqhv/7CHGzA==,
       }
     peerDependencies:
       '@mui/material': ^7.3.6
@@ -14518,7 +14518,7 @@ snapshots:
 
   '@stratakit/icons@0.2.2': {}
 
-  '@stratakit/mui@0.1.1(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@stratakit/mui@0.1.2(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@mui/material': 7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@stratakit/foundations': 0.4.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
