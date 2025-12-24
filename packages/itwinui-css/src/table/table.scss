@@ -46,6 +46,10 @@
   @include base.iui-table-cell;
 }
 
+.iui-table-cell-default-content {
+  @include base.iui-table-cell-default-content;
+}
+
 .iui-table-cell-shadow-left {
   @include base.iui-table-cell-shadow(left);
 }

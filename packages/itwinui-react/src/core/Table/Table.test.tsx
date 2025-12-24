@@ -31,7 +31,6 @@ import {
   SvgClose,
   SvgSortUp,
   SvgSortDown,
-  lineClamp,
   SvgChevronRightSmall,
 } from '../../utils/index.js';
 import { DefaultCell, EditableCell } from './cells/index.js';
@@ -374,7 +373,7 @@ it('should handle row clicks', async () => {
   const user = userEvent.setup();
   const data = mockedData(8);
 
-  const { container, getByText } = renderComponent({
+  const { container } = renderComponent({
     isSelectable: true,
     onSelect,
     onRowClick,
@@ -388,7 +387,7 @@ it('should handle row clicks', async () => {
   // Shift click special case test #1
   // By default, when no row is selected before shift click, start selecting from first row to clicked row
   await user.keyboard('{Shift>}'); // Hold Shift
-  await user.click(getByText(data[1].name));
+  await user.click(screen.getByRole('cell', { name: data[1].name }));
 
   expect(rows[0]).toHaveAttribute('aria-selected', 'true');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
@@ -398,7 +397,7 @@ it('should handle row clicks', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(1);
 
   await user.keyboard('{/Shift}'); // Release Shift
-  await userEvent.click(getByText(data[2].name)); // Select; lastSelectedRowId = undefined -> 2
+  await user.click(screen.getByRole('cell', { name: data[2].name })); // Select; lastSelectedRowId = undefined -> 2
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).not.toHaveAttribute('aria-selected');
@@ -412,7 +411,7 @@ it('should handle row clicks', async () => {
   // But if the startIndex > endIndex, then startIndex and endIndex are swapped
   // (Here startIndex = 1, endIndex = 0)
   await user.keyboard('{Shift>}'); // Hold Shift
-  await user.click(getByText(data[0].name));
+  await user.click(screen.getByRole('cell', { name: data[0].name }));
 
   expect(rows[0]).toHaveAttribute('aria-selected', 'true');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
@@ -422,7 +421,7 @@ it('should handle row clicks', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(3);
 
   await user.keyboard('{/Shift}{Control>}'); // Release Shift & Hold Control
-  await user.click(getByText(data[3].name)); // lastSelectedRowId = 2 -> 3 (Ctrl click updates lastSelectedRowId)
+  await user.click(screen.getByRole('cell', { name: data[3].name })); // lastSelectedRowId = 2 -> 3 (Ctrl click updates lastSelectedRowId)
   expect(rows[0]).toHaveAttribute('aria-selected', 'true');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
   expect(rows[2]).toHaveAttribute('aria-selected', 'true');
@@ -431,7 +430,7 @@ it('should handle row clicks', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(4);
 
   await user.keyboard('{/Control}{Shift>}'); // Release Control & Hold Shift
-  await user.click(getByText(data[4].name));
+  await user.click(screen.getByRole('cell', { name: data[4].name }));
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).not.toHaveAttribute('aria-selected');
@@ -458,7 +457,7 @@ it('should handle row clicks', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(5);
 
   await user.keyboard('{Shift>}'); // Hold Shift
-  await user.click(getByText(data[3].name));
+  await user.click(screen.getByRole('cell', { name: data[3].name }));
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
@@ -469,7 +468,7 @@ it('should handle row clicks', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(6);
 
   await user.keyboard('{/Shift}'); // Release Shift
-  await userEvent.click(getByText(data[2].name)); // Deselect; lastSelectedRowId = 1 -> 2
+  await user.click(screen.getByRole('cell', { name: data[2].name })); // Deselect; lastSelectedRowId = 1 -> 2
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
@@ -483,7 +482,7 @@ it('should handle row clicks', async () => {
   // Shift click makes makes all rows from lastSelectedRowId to clicked row to have the same selection state as the clicked row
   // So when lastSelectedRowId is un-selected, all rows in the shift select range are also unselected.
   await user.keyboard('{Shift>}'); // Hold Shift
-  await user.click(getByText(data[0].name));
+  await user.click(screen.getByRole('cell', { name: data[0].name }));
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).not.toHaveAttribute('aria-selected');
@@ -494,11 +493,11 @@ it('should handle row clicks', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(8);
 
   await user.keyboard('{/Shift}{Control>}'); // Release Shift and Hold Control
-  await user.click(getByText(data[4].name)); // lastSelectedRowId = 2 -> 4 (Ctrl click updates lastSelectedRowId)
+  await user.click(screen.getByRole('cell', { name: data[4].name })); // lastSelectedRowId = 2 -> 4 (Ctrl click updates lastSelectedRowId)
   await user.keyboard('{Control>}'); // Keep holding Control
-  await user.click(getByText(data[2].name)); // lastSelectedRowId = 4 -> 2 (Ctrl click updates lastSelectedRowId)
+  await user.click(screen.getByRole('cell', { name: data[2].name })); // lastSelectedRowId = 4 -> 2 (Ctrl click updates lastSelectedRowId)
   await user.keyboard('{Control>}'); // Keep holding Control
-  await user.click(getByText(data[7].name)); // lastSelectedRowId = 2-> 7 (Ctrl click updates lastSelectedRowId)
+  await user.click(screen.getByRole('cell', { name: data[7].name })); // lastSelectedRowId = 2-> 7 (Ctrl click updates lastSelectedRowId)
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).not.toHaveAttribute('aria-selected');
@@ -514,7 +513,7 @@ it('should handle row clicks', async () => {
   // Ctrl + Shift click test
   // Previous selection (2, 4) should be preserved and added to new shift click selection (7 to 5)
   await user.keyboard('{Control>}{Shift>}'); // Hold Ctrl and Shift
-  await user.click(getByText(data[5].name));
+  await user.click(screen.getByRole('cell', { name: data[5].name }));
 
   expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).not.toHaveAttribute('aria-selected');
@@ -532,7 +531,7 @@ it('should handle sub-rows shift click selection', async () => {
   const onSelect = vi.fn();
   const onRowClick = vi.fn();
   const data = mockedSubRowsData();
-  const { container, getByText } = renderComponent({
+  const { container } = renderComponent({
     data,
     onSelect,
     onRowClick,
@@ -563,26 +562,30 @@ it('should handle sub-rows shift click selection', async () => {
   );
 
   const user = userEvent.setup();
-  await user.click(getByText(data[0].subRows[0].name)); // [shiftKey: false]; lastSelectedRowId = 0.0
+  await user.click(screen.getByRole('cell', { name: data[0].subRows[0].name })); // [shiftKey: false]; lastSelectedRowId = 0.0
   expect(onSelect).toHaveBeenCalledTimes(1);
   expect(onRowClick).toHaveBeenCalledTimes(1);
   testIfCheckboxesChecked(checkboxes, [1], [0]);
 
   await user.keyboard('[ShiftLeft>]'); // Press Shift (without releasing it)
-  await user.click(getByText(data[0].subRows[1].subRows[0].name)); // [shiftKey: true]
+  await user.click(
+    screen.getByRole('cell', { name: data[0].subRows[1].subRows[0].name }),
+  ); // [shiftKey: true]
   expect(onSelect).toHaveBeenCalledTimes(2);
   expect(onRowClick).toHaveBeenCalledTimes(2);
   testIfCheckboxesChecked(checkboxes, [1, 3], [0, 2]);
 
   await user.keyboard('[/ShiftLeft]'); // Release Shift
-  await user.click(getByText(data[1].subRows[0].name)); // [shiftKey = true]; lastSelectedRowId = undefined -> 1.0
+  await user.click(screen.getByRole('cell', { name: data[1].subRows[0].name })); // [shiftKey = true]; lastSelectedRowId = undefined -> 1.0
   expect(onSelect).toHaveBeenCalledTimes(3);
   expect(onRowClick).toHaveBeenCalledTimes(3);
   testIfCheckboxesChecked(checkboxes, [7], [6]);
 
   // When startIndex > endIndex, then startIndex and endIndex are swapped
   await user.keyboard('[ShiftLeft>]'); // Press Shift (without releasing it)
-  await user.click(getByText(data[0].subRows[1].subRows[1].name)); // [shiftKey = true]
+  await user.click(
+    screen.getByRole('cell', { name: data[0].subRows[1].subRows[1].name }),
+  ); // [shiftKey = true]
   expect(onSelect).toHaveBeenCalledTimes(4);
   expect(onRowClick).toHaveBeenCalledTimes(4);
   testIfCheckboxesChecked(checkboxes, [4, 5, 7], [0, 2, 6]);
@@ -591,7 +594,7 @@ it('should handle sub-rows shift click selection', async () => {
 it('should not select when clicked on row but selectRowOnClick flag is false', async () => {
   const onSelect = vi.fn();
   const onRowClick = vi.fn();
-  const { container, getByText } = renderComponent({
+  const { container } = renderComponent({
     isSelectable: true,
     onSelect,
     onRowClick,
@@ -602,7 +605,9 @@ it('should not select when clicked on row but selectRowOnClick flag is false', a
   const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
   expect(rows.length).toBe(3);
 
-  await userEvent.click(getByText(mockedData()[1].name));
+  await userEvent.click(
+    screen.getByRole('cell', { name: mockedData()[1].name }),
+  );
   expect(onSelect).not.toHaveBeenCalled();
   expect(onRowClick).toHaveBeenCalled();
 });
@@ -3347,7 +3352,7 @@ it('should show column enabled when whole row is disabled', () => {
 
 it('should render selectable rows without select column', async () => {
   const onRowClick = vi.fn();
-  const { container, getByText } = renderComponent({
+  const { container } = renderComponent({
     isSelectable: true,
     selectionMode: 'single',
     onRowClick,
@@ -3358,11 +3363,15 @@ it('should render selectable rows without select column', async () => {
 
   expect(container.querySelectorAll('.iui-slot .iui-checkbox').length).toBe(0);
 
-  await userEvent.click(getByText(mockedData()[1].name));
+  await userEvent.click(
+    screen.getByRole('cell', { name: mockedData()[1].name }),
+  );
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
   expect(onRowClick).toHaveBeenCalledTimes(1);
 
-  await userEvent.click(getByText(mockedData()[2].name));
+  await userEvent.click(
+    screen.getByRole('cell', { name: mockedData()[2].name }),
+  );
   expect(rows[1]).not.toHaveAttribute('aria-selected', 'true');
   expect(rows[2]).toHaveAttribute('aria-selected', 'true');
   expect(onRowClick).toHaveBeenCalledTimes(2);
@@ -3370,7 +3379,7 @@ it('should render selectable rows without select column', async () => {
   //Test that ctrl clicking doesn't highlight more than one row
   const user = userEvent.setup();
   await user.keyboard('[ControlLeft>]'); // Press Control (without releasing it)
-  await user.click(getByText(mockedData()[1].name)); // Perform a click with `ctrlKey: true`
+  await user.click(screen.getByRole('cell', { name: mockedData()[1].name })); // Perform a click with `ctrlKey: true`
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
   expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
   expect(onRowClick).toHaveBeenCalledTimes(3);
@@ -4033,6 +4042,7 @@ it.each([
   ['no-custom-Cell', 'default-children-cellRenderer', true, true],
   ['custom-Cell', 'custom-cellRenderer', false, false],
   ['custom-Cell', 'default-children-cellRenderer', false, false],
+  ['no-custom-Cell', 'text-cellRenderer', true, true],
 ] as const)(
   'if %s and %s are used, then shouldClamp: %s and shouldIncreaseHitTarget: %s',
   (isCustomCell, isCustomRenderer, shouldClamp, shouldIncreaseHitTarget) => {
@@ -4047,6 +4057,11 @@ it.each([
       if (isCustomRenderer === 'default-children-cellRenderer') {
         return (props: CellRendererProps<TestDataType>) => (
           <DefaultCell {...props} className='default-cell' />
+        );
+      }
+      if (isCustomRenderer === 'text-cellRenderer') {
+        return (props: CellRendererProps<TestDataType>) => (
+          <DefaultCell {...props} text={props.cellProps.value} />
         );
       }
       return undefined;
@@ -4073,13 +4088,11 @@ it.each([
       data,
     });
 
-    const host = container.querySelector('.test-cell');
-    expect(host?.shadowRoot).toBeTruthy();
-    const lineClampElement = host?.shadowRoot?.querySelector(
-      `.${lineClamp.className}`,
-    );
-    const increaseHitTargetElement = host?.shadowRoot?.querySelector(
-      '._iui-table-cell-default-content',
+    const cell = container.querySelector('.test-cell');
+
+    const lineClampElement = cell?.querySelector(`.iui-line-clamp`);
+    const increaseHitTargetElement = cell?.querySelector(
+      '.iui-table-cell-default-content',
     );
 
     if (shouldClamp) {
