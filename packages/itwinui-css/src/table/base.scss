@@ -468,6 +468,19 @@
   }
 }
 
+@mixin iui-table-cell-default-content {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: -6px;
+    z-index: -1;
+  }
+}
+
 @mixin iui-table-row-status($status) {
   .iui-table-cell:first-of-type,
   + .iui-table-expanded-content {
