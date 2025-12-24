@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- [#2660](https://github.com/iTwin/iTwinUI/pull/2660): Updated the **theme bridge** to use `@stratakit/mui` instead of `@stratakit/foundations`.
+  - eee1bcfd838b07743a6a2d96c50160ad62497235: `styles.css` will now declare `@layer mui, stratakit` after `@layer itwinui`.
+- DOM changes:
+  - [#2663](https://github.com/iTwin/iTwinUI/pull/2663): Improved the accessibility of **Dialog** and **Tile** by rendering headings by default. The default heading level is `<h2>`, which can be customized passing the `as` prop to `Dialog.TitleBar.Title` and `Tile.NameLabel` respectively.
+  - [#2664](https://github.com/iTwin/iTwinUI/pull/2664): Refactored the internal structure of text-only cells to improve the rendering performance of `Table`. The wrapper elements used for line clamping and increasing text selection hit target size are now always rendered in light DOM, avoiding the overhead of shadow DOM.
+- [#2664](https://github.com/iTwin/iTwinUI/pull/2664): Added `text` prop to `DefaultCell` as an alternative to `children`. Using this prop will ensure that the cell content is conditionally wrapped with additional elements for better text selection experience and line clamping (if `clamp` prop is not `false`).
+- [#2662](https://github.com/iTwin/iTwinUI/pull/2662): Replaced several instances of the `SvgChevronRight` icon with `SvgChevronRightSmall` for better visual balance. Components affected: `Breadcrumbs`, `ExpandableBlock`, `Table` (row expanders), and `TreeNode`.
+
+### Patch Changes
+
+- [#2617](https://github.com/iTwin/iTwinUI/pull/2617): Fixed `Tabs` bug where orientation related styles of nested tabs were sometimes incorrect. (**Note**: Nesting tabs is still _not_ recommended for UX reasons.)
+- 6f2f94d4341f41aead12cbafacf97f0fc6ea2113: `ComboBox` options will now attempt to use `value` (instead of `label`) as `key` in cases where it is serializable.
+- 0abc87b4c2d1db88f263056e534f19c6ab171b8d: `DropdownMenu` will now close by default when a menu item is clicked. Set `closeOnItemClick={false}` to opt out of this behavior.
+- 4b4a5cde202d34995e9036985a329c6383e13dc6: Memoized `getItemKey` in `Table`.
+
 ## 3.19.7
 
 ### Patch Changes
