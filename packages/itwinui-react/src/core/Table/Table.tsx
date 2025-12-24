@@ -1004,7 +1004,7 @@ export const Table = <
     count: page.length,
     getScrollElement: () => tableRef.current,
     estimateSize: () => rowHeight,
-    getItemKey: (index) => page[index].id,
+    getItemKey: React.useCallback((index: number) => page[index].id, [page]),
     overscan: 1,
   });
 
