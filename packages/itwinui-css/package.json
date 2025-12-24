@@ -1,7 +1,7 @@
 {
   "name": "@itwin/itwinui-css",
   "private": true,
-  "version": "3.0.0-dev.0",
+  "version": "3.0.0-dev.1",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",

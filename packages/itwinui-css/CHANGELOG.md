@@ -1,5 +1,204 @@
 # Changelog
 
+## 3.0.0-dev.1
+
+### Major Changes
+
+- [#2262](https://github.com/iTwin/iTwinUI/pull/2262): `iui-select-tag` and related classes must now be used together with `iui-tag` (and related) classes. The `iui-select-tag-button-icon` class has been removed.
+
+  <details>
+
+  <summary>Diff</summary>
+
+  ```diff
+  - <span class="iui-select-tag">
+  + <span class="iui-select-tag iui-tag">
+  -   <span class="iui-select-tag-label">
+  +   <span class="iui-select-tag-label iui-tag-label">
+        …
+      </span>
+      <button
+  -     class="iui-button iui-field iui-select-tag-button"
+  +     class="iui-button iui-field iui-select-tag-button iui-tag-button"
+        aria-label="…"
+      >
+  -     <svg class="iui-button-icon iui-select-tag-button-icon">…</svg>
+  +     <svg class="iui-button-icon">…</svg>
+      </button>
+    </span>
+  ```
+
+  </details>
+
+- [#2255](https://github.com/iTwin/iTwinUI/pull/2255): Replaces the attribute classes for `iui-checkbox` such as `iui-status`, `iui-disabled`, and `iui-loading` with new `data-iui-` attributes: `data-iui-status`, `data-iui-disabled`, and `data-iui-loading`.
+
+  ```diff
+  - <div class="iui-checkbox iui-positive">
+  + <div class="iui-checkbox" data-iui-status="positive">
+  ```
+
+  Possible values include: `"positive"`, `"negative"`, and `"warning"`.
+
+  ```diff
+  - <div class="iui-checkbox iui-disabled">
+  + <div class="iui-checkbox" data-iui-disabled="true">
+  ```
+
+  ```diff
+  - <div class="iui-checkbox iui-loading">
+  + <div class="iui-checkbox" data-iui-loading="true">
+  ```
+
+- [#2493](https://github.com/iTwin/iTwinUI/pull/2493): `iui-tabs` no longer requires a `iui-not-animated` class. When `iui-animated` is not present, the "not animated" behavior will be automatically used.
+- [#2346](https://github.com/iTwin/iTwinUI/pull/2346): Multi-select now requires different markup:
+
+  - The tag-container should be be rendered outside the select-button.
+  - The select-button requires an additional `data-iui-multi` attribute.
+  - For small size only, the tag-container requires an additional `data-iui-size` attribute.
+
+  <details>
+  <summary>Diff</summary>
+
+  ```diff
+    <div class='iui-input-with-icon'>
+      <div
+        role='combobox'
+        tabindex='0'
+        class='iui-select-button iui-field'
+        data-iui-size='small'
+  +     data-iui-multi
+      >
+  -     <span class='iui-content'>
+  -       <div class='iui-select-tag-container'>…</div>
+  -     </span>
+      </div>
+      <svg class='iui-end-icon'>…</svg>
+  +   <span class='iui-content'>
+  +     <div class='iui-select-tag-container' data-iui-size='small'>…</div>
+  +   </span>
+    </div>
+  ```
+
+  </details>
+
+- [#2136](https://github.com/iTwin/iTwinUI/pull/2136): Added a new `iui-fieldset-base` class that removes default `<fieldset>` styles. This class is now required when using `iui-fieldset`.
+
+  ```diff
+  - <fieldset class="iui-fieldset">
+  + <fieldset class="iui-fieldset-base iui-fieldset">
+  ```
+
+- [#2255](https://github.com/iTwin/iTwinUI/pull/2255): The class `iui-radio` now depends on `iui-checkbox` for its styling. Additionally, `iui-radio-wrapper` is now replaced by `iui-checkbox-wrapper` for all `Radio` elements.
+
+  ```diff
+  - <label class="iui-radio-wrapper">
+  - <input class="iui-radio">
+  + <label class="iui-checkbox-wrapper">
+  + <input class="iui-checkbox iui-radio">
+  ```
+
+- [#2487](https://github.com/iTwin/iTwinUI/pull/2487): In `Table`, `iui-table-empty` now is expected to be under `iui-table-body-extra` instead of `iui-table-body`.
+- [#2469](https://github.com/iTwin/iTwinUI/pull/2469): `iui-tabs-wrapper`, `iui-tabs`, `iui-tab`, `iui-tabs-content`, `iui-tabs-actions-wrapper`, and `iui-tabs-actions` now require setting a new `data-iui-orientation` attribute. This change helps support nested tabs correctly.
+
+  **Note**: Nested tabs is _not_ recommended for UX related reasons.
+
+  <details>
+    <summary>Diff</summary>
+
+  ```diff
+  - <div class='iui-tabs-wrapper iui-horizontal'>
+  + <div class='iui-tabs-wrapper' data-iui-orientation="horizontal">
+    <div
+      class='iui-tabs'
+  +   data-iui-orientation="horizontal"
+    >
+      <button
+        class='iui-tab'
+  +     data-iui-orientation="horizontal"
+      >
+        …
+      </button>
+
+      <button
+        class="iui-button iui-button-base iui-field"
+        data-iui-variant="borderless"
+      >
+        …
+      </button>
+    </div>
+
+    <div
+      class='iui-tabs-actions-wrapper'
+  +   data-iui-orientation="horizontal"
+    >
+      <div
+        class='iui-tabs-actions'
+  +     data-iui-orientation="horizontal"
+      >
+        …
+      </div>
+    </div>
+
+    <div
+      class='iui-tabs-content'
+  +   data-iui-orientation="horizontal"
+    >
+      …
+    </div>
+  </div>
+  ```
+
+  </details>
+
+### Minor Changes
+
+- [#2040](https://github.com/iTwin/iTwinUI/pull/2040): Added hover state to disabled `.iui-field` and `.iui-list-item` to help with accessibility.
+- [#2551](https://github.com/iTwin/iTwinUI/pull/2551): `iui-tree` now horizontally scrolls instead of truncation of `iui-tree-item`s when in horizontally overflowing `iui-tree`s.
+- [#2524](https://github.com/iTwin/iTwinUI/pull/2524): Added `iui-popover` class to be used on the floating popover content's root.
+- [#2541](https://github.com/iTwin/iTwinUI/pull/2541): Visual changes to tabs for better accessibility and appearance when in theme bridge mode.
+
+  - Default tabs focus `outline-offset` inset more so to not obstruct the active tab stripe.
+  - Dividing line between borderless tabs and content area reduced to `1px` to give the active tab stripe a visual difference.
+  - Active borderless tab no longer has `background-color` change.
+  - Tab description / sublabel has `color` change with `transition`.
+  - Default disabled tab will now have the same background color as the default non-disabled tab.
+
+- [#2373](https://github.com/iTwin/iTwinUI/pull/2373): Fixed an issue in `iui-input-flex-container` where the component-level focus styling was colliding with global focus styling, leading to double focus outlines.
+- [#2391](https://github.com/iTwin/iTwinUI/pull/2391): Animation related classes are now deprecated: `.iui-enter`, `.iui-enter-active`, `.iui-exit`, `.iui-exit-active`.
+- [#2493](https://github.com/iTwin/iTwinUI/pull/2493): `iui-tab` now supports `aria-current` (as an alternative to `aria-selected`) for indicating selected state.
+- [#2554](https://github.com/iTwin/iTwinUI/pull/2554): Set `color` property to match the existing `fill` property value of icons when they are used inside a menu item or field components. This ensures consistent icon colors, i.e. when a font icon is used. Additionally, it enables referencing the icon's color value using the `currentColor` keyword.
+- [#2135](https://github.com/iTwin/iTwinUI/pull/2135): Added a new `iui-table-column-manager` class for the column manager's floating content.
+- [#2238](https://github.com/iTwin/iTwinUI/pull/2238): Collapsed `.iui-expandable-searchbox` will now hide its border and background in favor of the ones from the expand button.
+- [#2655](https://github.com/iTwin/iTwinUI/pull/2655): Force text wrapping for long words. Affected component: 'Tile'
+
+### Patch Changes
+
+- [#2359](https://github.com/iTwin/iTwinUI/pull/2359): The `Tooltip` now remains visible when hovered up to `4px` outside its border.
+- [#2316](https://github.com/iTwin/iTwinUI/pull/2316): In `.iui-table-paginator`, the `.iui-center` gets a higher z-index over `.iui-left` and `.iui-right`.
+- [#2266](https://github.com/iTwin/iTwinUI/pull/2266): All instances of `user-select: all` have been removed. Affected components: `code`, `information-panel`, `slider`, `stepper`, `tile`.
+- [#2596](https://github.com/iTwin/iTwinUI/pull/2596): Fixed `iui-transfer-list-listbox-wrapper` to now properly handle long strings in the list items.
+- [#2323](https://github.com/iTwin/iTwinUI/pull/2323): Ensured that `.iui-toast-wrapper` does not block clicks when used within other portal containers (e.g. from AppUI).
+- [#2281](https://github.com/iTwin/iTwinUI/pull/2281): `iui-input` with "small" size now has the same height as other field elements with "small" size (e.g. `iui-button`).
+- [#2143](https://github.com/iTwin/iTwinUI/pull/2143): Added `border-radius` to the `.iui-table` class so that the border radius is correctly applied to the table's corners.
+- [#2362](https://github.com/iTwin/iTwinUI/pull/2362): `iui-select-button` now has the same height as other field elements with "small" size such as `iui-input`.
+- [#2152](https://github.com/iTwin/iTwinUI/pull/2152): `iui-breadcrumbs-list` now stretches to the width of `iui-breadcrumbs`.
+- [#2618](https://github.com/iTwin/iTwinUI/pull/2618): `iui-tree-node` hover styles only applied when hover is supported.
+- [#2386](https://github.com/iTwin/iTwinUI/pull/2386): Fixed an issue in `iui-tile-name` where a long string without spaces wasn't wrapping properly.
+- [#2551](https://github.com/iTwin/iTwinUI/pull/2551): Fixed `iui-tree` where the `iui-tree-item`s now stretch to the full width of the horizontally scrolling `iui-tree`.
+- [#2347](https://github.com/iTwin/iTwinUI/pull/2347): `input` and `textarea` inside `.iui-input-flex-container` now properly get `cursor: not-allowed` when disabled.
+- [#2147](https://github.com/iTwin/iTwinUI/pull/2147): Fixed grid blowout in `iui-expandable-content` using `grid-template-columns: minmax(0, 1fr)`.
+- [#2574](https://github.com/iTwin/iTwinUI/pull/2574): `iui-button-group` no longer has overlapping borders between adjacent iTwinUI borderless buttons.
+- [#2641](https://github.com/iTwin/iTwinUI/pull/2641): Changed `.iui-list-item`'s `background-color` on `:hover`.
+- [#2374](https://github.com/iTwin/iTwinUI/pull/2374): Fix fill of svgs in `iui-header-breadcrumb-button`.
+- [#2615](https://github.com/iTwin/iTwinUI/pull/2615): Borders for `iui-table-header` and `iui-table-cell` have been made more subtle.
+- [#2431](https://github.com/iTwin/iTwinUI/pull/2431): Force text wrapping for long words in typography components (`iui-text-…`) and a few other text instances in other components (e.g. `iui-non-ideal-state-title`, `iui-stepper-step`, `iui-workflow-diagram-step`, etc.).
+- [#2139](https://github.com/iTwin/iTwinUI/pull/2139): Added `overlow: auto` to `.iui-tree` to provide more consistent styling across components.
+- [#2127](https://github.com/iTwin/iTwinUI/pull/2127): Fixed an issue in `iui-dialog`, where long titles were not wrapping properly.
+- [#2378](https://github.com/iTwin/iTwinUI/pull/2378): Fix folder variant `iui-tile`'s broken layout when it has a long name.
+- [#2457](https://github.com/iTwin/iTwinUI/pull/2457): Fixed bug in `.iui-button-base` where cursor was `pointer` even when it was disabled.
+- [#2497](https://github.com/iTwin/iTwinUI/pull/2497): Fixed `.iui-tile-thumbnail-badge-container` bug where it is not visible within `.iui-tile-thumbnail`.
+- [#2590](https://github.com/iTwin/iTwinUI/pull/2590): Fix draggable `iui-dialog-title-bar-filled` to also work properly on touch devices.
+
 ## 3.0.0-dev.0
 
 ### Major Changes
