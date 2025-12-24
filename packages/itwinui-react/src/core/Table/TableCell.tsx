@@ -117,8 +117,8 @@ export const TableCell = <T extends Record<string, unknown>>(
   const defaultCellRendererChildren = React.useMemo(
     () => (
       <>
-        {cellContent}
         {expander}
+        {cellContent}
         {shadows}
       </>
     ),
