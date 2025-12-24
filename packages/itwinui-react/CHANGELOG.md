@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.1
+
+### Patch Changes
+
+- 1398d25dfe5ad68a4fe500c38fec9f02a9970bd5: Fixed a `Table` issue where the sub-row expander could appear after the cell content in certain cases.
+
 ## 3.20.0
 
 ### Minor Changes
