@@ -178,6 +178,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     border-block-end: none;
     border-inline-end: 1px solid var(--iui-color-border);
     margin: 0;
+
+    // adjusting for horizontal layout
+    border-start-end-radius: 0;
+    border-end-start-radius: calc(var(--iui-border-radius-1) - 1px);
   }
 
   .iui-tile-name {
@@ -301,6 +305,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   display: grid;
   background-color: var(--iui-color-background-zebra);
   border-block-end: 1px solid var(--iui-color-border);
+
+  // inner radius should be smaller for consistent border
+  border-start-start-radius: calc(var(--iui-border-radius-1) - 1px);
+  border-start-end-radius: calc(var(--iui-border-radius-1) - 1px);
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
