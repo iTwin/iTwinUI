@@ -515,6 +515,32 @@ export const Virtualized = () => {
   );
 };
 
+export const CloseDropdownHandle = () => {
+  const options = React.useMemo(() => countriesList, []);
+  const handleRef = React.useRef<ComboBoxHandle>(null);
+
+  return (
+    <>
+      <Text>
+        The dropdown will close automatically 3 seconds after opening.
+      </Text>
+      <ComboBox
+        options={options}
+        inputProps={{ placeholder: 'Select a country' }}
+        onChange={(value: string) => console.log(value ?? '')}
+        handleRef={handleRef}
+        onShow={() => {
+          setTimeout(() => {
+            if (handleRef.current) {
+              handleRef.current.closeDropdown();
+            }
+          }, 3000);
+        }}
+      />
+    </>
+  );
+};
+
 export const MultipleSelect = () => {
   const { clearFilterOnOptionToggle } = React.useContext(MultipleSelectContext);
 

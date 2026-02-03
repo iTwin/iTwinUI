@@ -961,3 +961,17 @@ it('should allow passing ref to ComboBox', () => {
   expect(comboboxRef?.current).toHaveAttribute('id', 'test-combobox');
   expect(inputRef?.current).toHaveAttribute('id', 'test-input');
 });
+
+it('should allow closing the dropdown programmatically', async () => {
+  const handleRef = React.createRef<ComboBoxHandle>();
+  const { container } = renderComponent({ handleRef });
+  const input = assertBaseElement(container);
+
+  await userEvent.click(input);
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+
+  act(() => {
+    handleRef.current?.closeDropdown();
+  });
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
+});
