@@ -14,7 +14,9 @@ import {
   Flex,
   Divider,
   Checkbox,
+  Text,
 } from '@itwin/itwinui-react';
+import type { ComboBoxHandle } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 import { StoryDefault } from '@ladle/react';
 type ComboBoxProps = React.ComponentProps<typeof ComboBox>;
