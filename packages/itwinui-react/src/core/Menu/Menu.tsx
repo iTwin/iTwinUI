@@ -209,10 +209,11 @@ export const Menu = React.forwardRef((props, ref) => {
   );
 
   React.useEffect(() => {
+    const setPositionReference = popover.refs.setPositionReference;
     if (positionReference !== undefined) {
-      popover.refs.setPositionReference(positionReference);
+      setPositionReference(positionReference);
     }
-  }, [popover.refs, positionReference]);
+  }, [popover.refs.setPositionReference, positionReference]);
 
   const refs = useMergedRefs(setMenuElement, ref, popover.refs.setFloating);
 
