@@ -27,11 +27,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   &:where(:not(.iui-folder)) {
-    > :where(.iui-tile-thumbnail) {
-      border-start-start-radius: inherit;
-      border-start-end-radius: inherit;
-    }
-
     > :where(:last-child) {
       border-end-start-radius: inherit;
       border-end-end-radius: inherit;
@@ -160,11 +155,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     'thumbnail content';
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto 1fr;
-
-  > :where(:first-child) {
-    border-start-start-radius: inherit;
-    border-end-start-radius: inherit;
-  }
 
   > :where(:last-child) {
     border-start-end-radius: inherit;
