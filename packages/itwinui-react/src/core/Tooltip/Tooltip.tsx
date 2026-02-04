@@ -28,6 +28,7 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
+  useStableCallback,
   useMergedRefs,
 } from '../../utils/index.js';
 import type {
@@ -277,6 +278,20 @@ const useTooltip = (options: TooltipOptions = {}) => {
     [interactions, props, id, open],
   );
 
+  // Memoize setters separately to avoid potential infinite loop
+  const _setFloating = useStableCallback(floating.refs.setFloating);
+  const setFloating = React.useCallback(
+    (element: HTMLElement | null) => {
+      _setFloating(element);
+      syncWithControlledState(element);
+    },
+    [_setFloating, syncWithControlledState],
+  );
+  const setReference = useStableCallback(floating.refs.setReference);
+  const setPositionReference = useStableCallback(
+    floating.refs.setPositionReference,
+  );
+
   return React.useMemo(
     () => ({
       getReferenceProps,
@@ -284,15 +299,21 @@ const useTooltip = (options: TooltipOptions = {}) => {
       ...floating,
       refs: {
         ...floating.refs,
-        setFloating: (element: HTMLElement | null) => {
-          floating.refs.setFloating(element);
-          syncWithControlledState(element);
-        },
+        setFloating,
+        setReference,
+        setPositionReference,
       },
       // styles are not relevant when tooltip is not open
       floatingStyles: floating.context.open ? floating.floatingStyles : {},
     }),
-    [getReferenceProps, floatingProps, floating, syncWithControlledState],
+    [
+      getReferenceProps,
+      floatingProps,
+      floating,
+      setFloating,
+      setReference,
+      setPositionReference,
+    ],
   );
 };
 

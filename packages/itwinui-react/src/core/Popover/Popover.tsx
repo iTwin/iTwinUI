@@ -43,6 +43,7 @@ import {
   mergeEventHandlers,
   useControlledState,
   useId,
+  useStableCallback,
   useLayoutEffect,
   useMergedRefs,
 } from '../../utils/index.js';
@@ -356,6 +357,13 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     [interactions, mergedInteractions.click, visible, onOpenChange],
   );
 
+  // Memoize setters separately to avoid potential infinite loop
+  const setFloating = useStableCallback(floating.refs.setFloating);
+  const setReference = useStableCallback(floating.refs.setReference);
+  const setPositionReference = useStableCallback(
+    floating.refs.setPositionReference,
+  );
+
   return React.useMemo(
     () => ({
       open,
@@ -363,8 +371,23 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       getReferenceProps,
       getFloatingProps,
       ...floating,
+      refs: {
+        ...floating.refs,
+        setFloating,
+        setReference,
+        setPositionReference,
+      },
     }),
-    [open, onOpenChange, getFloatingProps, floating, getReferenceProps],
+    [
+      open,
+      onOpenChange,
+      getFloatingProps,
+      floating,
+      getReferenceProps,
+      setFloating,
+      setReference,
+      setPositionReference,
+    ],
   );
 };
 
@@ -453,9 +476,10 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     if (!positionReference) {
       return;
     }
-    popover.refs.setPositionReference(positionReference);
-    return () => void popover.refs.setPositionReference(null);
-  }, [popover.refs, positionReference]);
+    const setPositionReference = popover.refs.setPositionReference;
+    setPositionReference(positionReference);
+    return () => void setPositionReference(null);
+  }, [popover.refs.setPositionReference, positionReference]);
 
   const [initialFocus, setInitialFocus] = React.useState<InitialFocus>();
   const initialFocusContextValue = React.useMemo(
