@@ -57,6 +57,10 @@ type MultipleOnChangeProps<T> = {
   type: ActionType;
 };
 
+export type ComboBoxHandle = {
+  closeDropdown: () => void;
+};
+
 export type ComboboxMultipleTypeProps<T> =
   | {
       /**
@@ -171,6 +175,10 @@ export type ComboBoxProps<T> = {
    * Callback fired when dropdown menu is closed.
    */
   onHide?: () => void;
+  /**
+   * Ref which can be used to programmatically trigger events.
+   */
+  handleRef?: React.Ref<ComboBoxHandle>;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
   CommonProps;
@@ -232,6 +240,7 @@ export const ComboBox = React.forwardRef(
       multiple = false,
       onShow: onShowProp,
       onHide: onHideProp,
+      handleRef,
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
       clearFilterOnOptionToggle = true,
@@ -323,6 +332,14 @@ export const ComboBox = React.forwardRef(
       setIsOpen(false);
       onHideRef.current?.();
     }, [onHideRef]);
+
+    React.useImperativeHandle(
+      handleRef,
+      () => ({
+        closeDropdown: hide,
+      }),
+      [hide],
+    );
 
     useLayoutEffect(() => {
       // When the dropdown opens
