@@ -8,6 +8,7 @@ import {
   ComboBox,
   type ComboboxMultipleTypeProps,
   type ComboBoxProps,
+  type ComboBoxHandle,
 } from './ComboBox.js';
 import { SvgCaretDownSmall } from '../../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
