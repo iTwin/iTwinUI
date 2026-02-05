@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>@storybook/cli - Storybook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+
+    <link href="./sb-manager/runtime.mjs" rel="modulepreload" />
+
+    
+    <link href="./sb-addons/essentials-controls-0/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-actions-1/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-backgrounds-2/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-viewport-3/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/essentials-toolbars-4/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/storybook-dark-mode-esm-preset-5/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/storysource-6/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/storybook-hcThemeAddon-7/manager-bundle.mjs" rel="modulepreload" />
+    
+    <link href="./sb-addons/a11y-8/manager-bundle.mjs" rel="modulepreload" />
+      <style>
+  .light {
+    --active-bg: #e4f3fc;
+    --active-fg: #0071b8;
+  }
+  .dark {
+    --active-bg: #384652;
+    --active-fg: #94befa;
+  }
+  .sidebar-item[data-selected='true'] {
+    background-color: var(--active-bg) !important;
+    color: var(--active-fg) !important;
+  }
+  .sidebar-item[data-selected='true'] svg {
+    color: var(--active-fg) !important;
+  }
+</style>
+ 
+
+    <style>
+      #storybook-root[hidden] {
+        display: none !important;
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    <div id="root"></div>
+
+    
+    <script>
+      
+        
+          window['FEATURES'] = {
+  "warnOnLegacyHierarchySeparator": true,
+  "buildStoriesJson": false,
+  "storyStoreV7": false,
+  "argTypeTargetsV7": true,
+  "legacyDecoratorFileOrder": false
+};
+        
+      
+        
+          window['REFS'] = {};
+        
+      
+        
+          window['LOGLEVEL'] = "info";
+        
+      
+        
+          window['DOCS_OPTIONS'] = {
+  "defaultName": "Docs",
+  "autodocs": false
+};
+        
+      
+        
+          window['CONFIG_TYPE'] = "PRODUCTION";
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </script>
+    
+
+    <script type="module">
+      import './sb-manager/runtime.mjs';
+
+      
+      import './sb-addons/essentials-controls-0/manager-bundle.mjs';
+      
+      import './sb-addons/essentials-actions-1/manager-bundle.mjs';
+      
+      import './sb-addons/essentials-backgrounds-2/manager-bundle.mjs';
+      
+      import './sb-addons/essentials-viewport-3/manager-bundle.mjs';
+      
+      import './sb-addons/essentials-toolbars-4/manager-bundle.mjs';
+      
+      import './sb-addons/storybook-dark-mode-esm-preset-5/manager-bundle.mjs';
+      
+      import './sb-addons/storysource-6/manager-bundle.mjs';
+      
+      import './sb-addons/storybook-hcThemeAddon-7/manager-bundle.mjs';
+      
+      import './sb-addons/a11y-8/manager-bundle.mjs';
+      
+    </script>
+
+    <link href="./sb-preview/runtime.mjs" rel="prefetch" as="script" />
+  </body>
+</html>
