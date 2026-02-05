@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.20.2
+
+### Patch Changes
+
+- [#2674](https://github.com/iTwin/iTwinUI/pull/2674): Components that depend on floating-ui will now use stable references to its setter functions in order to prevent a potential infinite re-render loop. Affected components include: `Tooltip`, `Popover`, `ComboBox`, `Select`, `DropdownMenu`, `DropdownButton`, `SplitButton`.
+- [#2670](https://github.com/iTwin/iTwinUI/pull/2670): Updated the inner `border-radius` of `Tile` to be concentric with the outer one.
+
 ## 3.20.1
 
 ### Patch Changes
