@@ -8,7 +8,6 @@ import {
   ComboBox,
   type ComboboxMultipleTypeProps,
   type ComboBoxProps,
-  type ComboBoxHandle,
 } from './ComboBox.js';
 import { SvgCaretDownSmall } from '../../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
@@ -963,16 +962,44 @@ it('should allow passing ref to ComboBox', () => {
   expect(inputRef?.current).toHaveAttribute('id', 'test-input');
 });
 
-it('should allow closing the dropdown programmatically', async () => {
-  const handleRef = React.createRef<ComboBoxHandle>();
-  const { container } = renderComponent({ handleRef });
-  const input = assertBaseElement(container);
-
-  await userEvent.click(input);
+it('should allow opening the dropdown programmatically', async () => {
+  const ComboBoxTest = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+      <>
+        <button onClick={() => setIsOpen(true)}>Open</button>
+        <ComboBox
+          options={[{ value: 1, label: 'Item 1' }]}
+          dropdownMenuProps={{
+            visible: isOpen,
+            onVisibleChange: setIsOpen,
+          }}
+        />
+      </>
+    );
+  };
+  const { container } = render(<ComboBoxTest />);
+  const openButton = container.querySelector('button') as HTMLButtonElement;
+  await userEvent.click(openButton);
   expect(document.querySelector('.iui-menu')).toBeVisible();
+});
 
-  act(() => {
-    handleRef.current?.closeDropdown();
-  });
+it('should allow closing the dropdown programmatically', async () => {
+  const ComboBoxTest = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+      <ComboBox
+        options={[{ value: 1, label: 'Item 1' }]}
+        dropdownMenuProps={{
+          visible: isOpen,
+          onVisibleChange: setIsOpen,
+        }}
+        onShow={() => setIsOpen(false)}
+      />
+    );
+  };
+  const { container } = render(<ComboBoxTest />);
+  const input = container.querySelector('input') as HTMLElement;
+  await userEvent.click(input);
   expect(document.querySelector('.iui-menu')).toBeFalsy();
 });

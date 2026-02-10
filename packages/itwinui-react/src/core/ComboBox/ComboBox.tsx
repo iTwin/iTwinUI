@@ -57,10 +57,6 @@ type MultipleOnChangeProps<T> = {
   type: ActionType;
 };
 
-export type ComboBoxHandle = {
-  closeDropdown: () => void;
-};
-
 export type ComboboxMultipleTypeProps<T> =
   | {
       /**
@@ -132,7 +128,10 @@ export type ComboBoxProps<T> = {
    * Props to customize dropdown menu behavior.
    */
   dropdownMenuProps?: React.ComponentProps<'div'> &
-    Pick<Parameters<typeof usePopover>['0'], 'middleware'> &
+    Pick<
+      Parameters<typeof usePopover>['0'],
+      'middleware' | 'visible' | 'onVisibleChange'
+    > &
     Pick<PortalProps, 'portal'>;
   /**
    * End icon props.
@@ -175,10 +174,6 @@ export type ComboBoxProps<T> = {
    * Callback fired when dropdown menu is closed.
    */
   onHide?: () => void;
-  /**
-   * Ref which can be used to programmatically trigger events.
-   */
-  handleRef?: React.Ref<ComboBoxHandle>;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
   CommonProps;
@@ -233,14 +228,18 @@ export const ComboBox = React.forwardRef(
       filterFunction = defaultFilterFunction,
       inputProps,
       endIconProps,
-      dropdownMenuProps: { middleware, ...dropdownMenuProps } = {},
+      dropdownMenuProps: {
+        middleware,
+        visible,
+        onVisibleChange,
+        ...dropdownMenuProps
+      } = {},
       emptyStateMessage = 'No options found',
       itemRenderer,
       enableVirtualization = false,
       multiple = false,
       onShow: onShowProp,
       onHide: onHideProp,
-      handleRef,
       id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
       defaultValue,
       clearFilterOnOptionToggle = true,
@@ -317,7 +316,11 @@ export const ComboBox = React.forwardRef(
       }
     }, [multiple, selectedIndexes, setSelectedIndexes, valueProp]);
 
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = useControlledState(
+      false,
+      visible,
+      onVisibleChange,
+    );
     const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
 
     const onShowRef = useLatestRef(onShowProp);
@@ -325,25 +328,16 @@ export const ComboBox = React.forwardRef(
 
     const show = React.useCallback(() => {
       setIsOpen(true);
-      onShowRef.current?.();
-    }, [onShowRef]);
+    }, [setIsOpen]);
 
     const hide = React.useCallback(() => {
       setIsOpen(false);
-      onHideRef.current?.();
-    }, [onHideRef]);
-
-    React.useImperativeHandle(
-      handleRef,
-      () => ({
-        closeDropdown: hide,
-      }),
-      [hide],
-    );
+    }, [setIsOpen]);
 
     useLayoutEffect(() => {
       // When the dropdown opens
       if (isOpen) {
+        onShowRef.current?.();
         inputRef.current?.focus(); // Focus the input
         if (!isMultipleEnabled(selectedIndexes, multiple)) {
           setFocusedIndex(selectedIndexes ?? -1);
@@ -351,6 +345,7 @@ export const ComboBox = React.forwardRef(
       }
       // When the dropdown closes
       else {
+        onHideRef.current?.();
         // Reset the focused index
         setFocusedIndex(-1);
 
@@ -367,7 +362,7 @@ export const ComboBox = React.forwardRef(
 
         setIsInputDirty(false);
       }
-    }, [isOpen, multiple, optionsRef, selectedIndexes]);
+    }, [isOpen, multiple, optionsRef, selectedIndexes, onShowRef, onHideRef]);
 
     // To reconfigure internal state whenever the options change
     const previousOptions = React.useRef(options);

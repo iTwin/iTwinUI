@@ -35,7 +35,6 @@ export { ColorInputPanel } from './core/ColorPicker/ColorInputPanel.js';
 export { ColorPalette } from './core/ColorPicker/ColorPalette.js';
 
 export { ComboBox } from './core/ComboBox/ComboBox.js';
-export type { ComboBoxHandle } from './core/ComboBox/ComboBox.js';
 
 export {
   DatePicker,
