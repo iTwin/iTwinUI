@@ -510,8 +510,8 @@ export const ComboBox = React.forwardRef(
           }
         } else {
           setSelectedIndexes(__originalIndex);
-          hide();
           onChangeHandler(__originalIndex);
+          hide();
         }
       },
       [
