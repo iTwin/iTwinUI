@@ -5,6 +5,10 @@
   --iui-font-sans: var(--stratakit-font-family-sans);
   --iui-font-mono: var(--stratakit-font-family-mono);
 
+  --iui-component-height-small: var(--stratakit-size-control-field-height-small);
+  --iui-component-height: var(--stratakit-size-control-field-height-medium);
+  --iui-component-height-large: var(--stratakit-size-control-field-height-large);
+
   --iui-color-white: var(--stratakit-color-static-white);
 
   --iui-color-background: var(--stratakit-color-bg-page-base);
@@ -136,7 +140,6 @@
       var(--_iui-field-color-background) 100%,
       var(--stratakit-color-glow-hue) var(--stratakit-color-bg-glow-base-hover-\%)
     );
-    --_iui-field-height: var(--stratakit-size-control-field-height-medium);
     --_iui-field-font-size: var(--stratakit-font-size-14);
 
     // Borderless variants need a hover state due to lack of touch target area
@@ -146,12 +149,10 @@
     }
 
     &:where([data-iui-size='small']) {
-      --_iui-field-height: var(--stratakit-size-control-field-height-small);
       --_iui-field-font-size: var(--stratakit-font-size-12);
     }
 
     &:where([data-iui-size='large']) {
-      --_iui-field-height: var(--stratakit-size-control-field-height-large);
       --_iui-field-font-size: var(--stratakit-font-size-16);
     }
   }
