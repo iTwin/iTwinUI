@@ -376,8 +376,18 @@
   /* Label */
 
   // StrataKit labels are slightly muted
-  .iui-input-label:where(:not([data-iui-disabled='true'])) {
-    --_iui-input-label-color: var(--stratakit-color-text-neutral-secondary);
+  .iui-input-label {
+    &:where(:not([data-iui-disabled='true'])) {
+      --_iui-input-label-color: var(--stratakit-color-text-neutral-secondary);
+    }
+
+    &:where(:has(~ [data-iui-size='small'])) {
+      font-size: var(--stratakit-font-size-12);
+    }
+
+    &:where(:has(~ [data-iui-size='large'])) {
+      font-size: var(--stratakit-font-size-16);
+    }
   }
 
   /* ---------------------------------------------------------------------------- */
