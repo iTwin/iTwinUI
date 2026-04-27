@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Adjusted global height variables and field font sizes within theme bridge.
+Adjusted global height variables within theme bridge.
