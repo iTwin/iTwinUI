@@ -61,8 +61,19 @@
 }
 
 .iui-input-label {
+  --_iui-input-label-font-size: var(--iui-font-size-1);
+
+  font-size: var(--_iui-input-label-font-size);
   font-weight: var(--iui-font-weight-semibold);
   color: var(--_iui-input-label-color);
+
+  &:where(:has(+ [data-iui-size='small'], + .iui-input-grid [data-iui-size='small'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-0);
+  }
+
+  &:where(:has(+ [data-iui-size='large'], + .iui-input-grid [data-iui-size='large'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-2);
+  }
 
   &.iui-required {
     &::after {
