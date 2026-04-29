@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.21.0
+
+### Minor Changes
+
+- [#2685](https://github.com/iTwin/iTwinUI/pull/2685): Adjusted global height variables within theme bridge.
+- [#2673](https://github.com/iTwin/iTwinUI/pull/2673): Added support for closing the ComboBox dropdown programmatically.
+- [#2677](https://github.com/iTwin/iTwinUI/pull/2677): Close ComboBox dropdown menu after onChange callback when option is chosen
+
 ## 3.20.2
 
 ### Patch Changes
