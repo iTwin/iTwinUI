@@ -1,0 +1,213 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Slider | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Slider"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/slider.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/slider.html"><script type="module" src="./_astro/_layout.astro_astro_type_script_index_0_lang.B1ALVQVo.js"></script><link rel="stylesheet" href="./_astro/alert.Dwueb5Ds.css">
+<link rel="stylesheet" href="./_astro/slider.CvY2bGGf.css"></head> <body class="iui-root" data-iui-theme> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1Jgmkb" prefix="r1" component-url="./_astro/ThemeBridge.CbDV3WNZ.js" component-export="ThemeBridge" renderer-url="./_astro/client.WSCbUple.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeBridge&quot;,&quot;value&quot;:true}"></astro-island> <theme-button></theme-button>  <script type="module">class t extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="var(--iui-color-icon-muted, currentColor)"><path d="M10.693 1.727L6.511 4.994H4.464a.949.949 0 00-.964.937v4.128a.949.949 0 00.964.937h2.047l4.199 3.274a1.11 1.11 0 001.79-.87V2.58a1.126 1.126 0 00-1.807-.853z"/></svg>'}}customElements.define("svg-sound-mute",t);class n extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="var(--iui-color-icon-muted, currentColor)"><path d="M11.726 5.172a3.63 3.63 0 01-.033 5.67.813.813 0 01-1.094-.135l-.067-.067a.706.706 0 01.118-1.01 2.026 2.026 0 00.084-3.196.803.803 0 11.992-1.262zm1.834-2.254a.814.814 0 00-1.11.118.794.794 0 00.101 1.11 4.964 4.964 0 010 7.705.802.802 0 001.01 1.246 6.528 6.528 0 000-10.179zm-6.367-1.19L3.011 4.993H.964A.949.949 0 000 5.931v4.128a.949.949 0 00.964.937h2.047L7.21 14.27A1.11 1.11 0 009 13.4V2.58a1.126 1.126 0 00-1.807-.853z"/></svg>'}}customElements.define("svg-sound-loud",n);</script>  <h1>Slider</h1> <hr> <br> <h2>Horizontal</h2> <section id="demo-default"> <div class="iui-input-grid"> <div class="iui-input-label">Volume</div> <div class="iui-slider-container" data-iui-orientation="horizontal"> <span class="iui-slider-min"> <svg-sound-mute data-iui-icon-color="default" data-iui-icon-size="m" aria-hidden="true" class="iui-svg-icon"></svg-sound-mute> </span> <div class="iui-slider iui-progress-slider"> <div class="iui-slider-track"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Volume setting" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100"></div> </div> <span class="iui-slider-max"> <svg-sound-loud data-iui-icon-color="default" data-iui-icon-size="m" aria-hidden="true" class="iui-svg-icon"></svg-sound-loud> </span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label">Slider with ticks</div> <div class="iui-slider-container" data-iui-orientation="horizontal"> <span class="iui-slider-min"> 0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-progress-slider"> <div class="iui-slider-track"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Volume setting" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label" data-iui-disabled="true">Disabled slider</div> <div class="iui-slider-container" data-iui-orientation="horizontal" data-iui-disabled="true"> <span class="iui-slider-min"> 0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-progress-slider"> <div class="iui-slider-track"></div> <div class="iui-slider-thumb" role="slider" aria-label="Volume setting" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100" aria-disabled="true"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> </section> <section id="demo-range"> <div class="iui-input-grid"> <div class="iui-input-label">Price range</div> <div class="iui-slider-container" data-iui-orientation="horizontal"> <span class="iui-slider-min">0</span> <div class="iui-slider iui-range-slider"> <div class="iui-slider-track" style="inset-inline-start: 20%; inset-inline-end: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Start value" aria-valuemin="0" aria-valuenow="20" aria-valuemax="79" data-range-max="100" style="--iui-slider-thumb-position: 20%;" id="test-slider-1"></div> <output class="iui-tooltip" style="inset-inline-start: 20%;"> 20</output> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="End value" aria-valuemin="21" aria-valuenow="80" aria-valuemax="100" data-range-min="0" style="--iui-slider-thumb-position: 80%;" id="test-slider-2"></div> <output class="iui-tooltip" style="inset-inline-start: 80%;"> 80</output> </div> <span class="iui-slider-max">100</span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label">Range with ticks</div> <div class="iui-slider-container" data-iui-orientation="horizontal"> <span class="iui-slider-min">0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-range-slider"> <div class="iui-slider-track" style="inset-inline-start: 20%; inset-inline-end: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Start value" aria-valuemin="0" aria-valuenow="20" aria-valuemax="79" data-range-max="100" style="--iui-slider-thumb-position: 20%;"></div> <output class="iui-tooltip" style="inset-inline-start: 20%;"> 20</output> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="End value" aria-valuemin="21" aria-valuenow="80" aria-valuemax="100" data-range-min="0" style="--iui-slider-thumb-position: 80%;"></div> <output class="iui-tooltip" style="inset-inline-start: 80%;"> 80</output> </div> <span class="iui-slider-max">100</span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label" data-iui-disabled="true">Disabled range</div> <div class="iui-slider-container" data-iui-orientation="horizontal" data-iui-disabled="true"> <span class="iui-slider-min">0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-range-slider"> <div class="iui-slider-track" style="inset-inline-start: 20%; inset-inline-end: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Start value" aria-valuemin="0" aria-valuenow="20" aria-valuemax="79" data-range-max="100" style="--iui-slider-thumb-position: 20%;" aria-disabled="true"></div> <output class="iui-tooltip" style="inset-inline-start: 20%;"> 20</output> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="End value" aria-valuemin="21" aria-valuenow="80" aria-valuemax="100" data-range-min="0" style="--iui-slider-thumb-position: 80%;" aria-disabled="true"></div> <output class="iui-tooltip" style="inset-inline-start: 80%;"> 80</output> </div> <span class="iui-slider-max">100</span> </div> </div> </section> <h2>Vertical</h2> <section id="demo-default-vertical"> <div class="iui-input-grid"> <div class="iui-input-label">Volume</div> <div class="iui-slider-container" data-iui-orientation="vertical" style="height: 500px;"> <span class="iui-slider-min"> <svg-sound-mute data-iui-icon-color="default" data-iui-icon-size="m" aria-hidden="true" class="iui-svg-icon"></svg-sound-mute> </span> <div class="iui-slider iui-progress-slider"> <div class="iui-slider-track"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Volume setting" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100"></div> </div> <span class="iui-slider-max"> <svg-sound-loud data-iui-icon-color="default" data-iui-icon-size="m" aria-hidden="true" class="iui-svg-icon"></svg-sound-loud> </span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label">Slider with ticks</div> <div class="iui-slider-container" data-iui-orientation="vertical" style="height: 500px;"> <span class="iui-slider-min"> 0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-progress-slider"> <div class="iui-slider-track"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Volume setting" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label" data-iui-disabled="true">Disabled slider</div> <div class="iui-slider-container" data-iui-orientation="vertical" data-iui-disabled="true" style="height: 500px;"> <span class="iui-slider-min"> 0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-progress-slider"> <div class="iui-slider-track"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Volume setting" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100" aria-disabled="true"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> </section> <section id="demo-range-vertical"> <div class="iui-input-grid"> <div class="iui-input-label">Price range</div> <div class="iui-slider-container" data-iui-orientation="vertical" style="height: 500px;"> <span class="iui-slider-min"> 0</span> <div class="iui-slider iui-range-slider"> <div class="iui-slider-track" style="inset-block-end: 20%; inset-block-start: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Start value" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="20" aria-valuemax="79" data-range-max="100" style="--iui-slider-thumb-position: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="End value" aria-orientation="vertical" aria-valuemin="21" aria-valuenow="80" aria-valuemax="100" data-range-min="0" style="--iui-slider-thumb-position: 80%;"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label">Range with ticks</div> <div class="iui-slider-container" data-iui-orientation="vertical" style="height: 500px;"> <span class="iui-slider-min"> 0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-range-slider"> <div class="iui-slider-track" style="inset-block-end: 20%; inset-block-start: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Start value" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="20" aria-valuemax="79" data-range-max="100" style="--iui-slider-thumb-position: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="End value" aria-orientation="vertical" aria-valuemin="21" aria-valuenow="80" aria-valuemax="100" data-range-min="0" style="--iui-slider-thumb-position: 80%;"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> <div class="iui-input-grid"> <div class="iui-input-label" data-iui-disabled="true">Disabled range</div> <div class="iui-slider-container" data-iui-orientation="vertical" data-iui-disabled="true" style="height: 500px;"> <span class="iui-slider-min"> 0</span> <div class="iui-slider-ticks" aria-hidden="true"> <span class="iui-slider-tick">0</span> <span class="iui-slider-tick">10</span> <span class="iui-slider-tick">20</span> <span class="iui-slider-tick">30</span> <span class="iui-slider-tick">40</span> <span class="iui-slider-tick">50</span> <span class="iui-slider-tick">60</span> <span class="iui-slider-tick">70</span> <span class="iui-slider-tick">80</span> <span class="iui-slider-tick">90</span> <span class="iui-slider-tick">100</span> </div> <div class="iui-slider iui-range-slider"> <div class="iui-slider-track" style="inset-block-end: 20%; inset-block-start: 20%;"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="Start value" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="20" aria-valuemax="79" data-range-max="100" style="--iui-slider-thumb-position: 20%;" aria-disabled="true"></div> <div class="iui-slider-thumb" role="slider" tabindex="0" aria-label="End value" aria-orientation="vertical" aria-valuemin="21" aria-valuenow="80" aria-valuemax="100" data-range-min="0" style="--iui-slider-thumb-position: 80%;" aria-disabled="true"></div> </div> <span class="iui-slider-max"> 100</span> </div> </div> </section> <script>
+    function setTooltip(percent, tooltip, sliderContainer) {
+      if (getIsVerticalSlider(sliderContainer)) {
+        if (tooltip) {
+          tooltip.style.bottom = `${percent}%`;
+          tooltip.innerHTML = `${percent}`;
+        }
+      } else {
+        if (tooltip) {
+          tooltip.style.left = `${percent}%`;
+          tooltip.innerHTML = `${percent}`;
+        }
+      }
+    }
+
+    function setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode) {
+      thumb.style = `--iui-slider-thumb-position: ${percent}%`;
+      if (getIsVerticalSlider(sliderContainer)) {
+        if (mode === 'progress') {
+          var progressPercent = 100 - percent;
+          progress.style = `--iui-slider-track-position: ${progressPercent}% 0`;
+          console.log(`${percent}%`);
+        } else if (mode === 'range-left') {
+          otherThumb && otherThumb.setAttribute('aria-valuemin', percent + 1);
+          progress.style = `--iui-slider-track-position: ${
+            100 - otherThumb.getAttribute('aria-valuenow')
+          }% ${percent}%`;
+          console.log(`${percent}% - ${otherThumb.getAttribute('aria-valuenow')}%`);
+        } else if (mode === 'range-right') {
+          otherThumb && otherThumb.setAttribute('aria-valuemax', percent - 1);
+          var progressPercent = 100 - percent;
+          progress.style = `--iui-slider-track-position: ${progressPercent}% ${otherThumb.getAttribute(
+            'aria-valuenow',
+          )}%`;
+          console.log(`${otherThumb.getAttribute('aria-valuenow')}% - ${percent}%`);
+        }
+      } else {
+        if (mode === 'progress') {
+          var progressPercent = 100 - percent;
+          progress.style = `--iui-slider-track-position: 0 ${progressPercent}%`;
+        } else if (mode === 'range-left') {
+          otherThumb && otherThumb.setAttribute('aria-valuemin', percent + 1);
+          progress.style = `--iui-slider-track-position: ${percent}% ${
+            100 - otherThumb.getAttribute('aria-valuenow')
+          }%`;
+        } else if (mode === 'range-right') {
+          otherThumb && otherThumb.setAttribute('aria-valuemax', percent - 1);
+          var progressPercent = 100 - percent;
+          progress.style = `--iui-slider-track-position: ${otherThumb.getAttribute(
+            'aria-valuenow',
+          )}% ${progressPercent}%`;
+        }
+      }
+    }
+
+    function getMinValueFromThumb(thumb) {
+      const minAtt = thumb.getAttribute('aria-valuemin');
+      const dataRangeMinAtt = thumb.getAttribute('data-range-min');
+      const min = parseInt(null !== dataRangeMinAtt ? dataRangeMinAtt : minAtt);
+      return min;
+    }
+
+    function getMaxValueFromThumb(thumb) {
+      const maxAtt = thumb.getAttribute('aria-valuemax');
+      const dataRangeMaxAtt = thumb.getAttribute('data-range-max');
+      const max = parseInt(null !== dataRangeMaxAtt ? dataRangeMaxAtt : maxAtt);
+      return max;
+    }
+
+    function getMaxLimitValueFromThumb(thumb) {
+      var maxAtt = thumb.getAttribute('aria-valuemax');
+      var max = parseInt(maxAtt);
+      return max;
+    }
+
+    function getMinLimitValueFromThumb(thumb) {
+      var minAtt = thumb.getAttribute('aria-valuemin');
+      var min = parseInt(minAtt);
+      return min;
+    }
+
+    function getPercentFromThumb(thumb) {
+      var valueAtt = thumb.getAttribute('aria-valuenow');
+      var value = parseInt(valueAtt);
+      var min = getMinValueFromThumb(thumb);
+      var max = getMaxValueFromThumb(thumb);
+      var percent = ((value - min) / (max - min)) * 100;
+      return percent;
+    }
+
+    function moveSlider(event, thumb, progress, mode, toolTip, otherThumb, sliderContainer) {
+      var min = getMinValueFromThumb(thumb);
+      var limitMin = getMinLimitValueFromThumb(thumb);
+      var max = getMaxValueFromThumb(thumb);
+      var limitMax = getMaxLimitValueFromThumb(thumb);
+      var rect = sliderContainer.getBoundingClientRect();
+      var diff;
+      var trackLength;
+      if (getIsVerticalSlider(sliderContainer)) {
+        trackLength = rect.height;
+        diff = -(event.pageY - (rect.bottom + window.scrollY));
+        if (diff > rect.height) diff = rect.height;
+        if (diff < 0) diff = 0;
+      } else {
+        trackLength = rect.width;
+        diff = event.pageX - rect.left;
+        if (diff > rect.width) diff = rect.width;
+        if (diff < 0) diff = 0;
+      }
+
+      var percent = parseInt(((max - min) * diff) / trackLength);
+      if (percent < limitMin) percent = limitMin;
+      if (percent > limitMax) percent = limitMax;
+
+      thumb.setAttribute('aria-valuenow', percent);
+      setTooltip(percent, toolTip, sliderContainer);
+      setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
+
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    function getOtherRangeThumb(thumb) {
+      var parent = thumb.parentNode;
+      const allThumbs = parent.querySelectorAll('.iui-slider-thumb');
+      for (var i = 0; i < allThumbs.length; i++) {
+        if (allThumbs[i] !== thumb) return allThumbs[i];
+      }
+    }
+
+    function getToolTip(thumb, mode) {
+      const parent = thumb.parentNode;
+      const tooltips = parent.querySelectorAll('.iui-tooltip');
+      if (mode === 'range-left') return tooltips[0];
+      else if (mode === 'range-right') return tooltips[1];
+
+      return tooltips[0];
+    }
+
+    function getIsVerticalSlider(sliderContainer) {
+      return sliderContainer.parentNode.getAttribute('data-iui-orientation') === 'vertical';
+    }
+
+    function initializeThumbProcessing(thumb, sliderContainer, mode) {
+      const percent = getPercentFromThumb(thumb);
+      let progress = sliderContainer.querySelector('.iui-slider-track');
+      let otherThumb = getOtherRangeThumb(thumb);
+      const toolTip = getToolTip(thumb, mode);
+
+      setTooltip(percent, toolTip, sliderContainer);
+      setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
+
+      thumb.addEventListener('mousedown', function () {
+        if (sliderContainer.parentElement.classList.contains('iui-disabled')) return;
+        thumb.classList.add('iui-active');
+        sliderContainer.classList.add('iui-grabbing');
+        var ownerDoc = thumb.ownerDocument;
+        var handleMouseMove = function (event) {
+          moveSlider(event, thumb, progress, mode, toolTip, otherThumb, sliderContainer);
+        };
+
+        var handleMouseUp = function (event) {
+          ownerDoc.removeEventListener('mousemove', handleMouseMove);
+          ownerDoc.removeEventListener('mouseup', handleMouseUp);
+          thumb.classList.remove('iui-active');
+          sliderContainer.classList.remove('iui-grabbing');
+        };
+
+        // bind a mousemove event handler to move pointer
+        ownerDoc.addEventListener('mousemove', handleMouseMove);
+
+        // bind a mouseup event handler to stop tracking mouse movements
+        ownerDoc.addEventListener('mouseup', handleMouseUp);
+
+        event.preventDefault();
+        event.stopPropagation();
+      });
+    }
+
+    function initializeAllProgressSliders() {
+      const allProgressSliderContainers = document.querySelectorAll(
+        '.iui-slider.iui-progress-slider',
+      );
+      allProgressSliderContainers.forEach((progressSliderContainer) => {
+        const thumb = progressSliderContainer.querySelector('.iui-slider-thumb');
+        initializeThumbProcessing(thumb, progressSliderContainer, 'progress');
+      });
+    }
+
+    function initializeAllRangeSliders() {
+      const allRangeSliderContainers = document.querySelectorAll('.iui-slider.iui-range-slider');
+      allRangeSliderContainers.forEach((rangeSliderContainer) => {
+        const thumbs = rangeSliderContainer.querySelectorAll('.iui-slider-thumb');
+
+        const leftThumb = thumbs[0];
+        if (leftThumb) {
+          initializeThumbProcessing(leftThumb, rangeSliderContainer, 'range-left');
+        }
+
+        const rightThumb = thumbs[1];
+        if (rightThumb) {
+          initializeThumbProcessing(rightThumb, rangeSliderContainer, 'range-right');
+        }
+      });
+    }
+
+    initializeAllProgressSliders();
+    initializeAllRangeSliders();
+  </script>  </body></html>
