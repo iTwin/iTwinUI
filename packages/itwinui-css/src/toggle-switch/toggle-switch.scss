@@ -5,13 +5,14 @@
 .iui-toggle-switch-wrapper {
   --_iui-toggle-switch-handle-size: var(--iui-size-m);
   --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+  --_iui-toggle-switch-label-font-size: var(--iui-font-size-1);
 
   @include mixins.iui-reset;
   display: grid;
   grid-template-areas: 'toggle';
   align-items: center;
   gap: var(--iui-size-xs);
-  font-size: var(--iui-font-size-1);
+  font-size: var(--_iui-toggle-switch-label-font-size);
   inline-size: fit-content;
   user-select: none;
   cursor: pointer;
@@ -40,6 +41,7 @@
   &:where([data-iui-size='small']) {
     --_iui-toggle-switch-handle-size: var(--iui-size-s);
     --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+    --_iui-toggle-switch-label-font-size: var(--iui-font-size-0);
   }
 }
 
