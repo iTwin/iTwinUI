@@ -31,6 +31,14 @@
     }
   }
 
+  &:where(:has(.iui-field[data-iui-size='small'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-0);
+  }
+
+  &:where(:has(.iui-field[data-iui-size='large'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-2);
+  }
+
   .iui-status-message {
     grid-column-end: -1;
   }
@@ -61,17 +69,15 @@
 }
 
 .iui-input-label {
-  --_iui-input-label-font-size: var(--iui-font-size-1);
-
-  font-size: var(--_iui-input-label-font-size);
+  font-size: var(--_iui-input-label-font-size, var(--iui-font-size-1));
   font-weight: var(--iui-font-weight-semibold);
   color: var(--_iui-input-label-color);
 
-  &:where(:has(+ .iui-field[data-iui-size='small'], + .iui-input-grid .iui-field[data-iui-size='small'])) {
+  &:where(:has(~ .iui-field[data-iui-size='small'])) {
     --_iui-input-label-font-size: var(--iui-font-size-0);
   }
 
-  &:where(:has(+ .iui-field[data-iui-size='large'], + .iui-input-grid .iui-field[data-iui-size='large'])) {
+  &:where(:has(~ .iui-field[data-iui-size='large'])) {
     --_iui-input-label-font-size: var(--iui-font-size-2);
   }
 
