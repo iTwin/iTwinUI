@@ -67,11 +67,11 @@
   font-weight: var(--iui-font-weight-semibold);
   color: var(--_iui-input-label-color);
 
-  &:where(:has(+ [data-iui-size='small'], + .iui-input-grid [data-iui-size='small'])) {
+  &:where(:has(+ .iui-field[data-iui-size='small'], + .iui-input-grid .iui-field[data-iui-size='small'])) {
     --_iui-input-label-font-size: var(--iui-font-size-0);
   }
 
-  &:where(:has(+ [data-iui-size='large'], + .iui-input-grid [data-iui-size='large'])) {
+  &:where(:has(+ .iui-field[data-iui-size='large'], + .iui-input-grid .iui-field[data-iui-size='large'])) {
     --_iui-input-label-font-size: var(--iui-font-size-2);
   }
 
