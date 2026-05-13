@@ -80,6 +80,13 @@ type RootProps = {
      * When set to true or false, it will override the default behavior.
      */
     applyBackground?: boolean;
+    /**
+     * Whether to synchronize the iTwinUI theme with the document `<body>` element, making the iTwinUI CSS variables
+     * available globally. This is useful when iTwinUI is used in third-party portals located outside the main ThemeProvider element.
+     *
+     * This is enabled by default when the `future` prop (or `future.synchronizeThemeToRoot` flag) is set to `true`.
+     */
+    synchronizeThemeToRoot?: boolean;
   };
 };
 
@@ -165,6 +172,19 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 
   useInertPolyfill();
 
+  let future: FutureOptions;
+  if (futureProp === true) {
+    future = {
+      themeBridge: true,
+      synchronizeThemeToRoot: true,
+      ToggleSwitch: {
+        consistentPropsSpread: true,
+      },
+    };
+  } else {
+    future = futureProp;
+  }
+
   const [rootElement, setRootElement] = React.useState<HTMLElement | null>(
     null,
   );
@@ -177,6 +197,8 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   // default inherit highContrast option from parent if also inheriting base theme
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
+
+  themeOptions.synchronizeThemeToRoot ??= future.synchronizeThemeToRoot;
 
   const portalContainerFromParent = React.useContext(PortalContainerContext);
 
@@ -191,7 +213,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     React.useState<HTMLElement | null>(portalContainerProp || null);
 
   return (
-    <FutureFlagsProvider value={futureProp}>
+    <FutureFlagsProvider value={future}>
       <PortalContainerContext.Provider value={portalContainer}>
         <HydrationProvider>
           <ThemeContext.Provider value={themeContextValue}>
@@ -212,7 +234,14 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
                 )}
                 {...rest}
               >
-                {children}
+                <FutureFlagsProvider
+                  value={{
+                    ...future,
+                    synchronizeThemeToRoot: false, // nested ThemeProviders don't need to synchronize.
+                  }}
+                >
+                  {children}
+                </FutureFlagsProvider>
 
                 <PortalContainer
                   theme={theme}
@@ -269,7 +298,10 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const shouldApplyBackground = themeOptions?.applyBackground;
+  const shouldSynchronizeTheme = themeOptions?.synchronizeThemeToRoot;
 
+  const colorScheme = shouldApplyDark ? 'dark' : 'light';
+  const contrast = shouldApplyHC ? 'high' : 'default';
   const themeBridge = useFutureFlag('themeBridge');
 
   return (
@@ -279,12 +311,15 @@ const Root = React.forwardRef((props, forwardedRef) => {
         { 'iui-root-background': shouldApplyBackground },
         className,
       )}
-      data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
-      data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
+      data-iui-theme={colorScheme}
+      data-iui-contrast={contrast}
       data-iui-bridge={themeBridge ? 'true' : undefined}
       ref={forwardedRef}
       {...rest}
     >
+      {shouldSynchronizeTheme && (
+        <SynchronizeTheme theme={colorScheme} contrast={contrast} />
+      )}
       {children}
     </Box>
   );
@@ -418,7 +453,11 @@ const PortalContainer = React.memo(
       return ReactDOM.createPortal(
         <Root
           theme={theme}
-          themeOptions={{ ...themeOptions, applyBackground: false }}
+          themeOptions={{
+            ...themeOptions,
+            applyBackground: false,
+            synchronizeThemeToRoot: false,
+          }}
           data-iui-portal
           style={{ display: 'contents' }}
           ref={setPortalContainer}
@@ -435,6 +474,58 @@ const PortalContainer = React.memo(
     return null;
   },
 );
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Propagates `data-iui-*` attributes to the `<body>` element, so that CSS variables are available globally.
+ */
+const SynchronizeTheme = ({
+  theme,
+  contrast,
+}: {
+  theme: 'light' | 'dark';
+  contrast: 'default' | 'high';
+}) => {
+  const ownerDocument = React.useContext(OwnerDocumentContext);
+  const themeBridge = useFutureFlag('themeBridge');
+
+  useLayoutEffect(() => {
+    if (!ownerDocument?.body) {
+      return;
+    }
+
+    const body = ownerDocument.body;
+    const previousTheme = body.getAttribute('data-iui-theme');
+    const previousContrast = body.getAttribute('data-iui-contrast');
+    const previousBridge = body.getAttribute('data-iui-bridge');
+
+    synchronizeAttribute(body, 'data-iui-theme', theme);
+    synchronizeAttribute(body, 'data-iui-contrast', contrast);
+    synchronizeAttribute(body, 'data-iui-bridge', themeBridge ? 'true' : null);
+
+    return () => {
+      synchronizeAttribute(body, 'data-iui-theme', previousTheme);
+      synchronizeAttribute(body, 'data-iui-contrast', previousContrast);
+      synchronizeAttribute(body, 'data-iui-bridge', previousBridge);
+    };
+  }, [contrast, ownerDocument, theme, themeBridge]);
+
+  return null;
+};
+
+const synchronizeAttribute = (
+  element: HTMLElement,
+  attributeName: string,
+  value: string | null,
+) => {
+  if (value == null) {
+    element.removeAttribute(attributeName);
+    return;
+  }
+
+  element.setAttribute(attributeName, value);
+};
 
 // ----------------------------------------------------------------------------
 
