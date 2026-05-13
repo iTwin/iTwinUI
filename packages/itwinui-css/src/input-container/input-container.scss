@@ -31,6 +31,14 @@
     }
   }
 
+  &:where(:has(.iui-field[data-iui-size='small'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-0);
+  }
+
+  &:where(:has(.iui-field[data-iui-size='large'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-2);
+  }
+
   .iui-status-message {
     grid-column-end: -1;
   }
@@ -61,8 +69,17 @@
 }
 
 .iui-input-label {
+  font-size: var(--_iui-input-label-font-size, var(--iui-font-size-1));
   font-weight: var(--iui-font-weight-semibold);
   color: var(--_iui-input-label-color);
+
+  &:where(:has(~ .iui-field[data-iui-size='small'], ~ .iui-input-with-icon .iui-field[data-iui-size='small'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-0);
+  }
+
+  &:where(:has(~ .iui-field[data-iui-size='large'], ~ .iui-input-with-icon .iui-field[data-iui-size='large'])) {
+    --_iui-input-label-font-size: var(--iui-font-size-2);
+  }
 
   &.iui-required {
     &::after {
