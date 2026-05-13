@@ -5,8 +5,6 @@
 
 @layer reset, variables, itwinui;
 
-@import '@itwin/itwinui-variables' layer(variables);
-
 @import '@fontsource/noto-sans';
 @import '@fontsource/noto-sans-mono';
 @import '@fontsource/noto-sans/400-italic.css';
