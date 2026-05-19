@@ -205,7 +205,6 @@ jobs:
                 text: `\
             - [css-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/css)
             - [react-workshop](https://itwin.github.io/iTwinUI/${{ github.event.number }}/react)
-            - [docs website](https://deploy-preview-${{ github.event.number }}--itwinui-previews.netlify.app/)
             - [vite-playground](https://itwin.github.io/iTwinUI/${{ github.event.number }}/vite)`
               }
             })
