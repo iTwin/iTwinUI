@@ -10,11 +10,12 @@
 
 - [#2673](https://github.com/iTwin/iTwinUI/pull/2673): Added support for closing the ComboBox dropdown programmatically.
 - [#2677](https://github.com/iTwin/iTwinUI/pull/2677): Close ComboBox dropdown menu after onChange callback when option is chosen.
+- Updated the minimum required version of `@stratakit/mui` to `>=0.4.0`
 
 ### Patch Changes
 
 - [#2685](https://github.com/iTwin/iTwinUI/pull/2685): Adjusted global component-height variables within theme bridge.
-- [#2686](https://github.com/iTwin/iTwinUI/pull/2686): Input labels and form fields now use a smaller font size when `size="small` is set.
+- [#2686](https://github.com/iTwin/iTwinUI/pull/2686): Input labels and form fields now use a smaller font size when `size="small"` is set.
 - [#2688](https://github.com/iTwin/iTwinUI/pull/2688): Small internal change to move `virtualizer` out of `TreeNode`.
 - 2639ebbae9e2c498230ec783dcccc854343dc37c: Removed polyfill for `inert` attribute.
 
