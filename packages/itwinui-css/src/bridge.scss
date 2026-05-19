@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-:where(.iui-root, body):where([data-iui-bridge='true']) {
+.iui-root:where([data-iui-bridge='true']) {
   --iui-font-sans: var(--stratakit-font-family-sans);
   --iui-font-mono: var(--stratakit-font-family-mono);
 

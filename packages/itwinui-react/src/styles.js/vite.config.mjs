@@ -63,14 +63,14 @@ export default defineConfig({
       },
     },
     postcss: {
-      plugins: [postcssAddIuiRootAndBody(), postcssAddIuiVersion()],
+      plugins: [postcssAddIuiRoot(), postcssAddIuiVersion()],
     },
   },
 });
 
 // ----------------------------------------------------------------------------
 
-function postcssAddIuiRootAndBody() {
+function postcssAddIuiRoot() {
   return Object.assign(
     () => ({
       postcssPlugin: true,
@@ -79,8 +79,7 @@ function postcssAddIuiRootAndBody() {
           rule.type === 'rule' &&
           rule.selector?.startsWith(':where([data-iui-theme')
         ) {
-          // chain the [data-iui-theme] selector with :where(body, .iui-root)
-          rule.selector = `:where(body, .iui-root)${rule.selector}`;
+          rule.selector = `:where(.iui-root)${rule.selector}`;
         }
       },
     }),

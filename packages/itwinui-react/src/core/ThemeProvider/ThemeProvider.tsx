@@ -27,6 +27,7 @@ import type {
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 import { meta } from '../../utils/meta.js';
+import { styles } from '../../styles.js';
 
 const versionWithoutDots = meta.version.replace(/\./g, '');
 
@@ -499,12 +500,18 @@ const SynchronizeTheme = ({
     const previousTheme = body.getAttribute('data-iui-theme');
     const previousContrast = body.getAttribute('data-iui-contrast');
     const previousBridge = body.getAttribute('data-iui-bridge');
+    const previouslyHadRootClass = body.classList.contains(styles['iui-root']);
 
+    body.classList.toggle(styles['iui-root'], true);
     synchronizeAttribute(body, 'data-iui-theme', theme);
     synchronizeAttribute(body, 'data-iui-contrast', contrast);
     synchronizeAttribute(body, 'data-iui-bridge', themeBridge ? 'true' : null);
 
     return () => {
+      if (!previouslyHadRootClass) {
+        body.classList.remove(styles['iui-root']);
+      }
+
       synchronizeAttribute(body, 'data-iui-theme', previousTheme);
       synchronizeAttribute(body, 'data-iui-contrast', previousContrast);
       synchronizeAttribute(body, 'data-iui-bridge', previousBridge);
