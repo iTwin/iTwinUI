@@ -408,6 +408,9 @@ const VirtualizedTree = React.forwardRef(
   ) => {
     const parentRef = React.useRef<HTMLDivElement | null>(null);
     const virtualizerRootRef = React.useRef<HTMLDivElement | null>(null);
+    const virtualizerRef = React.useRef<
+      Virtualizer<Element, Element> | undefined
+    >(undefined);
 
     const getItemKey = React.useCallback(
       (index: number) => {
@@ -419,7 +422,8 @@ const VirtualizedTree = React.forwardRef(
     /** Sets the virtualizer width to that of the widest element, so that all items are same width. */
     const onVirtualizerChange = React.useMemo(
       () =>
-        debounce((virtualizer?: Virtualizer<Element, Element>) => {
+        debounce(() => {
+          const virtualizer = virtualizerRef.current;
           if (!virtualizer || !virtualizerRootRef.current) {
             return;
           }
@@ -449,6 +453,10 @@ const VirtualizedTree = React.forwardRef(
     });
 
     useLayoutEffect(() => {
+      virtualizerRef.current = virtualizer;
+    }, [virtualizer]);
+
+    useLayoutEffect(() => {
       if (scrollToIndex) {
         virtualizer.scrollToIndex(scrollToIndex);
       }
@@ -468,8 +476,8 @@ const VirtualizedTree = React.forwardRef(
           </ShadowRoot>
           <VirtualizedTreeContext.Provider
             value={React.useMemo(
-              () => ({ virtualizer, onVirtualizerChange }),
-              [virtualizer, onVirtualizerChange],
+              () => ({ onVirtualizerChange }),
+              [onVirtualizerChange],
             )}
           >
             {virtualizer

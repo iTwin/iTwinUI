@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { Virtualizer } from '@tanstack/react-virtual';
 
 export type TreeContextProps = {
   /**
@@ -50,10 +49,7 @@ export const useTreeContext = () => {
 
 export const VirtualizedTreeContext = React.createContext<
   | {
-      virtualizer?: Virtualizer<Element, Element>;
-      onVirtualizerChange?: (
-        virtualizer?: Virtualizer<Element, Element>,
-      ) => void;
+      onVirtualizerChange?: () => void;
     }
   | undefined
 >(undefined);
