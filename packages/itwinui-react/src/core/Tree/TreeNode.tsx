@@ -179,7 +179,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
     indexInGroup,
   } = useTreeContext();
 
-  const { virtualizer, onVirtualizerChange } =
+  const { onVirtualizerChange } =
     React.useContext(VirtualizedTreeContext) ?? {};
 
   const [isFocused, setIsFocused] = React.useState(false);
@@ -197,7 +197,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
         if (isNodeFocused) {
           if (isExpanded) {
             onExpanded(nodeId, false);
-            onVirtualizerChange?.(virtualizer);
+            onVirtualizerChange?.();
             break;
           }
           if (parentNodeId) {
@@ -225,7 +225,7 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
         if (isNodeFocused) {
           if (!isExpanded && hasSubNodes) {
             onExpanded(nodeId, true);
-            onVirtualizerChange?.(virtualizer);
+            onVirtualizerChange?.();
             break;
           }
           (focusableElements[0] as HTMLElement)?.focus();
@@ -262,10 +262,10 @@ export const TreeNode = React.forwardRef((props, forwardedRef) => {
   const onExpanderClick = React.useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       onExpanded(nodeId, !isExpanded);
-      onVirtualizerChange?.(virtualizer);
+      onVirtualizerChange?.();
       event.stopPropagation();
     },
-    [isExpanded, nodeId, onExpanded, onVirtualizerChange, virtualizer],
+    [isExpanded, nodeId, onExpanded, onVirtualizerChange],
   );
 
   return (
