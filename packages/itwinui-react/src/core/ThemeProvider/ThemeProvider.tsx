@@ -171,8 +171,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  useInertPolyfill();
-
   let future: FutureOptions;
   if (futureProp === true) {
     future = {
@@ -621,25 +619,4 @@ const useIuiDebugRef = () => {
   }
 
   _globalThis.__iui.versions.add(JSON.stringify(meta));
-};
-
-// ----------------------------------------------------------------------------
-
-const useInertPolyfill = () => {
-  const loaded = React.useRef(false);
-  const modulePath =
-    'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
-
-  React.useEffect(() => {
-    (async () => {
-      if (
-        !HTMLElement.prototype.hasOwnProperty('inert') &&
-        !loaded.current &&
-        !isUnitTest
-      ) {
-        await new Function('url', 'return import(url)')(modulePath);
-        loaded.current = true;
-      }
-    })();
-  }, []);
 };
