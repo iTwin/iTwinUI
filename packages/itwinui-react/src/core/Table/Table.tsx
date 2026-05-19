@@ -63,7 +63,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import { SELECTION_CELL_ID } from './columns/index.js';
+import { SELECTION_CELL_ID } from './columns/selectionColumn.js';
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual';
 import { ColumnHeader } from './ColumnHeader.js';
 import { TableExpandableContentMemoized } from './TableExpandableContentMemoized.js';
