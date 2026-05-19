@@ -14,7 +14,13 @@ beforeEach(() => {
   useMediaSpy = vi.spyOn(UseMediaQuery, 'useMediaQuery').mockReturnValue(false);
 });
 
-afterEach(() => useMediaSpy.mockRestore());
+afterEach(() => {
+  useMediaSpy.mockRestore();
+  document.body.classList.remove('iui-root');
+  document.body.removeAttribute('data-iui-theme');
+  document.body.removeAttribute('data-iui-contrast');
+  document.body.removeAttribute('data-iui-bridge');
+});
 
 it.each(['light', 'dark'] as const)(
   'should render correctly with %s theme',
@@ -177,4 +183,28 @@ it('should inherit theme from data attribute if no context found', () => {
 it('should default to light theme if no parent theme found', () => {
   render(<ThemeProvider>Test</ThemeProvider>);
   expect(screen.getByText('Test')).toHaveAttribute('data-iui-theme', 'light');
+});
+
+it('should synchronize theme to body when enabled', () => {
+  const { unmount } = render(
+    <ThemeProvider
+      theme='dark'
+      future={{ themeBridge: true }}
+      themeOptions={{ synchronizeThemeToRoot: true }}
+    >
+      Test
+    </ThemeProvider>,
+  );
+
+  expect(document.body).toHaveClass('iui-root');
+  expect(document.body).toHaveAttribute('data-iui-theme', 'dark');
+  expect(document.body).toHaveAttribute('data-iui-contrast', 'default');
+  expect(document.body).toHaveAttribute('data-iui-bridge');
+
+  unmount();
+
+  expect(document.body).not.toHaveClass('iui-root');
+  expect(document.body).not.toHaveAttribute('data-iui-theme');
+  expect(document.body).not.toHaveAttribute('data-iui-contrast');
+  expect(document.body).not.toHaveAttribute('data-iui-bridge');
 });

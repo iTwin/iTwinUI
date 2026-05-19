@@ -35,15 +35,23 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 
 ### `themeBridge`
 
-Setting this flag to `true` enables the [theme bridge](https://github.com/iTwin/iTwinUI/wiki/StrataKit-theme-bridge) which allows iTwinUI components to try to match StrataKit's visual language without changing the component APIs or rendered markup.
+Enabling this flag will turn _on_ the [theme bridge](https://github.com/iTwin/iTwinUI/wiki/StrataKit-theme-bridge), which allows iTwinUI components to match StrataKit's visual language without changing the component APIs or rendered markup.
 
 ```jsx
 <ThemeProvider future={{ themeBridge: true }}>
 ```
 
+### `synchronizeThemeToRoot`
+
+Enabling this flag will change the default value of `ThemeProvider`'s [`themeOptions.synchronizeThemeToRoot`](themeprovider#synchronize-theme) to `true`, which makes iTwinUI CSS variables available outside the `ThemeProvider`'s DOM subtree.
+
+```jsx
+<ThemeProvider future={{ synchronizeThemeToRoot: true }}>
+```
+
 ### `ToggleSwitch.consistentPropsSpread`
 
-Setting this flag to `true` will result in all `ToggleSwitch` DOM props being applied on the input element. ([more info](/docs/toggleswitch#application-of-props))
+Enabling this flag will result in all `ToggleSwitch` DOM props being applied on the input element. ([more info](/docs/toggleswitch#application-of-props))
 
 ```jsx
 <ThemeProvider future={{ ToggleSwitch: { consistentPropsSpread: true }}}>

@@ -16,6 +16,12 @@ export type FutureOptions = {
    * **NOTE**: Since this is a theme bridge to *future* versions, the theme could have breaking changes.
    */
   themeBridge?: boolean;
+  /**
+   * When enabled, this will set the default value of `ThemeProvider`'s `themeOptions.synchronizeThemeToRoot` to `true`.
+   *
+   * This only affects the `ThemeProvider` with the `future` prop (nested `ThemeProvider`s will not inherit it).
+   */
+  synchronizeThemeToRoot?: boolean;
   ToggleSwitch?: {
     /**
      * When `true`, `className` and `style` will be applied on the
@@ -48,13 +54,7 @@ export function useFutureFlag<K extends keyof FutureOptions>(key: K) {
 export const FutureFlagsProvider = ({
   children,
   value,
-}: React.PropsWithChildren<{ value: true | FutureOptions }>) => {
-  if (value === true) {
-    value = {
-      themeBridge: true,
-    };
-  }
-
+}: React.PropsWithChildren<{ value: FutureOptions }>) => {
   const context = React.useContext(FutureFlagsContext);
   const combinedValue = { ...context, ...value };
 

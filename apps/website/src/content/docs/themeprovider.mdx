@@ -124,6 +124,25 @@ const [myPortal, setMyPortal] = React.useState(null);
 </ThemeProvider>
 ```
 
+## Synchronize theme
+
+By default, `ThemeProvider` scopes all styles to the DOM subtree that it renders (including its own [portal container](#portals)).
+
+To make the current iTwinUI theme available globally, enable `themeOptions.synchronizeThemeToRoot`. This propagates the relevant attributes to the `<body>` element, making iTwinUI CSS variables available everywhere on the page. This can be useful in cases where iTwinUI variables or components need to be rendered in a third-party portal located outside the `ThemeProvider`'s DOM subtrees.
+
+```jsx {4}
+<ThemeProvider
+  theme='dark'
+  themeOptions={{
+    synchronizeThemeToRoot: true,
+  }}
+>
+  …
+</ThemeProvider>
+```
+
+This option defaults to `true` when [future flags](future-flags#synchronizethemetoroot) are enabled.
+
 ## CSS
 
 Starting with v3, applications are advised to manually import `styles.css` in their entrypoint:

@@ -46,15 +46,6 @@ export const Provider: GlobalProvider = ({ children }) => {
     setCurrentStory(globalState.story);
   }
 
-  // propagate theme to <html> element for page background
-  React.useLayoutEffect(() => {
-    document.documentElement.dataset.colorScheme = theme;
-    document.documentElement.dataset.iuiTheme = theme;
-    document.documentElement.dataset.iuiContrast = highContrast
-      ? 'high'
-      : 'default';
-  }, [theme, highContrast]);
-
   // redirect old storybook paths to new ones
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -75,7 +66,11 @@ export const Provider: GlobalProvider = ({ children }) => {
       <React.StrictMode>
         <ThemeProvider
           theme={theme}
-          themeOptions={{ applyBackground: false, highContrast }}
+          themeOptions={{
+            applyBackground: false,
+            highContrast,
+            synchronizeThemeToRoot: true,
+          }}
           future={{ themeBridge: true }}
           as={SkRoot}
           colorScheme={theme}
@@ -93,7 +88,11 @@ export const Provider: GlobalProvider = ({ children }) => {
     <React.StrictMode>
       <ThemeProvider
         theme={theme}
-        themeOptions={{ applyBackground: false, highContrast }}
+        themeOptions={{
+          applyBackground: false,
+          highContrast,
+          synchronizeThemeToRoot: true,
+        }}
       >
         {children}
       </ThemeProvider>
