@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.21.0
+
+### Minor Changes
+
+- [#2687](https://github.com/iTwin/iTwinUI/pull/2687): Added a `synchronizeThemeToRoot` option to `ThemeProvider`'s `themeOptions` prop. When enabled, iTwinUI CSS variables will be available globally, improving compatibility with third-party portals.
+
+  This is enabled automatically when `future` (or `future.synchronizeThemeToRoot`) is set to `true`.
+
+- [#2673](https://github.com/iTwin/iTwinUI/pull/2673): Added support for closing the ComboBox dropdown programmatically.
+- [#2677](https://github.com/iTwin/iTwinUI/pull/2677): Close ComboBox dropdown menu after onChange callback when option is chosen.
+
+### Patch Changes
+
+- [#2685](https://github.com/iTwin/iTwinUI/pull/2685): Adjusted global component-height variables within theme bridge.
+- [#2686](https://github.com/iTwin/iTwinUI/pull/2686): Input labels and form fields now use a smaller font size when `size="small` is set.
+- [#2688](https://github.com/iTwin/iTwinUI/pull/2688): Small internal change to move `virtualizer` out of `TreeNode`.
+- 2639ebbae9e2c498230ec783dcccc854343dc37c: Removed polyfill for `inert` attribute.
+
 ## 3.20.2
 
 ### Patch Changes
