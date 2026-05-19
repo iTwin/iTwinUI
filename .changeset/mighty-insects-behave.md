@@ -1,5 +1,0 @@
----
-'@itwin/itwinui-react': patch
----
-
-Input labels and form fields now use consistent font sizing.
