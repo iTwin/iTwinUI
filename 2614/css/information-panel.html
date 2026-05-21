@@ -1,0 +1,198 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Information panel | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Information panel"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/information-panel.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/information-panel.html"><link rel="stylesheet" href="./_astro/alert.CKbvohY_.css">
+<link rel="stylesheet" href="./_astro/information-panel.CfVdXc_a.css"><script type="module" src="./_astro/hoisted.DiPIDH9d.js"></script></head> <body class="iui-root" data-iui-theme> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1Jgmkb" prefix="r0" component-url="./_astro/ThemeBridge.wIg221wD.js" component-export="ThemeBridge" renderer-url="./_astro/client.BJjTgVpb.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;ThemeBridge&quot;,&quot;value&quot;:true}"></astro-island> <theme-button></theme-button>   <script>
+    customElements.define(
+      'svg-filetype-imodel',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" /><path d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#448136" /></svg>`;
+        }
+      },
+    );
+  </script> <script>
+    customElements.define(
+      'svg-filetype-audio',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" /><path d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#478ab2" /></svg>`;
+        }
+      },
+    );
+  </script> <script>
+    customElements.define(
+      'svg-filetype-pdf',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" /><path d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#992d2b" /></svg>`;
+        }
+      },
+    );
+  </script> <script>
+    customElements.define(
+      'svg-filetype-image',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#7956a3" /><path d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#543d70" /></svg>`;
+        }
+      },
+    );
+  </script> <script>
+    customElements.define(
+      'svg-filetype-vector',
+      class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#d16c00" /><path d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#924b00" /></svg>`;
+        }
+      },
+    );
+  </script>  <h1>Information panel</h1> <hr> <section id="demo-default"> <div class="demo-button-bar"> <button type="button" data-iui-variant="high-visibility" tabindex="0" class="iui-button iui-button-base iui-field"><span class="iui-button-icon" aria-hidden="true"> <svg-add aria-hidden="true" slot="start-icon"></svg-add> </span><span class="iui-button-label">  
+New
+ </span></button> <span class="iui-button-group" style="margin-right: auto;"> <button class="iui-button iui-button-base iui-field" type="button" title="Download"><span class="iui-button-icon" aria-hidden="true">  <svg-download></svg-download> </span> </button> <button class="iui-button iui-button-base iui-field" type="button" title="Move"><span class="iui-button-icon" aria-hidden="true">  <svg-arrow-right></svg-arrow-right> </span> </button> <button class="iui-button iui-button-base iui-field" type="button" title="Delete" disabled><span class="iui-button-icon" aria-hidden="true">  <svg-delete></svg-delete> </span> </button> <button class="iui-button iui-button-base iui-field" type="button" title="Rename"><span class="iui-button-icon" aria-hidden="true">  <svg-rename></svg-rename> </span> </button> <button class="iui-button iui-button-base iui-field" type="button" title="More options…"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </span> <span class="iui-button-group"> <button class="iui-button iui-button-base iui-field" type="button" data-iui-active="true" title="List view"><span class="iui-button-icon" aria-hidden="true">  <svg-list></svg-list> </span> </button> <button class="iui-button iui-button-base iui-field" type="button" title="Tile view"><span class="iui-button-icon" aria-hidden="true">  <svg-thumbnails></svg-thumbnails> </span> </button> </span> <button class="iui-button iui-button-base iui-field" type="button" title="View info" onclick="openInfoPanel(this)"><span class="iui-button-icon" aria-hidden="true">  <svg-info></svg-info> </span> </button> </div> <div class="iui-information-panel-wrapper"> <div class="iui-table"> <div class="iui-table-header-wrapper"> <div class="iui-table-header"> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="select-all-checkboxes"> </div> <div class="iui-table-cell iui-actionable iui-sorted" tabindex="0">
+Name
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Apply filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> <div class="iui-table-resizer"> <div class="iui-table-resizer-bar"></div> </div> </div> <div class="iui-table-cell iui-actionable" tabindex="0">
+Modified
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Apply filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> <div class="iui-table-resizer"> <div class="iui-table-resizer-bar"></div> </div> </div> <div class="iui-table-cell iui-actionable" tabindex="0">
+Modified by
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Modify filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> <div class="iui-table-resizer"> <div class="iui-table-resizer-bar"></div> </div> </div> <div class="iui-table-cell iui-actionable" tabindex="0">
+Size
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Apply filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> </div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" aria-label="Modify columns"><span class="iui-button-icon" aria-hidden="true">  <svg-column-manager></svg-column-manager> </span> </button> </div> </div> </div> </div> <div class="iui-table-body" aria-multiselectable="true"> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel> </div>
+alpha.dgn
+</div> <div class="iui-table-cell">Jan 13, 2021 12:26 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">20 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row" aria-selected="true"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row" checked> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-audio aria-hidden="true"></svg-filetype-audio> </div>
+beta.mp3
+</div> <div class="iui-table-cell">Aug 10, 2021 2:26 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="1"></x-avatar> </div>
+Robin Mercer
+</div> <div class="iui-table-cell demo-right-align">10 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf> </div>
+charlie.pdf
+</div> <div class="iui-table-cell">Mar 1, 2020 8:00 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">10 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-image aria-hidden="true"></svg-filetype-image> </div>
+delta.jpg
+</div> <div class="iui-table-cell">Sep 7, 2015 11:30 AM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">963 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-vector aria-hidden="true"></svg-filetype-vector> </div>
+echo.svg
+</div> <div class="iui-table-cell">Apr 14, 2019 11:59 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">64 KB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> </div> </div> <div class="iui-information-panel iui-right" id="myOpeningInfoPanel"> <div class="iui-resizer"> <div class="iui-resizer-bar"></div> </div> <div class="iui-information-header"> <span class="iui-information-header-label"> <svg-filetype-audio aria-hidden="true"></svg-filetype-audio> <span class="iui-text-subheading">beta.mp3</span> </span> <div class="iui-information-header-actions"> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless"><span class="iui-button-icon" aria-hidden="true">  <svg-edit></svg-edit> </span> </button><button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" onclick="openInfoPanel()"><span class="iui-button-icon" aria-hidden="true">  <svg-close-small></svg-close-small> </span> </button> </div> </div> <div class="iui-information-body"> <div class="iui-information-body-content iui-inline"> <span class="iui-input-label"> Kind</span> <span>MP3 audio</span> <span class="iui-input-label"> Size</span> <span>9.7 MB</span> <span class="iui-input-label"> Where</span> <span>/Shared/Music/</span> <span class="iui-input-label"> Date created</span> <span>Aug 10, 2021 2:26 PM</span> <span class="iui-input-label"> Owner</span> <div class="demo-avatar-with-label"> <x-avatar size="small" type="2"></x-avatar>
+Terry Rivers
+</div> <span class="iui-input-label"> Last modified</span> <span>Aug 10, 2021 2:26 PM</span> <span class="iui-input-label"> Modified by</span> <div class="demo-avatar-with-label"> <x-avatar size="small" type="1"></x-avatar>
+Robin Mercer
+</div> </div> <hr> <div class="iui-text-leading">Attributes</div> <div class="iui-information-body-content iui-inline"> <span class="iui-input-label" for="title-2"> Title</span> <span>Beta (Gold Master)</span> <span class="iui-input-label"> Duration</span> <span>03:36</span> <span class="iui-input-label" for="authors-2"> Authors</span> <span>DJ Terry</span> <span class="iui-input-label"> Audio channels</span> <span>Stereo</span> <span class="iui-input-label"> Sample rate</span> <span>44.1 kHz</span> <span class="iui-input-label"> Album</span> <span>DJ Terry's Super Fire Mixtape</span> <span class="iui-input-label"> Musical genre</span> <span>Dubstep</span> <span class="iui-input-label" for="year-recorded-2"> Year recorded</span> <span>2021</span> </div> </div> </div> </div> </section> <br><br> <section id="demo-edit"> <div class="iui-information-panel-wrapper"> <div class="iui-table"> <div class="iui-table-header-wrapper"> <div class="iui-table-header"> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="select-all-checkboxes"> </div> <div class="iui-table-cell iui-actionable iui-sorted" tabindex="0">
+Name
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Apply filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> <div class="iui-table-resizer"> <div class="iui-table-resizer-bar"></div> </div> </div> <div class="iui-table-cell iui-actionable" tabindex="0">
+Modified
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Apply filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> <div class="iui-table-resizer"> <div class="iui-table-resizer-bar"></div> </div> </div> <div class="iui-table-cell iui-actionable" tabindex="0">
+Modified by
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Modify filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> <div class="iui-table-resizer"> <div class="iui-table-resizer-bar"></div> </div> </div> <div class="iui-table-cell iui-actionable" tabindex="0">
+Size
+<div class="iui-table-header-actions-container"> <button class="iui-button iui-button-base iui-field iui-table-filter-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Apply filter"><span class="iui-button-icon" aria-hidden="true">  <svg-filter-hollow></svg-filter-hollow> </span> </button> <div class="iui-table-cell-end-icon"> <svg-sort-up class="iui-button-icon iui-table-sort" aria-hidden="true"></svg-sort-up> </div> </div> </div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" aria-label="Modify columns"><span class="iui-button-icon" aria-hidden="true">  <svg-column-manager></svg-column-manager> </span> </button> </div> </div> </div> </div> <div class="iui-table-body" aria-multiselectable="true"> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel> </div>
+alpha.dgn
+</div> <div class="iui-table-cell">Jan 13, 2021 12:26 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">20 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row" aria-selected="true"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" checked id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-audio aria-hidden="true"></svg-filetype-audio> </div>
+beta ipsum dolor sit amet.mp3
+</div> <div class="iui-table-cell">Aug 10, 2021 2:26 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="1"></x-avatar> </div>
+Robin Mercer
+</div> <div class="iui-table-cell demo-right-align">10 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf> </div>
+charlie.pdf
+</div> <div class="iui-table-cell">Mar 1, 2020 8:00 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">10 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-image aria-hidden="true"></svg-filetype-image> </div>
+delta.jpg
+</div> <div class="iui-table-cell">Sep 7, 2015 11:30 AM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">963 MB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> <div class="iui-table-row"> <div class="iui-table-cell iui-slot"> <input class="iui-checkbox" type="checkbox" id="active-row"> </div> <div class="iui-table-cell iui-main-column"> <div class="iui-table-cell-start-icon"> <svg-filetype-vector aria-hidden="true"></svg-filetype-vector> </div>
+echo.svg
+</div> <div class="iui-table-cell">Apr 14, 2019 11:59 PM</div> <div class="iui-table-cell"> <div class="iui-table-cell-start-icon"> <x-avatar size="small" type="2"></x-avatar> </div>
+Terry Rivers
+</div> <div class="iui-table-cell demo-right-align">64 KB</div> <div class="iui-table-cell iui-slot"> <button class="iui-button iui-button-base iui-field iui-table-more-options" type="button" data-iui-variant="borderless" aria-label="More options"><span class="iui-button-icon" aria-hidden="true">  <svg-more></svg-more> </span> </button> </div> </div> </div> </div> <div class="iui-information-panel iui-right iui-visible"> <div class="iui-resizer"> <div class="iui-resizer-bar"></div> </div> <div class="iui-information-header"> <span class="iui-information-header-label"> <svg-filetype-audio aria-hidden="true"></svg-filetype-audio> <span class="iui-text-subheading">beta ipsum dolor sit amet.mp3</span> </span> <div class="iui-information-header-actions"> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" data-iui-active="true"><span class="iui-button-icon" aria-hidden="true">  <svg-edit></svg-edit> </span> </button><button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless"><span class="iui-button-icon" aria-hidden="true">  <svg-close-small></svg-close-small> </span> </button> </div> </div> <div class="iui-information-body"> <div class="iui-information-body-content iui-inline"> <span class="iui-input-label"> Kind</span> <span>MP3 audio</span> <span class="iui-input-label"> Size</span> <span>9.7 MB</span> <span class="iui-input-label"> Where</span> <span>/Shared/Music/</span> <span class="iui-input-label"> Date created</span> <span>Aug 10, 2021 2:26 PM</span> <span class="iui-input-label"> Owner</span> <div class="demo-avatar-with-label"> <x-avatar size="small" type="2"></x-avatar>
+Terry Rivers
+</div> <span class="iui-input-label"> Last modified</span> <span>Aug 10, 2021 2:26 PM</span> <span class="iui-input-label"> Modified by</span> <div class="demo-avatar-with-label"> <x-avatar size="small" type="1"></x-avatar>
+Robin Mercer
+</div> </div> <hr> <div class="iui-text-leading">Attributes</div> <div class="iui-information-body-content iui-inline"> <label class="iui-input-label" for="title-2"> Title</label> <input value="Beta (Gold Master)" class="iui-input iui-field" data-iui-size="small" id="title-2"> <label class="iui-input-label"> Duration</label> <input readonly value="03:36" class="iui-input iui-field" data-iui-size="small"> <label class="iui-input-label" for="authors-2"> Authors</label> <input value="DJ Terry" class="iui-input iui-field" data-iui-size="small" id="authors-2"> <label class="iui-input-label"> Audio channels</label> <input readonly value="Stereo" class="iui-input iui-field" data-iui-size="small"> <label class="iui-input-label"> Sample rate</label> <input readonly value="44.1 kHz" class="iui-input iui-field" data-iui-size="small"> <label class="iui-input-label" for="album-2"> Album</label> <input value="DJ Terry's Super Fire Mixtape" class="iui-input iui-field" data-iui-size="small" id="album-2"> <label class="iui-input-label" for="musical-genre-2"> Musical genre</label> <div class="iui-input-with-icon"> <input class="iui-input iui-field" data-iui-size="small" id="musical-genre-2" role="combobox" aria-autocomplete="list" spellcheck="false" autocapitalize="none" autocorrect="off" value="Dubstep" aria-expanded="false"> <svg-caret-down-small data-iui-icon-color="default" data-iui-icon-size="m" aria-hidden="true" class="iui-svg-icon iui-end-icon"></svg-caret-down-small> </div> <label class="iui-input-label" for="year-recorded-2"> Year recorded</label> <input value="2021" class="iui-input iui-field" data-iui-size="small" id="year-recorded-2"> </div> </div> </div> </div> </section> <br><br> <section id="demo-docked-bottom"> <div class="iui-information-panel-wrapper"> <div class="demo-screenshot"></div> <div class="iui-information-panel iui-right iui-visible" id="myOrientingInfoPanel"> <div class="iui-resizer"> <div class="iui-resizer-bar"></div> </div> <div class="iui-information-header"> <span class="iui-information-header-label"> <svg-item aria-hidden="true"></svg-item> <span class="iui-text-subheading">P101 Pump Item</span> </span> <div class="iui-information-header-actions"> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" onclick="switchInfoPanelOrientation(this);"><span class="iui-button-icon" aria-hidden="true">   <span> <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"> <path d="m0 2v12h16v-12zm15 7h-14v-6h14z"></path> </svg> </span> </span> </button><button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless"><span class="iui-button-icon" aria-hidden="true">  <svg-close-small></svg-close-small> </span> </button> </div> </div> <div class="iui-information-body"> <div class="iui-tabs-wrapper iui-horizontal" id="demo-pill-2"> <div class="iui-tabs iui-pill" data-iui-orientation="horizontal" role="tablist" aria-label="Tab group name"> <button class="iui-tab iui-button-base iui-active" role="tab" aria-selected="true" aria-controls="active-tab"> <span class="iui-tab-label">Properties</span> </button> <button class="iui-tab iui-button-base iui-button-base" role="tab" aria-selected="false" aria-controls="documents-tab" id="test-tab-5"> <span class="iui-tab-label">Documents</span> </button> <button class="iui-tab iui-button-base iui-button-base" role="tab" aria-selected="false" aria-controls="projects-tab" id="test-tab-6"> <span class="iui-tab-label">Projects</span> </button> </div> <div class="iui-tab-stripe"></div> <div class="iui-tabs-content" role="tabpanel" id="active-tab" aria-labelledby="active">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+</div> <div class="iui-tabs-content" role="tabpanel" id="documents-tab" aria-labelledby="documents" hidden>
+This is the documents tab's content.
+</div> <div class="iui-tabs-content" role="tabpanel" id="projects-tab" aria-labelledby="projects" hidden>
+This is the projects tab's content.
+</div> </div> </div> </div> </div> </section>  <script>
+    function openInfoPanel(button) {
+      if (button.getAttribute('data-iui-active')) {
+        button.removeAttribute('data-iui-active');
+      } else {
+        button.setAttribute('data-iui-active', 'true');
+      }
+      document.getElementById('myOpeningInfoPanel').classList.toggle('iui-visible');
+    }
+  </script>  <script>
+    function switchInfoPanelOrientation(button) {
+      const infoPanel = document.getElementById('myOrientingInfoPanel');
+      infoPanel.classList.toggle('iui-bottom');
+      infoPanel.classList.toggle('iui-right');
+      const svgIcon = button.querySelector('.iui-button-icon svg');
+      if (infoPanel.classList.contains('iui-bottom')) {
+        svgIcon.innerHTML = `<path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />`;
+      } else {
+        svgIcon.innerHTML = `<path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />`;
+      }
+    }
+  </script>  <script>
+    document.querySelectorAll('.iui-resizer').forEach((resizer) => {
+      const infoPanel = resizer.parentElement;
+      const contentBlocks = infoPanel.querySelectorAll('.iui-information-body-content');
+      const resizeFn = (e) => {
+        e.preventDefault();
+        if (infoPanel.classList.contains('iui-right')) {
+          const width = infoPanel.getBoundingClientRect().right - e.x;
+          infoPanel.style.width = `${width}px`;
+          contentBlocks.forEach((content) => content.classList.toggle('iui-inline', width > 300));
+        } else {
+          infoPanel.style.height = `${infoPanel.getBoundingClientRect().bottom - e.y}px`;
+        }
+      };
+      resizer.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', resizeFn);
+        document.addEventListener('mouseup', () =>
+          document.removeEventListener('mousemove', resizeFn),
+        );
+      });
+    });
+  </script>  <script type="module">
+    document.querySelectorAll('.iui-tabs').forEach((tabs) => {
+      const wrapper = tabs.parentElement;
+      const activeTab = tabs.querySelector('.iui-active');
+      const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
+      const setStripe = (activeEl) => {
+        tabs.style.setProperty('--iui-tabs-stripe-position', `${activeEl.offsetLeft}px`);
+        tabs.style.setProperty(
+          '--iui-tabs-stripe-size',
+          `${activeEl.getBoundingClientRect().width}px`,
+        );
+      };
+      setStripe(activeTab);
+
+      [...tabs.children].forEach(({ firstElementChild: tab }) => {
+        tab.addEventListener('click', () => {
+          tabs.querySelector('.iui-active')?.classList.remove('iui-active');
+          tab.classList.add('iui-active');
+          setStripe(tab);
+          tabpanels.forEach((panel) => {
+            if (panel.id === tab.getAttribute('aria-controls')) {
+              panel.removeAttribute('hidden');
+            } else {
+              panel.hidden = 'true';
+            }
+          });
+        });
+      });
+    });
+  </script>  </body></html>

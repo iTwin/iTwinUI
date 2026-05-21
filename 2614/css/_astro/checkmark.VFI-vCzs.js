@@ -1,0 +1,1 @@
+class e extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1rem" height="1rem" fill="var(--iui-color-icon-muted, currentColor)"><path d="M6 14L0 8l2-2 4 4 8-8 2 2L6 14z"/></svg>'}}customElements.define("svg-checkmark",e);

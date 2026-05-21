@@ -1,0 +1,1 @@
+import{r as t,p as o,B as s,c as r}from"./index-C1_65VfN.js";const n=t.forwardRef((a,e)=>{let{as:i=a.href?"a":"button"}=a;return t.createElement(s,{...a,as:i,className:r("iui-link-action",a.className),ref:e})}),l=o.div("iui-link-box");export{l as L,n as a};
