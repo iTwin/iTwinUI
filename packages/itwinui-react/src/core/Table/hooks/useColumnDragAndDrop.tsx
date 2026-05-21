@@ -50,7 +50,9 @@ const defaultGetDragAndDropProps =
     const onDragStart = () => {
       instance.dispatch({
         type: REORDER_ACTIONS.columnDragStart,
-        columnIndex: instance.flatHeaders.indexOf(header),
+        columnIndex: instance.allColumns.findIndex(
+          (column) => column.id === header.id,
+        ),
       });
     };
 
@@ -84,7 +86,9 @@ const defaultGetDragAndDropProps =
 
     const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault();
-      const headerIndex = instance.flatHeaders.indexOf(header);
+      const headerIndex = instance.allColumns.findIndex(
+        (column) => column.id === header.id,
+      );
       if (instance.state.columnReorderStartIndex !== headerIndex) {
         setOnDragColumnStyle(
           event,
