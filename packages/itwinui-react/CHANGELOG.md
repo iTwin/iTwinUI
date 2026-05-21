@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- [#2689](https://github.com/iTwin/iTwinUI/pull/2689): correct column drag-and-drop reordering when hidden columns are present
+
 ## 3.21.0
 
 ### Minor Changes
