@@ -2887,6 +2887,44 @@ it.each([
   },
 );
 
+it('should reorder correctly when hidden columns are present', async () => {
+  const { container } = renderComponent({
+    columns: [...columns(), ActionColumn({ columnManager: true })],
+    enableColumnReordering: true,
+  });
+
+  const getDraggableHeaderCells = () =>
+    container.querySelectorAll<HTMLDivElement>(
+      '.iui-table-header .iui-table-cell[draggable="true"]',
+    );
+
+  const headerCells = container.querySelectorAll<HTMLDivElement>(
+    '.iui-table-header .iui-table-cell',
+  );
+  const columnManager = headerCells[headerCells.length - 1]
+    .firstElementChild as HTMLElement;
+  await userEvent.click(columnManager);
+
+  await userEvent.click(screen.getByRole('checkbox', { name: 'Description' }));
+
+  const draggableHeaderCells = getDraggableHeaderCells();
+  expect(
+    Array.from(draggableHeaderCells).map((cell) => cell.textContent),
+  ).toEqual(['Name', 'View']);
+
+  const srcColumn = draggableHeaderCells[1];
+  const dstColumn = draggableHeaderCells[0];
+
+  fireEvent.dragStart(srcColumn);
+  fireEvent.dragEnter(dstColumn);
+  fireEvent.dragOver(dstColumn);
+  fireEvent.drop(dstColumn);
+
+  expect(
+    Array.from(getDraggableHeaderCells()).map((cell) => cell.textContent),
+  ).toEqual(['View', 'Name']);
+});
+
 it('should respect initialState.columnOrder', () => {
   const mockColumns = columns();
   const columnOrder = ['description', 'view', 'name'];
