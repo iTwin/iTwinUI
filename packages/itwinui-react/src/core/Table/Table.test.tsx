@@ -2888,48 +2888,26 @@ it.each([
 );
 
 it('should reorder correctly when hidden columns are present', async () => {
-  const columns: Column<TestDataType>[] = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      id: 'description',
-      Header: 'Description',
-      accessor: 'description',
-    },
-    {
-      id: 'view',
-      Header: 'View',
-      Cell: () => <>View</>,
-    },
-    ActionColumn({ columnManager: true }),
-  ];
+  const { container } = renderComponent({
+    columns: [...columns(), ActionColumn({ columnManager: true })],
+    enableColumnReordering: true,
+  });
 
-  const { container } = render(
-    <Table
-      columns={columns}
-      data={mockedData()}
-      emptyTableContent='Empty table'
-      emptyFilteredTableContent='No results. Clear filter.'
-      enableColumnReordering
-    />,
-  );
+  const getDraggableHeaderCells = () =>
+    container.querySelectorAll<HTMLDivElement>(
+      '.iui-table-header .iui-table-cell[draggable="true"]',
+    );
 
-  let headerCells = container.querySelectorAll<HTMLDivElement>(
+  const headerCells = container.querySelectorAll<HTMLDivElement>(
     '.iui-table-header .iui-table-cell',
   );
   const columnManager = headerCells[headerCells.length - 1]
     .firstElementChild as HTMLElement;
   await userEvent.click(columnManager);
 
-  const columnManagerColumns = document.querySelectorAll<HTMLElement>('label');
-  await userEvent.click(columnManagerColumns[1]);
+  await userEvent.click(screen.getByRole('checkbox', { name: 'Description' }));
 
-  let draggableHeaderCells = container.querySelectorAll<HTMLDivElement>(
-    '.iui-table-header .iui-table-cell[draggable="true"]',
-  );
+  const draggableHeaderCells = getDraggableHeaderCells();
   expect(
     Array.from(draggableHeaderCells).map((cell) => cell.textContent),
   ).toEqual(['Name', 'View']);
@@ -2942,11 +2920,8 @@ it('should reorder correctly when hidden columns are present', async () => {
   fireEvent.dragOver(dstColumn);
   fireEvent.drop(dstColumn);
 
-  draggableHeaderCells = container.querySelectorAll<HTMLDivElement>(
-    '.iui-table-header .iui-table-cell[draggable="true"]',
-  );
   expect(
-    Array.from(draggableHeaderCells).map((cell) => cell.textContent),
+    Array.from(getDraggableHeaderCells()).map((cell) => cell.textContent),
   ).toEqual(['View', 'Name']);
 });
 
