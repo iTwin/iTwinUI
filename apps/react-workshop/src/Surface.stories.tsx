@@ -197,3 +197,34 @@ export const EmptyState = () => {
     </Surface>
   );
 };
+
+export const Elevations = () => {
+  const containerStyle = {
+    display: 'flex',
+    gap: 'var(--iui-size-2xl)',
+    width: 'auto',
+    flexWrap: 'wrap',
+  } satisfies React.CSSProperties;
+  const cardStyle = {
+    height: '100px',
+    width: '100px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  } satisfies React.CSSProperties;
+
+  return (
+    <div style={containerStyle}>
+      {([undefined, 0, 1, 2, 3, 4, 5] as const).map((elevation) => (
+        <Surface
+          key={elevation}
+          elevation={elevation}
+          style={cardStyle}
+          data-iui-elevation={elevation}
+        >
+          {`${elevation}`}
+        </Surface>
+      ))}
+    </div>
+  );
+};
