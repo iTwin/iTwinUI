@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.21.2
+
+### Patch Changes
+
+- 3bd4c5ad462c42167359d6519a7b73808fa0b5ea: Fixed `Stepper` className merging.
+
 ## 3.21.1
 
 ### Patch Changes
