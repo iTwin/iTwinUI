@@ -95,6 +95,7 @@ export const Stepper = React.forwardRef((props, ref) => {
     nameProps,
     labelProps,
     labelCountProps,
+    className,
     ...rest
   } = props;
 
@@ -104,7 +105,7 @@ export const Stepper = React.forwardRef((props, ref) => {
   );
 
   return (
-    <Box className={'iui-stepper'} ref={ref} {...rest}>
+    <Box className={cx('iui-stepper', className)} ref={ref} {...rest}>
       <FloatingDelayGroup delay={defaultTooltipDelay}>
         <ol>
           {steps.map((s, index) => {
