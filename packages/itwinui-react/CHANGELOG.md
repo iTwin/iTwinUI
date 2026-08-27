@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.21.3
+
+### Patch Changes
+
+- [#2696](https://github.com/iTwin/iTwinUI/pull/2696): Fixed `SearchBox` and `InputWithDecorations` to use consistent font sizing for `size="small"`.
+
 ## 3.21.2
 
 ### Patch Changes
