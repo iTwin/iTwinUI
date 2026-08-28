@@ -214,7 +214,11 @@
 
       // Extra visible border in StrataKit
       --_iui-field-color-border: var(--stratakit-color-border-accent-base);
-      --_iui-field-color-border-hover: var(--_iui-field-color-border);
+      --_iui-field-color-border-hover: color-mix(
+        in oklch,
+        var(--_iui-field-color-border) 100%,
+        var(--stratakit-color-glow-hue) var(--stratakit-color-border-glow-strong-hover-\%)
+      );
     }
   }
 
