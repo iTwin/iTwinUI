@@ -1,6 +1,6 @@
-name: Bug Report 🐛
+name: Bug report 🐛
 description: Create a bug report to help us improve
-labels: ['bug']
+type: bug
 assignees: []
 body:
   - type: markdown
@@ -11,43 +11,53 @@ body:
         Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ).
   - type: textarea
     attributes:
-      label: Describe the bug (current behavior)
-      description: A concise description of what you're experiencing.
+      label: Describe the bug
+      description: |
+        A clear description of what the bug is. Include which component(s) are affected
+        and what specifically is not working as expected.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Expected Behavior
+      label: Steps to reproduce
+      description: Detailed steps to reproduce the behavior.
+      placeholder: |
+        1. …
+        2. …
+        3. …
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
       description: A concise description of what you expected to happen.
     validations:
-      required: false
+      required: true
   - type: input
     attributes:
-      label: Link to minimal repro
-      description: 'Create a minimal reproduction by forking [this sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)'
+      label: Link to minimal reproduction
+      description: |
+        Create a minimal reproduction using our template.
+        Fork [this StackBlitz template](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx) and reproduce the issue.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Steps To Reproduce
+      label: Environment and versions
+      description: |
+        Please provide version information and environment details.
+        This helps us reproduce the issue.
       placeholder: |
-        1. Fill 
-        2. this
-        3. out
-    validations:
-      required: false
-  - type: checkboxes
-    attributes:
-      label: Package Version
-      description: Please confirm that you are using the [latest version](https://www.npmjs.com/package/@itwin/itwinui-react?activeTab=versions) of iTwinUI.
-      options:
-        - label: I'm using the latest version of iTwinUI.
-          required: false
+        - @itwin/itwinui-react 3.21.0
+        - react 17.0.0
+        - Browsers: Chrome 154, Safari 27
     validations:
       required: false
   - type: textarea
     attributes:
-      label: Anything else?
-      description: Add anything else you want to mention (package version, environment info, possible solution, etc.)
+      label: Additional context
+      description: |
+        Add any other context about the problem here.
+        Include screenshots, error messages, or potential solutions if you have any.
     validations:
       required: false
