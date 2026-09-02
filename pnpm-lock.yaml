@@ -93,8 +93,8 @@ importers:
         specifier: 0.21.0
         version: 0.21.0
       '@stratakit/foundations':
-        specifier: ^1.0.0-rc.0
-        version: 1.0.0-rc.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^1.0.0-rc.1
+        version: 1.0.0-rc.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@types/react':
         specifier: ^19.0.7
         version: 19.0.8
@@ -2185,8 +2185,8 @@ packages:
       react-dom:
         optional: true
 
-  '@stratakit/foundations@1.0.0-rc.0':
-    resolution: {integrity: sha512-XZOPHb959EjqjFS8tKSpH47xXsMQY7Y4xsqDOTnrSCX6qETjG2+TCJ9FCH0GgCuZo2TAZ7CU4CTwVu7D5rjU5A==}
+  '@stratakit/foundations@1.0.0-rc.1':
+    resolution: {integrity: sha512-J41qXegsKPxE5+2gYlbX5bJ61nLsEzpUGQmlnfNzAo+c2pHyMuFapSMiaISQhxYRQmxeyNqeb29gqMQkmvOkBA==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -9571,7 +9571,7 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
-  '@stratakit/foundations@1.0.0-rc.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@stratakit/foundations@1.0.0-rc.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@ariakit/react': 0.4.38(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@stratakit/internal-utils': 0.2.0-rc.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
