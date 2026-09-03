@@ -107,9 +107,9 @@
   --iui-color-text-placeholder: var(--stratakit-color-text-neutral-secondary);
 
   &:where([data-iui-theme='light']) {
-    --iui-color-background-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-bg-page-base
-    --iui-color-foreground-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-text-neutral-primary
-    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --stratakit-color-icon-accent-strong
+    --iui-color-background-hsl: 210deg 33.3% 98.8%; // --stratakit-color-bg-page-base
+    --iui-color-foreground-hsl: 225deg 8.5% 18.4%; // --stratakit-color-text-neutral-primary
+    --iui-color-accent-hsl: 164.1deg 68.5% 24.9%; // --stratakit-color-icon-accent-strong
     --iui-color-informational-hsl: 210.23deg 96.72% 36.74%; // --stratakit-color-icon-info-base
     --iui-color-positive-hsl: 105.4deg 97.32% 21.68%; // --stratakit-color-icon-positive-base
     --iui-color-warning-hsl: 39.78deg 94.43% 25.81%; // --stratakit-color-icon-attention-base
@@ -117,9 +117,9 @@
   }
 
   &:where([data-iui-theme='dark']) {
-    --iui-color-background-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-bg-page-base
-    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-text-neutral-primary
-    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --stratakit-color-icon-accent-strong
+    --iui-color-background-hsl: 225deg 6.1% 12.9%; // --stratakit-color-bg-page-base
+    --iui-color-foreground-hsl: 210deg 33.3% 98.8%; // --stratakit-color-text-neutral-primary
+    --iui-color-accent-hsl: 166.2deg 96.1% 50.2%; // --stratakit-color-icon-accent-strong
     --iui-color-informational-hsl: 210.62deg 76.64% 62.95%; // --stratakit-color-icon-info-base
     --iui-color-positive-hsl: 105.71deg 34.77% 49.78%; // --stratakit-color-icon-positive-base
     --iui-color-warning-hsl: 39.77deg 63.91% 47.39%; // --stratakit-color-icon-attention-base
