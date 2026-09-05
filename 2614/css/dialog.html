@@ -1,0 +1,128 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Dialog | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Dialog"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/dialog.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/dialog.html"><link rel="stylesheet" href="./_astro/alert.CKbvohY_.css">
+<link rel="stylesheet" href="./_astro/dialog.Dw-j5tUS.css"><script type="module" src="./_astro/hoisted.DG9snrWI.js"></script></head> <body class="iui-root" data-iui-theme> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1Jgmkb" prefix="r0" component-url="./_astro/ThemeBridge.wIg221wD.js" component-export="ThemeBridge" renderer-url="./_astro/client.BJjTgVpb.js" props="{}" ssr="" client="load" opts="{&quot;name&quot;:&quot;ThemeBridge&quot;,&quot;value&quot;:true}"></astro-island> <theme-button></theme-button>    <h1>Dialog</h1> <hr> <div class="iui-input-grid iui-inline-label"> <div class="iui-input-label">Dialog Placement</div> <div class="iui-input-group"> <label class="iui-checkbox-wrapper">  <input class="iui-checkbox iui-radio" type="radio" name="dialog-placement" checked value=""> <span class="iui-radio-label"> Centered </span> </label> <label class="iui-checkbox-wrapper">  <input class="iui-checkbox iui-radio" type="radio" name="dialog-placement" value="top-left"> <span class="iui-radio-label"> Top-left </span> </label> <label class="iui-checkbox-wrapper">  <input class="iui-checkbox iui-radio" type="radio" name="dialog-placement" value="top-right"> <span class="iui-radio-label"> Top-right </span> </label> <label class="iui-checkbox-wrapper">  <input class="iui-checkbox iui-radio" type="radio" name="dialog-placement" value="bottom-left"> <span class="iui-radio-label"> Bottom-left </span> </label> <label class="iui-checkbox-wrapper">  <input class="iui-checkbox iui-radio" type="radio" name="dialog-placement" value="bottom-right"> <span class="iui-radio-label"> Bottom-right </span> </label> </div> </div> <button type="button" tabindex="0" aria-label="Open dialog" id="open-dialog" onclick="toggleDialog('default-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Open dialog
+ </span></button> <br> <button type="button" tabindex="0" aria-label="Open full page dialog" id="open-full-page-dialog" onclick="toggleDialog('full-page-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Open full page dialog
+ </span></button> <br> <button type="button" tabindex="0" aria-label="Toggle draggable dialog" id="toggle-draggable-dialog" onclick="toggleDialog('draggable-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Toggle draggable dialog
+ </span></button> <div id="default-dialog"> <div class="iui-backdrop iui-backdrop-fixed"></div> <div class="iui-dialog iui-dialog-default" id="dialog-click"> <div class="iui-dialog-title-bar"> <div class="iui-dialog-title">Title</div> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" onclick="toggleDialog('default-dialog')"><span class="iui-button-icon" aria-hidden="true">  <svg-close></svg-close> </span> </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button type="button" data-iui-variant="high-visibility" tabindex="0" onclick="toggleDialog('default-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Proceed
+ </span></button> <button type="button" tabindex="0" onclick="toggleDialog('default-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> Cancel </span></button> </div> </div> </div> <div id="full-page-dialog"> <div class="iui-backdrop iui-backdrop-fixed"></div> <div class="iui-dialog iui-dialog-full-page"> <div class="iui-dialog-title-bar"> <div class="iui-dialog-title">Title</div> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" onclick="toggleDialog('full-page-dialog')"><span class="iui-button-icon" aria-hidden="true">  <svg-close></svg-close> </span> </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button type="button" data-iui-variant="high-visibility" tabindex="0" onclick="toggleDialog('full-page-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Proceed
+ </span></button> <button type="button" tabindex="0" onclick="toggleDialog('full-page-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> Cancel </span></button> </div> </div> </div> <div id="draggable-dialog"> <div class="iui-dialog iui-dialog-default iui-dialog-draggable"> <div class="iui-dialog-title-bar iui-dialog-title-bar-filled"> <div class="iui-dialog-title">Title</div> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" onclick="toggleDialog('draggable-dialog')"><span class="iui-button-icon" aria-hidden="true">  <svg-close></svg-close> </span> </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button type="button" data-iui-variant="high-visibility" tabindex="0" onclick="toggleDialog('draggable-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Proceed
+ </span></button> <button type="button" tabindex="0" onclick="toggleDialog('draggable-dialog')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> Cancel </span></button> </div> </div> </div> <test-container-section> <div> <button type="button" tabindex="0" aria-label="Open relative to container dialog" id="open-relative-to-container-dialog" onclick="toggleDialog('draggable-dialog-relative')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Open relative to container dialog
+ </span></button> <div class="iui-dialog-wrapper" id="draggable-dialog-relative" data-iui-relative="true"> <div class="iui-dialog iui-dialog-default iui-dialog-draggable"> <div class="iui-dialog-title-bar iui-dialog-title-bar-filled"> <div class="iui-dialog-title">Title</div> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" onclick="toggleDialog('draggable-dialog-relative')"><span class="iui-button-icon" aria-hidden="true">  <svg-close></svg-close> </span> </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button type="button" data-iui-variant="high-visibility" tabindex="0" onclick="toggleDialog('draggable-dialog-relative')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Proceed
+ </span></button> <button type="button" tabindex="0" onclick="toggleDialog('draggable-dialog-relative')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> Cancel </span></button> </div> </div> </div> </div> <div> <button type="button" tabindex="0" aria-label="Open with backdrop relative to container dialog" id="open-with-backdrop-relative-to-container-dialog" onclick="toggleDialog('relative-dialog-with-backdrop')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Open with backdrop relative to container dialog
+ </span></button> <div class="iui-dialog-wrapper" id="relative-dialog-with-backdrop" data-iui-relative="true"> <div class="iui-backdrop"></div> <div class="iui-dialog iui-dialog-default"> <div class="iui-dialog-title-bar"> <div class="iui-dialog-title">Title</div> <button class="iui-button iui-button-base iui-field" type="button" data-iui-variant="borderless" data-iui-size="small" data-iui-shift="right" aria-label="Close" onclick="toggleDialog('relative-dialog-with-backdrop')"><span class="iui-button-icon" aria-hidden="true">  <svg-close></svg-close> </span> </button> </div> <div class="iui-dialog-content"> <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+</p> </div> <div class="iui-dialog-button-bar"> <button type="button" data-iui-variant="high-visibility" tabindex="0" onclick="toggleDialog('relative-dialog-with-backdrop')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> 
+Proceed
+ </span></button> <button type="button" tabindex="0" onclick="toggleDialog('relative-dialog-with-backdrop')" class="iui-button iui-button-base iui-field"><span class="iui-button-label"> Cancel </span></button> </div> </div> </div> </div> </test-container-section> <script>
+    function toggleDialog(dialogId) {
+      let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`);
+      let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
+
+      _dialog.classList.toggle('iui-dialog-visible');
+
+      if (_backdrop) {
+        _backdrop.classList.toggle('iui-backdrop-visible');
+      }
+    }
+
+    const dialog = document.querySelector('#dialog-click');
+    // Clicking on menu-item should toggle selection
+    document.querySelectorAll('input').forEach((item) => {
+      item.addEventListener('click', () => {
+        dialog.setAttribute('data-iui-placement', item.value);
+        if (!item.value) {
+          dialog.removeAttribute('data-iui-placement');
+        }
+      });
+    });
+
+    const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
+    dragElement(dragItem);
+
+    const dragItemRelative = document.querySelector('#draggable-dialog-relative .iui-dialog');
+    dragElement(dragItemRelative);
+
+    function dragElement(element) {
+      const titleBar = element.querySelector('.iui-dialog-title-bar');
+      titleBar.onmousedown = dragStart;
+
+      const { width, height } = element.getBoundingClientRect();
+
+      let active = false;
+      let initialX;
+      let initialY;
+      let initialTransform;
+
+      document.addEventListener('mouseup', dragEnd, false);
+      document.addEventListener('mousemove', drag, false);
+
+      function dragStart(e) {
+        active = true;
+
+        initialX = e.clientX;
+        initialY = e.clientY;
+        intialTransform = new DOMMatrix(getComputedStyle(element).transform);
+      }
+
+      function dragEnd(e) {
+        active = false;
+      }
+
+      function drag(e) {
+        if (active) {
+          e.preventDefault();
+
+          const diffX = e.clientX - initialX;
+          const diffY = e.clientY - initialY;
+
+          const newTranslate = intialTransform.translate(diffX, diffY).transformPoint();
+
+          element.style.transform = `translate(${newTranslate.x}px, ${newTranslate.y}px)`;
+        }
+      }
+    }
+  </script>  </body></html>
