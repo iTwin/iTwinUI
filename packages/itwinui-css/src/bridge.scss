@@ -58,10 +58,10 @@
   --iui-color-background-negative-hover: var(--iui-color-background-negative);
   --iui-color-background-negative-muted: var(--stratakit-color-bg-critical-muted);
 
-  --iui-color-border-informational: var(--stratakit-color-border-info-faded);
-  --iui-color-border-positive: var(--stratakit-color-border-positive-faded);
-  --iui-color-border-warning: var(--stratakit-color-border-attention-faded);
-  --iui-color-border-negative: var(--stratakit-color-border-critical-faded);
+  --iui-color-border-informational: var(--stratakit-color-border-info-base);
+  --iui-color-border-positive: var(--stratakit-color-border-positive-base);
+  --iui-color-border-warning: var(--stratakit-color-border-attention-base);
+  --iui-color-border-negative: var(--stratakit-color-border-critical-base);
 
   --iui-color-border: var(--stratakit-color-border-neutral-base);
   --iui-color-border-hover: color-mix(
@@ -74,10 +74,10 @@
   --iui-color-border-accent: var(--stratakit-color-border-accent-strong);
 
   --iui-color-icon-accent: var(--stratakit-color-icon-accent-strong);
-  --iui-color-icon-informational: var(--stratakit-color-icon-info-faded);
-  --iui-color-icon-positive: var(--stratakit-color-icon-positive-faded);
-  --iui-color-icon-warning: var(--stratakit-color-icon-attention-faded);
-  --iui-color-icon-negative: var(--stratakit-color-icon-critical-faded);
+  --iui-color-icon-informational: var(--stratakit-color-icon-info-base);
+  --iui-color-icon-positive: var(--stratakit-color-icon-positive-base);
+  --iui-color-icon-warning: var(--stratakit-color-icon-attention-base);
+  --iui-color-icon-negative: var(--stratakit-color-icon-critical-base);
 
   --iui-color-icon: var(--stratakit-color-icon-neutral-base);
   --iui-color-icon-hover: var(--stratakit-color-icon-neutral-primary);
@@ -86,10 +86,10 @@
   --iui-color-icon-disabled: var(--stratakit-color-icon-neutral-disabled);
   --iui-color-icon-disabled-hover: var(--iui-color-icon-disabled);
 
-  --iui-color-text-informational: var(--stratakit-color-text-info-faded);
-  --iui-color-text-positive: var(--stratakit-color-text-positive-faded);
-  --iui-color-text-warning: var(--stratakit-color-text-attention-faded);
-  --iui-color-text-negative: var(--stratakit-color-text-critical-faded);
+  --iui-color-text-informational: var(--stratakit-color-text-info-base);
+  --iui-color-text-positive: var(--stratakit-color-text-positive-base);
+  --iui-color-text-warning: var(--stratakit-color-text-attention-base);
+  --iui-color-text-negative: var(--stratakit-color-text-critical-base);
 
   // Unused
   --iui-color-text-informational-hover: var(--iui-color-text-informational);
@@ -100,34 +100,30 @@
   --iui-color-text: var(--stratakit-color-text-neutral-primary);
   --iui-color-text-hover: var(--iui-color-text);
   --iui-color-text-accent: var(--stratakit-color-text-accent-strong);
-  --iui-color-text-accent-hover: color-mix(
-    in oklch,
-    var(--iui-color-text-accent) 100%,
-    var(--stratakit-color-glow-hue) var(--stratakit-color-text-glow-strong-hover-\%)
-  );
+  --iui-color-text-accent-hover: var(--iui-color-text-accent);
   --iui-color-text-muted: var(--stratakit-color-text-neutral-secondary);
   --iui-color-text-disabled: var(--stratakit-color-text-neutral-disabled);
   --iui-color-text-disabled-hover: var(--iui-color-text-disabled);
   --iui-color-text-placeholder: var(--stratakit-color-text-neutral-secondary);
 
   &:where([data-iui-theme='light']) {
-    --iui-color-background-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-bg-page-base
-    --iui-color-foreground-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-text-neutral-primary
-    --iui-color-accent-hsl: 164.5deg 68.46% 30.05%; // --stratakit-color-icon-accent-strong
-    --iui-color-informational-hsl: 210.23deg 96.74% 36.73%; // --stratakit-color-icon-info-faded
-    --iui-color-positive-hsl: 105.38deg 97.33% 21.67%; // --stratakit-color-icon-positive-faded
-    --iui-color-warning-hsl: 39.78deg 94.44% 25.8%; // --stratakit-color-icon-attention-faded
-    --iui-color-negative-hsl: 348.19deg 79.28% 40.72%; // --stratakit-color-icon-critical-faded
+    --iui-color-background-hsl: 210deg 33.3% 98.8%; // --stratakit-color-bg-page-base
+    --iui-color-foreground-hsl: 225deg 8.5% 18.4%; // --stratakit-color-text-neutral-primary
+    --iui-color-accent-hsl: 164.1deg 68.5% 24.9%; // --stratakit-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.23deg 96.72% 36.74%; // --stratakit-color-icon-info-base
+    --iui-color-positive-hsl: 105.4deg 97.32% 21.68%; // --stratakit-color-icon-positive-base
+    --iui-color-warning-hsl: 39.78deg 94.43% 25.81%; // --stratakit-color-icon-attention-base
+    --iui-color-negative-hsl: 348.18deg 79.31% 40.72%; // --stratakit-color-icon-critical-base
   }
 
   &:where([data-iui-theme='dark']) {
-    --iui-color-background-hsl: 222.69deg 6.43% 12.92%; // --stratakit-color-bg-page-base
-    --iui-color-foreground-hsl: 209.2deg 40.21% 98.84%; // --stratakit-color-text-neutral-primary
-    --iui-color-accent-hsl: 166.21deg 96.14% 50.19%; // --stratakit-color-icon-accent-strong
-    --iui-color-informational-hsl: 210.52deg 76.91% 71.38%; // --stratakit-color-icon-info-faded
-    --iui-color-positive-hsl: 105.91deg 34.34% 61.19%; // --stratakit-color-icon-positive-faded
-    --iui-color-warning-hsl: 40.01deg 57.6% 59.24%; // --stratakit-color-icon-attention-faded
-    --iui-color-negative-hsl: 347.86deg 75.06% 76.69%; // --stratakit-color-icon-critical-faded
+    --iui-color-background-hsl: 225deg 6.1% 12.9%; // --stratakit-color-bg-page-base
+    --iui-color-foreground-hsl: 210deg 33.3% 98.8%; // --stratakit-color-text-neutral-primary
+    --iui-color-accent-hsl: 166.2deg 96.1% 50.2%; // --stratakit-color-icon-accent-strong
+    --iui-color-informational-hsl: 210.62deg 76.64% 62.95%; // --stratakit-color-icon-info-base
+    --iui-color-positive-hsl: 105.71deg 34.77% 49.78%; // --stratakit-color-icon-positive-base
+    --iui-color-warning-hsl: 39.77deg 63.91% 47.39%; // --stratakit-color-icon-attention-base
+    --iui-color-negative-hsl: 348.29deg 75.85% 69.42%; // --stratakit-color-icon-critical-base
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -407,7 +403,7 @@
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
     background-color: var(--stratakit-color-bg-neutral-inverse);
-    border-color: var(--stratakit-color-border-neutral-faded);
+    border-color: var(--stratakit-color-border-neutral-muted);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -474,6 +470,6 @@
     border-color: var(--stratakit-color-border-elevation-base);
 
     // Use StrataKit's shadow instead of iTwinUI's
-    box-shadow: var(--stratakit-shadow-control-tooltip-base);
+    box-shadow: var(--stratakit-shadow-surface-lg);
   }
 }
