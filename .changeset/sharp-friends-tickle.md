@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': patch
+'@itwin/itwinui-react': minor
 ---
 
-Updated the minimum required version of `@stratakit/foundations` to `>=1.0.0`.
+Updated the minimum required version of `@stratakit/mui` to `>=1.0.0`.
