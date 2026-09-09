@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'Noto Sans Mono';
+  src: url('../fonts/noto-sans-mono-all-400-normal.woff') format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/noto-sans-v27-latin-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/noto-sans-v27-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/noto-sans-v27-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/noto-sans-v27-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/noto-sans-v27-latin-italic.woff2') format('woff2');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family:
+    'Noto Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  overflow: overlay;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+hr {
+  border-top: 1px solid var(--iui-color-border);
+  margin: 12px 0;
+}
+
+/** For sections in backstop tests */
+section[id^='demo'] {
+  width: -moz-fit-content; /* stylelint-disable */
+  width: fit-content;
+}
+
+ul {
+  padding-inline-start: revert;
+  margin-block-start: revert;
+  margin-block-end: revert;
+}
+
+:where(input, button, textarea, select) {
+  font: revert;
+  color: revert;
+}
+
+:where(img, picture, svg, video) {
+  display: revert;
+  max-inline-size: revert;
+  block-size: revert;
+}
