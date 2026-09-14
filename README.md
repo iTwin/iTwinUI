@@ -21,11 +21,8 @@ iTwinUI consists of the following packages:
 - [`@itwin/itwinui-variables`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/README.md) - CSS variables for iTwinUI's design tokens
 - [`@itwin/itwinui-react`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-react/README.md) - react components that consume `@itwin/itwinui-css`
 
----
-
-🆕 **iTwinUI v3** is now available! To upgrade from an older version, check out the [v3 migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide).
-
----
+> [!CAUTION]
+> iTwinUI is now in maintenance mode per [the support policy](https://github.com/iTwin/iTwinUI/wiki/Support-policy), with [StrataKit](https://github.com/iTwin/stratakit) replacing it as the primary design system. To switch, review [the migration guide](https://stratakit.bentley.com/docs/getting-started/migration-from-itwinui/). If you need to run both libraries simultaneously in the same UI, see [the theme bridge documentation](https://github.com/iTwin/iTwinUI/wiki/StrataKit-theme-bridge).
 
 ## Usage
 
