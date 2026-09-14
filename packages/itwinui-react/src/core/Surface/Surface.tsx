@@ -7,28 +7,6 @@ import cx from 'classnames';
 import { useSafeContext, supportsHas, Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
-/**
- * Helper function that returns one of the preset surface elevation values.
- */
-const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
-  switch (elevation) {
-    case 0:
-      return 'none';
-    case 1:
-      return 'var(--iui-shadow-1)';
-    case 2:
-      return 'var(--iui-shadow-2)';
-    case 3:
-      return 'var(--iui-shadow-3)';
-    case 4:
-      return 'var(--iui-shadow-4)';
-    case 5:
-      return 'var(--iui-shadow-5)';
-    default:
-      return undefined;
-  }
-};
-
 /** Returns correct border value based on prop */
 const getBorderValue = (border: boolean | string | undefined) => {
   if (typeof border === 'string') {
@@ -143,7 +121,6 @@ export const Surface = Object.assign(
     const [hasLayout, setHasLayout] = React.useState(false);
 
     const _style = {
-      '--iui-surface-elevation': getSurfaceElevationValue(elevation),
       '--iui-surface-border': getBorderValue(border),
       ...style,
     };
@@ -153,6 +130,7 @@ export const Surface = Object.assign(
         style={_style}
         ref={ref}
         data-iui-layout={hasLayout ? 'true' : undefined}
+        data-iui-elevation={elevation}
         {...rest}
       >
         <SurfaceContext.Provider value={{ setHasLayout }}>
