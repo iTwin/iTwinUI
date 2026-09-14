@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.21.5
+
+### Patch Changes
+
+- [#2704](https://github.com/iTwin/iTwinUI/pull/2704): Fixed an issue where `ComboBox` with `enableVirtualization` was crashing in React 19.3.0.
+
 ## 3.21.4
 
 ### Patch Changes
