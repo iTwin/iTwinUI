@@ -287,6 +287,7 @@
   .iui-dialog {
     // StrataKit Dialog background color is not iTwinUI's --iui-color-background global mapping
     background-color: var(--stratakit-color-bg-elevation-base);
+    border: 1px solid var(--stratakit-color-border-page-base);
   }
 
   /* ---------------------------------------------------------------------------- */
@@ -371,6 +372,7 @@
   .iui-popover-surface {
     // StrataKit background color is different from global values
     background-color: var(--stratakit-color-bg-elevation-level-1);
+    border-color: var(--stratakit-color-border-page-base);
   }
 
   /* ---------------------------------------------------------------------------- */
