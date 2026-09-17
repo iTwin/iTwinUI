@@ -606,17 +606,14 @@ export const ComboBox = React.forwardRef(
     );
 
     const emptyContent = React.useMemo(
-      () => (
-        <>
-          {React.isValidElement(emptyStateMessage) ? (
-            emptyStateMessage
-          ) : (
-            <MenuExtraContent>
-              <Text isMuted>{emptyStateMessage}</Text>
-            </MenuExtraContent>
-          )}
-        </>
-      ),
+      () =>
+        React.isValidElement(emptyStateMessage) ? (
+          emptyStateMessage
+        ) : (
+          <MenuExtraContent>
+            <Text isMuted>{emptyStateMessage}</Text>
+          </MenuExtraContent>
+        ),
       [emptyStateMessage],
     );
 
