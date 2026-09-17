@@ -1,0 +1,1 @@
+class e extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m8 13h-3v-10h3zm4-10h-3v10h3z" /></svg>'}}customElements.define("svg-pause",e);
