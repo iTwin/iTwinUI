@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.0-dev.2
+
+
+- [#2697](https://github.com/iTwin/iTwinUI/pull/2697): Updated theme bridge to be compatible with the variables from `@stratakit/foundations@1.0`.
+- [#2701](https://github.com/iTwin/iTwinUI/pull/2701): Updated values of `--iui-color-background-hsl` and `--iui-color-foreground-hsl` when theme bridge is enabled.
+- [#2686](https://github.com/iTwin/iTwinUI/pull/2686), [#2696](https://github.com/iTwin/iTwinUI/pull/2696): Input labels and form fields now use consistent font sizing.
+- [#2699](https://github.com/iTwin/iTwinUI/pull/2699): Updated checkbox symbols to match latest StrataKit symbols within theme bridge.
+
 ## 3.0.0-dev.1
 
 ### Major Changes
