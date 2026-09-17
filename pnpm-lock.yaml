@@ -145,7 +145,7 @@ importers:
         version: 2.9.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.21.5(@stratakit/mui@1.0.0(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -220,7 +220,7 @@ importers:
         version: 5.0.19
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.21.5(@stratakit/mui@1.0.0(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@itwin/itwinui-variables':
         specifier: '*'
         version: link:../../packages/itwinui-variables
@@ -295,7 +295,7 @@ importers:
     dependencies:
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../packages/itwinui-react
+        version: 3.21.5(@stratakit/mui@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   internal/configs:
     dependencies:
@@ -377,7 +377,7 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@stratakit/mui':
-        specifier: '>=1.0.0'
+        specifier: ^1.0.0
         version: 1.0.0(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@stratakit/foundations@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@swc/helpers':
         specifier: ^0.5.17
@@ -460,7 +460,7 @@ importers:
         version: 2.9.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.21.5(@stratakit/mui@1.0.0(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: ^19.0.0
         version: 19.2.3
@@ -488,7 +488,7 @@ importers:
     dependencies:
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.21.5(@stratakit/mui@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       axe-core:
         specifier: ^4.10.2
         version: 4.10.2
@@ -506,7 +506,7 @@ importers:
     dependencies:
       '@itwin/itwinui-react':
         specifier: '*'
-        version: link:../../packages/itwinui-react
+        version: 3.21.5(@stratakit/mui@1.0.0(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@react-router/fs-routes':
         specifier: ^7.11.0
         version: 7.11.0(@react-router/dev@7.11.0(@react-router/serve@7.11.0(react-router@7.14.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.5.2))(@types/node@24.9.0)(babel-plugin-macros@3.1.0)(lightningcss@1.32.0)(react-router@7.14.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(sass-embedded@1.93.2)(typescript@5.5.2)(vite@6.4.2(@types/node@24.9.0)(lightningcss@1.32.0)(sass-embedded@1.93.2)(yaml@2.8.3))(yaml@2.8.3))(typescript@5.5.2)
@@ -1637,6 +1637,16 @@ packages:
     peerDependencies:
       react: '>=16.8.6'
       react-dom: '>=16.8.6'
+
+  '@itwin/itwinui-react@3.21.5':
+    resolution: {integrity: sha512-3TkZEgknpfuWK5XpMDJEIsHb9rPQ4wVWBRFGCcJJXwVcPR5K5eZ6fpr0NVr+G0pU1K6MscRusYOM+pA92q3YsQ==}
+    peerDependencies:
+      '@stratakit/mui': '>=0.4.0'
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+    peerDependenciesMeta:
+      '@stratakit/mui':
+        optional: true
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -8894,6 +8904,32 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
+  '@itwin/itwinui-react@3.21.5(@stratakit/mui@1.0.0(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@floating-ui/react': 0.27.13(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@itwin/itwinui-illustrations-react': 2.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@swc/helpers': 0.5.17
+      '@tanstack/react-virtual': 3.13.12(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      classnames: 2.5.1
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-table: 7.8.0(react@19.2.3)
+    optionalDependencies:
+      '@stratakit/mui': 1.0.0(@mui/material@7.3.6(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@stratakit/foundations@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.0.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
+  '@itwin/itwinui-react@3.21.5(@stratakit/mui@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@floating-ui/react': 0.27.13(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@itwin/itwinui-illustrations-react': 2.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@swc/helpers': 0.5.17
+      '@tanstack/react-virtual': 3.13.12(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      classnames: 2.5.1
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-table: 7.8.0(react@19.2.3)
+    optionalDependencies:
+      '@stratakit/mui': 1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -9557,6 +9593,23 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
+
+  '@stratakit/mui@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@ariakit/react': 0.4.38(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@emotion/cache': 11.14.0
+      '@emotion/react': 11.14.0(@types/react@19.0.8)(react@19.2.3)
+      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.0.8)(react@19.2.3))(@types/react@19.0.8)(react@19.2.3)
+      '@stratakit/icons': 0.4.3
+      '@stratakit/internal-utils': 0.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      classnames: 2.5.1
+      react: 19.2.3
+      react-compiler-runtime: 1.0.0(react@19.2.3)
+      react-dom: 19.2.3(react@19.2.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+    optional: true
 
   '@swc/cli@0.6.0(@swc/core@1.11.18(@swc/helpers@0.5.17))(chokidar@4.0.3)':
     dependencies:
