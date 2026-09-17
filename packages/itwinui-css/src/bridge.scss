@@ -295,9 +295,7 @@
   .iui-menu {
     // StrataKit uses different surface colors for the dropdowns
     background-color: var(--stratakit-color-bg-elevation-level-1);
-
-    // StrataKit uses box shadow only
-    border: none;
+    border-color: var(--stratakit-color-border-page-base);
     box-shadow: var(--stratakit-shadow-surface-xl);
   }
 
@@ -403,7 +401,7 @@
   // Background and border is not iui-color-background and iui-color-border-foreground respectively
   .iui-slider-thumb {
     background-color: var(--stratakit-color-bg-neutral-inverse);
-    border-color: var(--stratakit-color-border-neutral-muted);
+    border-color: var(--stratakit-color-border-neutral-base);
   }
 
   /* ---------------------------------------------------------------------------- */
