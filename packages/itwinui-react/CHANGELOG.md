@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#2697](https://github.com/iTwin/iTwinUI/pull/2697): Updated the minimum required version of `@stratakit/mui` to `>=1.0.0`.
+- [#2697](https://github.com/iTwin/iTwinUI/pull/2697): Updated the minimum required version of `@stratakit/mui` to `^1.0.0`.
 
 ## 3.21.5
 
