@@ -188,7 +188,8 @@ export type SliderProps = {
    */
   thumbProps?: (index: number) => React.ComponentPropsWithRef<'div'>;
   /**
-   * Callback fired at the end of a thumb move (i.e. on pointerUp) and when user clicks on rail.
+   * Callback fired once at the end of a pointer interaction (i.e. on pointerUp),
+   * whether it started on a thumb or on the rail, and when a keyboard key is released.
    */
   onChange?: (values: ReadonlyArray<number>) => void;
   /**
@@ -396,13 +397,17 @@ export const Slider = React.forwardRef((props, ref) => {
         );
         const [minVal, maxVal] = getAllowableThumbRange(closestValueIndex);
         pointerValue = getBoundedValue(pointerValue, minVal, maxVal);
+
+        // Activate the closest thumb so the press can continue as a drag and
+        // `onChange` is fired exactly once, from the pointerup handler.
+        setActiveThumbIndex(closestValueIndex);
+
         if (pointerValue === currentValues[closestValueIndex]) {
           return;
         }
         const newValues = [...currentValues];
         newValues[closestValueIndex] = pointerValue;
         setCurrentValues(newValues);
-        onChange?.(newValues);
         onUpdate?.(newValues);
         focusThumb(containerRef.current, closestValueIndex);
         event.preventDefault();
@@ -415,7 +420,6 @@ export const Slider = React.forwardRef((props, ref) => {
       step,
       currentValues,
       getAllowableThumbRange,
-      onChange,
       onUpdate,
       orientation,
     ],
