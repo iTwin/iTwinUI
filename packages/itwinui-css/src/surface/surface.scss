@@ -12,6 +12,16 @@ $surface-padding-with-gutter: var(--iui-size-2xs);
     display: flex;
     flex-direction: column;
   }
+
+  &:where([data-iui-elevation='0']) {
+    --iui-surface-elevation: var(--iui-shadow-0);
+  }
+
+  @each $elevation in 1, 2, 3, 4, 5 {
+    &:where([data-iui-elevation='#{$elevation}']) {
+      --iui-surface-elevation: var(--iui-shadow-#{$elevation});
+    }
+  }
 }
 
 .iui-popover-surface {
