@@ -1,0 +1,1 @@
+import{r,B as c,c as u}from"./index-C1_65VfN.js";const f=r.forwardRef((t,e)=>{let{className:i,children:s,status:n="primary",pulsing:l=!1,enabled:a=!0,...o}=t;return r.createElement(c,{as:"span",ref:e,className:u({"iui-notification-marker":a},i),"data-iui-variant":a?n:null,"data-iui-urgent":a?l:null,...o},s)});export{f as N};
