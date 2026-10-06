@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.22.0
+
+### Minor Changes
+
+- [#2697](https://github.com/iTwin/iTwinUI/pull/2697): Updated the minimum required version of `@stratakit/mui` to `^1.0.0`.
+
+## 3.21.5
+
+### Patch Changes
+
+- [#2704](https://github.com/iTwin/iTwinUI/pull/2704): Fixed an issue where `ComboBox` with `enableVirtualization` was crashing in React 19.3.0.
+
+## 3.21.4
+
+### Patch Changes
+
+- [#2701](https://github.com/iTwin/iTwinUI/pull/2701): Updated values of `--iui-color-background-hsl` and `--iui-color-foreground-hsl` when theme bridge is enabled.
+- [#2699](https://github.com/iTwin/iTwinUI/pull/2699): Updated `Checkbox` symbols to match latest StrataKit symbols within theme bridge.
+
 ## 3.21.3
 
 ### Patch Changes
