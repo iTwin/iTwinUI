@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <style>
+    path { fill: url(#gradient-light-theme); }
+    @media (prefers-color-scheme: dark) {
+      path { fill: url(#gradient-dark-theme); }
+    }
+  </style>
+  <defs>
+    <linearGradient id="gradient-dark-theme" x1="3.30886" y1="3.38765" x2="12.69426" y2="12.77304" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb5fb"/>
+      <stop offset="1" stop-color="#82a3ff"/>
+    </linearGradient>
+    <linearGradient id="gradient-light-theme" x1="3.30886" y1="3.38765" x2="12.69426" y2="12.77304" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f848f6"/>
+      <stop offset="1" stop-color="#354fff"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M15.1 4.73v6.73c0 .48-.27.94-.69 1.18l-5.43 3.2a1.16 1.16 0 0 1-1.17 0c-.37-.22-.59-.6-.59-1.03V9.37a.14.14 0 0 0-.06-.11l-.93-.54a.79.79 0 0 1 .4-1.47.8.8 0 0 1 .4.11l1.08.66c.41.24.67.69.67 1.17v4.96l4.7-2.79c.04-.02.06-.06.06-.1V4.9a.14.14 0 0 0-.07-.11L8.05 1.64a.11.11 0 0 0-.07-.02c-.02 0-.05 0-.06.02l-5.4 3.18a.12.12 0 0 0-.07.1l.01 6.36c0 .04.03.08.06.1l.15.1 2.84 1.65.1.06c.05.05.1.1.14.17a.8.8 0 0 1-.63 1.26c-.1 0-.2-.02-.29-.06l-2.75-1.62-.34-.2-.15-.09a1.37 1.37 0 0 1-.69-1.2V4.74c0-.5.27-.96.7-1.2L7.32.18a1.34 1.34 0 0 1 1.36 0l5.73 3.35c.42.25.68.7.68 1.19ZM8 6.46c.56 0 1.02-.47 1.02-1.04 0-.57-.46-1.03-1.02-1.03s-1.02.46-1.02 1.03c0 .57.46 1.04 1.02 1.04Z" />
+</svg>
