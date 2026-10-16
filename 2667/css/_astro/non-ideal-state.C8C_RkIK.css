@@ -1,0 +1,1 @@
+html,body{scroll-snap-type:y mandatory}.demo-non-ideal-state-scrolling{height:100vh;scroll-snap-align:start;position:relative;border-bottom:solid 2px #000}.demo-non-ideal-state-scrolling:last-of-type{border-bottom:none}

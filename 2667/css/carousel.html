@@ -1,0 +1,152 @@
+<!DOCTYPE html><!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+--><html lang="en-US" id="theme"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Carousel | iTwinUI</title><meta name="description" content="An open-source design system that helps us build a unified web experience."><meta property="og:site_name" content="iTwinUI"><meta property="og:title" content="Carousel"><meta property="og:description" content="An open-source design system that helps us build a unified web experience."><meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png"><meta property="og:image:alt" content="iTwinUI logo"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:url" content="https://itwin.github.io/iTwinUI/carousel.html"><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="./favicon.ico" sizes="any"><link rel="apple-touch-icon" href="./assets/pwa-icon.png"><link rel="manifest" href="./assets/manifest.json"><link rel="canonical" href="https://itwin.github.io/iTwinUI/carousel.html"><script type="module" src="./_astro/_layout.astro_astro_type_script_index_0_lang.B1ALVQVo.js"></script><link rel="stylesheet" href="./_astro/alert.Dwueb5Ds.css">
+<link rel="stylesheet" href="./_astro/carousel.Cw2Fu1wm.css"></head> <body class="iui-root" data-iui-theme> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1Jgmkb" prefix="r1" component-url="./_astro/ThemeBridge.CbDV3WNZ.js" component-export="ThemeBridge" renderer-url="./_astro/client.WSCbUple.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeBridge&quot;,&quot;value&quot;:true}"></astro-island> <theme-button></theme-button>  <script type="module" src="./_astro/carousel.astro_astro_type_script_index_0_lang.DPXc-JOe.js"></script>  <h1>Carousel</h1> <hr> <h2>Default</h2> <section id="demo-default"> <div class="iui-carousel demo-carousel-width" aria-roledescription="carousel" aria-label="Introduction to iTwinUI" aria-live="off" aria-atomic="true" id="test-2"> <div class="iui-carousel-navigation"> <div class="iui-carousel-navigation-left"> <button class="iui-button iui-button-base iui-field iui-carousel-navigation-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-controls="myCarousel-items" aria-label="Previous slide" tabindex="-1"><span class="iui-button-icon" aria-hidden="true">  <svg-chevron-left></svg-chevron-left> </span> </button> <button class="iui-button iui-button-base iui-field iui-carousel-navigation-animation-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-label="Play animation" data-action="play" tabindex="-1"><span class="iui-button-icon" aria-hidden="true">  <svg-play></svg-play> </span> </button> </div> <div class="iui-carousel-navigation-dots" role="tablist" aria-label="Slides" tabindex="-1"> <button class="iui-carousel-navigation-dot iui-active" tabindex="0" type="button" role="tab" data-slide="0" aria-label="Slide 1 (Current slide)" aria-selected="true" aria-controls="demo-slide-1"></button><button class="iui-carousel-navigation-dot" tabindex="-1" type="button" role="tab" data-slide="1" aria-label="Slide 2" aria-selected="false" aria-controls="demo-slide-2" id="test-1"></button><button class="iui-carousel-navigation-dot" tabindex="-1" type="button" role="tab" data-slide="2" aria-label="Slide 3" aria-selected="false" aria-controls="demo-slide-3"></button><button class="iui-carousel-navigation-dot" tabindex="-1" type="button" role="tab" data-slide="3" aria-label="Slide 4" aria-selected="false" aria-controls="demo-slide-4"></button><button class="iui-carousel-navigation-dot" tabindex="-1" type="button" role="tab" data-slide="4" aria-label="Slide 5" aria-selected="false" aria-controls="demo-slide-5"></button><button class="iui-carousel-navigation-dot" tabindex="-1" type="button" role="tab" data-slide="5" aria-label="Slide 6" aria-selected="false" aria-controls="demo-slide-6"></button><button class="iui-carousel-navigation-dot" tabindex="-1" type="button" role="tab" data-slide="6" aria-label="Slide 7" aria-selected="false" aria-controls="demo-slide-7"></button><button class="iui-carousel-navigation-dot iui-second" tabindex="-1" type="button" role="tab" data-slide="7" aria-label="Slide 8" aria-selected="false" aria-controls="demo-slide-8"></button><button class="iui-carousel-navigation-dot iui-first" tabindex="-1" type="button" role="tab" data-slide="8" aria-label="Slide 9" aria-selected="false" aria-controls="demo-slide-9"></button><button class="iui-carousel-navigation-dot iui-first" tabindex="-1" type="button" role="tab" data-slide="9" aria-label="Slide 10" aria-selected="false" aria-controls="demo-slide-10"></button><button class="iui-carousel-navigation-dot iui-first" tabindex="-1" type="button" role="tab" data-slide="10" aria-label="Slide 11" aria-selected="false" aria-controls="demo-slide-11"></button> </div> <div class="iui-carousel-navigation-right"> <button class="iui-button iui-button-base iui-field iui-carousel-navigation-button" type="button" data-iui-variant="borderless" data-iui-size="small" aria-controls="myCarousel-items" aria-label="Next slide" tabindex="-1"><span class="iui-button-icon" aria-hidden="true">  <svg-chevron-right></svg-chevron-right> </span> </button> </div> </div> <div class="iui-carousel-slider demo-carousel-height" id="myCarousel-items" tabindex="-1"> <div class="iui-carousel-slider-item demo-carousel-height iui-current" data-slide-id="0" role="tabpanel" aria-roledescription="slide" aria-label="1 of 11" id="demo-slide-1"> <!-- prettier-ignore --><a href="#" style="padding: 12px; background-color: var(--iui-color-background);" class="iui-anchor">
+Focus will target the navigation before slide content.
+</a> </div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="1" role="tabpanel" aria-roledescription="slide" aria-label="2 of 11" id="demo-slide-2"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="2" role="tabpanel" aria-roledescription="slide" aria-label="3 of 11" id="demo-slide-3"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="3" role="tabpanel" aria-roledescription="slide" aria-label="4 of 11" id="demo-slide-4"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="4" role="tabpanel" aria-roledescription="slide" aria-label="5 of 11" id="demo-slide-5"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="5" role="tabpanel" aria-roledescription="slide" aria-label="6 of 11" id="demo-slide-6"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="6" role="tabpanel" aria-roledescription="slide" aria-label="7 of 11" id="demo-slide-7"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="7" role="tabpanel" aria-roledescription="slide" aria-label="8 of 11" id="demo-slide-8"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="8" role="tabpanel" aria-roledescription="slide" aria-label="9 of 11" id="demo-slide-9"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="9" role="tabpanel" aria-roledescription="slide" aria-label="10 of 11" id="demo-slide-10"></div> <div class="iui-carousel-slider-item demo-carousel-height" data-slide-id="10" role="tabpanel" aria-roledescription="slide" aria-label="11 of 11" id="demo-slide-11"></div> </div> </div> </section> <script>
+    let MAX_DOTS = 9;
+
+    document.querySelectorAll('.iui-carousel').forEach((carousel) => {
+      const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
+      const dotsList = carousel.querySelector('.iui-carousel-navigation-dots');
+      const dots = [...carousel.querySelectorAll('.iui-carousel-navigation-dot')];
+      const [prev, next] = [...carousel.querySelectorAll('.iui-carousel-navigation-button')];
+      const slider = carousel.querySelector('.iui-carousel-slider');
+
+      const updateSlide = (current) => {
+        slider.scrollTo({
+          left: slides[current].offsetLeft - slider.offsetLeft,
+          behavior: 'smooth',
+        });
+
+        const firstDotIndex = Math.max(
+          0,
+          Math.min(current - parseInt(MAX_DOTS / 2), dots.length - MAX_DOTS),
+        );
+        const lastDotIndex = Math.min(
+          dots.length - 1,
+          Math.max(current + parseInt(MAX_DOTS / 2), MAX_DOTS - 1),
+        );
+
+        dots.forEach((dot, index) => {
+          if (index === current) {
+            dot.tabIndex = 0;
+            dot.focus();
+          } else {
+            dot.tabIndex = -1;
+          }
+          dot.classList.toggle('iui-active', index === current);
+
+          if (index === firstDotIndex) {
+            dotsList.scrollTo({ left: dot.offsetLeft - dotsList.offsetLeft, behavior: 'smooth' });
+          }
+
+          const isFirstSmallDot =
+            (index === firstDotIndex && index !== 0) ||
+            (index === lastDotIndex && index !== dots.length - 1);
+          const isSecondSmallDot =
+            (index === firstDotIndex + 1 && index !== 1) ||
+            (index === lastDotIndex - 1 && index !== dots.length - 2);
+          const isClipped = index < firstDotIndex || index > lastDotIndex;
+
+          dot.classList.toggle('iui-first', isFirstSmallDot || isClipped);
+          dot.classList.toggle('iui-second', isSecondSmallDot);
+        });
+
+        slides.forEach((slide, index) => {
+          slide.tabIndex = index === current ? 0 : -1;
+          slide.inert = index !== current;
+        });
+      };
+
+      // previous / next slide buttons
+      let currentSlide = slides.findIndex((slide) => slide.classList.contains('iui-current'));
+      const goPrevSlide = () => {
+        stopAutoPlay();
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlide(currentSlide);
+        if (document.querySelector('[data-action="pause"]')) startAutoPlay();
+      };
+      const goNextSlide = () => {
+        stopAutoPlay();
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlide(currentSlide);
+        if (document.querySelector('[data-action="pause"]')) startAutoPlay();
+      };
+      prev.addEventListener('click', () => goPrevSlide());
+      next.addEventListener('click', () => goNextSlide());
+
+      // update dots truncation on resize
+      const resizeObserver = new ResizeObserver(
+        ([
+          {
+            contentRect: { width },
+          },
+        ]) => {
+          MAX_DOTS = Math.floor(width / dots[0].offsetWidth);
+          updateSlide(currentSlide);
+        },
+      );
+      resizeObserver.observe(dotsList);
+
+      // clickable dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentSlide = index;
+          updateSlide(currentSlide);
+        });
+      });
+
+      // autoplay timers
+      let autoplayTimer;
+      const TIME_PER_SLIDE = 5000; // in ms
+      const startAutoPlay = () => {
+        autoplayTimer = setInterval(() => {
+          currentSlide = (currentSlide + 1) % slides.length;
+          updateSlide(currentSlide);
+        }, TIME_PER_SLIDE);
+      };
+      const stopAutoPlay = () => {
+        clearInterval(autoplayTimer);
+      };
+
+      // play / pause toggle
+      const playbackButton = document.querySelector("[data-action='play']");
+      const togglePlaybackState = () => {
+        if (playbackButton.dataset.action === 'play') {
+          startAutoPlay();
+          playbackButton.dataset.action = 'pause';
+          playbackButton.ariaLabel = 'Pause animation';
+          playbackButton.innerHTML = `<svg-pause></svg-pause>`;
+        } else {
+          stopAutoPlay();
+          playbackButton.dataset.action = 'play';
+          playbackButton.ariaLabel = 'Play animation';
+          playbackButton.innerHTML = `<svg-play></svg-play>`;
+        }
+      };
+      playbackButton.addEventListener('click', () => togglePlaybackState());
+
+      // keyboard navigation
+      dotsList.addEventListener('keydown', (e) => {
+        switch (e.key) {
+          case 'Enter':
+          case ' ':
+            togglePlaybackState();
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            goPrevSlide();
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            goNextSlide();
+            break;
+        }
+      });
+
+      // initialize
+      updateSlide(0);
+    });
+  </script>  </body></html>
