@@ -39,7 +39,9 @@ const TestComponent = (props: {
 };
 
 beforeEach(() => {
-  DOMMatrixMock.mockReturnValue({ m41: 0, m42: 0 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 0, m42: 0 };
+  });
   getBoundingClientRectMock.mockReturnValue({
     top: 100,
     right: 200,
@@ -58,7 +60,9 @@ it('should handle drag', () => {
 
   const element = container.firstChild as HTMLDivElement;
   fireEvent.pointerDown(element, { clientX: 100, clientY: 100, button: 0 });
-  DOMMatrixMock.mockReturnValue({ m41: 100, m42: 100 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 100, m42: 100 };
+  });
   fireEvent.pointerMove(element, { clientX: 200, clientY: 200 });
   expect(element.style.transform).toBe('translate(100px, 100px)');
   expect(element.style.userSelect).toBe('none');
@@ -67,9 +71,13 @@ it('should handle drag', () => {
   expect(element.style.userSelect).toBe('');
 
   // Should take previous transform into account.
-  DOMMatrixMock.mockReturnValue({ m41: 100, m42: 100 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 100, m42: 100 };
+  });
   fireEvent.pointerDown(element, { clientX: 100, clientY: 100, button: 0 });
-  DOMMatrixMock.mockReturnValue({ m41: 200, m42: 200 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 200, m42: 200 };
+  });
   fireEvent.pointerMove(element, { clientX: 200, clientY: 200 });
   expect(element.style.transform).toBe('translate(200px, 200px)');
   expect(element.style.userSelect).toBe('none');
@@ -94,7 +102,9 @@ it('should prevent from dragging outside container', () => {
   fireEvent.pointerDown(element, { clientX: 150, clientY: 150, button: 0 });
 
   // Prevent from dragging too much on the left upper corner.
-  DOMMatrixMock.mockReturnValue({ m41: -150, m42: -150 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: -150, m42: -150 };
+  });
   getBoundingClientRectMock.mockReturnValue({
     top: -50,
     right: 50,
@@ -105,7 +115,9 @@ it('should prevent from dragging outside container', () => {
   expect(element.style.transform).toBe('translate(-50px, -50px)');
 
   // Prevent from dragging too much on the right down corner.
-  DOMMatrixMock.mockReturnValue({ m41: 150, m42: 150 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 150, m42: 150 };
+  });
   getBoundingClientRectMock.mockReturnValue({
     top: 250,
     right: 350,
@@ -123,7 +135,9 @@ it('should prevent from dragging outside window', () => {
   fireEvent.pointerDown(element, { clientX: 150, clientY: 150, button: 0 });
 
   // Prevent from dragging too much on the left upper corner.
-  DOMMatrixMock.mockReturnValue({ m41: -250, m42: -250 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: -250, m42: -250 };
+  });
   getBoundingClientRectMock.mockReturnValue({
     top: -150,
     right: -50,
@@ -134,7 +148,9 @@ it('should prevent from dragging outside window', () => {
   expect(element.style.transform).toBe('translate(-100px, -100px)');
 
   // Prevent from dragging too much on the right down corner.
-  DOMMatrixMock.mockReturnValue({ m41: 850, m42: 850 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 850, m42: 850 };
+  });
   getBoundingClientRectMock.mockReturnValue({
     top: 950,
     right: 1050,
@@ -150,7 +166,9 @@ it('should preserve transform value after element was removed and brought back t
 
   let element = container.firstChild as HTMLDivElement;
   fireEvent.pointerDown(element, { clientX: 100, clientY: 100, button: 0 });
-  DOMMatrixMock.mockReturnValue({ m41: 100, m42: 100 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 100, m42: 100 };
+  });
   fireEvent.pointerMove(element, { clientX: 200, clientY: 200 });
   expect(element.style.transform).toBe('translate(100px, 100px)');
   fireEvent.pointerUp(element);
