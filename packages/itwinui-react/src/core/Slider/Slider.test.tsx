@@ -574,9 +574,70 @@ it('should move thumb when pointer down on rail', () => {
 
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-valuenow')).toEqual('30');
+  expect(thumb.classList).toContain('iui-active');
 
-  expect(handleOnChange).toHaveBeenCalledWith([30]);
+  // onChange is deferred to pointerUp so a press that turns into a drag commits once
   expect(handleOnUpdate).toHaveBeenCalledWith([30]);
+  expect(handleOnChange).not.toHaveBeenCalled();
+
+  act(() => {
+    fireEvent.pointerUp(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientX: 310,
+    });
+  });
+
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
+  expect(handleOnChange).toHaveBeenCalledWith([30]);
+});
+
+it('should call onChange once when pointer down on rail is followed by a drag', () => {
+  const handleOnChange = vi.fn();
+  const handleOnUpdate = vi.fn();
+
+  const { container } = render(
+    <Slider
+      values={defaultSingleValue}
+      onChange={handleOnChange}
+      onUpdate={handleOnUpdate}
+    />,
+  );
+
+  const sliderContainer = container.querySelector(
+    '.iui-slider',
+  ) as HTMLDivElement;
+
+  /* press 30% down the rail, drag to 60%, release */
+  act(() => {
+    fireEvent.pointerDown(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientX: 310,
+    });
+  });
+  act(() => {
+    fireEvent.pointerMove(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientX: 610,
+    });
+  });
+  act(() => {
+    fireEvent.pointerUp(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientX: 610,
+    });
+  });
+
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-valuenow')).toEqual('60');
+  expect(handleOnUpdate).toHaveBeenCalledTimes(2);
+  expect(handleOnUpdate).toHaveBeenNthCalledWith(1, [30]);
+  expect(handleOnUpdate).toHaveBeenNthCalledWith(2, [60]);
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
+  expect(handleOnChange).toHaveBeenCalledWith([60]);
 });
 
 it('should move thumb when pointer down on rail (vertical)', () => {
@@ -615,8 +676,19 @@ it('should move thumb when pointer down on rail (vertical)', () => {
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-valuenow')).toEqual('30');
 
-  expect(handleOnChange).toHaveBeenCalledWith([30]);
   expect(handleOnUpdate).toHaveBeenCalledWith([30]);
+  expect(handleOnChange).not.toHaveBeenCalled();
+
+  act(() => {
+    fireEvent.pointerUp(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 300,
+    });
+  });
+
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
+  expect(handleOnChange).toHaveBeenCalledWith([30]);
 });
 
 it('should move to closest step when pointer down on rail', () => {
