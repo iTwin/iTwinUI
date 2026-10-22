@@ -1,0 +1,1 @@
+import{r,B as c,c as l}from"./index-DRDHQtLS.js";const m=r.forwardRef((a,o)=>{let{className:n,children:t,overflow:e,background:i="none",...s}=a;return r.createElement(c,{className:l("iui-tag-container",{[`iui-${e}`]:!!e,"iui-visible":i!=="none"},n),ref:o,...s},t)});export{m as T};
