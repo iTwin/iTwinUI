@@ -407,7 +407,7 @@ jobs:
           fi
 
       - name: Upload & scan
-        uses: veracode/veracode-uploadandscan-action@0.2.6
+        uses: veracode/veracode-uploadandscan-action@0.2.11
         with:
           appname: 'iTwinUI - UX (ITDW - 3418)'
           filepath: 'itdw-veracode.zip'
