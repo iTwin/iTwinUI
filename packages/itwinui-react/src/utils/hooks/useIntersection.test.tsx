@@ -23,14 +23,15 @@ const mockedDisconnect = vi.fn();
 beforeEach(() => {
   vi.clearAllMocks();
   observers.clear();
-  window.IntersectionObserver = vi.fn(
-    (callback: IntersectionObserverCallback) => {
-      return {
-        observe: (el: Element) => observers.set(el, callback),
-        disconnect: mockedDisconnect,
-      } as unknown as IntersectionObserver;
-    },
-  );
+  window.IntersectionObserver = vi.fn(function (
+    this: IntersectionObserver,
+    callback: IntersectionObserverCallback,
+  ) {
+    return {
+      observe: (el: Element) => observers.set(el, callback),
+      disconnect: mockedDisconnect,
+    } as unknown as IntersectionObserver;
+  }) as unknown as typeof IntersectionObserver;
 });
 
 afterAll(() => {

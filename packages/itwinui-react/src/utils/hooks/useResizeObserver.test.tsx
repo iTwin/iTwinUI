@@ -18,14 +18,19 @@ const triggerResize = (e: Partial<DOMRect>) => {
 };
 
 beforeAll(() => {
-  window.ResizeObserver = vi.fn((cb) => ({
-    disconnect,
-    unobserve: vi.fn(),
-    observe: (el: Element) => {
-      resizeCallback = cb;
-      observe(el);
-    },
-  }));
+  window.ResizeObserver = vi.fn(function (
+    this: ResizeObserver,
+    cb: ResizeObserverCallback,
+  ) {
+    return {
+      disconnect,
+      unobserve: vi.fn(),
+      observe: (el: Element) => {
+        resizeCallback = cb as unknown as typeof resizeCallback;
+        observe(el);
+      },
+    } as unknown as ResizeObserver;
+  }) as unknown as typeof ResizeObserver;
 });
 
 beforeEach(() => {

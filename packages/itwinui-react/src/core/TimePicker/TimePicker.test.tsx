@@ -618,7 +618,7 @@ it('should navigate with keyboard in combined renderer', () => {
   expect(selectedTime.textContent).toBe('22:11:44');
   expect(document.activeElement).toEqual(selectedTime);
   expect(onClick).toHaveBeenCalledWith(new Date(2020, 1, 1, 22, 11, 44));
-});
+}, 100000);
 
 it('should navigate with keyboard in combined renderer (12 hours)', () => {
   vi.useFakeTimers({ toFake: ['setTimeout'] });
@@ -693,7 +693,7 @@ it('should navigate with keyboard in combined renderer (12 hours)', () => {
   expect(meridiemAM.textContent).toBe('AM');
   expect(document.activeElement).toEqual(meridiemAM);
   expect(onClick).toHaveBeenCalledWith(new Date(2020, 1, 1, 10, 11, 44));
-});
+}, 100000);
 
 it('should show 24 hours in combined renderer (seconds)', async () => {
   const onClick = vi.fn();

@@ -6,7 +6,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain.js';
 import { DialogTitleBar } from './DialogTitleBar.js';
 
-const DOMMatrixMock = vi.fn(() => ({ m41: 0, m42: 0 }));
+const DOMMatrixMock = vi.fn(function () {
+  return { m41: 0, m42: 0 };
+});
 (window as any).DOMMatrix = DOMMatrixMock;
 
 afterAll(() => {
@@ -236,7 +238,9 @@ it('should handle drag', () => {
   ) as HTMLElement;
   expect(titleBar).toBeTruthy();
   fireEvent.pointerDown(titleBar, { clientX: 100, clientY: 100, button: 0 });
-  DOMMatrixMock.mockReturnValue({ m41: 100, m42: 100 });
+  DOMMatrixMock.mockImplementation(function () {
+    return { m41: 100, m42: 100 };
+  });
   fireEvent.pointerMove(titleBar, { clientX: 200, clientY: 200 });
   expect(dialog.style.transform).toBe('translate(100px, 100px)');
   fireEvent.pointerUp(titleBar);
