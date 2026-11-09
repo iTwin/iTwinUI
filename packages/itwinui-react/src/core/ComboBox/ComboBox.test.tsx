@@ -111,6 +111,44 @@ it('should render caret icon correctly', async () => {
   expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
+it('ignores selection after an open combobox becomes disabled', async () => {
+  const options = [
+    { label: 'Apple', value: 'apple' },
+    { label: 'Orange', value: 'orange' },
+  ];
+  const onChange = vi.fn();
+  const Combobox = ({ disabled = false }) => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <ComboBox
+        inputProps={{ disabled }}
+        dropdownMenuProps={{
+          visible: open,
+          onVisibleChange: (visible) => {
+            if (!disabled) {
+              setOpen(visible);
+            }
+          },
+        }}
+        value='apple'
+        options={options}
+        onChange={onChange}
+      />
+    );
+  };
+  const { rerender } = render(<Combobox />);
+  const input = screen.getByRole('combobox');
+  await userEvent.click(input);
+  await screen.findByRole('option', { name: 'Orange' });
+
+  rerender(<Combobox disabled />);
+  expect(input).toBeDisabled();
+  await userEvent.click(screen.getByRole('option', { name: 'Orange' }));
+
+  expect(onChange).not.toHaveBeenCalled();
+  expect(input).toHaveValue('Apple');
+});
+
 it('should filter list according to text input', () => {
   const emptyText = 'No options 🙁';
   const { container } = renderComponent({
