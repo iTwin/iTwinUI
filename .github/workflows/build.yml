@@ -12,7 +12,7 @@ on:
 jobs:
   install:
     name: Install node modules
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
   audit:
     name: Audit node modules
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -55,7 +55,7 @@ jobs:
     needs: install
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -80,7 +80,7 @@ jobs:
   apps:
     name: Build website and playgrounds
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +102,7 @@ jobs:
   deploy-gh-pages:
     name: Push static files to github pages
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
@@ -212,7 +212,7 @@ jobs:
   unit-test:
     name: Run unit tests
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -243,7 +243,7 @@ jobs:
   visual-test-css:
     name: Run visual tests (css)
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -280,7 +280,7 @@ jobs:
   visual-test-react:
     name: Run visual tests (react)
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -311,7 +311,7 @@ jobs:
   a11y:
     name: Test for a11y violations
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -337,7 +337,7 @@ jobs:
   e2e:
     name: Run e2e tests
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
 
     steps:

@@ -17,7 +17,7 @@ jobs:
     if: github.repository == 'iTwin/iTwinUI'
     permissions:
       id-token: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
