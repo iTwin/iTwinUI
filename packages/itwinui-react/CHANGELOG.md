@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.22.1
+
+### Patch Changes
+
+- [#2714](https://github.com/iTwin/iTwinUI/pull/2714): Fixed a "Maximum update depth exceeded" error in React 19 when many components that use shadow DOM (e.g. `ProgressRadial`, `ProgressLinear`, `VisuallyHidden`) mount at the same time.
+- [#2717](https://github.com/iTwin/iTwinUI/pull/2717): Stripped `process.env` checks from the build output.
+
 ## 3.22.0
 
 ### Minor Changes
