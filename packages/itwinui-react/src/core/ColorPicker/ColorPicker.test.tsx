@@ -104,6 +104,13 @@ it('should render color builder with custom hue slider', () => {
     buttons: 1,
     clientX: 210,
   });
+  expect(handleChange).not.toHaveBeenCalled();
+
+  fireEvent.pointerUp(hueSliderThumb, {
+    pointerId: 5,
+    buttons: 1,
+    clientX: 210,
+  });
   expect(handleChange).toHaveBeenCalledTimes(1);
 });
 
@@ -465,7 +472,7 @@ it('should call onChange and onChangeComplete from hueSlider', () => {
     clientX: 410,
   });
 
-  expect(handleOnChange).toHaveBeenCalledTimes(2);
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
 });
 
 it('should handle pointer down/move/up from color square', () => {
