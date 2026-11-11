@@ -1,0 +1,1 @@
+class e extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="var(--iui-color-icon-muted, currentColor)"><path d="M8 4a2 2 0 112-2 2 2 0 01-2 2zm2 4a2 2 0 10-2 2 2 2 0 002-2zm0 6a2 2 0 10-2 2 2 2 0 002-2z"/></svg>'}}customElements.define("svg-more-vertical",e);
