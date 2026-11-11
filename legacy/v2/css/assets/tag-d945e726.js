@@ -1,0 +1,1 @@
+import"./anchor-f5abe173.js";class s extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"/></svg>'}}customElements.define("svg-close-small",s);
