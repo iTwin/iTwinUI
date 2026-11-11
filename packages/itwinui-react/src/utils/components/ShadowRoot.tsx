@@ -137,25 +137,21 @@ function useShadowRoot(
 
       const shadow = parent.shadowRoot || parent.attachShadow({ mode: 'open' });
       createStyleSheet(shadow);
-
-      // Flush the state immediately after shadow-root is attached, to ensure that layout
-      // measurements in parent component are correct.
-      // Without this, the parent component may end up measuring the layout when the shadow-root
-      // is attached in the DOM but React hasn't rendered any slots or content into it yet.
-      if (flush) {
-        ReactDOM.flushSync(() => setShadowRoot(shadow));
-      } else {
-        setShadowRoot(shadow);
-      }
+      setShadowRoot(shadow);
     };
 
-    if (flush) {
-      queueMicrotask(() => setupOrReuseShadowRoot());
-    } else {
+    if (!flush) {
       setupOrReuseShadowRoot();
+      return () => void setShadowRoot(null);
     }
 
-    return () => void setShadowRoot(null);
+    // Flush synchronously so that parent layout measurements include the shadow-root content.
+    const cancelSetup = scheduleFlushedSetup(setupOrReuseShadowRoot);
+
+    return () => {
+      cancelSetup();
+      setShadowRoot(null);
+    };
   }, [templateRef, createStyleSheet, latestShadowRoot, flush]);
 
   // Synchronize `css` with contents of the existing stylesheet
@@ -177,4 +173,41 @@ function useShadowRoot(
   }, [createStyleSheet, latestShadowRoot]);
 
   return shadowRoot;
+}
+
+const pendingFlushedSetups = new Set<() => void>();
+
+/**
+ * Runs `setup` in a microtask, in one `flushSync` shared with every setup scheduled before it.
+ * A separate `flushSync` per ShadowRoot can exceed React's nested update limit.
+ */
+function scheduleFlushedSetup(setup: () => void) {
+  if (pendingFlushedSetups.size === 0) {
+    queueMicrotask(flushPendingSetups);
+  }
+  pendingFlushedSetups.add(setup);
+
+  return () => void pendingFlushedSetups.delete(setup);
+}
+
+function flushPendingSetups() {
+  const setups = [...pendingFlushedSetups];
+  pendingFlushedSetups.clear();
+
+  if (setups.length === 0) {
+    return;
+  }
+
+  ReactDOM.flushSync(() => {
+    for (const setup of setups) {
+      try {
+        setup();
+      } catch (error) {
+        // Rethrow later so that the remaining setups still run.
+        queueMicrotask(() => {
+          throw error;
+        });
+      }
+    }
+  });
 }
