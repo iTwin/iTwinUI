@@ -52,17 +52,25 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
     styleType,
     children,
     dropdownMenuProps,
+    disabled,
     ...rest
   } = props;
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const menuVisible = !disabled && (dropdownMenuProps?.visible ?? isMenuOpen);
+
+  React.useEffect(() => {
+    if (disabled) {
+      setIsMenuOpen(false);
+    }
+  }, [disabled]);
 
   return (
     <DropdownMenu
       menuItems={menuItems}
       matchWidth
-      visible={isMenuOpen}
       {...dropdownMenuProps}
+      visible={menuVisible}
       onVisibleChange={(open) => {
         setIsMenuOpen(open);
         dropdownMenuProps?.onVisibleChange?.(open);
@@ -73,13 +81,14 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
         size={size}
         styleType={styleType}
         endIcon={
-          isMenuOpen ? (
+          menuVisible ? (
             <SvgCaretUpSmall aria-hidden />
           ) : (
             <SvgCaretDownSmall aria-hidden />
           )
         }
         ref={forwardedRef}
+        disabled={disabled}
         {...rest}
       >
         {children}

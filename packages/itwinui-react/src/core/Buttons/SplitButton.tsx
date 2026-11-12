@@ -87,7 +87,15 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   } = props;
   const { middleware, ...dropdownMenuPropsRest } = dropdownMenuProps || {};
 
-  const [visible, setVisible] = React.useState(false);
+  const [menuRequestedOpen, setVisible] = React.useState(false);
+  const disabled = menuButtonProps?.disabled ?? props.disabled;
+  const visible = !disabled && menuRequestedOpen;
+
+  React.useEffect(() => {
+    if (disabled) {
+      setVisible(false);
+    }
+  }, [disabled]);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
